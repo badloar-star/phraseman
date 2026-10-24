@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить цену кондиционера для белья",
+        "uk": "Порівняти ціну кондиціонера для білизни"
       },
       "bodyByLocale": {
-        "ru": "fabric softener — кондиционер для белья. stain remover — пятновыводитель. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
-        "uk": "fabric softener — кондиціонер для білизни. stain remover — плямовивідник. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+        "ru": "Подруга назвала цену своего недорогого кондиционера для белья. Вы нашли такую же по объёму бутылку за ту же цену. This fabric softener is as cheap as yours — этот кондиционер для белья такой же дешёвый, как твой. После This fabric softener is поставьте as cheap as и yours. Cheap между двумя as показывает равную дешевизну; yours заменяет your fabric softener.",
+        "uk": "Подруга назвала ціну свого недорогого кондиціонера для білизни. Ви знайшли таку саму за об’ємом пляшку за ту саму ціну. This fabric softener is as cheap as yours — цей кондиціонер для білизни такий самий дешевий, як твій. Після This fabric softener is поставте as cheap as і yours. Cheap між двома as показує однакову дешевизну; yours замінює your fabric softener."
       },
       "question": {
         "interactionId": "en:lesson-18:session-18:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить средства для стирки",
+        "uk": "Порівняти засоби для прання"
       },
       "bodyByLocale": {
-        "ru": "laundry detergent — средство для стирки. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
-        "uk": "laundry detergent — засіб для прання. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+        "ru": "На полке стоят две одинаковые по объёму упаковки недорогого средства для стирки с одинаковыми ценниками. This laundry detergent is as cheap as that one — это средство для стирки такое же дешёвое, как то. Начните с This laundry detergent is, затем поставьте as cheap as. В конце that one обозначает второе средство. Между двумя as нужна форма cheap, не cheaper.",
+        "uk": "На полиці стоять дві однакові за об’ємом упаковки недорогого засобу для прання з однаковими цінниками. This laundry detergent is as cheap as that one — цей засіб для прання такий самий дешевий, як той. Почніть із This laundry detergent is, потім поставте as cheap as. Наприкінці that one позначає другий засіб. Між двома as потрібна форма cheap, не cheaper."
       },
       "question": {
         "interactionId": "en:lesson-18:session-18:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Передать сравнение двух средств",
+        "uk": "Передати порівняння двох засобів"
       },
       "bodyByLocale": {
-        "ru": "cleaning spray — чистящий спрей. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as strong as.",
-        "uk": "cleaning spray — спрей для чищення. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as strong as."
+        "ru": "Продавец описывает два чистящих спрея как одинаково сильные. Вы передаёте его сравнение: This cleaning spray is as strong as that one — этот чистящий спрей такой же сильный, как тот. После This cleaning spray is поставьте as strong as, затем that one. Обычная форма strong между двумя as выражает равную степень качества, а that one заменяет название второго спрея.",
+        "uk": "Продавець описує два спреї для чищення як однаково сильні. Ви передаєте його порівняння: This cleaning spray is as strong as that one — цей спрей для чищення такий самий сильний, як той. Після This cleaning spray is поставте as strong as, потім that one. Звичайна форма strong між двома as виражає однаковий ступінь якості, а that one замінює назву другого спрею."
       },
       "question": {
         "interactionId": "en:lesson-18:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0252e3596cba692b054d09ec794d7c2fd09697db97f8efeacb4974f171c4584e"
+  "introFingerprint": "48132730c0699b05c2a52d198b0345ee7576d0f707594ad321f6c4f530e214a6"
 }

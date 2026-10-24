@@ -69,8 +69,8 @@
         "uk": "Найдовше очікування"
       },
       "bodyByLocale": {
-        "ru": "Waiting time — время ожидания. Journey time — время в пути. Вы сравнили время ожидания в трёх клиниках: здесь оно самое долгое. Long → the longest. Если говорим «самый» в выбранной группе, используем превосходную степень.",
-        "uk": "Waiting time — час очікування. Journey time — час у дорозі. Ви порівняли час очікування у трьох клініках: тут він найдовший. Long → the longest. Для значення «най-» у вибраній групі використовуємо найвищий ступінь."
+        "ru": "Вы сравнили время ожидания приёма в трёх клиниках: в этой ждать дольше всего. This clinic has the longest waiting time — в этой клинике самое долгое время ожидания. Начните с This clinic has, затем поставьте the longest waiting time. К long добавляем -est, а the ставим перед longest. Так выделяем максимальное время среди трёх вариантов.",
+        "uk": "Ви порівняли час очікування прийому в трьох клініках: у цій чекати найдовше. This clinic has the longest waiting time — у цій клініці найдовший час очікування. Почніть із This clinic has, потім поставте the longest waiting time. До long додаємо -est, а the ставимо перед longest. Так виділяємо максимальний час серед трьох варіантів."
       },
       "question": {
         "interactionId": "en:lesson-18:session-09:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "caf19166b0786a58369800df50ee69141bb194dc8885e249a0e5e2125ac31f54"
+  "introFingerprint": "c5956640bbefe4b3ac500a55859915b144fd6a7d4b0a8bed7c72147cf4c9c800"
 }

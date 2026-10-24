@@ -13453,7 +13453,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 9,
-    sourceFingerprint: "b3257d57818a549a7e27157673cdaf060d58f64e9bff0d59e338f0c99b611f29",
+    sourceFingerprint: "e91d7d8592cca1df51b85b32641986f7965bc333eb9798d86fd9472e411def55",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В этой конструкции перед shortest нужно the.","Из всей группы — shortest. Shorter сравнивает с другим вариантом."],["Нужна конструкция the longest waiting time.","Среди всех трёх — longest, не longer."],["Правильное написание earliest: y → i.","Нужно the earliest lunch break."]],"uk":[["У цій конструкції перед shortest потрібне the.","З усієї групи — shortest. Shorter порівнює з іншим варіантом."],["Потрібна конструкція the longest waiting time.","Серед усіх трьох — longest, не longer."],["Правильне написання earliest: y → i.","Потрібно the earliest lunch break."]]}),
@@ -13467,7 +13467,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 10,
-    sourceFingerprint: "8e2d825cd4781671121e5d37f5ce78dbbac19b747f127acb6e973ae343f07af8",
+    sourceFingerprint: "3ce8b8aa30e4b21d0931055f3b2007886192d0db9ada1ba6146a69d00f5e2a01",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — nearest, не nearer."],["Перед этой формой нужно the.","Из всей группы — largest, не larger."],["Перед этой формой нужно the.","Из всей группы — oldest, не older."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — nearest, не nearer."],["Перед цією формою потрібне the.","З усієї групи — largest, не larger."],["Перед цією формою потрібне the.","З усієї групи — oldest, не older."]]}),
@@ -13481,7 +13481,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 11,
-    sourceFingerprint: "9e16fb7a8edb8f8cd341974f370cad8989d09f11186ec8b028751a18282ae61f",
+    sourceFingerprint: "39e443b5587c0a26d545b5b221b62b86d6fe81952341d5594a9663a545df0125",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — smallest, не smaller."],["Перед этой формой нужно the.","Из всей группы — widest, не wider."],["Перед этой формой нужно the.","Из всей группы — narrowest, не narrower."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — smallest, не smaller."],["Перед цією формою потрібне the.","З усієї групи — widest, не wider."],["Перед цією формою потрібне the.","З усієї групи — narrowest, не narrower."]]}),
@@ -13495,7 +13495,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 12,
-    sourceFingerprint: "4a08d79f58d491d48d7e8bfeac6f5ffcb67930f485e73435ca0da5a897bc245d",
+    sourceFingerprint: "c7a0bfd0aa67fa2e014d496067d5e9ea03972c5cc1e4f1f04bd2dc3131ec25aa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — cheapest, не cheaper."],["Перед этой формой нужно the.","Из всей группы — largest, не larger."],["Перед этой формой нужно the.","Из всей группы — cheapest, не cheaper."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — cheapest, не cheaper."],["Перед цією формою потрібне the.","З усієї групи — largest, не larger."],["Перед цією формою потрібне the.","З усієї групи — cheapest, не cheaper."]]}),
@@ -13509,7 +13509,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 13,
-    sourceFingerprint: "f7e27fde1d54a308192dbc70e6868e9598bcd59f1501246aabd36ca0d1d30998",
+    sourceFingerprint: "a04278d2cb01f1934e65f81df46d9cb4bddd6a63acb52a91d6e7ebea0ed0cdcc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — oldest, не older."],["Перед этой формой нужно the.","Из всей группы — safest, не safer."],["Перед этой формой нужно the.","Из всей группы — smallest, не smaller."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — oldest, не older."],["Перед цією формою потрібне the.","З усієї групи — safest, не safer."],["Перед цією формою потрібне the.","З усієї групи — smallest, не smaller."]]}),
@@ -13523,7 +13523,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 14,
-    sourceFingerprint: "825cf334ffbdf6f09c478f1b5da80575d3d62e47a144f7bdd3165196d7c3dc82",
+    sourceFingerprint: "6c5be5b2e8276f1b78d9830677d93a4704f7dea8fb58b43dee6eeeec2c19c222",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — slowest, не slower."],["Перед этой формой нужно the.","Из всей группы — cheapest, не cheaper."],["Перед этой формой нужно the.","Из всей группы — cheapest, не cheaper."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — slowest, не slower."],["Перед цією формою потрібне the.","З усієї групи — cheapest, не cheaper."],["Перед цією формою потрібне the.","З усієї групи — cheapest, не cheaper."]]}),
@@ -13537,7 +13537,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 15,
-    sourceFingerprint: "0fcd90753f36cc088f8627fa93b4f98be7690d301f7daf76d3c49b3da4a0d19f",
+    sourceFingerprint: "4cfaf661bd4243b9183523485914203be406a42460ca0abb3a849723cf8b3e65",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — lightest, не lighter."],["Перед этой формой нужно the.","Из всей группы — smallest, не smaller."],["Перед этой формой нужно the.","Из всей группы — widest, не wider."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — lightest, не lighter."],["Перед цією формою потрібне the.","З усієї групи — smallest, не smaller."],["Перед цією формою потрібне the.","З усієї групи — widest, не wider."]]}),
@@ -13551,7 +13551,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 16,
-    sourceFingerprint: "7118a1f1a989dc64084e69afe3a5f9705a0a20f77b2b0dfd49ee677a5cff8754",
+    sourceFingerprint: "eac4cd94642193d035816d6fb62d76eec1157d12b2d743ca418343e9ed6fcd4b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед этой формой нужно the.","Из всей группы — earliest, не earlier."],["Перед этой формой нужно the.","Из всей группы — latest, не later."],["Перед этой формой нужно the.","Из всей группы — earliest, не earlier."]],"uk":[["Перед цією формою потрібне the.","З усієї групи — earliest, не earlier."],["Перед цією формою потрібне the.","З усієї групи — latest, не later."],["Перед цією формою потрібне the.","З усієї групи — earliest, не earlier."]]}),
@@ -13565,7 +13565,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 17,
-    sourceFingerprint: "452f386bbdef4d545e6fff1b635691ca61a0ef5dbfe8e1b3e7d77ed90f7445e2",
+    sourceFingerprint: "bd29bdd0161d1401dde53d8848f0de3c653675e02c5c3566497eb96ebd8401b4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Между as и as обычная форма strong, без -er.","Для равенства нужно второе as, не than."],["Здесь нужна обычная форма fresh.","Нужно два as: as fresh as."],["После as обычная форма cheap, не cheaper.","Равенство: as cheap as."]],"uk":[["Між as та as звичайна форма strong, без -er.","Для рівності потрібне друге as, не than."],["Тут потрібна звичайна форма fresh.","Потрібні два as: as fresh as."],["Після as звичайна форма cheap, не cheaper.","Рівність: as cheap as."]]}),
@@ -13579,7 +13579,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 18,
-    sourceFingerprint: "4ae76c44a5f015705e99f2440c0602afbccbe38ed82fea015aaccf1bcf6965be",
+    sourceFingerprint: "a0a2d54a79b3b2ce14801c4c89750b6a2a9d93c747e0e339a5e89658a6cde927",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма cheap.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма cheap.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма strong.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма cheap.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма cheap.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма strong.","Потрібні два as: as … as."]]}),
@@ -13593,7 +13593,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 19,
-    sourceFingerprint: "4c13e58f3f2bd06254b2fafe17839302cccf054856bc226fe6d2cb8cab12726c",
+    sourceFingerprint: "19ec7973d4983c78a88300ca5f2112a2dfc37f9dafee3443a8767f67435c75f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма light.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма expensive.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма soft.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма light.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма expensive.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма soft.","Потрібні два as: as … as."]]}),
@@ -13607,7 +13607,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 20,
-    sourceFingerprint: "911577afa57c478054a8b38994af5e1b59d63a31aba2332c3289727d965c9e5c",
+    sourceFingerprint: "4d6403d852d158b03283a2e47eaf23dccec3b761b3d9e33479a8503eedddc564",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма cheap.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма fresh.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма hot.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма cheap.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма fresh.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма hot.","Потрібні два as: as … as."]]}),
@@ -13621,7 +13621,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 21,
-    sourceFingerprint: "91d2b9626bd3d8637354511d03200107dfc02169bf4464bff745601bf8e988bd",
+    sourceFingerprint: "5b9293568900a79c2b051d7138db8f4645f09cdce2b6f4f2bf6a1b8629a693d8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма cheap.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма cheap.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма wide.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма cheap.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма cheap.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма wide.","Потрібні два as: as … as."]]}),
@@ -13635,7 +13635,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 22,
-    sourceFingerprint: "f1a74f73e20a9c6dee1724e44653ee32e58d4693f8425e9cc900e5f14c5f75f4",
+    sourceFingerprint: "b3cf38789d8f92b6aeb9fa88e789d8ecaa473f126c4e6c5251344faf5a803ccc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма fast.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма wide.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма cheap.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма fast.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма wide.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма cheap.","Потрібні два as: as … as."]]}),
@@ -13649,7 +13649,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 23,
-    sourceFingerprint: "670d5ddad867cd4e568d9651da2c6dbf7e8e796d23c659f446d148a20cf06959",
+    sourceFingerprint: "7e181a7bc93a0106f485d1cb95bd1d7d90239d9458d1fa9d2455d499448b9b5a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма large.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма strong.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма light.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма large.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма strong.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма light.","Потрібні два as: as … as."]]}),

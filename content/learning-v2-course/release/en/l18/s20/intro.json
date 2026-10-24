@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить стоимость обеда",
+        "uk": "Порівняти вартість обіду"
       },
       "bodyByLocale": {
-        "ru": "lunch menu — обеденное меню. vegetarian option — вегетарианский вариант блюда. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
-        "uk": "lunch menu — обіднє меню. vegetarian option — вегетаріанський варіант страви. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+        "ru": "Вы сравниваете обеденные предложения двух кафе: оба предлагают недорогой обед за одинаковую цену. This lunch menu is as cheap as that one — это обеденное меню такое же дешёвое, как то. Начните с This lunch menu is, затем поставьте as cheap as. Cheap между двумя as показывает одинаковую дешевизну; that one заменяет название второго меню.",
+        "uk": "Ви порівнюєте обідні пропозиції двох кафе: обидва пропонують недорогий обід за однакову ціну. This lunch menu is as cheap as that one — це обіднє меню таке саме дешеве, як те. Почніть із This lunch menu is, потім поставте as cheap as. Cheap між двома as показує однакову дешевизну; that one замінює назву другого меню."
       },
       "question": {
         "interactionId": "en:lesson-18:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить свежесть блюд",
+        "uk": "Порівняти свіжість страв"
       },
       "bodyByLocale": {
-        "ru": "daily special — блюдо дня. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as fresh as.",
-        "uk": "daily special — страва дня. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as fresh as."
+        "ru": "В кафе блюдо дня и салат приготовили только что. Вы хотите сказать, что блюдо дня такое же свежее. The daily special is as fresh as the salad — блюдо дня такое же свежее, как салат. После The daily special is поставьте as fresh as, затем the salad. Обычная форма fresh между двумя as показывает равную степень качества.",
+        "uk": "У кафе страву дня й салат приготували щойно. Ви хочете сказати, що страва дня така сама свіжа. The daily special is as fresh as the salad — страва дня така сама свіжа, як салат. Після The daily special is поставте as fresh as, потім the salad. Звичайна форма fresh між двома as показує однаковий ступінь якості."
       },
       "question": {
         "interactionId": "en:lesson-18:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Сравнить горячую еду навынос",
+        "uk": "Порівняти гарячу їжу із собою"
       },
       "bodyByLocale": {
-        "ru": "takeaway meal — еда навынос. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as hot as.",
-        "uk": "takeaway meal — їжа із собою. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as hot as."
+        "ru": "Вы с другом открыли два заказа навынос: оба блюда ещё одинаково горячие. This takeaway meal is as hot as yours — эта еда навынос такая же горячая, как твоя. После This takeaway meal is поставьте as hot as и yours. Yours заменяет your takeaway meal; hot остаётся в обычной форме между двумя as, без удвоения t и окончания -er.",
+        "uk": "Ви з другом відкрили два замовлення із собою: обидві страви ще однаково гарячі. This takeaway meal is as hot as yours — ця їжа із собою така сама гаряча, як твоя. Після This takeaway meal is поставте as hot as і yours. Yours замінює your takeaway meal; hot залишається у звичайній формі між двома as, без подвоєння t і закінчення -er."
       },
       "question": {
         "interactionId": "en:lesson-18:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ad41856455b47ff7ed7ddd3e87e0788c9d225982a848fa673422211280b4c521"
+  "introFingerprint": "d8b0c1d35f64e01693b10a3c498c98ecc659c18bf0e14694a91c40b34cad3a61"
 }

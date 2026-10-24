@@ -69,8 +69,8 @@
         "uk": "Однакова свіжість"
       },
       "bodyByLocale": {
-        "ru": "Ground coffee — молотый кофе. Black tea — чёрный чай. Два пакета молотого кофе одинаково свежие. As fresh as — такой же свежий. Не fresher: сейчас сравниваем равные качества.",
-        "uk": "Ground coffee — мелена кава. Black tea — чорний чай. Два пакети меленої кави однаково свіжі. As fresh as — така сама свіжа. Не fresher: зараз порівнюємо рівні якості."
+        "ru": "Вы с другом открыли два пакета только что смолотого кофе: кофе в обоих одинаково свежий. This ground coffee is as fresh as yours — этот молотый кофе такой же свежий, как твой. После This ground coffee is поставьте as fresh as, затем yours вместо your ground coffee. Fresh остаётся в обычной форме между двумя as: сравниваем равную свежесть, поэтому fresher не нужно.",
+        "uk": "Ви з другом відкрили два пакети щойно змеленої кави: кава в обох однаково свіжа. This ground coffee is as fresh as yours — ця мелена кава така сама свіжа, як твоя. Після This ground coffee is поставте as fresh as, потім yours замість your ground coffee. Fresh залишається у звичайній формі між двома as: порівнюємо однакову свіжість, тому fresher не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-18:session-17:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d31d0f8bc6a172321b66dcfc4902fb7e6db13a1af85852184a998f8228c556b7"
+  "introFingerprint": "5f2a7704364a673629e0e10c446aba9fe3cd5e5cc0f8209f90546f3ebd49e916"
 }

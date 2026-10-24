@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выделить вариант 1",
-        "uk": "Виділити варіант 1"
+        "ru": "Выбрать самый лёгкий стул",
+        "uk": "Вибрати найлегший стілець"
       },
       "bodyByLocale": {
-        "ru": "dining chair — обеденный стул. office chair — офисный стул или кресло. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "dining chair — обідній стілець. office chair — офісний стілець або крісло. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "В магазине стоят три обеденных стула. Вы подняли каждый и нашли тот, который весит меньше остальных. This dining chair is the lightest — этот обеденный стул самый лёгкий. После This dining chair is поставьте the lightest. К light добавляем -est, чтобы выделить один стул из всей тройки; the ставим перед этой формой.",
+        "uk": "У магазині стоять три обідні стільці. Ви підняли кожен і знайшли той, що важить менше за решту. This dining chair is the lightest — цей обідній стілець найлегший. Після This dining chair is поставте the lightest. До light додаємо -est, щоб виділити один стілець з усієї трійки; the ставимо перед цією формою."
       },
       "question": {
         "interactionId": "en:lesson-18:session-15:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выделить вариант 2",
-        "uk": "Виділити варіант 2"
+        "ru": "Указать самый маленький стол",
+        "uk": "Указати найменший стіл"
       },
       "bodyByLocale": {
-        "ru": "kitchen table — кухонный стол. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "kitchen table — кухонний стіл. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "Вы выбираете один из трёх кухонных столов для тесной кухни. Этот занимает меньше места, чем остальные. This kitchen table is the smallest — этот кухонный стол самый маленький. Начните с This kitchen table is, затем поставьте the smallest. Small + -est даёт smallest; с the эта форма выделяет самый маленький стол среди рассматриваемых.",
+        "uk": "Ви вибираєте один із трьох кухонних столів для тісної кухні. Цей займає менше місця, ніж решта. This kitchen table is the smallest — цей кухонний стіл найменший. Почніть із This kitchen table is, потім поставте the smallest. Small + -est дає smallest; із the ця форма виділяє найменший стіл серед тих, які розглядаєте."
       },
       "question": {
         "interactionId": "en:lesson-18:session-15:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Выделить вариант 3",
-        "uk": "Виділити варіант 3"
+        "ru": "Найти самый широкий стол",
+        "uk": "Знайти найширший стіл"
       },
       "bodyByLocale": {
-        "ru": "dining table — обеденный стол. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "dining table — обідній стіл. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "Вы измерили три обеденных стола: ширина этого больше, чем у двух других. This dining table is the widest — этот обеденный стол самый широкий. После This dining table is поставьте the widest. Wide заканчивается на e, поэтому добавляем -st: widest. The widest означает «самый широкий» в этой группе столов.",
+        "uk": "Ви виміряли три обідні столи: ширина цього більша, ніж у двох інших. This dining table is the widest — цей обідній стіл найширший. Після This dining table is поставте the widest. Wide закінчується на e, тому додаємо -st: widest. The widest означає «найширший» у цій групі столів."
       },
       "question": {
         "interactionId": "en:lesson-18:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "927484039951c072ae934acdc26e76c876af05a703b9b724855c74c73a3c9bdb"
+  "introFingerprint": "89986e85f6bb96109a2393c6dfb462753b0999cf7d292d5baa012fdd8d36ad7a"
 }

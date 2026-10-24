@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить вес очков",
+        "uk": "Порівняти вагу окулярів"
       },
       "bodyByLocale": {
-        "ru": "reading glasses — очки для чтения. contact lenses — контактные линзы. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as light as.",
-        "uk": "reading glasses — окуляри для читання. contact lenses — контактні лінзи. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as light as."
+        "ru": "Вы взяли в руки две пары очков для чтения: новую и свою. Они одинаково лёгкие. These reading glasses are as light as mine — эти очки для чтения такие же лёгкие, как мои. С glasses используем These и are. Дальше ставим as light as, затем mine вместо my reading glasses. Между двумя as нужна обычная форма light.",
+        "uk": "Ви взяли до рук дві пари окулярів для читання: нову та свою. Вони однаково легкі. These reading glasses are as light as mine — ці окуляри для читання такі самі легкі, як мої. Із glasses використовуємо These та are. Далі ставимо as light as, потім mine замість my reading glasses. Між двома as потрібна звичайна форма light."
       },
       "question": {
         "interactionId": "en:lesson-18:session-19:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить цены на капли",
+        "uk": "Порівняти ціни на краплі"
       },
       "bodyByLocale": {
-        "ru": "eye drops — глазные капли. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as expensive as.",
-        "uk": "eye drops — очні краплі. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as expensive as."
+        "ru": "Вы смотрите на две упаковки глазных капель: обе дорогие, и цены на них одинаковые. These eye drops are as expensive as those ones — эти глазные капли такие же дорогие, как те. Начните с These eye drops are, затем поставьте as expensive as и those ones. Expensive стоит между двумя as без more: сравниваем равную стоимость. Those ones обозначает вторые капли.",
+        "uk": "Ви дивитеся на дві упаковки очних крапель: обидві дорогі, і ціни на них однакові. These eye drops are as expensive as those ones — ці очні краплі такі самі дорогі, як ті. Почніть із These eye drops are, потім поставте as expensive as і those ones. Expensive стоїть між двома as без more: порівнюємо однакову вартість. Those ones позначає другі краплі."
       },
       "question": {
         "interactionId": "en:lesson-18:session-19:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Сравнить мягкость футляров",
+        "uk": "Порівняти м’якість футлярів"
       },
       "bodyByLocale": {
-        "ru": "glasses case — футляр для очков. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as soft as.",
-        "uk": "glasses case — футляр для окулярів. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as soft as."
+        "ru": "Вы потрогали тканевый футляр для очков и свой: на ощупь они одинаково мягкие. This glasses case is as soft as mine — этот футляр для очков такой же мягкий, как мой. Главное слово case в единственном числе, поэтому говорим This и is. Затем as soft as показывает равную мягкость, а mine заменяет my glasses case.",
+        "uk": "Ви торкнулися тканинного футляра для окулярів і свого: на дотик вони однаково м’які. This glasses case is as soft as mine — цей футляр для окулярів такий самий м’який, як мій. Головне слово case в однині, тому кажемо This та is. Потім as soft as показує однакову м’якість, а mine замінює my glasses case."
       },
       "question": {
         "interactionId": "en:lesson-18:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "215b7e3ee14899c137546997f35e5cc1e3675482ac36b62050bf4e1ccbf01a38"
+  "introFingerprint": "ccd3ff1b5ed9c70752ce01e7f04b2fca285ee5115f74f71d0682045062de89f0"
 }

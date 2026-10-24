@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить цену корма",
+        "uk": "Порівняти ціну корму"
       },
       "bodyByLocale": {
-        "ru": "dog food — корм для собак. cat food — корм для кошек. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
-        "uk": "dog food — корм для собак. cat food — корм для котів. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+        "ru": "В магазине вы нашли недорогой корм для собак: такая же упаковка вашего обычного корма стоит столько же. This dog food is as cheap as ours — этот корм для собак такой же дешёвый, как наш. После This dog food is поставьте as cheap as, затем ours. Между двумя as нужна обычная форма cheap; ours заменяет our dog food.",
+        "uk": "У магазині ви знайшли недорогий корм для собак: така сама упаковка вашого звичного корму коштує стільки ж. This dog food is as cheap as ours — цей корм для собак такий самий дешевий, як наш. Після This dog food is поставте as cheap as, потім ours. Між двома as потрібна звичайна форма cheap; ours замінює our dog food."
       },
       "question": {
         "interactionId": "en:lesson-18:session-21:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить два наполнителя",
+        "uk": "Порівняти два наповнювачі"
       },
       "bodyByLocale": {
-        "ru": "cat litter — наполнитель для кошачьего туалета. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
-        "uk": "cat litter — наповнювач для котячого туалету. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+        "ru": "Перед вами два недорогих наполнителя для кошачьего туалета в одинаковых по объёму упаковках. Цены совпадают. This cat litter is as cheap as that one — этот наполнитель такой же дешёвый, как тот. Начните с This cat litter is, затем поставьте as cheap as. That one в конце обозначает второй вид наполнителя, с которым вы сравниваете первый.",
+        "uk": "Перед вами два недорогі наповнювачі для котячого туалету в однакових за об’ємом упаковках. Ціни збігаються. This cat litter is as cheap as that one — цей наповнювач такий самий дешевий, як той. Почніть із This cat litter is, потім поставте as cheap as. That one наприкінці позначає другий вид наповнювача, з яким ви порівнюєте перший."
       },
       "question": {
         "interactionId": "en:lesson-18:session-21:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Сравнить ширину лотков",
+        "uk": "Порівняти ширину лотків"
       },
       "bodyByLocale": {
-        "ru": "litter tray — лоток для кошки. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as wide as.",
-        "uk": "litter tray — лоток для кота. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as wide as."
+        "ru": "Вы измерили лоток в магазине: он точно такой же ширины, как ваш домашний. This litter tray is as wide as ours — этот лоток такой же широкий, как наш. После This litter tray is поставьте as wide as и ours. Обычное прилагательное wide между двумя as показывает равную ширину; ours позволяет не повторять our litter tray.",
+        "uk": "Ви виміряли лоток у магазині: він точно такої самої ширини, як ваш домашній. This litter tray is as wide as ours — цей лоток такий самий широкий, як наш. Після This litter tray is поставте as wide as і ours. Звичайний прикметник wide між двома as показує однакову ширину; ours дозволяє не повторювати our litter tray."
       },
       "question": {
         "interactionId": "en:lesson-18:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b5721563e0e34b883559857df23bf249c994e58bc14a2d1a298c929f50d7a3d7"
+  "introFingerprint": "cbbd6d3e5e593cbcdeffa1edcf34c7864dd40fbc61556a7ddf92dbfe29a22bfa"
 }

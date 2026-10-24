@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выделить вариант 1",
-        "uk": "Виділити варіант 1"
+        "ru": "Найти самый дешёвый перекус",
+        "uk": "Знайти найдешевший перекус"
       },
       "bodyByLocale": {
-        "ru": "fresh fruit — свежие фрукты. dried fruit — сухофрукты. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "fresh fruit — свіжі фрукти. dried fruit — сухофрукти. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "У прилавка три перекуса: порция свежих фруктов стоит меньше, чем бутерброд и печенье. The fresh fruit is the cheapest snack here — свежие фрукты здесь самый дешёвый перекус. После The fresh fruit is поставьте the cheapest snack, затем here. Cheap + -est даёт cheapest, а the выделяет вариант с самой низкой ценой среди этих перекусов.",
+        "uk": "Біля прилавка три перекуси: порція свіжих фруктів коштує менше, ніж бутерброд і печиво. The fresh fruit is the cheapest snack here — свіжі фрукти тут найдешевший перекус. Після The fresh fruit is поставте the cheapest snack, потім here. Cheap + -est дає cheapest, а the виділяє варіант із найнижчою ціною серед цих перекусів."
       },
       "question": {
         "interactionId": "en:lesson-18:session-12:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выделить вариант 2",
-        "uk": "Виділити варіант 2"
+        "ru": "Выбрать самый большой пакет",
+        "uk": "Вибрати найбільший пакет"
       },
       "bodyByLocale": {
-        "ru": "mixed nuts — смесь орехов. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "mixed nuts — суміш горіхів. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "На полке три пакета смеси орехов разного размера. Вы показываете на самый большой. This bag of mixed nuts is the largest — этот пакет смеси орехов самый большой. Начните с This bag of mixed nuts is: речь об одном пакете, поэтому is. Затем the largest. Large заканчивается на e, поэтому добавляем -st; the largest выделяет один пакет из трёх.",
+        "uk": "На полиці три пакети суміші горіхів різного розміру. Ви показуєте на найбільший. This bag of mixed nuts is the largest — цей пакет суміші горіхів найбільший. Почніть із This bag of mixed nuts is: ідеться про один пакет, тому is. Потім the largest. Large закінчується на e, тому додаємо -st; the largest виділяє один пакет із трьох."
       },
       "question": {
         "interactionId": "en:lesson-18:session-12:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Выделить вариант 3",
-        "uk": "Виділити варіант 3"
+        "ru": "Сравнить цены на йогурты",
+        "uk": "Порівняти ціни на йогурти"
       },
       "bodyByLocale": {
-        "ru": "plain yoghurt — йогурт без вкусовых добавок. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "plain yoghurt — йогурт без смакових добавок. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "Вы выбираете между йогуртом без добавок и двумя йогуртами с разными вкусами. Без добавок стоит меньше остальных. The plain yoghurt is the cheapest option — йогурт без добавок самый дешёвый вариант. После The plain yoghurt is поставьте the cheapest option. Cheapest образуем от cheap с помощью -est; the перед ним показывает минимальную цену в этой группе.",
+        "uk": "Ви вибираєте між йогуртом без добавок і двома йогуртами з різними смаками. Без добавок коштує менше за решту. The plain yoghurt is the cheapest option — йогурт без добавок найдешевший варіант. Після The plain yoghurt is поставте the cheapest option. Cheapest утворюємо від cheap за допомогою -est; the перед ним показує мінімальну ціну в цій групі."
       },
       "question": {
         "interactionId": "en:lesson-18:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1e320acdd2175c50617e08e78cd6975c705584f05de4ba6d8dc2183f9570dfd7"
+  "introFingerprint": "5066896b31f3b3bc9b1745f1c35d1e4b87dab7fb8399025b635845a69f11e47c"
 }

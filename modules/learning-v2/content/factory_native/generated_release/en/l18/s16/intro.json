@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выделить вариант 1",
-        "uk": "Виділити варіант 1"
+        "ru": "Заказать самый ранний визит",
+        "uk": "Замовити найраніший візит"
       },
       "bodyByLocale": {
-        "ru": "home visit — визит специалиста на дом. phone appointment — назначенная консультация по телефону. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "home visit — візит фахівця додому. phone appointment — призначена консультація телефоном. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "Специалист может приехать к вам домой в девять, одиннадцать или два часа дня. Вы выбрали девять. We booked the earliest home visit — мы заказали самый ранний визит на дом. Начните с We booked, затем поставьте the earliest и home visit. Чтобы получить earliest от early, заменяем y на i и добавляем -est. The earliest выделяет самый ранний вариант из трёх.",
+        "uk": "Фахівець може приїхати до вас додому о дев’ятій, одинадцятій або другій годині дня. Ви вибрали дев’яту. We booked the earliest home visit — ми замовили найраніший візит додому. Почніть із We booked, потім поставте the earliest і home visit. Щоб отримати earliest від early, замінюємо y на i та додаємо -est. The earliest виділяє найраніший варіант із трьох."
       },
       "question": {
         "interactionId": "en:lesson-18:session-16:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выделить вариант 2",
-        "uk": "Виділити варіант 2"
+        "ru": "Записаться на самый поздний приём",
+        "uk": "Записатися на найпізніший прийом"
       },
       "bodyByLocale": {
-        "ru": "dental appointment — приём у стоматолога. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "dental appointment — прийом у стоматолога. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "У стоматолога свободны три времени: два, четыре и шесть часов дня. Вы записались на шесть. We booked the latest dental appointment — мы записались на самый поздний приём у стоматолога. После We booked поставьте the latest, затем dental appointment. Late уже заканчивается на e, поэтому добавляем -st: latest. С the эта форма выделяет самый поздний вариант.",
+        "uk": "У стоматолога вільні три часи: друга, четверта й шоста години дня. Ви записалися на шосту. We booked the latest dental appointment — ми записалися на найпізніший прийом у стоматолога. Після We booked поставте the latest, потім dental appointment. Late вже закінчується на e, тому додаємо -st: latest. Із the ця форма виділяє найпізніший варіант."
       },
       "question": {
         "interactionId": "en:lesson-18:session-16:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Выделить вариант 3",
-        "uk": "Виділити варіант 3"
+        "ru": "Указать самое раннее время",
+        "uk": "Указати найраніший час"
       },
       "bodyByLocale": {
-        "ru": "appointment time — время назначенного приёма. Вы сравнили три варианта. Назовите один из них со значением «самый». Перед формой на -est в этой конструкции ставим the. У слов на -e добавляется -st: large → largest, wide → widest. Речь только об этой группе вариантов.",
-        "uk": "appointment time — час призначеного прийому. Ви порівняли три варіанти. Назвіть один із них зі значенням «най-». Перед формою на -est у цій конструкції ставимо the. До слів на -e додається -st: large → largest, wide → widest. Ідеться лише про цю групу варіантів."
+        "ru": "В расписании приёма есть девять, десять и двенадцать часов. Вы показываете на девять. This is the earliest appointment time — это самое раннее время приёма. После This is поставьте the earliest, затем appointment time. Earliest означает «самое раннее» среди указанных времён; перед ним в этой фразе нужен the.",
+        "uk": "У розкладі прийому є дев’ята, десята й дванадцята години. Ви показуєте на дев’яту. This is the earliest appointment time — це найраніший час прийому. Після This is поставте the earliest, потім appointment time. Earliest означає «найраніший» серед указаних часів; перед ним у цій фразі потрібен the."
       },
       "question": {
         "interactionId": "en:lesson-18:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "be6d9efa745ac52901074a4f64c4a964df096d997c0590e83f96d6baaeb5cc92"
+  "introFingerprint": "a79bd9aaf855df8cf77c5e0290fab16a7cdeee1d5c92a8185538f08061b9b8e4"
 }

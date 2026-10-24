@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить скорость чайников",
+        "uk": "Порівняти швидкість чайників"
       },
       "bodyByLocale": {
-        "ru": "electric kettle — электрический чайник. electric oven — электрическая духовка. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as fast as.",
-        "uk": "electric kettle — електричний чайник. electric oven — електрична духовка. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as fast as."
+        "ru": "В гостях вы замечаете, что чайник кипятит тот же объём воды за то же время, что ваш дома. This electric kettle is as fast as ours — этот электрический чайник такой же быстрый, как наш. После This electric kettle is поставьте as fast as, затем ours. Fast между двумя as обозначает одинаковую скорость; ours заменяет our electric kettle.",
+        "uk": "У гостях ви помічаєте, що чайник кип’ятить той самий об’єм води за той самий час, що ваш удома. This electric kettle is as fast as ours — цей електричний чайник такий самий швидкий, як наш. Після This electric kettle is поставте as fast as, потім ours. Fast між двома as позначає однакову швидкість; ours замінює our electric kettle."
       },
       "question": {
         "interactionId": "en:lesson-18:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить ширину плит",
+        "uk": "Порівняти ширину плит"
       },
       "bodyByLocale": {
-        "ru": "gas cooker — газовая плита. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as wide as.",
-        "uk": "gas cooker — газова плита. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as wide as."
+        "ru": "В магазине вы измерили газовую плиту: её ширина точно такая же, как у вашей плиты дома. This gas cooker is as wide as ours — эта газовая плита такая же широкая, как наша. Начните с This gas cooker is, затем поставьте as wide as. Второе as вводит объект сравнения — ours, нашу плиту. При равенстве размеров нужна форма wide, не wider.",
+        "uk": "У магазині ви виміряли газову плиту: її ширина точно така сама, як у вашої плити вдома. This gas cooker is as wide as ours — ця газова плита така сама широка, як наша. Почніть із This gas cooker is, потім поставте as wide as. Друге as вводить об’єкт порівняння — ours, нашу плиту. За однакових розмірів потрібна форма wide, не wider."
       },
       "question": {
         "interactionId": "en:lesson-18:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Сравнить одинаковые цены",
+        "uk": "Порівняти однакові ціни"
       },
       "bodyByLocale": {
-        "ru": "electric hob — электрическая варочная панель. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as cheap as.",
-        "uk": "electric hob — електрична варильна поверхня. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as cheap as."
+        "ru": "Вы смотрите на две недорогие электрические варочные панели: на ценниках одна и та же сумма. This electric hob is as cheap as that one — эта электрическая варочная панель такая же дешёвая, как та. После This electric hob is поставьте as cheap as и that one. That one заменяет повторное название второй панели; cheap остаётся между двумя as без окончания -er.",
+        "uk": "Ви дивитеся на дві недорогі електричні варильні поверхні: на цінниках та сама сума. This electric hob is as cheap as that one — ця електрична варильна поверхня така сама дешева, як та. Після This electric hob is поставте as cheap as і that one. That one замінює повторну назву другої поверхні; cheap залишається між двома as без закінчення -er."
       },
       "question": {
         "interactionId": "en:lesson-18:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0d0330b44349d43e630f03742d5fbd1c67134fa97a664c37aa1d836b478d1f7f"
+  "introFingerprint": "e4886d556c35c723451ae4e9ec5b47a0c8ae621da70db717f9202bf1b370fd92"
 }

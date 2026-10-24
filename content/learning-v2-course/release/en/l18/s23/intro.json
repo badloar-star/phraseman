@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить размер банок",
+        "uk": "Порівняти розмір банок"
       },
       "bodyByLocale": {
-        "ru": "glass jar — стеклянная банка. water jug — кувшин для воды. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as large as.",
-        "uk": "glass jar — скляна банка. water jug — глечик для води. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as large as."
+        "ru": "Вы поставили новую стеклянную банку рядом с банкой друга: они одинакового размера. This glass jar is as large as yours — эта стеклянная банка такая же большая, как твоя. После This glass jar is поставьте as large as, затем yours. Large остаётся в обычной форме между двумя as, а yours заменяет your glass jar.",
+        "uk": "Ви поставили нову скляну банку поряд із банкою друга: вони однакового розміру. This glass jar is as large as yours — ця скляна банка така сама велика, як твоя. Після This glass jar is поставте as large as, потім yours. Large залишається у звичайній формі між двома as, а yours замінює your glass jar."
       },
       "question": {
         "interactionId": "en:lesson-18:session-23:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить прочность коробок",
+        "uk": "Порівняти міцність коробок"
       },
       "bodyByLocale": {
-        "ru": "storage box — коробка для хранения. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as strong as.",
-        "uk": "storage box — коробка для зберігання. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as strong as."
+        "ru": "Вы выбираете коробку для хранения книг и видите, что она выдерживает такой же вес, как ваша домашняя коробка. This storage box is as strong as ours — эта коробка для хранения такая же прочная, как наша. Начните с This storage box is. Затем as strong as показывает равную прочность, а ours в конце заменяет our storage box. Нужна форма strong, не stronger.",
+        "uk": "Ви вибираєте коробку для зберігання книжок і бачите, що вона витримує таку саму вагу, як ваша домашня коробка. This storage box is as strong as ours — ця коробка для зберігання така сама міцна, як наша. Почніть із This storage box is. Потім as strong as показує однакову міцність, а ours наприкінці замінює our storage box. Потрібна форма strong, не stronger."
       },
       "question": {
         "interactionId": "en:lesson-18:session-23:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Сравнить вес сумок для обеда",
+        "uk": "Порівняти вагу сумок для обіду"
       },
       "bodyByLocale": {
-        "ru": "lunch bag — сумка для обеда с собой. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as light as.",
-        "uk": "lunch bag — сумка для обіду із собою. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as light as."
+        "ru": "Вы взвесили новую пустую сумку для обеда и свою: обе одинаково лёгкие. This lunch bag is as light as mine — эта сумка для обеда такая же лёгкая, как моя. После This lunch bag is поставьте as light as. Второе as вводит то, с чем сравниваете, — mine, то есть my lunch bag. Между двумя as ставим light, без окончания -er.",
+        "uk": "Ви зважили нову порожню сумку для обіду та свою: обидві однаково легкі. This lunch bag is as light as mine — ця сумка для обіду така сама легка, як моя. Після This lunch bag is поставте as light as. Друге as вводить те, з чим порівнюєте, — mine, тобто my lunch bag. Між двома as ставимо light, без закінчення -er."
       },
       "question": {
         "interactionId": "en:lesson-18:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "09a0cf709adc5a0601823d076fce2d26502e1af7cdcc3a2f2caac7e0e2996a89"
+  "introFingerprint": "1b730d56b095e407e74bf706fd5f61c6f7613e4244e507acaf36a9e288ac5348"
 }

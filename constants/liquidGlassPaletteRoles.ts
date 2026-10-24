@@ -81,6 +81,7 @@ type RoleSource = Readonly<{
   bgTop?: string;
   opaqueCard: string;
   opaqueControl: string;
+  opaqueSheet?: string;
   isLight: boolean;
   intensity: number;
 }>;
@@ -105,7 +106,11 @@ export function deriveLiquidGlassPaletteRoles(t: RoleSource) {
   // зачем: в тёмной «Спокойно» good/bad ≈ эталон Learning V2 (#6FD08C / #F2766B), чтобы вид экранов не менялся; в светлой — тоном темнее.
   const semantic: ReadonlyArray<readonly [string, number, number, number]> = [['good', 150, 0.13, 0.77], ['bad', 25, 0.15, 0.70], ['warn', 88, 0.14, 0.84], ['info', 240, 0.11, 0.78]];
   for (const [name, hue, sc, darkL] of semantic) {
-    const c = toContrast(hue, sc, dark ? darkL : 0.52, dark ? 1 : -1, 4.5, surfaces);
+    // зачем (координатор 24.10): «Удалить» красным лежит на шторке (opaqueSheet) — в тёмных градиентных темах на «Максимуме» было 4,57–4,79 при норме 4,5;
+    // bad держим с запасом ≥ 4,8 и к шторке (тон тот же, меняется глубина и только там, где не хватало)
+    const isBad = name === 'bad';
+    const against = isBad && t.opaqueSheet ? [...surfaces, t.opaqueSheet.slice(0, 7)] : surfaces;
+    const c = toContrast(hue, sc, dark ? darkL : 0.52, dark ? 1 : -1, isBad ? 4.8 : 4.5, against);
     out[name] = c;
     out[`${name}Soft`] = withAlpha(c, dark ? 0.16 : 0.14);
   }

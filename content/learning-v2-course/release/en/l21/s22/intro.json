@@ -15,8 +15,8 @@
         "uk": "Не запізнюватися"
       },
       "bodyByLocale": {
-        "ru": "Run late — отставать от графика, опаздывать. У вас назначена встреча, и вы не хотите задержаться. Часто можно услышать I am running late — «Я опаздываю»; здесь выражаем нежелание: I do not want to run late. После want и need здесь используем to + начальную форму. I do not want to… выражает нежелание, I need to… — необходимость. В сочетаниях to run и to set не удваиваем последнюю букву: удвоение есть только в running и setting.",
-        "uk": "Run late — відставати від графіка, запізнюватися. У вас призначена зустріч, і ви не хочете затриматися. Часто можна почути I am running late — «Я запізнююся»; тут виражаємо небажання: I do not want to run late. Після want і need тут використовуємо to + початкову форму. I do not want to… виражає небажання, I need to… — необхідність. У сполученнях to run і to set не подвоюємо останньої літери: подвоєння є лише в running та setting."
+        "ru": "У вас назначена встреча, и вы не хотите прийти позже: I do not want to run late — «я не хочу опаздывать». После I ставим do not want, чтобы выразить нежелание. Затем to run late — действие, которого хотите избежать. После to нужен run, без -s или -ing. Получается I + do not want + to run late.",
+        "uk": "У вас призначена зустріч, і ви не хочете прийти пізніше: I do not want to run late — «я не хочу запізнюватися». Після I ставимо do not want, щоб виразити небажання. Потім to run late — дія, якої хочете уникнути. Після to потрібне run, без -s чи -ing. Виходить I + do not want + to run late."
       },
       "question": {
         "interactionId": "en:lesson-21:session-22:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Стежити за часом"
       },
       "bodyByLocale": {
-        "ru": "Lose track of time — потерять счёт времени, увлечься и не заметить, сколько времени прошло. Вы не хотите забыть о встрече за чтением. Set an alarm — поставить будильник, выбрать время сигнала. После want и need здесь используем to + начальную форму. I do not want to… выражает нежелание, I need to… — необходимость. В сочетаниях to run и to set не удваиваем последнюю букву: удвоение есть только в running и setting.",
-        "uk": "Lose track of time — втратити відчуття часу, захопитися й не помітити, скільки часу минуло. Ви не хочете забути про зустріч за читанням. Set an alarm — поставити будильник, вибрати час сигналу. Після want і need тут використовуємо to + початкову форму. I do not want to… виражає небажання, I need to… — необхідність. У сполученнях to run і to set не подвоюємо останньої літери: подвоєння є лише в running та setting."
+        "ru": "Вы читаете перед встречей и боитесь увлечься: I do not want to lose track of time — «я не хочу потерять счёт времени». Начните с I do not want — «я не хочу», затем добавьте to lose track of time. В этом выражении lose — глагол: после to оставляем lose, а не losing или loses. Остальные слова track of time сохраняют свой порядок.",
+        "uk": "Ви читаєте перед зустріччю й боїтеся захопитися: I do not want to lose track of time — «я не хочу втратити відчуття часу». Почніть з I do not want — «я не хочу», потім додайте to lose track of time. У цьому виразі lose — дієслово: після to залишаємо lose, а не losing чи loses. Решта слів track of time зберігають свій порядок."
       },
       "question": {
         "interactionId": "en:lesson-21:session-22:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Урахувати дорогу"
       },
       "bodyByLocale": {
-        "ru": "Allow time — предусмотреть время на что-то. Вы планируете встречу и учитываете, сколько займёт дорога. Allow time for the journey означает оставить в плане достаточно времени на путь. После want и need здесь используем to + начальную форму. I do not want to… выражает нежелание, I need to… — необходимость. В сочетаниях to run и to set не удваиваем последнюю букву: удвоение есть только в running и setting.",
-        "uk": "Allow time — передбачити час на щось. Ви плануєте зустріч і враховуєте, скільки триватиме дорога. Allow time for the journey означає залишити в плані достатньо часу на шлях. Після want і need тут використовуємо to + початкову форму. I do not want to… виражає небажання, I need to… — необхідність. У сполученнях to run і to set не подвоюємо останньої літери: подвоєння є лише в running та setting."
+        "ru": "Планируя время выезда на встречу, вы учитываете дорогу: I need to allow time for the journey — «мне нужно предусмотреть время на дорогу». После I need ставим to allow — необходимое действие в начальной форме. Затем time — что нужно предусмотреть, и for the journey — на что нужно время. После to не добавляем к allow окончания -s или -ing.",
+        "uk": "Плануючи час виїзду на зустріч, ви враховуєте дорогу: I need to allow time for the journey — «мені потрібно передбачити час на дорогу». Після I need ставимо to allow — необхідну дію в початковій формі. Потім time — що потрібно передбачити, і for the journey — на що потрібен час. Після to не додаємо до allow закінчень -s чи -ing."
       },
       "question": {
         "interactionId": "en:lesson-21:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee149615e02394e549dc260b009ba34abaa9d4e68e4622f43988525e63a3bf44"
+  "introFingerprint": "da2c6b6de997d5ac3e337d9a8e910dd1f9b0bb759690449aa8c469e735a096c6"
 }

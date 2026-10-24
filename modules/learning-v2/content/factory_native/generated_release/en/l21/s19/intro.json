@@ -15,8 +15,8 @@
         "uk": "Не ризикувати роботою"
       },
       "bodyByLocale": {
-        "ru": "Risk — рисковать. Раньше в at risk это было существительное; теперь слово обозначает действие. Вы не хотите поступать так, чтобы потерять работу: I cannot risk losing my job. После risk, deny, resist и involve действие выражаем формой на -ing: risk losing, deny taking, resist buying, involve travelling. Здесь не ставим to перед этим действием.",
-        "uk": "Risk — ризикувати. Раніше в at risk це був іменник; тепер слово позначає дію. Ви не хочете чинити так, щоб втратити роботу: I cannot risk losing my job. Після risk, deny, resist та involve дію виражаємо формою на -ing: risk losing, deny taking, resist buying, involve travelling. Тут не ставимо to перед цією дією."
+        "ru": "Вас уговаривают пропустить рабочую смену, но вы боитесь увольнения: I cannot risk losing my job — «я не могу рисковать потерей работы». После I cannot ставим risk без to: здесь risk — глагол «рисковать». Затем losing my job называет риск. После risk действие выражаем формой на -ing, поэтому lose превращается в losing: конечная e уходит перед -ing.",
+        "uk": "Вас умовляють пропустити робочу зміну, але ви боїтеся звільнення: I cannot risk losing my job — «я не можу ризикувати втратою роботи». Після I cannot ставимо risk без to: тут risk — дієслово «ризикувати». Потім losing my job називає ризик. Після risk дію виражаємо формою на -ing, тому lose перетворюється на losing: кінцева e зникає перед -ing."
       },
       "question": {
         "interactionId": "en:lesson-21:session-19:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-21:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Отрицать и удерживаться",
-        "uk": "Заперечувати й утримуватися"
+        "ru": "Отрицать обвинение",
+        "uk": "Заперечувати звинувачення"
       },
       "bodyByLocale": {
-        "ru": "Deny — отрицать. Собеседник думает, что вы взяли его ключи, а вы говорите, что этого не делали. Resist — сопротивляться желанию что-то сделать; например, удерживаться от ненужных покупок в интернете. После risk, deny, resist и involve действие выражаем формой на -ing: risk losing, deny taking, resist buying, involve travelling. Здесь не ставим to перед этим действием.",
-        "uk": "Deny — заперечувати. Співрозмовник думає, що ви взяли його ключі, а ви кажете, що цього не робили. Resist — опиратися бажанню щось зробити; наприклад, утримуватися від непотрібних покупок в інтернеті. Після risk, deny, resist та involve дію виражаємо формою на -ing: risk losing, deny taking, resist buying, involve travelling. Тут не ставимо to перед цією дією."
+        "ru": "Собеседник обвиняет вас в том, что вы взяли его ключи. Вы отрицаете это: I deny taking your keys — «я отрицаю, что взял твои ключи». После I deny нужно назвать отрицаемое действие: taking, а не to take. У take убираем конечную e и добавляем -ing. Your keys ставим после taking — это то, что, по словам собеседника, вы взяли.",
+        "uk": "Співрозмовник звинувачує вас у тому, що ви взяли його ключі. Ви заперечуєте це: I deny taking your keys — «я заперечую, що взяв твої ключі». Після I deny потрібно назвати заперечувану дію: taking, а не to take. У take прибираємо кінцеву e й додаємо -ing. Your keys ставимо після taking — це те, що, за словами співрозмовника, ви взяли."
       },
       "question": {
         "interactionId": "en:lesson-21:session-19:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Що входить у плани"
       },
       "bodyByLocale": {
-        "ru": "Involve — включать в себя, предполагать какое-то действие. Вы планируете поездки, поэтому говорите: My plans involve travelling. Подлежащее plans стоит во множественном числе, и после него используется involve без -s. После risk, deny, resist и involve действие выражаем формой на -ing: risk losing, deny taking, resist buying, involve travelling. Здесь не ставим to перед этим действием.",
-        "uk": "Involve — включати в себе, передбачати певну дію. Ви плануєте поїздки, тому кажете: My plans involve travelling. Підмет plans стоїть у множині, і після нього вживається involve без -s. Після risk, deny, resist та involve дію виражаємо формою на -ing: risk losing, deny taking, resist buying, involve travelling. Тут не ставимо to перед цією дією."
+        "ru": "Обсуждая отпуск, вы объясняете, что собираетесь путешествовать: My plans involve travelling — «мои планы предполагают путешествия». Начните с My plans. Plans — множественное число, поэтому далее involve без -s. После involve действие принимает форму на -ing: travelling, без to перед ним. В британском написании travel перед -ing получает вторую l.",
+        "uk": "Обговорюючи відпустку, ви пояснюєте, що збираєтеся подорожувати: My plans involve travelling — «мої плани передбачають подорожі». Почніть з My plans. Plans — множина, тому далі involve без -s. Після involve дія набуває форми на -ing: travelling, без to перед ним. У британському написанні travel перед -ing отримує другу l."
       },
       "question": {
         "interactionId": "en:lesson-21:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b3f926ed93d6207de464eb84c70a70b90c751d1209d172ad67f4dde2745beb4d"
+  "introFingerprint": "580009a53595422a49bc8f629f2622d31c40a7c2f5fa27f4467c8868dbb7d534"
 }

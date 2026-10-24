@@ -15,8 +15,8 @@
         "uk": "Отримати досвід"
       },
       "bodyByLocale": {
-        "ru": "Internship — стажировка: работа на ограниченный срок, чтобы получить практический опыт. Вы хотите найти такую возможность. Want выражает желание; need — необходимость. Когда после want или need называем действие, используем to + начальную форму: want to find, need to start. После like и prefer возможны и to + глагол, и форма -ing. Здесь тренируем вариант с to: I prefer to discuss…",
-        "uk": "Internship — стажування: робота на обмежений термін, щоб отримати практичний досвід. Ви хочете знайти таку можливість. Want виражає бажання; need — необхідність. Коли після want або need називаємо дію, використовуємо to + початкову форму: want to find, need to start. Після like та prefer можливі й to + дієслово, і форма -ing. Тут тренуємо варіант із to: I prefer to discuss…"
+        "ru": "Чтобы получить практический опыт, вы хотите найти стажировку: I want to find an internship — «я хочу найти стажировку». Want выражает желание. Когда после него называем действие, ставим to и начальную форму глагола: to find. Затем an internship — что хотите найти; перед internship нужен an, потому что слово начинается с гласного звука. Порядок: I want + to find + an internship.",
+        "uk": "Щоб отримати практичний досвід, ви хочете знайти стажування: I want to find an internship — «я хочу знайти стажування». Want виражає бажання. Коли після нього називаємо дію, ставимо to й початкову форму дієслова: to find. Потім an internship — що хочете знайти; перед internship потрібен an, бо слово починається з голосного звука. Порядок: I want + to find + an internship."
       },
       "question": {
         "interactionId": "en:lesson-21:session-17:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Почати пошук"
       },
       "bodyByLocale": {
-        "ru": "Job search — поиск работы. Вы решили начать искать работу и говорите, что это нужно сделать. Probation здесь означает испытательный срок на новой работе; вы хотите сначала закончить его, а потом обсуждать дальнейшие планы. Когда после want или need называем действие, используем to + начальную форму: want to find, need to start. После like и prefer возможны и to + глагол, и форма -ing. Здесь тренируем вариант с to: I prefer to discuss…",
-        "uk": "Job search — пошук роботи. Ви вирішили почати шукати роботу й кажете, що це потрібно зробити. Probation тут означає випробувальний термін на новій роботі; ви хочете спочатку закінчити його, а потім обговорювати подальші плани. Коли після want або need називаємо дію, використовуємо to + початкову форму: want to find, need to start. Після like та prefer можливі й to + дієслово, і форма -ing. Тут тренуємо варіант із to: I prefer to discuss…"
+        "ru": "Вы решили искать работу и говорите о необходимом шаге: I need to start my job search — «мне нужно начать поиск работы». Need выражает необходимость. После I need поставьте to start — действие в начальной форме, затем my job search — что нужно начать. My показывает, чей это поиск. После to используем start, не starts или starting.",
+        "uk": "Ви вирішили шукати роботу й говорите про необхідний крок: I need to start my job search — «мені потрібно почати пошук роботи». Need виражає необхідність. Після I need поставте to start — дію в початковій формі, потім my job search — що потрібно почати. My показує, чий це пошук. Після to використовуємо start, не starts чи starting."
       },
       "question": {
         "interactionId": "en:lesson-21:session-17:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Обговорити зміни"
       },
       "bodyByLocale": {
-        "ru": "Career change — смена профессии или направления работы. Вы хотите обсудить её с консультантом лично. Prefer выражает предпочтение. Like говорит о том, что нравится: I like to travel light — «Мне нравится путешествовать налегке». Фраза I like travelling light тоже правильная. Когда после want или need называем действие, используем to + начальную форму: want to find, need to start. После like и prefer возможны и to + глагол, и форма -ing. Здесь тренируем вариант с to: I prefer to discuss…",
-        "uk": "Career change — зміна професії або напряму роботи. Ви хочете обговорити її з консультантом особисто. Prefer виражає перевагу. Like говорить про те, що подобається: I like to travel light — «Мені подобається подорожувати без зайвого багажу». Речення I like travelling light теж правильне. Коли після want або need називаємо дію, використовуємо to + початкову форму: want to find, need to start. Після like та prefer можливі й to + дієслово, і форма -ing. Тут тренуємо варіант із to: I prefer to discuss…"
+        "ru": "Вы собираетесь сменить профессию и предпочитаете обсудить это с консультантом лично: I prefer to discuss a career change in person. После I prefer идёт to discuss — предпочитаемое действие, затем a career change — тема разговора, и in person — лично. Prefer допускает и discussing без to, но в выбранной конструкции после to нужна начальная форма discuss: to discussing неверно.",
+        "uk": "Ви збираєтеся змінити професію й волієте обговорити це з консультантом особисто: I prefer to discuss a career change in person. Після I prefer іде to discuss — бажана дія, потім a career change — тема розмови, і in person — особисто. Prefer допускає й discussing без to, але в обраній конструкції після to потрібна початкова форма discuss: to discussing неправильно."
       },
       "question": {
         "interactionId": "en:lesson-21:session-17:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2bb24396ce13065a51297ac59804eecfd8c16f10520ab7243521569c590fd7e9"
+  "introFingerprint": "7820058c58ae360a72e81367b63400df44a149ff9249ccb5e63bdc63bcb49b46"
 }

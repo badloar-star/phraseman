@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Попросить поддержки",
-        "uk": "Попросити підтримки"
+        "ru": "Хотелось бы увереннее себя чувствовать",
+        "uk": "Хотілося б упевненіше почуватися"
       },
       "bodyByLocale": {
-        "ru": "Reassurance — поддержка, которая помогает успокоиться и меньше сомневаться. I need some reassurance — мне нужно немного поддержки. Перед первым занятием танцами можно попросить друга пойти вместе: Would you come with me? — ты бы пошёл со мной? I wish I felt more confident — хотелось бы чувствовать себя увереннее. Felt после wish описывает желаемое состояние сейчас.",
-        "uk": "Reassurance — підтримка, яка допомагає заспокоїтися й менше сумніватися. I need some reassurance — мені потрібно трохи підтримки. Перед першим заняттям танцями можна попросити друга піти разом: Would you come with me? — ти б пішов зі мною? I wish I felt more confident — хотілося б почуватися впевненіше. Felt після wish описує бажаний стан зараз."
+        "ru": "Перед первым занятием танцами вы сомневаетесь в своих силах. Скажите другу: I wish I felt more confident — хотелось бы чувствовать себя увереннее. Felt после wish выражает желаемое состояние сейчас; это не воспоминание о прошлом. More confident — увереннее. Собираем предложение: I wish + I + felt + more confident — желание, кто, felt, как хотелось бы себя чувствовать.",
+        "uk": "Перед першим заняттям танцями ви сумніваєтеся у своїх силах. Скажіть другові: I wish I felt more confident — хотілося б почуватися впевненіше. Felt після wish виражає бажаний стан зараз; це не спогад про минуле. More confident — упевненіше. Складаємо речення: I wish + I + felt + more confident — бажання, хто, felt, як хотілося б почуватися."
       },
       "question": {
         "interactionId": "en:lesson-27:session-37:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Без колебаний",
-        "uk": "Без вагань"
+        "ru": "Когда проверили расписание",
+        "uk": "Коли перевірили розклад"
       },
       "bodyByLocale": {
-        "ru": "Hesitation — колебание, нерешительность. My friend agreed without hesitation — мой друг согласился без колебаний. Without hesitation значит, что он не сомневался, соглашаться ли. Вы уже посмотрели расписание: I have already checked the timetable. I checked it yesterday — я проверил его вчера: yesterday требует past simple. Перед выходом уточните: What time does the class start?",
-        "uk": "Hesitation — вагання, нерішучість. My friend agreed without hesitation — мій друг погодився без вагань. Without hesitation означає, що він не сумнівався, чи погоджуватися. Ви вже переглянули розклад: I have already checked the timetable. I checked it yesterday — я перевірив його вчора: yesterday потребує past simple. Перед виходом уточніть: What time does the class start?"
+        "ru": "Друг спрашивает, когда вы смотрели расписание танцев. Вы проверили его вчера. Ответьте: I checked it yesterday — я проверил его вчера. It заменяет the timetable. Checked — прошедшая форма check с окончанием -ed. Yesterday обозначает законченное время; have не добавляем. Собираем предложение: I + checked + it + yesterday — кто, действие в прошлом, что проверил, когда.",
+        "uk": "Друг запитує, коли ви дивилися розклад танців. Ви перевірили його вчора. Дайте відповідь: I checked it yesterday — я перевірив його вчора. It замінює the timetable. Checked — минула форма check із закінченням -ed. Yesterday позначає завершений час; have не додаємо. Складаємо речення: I + checked + it + yesterday — хто, дія в минулому, що перевірив, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-37:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чего пока не знаете",
-        "uk": "Чого поки не знаєте"
+        "ru": "Какое время позволило бы прийти",
+        "uk": "Який час дозволив би прийти"
       },
       "bodyByLocale": {
-        "ru": "Certainty — уверенность, отсутствие сомнений. I cannot say with certainty — я не могу сказать с уверенностью. Так можно ответить, если точного расписания ещё нет. Uncertainty — неопределённость: There is some uncertainty about the date — дата пока точно не определена. Можно спросить проще: Is the date confirmed? — дата подтверждена? I would join the class if it started later — я бы присоединился к занятию, если бы оно начиналось позже. После would стоит join, а started входит в условие.",
-        "uk": "Certainty — упевненість, відсутність сумнівів. I cannot say with certainty — я не можу сказати з упевненістю. Так можна відповісти, якщо точного розкладу ще немає. Uncertainty — невизначеність: There is some uncertainty about the date — дату поки точно не визначено. Можна запитати простіше: Is the date confirmed? — дату підтверджено? I would join the class if it started later — я б долучився до заняття, якби воно починалося пізніше. Після would стоїть join, а started входить до умови."
+        "ru": "Занятие начинается слишком рано, и вы не успеваете после работы. Объясните: I would join the class if it started later — я бы присоединился к занятию, если бы оно начиналось позже. Would join — воображаемый результат; if it started later — условие, которое сейчас не выполняется. Собираем предложение: I + would join + the class + if it started later — кто, что сделал бы, к чему присоединился бы, при каком условии. После would нужна начальная форма join без to.",
+        "uk": "Заняття починається надто рано, і ви не встигаєте після роботи. Поясніть: I would join the class if it started later — я б приєднався до заняття, якби воно починалося пізніше. Would join — уявний результат; if it started later — умова, яка зараз не виконується. Складаємо речення: I + would join + the class + if it started later — хто, що зробив би, до чого приєднався б, за якої умови. Після would потрібна початкова форма join без to."
       },
       "question": {
         "interactionId": "en:lesson-27:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4db48399ef05d5350aaf6d57d4cadd22dda0e9e5fefc850d6f3b47f694919970"
+  "introFingerprint": "2128684bd5b392bfb51b50932772d671018cdbc01cbd0ad795ca4433a5b3eb4c"
 }

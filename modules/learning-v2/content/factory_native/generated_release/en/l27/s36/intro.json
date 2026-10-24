@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Удобно ли добираться",
-        "uk": "Чи зручно діставатися"
+        "ru": "Объяснить сделанный выбор",
+        "uk": "Пояснити зроблений вибір"
       },
       "bodyByLocale": {
-        "ru": "Access — доступ, возможность попасть куда-либо. Is there access from the street? — сюда можно попасть с улицы? Здесь речь о входе в помещение. Convenience — удобство: We chose it for convenience — мы выбрали это место ради удобства. Например, оно рядом с остановкой, поэтому не нужно далеко идти. Слово convenience обозначает удобство расположения или пользования, а не мягкость кресла.",
-        "uk": "Access — доступ, можливість потрапити кудись. Is there access from the street? — сюди можна потрапити з вулиці? Тут ідеться про вхід до приміщення. Convenience — зручність: We chose it for convenience — ми вибрали це місце заради зручності. Наприклад, воно біля зупинки, тому не потрібно далеко йти. Слово convenience позначає зручність розташування або користування, а не м’якість крісла."
+        "ru": "Вы уже выбрали комнату рядом с остановкой. Друг спрашивает, почему именно эту. Ответьте: We chose it for convenience — мы выбрали её ради удобства. Convenience здесь — удобство расположения. Chose — прошедшая форма choose: выбор уже сделан. Собираем предложение: We + chose + it + for convenience — кто, действие в прошлом, что выбрали, по какой причине. В обычном утверждении did не нужен.",
+        "uk": "Ви вже вибрали кімнату біля зупинки. Друг запитує, чому саме цю. Дайте відповідь: We chose it for convenience — ми вибрали її заради зручності. Convenience тут — зручність розташування. Chose — минула форма choose: вибір уже зроблений. Складаємо речення: We + chose + it + for convenience — хто, дія в минулому, що вибрали, з якої причини. У звичайному твердженні did не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-27:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Разобраться с ценой",
-        "uk": "Розібратися з ціною"
+        "ru": "Хотелось бы понятных условий",
+        "uk": "Хотілося б зрозумілих умов"
       },
       "bodyByLocale": {
-        "ru": "Clarity — ясность, понятность. I need some clarity about the price — мне нужно разобраться, какова цена. Это более сдержанная формулировка; можно прямо попросить: Could you explain the price? — можете объяснить цену? I wish the details were clearer — хотелось бы, чтобы подробности были понятнее. Were после wish относится к тому, чего хочется сейчас. Вопрос Is breakfast included? помогает выяснить конкретную деталь.",
-        "uk": "Clarity — ясність, зрозумілість. I need some clarity about the price — мені потрібно розібратися, яка ціна. Це стриманіше формулювання; можна прямо попросити: Could you explain the price? — можете пояснити ціну? I wish the details were clearer — хотілося б, щоб подробиці були зрозумілішими. Were після wish стосується того, чого хочеться зараз. Запитання Is breakfast included? допомагає з’ясувати конкретну деталь."
+        "ru": "Описание стоимости комнаты запутанное, и вы не понимаете, что входит в цену. Скажите: I wish the details were clearer — хотелось бы, чтобы подробности были понятнее. Clearer — понятнее. Were после wish показывает желаемое положение сейчас: пока условия неясны. Собираем предложение: I wish + the details + were + clearer — желание, о чём говорим, were, желаемое качество.",
+        "uk": "Опис вартості кімнати заплутаний, і ви не розумієте, що входить у ціну. Скажіть: I wish the details were clearer — хотілося б, щоб подробиці були зрозумілішими. Clearer — зрозуміліший. Were після wish показує бажане становище зараз: поки умови неясні. Складаємо речення: I wish + the details + were + clearer — бажання, про що говоримо, were, бажана якість."
       },
       "question": {
         "interactionId": "en:lesson-27:session-36:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Если даты изменятся",
-        "uk": "Якщо дати зміняться"
+        "ru": "Когда звонили хозяину",
+        "uk": "Коли телефонували господареві"
       },
       "bodyByLocale": {
-        "ru": "Flexibility — гибкость, возможность приспособиться или что-то изменить. We need some flexibility with the dates — нам нужна возможность менять даты. Речь о поездке, не о гибкости тела. I would book this room if we could change the dates — я бы забронировал эту комнату, если бы мы могли менять даты. Would book — предполагаемый результат. I have already asked about the dates — я уже спросил о датах; I called yesterday — я звонил вчера.",
-        "uk": "Flexibility — гнучкість, можливість пристосуватися або щось змінити. We need some flexibility with the dates — нам потрібна можливість змінювати дати. Ідеться про поїздку, не про гнучкість тіла. I would book this room if we could change the dates — я б забронював цю кімнату, якби ми могли змінювати дати. Would book — уявний результат. I have already asked about the dates — я вже запитав про дати; I called yesterday — я телефонував учора."
+        "ru": "Друг спрашивает, когда вы звонили хозяину комнаты. Это было вчера. Ответьте: I called yesterday — я звонил вчера. Called — прошедшая форма call, образованная с -ed. Yesterday называет законченное время, поэтому have здесь не нужен. Собираем предложение: I + called + yesterday — кто, действие в прошлом, когда. Кому вы звонили, уже понятно из вопроса.",
+        "uk": "Друг запитує, коли ви телефонували господареві кімнати. Це було вчора. Дайте відповідь: I called yesterday — я телефонував учора. Called — минула форма call, утворена з -ed. Yesterday називає завершений час, тому have тут не потрібне. Складаємо речення: I + called + yesterday — хто, дія в минулому, коли. Кому ви телефонували, уже зрозуміло із запитання."
       },
       "question": {
         "interactionId": "en:lesson-27:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2d99acdb82ff4cae74242adb91709fb6c242c4bb7d6a6d0d6c6674fe9774040f"
+  "introFingerprint": "d15487f4368e40eeb85b0013aca3e439ba8a9d88b954a6b17df32c94a959c29f"
 }

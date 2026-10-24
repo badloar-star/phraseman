@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Остановиться на ночь",
-        "uk": "Зупинитися на ніч"
+        "ru": "Когда оплатили комнату",
+        "uk": "Коли оплатили кімнату"
       },
       "bodyByLocale": {
-        "ru": "Guesthouse — гостевой дом: небольшое место, где можно снять комнату. We stayed at a guesthouse — мы остановились в гостевом доме. Вы приехали раньше, и комната ещё не готова. Could I leave my bag here? — можно оставить здесь сумку? I have already paid for the room — я уже заплатил за комнату: важен результат сейчас. I paid yesterday — я заплатил вчера: называем законченное время, поэтому past simple.",
-        "uk": "Guesthouse — гостьовий будинок: невелике місце, де можна винайняти кімнату. We stayed at a guesthouse — ми зупинилися в гостьовому будинку. Ви приїхали раніше, і кімната ще не готова. Could I leave my bag here? — можна залишити тут сумку? I have already paid for the room — я вже заплатив за кімнату: важливий результат зараз. I paid yesterday — я заплатив учора: називаємо завершений час, тому past simple."
+        "ru": "На стойке гостевого дома вас спрашивают, когда вы заплатили за комнату. Вы оплатили её вчера. Ответьте: I paid yesterday — я заплатил вчера. Paid — прошедшая форма pay. Yesterday указывает на законченное время, поэтому здесь нужен Past Simple paid без have. Что именно оплачено, уже понятно из вопроса.\n\nСобираем предложение: I + paid + yesterday — кто → действие в прошлом → когда.",
+        "uk": "На стійці гостьового будинку вас запитують, коли ви заплатили за кімнату. Ви оплатили її вчора. Дайте відповідь: I paid yesterday — я заплатив учора. Paid — минула форма pay. Yesterday указує на завершений час, тому тут потрібен Past Simple paid без have. Що саме оплачено, уже зрозуміло із запитання.\n\nСкладаємо речення: I + paid + yesterday — хто → дія в минулому → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-44:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Доброе отношение",
-        "uk": "Доброзичливе ставлення"
+        "ru": "Хотелось бы побыть здесь дольше",
+        "uk": "Хотілося б побути тут довше"
       },
       "bodyByLocale": {
-        "ru": "Cheerfully — весело, бодро. She greeted us cheerfully — она весело нас поприветствовала. Это описание того, как человек что-то делает. Hospitality — гостеприимство, доброжелательный приём гостей. Thank you for your hospitality — спасибо за гостеприимство. Хозяева предложили чай и место для отдыха. I wish we had more time here — хотелось бы, чтобы у нас здесь было больше времени. Had после wish выражает желание сейчас, не рассказ о прошлом.",
-        "uk": "Cheerfully — весело, бадьоро. She greeted us cheerfully — вона весело нас привітала. Це опис того, як людина щось робить. Hospitality — гостинність, доброзичливий прийом гостей. Thank you for your hospitality — дякую за гостинність. Господарі запропонували чай і місце для відпочинку. I wish we had more time here — хотілося б, щоб ми мали тут більше часу. Had після wish виражає бажання зараз, а не розповідь про минуле."
+        "ru": "Вам нравится в гостевом доме, но скоро нужно уезжать. Скажите: I wish we had more time here — хотелось бы, чтобы у нас здесь было больше времени. После wish используем had для желаемого положения сейчас. More time — больше времени; here — здесь. Вы не рассказываете, сколько времени было раньше.\n\nСобираем предложение: I wish + we + had + more time + here — желание → кто → had → чего хочется больше → где.",
+        "uk": "Вам подобається в гостьовому будинку, але незабаром потрібно їхати. Скажіть: I wish we had more time here — хотілося б, щоб у нас тут було більше часу. Після wish використовуємо had для бажаного становища зараз. More time — більше часу; here — тут. Ви не розповідаєте, скільки часу було раніше.\n\nСкладаємо речення: I wish + we + had + more time + here — бажання → хто → had → чого хочеться більше → де."
       },
       "question": {
         "interactionId": "en:lesson-27:session-44:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Принять помощь",
-        "uk": "Прийняти допомогу"
+        "ru": "Условие для ещё одной ночи",
+        "uk": "Умова для ще однієї ночі"
       },
       "bodyByLocale": {
-        "ru": "Gratefully — с благодарностью. He accepted the tea gratefully — он с благодарностью принял чай. Gratefully описывает благодарность, cheerfully — бодрое, весёлое настроение. Вы хотите ещё одну ночь, но свободной комнаты нет. We would stay another night if a room were available — мы бы остались ещё на ночь, если бы была свободная комната. Would stay — результат, were available — условие. If I were you, I would ask again tomorrow — на твоём месте я бы спросил ещё раз завтра. Это совет, а не приказ.",
-        "uk": "Gratefully — із вдячністю. He accepted the tea gratefully — він із вдячністю прийняв чай. Gratefully описує вдячність, cheerfully — бадьорий, веселий настрій. Ви хочете ще одну ніч, але вільної кімнати немає. We would stay another night if a room were available — ми б залишилися ще на ніч, якби була вільна кімната. Would stay — результат, were available — умова. If I were you, I would ask again tomorrow — на твоєму місці я б запитав ще раз завтра. Це порада, а не наказ."
+        "ru": "Вы хотите продлить проживание, но свободных комнат нет. Скажите хозяину: We would stay another night if a room were available — мы бы остались ещё на ночь, если бы была свободная комната. Available здесь — свободная, доступная для бронирования. Would stay — результат, if a room were available — невыполненное сейчас условие. После would ставим stay без to.\n\nСобираем предложение: We + would stay + another night + if a room were available — кто → что сделал бы → ещё на сколько → при каком условии.",
+        "uk": "Ви хочете продовжити проживання, але вільних кімнат немає. Скажіть господареві: We would stay another night if a room were available — ми б залишилися ще на ніч, якби була вільна кімната. Available тут — вільна, доступна для бронювання. Would stay — результат, if a room were available — не виконана зараз умова. Після would ставимо stay без to.\n\nСкладаємо речення: We + would stay + another night + if a room were available — хто → що зробив би → ще на скільки → за якої умови."
       },
       "question": {
         "interactionId": "en:lesson-27:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0ce47f645eea1bceedc0346c6c6fce69614780ba56002f9ccac4b5d8395e237d"
+  "introFingerprint": "8e8e93c1343cd192e45ad08b878af9080727d45083776615d28e67241f69d4c9"
 }

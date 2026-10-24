@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Попросить прощения",
-        "uk": "Попросити прощення"
+        "ru": "Когда отправили сообщение",
+        "uk": "Коли надіслали повідомлення"
       },
       "bodyByLocale": {
-        "ru": "Forgiveness — прощение. I am asking for forgiveness — я прошу прощения. Это серьёзная просьба после поступка, который задел другого человека. Для небольшой случайности обычно достаточно Sorry. Вы изменили время встречи и поздно сообщили другу. I have already sent you a message — я уже отправил тебе сообщение. I sent it yesterday — я отправил его вчера: с yesterday здесь нужен past simple.",
-        "uk": "Forgiveness — прощення. I am asking for forgiveness — я прошу прощення. Це серйозне прохання після вчинку, який зачепив іншу людину. Для невеликої випадковості зазвичай достатньо Sorry. Ви змінили час зустрічі й пізно повідомили друга. I have already sent you a message — я вже надіслав тобі повідомлення. I sent it yesterday — я надіслав його вчора: із yesterday тут потрібен past simple."
+        "ru": "Друг спрашивает, когда вы отправили сообщение о встрече. Вы отправили его вчера. Ответьте: I sent it yesterday — я отправил его вчера. It заменяет the message. Sent — прошедшая форма send; формы sended нет. Yesterday задаёт законченное время, поэтому перед sent не добавляем have.\n\nСобираем предложение: I + sent + it + yesterday — кто → действие в прошлом → что отправил → когда.",
+        "uk": "Друг запитує, коли ви надіслали повідомлення про зустріч. Ви надіслали його вчора. Дайте відповідь: I sent it yesterday — я надіслав його вчора. It замінює the message. Sent — минула форма send; форми sended немає. Yesterday задає завершений час, тому перед sent не додаємо have.\n\nСкладаємо речення: I + sent + it + yesterday — хто → дія в минулому → що надіслав → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-41:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Объяснить намерение",
-        "uk": "Пояснити намір"
+        "ru": "Хотелось бы лучше понимать друг друга",
+        "uk": "Хотілося б краще розуміти одне одного"
       },
       "bodyByLocale": {
-        "ru": "Disrespect — неуважение. I meant no disrespect — я не хотел проявить неуважение. Эта фраза объясняет намерение, но сама по себе не исправляет случившееся. Impatience — нетерпение. My impatience made things worse — моё нетерпение всё ухудшило. Вы перебили друга, а теперь хотите его выслушать: Please tell me what happened — пожалуйста, расскажи, что произошло. I wish we understood each other better — хотелось бы, чтобы мы лучше понимали друг друга. Understood после wish относится к нынешнему общению.",
-        "uk": "Disrespect — неповага. I meant no disrespect — я не хотів виявити неповагу. Ця фраза пояснює намір, але сама собою не виправляє того, що сталося. Impatience — нетерпіння. My impatience made things worse — моє нетерпіння все погіршило. Ви перебили друга, а тепер хочете його вислухати: Please tell me what happened — будь ласка, розкажи, що сталося. I wish we understood each other better — хотілося б, щоб ми краще розуміли одне одного. Understood після wish стосується теперішнього спілкування."
+        "ru": "После недоразумения вы говорите другу: I wish we understood each other better — хотелось бы, чтобы мы лучше понимали друг друга. Each other — друг друга. Understood после wish показывает желаемое положение сейчас: пока взаимопонимания не хватает. Это прошедшая форма understand, но здесь она не переносит разговор в прошлое.\n\nСобираем предложение: I wish + we + understood + each other + better — желание → кто → understood → кого → как.",
+        "uk": "Після непорозуміння ви кажете другові: I wish we understood each other better — хотілося б, щоб ми краще розуміли одне одного. Each other — одне одного. Understood після wish показує бажане становище зараз: поки взаєморозуміння бракує. Це минула форма understand, але тут вона не переносить розмову в минуле.\n\nСкладаємо речення: I wish + we + understood + each other + better — бажання → хто → understood → кого → як."
       },
       "question": {
         "interactionId": "en:lesson-27:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться о следующем шаге",
-        "uk": "Домовитися про наступний крок"
+        "ru": "Зачем согласовать время",
+        "uk": "Навіщо узгодити час"
       },
       "bodyByLocale": {
-        "ru": "Tolerance — терпимость к различиям и чужим привычкам. We need a little tolerance — нам нужно немного терпимости. Речь о том, что друзья могут по-разному относиться к небольшим опозданиям; при этом время встречи можно обсудить прямо. I would feel better if we agreed on a time — мне было бы спокойнее, если бы мы договорились о времени. После would ставим feel, agreed входит в условие. Could we meet a little later? — можем встретиться немного позже?",
-        "uk": "Tolerance — терпимість до відмінностей і чужих звичок. We need a little tolerance — нам потрібно трохи терпимості. Ідеться про те, що друзі можуть по-різному ставитися до невеликих запізнень; водночас час зустрічі можна обговорити прямо. I would feel better if we agreed on a time — мені було б спокійніше, якби ми домовилися про час. Після would ставимо feel, agreed входить до умови. Could we meet a little later? — можемо зустрітися трохи пізніше?"
+        "ru": "Время встречи ещё не определено, и это вас тревожит. Объясните: I would feel better if we agreed on a time — мне было бы спокойнее, если бы мы договорились о времени. Would feel better — ожидаемое состояние при воображаемом условии. If we agreed on a time — само условие. После would нужен feel, а не felt и не to feel.\n\nСобираем предложение: I + would feel + better + if we agreed on a time — кто → что чувствовал бы → как → при каком условии.",
+        "uk": "Час зустрічі ще не визначений, і це вас непокоїть. Поясніть: I would feel better if we agreed on a time — мені було б спокійніше, якби ми домовилися про час. Would feel better — очікуваний стан за уявної умови. If we agreed on a time — сама умова. Після would потрібне feel, а не felt і не to feel.\n\nСкладаємо речення: I + would feel + better + if we agreed on a time — хто → що відчував би → як → за якої умови."
       },
       "question": {
         "interactionId": "en:lesson-27:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d70e16587596c69083e2cf9357701fa1714bb15c3d0f81154855bf212a733670"
+  "introFingerprint": "bfd4b7f41a9033b6161ca2eda2a07c3ca6181014ad4165d04cbfb8691a62c6ea"
 }

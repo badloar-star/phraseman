@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сказать об усталости",
-        "uk": "Сказати про втому"
+        "ru": "Когда был перерыв",
+        "uk": "Коли була перерва"
       },
       "bodyByLocale": {
-        "ru": "Tiredness — усталость. Друг замечает, что вы молчите, и спрашивает, что случилось. I think it is tiredness — думаю, это усталость. Это ваше предположение о своём состоянии. May I sit down? — можно присесть? I have already had a break — я уже сделал перерыв. I had a break an hour ago — у меня был перерыв час назад: с an hour ago говорим о законченном времени.",
-        "uk": "Tiredness — втома. Друг помічає, що ви мовчите, і запитує, що сталося. I think it is tiredness — думаю, це втома. Це ваше припущення про свій стан. May I sit down? — можна сісти? I have already had a break — я вже зробив перерву. I had a break an hour ago — у мене була перерва годину тому: з an hour ago говоримо про завершений час."
+        "ru": "Друг спрашивает, когда вы в последний раз отдыхали. Ответьте: I had a break an hour ago — у меня был перерыв час назад. Have a break — сделать перерыв. Прошедшая форма have — had, не haved. An hour ago называет законченное время, поэтому используем Past Simple без have перед had.\n\nСобираем предложение: I + had + a break + an hour ago — кто → действие в прошлом → что сделал → когда.",
+        "uk": "Друг запитує, коли ви востаннє відпочивали. Дайте відповідь: I had a break an hour ago — у мене була перерва годину тому. Have a break — зробити перерву. Минула форма have — had, не haved. An hour ago називає завершений час, тому використовуємо Past Simple без have перед had.\n\nСкладаємо речення: I + had + a break + an hour ago — хто → дія в минулому → що зробив → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-40:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Попросить другой стул",
-        "uk": "Попросити інший стілець"
+        "ru": "Почему не можете остаться",
+        "uk": "Чому не можете залишитися"
       },
       "bodyByLocale": {
-        "ru": "Discomfort — неудобство, неприятное ощущение. I felt some discomfort in this chair — в этом кресле мне было неудобно. Можно попросить: Could I use another chair? — можно взять другой стул? Soreness — болезненность: I still have some soreness in my shoulder — плечо всё ещё побаливает. Вы описываете ощущение. I would stay longer if I felt better — я бы остался дольше, если бы чувствовал себя лучше. После would ставим stay, а felt относится к условию.",
-        "uk": "Discomfort — незручність, неприємне відчуття. I felt some discomfort in this chair — у цьому кріслі мені було незручно. Можна попросити: Could I use another chair? — можна взяти інший стілець? Soreness — болісність: I still have some soreness in my shoulder — плече все ще поболює. Ви описуєте відчуття. I would stay longer if I felt better — я б залишився довше, якби почувався краще. Після would ставимо stay, а felt стосується умови."
+        "ru": "Вы плохо себя чувствуете и собираетесь уйти со встречи. Объясните: I would stay longer if I felt better — я бы остался дольше, если бы чувствовал себя лучше. Would stay — то, что вы сделали бы при другом самочувствии. Felt better — воображаемое условие сейчас. После would ставим stay без to и без окончания прошедшего времени.\n\nСобираем предложение: I + would stay + longer + if I felt better — кто → что сделал бы → насколько дольше → при каком условии.",
+        "uk": "Ви погано почуваєтеся й збираєтеся піти із зустрічі. Поясніть: I would stay longer if I felt better — я б залишився довше, якби почувався краще. Would stay — те, що ви зробили б за іншого самопочуття. Felt better — уявна умова зараз. Після would ставимо stay без to й без закінчення минулого часу.\n\nСкладаємо речення: I + would stay + longer + if I felt better — хто → що зробив би → наскільки довше → за якої умови."
       },
       "question": {
         "interactionId": "en:lesson-27:session-40:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Перед разговором с группой",
-        "uk": "Перед розмовою з групою"
+        "ru": "Хотелось бы меньше волноваться",
+        "uk": "Хотілося б менше хвилюватися"
       },
       "bodyByLocale": {
-        "ru": "Nervousness — волнение, нервозность. I cannot hide my nervousness — я не могу скрыть волнение. Перед тем как говорить перед группой, вы просите минуту: Could you give me a moment? I wish I felt more relaxed — хотелось бы чувствовать себя спокойнее. Felt после wish описывает желаемое состояние сейчас. What time do we start? — во сколько мы начинаем? Этот вопрос помогает уточнить, сколько времени есть.",
-        "uk": "Nervousness — хвилювання, нервозність. I cannot hide my nervousness — я не можу приховати хвилювання. Перш ніж говорити перед групою, ви просите хвилину: Could you give me a moment? I wish I felt more relaxed — хотілося б почуватися спокійніше. Felt після wish описує бажаний стан зараз. What time do we start? — о котрій ми починаємо? Це запитання допомагає уточнити, скільки є часу."
+        "ru": "Вам скоро говорить перед группой, и вы волнуетесь. Скажите: I wish I felt more relaxed — хотелось бы чувствовать себя спокойнее. More relaxed — спокойнее, более расслабленно. Felt после wish обозначает желаемое чувство сейчас. Хотя felt — прошедшая форма feel, в этой конструкции речь не о вчерашнем дне.\n\nСобираем предложение: I wish + I + felt + more relaxed — желание → кто → felt → желаемое состояние.",
+        "uk": "Вам незабаром говорити перед групою, і ви хвилюєтеся. Скажіть: I wish I felt more relaxed — хотілося б почуватися спокійніше. More relaxed — спокійніше, більш розслаблено. Felt після wish позначає бажане відчуття зараз. Хоча felt — минула форма feel, у цій конструкції йдеться не про вчорашній день.\n\nСкладаємо речення: I wish + I + felt + more relaxed — бажання → хто → felt → бажаний стан."
       },
       "question": {
         "interactionId": "en:lesson-27:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e93f206f1478e2efd81dc6727b46dded7edd5613ee0ea3bef167887e1a18ca70"
+  "introFingerprint": "1de8e6cbb8d2ab5aba1ed5f0bac5df225801d942976c732e59b8e9d1396dadca"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выбрать плед",
-        "uk": "Вибрати плед"
+        "ru": "Хотелось бы тепла",
+        "uk": "Хотілося б тепла"
       },
       "bodyByLocale": {
-        "ru": "Warmth — тепло. I need a little more warmth — мне нужно немного больше тепла. Вы устраиваетесь вечером в кресле и просите плед. Softness — мягкость. I like the softness of this blanket — мне нравится мягкость этого пледа. I wish the room were warmer — хотелось бы, чтобы в комнате было теплее. Were после wish описывает желаемую обстановку сейчас.",
-        "uk": "Warmth — тепло. I need a little more warmth — мені потрібно трохи більше тепла. Ви влаштовуєтеся ввечері в кріслі й просите плед. Softness — м’якість. I like the softness of this blanket — мені подобається м’якість цього пледа. I wish the room were warmer — хотілося б, щоб у кімнаті було тепліше. Were після wish описує бажану обстановку зараз."
+        "ru": "Вы сидите в прохладной комнате и мёрзнете. Скажите: I wish the room were warmer — хотелось бы, чтобы в комнате было теплее. Warmer — теплее. После I wish форма were описывает желаемое состояние комнаты сейчас. Вы не утверждаете, что стало тепло; пока в комнате прохладно.\n\nСобираем предложение: I wish + the room + were + warmer — желание → о чём говорим → were → желаемое качество.",
+        "uk": "Ви сидите в прохолодній кімнаті й мерзнете. Скажіть: I wish the room were warmer — хотілося б, щоб у кімнаті було тепліше. Warmer — тепліше. Після I wish форма were описує бажаний стан кімнати зараз. Ви не стверджуєте, що стало тепло; поки в кімнаті прохолодно.\n\nСкладаємо речення: I wish + the room + were + warmer — бажання → про що говоримо → were → бажана якість."
       },
       "question": {
         "interactionId": "en:lesson-27:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Попробовать подушку",
-        "uk": "Спробувати подушку"
+        "ru": "Когда переставили кресло",
+        "uk": "Коли переставили крісло"
       },
       "bodyByLocale": {
-        "ru": "Firmness — упругость, плотность: насколько подушка сопротивляется нажатию, а не сразу проваливается. I like the firmness of this cushion — мне нравится упругость этой подушки. Softness относится к мягкости; человеку может нравиться и мягкая ткань, и упругая подушка. Could I try that cushion? — можно попробовать ту подушку? I have already moved the chair — я уже переставил кресло. I moved it yesterday — я переставил его вчера: past simple с законченным временем.",
-        "uk": "Firmness — пружність, щільність: наскільки подушка чинить опір натисканню, а не одразу провалюється. I like the firmness of this cushion — мені подобається пружність цієї подушки. Softness стосується м’якості; людині може подобатися і м’яка тканина, і пружна подушка. Could I try that cushion? — можна спробувати ту подушку? I have already moved the chair — я вже переставив крісло. I moved it yesterday — я переставив його вчора: past simple із завершеним часом."
+        "ru": "Друг заметил кресло на новом месте и спрашивает, когда вы его переставили. Ответьте: I moved it yesterday — я переставил его вчера. It заменяет the chair. Move получает окончание -d, потому что уже заканчивается на -e: moved. Yesterday называет законченное время; have здесь не нужен.\n\nСобираем предложение: I + moved + it + yesterday — кто → действие в прошлом → что переставил → когда.",
+        "uk": "Друг помітив крісло на новому місці й запитує, коли ви його переставили. Дайте відповідь: I moved it yesterday — я переставив його вчора. It замінює the chair. Move отримує закінчення -d, бо вже закінчується на -e: moved. Yesterday називає завершений час; have тут не потрібне.\n\nСкладаємо речення: I + moved + it + yesterday — хто → дія в минулому → що переставив → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Изменить освещение",
-        "uk": "Змінити освітлення"
+        "ru": "При каком свете сели бы здесь",
+        "uk": "За якого світла сіли б тут"
       },
       "bodyByLocale": {
-        "ru": "Brightness — яркость. The brightness bothers me — яркий свет мне мешает. Вы говорите о свете лампы рядом с креслом. Could you move the lamp a little? — можешь немного передвинуть лампу? I would sit here if the light were softer — я бы сидел здесь, если бы свет был мягче. Would sit — результат, were — условие. А затем можно спросить другого человека: Are you comfortable there? — тебе там удобно?",
-        "uk": "Brightness — яскравість. The brightness bothers me — яскраве світло мені заважає. Ви говорите про світло лампи біля крісла. Could you move the lamp a little? — можеш трохи пересунути лампу? I would sit here if the light were softer — я б сидів тут, якби світло було м’якшим. Would sit — результат, were — умова. А потім можна запитати іншу людину: Are you comfortable there? — тобі там зручно?"
+        "ru": "Свет лампы слишком резкий, поэтому вы не хотите садиться рядом. Объясните: I would sit here if the light were softer — я бы сидел здесь, если бы свет был мягче. Would sit here — воображаемый результат. If the light were softer — условие, которое сейчас не выполняется. После would используем sit без to.\n\nСобираем предложение: I + would sit + here + if the light were softer — кто → что сделал бы → где → при каком условии.",
+        "uk": "Світло лампи надто різке, тому ви не хочете сідати поруч. Поясніть: I would sit here if the light were softer — я б сидів тут, якби світло було м’якшим. Would sit here — уявний результат. If the light were softer — умова, яка зараз не виконується. Після would використовуємо sit без to.\n\nСкладаємо речення: I + would sit + here + if the light were softer — хто → що зробив би → де → за якої умови."
       },
       "question": {
         "interactionId": "en:lesson-27:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d61e5bd7a6ea94678ad9865b6779c36fcc8fe7dd33e7335b39c4d372968fa8f8"
+  "introFingerprint": "71685787ea041e65c93949fe37170af4d399f184c73572c7f2dfc6a9dce54c16"
 }

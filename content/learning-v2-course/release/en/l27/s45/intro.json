@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Не додумывать за друга",
-        "uk": "Не додумувати за друга"
+        "ru": "Понять ошибку друга",
+        "uk": "Зрозуміти помилку друга"
       },
       "bodyByLocale": {
-        "ru": "Overthink — слишком долго обдумывать, чрезмерно усложнять мыслями. I tend to overthink things — я склонен слишком много всё обдумывать. Друг не ответил сразу, и вы уже решили, что он сердится. Лучше уточнить: Are we still meeting at six? — мы всё ещё встречаемся в шесть? Understandable — понятный, объяснимый. Your mistake is understandable — твою ошибку можно понять. Вы имеете в виду неверно прочитанное время, а не оцениваете человека.",
-        "uk": "Overthink — надто довго обмірковувати, надмірно ускладнювати думками. I tend to overthink things — я схильний надто багато все обмірковувати. Друг не відповів одразу, і ви вже вирішили, що він сердиться. Краще уточнити: Are we still meeting at six? — ми все ще зустрічаємося о шостій? Understandable — зрозумілий, поясненний. Your mistake is understandable — твою помилку можна зрозуміти. Ви маєте на увазі неправильно прочитаний час, а не оцінюєте людину."
+        "ru": "Друг неверно прочитал время встречи в нечётком сообщении. Вы понимаете, почему он ошибся. Скажите: Your mistake is understandable — твою ошибку можно понять. Understandable — понятный, объяснимый. Mistake — одно событие, поэтому нужна связка is. Порядок: назвать ошибку, поставить is, затем описать её прилагательным.\n\nСобираем предложение: Your mistake + is + understandable — что описываем → is для единственного числа → какое оно.",
+        "uk": "Друг неправильно прочитав час зустрічі в нечіткому повідомленні. Ви розумієте, чому він помилився. Скажіть: Your mistake is understandable — твою помилку можна зрозуміти. Understandable — зрозумілий, поясненний. Mistake — одна подія, тому потрібна зв’язка is. Порядок: назвати помилку, поставити is, потім описати її прикметником.\n\nСкладаємо речення: Your mistake + is + understandable — що описуємо → is для однини → яке воно."
       },
       "question": {
         "interactionId": "en:lesson-27:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Найти правильный вход",
-        "uk": "Знайти правильний вхід"
+        "ru": "Хотелось бы понятного указателя",
+        "uk": "Хотілося б зрозумілого вказівника"
       },
       "bodyByLocale": {
-        "ru": "Incorrect — неверный, неправильный. The sign is incorrect — указатель неверный. Стрелка ведёт к закрытому входу. Это описание указателя, не обвинение друга во лжи. I wish the sign were clearer — хотелось бы, чтобы указатель был понятнее. После wish используем were для желаемого положения сейчас. If I were you, I would call the café — на твоём месте я бы позвонил в кафе. Можно спросить: Which entrance should I use? — через какой вход мне войти?",
-        "uk": "Incorrect — неправильний, хибний. The sign is incorrect — вказівник неправильний. Стрілка веде до зачиненого входу. Це опис вказівника, а не звинувачення друга у брехні. I wish the sign were clearer — хотілося б, щоб вказівник був зрозумілішим. Після wish використовуємо were для бажаного становища зараз. If I were you, I would call the café — на твоєму місці я б зателефонував до кафе. Можна запитати: Which entrance should I use? — через який вхід мені ввійти?"
+        "ru": "Вы стоите перед кафе и не можете понять по указателю, где вход. Скажите: I wish the sign were clearer — хотелось бы, чтобы указатель был понятнее. Clearer здесь — понятнее. После I wish форма were показывает желаемое состояние указателя сейчас. Это не утверждение, что указатель уже понятен.\n\nСобираем предложение: I wish + the sign + were + clearer — желание → о чём говорим → were → желаемое качество.",
+        "uk": "Ви стоїте перед кафе й не можете зрозуміти за вказівником, де вхід. Скажіть: I wish the sign were clearer — хотілося б, щоб вказівник був зрозумілішим. Clearer тут — зрозуміліший. Після I wish форма were показує бажаний стан вказівника зараз. Це не твердження, що вказівник уже зрозумілий.\n\nСкладаємо речення: I wish + the sign + were + clearer — бажання → про що говоримо → were → бажана якість."
       },
       "question": {
         "interactionId": "en:lesson-27:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Объяснить, что случилось",
-        "uk": "Пояснити, що сталося"
+        "ru": "Когда позвонили другу",
+        "uk": "Коли зателефонували другові"
       },
       "bodyByLocale": {
-        "ru": "Unnecessarily — без необходимости, напрасно. We waited unnecessarily — мы ждали напрасно. Оказалось, друг уже сидел внутри. I have already spoken to him — я уже поговорил с ним: важен результат сейчас. I called him ten minutes ago — я позвонил ему десять минут назад: ago требует здесь past simple. We would find each other more easily if we chose one entrance — нам было бы легче найти друг друга, если бы мы выбрали один вход. Условие помогает договориться на будущее.",
-        "uk": "Unnecessarily — без потреби, даремно. We waited unnecessarily — ми чекали даремно. Виявилося, друг уже сидів усередині. I have already spoken to him — я вже поговорив із ним: важливий результат зараз. I called him ten minutes ago — я зателефонував йому десять хвилин тому: ago потребує тут past simple. We would find each other more easily if we chose one entrance — нам було б легше знайти одне одного, якби ми вибрали один вхід. Умова допомагає домовитися на майбутнє."
+        "ru": "Вас спрашивают, когда вы звонили другу, которого ждёте. Это было десять минут назад. Ответьте: I called him ten minutes ago — я позвонил ему десять минут назад. После call человека называем без to: called him. Called — прошедшая форма call. Ten minutes ago требует здесь Past Simple, без have.\n\nСобираем предложение: I + called + him + ten minutes ago — кто → действие в прошлом → кому → когда.",
+        "uk": "Вас запитують, коли ви телефонували другові, на якого чекаєте. Це було десять хвилин тому. Дайте відповідь: I called him ten minutes ago — я зателефонував йому десять хвилин тому. Після call людину називаємо без to: called him. Called — минула форма call. Ten minutes ago потребує тут Past Simple, без have.\n\nСкладаємо речення: I + called + him + ten minutes ago — хто → дія в минулому → кому → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "85d7828fb5dc26d931ba554ea9a71d16691cd856ff5bdf4c4a97e30fc26ea8f6"
+  "introFingerprint": "d9e4eca40a33ce84428fbf6e4d2c404d0a52e2628b56feeefec38502c34d4065"
 }

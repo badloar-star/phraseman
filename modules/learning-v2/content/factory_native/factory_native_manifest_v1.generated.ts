@@ -20943,7 +20943,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 40,
-    sourceFingerprint: "15d8295a9080dcf31353d07ece14bae3ff287fee79a752e2cf009f43b45cb395",
+    sourceFingerprint: "2611e5ea686bf899374b590be349fe740df8ce6328dbe35e1b0ef93b67d578c7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С an hour ago здесь had без have.","Прошедшая форма have — had."],["После would нужна stay.","После would нет to."],["После wish здесь felt.","Нужна форма felt."]],"uk":[["Із an hour ago тут had без have.","Минула форма have — had."],["Після would потрібна stay.","Після would немає to."],["Після wish тут felt.","Потрібна форма felt."]]}),
@@ -20957,7 +20957,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 41,
-    sourceFingerprint: "cc3f539d732b8bc9034b966db03da25330433cf375da0970ed219592e9b8a5ba",
+    sourceFingerprint: "034bd009baf5a2c4869756fc0e853d53f9db8a5e750e7fd52a9f1908b8f61b20",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С yesterday здесь sent без have.","Прошедшая форма send — sent."],["После wish здесь understood.","Нужна форма understood."],["После would нужна feel.","После would нет to."]],"uk":[["Із yesterday тут sent без have.","Минула форма send — sent."],["Після wish тут understood.","Потрібна форма understood."],["Після would потрібна feel.","Після would немає to."]]}),
@@ -20971,7 +20971,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 42,
-    sourceFingerprint: "8368fb72fda10e19e77859adbdaae8eb567fe95d7626a9e7f8122fe480947ecf",
+    sourceFingerprint: "9adfb1db9fb6c6c9b216428aedf54a49881b2a5afa73bb98e1f174f550525ea3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После wish здесь were.","Нужна форма were."],["С yesterday здесь moved без have.","Нужна форма moved."],["После would нужна sit.","После would нет to."]],"uk":[["Після wish тут were.","Потрібна форма were."],["Із yesterday тут moved без have.","Потрібна форма moved."],["Після would потрібна sit.","Після would немає to."]]}),
@@ -20985,7 +20985,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 43,
-    sourceFingerprint: "8eff401f2f64e0c14e7b5f6e4d745fa6b84b59e87e5c93307f01dfa1ec2ad730",
+    sourceFingerprint: "b3d8c55027c89bd1afeec3fb29faf61e9d6a7366ed2eeb4ff2e54ec53f3963ce",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После have нужна третья форма bought.","Здесь have bought."],["После wish здесь were.","Нужна форма were."],["После would нужна stay.","После would не ставим to."]],"uk":[["Після have потрібна третя форма bought.","Тут have bought."],["Після wish тут were.","Потрібна форма were."],["Після would потрібна stay.","Після would не ставимо to."]]}),
@@ -20999,7 +20999,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 44,
-    sourceFingerprint: "76a9132fede12432d3aa6316eb06c01029aa001eec15e8878d5806c36ee4c0f8",
+    sourceFingerprint: "e5315e6983c8299666be8b2cc7644ae3c0311a51972fbaf8c13fd80c0f8169d7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С yesterday здесь paid без have.","Нужно прошедшее paid."],["После wish здесь had.","Нужна форма had."],["После would нужна stay.","После would не ставим to."]],"uk":[["Із yesterday тут paid без have.","Потрібне минуле paid."],["Після wish тут had.","Потрібна форма had."],["Після would потрібна stay.","Після would не ставимо to."]]}),
@@ -21013,7 +21013,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 45,
-    sourceFingerprint: "acbee67672cfe08e249bd87b064df580b49c36f5831e6aa3f21b580a4f6d5c2c",
+    sourceFingerprint: "b08cf2de45b4bfccad854163a798ecc63703cd5664912a728af075d2a07189da",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Mistake в единственном числе: is.","Перед прилагательным нужна is."],["После wish здесь were.","Нужна форма were."],["С ago здесь called без have.","Нужна форма called."]],"uk":[["Mistake в однині: is.","Перед прикметником потрібна is."],["Після wish тут were.","Потрібна форма were."],["Із ago тут called без have.","Потрібна форма called."]]}),

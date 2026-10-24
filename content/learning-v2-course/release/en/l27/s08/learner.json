@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-08",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-08:word:bookshelf",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bookshelf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:word:bookshelf:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bookshelf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:word:bookshelf:audio",
+          "transcript": "bookshelf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:word:bookshelf:r1",
+            "targetText": "bookshelf",
+            "meaningByLocale": {
+              "ru": "Книжная полка; множественное число bookshelves.",
+              "uk": "Книжкова полиця; множина bookshelves."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bookshelf",
+          "definitionByLocale": {
+            "ru": "Книжная полка; множественное число bookshelves.",
+            "uk": "Книжкова полиця; множина bookshelves."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что книжная полка заполнена.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i01:audio"
+      ],
+      "accessibilityLabel": "Скажите, что книжная полка заполнена.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i01:audio",
+          "transcript": "The bookshelf is full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bookshelf is full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите помочь с книгами.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите помочь с книгами.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you help me with these books?",
+        "localizedMeaning": {
+          "ru": "Попросите помочь с книгами.",
+          "uk": "Попросіть допомогти з книжками."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "help",
+          "me",
+          "with",
+          "these",
+          "books"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i03:r1",
+          "text": "There is space under the window."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i03:r2",
+          "text": "There is space behind the door."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i03:r3",
+          "text": "There is space above the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i03:audio",
+          "transcript": "There is space under the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:i03:r1",
+            "targetText": "There is space under the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i03:r2",
+            "targetText": "There is space behind the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i03:r3",
+            "targetText": "There is space above the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is space under the window.",
+              "uk": "У записі звучить There is space under the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is space under the window.",
+              "uk": "У записі звучить There is space under the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы переставили бы полку, если бы места было больше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i04:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i04:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы переставили бы полку, если бы места было больше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы переставили бы полку, если бы места было больше.",
+          "uk": "Ви переставили б полицю, якби місця було більше."
+        },
+        "gappedTargetPhrase": "I would move it if I ___ more room.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-08:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i04:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i04:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вы переставили бы полку, если бы места было больше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы переставили бы полку, если бы места было больше.",
+            "feedbackByLocale": {
+              "ru": "В условии had без would.",
+              "uk": "В умові had без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы переставили бы полку, если бы места было больше.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма had.",
+              "uk": "Потрібна особова форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:word:nightstand",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nightstand",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:word:nightstand:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nightstand",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:word:nightstand:audio",
+          "transcript": "nightstand"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:word:nightstand:r1",
+            "targetText": "nightstand",
+            "meaningByLocale": {
+              "ru": "Прикроватная тумбочка.",
+              "uk": "Приліжкова тумбочка."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nightstand",
+          "definitionByLocale": {
+            "ru": "Прикроватная тумбочка.",
+            "uk": "Приліжкова тумбочка."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, куда поставить лампу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте, куда поставить лампу.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i05:audio",
+          "transcript": "Put the lamp on the nightstand."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Put the lamp on the nightstand.",
+        "orderedTokens": [
+          "Put",
+          "the",
+          "lamp",
+          "on",
+          "the",
+          "nightstand"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, с какой стороны кровати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i06:audio"
+      ],
+      "accessibilityLabel": "Уточните, с какой стороны кровати.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i06:audio",
+          "transcript": "Which side of the bed?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Which side of the bed?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:word:headboard",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — headboard",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:word:headboard:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — headboard",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:word:headboard:audio",
+          "transcript": "headboard"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:word:headboard:r1",
+            "targetText": "headboard",
+            "meaningByLocale": {
+              "ru": "Изголовье кровати, панель у головы.",
+              "uk": "Узголів’я ліжка, панель біля голови."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "headboard",
+          "definitionByLocale": {
+            "ru": "Изголовье кровати, панель у головы.",
+            "uk": "Узголів’я ліжка, панель біля голови."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i07:r1",
+          "text": "The headboard is loose."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i07:r2",
+          "text": "The headboard is scratched."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i07:r3",
+          "text": "The headboard is missing."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i07:audio",
+          "transcript": "The headboard is loose."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:i07:r1",
+            "targetText": "The headboard is loose.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i07:r2",
+            "targetText": "The headboard is scratched.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i07:r3",
+            "targetText": "The headboard is missing.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The headboard is loose.",
+              "uk": "У записі звучить The headboard is loose."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The headboard is loose.",
+              "uk": "У записі звучить The headboard is loose."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Расскажите о покупке на прошлой неделе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i08:r2",
+          "text": "have bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i08:r3",
+          "text": "buyed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите о покупке на прошлой неделе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о покупке на прошлой неделе.",
+          "uk": "Розкажіть про покупку минулого тижня."
+        },
+        "gappedTargetPhrase": "We ___ it last week.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-08:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i08:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i08:r3",
+            "text": "buyed"
+          }
+        ],
+        "testedDimension": "Расскажите о покупке на прошлой неделе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Расскажите о покупке на прошлой неделе.",
+            "feedbackByLocale": {
+              "ru": "С last week здесь past simple.",
+              "uk": "Із last week тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Расскажите о покупке на прошлой неделе.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма buy — bought.",
+              "uk": "Минула форма buy — bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что вы уже позвонили в магазин.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что вы уже позвонили в магазин.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already called the shop.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что вы уже позвонили в магазин.",
+          "uk": "Повідомте, що ви вже зателефонували до магазину."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "called",
+          "the",
+          "shop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:word:armrest",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — armrest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:word:armrest:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — armrest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:word:armrest:audio",
+          "transcript": "armrest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:word:armrest:r1",
+            "targetText": "armrest",
+            "meaningByLocale": {
+              "ru": "Подлокотник.",
+              "uk": "Підлокітник."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "armrest",
+          "definitionByLocale": {
+            "ru": "Подлокотник.",
+            "uk": "Підлокітник."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, что подлокотник слишком высокий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i10:audio"
+      ],
+      "accessibilityLabel": "Объясните, что подлокотник слишком высокий.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i10:audio",
+          "transcript": "This armrest is too high."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This armrest is too high.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i11:r1",
+          "text": "Try the chair beside it."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i11:r2",
+          "text": "Try the chair behind it."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i11:r3",
+          "text": "Move the chair beside it."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i11:audio",
+          "transcript": "Try the chair beside it."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:i11:r1",
+            "targetText": "Try the chair beside it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i11:r2",
+            "targetText": "Try the chair behind it.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i11:r3",
+            "targetText": "Move the chair beside it.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Try the chair beside it.",
+              "uk": "У записі звучить Try the chair beside it."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Try the chair beside it.",
+              "uk": "У записі звучить Try the chair beside it."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите, можно ли заказать другой цвет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, можно ли заказать другой цвет.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I order a different colour?",
+        "localizedMeaning": {
+          "ru": "Спросите, можно ли заказать другой цвет.",
+          "uk": "Запитайте, чи можна замовити інший колір."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "order",
+          "a",
+          "different",
+          "colour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кресло не проходит в дверь. Вы купили бы его, если бы оно проходило.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i13:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i13:r2",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i13:r3",
+          "text": "to buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кресло не проходит в дверь. Вы купили бы его, если бы оно проходило.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кресло не проходит в дверь. Вы купили бы его, если бы оно проходило.",
+          "uk": "Крісло не проходить у двері. Ви купили б його, якби воно проходило."
+        },
+        "gappedTargetPhrase": "I would ___ it if it fitted through the door.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-08:i13:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i13:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i13:r3",
+            "text": "to buy"
+          }
+        ],
+        "testedDimension": "Кресло не проходит в дверь. Вы купили бы его, если бы оно проходило.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i13:r2",
+            "correct": false,
+            "testedDimension": "Кресло не проходит в дверь. Вы купили бы его, если бы оно проходило.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма buy.",
+              "uk": "Після would потрібна початкова форма buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i13:r3",
+            "correct": false,
+            "testedDimension": "Кресло не проходит в дверь. Вы купили бы его, если бы оно проходило.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we had a bigger car, we would take it home.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we had a bigger car, we would take it home.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would take it home if we had a bigger car.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we had a bigger car, we would take it home.",
+          "uk": "Почніть із результату: If we had a bigger car, we would take it home."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "take",
+          "it",
+          "home",
+          "if",
+          "we",
+          "had",
+          "a",
+          "bigger",
+          "car"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните цену доставки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i15:audio"
+      ],
+      "accessibilityLabel": "Уточните цену доставки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i15:audio",
+          "transcript": "How much is delivery?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much is delivery?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, что доставка включена в цену.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i16:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что доставка включена в цену.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i16:audio",
+          "transcript": "It is included in the price."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is included in the price.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "included",
+          "in",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-08:i17:r1",
+          "text": "We can deliver it on Friday."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i17:r2",
+          "text": "We can deliver it on Monday."
+        },
+        {
+          "responseId": "en:lesson-27:session-08:i17:r3",
+          "text": "You can collect it on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-08:i17:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-08:i17:audio",
+          "transcript": "We can deliver it on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-08:i17:r1",
+            "targetText": "We can deliver it on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i17:r2",
+            "targetText": "We can deliver it on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i17:r3",
+            "targetText": "You can collect it on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-08:i17:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can deliver it on Friday.",
+              "uk": "У записі звучить We can deliver it on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-08:i17:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can deliver it on Friday.",
+              "uk": "У записі звучить We can deliver it on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "757137652a1af339fbb30098ab6c122f1dd40e09567b6467c8c88ef095de8827"
+}

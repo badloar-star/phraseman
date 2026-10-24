@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать человека в кафе",
+        "uk": "Впізнати людину в кафе"
+      },
+      "bodyByLocale": {
+        "ru": "Вы впервые встречаете подругу знакомого. Brunette — женщина с тёмно-коричневыми волосами. She is the brunette by the window — она та темноволосая женщина у окна. Redhead — рыжеволосый человек: My brother is a redhead — мой брат рыжий. Это существительные: a brunette, a redhead. Фотография помогла бы найти нужного человека: I would recognize her if I saw her photo — я бы узнал её, если бы увидел её фотографию. Saw — форма see; здесь речь о воображаемом условии сейчас.",
+        "uk": "Ви вперше зустрічаєте подругу знайомого. Brunette — жінка з темно-каштановим волоссям. She is the brunette by the window — вона та темноволоса жінка біля вікна. Redhead — рудоволоса людина: My brother is a redhead — мій брат рудий. Це іменники: a brunette, a redhead. Фотографія допомогла б знайти потрібну людину: I would recognize her if I saw her photo — я б упізнав її, якби побачив її фотографію. Saw — форма see; тут ідеться про уявну умову зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-07:intro1:r1",
+              "text": "I would recognize her if I saw her photo."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro1:r2",
+              "text": "I would recognized her if I saw her photo."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro1:r3",
+              "text": "I would recognize her if I would saw her photo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-07:intro1:r1",
+              "text": "I would recognize her if I saw her photo."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro1:r2",
+              "text": "I would recognized her if I saw her photo."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro1:r3",
+              "text": "I would recognize her if I would saw her photo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разные оттенки описания",
+        "uk": "Різні відтінки опису"
+      },
+      "bodyByLocale": {
+        "ru": "Slim — стройный. He is tall and slim — он высокий и стройный. Skinny — худой, очень худой; часто звучит менее одобрительно. I was skinny as a child — в детстве я был очень худым. Эти слова близки по теме, но не одинаковы по тону. Вы смотрите старое фото: I took this photo last summer — я сделал эту фотографию прошлым летом. Last summer — законченное время, поэтому took без have. На снимке все смотрят в камеру, кроме фотографа в зеркале: он занят собственным телефоном.",
+        "uk": "Slim — стрункий. He is tall and slim — він високий і стрункий. Skinny — худий, дуже худий; часто звучить менш схвально. I was skinny as a child — у дитинстві я був дуже худим. Ці слова близькі за темою, але не однакові за тоном. Ви дивитеся старе фото: I took this photo last summer — я зробив цю фотографію минулого літа. Last summer — завершений час, тому took без have. На знімку всі дивляться в камеру, крім фотографа в дзеркалі: він зайнятий власним телефоном."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-07:intro2:r1",
+              "text": "I took this photo last summer."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro2:r2",
+              "text": "I have taken this photo last summer."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro2:r3",
+              "text": "I taked this photo last summer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-07:intro2:r1",
+              "text": "I took this photo last summer."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro2:r2",
+              "text": "I have taken this photo last summer."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro2:r3",
+              "text": "I taked this photo last summer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти друг друга",
+        "uk": "Знайти одне одного"
+      },
+      "bodyByLocale": {
+        "ru": "I have found the table — я нашёл столик: результат важен сейчас. I found it ten minutes ago — я нашёл его десять минут назад: есть законченное время, поэтому found без have. Друг пока не видит вас. I would wave if I saw you — я бы помахал, если бы видел тебя. Saw здесь описывает воображаемое условие. Можно обойтись без угадывания: I will wait by the entrance — я подожду у входа.",
+        "uk": "I have found the table — я знайшов столик: результат важливий зараз. I found it ten minutes ago — я знайшов його десять хвилин тому: є завершений час, тому found без have. Друг поки не бачить вас. I would wave if I saw you — я б помахав, якби бачив тебе. Saw тут описує уявну умову. Можна обійтися без вгадування: I will wait by the entrance — я зачекаю біля входу."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-07:intro3:r1",
+              "text": "I found it ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro3:r2",
+              "text": "I have found it ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro3:r3",
+              "text": "I finding it ten minutes ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-07:intro3:r1",
+              "text": "I found it ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro3:r2",
+              "text": "I have found it ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-07:intro3:r3",
+              "text": "I finding it ten minutes ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "12dd4c62975ba29120969509652f466b5cd6a81c4683d3f6c950c1aed366436d"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-07:intro1:r2": {
+          "ru": "После would нужна начальная форма recognize.",
+          "uk": "Після would потрібна початкова форма recognize."
+        },
+        "en:lesson-27:session-07:intro1:r3": {
+          "ru": "В условии saw без would.",
+          "uk": "В умові saw без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-07:intro2:r2": {
+          "ru": "С законченным last summer здесь past simple.",
+          "uk": "Із завершеним last summer тут past simple."
+        },
+        "en:lesson-27:session-07:intro2:r3": {
+          "ru": "Прошедшая форма take — took.",
+          "uk": "Минула форма take — took."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-07:intro3:r2": {
+          "ru": "С ago здесь past simple.",
+          "uk": "Із ago тут past simple."
+        },
+        "en:lesson-27:session-07:intro3:r3": {
+          "ru": "Для прошлого события нужна личная форма found.",
+          "uk": "Для минулої події потрібна особова форма found."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5bda75cfc6caa5c500c68ac5822d758efad6dc6c53daac096f740e5c09014ac9"
+}

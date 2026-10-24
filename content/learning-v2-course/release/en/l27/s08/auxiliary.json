@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-08:intro1:r2": {
+          "ru": "После would нужно move.",
+          "uk": "Після would потрібно move."
+        },
+        "en:lesson-27:session-08:intro1:r3": {
+          "ru": "После if здесь had без would.",
+          "uk": "Після if тут had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-08:intro2:r2": {
+          "ru": "С last week здесь past simple.",
+          "uk": "Із last week тут past simple."
+        },
+        "en:lesson-27:session-08:intro2:r3": {
+          "ru": "Прошедшая форма buy — bought.",
+          "uk": "Минула форма buy — bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-08:intro3:r2": {
+          "ru": "После would нужна начальная форма buy.",
+          "uk": "Після would потрібна початкова форма buy."
+        },
+        "en:lesson-27:session-08:intro3:r3": {
+          "ru": "В условии fitted без would.",
+          "uk": "В умові fitted без would."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0b345d6f4d3546728b01eb2848011d4824e19dbfcf0ddbe4cb0f71ed8b3bd533"
+}

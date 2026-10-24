@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-08:word:bookshelf",
+    "correctText": "bookshelf",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i01",
+    "correctText": "The bookshelf is full.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i02",
+    "correctText": "Could you help me with these books?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i03",
+    "correctText": "There is space under the window.",
+    "correctResponseId": "en:lesson-27:session-08:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-08:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:word:nightstand",
+    "correctText": "nightstand",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i05",
+    "correctText": "Put the lamp on the nightstand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i06",
+    "correctText": "Which side of the bed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:word:headboard",
+    "correctText": "headboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i07",
+    "correctText": "The headboard is loose.",
+    "correctResponseId": "en:lesson-27:session-08:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-27:session-08:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i09",
+    "correctText": "I have already called the shop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:word:armrest",
+    "correctText": "armrest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i10",
+    "correctText": "This armrest is too high.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i11",
+    "correctText": "Try the chair beside it.",
+    "correctResponseId": "en:lesson-27:session-08:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i12",
+    "correctText": "Can I order a different colour?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i13",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-27:session-08:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i14",
+    "correctText": "We would take it home if we had a bigger car.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i15",
+    "correctText": "How much is delivery?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i16",
+    "correctText": "It is included in the price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-08:i17",
+    "correctText": "We can deliver it on Friday.",
+    "correctResponseId": "en:lesson-27:session-08:i17:r1"
+  }
+]

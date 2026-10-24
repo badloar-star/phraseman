@@ -1,0 +1,1045 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-07:word:brunette",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brunette",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:word:brunette:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brunette",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:word:brunette:audio",
+          "transcript": "brunette"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:word:brunette:r1",
+            "targetText": "brunette",
+            "meaningByLocale": {
+              "ru": "Женщина с тёмно-коричневыми волосами.",
+              "uk": "Жінка з темно-каштановим волоссям."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brunette",
+          "definitionByLocale": {
+            "ru": "Женщина с тёмно-коричневыми волосами.",
+            "uk": "Жінка з темно-каштановим волоссям."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i01:r1",
+          "text": "She is the brunette by the window."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i01:r2",
+          "text": "She is the brunette by the door."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i01:r3",
+          "text": "She is the brunette behind you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i01:audio",
+          "transcript": "She is the brunette by the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:i01:r1",
+            "targetText": "She is the brunette by the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i01:r2",
+            "targetText": "She is the brunette by the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i01:r3",
+            "targetText": "She is the brunette behind you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is the brunette by the window.",
+              "uk": "У записі звучить She is the brunette by the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is the brunette by the window.",
+              "uk": "У записі звучить She is the brunette by the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, о мужчине ли в синей куртке говорит друг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Уточните, о мужчине ли в синей куртке говорит друг.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i02:audio",
+          "transcript": "Do you mean the man in the blue jacket?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you mean the man in the blue jacket?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:word:redhead",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — redhead",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:word:redhead:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — redhead",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:word:redhead:audio",
+          "transcript": "redhead"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:word:redhead:r1",
+            "targetText": "redhead",
+            "meaningByLocale": {
+              "ru": "Рыжеволосый человек.",
+              "uk": "Рудоволоса людина."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "redhead",
+          "definitionByLocale": {
+            "ru": "Рыжеволосый человек.",
+            "uk": "Рудоволоса людина."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Расскажите, что ваш брат рыжий.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Расскажите, что ваш брат рыжий.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My brother is a redhead.",
+        "localizedMeaning": {
+          "ru": "Расскажите, что ваш брат рыжий.",
+          "uk": "Розкажіть, що ваш брат рудий."
+        },
+        "orderedTokens": [
+          "My",
+          "brother",
+          "is",
+          "a",
+          "redhead"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i04:r1",
+          "text": "saw"
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i04:r2",
+          "text": "would saw"
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i04:r3",
+          "text": "seeing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
+          "uk": "Фотографії поки немає. Ви впізнали б її, якби побачили фото."
+        },
+        "gappedTargetPhrase": "I would recognize her if I ___ her photo.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-07:i04:r1",
+            "text": "saw"
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i04:r2",
+            "text": "would saw"
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i04:r3",
+            "text": "seeing"
+          }
+        ],
+        "testedDimension": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i04:r2",
+            "correct": false,
+            "testedDimension": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
+            "feedbackByLocale": {
+              "ru": "В условии past simple: saw без would.",
+              "uk": "В умові past simple: saw без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i04:r3",
+            "correct": false,
+            "testedDimension": "Фотографии пока нет. Вы узнали бы её, если бы увидели фото.",
+            "feedbackByLocale": {
+              "ru": "Seeing не заменяет личную форму saw.",
+              "uk": "Seeing не замінює особову форму saw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу прислать фотографию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу прислать фотографию.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i05:audio",
+          "transcript": "Could you send me a photo?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you send me a photo?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "send",
+          "me",
+          "a",
+          "photo"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:word:slim",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — slim",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:word:slim:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — slim",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:word:slim:audio",
+          "transcript": "slim"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:word:slim:r1",
+            "targetText": "slim",
+            "meaningByLocale": {
+              "ru": "Стройный.",
+              "uk": "Стрункий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "slim",
+          "definitionByLocale": {
+            "ru": "Стройный.",
+            "uk": "Стрункий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Опишите мужчину: высокий и стройный.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Опишите мужчину: высокий и стройный.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i06:audio",
+          "transcript": "He is tall and slim."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He is tall and slim.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i07:r1",
+          "text": "He is wearing a green coat."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i07:r2",
+          "text": "He is wearing a grey coat."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i07:r3",
+          "text": "He is carrying a green coat."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i07:audio",
+          "transcript": "He is wearing a green coat."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:i07:r1",
+            "targetText": "He is wearing a green coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i07:r2",
+            "targetText": "He is wearing a grey coat.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i07:r3",
+            "targetText": "He is carrying a green coat.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is wearing a green coat.",
+              "uk": "У записі звучить He is wearing a green coat."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит He is wearing a green coat.",
+              "uk": "У записі звучить He is wearing a green coat."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:word:skinny",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — skinny",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:word:skinny:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — skinny",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:word:skinny:audio",
+          "transcript": "skinny"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:word:skinny:r1",
+            "targetText": "skinny",
+            "meaningByLocale": {
+              "ru": "Худой, очень худой; часто с неодобрительным оттенком.",
+              "uk": "Худий, дуже худий; часто з несхвальним відтінком."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skinny",
+          "definitionByLocale": {
+            "ru": "Худой, очень худой; часто с неодобрительным оттенком.",
+            "uk": "Худий, дуже худий; часто з несхвальним відтінком."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вспомните, что в детстве вы были очень худым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вспомните, что в детстве вы были очень худым.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I was skinny as a child.",
+        "localizedMeaning": {
+          "ru": "Вспомните, что в детстве вы были очень худым.",
+          "uk": "Згадайте, що в дитинстві ви були дуже худим."
+        },
+        "orderedTokens": [
+          "I",
+          "was",
+          "skinny",
+          "as",
+          "a",
+          "child"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите законченное время: прошлым летом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i09:r1",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i09:r2",
+          "text": "have taken"
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i09:r3",
+          "text": "taked"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите законченное время: прошлым летом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите законченное время: прошлым летом.",
+          "uk": "Назвіть завершений час: минулого літа."
+        },
+        "gappedTargetPhrase": "I ___ this photo last summer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-07:i09:r1",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i09:r2",
+            "text": "have taken"
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i09:r3",
+            "text": "taked"
+          }
+        ],
+        "testedDimension": "Назовите законченное время: прошлым летом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i09:r2",
+            "correct": false,
+            "testedDimension": "Назовите законченное время: прошлым летом.",
+            "feedbackByLocale": {
+              "ru": "С last summer здесь past simple.",
+              "uk": "Із last summer тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i09:r3",
+            "correct": false,
+            "testedDimension": "Назовите законченное время: прошлым летом.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма take — took.",
+              "uk": "Минула форма take — took."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, кто стоит рядом с братом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i10:audio"
+      ],
+      "accessibilityLabel": "Спросите, кто стоит рядом с братом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i10:audio",
+          "transcript": "Who is standing next to him?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Who is standing next to him?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте ответ о знакомстве на работе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Услышьте ответ о знакомстве на работе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i11:audio",
+          "transcript": "We met at work."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We met at work.",
+        "orderedTokens": [
+          "We",
+          "met",
+          "at",
+          "work"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i12:r1",
+          "text": "I have found the table."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i12:r2",
+          "text": "I have found the ticket."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i12:r3",
+          "text": "I have booked the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i12:audio",
+          "transcript": "I have found the table."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:i12:r1",
+            "targetText": "I have found the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i12:r2",
+            "targetText": "I have found the ticket.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i12:r3",
+            "targetText": "I have booked the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have found the table.",
+              "uk": "У записі звучить I have found the table."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have found the table.",
+              "uk": "У записі звучить I have found the table."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы нашли столик десять минут назад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i13:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i13:r2",
+          "text": "have found"
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i13:r3",
+          "text": "finding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы нашли столик десять минут назад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы нашли столик десять минут назад.",
+          "uk": "Ви знайшли столик десять хвилин тому."
+        },
+        "gappedTargetPhrase": "I ___ it ten minutes ago.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-07:i13:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i13:r2",
+            "text": "have found"
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i13:r3",
+            "text": "finding"
+          }
+        ],
+        "testedDimension": "Вы нашли столик десять минут назад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы нашли столик десять минут назад.",
+            "feedbackByLocale": {
+              "ru": "С ago здесь past simple.",
+              "uk": "Із ago тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы нашли столик десять минут назад.",
+            "feedbackByLocale": {
+              "ru": "Finding само по себе не образует сказуемое.",
+              "uk": "Finding саме по собі не утворює присудок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If I knew her name, I would ask the waiter.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If I knew her name, I would ask the waiter.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would ask the waiter if I knew her name.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If I knew her name, I would ask the waiter.",
+          "uk": "Почніть із результату: If I knew her name, I would ask the waiter."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "ask",
+          "the",
+          "waiter",
+          "if",
+          "I",
+          "knew",
+          "her",
+          "name"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пообещайте подождать друга у входа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i15:audio"
+      ],
+      "accessibilityLabel": "Пообещайте подождать друга у входа.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i15:audio",
+          "transcript": "I will wait by the entrance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will wait by the entrance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-07:i16:r1",
+          "text": "I can see you now."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i16:r2",
+          "text": "I can hear you now."
+        },
+        {
+          "responseId": "en:lesson-27:session-07:i16:r3",
+          "text": "I cannot see you now."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-07:i16:audio",
+          "transcript": "I can see you now."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-07:i16:r1",
+            "targetText": "I can see you now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i16:r2",
+            "targetText": "I can hear you now.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i16:r3",
+            "targetText": "I cannot see you now.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-07:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can see you now.",
+              "uk": "У записі звучить I can see you now."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-07:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can see you now.",
+              "uk": "У записі звучить I can see you now."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-07:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что увидитесь через минуту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что увидитесь через минуту.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "See you in a minute.",
+        "localizedMeaning": {
+          "ru": "Скажите, что увидитесь через минуту.",
+          "uk": "Скажіть, що побачитеся за хвилину."
+        },
+        "orderedTokens": [
+          "See",
+          "you",
+          "in",
+          "a",
+          "minute"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5a1d9a6af8d130a97649afb2723123d15bc3e314b1cafc533c499ba7ea443280"
+}

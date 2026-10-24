@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-07:word:brunette",
+    "correctText": "brunette",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i01",
+    "correctText": "She is the brunette by the window.",
+    "correctResponseId": "en:lesson-27:session-07:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i02",
+    "correctText": "Do you mean the man in the blue jacket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:word:redhead",
+    "correctText": "redhead",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i03",
+    "correctText": "My brother is a redhead.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i04",
+    "correctText": "saw",
+    "correctResponseId": "en:lesson-27:session-07:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i05",
+    "correctText": "Could you send me a photo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:word:slim",
+    "correctText": "slim",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i06",
+    "correctText": "He is tall and slim.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i07",
+    "correctText": "He is wearing a green coat.",
+    "correctResponseId": "en:lesson-27:session-07:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:word:skinny",
+    "correctText": "skinny",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i08",
+    "correctText": "I was skinny as a child.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i09",
+    "correctText": "took",
+    "correctResponseId": "en:lesson-27:session-07:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i10",
+    "correctText": "Who is standing next to him?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i11",
+    "correctText": "We met at work.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i12",
+    "correctText": "I have found the table.",
+    "correctResponseId": "en:lesson-27:session-07:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i13",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-27:session-07:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i14",
+    "correctText": "I would ask the waiter if I knew her name.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i15",
+    "correctText": "I will wait by the entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i16",
+    "correctText": "I can see you now.",
+    "correctResponseId": "en:lesson-27:session-07:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-07:i17",
+    "correctText": "See you in a minute.",
+    "correctResponseId": null
+  }
+]

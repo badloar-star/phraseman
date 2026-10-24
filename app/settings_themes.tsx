@@ -46,7 +46,7 @@ import {
   premiumThemeRequirement,
   premiumThemeRequirementLabel,
 } from './premium_theme_copy';
-import { claimPremiumThemeCondition, usePremiumThemeEntitlements } from './premium_theme_entitlements';
+import { claimPremiumThemeCondition, primePremiumThemeEntitlements, usePremiumThemeEntitlements } from './premium_theme_entitlements';
 
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
 // модалка покупки темы за жемчуг удалена целиком (D45).
@@ -265,6 +265,8 @@ export default function SettingsThemes() {
   } = useTheme();
   const { lang } = useLang();
   const premiumEntitlements = usePremiumThemeEntitlements();
+  // зачем (11 · РЕВИЗОР 24.10, Firebase-экономия): права на особые темы на старте берутся из кэша телефона (сеть раз в 12 ч); на экране «Темы» — обновляем, если старше 10 мин
+  useEffect(() => { void primePremiumThemeEntitlements({ maxAgeMs: 10 * 60 * 1000 }); }, []);
   // Debug-сборка открывает все темы и показывает выполненные условия: это режим
   // визуальной сверки на эмуляторе. Store-сборка использует только серверные права.
   const devProgressPreview = __DEV__;

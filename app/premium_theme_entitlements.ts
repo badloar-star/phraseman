@@ -16,7 +16,7 @@ import {
 } from './premium_theme_catalog';
 
 const REGION = 'us-central1';
-const LOG = '[PREMIUM-THEME]';
+const LOG = '[PREMIUM-THEMES]';
 
 export type PremiumThemeEntitlementsSnapshot = Readonly<{
   ready: boolean;
@@ -118,31 +118,86 @@ function ensureGenerationSubscription(): void {
   subscribeAccountGeneration(() => {
     loadedOwner = null;
     loadPromise = null;
+    cachedAtMs = 0; // зачем (кэш 24.10): возраст кэша — свой у каждого аккаунта
     publish(null, EMPTY_SET, EMPTY_PROGRESS, false);
     void primePremiumThemeEntitlements();
   });
 }
 
-export async function primePremiumThemeEntitlements(): Promise<void> {
+// зачем (11 · РЕВИЗОР 24.10, Firebase-экономия): функция + 3 чтения на КАЖДОМ холодном старте у всех — дорого; без сети заработанная тема откатывалась
+// (публиковался пустой список). Последний серверный ответ хранится на телефоне по stableId: показывается сразу, сеть — не чаще раза в 24 ч и при входе в «Темы».
+// Выдача прав по-прежнему только на сервере: кэш влияет лишь на показ на этом телефоне.
+const CACHE_KEY_PREFIX = 'premium_theme_entitlements_v1:';
+export const PREMIUM_THEME_ENTITLEMENTS_MAX_AGE_MS = 24 * 60 * 60 * 1000; // координатор 24.10: сервер — не чаще раза в сутки
+let cachedAtMs = 0;
+
+type CachedEntitlements = Readonly<{ atMs: number; unlocked: readonly string[]; progressByCondition: unknown }>;
+
+async function readCache(stableId: string): Promise<CachedEntitlements | null> {
+  try {
+    const { default: AsyncStorage } = await import('@react-native-async-storage/async-storage');
+    const raw = await AsyncStorage.getItem(CACHE_KEY_PREFIX + stableId);
+    if (!raw) { console.log(`${LOG} cache miss`); return null; } // guard-ok: причина сетевого запроса
+    const parsed = JSON.parse(raw) as CachedEntitlements;
+    if (!Number.isSafeInteger(parsed?.atMs) || !Array.isArray(parsed?.unlocked)) { console.warn(`${LOG} cache unreadable — ignored`); return null; } // guard-ok
+    return parsed;
+  } catch (error) {
+    console.warn(`${LOG} cache read failed`, String((error as Error)?.message ?? error)); // guard-ok: немой catch запрещён
+    return null;
+  }
+}
+
+async function writeCache(stableId: string, unlocked: ReadonlySet<PremiumThemeId>, progressByCondition: PremiumThemeProgressByCondition, atMs: number): Promise<void> {
+  try {
+    const { default: AsyncStorage } = await import('@react-native-async-storage/async-storage');
+    await AsyncStorage.setItem(CACHE_KEY_PREFIX + stableId, JSON.stringify({ atMs, unlocked: [...unlocked], progressByCondition }));
+  } catch (error) {
+    console.warn(`${LOG} cache write failed`, String((error as Error)?.message ?? error)); // guard-ok: немой catch запрещён
+  }
+}
+
+export async function primePremiumThemeEntitlements(options: Readonly<{ maxAgeMs?: number; nowMs?: number }> = {}): Promise<void> {
   ensureGenerationSubscription();
+  const maxAgeMs = options.maxAgeMs ?? PREMIUM_THEME_ENTITLEMENTS_MAX_AGE_MS;
+  const now = options.nowMs ?? Date.now();
   const stableId = owner();
   if (!stableId) { loadedOwner = null; publish(null, EMPTY_SET); return; }
-  if (loadedOwner === stableId && snapshot.ready) return;
+  if (loadedOwner === stableId && snapshot.ready && now - cachedAtMs < maxAgeMs) return;
   if (loadPromise) return loadPromise;
   const token = captureAccountGeneration();
   loadPromise = (async () => {
+    // кэш на телефоне: показать сразу; свежий — сеть не нужна
+    let hadCache = snapshot.ready && snapshot.ownerStableId === stableId && cachedAtMs > 0;
+    if (!hadCache) {
+      const cached = await readCache(stableId);
+      if (cached && isCurrentAccountGeneration(token, stableId)) {
+        hadCache = true;
+        cachedAtMs = cached.atMs;
+        publish(stableId, parseServerEntitlements(Object.fromEntries(cached.unlocked.map((id) => [id, 1]))), parseProgressByCondition(cached.progressByCondition));
+        if (now - cached.atMs < maxAgeMs) {
+          loadedOwner = stableId;
+          console.log(`${LOG} cache fresh — no network`, JSON.stringify({ ageMin: Math.round((now - cached.atMs) / 60000), unlocked: cached.unlocked.length })); // guard-ok
+          return;
+        }
+      }
+    }
     try {
       const callable = httpsCallable<Record<string, never>, ServerEnvelope>(getFunctions(getApp(), REGION), 'premiumThemeEntitlementsGet', { timeout: 15_000 });
       const response = await callable({});
       if (!isCurrentAccountGeneration(token, stableId) || response.data.schemaVersion !== 'premium-theme-entitlements.v1') return;
       loadedOwner = stableId;
-      publish(stableId, parseServerEntitlements(response.data.entitlements), parseProgressByCondition(response.data.progressByCondition));
+      const unlocked = parseServerEntitlements(response.data.entitlements);
+      const progress = parseProgressByCondition(response.data.progressByCondition);
+      cachedAtMs = now;
+      publish(stableId, unlocked, progress);
+      void writeCache(stableId, unlocked, progress, now);
       void applyServerSideEffects(response.data);
     } catch (error) {
       if (!isCurrentAccountGeneration(token, stableId)) return;
       loadedOwner = null;
-      publish(stableId, EMPTY_SET, EMPTY_PROGRESS, true, false);
-      console.warn(`${LOG} server entitlement refresh unavailable`, String((error as Error)?.message ?? error));
+      // без сети при наличии кэша — оставляем показанное (заработанная тема не откатывается)
+      if (!hadCache) publish(stableId, EMPTY_SET, EMPTY_PROGRESS, true, false);
+      console.warn(`${LOG} server entitlement refresh unavailable`, JSON.stringify({ keptCache: hadCache, error: String((error as Error)?.message ?? error) })); // guard-ok
     }
   })().finally(() => { loadPromise = null; });
   return loadPromise;

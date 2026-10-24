@@ -2,7 +2,7 @@ import type { MistakeEvent, MistakeFacet, MistakeStudyTarget } from '../modules/
 import { projectMistakes, requiredModesForMistake } from '../modules/mistake-practice/projection';
 import { MISTAKE_EXERCISE_MODE_REGISTRY, type MistakeExerciseMode } from '../modules/mistake-practice/exercise_mode_registry';
 import { loadMistakeEventJournal } from './mistake_practice_store';
-import { mistakeSourceGroupFor, type MistakeSourceGroup } from './mistake_practice_insights';
+import { mistakeDisplayMeaningV1, mistakeSourceGroupFor, type MistakeSourceGroup } from './mistake_practice_insights';
 
 /**
  * Карточка одной ошибки (макет Б): хроника попыток, сколько осталось до
@@ -111,7 +111,7 @@ export function buildMistakeDetail(
   return Object.freeze({
     mistakeId,
     phrase: item.canonicalTarget,
-    meaning: item.sourceMeaning ?? null,
+    meaning: mistakeDisplayMeaningV1(item),
     facet: item.facet,
     lessonId: item.lessonId,
     sourceGroup: item.sourceKind ? mistakeSourceGroupFor(item.sourceKind) : null,

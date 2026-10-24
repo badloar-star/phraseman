@@ -9,6 +9,16 @@ import type { MistakeEventJournal } from './mistake_practice_cloud_merge';
 import { loadMistakeEventJournal, mistakeJournalWriteEpoch } from './mistake_practice_store';
 import { getStableId } from './stable_id';
 import { buildDevMistakesDemoSnapshot, isDevMistakesDemoOn } from './dev_mistakes_demo';
+import { spireMistakeMeaningV1 } from './spire_mistake_meaning';
+
+/**
+ * Смысл фразы для показа в строке и карточке ошибки.
+ * зачем (Сверка 24.10): у ошибок из Пика поле смысла хранило весь текст вопроса — показываем фразу из кавычек или ничего.
+ */
+export function mistakeDisplayMeaningV1(item: Readonly<{ sourceKind?: string | null; sourceMeaning?: string | null }>): string | null {
+  if (item.sourceKind === 'spire_step') return spireMistakeMeaningV1(item.sourceMeaning);
+  return item.sourceMeaning ?? null;
+}
 
 const assertCurrentAccount = (
   generation: ReturnType<typeof captureAccountGeneration>,
@@ -292,12 +302,19 @@ export function buildMistakePracticeHubSnapshot(
   nowMs = Date.now(),
 ): MistakePracticeHubSnapshot {
   const insights = buildMistakePracticeInsights(events, nowMs);
-  const items = [...projectMistakes(events).items.values()]
-    .filter((item) => item.status === 'active' || item.status === 'corrected')
+  const shownItems = [...projectMistakes(events).items.values()]
+    .filter((item) => item.status === 'active' || item.status === 'corrected');
+  const spireItems = shownItems.filter((item) => item.sourceKind === 'spire_step');
+  if (spireItems.length > 0) {
+    // зачем (Сверка 24.10): откуда взято «значение» у ошибок Пика — фраза из кавычек вопроса или ничего
+    const withMeaning = spireItems.filter((item) => mistakeDisplayMeaningV1(item) !== null).length;
+    console.log('[MISTAKES-MEANING] spire', JSON.stringify({ items: spireItems.length, quotedMeaning: withMeaning, phraseOnly: spireItems.length - withMeaning })); // guard-ok: источник поля
+  }
+  const items = shownItems
     .map((item) => Object.freeze({
       mistakeId: item.mistakeId,
       phrase: item.canonicalTarget,
-      meaning: item.sourceMeaning ?? null,
+      meaning: mistakeDisplayMeaningV1(item),
       facet: item.facet,
       lessonId: item.lessonId,
       status: item.status,

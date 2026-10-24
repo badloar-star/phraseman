@@ -39,6 +39,7 @@ import {
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
 import { FRIENDS_TOGETHER_UI_ENABLED } from '../app/friends_together/together_config';
+import BellLessonInviteExpired from './friends_together/BellLessonInviteExpired';
 import { getFriendsTogetherSnapshot } from '../app/friends_together/together_store';
 import { duelResultParams } from '../app/friends_together/duel_routes';
 import { V2 } from '../constants/v2Style';
@@ -726,7 +727,8 @@ function NotificationCenterButton({
             data={teamDetailOpen ? [] : visibleItems}
             keyExtractor={(row) => row.id}
             renderItem={renderNotificationRow}
-            ListHeaderComponent={teamInboxSection}
+            // зачем (идея 2, макет «Сообщения» утром): «{имя}: приглашение закончилось в полночь» — тихие строки телефона, за выключателем
+            ListHeaderComponent={<>{teamInboxSection}{FRIENDS_TOGETHER_UI_ENABLED && !teamDetailOpen ? <BellLessonInviteExpired rows={visibleItems} active={visible} /> : null}</>}
             ListFooterComponent={!teamDetailOpen && hasOlder && visibleItems.length > 0 ? (
               <TouchableOpacity
                 testID="notification-center-load-older"

@@ -25,6 +25,7 @@ import type { UserNotification } from '../user_notifications';
 import { FRIENDS_TOGETHER_UI_ENABLED } from './together_config';
 import { markLessonTogether } from './lesson_invite_client';
 import { lessonTogetherClaimToast } from './lesson_invite_friend_copy';
+import { noteTogetherCredit } from './lesson_together_moment';
 
 const KEY = 'friends_lesson_invites_accepted_v1';
 const KEEP = 10;
@@ -237,7 +238,11 @@ async function onCredited(event: Readonly<{ sessionId: string; mutationId: strin
   await forget(invite.inviteId);
   const credited = await creditTogether(invite.inviterUid, dayKey, 'friend');
   log(`claim:result invite=${maskUid(invite.inviteId)} credit=${credited} day=${dayKey}`);
-  if (credited === 'credited') toastTogether(invite.inviterName);
+  if (credited === 'credited') {
+    toastTogether(invite.inviterName);
+    // зачем (макет «Друг прошёл»): финал этого занятия уже на экране — ряд «Занятие вместе» появляется сразу
+    noteTogetherCredit({ sessionId: event.sessionId, inviterUid: invite.inviterUid, inviterName: invite.inviterName, coins: LESSON_TOGETHER_COINS, atMs: Date.now() });
+  }
   // отметку шлём в любом случае: пригласивший получит своё +2 по уведомлению, даже если у меня очередь кошелька не приняла
   const mark: PendingMark = { inviteId: invite.inviteId, dayKey, atMs: Date.now() };
   const pending = (await readList(PENDING_MARKS_KEY, scope, isPendingMark)).filter((m) => m.inviteId !== mark.inviteId);

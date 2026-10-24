@@ -19,6 +19,7 @@ import HorizonResultGlass, { type HorizonResultSkillRow } from "./HorizonResultG
 import { horizonResultGlassCopy } from "./horizon_result_glass_copy";
 import FinishFriendPairs from "../../friends_together/FinishFriendPairs";
 import FinishLessonInvite from "../../friends_together/FinishLessonInvite";
+import FinishLessonTogether from "../../friends_together/FinishLessonTogether";
 import { FRIENDS_TOGETHER_UI_ENABLED } from "../../../app/friends_together/together_config";
 
 export type HorizonResultFacts = Readonly<{
@@ -183,7 +184,8 @@ export default function HorizonSessionResult({
         skillOkLabel={checkpoint.confirmed}
         skillReviewLabel={checkpoint.review}
         // зачем (идея 1, макет friends-full.html «Финал занятия»): «Серия вдвоём · 13 дней» и кого позвать — только за выключателем «Вместе»
-        friendsSlot={FRIENDS_TOGETHER_UI_ENABLED && !preview ? <FinishFriendPairs /> : undefined}
+        // зачем (идея 2, макет «Друг прошёл»): занятие по приглашению — ряд «{имя}: занятие вместе · +2» над рядами серии
+        friendsSlot={FRIENDS_TOGETHER_UI_ENABLED && !preview ? <View style={{ gap: 10 }}><FinishLessonTogether lessonKey={sessionId} /><FinishFriendPairs /></View> : undefined}
         // зачем (идея 2, макет «Финал занятия»): «Позвать друга на это занятие» — только после обычного занятия и за выключателем
         afterCtaSlot={FRIENDS_TOGETHER_UI_ENABLED && !preview && kind === "session" ? (
           <FinishLessonInvite lessonKey={sessionId} lesson={lesson} sessionOrdinal={sessionOrdinal} stars={stars} elapsedMs={facts.elapsedMs} />

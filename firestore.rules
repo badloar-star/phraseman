@@ -503,6 +503,9 @@ service cloud.firestore {
         // Only the RevenueCat webhook may set them; restore/admin/trial client state cannot.
         'achievement_access_plus_paid_v1',
         'achievement_access_pro_paid_v1',
+        // Серверные права на шесть тем-достижений. Наличие скачанного pack права
+        // не даёт; писать карту может только premiumTheme* callable через Admin SDK.
+        'premium_theme_entitlements_v1',
         // Прокруты рулетки Plus: начисляет/списывает ТОЛЬКО сервер
         // (referralClaimSpin / referralSpin, Admin SDK) — клиент не должен себе их рисовать.
         'referral_spin_credits',
@@ -1665,6 +1668,12 @@ service cloud.firestore {
     match /leaderboard_stats/{docId} {
       allow read: if true;
       allow create, update, delete: if isAdmin();
+    }
+
+    // Подтверждённые серверным временем интервалы просмотра для темы «Атмосфера».
+    // Клиент сообщает heartbeat только через callable-функцию и не видит счётчик напрямую.
+    match /premium_theme_video_watch/{userId} {
+      allow read, write: if false;
     }
 
     // Friend activity likes: server-owned writes, client-readable counters.
@@ -3423,6 +3432,7 @@ service cloud.firestore {
         && collection != 'revenuecat_premium_lineages'
         && collection != 'revenuecat_premium_denials'
         && collection != 'revenuecat_shard_refunds'
+        && collection != 'premium_theme_video_watch'
         && collection != 'voice_minute_events'
         && collection != 'voice_minute_wallets'
         && collection != 'voice_minute_denials'

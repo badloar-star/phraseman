@@ -1480,6 +1480,8 @@ const RULES_BLOCKED_PROGRESS_KEYS: ReadonlySet<string> = new Set([
   'collectibles_owned_v1', 'collectibles_state_v1',
   'profile_card_level', 'shard_survey_last_at_ms',
   'achievement_access_plus_paid_v1', 'achievement_access_pro_paid_v1',
+  // зачем (координатор 24.10, правила премиум-тем): права на темы-достижения пишет только сервер — клиентская синхронизация отсеивает ключ до записи
+  'premium_theme_entitlements_v1',
   // серверные ключи прогресса (тот же update-блок правил)
   'streak_count', 'last_active_date', 'streak_last_date',
   'unlocked_lessons', 'chain_shield', 'club_gift_free_boost_v1',

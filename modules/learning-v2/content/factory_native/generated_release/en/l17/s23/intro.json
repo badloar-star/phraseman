@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Немного есть",
-        "uk": "Трохи є"
+        "ru": "Немного доброты всё же было",
+        "uk": "Трохи доброти все ж було"
       },
       "bodyByLocale": {
-        "ru": "kindness — доброта. thank-you note — записка с благодарностью. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что она проявила хоть немного доброты.",
-        "uk": "kindness — доброта. thank-you note — записка з подякою. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що вона виявила хоч трохи доброти."
+        "ru": "Новая соседка обычно держалась в стороне, но сегодня помогла вам донести сумку. Вы хотите отметить, что немного доброты она всё же проявила: She showed a little kindness. Соберите предложение: She showed + a little + kindness. Kindness здесь неисчисляемое, поэтому используем little, не few. A little подчёркивает наличие доброты в её поступке. Little без a сместило бы акцент на то, как мало доброты было.",
+        "uk": "Нова сусідка зазвичай трималася осторонь, але сьогодні допомогла вам донести сумку. Ви хочете відзначити, що трохи доброти вона все ж виявила: She showed a little kindness. Складіть речення: She showed + a little + kindness. Kindness тут незлічуване, тому використовуємо little, не few. A little підкреслює наявність доброти в її вчинку. Little без a змістило б акцент на те, як мало доброти було."
       },
       "question": {
         "interactionId": "en:lesson-17:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe55a011f32bef3666d51edd23b0630c28281aa8938963b4771e83cf07293b17"
+  "introFingerprint": "694342085279e26d9ec940bdec0ba2539170374d3286d7a505883b487ddb9396"
 }

@@ -15,8 +15,8 @@
         "uk": "Рахуємо упаковки"
       },
       "bodyByLocale": {
-        "ru": "Tube of toothpaste — тюбик зубной пасты. Пасту как вещество не считаем, зато считаем тюбики: one tube of toothpaste, two tubes of toothpaste. Порядок: число + упаковка + of + содержимое.",
-        "uk": "Tube of toothpaste — тюбик зубної пасти. Пасту як речовину не рахуємо, зате рахуємо тюбики: one tube of toothpaste, two tubes of toothpaste. Порядок: число + упаковка + of + вміст."
+        "ru": "Вы с другом собираете сумки в поездку: каждому нужен тюбик зубной пасты. We need two tubes of toothpaste — нам нужны два тюбика зубной пасты. Пасту как вещество не считаем, зато считаем тюбики: one tube of toothpaste, two tubes of toothpaste. После We need порядок такой: число two + упаковка tubes + of + содержимое toothpaste. Окончание -s получает tube, а не toothpaste.",
+        "uk": "Ви з другом збираєте сумки в поїздку: кожному потрібен тюбик зубної пасти. We need two tubes of toothpaste — нам потрібні два тюбики зубної пасти. Пасту як речовину не рахуємо, зате рахуємо тюбики: one tube of toothpaste, two tubes of toothpaste. Після We need порядок такий: число two + упаковка tubes + of + вміст toothpaste. Закінчення -s отримує tube, а не toothpaste."
       },
       "question": {
         "interactionId": "en:lesson-17:session-33:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Единицы вещества",
-        "uk": "Одиниці речовини"
+        "ru": "Два куска мыла",
+        "uk": "Два шматки мила"
       },
       "bodyByLocale": {
-        "ru": "Bar of soap — кусок мыла. Roll of toilet paper — рулон туалетной бумаги. Мыло и бумагу считаем через единицы: two bars of soap, two rolls of toilet paper. Окончание множественного числа получает bar или roll, а не soap или paper.",
-        "uk": "Bar of soap — шматок мила. Roll of toilet paper — рулон туалетного паперу. Мило й папір рахуємо через одиниці: two bars of soap, two rolls of toilet paper. Закінчення множини отримує bar або roll, а не soap чи paper."
+        "ru": "Вы покупаете мыло для двух ванных комнат: по одному куску в каждую. We need two bars of soap — нам нужны два куска мыла. Соберите фразу: We need + two bars + of soap. Мыло здесь неисчисляемое, поэтому считаем отдельные куски с помощью bar. После two используем bars; soap остаётся без -s. Of связывает единицу с веществом.",
+        "uk": "Ви купуєте мило для двох ванних кімнат: по одному шматку в кожну. We need two bars of soap — нам потрібні два шматки мила. Складіть фразу: We need + two bars + of soap. Мило тут незлічуване, тому рахуємо окремі шматки за допомогою bar. Після two використовуємо bars; soap залишається без -s. Of пов'язує одиницю з речовиною."
       },
       "question": {
         "interactionId": "en:lesson-17:session-33:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-17:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Коробки и содержимое",
-        "uk": "Коробки й вміст"
+        "ru": "Коробки для завтраков",
+        "uk": "Коробки для сніданків"
       },
       "bodyByLocale": {
-        "ru": "Box of cereal — коробка хлопьев для завтрака. Множественное число box — boxes. Считаем коробки: two boxes of cereal. В этом примере cereal — содержимое коробки, а не разные виды зерновых.",
-        "uk": "Box of cereal — коробка пластівців для сніданку. Множина box — boxes. Рахуємо коробки: two boxes of cereal. У цьому прикладі cereal — вміст коробки, а не різні види зернових."
+        "ru": "Вы записали в список покупок две коробки хлопьев для семейных завтраков. We need two boxes of cereal — нам нужны две коробки хлопьев. После We need поставьте two boxes, затем of cereal. Множественное число box — boxes: к слову на -x добавляем -es. Cereal здесь называет содержимое коробок, поэтому не меняется. Of связывает коробки с хлопьями.",
+        "uk": "Ви записали до списку покупок дві коробки пластівців для сімейних сніданків. We need two boxes of cereal — нам потрібні дві коробки пластівців. Після We need поставте two boxes, потім of cereal. Множина box — boxes: до слова на -x додаємо -es. Cereal тут називає вміст коробок, тому не змінюється. Of пов'язує коробки з пластівцями."
       },
       "question": {
         "interactionId": "en:lesson-17:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ec4806fffb6f740a1f3ca2dadd32ec9da5af91615783fbde0bca4eae32b0f493"
+  "introFingerprint": "3663ca2a4345189301b383d41890b2256ceb21ab0d9510a8ce42fe960eb9337b"
 }

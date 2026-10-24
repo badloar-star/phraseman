@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Включить",
-        "uk": "Увімкнути"
+        "ru": "Лампу не включили",
+        "uk": "Лампу не ввімкнули"
       },
       "bodyByLocale": {
-        "ru": "Switch on — включить прибор или свет. I didn't switch on the lamp — я не включил лампу. Выберите отрицание о прошлом.",
-        "uk": "Switch on — увімкнути прилад або світло. I didn't switch on the lamp — я не увімкнув лампу. Виберіть заперечення про минуле."
+        "ru": "Вчера вечером вы вошли в комнату, но оставили её тёмной. Друг думает, что вы включили лампу; вы объясняете, что этого не сделали. Switch on означает включить прибор или свет. Соберите сообщение: I + didn't + switch on + the lamp. Получится I didn't switch on the lamp. — Я не включил лампу. Didn't отрицает действие в прошлом; после него нужен switch без -ed. On сохраняется после глагола.",
+        "uk": "Учора ввечері ви зайшли до кімнати, але залишили її темною. Друг думає, що ви ввімкнули лампу; ви пояснюєте, що цього не зробили. Switch on означає ввімкнути прилад або світло. Складіть повідомлення: I + didn't + switch on + the lamp. Вийде I didn't switch on the lamp. — Я не ввімкнув лампу. Didn't заперечує дію в минулому; після нього потрібне switch без -ed. On зберігається після дієслова."
       },
       "question": {
         "interactionId": "en:lesson-13:session-14:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выключить",
-        "uk": "Вимкнути"
+        "ru": "Радио продолжало играть",
+        "uk": "Радіо продовжувало грати"
       },
       "bodyByLocale": {
-        "ru": "Switch off — выключить. I didn't switch off the radio — я не выключил радио. Выберите выключение, не включение.",
-        "uk": "Switch off — вимкнути. I didn't switch off the radio — я не вимкнув радіо. Виберіть вимкнення, не ввімкнення."
+        "ru": "Вчера вы вышли из комнаты, оставив радио включённым. Вы признаётесь другу, что не выключили его. Switch off означает выключить. Начните с I didn't, затем поставьте switch off и назовите прибор: the radio. Получится I didn't switch off the radio. — Я не выключил радио. После didn't используем switch, а не switched. Off входит в выражение «выключить» и остаётся рядом с глаголом.",
+        "uk": "Учора ви вийшли з кімнати, залишивши радіо ввімкненим. Ви зізнаєтеся другові, що не вимкнули його. Switch off означає вимкнути. Почніть із I didn't, потім поставте switch off і назвіть прилад: the radio. Вийде I didn't switch off the radio. — Я не вимкнув радіо. Після didn't використовуємо switch, а не switched. Off входить до виразу «вимкнути» й залишається поруч із дієсловом."
       },
       "question": {
         "interactionId": "en:lesson-13:session-14:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Перезвонить и записать",
-        "uk": "Передзвонити й записати"
+        "ru": "Адрес не записали",
+        "uk": "Адресу не записали"
       },
       "bodyByLocale": {
-        "ru": "Call back — перезвонить; write down — записать, чтобы сохранить информацию. I didn't write down the address — я не записал адрес. Выберите сообщение об адресе.",
-        "uk": "Call back — передзвонити; write down — записати, щоб зберегти інформацію. I didn't write down the address — я не записав адресу. Виберіть повідомлення про адресу."
+        "ru": "Вчера вам продиктовали адрес, но вы решили его запомнить и ничего не записали. Write down означает записать информацию. Начните с I didn't, затем поставьте write down и the address. Получится I didn't write down the address. — Я не записал адрес. После didn't нужна начальная форма write, а не wrote. The address здесь стоит после write down и называет информацию, которую вы не записали.",
+        "uk": "Учора вам продиктували адресу, але ви вирішили її запам’ятати й нічого не записали. Write down означає записати інформацію. Почніть із I didn't, потім поставте write down і the address. Вийде I didn't write down the address. — Я не записав адресу. Після didn't потрібна початкова форма write, а не wrote. The address тут стоїть після write down і називає інформацію, яку ви не записали."
       },
       "question": {
         "interactionId": "en:lesson-13:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f4c18b6e77abdf3b274bc2a3da3751af9f99cc229809a4f7508aaaec617e212"
+  "introFingerprint": "93933eb1f864dca86546a9ecf41a95b25951b4315cb7e9a4cd9d494806d51dac"
 }

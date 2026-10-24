@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Осторожно",
-        "uk": "Обережно"
+        "ru": "Осторожно вести машину",
+        "uk": "Обережно вести машину"
       },
       "bodyByLocale": {
-        "ru": "Carefully — осторожно, внимательно к действию. Did you drive carefully? — Ты вёл машину осторожно? После did нужна drive, не drove. Выберите вопрос.",
-        "uk": "Carefully — обережно, уважно до дії. Did you drive carefully? — Ти вів машину обережно? Після did потрібна drive, не drove. Виберіть запитання."
+        "ru": "Вчера друг ехал по мокрой дороге. Вы спрашиваете, вёл ли он машину осторожно. Carefully означает осторожно, внимательно. Начните с Did you, затем поставьте drive и добавьте carefully. Получится Did you drive carefully? — Ты вёл машину осторожно? Для вопроса Did ставим перед you; после него используем drive, а не drove. Carefully описывает вождение и здесь стоит после drive.",
+        "uk": "Учора друг їхав мокрою дорогою. Ви запитуєте, чи вів він машину обережно. Carefully означає обережно, уважно. Почніть із Did you, потім поставте drive і додайте carefully. Вийде Did you drive carefully? — Ти вів машину обережно? Для запитання Did ставимо перед you; після нього використовуємо drive, а не drove. Carefully описує водіння й тут стоїть після drive."
       },
       "question": {
         "interactionId": "en:lesson-13:session-21:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тихо и громко",
-        "uk": "Тихо й голосно"
+        "ru": "Не разбудить пассажира",
+        "uk": "Не розбудити пасажира"
       },
       "bodyByLocale": {
-        "ru": "Quietly — тихо; loudly — громко. Did you speak quietly? — Ты говорил тихо? Выберите тихую речь.",
-        "uk": "Quietly — тихо; loudly — голосно. Did you speak quietly? — Ти говорив тихо? Виберіть тихе мовлення."
+        "ru": "Вчера друг разговаривал в автобусе рядом со спящим ребёнком. Вы уточняете, говорил ли он тихо. Quietly означает тихо. Соберите вопрос: Did + you + speak + quietly? Получится Did you speak quietly? — Ты говорил тихо? Did обозначает прошлое, поэтому нужна начальная форма speak. Quietly ставим после speak: оно описывает громкость речи в той поездке.",
+        "uk": "Учора друг розмовляв в автобусі поруч із дитиною, яка спала. Ви уточнюєте, чи говорив він тихо. Quietly означає тихо. Складіть запитання: Did + you + speak + quietly? Вийде Did you speak quietly? — Ти говорив тихо? Did позначає минуле, тому потрібна початкова форма speak. Quietly ставимо після speak: воно описує гучність мовлення під час тієї поїздки."
       },
       "question": {
         "interactionId": "en:lesson-13:session-21:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Благополучно",
-        "uk": "Благополучно"
+        "ru": "Узнать, как добрались",
+        "uk": "Дізнатися, як дісталися"
       },
       "bodyByLocale": {
-        "ru": "Safely — безопасно, без происшествий. Did you arrive safely? — Ты благополучно добрался? Выберите вопрос о благополучном прибытии.",
-        "uk": "Safely — безпечно, без пригод. Did you arrive safely? — Ти благополучно дістався? Виберіть запитання про благополучне прибуття."
+        "ru": "Друг вчера возвращался домой в плохую погоду. Вы пишете ему, чтобы узнать, добрался ли он без происшествий. Safely здесь означает благополучно, безопасно. Поставьте Did перед you, затем arrive и safely. Получится Did you arrive safely? — Ты благополучно добрался? После Did используем arrive без окончания -d. Safely относится к прибытию и стоит после глагола.",
+        "uk": "Друг учора повертався додому в погану погоду. Ви пишете йому, щоб дізнатися, чи дістався він без пригод. Safely тут означає благополучно, безпечно. Поставте Did перед you, потім arrive і safely. Вийде Did you arrive safely? — Ти благополучно дістався? Після Did використовуємо arrive без закінчення -d. Safely стосується прибуття й стоїть після дієслова."
       },
       "question": {
         "interactionId": "en:lesson-13:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f879e2cbb54bf18e5122213d3d9823abc9718543b6b9f367fd4a582b8617082"
+  "introFingerprint": "45075dcef252f4085ae8d4c1492c919d4c4e1968dd9f45a900f1bb7acef4f9c8"
 }

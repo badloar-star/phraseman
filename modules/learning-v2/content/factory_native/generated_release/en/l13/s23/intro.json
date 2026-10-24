@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мягко, без резкого движения",
-        "uk": "М’яко, без різкого руху"
+        "ru": "Закрыть дверь без хлопка",
+        "uk": "Зачинити двері без грюкоту"
       },
       "bodyByLocale": {
-        "ru": "Gently — мягко, бережно. Did you close the door gently? — Ты закрыл дверь мягко, не хлопая? Выберите вопрос о бережном движении.",
-        "uk": "Gently — м’яко, дбайливо. Did you close the door gently? — Ти зачинив двері м’яко, не грюкаючи? Виберіть запитання про дбайливий рух."
+        "ru": "Ребёнок спал, когда друг выходил из комнаты. Вы уточняете, закрыл ли он дверь аккуратно, не хлопая. Gently означает мягко, бережно. Начните вопрос с Did you, затем поставьте close и назовите предмет: the door. В конце добавьте gently. Получится Did you close the door gently? — Ты закрыл дверь аккуратно, не хлопая? После Did нужен close без -d. Gently описывает движение и здесь стоит после the door.",
+        "uk": "Дитина спала, коли друг виходив із кімнати. Ви уточнюєте, чи зачинив він двері обережно, не грюкаючи. Gently означає м’яко, обережно. Почніть запитання з Did you, потім поставте close і назвіть предмет: the door. Наприкінці додайте gently. Вийде Did you close the door gently? — Ти зачинив двері обережно, не грюкаючи? Після Did потрібне close без -d. Gently описує рух і тут стоїть після the door."
       },
       "question": {
         "interactionId": "en:lesson-13:session-23:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Легко",
-        "uk": "Легко"
+        "ru": "Поддалась ли крышка",
+        "uk": "Чи піддалася кришка"
       },
       "bodyByLocale": {
-        "ru": "Easily — легко, без труда. Did she open the jar easily? — Она легко открыла банку? Выберите открывание, не мытьё.",
-        "uk": "Easily — легко, без зусиль. Did she open the jar easily? — Вона легко відкрила банку? Виберіть відкривання, не миття."
+        "ru": "Вчера сестра друга открывала банку с тугой крышкой. Вы спрашиваете, удалось ли ей сделать это без труда. Easily — легко, без труда. Соберите вопрос: Did + she + open + the jar + easily? Получится Did she open the jar easily? — Она легко открыла банку? После Did ставим open без -ed, в том числе с she. Easily относится к открыванию и стоит после the jar.",
+        "uk": "Учора сестра друга відкривала банку з тугою кришкою. Ви запитуєте, чи вдалося їй зробити це без зусиль. Easily — легко, без зусиль. Складіть запитання: Did + she + open + the jar + easily? Вийде Did she open the jar easily? — Вона легко відкрила банку? Після Did ставимо open без -ed, зокрема й із she. Easily стосується відкривання та стоїть після the jar."
       },
       "question": {
         "interactionId": "en:lesson-13:session-23:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Чётко и плохо",
-        "uk": "Чітко й погано"
+        "ru": "Чётко назвать адрес",
+        "uk": "Чітко назвати адресу"
       },
       "bodyByLocale": {
-        "ru": "Clearly — ясно, чётко; badly — плохо. Did you speak clearly? — Ты говорил чётко? Выберите чёткую речь, не плохой сон.",
-        "uk": "Clearly — ясно, чітко; badly — погано. Did you speak clearly? — Ти говорив чітко? Виберіть чітке мовлення, не поганий сон."
+        "ru": "Друг вчера называл адрес по телефону. Вы уточняете, говорил ли он достаточно чётко. Clearly означает ясно, чётко. Поставьте Did перед you, затем speak и clearly. Получится Did you speak clearly? — Ты говорил чётко? Прошлое обозначает Did, поэтому используем speak, а не spoke. Clearly описывает речь и следует за глаголом speak.",
+        "uk": "Друг учора називав адресу телефоном. Ви уточнюєте, чи говорив він достатньо чітко. Clearly означає ясно, чітко. Поставте Did перед you, потім speak і clearly. Вийде Did you speak clearly? — Ти говорив чітко? Минуле позначає Did, тому використовуємо speak, а не spoke. Clearly описує мовлення й стоїть після дієслова speak."
       },
       "question": {
         "interactionId": "en:lesson-13:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1d7ee87bebd154b9cb95713055a26b41b1faf2ce3d20973ed078ca01fd05b08a"
+  "introFingerprint": "13ba0a0e3ba83d3fdf5fcdf9be2d123d97408c74c411df5c810742d94ac41b5d"
 }

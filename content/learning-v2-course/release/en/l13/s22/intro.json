@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вежливо",
-        "uk": "Ввічливо"
+        "ru": "Вежливая просьба",
+        "uk": "Ввічливе прохання"
       },
       "bodyByLocale": {
-        "ru": "Politely — вежливо. Did you ask politely? — Ты попросил вежливо? Выберите вопрос о прошлом.",
-        "uk": "Politely — ввічливо. Did you ask politely? — Ти попросив ввічливо? Виберіть запитання про минуле."
+        "ru": "Друг вчера просил соседа сделать музыку тише. Вы уточняете, вежливо ли он попросил. Politely означает вежливо. Начните вопрос о прошлом с Did you, затем поставьте ask и добавьте politely. Получится Did you ask politely? — Ты попросил вежливо? Did уже обозначает прошлое, поэтому ask оставляем без -ed. Politely стоит после ask и описывает, как прозвучала просьба.",
+        "uk": "Друг учора просив сусіда зробити музику тихішою. Ви уточнюєте, чи ввічливо він попросив. Politely означає ввічливо. Почніть запитання про минуле з Did you, потім поставте ask і додайте politely. Вийде Did you ask politely? — Ти попросив ввічливо? Did уже позначає минуле, тому ask залишаємо без -ed. Politely стоїть після ask і описує, як прозвучало прохання."
       },
       "question": {
         "interactionId": "en:lesson-13:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Терпеливо",
-        "uk": "Терпляче"
+        "ru": "Ожидание без раздражения",
+        "uk": "Очікування без роздратування"
       },
       "bodyByLocale": {
-        "ru": "Patiently — терпеливо. Did she wait patiently? — Она ждала терпеливо? Выберите ожидание, не просьбу.",
-        "uk": "Patiently — терпляче. Did she wait patiently? — Вона чекала терпляче? Виберіть очікування, не прохання."
+        "ru": "Вчера сестра друга долго ждала своей очереди. Вы спрашиваете, ждала ли она терпеливо. Patiently означает терпеливо. Соберите вопрос: Did + she + wait + patiently? Получится Did she wait patiently? — Она ждала терпеливо? После Did нужна начальная форма wait даже с she. Patiently ставим после wait: оно описывает поведение во время ожидания.",
+        "uk": "Учора сестра друга довго чекала своєї черги. Ви запитуєте, чи чекала вона терпляче. Patiently означає терпляче. Складіть запитання: Did + she + wait + patiently? Вийде Did she wait patiently? — Вона чекала терпляче? Після Did потрібна початкова форма wait навіть із she. Patiently ставимо після wait: воно описує поведінку під час очікування."
       },
       "question": {
         "interactionId": "en:lesson-13:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сердито или радостно",
-        "uk": "Сердито чи радісно"
+        "ru": "Улыбка при встрече",
+        "uk": "Усмішка під час зустрічі"
       },
       "bodyByLocale": {
-        "ru": "Angrily — сердито; happily — радостно. Did you smile happily? — Ты радостно улыбнулся? Выберите радостную улыбку.",
-        "uk": "Angrily — сердито; happily — радісно. Did you smile happily? — Ти радісно усміхнувся? Виберіть радісну усмішку."
+        "ru": "Вчера друг неожиданно встретил старого приятеля. Вы спрашиваете, радостно ли он улыбнулся при встрече. Happily означает радостно. Поставьте Did перед you, затем smile и happily. Получится Did you smile happily? — Ты радостно улыбнулся? После Did используем smile без окончания -d. Happily относится к улыбке и стоит после глагола.",
+        "uk": "Учора друг несподівано зустрів давнього приятеля. Ви запитуєте, чи радісно він усміхнувся під час зустрічі. Happily означає радісно. Поставте Did перед you, потім smile і happily. Вийде Did you smile happily? — Ти радісно усміхнувся? Після Did використовуємо smile без закінчення -d. Happily стосується усмішки й стоїть після дієслова."
       },
       "question": {
         "interactionId": "en:lesson-13:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5133f7cda95b0edd4324ae9a5d77000b481a367fe5a2cf6e9eed59949b00a9b2"
+  "introFingerprint": "2908cb16f53c14e0719a0393397d2c2064f134ec0b43b8b22043b86c4f915a30"
 }

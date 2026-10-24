@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Упасть",
-        "uk": "Впасти"
+        "ru": "Удержаться на ногах",
+        "uk": "Утриматися на ногах"
       },
       "bodyByLocale": {
-        "ru": "Fall over — упасть, потеряв равновесие. I didn't fall over — я не упал. После didn't нужна fall, не fell. Выберите отрицание.",
-        "uk": "Fall over — впасти, втративши рівновагу. I didn't fall over — я не впав. Після didn't потрібна fall, не fell. Виберіть заперечення."
+        "ru": "Вчера вы поскользнулись, но удержались на ногах. Друг беспокоится, не упали ли вы. Fall over означает упасть, потеряв равновесие. Ответ начните с I, затем поставьте didn't и fall over. Получится I didn't fall over. — Я не упал. Didn't отрицает действие в прошлом, поэтому после него нужна начальная форма fall, а не fell. Over остаётся после глагола.",
+        "uk": "Учора ви послизнулися, але втрималися на ногах. Друг хвилюється, чи не впали ви. Fall over означає впасти, утративши рівновагу. Відповідь почніть із I, потім поставте didn't і fall over. Вийде I didn't fall over. — Я не впав. Didn't заперечує дію в минулому, тому після нього потрібна початкова форма fall, а не fell. Over залишається після дієслова."
       },
       "question": {
         "interactionId": "en:lesson-13:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Споткнуться",
-        "uk": "Спіткнутися"
+        "ru": "Обойти сумку",
+        "uk": "Обійти сумку"
       },
       "bodyByLocale": {
-        "ru": "Trip over — споткнуться о предмет. I didn't trip over the bag — я не споткнулся о сумку. Споткнуться не обязательно значит упасть. Выберите сумку.",
-        "uk": "Trip over — спіткнутися об предмет. I didn't trip over the bag — я не спіткнувся об сумку. Спіткнутися не обов’язково означає впасти. Виберіть сумку."
+        "ru": "Вчера в проходе стояла сумка. Друг думает, что вы о неё споткнулись, но вы обошли её. Trip over означает споткнуться о предмет. Соберите отрицание: I + didn't + trip over + the bag. Получится I didn't trip over the bag. — Я не споткнулся о сумку. После didn't используем начальную форму trip, а не tripped. Предмет, о который можно споткнуться, ставим после over.",
+        "uk": "Учора в проході стояла сумка. Друг думає, що ви об неї перечепилися, але ви її обійшли. Trip over означає перечепитися через предмет. Складіть заперечення: I + didn't + trip over + the bag. Вийде I didn't trip over the bag. — Я не перечепився через сумку. Після didn't використовуємо початкову форму trip, а не tripped. Предмет, через який можна перечепитися, ставимо після over."
       },
       "question": {
         "interactionId": "en:lesson-13:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Натолкнуться и опрокинуть",
-        "uk": "Наштовхнутися й перекинути"
+        "ru": "Чашку не опрокинули",
+        "uk": "Чашку не перекинули"
       },
       "bodyByLocale": {
-        "ru": "Bump into здесь — натолкнуться на предмет; knock over — опрокинуть предмет. I didn't knock over the cup — я не опрокинул чашку. Выберите чашку, не стол.",
-        "uk": "Bump into тут — наштовхнутися на предмет; knock over — перекинути предмет. I didn't knock over the cup — я не перекинув чашку. Виберіть чашку, не стіл."
+        "ru": "Вчера вы резко потянули скатерть, но чашка осталась стоять. Вы объясняете другу, что не опрокинули её. Knock over означает опрокинуть предмет. Начните с I didn't, затем поставьте knock over и назовите предмет: the cup. Получится I didn't knock over the cup. — Я не опрокинул чашку. После didn't нужна форма knock без -ed; the cup здесь стоит после knock over.",
+        "uk": "Учора ви різко потягнули скатертину, але чашка залишилася стояти. Ви пояснюєте другові, що не перекинули її. Knock over означає перекинути предмет. Почніть із I didn't, потім поставте knock over і назвіть предмет: the cup. Вийде I didn't knock over the cup. — Я не перекинув чашку. Після didn't потрібна форма knock без -ed; the cup тут стоїть після knock over."
       },
       "question": {
         "interactionId": "en:lesson-13:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a8d80b3bd899a010e60f8e538b65389a5fdb8467b2a34456f602e4c29c050260"
+  "introFingerprint": "2d44c5784365212de90d2c6de52f24430a76d320d204164232b1660a0b3407d8"
 }

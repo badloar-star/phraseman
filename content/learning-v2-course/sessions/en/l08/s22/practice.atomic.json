@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-22",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-22:word:remind",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — remind",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:remind:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — remind",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:remind:audio",
+            "transcript": "remind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:remind:r1",
+              "targetText": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить. Can you remind me? — «Можешь мне напомнить?» Напомнить человеку то, что он уже знает, но может забыть.",
+                "uk": "нагадати. Can you remind me? — «Можеш мені нагадати?» Нагадати людині те, що вона вже знає, але може забути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "remind",
+            "definitionByLocale": {
+              "ru": "напомнить. Can you remind me? — «Можешь мне напомнить?» Напомнить человеку то, что он уже знает, но может забыть.",
+              "uk": "нагадати. Can you remind me? — «Можеш мені нагадати?» Нагадати людині те, що вона вже знає, але може забути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь мне напомнить?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь мне напомнить?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you remind me?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь мне напомнить?»",
+            "uk": "Попросіть «Можеш мені нагадати?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "remind",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i02:r1",
+            "text": "remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i02:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i02:r3",
+            "text": "spell"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i02:audio",
+            "transcript": "remind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:i02:r1",
+              "targetText": "remind",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i02:r2",
+              "targetText": "read",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i02:r3",
+              "targetText": "spell",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `read`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `read`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `spell`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `spell`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы напомнить о возврате книги",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i03:r1",
+            "text": "remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i03:r2",
+            "text": "to remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i03:r3",
+            "text": "reminds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы напомнить о возврате книги",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы напомнить о возврате книги",
+            "uk": "Виберіть форму для прохання нагадати про повернення книжки"
+          },
+          "gappedTargetPhrase": "Can you ___ me?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-22:i03:r1",
+              "text": "remind"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i03:r2",
+              "text": "to remind"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i03:r3",
+              "text": "reminds"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы напомнить о возврате книги",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы напомнить о возврате книги",
+              "feedbackByLocale": {
+                "ru": "После can нужно remind, без to.",
+                "uk": "Після can потрібне remind, без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы напомнить о возврате книги",
+              "feedbackByLocale": {
+                "ru": "После can нужно remind, без s.",
+                "uk": "Після can потрібне remind, без s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-22:i04:p1",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i04:p2",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i04:p3",
+              "target": "tomorrow",
+              "meaningByLocale": {
+                "ru": "завтра",
+                "uk": "завтра"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i04:p4",
+              "target": "return",
+              "meaningByLocale": {
+                "ru": "вернуть",
+                "uk": "повернути"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remind",
+            "book",
+            "tomorrow",
+            "return"
+          ],
+          "rightColumn": [
+            "напомнить",
+            "книга",
+            "завтра",
+            "вернуть"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i05:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you remind me?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "remind",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:word:notification",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — notification",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:notification:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — notification",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:notification:audio",
+            "transcript": "notification"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:notification:r1",
+              "targetText": "notification",
+              "meaningByLocale": {
+                "ru": "уведомление. Can you read the notification? — «Можешь прочитать уведомление?» Сообщение от приложения, например о смене платформы.",
+                "uk": "сповіщення. Can you read the notification? — «Можеш прочитати сповіщення?» Повідомлення від застосунку, наприклад про зміну платформи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "notification",
+            "definitionByLocale": {
+              "ru": "уведомление. Can you read the notification? — «Можешь прочитать уведомление?» Сообщение от приложения, например о смене платформы.",
+              "uk": "сповіщення. Can you read the notification? — «Можеш прочитати сповіщення?» Повідомлення від застосунку, наприклад про зміну платформи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь прочитать уведомление?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь прочитать уведомление?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you read the notification?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь прочитать уведомление?»",
+            "uk": "Попросіть «Можеш прочитати сповіщення?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "notification"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:word:anniversary",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — anniversary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:anniversary:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — anniversary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:anniversary:audio",
+            "transcript": "anniversary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:anniversary:r1",
+              "targetText": "anniversary",
+              "meaningByLocale": {
+                "ru": "годовщина. Can you remind me about the anniversary? — «Можешь напомнить мне о годовщине?» About — «о»: называем событие после remind me about.",
+                "uk": "річниця. Can you remind me about the anniversary? — «Можеш нагадати мені про річницю?» About — «про»: називаємо подію після remind me about."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "anniversary",
+            "definitionByLocale": {
+              "ru": "годовщина. Can you remind me about the anniversary? — «Можешь напомнить мне о годовщине?» About — «о»: называем событие после remind me about.",
+              "uk": "річниця. Can you remind me about the anniversary? — «Можеш нагадати мені про річницю?» About — «про»: називаємо подію після remind me about."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите сестру «Можешь напомнить мне о годовщине?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Попросите сестру «Можешь напомнить мне о годовщине?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i07:audio",
+            "transcript": "Can you remind me about the anniversary?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you remind me about the anniversary?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы прочитать уведомление",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i08:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i08:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i08:r3",
+            "text": "to read"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы прочитать уведомление",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы прочитать уведомление",
+            "uk": "Виберіть форму для прохання прочитати сповіщення"
+          },
+          "gappedTargetPhrase": "Can you ___ the notification?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-22:i08:r1",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i08:r2",
+              "text": "reads"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i08:r3",
+              "text": "to read"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы прочитать уведомление",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы прочитать уведомление",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без s.",
+                "uk": "Після can потрібне read, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы прочитать уведомление",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без to.",
+                "uk": "Після can потрібне read, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i09:r1",
+            "text": "Can you remind me?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i09:r2",
+            "text": "Can you remind him?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i09:r3",
+            "text": "Can you remind her?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i09:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:i09:r1",
+              "targetText": "Can you remind me?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i09:r2",
+              "targetText": "Can you remind him?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i09:r3",
+              "targetText": "Can you remind her?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `him`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `him`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `her`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `her`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-22:i10:p1",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i10:p2",
+              "target": "notification",
+              "meaningByLocale": {
+                "ru": "уведомление",
+                "uk": "сповіщення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i10:p3",
+              "target": "anniversary",
+              "meaningByLocale": {
+                "ru": "годовщина",
+                "uk": "річниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i10:p4",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книжка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remind",
+            "notification",
+            "anniversary",
+            "book"
+          ],
+          "rightColumn": [
+            "напомнить",
+            "уведомление",
+            "годовщина",
+            "книга"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i11:audio",
+            "transcript": "Can you read the notification?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you read the notification?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "notification"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:word:memo",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — memo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:memo:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — memo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:memo:audio",
+            "transcript": "memo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:memo:r1",
+              "targetText": "memo",
+              "meaningByLocale": {
+                "ru": "служебная записка. Can you read the memo? — «Можешь прочитать служебную записку?» Короткое письменное сообщение для коллег по рабочему вопросу.",
+                "uk": "службова записка. Can you read the memo? — «Можеш прочитати службову записку?» Коротке письмове повідомлення для колег із робочого питання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "memo",
+            "definitionByLocale": {
+              "ru": "служебная записка. Can you read the memo? — «Можешь прочитать служебную записку?» Короткое письменное сообщение для коллег по рабочему вопросу.",
+              "uk": "службова записка. Can you read the memo? — «Можеш прочитати службову записку?» Коротке письмове повідомлення для колег із робочого питання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллеге нужно узнать об изменении рабочего расписания. Попросите «Можешь прочитать служебную записку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коллеге нужно узнать об изменении рабочего расписания. Попросите «Можешь прочитать служебную записку?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you read the memo?",
+          "localizedMeaning": {
+            "ru": "Коллеге нужно узнать об изменении рабочего расписания. Попросите «Можешь прочитать служебную записку?»",
+            "uk": "Колезі потрібно дізнатися про зміну робочого розкладу. Попросіть «Можеш прочитати службову записку?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "memo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы прочитали записку и готовы объяснить новое расписание. Скажите коллеге «Я могу объяснить»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Вы прочитали записку и готовы объяснить новое расписание. Скажите коллеге «Я могу объяснить»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i13:audio",
+            "transcript": "I can explain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните просьбу «Можешь мне напомнить?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните просьбу «Можешь мне напомнить?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь мне напомнить?»",
+            "uk": "Почніть прохання «Можеш мені нагадати?»"
+          },
+          "gappedTargetPhrase": "___ you remind me?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-22:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Начните просьбу «Можешь мне напомнить?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь мне напомнить?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you remind`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you remind`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь мне напомнить?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you remind`.",
+                "uk": "Почніть із `Can you remind`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i15:r1",
+            "text": "Can you read the memo?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i15:r2",
+            "text": "Can you read the manual?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i15:r3",
+            "text": "Can you read the notification?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i15:audio",
+            "transcript": "Can you read the memo?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:i15:r1",
+              "targetText": "Can you read the memo?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i15:r2",
+              "targetText": "Can you read the manual?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i15:r3",
+              "targetText": "Can you read the notification?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи memo — «служебная записка», а не manual — «руководство».",
+                "uk": "У записі memo — «службова записка», а не manual — «посібник»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи memo, а не notification — «уведомление».",
+                "uk": "У записі memo, а не notification — «сповіщення»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-22:i16:p1",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i16:p2",
+              "target": "notification",
+              "meaningByLocale": {
+                "ru": "уведомление",
+                "uk": "сповіщення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i16:p3",
+              "target": "anniversary",
+              "meaningByLocale": {
+                "ru": "годовщина",
+                "uk": "річниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i16:p4",
+              "target": "memo",
+              "meaningByLocale": {
+                "ru": "служебная записка",
+                "uk": "службова записка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remind",
+            "notification",
+            "anniversary",
+            "memo"
+          ],
+          "rightColumn": [
+            "напомнить",
+            "уведомление",
+            "годовщина",
+            "служебная записка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы договорились встретиться с другом завтра и боитесь забыть о встрече. Попросите «Можешь мне напомнить?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Вы договорились встретиться с другом завтра и боитесь забыть о встрече. Попросите «Можешь мне напомнить?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i17:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you remind me?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-22:word:remind",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — remind",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:remind:audio"
+        ],
+        "accessibilityLabel": "Картка слова — remind",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:remind:audio",
+            "transcript": "remind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:remind:r1",
+              "targetText": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить. Can you remind me? — «Можешь мне напомнить?» Напомнить человеку то, что он уже знает, но может забыть.",
+                "uk": "нагадати. Can you remind me? — «Можеш мені нагадати?» Нагадати людині те, що вона вже знає, але може забути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "remind",
+            "definitionByLocale": {
+              "ru": "напомнить. Can you remind me? — «Можешь мне напомнить?» Напомнить человеку то, что он уже знает, но может забыть.",
+              "uk": "нагадати. Can you remind me? — «Можеш мені нагадати?» Нагадати людині те, що вона вже знає, але може забути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш мені нагадати?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш мені нагадати?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you remind me?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь мне напомнить?»",
+            "uk": "Попросіть «Можеш мені нагадати?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "remind",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i02:r1",
+            "text": "remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i02:r2",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i02:r3",
+            "text": "spell"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i02:audio",
+            "transcript": "remind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:i02:r1",
+              "targetText": "remind",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i02:r2",
+              "targetText": "read",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i02:r3",
+              "targetText": "spell",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `read`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `read`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `spell`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `spell`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання нагадати про повернення книжки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i03:r1",
+            "text": "remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i03:r2",
+            "text": "to remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i03:r3",
+            "text": "reminds"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання нагадати про повернення книжки",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы напомнить о возврате книги",
+            "uk": "Виберіть форму для прохання нагадати про повернення книжки"
+          },
+          "gappedTargetPhrase": "Can you ___ me?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-22:i03:r1",
+              "text": "remind"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i03:r2",
+              "text": "to remind"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i03:r3",
+              "text": "reminds"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання нагадати про повернення книжки",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання нагадати про повернення книжки",
+              "feedbackByLocale": {
+                "ru": "После can нужно remind, без to.",
+                "uk": "Після can потрібне remind, без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання нагадати про повернення книжки",
+              "feedbackByLocale": {
+                "ru": "После can нужно remind, без s.",
+                "uk": "Після can потрібне remind, без s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-22:i04:p1",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i04:p2",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книжка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i04:p3",
+              "target": "tomorrow",
+              "meaningByLocale": {
+                "ru": "завтра",
+                "uk": "завтра"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i04:p4",
+              "target": "return",
+              "meaningByLocale": {
+                "ru": "вернуть",
+                "uk": "повернути"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remind",
+            "book",
+            "tomorrow",
+            "return"
+          ],
+          "rightColumn": [
+            "нагадати",
+            "книжка",
+            "завтра",
+            "повернути"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i05:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you remind me?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "remind",
+            "me"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:word:notification",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — notification",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:notification:audio"
+        ],
+        "accessibilityLabel": "Картка слова — notification",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:notification:audio",
+            "transcript": "notification"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:notification:r1",
+              "targetText": "notification",
+              "meaningByLocale": {
+                "ru": "уведомление. Can you read the notification? — «Можешь прочитать уведомление?» Сообщение от приложения, например о смене платформы.",
+                "uk": "сповіщення. Can you read the notification? — «Можеш прочитати сповіщення?» Повідомлення від застосунку, наприклад про зміну платформи."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "notification",
+            "definitionByLocale": {
+              "ru": "уведомление. Can you read the notification? — «Можешь прочитать уведомление?» Сообщение от приложения, например о смене платформы.",
+              "uk": "сповіщення. Can you read the notification? — «Можеш прочитати сповіщення?» Повідомлення від застосунку, наприклад про зміну платформи."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш прочитати сповіщення?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш прочитати сповіщення?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you read the notification?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь прочитать уведомление?»",
+            "uk": "Попросіть «Можеш прочитати сповіщення?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "notification"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:word:anniversary",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — anniversary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:anniversary:audio"
+        ],
+        "accessibilityLabel": "Картка слова — anniversary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:anniversary:audio",
+            "transcript": "anniversary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:anniversary:r1",
+              "targetText": "anniversary",
+              "meaningByLocale": {
+                "ru": "годовщина. Can you remind me about the anniversary? — «Можешь напомнить мне о годовщине?» About — «о»: называем событие после remind me about.",
+                "uk": "річниця. Can you remind me about the anniversary? — «Можеш нагадати мені про річницю?» About — «про»: називаємо подію після remind me about."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "anniversary",
+            "definitionByLocale": {
+              "ru": "годовщина. Can you remind me about the anniversary? — «Можешь напомнить мне о годовщине?» About — «о»: называем событие после remind me about.",
+              "uk": "річниця. Can you remind me about the anniversary? — «Можеш нагадати мені про річницю?» About — «про»: називаємо подію після remind me about."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть сестру «Можеш нагадати мені про річницю?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i07:audio"
+        ],
+        "accessibilityLabel": "Попросіть сестру «Можеш нагадати мені про річницю?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i07:audio",
+            "transcript": "Can you remind me about the anniversary?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you remind me about the anniversary?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання прочитати сповіщення",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i08:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i08:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i08:r3",
+            "text": "to read"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання прочитати сповіщення",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы прочитать уведомление",
+            "uk": "Виберіть форму для прохання прочитати сповіщення"
+          },
+          "gappedTargetPhrase": "Can you ___ the notification?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-22:i08:r1",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i08:r2",
+              "text": "reads"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i08:r3",
+              "text": "to read"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання прочитати сповіщення",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання прочитати сповіщення",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без s.",
+                "uk": "Після can потрібне read, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання прочитати сповіщення",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без to.",
+                "uk": "Після can потрібне read, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i09:r1",
+            "text": "Can you remind me?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i09:r2",
+            "text": "Can you remind him?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i09:r3",
+            "text": "Can you remind her?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i09:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:i09:r1",
+              "targetText": "Can you remind me?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i09:r2",
+              "targetText": "Can you remind him?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i09:r3",
+              "targetText": "Can you remind her?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `him`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `him`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `her`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `her`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-22:i10:p1",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i10:p2",
+              "target": "notification",
+              "meaningByLocale": {
+                "ru": "уведомление",
+                "uk": "сповіщення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i10:p3",
+              "target": "anniversary",
+              "meaningByLocale": {
+                "ru": "годовщина",
+                "uk": "річниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i10:p4",
+              "target": "book",
+              "meaningByLocale": {
+                "ru": "книга",
+                "uk": "книжка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remind",
+            "notification",
+            "anniversary",
+            "book"
+          ],
+          "rightColumn": [
+            "нагадати",
+            "сповіщення",
+            "річниця",
+            "книжка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i11:audio",
+            "transcript": "Can you read the notification?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you read the notification?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "notification"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:word:memo",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — memo",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:word:memo:audio"
+        ],
+        "accessibilityLabel": "Картка слова — memo",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:word:memo:audio",
+            "transcript": "memo"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:word:memo:r1",
+              "targetText": "memo",
+              "meaningByLocale": {
+                "ru": "служебная записка. Can you read the memo? — «Можешь прочитать служебную записку?» Короткое письменное сообщение для коллег по рабочему вопросу.",
+                "uk": "службова записка. Can you read the memo? — «Можеш прочитати службову записку?» Коротке письмове повідомлення для колег із робочого питання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "memo",
+            "definitionByLocale": {
+              "ru": "служебная записка. Can you read the memo? — «Можешь прочитать служебную записку?» Короткое письменное сообщение для коллег по рабочему вопросу.",
+              "uk": "службова записка. Can you read the memo? — «Можеш прочитати службову записку?» Коротке письмове повідомлення для колег із робочого питання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колезі потрібно дізнатися про зміну робочого розкладу. Попросіть «Можеш прочитати службову записку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Колезі потрібно дізнатися про зміну робочого розкладу. Попросіть «Можеш прочитати службову записку?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you read the memo?",
+          "localizedMeaning": {
+            "ru": "Коллеге нужно узнать об изменении рабочего расписания. Попросите «Можешь прочитать служебную записку?»",
+            "uk": "Колезі потрібно дізнатися про зміну робочого розкладу. Попросіть «Можеш прочитати службову записку?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "memo"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви прочитали записку й готові пояснити новий розклад. Скажіть колезі «Я можу пояснити»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i13:audio"
+        ],
+        "accessibilityLabel": "Ви прочитали записку й готові пояснити новий розклад. Скажіть колезі «Я можу пояснити»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i13:audio",
+            "transcript": "I can explain."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть прохання «Можеш мені нагадати?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть прохання «Можеш мені нагадати?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь мне напомнить?»",
+            "uk": "Почніть прохання «Можеш мені нагадати?»"
+          },
+          "gappedTargetPhrase": "___ you remind me?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-22:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Почніть прохання «Можеш мені нагадати?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i14:r2",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш мені нагадати?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you remind`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you remind`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i14:r3",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш мені нагадати?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you remind`.",
+                "uk": "Почніть із `Can you remind`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-22:i15:r1",
+            "text": "Can you read the memo?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i15:r2",
+            "text": "Can you read the manual?"
+          },
+          {
+            "responseId": "en:lesson-08:session-22:i15:r3",
+            "text": "Can you read the notification?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i15:audio",
+            "transcript": "Can you read the memo?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-22:i15:r1",
+              "targetText": "Can you read the memo?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i15:r2",
+              "targetText": "Can you read the manual?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i15:r3",
+              "targetText": "Can you read the notification?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-22:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи memo — «служебная записка», а не manual — «руководство».",
+                "uk": "У записі memo — «службова записка», а не manual — «посібник»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-22:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи memo, а не notification — «уведомление».",
+                "uk": "У записі memo, а не notification — «сповіщення»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-22:i16:p1",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i16:p2",
+              "target": "notification",
+              "meaningByLocale": {
+                "ru": "уведомление",
+                "uk": "сповіщення"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i16:p3",
+              "target": "anniversary",
+              "meaningByLocale": {
+                "ru": "годовщина",
+                "uk": "річниця"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-22:i16:p4",
+              "target": "memo",
+              "meaningByLocale": {
+                "ru": "служебная записка",
+                "uk": "службова записка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "remind",
+            "notification",
+            "anniversary",
+            "memo"
+          ],
+          "rightColumn": [
+            "нагадати",
+            "сповіщення",
+            "річниця",
+            "службова записка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-22:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви домовилися зустрітися з другом завтра й боїтеся забути про зустріч. Попросіть «Можеш мені нагадати?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-22:i17:audio"
+        ],
+        "accessibilityLabel": "Ви домовилися зустрітися з другом завтра й боїтеся забути про зустріч. Попросіть «Можеш мені нагадати?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-22:i17:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you remind me?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-22:word:remind",
+      "correctText": "remind",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i01",
+      "correctText": "Can you remind me?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i02",
+      "correctText": "remind",
+      "correctResponseId": "en:lesson-08:session-22:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i03",
+      "correctText": "remind",
+      "correctResponseId": "en:lesson-08:session-22:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i05",
+      "correctText": "Can you remind me?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:word:notification",
+      "correctText": "notification",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i06",
+      "correctText": "Can you read the notification?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:word:anniversary",
+      "correctText": "anniversary",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i07",
+      "correctText": "Can you remind me about the anniversary?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i08",
+      "correctText": "read",
+      "correctResponseId": "en:lesson-08:session-22:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i09",
+      "correctText": "Can you remind me?",
+      "correctResponseId": "en:lesson-08:session-22:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i11",
+      "correctText": "Can you read the notification?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:word:memo",
+      "correctText": "memo",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i12",
+      "correctText": "Can you read the memo?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i13",
+      "correctText": "I can explain.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i14",
+      "correctText": "Can",
+      "correctResponseId": "en:lesson-08:session-22:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i15",
+      "correctText": "Can you read the memo?",
+      "correctResponseId": "en:lesson-08:session-22:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-22:i17",
+      "correctText": "Can you remind me?",
+      "correctResponseId": null
+    }
+  ]
+}

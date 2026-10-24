@@ -5739,7 +5739,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 18,
-    sourceFingerprint: "71c2a926afd3c842f8e4f2de14a170adb400588a26b48bd888fc27b9aef23822",
+    sourceFingerprint: "ed1b2bb863bfdebbb060b4a8f79874963f94ce5e39c667d21e03e03a61fbe21e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Попросите друга передать вам ключ.","Попросите друга передать кувшин с лимонадом.","Попросите друга передать штопор."],"uk":["Попросіть друга передати вам ключ.","Попросіть друга передати глечик із лимонадом.","Попросіть друга передати штопор."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После `can` нужно `pass`, без `to`.","Для этой просьбы начните с `Can you`."],["После can нужно pass, без es.","После can нужно pass, без to."],["Для просьбы начните с Can you.","После can нужно pass, без to."]],"uk":[["Після `can` потрібне `pass`, без `to`.","Для цього прохання почніть із `Can you`."],["Після can потрібне pass, без es.","Після can потрібне pass, без to."],["Для прохання почніть із Can you.","Після can потрібне pass, без to."]]}),
@@ -5781,7 +5781,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 21,
-    sourceFingerprint: "8f8d9d42804d3e727313be56818e2789463eb1f69de4921f146864da9b7c35ea",
+    sourceFingerprint: "84ed5fd3e2e9374b7559a1c0f4ed32a6e79370f30b49da1763be345f2d0adc84",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Попросите друга сходить за зонтом и принести его.","Попросите друга принести пончо из гаража.","Попросите друга принести тент из машины."],"uk":["Попросіть друга сходити по парасольку й принести її.","Попросіть друга принести пончо з гаража.","Попросіть друга принести тент із машини."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После `can` нужно `fetch`, без `to`.","Для этой просьбы начните с `Can you`."],["После can нужно fetch, без es.","После can нужно fetch, без to."],["Для просьбы начните с Can you.","После can нужно fetch, без to."]],"uk":[["Після `can` потрібне `fetch`, без `to`.","Для цього прохання почніть із `Can you`."],["Після can потрібне fetch, без es.","Після can потрібне fetch, без to."],["Для прохання почніть із Can you.","Після can потрібне fetch, без to."]]}),
@@ -5795,7 +5795,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 22,
-    sourceFingerprint: "a6fb2c6f05d1bd255ddd394e3d21f80b19b69f317895c964242ac2a4445a1842",
+    sourceFingerprint: "910fd4cd82e3b4c8699a5517a272db09b3a211dacf55537e3c55389fc29c8d89",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Попросите друга напомнить вам.","Попросите спутника прочитать уведомление.","Попросите сестру напомнить о годовщине."],"uk":["Попросіть друга нагадати вам.","Попросіть супутника прочитати сповіщення.","Попросіть сестру нагадати про річницю."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После `can` нужно `remind`, без `to`.","Для этой просьбы начните с `Can you`."],["После can нужно read, без s.","После can нужно read, без to."],["После can нужно remind, без s.","Кому напомнить? Мне — me, не I."]],"uk":[["Після `can` потрібне `remind`, без `to`.","Для цього прохання почніть із `Can you`."],["Після can потрібне read, без s.","Після can потрібне read, без to."],["Після can потрібне remind, без s.","Кому нагадати? Мені — me, не I."]]}),
@@ -5809,7 +5809,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 23,
-    sourceFingerprint: "f3ba7a9aca22730cc13cae8f4ce3655dacef68c9d288c6fd8a4e8d587e81535e",
+    sourceFingerprint: "d425cb0979850b1917dab50b9858453263f31d25404a4f48045983110046cc78",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Попросите друга забронировать столик.","Попросите друга забронировать место с диванчиками.","Попросите официанта принести детский стульчик."],"uk":["Попросіть друга забронювати столик.","Попросіть друга забронювати місце з диванчиками.","Попросіть офіціанта принести дитячий стільчик."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После `can` нужно `reserve`, без `to`.","Для этой просьбы начните с `Can you`."],["После can нужно reserve, без s.","После can нужно reserve, без to."],["После can нужно bring, без s.","После can нужно bring, без to."]],"uk":[["Після `can` потрібне `reserve`, без `to`.","Для цього прохання почніть із `Can you`."],["Після can потрібне reserve, без s.","Після can потрібне reserve, без to."],["Після can потрібне bring, без s.","Після can потрібне bring, без to."]]}),
@@ -5823,7 +5823,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 24,
-    sourceFingerprint: "4b47297741ccc07880982cb99276a2fe021ceb01ed9cbc5f7f94e67176038f61",
+    sourceFingerprint: "ea11d632bdbb1d347cf4d91c20b4b840184099891f035b6b02fe08c328ea34cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Попросите спутника прочитать буклет.","Попросите знакомого одолжить путеводитель.","Попросите организатора объяснить план поездки."],"uk":["Попросіть супутника прочитати буклет.","Попросіть знайомого позичити путівник.","Попросіть організатора пояснити план поїздки."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can нужно read, без s.","После can нужно read, без to."],["После can нужно lend, без s.","После can нужно lend, без to."],["После can нужно explain, без s.","После can нужно explain, без to."]],"uk":[["Після can потрібне read, без s.","Після can потрібне read, без to."],["Після can потрібне lend, без s.","Після can потрібне lend, без to."],["Після can потрібне explain, без s.","Після can потрібне explain, без to."]]}),

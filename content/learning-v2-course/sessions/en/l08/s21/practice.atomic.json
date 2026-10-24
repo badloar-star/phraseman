@@ -1,0 +1,2333 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-21",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-21:word:fetch",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fetch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:fetch:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fetch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:fetch:audio",
+            "transcript": "fetch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:fetch:r1",
+              "targetText": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести. Can you fetch it? — «Можешь сходить за ним и принести?» Здесь it — зонт. Нужно пойти за предметом и вернуться с ним.",
+                "uk": "сходити й принести. Can you fetch it? — «Можеш сходити по неї й принести?» Тут it — парасолька. Треба піти по предмет і повернутися з ним."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fetch",
+            "definitionByLocale": {
+              "ru": "сходить и принести. Can you fetch it? — «Можешь сходить за ним и принести?» Здесь it — зонт. Нужно пойти за предметом и вернуться с ним.",
+              "uk": "сходити й принести. Can you fetch it? — «Можеш сходити по неї й принести?» Тут it — парасолька. Треба піти по предмет і повернутися з ним."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь сходить за ним и принести?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь сходить за ним и принести?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you fetch it?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь сходить за ним и принести?»",
+            "uk": "Попросіть принести парасольку: «Можеш сходити по неї й принести?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i02:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r2",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r3",
+            "text": "steer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i02:audio",
+            "transcript": "fetch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:i02:r1",
+              "targetText": "fetch",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i02:r2",
+              "targetText": "write",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i02:r3",
+              "targetText": "steer",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `fetch`, а в этом варианте — `write`.",
+                "uk": "У записі перше слово — `fetch`, а в цьому варіанті — `write`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `fetch`, а в этом варианте — `steer`.",
+                "uk": "У записі перше слово — `fetch`, а в цьому варіанті — `steer`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i03:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r2",
+            "text": "to fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r3",
+            "text": "fetches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+            "uk": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку"
+          },
+          "gappedTargetPhrase": "Can you ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-21:i03:r1",
+              "text": "fetch"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i03:r2",
+              "text": "to fetch"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i03:r3",
+              "text": "fetches"
+            }
+          ],
+          "testedDimension": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `fetch`, без `to`.",
+                "uk": "Після `can` потрібне `fetch`, без `to`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `fetch`, без `es`.",
+                "uk": "Після `can` потрібне `fetch`, без `es`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-21:i04:p1",
+              "target": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести",
+                "uk": "сходити й принести"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i04:p2",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i04:p3",
+              "target": "write",
+              "meaningByLocale": {
+                "ru": "писать",
+                "uk": "писати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i04:p4",
+              "target": "steer",
+              "meaningByLocale": {
+                "ru": "управлять рулём",
+                "uk": "керувати кермом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fetch",
+            "juice",
+            "write",
+            "steer"
+          ],
+          "rightColumn": [
+            "сходить и принести",
+            "сок",
+            "писать",
+            "управлять рулём"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i05:audio",
+            "transcript": "Can you fetch it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you fetch it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:word:poncho",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — poncho",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:poncho:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — poncho",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:poncho:audio",
+            "transcript": "poncho"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:poncho:r1",
+              "targetText": "poncho",
+              "meaningByLocale": {
+                "ru": "пончо. Can you fetch the poncho? — «Можешь сходить за пончо и принести его?» Свободная накидка с отверстием для головы.",
+                "uk": "пончо. Can you fetch the poncho? — «Можеш сходити по пончо й принести його?» Вільна накидка з отвором для голови."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "poncho",
+            "definitionByLocale": {
+              "ru": "пончо. Can you fetch the poncho? — «Можешь сходить за пончо и принести его?» Свободная накидка с отверстием для головы.",
+              "uk": "пончо. Can you fetch the poncho? — «Можеш сходити по пончо й принести його?» Вільна накидка з отвором для голови."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь сходить за пончо и принести его?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь сходить за пончо и принести его?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you fetch the poncho?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь сходить за пончо и принести его?»",
+            "uk": "Попросіть «Можеш сходити по пончо й принести його?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "the",
+            "poncho"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:word:tarp",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — tarp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:tarp:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — tarp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:tarp:audio",
+            "transcript": "tarp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:tarp:r1",
+              "targetText": "tarp",
+              "meaningByLocale": {
+                "ru": "тент, защитное полотнище. Can you fetch the tarp? — «Можешь сходить за тентом и принести его?» Здесь — непромокаемое полотнище, которым накрывают вещи.",
+                "uk": "тент, захисне полотнище. Can you fetch the tarp? — «Можеш сходити по тент і принести його?» Тут — непромокальне полотнище, яким накривають речі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tarp",
+            "definitionByLocale": {
+              "ru": "тент, защитное полотнище. Can you fetch the tarp? — «Можешь сходить за тентом и принести его?» Здесь — непромокаемое полотнище, которым накрывают вещи.",
+              "uk": "тент, захисне полотнище. Can you fetch the tarp? — «Можеш сходити по тент і принести його?» Тут — непромокальне полотнище, яким накривають речі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тент остался в машине. Попросите друга «Можешь сходить за тентом и принести его?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Тент остался в машине. Попросите друга «Можешь сходить за тентом и принести его?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i07:audio",
+            "transcript": "Can you fetch the tarp?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you fetch the tarp?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы принести пончо",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i08:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r2",
+            "text": "fetches"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r3",
+            "text": "to fetch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы принести пончо",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы принести пончо",
+            "uk": "Виберіть форму для прохання принести пончо"
+          },
+          "gappedTargetPhrase": "Can you ___ the poncho?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-21:i08:r1",
+              "text": "fetch"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i08:r2",
+              "text": "fetches"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i08:r3",
+              "text": "to fetch"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы принести пончо",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы принести пончо",
+              "feedbackByLocale": {
+                "ru": "После can нужно fetch, без es.",
+                "uk": "Після can потрібне fetch, без es."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы принести пончо",
+              "feedbackByLocale": {
+                "ru": "После can нужно fetch, без to.",
+                "uk": "Після can потрібне fetch, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i09:r1",
+            "text": "Can you fetch it?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r2",
+            "text": "Can you fetch this?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r3",
+            "text": "Can you fetch that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i09:audio",
+            "transcript": "Can you fetch it?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:i09:r1",
+              "targetText": "Can you fetch it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i09:r2",
+              "targetText": "Can you fetch this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i09:r3",
+              "targetText": "Can you fetch that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-21:i10:p1",
+              "target": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести",
+                "uk": "сходити й принести"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i10:p2",
+              "target": "poncho",
+              "meaningByLocale": {
+                "ru": "пончо",
+                "uk": "пончо"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i10:p3",
+              "target": "tarp",
+              "meaningByLocale": {
+                "ru": "тент",
+                "uk": "тент"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fetch",
+            "poncho",
+            "tarp",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "сходить и принести",
+            "пончо",
+            "тент",
+            "зонт"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i11:audio",
+            "transcript": "Can you fetch the tarp?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you fetch the tarp?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "the",
+            "tarp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:word:repellent",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — repellent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:repellent:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — repellent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:repellent:audio",
+            "transcript": "repellent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:repellent:r1",
+              "targetText": "repellent",
+              "meaningByLocale": {
+                "ru": "средство от насекомых. Can you pass me the repellent? — «Можешь передать мне средство от насекомых?» Здесь — средство, отпугивающее комаров.",
+                "uk": "засіб від комах. Can you pass me the repellent? — «Можеш передати мені засіб від комах?» Тут — засіб, що відлякує комарів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repellent",
+            "definitionByLocale": {
+              "ru": "средство от насекомых. Can you pass me the repellent? — «Можешь передать мне средство от насекомых?» Здесь — средство, отпугивающее комаров.",
+              "uk": "засіб від комах. Can you pass me the repellent? — «Можеш передати мені засіб від комах?» Тут — засіб, що відлякує комарів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Средство от насекомых лежит возле друга. Попросите «Можешь передать мне средство от насекомых?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Средство от насекомых лежит возле друга. Попросите «Можешь передать мне средство от насекомых?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the repellent?",
+          "localizedMeaning": {
+            "ru": "Средство от насекомых лежит возле друга. Попросите «Можешь передать мне средство от насекомых?»",
+            "uk": "Засіб від комах лежить біля друга. Попросіть «Можеш передати мені засіб від комах?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "repellent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг спрашивает, часто ли вы пишете. Скажите «Я часто пишу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Друг спрашивает, часто ли вы пишете. Скажите «Я часто пишу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i13:audio",
+            "transcript": "I often write."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often write.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните просьбу «Можешь сходить за ним и принести?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните просьбу «Можешь сходить за ним и принести?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь сходить за ним и принести?»",
+            "uk": "Почніть прохання «Можеш сходити по нього й принести?»"
+          },
+          "gappedTargetPhrase": "___ you fetch it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-21:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Начните просьбу «Можешь сходить за ним и принести?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь сходить за ним и принести?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you fetch`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you fetch`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь сходить за ним и принести?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you fetch`.",
+                "uk": "Почніть із `Can you fetch`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i15:r1",
+            "text": "Can you pass me the repellent?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r2",
+            "text": "Can you pass me the poncho?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r3",
+            "text": "Can you pass me the tarp?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i15:audio",
+            "transcript": "Can you pass me the repellent?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:i15:r1",
+              "targetText": "Can you pass me the repellent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i15:r2",
+              "targetText": "Can you pass me the poncho?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i15:r3",
+              "targetText": "Can you pass me the tarp?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи repellent — «средство от насекомых», а не poncho — «пончо».",
+                "uk": "У записі repellent — «засіб від комах», а не poncho — «пончо»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи repellent, а не tarp — «тент».",
+                "uk": "У записі repellent, а не tarp — «тент»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-21:i16:p1",
+              "target": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести",
+                "uk": "сходити й принести"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i16:p2",
+              "target": "poncho",
+              "meaningByLocale": {
+                "ru": "пончо",
+                "uk": "пончо"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i16:p3",
+              "target": "tarp",
+              "meaningByLocale": {
+                "ru": "тент",
+                "uk": "тент"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i16:p4",
+              "target": "repellent",
+              "meaningByLocale": {
+                "ru": "средство от насекомых",
+                "uk": "засіб від комах"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fetch",
+            "poncho",
+            "tarp",
+            "repellent"
+          ],
+          "rightColumn": [
+            "сходить и принести",
+            "пончо",
+            "тент",
+            "средство от насекомых"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Телефон остался в соседней комнате. Друг знает, где он лежит. Попросите «Можешь сходить за ним и принести?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Телефон остался в соседней комнате. Друг знает, где он лежит. Попросите «Можешь сходить за ним и принести?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i17:audio",
+            "transcript": "Can you fetch it?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you fetch it?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-21:word:fetch",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fetch",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:fetch:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fetch",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:fetch:audio",
+            "transcript": "fetch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:fetch:r1",
+              "targetText": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести. Can you fetch it? — «Можешь сходить за ним и принести?» Здесь it — зонт. Нужно пойти за предметом и вернуться с ним.",
+                "uk": "сходити й принести. Can you fetch it? — «Можеш сходити по неї й принести?» Тут it — парасолька. Треба піти по предмет і повернутися з ним."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fetch",
+            "definitionByLocale": {
+              "ru": "сходить и принести. Can you fetch it? — «Можешь сходить за ним и принести?» Здесь it — зонт. Нужно пойти за предметом и вернуться с ним.",
+              "uk": "сходити й принести. Can you fetch it? — «Можеш сходити по неї й принести?» Тут it — парасолька. Треба піти по предмет і повернутися з ним."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть принести парасольку: «Можеш сходити по неї й принести?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть принести парасольку: «Можеш сходити по неї й принести?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you fetch it?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь сходить за ним и принести?»",
+            "uk": "Попросіть принести парасольку: «Можеш сходити по неї й принести?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i02:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r2",
+            "text": "write"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i02:r3",
+            "text": "steer"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i02:audio",
+            "transcript": "fetch"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:i02:r1",
+              "targetText": "fetch",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i02:r2",
+              "targetText": "write",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i02:r3",
+              "targetText": "steer",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `fetch`, а в этом варианте — `write`.",
+                "uk": "У записі перше слово — `fetch`, а в цьому варіанті — `write`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `fetch`, а в этом варианте — `steer`.",
+                "uk": "У записі перше слово — `fetch`, а в цьому варіанті — `steer`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i03:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r2",
+            "text": "to fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i03:r3",
+            "text": "fetches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Коробка в соседней комнате. Выберите форму для просьбы принести коробку",
+            "uk": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку"
+          },
+          "gappedTargetPhrase": "Can you ___ it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-21:i03:r1",
+              "text": "fetch"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i03:r2",
+              "text": "to fetch"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i03:r3",
+              "text": "fetches"
+            }
+          ],
+          "testedDimension": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i03:r2",
+              "correct": false,
+              "testedDimension": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `fetch`, без `to`.",
+                "uk": "Після `can` потрібне `fetch`, без `to`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i03:r3",
+              "correct": false,
+              "testedDimension": "Коробка в сусідній кімнаті. Виберіть форму для прохання принести коробку",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `fetch`, без `es`.",
+                "uk": "Після `can` потрібне `fetch`, без `es`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-21:i04:p1",
+              "target": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести",
+                "uk": "сходити й принести"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i04:p2",
+              "target": "juice",
+              "meaningByLocale": {
+                "ru": "сок",
+                "uk": "сік"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i04:p3",
+              "target": "write",
+              "meaningByLocale": {
+                "ru": "писать",
+                "uk": "писати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i04:p4",
+              "target": "steer",
+              "meaningByLocale": {
+                "ru": "управлять рулём",
+                "uk": "керувати кермом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fetch",
+            "juice",
+            "write",
+            "steer"
+          ],
+          "rightColumn": [
+            "сходити й принести",
+            "сік",
+            "писати",
+            "керувати кермом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i05:audio",
+            "transcript": "Can you fetch it?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you fetch it?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:word:poncho",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — poncho",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:poncho:audio"
+        ],
+        "accessibilityLabel": "Картка слова — poncho",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:poncho:audio",
+            "transcript": "poncho"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:poncho:r1",
+              "targetText": "poncho",
+              "meaningByLocale": {
+                "ru": "пончо. Can you fetch the poncho? — «Можешь сходить за пончо и принести его?» Свободная накидка с отверстием для головы.",
+                "uk": "пончо. Can you fetch the poncho? — «Можеш сходити по пончо й принести його?» Вільна накидка з отвором для голови."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "poncho",
+            "definitionByLocale": {
+              "ru": "пончо. Can you fetch the poncho? — «Можешь сходить за пончо и принести его?» Свободная накидка с отверстием для головы.",
+              "uk": "пончо. Can you fetch the poncho? — «Можеш сходити по пончо й принести його?» Вільна накидка з отвором для голови."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш сходити по пончо й принести його?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш сходити по пончо й принести його?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you fetch the poncho?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь сходить за пончо и принести его?»",
+            "uk": "Попросіть «Можеш сходити по пончо й принести його?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "the",
+            "poncho"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:word:tarp",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — tarp",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:tarp:audio"
+        ],
+        "accessibilityLabel": "Картка слова — tarp",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:tarp:audio",
+            "transcript": "tarp"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:tarp:r1",
+              "targetText": "tarp",
+              "meaningByLocale": {
+                "ru": "тент, защитное полотнище. Can you fetch the tarp? — «Можешь сходить за тентом и принести его?» Здесь — непромокаемое полотнище, которым накрывают вещи.",
+                "uk": "тент, захисне полотнище. Can you fetch the tarp? — «Можеш сходити по тент і принести його?» Тут — непромокальне полотнище, яким накривають речі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "tarp",
+            "definitionByLocale": {
+              "ru": "тент, защитное полотнище. Can you fetch the tarp? — «Можешь сходить за тентом и принести его?» Здесь — непромокаемое полотнище, которым накрывают вещи.",
+              "uk": "тент, захисне полотнище. Can you fetch the tarp? — «Можеш сходити по тент і принести його?» Тут — непромокальне полотнище, яким накривають речі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Тент залишився в машині. Попросіть друга «Можеш сходити по тент і принести його?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i07:audio"
+        ],
+        "accessibilityLabel": "Тент залишився в машині. Попросіть друга «Можеш сходити по тент і принести його?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i07:audio",
+            "transcript": "Can you fetch the tarp?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you fetch the tarp?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання принести пончо",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i08:r1",
+            "text": "fetch"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r2",
+            "text": "fetches"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i08:r3",
+            "text": "to fetch"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання принести пончо",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы принести пончо",
+            "uk": "Виберіть форму для прохання принести пончо"
+          },
+          "gappedTargetPhrase": "Can you ___ the poncho?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-21:i08:r1",
+              "text": "fetch"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i08:r2",
+              "text": "fetches"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i08:r3",
+              "text": "to fetch"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання принести пончо",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання принести пончо",
+              "feedbackByLocale": {
+                "ru": "После can нужно fetch, без es.",
+                "uk": "Після can потрібне fetch, без es."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання принести пончо",
+              "feedbackByLocale": {
+                "ru": "После can нужно fetch, без to.",
+                "uk": "Після can потрібне fetch, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i09:r1",
+            "text": "Can you fetch it?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r2",
+            "text": "Can you fetch this?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i09:r3",
+            "text": "Can you fetch that?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i09:audio",
+            "transcript": "Can you fetch it?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:i09:r1",
+              "targetText": "Can you fetch it?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i09:r2",
+              "targetText": "Can you fetch this?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i09:r3",
+              "targetText": "Can you fetch that?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `this`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `this`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `it`, а в этом варианте — `that`.",
+                "uk": "У записі останнє слово — `it`, а в цьому варіанті — `that`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-21:i10:p1",
+              "target": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести",
+                "uk": "сходити й принести"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i10:p2",
+              "target": "poncho",
+              "meaningByLocale": {
+                "ru": "пончо",
+                "uk": "пончо"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i10:p3",
+              "target": "tarp",
+              "meaningByLocale": {
+                "ru": "тент",
+                "uk": "тент"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i10:p4",
+              "target": "umbrella",
+              "meaningByLocale": {
+                "ru": "зонт",
+                "uk": "парасолька"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fetch",
+            "poncho",
+            "tarp",
+            "umbrella"
+          ],
+          "rightColumn": [
+            "сходити й принести",
+            "пончо",
+            "тент",
+            "парасолька"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i11:audio",
+            "transcript": "Can you fetch the tarp?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you fetch the tarp?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "fetch",
+            "the",
+            "tarp"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:word:repellent",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — repellent",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:word:repellent:audio"
+        ],
+        "accessibilityLabel": "Картка слова — repellent",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:word:repellent:audio",
+            "transcript": "repellent"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:word:repellent:r1",
+              "targetText": "repellent",
+              "meaningByLocale": {
+                "ru": "средство от насекомых. Can you pass me the repellent? — «Можешь передать мне средство от насекомых?» Здесь — средство, отпугивающее комаров.",
+                "uk": "засіб від комах. Can you pass me the repellent? — «Можеш передати мені засіб від комах?» Тут — засіб, що відлякує комарів."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "repellent",
+            "definitionByLocale": {
+              "ru": "средство от насекомых. Can you pass me the repellent? — «Можешь передать мне средство от насекомых?» Здесь — средство, отпугивающее комаров.",
+              "uk": "засіб від комах. Can you pass me the repellent? — «Можеш передати мені засіб від комах?» Тут — засіб, що відлякує комарів."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Засіб від комах лежить біля друга. Попросіть «Можеш передати мені засіб від комах?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Засіб від комах лежить біля друга. Попросіть «Можеш передати мені засіб від комах?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the repellent?",
+          "localizedMeaning": {
+            "ru": "Средство от насекомых лежит возле друга. Попросите «Можешь передать мне средство от насекомых?»",
+            "uk": "Засіб від комах лежить біля друга. Попросіть «Можеш передати мені засіб від комах?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "repellent"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг запитує, чи часто ви пишете. Скажіть «Я часто пишу»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i13:audio"
+        ],
+        "accessibilityLabel": "Друг запитує, чи часто ви пишете. Скажіть «Я часто пишу»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i13:audio",
+            "transcript": "I often write."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often write.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть прохання «Можеш сходити по нього й принести?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть прохання «Можеш сходити по нього й принести?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь сходить за ним и принести?»",
+            "uk": "Почніть прохання «Можеш сходити по нього й принести?»"
+          },
+          "gappedTargetPhrase": "___ you fetch it?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-21:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Почніть прохання «Можеш сходити по нього й принести?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i14:r2",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш сходити по нього й принести?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you fetch`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you fetch`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i14:r3",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш сходити по нього й принести?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you fetch`.",
+                "uk": "Почніть із `Can you fetch`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-21:i15:r1",
+            "text": "Can you pass me the repellent?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r2",
+            "text": "Can you pass me the poncho?"
+          },
+          {
+            "responseId": "en:lesson-08:session-21:i15:r3",
+            "text": "Can you pass me the tarp?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i15:audio",
+            "transcript": "Can you pass me the repellent?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-21:i15:r1",
+              "targetText": "Can you pass me the repellent?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i15:r2",
+              "targetText": "Can you pass me the poncho?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i15:r3",
+              "targetText": "Can you pass me the tarp?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-21:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи repellent — «средство от насекомых», а не poncho — «пончо».",
+                "uk": "У записі repellent — «засіб від комах», а не poncho — «пончо»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-21:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи repellent, а не tarp — «тент».",
+                "uk": "У записі repellent, а не tarp — «тент»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-21:i16:p1",
+              "target": "fetch",
+              "meaningByLocale": {
+                "ru": "сходить и принести",
+                "uk": "сходити й принести"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i16:p2",
+              "target": "poncho",
+              "meaningByLocale": {
+                "ru": "пончо",
+                "uk": "пончо"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i16:p3",
+              "target": "tarp",
+              "meaningByLocale": {
+                "ru": "тент",
+                "uk": "тент"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-21:i16:p4",
+              "target": "repellent",
+              "meaningByLocale": {
+                "ru": "средство от насекомых",
+                "uk": "засіб від комах"
+              }
+            }
+          ],
+          "leftColumn": [
+            "fetch",
+            "poncho",
+            "tarp",
+            "repellent"
+          ],
+          "rightColumn": [
+            "сходити й принести",
+            "пончо",
+            "тент",
+            "засіб від комах"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-21:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Телефон залишився в сусідній кімнаті. Друг знає, де він лежить. Попросіть «Можеш сходити по нього й принести?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-21:i17:audio"
+        ],
+        "accessibilityLabel": "Телефон залишився в сусідній кімнаті. Друг знає, де він лежить. Попросіть «Можеш сходити по нього й принести?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-21:i17:audio",
+            "transcript": "Can you fetch it?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you fetch it?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-21:word:fetch",
+      "correctText": "fetch",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i01",
+      "correctText": "Can you fetch it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i02",
+      "correctText": "fetch",
+      "correctResponseId": "en:lesson-08:session-21:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i03",
+      "correctText": "fetch",
+      "correctResponseId": "en:lesson-08:session-21:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i05",
+      "correctText": "Can you fetch it?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:word:poncho",
+      "correctText": "poncho",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i06",
+      "correctText": "Can you fetch the poncho?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:word:tarp",
+      "correctText": "tarp",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i07",
+      "correctText": "Can you fetch the tarp?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i08",
+      "correctText": "fetch",
+      "correctResponseId": "en:lesson-08:session-21:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i09",
+      "correctText": "Can you fetch it?",
+      "correctResponseId": "en:lesson-08:session-21:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i11",
+      "correctText": "Can you fetch the tarp?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:word:repellent",
+      "correctText": "repellent",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i12",
+      "correctText": "Can you pass me the repellent?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i13",
+      "correctText": "I often write.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i14",
+      "correctText": "Can",
+      "correctResponseId": "en:lesson-08:session-21:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i15",
+      "correctText": "Can you pass me the repellent?",
+      "correctResponseId": "en:lesson-08:session-21:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-21:i17",
+      "correctText": "Can you fetch it?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,2339 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-24",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-24:word:brochure",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — brochure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:brochure:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — brochure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:brochure:audio",
+            "transcript": "brochure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:brochure:r1",
+              "targetText": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет. Can you read the brochure? — «Можешь прочитать буклет?» Небольшое печатное издание с информацией, например о выставке.",
+                "uk": "буклет. Can you read the brochure? — «Можеш прочитати буклет?» Невелике друковане видання з інформацією, наприклад про виставку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brochure",
+            "definitionByLocale": {
+              "ru": "буклет. Can you read the brochure? — «Можешь прочитать буклет?» Небольшое печатное издание с информацией, например о выставке.",
+              "uk": "буклет. Can you read the brochure? — «Можеш прочитати буклет?» Невелике друковане видання з інформацією, наприклад про виставку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь прочитать буклет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь прочитать буклет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you read the brochure?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь прочитать буклет?»",
+            "uk": "Попросіть «Можеш прочитати буклет?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "brochure"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i02:r1",
+            "text": "remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i02:r2",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i02:r3",
+            "text": "explain"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i02:audio",
+            "transcript": "remind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:i02:r1",
+              "targetText": "remind",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i02:r2",
+              "targetText": "reserve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i02:r3",
+              "targetText": "explain",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `reserve`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `reserve`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `explain`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `explain`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы прочитать буклет",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i03:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i03:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i03:r3",
+            "text": "to read"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы прочитать буклет",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы прочитать буклет",
+            "uk": "Виберіть форму для прохання прочитати буклет"
+          },
+          "gappedTargetPhrase": "Can you ___ the brochure?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-24:i03:r1",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i03:r2",
+              "text": "reads"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i03:r3",
+              "text": "to read"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы прочитать буклет",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы прочитать буклет",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без s.",
+                "uk": "Після can потрібне read, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы прочитать буклет",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без to.",
+                "uk": "Після can потрібне read, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-24:i04:p1",
+              "target": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет",
+                "uk": "буклет"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i04:p2",
+              "target": "lend",
+              "meaningByLocale": {
+                "ru": "одолжить",
+                "uk": "позичити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i04:p3",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i04:p4",
+              "target": "read",
+              "meaningByLocale": {
+                "ru": "читать",
+                "uk": "читати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brochure",
+            "lend",
+            "explain",
+            "read"
+          ],
+          "rightColumn": [
+            "буклет",
+            "одолжить",
+            "объяснить",
+            "читать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i05:audio",
+            "transcript": "Can you read the brochure?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you read the brochure?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "brochure"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:word:guidebook",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guidebook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:guidebook:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guidebook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:guidebook:audio",
+            "transcript": "guidebook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:guidebook:r1",
+              "targetText": "guidebook",
+              "meaningByLocale": {
+                "ru": "путеводитель. Can you lend me the guidebook? — «Можешь одолжить мне путеводитель?» Книга о местах, которые стоит посетить.",
+                "uk": "путівник. Can you lend me the guidebook? — «Можеш позичити мені путівник?» Книжка про місця, які варто відвідати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guidebook",
+            "definitionByLocale": {
+              "ru": "путеводитель. Can you lend me the guidebook? — «Можешь одолжить мне путеводитель?» Книга о местах, которые стоит посетить.",
+              "uk": "путівник. Can you lend me the guidebook? — «Можеш позичити мені путівник?» Книжка про місця, які варто відвідати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь одолжить мне путеводитель?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь одолжить мне путеводитель?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you lend me the guidebook?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь одолжить мне путеводитель?»",
+            "uk": "Попросіть «Можеш позичити мені путівник?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "lend",
+            "me",
+            "the",
+            "guidebook"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:word:itinerary",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — itinerary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:itinerary:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — itinerary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:itinerary:audio",
+            "transcript": "itinerary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:itinerary:r1",
+              "targetText": "itinerary",
+              "meaningByLocale": {
+                "ru": "план поездки. Can you explain the itinerary? — «Можете объяснить план поездки?» Маршрут и порядок остановок или посещений.",
+                "uk": "план поїздки. Can you explain the itinerary? — «Можете пояснити план поїздки?» Маршрут і порядок зупинок або відвідувань."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "itinerary",
+            "definitionByLocale": {
+              "ru": "план поездки. Can you explain the itinerary? — «Можете объяснить план поездки?» Маршрут и порядок остановок или посещений.",
+              "uk": "план поїздки. Can you explain the itinerary? — «Можете пояснити план поїздки?» Маршрут і порядок зупинок або відвідувань."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порядок остановок неясен. Попросите «Можете объяснить план поездки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i07:audio"
+        ],
+        "accessibilityLabel": "Порядок остановок неясен. Попросите «Можете объяснить план поездки?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i07:audio",
+            "transcript": "Can you explain the itinerary?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you explain the itinerary?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы одолжить путеводитель",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i08:r1",
+            "text": "lend"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i08:r2",
+            "text": "lends"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i08:r3",
+            "text": "to lend"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы одолжить путеводитель",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы одолжить путеводитель",
+            "uk": "Виберіть форму для прохання позичити путівник"
+          },
+          "gappedTargetPhrase": "Can you ___ me the guidebook?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-24:i08:r1",
+              "text": "lend"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i08:r2",
+              "text": "lends"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i08:r3",
+              "text": "to lend"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы одолжить путеводитель",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы одолжить путеводитель",
+              "feedbackByLocale": {
+                "ru": "После can нужно lend, без s.",
+                "uk": "Після can потрібне lend, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы одолжить путеводитель",
+              "feedbackByLocale": {
+                "ru": "После can нужно lend, без to.",
+                "uk": "Після can потрібне lend, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i09:r1",
+            "text": "Can you remind me?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i09:r2",
+            "text": "Can you remind him?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i09:r3",
+            "text": "Can you remind her?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i09:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:i09:r1",
+              "targetText": "Can you remind me?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i09:r2",
+              "targetText": "Can you remind him?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i09:r3",
+              "targetText": "Can you remind her?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `him`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `him`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `her`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `her`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-24:i10:p1",
+              "target": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет",
+                "uk": "буклет"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i10:p2",
+              "target": "guidebook",
+              "meaningByLocale": {
+                "ru": "путеводитель",
+                "uk": "путівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i10:p3",
+              "target": "itinerary",
+              "meaningByLocale": {
+                "ru": "план поездки",
+                "uk": "план поїздки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i10:p4",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brochure",
+            "guidebook",
+            "itinerary",
+            "remind"
+          ],
+          "rightColumn": [
+            "буклет",
+            "путеводитель",
+            "план поездки",
+            "напомнить"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i11:audio",
+            "transcript": "Can you explain the itinerary?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you explain the itinerary?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "explain",
+            "the",
+            "itinerary"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:word:printout",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — printout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:printout:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — printout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:printout:audio",
+            "transcript": "printout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:printout:r1",
+              "targetText": "printout",
+              "meaningByLocale": {
+                "ru": "распечатка. Can you pass me the printout? — «Можешь передать мне распечатку?» Информация с компьютера, напечатанная на бумаге.",
+                "uk": "роздруківка. Can you pass me the printout? — «Можеш передати мені роздруківку?» Інформація з комп’ютера, надрукована на папері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "printout",
+            "definitionByLocale": {
+              "ru": "распечатка. Can you pass me the printout? — «Можешь передать мне распечатку?» Информация с компьютера, напечатанная на бумаге.",
+              "uk": "роздруківка. Can you pass me the printout? — «Можеш передати мені роздруківку?» Інформація з комп’ютера, надрукована на папері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Распечатка брони лежит возле друга. Попросите «Можешь передать мне распечатку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Распечатка брони лежит возле друга. Попросите «Можешь передать мне распечатку?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the printout?",
+          "localizedMeaning": {
+            "ru": "Распечатка брони лежит возле друга. Попросите «Можешь передать мне распечатку?»",
+            "uk": "Роздруківка бронювання лежить біля друга. Попросіть «Можеш передати мені роздруківку?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "printout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы можете сами объяснить маршрут другу. Скажите «Я могу объяснить план поездки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i13:audio"
+        ],
+        "accessibilityLabel": "Вы можете сами объяснить маршрут другу. Скажите «Я могу объяснить план поездки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i13:audio",
+            "transcript": "I can explain the itinerary."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain the itinerary.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы передать распечатку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i14:r1",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i14:r2",
+            "text": "passes"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i14:r3",
+            "text": "to pass"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы передать распечатку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы передать распечатку",
+            "uk": "Виберіть форму для прохання передати роздруківку"
+          },
+          "gappedTargetPhrase": "Can you ___ me the printout?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-24:i14:r1",
+              "text": "pass"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i14:r2",
+              "text": "passes"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i14:r3",
+              "text": "to pass"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы передать распечатку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы передать распечатку",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без es.",
+                "uk": "Після can потрібне pass, без es."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы передать распечатку",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без to.",
+                "uk": "Після can потрібне pass, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i15:r1",
+            "text": "Can you pass me the printout?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i15:r2",
+            "text": "Can you pass me the guidebook?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i15:r3",
+            "text": "Can you pass me the brochure?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i15:audio",
+            "transcript": "Can you pass me the printout?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:i15:r1",
+              "targetText": "Can you pass me the printout?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i15:r2",
+              "targetText": "Can you pass me the guidebook?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i15:r3",
+              "targetText": "Can you pass me the brochure?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи printout — «распечатка», а не guidebook — «путеводитель».",
+                "uk": "У записі printout — «роздруківка», а не guidebook — «путівник»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи printout, а не brochure — «буклет».",
+                "uk": "У записі printout, а не brochure — «буклет»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-24:i16:p1",
+              "target": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет",
+                "uk": "буклет"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i16:p2",
+              "target": "guidebook",
+              "meaningByLocale": {
+                "ru": "путеводитель",
+                "uk": "путівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i16:p3",
+              "target": "itinerary",
+              "meaningByLocale": {
+                "ru": "план поездки",
+                "uk": "план поїздки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i16:p4",
+              "target": "printout",
+              "meaningByLocale": {
+                "ru": "распечатка",
+                "uk": "роздруківка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brochure",
+            "guidebook",
+            "itinerary",
+            "printout"
+          ],
+          "rightColumn": [
+            "буклет",
+            "путеводитель",
+            "план поездки",
+            "распечатка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "В туристическом центре друг держит распечатку маршрута. Попросите «Можешь передать мне распечатку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "В туристическом центре друг держит распечатку маршрута. Попросите «Можешь передать мне распечатку?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i17:audio",
+            "transcript": "Can you pass me the printout?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you pass me the printout?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-24:word:brochure",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — brochure",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:brochure:audio"
+        ],
+        "accessibilityLabel": "Картка слова — brochure",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:brochure:audio",
+            "transcript": "brochure"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:brochure:r1",
+              "targetText": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет. Can you read the brochure? — «Можешь прочитать буклет?» Небольшое печатное издание с информацией, например о выставке.",
+                "uk": "буклет. Can you read the brochure? — «Можеш прочитати буклет?» Невелике друковане видання з інформацією, наприклад про виставку."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "brochure",
+            "definitionByLocale": {
+              "ru": "буклет. Can you read the brochure? — «Можешь прочитать буклет?» Небольшое печатное издание с информацией, например о выставке.",
+              "uk": "буклет. Can you read the brochure? — «Можеш прочитати буклет?» Невелике друковане видання з інформацією, наприклад про виставку."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш прочитати буклет?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш прочитати буклет?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you read the brochure?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь прочитать буклет?»",
+            "uk": "Попросіть «Можеш прочитати буклет?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "brochure"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i02:r1",
+            "text": "remind"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i02:r2",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i02:r3",
+            "text": "explain"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i02:audio",
+            "transcript": "remind"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:i02:r1",
+              "targetText": "remind",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i02:r2",
+              "targetText": "reserve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i02:r3",
+              "targetText": "explain",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `reserve`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `reserve`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `remind`, а в этом варианте — `explain`.",
+                "uk": "У записі перше слово — `remind`, а в цьому варіанті — `explain`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання прочитати буклет",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i03:r1",
+            "text": "read"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i03:r2",
+            "text": "reads"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i03:r3",
+            "text": "to read"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання прочитати буклет",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы прочитать буклет",
+            "uk": "Виберіть форму для прохання прочитати буклет"
+          },
+          "gappedTargetPhrase": "Can you ___ the brochure?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-24:i03:r1",
+              "text": "read"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i03:r2",
+              "text": "reads"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i03:r3",
+              "text": "to read"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання прочитати буклет",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання прочитати буклет",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без s.",
+                "uk": "Після can потрібне read, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання прочитати буклет",
+              "feedbackByLocale": {
+                "ru": "После can нужно read, без to.",
+                "uk": "Після can потрібне read, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-24:i04:p1",
+              "target": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет",
+                "uk": "буклет"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i04:p2",
+              "target": "lend",
+              "meaningByLocale": {
+                "ru": "одолжить",
+                "uk": "позичити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i04:p3",
+              "target": "explain",
+              "meaningByLocale": {
+                "ru": "объяснить",
+                "uk": "пояснити"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i04:p4",
+              "target": "read",
+              "meaningByLocale": {
+                "ru": "читать",
+                "uk": "читати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brochure",
+            "lend",
+            "explain",
+            "read"
+          ],
+          "rightColumn": [
+            "буклет",
+            "позичити",
+            "пояснити",
+            "читати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i05:audio",
+            "transcript": "Can you read the brochure?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you read the brochure?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "read",
+            "the",
+            "brochure"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:word:guidebook",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guidebook",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:guidebook:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guidebook",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:guidebook:audio",
+            "transcript": "guidebook"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:guidebook:r1",
+              "targetText": "guidebook",
+              "meaningByLocale": {
+                "ru": "путеводитель. Can you lend me the guidebook? — «Можешь одолжить мне путеводитель?» Книга о местах, которые стоит посетить.",
+                "uk": "путівник. Can you lend me the guidebook? — «Можеш позичити мені путівник?» Книжка про місця, які варто відвідати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guidebook",
+            "definitionByLocale": {
+              "ru": "путеводитель. Can you lend me the guidebook? — «Можешь одолжить мне путеводитель?» Книга о местах, которые стоит посетить.",
+              "uk": "путівник. Can you lend me the guidebook? — «Можеш позичити мені путівник?» Книжка про місця, які варто відвідати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш позичити мені путівник?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш позичити мені путівник?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you lend me the guidebook?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь одолжить мне путеводитель?»",
+            "uk": "Попросіть «Можеш позичити мені путівник?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "lend",
+            "me",
+            "the",
+            "guidebook"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:word:itinerary",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — itinerary",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:itinerary:audio"
+        ],
+        "accessibilityLabel": "Картка слова — itinerary",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:itinerary:audio",
+            "transcript": "itinerary"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:itinerary:r1",
+              "targetText": "itinerary",
+              "meaningByLocale": {
+                "ru": "план поездки. Can you explain the itinerary? — «Можете объяснить план поездки?» Маршрут и порядок остановок или посещений.",
+                "uk": "план поїздки. Can you explain the itinerary? — «Можете пояснити план поїздки?» Маршрут і порядок зупинок або відвідувань."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "itinerary",
+            "definitionByLocale": {
+              "ru": "план поездки. Can you explain the itinerary? — «Можете объяснить план поездки?» Маршрут и порядок остановок или посещений.",
+              "uk": "план поїздки. Can you explain the itinerary? — «Можете пояснити план поїздки?» Маршрут і порядок зупинок або відвідувань."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Порядок зупинок незрозумілий. Попросіть «Можете пояснити план поїздки?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i07:audio"
+        ],
+        "accessibilityLabel": "Порядок зупинок незрозумілий. Попросіть «Можете пояснити план поїздки?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i07:audio",
+            "transcript": "Can you explain the itinerary?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you explain the itinerary?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання позичити путівник",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i08:r1",
+            "text": "lend"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i08:r2",
+            "text": "lends"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i08:r3",
+            "text": "to lend"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання позичити путівник",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы одолжить путеводитель",
+            "uk": "Виберіть форму для прохання позичити путівник"
+          },
+          "gappedTargetPhrase": "Can you ___ me the guidebook?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-24:i08:r1",
+              "text": "lend"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i08:r2",
+              "text": "lends"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i08:r3",
+              "text": "to lend"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання позичити путівник",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання позичити путівник",
+              "feedbackByLocale": {
+                "ru": "После can нужно lend, без s.",
+                "uk": "Після can потрібне lend, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання позичити путівник",
+              "feedbackByLocale": {
+                "ru": "После can нужно lend, без to.",
+                "uk": "Після can потрібне lend, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i09:r1",
+            "text": "Can you remind me?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i09:r2",
+            "text": "Can you remind him?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i09:r3",
+            "text": "Can you remind her?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i09:audio",
+            "transcript": "Can you remind me?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:i09:r1",
+              "targetText": "Can you remind me?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i09:r2",
+              "targetText": "Can you remind him?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i09:r3",
+              "targetText": "Can you remind her?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `him`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `him`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `me`, а в этом варианте — `her`.",
+                "uk": "У записі останнє слово — `me`, а в цьому варіанті — `her`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-24:i10:p1",
+              "target": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет",
+                "uk": "буклет"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i10:p2",
+              "target": "guidebook",
+              "meaningByLocale": {
+                "ru": "путеводитель",
+                "uk": "путівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i10:p3",
+              "target": "itinerary",
+              "meaningByLocale": {
+                "ru": "план поездки",
+                "uk": "план поїздки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i10:p4",
+              "target": "remind",
+              "meaningByLocale": {
+                "ru": "напомнить",
+                "uk": "нагадати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brochure",
+            "guidebook",
+            "itinerary",
+            "remind"
+          ],
+          "rightColumn": [
+            "буклет",
+            "путівник",
+            "план поїздки",
+            "нагадати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i11:audio",
+            "transcript": "Can you explain the itinerary?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you explain the itinerary?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "explain",
+            "the",
+            "itinerary"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:word:printout",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — printout",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:word:printout:audio"
+        ],
+        "accessibilityLabel": "Картка слова — printout",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:word:printout:audio",
+            "transcript": "printout"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:word:printout:r1",
+              "targetText": "printout",
+              "meaningByLocale": {
+                "ru": "распечатка. Can you pass me the printout? — «Можешь передать мне распечатку?» Информация с компьютера, напечатанная на бумаге.",
+                "uk": "роздруківка. Can you pass me the printout? — «Можеш передати мені роздруківку?» Інформація з комп’ютера, надрукована на папері."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "printout",
+            "definitionByLocale": {
+              "ru": "распечатка. Can you pass me the printout? — «Можешь передать мне распечатку?» Информация с компьютера, напечатанная на бумаге.",
+              "uk": "роздруківка. Can you pass me the printout? — «Можеш передати мені роздруківку?» Інформація з комп’ютера, надрукована на папері."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Роздруківка бронювання лежить біля друга. Попросіть «Можеш передати мені роздруківку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Роздруківка бронювання лежить біля друга. Попросіть «Можеш передати мені роздруківку?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the printout?",
+          "localizedMeaning": {
+            "ru": "Распечатка брони лежит возле друга. Попросите «Можешь передать мне распечатку?»",
+            "uk": "Роздруківка бронювання лежить біля друга. Попросіть «Можеш передати мені роздруківку?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "printout"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви можете самі пояснити маршрут другові. Скажіть «Я можу пояснити план поїздки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i13:audio"
+        ],
+        "accessibilityLabel": "Ви можете самі пояснити маршрут другові. Скажіть «Я можу пояснити план поїздки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i13:audio",
+            "transcript": "I can explain the itinerary."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can explain the itinerary.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання передати роздруківку",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i14:r1",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i14:r2",
+            "text": "passes"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i14:r3",
+            "text": "to pass"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання передати роздруківку",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы передать распечатку",
+            "uk": "Виберіть форму для прохання передати роздруківку"
+          },
+          "gappedTargetPhrase": "Can you ___ me the printout?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-24:i14:r1",
+              "text": "pass"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i14:r2",
+              "text": "passes"
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i14:r3",
+              "text": "to pass"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання передати роздруківку",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання передати роздруківку",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без es.",
+                "uk": "Після can потрібне pass, без es."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання передати роздруківку",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без to.",
+                "uk": "Після can потрібне pass, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-24:i15:r1",
+            "text": "Can you pass me the printout?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i15:r2",
+            "text": "Can you pass me the guidebook?"
+          },
+          {
+            "responseId": "en:lesson-08:session-24:i15:r3",
+            "text": "Can you pass me the brochure?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i15:audio",
+            "transcript": "Can you pass me the printout?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-24:i15:r1",
+              "targetText": "Can you pass me the printout?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i15:r2",
+              "targetText": "Can you pass me the guidebook?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i15:r3",
+              "targetText": "Can you pass me the brochure?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-24:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи printout — «распечатка», а не guidebook — «путеводитель».",
+                "uk": "У записі printout — «роздруківка», а не guidebook — «путівник»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-24:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи printout, а не brochure — «буклет».",
+                "uk": "У записі printout, а не brochure — «буклет»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-24:i16:p1",
+              "target": "brochure",
+              "meaningByLocale": {
+                "ru": "буклет",
+                "uk": "буклет"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i16:p2",
+              "target": "guidebook",
+              "meaningByLocale": {
+                "ru": "путеводитель",
+                "uk": "путівник"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i16:p3",
+              "target": "itinerary",
+              "meaningByLocale": {
+                "ru": "план поездки",
+                "uk": "план поїздки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-24:i16:p4",
+              "target": "printout",
+              "meaningByLocale": {
+                "ru": "распечатка",
+                "uk": "роздруківка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "brochure",
+            "guidebook",
+            "itinerary",
+            "printout"
+          ],
+          "rightColumn": [
+            "буклет",
+            "путівник",
+            "план поїздки",
+            "роздруківка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-24:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "У туристичному центрі друг тримає роздруківку маршруту. Попросіть «Можеш передати мені роздруківку?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-24:i17:audio"
+        ],
+        "accessibilityLabel": "У туристичному центрі друг тримає роздруківку маршруту. Попросіть «Можеш передати мені роздруківку?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-24:i17:audio",
+            "transcript": "Can you pass me the printout?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you pass me the printout?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-24:word:brochure",
+      "correctText": "brochure",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i01",
+      "correctText": "Can you read the brochure?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i02",
+      "correctText": "remind",
+      "correctResponseId": "en:lesson-08:session-24:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i03",
+      "correctText": "read",
+      "correctResponseId": "en:lesson-08:session-24:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i05",
+      "correctText": "Can you read the brochure?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:word:guidebook",
+      "correctText": "guidebook",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i06",
+      "correctText": "Can you lend me the guidebook?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:word:itinerary",
+      "correctText": "itinerary",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i07",
+      "correctText": "Can you explain the itinerary?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i08",
+      "correctText": "lend",
+      "correctResponseId": "en:lesson-08:session-24:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i09",
+      "correctText": "Can you remind me?",
+      "correctResponseId": "en:lesson-08:session-24:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i11",
+      "correctText": "Can you explain the itinerary?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:word:printout",
+      "correctText": "printout",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i12",
+      "correctText": "Can you pass me the printout?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i13",
+      "correctText": "I can explain the itinerary.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i14",
+      "correctText": "pass",
+      "correctResponseId": "en:lesson-08:session-24:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i15",
+      "correctText": "Can you pass me the printout?",
+      "correctResponseId": "en:lesson-08:session-24:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-24:i17",
+      "correctText": "Can you pass me the printout?",
+      "correctResponseId": null
+    }
+  ]
+}

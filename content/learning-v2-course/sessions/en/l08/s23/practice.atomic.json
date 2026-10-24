@@ -1,0 +1,2341 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-23",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-23:word:reserve",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reserve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:reserve:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reserve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:reserve:audio",
+            "transcript": "reserve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:reserve:r1",
+              "targetText": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать. Can you reserve a table? — «Можешь забронировать столик?» Заранее договориться, чтобы место оставили для вас.",
+                "uk": "забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reserve",
+            "definitionByLocale": {
+              "ru": "забронировать. Can you reserve a table? — «Можешь забронировать столик?» Заранее договориться, чтобы место оставили для вас.",
+              "uk": "забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь забронировать столик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь забронировать столик?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you reserve a table?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь забронировать столик?»",
+            "uk": "Попросіть «Можеш забронювати столик?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i02:r1",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i02:r2",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i02:r3",
+            "text": "calculate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i02:audio",
+            "transcript": "reserve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:i02:r1",
+              "targetText": "reserve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i02:r2",
+              "targetText": "teach",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i02:r3",
+              "targetText": "calculate",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `reserve`, а в этом варианте — `teach`.",
+                "uk": "У записі перше слово — `reserve`, а в цьому варіанті — `teach`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `reserve`, а в этом варианте — `calculate`.",
+                "uk": "У записі перше слово — `reserve`, а в цьому варіанті — `calculate`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы забронировать столик",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i03:r1",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i03:r2",
+            "text": "to reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i03:r3",
+            "text": "reserves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы забронировать столик",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы забронировать столик",
+            "uk": "Виберіть форму для прохання забронювати столик"
+          },
+          "gappedTargetPhrase": "Can you ___ a table?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-23:i03:r1",
+              "text": "reserve"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i03:r2",
+              "text": "to reserve"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i03:r3",
+              "text": "reserves"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы забронировать столик",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы забронировать столик",
+              "feedbackByLocale": {
+                "ru": "После can нужно reserve, без to.",
+                "uk": "Після can потрібне reserve, без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы забронировать столик",
+              "feedbackByLocale": {
+                "ru": "После can нужно reserve, без s.",
+                "uk": "Після can потрібне reserve, без s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-23:i04:p1",
+              "target": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать",
+                "uk": "забронювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i04:p2",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i04:p3",
+              "target": "room",
+              "meaningByLocale": {
+                "ru": "комната",
+                "uk": "кімната"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i04:p4",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "место для сидения",
+                "uk": "місце для сидіння"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reserve",
+            "table",
+            "room",
+            "seat"
+          ],
+          "rightColumn": [
+            "забронировать",
+            "стол",
+            "комната",
+            "место для сидения"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i05:audio",
+            "transcript": "Can you reserve a table?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you reserve a table?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:word:booth",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — booth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:booth:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — booth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:booth:audio",
+            "transcript": "booth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:booth:r1",
+              "targetText": "booth",
+              "meaningByLocale": {
+                "ru": "место со столом и диванчиками в кафе. Can you reserve a booth? — «Можешь забронировать место с диванчиками?» Здесь отдельная зона для гостей, а не кабина.",
+                "uk": "місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "booth",
+            "definitionByLocale": {
+              "ru": "место со столом и диванчиками в кафе. Can you reserve a booth? — «Можешь забронировать место с диванчиками?» Здесь отдельная зона для гостей, а не кабина.",
+              "uk": "місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите «Можешь забронировать место с диванчиками?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите «Можешь забронировать место с диванчиками?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you reserve a booth?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь забронировать место с диванчиками?»",
+            "uk": "Попросіть «Можеш забронювати місце з диванчиками?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "booth"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:word:highchair",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — highchair",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:highchair:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — highchair",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:highchair:audio",
+            "transcript": "highchair"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:highchair:r1",
+              "targetText": "highchair",
+              "meaningByLocale": {
+                "ru": "детский стульчик для кормления. Can you bring a highchair? — «Можете принести детский стульчик?» Высокий стульчик для малыша за столом; highchair пишется слитно.",
+                "uk": "дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "highchair",
+            "definitionByLocale": {
+              "ru": "детский стульчик для кормления. Can you bring a highchair? — «Можете принести детский стульчик?» Высокий стульчик для малыша за столом; highchair пишется слитно.",
+              "uk": "дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Официант подходит к вашему столу. Попросите «Можете принести детский стульчик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Официант подходит к вашему столу. Попросите «Можете принести детский стульчик?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i07:audio",
+            "transcript": "Can you bring a highchair?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you bring a highchair?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы принести детский стульчик",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i08:r1",
+            "text": "bring"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i08:r2",
+            "text": "brings"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i08:r3",
+            "text": "to bring"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы принести детский стульчик",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы принести детский стульчик",
+            "uk": "Виберіть форму для прохання принести дитячий стільчик"
+          },
+          "gappedTargetPhrase": "Can you ___ a highchair?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-23:i08:r1",
+              "text": "bring"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i08:r2",
+              "text": "brings"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i08:r3",
+              "text": "to bring"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы принести детский стульчик",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы принести детский стульчик",
+              "feedbackByLocale": {
+                "ru": "После can нужно bring, без s.",
+                "uk": "Після can потрібне bring, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы принести детский стульчик",
+              "feedbackByLocale": {
+                "ru": "После can нужно bring, без to.",
+                "uk": "Після can потрібне bring, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i09:r1",
+            "text": "Can you reserve a table?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i09:r2",
+            "text": "Can you reserve a room?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i09:r3",
+            "text": "Can you reserve a seat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i09:audio",
+            "transcript": "Can you reserve a table?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:i09:r1",
+              "targetText": "Can you reserve a table?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i09:r2",
+              "targetText": "Can you reserve a room?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i09:r3",
+              "targetText": "Can you reserve a seat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, а в этом варианте — `room`.",
+                "uk": "У записі останнє слово — `table`, а в цьому варіанті — `room`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, а в этом варианте — `seat`.",
+                "uk": "У записі останнє слово — `table`, а в цьому варіанті — `seat`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-23:i10:p1",
+              "target": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать",
+                "uk": "забронювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i10:p2",
+              "target": "booth",
+              "meaningByLocale": {
+                "ru": "место со столом и диванчиками",
+                "uk": "місце зі столом і диванчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i10:p3",
+              "target": "highchair",
+              "meaningByLocale": {
+                "ru": "детский стульчик для кормления",
+                "uk": "дитячий стільчик для годування"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i10:p4",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "место для сидения",
+                "uk": "місце для сидіння"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reserve",
+            "booth",
+            "highchair",
+            "seat"
+          ],
+          "rightColumn": [
+            "забронировать",
+            "место со столом и диванчиками",
+            "детский стульчик для кормления",
+            "место для сидения"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i11:audio",
+            "transcript": "Can you bring a highchair?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you bring a highchair?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "bring",
+            "a",
+            "highchair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:word:terrace",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — terrace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:terrace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — terrace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:terrace:audio",
+            "transcript": "terrace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:terrace:r1",
+              "targetText": "terrace",
+              "meaningByLocale": {
+                "ru": "терраса. Can you reserve a table on the terrace? — «Можешь забронировать столик на террасе?» Открытая площадка у здания; on the terrace — «на террасе».",
+                "uk": "тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "terrace",
+            "definitionByLocale": {
+              "ru": "терраса. Can you reserve a table on the terrace? — «Можешь забронировать столик на террасе?» Открытая площадка у здания; on the terrace — «на террасе».",
+              "uk": "тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you reserve a table on the terrace?",
+          "localizedMeaning": {
+            "ru": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
+            "uk": "Ви хочете поїсти на свіжому повітрі. Попросіть «Можеш забронювати столик на терасі?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "table",
+            "on",
+            "the",
+            "terrace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг не может заняться бронью. Вы готовы сделать это сами. Скажите «Я могу забронировать столик»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Друг не может заняться бронью. Вы готовы сделать это сами. Скажите «Я могу забронировать столик»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i13:audio",
+            "transcript": "I can reserve a table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can reserve a table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Начните просьбу «Можешь забронировать столик?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните просьбу «Можешь забронировать столик?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь забронировать столик?»",
+            "uk": "Почніть прохання «Можеш забронювати столик?»"
+          },
+          "gappedTargetPhrase": "___ you reserve a table?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-23:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Начните просьбу «Можешь забронировать столик?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь забронировать столик?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you reserve`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you reserve`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Начните просьбу «Можешь забронировать столик?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you reserve`.",
+                "uk": "Почніть із `Can you reserve`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i15:r1",
+            "text": "Can you reserve a booth?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i15:r2",
+            "text": "Can you reserve a table?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i15:r3",
+            "text": "Can you reserve a room?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i15:audio",
+            "transcript": "Can you reserve a booth?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:i15:r1",
+              "targetText": "Can you reserve a booth?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i15:r2",
+              "targetText": "Can you reserve a table?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i15:r3",
+              "targetText": "Can you reserve a room?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи booth — «место с диванчиками», а не table — «стол».",
+                "uk": "У записі booth — «місце з диванчиками», а не table — «стіл»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи booth, а не room — «комната».",
+                "uk": "У записі booth, а не room — «кімната»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-23:i16:p1",
+              "target": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать",
+                "uk": "забронювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i16:p2",
+              "target": "booth",
+              "meaningByLocale": {
+                "ru": "место со столом и диванчиками",
+                "uk": "місце зі столом і диванчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i16:p3",
+              "target": "highchair",
+              "meaningByLocale": {
+                "ru": "детский стульчик для кормления",
+                "uk": "дитячий стільчик для годування"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i16:p4",
+              "target": "terrace",
+              "meaningByLocale": {
+                "ru": "терраса",
+                "uk": "тераса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reserve",
+            "booth",
+            "highchair",
+            "terrace"
+          ],
+          "rightColumn": [
+            "забронировать",
+            "место со столом и диванчиками",
+            "детский стульчик для кормления",
+            "терраса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы идёте с другом в популярный ресторан. Чтобы не ждать свободного места, попросите его заранее договориться о столике. Попросите «Можешь забронировать столик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Вы идёте с другом в популярный ресторан. Чтобы не ждать свободного места, попросите его заранее договориться о столике. Попросите «Можешь забронировать столик?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i17:audio",
+            "transcript": "Can you reserve a table?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you reserve a table?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-23:word:reserve",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reserve",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:reserve:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reserve",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:reserve:audio",
+            "transcript": "reserve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:reserve:r1",
+              "targetText": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать. Can you reserve a table? — «Можешь забронировать столик?» Заранее договориться, чтобы место оставили для вас.",
+                "uk": "забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reserve",
+            "definitionByLocale": {
+              "ru": "забронировать. Can you reserve a table? — «Можешь забронировать столик?» Заранее договориться, чтобы место оставили для вас.",
+              "uk": "забронювати. Can you reserve a table? — «Можеш забронювати столик?» Заздалегідь домовитися, щоб місце залишили для вас."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш забронювати столик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш забронювати столик?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you reserve a table?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь забронировать столик?»",
+            "uk": "Попросіть «Можеш забронювати столик?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i02:r1",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i02:r2",
+            "text": "teach"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i02:r3",
+            "text": "calculate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i02:audio",
+            "transcript": "reserve"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:i02:r1",
+              "targetText": "reserve",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i02:r2",
+              "targetText": "teach",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i02:r3",
+              "targetText": "calculate",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `reserve`, а в этом варианте — `teach`.",
+                "uk": "У записі перше слово — `reserve`, а в цьому варіанті — `teach`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `reserve`, а в этом варианте — `calculate`.",
+                "uk": "У записі перше слово — `reserve`, а в цьому варіанті — `calculate`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання забронювати столик",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i03:r1",
+            "text": "reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i03:r2",
+            "text": "to reserve"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i03:r3",
+            "text": "reserves"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання забронювати столик",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы забронировать столик",
+            "uk": "Виберіть форму для прохання забронювати столик"
+          },
+          "gappedTargetPhrase": "Can you ___ a table?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-23:i03:r1",
+              "text": "reserve"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i03:r2",
+              "text": "to reserve"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i03:r3",
+              "text": "reserves"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання забронювати столик",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання забронювати столик",
+              "feedbackByLocale": {
+                "ru": "После can нужно reserve, без to.",
+                "uk": "Після can потрібне reserve, без to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання забронювати столик",
+              "feedbackByLocale": {
+                "ru": "После can нужно reserve, без s.",
+                "uk": "Після can потрібне reserve, без s."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-23:i04:p1",
+              "target": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать",
+                "uk": "забронювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i04:p2",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i04:p3",
+              "target": "room",
+              "meaningByLocale": {
+                "ru": "комната",
+                "uk": "кімната"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i04:p4",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "место для сидения",
+                "uk": "місце для сидіння"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reserve",
+            "table",
+            "room",
+            "seat"
+          ],
+          "rightColumn": [
+            "забронювати",
+            "стіл",
+            "кімната",
+            "місце для сидіння"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i05:audio",
+            "transcript": "Can you reserve a table?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you reserve a table?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "table"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:word:booth",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — booth",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:booth:audio"
+        ],
+        "accessibilityLabel": "Картка слова — booth",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:booth:audio",
+            "transcript": "booth"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:booth:r1",
+              "targetText": "booth",
+              "meaningByLocale": {
+                "ru": "место со столом и диванчиками в кафе. Can you reserve a booth? — «Можешь забронировать место с диванчиками?» Здесь отдельная зона для гостей, а не кабина.",
+                "uk": "місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "booth",
+            "definitionByLocale": {
+              "ru": "место со столом и диванчиками в кафе. Can you reserve a booth? — «Можешь забронировать место с диванчиками?» Здесь отдельная зона для гостей, а не кабина.",
+              "uk": "місце зі столом і диванчиками в кафе. Can you reserve a booth? — «Можеш забронювати місце з диванчиками?» Тут окрема зона для гостей, а не кабіна."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть «Можеш забронювати місце з диванчиками?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть «Можеш забронювати місце з диванчиками?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you reserve a booth?",
+          "localizedMeaning": {
+            "ru": "Попросите «Можешь забронировать место с диванчиками?»",
+            "uk": "Попросіть «Можеш забронювати місце з диванчиками?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "booth"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:word:highchair",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — highchair",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:highchair:audio"
+        ],
+        "accessibilityLabel": "Картка слова — highchair",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:highchair:audio",
+            "transcript": "highchair"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:highchair:r1",
+              "targetText": "highchair",
+              "meaningByLocale": {
+                "ru": "детский стульчик для кормления. Can you bring a highchair? — «Можете принести детский стульчик?» Высокий стульчик для малыша за столом; highchair пишется слитно.",
+                "uk": "дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "highchair",
+            "definitionByLocale": {
+              "ru": "детский стульчик для кормления. Can you bring a highchair? — «Можете принести детский стульчик?» Высокий стульчик для малыша за столом; highchair пишется слитно.",
+              "uk": "дитячий стільчик для годування. Can you bring a highchair? — «Можете принести дитячий стільчик?» Високий стільчик для малюка за столом; highchair пишеться разом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Офіціант підходить до вашого столу. Попросіть «Можете принести дитячий стільчик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i07:audio"
+        ],
+        "accessibilityLabel": "Офіціант підходить до вашого столу. Попросіть «Можете принести дитячий стільчик?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i07:audio",
+            "transcript": "Can you bring a highchair?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you bring a highchair?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання принести дитячий стільчик",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i08:r1",
+            "text": "bring"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i08:r2",
+            "text": "brings"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i08:r3",
+            "text": "to bring"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання принести дитячий стільчик",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы принести детский стульчик",
+            "uk": "Виберіть форму для прохання принести дитячий стільчик"
+          },
+          "gappedTargetPhrase": "Can you ___ a highchair?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-23:i08:r1",
+              "text": "bring"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i08:r2",
+              "text": "brings"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i08:r3",
+              "text": "to bring"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання принести дитячий стільчик",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання принести дитячий стільчик",
+              "feedbackByLocale": {
+                "ru": "После can нужно bring, без s.",
+                "uk": "Після can потрібне bring, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання принести дитячий стільчик",
+              "feedbackByLocale": {
+                "ru": "После can нужно bring, без to.",
+                "uk": "Після can потрібне bring, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i09:r1",
+            "text": "Can you reserve a table?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i09:r2",
+            "text": "Can you reserve a room?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i09:r3",
+            "text": "Can you reserve a seat?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i09:audio",
+            "transcript": "Can you reserve a table?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:i09:r1",
+              "targetText": "Can you reserve a table?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i09:r2",
+              "targetText": "Can you reserve a room?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i09:r3",
+              "targetText": "Can you reserve a seat?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, а в этом варианте — `room`.",
+                "uk": "У записі останнє слово — `table`, а в цьому варіанті — `room`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `table`, а в этом варианте — `seat`.",
+                "uk": "У записі останнє слово — `table`, а в цьому варіанті — `seat`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-23:i10:p1",
+              "target": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать",
+                "uk": "забронювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i10:p2",
+              "target": "booth",
+              "meaningByLocale": {
+                "ru": "место со столом и диванчиками",
+                "uk": "місце зі столом і диванчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i10:p3",
+              "target": "highchair",
+              "meaningByLocale": {
+                "ru": "детский стульчик для кормления",
+                "uk": "дитячий стільчик для годування"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i10:p4",
+              "target": "seat",
+              "meaningByLocale": {
+                "ru": "место для сидения",
+                "uk": "місце для сидіння"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reserve",
+            "booth",
+            "highchair",
+            "seat"
+          ],
+          "rightColumn": [
+            "забронювати",
+            "місце зі столом і диванчиками",
+            "дитячий стільчик для годування",
+            "місце для сидіння"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i11:audio",
+            "transcript": "Can you bring a highchair?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Can you bring a highchair?",
+          "orderedTokens": [
+            "Can",
+            "you",
+            "bring",
+            "a",
+            "highchair"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:word:terrace",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — terrace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:word:terrace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — terrace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:word:terrace:audio",
+            "transcript": "terrace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:word:terrace:r1",
+              "targetText": "terrace",
+              "meaningByLocale": {
+                "ru": "терраса. Can you reserve a table on the terrace? — «Можешь забронировать столик на террасе?» Открытая площадка у здания; on the terrace — «на террасе».",
+                "uk": "тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "terrace",
+            "definitionByLocale": {
+              "ru": "терраса. Can you reserve a table on the terrace? — «Можешь забронировать столик на террасе?» Открытая площадка у здания; on the terrace — «на террасе».",
+              "uk": "тераса. Can you reserve a table on the terrace? — «Можеш забронювати столик на терасі?» Відкритий майданчик біля будівлі; on the terrace — «на терасі»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви хочете поїсти на свіжому повітрі. Попросіть «Можеш забронювати столик на терасі?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви хочете поїсти на свіжому повітрі. Попросіть «Можеш забронювати столик на терасі?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you reserve a table on the terrace?",
+          "localizedMeaning": {
+            "ru": "Вы хотите поесть на свежем воздухе. Попросите «Можешь забронировать столик на террасе?»",
+            "uk": "Ви хочете поїсти на свіжому повітрі. Попросіть «Можеш забронювати столик на терасі?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "reserve",
+            "a",
+            "table",
+            "on",
+            "the",
+            "terrace"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг не може зайнятися бронюванням. Ви готові зробити це самі. Скажіть «Я можу забронювати столик»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i13:audio"
+        ],
+        "accessibilityLabel": "Друг не може зайнятися бронюванням. Ви готові зробити це самі. Скажіть «Я можу забронювати столик»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i13:audio",
+            "transcript": "I can reserve a table."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can reserve a table.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Почніть прохання «Можеш забронювати столик?»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i14:r1",
+            "text": "Can"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i14:r2",
+            "text": "Are"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i14:r3",
+            "text": "Is"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть прохання «Можеш забронювати столик?»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Начните просьбу «Можешь забронировать столик?»",
+            "uk": "Почніть прохання «Можеш забронювати столик?»"
+          },
+          "gappedTargetPhrase": "___ you reserve a table?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-23:i14:r1",
+              "text": "Can"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i14:r2",
+              "text": "Are"
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i14:r3",
+              "text": "Is"
+            }
+          ],
+          "testedDimension": "Почніть прохання «Можеш забронювати столик?»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i14:r2",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш забронювати столик?»",
+              "feedbackByLocale": {
+                "ru": "В этой просьбе нужно `Can you reserve`, без `are`.",
+                "uk": "У цьому проханні потрібне `Can you reserve`, без `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i14:r3",
+              "correct": false,
+              "testedDimension": "Почніть прохання «Можеш забронювати столик?»",
+              "feedbackByLocale": {
+                "ru": "Начните с `Can you reserve`.",
+                "uk": "Почніть із `Can you reserve`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-23:i15:r1",
+            "text": "Can you reserve a booth?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i15:r2",
+            "text": "Can you reserve a table?"
+          },
+          {
+            "responseId": "en:lesson-08:session-23:i15:r3",
+            "text": "Can you reserve a room?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i15:audio",
+            "transcript": "Can you reserve a booth?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-23:i15:r1",
+              "targetText": "Can you reserve a booth?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i15:r2",
+              "targetText": "Can you reserve a table?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i15:r3",
+              "targetText": "Can you reserve a room?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-23:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи booth — «место с диванчиками», а не table — «стол».",
+                "uk": "У записі booth — «місце з диванчиками», а не table — «стіл»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-23:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи booth, а не room — «комната».",
+                "uk": "У записі booth, а не room — «кімната»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-23:i16:p1",
+              "target": "reserve",
+              "meaningByLocale": {
+                "ru": "забронировать",
+                "uk": "забронювати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i16:p2",
+              "target": "booth",
+              "meaningByLocale": {
+                "ru": "место со столом и диванчиками",
+                "uk": "місце зі столом і диванчиками"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i16:p3",
+              "target": "highchair",
+              "meaningByLocale": {
+                "ru": "детский стульчик для кормления",
+                "uk": "дитячий стільчик для годування"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-23:i16:p4",
+              "target": "terrace",
+              "meaningByLocale": {
+                "ru": "терраса",
+                "uk": "тераса"
+              }
+            }
+          ],
+          "leftColumn": [
+            "reserve",
+            "booth",
+            "highchair",
+            "terrace"
+          ],
+          "rightColumn": [
+            "забронювати",
+            "місце зі столом і диванчиками",
+            "дитячий стільчик для годування",
+            "тераса"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-23:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви йдете з другом до популярного ресторану. Щоб не чекати вільного місця, попросіть його заздалегідь домовитися про столик. Попросіть «Можеш забронювати столик?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-23:i17:audio"
+        ],
+        "accessibilityLabel": "Ви йдете з другом до популярного ресторану. Щоб не чекати вільного місця, попросіть його заздалегідь домовитися про столик. Попросіть «Можеш забронювати столик?»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-23:i17:audio",
+            "transcript": "Can you reserve a table?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can you reserve a table?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-23:word:reserve",
+      "correctText": "reserve",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i01",
+      "correctText": "Can you reserve a table?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i02",
+      "correctText": "reserve",
+      "correctResponseId": "en:lesson-08:session-23:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i03",
+      "correctText": "reserve",
+      "correctResponseId": "en:lesson-08:session-23:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i05",
+      "correctText": "Can you reserve a table?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:word:booth",
+      "correctText": "booth",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i06",
+      "correctText": "Can you reserve a booth?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:word:highchair",
+      "correctText": "highchair",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i07",
+      "correctText": "Can you bring a highchair?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i08",
+      "correctText": "bring",
+      "correctResponseId": "en:lesson-08:session-23:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i09",
+      "correctText": "Can you reserve a table?",
+      "correctResponseId": "en:lesson-08:session-23:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i11",
+      "correctText": "Can you bring a highchair?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:word:terrace",
+      "correctText": "terrace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i12",
+      "correctText": "Can you reserve a table on the terrace?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i13",
+      "correctText": "I can reserve a table.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i14",
+      "correctText": "Can",
+      "correctResponseId": "en:lesson-08:session-23:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i15",
+      "correctText": "Can you reserve a booth?",
+      "correctResponseId": "en:lesson-08:session-23:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-23:i17",
+      "correctText": "Can you reserve a table?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-25:i01",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-25:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:word:stamina",
+    "correctText": "stamina",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i02",
+    "correctText": "I wish I had more stamina.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i03",
+    "correctText": "Can we take a shorter route?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i04",
+    "correctText": "There is a path by the river.",
+    "correctResponseId": "en:lesson-27:session-25:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i05",
+    "correctText": "We can sit on that bench.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:word:eyesight",
+    "correctText": "eyesight",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i06",
+    "correctText": "My eyesight is not very good.",
+    "correctResponseId": "en:lesson-27:session-25:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i07",
+    "correctText": "Could you read this for me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i08",
+    "correctText": "I wish I were there.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i09",
+    "correctText": "What is the weather like?",
+    "correctResponseId": "en:lesson-27:session-25:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:word:willpower",
+    "correctText": "willpower",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i10",
+    "correctText": "I wish I had more willpower.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i11",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-25:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i12",
+    "correctText": "Can you show me how to do it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:word:determination",
+    "correctText": "determination",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i13",
+    "correctText": "She showed real determination.",
+    "correctResponseId": "en:lesson-27:session-25:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i14",
+    "correctText": "Let us practise together tomorrow.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i15",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-25:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i16",
+    "correctText": "Does ten suit you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-25:i17",
+    "correctText": "That works for me.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-26",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-26:word:housing",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — housing",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:word:housing:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — housing",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:word:housing:audio",
+          "transcript": "housing"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:word:housing:r1",
+            "targetText": "housing",
+            "meaningByLocale": {
+              "ru": "Жильё как общая категория.",
+              "uk": "Житло як загальна категорія."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "housing",
+          "definitionByLocale": {
+            "ru": "Жильё как общая категория.",
+            "uk": "Житло як загальна категорія."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-26:i01:r1",
+          "text": "Housing is expensive here."
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i01:r2",
+          "text": "Housing is inexpensive here."
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i01:r3",
+          "text": "Parking is expensive here."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i01:audio",
+          "transcript": "Housing is expensive here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:i01:r1",
+            "targetText": "Housing is expensive here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i01:r2",
+            "targetText": "Housing is inexpensive here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i01:r3",
+            "targetText": "Parking is expensive here.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-26:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Housing is expensive here.",
+              "uk": "У записі звучить Housing is expensive here."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Housing is expensive here.",
+              "uk": "У записі звучить Housing is expensive here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:word:residential",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — residential",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:word:residential:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — residential",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:word:residential:audio",
+          "transcript": "residential"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:word:residential:r1",
+            "targetText": "residential",
+            "meaningByLocale": {
+              "ru": "Жилой, предназначенный для проживания.",
+              "uk": "Житловий, призначений для проживання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "residential",
+          "definitionByLocale": {
+            "ru": "Жилой, предназначенный для проживания.",
+            "uk": "Житловий, призначений для проживання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i02",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что это жилой район.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что это жилой район.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is a residential area.",
+        "localizedMeaning": {
+          "ru": "Объясните, что это жилой район.",
+          "uk": "Поясніть, що це житловий район."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "a",
+          "residential",
+          "area"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы живёте далеко и хотели бы жить ближе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-26:i03:r1",
+          "text": "lived"
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i03:r2",
+          "text": "live"
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i03:r3",
+          "text": "living"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы живёте далеко и хотели бы жить ближе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы живёте далеко и хотели бы жить ближе.",
+          "uk": "Ви живете далеко й хотіли б жити ближче."
+        },
+        "gappedTargetPhrase": "I wish I ___ closer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-26:i03:r1",
+            "text": "lived"
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i03:r2",
+            "text": "live"
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i03:r3",
+            "text": "living"
+          }
+        ],
+        "testedDimension": "Вы живёте далеко и хотели бы жить ближе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-26:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы живёте далеко и хотели бы жить ближе.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь форма lived.",
+              "uk": "Після wish тут форма lived."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы живёте далеко и хотели бы жить ближе.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции нужна форма lived.",
+              "uk": "У цій конструкції потрібна форма lived."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i04",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, сколько идти до станции.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Спросите, сколько идти до станции.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i04:audio",
+          "transcript": "How far is the station from here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How far is the station from here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, что можно дойти пешком.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что можно дойти пешком.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i05:audio",
+          "transcript": "You can walk there in ten minutes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You can walk there in ten minutes.",
+        "orderedTokens": [
+          "You",
+          "can",
+          "walk",
+          "there",
+          "in",
+          "ten",
+          "minutes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:word:dampness",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dampness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:word:dampness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dampness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:word:dampness:audio",
+          "transcript": "dampness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:word:dampness:r1",
+            "targetText": "dampness",
+            "meaningByLocale": {
+              "ru": "Сырость.",
+              "uk": "Вогкість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dampness",
+          "definitionByLocale": {
+            "ru": "Сырость.",
+            "uk": "Вогкість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-26:i06:r1",
+          "text": "There is dampness on the wall."
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i06:r2",
+          "text": "There is dampness on the floor."
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i06:r3",
+          "text": "There is a mark on the wall."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i06:audio",
+          "transcript": "There is dampness on the wall."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:i06:r1",
+            "targetText": "There is dampness on the wall.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i06:r2",
+            "targetText": "There is dampness on the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i06:r3",
+            "targetText": "There is a mark on the wall.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-26:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is dampness on the wall.",
+              "uk": "У записі звучить There is dampness on the wall."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is dampness on the wall.",
+              "uk": "У записі звучить There is dampness on the wall."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите проверить комнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i07:audio"
+      ],
+      "accessibilityLabel": "Попросите проверить комнату.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i07:audio",
+          "transcript": "Could someone check the room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could someone check the room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что хотелось бы более тихую комнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что хотелось бы более тихую комнату.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish this room were quieter.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотелось бы более тихую комнату.",
+          "uk": "Скажіть, що хотілося б тихішу кімнату."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "this",
+          "room",
+          "were",
+          "quieter"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите перейти в другую комнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите перейти в другую комнату.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I move to another room?",
+        "localizedMeaning": {
+          "ru": "Попросите перейти в другую комнату.",
+          "uk": "Попросіть перейти до іншої кімнати."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "move",
+          "to",
+          "another",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:word:housekeeping",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — housekeeping",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:word:housekeeping:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — housekeeping",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:word:housekeeping:audio",
+          "transcript": "housekeeping"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:word:housekeeping:r1",
+            "targetText": "housekeeping",
+            "meaningByLocale": {
+              "ru": "Уборка и содержание помещений; служба уборки в гостинице.",
+              "uk": "Прибирання й утримання приміщень; служба прибирання в готелі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "housekeeping",
+          "definitionByLocale": {
+            "ru": "Уборка и содержание помещений; служба уборки в гостинице.",
+            "uk": "Прибирання й утримання приміщень; служба прибирання в готелі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите позвонить в службу уборки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i10:audio"
+      ],
+      "accessibilityLabel": "Попросите позвонить в службу уборки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i10:audio",
+          "transcript": "Could you call housekeeping?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you call housekeeping?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-26:i11:r1",
+          "text": "I have already opened the window."
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i11:r2",
+          "text": "I have already closed the window."
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i11:r3",
+          "text": "I have already opened the door."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i11:audio",
+          "transcript": "I have already opened the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-26:i11:r1",
+            "targetText": "I have already opened the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i11:r2",
+            "targetText": "I have already closed the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i11:r3",
+            "targetText": "I have already opened the door.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-26:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already opened the window.",
+              "uk": "У записі звучить I have already opened the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already opened the window.",
+              "uk": "У записі звучить I have already opened the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Скажите, что приехали вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-26:i12:r1",
+          "text": "arrived"
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i12:r2",
+          "text": "have arrived"
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i12:r3",
+          "text": "arrive"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что приехали вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Скажите, что приехали вчера.",
+          "uk": "Скажіть, що приїхали вчора."
+        },
+        "gappedTargetPhrase": "I ___ yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-26:i12:r1",
+            "text": "arrived"
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i12:r2",
+            "text": "have arrived"
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i12:r3",
+            "text": "arrive"
+          }
+        ],
+        "testedDimension": "Скажите, что приехали вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-26:i12:r2",
+            "correct": false,
+            "testedDimension": "Скажите, что приехали вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь arrived без have.",
+              "uk": "Із yesterday тут arrived без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i12:r3",
+            "correct": false,
+            "testedDimension": "Скажите, что приехали вчера.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна прошедшая форма arrived.",
+              "uk": "Тут потрібна минула форма arrived."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, когда комната будет готова.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, когда комната будет готова.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "When will the room be ready?",
+        "localizedMeaning": {
+          "ru": "Уточните, когда комната будет готова.",
+          "uk": "Уточніть, коли кімната буде готова."
+        },
+        "orderedTokens": [
+          "When",
+          "will",
+          "the",
+          "room",
+          "be",
+          "ready"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу вернуться после обеда.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу вернуться после обеда.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i14:audio",
+          "transcript": "Please come back after lunch."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please come back after lunch.",
+        "orderedTokens": [
+          "Please",
+          "come",
+          "back",
+          "after",
+          "lunch"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы остались бы дольше, если бы комната была больше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-26:i15:r1",
+          "text": "stay"
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i15:r2",
+          "text": "stayed"
+        },
+        {
+          "responseId": "en:lesson-27:session-26:i15:r3",
+          "text": "to stay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы остались бы дольше, если бы комната была больше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы остались бы дольше, если бы комната была больше.",
+          "uk": "Ви залишилися б довше, якби кімната була більшою."
+        },
+        "gappedTargetPhrase": "I would ___ longer if the room were bigger.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-26:i15:r1",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i15:r2",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i15:r3",
+            "text": "to stay"
+          }
+        ],
+        "testedDimension": "Вы остались бы дольше, если бы комната была больше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-26:i15:r2",
+            "correct": false,
+            "testedDimension": "Вы остались бы дольше, если бы комната была больше.",
+            "feedbackByLocale": {
+              "ru": "После would нужна форма stay.",
+              "uk": "Після would потрібна форма stay."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-26:i15:r3",
+            "correct": false,
+            "testedDimension": "Вы остались бы дольше, если бы комната была больше.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли пока оставить сумку здесь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-26:i16:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли пока оставить сумку здесь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-26:i16:audio",
+          "transcript": "Can I leave my bag here for now?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I leave my bag here for now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If it were closer, we would walk there.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If it were closer, we would walk there.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would walk there if it were closer.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If it were closer, we would walk there.",
+          "uk": "Почніть із результату: If it were closer, we would walk there."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "walk",
+          "there",
+          "if",
+          "it",
+          "were",
+          "closer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1ebb2b90dc9fb0792b8b835310e92b16f87c751e4661a29be7ffc4bf69d05373"
+}

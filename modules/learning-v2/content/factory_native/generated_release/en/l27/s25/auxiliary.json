@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-25",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-25:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-25:intro1:r2": {
+          "ru": "В этой фразе о желаемом настоящем ставим had.",
+          "uk": "У цій фразі про бажане теперішнє ставимо had."
+        },
+        "en:lesson-27:session-25:intro1:r3": {
+          "ru": "Здесь нужна форма had.",
+          "uk": "Тут потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-25:intro2:r2": {
+          "ru": "В этой фразе о желаемом настоящем используем were.",
+          "uk": "У цій фразі про бажане теперішнє використовуємо were."
+        },
+        "en:lesson-27:session-25:intro2:r3": {
+          "ru": "Здесь нужна форма were.",
+          "uk": "Тут потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-25:intro3:r2": {
+          "ru": "После I wish здесь had, а не has.",
+          "uk": "Після I wish тут had, а не has."
+        },
+        "en:lesson-27:session-25:intro3:r3": {
+          "ru": "В этой конструкции ставим I had, а не to have.",
+          "uk": "У цій конструкції ставимо I had, а не to have."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b3cc4b2820d2c9a51527a093f02f95da41eafc31f18231048aa42d6b47b6648a"
+}

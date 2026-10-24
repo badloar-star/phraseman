@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Жильё и район",
+        "uk": "Житло й район"
+      },
+      "bodyByLocale": {
+        "ru": "Housing — жильё как общая категория. Housing is expensive here — жильё здесь дорогое. Когда речь об одном доме, используем знакомое house; housing здесь не обозначает один дом. Residential — жилой, предназначенный для проживания. This is a residential area — это жилой район. Вы хотели бы жить ближе к работе: I wish I lived closer — жаль, что я не живу ближе. Lived после wish говорит о желаемом настоящем, а не о прежнем адресе.",
+        "uk": "Housing — житло як загальна категорія. Housing is expensive here — житло тут дороге. Коли йдеться про один будинок, використовуємо знайоме house; housing тут не позначає один будинок. Residential — житловий, призначений для проживання. This is a residential area — це житловий район. Ви хотіли б жити ближче до роботи: I wish I lived closer — шкода, що я не живу ближче. Lived після wish говорить про бажане теперішнє, а не про колишню адресу."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-26:intro1:r1",
+              "text": "I wish I lived closer."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro1:r2",
+              "text": "I wish I live closer."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro1:r3",
+              "text": "I wish I living closer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-26:intro1:r1",
+              "text": "I wish I lived closer."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro1:r2",
+              "text": "I wish I live closer."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro1:r3",
+              "text": "I wish I living closer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить другую комнату",
+        "uk": "Попросити іншу кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Dampness — сырость. There is dampness on the wall — на стене сырость. Вы описываете, что заметили, и просите посмотреть: Could someone check the room? — может кто-нибудь проверить комнату? Не обязательно угадывать причину. Из коридора слышен шум: I wish this room were quieter — жаль, что в этой комнате не тише. Were — стандартная форма пожелания о настоящем. Чтобы попросить другую комнату, скажите отдельно Could I move to another room? — можно мне перейти в другую комнату?",
+        "uk": "Dampness — вогкість. There is dampness on the wall — на стіні вогкість. Ви описуєте, що помітили, й просите подивитися: Could someone check the room? — може хтось перевірити кімнату? Не обов’язково вгадувати причину. З коридору чути шум: I wish this room were quieter — шкода, що в цій кімнаті не тихіше. Were — стандартна форма побажання про теперішнє. Щоб попросити іншу кімнату, скажіть окремо Could I move to another room? — можна мені перейти до іншої кімнати?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-26:intro2:r1",
+              "text": "I wish this room were quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro2:r2",
+              "text": "I wish this room is quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro2:r3",
+              "text": "I wish this room be quieter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-26:intro2:r1",
+              "text": "I wish this room were quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro2:r2",
+              "text": "I wish this room is quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro2:r3",
+              "text": "I wish this room be quieter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить время уборки",
+        "uk": "Уточнити час прибирання"
+      },
+      "bodyByLocale": {
+        "ru": "Housekeeping — уборка и содержание помещений; в гостинице так называют и службу уборки. Could you call housekeeping? — можете позвонить в службу уборки? Это не название отдельного человека. Вы уже открыли окно: I have already opened the window — я уже открыл окно. Но время приезда называем иначе: I arrived yesterday — я приехал вчера. Yesterday означает законченное время. Новую комнату ещё готовят: When will the room be ready? — когда комната будет готова?",
+        "uk": "Housekeeping — прибирання й утримання приміщень; у готелі так називають і службу прибирання. Could you call housekeeping? — можете зателефонувати до служби прибирання? Це не назва окремої людини. Ви вже відчинили вікно: I have already opened the window — я вже відчинив вікно. Але час приїзду називаємо інакше: I arrived yesterday — я приїхав учора. Yesterday означає завершений час. Нову кімнату ще готують: When will the room be ready? — коли кімната буде готова?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-26:intro3:r1",
+              "text": "I arrived yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro3:r2",
+              "text": "I have arrived yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro3:r3",
+              "text": "I arrive yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-26:intro3:r1",
+              "text": "I arrived yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro3:r2",
+              "text": "I have arrived yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-26:intro3:r3",
+              "text": "I arrive yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5cd646fdcd77cbce75896f795ca6114f0bef8594405d1647e6019a01f6a56717"
+}

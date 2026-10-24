@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-26",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-26:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-26:intro1:r2": {
+          "ru": "В этой конструкции о настоящем нужна форма lived.",
+          "uk": "У цій конструкції про теперішнє потрібна форма lived."
+        },
+        "en:lesson-27:session-26:intro1:r3": {
+          "ru": "Здесь ставим lived, а не living.",
+          "uk": "Тут ставимо lived, а не living."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-26:intro2:r2": {
+          "ru": "В этом пожелании о настоящем ставим were.",
+          "uk": "У цьому побажанні про теперішнє ставимо were."
+        },
+        "en:lesson-27:session-26:intro2:r3": {
+          "ru": "Здесь нужна форма were.",
+          "uk": "Тут потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-26:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-26:intro3:r2": {
+          "ru": "С yesterday здесь arrived без have.",
+          "uk": "Із yesterday тут arrived без have."
+        },
+        "en:lesson-27:session-26:intro3:r3": {
+          "ru": "Нужна прошедшая форма arrived.",
+          "uk": "Потрібна минула форма arrived."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c4b24ea24c80b5446dfd746bed33d902c66416be4268b4b86ccc2d31954a9555"
+}

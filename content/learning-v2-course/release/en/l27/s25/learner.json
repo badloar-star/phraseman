@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-25",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас времени мало. Скажите, что хотелось бы иметь больше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i01:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i01:r2",
+          "text": "have"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i01:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас времени мало. Скажите, что хотелось бы иметь больше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас времени мало. Скажите, что хотелось бы иметь больше.",
+          "uk": "Зараз часу мало. Скажіть, що хотілося б мати більше."
+        },
+        "gappedTargetPhrase": "I wish I ___ more time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-25:i01:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i01:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i01:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Сейчас времени мало. Скажите, что хотелось бы иметь больше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i01:r2",
+            "correct": false,
+            "testedDimension": "Сейчас времени мало. Скажите, что хотелось бы иметь больше.",
+            "feedbackByLocale": {
+              "ru": "О желаемом настоящем здесь говорим had.",
+              "uk": "Про бажане теперішнє тут кажемо had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i01:r3",
+            "correct": false,
+            "testedDimension": "Сейчас времени мало. Скажите, что хотелось бы иметь больше.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма had.",
+              "uk": "Потрібна форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:word:stamina",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — stamina",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:word:stamina:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — stamina",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:word:stamina:audio",
+          "transcript": "stamina"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:word:stamina:r1",
+            "targetText": "stamina",
+            "meaningByLocale": {
+              "ru": "Выносливость.",
+              "uk": "Витривалість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "stamina",
+          "definitionByLocale": {
+            "ru": "Выносливость.",
+            "uk": "Витривалість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что хотелось бы быть выносливее.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что хотелось бы быть выносливее.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I had more stamina.",
+        "localizedMeaning": {
+          "ru": "Скажите, что хотелось бы быть выносливее.",
+          "uk": "Скажіть, що хотілося б бути витривалішим."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "had",
+          "more",
+          "stamina"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i03",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите более короткий маршрут.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Предложите более короткий маршрут.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i03:audio",
+          "transcript": "Can we take a shorter route?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can we take a shorter route?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i04:r1",
+          "text": "There is a path by the river."
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i04:r2",
+          "text": "There is a path by the lake."
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i04:r3",
+          "text": "There is a shop by the river."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i04:audio",
+          "transcript": "There is a path by the river."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:i04:r1",
+            "targetText": "There is a path by the river.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i04:r2",
+            "targetText": "There is a path by the lake.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i04:r3",
+            "targetText": "There is a shop by the river.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a path by the river.",
+              "uk": "У записі звучить There is a path by the river."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит There is a path by the river.",
+              "uk": "У записі звучить There is a path by the river."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение присесть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение присесть.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i05:audio",
+          "transcript": "We can sit on that bench."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We can sit on that bench.",
+        "orderedTokens": [
+          "We",
+          "can",
+          "sit",
+          "on",
+          "that",
+          "bench"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:word:eyesight",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — eyesight",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:word:eyesight:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — eyesight",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:word:eyesight:audio",
+          "transcript": "eyesight"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:word:eyesight:r1",
+            "targetText": "eyesight",
+            "meaningByLocale": {
+              "ru": "Зрение.",
+              "uk": "Зір."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eyesight",
+          "definitionByLocale": {
+            "ru": "Зрение.",
+            "uk": "Зір."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i06:r1",
+          "text": "My eyesight is not very good."
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i06:r2",
+          "text": "My hearing is not very good."
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i06:r3",
+          "text": "My eyesight is very good."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i06:audio",
+          "transcript": "My eyesight is not very good."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:i06:r1",
+            "targetText": "My eyesight is not very good.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i06:r2",
+            "targetText": "My hearing is not very good.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i06:r3",
+            "targetText": "My eyesight is very good.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My eyesight is not very good.",
+              "uk": "У записі звучить My eyesight is not very good."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит My eyesight is not very good.",
+              "uk": "У записі звучить My eyesight is not very good."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите прочитать надпись.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Попросите прочитать надпись.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i07:audio",
+          "transcript": "Could you read this for me?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you read this for me?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i08",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Друг прислал красивый вид. Скажите, что жаль не быть там.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг прислал красивый вид. Скажите, что жаль не быть там.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish I were there.",
+        "localizedMeaning": {
+          "ru": "Друг прислал красивый вид. Скажите, что жаль не быть там.",
+          "uk": "Друг надіслав гарний краєвид. Скажіть, що шкода не бути там."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "I",
+          "were",
+          "there"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i09",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i09:r1",
+          "text": "What is the weather like?"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i09:r2",
+          "text": "What was the weather like?"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i09:r3",
+          "text": "What is the water like?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i09:audio",
+          "transcript": "What is the weather like?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:i09:r1",
+            "targetText": "What is the weather like?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i09:r2",
+            "targetText": "What was the weather like?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i09:r3",
+            "targetText": "What is the water like?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит What is the weather like?",
+              "uk": "У записі звучить What is the weather like?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит What is the weather like?",
+              "uk": "У записі звучить What is the weather like?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:word:willpower",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — willpower",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:word:willpower:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — willpower",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:word:willpower:audio",
+          "transcript": "willpower"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:word:willpower:r1",
+            "targetText": "willpower",
+            "meaningByLocale": {
+              "ru": "Сила воли.",
+              "uk": "Сила волі."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "willpower",
+          "definitionByLocale": {
+            "ru": "Сила воли.",
+            "uk": "Сила волі."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что хотелось бы иметь больше силы воли.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите, что хотелось бы иметь больше силы воли.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i10:audio",
+          "transcript": "I wish I had more willpower."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wish I had more willpower.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете ответа, но хотели бы знать.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i11:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i11:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i11:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете ответа, но хотели бы знать.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете ответа, но хотели бы знать.",
+          "uk": "Ви не знаєте відповіді, але хотіли б знати."
+        },
+        "gappedTargetPhrase": "I wish I ___ the answer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-25:i11:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i11:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i11:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Вы не знаете ответа, но хотели бы знать.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете ответа, но хотели бы знать.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции используем knew.",
+              "uk": "У цій конструкції використовуємо knew."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете ответа, но хотели бы знать.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма knew.",
+              "uk": "Потрібна форма knew."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i12",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать, как это делать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать, как это делать.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can you show me how to do it?",
+        "localizedMeaning": {
+          "ru": "Попросите показать, как это делать.",
+          "uk": "Попросіть показати, як це робити."
+        },
+        "orderedTokens": [
+          "Can",
+          "you",
+          "show",
+          "me",
+          "how",
+          "to",
+          "do",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:word:determination",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — determination",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:word:determination:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — determination",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:word:determination:audio",
+          "transcript": "determination"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:word:determination:r1",
+            "targetText": "determination",
+            "meaningByLocale": {
+              "ru": "Решимость, настойчивое стремление довести дело до конца.",
+              "uk": "Рішучість, наполегливе прагнення довести справу до кінця."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "determination",
+          "definitionByLocale": {
+            "ru": "Решимость, настойчивое стремление довести дело до конца.",
+            "uk": "Рішучість, наполегливе прагнення довести справу до кінця."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i13:r1",
+          "text": "She showed real determination."
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i13:r2",
+          "text": "He showed real determination."
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i13:r3",
+          "text": "She showed real patience."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i13:audio",
+          "transcript": "She showed real determination."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-25:i13:r1",
+            "targetText": "She showed real determination.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i13:r2",
+            "targetText": "He showed real determination.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i13:r3",
+            "targetText": "She showed real patience.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She showed real determination.",
+              "uk": "У записі звучить She showed real determination."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She showed real determination.",
+              "uk": "У записі звучить She showed real determination."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите завтра позаниматься вместе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите завтра позаниматься вместе.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us practise together tomorrow.",
+        "localizedMeaning": {
+          "ru": "Предложите завтра позаниматься вместе.",
+          "uk": "Запропонуйте завтра позайматися разом."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "practise",
+          "together",
+          "tomorrow"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подруга далеко, и ей хотелось бы быть здесь.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-25:i15:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i15:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-27:session-25:i15:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подруга далеко, и ей хотелось бы быть здесь.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подруга далеко, и ей хотелось бы быть здесь.",
+          "uk": "Подруга далеко, і їй хотілося б бути тут."
+        },
+        "gappedTargetPhrase": "She wishes she ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-25:i15:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i15:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i15:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Подруга далеко, и ей хотелось бы быть здесь.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-25:i15:r2",
+            "correct": false,
+            "testedDimension": "Подруга далеко, и ей хотелось бы быть здесь.",
+            "feedbackByLocale": {
+              "ru": "В пожелании о настоящем здесь were.",
+              "uk": "У побажанні про теперішнє тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-25:i15:r3",
+            "correct": false,
+            "testedDimension": "Подруга далеко, и ей хотелось бы быть здесь.",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна форма were.",
+              "uk": "Тут потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о времени встречи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i16:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о времени встречи.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i16:audio",
+          "transcript": "Does ten suit you?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Does ten suit you?",
+        "orderedTokens": [
+          "Does",
+          "ten",
+          "suit",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-25:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подтвердите, что это время подходит.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-25:i17:audio"
+      ],
+      "accessibilityLabel": "Подтвердите, что это время подходит.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-25:i17:audio",
+          "transcript": "That works for me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "That works for me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6a0499d5385f45d53c3f33dd988e116bd2305c886d8850baf7747b96d7883dd4"
+}

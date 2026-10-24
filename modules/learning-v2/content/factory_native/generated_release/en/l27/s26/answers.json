@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-26:word:housing",
+    "correctText": "housing",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i01",
+    "correctText": "Housing is expensive here.",
+    "correctResponseId": "en:lesson-27:session-26:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:word:residential",
+    "correctText": "residential",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i02",
+    "correctText": "This is a residential area.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i03",
+    "correctText": "lived",
+    "correctResponseId": "en:lesson-27:session-26:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i04",
+    "correctText": "How far is the station from here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i05",
+    "correctText": "You can walk there in ten minutes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:word:dampness",
+    "correctText": "dampness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i06",
+    "correctText": "There is dampness on the wall.",
+    "correctResponseId": "en:lesson-27:session-26:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i07",
+    "correctText": "Could someone check the room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i08",
+    "correctText": "I wish this room were quieter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i09",
+    "correctText": "Could I move to another room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:word:housekeeping",
+    "correctText": "housekeeping",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i10",
+    "correctText": "Could you call housekeeping?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i11",
+    "correctText": "I have already opened the window.",
+    "correctResponseId": "en:lesson-27:session-26:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i12",
+    "correctText": "arrived",
+    "correctResponseId": "en:lesson-27:session-26:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i13",
+    "correctText": "When will the room be ready?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i14",
+    "correctText": "Please come back after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i15",
+    "correctText": "stay",
+    "correctResponseId": "en:lesson-27:session-26:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i16",
+    "correctText": "Can I leave my bag here for now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-26:i17",
+    "correctText": "We would walk there if it were closer.",
+    "correctResponseId": null
+  }
+]

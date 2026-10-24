@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were",
+    "uk": "wish + past simple / were"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Хотелось бы иначе",
+        "uk": "Хотілося б інакше"
+      },
+      "bodyByLocale": {
+        "ru": "I wish I had more time — жаль, что у меня нет больше времени; хотелось бы иметь больше времени. Had здесь не рассказывает о прошлом: сейчас времени мало, а вы представляете другое положение дел. После I wish в таком высказывании ставим форму прошлого времени. Stamina — выносливость, способность долго продолжать занятие без сильного утомления. I wish I had more stamina — хотелось бы быть выносливее. Это желание, а не план тренировки. Чтобы договориться с другом о прогулке, нужен отдельный вопрос: Can we take a shorter route? — можем пойти более коротким путём?",
+        "uk": "I wish I had more time — шкода, що я не маю більше часу; хотілося б мати більше часу. Had тут не розповідає про минуле: зараз часу мало, а ви уявляєте інший стан речей. Після I wish у такому висловлюванні ставимо форму минулого часу. Stamina — витривалість, здатність довго продовжувати заняття без сильної втоми. I wish I had more stamina — хотілося б бути витривалішим. Це бажання, а не план тренування. Щоб домовитися з другом про прогулянку, потрібне окреме запитання: Can we take a shorter route? — можемо піти коротшим шляхом?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-25:intro1:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro1:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro1:r3",
+              "text": "I wish I having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-25:intro1:r1",
+              "text": "I wish I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro1:r2",
+              "text": "I wish I have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro1:r3",
+              "text": "I wish I having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сказать о том, чего не хватает",
+        "uk": "Сказати про те, чого бракує"
+      },
+      "bodyByLocale": {
+        "ru": "Eyesight — зрение. My eyesight is not very good — у меня не очень хорошее зрение. I wish I had better eyesight — хотелось бы иметь зрение получше. Следом можно попросить помощь: Could you read this for me? — можешь мне это прочитать? Друг прислал фотографию с прогулки: I wish I were there — жаль, что я не там. Were — стандартная форма в таком пожелании о настоящем. Разговорное was с I, he или she тоже встречается, поэтому не будем считать его ошибкой во всех случаях.",
+        "uk": "Eyesight — зір. My eyesight is not very good — у мене не дуже хороший зір. I wish I had better eyesight — хотілося б мати кращий зір. Далі можна попросити допомоги: Could you read this for me? — можеш мені це прочитати? Друг надіслав фотографію з прогулянки: I wish I were there — шкода, що я не там. Were — стандартна форма в такому побажанні про теперішнє. Розмовне was з I, he або she теж трапляється, тому не вважатимемо його помилкою в усіх випадках."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-25:intro2:r1",
+              "text": "I wish I were there."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro2:r2",
+              "text": "I wish I am there."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro2:r3",
+              "text": "I wish I be there."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-25:intro2:r1",
+              "text": "I wish I were there."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro2:r2",
+              "text": "I wish I am there."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro2:r3",
+              "text": "I wish I be there."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Желание и следующий шаг",
+        "uk": "Бажання й наступний крок"
+      },
+      "bodyByLocale": {
+        "ru": "Willpower — сила воли. I wish I had more willpower — хотелось бы иметь больше силы воли. Determination — решимость, настойчивое стремление довести дело до конца. She showed real determination — она проявила настоящую решимость. Слова близки, но не одинаковы: willpower часто помогает удержаться от соблазна, determination — продолжать идти к цели. Вы хотите регулярно заниматься музыкой и договариваетесь о небольшом шаге: Let us practise together tomorrow — давай завтра позанимаемся вместе. Wish выражает желание; договорённость говорит, что вы собираетесь делать.",
+        "uk": "Willpower — сила волі. I wish I had more willpower — хотілося б мати більше сили волі. Determination — рішучість, наполегливе прагнення довести справу до кінця. She showed real determination — вона виявила справжню рішучість. Слова близькі, але не однакові: willpower часто допомагає втриматися від спокуси, determination — продовжувати йти до мети. Ви хочете регулярно займатися музикою й домовляєтеся про невеликий крок: Let us practise together tomorrow — давай завтра позаймаємося разом. Wish виражає бажання; домовленість говорить, що ви збираєтеся робити."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-25:intro3:r1",
+              "text": "I wish I had more willpower."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro3:r2",
+              "text": "I wish I has more willpower."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro3:r3",
+              "text": "I wish I to have more willpower."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-25:intro3:r1",
+              "text": "I wish I had more willpower."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro3:r2",
+              "text": "I wish I has more willpower."
+            },
+            {
+              "responseId": "en:lesson-27:session-25:intro3:r3",
+              "text": "I wish I to have more willpower."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b4d373cf24c6a9f1aa5d887d0e10dd869f19ac76f303fde02623c39190c331c7"
+}

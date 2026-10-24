@@ -167,7 +167,7 @@ Owner: «10 · ПЕРЕВОДЧИК» (поручение координатор
 | ключ | ru | uk | en | es | pt-BR | vi | id | tr | pl |
 |---|---|---|---|---|---|---|---|---|---|
 | finalTogetherTitle | {name}: занятие вместе | {name}: заняття разом | {name}: a session together | {name}: sesión juntos | {name}: sessão juntos | {name}: học cùng nhau | {name}: sesi bersama | {name}: birlikte oturum | {name}: wspólne zajęcia |
-| finalTogetherSub | Награда «вместе» вам обоим | Нагорода «разом» вам обом | A “together” reward for both of you | Premio «juntos» para los dos | Prêmio “juntos” para vocês dois | Phần thưởng “cùng nhau” cho cả hai | Hadiah “bersama” untuk kalian berdua | İkinize de “birlikte” ödülü | Nagroda „razem” dla was obojga |
+| finalTogetherSub | Награда «вместе» — каждому | Нагорода «разом» — кожному | A “together” reward for both of you | Premio «juntos» para los dos | Prêmio “juntos” para vocês dois | Phần thưởng “cùng nhau” cho cả hai | Hadiah “bersama” untuk kalian berdua | İkinize de “birlikte” ödülü | Nagroda „razem” dla was obojga |
 | bellInviteExpired | {name}: приглашение закончилось в полночь | {name}: запрошення закінчилося опівночі | {name}: the invitation ended at midnight | {name}: la invitación terminó a medianoche | {name}: o convite terminou à meia-noite | {name}: lời mời đã hết hạn lúc nửa đêm | {name}: undangan berakhir tengah malam | {name}: davet gece yarısı sona erdi | {name}: zaproszenie wygasło o północy |
 
 Примечания:

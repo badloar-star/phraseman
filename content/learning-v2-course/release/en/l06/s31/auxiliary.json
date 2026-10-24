@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-06:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-31:intro2:r2": {
-          "ru": "Зубная паста — одно целое: нужно is, а не are.",
-          "uk": "Зубна паста — одне ціле: потрібно is, а не are."
+          "ru": "Toothpaste обозначает вещество: нужно is, а не are.",
+          "uk": "Toothpaste позначає речовину: потрібно is, а не are."
         },
         "en:lesson-06:session-31:intro2:r3": {
           "ru": "Без is предложение не получается: нужно My toothpaste is.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "c255192b2e582845b0dd2fa72fc08202f1fc54836f85c4d7fb491a1c4dcb29dc"
+  "auxiliaryFingerprint": "4f24781460ee37127718f976baf7909ca59e2cb8b3fed6f251041bd89cf943e0"
 }

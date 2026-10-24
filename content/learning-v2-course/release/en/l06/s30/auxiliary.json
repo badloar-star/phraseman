@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-06:session-30:intro2:q",
       "responseFeedbackById": {
         "en:lesson-06:session-30:intro2:r2": {
-          "ru": "Мусор — одно целое: нужно is, а не are.",
-          "uk": "Сміття — одне ціле: потрібно is, а не are."
+          "ru": "Rubbish употребляется без подсчёта отдельных предметов: нужно is, а не are.",
+          "uk": "Rubbish уживається без підрахунку окремих предметів: потрібно is, а не are."
         },
         "en:lesson-06:session-30:intro2:r3": {
           "ru": "Без is предложение не получается: нужно The rubbish is.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2e6931aa79a189b24f69ca39a55a385d41253ca6d7cac5860495af0e6cbc6b53"
+  "auxiliaryFingerprint": "35a286c0de808d3b53d6889260e9e6bd15397099dda75c4ed255a04ac52e8f20"
 }

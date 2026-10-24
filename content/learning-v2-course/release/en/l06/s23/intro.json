@@ -65,12 +65,12 @@
       "pageId": "en:lesson-06:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Бег за автобусом",
-        "uk": "Біг за автобусом"
+        "ru": "Автобус по утрам",
+        "uk": "Автобус уранці"
       },
       "bodyByLocale": {
-        "ru": "Сестра опаздывает: она бежит по тротуару к остановке, а автобус уже закрывает двери. Соседка, которая стоит рядом с вами, спрашивает, что делает сестра. catch — «успеть на автобус». Тоже ch, поэтому es: She catches the bus — «Она успевает на автобус».",
-        "uk": "Сестра запізнюється: вона біжить тротуаром до зупинки, а автобус уже зачиняє двері. Сусідка, яка стоїть поруч із вами, питає, що робить сестра. catch — «встигнути на автобус». Теж ch, тому es: She catches the bus — «Вона встигає на автобус»."
+        "ru": "Соседка спрашивает, успевает ли сестра на утренний автобус. Сестра каждый день выходит заранее и успевает на него. catch — «успеть на автобус». Тоже ch, поэтому es: She catches the bus — «Она успевает на автобус».",
+        "uk": "Сусідка питає, чи встигає сестра на ранковий автобус. Сестра щодня виходить завчасно й встигає на нього. catch — «встигнути на автобус». Теж ch, тому es: She catches the bus — «Вона встигає на автобус»."
       },
       "question": {
         "interactionId": "en:lesson-06:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9f7c28f628084bd1b6395dcb9b5dd0fbababfe0f2c1fd451d6fc41b3012a9f98"
+  "introFingerprint": "11bab7ff997e793ae498a2e137b4eed19cf04bef423d06975e4257b49dcc5bcb"
 }

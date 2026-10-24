@@ -11,8 +11,8 @@
       "pageId": "en:lesson-06:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Тишина вместо бара",
-        "uk": "Тиша замість бару"
+        "ru": "Отдых после работы",
+        "uk": "Відпочинок після роботи"
       },
       "bodyByLocale": {
         "ru": "Коллега спрашивает, где вы обычно отдыхаете после работы. Вы любите тишину и каждый вечер проводите время в своём саду. rest — «отдыхать». I rest in the garden — «Я отдыхаю в саду». После I слово остаётся rest, без s.",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c099786583dab5d4c69e511de9d4b76920dd5a02d68be74b1d03a0c6c2efeb9a"
+  "introFingerprint": "529a1070a96efb5604b6d55821155abfcdadef3dc5fa046355638739ad028ce8"
 }

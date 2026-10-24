@@ -19,6 +19,7 @@ import { hexHue, seasonThemedArt } from './season_art';
 import { useLv2Glass } from '../LearningV2Glass';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
+import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
 import type { SeasonEpisodeCard } from './season_course_model';
 import { SEASON_COUNT_LOG, seasonEpisodeSubtitle, seasonEpisodeTasksShown } from '../../home/v2/scene/home_scene_count';
@@ -29,7 +30,7 @@ const LOG = '[SEASON-WIRE]';
 /** Какой полноэкранный список открыт поверх хаба (null — хаб). */
 export type SeasonListScreen = null | Readonly<{ kind: 'chapters' }> | Readonly<{ kind: 'episodes'; chapter: number }>;
 
-export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange' | 'lockShake'> & Readonly<{
+export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange' | 'lockShake' | 'examNote'> & Readonly<{
   /** Действия экзамена главы: вызываются только при включённом флаге. */
   onStartExam?: (chapterOrdinal: number) => void;
   onOpenByExam?: (chapterOrdinal: number) => void;
@@ -194,6 +195,15 @@ function SeasonCourse(props: SeasonCourseProps) {
     );
   }
 
+  // зачем (эталон chapter-exam-season.html, правка владельца 22.10 №10): строка под «Сдать экзамен» в подписи под каруселью — только когда
+  // экзамен включён и его можно начать; у последней главы — без «откроется глава»
+  const chapterTotal = deck.chapters.length;
+  // обычная функция, не хук: выше стоят ранние return экранов «Все главы» / «Эпизоды главы»
+  const examNote = props.examInfo && props.onStartExam ? (chapterOrdinal: number): string => {
+    const facts = seasonCardText(lang, 'examFacts', { q: CHAPTER_EXAM_QUESTION_COUNT_V1, p: CHAPTER_EXAM_PASS_CORRECT_V1 });
+    return chapterOrdinal < chapterTotal ? `${seasonCardText(lang, 'examOpens', { n: chapterOrdinal + 1 })} · ${facts}` : facts;
+  } : undefined;
+
   return (
     <View style={styles.root}>
       {topBand > 0 ? <View pointerEvents="none" testID="season-top-cover" style={[styles.topCover, { top: -topBand, height: topBand, backgroundColor: topBandColor }]} /> : null}
@@ -204,6 +214,7 @@ function SeasonCourse(props: SeasonCourseProps) {
         onCardOpen={openCard}
         lockShake={lockShake}
         onAllChapters={openChapters}
+        examNote={examNote}
       />
       {expandedProps ? <SeasonExpandedCard {...expandedProps} /> : null}
     </View>

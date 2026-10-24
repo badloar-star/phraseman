@@ -88,6 +88,8 @@ export type SeasonCourseViewProps = Readonly<{
   onPrimary: (card: SeasonEpisodeCard) => void;
   onNotFromStart?: () => void;
   onCardOpen: (index: number) => void;
+  /** Строка под «Сдать экзамен» в подписи под каруселью (эталон chapter-exam-season.html); нет — у карты экзамена ни кнопки, ни строки. */
+  examNote?: (chapterOrdinal: number) => string;
   /** Карусель встала на карту (после свайпа/тапа) — родителю нужно для «Вся глава». */
   onSelectedChange?: (index: number) => void;
   /** Поставить карусель на карту: родитель меняет seq, чтобы вернуться на ту же карту повторно («К эпизоду N», возврат из веера). */
@@ -177,7 +179,8 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
   const caption = useMemo(() => {
     if (!selectedCard) return { kicker: '', title: '' };
-    if (selectedCard.kind === 'exam') return { kicker: seasonText(lang, 'exam'), title: seasonText(lang, 'exam') };
+    // зачем (эталон chapter-exam-season.html): у экзамена подпись «Глава N» / «Экзамен главы», а не одно и то же слово дважды
+    if (selectedCard.kind === 'exam') return { kicker: seasonCardText(lang, 'chapterShort', { n: selectedCard.chapterOrdinal }), title: seasonText(lang, 'exam') };
     const ep = props.episodeInfo(selectedCard);
     return { kicker: [seasonEpisodeLabel(lang, selectedCard.sessionOrdinal), ep.taskLine].filter(Boolean).join(', '), title: ep.title };
   }, [lang, props, selectedCard]);
@@ -276,6 +279,24 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <Text style={[styles.captionKicker, { color: g.secondary }]}>{caption.kicker}</Text>
         {/* зачем (владелец 22.10, выбор варианта 3): на карточке только номер и звёзды — «Эпизод N» и название эпизода здесь, под каруселью */}
         <Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>
+        {/* зачем (эталон chapter-exam-season.html, правка владельца 22.10 №10): «Сдать экзамен» раскрывает карту экзамена (там «Начать
+            экзамен» с ⚡1 / строкой Plus — запуск и списание в одном месте), под кнопкой — «Сдашь — откроется глава N · 12 вопросов, сдать от 10» */}
+        {selectedCard && selectedCard.kind === 'exam' && selectedCard.state !== 'locked' && props.examNote ? (
+          <>
+            <V2Pressable
+              testID="season-caption-exam"
+              accessibilityRole="button"
+              accessibilityLabel={seasonCardText(lang, 'startExam')}
+              onPress={() => props.onCardOpen(selected)}
+              scaleTo={0.97}
+              style={[styles.captionExam, { backgroundColor: g.accent }]}
+            >
+              <Ionicons name="trophy" size={18} color={g.accentInk} />
+              <Text style={[styles.captionExamText, { color: g.accentInk }]}>{seasonCardText(lang, 'startExam')}</Text>
+            </V2Pressable>
+            <Text testID="season-caption-exam-note" style={[styles.captionNote, { color: g.secondary }]}>{props.examNote(selectedCard.chapterOrdinal)}</Text>
+          </>
+        ) : null}
       </View>
 
     </ScrollView>
@@ -327,6 +348,9 @@ const styles = StyleSheet.create({
   caption: { alignItems: 'center', marginTop: 6, paddingHorizontal: 20 },
   captionKicker: { fontSize: 16, lineHeight: 21, textAlign: 'center' },
   captionTitle: { marginTop: 2, fontSize: 19, lineHeight: 24, fontWeight: '700', textAlign: 'center' },
+  captionExam: { marginTop: 14, height: 50, borderRadius: 25, paddingHorizontal: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, alignSelf: 'stretch' },
+  captionExamText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  captionNote: { marginTop: 10, fontSize: 13, lineHeight: 17, textAlign: 'center' },
 });
 
 export default memo(SeasonCourseView);

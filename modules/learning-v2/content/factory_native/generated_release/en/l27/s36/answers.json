@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-36:word:access",
+    "correctText": "access",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i01",
+    "correctText": "Is there access from the street?",
+    "correctResponseId": "en:lesson-27:session-36:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i02",
+    "correctText": "Are there any steps at the entrance?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:word:convenience",
+    "correctText": "convenience",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i03",
+    "correctText": "We chose it for convenience.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i04",
+    "correctText": "It is five minutes from the bus stop.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i05",
+    "correctText": "stayed",
+    "correctResponseId": "en:lesson-27:session-36:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:word:clarity",
+    "correctText": "clarity",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i06",
+    "correctText": "I need some clarity about the price.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i07",
+    "correctText": "Could you explain the price?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i08",
+    "correctText": "Is breakfast included?",
+    "correctResponseId": "en:lesson-27:session-36:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-36:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:word:flexibility",
+    "correctText": "flexibility",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i10",
+    "correctText": "We need some flexibility with the dates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i11",
+    "correctText": "I have already asked about the dates.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i12",
+    "correctText": "I called yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i13",
+    "correctText": "book",
+    "correctResponseId": "en:lesson-27:session-36:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i14",
+    "correctText": "Could we see a quieter room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i15",
+    "correctText": "This room faces the garden.",
+    "correctResponseId": "en:lesson-27:session-36:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i16",
+    "correctText": "We would look around if we had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-36:i17",
+    "correctText": "Could you give us a minute?",
+    "correctResponseId": null
+  }
+]

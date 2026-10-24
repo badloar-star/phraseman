@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-36",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-36:word:access",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — access",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:word:access:audio"
+      ],
+      "accessibilityLabel": "Картка слова — access",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:word:access:audio",
+          "transcript": "access"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:word:access:r1",
+            "targetText": "access",
+            "meaningByLocale": {
+              "ru": "Доступ, возможность попасть куда-либо.",
+              "uk": "Доступ, можливість потрапити кудись."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "access",
+          "definitionByLocale": {
+            "ru": "Доступ, возможность попасть куда-либо.",
+            "uk": "Доступ, можливість потрапити кудись."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-36:i01:r1",
+          "text": "Is there access from the street?"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i01:r2",
+          "text": "Is there access from the garden?"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i01:r3",
+          "text": "Is there a view of the street?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i01:audio",
+          "transcript": "Is there access from the street?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:i01:r1",
+            "targetText": "Is there access from the street?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i01:r2",
+            "targetText": "Is there access from the garden?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i01:r3",
+            "targetText": "Is there a view of the street?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-36:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is there access from the street?",
+              "uk": "У записі звучить Is there access from the street?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i01:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is there access from the street?",
+              "uk": "У записі звучить Is there access from the street?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи є сходинки біля входу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи є сходинки біля входу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i02:audio",
+          "transcript": "Are there any steps at the entrance?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are there any steps at the entrance?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:word:convenience",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — convenience",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:word:convenience:audio"
+      ],
+      "accessibilityLabel": "Картка слова — convenience",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:word:convenience:audio",
+          "transcript": "convenience"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:word:convenience:r1",
+            "targetText": "convenience",
+            "meaningByLocale": {
+              "ru": "Удобство.",
+              "uk": "Зручність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "convenience",
+          "definitionByLocale": {
+            "ru": "Удобство.",
+            "uk": "Зручність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поясніть, чому вибрали це місце.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поясніть, чому вибрали це місце.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We chose it for convenience.",
+        "localizedMeaning": {
+          "ru": "Объясните, почему выбрали это место.",
+          "uk": "Поясніть, чому вибрали це місце."
+        },
+        "orderedTokens": [
+          "We",
+          "chose",
+          "it",
+          "for",
+          "convenience"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте, скільки йти від зупинки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i04:audio"
+      ],
+      "accessibilityLabel": "Почуйте, скільки йти від зупинки.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i04:audio",
+          "transcript": "It is five minutes from the bus stop."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "It is five minutes from the bus stop.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "five",
+          "minutes",
+          "from",
+          "the",
+          "bus",
+          "stop"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Розкажіть про минулу поїздку сюди.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-36:i05:r1",
+          "text": "stayed"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i05:r2",
+          "text": "have stayed"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i05:r3",
+          "text": "staying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Розкажіть про минулу поїздку сюди.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Расскажите о прошлой поездке сюда.",
+          "uk": "Розкажіть про минулу поїздку сюди."
+        },
+        "gappedTargetPhrase": "We ___ here last summer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-36:i05:r1",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i05:r2",
+            "text": "have stayed"
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i05:r3",
+            "text": "staying"
+          }
+        ],
+        "testedDimension": "Розкажіть про минулу поїздку сюди.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Розкажіть про минулу поїздку сюди.",
+            "feedbackByLocale": {
+              "ru": "Last summer — законченное время: stayed.",
+              "uk": "Last summer — завершений час: stayed."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Розкажіть про минулу поїздку сюди.",
+            "feedbackByLocale": {
+              "ru": "Для этого рассказа нужна stayed.",
+              "uk": "Для цієї розповіді потрібна stayed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:word:clarity",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clarity",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:word:clarity:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clarity",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:word:clarity:audio",
+          "transcript": "clarity"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:word:clarity:r1",
+            "targetText": "clarity",
+            "meaningByLocale": {
+              "ru": "Ясность, понятность.",
+              "uk": "Ясність, зрозумілість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clarity",
+          "definitionByLocale": {
+            "ru": "Ясность, понятность.",
+            "uk": "Ясність, зрозумілість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, що вам потрібна ясність щодо ціни.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, що вам потрібна ясність щодо ціни.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I need some clarity about the price.",
+        "localizedMeaning": {
+          "ru": "Скажите, что вам нужна ясность насчёт цены.",
+          "uk": "Скажіть, що вам потрібна ясність щодо ціни."
+        },
+        "orderedTokens": [
+          "I",
+          "need",
+          "some",
+          "clarity",
+          "about",
+          "the",
+          "price"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть пояснити ціну.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i07:audio"
+      ],
+      "accessibilityLabel": "Попросіть пояснити ціну.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i07:audio",
+          "transcript": "Could you explain the price?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you explain the price?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-36:i08:r1",
+          "text": "Is breakfast included?"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i08:r2",
+          "text": "Is dinner included?"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i08:r3",
+          "text": "Is breakfast ready?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i08:audio",
+          "transcript": "Is breakfast included?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:i08:r1",
+            "targetText": "Is breakfast included?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i08:r2",
+            "targetText": "Is dinner included?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i08:r3",
+            "targetText": "Is breakfast ready?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-36:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is breakfast included?",
+              "uk": "У записі звучить Is breakfast included?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is breakfast included?",
+              "uk": "У записі звучить Is breakfast included?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Подробиці поки недостатньо зрозумілі.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-36:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i09:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подробиці поки недостатньо зрозумілі.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Подробности пока недостаточно понятны.",
+          "uk": "Подробиці поки недостатньо зрозумілі."
+        },
+        "gappedTargetPhrase": "I wish the details ___ clearer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-36:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Подробиці поки недостатньо зрозумілі.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Подробиці поки недостатньо зрозумілі.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Подробиці поки недостатньо зрозумілі.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:word:flexibility",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flexibility",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:word:flexibility:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flexibility",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:word:flexibility:audio",
+          "transcript": "flexibility"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:word:flexibility:r1",
+            "targetText": "flexibility",
+            "meaningByLocale": {
+              "ru": "Гибкость, возможность приспособиться или что-то изменить.",
+              "uk": "Гнучкість, можливість пристосуватися або щось змінити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flexibility",
+          "definitionByLocale": {
+            "ru": "Гибкость, возможность приспособиться или что-то изменить.",
+            "uk": "Гнучкість, можливість пристосуватися або щось змінити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, що дати можуть змінитися.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Поясніть, що дати можуть змінитися.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i10:audio",
+          "transcript": "We need some flexibility with the dates."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We need some flexibility with the dates.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте, що про дати вже запитали.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте, що про дати вже запитали.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already asked about the dates.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что о датах уже спросили.",
+          "uk": "Повідомте, що про дати вже запитали."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "asked",
+          "about",
+          "the",
+          "dates"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте уточнення про вчорашній дзвінок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Почуйте уточнення про вчорашній дзвінок.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i12:audio",
+          "transcript": "I called yesterday."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I called yesterday.",
+        "orderedTokens": [
+          "I",
+          "called",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви забронювали б кімнату за можливості змінити дати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-36:i13:r1",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i13:r2",
+          "text": "booked"
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i13:r3",
+          "text": "to book"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви забронювали б кімнату за можливості змінити дати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы забронировали бы комнату при возможности изменить даты.",
+          "uk": "Ви забронювали б кімнату за можливості змінити дати."
+        },
+        "gappedTargetPhrase": "I would ___ this room if we could change the dates.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-36:i13:r1",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i13:r2",
+            "text": "booked"
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i13:r3",
+            "text": "to book"
+          }
+        ],
+        "testedDimension": "Ви забронювали б кімнату за можливості змінити дати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-36:i13:r2",
+            "correct": false,
+            "testedDimension": "Ви забронювали б кімнату за можливості змінити дати.",
+            "feedbackByLocale": {
+              "ru": "После would нужна book.",
+              "uk": "Після would потрібна book."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i13:r3",
+            "correct": false,
+            "testedDimension": "Ви забронювали б кімнату за можливості змінити дати.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати тихішу кімнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i14:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати тихішу кімнату.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i14:audio",
+          "transcript": "Could we see a quieter room?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we see a quieter room?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-36:i15:r1",
+          "text": "This room faces the garden."
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i15:r2",
+          "text": "This room faces the street."
+        },
+        {
+          "responseId": "en:lesson-27:session-36:i15:r3",
+          "text": "That room faces the garden."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i15:audio",
+          "transcript": "This room faces the garden."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-36:i15:r1",
+            "targetText": "This room faces the garden.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i15:r2",
+            "targetText": "This room faces the street.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i15:r3",
+            "targetText": "That room faces the garden.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-36:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This room faces the garden.",
+              "uk": "У записі звучить This room faces the garden."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-36:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This room faces the garden.",
+              "uk": "У записі звучить This room faces the garden."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із результату: If we had more time, we would look around.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із результату: If we had more time, we would look around.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would look around if we had more time.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we had more time, we would look around.",
+          "uk": "Почніть із результату: If we had more time, we would look around."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "look",
+          "around",
+          "if",
+          "we",
+          "had",
+          "more",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть хвилину, щоб вирішити.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-36:i17:audio"
+      ],
+      "accessibilityLabel": "Попросіть хвилину, щоб вирішити.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-36:i17:audio",
+          "transcript": "Could you give us a minute?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you give us a minute?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "358f6bbe018a728ccf5f865db758eb2d0af104c5f943e3295f17b0ac572f4c59"
+}

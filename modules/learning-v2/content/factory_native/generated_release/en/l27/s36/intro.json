@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; unreal condition; present perfect / past simple",
+    "uk": "wish + past; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобно ли добираться",
+        "uk": "Чи зручно діставатися"
+      },
+      "bodyByLocale": {
+        "ru": "Access — доступ, возможность попасть куда-либо. Is there access from the street? — сюда можно попасть с улицы? Здесь речь о входе в помещение. Convenience — удобство: We chose it for convenience — мы выбрали это место ради удобства. Например, оно рядом с остановкой, поэтому не нужно далеко идти. Слово convenience обозначает удобство расположения или пользования, а не мягкость кресла.",
+        "uk": "Access — доступ, можливість потрапити кудись. Is there access from the street? — сюди можна потрапити з вулиці? Тут ідеться про вхід до приміщення. Convenience — зручність: We chose it for convenience — ми вибрали це місце заради зручності. Наприклад, воно біля зупинки, тому не потрібно далеко йти. Слово convenience позначає зручність розташування або користування, а не м’якість крісла."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-36:intro1:r1",
+              "text": "We chose it for convenience."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro1:r2",
+              "text": "We choose it yesterday for convenience."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro1:r3",
+              "text": "We did chose it for convenience."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-36:intro1:r1",
+              "text": "We chose it for convenience."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro1:r2",
+              "text": "We choose it yesterday for convenience."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro1:r3",
+              "text": "We did chose it for convenience."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Разобраться с ценой",
+        "uk": "Розібратися з ціною"
+      },
+      "bodyByLocale": {
+        "ru": "Clarity — ясность, понятность. I need some clarity about the price — мне нужно разобраться, какова цена. Это более сдержанная формулировка; можно прямо попросить: Could you explain the price? — можете объяснить цену? I wish the details were clearer — хотелось бы, чтобы подробности были понятнее. Were после wish относится к тому, чего хочется сейчас. Вопрос Is breakfast included? помогает выяснить конкретную деталь.",
+        "uk": "Clarity — ясність, зрозумілість. I need some clarity about the price — мені потрібно розібратися, яка ціна. Це стриманіше формулювання; можна прямо попросити: Could you explain the price? — можете пояснити ціну? I wish the details were clearer — хотілося б, щоб подробиці були зрозумілішими. Were після wish стосується того, чого хочеться зараз. Запитання Is breakfast included? допомагає з’ясувати конкретну деталь."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-36:intro2:r1",
+              "text": "I wish the details were clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro2:r2",
+              "text": "I wish the details are clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro2:r3",
+              "text": "I wish the details be clearer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-36:intro2:r1",
+              "text": "I wish the details were clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro2:r2",
+              "text": "I wish the details are clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro2:r3",
+              "text": "I wish the details be clearer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если даты изменятся",
+        "uk": "Якщо дати зміняться"
+      },
+      "bodyByLocale": {
+        "ru": "Flexibility — гибкость, возможность приспособиться или что-то изменить. We need some flexibility with the dates — нам нужна возможность менять даты. Речь о поездке, не о гибкости тела. I would book this room if we could change the dates — я бы забронировал эту комнату, если бы мы могли менять даты. Would book — предполагаемый результат. I have already asked about the dates — я уже спросил о датах; I called yesterday — я звонил вчера.",
+        "uk": "Flexibility — гнучкість, можливість пристосуватися або щось змінити. We need some flexibility with the dates — нам потрібна можливість змінювати дати. Ідеться про поїздку, не про гнучкість тіла. I would book this room if we could change the dates — я б забронював цю кімнату, якби ми могли змінювати дати. Would book — уявний результат. I have already asked about the dates — я вже запитав про дати; I called yesterday — я телефонував учора."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-36:intro3:r1",
+              "text": "I called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro3:r2",
+              "text": "I have called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro3:r3",
+              "text": "I calling yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-36:intro3:r1",
+              "text": "I called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro3:r2",
+              "text": "I have called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-36:intro3:r3",
+              "text": "I calling yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2d99acdb82ff4cae74242adb91709fb6c242c4bb7d6a6d0d6c6674fe9774040f"
+}

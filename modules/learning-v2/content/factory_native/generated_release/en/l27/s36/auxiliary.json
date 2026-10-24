@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-36:intro1:r2": {
+          "ru": "О сделанном выборе говорим chose.",
+          "uk": "Про зроблений вибір говоримо chose."
+        },
+        "en:lesson-27:session-36:intro1:r3": {
+          "ru": "После did была бы choose.",
+          "uk": "Після did була б choose."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-36:intro2:r2": {
+          "ru": "В этом пожелании нужна were.",
+          "uk": "У цьому побажанні потрібна were."
+        },
+        "en:lesson-27:session-36:intro2:r3": {
+          "ru": "После wish здесь were, не be.",
+          "uk": "Після wish тут were, не be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-36:intro3:r2": {
+          "ru": "С yesterday здесь called без have.",
+          "uk": "Із yesterday тут called без have."
+        },
+        "en:lesson-27:session-36:intro3:r3": {
+          "ru": "Нужна форма called.",
+          "uk": "Потрібна форма called."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5ad9f0a56851615329cbc49bc7a5108597038eb15c41515aca0e0ed016b70543"
+}

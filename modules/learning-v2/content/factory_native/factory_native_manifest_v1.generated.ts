@@ -13075,7 +13075,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 38,
-    sourceFingerprint: "5b1525f2956f4efd5442d01627315eeb0995da3d9affa940cc073d72b0dbcc1e",
+    sourceFingerprint: "65a858c6424ee1fb2fc728d7cf904320ebec7a170206b9753399221176a4d2d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После two нужна форма bottles.","Между единицей и общим названием нужно of."],["После two нужна форма bottles.","Между единицей и общим названием нужно of."],["После two нужна форма tubes.","Между единицей и общим названием нужно of."]],"uk":[["Після two потрібна форма bottles.","Між одиницею та загальною назвою потрібне of."],["Після two потрібна форма bottles.","Між одиницею та загальною назвою потрібне of."],["Після two потрібна форма tubes.","Між одиницею та загальною назвою потрібне of."]]}),
@@ -13089,7 +13089,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 39,
-    sourceFingerprint: "605f3285e45a8c01b780ee68909305465a26ff1bb0fbd936443ac0d659cb8885",
+    sourceFingerprint: "35d6f53438e04668b3ce77aab8aa7d91b369e6f72b97b07bf6437e986b20abe7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После two нужна форма slices.","Между единицей и общим названием нужно of."],["После two нужна форма slices.","Между единицей и общим названием нужно of."],["После two нужна форма bowls.","Между единицей и общим названием нужно of."]],"uk":[["Після two потрібна форма slices.","Між одиницею та загальною назвою потрібне of."],["Після two потрібна форма slices.","Між одиницею та загальною назвою потрібне of."],["Після two потрібна форма bowls.","Між одиницею та загальною назвою потрібне of."]]}),
@@ -13103,7 +13103,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 40,
-    sourceFingerprint: "9ea7c190db9835778c62a7e9021b9b1eeeb38c2edac75794d3296da67375ece5",
+    sourceFingerprint: "2423735db1bfe1ecd197c74dd307ecb8ba50c0f61cd0f15574ac9882aedd7408",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После two нужна форма bowls.","Между единицей и общим названием нужно of."],["После two нужна форма bowls.","Между единицей и общим названием нужно of."],["После two нужна форма bowls.","Между единицей и общим названием нужно of."]],"uk":[["Після two потрібна форма bowls.","Між одиницею та загальною назвою потрібне of."],["Після two потрібна форма bowls.","Між одиницею та загальною назвою потрібне of."],["Після two потрібна форма bowls.","Між одиницею та загальною назвою потрібне of."]]}),
@@ -13117,7 +13117,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 41,
-    sourceFingerprint: "7e8cbc9bbe97e618ed9141ae66336839f198812e2b9fab082e9160d43ae94a1e",
+    sourceFingerprint: "1ee1fc3bd9d66f94b8d0d120baf210aa68c0d74277128acd4c94cafa9fe8b232",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В утвердительном сообщении о некотором количестве используем some.","A не ставится перед неисчисляемым или множественным числом."],["Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.","A не ставится перед неисчисляемым или множественным числом."],["Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.","A не ставится перед неисчисляемым или множественным числом."]],"uk":[["У стверджувальному повідомленні про певну кількість використовуємо some.","A не ставиться перед незлічуваним або множиною."],["Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.","A не ставиться перед незлічуваним або множиною."],["Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.","A не ставиться перед незлічуваним або множиною."]]}),

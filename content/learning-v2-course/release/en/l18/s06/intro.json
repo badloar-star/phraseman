@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сравнить варианты 1",
-        "uk": "Порівняти варіанти 1"
+        "ru": "Рубашка легче вашей",
+        "uk": "Сорочка легша за вашу"
       },
       "bodyByLocale": {
-        "ru": "cotton shirt — хлопковая рубашка. wool jumper — шерстяной джемпер. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. light → lighter.",
-        "uk": "cotton shirt — бавовняна сорочка. wool jumper — вовняний джемпер. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. light → lighter."
+        "ru": "Вы берёте в руки хлопковую рубашку в магазине и сравниваете её вес со своей: новая легче. This cotton shirt is lighter than mine — эта хлопковая рубашка легче моей. Соберите фразу: This cotton shirt + is + lighter + than mine. Light получает -er, когда говорим «легче». Mine означает «моя рубашка» и избавляет от повторения my shirt.",
+        "uk": "Ви берете до рук бавовняну сорочку в магазині й порівнюєте її вагу зі своєю: нова легша. This cotton shirt is lighter than mine — ця бавовняна сорочка легша за мою. Складіть фразу: This cotton shirt + is + lighter + than mine. Light отримує -er, коли говоримо «легша». Mine означає «моя сорочка» й дає змогу не повторювати my shirt."
       },
       "question": {
         "interactionId": "en:lesson-18:session-06:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сравнить варианты 2",
-        "uk": "Порівняти варіанти 2"
+        "ru": "Сравнить длину пальто",
+        "uk": "Порівняти довжину пальта"
       },
       "bodyByLocale": {
-        "ru": "winter coat — зимнее пальто. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. long → longer.",
-        "uk": "winter coat — зимове пальто. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. long → longer."
+        "ru": "Вы с другом стоите перед зеркалом: его зимнее пальто ниже колен, а ваше — до колен. Вы говорите ему: Your winter coat is longer than mine — твоё зимнее пальто длиннее моего. После Your winter coat ставим is и сравнительную форму longer: long + -er. Завершите than mine — «чем моё», где mine заменяет my winter coat.",
+        "uk": "Ви з другом стоїте перед дзеркалом: його зимове пальто нижче колін, а ваше — до колін. Ви кажете йому: Your winter coat is longer than mine — твоє зимове пальто довше за моє. Після Your winter coat ставимо is і порівняльну форму longer: long + -er. Завершіть than mine — «ніж моє», де mine замінює my winter coat."
       },
       "question": {
         "interactionId": "en:lesson-18:session-06:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сравнить варианты 3",
-        "uk": "Порівняти варіанти 3"
+        "ru": "Выбрать длину платья",
+        "uk": "Вибрати довжину сукні"
       },
       "bodyByLocale": {
-        "ru": "summer dress — летнее платье. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. short → shorter.",
-        "uk": "summer dress — літня сукня. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. short → shorter."
+        "ru": "На вешалке рядом два летних платья: это до колен, а то — до щиколоток. This summer dress is shorter than that one — это летнее платье короче того. Сначала назовите предмет: This summer dress is. Затем добавьте shorter than that one. Shorter — сравнительная форма short; that one заменяет that summer dress, потому что уже понятно, какие вещи вы сравниваете.",
+        "uk": "На вішалці поруч дві літні сукні: ця до колін, а та — до щиколоток. This summer dress is shorter than that one — ця літня сукня коротша за ту. Спочатку назвіть предмет: This summer dress is. Потім додайте shorter than that one. Shorter — порівняльна форма short; that one замінює that summer dress, бо вже зрозуміло, які речі ви порівнюєте."
       },
       "question": {
         "interactionId": "en:lesson-18:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c863e8f1fcf0fda398640123c76991a64c1020516af36a84182a03250632e123"
+  "introFingerprint": "001fb825fd5cfb0fc557b65c394dc1fa99cec7f1207984d6de5fba1cc664c914"
 }

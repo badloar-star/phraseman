@@ -13383,7 +13383,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 4,
-    sourceFingerprint: "af1fc7eefbfd18f0fb07bf50b5b6d484339fd7c9fa08ceaf4f71db2feb3b630c",
+    sourceFingerprint: "6e1f16bb1298c6705a5eaf22871c98eaf9bd45c22b249d1ebbf2be7803d91e69",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна сравнительная форма cheaper.","В сравнении используем than, не that."],["Нужна сравнительная форма sweeter.","В сравнении используем than, не that."],["Нужна сравнительная форма cheaper.","В сравнении используем than, не that."]],"uk":[["Потрібна порівняльна форма cheaper.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма sweeter.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма cheaper.","У порівнянні використовуємо than, не that."]]}),
@@ -13397,7 +13397,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 5,
-    sourceFingerprint: "0e7dba8dff07444a31853d1152b2fd91f7a94d3a06df2e31c35669c116fc6e7f",
+    sourceFingerprint: "fd7638e973d19b12a7d43c6c465af6ef86a9ff72ba64c2c7e429f72f98c489a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна сравнительная форма lower.","В сравнении используем than, не that."],["Нужна сравнительная форма lower.","В сравнении используем than, не that."],["Нужна сравнительная форма higher.","В сравнении используем than, не that."]],"uk":[["Потрібна порівняльна форма lower.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма lower.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма higher.","У порівнянні використовуємо than, не that."]]}),
@@ -13411,7 +13411,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 6,
-    sourceFingerprint: "1e8b6fde1b8fe0ce472fb42623cf14d30b0a8af2aac0813c918b52ddbf19f0c0",
+    sourceFingerprint: "73c783fafc33c9957b3648b5600fb2300574bce9f9927d05d51299547ea19920",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна сравнительная форма lighter.","В сравнении используем than, не that."],["Нужна сравнительная форма longer.","В сравнении используем than, не that."],["Нужна сравнительная форма shorter.","В сравнении используем than, не that."]],"uk":[["Потрібна порівняльна форма lighter.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма longer.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма shorter.","У порівнянні використовуємо than, не that."]]}),
@@ -13425,7 +13425,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 7,
-    sourceFingerprint: "c5e7cb226834d544c3e58a701d72317268cf821c50094890ddaa2dd41f643835",
+    sourceFingerprint: "8dfec99dde493fc65a7ff28b1e79908d2467cf99171b5d9f31fb31f9f0b51aaf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна сравнительная форма wider.","В сравнении используем than, не that."],["Нужна сравнительная форма softer.","В сравнении используем than, не that."],["Нужна сравнительная форма cheaper.","В сравнении используем than, не that."]],"uk":[["Потрібна порівняльна форма wider.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма softer.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма cheaper.","У порівнянні використовуємо than, не that."]]}),
@@ -13439,7 +13439,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 8,
-    sourceFingerprint: "c8871c11c85cdcb8f398dcbfd78dc380f6fe2eaff566c996f93cbad22a1bbf5d",
+    sourceFingerprint: "ed47d0e3f59fe86e203e3b7260aba205011b529bdfb1f8578e61872e6db224aa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна сравнительная форма slower.","В сравнении используем than, не that."],["Нужна сравнительная форма higher.","В сравнении используем than, не that."],["Нужна сравнительная форма cheaper.","В сравнении используем than, не that."]],"uk":[["Потрібна порівняльна форма slower.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма higher.","У порівнянні використовуємо than, не that."],["Потрібна порівняльна форма cheaper.","У порівнянні використовуємо than, не that."]]}),

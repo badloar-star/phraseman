@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сравнить варианты 1",
-        "uk": "Порівняти варіанти 1"
+        "ru": "Сравнить ширину обуви",
+        "uk": "Порівняти ширину взуття"
       },
       "bodyByLocale": {
-        "ru": "sports shoes — спортивная обувь. running shoes — кроссовки для бега. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. wide → wider.",
-        "uk": "sports shoes — спортивне взуття. running shoes — кросівки для бігу. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. wide → wider."
+        "ru": "В магазине вы примерили спортивные туфли: в них стопе свободнее, чем в вашей паре. These sports shoes are wider than mine — эта спортивная обувь шире моей. Начните с These sports shoes are, затем добавьте wider than mine. У wide уже есть конечная e, поэтому добавляем только -r: wider. Mine заменяет my sports shoes, чтобы не повторять название обуви.",
+        "uk": "У магазині ви приміряли спортивні туфлі: у них стопі вільніше, ніж у вашій парі. These sports shoes are wider than mine — це спортивне взуття ширше за моє. Почніть із These sports shoes are, потім додайте wider than mine. У wide вже є кінцева e, тому додаємо лише -r: wider. Mine замінює my sports shoes, щоб не повторювати назву взуття."
       },
       "question": {
         "interactionId": "en:lesson-18:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сравнить варианты 2",
-        "uk": "Порівняти варіанти 2"
+        "ru": "Найти более мягкую пару",
+        "uk": "Знайти м'якшу пару"
       },
       "bodyByLocale": {
-        "ru": "leather shoes — кожаные туфли. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. soft → softer.",
-        "uk": "leather shoes — шкіряні туфлі. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. soft → softer."
+        "ru": "Вы трогаете две пары кожаных туфель и замечаете, что эта мягче той. These leather shoes are softer than that pair — эти кожаные туфли мягче той пары. После These leather shoes ставим are: shoes — множественное число. Затем softer, сравнительную форму soft, и than that pair — «чем та пара». Так называем свойство и сразу указываем, с чем сравниваем.",
+        "uk": "Ви торкаєтеся двох пар шкіряних туфель і помічаєте, що ця м'якша за ту. These leather shoes are softer than that pair — ці шкіряні туфлі м'якші за ту пару. Після These leather shoes ставимо are: shoes — множина. Потім softer, порівняльну форму soft, і than that pair — «ніж та пара». Так називаємо властивість і відразу вказуємо, з чим порівнюємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сравнить варианты 3",
-        "uk": "Порівняти варіанти 3"
+        "ru": "Сравнить ценники",
+        "uk": "Порівняти цінники"
       },
       "bodyByLocale": {
-        "ru": "flat shoes — обувь без высокого каблука. Сравниваем конкретные варианты в этой ситуации, а не утверждаем правило для всех случаев. После сравнительной формы используем than. Ours — «наш/наша», mine — «мой/моя», that one заменяет уже названный предмет. cheap → cheaper.",
-        "uk": "flat shoes — взуття без високих підборів. Порівнюємо конкретні варіанти в цій ситуації, а не стверджуємо правило для всіх випадків. Після порівняльної форми використовуємо than. Ours — «наш/наша», mine — «мій/моя», that one замінює вже названий предмет. cheap → cheaper."
+        "ru": "Вы выбираете обувь без высокого каблука: эта пара стоит тридцать, а та — сорок. These flat shoes are cheaper than that pair — эта обувь без высокого каблука дешевле той пары. Сначала These flat shoes are, затем cheaper than that pair. К cheap добавляем -er для значения «дешевле». Than связывает сравнение с другой парой; that pair позволяет не повторять shoes.",
+        "uk": "Ви обираєте взуття без високих підборів: ця пара коштує тридцять, а та — сорок. These flat shoes are cheaper than that pair — це взуття без високих підборів дешевше за ту пару. Спочатку These flat shoes are, потім cheaper than that pair. До cheap додаємо -er для значення «дешевше». Than пов'язує порівняння з іншою парою; that pair дає змогу не повторювати shoes."
       },
       "question": {
         "interactionId": "en:lesson-18:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7601cfc74d12e516274fb48855da0804971108670d8ce5bea901756acbd86109"
+  "introFingerprint": "ae6b21f8de71b0ef6e581bdc4a8493e6bbb94582d36cd246efb5579017d8c801"
 }

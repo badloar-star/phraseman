@@ -34,6 +34,7 @@ const KNOWN_GUARDS = [
   // Learning V2 22.10: правила входного теста №10 и «пропущенное — ПРОСТО ОТКРЫТО» (прогресс v2: открыто ≠ пройдено, ничего не теряется)
   'tests/learning_v2_placement_test_v1.test.ts',
   'tests/learning_v2_course_progress_v2.test.ts',
+  'tests/owner_locks_mistakes_delete_2026_10_24.test.ts', // Learning V2 24.10: ошибки можно удалять (одна, из карточки, все) с «Вернуть»
   'tests/v2_screens_color_literals_ratchet.test.mjs',
   'tests/theme_semantic_follows_current_theme.test.ts',
   // 8 · МОМЕНТЫ 22.10: искры без сдвига тона, палитры визиток, металл рангов, «по заходам»

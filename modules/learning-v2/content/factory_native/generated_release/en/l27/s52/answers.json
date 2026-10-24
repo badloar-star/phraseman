@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-52:word:reluctantly",
+    "correctText": "reluctantly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i01",
+    "correctText": "I joined reluctantly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i02",
+    "correctText": "Where does the group meet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i03",
+    "correctText": "We meet by the park gate.",
+    "correctResponseId": "en:lesson-27:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:word:willingly",
+    "correctText": "willingly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i04",
+    "correctText": "She helped willingly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i05",
+    "correctText": "Could you show me where to go?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i06",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-27:session-52:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i07",
+    "correctText": "The group leaves at nine.",
+    "correctResponseId": "en:lesson-27:session-52:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:word:enthusiastically",
+    "correctText": "enthusiastically",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i08",
+    "correctText": "They cheered enthusiastically.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-52:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i10",
+    "correctText": "Where can I fill my water bottle?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i11",
+    "correctText": "Would you like to sit down?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:word:consistently",
+    "correctText": "consistently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i12",
+    "correctText": "He trains consistently.",
+    "correctResponseId": "en:lesson-27:session-52:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i13",
+    "correctText": "spoke",
+    "correctResponseId": "en:lesson-27:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i14",
+    "correctText": "If I were you, I would ask about the route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i15",
+    "correctText": "Shall we meet at the bus stop next time?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i16",
+    "correctText": "We would meet more often if we lived closer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-52:i17",
+    "correctText": "Thank you for inviting me.",
+    "correctResponseId": null
+  }
+]

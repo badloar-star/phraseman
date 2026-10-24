@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-51:word:inexperienced",
+    "correctText": "inexperienced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i01",
+    "correctText": "I am inexperienced at this.",
+    "correctResponseId": "en:lesson-27:session-51:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i02",
+    "correctText": "Could you show me how to fold this?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i03",
+    "correctText": "Could you hold this edge?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:word:skilful",
+    "correctText": "skilful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i04",
+    "correctText": "That was skilful.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i05",
+    "correctText": "written",
+    "correctResponseId": "en:lesson-27:session-51:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i06",
+    "correctText": "Could you pass me the tape?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:word:clumsily",
+    "correctText": "clumsily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i07",
+    "correctText": "I wrapped it clumsily.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i08",
+    "correctText": "We have enough paper for one more try.",
+    "correctResponseId": "en:lesson-27:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-51:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i10",
+    "correctText": "Shall we try again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:word:expertly",
+    "correctText": "expertly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i11",
+    "correctText": "She tied the bow expertly.",
+    "correctResponseId": "en:lesson-27:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i12",
+    "correctText": "We could use a strip of paper.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i13",
+    "correctText": "wrote",
+    "correctResponseId": "en:lesson-27:session-51:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i14",
+    "correctText": "If I were you, I would try a smaller piece.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i15",
+    "correctText": "Where should I put the card?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i16",
+    "correctText": "We would finish sooner if we worked together.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-51:i17",
+    "correctText": "Shall we clear the table together?",
+    "correctResponseId": null
+  }
+]

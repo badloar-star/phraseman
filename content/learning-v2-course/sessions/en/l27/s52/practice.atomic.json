@@ -1,0 +1,2089 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-52",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-52:word:reluctantly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reluctantly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:reluctantly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reluctantly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:reluctantly:audio",
+            "transcript": "reluctantly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:reluctantly:r1",
+              "targetText": "reluctantly",
+              "meaningByLocale": {
+                "ru": "Неохотно.",
+                "uk": "Неохоче."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reluctantly",
+            "definitionByLocale": {
+              "ru": "Неохотно.",
+              "uk": "Неохоче."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Признайтесь, что сначала присоединились неохотно.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Признайтесь, что сначала присоединились неохотно.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I joined reluctantly.",
+          "localizedMeaning": {
+            "ru": "Признайтесь, что сначала присоединились неохотно.",
+            "uk": "Зізнайтеся, що спочатку приєдналися неохоче."
+          },
+          "orderedTokens": [
+            "I",
+            "joined",
+            "reluctantly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните место встречи группы.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Уточните место встречи группы.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i02:audio",
+            "transcript": "Where does the group meet?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where does the group meet?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i03:r1",
+            "text": "We meet by the park gate."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i03:r2",
+            "text": "We meet by the school gate."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i03:r3",
+            "text": "They meet by the park gate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i03:audio",
+            "transcript": "We meet by the park gate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:i03:r1",
+              "targetText": "We meet by the park gate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i03:r2",
+              "targetText": "We meet by the school gate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i03:r3",
+              "targetText": "They meet by the park gate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet by the park gate.",
+                "uk": "У записі звучить We meet by the park gate."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet by the park gate.",
+                "uk": "У записі звучить We meet by the park gate."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:word:willingly",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — willingly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:willingly:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — willingly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:willingly:audio",
+            "transcript": "willingly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:willingly:r1",
+              "targetText": "willingly",
+              "meaningByLocale": {
+                "ru": "Охотно, по собственной воле.",
+                "uk": "Охоче, з власної волі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "willingly",
+            "definitionByLocale": {
+              "ru": "Охотно, по собственной воле.",
+              "uk": "Охоче, з власної волі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, как знакомая помогла.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i04:audio"
+        ],
+        "accessibilityLabel": "Услышьте, как знакомая помогла.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i04:audio",
+            "transcript": "She helped willingly."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She helped willingly.",
+          "orderedTokens": [
+            "She",
+            "helped",
+            "willingly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i05",
+        "ordinal": 10,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите показать место старта.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Попросите показать место старта.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i05:audio",
+            "transcript": "Could you show me where to go?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you show me where to go?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы уже поговорили с организатором.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i06:r1",
+            "text": "spoken"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i06:r2",
+            "text": "spoke"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i06:r3",
+            "text": "speaking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы уже поговорили с организатором.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже поговорили с организатором.",
+            "uk": "Ви вже поговорили з організаторкою."
+          },
+          "gappedTargetPhrase": "I have already ___ to the organiser.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-52:i06:r1",
+              "text": "spoken"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i06:r2",
+              "text": "spoke"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i06:r3",
+              "text": "speaking"
+            }
+          ],
+          "testedDimension": "Вы уже поговорили с организатором.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Вы уже поговорили с организатором.",
+              "feedbackByLocale": {
+                "ru": "После have нужна spoken.",
+                "uk": "Після have потрібна spoken."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Вы уже поговорили с организатором.",
+              "feedbackByLocale": {
+                "ru": "Здесь have spoken.",
+                "uk": "Тут have spoken."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i07:r1",
+            "text": "The group leaves at nine."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i07:r2",
+            "text": "The group leaves at ten."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i07:r3",
+            "text": "The group left at nine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i07:audio",
+            "transcript": "The group leaves at nine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:i07:r1",
+              "targetText": "The group leaves at nine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i07:r2",
+              "targetText": "The group leaves at ten.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i07:r3",
+              "targetText": "The group left at nine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group leaves at nine.",
+                "uk": "У записі звучить The group leaves at nine."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group leaves at nine.",
+                "uk": "У записі звучить The group leaves at nine."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:word:enthusiastically",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — enthusiastically",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:enthusiastically:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — enthusiastically",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:enthusiastically:audio",
+            "transcript": "enthusiastically"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:enthusiastically:r1",
+              "targetText": "enthusiastically",
+              "meaningByLocale": {
+                "ru": "С воодушевлением, с энтузиазмом.",
+                "uk": "Із захопленням, з ентузіазмом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "enthusiastically",
+            "definitionByLocale": {
+              "ru": "С воодушевлением, с энтузиазмом.",
+              "uk": "Із захопленням, з ентузіазмом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишите поддержку друзей у финиша.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишите поддержку друзей у финиша.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They cheered enthusiastically.",
+          "localizedMeaning": {
+            "ru": "Опишите поддержку друзей у финиша.",
+            "uk": "Опишіть підтримку друзів біля фінішу."
+          },
+          "orderedTokens": [
+            "They",
+            "cheered",
+            "enthusiastically"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам хочется, чтобы друзья были здесь сейчас.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам хочется, чтобы друзья были здесь сейчас.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам хочется, чтобы друзья были здесь сейчас.",
+            "uk": "Вам хочеться, щоб друзі були тут зараз."
+          },
+          "gappedTargetPhrase": "I wish my friends ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-52:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вам хочется, чтобы друзья были здесь сейчас.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Вам хочется, чтобы друзья были здесь сейчас.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь were.",
+                "uk": "Після wish тут were."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Вам хочется, чтобы друзья были здесь сейчас.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма were.",
+                "uk": "Потрібна форма were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите, где можно набрать воды.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i10:audio"
+        ],
+        "accessibilityLabel": "Спросите, где можно набрать воды.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i10:audio",
+            "transcript": "Where can I fill my water bottle?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where can I fill my water bottle?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте приглашение посидеть после пробежки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Услышьте приглашение посидеть после пробежки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i11:audio",
+            "transcript": "Would you like to sit down?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Would you like to sit down?",
+          "orderedTokens": [
+            "Would",
+            "you",
+            "like",
+            "to",
+            "sit",
+            "down"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:word:consistently",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — consistently",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:consistently:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — consistently",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:consistently:audio",
+            "transcript": "consistently"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:consistently:r1",
+              "targetText": "consistently",
+              "meaningByLocale": {
+                "ru": "Последовательно, регулярно.",
+                "uk": "Послідовно, регулярно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "consistently",
+            "definitionByLocale": {
+              "ru": "Последовательно, регулярно.",
+              "uk": "Послідовно, регулярно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i12:r1",
+            "text": "He trains consistently."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i12:r2",
+            "text": "She trains consistently."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i12:r3",
+            "text": "He trains occasionally."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i12:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i12:audio",
+            "transcript": "He trains consistently."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:i12:r1",
+              "targetText": "He trains consistently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i12:r2",
+              "targetText": "She trains consistently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i12:r3",
+              "targetText": "He trains occasionally.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He trains consistently.",
+                "uk": "У записі звучить He trains consistently."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He trains consistently.",
+                "uk": "У записі звучить He trains consistently."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточните, что разговор был вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i13:r1",
+            "text": "spoke"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i13:r2",
+            "text": "have spoken"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i13:r3",
+            "text": "speaking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните, что разговор был вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните, что разговор был вчера.",
+            "uk": "Уточніть, що розмова була вчора."
+          },
+          "gappedTargetPhrase": "I ___ to her yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-52:i13:r1",
+              "text": "spoke"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i13:r2",
+              "text": "have spoken"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i13:r3",
+              "text": "speaking"
+            }
+          ],
+          "testedDimension": "Уточните, что разговор был вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i13:r2",
+              "correct": false,
+              "testedDimension": "Уточните, что разговор был вчера.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь spoke.",
+                "uk": "Із yesterday тут spoke."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i13:r3",
+              "correct": false,
+              "testedDimension": "Уточните, что разговор был вчера.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма spoke.",
+                "uk": "Потрібна форма spoke."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посоветуйте узнать маршрут заранее.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посоветуйте узнать маршрут заранее.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If I were you, I would ask about the route.",
+          "localizedMeaning": {
+            "ru": "Посоветуйте узнать маршрут заранее.",
+            "uk": "Порадьте дізнатися маршрут заздалегідь."
+          },
+          "orderedTokens": [
+            "If",
+            "I",
+            "were",
+            "you,",
+            "I",
+            "would",
+            "ask",
+            "about",
+            "the",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите встретиться у остановки в следующий раз.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Предложите встретиться у остановки в следующий раз.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i15:audio",
+            "transcript": "Shall we meet at the bus stop next time?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we meet at the bus stop next time?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If we lived closer, we would meet more often.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If we lived closer, we would meet more often.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would meet more often if we lived closer.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we lived closer, we would meet more often.",
+            "uk": "Почніть з результату: If we lived closer, we would meet more often."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "meet",
+            "more",
+            "often",
+            "if",
+            "we",
+            "lived",
+            "closer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поблагодарите за приглашение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Поблагодарите за приглашение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i17:audio",
+            "transcript": "Thank you for inviting me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thank you for inviting me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-52:word:reluctantly",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reluctantly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:reluctantly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reluctantly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:reluctantly:audio",
+            "transcript": "reluctantly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:reluctantly:r1",
+              "targetText": "reluctantly",
+              "meaningByLocale": {
+                "ru": "Неохотно.",
+                "uk": "Неохоче."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reluctantly",
+            "definitionByLocale": {
+              "ru": "Неохотно.",
+              "uk": "Неохоче."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Зізнайтеся, що спочатку приєдналися неохоче.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Зізнайтеся, що спочатку приєдналися неохоче.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I joined reluctantly.",
+          "localizedMeaning": {
+            "ru": "Признайтесь, что сначала присоединились неохотно.",
+            "uk": "Зізнайтеся, що спочатку приєдналися неохоче."
+          },
+          "orderedTokens": [
+            "I",
+            "joined",
+            "reluctantly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть місце зустрічі групи.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i02:audio"
+        ],
+        "accessibilityLabel": "Уточніть місце зустрічі групи.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i02:audio",
+            "transcript": "Where does the group meet?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where does the group meet?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i03:r1",
+            "text": "We meet by the park gate."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i03:r2",
+            "text": "We meet by the school gate."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i03:r3",
+            "text": "They meet by the park gate."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i03:audio",
+            "transcript": "We meet by the park gate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:i03:r1",
+              "targetText": "We meet by the park gate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i03:r2",
+              "targetText": "We meet by the school gate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i03:r3",
+              "targetText": "They meet by the park gate.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet by the park gate.",
+                "uk": "У записі звучить We meet by the park gate."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We meet by the park gate.",
+                "uk": "У записі звучить We meet by the park gate."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:word:willingly",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — willingly",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:willingly:audio"
+        ],
+        "accessibilityLabel": "Картка слова — willingly",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:willingly:audio",
+            "transcript": "willingly"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:willingly:r1",
+              "targetText": "willingly",
+              "meaningByLocale": {
+                "ru": "Охотно, по собственной воле.",
+                "uk": "Охоче, з власної волі."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "willingly",
+            "definitionByLocale": {
+              "ru": "Охотно, по собственной воле.",
+              "uk": "Охоче, з власної волі."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, як знайома допомогла.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i04:audio"
+        ],
+        "accessibilityLabel": "Почуйте, як знайома допомогла.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i04:audio",
+            "transcript": "She helped willingly."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She helped willingly.",
+          "orderedTokens": [
+            "She",
+            "helped",
+            "willingly"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i05",
+        "ordinal": 10,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть показати місце старту.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i05:audio"
+        ],
+        "accessibilityLabel": "Попросіть показати місце старту.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i05:audio",
+            "transcript": "Could you show me where to go?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you show me where to go?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви вже поговорили з організаторкою.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i06:r1",
+            "text": "spoken"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i06:r2",
+            "text": "spoke"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i06:r3",
+            "text": "speaking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви вже поговорили з організаторкою.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы уже поговорили с организатором.",
+            "uk": "Ви вже поговорили з організаторкою."
+          },
+          "gappedTargetPhrase": "I have already ___ to the organiser.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-52:i06:r1",
+              "text": "spoken"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i06:r2",
+              "text": "spoke"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i06:r3",
+              "text": "speaking"
+            }
+          ],
+          "testedDimension": "Ви вже поговорили з організаторкою.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Ви вже поговорили з організаторкою.",
+              "feedbackByLocale": {
+                "ru": "После have нужна spoken.",
+                "uk": "Після have потрібна spoken."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i06:r3",
+              "correct": false,
+              "testedDimension": "Ви вже поговорили з організаторкою.",
+              "feedbackByLocale": {
+                "ru": "Здесь have spoken.",
+                "uk": "Тут have spoken."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i07:r1",
+            "text": "The group leaves at nine."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i07:r2",
+            "text": "The group leaves at ten."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i07:r3",
+            "text": "The group left at nine."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i07:audio",
+            "transcript": "The group leaves at nine."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:i07:r1",
+              "targetText": "The group leaves at nine.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i07:r2",
+              "targetText": "The group leaves at ten.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i07:r3",
+              "targetText": "The group left at nine.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group leaves at nine.",
+                "uk": "У записі звучить The group leaves at nine."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The group leaves at nine.",
+                "uk": "У записі звучить The group leaves at nine."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:word:enthusiastically",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — enthusiastically",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:enthusiastically:audio"
+        ],
+        "accessibilityLabel": "Картка слова — enthusiastically",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:enthusiastically:audio",
+            "transcript": "enthusiastically"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:enthusiastically:r1",
+              "targetText": "enthusiastically",
+              "meaningByLocale": {
+                "ru": "С воодушевлением, с энтузиазмом.",
+                "uk": "Із захопленням, з ентузіазмом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "enthusiastically",
+            "definitionByLocale": {
+              "ru": "С воодушевлением, с энтузиазмом.",
+              "uk": "Із захопленням, з ентузіазмом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Опишіть підтримку друзів біля фінішу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Опишіть підтримку друзів біля фінішу.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "They cheered enthusiastically.",
+          "localizedMeaning": {
+            "ru": "Опишите поддержку друзей у финиша.",
+            "uk": "Опишіть підтримку друзів біля фінішу."
+          },
+          "orderedTokens": [
+            "They",
+            "cheered",
+            "enthusiastically"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам хочеться, щоб друзі були тут зараз.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i09:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i09:r3",
+            "text": "be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам хочеться, щоб друзі були тут зараз.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам хочется, чтобы друзья были здесь сейчас.",
+            "uk": "Вам хочеться, щоб друзі були тут зараз."
+          },
+          "gappedTargetPhrase": "I wish my friends ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-52:i09:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i09:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i09:r3",
+              "text": "be"
+            }
+          ],
+          "testedDimension": "Вам хочеться, щоб друзі були тут зараз.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Вам хочеться, щоб друзі були тут зараз.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь were.",
+                "uk": "Після wish тут were."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i09:r3",
+              "correct": false,
+              "testedDimension": "Вам хочеться, щоб друзі були тут зараз.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма were.",
+                "uk": "Потрібна форма were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте, де можна набрати води.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i10:audio"
+        ],
+        "accessibilityLabel": "Запитайте, де можна набрати води.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i10:audio",
+            "transcript": "Where can I fill my water bottle?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Where can I fill my water bottle?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запрошення посидіти після пробіжки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i11:audio"
+        ],
+        "accessibilityLabel": "Почуйте запрошення посидіти після пробіжки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i11:audio",
+            "transcript": "Would you like to sit down?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Would you like to sit down?",
+          "orderedTokens": [
+            "Would",
+            "you",
+            "like",
+            "to",
+            "sit",
+            "down"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:word:consistently",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — consistently",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:word:consistently:audio"
+        ],
+        "accessibilityLabel": "Картка слова — consistently",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:word:consistently:audio",
+            "transcript": "consistently"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:word:consistently:r1",
+              "targetText": "consistently",
+              "meaningByLocale": {
+                "ru": "Последовательно, регулярно.",
+                "uk": "Послідовно, регулярно."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "consistently",
+            "definitionByLocale": {
+              "ru": "Последовательно, регулярно.",
+              "uk": "Послідовно, регулярно."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i12:r1",
+            "text": "He trains consistently."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i12:r2",
+            "text": "She trains consistently."
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i12:r3",
+            "text": "He trains occasionally."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i12:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i12:audio",
+            "transcript": "He trains consistently."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-52:i12:r1",
+              "targetText": "He trains consistently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i12:r2",
+              "targetText": "She trains consistently.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i12:r3",
+              "targetText": "He trains occasionally.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i12:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He trains consistently.",
+                "uk": "У записі звучить He trains consistently."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i12:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит He trains consistently.",
+                "uk": "У записі звучить He trains consistently."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточніть, що розмова була вчора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-52:i13:r1",
+            "text": "spoke"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i13:r2",
+            "text": "have spoken"
+          },
+          {
+            "responseId": "en:lesson-27:session-52:i13:r3",
+            "text": "speaking"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть, що розмова була вчора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните, что разговор был вчера.",
+            "uk": "Уточніть, що розмова була вчора."
+          },
+          "gappedTargetPhrase": "I ___ to her yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-52:i13:r1",
+              "text": "spoke"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i13:r2",
+              "text": "have spoken"
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i13:r3",
+              "text": "speaking"
+            }
+          ],
+          "testedDimension": "Уточніть, що розмова була вчора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-52:i13:r2",
+              "correct": false,
+              "testedDimension": "Уточніть, що розмова була вчора.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь spoke.",
+                "uk": "Із yesterday тут spoke."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-52:i13:r3",
+              "correct": false,
+              "testedDimension": "Уточніть, що розмова була вчора.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма spoke.",
+                "uk": "Потрібна форма spoke."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Порадьте дізнатися маршрут заздалегідь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Порадьте дізнатися маршрут заздалегідь.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If I were you, I would ask about the route.",
+          "localizedMeaning": {
+            "ru": "Посоветуйте узнать маршрут заранее.",
+            "uk": "Порадьте дізнатися маршрут заздалегідь."
+          },
+          "orderedTokens": [
+            "If",
+            "I",
+            "were",
+            "you,",
+            "I",
+            "would",
+            "ask",
+            "about",
+            "the",
+            "route"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте зустрітися біля зупинки наступного разу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i15:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте зустрітися біля зупинки наступного разу.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i15:audio",
+            "transcript": "Shall we meet at the bus stop next time?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we meet at the bus stop next time?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть з результату: If we lived closer, we would meet more often.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть з результату: If we lived closer, we would meet more often.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would meet more often if we lived closer.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we lived closer, we would meet more often.",
+            "uk": "Почніть з результату: If we lived closer, we would meet more often."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "meet",
+            "more",
+            "often",
+            "if",
+            "we",
+            "lived",
+            "closer"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-52:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подякуйте за запрошення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-52:i17:audio"
+        ],
+        "accessibilityLabel": "Подякуйте за запрошення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-52:i17:audio",
+            "transcript": "Thank you for inviting me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thank you for inviting me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-52:word:reluctantly",
+      "correctText": "reluctantly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i01",
+      "correctText": "I joined reluctantly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i02",
+      "correctText": "Where does the group meet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i03",
+      "correctText": "We meet by the park gate.",
+      "correctResponseId": "en:lesson-27:session-52:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:word:willingly",
+      "correctText": "willingly",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i04",
+      "correctText": "She helped willingly.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i05",
+      "correctText": "Could you show me where to go?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i06",
+      "correctText": "spoken",
+      "correctResponseId": "en:lesson-27:session-52:i06:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i07",
+      "correctText": "The group leaves at nine.",
+      "correctResponseId": "en:lesson-27:session-52:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:word:enthusiastically",
+      "correctText": "enthusiastically",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i08",
+      "correctText": "They cheered enthusiastically.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i09",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-27:session-52:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i10",
+      "correctText": "Where can I fill my water bottle?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i11",
+      "correctText": "Would you like to sit down?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:word:consistently",
+      "correctText": "consistently",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i12",
+      "correctText": "He trains consistently.",
+      "correctResponseId": "en:lesson-27:session-52:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i13",
+      "correctText": "spoke",
+      "correctResponseId": "en:lesson-27:session-52:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i14",
+      "correctText": "If I were you, I would ask about the route.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i15",
+      "correctText": "Shall we meet at the bus stop next time?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i16",
+      "correctText": "We would meet more often if we lived closer.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:i17",
+      "correctText": "Thank you for inviting me.",
+      "correctResponseId": null
+    }
+  ]
+}

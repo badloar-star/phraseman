@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-52",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-52:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-52:intro1:r2": {
+          "ru": "О прошлом здесь говорим joined.",
+          "uk": "Про минуле тут говоримо joined."
+        },
+        "en:lesson-27:session-52:intro1:r3": {
+          "ru": "Нужна форма joined.",
+          "uk": "Потрібна форма joined."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-52:intro2:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-27:session-52:intro2:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-52:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-52:intro3:r2": {
+          "ru": "С yesterday здесь spoke без have.",
+          "uk": "Із yesterday тут spoke без have."
+        },
+        "en:lesson-27:session-52:intro3:r3": {
+          "ru": "Нужна форма spoke.",
+          "uk": "Потрібна форма spoke."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "857b58116b380aca8fc413e9c5cef13dc0b46f7d24072bb669bc7d26412be444"
+}

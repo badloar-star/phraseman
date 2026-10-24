@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-51",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-51:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-51:intro1:r2": {
+          "ru": "С I нужна am.",
+          "uk": "Із I потрібна am."
+        },
+        "en:lesson-27:session-51:intro1:r3": {
+          "ru": "Перед прилагательным нужна am.",
+          "uk": "Перед прикметником потрібна am."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-51:intro2:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-27:session-51:intro2:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-51:intro3:r2": {
+          "ru": "С yesterday здесь wrote без have.",
+          "uk": "Із yesterday тут wrote без have."
+        },
+        "en:lesson-27:session-51:intro3:r3": {
+          "ru": "Нужна форма wrote.",
+          "uk": "Потрібна форма wrote."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "42085ab76329199ad153d414ed698b4847f8b2e309b975a42cff6cadbc61f09d"
+}

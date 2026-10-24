@@ -1,0 +1,1003 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-51",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-51:word:inexperienced",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — inexperienced",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:word:inexperienced:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — inexperienced",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:word:inexperienced:audio",
+          "transcript": "inexperienced"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:word:inexperienced:r1",
+            "targetText": "inexperienced",
+            "meaningByLocale": {
+              "ru": "Неопытный.",
+              "uk": "Недосвідчений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inexperienced",
+          "definitionByLocale": {
+            "ru": "Неопытный.",
+            "uk": "Недосвідчений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-51:i01:r1",
+          "text": "I am inexperienced at this."
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i01:r2",
+          "text": "We are inexperienced at this."
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i01:r3",
+          "text": "I am good at this."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i01:audio",
+          "transcript": "I am inexperienced at this."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:i01:r1",
+            "targetText": "I am inexperienced at this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i01:r2",
+            "targetText": "We are inexperienced at this.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i01:r3",
+            "targetText": "I am good at this.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-51:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am inexperienced at this.",
+              "uk": "У записі звучить I am inexperienced at this."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I am inexperienced at this.",
+              "uk": "У записі звучить I am inexperienced at this."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите показать, как сложить бумагу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i02:audio"
+      ],
+      "accessibilityLabel": "Попросите показать, как сложить бумагу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i02:audio",
+          "transcript": "Could you show me how to fold this?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me how to fold this?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу придержать край.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i03:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу придержать край.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i03:audio",
+          "transcript": "Could you hold this edge?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you hold this edge?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "hold",
+          "this",
+          "edge"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:word:skilful",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — skilful",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:word:skilful:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — skilful",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:word:skilful:audio",
+          "transcript": "skilful"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:word:skilful:r1",
+            "targetText": "skilful",
+            "meaningByLocale": {
+              "ru": "Умелый, искусный.",
+              "uk": "Вправний, майстерний."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "skilful",
+          "definitionByLocale": {
+            "ru": "Умелый, искусный.",
+            "uk": "Вправний, майстерний."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Похвалите ловко выполненное действие.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Похвалите ловко выполненное действие.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That was skilful.",
+        "localizedMeaning": {
+          "ru": "Похвалите ловко выполненное действие.",
+          "uk": "Похваліть вправно виконану дію."
+        },
+        "orderedTokens": [
+          "That",
+          "was",
+          "skilful"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы уже подписали открытку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-51:i05:r1",
+          "text": "written"
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i05:r2",
+          "text": "wrote"
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i05:r3",
+          "text": "writing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже подписали открытку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже подписали открытку.",
+          "uk": "Ви вже підписали листівку."
+        },
+        "gappedTargetPhrase": "I have already ___ the card.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-51:i05:r1",
+            "text": "written"
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i05:r2",
+            "text": "wrote"
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i05:r3",
+            "text": "writing"
+          }
+        ],
+        "testedDimension": "Вы уже подписали открытку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-51:i05:r2",
+            "correct": false,
+            "testedDimension": "Вы уже подписали открытку.",
+            "feedbackByLocale": {
+              "ru": "После have нужна written.",
+              "uk": "Після have потрібна written."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i05:r3",
+            "correct": false,
+            "testedDimension": "Вы уже подписали открытку.",
+            "feedbackByLocale": {
+              "ru": "Здесь have written.",
+              "uk": "Тут have written."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите передать клейкую ленту.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите передать клейкую ленту.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i06:audio",
+          "transcript": "Could you pass me the tape?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you pass me the tape?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:word:clumsily",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — clumsily",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:word:clumsily:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — clumsily",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:word:clumsily:audio",
+          "transcript": "clumsily"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:word:clumsily:r1",
+            "targetText": "clumsily",
+            "meaningByLocale": {
+              "ru": "Неловко, неуклюже.",
+              "uk": "Незграбно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clumsily",
+          "definitionByLocale": {
+            "ru": "Неловко, неуклюже.",
+            "uk": "Незграбно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Признайте, что упаковка получилась неловкой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Признайте, что упаковка получилась неловкой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wrapped it clumsily.",
+        "localizedMeaning": {
+          "ru": "Признайте, что упаковка получилась неловкой.",
+          "uk": "Визнайте, що пакування вийшло незграбним."
+        },
+        "orderedTokens": [
+          "I",
+          "wrapped",
+          "it",
+          "clumsily"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-51:i08:r1",
+          "text": "We have enough paper for one more try."
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i08:r2",
+          "text": "We have enough paper for two more tries."
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i08:r3",
+          "text": "We have enough ribbon for one more try."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i08:audio",
+          "transcript": "We have enough paper for one more try."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:i08:r1",
+            "targetText": "We have enough paper for one more try.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i08:r2",
+            "targetText": "We have enough paper for two more tries.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i08:r3",
+            "targetText": "We have enough ribbon for one more try.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have enough paper for one more try.",
+              "uk": "У записі звучить We have enough paper for one more try."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We have enough paper for one more try.",
+              "uk": "У записі звучить We have enough paper for one more try."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы лучше это уметь сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-51:i09:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i09:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i09:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы лучше это уметь сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы лучше это уметь сейчас.",
+          "uk": "Вам хотілося б краще це вміти зараз."
+        },
+        "gappedTargetPhrase": "I wish I ___ better at this.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-51:i09:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i09:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i09:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы лучше это уметь сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-51:i09:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы лучше это уметь сейчас.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i09:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы лучше это уметь сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите попробовать ещё раз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Предложите попробовать ещё раз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i10:audio",
+          "transcript": "Shall we try again?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we try again?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:word:expertly",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — expertly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:word:expertly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — expertly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:word:expertly:audio",
+          "transcript": "expertly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:word:expertly:r1",
+            "targetText": "expertly",
+            "meaningByLocale": {
+              "ru": "Умело, со знанием дела.",
+              "uk": "Уміло, зі знанням справи."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "expertly",
+          "definitionByLocale": {
+            "ru": "Умело, со знанием дела.",
+            "uk": "Уміло, зі знанням справи."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-51:i11:r1",
+          "text": "She tied the bow expertly."
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i11:r2",
+          "text": "She tied the bow clumsily."
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i11:r3",
+          "text": "He tied the bow expertly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i11:audio",
+          "transcript": "She tied the bow expertly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-51:i11:r1",
+            "targetText": "She tied the bow expertly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i11:r2",
+            "targetText": "She tied the bow clumsily.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i11:r3",
+            "targetText": "He tied the bow expertly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-51:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She tied the bow expertly.",
+              "uk": "У записі звучить She tied the bow expertly."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She tied the bow expertly.",
+              "uk": "У записі звучить She tied the bow expertly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение использовать бумажную полоску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение использовать бумажную полоску.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i12:audio",
+          "transcript": "We could use a strip of paper."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We could use a strip of paper.",
+        "orderedTokens": [
+          "We",
+          "could",
+          "use",
+          "a",
+          "strip",
+          "of",
+          "paper"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что подписали открытку вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-51:i13:r1",
+          "text": "wrote"
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i13:r2",
+          "text": "have written"
+        },
+        {
+          "responseId": "en:lesson-27:session-51:i13:r3",
+          "text": "writing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что подписали открытку вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что подписали открытку вчера.",
+          "uk": "Уточніть, що підписали листівку вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-51:i13:r1",
+            "text": "wrote"
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i13:r2",
+            "text": "have written"
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i13:r3",
+            "text": "writing"
+          }
+        ],
+        "testedDimension": "Уточните, что подписали открытку вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-51:i13:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что подписали открытку вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь wrote.",
+              "uk": "Із yesterday тут wrote."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-51:i13:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что подписали открытку вчера.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма wrote.",
+              "uk": "Потрібна форма wrote."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Посоветуйте взять меньший кусок бумаги.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посоветуйте взять меньший кусок бумаги.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "If I were you, I would try a smaller piece.",
+        "localizedMeaning": {
+          "ru": "Посоветуйте взять меньший кусок бумаги.",
+          "uk": "Порадьте взяти менший шматок паперу."
+        },
+        "orderedTokens": [
+          "If",
+          "I",
+          "were",
+          "you,",
+          "I",
+          "would",
+          "try",
+          "a",
+          "smaller",
+          "piece"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, куда положить открытку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i15:audio"
+      ],
+      "accessibilityLabel": "Спросите, куда положить открытку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i15:audio",
+          "transcript": "Where should I put the card?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where should I put the card?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we worked together, we would finish sooner.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we worked together, we would finish sooner.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would finish sooner if we worked together.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we worked together, we would finish sooner.",
+          "uk": "Почніть з результату: If we worked together, we would finish sooner."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "finish",
+          "sooner",
+          "if",
+          "we",
+          "worked",
+          "together"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-51:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите вместе убрать стол.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-51:i17:audio"
+      ],
+      "accessibilityLabel": "Предложите вместе убрать стол.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-51:i17:audio",
+          "transcript": "Shall we clear the table together?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we clear the table together?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7756b70eca51680fdbfa8e4c6e2a022cdcadd726ffb605af900b251e670f300f"
+}

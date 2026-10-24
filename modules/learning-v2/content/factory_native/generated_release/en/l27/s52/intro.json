@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Согласиться попробовать",
+        "uk": "Погодитися спробувати"
+      },
+      "bodyByLocale": {
+        "ru": "Reluctantly — неохотно. I joined reluctantly — я присоединился неохотно. Друг позвал вас на групповую пробежку, но вы сомневались. Willingly — охотно, по собственной воле. She helped willingly — она охотно помогла. Знакомая показала, где собирается группа. Эти слова описывают отношение к действию, а не то, насколько хорошо его выполнили. Where does the group meet? — где собирается группа?",
+        "uk": "Reluctantly — неохоче. I joined reluctantly — я приєднався неохоче. Друг покликав вас на групову пробіжку, але ви сумнівалися. Willingly — охоче, з власної волі. She helped willingly — вона охоче допомогла. Знайома показала, де збирається група. Ці слова описують ставлення до дії, а не те, наскільки добре її виконали. Where does the group meet? — де збирається група?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-52:intro1:r1",
+              "text": "I joined reluctantly."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro1:r2",
+              "text": "I join reluctantly yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro1:r3",
+              "text": "I joining reluctantly."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-52:intro1:r1",
+              "text": "I joined reluctantly."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro1:r2",
+              "text": "I join reluctantly yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro1:r3",
+              "text": "I joining reluctantly."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поддержать участников",
+        "uk": "Підтримати учасників"
+      },
+      "bodyByLocale": {
+        "ru": "Enthusiastically — с воодушевлением, с энтузиазмом. They cheered enthusiastically — они воодушевлённо подбадривали участников. Друзья встречают бегущих у финиша. I wish my friends were here — хотелось бы, чтобы мои друзья были здесь. Were после wish описывает желание сейчас. If I were you, I would ask about the route — на твоём месте я бы спросил о маршруте. Это совет о подготовке к встрече, не о технике бега.",
+        "uk": "Enthusiastically — із захопленням, з ентузіазмом. They cheered enthusiastically — вони завзято підбадьорювали учасників. Друзі зустрічають бігунів біля фінішу. I wish my friends were here — хотілося б, щоб мої друзі були тут. Were після wish описує бажання зараз. If I were you, I would ask about the route — на твоєму місці я б запитав про маршрут. Це порада щодо підготовки до зустрічі, а не щодо техніки бігу."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-52:intro2:r1",
+              "text": "I wish my friends were here."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro2:r2",
+              "text": "I wish my friends are here."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro2:r3",
+              "text": "I wish my friends be here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-52:intro2:r1",
+              "text": "I wish my friends were here."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro2:r2",
+              "text": "I wish my friends are here."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro2:r3",
+              "text": "I wish my friends be here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о следующем разе",
+        "uk": "Домовитися про наступний раз"
+      },
+      "bodyByLocale": {
+        "ru": "Consistently — последовательно, регулярно, без постоянных перерывов или изменений. He trains consistently — он тренируется регулярно. I have already spoken to the organiser — я уже поговорил с организатором: результат сейчас. I spoke to her yesterday — я поговорил с ней вчера: названо законченное время. We would meet more often if we lived closer — мы бы встречались чаще, если бы жили ближе. Would meet — результат, lived — условие. Можно договориться о встрече у остановки, чтобы пойти вместе.",
+        "uk": "Consistently — послідовно, регулярно, без постійних перерв або змін. He trains consistently — він тренується регулярно. I have already spoken to the organiser — я вже поговорив з організаторкою: результат зараз. I spoke to her yesterday — я поговорив із нею вчора: названо завершений час. We would meet more often if we lived closer — ми б зустрічалися частіше, якби жили ближче. Would meet — результат, lived — умова. Можна домовитися про зустріч біля зупинки, щоб піти разом."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-52:intro3:r1",
+              "text": "I spoke to her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro3:r2",
+              "text": "I have spoken to her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro3:r3",
+              "text": "I speaking to her yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-52:intro3:r1",
+              "text": "I spoke to her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro3:r2",
+              "text": "I have spoken to her yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-52:intro3:r3",
+              "text": "I speaking to her yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ac0da6bb92d22ee929cab03e3b07240b10bf2e9589888d6f4c298c6940690165"
+}

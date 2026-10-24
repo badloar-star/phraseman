@@ -23,8 +23,8 @@
           "uk": "Так вийшло б, що скатертина — це сама бабуся. Господиню називаємо через 's: my grandmother's."
         },
         "en:lesson-05:session-32:intro2:r3": {
-          "ru": "aunt — тётя, а скатерть принесла бабушка: нужно grandmother's.",
-          "uk": "aunt — тітка, а скатертину принесла бабуся: потрібно grandmother's."
+          "ru": "aunt — тётя, а скатерть принадлежит бабушке: нужно grandmother's.",
+          "uk": "aunt — тітка, а скатертина належить бабусі: потрібно grandmother's."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-32:intro3:r2": {
-          "ru": "Столовые приборы — один набор, поэтому вопрос начинаем с Is.",
-          "uk": "Столові прибори — один набір, тому питання починаємо з Is."
+          "ru": "Cutlery — неисчисляемое слово, поэтому вопрос начинаем с Is.",
+          "uk": "Cutlery — незлічуване слово, тому питання починаємо з Is."
         },
         "en:lesson-05:session-32:intro3:r3": {
           "ru": "Так получилось бы, что приборы — это сама сестра. Хозяйку называем через 's: your sister's.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f7f705e81ab2bc7bea6c2a68ab3d297550da7a4e587cb03389b359787a8ae458"
+  "auxiliaryFingerprint": "61cc7cb374a74ec4dc9897a59a48bd8bd69d6d4b7b9de03a3a2f9e9d5218df75"
 }

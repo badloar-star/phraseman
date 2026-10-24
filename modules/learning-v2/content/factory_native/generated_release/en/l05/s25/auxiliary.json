@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-25:intro3:r2": {
-          "ru": "Вопрос начинаем с Is: Is this…?",
-          "uk": "Питання починаємо з Is: Is this…?"
+          "ru": "This указывает на один диск, поэтому нужно Is, а не Are.",
+          "uk": "This указує на один диск, тому потрібно Is, а не Are."
         },
         "en:lesson-05:session-25:intro3:r3": {
           "ru": "my — мой, а вы спрашиваете о брате подруги: нужно your.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "cf219879349ea79fe1463df498a9ed1e58c88e4f24639547f524ad03fb855389"
+  "auxiliaryFingerprint": "9a4099c2b9f5eb6a10e384721be1963f09337e5b6e14a4fb4c944f3bbf26ac28"
 }

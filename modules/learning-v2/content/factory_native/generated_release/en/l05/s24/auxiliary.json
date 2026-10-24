@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-24:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-24:intro1:r2": {
-          "ru": "Очки — пара, поэтому нужно They are, а не It is.",
-          "uk": "Окуляри — пара, тому потрібно They are, а не It is."
+          "ru": "Glasses имеет форму множественного числа, поэтому нужно They are, а не It is.",
+          "uk": "Glasses має форму множини, тому потрібно They are, а не It is."
         },
         "en:lesson-05:session-24:intro1:r3": {
           "ru": "Без ’s получится «они — моя сестра». Чтобы назвать хозяйку, нужно ’s.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2e8310f41ba1b9e3d426fde5757a0b8cef0e59f357179852cbd7b907019c8d9e"
+  "auxiliaryFingerprint": "f8c99588ef910d87f2759467de3b7230fd83d9dc575eebfa16707f118442623e"
 }

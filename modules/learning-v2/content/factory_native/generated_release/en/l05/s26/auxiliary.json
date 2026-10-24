@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-26:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-26:intro2:r2": {
-          "ru": "После слова baby нужно 's: the baby's rattle.",
-          "uk": "Після слова baby потрібно 's: the baby's rattle."
+          "ru": "Bottle — бутылочка, а вы ищете погремушку: нужно rattle.",
+          "uk": "Bottle — пляшечка, а ви шукаєте брязкальце: потрібно rattle."
         },
         "en:lesson-05:session-26:intro2:r3": {
           "ru": "Погремушка одна, поэтому нужно is, а не are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2d3a07a8e876ba231cec4d2d064420295b6ddc698fe5a8471cf49d40a9e0e00b"
+  "auxiliaryFingerprint": "81efa6fe5a3b150392dcb97b2871228b1359fddeaa603ab6e8137d66942b99f2"
 }

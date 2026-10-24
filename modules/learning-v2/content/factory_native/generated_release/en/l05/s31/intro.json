@@ -32,7 +32,7 @@
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r2",
-              "text": "The bird cage is next to the window."
+              "text": "The bird's cage are next to the window."
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r3",
@@ -46,7 +46,7 @@
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r2",
-              "text": "The bird cage is next to the window."
+              "text": "The bird's cage are next to the window."
             },
             {
               "responseId": "en:lesson-05:session-31:intro1:r3",
@@ -69,8 +69,8 @@
         "uk": "Звірятко в клітці"
       },
       "bodyByLocale": {
-        "ru": "Подруга зашла в гости и удивилась: на столе в клетке шуршит маленький зверёк с большими щеками. hamster — «хомяк». Он живёт у вашей двоюродной сестры. О том, что животное у неё есть, говорим с has, без 's: My cousin has a hamster — «У моей двоюродной сестры есть хомяк».",
-        "uk": "Подруга зайшла в гості й здивувалася: на столі в клітці шурхотить маленьке звірятко з великими щоками. hamster — «хом’як». Він живе у вашої двоюрідної сестри. Про те, що тварина в неї є, кажемо з has, без 's: My cousin has a hamster — «У моєї двоюрідної сестри є хом’як»."
+        "ru": "Подруга зашла в гости и удивилась: на столе в клетке шуршит маленький зверёк с большими щеками. hamster — «хомяк». Он живёт у вашей двоюродной сестры. Сначала называем хозяйку — my cousin, затем ставим has, потому что my cousin здесь можно заменить на she, и добавляем a hamster: My cousin has a hamster — «У моей двоюродной сестры есть хомяк».",
+        "uk": "Подруга зайшла в гості й здивувалася: на столі в клітці шурхотить маленьке звірятко з великими щоками. hamster — «хом’як». Він живе у вашої двоюрідної сестри. Спочатку називаємо господиню — my cousin, потім ставимо has, бо my cousin тут можна замінити на she, і додаємо a hamster: My cousin has a hamster — «У моєї двоюрідної сестри є хом’як»."
       },
       "question": {
         "interactionId": "en:lesson-05:session-31:intro2:q",
@@ -140,7 +140,7 @@
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r2",
-              "text": "The rabbit bowl is empty."
+              "text": "The rabbit's bowl am empty."
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r3",
@@ -154,7 +154,7 @@
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r2",
-              "text": "The rabbit bowl is empty."
+              "text": "The rabbit's bowl am empty."
             },
             {
               "responseId": "en:lesson-05:session-31:intro3:r3",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fbe6b9a05503f429432165f92f120c07f4477ca28f86cda1b9d0736ada5e8024"
+  "introFingerprint": "bd6383aef47ecb6b35faf298a7129b13088c8a3e0a4fc56669727e5eccfb3bfe"
 }

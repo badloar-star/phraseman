@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-30:intro1:r2": {
-          "ru": "Варежки — пара, поэтому нужно are, а не is.",
-          "uk": "Рукавиці — пара, тому потрібно are, а не is."
+          "ru": "Mittens — множественное число, поэтому нужно are, а не is.",
+          "uk": "Mittens — множина, тому потрібно are, а не is."
         },
         "en:lesson-05:session-30:intro1:r3": {
           "ru": "После слова tourist нужно 's: the tourist's mittens.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-30:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-30:intro3:r2": {
-          "ru": "Кроссовки — пара, поэтому вопрос начинаем с Are, а не с Is.",
-          "uk": "Кросівки — пара, тому питання починаємо з Are, а не з Is."
+          "ru": "These указывает на несколько вещей, поэтому вопрос начинаем с Are, а не с Is.",
+          "uk": "These вказує на кілька речей, тому питання починаємо з Are, а не з Is."
         },
         "en:lesson-05:session-30:intro3:r3": {
           "ru": "После слова guest нужно 's: the guest's sneakers.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "607ce4454dcad8c460d06bbd5a228cfadd7621742be1993d75cad8f122a30680"
+  "auxiliaryFingerprint": "9ad340934d374adc412c7370cc83e04ca788e68cab943bf67e52a58f9f4649b3"
 }

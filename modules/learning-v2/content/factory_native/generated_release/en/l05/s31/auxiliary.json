@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-31:intro1:r2": {
-          "ru": "После слова bird нужно 's: the bird's cage.",
-          "uk": "Після слова bird потрібно 's: the bird's cage."
+          "ru": "Подлежащее — одна клетка, the bird's cage, поэтому нужно is, а не are.",
+          "uk": "Підмет — одна клітка, the bird's cage, тому потрібно is, а не are."
         },
         "en:lesson-05:session-31:intro1:r3": {
           "ru": "door — «дверь», а клетка стоит у окна: нужно window.",
@@ -23,8 +23,8 @@
           "uk": "До слова cousin потрібно has, а не have."
         },
         "en:lesson-05:session-31:intro2:r3": {
-          "ru": "Так получилось бы «моя двоюродная сестра — хомяк»: 's без вещи значит is. Для «есть» нужно has.",
-          "uk": "Так вийшло б «моя двоюрідна сестра — хом’як»: 's без речі означає is. Для «є» потрібно has."
+          "ru": "Здесь cousin's сокращает cousin is: получается «моя двоюродная сестра — хомяк». Чтобы сказать, что у неё есть хомяк, нужно has.",
+          "uk": "Тут cousin's скорочує cousin is: виходить «моя двоюрідна сестра — хом’як». Щоб сказати, що в неї є хом’як, потрібно has."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-31:intro3:r2": {
-          "ru": "После слова rabbit нужно 's: the rabbit's bowl.",
-          "uk": "Після слова rabbit потрібно 's: the rabbit's bowl."
+          "ru": "Am употребляем с I. Здесь подлежащее — одна миска, поэтому нужно is.",
+          "uk": "Am уживаємо з I. Тут підмет — одна миска, тому потрібно is."
         },
         "en:lesson-05:session-31:intro3:r3": {
           "ru": "Миска одна, поэтому нужно is, а не are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9aa8b54a5c15dd4d48211343b1d6f848d87b5545167a4917bba6d4796dd16456"
+  "auxiliaryFingerprint": "32af4aa69ca37b671e34eef94b7dc801042c7888979d31c14c99f97b8be80820"
 }

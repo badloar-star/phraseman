@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import {
   Animated,
   Image,
@@ -17,13 +17,15 @@ import { BlurView } from 'expo-blur';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
-import { homeTabbarCapMasks } from '../home/v2/scene/home_scene_baked_assets.generated';
+import { HOME_TABBAR_SHADOW_CUTOUT, homeTabbarCapMasks } from '../home/v2/scene/home_scene_baked_assets.generated';
 import { hapticTap } from '../../hooks/use-haptics';
 import { alphaHex } from '../../constants/v2Style';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../../app/debug-logger';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { TAB_BAR_PAD, TAB_BAR_SIDE_MARGIN, V2_TAB_BAR_HEIGHT, computeTabBarGeometry, tabCapRightFits } from './tab_bar_geometry';
+import { colorWithAlpha } from './plateAlpha';
+import { getTabbarShadowMode, subscribeTabbarShadowMode } from './tabbar_shadow_dev';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -356,6 +358,19 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       if (cut) DebugLogger.warn('[TABBAR]', line); else DebugLogger.info('[TABBAR]', line);
     }, 120);
   }, [count, geo.width, insets.left, insets.right, windowWidth]);
+  // зачем (координатор 22.10: «маска за dev-ссылкой, по умолчанию прежний elevation; Сверка подбирает альфу парой снимков»): режим
+  // тени капсулы; в режиме маски тинт — светлые темы shadowTint, тёмные — чёрный капсулы (s.bar), сила — альфа из ссылки
+  const shadowMode = useSyncExternalStore(subscribeTabbarShadowMode, getTabbarShadowMode, getTabbarShadowMode);
+  const shadowTint = shadowMode.kind === 'mask'
+    ? colorWithAlpha(palette.isLight ? palette.shadowTint : String(s.bar.shadowColor), palette.isLight ? shadowMode.alphaLight : shadowMode.alpha)
+    : null;
+  useEffect(() => {
+    if (shadowTint) console.log('[TABBAR-SHADOW] маска капсулы', JSON.stringify({ tint: shadowTint, isLight: palette.isLight })); // guard-ok: одна строка на смену тинта
+  }, [shadowTint, palette.isLight]);
+  // зачем (Сверка 22.10: маска обрывалась справа «ступенькой»): факт раскладки — размер обёртки маски против ожидаемого
+  const onShadowLayout = useCallback((e: LayoutChangeEvent) => {
+    console.log('[TABBAR-SHADOW] mask layout', JSON.stringify({ w: Math.round(e.nativeEvent.layout.width), h: Math.round(e.nativeEvent.layout.height), expectW: Math.round(geo.width + 2 * HOME_TABBAR_SHADOW_CUTOUT.margin), expectH: V2_TAB_BAR_HEIGHT + 2 * HOME_TABBAR_SHADOW_CUTOUT.margin })); // guard-ok: dev-ссылка, одна строка на раскладку маски
+  }, [geo.width]);
   const capScale = capLift.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] });
   const capBright = capLift.interpolate({ inputRange: [0, 1], outputRange: [0, 0.08] });
   const iconPressScale = pressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.88] });
@@ -372,10 +387,18 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
         { bottom: bottomOffset, backgroundColor: Platform.OS === 'android' ? palette.bgBottom : 'transparent' },
         // зачем (темы 2.0, светлое): тень в тон темы и мягче — чёрная .55 на светлом фоне грязнит.
         palette.isLight ? { shadowColor: palette.shadowTint, shadowOpacity: 1, elevation: 8 } : null,
+        shadowTint ? s.barNoShadow : null, // тень — маской (dev-ссылка), elevation снят
         collapseStyle,
       ]}
       {...responder.panHandlers}
     >
+      {/* зачем (Сверка 22.10: маска обрывалась справа «ступенькой»): Image берёт размер из файла явной шириной (RN Image.android.js),
+          отступы её не тянут — размер задаёт обёртка с отступами, картинка заполняет её на 100 % */}
+      {shadowTint ? (
+        <View pointerEvents="none" style={s.capsuleShadow} onLayout={onShadowLayout}>
+          <Image accessible={false} source={HOME_TABBAR_SHADOW_CUTOUT.source} resizeMode="stretch" fadeDuration={0} style={[s.capsuleShadowImage, { tintColor: shadowTint }]} />
+        </View>
+      ) : null}
       <View pointerEvents="none" style={s.clip}>
         {Platform.OS === 'ios' ? <BlurView intensity={22} tint={palette.isLight ? 'light' : 'dark'} style={StyleSheet.absoluteFill} /> : null}
         <LinearGradient colors={glassFill} style={StyleSheet.absoluteFill} />
@@ -450,6 +473,17 @@ const s = StyleSheet.create({
     elevation: 14,
   },
   clip: { ...StyleSheet.absoluteFillObject, borderRadius: V2_TAB_BAR_HEIGHT / 2, overflow: 'hidden' },
+  // тень капсулы маской с вырезом (dev-ссылка ?tabbarShadow=mask): обёртка выходит за бар на margin со сдвигом offsetY, картинка
+  // заполняет её на 100 % (иначе размер из файла важнее отступов — RN Image.android.js)
+  capsuleShadow: {
+    position: 'absolute',
+    left: -HOME_TABBAR_SHADOW_CUTOUT.margin,
+    right: -HOME_TABBAR_SHADOW_CUTOUT.margin,
+    top: HOME_TABBAR_SHADOW_CUTOUT.offsetY - HOME_TABBAR_SHADOW_CUTOUT.margin,
+    bottom: -HOME_TABBAR_SHADOW_CUTOUT.offsetY - HOME_TABBAR_SHADOW_CUTOUT.margin,
+  },
+  capsuleShadowImage: { width: '100%', height: '100%' },
+  barNoShadow: { elevation: 0, shadowOpacity: 0 },
   cap: {
     position: 'absolute',
     top: PAD,

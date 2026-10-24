@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Искать булавку вечером",
+        "uk": "Шукати шпильку ввечері"
       },
       "bodyByLocale": {
-        "ru": "safety pin — английская булавка с застёжкой. I was looking for a safety pin while you were reading. — Я искал английскую булавку, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "safety pin — англійська шпилька із застібкою. I was looking for a safety pin while you were reading. — Я шукав англійську шпильку, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы искали булавку с застёжкой, пока друг читал рядом. Safety pin — английская булавка с застёжкой. Обращаясь к другу, соедините свой процесс I was looking for a safety pin и его процесс you were reading через while. I was looking for a safety pin while you were reading. — Я искал английскую булавку, пока ты читал. С I нужна was, с you — were. Сочетание looking for означает «искал»: не пропускайте for.",
+        "uk": "Учора ви шукали шпильку із застібкою, поки друг читав поруч. Safety pin — англійська шпилька із застібкою. Звертаючись до друга, поєднайте свій процес I was looking for a safety pin і його процес you were reading через while. I was looking for a safety pin while you were reading. — Я шукав англійську шпильку, поки ти читав. З I потрібна was, із you — were. Сполучення looking for означає «шукав»: не пропускайте for."
       },
       "question": {
         "interactionId": "en:lesson-14:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Разговор за рукоделием",
+        "uk": "Розмова за рукоділлям"
       },
       "bodyByLocale": {
-        "ru": "sewing machine — швейная машинка. pincushion — подушечка для булавок и иголок. She was making a pincushion while I was talking. — Она делала подушечку для иголок, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "sewing machine — швейна машинка. pincushion — подушечка для шпильок і голок. She was making a pincushion while I was talking. — Вона робила подушечку для голок, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра шила подушечку для иголок, пока вы рассказывали ей историю. Pincushion — подушечка для булавок и иголок. Сначала назовите её процесс She was making a pincushion, затем через while добавьте ваш: I was talking. She was making a pincushion while I was talking. — Она делала подушечку для иголок, пока я говорил. С she и I здесь нужна was; у make перед -ing убирается e: making.",
+        "uk": "Учора ваша сестра шила подушечку для голок, поки ви розповідали їй історію. Pincushion — подушечка для шпильок і голок. Спочатку назвіть її процес She was making a pincushion, потім через while додайте ваш: I was talking. She was making a pincushion while I was talking. — Вона робила подушечку для голок, поки я говорив. Із she та I тут потрібна was; у make перед -ing прибирається e: making."
       },
       "question": {
         "interactionId": "en:lesson-14:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время поиска",
+        "uk": "Дзвінок під час пошуку"
       },
       "bodyByLocale": {
-        "ru": "knitting needles — вязальные спицы. We were looking for the knitting needles when you called. — Мы искали вязальные спицы, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "knitting needles — в’язальні спиці. We were looking for the knitting needles when you called. — Ми шукали в’язальні спиці, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой искали вязальные спицы, когда позвонил друг. Knitting needles — вязальные спицы. Рассказывая другу об этом моменте, начните с We were looking for the knitting needles и добавьте when you called. We were looking for the knitting needles when you called. — Мы искали вязальные спицы, когда ты позвонил. Were looking for передаёт поиск, который шёл в тот момент; called — произошедший звонок.",
+        "uk": "Учора ви із сестрою шукали в’язальні спиці, коли зателефонував друг. Knitting needles — в’язальні спиці. Розповідаючи другові про цю мить, почніть із We were looking for the knitting needles і додайте when you called. We were looking for the knitting needles when you called. — Ми шукали в’язальні спиці, коли ти зателефонував. Were looking for передає пошук, що тривав у ту мить; called — дзвінок, який стався."
       },
       "question": {
         "interactionId": "en:lesson-14:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d77b4e67afb125dd4e9b84056ddacd2988a8b910c04669c52c4f68859e221229"
+  "introFingerprint": "77b0a04cfb87bb8797fbd26520a4b689ef2f1075eb30c3a9a0d4649cdeb71c96"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Подготовить доску к игре",
+        "uk": "Підготувати дошку до гри"
       },
       "bodyByLocale": {
-        "ru": "chessboard — шахматная доска. I was cleaning the chessboard while you were reading. — Я чистил шахматную доску, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "chessboard — шахівниця. I was cleaning the chessboard while you were reading. — Я чистив шахівницю, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы чистили шахматную доску, пока друг читал рядом. Chessboard — шахматная доска. Обращаясь к другу, соедините два процесса через while: I was cleaning the chessboard + while + you were reading. I was cleaning the chessboard while you were reading. — Я чистил шахматную доску, пока ты читал. С I ставьте was, с you — were; после них действие с -ing показывает процесс в прошлом.",
+        "uk": "Учора ви чистили шахову дошку, поки друг читав поруч. Chessboard — шахова дошка. Звертаючись до друга, поєднайте два процеси через while: I was cleaning the chessboard + while + you were reading. I was cleaning the chessboard while you were reading. — Я чистив шахову дошку, поки ти читав. З I ставте was, із you — were; після них дія з -ing показує процес у минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-44:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Сестра играла в шашки",
+        "uk": "Сестра грала в шашки"
       },
       "bodyByLocale": {
-        "ru": "dice — игральные кости, кубики. draughts — шашки, игра. She was playing draughts while I was reading. — Она играла в шашки, пока я читал. Выберите фразу о двух процессах в прошлом.",
-        "uk": "dice — гральні кості, кубики. draughts — шашки, гра. She was playing draughts while I was reading. — Вона грала в шашки, поки я читав. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра играла в шашки с братом, пока вы читали в той же комнате. Draughts — шашки. Начните с She was playing draughts, затем через while добавьте I was reading. She was playing draughts while I was reading. — Она играла в шашки, пока я читал. С she и I здесь нужна was перед формой с -ing. После playing название этой игры ставится прямо: playing draughts.",
+        "uk": "Учора ваша сестра грала в шашки з братом, поки ви читали в тій самій кімнаті. Draughts — шашки. Почніть із She was playing draughts, потім через while додайте I was reading. She was playing draughts while I was reading. — Вона грала в шашки, поки я читав. Із she та I тут потрібна was перед формою з -ing. Після playing назва цієї гри ставиться прямо: playing draughts."
       },
       "question": {
         "interactionId": "en:lesson-14:session-44:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время головоломки",
+        "uk": "Дзвінок під час головоломки"
       },
       "bodyByLocale": {
-        "ru": "word search — головоломка с поиском слов в сетке букв. We were doing a word search when you called. — Мы решали головоломку с поиском слов, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "word search — головоломка з пошуком слів у сітці літер. We were doing a word search when you called. — Ми розв’язували головоломку з пошуком слів, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой искали слова в сетке букв, когда позвонил друг. Word search — головоломка с поиском слов. Рассказывая другу об этом моменте, соберите We were doing a word search, затем добавьте when you called. We were doing a word search when you called. — Мы решали головоломку с поиском слов, когда ты позвонил. Were doing передаёт процесс, а called — звонок, который произошёл в тот момент.",
+        "uk": "Учора ви із сестрою шукали слова в сітці літер, коли зателефонував друг. Word search — головоломка з пошуком слів. Розповідаючи другові про цю мить, складіть We were doing a word search, потім додайте when you called. We were doing a word search when you called. — Ми розв’язували головоломку з пошуком слів, коли ти зателефонував. Were doing передає процес, а called — дзвінок, що стався в ту мить."
       },
       "question": {
         "interactionId": "en:lesson-14:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a5d9931b324e6141b4a7a02013a0e2f00a2cb872ad6c8d9e555897ad1dd8f30e"
+  "introFingerprint": "4a28c30603373a5afeb8054b48817d1b27766d8b159fb260cb4a2878af70e198"
 }

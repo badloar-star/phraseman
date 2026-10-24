@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Делали открытку вместе",
+        "uk": "Робили листівку разом"
       },
       "bodyByLocale": {
-        "ru": "glue stick — клей-карандаш. I was using a glue stick while you were drawing. — Я пользовался клеем-карандашом, пока ты рисовал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "glue stick — клей-олівець. I was using a glue stick while you were drawing. — Я користувався клеєм-олівцем, поки ти малював. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы приклеивали детали открытки, пока друг рисовал на ней узор. Glue stick — клей-карандаш. Обращаясь к другу, соедините два процесса через while: I was using a glue stick + while + you were drawing. I was using a glue stick while you were drawing. — Я пользовался клеем-карандашом, пока ты рисовал. С I нужна was, с you — were; у use перед -ing убирается e: using.",
+        "uk": "Учора ви приклеювали деталі листівки, поки друг малював на ній візерунок. Glue stick — клей-олівець. Звертаючись до друга, поєднайте два процеси через while: I was using a glue stick + while + you were drawing. I was using a glue stick while you were drawing. — Я користувався клеєм-олівцем, поки ти малював. З I потрібна was, із you — were; у use перед -ing прибирається e: using."
       },
       "question": {
         "interactionId": "en:lesson-14:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Уборка рядом с читающим братом",
+        "uk": "Прибирання поруч із братом, який читає"
       },
       "bodyByLocale": {
-        "ru": "hole punch — дырокол для бумаги. paperweight — тяжёлый предмет, прижимающий бумаги на столе. She was cleaning a paperweight while I was reading. — Она чистила грузик для бумаг, пока я читал. Выберите фразу о двух процессах в прошлом.",
-        "uk": "hole punch — діркопробивач для паперу. paperweight — важкий предмет, що притискає папери на столі. She was cleaning a paperweight while I was reading. — Вона чистила тягарець для паперів, поки я читав. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра чистила грузик для бумаг на столе, пока вы читали рядом. Paperweight — грузик, которым прижимают бумаги. Назовите её процесс She was cleaning a paperweight, затем через while добавьте ваш: I was reading. She was cleaning a paperweight while I was reading. — Она чистила грузик для бумаг, пока я читал. С she и I здесь нужна was перед формой с -ing: оба процесса шли одновременно.",
+        "uk": "Учора ваша сестра чистила тягарець для паперів на столі, поки ви читали поруч. Paperweight — тягарець, яким притискають папери. Назвіть її процес She was cleaning a paperweight, потім через while додайте ваш: I was reading. She was cleaning a paperweight while I was reading. — Вона чистила тягарець для паперів, поки я читав. Із she та I тут потрібна was перед формою з -ing: обидва процеси тривали одночасно."
       },
       "question": {
         "interactionId": "en:lesson-14:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время работы с лентой",
+        "uk": "Дзвінок під час роботи зі стрічкою"
       },
       "bodyByLocale": {
-        "ru": "masking tape — малярная бумажная лента, которую можно снять после работы. We were using masking tape when you called. — Мы пользовались малярной лентой, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "masking tape — малярна паперова стрічка, яку можна зняти після роботи. We were using masking tape when you called. — Ми користувалися малярною стрічкою, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой закрепляли бумажный шаблон малярной лентой, когда позвонил друг. Masking tape — малярная лента. Рассказывая другу об этом моменте, начните с We were using masking tape и добавьте when you called. We were using masking tape when you called. — Мы пользовались малярной лентой, когда ты позвонил. Were using описывает процесс в момент звонка, а called — само произошедшее событие.",
+        "uk": "Учора ви із сестрою закріплювали паперовий шаблон малярною стрічкою, коли зателефонував друг. Masking tape — малярна стрічка. Розповідаючи другові про цю мить, почніть із We were using masking tape і додайте when you called. We were using masking tape when you called. — Ми користувалися малярною стрічкою, коли ти зателефонував. Were using описує процес у момент дзвінка, а called — саму подію, що сталася."
       },
       "question": {
         "interactionId": "en:lesson-14:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2278207e44f547b75404dc05c7166c212a72c72c7a4a3ac659140b3e49d6e7d7"
+  "introFingerprint": "78886cf4d3cb75f5a353cde7b5e85950d30e78921226f3c7f4f3d2620147bb51"
 }

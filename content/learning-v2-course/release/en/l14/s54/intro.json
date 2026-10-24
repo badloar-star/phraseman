@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Готовка рядом с читающим другом",
+        "uk": "Готування поруч із другом, який читає"
       },
       "bodyByLocale": {
-        "ru": "stew — рагу, блюдо, которое медленно тушат в жидкости. I was making a stew while you were reading. — Я готовил рагу, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "stew — рагу, страва, яку повільно тушкують у рідині. I was making a stew while you were reading. — Я готував рагу, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы готовили рагу, пока друг читал за кухонным столом. Stew — рагу. Рассказывая другу об этом времени, соедините два процесса: I was making a stew + while + you were reading. I was making a stew while you were reading. — Я готовил рагу, пока ты читал. После I нужна was, после you — were; оба действия имеют форму с -ing. У make уберите конечную e перед -ing: making.",
+        "uk": "Учора ви готували рагу, поки друг читав за кухонним столом. Stew — рагу. Розповідаючи другові про цей час, поєднайте два процеси: I was making a stew + while + you were reading. I was making a stew while you were reading. — Я готував рагу, поки ти читав. Після I потрібна was, після you — were; обидві дії мають форму з -ing. У make приберіть кінцеву e перед -ing: making."
       },
       "question": {
         "interactionId": "en:lesson-14:session-54:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Разговор за плитой",
+        "uk": "Розмова біля плити"
       },
       "bodyByLocale": {
-        "ru": "casserole — блюдо, приготовленное в глубокой форме в духовке. broth — бульон, который можно подавать как жидкую основу супа. She was heating broth while I was talking. — Она разогревала бульон, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "casserole — страва, приготована в глибокій формі в духовці. broth — бульйон, який можна подавати як рідку основу супу. She was heating broth while I was talking. — Вона розігрівала бульйон, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра разогревала бульон, пока вы рассказывали ей о поездке. Broth — бульон. Сначала назовите её процесс: She was heating broth. Через while присоедините ваш: I was talking. She was heating broth while I was talking. — Она разогревала бульон, пока я говорил. Обе части описывают то, что шло одновременно; с she и I здесь нужна was перед формой с -ing.",
+        "uk": "Учора ваша сестра розігрівала бульйон, поки ви розповідали їй про поїздку. Broth — бульйон. Спочатку назвіть її процес: She was heating broth. Через while приєднайте ваш: I was talking. She was heating broth while I was talking. — Вона розігрівала бульйон, поки я говорив. Обидві частини описують те, що тривало одночасно; із she та I тут потрібна was перед формою з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-54:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время лепки",
+        "uk": "Дзвінок під час ліплення"
       },
       "bodyByLocale": {
-        "ru": "dumplings — клёцки или изделия из теста с начинкой, по виду блюда. We were making dumplings when you called. — Мы делали изделия из теста, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "dumplings — галушки або вироби з тіста з начинкою, залежно від страви. We were making dumplings when you called. — Ми робили вироби з тіста, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой лепили пельмени, когда позвонил друг. Dumplings — общее название клёцек и некоторых изделий из теста с начинкой; здесь это пельмени. Обращаясь к другу, соберите процесс We were making dumplings и через when добавьте событие you called. We were making dumplings when you called. — Мы лепили пельмени, когда ты позвонил. Were making передаёт занятие в тот момент, а called — произошедший звонок.",
+        "uk": "Учора ви із сестрою ліпили пельмені, коли зателефонував друг. Dumplings — загальна назва галушок і деяких виробів із тіста з начинкою; тут це пельмені. Звертаючись до друга, складіть процес We were making dumplings і через when додайте подію you called. We were making dumplings when you called. — Ми ліпили пельмені, коли ти зателефонував. Were making передає заняття в ту мить, а called — дзвінок, що стався."
       },
       "question": {
         "interactionId": "en:lesson-14:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c7f315f31697c246c1e32c433592ae7c170d92caa27785e490588abb0ebd91df"
+  "introFingerprint": "be4219a0facaad89e8276eb25f8c9bdfbfe684bb0546343628d937aa362356b0"
 }

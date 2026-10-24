@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Делали украшения вместе",
+        "uk": "Робили прикраси разом"
       },
       "bodyByLocale": {
-        "ru": "gold — золотой, золотистый цвет. I was using gold paint while you were drawing. — Я пользовался золотистой краской, пока ты рисовал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "gold — золотий, золотистий колір. I was using gold paint while you were drawing. — Я користувався золотистою фарбою, поки ти малював. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы покрывали украшение золотистой краской, пока друг рисовал рядом. Gold здесь — золотистый цвет. Обращаясь к другу, соберите два процесса: I was using gold paint + while + you were drawing. I was using gold paint while you were drawing. — Я пользовался золотистой краской, пока ты рисовал. С I нужна was, с you — were; у use перед -ing убирается e: using.",
+        "uk": "Учора ви покривали прикрасу золотистою фарбою, поки друг малював поруч. Gold тут — золотистий колір. Звертаючись до друга, складіть два процеси: I was using gold paint + while + you were drawing. I was using gold paint while you were drawing. — Я користувався золотистою фарбою, поки ти малював. З I потрібна was, із you — were; у use перед -ing прибирається e: using."
       },
       "question": {
         "interactionId": "en:lesson-14:session-49:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Краска и чтение рядом",
+        "uk": "Фарба й читання поруч"
       },
       "bodyByLocale": {
-        "ru": "silver — серебряный, серебристый цвет. bronze — бронзовый цвет, тёплый коричневатый металлический оттенок. She was using bronze paint while I was reading. — Она пользовалась бронзовой краской, пока я читал. Выберите фразу о двух процессах в прошлом.",
-        "uk": "silver — срібний, сріблястий колір. bronze — бронзовий колір, теплий коричнюватий металевий відтінок. She was using bronze paint while I was reading. — Вона користувалася бронзовою фарбою, поки я читав. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра красила рамку бронзовой краской, пока вы читали рядом. Bronze здесь — бронзовый цвет. Назовите её процесс She was using bronze paint и через while добавьте свой: I was reading. She was using bronze paint while I was reading. — Она пользовалась бронзовой краской, пока я читал. Обе части описывают одновременные процессы в прошлом; с she и I здесь используйте was перед действием с -ing.",
+        "uk": "Учора ваша сестра фарбувала рамку бронзовою фарбою, поки ви читали поруч. Bronze тут — бронзовий колір. Назвіть її процес She was using bronze paint і через while додайте свій: I was reading. She was using bronze paint while I was reading. — Вона користувалася бронзовою фарбою, поки я читав. Обидві частини описують одночасні процеси в минулому; із she та I тут використовуйте was перед дією з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-49:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время покраски",
+        "uk": "Дзвінок під час фарбування"
       },
       "bodyByLocale": {
-        "ru": "turquoise — бирюзовый, голубовато-зелёный цвет. We were using turquoise paint when you called. — Мы пользовались бирюзовой краской, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "turquoise — бірюзовий, блакитно-зелений колір. We were using turquoise paint when you called. — Ми користувалися бірюзовою фарбою, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой красили полку бирюзовой краской, когда позвонил друг. Turquoise — бирюзовый цвет. Обращаясь к другу, начните с We were using turquoise paint и добавьте when you called. We were using turquoise paint when you called. — Мы пользовались бирюзовой краской, когда ты позвонил. Were using показывает процесс в момент звонка; called называет событие, которое произошло в прошлом.",
+        "uk": "Учора ви із сестрою фарбували полицю бірюзовою фарбою, коли зателефонував друг. Turquoise — бірюзовий колір. Звертаючись до друга, почніть із We were using turquoise paint і додайте when you called. We were using turquoise paint when you called. — Ми користувалися бірюзовою фарбою, коли ти зателефонував. Were using показує процес у момент дзвінка; called називає подію, що сталася в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9ced8d68d1d81b678634a22c73cfa0861e18453dea939902ccc533b6248be642"
+  "introFingerprint": "5ade4cb3fb001dd2703665c688465c594635c747ccdc0eb7ff36d4c35b8ae13c"
 }

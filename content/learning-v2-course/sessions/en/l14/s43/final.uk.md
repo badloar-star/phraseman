@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Одночасні дії
+### Малюнок поруч із другом, який читає
 
-otter — видра. I was drawing an otter while you were reading. — Я малював видру, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому.
+Учора ви малювали видру, поки друг читав поруч. Otter — видра. Звертаючись до друга, назвіть свій процес I was drawing an otter і приєднайте його процес you were reading через while. I was drawing an otter while you were reading. — Я малював видру, поки ти читав. З I потрібна was, із you — were; drawing і reading показують, що обидві дії тривали в ту мить у минулому.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ otter — видра. I was drawing an otter while you were reading. — Я ма
 
 ## Інтро 2
 
-### Ще два слова
+### Сестра малювала під час розмови
 
-beaver — бобер. frog — жаба. She was drawing a frog while I was talking. — Вона малювала жабу, поки я говорив. Виберіть фразу про два процеси в минулому.
+Учора ваша сестра малювала жабу, поки ви розповідали їй історію. Frog — жаба. Складіть дві частини: She was drawing a frog + while + I was talking. She was drawing a frog while I was talking. — Вона малювала жабу, поки я говорив. Із she та I тут потрібна was перед формою з -ing; while поєднує одночасні процеси.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ beaver — бобер. frog — жаба. She was drawing a frog while I was tal
 
 ## Інтро 3
 
-### Подія на тлі процесу
+### Дзвінок біля ставка
 
-tadpole — пуголовок. We were watching a tadpole when you called. — Ми спостерігали за пуголовком, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called.
+Учора ви із сестрою спостерігали за пуголовком у ставку, коли зателефонував друг. Tadpole — пуголовок. Звертаючись до друга, почніть із We were watching a tadpole і додайте when you called. We were watching a tadpole when you called. — Ми спостерігали за пуголовком, коли ти зателефонував. Were watching передає процес у момент дзвінка, а called — подію, що сталася. Після watching предмет спостереження ставиться прямо: a tadpole.
 
 **Виберіть фразу для цієї ситуації.**
 

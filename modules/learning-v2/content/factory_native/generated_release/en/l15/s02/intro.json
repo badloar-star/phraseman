@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Посыпать",
-        "uk": "Посипати"
+        "ru": "Посыпать готовый пирог",
+        "uk": "Посипати готовий пиріг"
       },
       "bodyByLocale": {
-        "ru": "Sprinkle — посыпать небольшим количеством чего-то. I am going to sprinkle sugar on the cake. — Я собираюсь посыпать пирог сахаром. После going to используем sprinkle.",
-        "uk": "Sprinkle — посипати невеликою кількістю чогось. I am going to sprinkle sugar on the cake. — Я збираюся посипати пиріг цукром. Після going to вживаємо sprinkle."
+        "ru": "Вы решили посыпать готовый пирог сахаром. Sprinkle — посыпать небольшим количеством чего-то. Начните намерение с I am going to sprinkle, затем укажите, чем и что посыпать: sugar on the cake. I am going to sprinkle sugar on the cake. — Я собираюсь посыпать пирог сахаром. После going to нужна sprinkle без -ing.",
+        "uk": "Ви вирішили посипати готовий пиріг цукром. Sprinkle — посипати невеликою кількістю чогось. Почніть намір із I am going to sprinkle, потім укажіть, чим і що посипати: sugar on the cake. I am going to sprinkle sugar on the cake. — Я збираюся посипати пиріг цукром. Після going to потрібна sprinkle без -ing."
       },
       "question": {
         "interactionId": "en:lesson-15:session-02:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Набрать ложкой и просеять",
-        "uk": "Набрати ложкою й просіяти"
+        "ru": "Подготовить муку",
+        "uk": "Підготувати борошно"
       },
       "bodyByLocale": {
-        "ru": "Scoop — набрать ложкой или совком; sift — просеять через сито. She is going to sift the flour. — Она собирается просеять муку. Выберите просеять.",
-        "uk": "Scoop — набрати ложкою або совком; sift — просіяти крізь сито. She is going to sift the flour. — Вона збирається просіяти борошно. Виберіть просіяти."
+        "ru": "Ваша сестра решила просеять муку перед выпечкой. Sift — просеять через сито. Соберите её намерение: She + is going to + sift, затем добавьте the flour. She is going to sift the flour. — Она собирается просеять муку. С she используйте is; после to поставьте действие sift.",
+        "uk": "Ваша сестра вирішила просіяти борошно перед випіканням. Sift — просіяти через сито. Складіть її намір: She + is going to + sift, потім додайте the flour. She is going to sift the flour. — Вона збирається просіяти борошно. Із she використовуйте is; після to поставте дію sift."
       },
       "question": {
         "interactionId": "en:lesson-15:session-02:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Месить тесто",
-        "uk": "Місити тісто"
+        "ru": "Замесить тесто вместе",
+        "uk": "Замісити тісто разом"
       },
       "bodyByLocale": {
-        "ru": "Knead — месить тесто руками. We are going to knead the dough. — Мы собираемся месить тесто. Выберите правильную форму для плана.",
-        "uk": "Knead — місити тісто руками. We are going to knead the dough. — Ми збираємося місити тісто. Виберіть правильну форму для плану."
+        "ru": "Вы с братом решили вместе месить тесто для хлеба. Knead — месить тесто руками. Для общего плана соедините We + are going to + knead, затем добавьте the dough — «тесто». We are going to knead the dough. — Мы собираемся месить тесто. После going to нужна knead, без окончания прошедшего времени -ed.",
+        "uk": "Ви з братом вирішили разом місити тісто для хліба. Knead — місити тісто руками. Для спільного плану поєднайте We + are going to + knead, потім додайте the dough — «тісто». We are going to knead the dough. — Ми збираємося місити тісто. Після going to потрібна knead, без закінчення минулого часу -ed."
       },
       "question": {
         "interactionId": "en:lesson-15:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f5bc9f335acb7d06536b8c93b1ed1d1ab16aab9728999fd14ca7f8dbfeb98788"
+  "introFingerprint": "5c70974b323691c91335a0fc293ccf5a3f03f9ad37159a563e9e1624a526734a"
 }

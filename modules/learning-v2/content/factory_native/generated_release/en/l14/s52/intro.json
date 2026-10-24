@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Ужин, пока друг читал",
+        "uk": "Вечеря, поки друг читав"
       },
       "bodyByLocale": {
-        "ru": "prawns — креветки. I was cooking prawns while you were reading. — Я готовил креветки, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "prawns — креветки. I was cooking prawns while you were reading. — Я готував креветки, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы готовили креветки, пока друг читал на кухне. Prawns — креветки. Обращаясь к другу, сначала назовите свой процесс I was cooking prawns, затем через while добавьте его процесс you were reading. I was cooking prawns while you were reading. — Я готовил креветки, пока ты читал. В обеих частях говорим о прошлом: с I ставим was, с you — were, затем действие с -ing.",
+        "uk": "Учора ви готували креветки, поки друг читав на кухні. Prawns — креветки. Звертаючись до друга, спочатку назвіть свій процес I was cooking prawns, потім через while додайте його процес you were reading. I was cooking prawns while you were reading. — Я готував креветки, поки ти читав. В обох частинах говоримо про минуле: з I ставимо was, із you — were, потім дію з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-52:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Разговор за готовкой",
+        "uk": "Розмова за готуванням"
       },
       "bodyByLocale": {
-        "ru": "mussels — мидии. squid — кальмар. She was cutting squid while I was talking. — Она резала кальмара, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "mussels — мідії. squid — кальмар. She was cutting squid while I was talking. — Вона різала кальмара, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра резала кальмара, пока вы рассказывали ей о работе. Squid — кальмар. Соберите две части с while: She was cutting squid + while + I was talking. She was cutting squid while I was talking. — Она резала кальмара, пока я говорил. С she и I здесь нужна was. В cutting удваивается t: cut превращается в cutting.",
+        "uk": "Учора ваша сестра різала кальмара, поки ви розповідали їй про роботу. Squid — кальмар. Складіть дві частини з while: She was cutting squid + while + I was talking. She was cutting squid while I was talking. — Вона різала кальмара, поки я говорив. Із she та I тут потрібна was. У cutting подвоюється t: cut перетворюється на cutting."
       },
       "question": {
         "interactionId": "en:lesson-14:session-52:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок перед ужином",
+        "uk": "Дзвінок перед вечерею"
       },
       "bodyByLocale": {
-        "ru": "crab — краб. We were cooking a crab when you called. — Мы готовили краба, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "crab — краб. We were cooking a crab when you called. — Ми готували краба, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с братом готовили краба, когда позвонил друг. Crab — краб. Рассказывая другу об этом моменте, начните с процесса We were cooking a crab. После when назовите событие you called. We were cooking a crab when you called. — Мы готовили краба, когда ты позвонил. С we нужна were перед cooking; звонок уже произошёл, поэтому called, а не call.",
+        "uk": "Учора ви з братом готували краба, коли зателефонував друг. Crab — краб. Розповідаючи другові про цю мить, почніть із процесу We were cooking a crab. Після when назвіть подію you called. We were cooking a crab when you called. — Ми готували краба, коли ти зателефонував. Із we потрібна were перед cooking; дзвінок уже стався, тому called, а не call."
       },
       "question": {
         "interactionId": "en:lesson-14:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fa834d20885f5cfe781ebdbf53663c2cc981a91146cb59d16a58ab452757020f"
+  "introFingerprint": "50edd5c828a981270da2341fd48dabad7f80532d8224f145394d9780d536aeef"
 }

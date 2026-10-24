@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Вспомнить совместную готовку",
+        "uk": "Згадати спільне готування"
       },
       "bodyByLocale": {
-        "ru": "taco — тако, лепёшка, сложенная вокруг начинки. I was making a taco while you were cooking. — Я делал тако, пока ты готовил. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "taco — тако, коржик, складений навколо начинки. I was making a taco while you were cooking. — Я робив тако, поки ти готував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы собирали тако на кухне, пока ваш друг готовил рядом. Taco — тако, лепёшка с начинкой. Рассказывая другу о двух одновременных процессах, начните с I was making a taco и присоедините через while вторую часть: you were cooking. I was making a taco while you were cooking. — Я делал тако, пока ты готовил. С I нужна was, с you — were; у make перед -ing убирается конечная e: making.",
+        "uk": "Учора ви складали тако на кухні, поки ваш друг готував поруч. Taco — тако, коржик із начинкою. Розповідаючи другові про два одночасні процеси, почніть із I was making a taco і приєднайте через while другу частину: you were cooking. I was making a taco while you were cooking. — Я робив тако, поки ти готував. З I потрібна was, із you — were; у make перед -ing прибирається кінцева e: making."
       },
       "question": {
         "interactionId": "en:lesson-14:session-55:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Готовка во время разговора",
+        "uk": "Готування під час розмови"
       },
       "bodyByLocale": {
-        "ru": "burrito — буррито, начинка, полностью завёрнутая в большую лепёшку. falafel — фалафель, жареные шарики из бобовых. She was making falafel while I was talking. — Она готовила фалафель, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "burrito — буріто, начинка, повністю загорнута у великий коржик. falafel — фалафель, смажені кульки з бобових. She was making falafel while I was talking. — Вона готувала фалафель, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра готовила фалафель, пока вы рассказывали ей историю. Falafel — фалафель, жареные шарики из бобовых. Соедините два процесса через while: She was making falafel + while + I was talking. She was making falafel while I was talking. — Она готовила фалафель, пока я говорил. В обеих частях здесь нужна was перед действием с -ing: и с she, и с I.",
+        "uk": "Учора ваша сестра готувала фалафель, поки ви розповідали їй історію. Falafel — фалафель, смажені кульки з бобових. Поєднайте два процеси через while: She was making falafel + while + I was talking. She was making falafel while I was talking. — Вона готувала фалафель, поки я говорив. В обох частинах тут потрібна was перед дією з -ing: і з she, і з I."
       },
       "question": {
         "interactionId": "en:lesson-14:session-55:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок на кухню",
+        "uk": "Дзвінок на кухню"
       },
       "bodyByLocale": {
-        "ru": "hummus — хумус, паста из нута. We were making hummus when you called. — Мы готовили хумус, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "hummus — хумус, паста з нуту. We were making hummus when you called. — Ми готували хумус, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой готовили хумус, когда вам позвонил друг. Hummus — хумус, паста из нута. Обращаясь к другу, сначала назовите процесс: We were making hummus. Затем через when добавьте звонок: you called. We were making hummus when you called. — Мы готовили хумус, когда ты позвонил. Were making показывает, что готовка шла в тот момент; called называет событие в прошлом.",
+        "uk": "Учора ви із сестрою готували хумус, коли вам зателефонував друг. Hummus — хумус, паста з нуту. Звертаючись до друга, спочатку назвіть процес: We were making hummus. Потім через when додайте дзвінок: you called. We were making hummus when you called. — Ми готували хумус, коли ти зателефонував. Were making показує, що готування тривало в ту мить; called називає подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b373353e50318565e1cb4c28e24f85da309ac546da788c00632b4ebdd7dd391d"
+  "introFingerprint": "43126c1cafa38cc3380e171114a6d40ed08855b7fb75b5743ac319f66f890b8b"
 }

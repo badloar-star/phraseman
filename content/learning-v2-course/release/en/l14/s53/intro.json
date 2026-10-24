@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Помогать другу с обедом",
+        "uk": "Допомагати другові з обідом"
       },
       "bodyByLocale": {
-        "ru": "celery — сельдерей. I was cutting celery while you were cooking. — Я резал сельдерей, пока ты готовил. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "celery — селера. I was cutting celery while you were cooking. — Я різав селеру, поки ти готував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы резали сельдерей, пока друг готовил остальной обед. Celery — сельдерей. Обращаясь к другу, соедините одновременные процессы через while: I was cutting celery + while + you were cooking. I was cutting celery while you were cooking. — Я резал сельдерей, пока ты готовил. Для прошлого с I используйте was, с you — were, затем форму действия с -ing.",
+        "uk": "Учора ви різали селеру, поки друг готував решту обіду. Celery — селера. Звертаючись до друга, поєднайте одночасні процеси через while: I was cutting celery + while + you were cooking. I was cutting celery while you were cooking. — Я різав селеру, поки ти готував. Для минулого з I використовуйте was, із you — were, потім форму дії з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-53:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "История у плиты",
+        "uk": "Історія біля плити"
       },
       "bodyByLocale": {
-        "ru": "broccoli — брокколи. artichoke — артишок. She was cooking an artichoke while I was talking. — Она готовила артишок, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "broccoli — броколі. artichoke — артишок. She was cooking an artichoke while I was talking. — Вона готувала артишок, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра готовила артишок, пока вы рассказывали ей историю. Artichoke — артишок. Начните с She was cooking an artichoke и через while добавьте I was talking. She was cooking an artichoke while I was talking. — Она готовила артишок, пока я говорил. Обе части описывают одновременные процессы; с she и I перед действием с -ing стоит was.",
+        "uk": "Учора ваша сестра готувала артишок, поки ви розповідали їй історію. Artichoke — артишок. Почніть із She was cooking an artichoke і через while додайте I was talking. She was cooking an artichoke while I was talking. — Вона готувала артишок, поки я говорив. Обидві частини описують одночасні процеси; із she та I перед дією з -ing стоїть was."
       },
       "question": {
         "interactionId": "en:lesson-14:session-53:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время нарезки",
+        "uk": "Дзвінок під час нарізання"
       },
       "bodyByLocale": {
-        "ru": "fennel — фенхель, здесь овощ с белым утолщённым основанием. We were cutting fennel when you called. — Мы резали фенхель, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "fennel — фенхель, тут овоч із білою потовщеною основою. We were cutting fennel when you called. — Ми різали фенхель, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой резали фенхель для салата, когда позвонил друг. Fennel — фенхель. Обращаясь к другу, назовите процесс We were cutting fennel и присоедините через when событие you called. We were cutting fennel when you called. — Мы резали фенхель, когда ты позвонил. Were cutting показывает процесс в тот момент, called — случившийся звонок. В cutting удваивается t.",
+        "uk": "Учора ви із сестрою різали фенхель для салату, коли зателефонував друг. Fennel — фенхель. Звертаючись до друга, назвіть процес We were cutting fennel і приєднайте через when подію you called. We were cutting fennel when you called. — Ми різали фенхель, коли ти зателефонував. Were cutting показує процес у ту мить, called — дзвінок, що стався. У cutting подвоюється t."
       },
       "question": {
         "interactionId": "en:lesson-14:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e8656f0c4c258211507fb8ca0966d1af367f7bf6bcde59087800be7c23475c35"
+  "introFingerprint": "54cba97149427eb9f64b2b4dd824bb1fcea278af13fdb225976f325e3f0a1e24"
 }

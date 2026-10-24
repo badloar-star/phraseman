@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Одночасні дії
+### Допомагати другові з обідом
 
-celery — селера. I was cutting celery while you were cooking. — Я різав селеру, поки ти готував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому.
+Учора ви різали селеру, поки друг готував решту обіду. Celery — селера. Звертаючись до друга, поєднайте одночасні процеси через while: I was cutting celery + while + you were cooking. I was cutting celery while you were cooking. — Я різав селеру, поки ти готував. Для минулого з I використовуйте was, із you — were, потім форму дії з -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ celery — селера. I was cutting celery while you were cooking. — Я р�
 
 ## Інтро 2
 
-### Ще два слова
+### Історія біля плити
 
-broccoli — броколі. artichoke — артишок. She was cooking an artichoke while I was talking. — Вона готувала артишок, поки я говорив. Виберіть фразу про два процеси в минулому.
+Учора ваша сестра готувала артишок, поки ви розповідали їй історію. Artichoke — артишок. Почніть із She was cooking an artichoke і через while додайте I was talking. She was cooking an artichoke while I was talking. — Вона готувала артишок, поки я говорив. Обидві частини описують одночасні процеси; із she та I перед дією з -ing стоїть was.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ broccoli — броколі. artichoke — артишок. She was cooking an ar
 
 ## Інтро 3
 
-### Подія на тлі процесу
+### Дзвінок під час нарізання
 
-fennel — фенхель, тут овоч із білою потовщеною основою. We were cutting fennel when you called. — Ми різали фенхель, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called.
+Учора ви із сестрою різали фенхель для салату, коли зателефонував друг. Fennel — фенхель. Звертаючись до друга, назвіть процес We were cutting fennel і приєднайте через when подію you called. We were cutting fennel when you called. — Ми різали фенхель, коли ти зателефонував. Were cutting показує процес у ту мить, called — дзвінок, що стався. У cutting подвоюється t.
 
 **Виберіть фразу для цієї ситуації.**
 

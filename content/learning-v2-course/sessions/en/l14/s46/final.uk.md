@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Одночасні дії
+### Шукати шпильку ввечері
 
-safety pin — англійська шпилька із застібкою. I was looking for a safety pin while you were reading. — Я шукав англійську шпильку, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому.
+Учора ви шукали шпильку із застібкою, поки друг читав поруч. Safety pin — англійська шпилька із застібкою. Звертаючись до друга, поєднайте свій процес I was looking for a safety pin і його процес you were reading через while. I was looking for a safety pin while you were reading. — Я шукав англійську шпильку, поки ти читав. З I потрібна was, із you — were. Сполучення looking for означає «шукав»: не пропускайте for.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ safety pin — англійська шпилька із застібкою. I wa
 
 ## Інтро 2
 
-### Ще два слова
+### Розмова за рукоділлям
 
-sewing machine — швейна машинка. pincushion — подушечка для шпильок і голок. She was making a pincushion while I was talking. — Вона робила подушечку для голок, поки я говорив. Виберіть фразу про два процеси в минулому.
+Учора ваша сестра шила подушечку для голок, поки ви розповідали їй історію. Pincushion — подушечка для шпильок і голок. Спочатку назвіть її процес She was making a pincushion, потім через while додайте ваш: I was talking. She was making a pincushion while I was talking. — Вона робила подушечку для голок, поки я говорив. Із she та I тут потрібна was; у make перед -ing прибирається e: making.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ sewing machine — швейна машинка. pincushion — подушечк�
 
 ## Інтро 3
 
-### Подія на тлі процесу
+### Дзвінок під час пошуку
 
-knitting needles — в’язальні спиці. We were looking for the knitting needles when you called. — Ми шукали в’язальні спиці, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called.
+Учора ви із сестрою шукали в’язальні спиці, коли зателефонував друг. Knitting needles — в’язальні спиці. Розповідаючи другові про цю мить, почніть із We were looking for the knitting needles і додайте when you called. We were looking for the knitting needles when you called. — Ми шукали в’язальні спиці, коли ти зателефонував. Were looking for передає пошук, що тривав у ту мить; called — дзвінок, який стався.
 
 **Виберіть фразу для цієї ситуації.**
 

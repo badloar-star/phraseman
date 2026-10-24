@@ -10779,7 +10779,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 42,
-    sourceFingerprint: "bd85419b5d00c72cc92206908a0e9e055fe4b5c36192ed693df50141331be967",
+    sourceFingerprint: "6d211fc1635fc5d6570df680239752715e06f56ff0e03e19f3cd0c2a770226ce",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10793,7 +10793,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 43,
-    sourceFingerprint: "1ecd0fadd5820614da3334a965c126ea071fda34fba36d6e7a09ec4fd0585290",
+    sourceFingerprint: "ec7130d6a1ca5cd972174ecc0f52c9f0ce2d760ef9a0368c0f959dad39b2f171",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10807,7 +10807,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 44,
-    sourceFingerprint: "d27f9a6ebcb57eb01f3ccdd10e7959eb9c766e22c5ca6064c493f189591a0926",
+    sourceFingerprint: "5c74abbb16fd1d4c3f5c86da5ccf977af72ed25d9d177bd56cca3d94220c5bb3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10821,7 +10821,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 45,
-    sourceFingerprint: "5d0b41901471470aa48fc3bb049c09a23e0c8901fa0696b4223b4d585bf89a32",
+    sourceFingerprint: "6a125a8fbf8cd30e7aa36b22c453d6498870f98901bfa10aef99c8aa7af85821",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10835,7 +10835,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 46,
-    sourceFingerprint: "87560bf492657a1b2a34d37da2615faaed96bf891e976997225787c92f3a8e5b",
+    sourceFingerprint: "f77b9730136087be2d20f1796b9f3ae47edce779a6cb3f4969d0e8f8b4851d0f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10849,7 +10849,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 47,
-    sourceFingerprint: "23b5a5fe45b236d8bf32492cf0cfa47f09beec30f23bba91613fbf7443a260a8",
+    sourceFingerprint: "849a24510e54296e652441ba84135481ebf46bed8604c0273d128c86334bf13d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10863,7 +10863,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 48,
-    sourceFingerprint: "58a1375b0f2b09fcf67a0873de723965dddb752e104e505e25ace2d4db488283",
+    sourceFingerprint: "bf68fd47eaa6a0b9b4091a0fb777cdacfa82a3c1050e7214783618aa7d56d358",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10877,7 +10877,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 49,
-    sourceFingerprint: "e96116cb9d5cbedcaa6d1cfba4aacb23f33b8ade73e194ba990f8633a9d96795",
+    sourceFingerprint: "239233ee0eff307946650a2028d81f3162c15e85e9048d6bc53f660f70a7d0da",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10891,7 +10891,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 50,
-    sourceFingerprint: "087bca4e87b0aa69a5ad61a8d4ad03c51cfca9f8a390f5349a77f34477745045",
+    sourceFingerprint: "8fafba205f94490c2c62082d1670c92fb97f0e58b6e5952d9a0a59703f5fb544",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10905,7 +10905,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 51,
-    sourceFingerprint: "5beaea62af49e8982f38949e7002356019a9b77b24e15a516ed94df3ab1aa8fb",
+    sourceFingerprint: "23c3aa2862368a8f39620f6f067e5e166fb75792e5daa19d6de23b3d67750c50",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10919,7 +10919,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 52,
-    sourceFingerprint: "4ac306818f9233143512dcd96c3ea347fff8f431f78c5d9badff37dda0149cc1",
+    sourceFingerprint: "c5985dcb8438de9393c1c2f5f9dd77ade8d9163c902d0a86bb91226f15810d0a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10933,7 +10933,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 53,
-    sourceFingerprint: "0124d5ab1e8e68812aa56f413b5f279b389f5d7ed5c13af2b33f899ae3a8ef4f",
+    sourceFingerprint: "5f480c15562ff2fd67bf1435a272d87941234fa0e604e2eb447762b8a94e7749",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10947,7 +10947,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 54,
-    sourceFingerprint: "48c2102cd8ec0ddb777bb550c3f9dcb7431088d6f6162d6790cf63b049aee521",
+    sourceFingerprint: "82467df004aa46c7fe35b8d292a1475ff50ff6357cc1b1383d489909b08f5389",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10961,7 +10961,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 55,
-    sourceFingerprint: "299a1ca71626d57e1e5ec7f2a23eb50549cf238b5e836b54642d26b9de22db9a",
+    sourceFingerprint: "01a89c2f951e5c11a1b111bdd922ff6aa4cba9da55891dce21c229d8fd18eb44",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10975,7 +10975,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 56,
-    sourceFingerprint: "2fcc90a2c51148321d6c6920a1d1f3273eb1b586c5f863c67326f5f26de9a8e7",
+    sourceFingerprint: "ed526216d71a69c2511fb3c16633bf4a180ff38baf8f5c66fc5d82c5ef8ad054",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна were.","Первое действие тоже в прошлом: was."],["С she нужна was.","С I нужна was."],["Событие в прошлом: called.","С we нужна were."]],"uk":[["З you потрібна were.","Перша дія теж у минулому: was."],["З she потрібна was.","З I потрібна was."],["Подія в минулому: called.","З we потрібна were."]]}),
@@ -10989,7 +10989,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 1,
-    sourceFingerprint: "bede86cb607ad762d2dd775a8df897c95467a0031e8181a0b0cc614e127505b7",
+    sourceFingerprint: "c37500d7a1e180f3d4815161019920359787ab5e754955e5119cfa0e9d3b7667",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После going нужна to: going to descale.","После going to нужна начальная форма descale, не descaling."],["С she нужна is.","После going to глагол без -s: repaint."],["С we нужна are.","После going to нужна начальная форма alter."]],"uk":[["Після going потрібна to: going to descale.","Після going to потрібна початкова форма descale, не descaling."],["З she потрібна is.","Після going to дієслово без -s: repaint."],["З we потрібна are.","Після going to потрібна початкова форма alter."]]}),
@@ -11003,7 +11003,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 15, sessionOrdinal: 2,
-    sourceFingerprint: "920023ef62645eaf75df44a9a6ed71adea67a85bd070fd017e20bf3f9ad4369c",
+    sourceFingerprint: "ea74fdf114ca31ab244b581055840d130fd70f5204bb9a8d3d800732cadfd8dd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна начальная форма sprinkle.","С I нужна am."],["Scoop — набрать ложкой или совком, не просеять.","С she нужна is."],["С we нужна are.","После going to нужна knead."]],"uk":[["Потрібна початкова форма sprinkle.","З I потрібна am."],["Scoop — набрати ложкою або совком, не просіяти.","З she потрібна is."],["З we потрібна are.","Після going to потрібна knead."]]}),

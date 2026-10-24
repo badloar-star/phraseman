@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Готовили вместе",
+        "uk": "Готували разом"
       },
       "bodyByLocale": {
-        "ru": "feta — фета, белый рассольный сыр. I was cutting feta while you were cooking. — Я резал фету, пока ты готовил. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "feta — фета, білий розсільний сир. I was cutting feta while you were cooking. — Я різав фету, поки ти готував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы резали фету для салата, пока ваш друг готовил рядом. Feta — фета, белый рассольный сыр. Чтобы связать два одновременных процесса в прошлом, соберите I was cutting feta + while + you were cooking. I was cutting feta while you were cooking. — Я резал фету, пока ты готовил. В обеих частях действие имеет форму с -ing; перед ним с I стоит was, а с you — were. В cutting буква t удваивается.",
+        "uk": "Учора ви різали фету для салату, поки ваш друг готував поруч. Feta — фета, білий розсільний сир. Щоб поєднати два одночасні процеси в минулому, складіть I was cutting feta + while + you were cooking. I was cutting feta while you were cooking. — Я різав фету, поки ти готував. В обох частинах дія має форму з -ing; перед нею з I стоїть was, а з you — were. У cutting літера t подвоюється."
       },
       "question": {
         "interactionId": "en:lesson-14:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Разговор на кухне",
+        "uk": "Розмова на кухні"
       },
       "bodyByLocale": {
-        "ru": "mozzarella — моцарелла, мягкий белый сыр. cheddar — чеддер, сорт твёрдого или полутвёрдого сыра. She was cutting cheddar while I was talking. — Она резала чеддер, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "mozzarella — моцарела, м’який білий сир. cheddar — чедер, сорт твердого або напівтвердого сиру. She was cutting cheddar while I was talking. — Вона різала чедер, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра резала чеддер, пока вы рассказывали ей о своём дне. Cheddar — чеддер, сорт сыра. Начните с She was cutting cheddar, затем через while добавьте одновременное действие: I was talking. She was cutting cheddar while I was talking. — Она резала чеддер, пока я говорил. Здесь с she и с I используйте was перед формой с -ing.",
+        "uk": "Учора ваша сестра різала чеддер, поки ви розповідали їй про свій день. Cheddar — чеддер, сорт сиру. Почніть із She was cutting cheddar, потім через while додайте одночасну дію: I was talking. She was cutting cheddar while I was talking. — Вона різала чеддер, поки я говорив. Тут із she та з I використовуйте was перед формою з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время готовки",
+        "uk": "Дзвінок під час готування"
       },
       "bodyByLocale": {
-        "ru": "parmesan — пармезан, твёрдый сыр, который часто натирают. We were adding parmesan when you called. — Мы добавляли пармезан, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "parmesan — пармезан, твердий сир, який часто натирають. We were adding parmesan when you called. — Ми додавали пармезан, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой добавляли пармезан в блюдо, и в этот момент позвонил друг. Parmesan — пармезан, твёрдый сыр. Обращаясь к другу, начните с процесса We were adding parmesan. Через when добавьте произошедшее событие you called. We were adding parmesan when you called. — Мы добавляли пармезан, когда ты позвонил. Процесс строится как were + adding, а звонок передаётся формой прошлого времени called.",
+        "uk": "Учора ви із сестрою додавали пармезан до страви, і в цю мить зателефонував друг. Parmesan — пармезан, твердий сир. Звертаючись до друга, почніть із процесу We were adding parmesan. Через when додайте подію, що сталася: you called. We were adding parmesan when you called. — Ми додавали пармезан, коли ти зателефонував. Процес будується як were + adding, а дзвінок передається формою минулого часу called."
       },
       "question": {
         "interactionId": "en:lesson-14:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "983c2d862ad2b42da6a31b16ebb1359c64b3e6985df03c81ecd5aeed4cdb3371"
+  "introFingerprint": "08b7408b9b8836916ac30cac1b159310dad5d02ab603b664deae4514ffeda150"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Рисунок по фотографии",
+        "uk": "Малюнок за фотографією"
       },
       "bodyByLocale": {
-        "ru": "mole — крот, животное, живущее под землёй. I was drawing a mole while you were reading. — Я рисовал крота, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "mole — кріт, тварина, що живе під землею. I was drawing a mole while you were reading. — Я малював крота, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы рисовали крота по фотографии, пока друг читал рядом. Mole — крот. Обращаясь к другу, соедините I was drawing a mole и you were reading через while. I was drawing a mole while you were reading. — Я рисовал крота, пока ты читал. Оба процесса шли в прошлом: с I нужна was, с you — were, затем действие с -ing.",
+        "uk": "Учора ви малювали крота за фотографією, поки друг читав поруч. Mole — кріт. Звертаючись до друга, поєднайте I was drawing a mole і you were reading через while. I was drawing a mole while you were reading. — Я малював крота, поки ти читав. Обидва процеси тривали в минулому: з I потрібна was, із you — were, потім дія з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "История во время рисования",
+        "uk": "Історія під час малювання"
       },
       "bodyByLocale": {
-        "ru": "deer — олень. hare — заяц. She was drawing a hare while I was talking. — Она рисовала зайца, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "deer — олень. hare — заєць. She was drawing a hare while I was talking. — Вона малювала зайця, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра рисовала зайца, пока вы рассказывали ей историю. Hare — заяц. Назовите её процесс She was drawing a hare, затем через while добавьте свой: I was talking. She was drawing a hare while I was talking. — Она рисовала зайца, пока я говорил. С she и I здесь используйте was; drawing и talking обозначают одновременные процессы.",
+        "uk": "Учора ваша сестра малювала зайця, поки ви розповідали їй історію. Hare — заєць. Назвіть її процес She was drawing a hare, потім через while додайте свій: I was talking. She was drawing a hare while I was talking. — Вона малювала зайця, поки я говорив. Із she та I тут використовуйте was; drawing і talking позначають одночасні процеси."
       },
       "question": {
         "interactionId": "en:lesson-14:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время общего рисунка",
+        "uk": "Дзвінок під час спільного малюнка"
       },
       "bodyByLocale": {
-        "ru": "bat — летучая мышь в этом контексте. We were drawing a bat when you called. — Мы рисовали летучую мышь, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "bat — кажан у цьому контексті. We were drawing a bat when you called. — Ми малювали кажана, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой вместе рисовали летучую мышь на одном листе, когда позвонил друг. Bat здесь — летучая мышь. Рассказывая другу об этом моменте, начните с We were drawing a bat, затем добавьте when you called. We were drawing a bat when you called. — Мы рисовали летучую мышь, когда ты позвонил. Were drawing передаёт процесс в момент звонка, а called — само событие в прошлом.",
+        "uk": "Учора ви із сестрою разом малювали кажана на одному аркуші, коли зателефонував друг. Bat тут — кажан. Розповідаючи другові про цю мить, почніть із We were drawing a bat, потім додайте when you called. We were drawing a bat when you called. — Ми малювали кажана, коли ти зателефонував. Were drawing передає процес у момент дзвінка, а called — саму подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "573270c0fc98f03bb2e70c018ebe5d80b862e69c7cd5dcbbdb7e54bebd106d58"
+  "introFingerprint": "d0efd445ae16814c8b12ee301267e427813954c3a11102986b266f8f57bc69b4"
 }

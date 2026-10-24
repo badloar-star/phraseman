@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Раскраивать ткань рядом с другом",
+        "uk": "Кроїти тканину поруч із другом"
       },
       "bodyByLocale": {
-        "ru": "linen — лён, льняная ткань. I was cutting linen while you were reading. — Я резал льняную ткань, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "linen — льон, лляна тканина. I was cutting linen while you were reading. — Я різав лляну тканину, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы раскраивали льняную ткань, пока друг читал в той же комнате. Linen — льняная ткань. Обращаясь к другу, начните со своего процесса I was cutting linen, затем через while добавьте его: you were reading. I was cutting linen while you were reading. — Я резал льняную ткань, пока ты читал. Оба действия шли в прошлом: с I нужна was, с you — were, затем форма с -ing. В cutting удваивается t.",
+        "uk": "Учора ви кроїли лляну тканину, поки друг читав у тій самій кімнаті. Linen — лляна тканина. Звертаючись до друга, почніть зі свого процесу I was cutting linen, потім через while додайте його: you were reading. I was cutting linen while you were reading. — Я різав лляну тканину, поки ти читав. Обидві дії тривали в минулому: з I потрібна was, із you — were, потім форма з -ing. У cutting подвоюється t."
       },
       "question": {
         "interactionId": "en:lesson-14:session-51:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Разговаривать за шитьём",
+        "uk": "Розмовляти за шиттям"
       },
       "bodyByLocale": {
-        "ru": "velvet — бархат. nylon — нейлон, синтетическая ткань. She was folding nylon while I was talking. — Она складывала нейлоновую ткань, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "velvet — оксамит. nylon — нейлон, синтетична тканина. She was folding nylon while I was talking. — Вона складала нейлонову тканину, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра складывала нейлоновую ткань, пока вы рассказывали ей о поездке. Nylon — нейлон, здесь ткань. Соедините её действие и ваше через while: She was folding nylon + while + I was talking. She was folding nylon while I was talking. — Она складывала нейлоновую ткань, пока я говорил. С she и I здесь ставим was; folding и talking показывают два одновременных процесса.",
+        "uk": "Учора ваша сестра складала нейлонову тканину, поки ви розповідали їй про поїздку. Nylon — нейлон, тут тканина. Поєднайте її дію та вашу через while: She was folding nylon + while + I was talking. She was folding nylon while I was talking. — Вона складала нейлонову тканину, поки я говорив. Із she та I тут ставимо was; folding і talking показують два одночасні процеси."
       },
       "question": {
         "interactionId": "en:lesson-14:session-51:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время раскроя",
+        "uk": "Дзвінок під час крою"
       },
       "bodyByLocale": {
-        "ru": "polyester — полиэстер, синтетическая ткань. We were cutting polyester when you called. — Мы резали ткань из полиэстера, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "polyester — поліестер, синтетична тканина. We were cutting polyester when you called. — Ми різали тканину з поліестеру, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой раскраивали ткань из полиэстера, когда позвонил друг. Polyester — полиэстер. Рассказывая другу об этом моменте, соберите We were cutting polyester, затем через when присоедините you called. We were cutting polyester when you called. — Мы резали ткань из полиэстера, когда ты позвонил. Were cutting описывает занятие в момент звонка, а called — само событие в прошлом.",
+        "uk": "Учора ви із сестрою кроїли тканину з поліестеру, коли зателефонував друг. Polyester — поліестер. Розповідаючи другові про цю мить, складіть We were cutting polyester, потім через when приєднайте you called. We were cutting polyester when you called. — Ми різали тканину з поліестеру, коли ти зателефонував. Were cutting описує заняття в момент дзвінка, а called — саму подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ecce86c81c54a77eae5e95f2b48c1009df5c2c89a3f61c725be315978be0fb20"
+  "introFingerprint": "b742786e2355a46e6caa74681af3bce1b71f7e1f345cee8e2f361f402837be43"
 }

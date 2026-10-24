@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Ужин рядом с читающим другом",
+        "uk": "Вечеря поруч із другом, який читає"
       },
       "bodyByLocale": {
-        "ru": "salmon — лосось. I was cooking salmon while you were reading. — Я готовил лосося, пока ты читал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "salmon — лосось. I was cooking salmon while you were reading. — Я готував лосося, поки ти читав. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы готовили лосося, пока друг читал за столом на кухне. Salmon — лосось. Обращаясь к другу, соедините свой процесс I was cooking salmon с его процессом you were reading через while. I was cooking salmon while you were reading. — Я готовил лосося, пока ты читал. С I ставим was, с you — were; после них действие с -ing показывает, что оно шло в тот момент.",
+        "uk": "Учора ви готували лосося, поки друг читав за столом на кухні. Salmon — лосось. Звертаючись до друга, поєднайте свій процес I was cooking salmon із його процесом you were reading через while. I was cooking salmon while you were reading. — Я готував лосося, поки ти читав. З I ставимо was, із you — were; після них дія з -ing показує, що вона тривала в ту мить."
       },
       "question": {
         "interactionId": "en:lesson-14:session-50:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Разговор во время готовки",
+        "uk": "Розмова під час готування"
       },
       "bodyByLocale": {
-        "ru": "cod — треска. haddock — пикша, вид морской рыбы. She was cooking haddock while I was talking. — Она готовила пикшу, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "cod — тріска. haddock — пікша, вид морської риби. She was cooking haddock while I was talking. — Вона готувала пікшу, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра готовила пикшу, пока вы рассказывали ей о поездке. Haddock — пикша, морская рыба. Назовите её процесс She was cooking haddock, затем через while добавьте ваш: I was talking. She was cooking haddock while I was talking. — Она готовила пикшу, пока я говорил. Здесь обе части требуют was перед действием с -ing: с she и с I.",
+        "uk": "Учора ваша сестра готувала пікшу, поки ви розповідали їй про поїздку. Haddock — пікша, морська риба. Назвіть її процес She was cooking haddock, потім через while додайте ваш: I was talking. She was cooking haddock while I was talking. — Вона готувала пікшу, поки я говорив. Тут обидві частини потребують was перед дією з -ing: із she та з I."
       },
       "question": {
         "interactionId": "en:lesson-14:session-50:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Друг позвонил перед ужином",
+        "uk": "Друг зателефонував перед вечерею"
       },
       "bodyByLocale": {
-        "ru": "sardines — сардины. We were cooking sardines when you called. — Мы готовили сардины, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "sardines — сардини. We were cooking sardines when you called. — Ми готували сардини, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой готовили сардины, когда позвонил друг. Sardines — сардины. Рассказывая другу о моменте звонка, начните с We were cooking sardines. Затем добавьте when you called. We were cooking sardines when you called. — Мы готовили сардины, когда ты позвонил. Процесс строится как We + were + cooking; случившийся звонок передаём формой called.",
+        "uk": "Учора ви із сестрою готували сардини, коли зателефонував друг. Sardines — сардини. Розповідаючи другові про момент дзвінка, почніть із We were cooking sardines. Потім додайте when you called. We were cooking sardines when you called. — Ми готували сардини, коли ти зателефонував. Процес будується як We + were + cooking; дзвінок, що стався, передаємо формою called."
       },
       "question": {
         "interactionId": "en:lesson-14:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "26ac0bdb130dda6bac07c4e1699543173611eefa39ffebf7863cce289279b00f"
+  "introFingerprint": "e087cc14609335ae8b80b76ea2ded404236a84989c6298e6d24914cf3556cf42"
 }

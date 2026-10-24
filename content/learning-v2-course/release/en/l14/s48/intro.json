@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Фотография с обручем",
+        "uk": "Фотографія з обручем"
       },
       "bodyByLocale": {
-        "ru": "hula hoop — обруч, который вращают вокруг тела. I was using a hula hoop while you were taking a photo. — Я крутил обруч, пока ты фотографировал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "hula hoop — обруч, який обертають навколо тіла. I was using a hula hoop while you were taking a photo. — Я крутив обруч, поки ти фотографував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы крутили обруч, пока друг вас фотографировал. Hula hoop — обруч. Рассказывая другу о фотографии, соедините I was using a hula hoop и you were taking a photo через while. I was using a hula hoop while you were taking a photo. — Я крутил обруч, пока ты фотографировал. Оба процесса относятся к тому моменту в прошлом: с I нужна was, с you — were. У use и take перед -ing убирается e: using, taking.",
+        "uk": "Учора ви крутили обруч, поки друг вас фотографував. Hula hoop — обруч. Розповідаючи другові про фотографію, поєднайте I was using a hula hoop і you were taking a photo через while. I was using a hula hoop while you were taking a photo. — Я крутив обруч, поки ти фотографував. Обидва процеси стосуються тієї миті в минулому: з I потрібна was, із you — were. У use та take перед -ing прибирається e: using, taking."
       },
       "question": {
         "interactionId": "en:lesson-14:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Игра рядом с читающим братом",
+        "uk": "Гра поруч із братом, який читає"
       },
       "bodyByLocale": {
-        "ru": "roller skates — роликовые коньки. yo-yo — йо-йо, игрушка на нитке. She was playing with a yo-yo while I was reading. — Она играла с йо-йо, пока я читал. Выберите фразу о двух процессах в прошлом.",
-        "uk": "roller skates — роликові ковзани. yo-yo — йо-йо, іграшка на нитці. She was playing with a yo-yo while I was reading. — Вона гралася з йо-йо, поки я читав. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра играла с йо-йо, пока вы читали рядом. Yo-yo — йо-йо, игрушка на нитке. Соберите её процесс She was playing with a yo-yo, затем через while добавьте ваш: I was reading. She was playing with a yo-yo while I was reading. — Она играла с йо-йо, пока я читал. С she и I здесь нужна was; with связывает playing с игрушкой.",
+        "uk": "Учора ваша сестра гралася з йо-йо, поки ви читали поруч. Yo-yo — йо-йо, іграшка на нитці. Складіть її процес She was playing with a yo-yo, потім через while додайте ваш: I was reading. She was playing with a yo-yo while I was reading. — Вона гралася з йо-йо, поки я читав. Із she та I тут потрібна was; with пов’язує playing з іграшкою."
       },
       "question": {
         "interactionId": "en:lesson-14:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок во время игры",
+        "uk": "Дзвінок під час гри"
       },
       "bodyByLocale": {
-        "ru": "table tennis — настольный теннис. We were playing table tennis when you called. — Мы играли в настольный теннис, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "table tennis — настільний теніс. We were playing table tennis when you called. — Ми грали в настільний теніс, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с братом играли в настольный теннис, когда позвонил друг. Table tennis — настольный теннис. Обращаясь к другу, начните с We were playing table tennis, затем добавьте when you called. We were playing table tennis when you called. — Мы играли в настольный теннис, когда ты позвонил. Were playing передаёт процесс, а called — звонок, который произошёл во время игры.",
+        "uk": "Учора ви з братом грали в настільний теніс, коли зателефонував друг. Table tennis — настільний теніс. Звертаючись до друга, почніть із We were playing table tennis, потім додайте when you called. We were playing table tennis when you called. — Ми грали в настільний теніс, коли ти зателефонував. Were playing передає процес, а called — дзвінок, що стався під час гри."
       },
       "question": {
         "interactionId": "en:lesson-14:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "786dbe24f98425fa8f0cd6be57d930127b0c07c999e08d7e023cbdaa6fb551f3"
+  "introFingerprint": "b559ed8bb081a1398cb8f2308cf1292b88aadba9ddd75c8c10032e11b271453c"
 }

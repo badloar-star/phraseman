@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Помочь другу с чесноком",
+        "uk": "Допомогти другові з часником"
       },
       "bodyByLocale": {
-        "ru": "garlic press — пресс для чеснока, чеснокодавка. I was using a garlic press while you were cooking. — Я пользовался чеснокодавкой, пока ты готовил. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "garlic press — прес для часнику, часникодавка. I was using a garlic press while you were cooking. — Я користувався часникодавкою, поки ти готував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы выдавливали чеснок прессом, пока друг готовил у плиты. Garlic press — чеснокодавка. Рассказывая другу о совместной готовке, соедините I was using a garlic press и you were cooking через while. I was using a garlic press while you were cooking. — Я пользовался чеснокодавкой, пока ты готовил. В прошлом с I нужна was, с you — were; у use перед -ing убирается e: using.",
+        "uk": "Учора ви вичавлювали часник пресом, поки друг готував біля плити. Garlic press — часникодавка. Розповідаючи другові про спільне готування, поєднайте I was using a garlic press і you were cooking через while. I was using a garlic press while you were cooking. — Я користувався часникодавкою, поки ти готував. У минулому з I потрібна was, із you — were; у use перед -ing прибирається e: using."
       },
       "question": {
         "interactionId": "en:lesson-14:session-47:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Слить воду с макарон",
+        "uk": "Злити воду з макаронів"
       },
       "bodyByLocale": {
-        "ru": "slotted spoon — ложка с отверстиями для стекания жидкости. colander — дуршлаг для отцеживания воды. She was using a colander while I was cooking. — Она пользовалась дуршлагом, пока я готовил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "slotted spoon — ложка з отворами для стікання рідини. colander — друшляк для відціджування води. She was using a colander while I was cooking. — Вона користувалася друшляком, поки я готував. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра сливала воду с макарон через дуршлаг, пока вы готовили соус. Colander — дуршлаг. Назовите её процесс She was using a colander, затем через while добавьте свой: I was cooking. She was using a colander while I was cooking. — Она пользовалась дуршлагом, пока я готовил. Здесь с she и I ставим was, а using и cooking показывают два одновременных процесса.",
+        "uk": "Учора ваша сестра зливала воду з макаронів через друшляк, поки ви готували соус. Colander — друшляк. Назвіть її процес She was using a colander, потім через while додайте свій: I was cooking. She was using a colander while I was cooking. — Вона користувалася друшляком, поки я готував. Тут із she та I ставимо was, а using і cooking показують два одночасні процеси."
       },
       "question": {
         "interactionId": "en:lesson-14:session-47:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Найти толкушку",
+        "uk": "Знайти товкачку"
       },
       "bodyByLocale": {
-        "ru": "potato masher — толкушка для картофельного пюре. We were looking for the potato masher when you called. — Мы искали толкушку для картофеля, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "potato masher — товкачка для картопляного пюре. We were looking for the potato masher when you called. — Ми шукали товкачку для картоплі, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой искали толкушку на кухне, когда позвонил друг. Potato masher — толкушка для картофеля. Обращаясь к другу, начните с We were looking for the potato masher, затем добавьте when you called. We were looking for the potato masher when you called. — Мы искали толкушку для картофеля, когда ты позвонил. Were looking for описывает поиск в тот момент; called называет произошедший звонок. Сохраняйте for после looking, чтобы получилось «искали».",
+        "uk": "Учора ви із сестрою шукали товкачку на кухні, коли зателефонував друг. Potato masher — товкачка для картоплі. Звертаючись до друга, почніть із We were looking for the potato masher, потім додайте when you called. We were looking for the potato masher when you called. — Ми шукали товкачку для картоплі, коли ти зателефонував. Were looking for описує пошук у ту мить; called називає дзвінок, що стався. Зберігайте for після looking, щоб вийшло «шукали»."
       },
       "question": {
         "interactionId": "en:lesson-14:session-47:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1c308c8c0247baae9fe38e7f932822e6d01200dd058891ba9d89d81b1ba884ac"
+  "introFingerprint": "830a54e1ed41cc401b5ef1cd413ca1edbe1c5f3d467f015048d9471910e8dc70"
 }

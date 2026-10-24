@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Спросить о том моменте",
-        "uk": "Запитати про той момент"
+        "ru": "Спросить о вчерашней игре",
+        "uk": "Запитати про вчорашню гру"
       },
       "bodyByLocale": {
-        "ru": "Paddling pool — неглубокий детский бассейн. You were playing in the paddling pool. — Ты играл в детском бассейне. Для вопроса переносим were перед you: Were you playing in the paddling pool? — Ты играл в детском бассейне в тот момент? Did не нужен.",
-        "uk": "Paddling pool — неглибокий дитячий басейн. You were playing in the paddling pool. — Ти грався в дитячому басейні. Для запитання переносимо were перед you: Were you playing in the paddling pool? — Ти грався в дитячому басейні в той момент? Did не потрібне."
+        "ru": "Вчера в четыре часа вы искали младшего брата на площадке. Теперь уточните, играл ли он тогда в детском бассейне: Were you playing in the paddling pool? — Ты играл в детском бассейне? В утверждении порядок You + were + playing. Для вопроса перенесите were перед you: Were + you + playing. К play добавьте -ing, затем укажите место: in the paddling pool. Did в этом вопросе не нужен: вопрос уже строится с were.",
+        "uk": "Учора о четвертій ви шукали молодшого брата на майданчику. Тепер уточніть, чи грав він тоді в дитячому басейні: Were you playing in the paddling pool? — Ти грав у дитячому басейні? У твердженні порядок You + were + playing. Для запитання перенесіть were перед you: Were + you + playing. До play додайте -ing, потім укажіть місце: in the paddling pool. Did у цьому запитанні не потрібне: запитання вже будується з were."
       },
       "question": {
         "interactionId": "en:lesson-14:session-09:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Was he…?",
-        "uk": "Was he…?"
+        "ru": "Что делал брат",
+        "uk": "Що робив брат"
       },
       "bodyByLocale": {
-        "ru": "Trampoline — батут; climbing frame — конструкция для лазания на детской площадке. Was he jumping on the trampoline? — Он прыгал на батуте? С he вопрос начинается с was, затем jumping. Выберите вопрос о батуте.",
-        "uk": "Trampoline — батут; climbing frame — конструкція для лазіння на дитячому майданчику. Was he jumping on the trampoline? — Він стрибав на батуті? З he запитання починається з was, потім jumping. Виберіть запитання про батут."
+        "ru": "Вчера в четыре часа брат был на площадке. Спросите сестру, прыгал ли он тогда на батуте: Was he jumping on the trampoline? — Он прыгал на батуте? С he используем was. Для вопроса соберите Was + he + jumping: was перед he, затем jump с окончанием -ing. В конце добавьте on the trampoline — на батуте.",
+        "uk": "Учора о четвертій брат був на майданчику. Запитайте сестру, чи стрибав він тоді на батуті: Was he jumping on the trampoline? — Він стрибав на батуті? З he використовуємо was. Для запитання складіть Was + he + jumping: was перед he, потім jump із закінченням -ing. Наприкінці додайте on the trampoline — на батуті."
       },
       "question": {
         "interactionId": "en:lesson-14:session-09:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не занимались этим",
-        "uk": "Не займалися цим"
+        "ru": "Исправить предположение",
+        "uk": "Виправити припущення"
       },
       "bodyByLocale": {
-        "ru": "Bouncy castle — надувной замок для прыжков. I wasn’t playing on the bouncy castle. — Я не играл на надувном замке. Wasn’t = was not; weren’t = were not. С they: They weren’t playing. После отрицания остаётся -ing. Выберите отрицание с I.",
-        "uk": "Bouncy castle — надувний замок для стрибків. I wasn’t playing on the bouncy castle. — Я не грався на надувному замку. Wasn’t = was not; weren’t = were not. З they: They weren’t playing. Після заперечення залишається -ing. Виберіть заперечення з I."
+        "ru": "Друг думает, что вчера в четыре вы играли на надувном замке. Но тогда вы сидели рядом на скамейке. I wasn’t playing on the bouncy castle. — Я не играл на надувном замке. Для отрицания после I поставьте was not, или wasn’t, затем playing: I + wasn’t + playing. Окончание -ing сохраняется. В конце укажите место: on the bouncy castle. С you, we и they в таком отрицании нужна were not, или weren’t.",
+        "uk": "Друг думає, що вчора о четвертій ви грали на надувному замку. Але тоді ви сиділи поруч на лавці. I wasn’t playing on the bouncy castle. — Я не грав на надувному замку. Для заперечення після I поставте was not, або wasn’t, потім playing: I + wasn’t + playing. Закінчення -ing зберігається. Наприкінці вкажіть місце: on the bouncy castle. З you, we і they у такому запереченні потрібна were not, або weren’t."
       },
       "question": {
         "interactionId": "en:lesson-14:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5bec393e99273583ce962bbd05f1845e0d27c0694b1cf391420638e41eccea14"
+  "introFingerprint": "f83dc5764d4187e10616459f900e33edce9340fe7e37b0fd2aafc5d8995e6e17"
 }

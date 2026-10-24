@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Снежинка",
-        "uk": "Сніжинка"
+        "ru": "Что было на варежке",
+        "uk": "Що було на рукавиці"
       },
       "bodyByLocale": {
-        "ru": "Snowflake — снежинка. Were you looking at a snowflake? — Ты рассматривал снежинку? Выберите вопрос о вчерашнем моменте.",
-        "uk": "Snowflake — сніжинка. Were you looking at a snowflake? — Ти розглядав сніжинку? Виберіть запитання про вчорашній момент."
+        "ru": "Вчера в два часа вы видели, как друг внимательно смотрел на свою варежку. Уточните, рассматривал ли он снежинку: Were you looking at a snowflake? — Ты рассматривал снежинку? Соберите Were + you + looking at. В вопросе were стоит перед you; к look добавьте -ing. Сохраните at: look at означает «смотреть на». Затем добавьте a snowflake — одну снежинку.",
+        "uk": "Учора о другій ви бачили, як друг уважно дивився на свою рукавицю. Уточніть, чи розглядав він сніжинку: Were you looking at a snowflake? — Ти розглядав сніжинку? Складіть Were + you + looking at. У запитанні were стоїть перед you; до look додайте -ing. Збережіть at: look at означає «дивитися на». Потім додайте a snowflake — одну сніжинку."
       },
       "question": {
         "interactionId": "en:lesson-14:session-13:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Снеговик и сугроб",
-        "uk": "Сніговик і замет"
+        "ru": "Чем брат был занят во дворе",
+        "uk": "Чим брат був зайнятий надворі"
       },
       "bodyByLocale": {
-        "ru": "Snowman — снеговик; snowdrift — сугроб. Was he building a snowman? — Он лепил снеговика? Выберите вопрос о снеговике.",
-        "uk": "Snowman — сніговик; snowdrift — замет. Was he building a snowman? — Він ліпив сніговика? Виберіть запитання про сніговика."
+        "ru": "Вчера в два часа брат был во дворе. Спросите сестру, лепил ли он в тот момент снеговика: Was he building a snowman? — Он лепил снеговика? Для вопроса поставьте Was перед he, затем building. С he используем was, к build добавляем -ing. В конце назовите то, что он делал: a snowman — одного снеговика.",
+        "uk": "Учора о другій брат був надворі. Запитайте сестру, чи ліпив він тієї миті сніговика: Was he building a snowman? — Він ліпив сніговика? Для запитання поставте Was перед he, потім building. З he використовуємо was, до build додаємо -ing. Наприкінці назвіть те, що він робив: a snowman — одного сніговика."
       },
       "question": {
         "interactionId": "en:lesson-14:session-13:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Метель",
-        "uk": "Заметіль"
+        "ru": "Вы оставались дома",
+        "uk": "Ви залишалися вдома"
       },
       "bodyByLocale": {
-        "ru": "Snowstorm — сильная снежная буря, метель. I wasn’t driving in the snowstorm. — Я не ехал за рулём в метель. Выберите отрицание.",
-        "uk": "Snowstorm — сильна снігова буря, заметіль. I wasn’t driving in the snowstorm. — Я не їхав за кермом у заметіль. Виберіть заперечення."
+        "ru": "Друг думает, что вчера в два часа вы ехали за рулём во время метели. Но вы были дома. I wasn’t driving in the snowstorm. — Я не ехал за рулём в метель. Чтобы отрицать действие в тот момент, соберите I + wasn’t + driving. Wasn’t означает was not; у drive уберите e и добавьте -ing. После действия добавьте in the snowstorm — во время той метели.",
+        "uk": "Друг думає, що вчора о другій ви їхали за кермом під час хуртовини. Але ви були вдома. I wasn’t driving in the snowstorm. — Я не їхав за кермом у хуртовину. Щоб заперечити дію тієї миті, складіть I + wasn’t + driving. Wasn’t означає was not; у drive приберіть e й додайте -ing. Після дії додайте in the snowstorm — під час тієї хуртовини."
       },
       "question": {
         "interactionId": "en:lesson-14:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "696f6c72c475575c28359a5f0f78769813ba0144cad6dbcfc1309143c5207594"
+  "introFingerprint": "546730b96e4ca9104d37db315877def7ea2378080f48ca2beabe573770cdff59"
 }

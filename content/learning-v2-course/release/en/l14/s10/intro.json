@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Замок для велосипеда",
-        "uk": "Замок для велосипеда"
+        "ru": "Что друг искал в гараже",
+        "uk": "Що друг шукав у гаражі"
       },
       "bodyByLocale": {
-        "ru": "Bike lock — замок для велосипеда. Were you looking for the bike lock? — Ты искал велосипедный замок? Вопрос о вчерашнем моменте начинается с were перед you.",
-        "uk": "Bike lock — замок для велосипеда. Were you looking for the bike lock? — Ти шукав велосипедний замок? Запитання про вчорашній момент починається з were перед you."
+        "ru": "Вчера в три часа друг перебирал вещи в гараже перед поездкой. Уточните, искал ли он тогда велосипедный замок: Were you looking for the bike lock? — Ты искал велосипедный замок? Соберите Were + you + looking for. Для вопроса were поставьте перед you, к look добавьте -ing. Сохраните for: look for означает «искать». В конце назовите предмет: the bike lock.",
+        "uk": "Учора о третій друг перебирав речі в гаражі перед поїздкою. Уточніть, чи шукав він тоді велосипедний замок: Were you looking for the bike lock? — Ти шукав велосипедний замок? Складіть Were + you + looking for. Для запитання were поставте перед you, до look додайте -ing. Збережіть for: look for означає «шукати». Наприкінці назвіть предмет: the bike lock."
       },
       "question": {
         "interactionId": "en:lesson-14:session-10:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шлем и насос",
-        "uk": "Шолом і насос"
+        "ru": "Вы не пользовались насосом",
+        "uk": "Ви не користувалися насосом"
       },
       "bodyByLocale": {
-        "ru": "Cycle helmet — велосипедный шлем; bike pump — велосипедный насос. I wasn’t using the bike pump. — Я не пользовался велосипедным насосом. Выберите отрицание.",
-        "uk": "Cycle helmet — велосипедний шолом; bike pump — велосипедний насос. I wasn’t using the bike pump. — Я не користувався велосипедним насосом. Виберіть заперечення."
+        "ru": "Брат думает, что вчера в три вы накачивали колесо. Но тогда вы только осматривали велосипед. I wasn’t using the bike pump. — Я не пользовался велосипедным насосом. Чтобы отрицать действие в тот момент, соберите I + wasn’t + using. Wasn’t означает was not; у use уберите e и добавьте -ing. Затем добавьте the bike pump — насос, которым вы не пользовались.",
+        "uk": "Брат думає, що вчора о третій ви накачували колесо. Але тоді ви лише оглядали велосипед. I wasn’t using the bike pump. — Я не користувався велосипедним насосом. Щоб заперечити дію тієї миті, складіть I + wasn’t + using. Wasn’t означає was not; у use приберіть e й додайте -ing. Потім додайте the bike pump — насос, яким ви не користувалися."
       },
       "question": {
         "interactionId": "en:lesson-14:session-10:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Велосипедный звонок",
-        "uk": "Велосипедний дзвінок"
+        "ru": "Дети не звонили",
+        "uk": "Діти не дзвонили"
       },
       "bodyByLocale": {
-        "ru": "Bike bell — велосипедный звонок. They weren’t using the bike bell. — Они не пользовались велосипедным звонком. С they нужна weren’t. Выберите отрицание.",
-        "uk": "Bike bell — велосипедний дзвінок. They weren’t using the bike bell. — Вони не користувалися велосипедним дзвінком. З they потрібна weren’t. Виберіть заперечення."
+        "ru": "Вчера в три часа дети стояли рядом с велосипедом, и вы услышали звон. Но никто из них не трогал велосипедный звонок. They weren’t using the bike bell. — Они не пользовались велосипедным звонком. Соберите They + weren’t + using. С they нужна weren’t — сокращение were not. У use уберите e и добавьте -ing; после using назовите предмет: the bike bell.",
+        "uk": "Учора о третій діти стояли поруч із велосипедом, і ви почули дзвін. Але ніхто з них не торкався велосипедного дзвоника. They weren’t using the bike bell. — Вони не користувалися велосипедним дзвоником. Складіть They + weren’t + using. З they потрібна weren’t — скорочення were not. У use приберіть e й додайте -ing; після using назвіть предмет: the bike bell."
       },
       "question": {
         "interactionId": "en:lesson-14:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "31c4c62d2679314a2e623b405b9b3d9487fa368d18e2272e0b4f12d8feb38288"
+  "introFingerprint": "ce95eb3254542646f30d45cdb6bc9d9e59669ffb2f896da1fabdc7560ed05b66"
 }

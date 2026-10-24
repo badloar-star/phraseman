@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Жареный рис",
-        "uk": "Смажений рис"
+        "ru": "Что вы готовили в семь",
+        "uk": "Що ви готували о сьомій"
       },
       "bodyByLocale": {
-        "ru": "Fried rice — жареный рис, блюдо из риса, обжаренного с другими продуктами. I was cooking fried rice. — Я готовил жареный рис. Выберите действие в прошлом моменте.",
-        "uk": "Fried rice — смажений рис, страва з рису, обсмаженого з іншими продуктами. I was cooking fried rice. — Я готував смажений рис. Виберіть дію в минулий момент."
+        "ru": "Вчера в семь вечера вы стояли у плиты и готовили жареный рис. I was cooking fried rice. — Я готовил жареный рис. Чтобы сказать, чем вы были заняты в этот момент прошлого, соберите I + was + cooking. С I нужна was, к cook добавьте -ing. Затем назовите блюдо: fried rice. Здесь описываем приготовление в процессе, а не сообщаем, что ужин уже был готов.",
+        "uk": "Учора о сьомій вечора ви стояли біля плити й готували смажений рис. I was cooking fried rice. — Я готував смажений рис. Щоб сказати, чим ви були зайняті в цей момент минулого, складіть I + was + cooking. З I потрібна was, до cook додайте -ing. Потім назвіть страву: fried rice. Тут описуємо приготування в процесі, а не повідомляємо, що вечеря вже була готова."
       },
       "question": {
         "interactionId": "en:lesson-14:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Суп и рыбная котлета",
-        "uk": "Суп і рибна котлета"
+        "ru": "Что сестра ела за столом",
+        "uk": "Що сестра їла за столом"
       },
       "bodyByLocale": {
-        "ru": "Noodle soup — суп с лапшой; fishcake — рыбная котлета. She was eating a fishcake. — Она ела рыбную котлету. Выберите котлету.",
-        "uk": "Noodle soup — суп із локшиною; fishcake — рибна котлета. She was eating a fishcake. — Вона їла рибну котлету. Виберіть котлету."
+        "ru": "Вчера в семь вы заглянули на кухню: сестра сидела за столом и ела рыбную котлету. She was eating a fishcake. — Она ела рыбную котлету. Соберите She + was + eating, чтобы описать её действие в тот момент. С she используем was, к eat добавляем -ing. После eating назовите еду: a fishcake — одну рыбную котлету.",
+        "uk": "Учора о сьомій ви зазирнули на кухню: сестра сиділа за столом і їла рибну котлету. She was eating a fishcake. — Вона їла рибну котлету. Складіть She + was + eating, щоб описати її дію тієї миті. З she використовуємо was, до eat додаємо -ing. Після eating назвіть їжу: a fishcake — одну рибну котлету."
       },
       "question": {
         "interactionId": "en:lesson-14:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рулетик с начинкой",
-        "uk": "Рулетик із начинкою"
+        "ru": "Вы поделили рулетик",
+        "uk": "Ви поділили рулетик"
       },
       "bodyByLocale": {
-        "ru": "Spring roll — небольшой рулетик с начинкой в тонкой оболочке, блюдо азиатской кухни. We were eating a spring roll. — Мы ели спринг-ролл. Выберите прошлое действие.",
-        "uk": "Spring roll — невеликий рулетик із начинкою в тонкій оболонці, страва азійської кухні. We were eating a spring roll. — Ми їли спринг-рол. Виберіть минулу дію."
+        "ru": "Вчера в семь вы с братом поделили один рулетик с начинкой пополам и ели свои половинки. We were eating a spring roll. — Мы ели один рулетик с начинкой. Для вашего общего действия в тот момент соберите We + were + eating. С we нужна were, к eat добавьте -ing. В конце поставьте a spring roll: речь об одном рулетике, который вы разделили.",
+        "uk": "Учора о сьомій ви з братом поділили один рулетик із начинкою навпіл і їли свої половинки. We were eating a spring roll. — Ми їли один рулетик із начинкою. Для вашої спільної дії тієї миті складіть We + were + eating. З we потрібна were, до eat додайте -ing. Наприкінці поставте a spring roll: ідеться про один рулетик, який ви розділили."
       },
       "question": {
         "interactionId": "en:lesson-14:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3374ead9eeda8d30bde55e9bbaddc07e688b0943f0b06643f56ae63db0df66ca"
+  "introFingerprint": "a7a8c9cf5df87a0f737acc5c976ff7e717dacc0836c61bfe64f252b6712a7c76"
 }

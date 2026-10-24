@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Лампа у кровати",
-        "uk": "Лампа біля ліжка"
+        "ru": "Что вы делали у кровати",
+        "uk": "Що ви робили біля ліжка"
       },
       "bodyByLocale": {
-        "ru": "Bedside lamp — прикроватная лампа. I was cleaning the bedside lamp. — Я протирал прикроватную лампу. Выберите действие, которое шло вчера в девять.",
-        "uk": "Bedside lamp — приліжкова лампа. I was cleaning the bedside lamp. — Я протирав приліжкову лампу. Виберіть дію, яка тривала вчора о дев’ятій."
+        "ru": "Вчера в девять вечера брат заглянул в спальню, когда вы протирали прикроватную лампу. I was cleaning the bedside lamp. — Я протирал прикроватную лампу. Чтобы описать действие в тот момент, соберите I + was + cleaning. После I поставьте was, к clean добавьте -ing. Затем укажите предмет: the bedside lamp — лампу рядом с вашей кроватью.",
+        "uk": "Учора о дев’ятій вечора брат зазирнув до спальні, коли ви протирали приліжкову лампу. I was cleaning the bedside lamp. — Я протирав приліжкову лампу. Щоб описати дію тієї миті, складіть I + was + cleaning. Після I поставте was, до clean додайте -ing. Потім укажіть предмет: the bedside lamp — лампу поруч із вашим ліжком."
       },
       "question": {
         "interactionId": "en:lesson-14:session-08:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ночник и электроодеяло",
-        "uk": "Нічник та електроковдра"
+        "ru": "Что сестра искала перед сном",
+        "uk": "Що сестра шукала перед сном"
       },
       "bodyByLocale": {
-        "ru": "Night light — ночник, небольшой свет на ночь; electric blanket — электроодеяло. She was looking for the night light. — Она искала ночник. Выберите ночник.",
-        "uk": "Night light — нічник, невелике світло на ніч; electric blanket — електроковдра. She was looking for the night light. — Вона шукала нічник. Виберіть нічник."
+        "ru": "Вчера в девять вы видели, как сестра перебирала вещи в ящике, пытаясь найти ночник. She was looking for the night light. — Она искала ночник. Соберите She + was + looking for. С she нужна was, к look добавьте -ing. Сохраните for: look for означает «искать». После for назовите предмет: the night light.",
+        "uk": "Учора о дев’ятій ви бачили, як сестра перебирала речі в шухляді, намагаючись знайти нічник. She was looking for the night light. — Вона шукала нічник. Складіть She + was + looking for. З she потрібна was, до look додайте -ing. Збережіть for: look for означає «шукати». Після for назвіть предмет: the night light."
       },
       "question": {
         "interactionId": "en:lesson-14:session-08:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Грелка",
-        "uk": "Грілка"
+        "ru": "Что искали родители",
+        "uk": "Що шукали батьки"
       },
       "bodyByLocale": {
-        "ru": "Hot-water bottle — грелка для воды. They were looking for the hot-water bottle. — Они искали грелку. Здесь название предмета, а не обычная бутылка для питья. Выберите прошлое действие.",
-        "uk": "Hot-water bottle — грілка для води. They were looking for the hot-water bottle. — Вони шукали грілку. Тут назва предмета, а не звичайна пляшка для пиття. Виберіть минулу дію."
+        "ru": "Вчера в девять родители вместе проверяли шкаф, пытаясь найти грелку для воды. They were looking for the hot-water bottle. — Они искали грелку. Опишите их действие в тот момент: They + were + looking for. С they используем were, затем look с окончанием -ing и предлогом for. В конце добавьте the hot-water bottle — ту грелку, которую они искали.",
+        "uk": "Учора о дев’ятій батьки разом перевіряли шафу, намагаючись знайти грілку для води. They were looking for the hot-water bottle. — Вони шукали грілку. Опишіть їхню дію тієї миті: They + were + looking for. З they використовуємо were, потім look із закінченням -ing і прийменником for. Наприкінці додайте the hot-water bottle — ту грілку, яку вони шукали."
       },
       "question": {
         "interactionId": "en:lesson-14:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "40ff4691550656473107eee08d3a688c9d2205d28988de6a2d95e40e54f59b37"
+  "introFingerprint": "cf43bdcd53afde96289437a04c609f8e9f8abba26f2d15bd6c72fe7a956cca9d"
 }

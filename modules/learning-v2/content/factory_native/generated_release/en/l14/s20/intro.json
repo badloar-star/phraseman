@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пеленальный коврик",
-        "uk": "Сповивальний килимок"
+        "ru": "Что вы делали перед прогулкой",
+        "uk": "Що ви робили перед прогулянкою"
       },
       "bodyByLocale": {
-        "ru": "Changing mat — мягкий коврик для смены подгузника. I was cleaning the changing mat. — Я чистил пеленальный коврик. Выберите описание процесса в прошлом.",
-        "uk": "Changing mat — м’який килимок для зміни підгузка. I was cleaning the changing mat. — Я чистив сповивальний килимок. Виберіть опис процесу в минулому."
+        "ru": "Вчера перед прогулкой вы протирали пеленальный коврик, когда друг позвонил вам. I was cleaning the changing mat. — Я чистил пеленальный коврик. Опишите действие, которое уже шло в момент звонка: I + was + cleaning. С I поставьте was, к clean добавьте -ing. Затем укажите предмет: the changing mat — тот коврик, которым вы пользуетесь дома.",
+        "uk": "Учора перед прогулянкою ви протирали сповивальний килимок, коли друг зателефонував вам. I was cleaning the changing mat. — Я чистив сповивальний килимок. Опишіть дію, яка вже тривала в момент дзвінка: I + was + cleaning. З I поставте was, до clean додайте -ing. Потім укажіть предмет: the changing mat — той килимок, яким ви користуєтеся вдома."
       },
       "question": {
         "interactionId": "en:lesson-14:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сумка и столик",
-        "uk": "Сумка й столик"
+        "ru": "Что сестра собирала",
+        "uk": "Що сестра збирала"
       },
       "bodyByLocale": {
-        "ru": "Nappy bag — сумка для подгузников и детских вещей на прогулку; changing table — пеленальный столик. She was packing the nappy bag. — Она собирала сумку с детскими вещами. Выберите сумку.",
-        "uk": "Nappy bag — сумка для підгузків і дитячих речей на прогулянку; changing table — сповивальний столик. She was packing the nappy bag. — Вона збирала сумку з дитячими речами. Виберіть сумку."
+        "ru": "Вчера вы зашли к сестре перед прогулкой с малышом: она складывала подгузники в детскую сумку. She was packing the nappy bag. — Она собирала сумку с детскими вещами. Для её действия в тот момент соберите She + was + packing. С she нужна was; к pack добавьте -ing. После действия поставьте the nappy bag — сумку, которую она собирала.",
+        "uk": "Учора ви зайшли до сестри перед прогулянкою з малюком: вона складала підгузки в дитячу сумку. She was packing the nappy bag. — Вона збирала сумку з дитячими речами. Для її дії тієї миті складіть She + was + packing. З she потрібна was; до pack додайте -ing. Після дії поставте the nappy bag — сумку, яку вона збирала."
       },
       "question": {
         "interactionId": "en:lesson-14:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Радионяня",
-        "uk": "Радіоняня"
+        "ru": "Что мы проверяли",
+        "uk": "Що ми перевіряли"
       },
       "bodyByLocale": {
-        "ru": "Baby monitor — радионяня или видеоняня, прибор для наблюдения за малышом из другой комнаты. We were checking the baby monitor. — Мы проверяли радионяню. Здесь говорим о бытовом действии, которое шло в тот момент.",
-        "uk": "Baby monitor — радіоняня або відеоняня, прилад для спостереження за малюком з іншої кімнати. We were checking the baby monitor. — Ми перевіряли радіоняню. Тут говоримо про побутову дію, яка тривала в той момент."
+        "ru": "Вчера курьер позвонил в дверь, когда вы с мужем проверяли, слышно ли малыша через радионяню. We were checking the baby monitor. — Мы проверяли радионяню. Чтобы описать вашу общую работу в тот момент, соберите We + were + checking. С we используем were, а к check добавляем -ing. Затем назовите прибор: the baby monitor.",
+        "uk": "Учора кур’єр подзвонив у двері, коли ви з чоловіком перевіряли, чи чути малюка через радіоняню. We were checking the baby monitor. — Ми перевіряли радіоняню. Щоб описати вашу спільну роботу тієї миті, складіть We + were + checking. З we використовуємо were, а до check додаємо -ing. Потім назвіть пристрій: the baby monitor."
       },
       "question": {
         "interactionId": "en:lesson-14:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2917776490bee64317f19c8408a4a3dfee563596eca4e7f6a25cce6972a08825"
+  "introFingerprint": "fa9c98f8fdc9dd65fe29dbaf4ed97dc0447180da8180e08cf3edd3efb4bb4310"
 }

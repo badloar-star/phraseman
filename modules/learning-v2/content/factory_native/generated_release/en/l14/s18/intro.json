@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Маракуйя",
-        "uk": "Маракуя"
+        "ru": "Что вы разрезали",
+        "uk": "Що ви розрізали"
       },
       "bodyByLocale": {
-        "ru": "Passion fruit — маракуйя. На кухне все были заняты: I was cutting a passion fruit. — Я разрезал маракуйю в тот момент. Выберите описание процесса в прошлом.",
-        "uk": "Passion fruit — маракуя. На кухні всі були зайняті: I was cutting a passion fruit. — Я розрізав маракую в той момент. Виберіть опис процесу в минулому."
+        "ru": "Вчера сестра позвала вас к столу, когда вы разрезали маракуйю для десерта. I was cutting a passion fruit. — Я разрезал маракуйю в тот момент. Покажите действие в процессе: I + was + cutting. После I поставьте was. У cut перед -ing удвойте t: cutting. Затем назовите плод: a passion fruit — одну маракуйю.",
+        "uk": "Учора сестра покликала вас до столу, коли ви розрізали маракую для десерту. I was cutting a passion fruit. — Я розрізав маракую тієї миті. Покажіть дію в процесі: I + was + cutting. Після I поставте was. У cut перед -ing подвойте t: cutting. Потім назвіть плід: a passion fruit — одну маракую."
       },
       "question": {
         "interactionId": "en:lesson-14:session-18:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Питахайя и личи",
-        "uk": "Пітахая й лічі"
+        "ru": "Что сестра чистила",
+        "uk": "Що сестра чистила"
       },
       "bodyByLocale": {
-        "ru": "Dragon fruit — питахайя, яркий плод с чешуйчатой кожурой; lychee — личи, маленький плод с белой мякотью под тонкой твёрдой кожурой. She was peeling a lychee. — Она чистила личи. Выберите личи.",
-        "uk": "Dragon fruit — пітахая, яскравий плід із лускатою шкіркою; lychee — лічі, невеликий плід із білим м’якушем під тонкою твердою шкіркою. She was peeling a lychee. — Вона чистила лічі. Виберіть лічі."
+        "ru": "Вчера вы вошли на кухню: сестра снимала кожуру с одного личи для фруктового салата. She was peeling a lychee. — Она чистила личи. Соберите She + was + peeling, чтобы сказать, что происходило при вашем появлении. После she нужна was; к peel добавьте -ing. В конце укажите плод: a lychee. Здесь a показывает, что речь об одном плоде.",
+        "uk": "Учора ви зайшли на кухню: сестра знімала шкірку з одного лічі для фруктового салату. She was peeling a lychee. — Вона чистила лічі. Складіть She + was + peeling, щоб сказати, що відбувалося під час вашої появи. Після she потрібна was; до peel додайте -ing. Наприкінці вкажіть плід: a lychee. Тут a показує, що йдеться про один плід."
       },
       "question": {
         "interactionId": "en:lesson-14:session-18:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Папайя",
-        "uk": "Папая"
+        "ru": "Чем были заняты родители",
+        "uk": "Чим були зайняті батьки"
       },
       "bodyByLocale": {
-        "ru": "Papaya — папайя. They were washing a papaya. — Они мыли папайю. Это фон: что было в процессе на кухне перед приходом гостей. Выберите прошлый процесс.",
-        "uk": "Papaya — папая. They were washing a papaya. — Вони мили папаю. Це тло: що тривало на кухні перед приходом гостей. Виберіть минулий процес."
+        "ru": "Вчера вы заглянули на кухню: родители вместе мыли большую папайю перед приготовлением десерта. They were washing a papaya. — Они мыли папайю. Для действия, которое происходило в тот момент, соберите They + were + washing. С they используем were, а к wash добавляем -ing. Затем добавьте a papaya — один плод, который они мыли.",
+        "uk": "Учора ви зазирнули на кухню: батьки разом мили велику папаю перед приготуванням десерту. They were washing a papaya. — Вони мили папаю. Для дії, яка відбувалася тієї миті, складіть They + were + washing. З they використовуємо were, а до wash додаємо -ing. Потім додайте a papaya — один плід, який вони мили."
       },
       "question": {
         "interactionId": "en:lesson-14:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "28dabf272008b276270321c6877af8cf9a621e474728156955f61c14a0725b63"
+  "introFingerprint": "5a01a1d09009817530afa1acff34992e7070696c210e595ffef9438962d61eeb"
 }

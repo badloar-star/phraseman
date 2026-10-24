@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Дятел",
-        "uk": "Дятел"
+        "ru": "Что друг фотографировал",
+        "uk": "Що друг фотографував"
       },
       "bodyByLocale": {
-        "ru": "Woodpecker — дятел. Were you taking a photo of the woodpecker? — Ты фотографировал дятла? Выберите вопрос о том моменте прошлого.",
-        "uk": "Woodpecker — дятел. Were you taking a photo of the woodpecker? — Ти фотографував дятла? Виберіть запитання про той момент минулого."
+        "ru": "Вчера утром вы увидели друга с камерой возле дерева, на котором сидел дятел. Уточните, снимал ли он тогда эту птицу: Were you taking a photo of the woodpecker? — Ты фотографировал дятла? Соберите Were + you + taking: в вопросе were стоит перед you. У take уберите e и добавьте -ing. Затем добавьте a photo of the woodpecker: после a photo предлог of связывает снимок с тем, кто на нём изображён.",
+        "uk": "Учора вранці ви побачили друга з камерою біля дерева, на якому сидів дятел. Уточніть, чи знімав він тоді цього птаха: Were you taking a photo of the woodpecker? — Ти фотографував дятла? Складіть Were + you + taking: у запитанні were стоїть перед you. У take приберіть e й додайте -ing. Потім додайте a photo of the woodpecker: після a photo прийменник of пов’язує знімок із тим, хто на ньому зображений."
       },
       "question": {
         "interactionId": "en:lesson-14:session-15:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сова и сорока",
-        "uk": "Сова й сорока"
+        "ru": "На кого он смотрел",
+        "uk": "На кого він дивився"
       },
       "bodyByLocale": {
-        "ru": "Owl — сова; magpie — сорока. Was he watching the owl? — Он наблюдал за совой? Выберите сову.",
-        "uk": "Owl — сова; magpie — сорока. Was he watching the owl? — Він спостерігав за совою? Виберіть сову."
+        "ru": "Вчера в саду брат стоял под деревом, где сидела сова. Спросите сестру, наблюдал ли он за ней в тот момент: Was he watching the owl? — Он наблюдал за совой? Для вопроса поставьте Was перед he, затем watching. К watch добавьте -ing. После watching сразу назовите птицу: the owl. Русскому «за совой» здесь соответствует the owl без предлога.",
+        "uk": "Учора в саду брат стояв під деревом, де сиділа сова. Запитайте сестру, чи спостерігав він за нею тієї миті: Was he watching the owl? — Він спостерігав за совою? Для запитання поставте Was перед he, потім watching. До watch додайте -ing. Після watching одразу назвіть птаха: the owl. Українському «за совою» тут відповідає the owl без прийменника."
       },
       "question": {
         "interactionId": "en:lesson-14:session-15:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Малиновка",
-        "uk": "Вільшанка"
+        "ru": "Вы не наблюдали за птицей",
+        "uk": "Ви не спостерігали за птахом"
       },
       "bodyByLocale": {
-        "ru": "Robin — малиновка, небольшая птица с оранжево-красной грудкой. I wasn’t watching the robin. — Я не наблюдал за малиновкой. Выберите отрицание.",
-        "uk": "Robin — вільшанка, невеликий птах із помаранчево-червоною грудкою. I wasn’t watching the robin. — Я не спостерігав за вільшанкою. Виберіть заперечення."
+        "ru": "Вчера сестра решила, что вы следите за малиновкой у окна. Но в тот момент вы читали книгу. I wasn’t watching the robin. — Я не наблюдал за малиновкой. Соберите отрицание I + wasn’t + watching. Wasn’t означает was not; к watch добавьте -ing. Затем поставьте the robin — название птицы, за которой вы не наблюдали.",
+        "uk": "Учора сестра вирішила, що ви стежите за вільшанкою біля вікна. Але тієї миті ви читали книжку. I wasn’t watching the robin. — Я не спостерігав за вільшанкою. Складіть заперечення I + wasn’t + watching. Wasn’t означає was not; до watch додайте -ing. Потім поставте the robin — назву птаха, за яким ви не спостерігали."
       },
       "question": {
         "interactionId": "en:lesson-14:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7f8cfbdd716429d04a5f3e718663d27afeb7c3ff43df3456c541bb06ba127da2"
+  "introFingerprint": "5bba45547ea710bb01168d8e639bd86eb6b7a165f41a0b704711e5055a54750e"
 }

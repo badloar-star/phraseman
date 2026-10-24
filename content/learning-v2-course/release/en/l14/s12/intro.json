@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Рабочая тетрадь",
-        "uk": "Робочий зошит"
+        "ru": "С чем ты работал вечером",
+        "uk": "З чим ти працював увечері"
       },
       "bodyByLocale": {
-        "ru": "Workbook — рабочая тетрадь с упражнениями. Were you using the workbook? — Ты работал с рабочей тетрадью? Выберите вопрос о вчерашнем моменте.",
-        "uk": "Workbook — робочий зошит із вправами. Were you using the workbook? — Ти працював із робочим зошитом? Виберіть запитання про вчорашній момент."
+        "ru": "Вчера в шесть вы видели брата за письменным столом. Уточните, работал ли он тогда с рабочей тетрадью: Were you using the workbook? — Ты работал с рабочей тетрадью? Соберите вопрос Were + you + using. Were ставим перед you; у use уберите конечную e и добавьте -ing. Затем назовите предмет: the workbook — ту рабочую тетрадь с упражнениями, о которой спрашиваете.",
+        "uk": "Учора о шостій ви бачили брата за письмовим столом. Уточніть, чи працював він тоді з робочим зошитом: Were you using the workbook? — Ти працював із робочим зошитом? Складіть запитання Were + you + using. Were ставимо перед you; у use приберіть кінцеву e й додайте -ing. Потім назвіть предмет: the workbook — той робочий зошит із вправами, про який запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-14:session-12:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Отчёт об успеваемости",
-        "uk": "Звіт про успішність"
+        "ru": "Что читал папа",
+        "uk": "Що читав тато"
       },
       "bodyByLocale": {
-        "ru": "School report — школьный отчёт об успеваемости, с оценками и замечаниями учителей. Was he reading the school report? — Он читал школьный отчёт? Выберите правильный вопрос с he.",
-        "uk": "School report — шкільний звіт про успішність, з оцінками та зауваженнями вчителів. Was he reading the school report? — Він читав шкільний звіт? Виберіть правильне запитання з he."
+        "ru": "Вчера в шесть папа сидел с бумагами из школы. Спросите маму, читал ли он тогда отчёт с оценками и замечаниями учителей: Was he reading the school report? — Он читал школьный отчёт? Для вопроса соберите Was + he + reading. С he нужна was; в вопросе она стоит перед he. К read добавьте -ing, затем укажите документ: the school report.",
+        "uk": "Учора о шостій тато сидів із паперами зі школи. Запитайте маму, чи читав він тоді звіт з оцінками й зауваженнями вчителів: Was he reading the school report? — Він читав шкільний звіт? Для запитання складіть Was + he + reading. З he потрібна was; у запитанні вона стоїть перед he. До read додайте -ing, потім укажіть документ: the school report."
       },
       "question": {
         "interactionId": "en:lesson-14:session-12:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дневник и лист ответов",
-        "uk": "Щоденник і аркуш відповідей"
+        "ru": "Вы не записывали задание",
+        "uk": "Ви не записували завдання"
       },
       "bodyByLocale": {
-        "ru": "Homework diary — дневник для записи домашних заданий; answer sheet — лист для ответов. I wasn’t writing in the homework diary. — Я не писал в дневнике домашних заданий. Выберите отрицание.",
-        "uk": "Homework diary — щоденник для запису домашніх завдань; answer sheet — аркуш для відповідей. I wasn’t writing in the homework diary. — Я не писав у щоденнику домашніх завдань. Виберіть заперечення."
+        "ru": "Брат думает, что вчера в шесть вы записывали задание в школьный дневник. Но тогда вы только читали уже написанное. I wasn’t writing in the homework diary. — Я не писал в дневнике домашних заданий. Соберите I + wasn’t + writing: wasn’t означает was not, а у write перед -ing убираем e. Затем добавьте in the homework diary — где вы не писали. Здесь in означает «в» дневнике.",
+        "uk": "Брат думає, що вчора о шостій ви записували завдання у шкільний щоденник. Але тоді ви лише читали вже написане. I wasn’t writing in the homework diary. — Я не писав у щоденнику домашніх завдань. Складіть I + wasn’t + writing: wasn’t означає was not, а у write перед -ing прибираємо e. Потім додайте in the homework diary — де ви не писали. Тут in означає «у» щоденнику."
       },
       "question": {
         "interactionId": "en:lesson-14:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "95353dbfd1f930bda391df9b0675be098789a7fb292d1beaa583dabdde1299af"
+  "introFingerprint": "afc36688790bdb6de1e08906f02ec0153c0936e9338fbbef8edd131163085234"
 }

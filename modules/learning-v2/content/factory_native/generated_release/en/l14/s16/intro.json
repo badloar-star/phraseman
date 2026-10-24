@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Гитарная струна",
-        "uk": "Гітарна струна"
+        "ru": "Чем друг был занят",
+        "uk": "Чим друг був зайнятий"
       },
       "bodyByLocale": {
-        "ru": "Guitar string — гитарная струна. Were you changing a guitar string? — Ты менял гитарную струну? Выберите вопрос о прошлом моменте.",
-        "uk": "Guitar string — гітарна струна. Were you changing a guitar string? — Ти міняв гітарну струну? Виберіть запитання про минулий момент."
+        "ru": "Вчера перед музыкальным вечером друг сидел с гитарой и не ответил на ваш звонок. Уточните, менял ли он в тот момент струну: Were you changing a guitar string? — Ты менял гитарную струну? Для вопроса поставьте Were перед you, затем changing: Were + you + changing. У change уберите конечную e и добавьте -ing. После действия назовите предмет: a guitar string.",
+        "uk": "Учора перед музичним вечором друг сидів із гітарою й не відповів на ваш дзвінок. Уточніть, чи міняв він тієї миті струну: Were you changing a guitar string? — Ти міняв гітарну струну? Для запитання поставте Were перед you, потім changing: Were + you + changing. У change приберіть кінцеву e й додайте -ing. Після дії назвіть предмет: a guitar string."
       },
       "question": {
         "interactionId": "en:lesson-14:session-16:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Футляр и подставка",
-        "uk": "Футляр і підставка"
+        "ru": "Что он нёс",
+        "uk": "Що він ніс"
       },
       "bodyByLocale": {
-        "ru": "Guitar case — футляр для гитары; music stand — подставка для нот. Was he carrying the guitar case? — Он нёс футляр для гитары? Выберите футляр.",
-        "uk": "Guitar case — футляр для гітари; music stand — підставка для нот. Was he carrying the guitar case? — Він ніс футляр для гітари? Виберіть футляр."
+        "ru": "Вчера перед концертом вы видели брата у двери с большим предметом в руках. Спросите сестру, нёс ли он тогда футляр для гитары: Was he carrying the guitar case? — Он нёс футляр для гитары? Соберите Was + he + carrying. В вопросе was стоит перед he; к carry добавьте -ing, сохранив y: carrying. Затем добавьте the guitar case — тот футляр, о котором спрашиваете.",
+        "uk": "Учора перед концертом ви бачили брата біля дверей із великим предметом у руках. Запитайте сестру, чи ніс він тоді футляр для гітари: Was he carrying the guitar case? — Він ніс футляр для гітари? Складіть Was + he + carrying. У запитанні was стоїть перед he; до carry додайте -ing, зберігши y: carrying. Потім додайте the guitar case — той футляр, про який запитуєте."
       },
       "question": {
         "interactionId": "en:lesson-14:session-16:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ноты на бумаге",
-        "uk": "Ноти на папері"
+        "ru": "Вы играли по памяти",
+        "uk": "Ви грали напам’ять"
       },
       "bodyByLocale": {
-        "ru": "Sheet music — ноты, записанная на бумаге музыка. I wasn’t reading the sheet music. — Я не читал ноты. Здесь music не получает окончание s. Выберите отрицание.",
-        "uk": "Sheet music — ноти, записана на папері музика. I wasn’t reading the sheet music. — Я не читав ноти. Тут music не отримує закінчення s. Виберіть заперечення."
+        "ru": "После вчерашнего выступления друг сказал, что видел вас за чтением нот. Вы помните тот момент: играли по памяти. I wasn’t reading the sheet music. — Я не читал ноты. Чтобы отрицать действие в тот момент, соберите I + wasn’t + reading. Wasn’t — сокращение was not; к read добавьте -ing. В конце укажите, что вы не читали: the sheet music.",
+        "uk": "Після вчорашнього виступу друг сказав, що бачив вас за читанням нот. Ви пам’ятаєте той момент: грали напам’ять. I wasn’t reading the sheet music. — Я не читав ноти. Щоб заперечити дію тієї миті, складіть I + wasn’t + reading. Wasn’t — скорочення was not; до read додайте -ing. Наприкінці вкажіть, що ви не читали: the sheet music."
       },
       "question": {
         "interactionId": "en:lesson-14:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f1f85529ea89ea70f079ca94d75fce59feb50888084139e463f117888369ec25"
+  "introFingerprint": "a58fa0e465711ab9510cb09bbc7bed12ff87627cc5cbac8e94edc175a5a58305"
 }

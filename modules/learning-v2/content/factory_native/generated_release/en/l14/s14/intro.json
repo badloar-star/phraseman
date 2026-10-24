@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Дельфин",
-        "uk": "Дельфін"
+        "ru": "Что было на экране",
+        "uk": "Що було на екрані"
       },
       "bodyByLocale": {
-        "ru": "Dolphin — дельфин. Were you watching a dolphin? — Ты наблюдал за дельфином? Здесь речь о животном на экране вчера вечером. Выберите вопрос.",
-        "uk": "Dolphin — дельфін. Were you watching a dolphin? — Ти спостерігав за дельфіном? Тут ідеться про тварину на екрані вчора ввечері. Виберіть запитання."
+        "ru": "Вчера вечером вы позвонили другу во время фильма о море. Спросите, наблюдал ли он в тот момент за дельфином на экране: Were you watching a dolphin? — Ты наблюдал за дельфином? Для вопроса о действии в тот момент соберите Were + you + watching. Were поставьте перед you, к watch добавьте -ing. Затем назовите животное: a dolphin. После watching предлог не нужен.",
+        "uk": "Учора ввечері ви зателефонували другові під час фільму про море. Запитайте, чи спостерігав він тієї миті за дельфіном на екрані: Were you watching a dolphin? — Ти спостерігав за дельфіном? Для запитання про дію тієї миті складіть Were + you + watching. Were поставте перед you, до watch додайте -ing. Потім назвіть тварину: a dolphin. Після watching прийменник не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-14:session-14:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кит и акула",
-        "uk": "Кит та акула"
+        "ru": "Что смотрел брат",
+        "uk": "Що дивився брат"
       },
       "bodyByLocale": {
-        "ru": "Whale — кит; shark — акула. Was he watching a whale? — Он наблюдал за китом? Выберите кита.",
-        "uk": "Whale — кит; shark — акула. Was he watching a whale? — Він спостерігав за китом? Виберіть кита."
+        "ru": "Вчера вы заглянули в комнату брата во время фильма о море. Теперь уточните у сестры, наблюдал ли он тогда за китом на экране: Was he watching a whale? — Он наблюдал за китом? Соберите Was + he + watching. С he нужна was, а в вопросе она стоит перед he. После watching добавьте a whale — одного кита; русского предлога «за» в английской фразе нет.",
+        "uk": "Учора ви зазирнули до кімнати брата під час фільму про море. Тепер уточніть у сестри, чи спостерігав він тоді за китом на екрані: Was he watching a whale? — Він спостерігав за китом? Складіть Was + he + watching. З he потрібна was, а в запитанні вона стоїть перед he. Після watching додайте a whale — одного кита; українського прийменника «за» в англійській фразі немає."
       },
       "question": {
         "interactionId": "en:lesson-14:session-14:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пингвин",
-        "uk": "Пінгвін"
+        "ru": "Вы отвлеклись от фильма",
+        "uk": "Ви відволіклися від фільму"
       },
       "bodyByLocale": {
-        "ru": "Penguin — пингвин. I wasn’t watching a penguin. — Я не наблюдал за пингвином. Выберите отрицание о том моменте фильма.",
-        "uk": "Penguin — пінгвін. I wasn’t watching a penguin. — Я не спостерігав за пінгвіном. Виберіть заперечення про той момент фільму."
+        "ru": "Друг уверен, что вчера вы внимательно смотрели на пингвина в фильме. Но в тот момент вы читали сообщение. I wasn’t watching a penguin. — Я не наблюдал за пингвином. Для отрицания соберите I + wasn’t + watching. Wasn’t — сокращение was not, после него нужна форма watch + -ing. Затем укажите животное: a penguin.",
+        "uk": "Друг упевнений, що вчора ви уважно дивилися на пінгвіна у фільмі. Але тієї миті ви читали повідомлення. I wasn’t watching a penguin. — Я не спостерігав за пінгвіном. Для заперечення складіть I + wasn’t + watching. Wasn’t — скорочення was not, після нього потрібна форма watch + -ing. Потім укажіть тварину: a penguin."
       },
       "question": {
         "interactionId": "en:lesson-14:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ba30b3d058ffc065cd469b8ad92e37b3f926c835cceb687422d55b3cc70dcb59"
+  "introFingerprint": "66620cf23ff2243dd9f5faee0cc891d9b7cea184e3a71b055cbd620973041073"
 }

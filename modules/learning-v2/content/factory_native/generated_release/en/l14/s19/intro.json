@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Шпинат",
-        "uk": "Шпинат"
+        "ru": "Что вы мыли перед ужином",
+        "uk": "Що ви мили перед вечерею"
       },
       "bodyByLocale": {
-        "ru": "Spinach — шпинат, зелёные листья для еды. I was washing spinach. — Я мыл шпинат. Название продукта здесь без a. Выберите процесс в прошлом.",
-        "uk": "Spinach — шпинат, зелене листя для їжі. I was washing spinach. — Я мив шпинат. Назва продукту тут без a. Виберіть процес у минулому."
+        "ru": "Вчера брат вошёл на кухню, когда вы мыли шпинат под краном. I was washing spinach. — Я мыл шпинат. Чтобы описать действие в процессе при его появлении, соберите I + was + washing. После I нужна was; к wash добавьте -ing. В конце назовите продукт: spinach. Здесь говорим о шпинате как о продукте, поэтому a не ставим.",
+        "uk": "Учора брат увійшов на кухню, коли ви мили шпинат під краном. I was washing spinach. — Я мив шпинат. Щоб описати дію в процесі під час його появи, складіть I + was + washing. Після I потрібна was; до wash додайте -ing. Наприкінці назвіть продукт: spinach. Тут говоримо про шпинат як про продукт, тому a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-14:session-19:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кейл и спаржа",
-        "uk": "Кейл і спаржа"
+        "ru": "Что сестра готовила",
+        "uk": "Що сестра готувала"
       },
       "bodyByLocale": {
-        "ru": "Kale — листовая кудрявая капуста; asparagus — спаржа. She was cooking asparagus. — Она готовила спаржу. Выберите спаржу, не капусту.",
-        "uk": "Kale — листова кучерява капуста; asparagus — спаржа. She was cooking asparagus. — Вона готувала спаржу. Виберіть спаржу, не капусту."
+        "ru": "Вчера вы пришли домой и увидели сестру у плиты: она готовила спаржу. She was cooking asparagus. — Она готовила спаржу. Опишите, чем она была занята при вашем приходе: She + was + cooking. С she используем was, к cook добавляем -ing. После действия укажите продукт: asparagus.",
+        "uk": "Учора ви прийшли додому й побачили сестру біля плити: вона готувала спаржу. She was cooking asparagus. — Вона готувала спаржу. Опишіть, чим вона була зайнята під час вашого приходу: She + was + cooking. З she використовуємо was, до cook додаємо -ing. Після дії вкажіть продукт: asparagus."
       },
       "question": {
         "interactionId": "en:lesson-14:session-19:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Краснокочанная капуста",
-        "uk": "Червонокачанна капуста"
+        "ru": "Что мы резали для салата",
+        "uk": "Що ми різали для салату"
       },
       "bodyByLocale": {
-        "ru": "Red cabbage — краснокочанная капуста. We were cutting red cabbage. — Мы резали краснокочанную капусту. Описываем процесс как фон истории. Выберите прошлый процесс.",
-        "uk": "Red cabbage — червонокачанна капуста. We were cutting red cabbage. — Ми різали червонокачанну капусту. Описуємо процес як тло історії. Виберіть минулий процес."
+        "ru": "Вчера вы с сестрой резали краснокочанную капусту для салата, когда пришли гости. We were cutting red cabbage. — Мы резали краснокочанную капусту. Соберите We + were + cutting, чтобы показать ваше действие в тот момент. После we нужна were. У cut перед -ing удвойте t: cutting. В конце добавьте red cabbage — то, что вы резали.",
+        "uk": "Учора ви із сестрою різали червонокачанну капусту для салату, коли прийшли гості. We were cutting red cabbage. — Ми різали червонокачанну капусту. Складіть We + were + cutting, щоб показати вашу дію тієї миті. Після we потрібна were. У cut перед -ing подвойте t: cutting. Наприкінці додайте red cabbage — те, що ви різали."
       },
       "question": {
         "interactionId": "en:lesson-14:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1bdb120d2c949e61da705899a23ea5dc76c648df622cc8c10e72af6ff9cdf9ec"
+  "introFingerprint": "1303cfed60032b0d3f88fc41a7bea9f641080f0f95af79ac0402f9ce103e03bf"
 }

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-40:word:tiredness",
+    "correctText": "tiredness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i01",
+    "correctText": "I think it is tiredness.",
+    "correctResponseId": "en:lesson-27:session-40:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i02",
+    "correctText": "May I sit down?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i03",
+    "correctText": "I have already had a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-40:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:word:discomfort",
+    "correctText": "discomfort",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i05",
+    "correctText": "I felt some discomfort in this chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i06",
+    "correctText": "Could I use another chair?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i07",
+    "correctText": "There is a seat by the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:word:soreness",
+    "correctText": "soreness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i08",
+    "correctText": "I still have some soreness in my shoulder.",
+    "correctResponseId": "en:lesson-27:session-40:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i09",
+    "correctText": "Could you carry this bag for me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i10",
+    "correctText": "stay",
+    "correctResponseId": "en:lesson-27:session-40:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:word:nervousness",
+    "correctText": "nervousness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i11",
+    "correctText": "I cannot hide my nervousness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i12",
+    "correctText": "Could you give me a moment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i13",
+    "correctText": "felt",
+    "correctResponseId": "en:lesson-27:session-40:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i14",
+    "correctText": "What time do we start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i15",
+    "correctText": "We still have ten minutes.",
+    "correctResponseId": "en:lesson-27:session-40:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i16",
+    "correctText": "We would talk outside if we had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-40:i17",
+    "correctText": "Could you stay here with me?",
+    "correctResponseId": null
+  }
+]

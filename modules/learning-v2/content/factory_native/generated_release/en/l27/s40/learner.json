@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-40",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-40:word:tiredness",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tiredness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:word:tiredness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tiredness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:word:tiredness:audio",
+          "transcript": "tiredness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:word:tiredness:r1",
+            "targetText": "tiredness",
+            "meaningByLocale": {
+              "ru": "Усталость.",
+              "uk": "Втома."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tiredness",
+          "definitionByLocale": {
+            "ru": "Усталость.",
+            "uk": "Втома."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-40:i01:r1",
+          "text": "I think it is tiredness."
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i01:r2",
+          "text": "I think it is hunger."
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i01:r3",
+          "text": "I thought it was tiredness."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i01:audio",
+          "transcript": "I think it is tiredness."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:i01:r1",
+            "targetText": "I think it is tiredness.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i01:r2",
+            "targetText": "I think it is hunger.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i01:r3",
+            "targetText": "I thought it was tiredness.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-40:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it is tiredness.",
+              "uk": "У записі звучить I think it is tiredness."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I think it is tiredness.",
+              "uk": "У записі звучить I think it is tiredness."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите разрешения присесть.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Попросите разрешения присесть.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i02:audio",
+          "transcript": "May I sit down?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I sit down?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что у вас уже был перерыв.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что у вас уже был перерыв.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already had a break.",
+        "localizedMeaning": {
+          "ru": "Скажите, что у вас уже был перерыв.",
+          "uk": "Скажіть, що у вас уже була перерва."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "had",
+          "a",
+          "break"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что перерыв был час назад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-40:i04:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i04:r2",
+          "text": "have had"
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i04:r3",
+          "text": "haved"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что перерыв был час назад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что перерыв был час назад.",
+          "uk": "Уточніть, що перерва була годину тому."
+        },
+        "gappedTargetPhrase": "I ___ a break an hour ago.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-40:i04:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i04:r2",
+            "text": "have had"
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i04:r3",
+            "text": "haved"
+          }
+        ],
+        "testedDimension": "Уточните, что перерыв был час назад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-40:i04:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что перерыв был час назад.",
+            "feedbackByLocale": {
+              "ru": "С an hour ago здесь had.",
+              "uk": "Із an hour ago тут had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i04:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что перерыв был час назад.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма have — had.",
+              "uk": "Минула форма have — had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:word:discomfort",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — discomfort",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:word:discomfort:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — discomfort",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:word:discomfort:audio",
+          "transcript": "discomfort"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:word:discomfort:r1",
+            "targetText": "discomfort",
+            "meaningByLocale": {
+              "ru": "Неудобство, неприятное ощущение.",
+              "uk": "Незручність, неприємне відчуття."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "discomfort",
+          "definitionByLocale": {
+            "ru": "Неудобство, неприятное ощущение.",
+            "uk": "Незручність, неприємне відчуття."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что в этом кресле было неудобно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что в этом кресле было неудобно.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I felt some discomfort in this chair.",
+        "localizedMeaning": {
+          "ru": "Объясните, что в этом кресле было неудобно.",
+          "uk": "Поясніть, що в цьому кріслі було незручно."
+        },
+        "orderedTokens": [
+          "I",
+          "felt",
+          "some",
+          "discomfort",
+          "in",
+          "this",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите другой стул.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите другой стул.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i06:audio",
+          "transcript": "Could I use another chair?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I use another chair?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, где есть свободное место.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте, где есть свободное место.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i07:audio",
+          "transcript": "There is a seat by the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "There is a seat by the window.",
+        "orderedTokens": [
+          "There",
+          "is",
+          "a",
+          "seat",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:word:soreness",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — soreness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:word:soreness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — soreness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:word:soreness:audio",
+          "transcript": "soreness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:word:soreness:r1",
+            "targetText": "soreness",
+            "meaningByLocale": {
+              "ru": "Болезненность.",
+              "uk": "Болісність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "soreness",
+          "definitionByLocale": {
+            "ru": "Болезненность.",
+            "uk": "Болісність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-40:i08:r1",
+          "text": "I still have some soreness in my shoulder."
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i08:r2",
+          "text": "I still have some soreness in my leg."
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i08:r3",
+          "text": "I still have some stiffness in my shoulder."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i08:audio",
+          "transcript": "I still have some soreness in my shoulder."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:i08:r1",
+            "targetText": "I still have some soreness in my shoulder.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i08:r2",
+            "targetText": "I still have some soreness in my leg.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i08:r3",
+            "targetText": "I still have some stiffness in my shoulder.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I still have some soreness in my shoulder.",
+              "uk": "У записі звучить I still have some soreness in my shoulder."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I still have some soreness in my shoulder.",
+              "uk": "У записі звучить I still have some soreness in my shoulder."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите помочь с сумкой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Попросите помочь с сумкой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i09:audio",
+          "transcript": "Could you carry this bag for me?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you carry this bag for me?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы остались бы дольше, если бы чувствовали себя лучше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-40:i10:r1",
+          "text": "stay"
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i10:r2",
+          "text": "stayed"
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i10:r3",
+          "text": "to stay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы остались бы дольше, если бы чувствовали себя лучше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы остались бы дольше, если бы чувствовали себя лучше.",
+          "uk": "Ви залишилися б довше, якби почувалися краще."
+        },
+        "gappedTargetPhrase": "I would ___ longer if I felt better.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-40:i10:r1",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i10:r2",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i10:r3",
+            "text": "to stay"
+          }
+        ],
+        "testedDimension": "Вы остались бы дольше, если бы чувствовали себя лучше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-40:i10:r2",
+            "correct": false,
+            "testedDimension": "Вы остались бы дольше, если бы чувствовали себя лучше.",
+            "feedbackByLocale": {
+              "ru": "После would нужна stay.",
+              "uk": "Після would потрібна stay."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i10:r3",
+            "correct": false,
+            "testedDimension": "Вы остались бы дольше, если бы чувствовали себя лучше.",
+            "feedbackByLocale": {
+              "ru": "После would нет to.",
+              "uk": "Після would немає to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:word:nervousness",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nervousness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:word:nervousness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nervousness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:word:nervousness:audio",
+          "transcript": "nervousness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:word:nervousness:r1",
+            "targetText": "nervousness",
+            "meaningByLocale": {
+              "ru": "Волнение, нервозность.",
+              "uk": "Хвилювання, нервозність."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nervousness",
+          "definitionByLocale": {
+            "ru": "Волнение, нервозность.",
+            "uk": "Хвилювання, нервозність."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Признайтесь, что не можете скрыть волнение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Признайтесь, что не можете скрыть волнение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I cannot hide my nervousness.",
+        "localizedMeaning": {
+          "ru": "Признайтесь, что не можете скрыть волнение.",
+          "uk": "Зізнайтеся, що не можете приховати хвилювання."
+        },
+        "orderedTokens": [
+          "I",
+          "cannot",
+          "hide",
+          "my",
+          "nervousness"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите немного времени перед началом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i12:audio"
+      ],
+      "accessibilityLabel": "Попросите немного времени перед началом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i12:audio",
+          "transcript": "Could you give me a moment?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you give me a moment?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы чувствовать себя спокойнее сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-40:i13:r1",
+          "text": "felt"
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i13:r2",
+          "text": "feel"
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i13:r3",
+          "text": "feeling"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы чувствовать себя спокойнее сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы чувствовать себя спокойнее сейчас.",
+          "uk": "Вам хотілося б почуватися спокійніше зараз."
+        },
+        "gappedTargetPhrase": "I wish I ___ more relaxed.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-40:i13:r1",
+            "text": "felt"
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i13:r2",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i13:r3",
+            "text": "feeling"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы чувствовать себя спокойнее сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы чувствовать себя спокойнее сейчас.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь felt.",
+              "uk": "Після wish тут felt."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы чувствовать себя спокойнее сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма felt.",
+              "uk": "Потрібна форма felt."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о времени начала.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о времени начала.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i14:audio",
+          "transcript": "What time do we start?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What time do we start?",
+        "orderedTokens": [
+          "What",
+          "time",
+          "do",
+          "we",
+          "start"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-40:i15:r1",
+          "text": "We still have ten minutes."
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i15:r2",
+          "text": "We still have two minutes."
+        },
+        {
+          "responseId": "en:lesson-27:session-40:i15:r3",
+          "text": "We still have twenty minutes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i15:audio",
+          "transcript": "We still have ten minutes."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-40:i15:r1",
+            "targetText": "We still have ten minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i15:r2",
+            "targetText": "We still have two minutes.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i15:r3",
+            "targetText": "We still have twenty minutes.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-40:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We still have ten minutes.",
+              "uk": "У записі звучить We still have ten minutes."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-40:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We still have ten minutes.",
+              "uk": "У записі звучить We still have ten minutes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we had more time, we would talk outside.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we had more time, we would talk outside.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would talk outside if we had more time.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we had more time, we would talk outside.",
+          "uk": "Почніть із результату: If we had more time, we would talk outside."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "talk",
+          "outside",
+          "if",
+          "we",
+          "had",
+          "more",
+          "time"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-40:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите друга остаться рядом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите друга остаться рядом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-40:i17:audio",
+          "transcript": "Could you stay here with me?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you stay here with me?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3550ea8b405dc9d0a1946027b04a149a21d11a0e033a82f1e94ffd90f836453b"
+}

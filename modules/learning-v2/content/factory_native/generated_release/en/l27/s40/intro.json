@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; unreal condition; present perfect / past simple",
+    "uk": "wish + past; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сказать об усталости",
+        "uk": "Сказати про втому"
+      },
+      "bodyByLocale": {
+        "ru": "Tiredness — усталость. Друг замечает, что вы молчите, и спрашивает, что случилось. I think it is tiredness — думаю, это усталость. Это ваше предположение о своём состоянии. May I sit down? — можно присесть? I have already had a break — я уже сделал перерыв. I had a break an hour ago — у меня был перерыв час назад: с an hour ago говорим о законченном времени.",
+        "uk": "Tiredness — втома. Друг помічає, що ви мовчите, і запитує, що сталося. I think it is tiredness — думаю, це втома. Це ваше припущення про свій стан. May I sit down? — можна сісти? I have already had a break — я вже зробив перерву. I had a break an hour ago — у мене була перерва годину тому: з an hour ago говоримо про завершений час."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-40:intro1:r1",
+              "text": "I had a break an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro1:r2",
+              "text": "I have had a break an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro1:r3",
+              "text": "I haved a break an hour ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-40:intro1:r1",
+              "text": "I had a break an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro1:r2",
+              "text": "I have had a break an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro1:r3",
+              "text": "I haved a break an hour ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попросить другой стул",
+        "uk": "Попросити інший стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Discomfort — неудобство, неприятное ощущение. I felt some discomfort in this chair — в этом кресле мне было неудобно. Можно попросить: Could I use another chair? — можно взять другой стул? Soreness — болезненность: I still have some soreness in my shoulder — плечо всё ещё побаливает. Вы описываете ощущение. I would stay longer if I felt better — я бы остался дольше, если бы чувствовал себя лучше. После would ставим stay, а felt относится к условию.",
+        "uk": "Discomfort — незручність, неприємне відчуття. I felt some discomfort in this chair — у цьому кріслі мені було незручно. Можна попросити: Could I use another chair? — можна взяти інший стілець? Soreness — болісність: I still have some soreness in my shoulder — плече все ще поболює. Ви описуєте відчуття. I would stay longer if I felt better — я б залишився довше, якби почувався краще. Після would ставимо stay, а felt стосується умови."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-40:intro2:r1",
+              "text": "I would stay longer if I felt better."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro2:r2",
+              "text": "I would stayed longer if I felt better."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro2:r3",
+              "text": "I would to stay longer if I felt better."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-40:intro2:r1",
+              "text": "I would stay longer if I felt better."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro2:r2",
+              "text": "I would stayed longer if I felt better."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro2:r3",
+              "text": "I would to stay longer if I felt better."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Перед разговором с группой",
+        "uk": "Перед розмовою з групою"
+      },
+      "bodyByLocale": {
+        "ru": "Nervousness — волнение, нервозность. I cannot hide my nervousness — я не могу скрыть волнение. Перед тем как говорить перед группой, вы просите минуту: Could you give me a moment? I wish I felt more relaxed — хотелось бы чувствовать себя спокойнее. Felt после wish описывает желаемое состояние сейчас. What time do we start? — во сколько мы начинаем? Этот вопрос помогает уточнить, сколько времени есть.",
+        "uk": "Nervousness — хвилювання, нервозність. I cannot hide my nervousness — я не можу приховати хвилювання. Перш ніж говорити перед групою, ви просите хвилину: Could you give me a moment? I wish I felt more relaxed — хотілося б почуватися спокійніше. Felt після wish описує бажаний стан зараз. What time do we start? — о котрій ми починаємо? Це запитання допомагає уточнити, скільки є часу."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-40:intro3:r1",
+              "text": "I wish I felt more relaxed."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro3:r2",
+              "text": "I wish I feel more relaxed."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro3:r3",
+              "text": "I wish I feeling more relaxed."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-40:intro3:r1",
+              "text": "I wish I felt more relaxed."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro3:r2",
+              "text": "I wish I feel more relaxed."
+            },
+            {
+              "responseId": "en:lesson-27:session-40:intro3:r3",
+              "text": "I wish I feeling more relaxed."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e93f206f1478e2efd81dc6727b46dded7edd5613ee0ea3bef167887e1a18ca70"
+}

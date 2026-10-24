@@ -55,7 +55,7 @@ import {
 
 const LOG = '[CHAPTER-EXAM]';
 
-type Answer = ChapterExamAnswerDetailV1;
+export type Answer = ChapterExamAnswerDetailV1;
 type Outcome = Readonly<{ correct: number; passed: boolean; openedRange: Readonly<{ first: number; last: number }> | null }>;
 
 // Значок режима — как в теле заданий (LearningV2TaskBody, TASK_ICON).
@@ -273,9 +273,14 @@ type QuestionProps = Readonly<{
   bottomInset: number;
   onAnswered: (answer: Answer) => void;
   onNext: () => void;
+  /** Над телом задания (карточка темы входного теста, макет chapter-exam-season.html раздел 6). У экзамена главы не задаётся. */
+  header?: React.ReactNode;
+  /** Условие вместо `interaction.prompt` (входной тест, урок 15: подсказка формы отрезана). У экзамена главы не задаётся. */
+  promptOverride?: string | null;
 }>;
 
-function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfaceLocale, bottomInset, onAnswered, onNext }: QuestionProps) {
+// зачем (координатор 24.10, Learning V2 разрешила 24.10): вопрос входного теста рисуется ТЕМ ЖЕ компонентом, что вопрос экзамена главы — поведение не меняю, только экспорт и два необязательных входа (header, promptOverride)
+export function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfaceLocale, bottomInset, onAnswered, onNext, header, promptOverride }: QuestionProps) {
   const g = useLv2Glass();
   const t = lv2TaskTokens(g);
   const reducedMotion = useReducedMotion();
@@ -332,7 +337,7 @@ function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfa
     // только «Неверно» и «Дальше» (решение координатора)
     const verdictFeedback = resolveLearningV2ModeFeedbackV1({ interfaceLocale, modePayload: null, outcome: correct ? 'correct' : 'wrong', selectedResponseId: null, orderedResponseIds: [] });
     setFeedback(correct ? verdictFeedback : { ...verdictFeedback, text: learningV2ChapterExamCopy(interfaceLocale, 'wrong') });
-    const parts = splitLearningV2TaskPromptV1({ family: interaction.family, prompt: interaction.prompt, interfaceLocale, modePayload: interaction.modePayload, interactionId: interaction.interactionId });
+    const parts = splitLearningV2TaskPromptV1({ family: interaction.family, prompt: promptOverride ?? interaction.prompt, interfaceLocale, modePayload: interaction.modePayload, interactionId: interaction.interactionId });
     const answerText = response.kind === 'choice_token'
       ? (options.find((o) => o.responseId === response.value)?.text ?? null)
       : (typeof response.value === 'string' ? response.value : null);
@@ -364,13 +369,14 @@ function ChapterExamQuestion({ ordinal, question, lessonOrdinal, locale, interfa
       <Animated.View style={styles.body} entering={reducedMotion ? undefined : SlideInRight.duration(110)} exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}>
         {/* зачем: тот же вьюпорт, что у плеера занятия — компактная раскладка на низких экранах и прокрутка при крупном шрифте */}
         <LearningV2PracticeViewport>
+        {header ?? null}
         {interaction?.modePayload ? (
           <LearningV2ModeRouterV1
             family={interaction.family}
             interfaceLocale={interfaceLocale}
             modePayload={interaction.modePayload}
             phase={verdict === 'correct' ? 'success' : verdict === 'wrong' ? 'needs_work' : 'idle'}
-            prompt={sanitizeLearningV2LearnerPromptV1(interaction.prompt)}
+            prompt={sanitizeLearningV2LearnerPromptV1(promptOverride ?? interaction.prompt)}
             options={options}
             selectedChoiceId={selectedChoiceId}
             orderedResponseIds={orderedIds}

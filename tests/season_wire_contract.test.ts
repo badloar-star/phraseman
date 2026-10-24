@@ -27,7 +27,9 @@ describe('Сезон во вкладке «Уроки»', () => {
     expect(wire).toContain('onSessionPress(card.lessonOrdinal, card.sessionOrdinal, card.sourceState)');
     expect(wire).toContain('onLegacy={props.onLegacyLessons}');
     // зачем (владелец 22.10): «Слова» — слова ЭТОГО урока (экран Learning V2), а не раздел «Карточки»
-    expect(wire).toContain("pathname: '/learning_v2_lesson_words', params: { lesson: String(lesson) }");
+    // зачем (24.10): путь «Слов» вынесен в app/learning_v2_placement_route.ts — сторож видимости V2 не пускает литералы /learning_v2_* в компоненты
+    expect(wire).toContain('pathname: LEARNING_V2_LESSON_WORDS_HREF, params: { lesson: String(lesson) }');
+    expect(fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_placement_route.ts'), 'utf8')).toContain("LEARNING_V2_LESSON_WORDS_HREF = '/learning_v2_lesson_words'");
     expect(wire).not.toContain("router.push('/flashcards'");
     expect(wire).toContain('LearningV2TheorySheet');
   });

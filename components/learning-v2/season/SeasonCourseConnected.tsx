@@ -48,6 +48,8 @@ import { seasonEpisodeLabel, seasonText } from './season_copy';
 import { seasonCardText } from './season_copy_card';
 import { buildSeasonDeck, type SeasonEpisodeCard } from './season_course_model';
 import { SEASON_CHAPTER_EXAM_ENABLED, SEASON_CHAPTER_EXAM_START_ENABLED } from './season_flags';
+import { LEARNING_V2_PLACEMENT_UI_ENABLED } from '../placement/placement_flags';
+import { LEARNING_V2_LESSON_WORDS_HREF, LEARNING_V2_PLACEMENT_HREF } from '../../../app/learning_v2_placement_route';
 
 const LOG = '[SEASON-WIRE]';
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
@@ -192,8 +194,8 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   }, [onSessionPress]);
   const onWords = useCallback(() => {
     // зачем (владелец 22.10: «„СЛОВА“ НАЖИМАЮ, ОТКРЫВАЕТСЯ РАЗДЕЛ КАРТОЧКИ»): «Слова» открывают слова ЭТОГО урока (экран app/learning_v2_lesson_words.tsx, вид «Слов урока» основного курса), а не раздел «Карточки»; данные — слова урока с телефона
-    console.log('[SEASON-WORDS] нажатие → «Слова»', JSON.stringify({ lesson, to: '/learning_v2_lesson_words' })); // guard-ok: куда ведёт нажатие
-    router.push({ pathname: '/learning_v2_lesson_words', params: { lesson: String(lesson) } } as never);
+    console.log('[SEASON-WORDS] нажатие → «Слова»', JSON.stringify({ lesson, to: LEARNING_V2_LESSON_WORDS_HREF })); // guard-ok: куда ведёт нажатие
+    router.push({ pathname: LEARNING_V2_LESSON_WORDS_HREF, params: { lesson: String(lesson) } } as never);
   }, [lesson, router]);
   const theory = useMemo(() => (hasLearningV2TheoryV1(lesson, lang) ? loadLearningV2TheoryV1(lesson, lang) : null), [lang, lesson]);
   const theorySection = useMemo(() => {
@@ -251,9 +253,11 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     return () => { alive = false; off(); };
   }, []);
   const onNotFromStart = useCallback(() => {
+    // зачем (координатор 24.10, макет chapter-exam-season.html раздел 6; Learning V2 24.10): с включённым флагом кнопка ведёт на тест, а флаг «использовано» ставится ТОЛЬКО на экране итога (applyLearningV2PlacementResultV1) — выход из теста кнопку не гасит; выключен — как раньше: флаг сразу и «Все уроки»
+    if (LEARNING_V2_PLACEMENT_UI_ENABLED) { router.push(LEARNING_V2_PLACEMENT_HREF as never); return; }
     void markLearningV2NotFromStartUsedV1('season_cover');
     openLessonsList('not_from_start');
-  }, [openLessonsList]);
+  }, [openLessonsList, router]);
   const notFromStartAvailable = notFromStartUsed === false;
   useEffect(() => {
     if (newcomer) console.log('[PLACEMENT-ONCE] button', JSON.stringify({ newcomer, used: notFromStartUsed, shown: notFromStartAvailable })); // guard-ok: почему кнопка видна или нет

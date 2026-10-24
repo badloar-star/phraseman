@@ -13,6 +13,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import { useLightStatusBar, useScrollAtTop } from '../../../../hooks/use_scene_status_bar';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useStableSafeAreaInsets } from '../../../../app/stable_safe_area_metrics';
@@ -92,10 +94,14 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const warmTone = homeSceneWarmTone(card.accent).flame;
   const nextTask = decision.nextIndex === null ? null : tasks[decision.nextIndex] ?? null;
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
+  // зачем (координатор 24.10, Р2): сцена «Сегодня» тёмная — пока она под часами и экран в фокусе, значки строки состояния светлые
+  const focused = useIsFocused();
+  const [sceneAtTop, onSceneScroll] = useScrollAtTop();
+  useLightStatusBar('today', focused && sceneAtTop, 'today_scene_under_clock');
   // разделитель строк: цвет текста 7 % (эталон `.rw + .rw`: color-mix(var(--tx) 7%))
   const separator = `${card.text.slice(0, 7)}12`;
   return (
-    <ScrollView testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false}>
+    <ScrollView testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false} onScroll={onSceneScroll} scrollEventThrottle={32}>
       <View testID="today-scene-stage" style={[s.stage, { minHeight: stageH }]}>
         <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">

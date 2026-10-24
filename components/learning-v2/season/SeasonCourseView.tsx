@@ -30,6 +30,7 @@ import {
   seasonChapterProgress, type SeasonDeck, type SeasonEpisodeCard,
 } from './season_course_model';
 import { SEASON_COUNT_LOG } from '../../home/v2/scene/home_scene_count';
+import { reportSeasonCoverTop, useScrollAtTop } from '../../../hooks/use_scene_status_bar';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -187,8 +188,16 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     ? seasonText(lang, 'startEpisode', { n: currentEpisode?.sessionOrdinal ?? 1 })
     : seasonText(lang, 'continueEpisode', { n: currentEpisode?.sessionOrdinal ?? 1 });
 
+  // зачем (координатор 24.10, Р2): обложка тёмная — оболочка вкладок держит светлые значки строки состояния, пока обложка под часами;
+  // вкладку видит оболочка, прокрутку — здесь (меняется только на пересечении порога)
+  const [coverAtTop, onCoverScroll] = useScrollAtTop();
+  useEffect(() => {
+    reportSeasonCoverTop({ mounted: true, atTop: coverAtTop });
+  }, [coverAtTop]);
+  useEffect(() => () => reportSeasonCoverTop({ mounted: false, atTop: true }), []);
+
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false} testID="season-course">
+    <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onCoverScroll} scrollEventThrottle={32}>
       <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />

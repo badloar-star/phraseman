@@ -15,6 +15,9 @@ import TopFadeMask from '../../components/TopFadeMask';
 import HomeSceneStatusStrip from '../../components/home/v2/scene/HomeSceneStatusStrip';
 import { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/home_scene_flag';
 import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/season_flags';
+import { useIsFocused } from '@react-navigation/native';
+import { useHomeSceneStatusTint } from '../../components/home/v2/scene/home_scene_status_tint';
+import { useAnimatedAtTop, useLightStatusBar, useSeasonCoverTop } from '../../hooks/use_scene_status_bar';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
@@ -670,6 +673,14 @@ function TabScaffold({
   // зачем (R08 🔴, координатор 15.10, предохранитель): скрыть таббар может только вкладка «Обучение» (карта курса V2), и только пока она на экране.
   // Запоздавший запрос не применяется к другой вкладке — раньше человек оставался на Главной без таббара и не мог уйти.
   const barHidden = tabBarHidden && visualIdx === 1;
+  // зачем (координатор 24.10, Р2 подтверждён Сверкой flags/r2_home_top.png): «Сцена» Главной и обложка Сезона тёмные — пока они под
+  // часами и вкладка видна, значки строки состояния светлые; прокрутка, другая вкладка, экран поверх вкладок — бар темы
+  const tabsFocused = useIsFocused();
+  const homeSceneTint = useHomeSceneStatusTint();
+  const homeSceneAtTop = useAnimatedAtTop(topFadeScroll?.scrollY);
+  const seasonCover = useSeasonCoverTop();
+  useLightStatusBar('home', tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0 && homeSceneTint !== null && homeSceneAtTop, 'home_scene_under_clock');
+  useLightStatusBar('season', tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1 && seasonCover.mounted && seasonCover.atTop, 'season_cover_under_clock');
   useEffect(() => {
     console.log('[TABBAR-HIDE]', JSON.stringify({ requested: tabBarHidden, visualIdx, owner: visualIdx === 1 ? 'lessons' : 'other', result: barHidden ? 'apply' : tabBarHidden ? 'skip_not_lessons' : 'visible', atMs: Date.now() })); // guard-ok: одна строка на смену
   }, [tabBarHidden, visualIdx, barHidden]);

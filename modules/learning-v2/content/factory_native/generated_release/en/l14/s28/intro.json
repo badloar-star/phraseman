@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Морская звезда",
-        "uk": "Морська зірка"
+        "ru": "Звонок на берегу",
+        "uk": "Дзвінок на березі"
       },
       "bodyByLocale": {
-        "ru": "Starfish — морская звезда. I was looking at a starfish when you called. — Я смотрел на морскую звезду, когда ты позвонил. Выберите процесс в прошлом.",
-        "uk": "Starfish — морська зірка. I was looking at a starfish when you called. — Я дивився на морську зірку, коли ти зателефонував. Виберіть процес у минулому."
+        "ru": "Вчера вы рассматривали морскую звезду у воды, когда позвонил друг. Starfish — морская звезда. Обращаясь к другу, начните с I was looking at a starfish и добавьте when you called. I was looking at a starfish when you called. — Я смотрел на морскую звезду, когда ты позвонил. Was looking описывает процесс в тот момент, called — звонок в прошлом. Сохраняйте at перед предметом, на который смотрели.",
+        "uk": "Учора ви розглядали морську зірку біля води, коли зателефонував друг. Starfish — морська зірка. Звертаючись до друга, почніть із I was looking at a starfish і додайте when you called. I was looking at a starfish when you called. — Я дивився на морську зірку, коли ти зателефонував. Was looking описує процес у ту мить, called — дзвінок у минулому. Зберігайте at перед предметом, на який дивилися."
       },
       "question": {
         "interactionId": "en:lesson-14:session-28:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Водоросли и плавник",
-        "uk": "Водорості й плавник"
+        "ru": "Подойти к рисующей сестре",
+        "uk": "Підійти до сестри, яка малює"
       },
       "bodyByLocale": {
-        "ru": "Seaweed — морские водоросли; driftwood — древесина, вынесенная водой на берег, плавник. Здесь плавник — не часть рыбы. She was drawing a piece of driftwood when I arrived. — Она рисовала кусок выброшенного на берег дерева, когда я пришёл.",
-        "uk": "Seaweed — морські водорості; driftwood — деревина, винесена водою на берег, плавник. Тут плавник — не частина риби. She was drawing a piece of driftwood when I arrived. — Вона малювала шматок викинутого на берег дерева, коли я прийшов."
+        "ru": "Вчера вы пришли на берег, когда ваша сестра рисовала кусок дерева, выброшенный водой. Driftwood — древесина, вынесенная водой на берег. Назовите её процесс She was drawing a piece of driftwood и добавьте when I arrived. She was drawing a piece of driftwood when I arrived. — Она рисовала кусок выброшенного на берег дерева, когда я пришёл. С she нужна was перед drawing; arrived передаёт ваш приход. A piece of driftwood обозначает один кусок такой древесины.",
+        "uk": "Учора ви прийшли на берег, коли ваша сестра малювала шматок дерева, викинутий водою. Driftwood — деревина, винесена водою на берег. Назвіть її процес She was drawing a piece of driftwood і додайте when I arrived. She was drawing a piece of driftwood when I arrived. — Вона малювала шматок викинутого на берег дерева, коли я прийшов. Із she потрібна was перед drawing; arrived передає ваш прихід. A piece of driftwood позначає один шматок такої деревини."
       },
       "question": {
         "interactionId": "en:lesson-14:session-28:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вода между камнями",
-        "uk": "Вода між камінням"
+        "ru": "Заглянуть между камнями",
+        "uk": "Зазирнути між камінням"
       },
       "bodyByLocale": {
-        "ru": "Rock pool — небольшое естественное углубление между прибрежными камнями, где остаётся морская вода. We were looking into a rock pool when you called. — Мы заглядывали в лужицу между прибрежными камнями, когда ты позвонил.",
-        "uk": "Rock pool — невелике природне заглиблення між прибережним камінням, де залишається морська вода. We were looking into a rock pool when you called. — Ми заглядали в калюжку між прибережним камінням, коли ти зателефонував."
+        "ru": "Вчера вы с сестрой заглядывали в углубление с морской водой между камнями, когда позвонил друг. Rock pool — такое углубление на берегу. Обращаясь к другу, соедините We were looking into a rock pool и you called через when. We were looking into a rock pool when you called. — Мы заглядывали в лужицу между прибрежными камнями, когда ты позвонил. С we нужна were перед looking; into указывает взгляд внутрь углубления. Звонок в прошлом передаётся формой called.",
+        "uk": "Учора ви із сестрою зазирали в заглибину з морською водою між камінням, коли зателефонував друг. Rock pool — така заглибина на березі. Звертаючись до друга, поєднайте We were looking into a rock pool і you called через when. We were looking into a rock pool when you called. — Ми зазирали в калюжку між прибережним камінням, коли ти зателефонував. Із we потрібна were перед looking; into вказує погляд усередину заглибини. Дзвінок у минулому передається формою called."
       },
       "question": {
         "interactionId": "en:lesson-14:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "855c8abcef0bff035014ed4bcd24b4bbe19a1b2da457754c0e21ee30ee27cddf"
+  "introFingerprint": "fb28a36604483f5c782428a823c350dd6564f26d3b603b5f421be86206f67e83"
 }

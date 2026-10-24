@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пожать плечами",
-        "uk": "Знизати плечима"
+        "ru": "Друг заметил жест",
+        "uk": "Друг помітив жест"
       },
       "bodyByLocale": {
-        "ru": "Shrug — пожать плечами. I was shrugging when you looked at me. — Я пожимал плечами, когда ты посмотрел на меня. Выберите прошлый процесс и событие.",
-        "uk": "Shrug — знизати плечима. I was shrugging when you looked at me. — Я знизував плечима, коли ти подивився на мене. Виберіть минулий процес і подію."
+        "ru": "Вчера вы пожимали плечами, не зная ответа, и в этот момент друг посмотрел на вас. Shrug — пожать плечами. Обращаясь к другу, начните с процесса I was shrugging и добавьте when you looked at me. I was shrugging when you looked at me. — Я пожимал плечами, когда ты посмотрел на меня. Was shrugging описывает жест в тот момент, looked — взгляд как событие в прошлом. В shrugging удваивается g.",
+        "uk": "Учора ви знизували плечима, не знаючи відповіді, і в цю мить друг подивився на вас. Shrug — знизати плечима. Звертаючись до друга, почніть із процесу I was shrugging і додайте when you looked at me. I was shrugging when you looked at me. — Я знизував плечима, коли ти подивився на мене. Was shrugging описує жест у ту мить, looked — погляд як подію в минулому. У shrugging подвоюється g."
       },
       "question": {
         "interactionId": "en:lesson-14:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Понюхать и подмигнуть",
-        "uk": "Понюхати й підморгнути"
+        "ru": "Букет во время разговора",
+        "uk": "Букет під час розмови"
       },
       "bodyByLocale": {
-        "ru": "Sniff — понюхать, втянуть запах носом; wink — подмигнуть одним глазом. She was sniffing the flowers while I was talking. — Она нюхала цветы, пока я говорил. Выберите нюхать.",
-        "uk": "Sniff — понюхати, вдихнути запах носом; wink — підморгнути одним оком. She was sniffing the flowers while I was talking. — Вона нюхала квіти, поки я говорив. Виберіть нюхати."
+        "ru": "Вчера ваша сестра нюхала подаренный букет, пока вы рассказывали ей, где купили цветы. Sniff — нюхать, втягивать запах носом. Соедините её процесс She was sniffing the flowers и ваш I was talking через while. She was sniffing the flowers while I was talking. — Она нюхала цветы, пока я говорил. С she и I здесь нужна was перед действием с -ing; while связывает одновременные процессы.",
+        "uk": "Учора ваша сестра нюхала подарований букет, поки ви розповідали їй, де купили квіти. Sniff — нюхати, втягувати запах носом. Поєднайте її процес She was sniffing the flowers і ваш I was talking через while. She was sniffing the flowers while I was talking. — Вона нюхала квіти, поки я говорив. Із she та I тут потрібна was перед дією з -ing; while поєднує одночасні процеси."
       },
       "question": {
         "interactionId": "en:lesson-14:session-36:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Хихикать",
-        "uk": "Хихотіти"
+        "ru": "Смешная история",
+        "uk": "Смішна історія"
       },
       "bodyByLocale": {
-        "ru": "Giggle — хихикать, тихо смеяться. We were giggling while he was telling the story. — Мы хихикали, пока он рассказывал историю. Выберите два процесса в прошлом.",
-        "uk": "Giggle — хихотіти, тихо сміятися. We were giggling while he was telling the story. — Ми хихотіли, поки він розповідав історію. Виберіть два процеси в минулому."
+        "ru": "Вчера вы с сестрой хихикали, пока ваш брат рассказывал смешную историю. Giggle — хихикать. Начните с We were giggling и через while добавьте he was telling the story. We were giggling while he was telling the story. — Мы хихикали, пока он рассказывал историю. С we нужна were, с he — was. У giggle перед -ing убирается e: giggling.",
+        "uk": "Учора ви із сестрою хихотіли, поки ваш брат розповідав смішну історію. Giggle — хихотіти. Почніть із We were giggling і через while додайте he was telling the story. We were giggling while he was telling the story. — Ми хихотіли, поки він розповідав історію. Із we потрібна were, із he — was. У giggle перед -ing прибирається e: giggling."
       },
       "question": {
         "interactionId": "en:lesson-14:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4dd30ac7bd97731369c1faf2b1244d37ee03395f9a2d97f660f21bba7e89dcb6"
+  "introFingerprint": "30678bdf7f746d998b9b30158c044e64547bcd34a99d1595808926ae56bd5611"
 }

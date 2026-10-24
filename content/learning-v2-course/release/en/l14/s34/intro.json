@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Откинуться назад",
-        "uk": "Відхилитися назад"
+        "ru": "Откинуться в кресле",
+        "uk": "Відхилитися в кріслі"
       },
       "bodyByLocale": {
-        "ru": "Lean back — откинуться или отклониться назад. I was leaning back while you were talking. — Я откидывался назад, пока ты говорил. Два процесса в прошлом.",
-        "uk": "Lean back — відкинутися або відхилитися назад. I was leaning back while you were talking. — Я відхилявся назад, поки ти говорив. Два процеси в минулому."
+        "ru": "Вчера вы откидывались назад в кресле, пока друг рассказывал вам историю. Lean back — отклониться назад. Обращаясь к другу, соедините свой процесс I was leaning back и его процесс you were talking через while. I was leaning back while you were talking. — Я откидывался назад, пока ты говорил. С I нужна was, с you — were; действия с -ing относятся к одному моменту в прошлом.",
+        "uk": "Учора ви відхилялися назад у кріслі, поки друг розповідав вам історію. Lean back — відхилитися назад. Звертаючись до друга, поєднайте свій процес I was leaning back і його процес you were talking через while. I was leaning back while you were talking. — Я відхилявся назад, поки ти говорив. З I потрібна was, із you — were; дії з -ing стосуються однієї миті в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-34:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Наклониться вперёд и вытянуться",
-        "uk": "Нахилитися вперед і випростатися"
+        "ru": "Приход домой",
+        "uk": "Прихід додому"
       },
       "bodyByLocale": {
-        "ru": "Lean forward — наклониться вперёд; stretch out — вытянуться или вытянуть руки и ноги. She was stretching out on the sofa when I arrived. — Она вытягивалась на диване, когда я пришёл. Выберите эту фразу.",
-        "uk": "Lean forward — нахилитися вперед; stretch out — випростатися або витягнути руки й ноги. She was stretching out on the sofa when I arrived. — Вона випростовувалася на дивані, коли я прийшов. Виберіть цю фразу."
+        "ru": "Вчера вы пришли домой в тот момент, когда ваша сестра вытягивалась на диване. Stretch out — вытянуться. Начните с её процесса She was stretching out on the sofa, затем через when добавьте событие I arrived. She was stretching out on the sofa when I arrived. — Она вытягивалась на диване, когда я пришёл. С she нужна was перед stretching; ваш приход передаётся формой прошлого времени arrived.",
+        "uk": "Учора ви прийшли додому в ту мить, коли ваша сестра витягувалася на дивані. Stretch out — витягнутися. Почніть із її процесу She was stretching out on the sofa, потім через when додайте подію I arrived. She was stretching out on the sofa when I arrived. — Вона витягувалася на дивані, коли я прийшов. Із she потрібна was перед stretching; ваш прихід передається формою минулого часу arrived."
       },
       "question": {
         "interactionId": "en:lesson-14:session-34:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Стоять неподвижно",
-        "uk": "Стояти нерухомо"
+        "ru": "Замереть для фотографии",
+        "uk": "Завмерти для фотографії"
       },
       "bodyByLocale": {
-        "ru": "Stand still — стоять неподвижно. We were standing still while she was taking a photo. — Мы стояли неподвижно, пока она фотографировала. Still здесь значит «не двигаясь».",
-        "uk": "Stand still — стояти нерухомо. We were standing still while she was taking a photo. — Ми стояли нерухомо, поки вона фотографувала. Still тут означає «не рухаючись»."
+        "ru": "Вчера вы с братом стояли неподвижно, пока ваша сестра фотографировала вас. Stand still — стоять неподвижно. Соедините We were standing still и she was taking a photo через while. We were standing still while she was taking a photo. — Мы стояли неподвижно, пока она фотографировала. С we нужна were, с she — was; still после standing означает «не двигаясь».",
+        "uk": "Учора ви з братом стояли нерухомо, поки ваша сестра фотографувала вас. Stand still — стояти нерухомо. Поєднайте We were standing still і she was taking a photo через while. We were standing still while she was taking a photo. — Ми стояли нерухомо, поки вона фотографувала. Із we потрібна were, із she — was; still після standing означає «не рухаючись»."
       },
       "question": {
         "interactionId": "en:lesson-14:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d0bde2c43f87c446cd55a23da7b0736b0076083e6383191b6e9e8d7c96c65c41"
+  "introFingerprint": "dd4be234fdf8918964585a1f1e22a503e741c9cd8940c24a736ec1dbf9efcae1"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два действия одновременно",
-        "uk": "Дві дії одночасно"
+        "ru": "Фотография ягнёнка",
+        "uk": "Фотографія ягняти"
       },
       "bodyByLocale": {
-        "ru": "lamb — ягнёнок, детёныш овцы. I was watching a lamb while you were taking a photo. — Я наблюдал за ягнёнком, пока ты фотографировал. While вводит процесс, который шёл в то же время. Выберите два действия в прошлом.",
-        "uk": "lamb — ягня, дитинча вівці. I was watching a lamb while you were taking a photo. — Я спостерігав за ягням, поки ти фотографував. While вводить процес, який тривав у той самий час. Виберіть дві дії в минулому."
+        "ru": "Вчера вы наблюдали за ягнёнком на ферме, пока друг фотографировал его. Lamb — ягнёнок. Обращаясь к другу, соедините I was watching a lamb и you were taking a photo через while. I was watching a lamb while you were taking a photo. — Я наблюдал за ягнёнком, пока ты фотографировал. С I нужна was, с you — were; действия с -ing показывают два одновременных процесса в прошлом. У take перед -ing убирается e: taking.",
+        "uk": "Учора ви спостерігали за ягням на фермі, поки друг фотографував його. Lamb — ягня. Звертаючись до друга, поєднайте I was watching a lamb і you were taking a photo через while. I was watching a lamb while you were taking a photo. — Я спостерігав за ягням, поки ти фотографував. З I потрібна was, із you — were; дії з -ing показують два одночасні процеси в минулому. У take перед -ing прибирається e: taking."
       },
       "question": {
         "interactionId": "en:lesson-14:session-38:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Рисунок жеребёнка",
+        "uk": "Малюнок лошати"
       },
       "bodyByLocale": {
-        "ru": "calf — телёнок, детёныш коровы в этом контексте. foal — жеребёнок, детёныш лошади. She was drawing a foal while I was talking. — Она рисовала жеребёнка, пока я говорил. Выберите эту фразу о прошлом.",
-        "uk": "calf — теля, дитинча корови в цьому контексті. foal — лоша, дитинча коня. She was drawing a foal while I was talking. — Вона малювала лоша, поки я говорив. Виберіть цю фразу про минуле."
+        "ru": "Вчера ваша сестра рисовала жеребёнка, пока вы рассказывали ей о ферме. Foal — жеребёнок. Начните с She was drawing a foal, затем через while добавьте I was talking. She was drawing a foal while I was talking. — Она рисовала жеребёнка, пока я говорил. Здесь с she и I нужна was перед действием с -ing; while связывает то, что происходило одновременно.",
+        "uk": "Учора ваша сестра малювала лоша, поки ви розповідали їй про ферму. Foal — лоша. Почніть із She was drawing a foal, потім через while додайте I was talking. She was drawing a foal while I was talking. — Вона малювала лоша, поки я говорив. Тут із she та I потрібна was перед дією з -ing; while поєднує те, що відбувалося одночасно."
       },
       "question": {
         "interactionId": "en:lesson-14:session-38:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Процесс и звонок",
-        "uk": "Процес і дзвінок"
+        "ru": "Звонок на ферму",
+        "uk": "Дзвінок на ферму"
       },
       "bodyByLocale": {
-        "ru": "piglet — поросёнок. We were watching a piglet when you called. — Мы наблюдали за поросёнком, когда ты позвонил. When вводит звонок: короткое событие на фоне процесса. Выберите прошлое событие called.",
-        "uk": "piglet — порося. We were watching a piglet when you called. — Ми спостерігали за поросям, коли ти зателефонував. When вводить дзвінок: коротку подію на тлі процесу. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой наблюдали за поросёнком, когда позвонил друг. Piglet — поросёнок. Обращаясь к другу, соберите процесс We were watching a piglet и добавьте when you called. We were watching a piglet when you called. — Мы наблюдали за поросёнком, когда ты позвонил. Were watching показывает занятие в момент звонка; called называет само событие в прошлом. После watching ставьте a piglet без предлога.",
+        "uk": "Учора ви із сестрою спостерігали за поросям, коли зателефонував друг. Piglet — порося. Звертаючись до друга, складіть процес We were watching a piglet і додайте when you called. We were watching a piglet when you called. — Ми спостерігали за поросям, коли ти зателефонував. Were watching показує заняття в момент дзвінка; called називає саму подію в минулому. Після watching ставте a piglet без прийменника."
       },
       "question": {
         "interactionId": "en:lesson-14:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fd5a2d28db4b2b2f8e98539d98692be256dc7f31fe095ad9ad8072a52cd66d47"
+  "introFingerprint": "a1c7ec2ffcbe631cf68104403bdf9afe9166bffbda44e05ffba6910d59796915"
 }

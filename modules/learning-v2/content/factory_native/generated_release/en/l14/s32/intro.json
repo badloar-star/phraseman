@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Процесс до события",
-        "uk": "Процес до події"
+        "ru": "Звонок во время готовки",
+        "uk": "Дзвінок під час готування"
       },
       "bodyByLocale": {
-        "ru": "cinnamon — корица. I was adding cinnamon when you called. — Я добавлял корицу, когда ты позвонил. Действие уже шло; when вводит событие в прошлом. Выберите прошлый процесс.",
-        "uk": "cinnamon — кориця. I was adding cinnamon when you called. — Я додавав корицю, коли ти зателефонував. Дія вже тривала; when вводить подію в минулому. Виберіть минулий процес."
+        "ru": "Вчера вы добавляли корицу в тесто, когда позвонил друг. Cinnamon — корица. Обращаясь к другу, начните с процесса I was adding cinnamon и добавьте when you called. I was adding cinnamon when you called. — Я добавлял корицу, когда ты позвонил. С I нужна was перед adding: действие шло в тот момент. Called называет звонок как событие в прошлом.",
+        "uk": "Учора ви додавали корицю в тісто, коли зателефонував друг. Cinnamon — кориця. Звертаючись до друга, почніть із процесу I was adding cinnamon і додайте when you called. I was adding cinnamon when you called. — Я додавав корицю, коли ти зателефонував. З I потрібна was перед adding: дія тривала в ту мить. Called називає дзвінок як подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-32:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Сестра добавляла приправу",
+        "uk": "Сестра додавала приправу"
       },
       "bodyByLocale": {
-        "ru": "ginger — имбирь. paprika — паприка, молотая приправа из красного перца. She was adding paprika when you called. — Она добавляла паприку, когда ты позвонил. Выберите эту фразу.",
-        "uk": "ginger — імбир. paprika — паприка, мелена приправа з червоного перцю. She was adding paprika when you called. — Вона додавала паприку, коли ти зателефонував. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра добавляла паприку в суп, когда вам позвонил друг. Paprika — паприка, молотая приправа из красного перца. Рассказывая другу, соберите She was adding paprika, затем добавьте when you called. She was adding paprika when you called. — Она добавляла паприку, когда ты позвонил. С she используйте was + adding для процесса; после when здесь стоит событие в прошлом called.",
+        "uk": "Учора ваша сестра додавала паприку в суп, коли вам зателефонував друг. Paprika — паприка, мелена приправа з червоного перцю. Розповідаючи другові, складіть She was adding paprika, потім додайте when you called. She was adding paprika when you called. — Вона додавала паприку, коли ти зателефонував. Із she використовуйте was + adding для процесу; після when тут стоїть подія в минулому called."
       },
       "question": {
         "interactionId": "en:lesson-14:session-32:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Искали или делали в тот момент",
-        "uk": "Шукали або робили в той момент"
+        "ru": "Друг пришёл во время поиска",
+        "uk": "Друг прийшов під час пошуку"
       },
       "bodyByLocale": {
-        "ru": "bay leaf — лавровый лист. We were looking for a bay leaf when you arrived. — Мы искали лавровый лист, когда ты пришёл. Процесс уже шёл в момент прихода. Выберите прошедшее событие arrived.",
-        "uk": "bay leaf — лавровий лист. We were looking for a bay leaf when you arrived. — Ми шукали лавровий лист, коли ти прийшов. Процес уже тривав у момент приходу. Виберіть минулу подію arrived."
+        "ru": "Вчера вы с сестрой искали лавровый лист для супа, когда пришёл друг. Bay leaf — лавровый лист. Обращаясь к другу, соедините процесс We were looking for a bay leaf с событием you arrived через when. We were looking for a bay leaf when you arrived. — Мы искали лавровый лист, когда ты пришёл. С we нужна were перед looking; for связывает поиск с предметом. Приход уже произошёл, поэтому arrived.",
+        "uk": "Учора ви із сестрою шукали лавровий лист для супу, коли прийшов друг. Bay leaf — лавровий лист. Звертаючись до друга, поєднайте процес We were looking for a bay leaf із подією you arrived через when. We were looking for a bay leaf when you arrived. — Ми шукали лавровий лист, коли ти прийшов. Із we потрібна were перед looking; for пов’язує пошук із предметом. Прихід уже стався, тому arrived."
       },
       "question": {
         "interactionId": "en:lesson-14:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "00470f785b16ffce7d7cf8d0c4750ab30381a4645fe940e1ba05ad8bc3c9654e"
+  "introFingerprint": "8a4df0d8fe2ae1bd4436d8f87db8d1cc76813427ca67d8d3cec2db3ed389204e"
 }

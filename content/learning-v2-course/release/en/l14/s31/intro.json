@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Процесс до события",
-        "uk": "Процес до події"
+        "ru": "Звонок во время мытья зелени",
+        "uk": "Дзвінок під час миття зелені"
       },
       "bodyByLocale": {
-        "ru": "basil — базилик, ароматная зелень. I was washing basil when you called. — Я мыл базилик, когда ты позвонил. Действие уже шло; when вводит событие в прошлом. Выберите прошлый процесс.",
-        "uk": "basil — базилік, ароматна зелень. I was washing basil when you called. — Я мив базилік, коли ти зателефонував. Дія вже тривала; when вводить подію в минулому. Виберіть минулий процес."
+        "ru": "Вчера вы мыли базилик для салата, когда позвонил друг. Basil — базилик. Обращаясь к другу, начните с процесса I was washing basil и добавьте when you called. I was washing basil when you called. — Я мыл базилик, когда ты позвонил. С I нужна was перед washing: мытьё шло в тот момент. Called передаёт звонок как событие в прошлом.",
+        "uk": "Учора ви мили базилік для салату, коли зателефонував друг. Basil — базилік. Звертаючись до друга, почніть із процесу I was washing basil і додайте when you called. I was washing basil when you called. — Я мив базилік, коли ти зателефонував. З I потрібна was перед washing: миття тривало в ту мить. Called передає дзвінок як подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-31:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Приправа в момент звонка",
+        "uk": "Приправа в момент дзвінка"
       },
       "bodyByLocale": {
-        "ru": "mint — мята. rosemary — розмарин, ароматная зелень с узкими листьями. She was adding rosemary when you called. — Она добавляла розмарин, когда ты позвонил. Выберите эту фразу.",
-        "uk": "mint — м’ята. rosemary — розмарин, ароматна зелень з вузьким листям. She was adding rosemary when you called. — Вона додавала розмарин, коли ти зателефонував. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра добавляла розмарин к картофелю, когда вам позвонил друг. Rosemary — розмарин. Рассказывая другу, соберите She was adding rosemary и добавьте when you called. She was adding rosemary when you called. — Она добавляла розмарин, когда ты позвонил. С she используйте was + adding для процесса; событие после when здесь выражено формой called, а не call.",
+        "uk": "Учора ваша сестра додавала розмарин до картоплі, коли вам зателефонував друг. Rosemary — розмарин. Розповідаючи другові, складіть She was adding rosemary і додайте when you called. She was adding rosemary when you called. — Вона додавала розмарин, коли ти зателефонував. Із she використовуйте was + adding для процесу; подію після when тут виражено формою called, а не call."
       },
       "question": {
         "interactionId": "en:lesson-14:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Искали или делали в тот момент",
-        "uk": "Шукали або робили в той момент"
+        "ru": "Поиск перед приходом друга",
+        "uk": "Пошук перед приходом друга"
       },
       "bodyByLocale": {
-        "ru": "thyme — тимьян, чабрец. We were looking for the thyme when you arrived. — Мы искали тимьян, когда ты пришёл. Процесс уже шёл в момент прихода. Выберите прошедшее событие arrived.",
-        "uk": "thyme — чебрець, тим’ян. We were looking for the thyme when you arrived. — Ми шукали чебрець, коли ти прийшов. Процес уже тривав у момент приходу. Виберіть минулу подію arrived."
+        "ru": "Вчера вы с сестрой искали купленный тимьян на кухне, когда пришёл друг. Thyme — тимьян. Обращаясь к другу, соедините We were looking for the thyme и you arrived через when. We were looking for the thyme when you arrived. — Мы искали тимьян, когда ты пришёл. Were looking for описывает поиск в тот момент; arrived — приход как событие в прошлом. Сохраняйте for перед предметом поиска.",
+        "uk": "Учора ви із сестрою шукали куплений чебрець на кухні, коли прийшов друг. Thyme — чебрець. Звертаючись до друга, поєднайте We were looking for the thyme і you arrived через when. We were looking for the thyme when you arrived. — Ми шукали чебрець, коли ти прийшов. Were looking for описує пошук у ту мить; arrived — прихід як подію в минулому. Зберігайте for перед предметом пошуку."
       },
       "question": {
         "interactionId": "en:lesson-14:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "278cd3b466be1dba8cd8805ba2ab2008d8c145f1b6db46ffb8cbe2897a7642bd"
+  "introFingerprint": "253f10fa79f550ba8362af3d6bd4a224e38dffadcac705c4f5a30a20ee22931f"
 }

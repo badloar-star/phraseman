@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Коричневый сахар",
-        "uk": "Коричневий цукор"
+        "ru": "Что вы добавляли в тесто",
+        "uk": "Що ви додавали в тісто"
       },
       "bodyByLocale": {
-        "ru": "Brown sugar — коричневый сахар. I was adding brown sugar. — Я добавлял коричневый сахар. Описываем действие, которое шло в тот момент.",
-        "uk": "Brown sugar — коричневий цукор. I was adding brown sugar. — Я додавав коричневий цукор. Описуємо дію, яка тривала в той момент."
+        "ru": "На вчерашней фотографии вы добавляете коричневый сахар в тесто. Brown sugar — коричневый сахар. Чтобы рассказать, что вы делали в тот момент, соберите I + was + adding, затем назовите продукт: brown sugar. I was adding brown sugar. — Я добавлял коричневый сахар. Was задаёт прошлое, а adding показывает действие в процессе; после was здесь нужна форма с -ing.",
+        "uk": "На вчорашній фотографії ви додаєте коричневий цукор у тісто. Brown sugar — коричневий цукор. Щоб розповісти, що ви робили в ту мить, складіть I + was + adding, потім назвіть продукт: brown sugar. I was adding brown sugar. — Я додавав коричневий цукор. Was задає минуле, а adding показує дію в процесі; після was тут потрібна форма з -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-24:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мелкий сахар и пудра",
-        "uk": "Дрібний цукор і пудра"
+        "ru": "Чем сестра украшала пирог",
+        "uk": "Чим сестра прикрашала пиріг"
       },
       "bodyByLocale": {
-        "ru": "Caster sugar — мелкий сахарный песок; icing sugar — сахарная пудра. Это разные продукты. She was using icing sugar. — Она использовала сахарную пудру. Выберите пудру.",
-        "uk": "Caster sugar — дрібний цукровий пісок; icing sugar — цукрова пудра. Це різні продукти. She was using icing sugar. — Вона використовувала цукрову пудру. Виберіть пудру."
+        "ru": "На вчерашней фотографии ваша сестра посыпает пирог сахарной пудрой. Icing sugar — сахарная пудра. Опишите её занятие в тот момент: She + was + using icing sugar. She was using icing sugar. — Она использовала сахарную пудру. С she нужна was; у use перед -ing убирается конечная e: using.",
+        "uk": "На вчорашній фотографії ваша сестра посипає пиріг цукровою пудрою. Icing sugar — цукрова пудра. Опишіть її заняття в ту мить: She + was + using icing sugar. She was using icing sugar. — Вона використовувала цукрову пудру. Із she потрібна was; у use перед -ing прибирається кінцева e: using."
       },
       "question": {
         "interactionId": "en:lesson-14:session-24:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Панировочные сухари",
-        "uk": "Панірувальні сухарі"
+        "ru": "Как вы готовили котлеты",
+        "uk": "Як ви готували котлети"
       },
       "bodyByLocale": {
-        "ru": "Breadcrumbs — хлебные крошки; здесь панировочные сухари для готовки. We were using breadcrumbs. — Мы использовали панировочные сухари. Выберите прошлый процесс.",
-        "uk": "Breadcrumbs — хлібні крихти; тут панірувальні сухарі для готування. We were using breadcrumbs. — Ми використовували панірувальні сухарі. Виберіть минулий процес."
+        "ru": "На вчерашней фотографии вы с сестрой обваливаете котлеты в панировочных сухарях. Breadcrumbs здесь — панировочные сухари. Для общего действия в тот момент соберите We + were + using breadcrumbs. We were using breadcrumbs. — Мы использовали панировочные сухари. С we в прошлом нужна were, затем форма using; are using относилось бы к настоящему.",
+        "uk": "На вчорашній фотографії ви із сестрою обвалюєте котлети в панірувальних сухарях. Breadcrumbs тут — панірувальні сухарі. Для спільної дії в ту мить складіть We + were + using breadcrumbs. We were using breadcrumbs. — Ми використовували панірувальні сухарі. Із we в минулому потрібна were, потім форма using; are using стосувалося б теперішнього."
       },
       "question": {
         "interactionId": "en:lesson-14:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2a0d9db5b59edefe1fb66279681166a79b52ec11477ca8e7d114ea61c76efc94"
+  "introFingerprint": "29bcb789726cbfd13ac160723f37123c27afc2b167198771f9d08ffa8c238fa5"
 }

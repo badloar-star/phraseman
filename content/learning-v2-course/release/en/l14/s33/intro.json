@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "While: во время процесса",
-        "uk": "While: під час процесу"
+        "ru": "Смотреть вверх для снимка",
+        "uk": "Дивитися вгору для знімка"
       },
       "bodyByLocale": {
-        "ru": "Look up — поднять взгляд, посмотреть вверх. I was looking up while you were taking a photo. — Я смотрел вверх, пока ты фотографировал. While вводит продолжающееся действие; здесь два процесса идут одновременно. Выберите такую фразу.",
-        "uk": "Look up — підняти погляд, подивитися вгору. I was looking up while you were taking a photo. — Я дивився вгору, поки ти фотографував. While вводить дію, що триває; тут два процеси відбуваються одночасно. Виберіть таку фразу."
+        "ru": "Вчера вы смотрели вверх на высокое дерево, пока друг фотографировал вас. Look up — посмотреть вверх. Обращаясь к другу, соедините два процесса через while: I was looking up + while + you were taking a photo. I was looking up while you were taking a photo. — Я смотрел вверх, пока ты фотографировал. While здесь связывает действия, которые шли одновременно. С I нужна was, с you — were, затем форма с -ing; у take убирается e: taking.",
+        "uk": "Учора ви дивилися вгору на високе дерево, поки друг фотографував вас. Look up — подивитися вгору. Звертаючись до друга, поєднайте два процеси через while: I was looking up + while + you were taking a photo. I was looking up while you were taking a photo. — Я дивився вгору, поки ти фотографував. While тут поєднує дії, що тривали одночасно. З I потрібна was, із you — were, потім форма з -ing; у take прибирається e: taking."
       },
       "question": {
         "interactionId": "en:lesson-14:session-33:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "When: событие в тот момент",
-        "uk": "When: подія в той момент"
+        "ru": "Друг окликнул во время поворота",
+        "uk": "Друг гукнув під час повороту"
       },
       "bodyByLocale": {
-        "ru": "Turn around — повернуться, обернуться; look down — опустить взгляд, посмотреть вниз. I was turning around when you called my name. — Я поворачивался, когда ты назвал моё имя. When здесь вводит короткое событие called. Не сводите правило к запрету: when тоже может сочетаться с процессом, но сейчас сравниваем эти две модели.",
-        "uk": "Turn around — повернутися, озирнутися; look down — опустити погляд, подивитися вниз. I was turning around when you called my name. — Я повертався, коли ти назвав моє ім’я. When тут вводить коротку подію called. Не зводьте правило до заборони: when теж може поєднуватися з процесом, але зараз порівнюємо ці дві моделі."
+        "ru": "Вчера вы уже поворачивались на дорожке, когда друг окликнул вас по имени. Turn around — повернуться, обернуться. Обращаясь к другу, начните с процесса I was turning around и добавьте when you called my name. I was turning around when you called my name. — Я поворачивался, когда ты назвал моё имя. Was turning around показывает движение в тот момент, called — событие в прошлом. В этой фразе после when стоит событие; это не означает, что после when всегда запрещена форма процесса.",
+        "uk": "Учора ви вже поверталися на доріжці, коли друг гукнув вас на ім’я. Turn around — повернутися, обернутися. Звертаючись до друга, почніть із процесу I was turning around і додайте when you called my name. I was turning around when you called my name. — Я повертався, коли ти назвав моє ім’я. Was turning around показує рух у ту мить, called — подію в минулому. У цій фразі після when стоїть подія; це не означає, що після when завжди заборонена форма процесу."
       },
       "question": {
         "interactionId": "en:lesson-14:session-33:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Наклониться",
-        "uk": "Нахилитися"
+        "ru": "Поднять упавшую перчатку",
+        "uk": "Підняти рукавичку, що впала"
       },
       "bodyByLocale": {
-        "ru": "Bend down — наклониться вниз. She was bending down while I was holding her bag. — Она наклонялась, пока я держал её сумку. Здесь оба действия происходили одновременно. Выберите две формы прошлого процесса.",
-        "uk": "Bend down — нахилитися вниз. She was bending down while I was holding her bag. — Вона нахилялася, поки я тримав її сумку. Тут обидві дії відбувалися одночасно. Виберіть дві форми минулого процесу."
+        "ru": "Вчера ваша сестра наклонялась за упавшей перчаткой, пока вы держали её сумку. Bend down — наклониться вниз. Соберите её процесс She was bending down и ваш I was holding her bag, соединяя их через while. She was bending down while I was holding her bag. — Она наклонялась, пока я держал её сумку. С she и I здесь нужна was перед действием с -ing: оба процесса относятся к одному моменту в прошлом.",
+        "uk": "Учора ваша сестра нахилялася по рукавичку, що впала, поки ви тримали її сумку. Bend down — нахилитися вниз. Складіть її процес She was bending down і ваш I was holding her bag, поєднуючи їх через while. She was bending down while I was holding her bag. — Вона нахилялася, поки я тримав її сумку. Із she та I тут потрібна was перед дією з -ing: обидва процеси стосуються однієї миті в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "79a5fe3b1a03d4d7c9b64f429249a62b8161f8edcb45c16566756cf83c6637f7"
+  "introFingerprint": "3ffb915e9ae81c12fd1c7b9316f1356dd4e876dd7869cd31577021dc49c06dea"
 }

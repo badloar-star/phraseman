@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Процесс и событие",
-        "uk": "Процес і подія"
+        "ru": "Звонок во время чистки обуви",
+        "uk": "Дзвінок під час чищення взуття"
       },
       "bodyByLocale": {
-        "ru": "Ankle boots — ботильоны, ботинки до щиколотки. I was cleaning my ankle boots when you called. — Я чистил ботинки до щиколотки, когда ты позвонил. Was cleaning — уже шедший процесс; called — событие, которое вмешалось. Выберите эту связь.",
-        "uk": "Ankle boots — ботильйони, черевики до щиколотки. I was cleaning my ankle boots when you called. — Я чистив черевики до щиколотки, коли ти зателефонував. Was cleaning — процес, який уже тривав; called — подія, що втрутилася. Виберіть цей зв’язок."
+        "ru": "Вчера вы чистили свои ботинки до щиколотки и отвлеклись на звонок друга. Ankle boots — ботинки до щиколотки. Чтобы назвать занятие в момент звонка, соберите I + was + cleaning my ankle boots. Через when добавьте событие you called. I was cleaning my ankle boots when you called. — Я чистил ботинки до щиколотки, когда ты позвонил. Was cleaning — процесс, который уже шёл; called — событие в прошлом. После was для этого процесса нужна cleaning, а не clean.",
+        "uk": "Учора ви чистили свої черевики до щиколотки й відволіклися на дзвінок друга. Ankle boots — черевики до щиколотки. Щоб назвати заняття в момент дзвінка, складіть I + was + cleaning my ankle boots. Через when додайте подію you called. I was cleaning my ankle boots when you called. — Я чистив черевики до щиколотки, коли ти зателефонував. Was cleaning — процес, який уже тривав; called — подія в минулому. Після was для цього процесу потрібна cleaning, а не clean."
       },
       "question": {
         "interactionId": "en:lesson-14:session-25:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда раздался звонок",
-        "uk": "Коли пролунав дзвінок"
+        "ru": "Позвонить сестре во время сборов",
+        "uk": "Зателефонувати сестрі під час зборів"
       },
       "bodyByLocale": {
-        "ru": "Ballet flats — балетки, повседневные туфли без каблука; walking boots — ботинки для долгих прогулок и походов. She was packing her ballet flats when I called. — Она укладывала балетки, когда я позвонил. When вводит событие: called.",
-        "uk": "Ballet flats — балетки, повсякденні туфлі без підборів; walking boots — черевики для тривалих прогулянок і походів. She was packing her ballet flats when I called. — Вона пакувала балетки, коли я зателефонував. When вводить подію: called."
+        "ru": "Вчера вы позвонили сестре, когда она укладывала свои балетки в чемодан. Ballet flats — балетки. Сначала назовите её процесс She was packing her ballet flats, затем добавьте when I called. She was packing her ballet flats when I called. — Она укладывала балетки, когда я позвонил. С she нужна was перед packing; ваш звонок передаётся формой прошлого времени called.",
+        "uk": "Учора ви зателефонували сестрі, коли вона вкладала свої балетки у валізу. Ballet flats — балетки. Спочатку назвіть її процес She was packing her ballet flats, потім додайте when I called. She was packing her ballet flats when I called. — Вона вкладала балетки, коли я зателефонував. Із she потрібна was перед packing; ваш дзвінок передається формою минулого часу called."
       },
       "question": {
         "interactionId": "en:lesson-14:session-25:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Стелька",
-        "uk": "Устілка"
+        "ru": "Друг пришёл во время поиска",
+        "uk": "Друг прийшов під час пошуку"
       },
       "bodyByLocale": {
-        "ru": "Insole — стелька внутри обуви. We were looking for an insole when you arrived. — Мы искали стельку, когда ты пришёл. Поиск уже шёл, приход произошёл в это время. Выберите процесс с событием.",
-        "uk": "Insole — устілка всередині взуття. We were looking for an insole when you arrived. — Ми шукали устілку, коли ти прийшов. Пошук уже тривав, прихід стався в цей час. Виберіть процес із подією."
+        "ru": "Вчера вы с сестрой искали стельку для обуви, когда пришёл друг. Insole — стелька. Обращаясь к другу, соедините процесс We were looking for an insole и событие you arrived через when. We were looking for an insole when you arrived. — Мы искали стельку, когда ты пришёл. С we нужна were перед looking; for связывает поиск с предметом. Arrived обозначает приход в прошлом.",
+        "uk": "Учора ви із сестрою шукали устілку для взуття, коли прийшов друг. Insole — устілка. Звертаючись до друга, поєднайте процес We were looking for an insole і подію you arrived через when. We were looking for an insole when you arrived. — Ми шукали устілку, коли ти прийшов. Із we потрібна were перед looking; for пов’язує пошук із предметом. Arrived позначає прихід у минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-25:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7c16f879c37ff940c732961c44b6ec47f5afc4dd613cc8cd1d6d4f12e35f99c2"
+  "introFingerprint": "a31caa8d07f478920e887cad0b5138a38a2df30e92476db55199095389d8f876"
 }

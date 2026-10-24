@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Водопад",
-        "uk": "Водоспад"
+        "ru": "Дождь у водопада",
+        "uk": "Дощ біля водоспаду"
       },
       "bodyByLocale": {
-        "ru": "Waterfall — водопад. I was watching a waterfall when it started to rain. — Я смотрел на водопад, когда начался дождь. Was watching — процесс; started — наступившее событие.",
-        "uk": "Waterfall — водоспад. I was watching a waterfall when it started to rain. — Я дивився на водоспад, коли почався дощ. Was watching — процес; started — подія, що настала."
+        "ru": "Вчера вы смотрели на водопад, когда начался дождь. Waterfall — водопад. Начните с процесса I was watching a waterfall и добавьте when it started to rain. I was watching a waterfall when it started to rain. — Я смотрел на водопад, когда начался дождь. Was + watching описывает то, что вы делали в тот момент; started называет начало дождя в прошлом. После started здесь добавлено to rain — «идти», о дожде.",
+        "uk": "Учора ви дивилися на водоспад, коли почався дощ. Waterfall — водоспад. Почніть із процесу I was watching a waterfall і додайте when it started to rain. I was watching a waterfall when it started to rain. — Я дивився на водоспад, коли почався дощ. Was + watching описує те, що ви робили в ту мить; started називає початок дощу в минулому. Після started тут додано to rain — «йти», про дощ."
       },
       "question": {
         "interactionId": "en:lesson-14:session-27:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Утёс и пещера",
-        "uk": "Скеля й печера"
+        "ru": "Звонок возле пещеры",
+        "uk": "Дзвінок біля печери"
       },
       "bodyByLocale": {
-        "ru": "Cliff — высокий крутой обрыв или утёс; cave — пещера. She was looking at a cave when you called. — Она смотрела на пещеру, когда ты позвонил. Выберите пещеру.",
-        "uk": "Cliff — високий стрімкий обрив або скеля; cave — печера. She was looking at a cave when you called. — Вона дивилася на печеру, коли ти зателефонував. Виберіть печеру."
+        "ru": "Вчера ваша сестра рассматривала пещеру снаружи, когда вам позвонил друг. Cave — пещера. Обращаясь к другу, соберите She was looking at a cave и добавьте when you called. She was looking at a cave when you called. — Она смотрела на пещеру, когда ты позвонил. С she нужна was перед looking; at связывает взгляд с пещерой. Called передаёт звонок как событие в прошлом.",
+        "uk": "Учора ваша сестра розглядала печеру ззовні, коли вам зателефонував друг. Cave — печера. Звертаючись до друга, складіть She was looking at a cave і додайте when you called. She was looking at a cave when you called. — Вона дивилася на печеру, коли ти зателефонував. Із she потрібна was перед looking; at пов’язує погляд із печерою. Called передає дзвінок як подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-27:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Маяк",
-        "uk": "Маяк"
+        "ru": "По дороге к маяку",
+        "uk": "Дорогою до маяка"
       },
       "bodyByLocale": {
-        "ru": "Lighthouse — маяк у моря. We were walking towards the lighthouse when it started to rain. — Мы шли к маяку, когда начался дождь. Выберите прошлое событие started.",
-        "uk": "Lighthouse — маяк біля моря. We were walking towards the lighthouse when it started to rain. — Ми йшли до маяка, коли почався дощ. Виберіть минулу подію started."
+        "ru": "Вчера вы с сестрой шли к маяку, когда начался дождь. Lighthouse — маяк. Назовите движение We were walking towards the lighthouse, затем через when добавьте it started to rain. We were walking towards the lighthouse when it started to rain. — Мы шли к маяку, когда начался дождь. С we нужна were перед walking; towards указывает направление. Начало дождя уже произошло, поэтому started, а не starts.",
+        "uk": "Учора ви із сестрою йшли до маяка, коли почався дощ. Lighthouse — маяк. Назвіть рух We were walking towards the lighthouse, потім через when додайте it started to rain. We were walking towards the lighthouse when it started to rain. — Ми йшли до маяка, коли почався дощ. Із we потрібна were перед walking; towards указує напрямок. Початок дощу вже стався, тому started, а не starts."
       },
       "question": {
         "interactionId": "en:lesson-14:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9d2fe5bc6618e4d7bd2991736c4b53428903aa2a574cb052a49c8bd1deb3859b"
+  "introFingerprint": "9b92c00fda38087334b8c3cb4e843b23ad9e0a78e3c86c3f461add7be68670b7"
 }

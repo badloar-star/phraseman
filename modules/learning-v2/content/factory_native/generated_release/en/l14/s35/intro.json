@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Потянуться за чем-то",
-        "uk": "Потягнутися по щось"
+        "ru": "Автобус остановился",
+        "uk": "Автобус зупинився"
       },
       "bodyByLocale": {
-        "ru": "Reach for — потянуться за чем-то. I was reaching for my bag when the bus stopped. — Я тянулся за сумкой, когда автобус остановился. Процесс был прерван событием.",
-        "uk": "Reach for — потягнутися по щось. I was reaching for my bag when the bus stopped. — Я тягнувся по сумку, коли автобус зупинився. Процес було перервано подією."
+        "ru": "Вчера вы тянулись за сумкой в автобусе, и в этот момент автобус остановился. Reach for — потянуться за чем-то. Начните с процесса I was reaching for my bag, затем через when добавьте событие the bus stopped. I was reaching for my bag when the bus stopped. — Я тянулся за сумкой, когда автобус остановился. Was reaching описывает движение в тот момент, stopped — остановку в прошлом. Сохраняйте for перед my bag.",
+        "uk": "Учора ви тягнулися за сумкою в автобусі, і в цю мить автобус зупинився. Reach for — потягнутися за чимось. Почніть із процесу I was reaching for my bag, потім через when додайте подію the bus stopped. I was reaching for my bag when the bus stopped. — Я тягнувся за сумкою, коли автобус зупинився. Was reaching описує рух у ту мить, stopped — зупинку в минулому. Зберігайте for перед my bag."
       },
       "question": {
         "interactionId": "en:lesson-14:session-35:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шаг назад и в сторону",
-        "uk": "Крок назад і вбік"
+        "ru": "Пропустить человека с сумкой",
+        "uk": "Пропустити людину із сумкою"
       },
       "bodyByLocale": {
-        "ru": "Step back — отступить на шаг; move aside — отойти в сторону. She was moving aside while I was carrying the bag. — Она отходила в сторону, пока я нёс сумку. Выберите действие в сторону.",
-        "uk": "Step back — відступити на крок; move aside — відійти вбік. She was moving aside while I was carrying the bag. — Вона відходила вбік, поки я ніс сумку. Виберіть дію вбік."
+        "ru": "Вчера ваша сестра отходила в сторону в проходе автобуса, пока вы несли сумку к выходу. Move aside — отойти в сторону. Соедините два процесса через while: She was moving aside + while + I was carrying the bag. She was moving aside while I was carrying the bag. — Она отходила в сторону, пока я нёс сумку. С she и I здесь нужна was. У move перед -ing убирается e: moving; в carrying буква y сохраняется.",
+        "uk": "Учора ваша сестра відходила вбік у проході автобуса, поки ви несли сумку до виходу. Move aside — відійти вбік. Поєднайте два процеси через while: She was moving aside + while + I was carrying the bag. She was moving aside while I was carrying the bag. — Вона відходила вбік, поки я ніс сумку. Із she та I тут потрібна was. У move перед -ing прибирається e: moving; у carrying літера y зберігається."
       },
       "question": {
         "interactionId": "en:lesson-14:session-35:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Держаться",
-        "uk": "Триматися"
+        "ru": "Держаться во время поездки",
+        "uk": "Триматися під час поїздки"
       },
       "bodyByLocale": {
-        "ru": "Hold on — держаться, не отпускать опору; hold on to a rail — держаться за поручень. We were holding on to the rail while the bus was moving. — Мы держались за поручень, пока автобус ехал.",
-        "uk": "Hold on — триматися, не відпускати опору; hold on to a rail — триматися за поручень. We were holding on to the rail while the bus was moving. — Ми трималися за поручень, поки автобус їхав."
+        "ru": "Вчера вы с сестрой держались за поручень, пока автобус ехал. Hold on to the rail — держаться за поручень. Начните с We were holding on to the rail, затем через while добавьте the bus was moving. We were holding on to the rail while the bus was moving. — Мы держались за поручень, пока автобус ехал. С we нужна were, с the bus — was; обе формы с -ing описывают процессы в одно время.",
+        "uk": "Учора ви із сестрою трималися за поручень, поки автобус їхав. Hold on to the rail — триматися за поручень. Почніть із We were holding on to the rail, потім через while додайте the bus was moving. We were holding on to the rail while the bus was moving. — Ми трималися за поручень, поки автобус їхав. Із we потрібна were, із the bus — was; обидві форми з -ing описують процеси в один час."
       },
       "question": {
         "interactionId": "en:lesson-14:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "475f33b43b74785cbb9734d3dce38459870f555c76eba61e22f5bb29f6b019f8"
+  "introFingerprint": "451d558a3b9171ea5e6a61ae47efee871b9ea80e949bdb54b30e1323d9ae33a9"
 }

@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Потянуться за чем-то
+### Автобус остановился
 
-Reach for — потянуться за чем-то. I was reaching for my bag when the bus stopped. — Я тянулся за сумкой, когда автобус остановился. Процесс был прерван событием.
+Вчера вы тянулись за сумкой в автобусе, и в этот момент автобус остановился. Reach for — потянуться за чем-то. Начните с процесса I was reaching for my bag, затем через when добавьте событие the bus stopped. I was reaching for my bag when the bus stopped. — Я тянулся за сумкой, когда автобус остановился. Was reaching описывает движение в тот момент, stopped — остановку в прошлом. Сохраняйте for перед my bag.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ Reach for — потянуться за чем-то. I was reaching for my bag w
 
 ## Интро 2
 
-### Шаг назад и в сторону
+### Пропустить человека с сумкой
 
-Step back — отступить на шаг; move aside — отойти в сторону. She was moving aside while I was carrying the bag. — Она отходила в сторону, пока я нёс сумку. Выберите действие в сторону.
+Вчера ваша сестра отходила в сторону в проходе автобуса, пока вы несли сумку к выходу. Move aside — отойти в сторону. Соедините два процесса через while: She was moving aside + while + I was carrying the bag. She was moving aside while I was carrying the bag. — Она отходила в сторону, пока я нёс сумку. С she и I здесь нужна was. У move перед -ing убирается e: moving; в carrying буква y сохраняется.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ Step back — отступить на шаг; move aside — отойти в с�
 
 ## Интро 3
 
-### Держаться
+### Держаться во время поездки
 
-Hold on — держаться, не отпускать опору; hold on to a rail — держаться за поручень. We were holding on to the rail while the bus was moving. — Мы держались за поручень, пока автобус ехал.
+Вчера вы с сестрой держались за поручень, пока автобус ехал. Hold on to the rail — держаться за поручень. Начните с We were holding on to the rail, затем через while добавьте the bus was moving. We were holding on to the rail while the bus was moving. — Мы держались за поручень, пока автобус ехал. С we нужна were, с the bus — was; обе формы с -ing описывают процессы в одно время.
 
 **Выберите фразу для этой ситуации.**
 

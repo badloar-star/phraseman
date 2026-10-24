@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Водоспад
+### Дощ біля водоспаду
 
-Waterfall — водоспад. I was watching a waterfall when it started to rain. — Я дивився на водоспад, коли почався дощ. Was watching — процес; started — подія, що настала.
+Учора ви дивилися на водоспад, коли почався дощ. Waterfall — водоспад. Почніть із процесу I was watching a waterfall і додайте when it started to rain. I was watching a waterfall when it started to rain. — Я дивився на водоспад, коли почався дощ. Was + watching описує те, що ви робили в ту мить; started називає початок дощу в минулому. Після started тут додано to rain — «йти», про дощ.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ Waterfall — водоспад. I was watching a waterfall when it started to ra
 
 ## Інтро 2
 
-### Скеля й печера
+### Дзвінок біля печери
 
-Cliff — високий стрімкий обрив або скеля; cave — печера. She was looking at a cave when you called. — Вона дивилася на печеру, коли ти зателефонував. Виберіть печеру.
+Учора ваша сестра розглядала печеру ззовні, коли вам зателефонував друг. Cave — печера. Звертаючись до друга, складіть She was looking at a cave і додайте when you called. She was looking at a cave when you called. — Вона дивилася на печеру, коли ти зателефонував. Із she потрібна was перед looking; at пов’язує погляд із печерою. Called передає дзвінок як подію в минулому.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Cliff — високий стрімкий обрив або скеля; cave —
 
 ## Інтро 3
 
-### Маяк
+### Дорогою до маяка
 
-Lighthouse — маяк біля моря. We were walking towards the lighthouse when it started to rain. — Ми йшли до маяка, коли почався дощ. Виберіть минулу подію started.
+Учора ви із сестрою йшли до маяка, коли почався дощ. Lighthouse — маяк. Назвіть рух We were walking towards the lighthouse, потім через when додайте it started to rain. We were walking towards the lighthouse when it started to rain. — Ми йшли до маяка, коли почався дощ. Із we потрібна were перед walking; towards указує напрямок. Початок дощу вже стався, тому started, а не starts.
 
 **Виберіть фразу для цієї ситуації.**
 

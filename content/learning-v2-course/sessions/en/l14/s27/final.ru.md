@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Водопад
+### Дождь у водопада
 
-Waterfall — водопад. I was watching a waterfall when it started to rain. — Я смотрел на водопад, когда начался дождь. Was watching — процесс; started — наступившее событие.
+Вчера вы смотрели на водопад, когда начался дождь. Waterfall — водопад. Начните с процесса I was watching a waterfall и добавьте when it started to rain. I was watching a waterfall when it started to rain. — Я смотрел на водопад, когда начался дождь. Was + watching описывает то, что вы делали в тот момент; started называет начало дождя в прошлом. После started здесь добавлено to rain — «идти», о дожде.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ Waterfall — водопад. I was watching a waterfall when it started to rain
 
 ## Интро 2
 
-### Утёс и пещера
+### Звонок возле пещеры
 
-Cliff — высокий крутой обрыв или утёс; cave — пещера. She was looking at a cave when you called. — Она смотрела на пещеру, когда ты позвонил. Выберите пещеру.
+Вчера ваша сестра рассматривала пещеру снаружи, когда вам позвонил друг. Cave — пещера. Обращаясь к другу, соберите She was looking at a cave и добавьте when you called. She was looking at a cave when you called. — Она смотрела на пещеру, когда ты позвонил. С she нужна was перед looking; at связывает взгляд с пещерой. Called передаёт звонок как событие в прошлом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ Cliff — высокий крутой обрыв или утёс; cave — пе�
 
 ## Интро 3
 
-### Маяк
+### По дороге к маяку
 
-Lighthouse — маяк у моря. We were walking towards the lighthouse when it started to rain. — Мы шли к маяку, когда начался дождь. Выберите прошлое событие started.
+Вчера вы с сестрой шли к маяку, когда начался дождь. Lighthouse — маяк. Назовите движение We were walking towards the lighthouse, затем через when добавьте it started to rain. We were walking towards the lighthouse when it started to rain. — Мы шли к маяку, когда начался дождь. С we нужна were перед walking; towards указывает направление. Начало дождя уже произошло, поэтому started, а не starts.
 
 **Выберите фразу для этой ситуации.**
 

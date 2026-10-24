@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Два действия одновременно
+### Фотография на ферме
 
-sheep — овца. I was watching a sheep while you were taking a photo. — Я наблюдал за овцой, пока ты фотографировал. While вводит процесс, который шёл в то же время. Выберите два действия в прошлом.
+Вчера вы наблюдали за овцой, пока друг фотографировал её. Sheep — овца. Обращаясь к другу, соедините I was watching a sheep и you were taking a photo через while. I was watching a sheep while you were taking a photo. — Я наблюдал за овцой, пока ты фотографировал. С I нужна was, с you — were, затем действие с -ing: оба процесса шли одновременно. У take перед -ing убирается e: taking.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ sheep — овца. I was watching a sheep while you were taking a photo. — Я
 
 ## Интро 2
 
-### Ещё два слова
+### Рисунок во время рассказа
 
-goat — коза. donkey — осёл. She was drawing a donkey while I was talking. — Она рисовала осла, пока я говорил. Выберите эту фразу о прошлом.
+Вчера ваша сестра рисовала осла на ферме, пока вы рассказывали ей историю. Donkey — осёл. Начните с She was drawing a donkey и через while добавьте I was talking. She was drawing a donkey while I was talking. — Она рисовала осла, пока я говорил. С she и I здесь ставим was перед действием с -ing. While связывает два процесса в прошлом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ goat — коза. donkey — осёл. She was drawing a donkey while I was tal
 
 ## Интро 3
 
-### Процесс и звонок
+### Звонок во дворе фермы
 
-hen — курица, взрослая самка. We were watching a hen when you called. — Мы наблюдали за курицей, когда ты позвонил. When вводит звонок: короткое событие на фоне процесса. Выберите прошлое событие called.
+Вчера вы с сестрой наблюдали за курицей во дворе фермы, когда позвонил друг. Hen — курица. Обращаясь к другу, соберите We were watching a hen, затем добавьте when you called. We were watching a hen when you called. — Мы наблюдали за курицей, когда ты позвонил. Were watching показывает процесс в тот момент, called — произошедший звонок. После watching ставьте a hen без предлога.
 
 **Выберите фразу для этой ситуации.**
 

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Рубашка поло",
-        "uk": "Сорочка поло"
+        "ru": "Звонок во время сборов",
+        "uk": "Дзвінок під час зборів"
       },
       "bodyByLocale": {
-        "ru": "Polo shirt — трикотажная рубашка с воротником и короткой застёжкой. I was folding a polo shirt when you called. — Я складывал рубашку поло, когда ты позвонил. Выберите процесс до звонка и сам звонок.",
-        "uk": "Polo shirt — трикотажна сорочка з коміром і короткою застібкою. I was folding a polo shirt when you called. — Я складав сорочку поло, коли ти зателефонував. Виберіть процес до дзвінка й сам дзвінок."
+        "ru": "Вчера вы складывали рубашку поло в поездку, когда позвонил друг. Polo shirt — рубашка поло. Обращаясь к другу, начните с процесса I was folding a polo shirt и добавьте when you called. I was folding a polo shirt when you called. — Я складывал рубашку поло, когда ты позвонил. С I нужна was перед folding: действие шло в тот момент. Called называет звонок в прошлом.",
+        "uk": "Учора ви складали сорочку поло в поїздку, коли зателефонував друг. Polo shirt — сорочка поло. Звертаючись до друга, почніть із процесу I was folding a polo shirt і додайте when you called. I was folding a polo shirt when you called. — Я складав сорочку поло, коли ти зателефонував. З I потрібна was перед folding: дія тривала в ту мить. Called називає дзвінок у минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-26:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Майка и соломенная шляпа",
-        "uk": "Майка й солом’яний капелюх"
+        "ru": "Прийти во время упаковки",
+        "uk": "Прийти під час пакування"
       },
       "bodyByLocale": {
-        "ru": "Tank top — верх без рукавов, майка; straw hat — соломенная шляпа. She was packing a straw hat when I arrived. — Она укладывала соломенную шляпу, когда я пришёл. Выберите шляпу.",
-        "uk": "Tank top — верх без рукавів, майка; straw hat — солом’яний капелюх. She was packing a straw hat when I arrived. — Вона пакувала солом’яний капелюх, коли я прийшов. Виберіть капелюх."
+        "ru": "Вчера вы пришли к сестре, когда она укладывала соломенную шляпу в чемодан. Straw hat — соломенная шляпа. Назовите её процесс She was packing a straw hat, затем добавьте when I arrived. She was packing a straw hat when I arrived. — Она укладывала соломенную шляпу, когда я пришёл. С she используйте was + packing для процесса; arrived передаёт ваш приход как событие в прошлом.",
+        "uk": "Учора ви прийшли до сестри, коли вона вкладала солом’яний капелюх у валізу. Straw hat — солом’яний капелюх. Назвіть її процес She was packing a straw hat, потім додайте when I arrived. She was packing a straw hat when I arrived. — Вона вкладала солом’яний капелюх, коли я прийшов. Із she використовуйте was + packing для процесу; arrived передає ваш прихід як подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-26:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Панама",
-        "uk": "Панама"
+        "ru": "Искать панаму перед поездкой",
+        "uk": "Шукати панаму перед поїздкою"
       },
       "bodyByLocale": {
-        "ru": "Bucket hat — панама, мягкая шляпа с опущенными полями. We were looking for a bucket hat when you called. — Мы искали панаму, когда ты позвонил. Выберите событие в прошлом: called.",
-        "uk": "Bucket hat — панама, м’який капелюх з опущеними крисами. We were looking for a bucket hat when you called. — Ми шукали панаму, коли ти зателефонував. Виберіть подію в минулому: called."
+        "ru": "Вчера вы с сестрой искали панаму для поездки, когда позвонил друг. Bucket hat — панама. Обращаясь к другу, соедините We were looking for a bucket hat и you called через when. We were looking for a bucket hat when you called. — Мы искали панаму, когда ты позвонил. С we нужна were перед looking; for связывает поиск с предметом. Звонок уже произошёл, поэтому called, а не call.",
+        "uk": "Учора ви із сестрою шукали панаму для поїздки, коли зателефонував друг. Bucket hat — панама. Звертаючись до друга, поєднайте We were looking for a bucket hat і you called через when. We were looking for a bucket hat when you called. — Ми шукали панаму, коли ти зателефонував. Із we потрібна were перед looking; for пов’язує пошук із предметом. Дзвінок уже стався, тому called, а не call."
       },
       "question": {
         "interactionId": "en:lesson-14:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1fa9af198ca0cc7f6cd6de9e252b58f1e119c4401377a3747cf4f722ff575c91"
+  "introFingerprint": "c7d37a856910a17d0756ce85cb4eaf56e4951cce2211534891810040865b795c"
 }

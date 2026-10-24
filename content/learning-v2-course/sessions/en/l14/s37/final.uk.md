@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Дві дії одночасно
+### Фотографія на фермі
 
-sheep — вівця. I was watching a sheep while you were taking a photo. — Я спостерігав за вівцею, поки ти фотографував. While вводить процес, який тривав у той самий час. Виберіть дві дії в минулому.
+Учора ви спостерігали за вівцею, поки друг фотографував її. Sheep — вівця. Звертаючись до друга, поєднайте I was watching a sheep і you were taking a photo через while. I was watching a sheep while you were taking a photo. — Я спостерігав за вівцею, поки ти фотографував. З I потрібна was, із you — were, потім дія з -ing: обидва процеси тривали одночасно. У take перед -ing прибирається e: taking.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ sheep — вівця. I was watching a sheep while you were taking a photo. — 
 
 ## Інтро 2
 
-### Ще два слова
+### Малюнок під час розповіді
 
-goat — коза. donkey — осел. She was drawing a donkey while I was talking. — Вона малювала осла, поки я говорив. Виберіть цю фразу про минуле.
+Учора ваша сестра малювала віслюка на фермі, поки ви розповідали їй історію. Donkey — віслюк. Почніть із She was drawing a donkey і через while додайте I was talking. She was drawing a donkey while I was talking. — Вона малювала віслюка, поки я говорив. Із she та I тут ставимо was перед дією з -ing. While поєднує два процеси в минулому.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ goat — коза. donkey — осел. She was drawing a donkey while I was tal
 
 ## Інтро 3
 
-### Процес і дзвінок
+### Дзвінок у дворі ферми
 
-hen — курка, доросла самиця. We were watching a hen when you called. — Ми спостерігали за куркою, коли ти зателефонував. When вводить дзвінок: коротку подію на тлі процесу. Виберіть минулу подію called.
+Учора ви із сестрою спостерігали за куркою у дворі ферми, коли зателефонував друг. Hen — курка. Звертаючись до друга, складіть We were watching a hen, потім додайте when you called. We were watching a hen when you called. — Ми спостерігали за куркою, коли ти зателефонував. Were watching показує процес у ту мить, called — дзвінок, що стався. Після watching ставте a hen без прийменника.
 
 **Виберіть фразу для цієї ситуації.**
 

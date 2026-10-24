@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Процесс до события",
-        "uk": "Процес до події"
+        "ru": "Звонок во время глажки",
+        "uk": "Дзвінок під час прасування"
       },
       "bodyByLocale": {
-        "ru": "table runner — узкая декоративная дорожка на стол. I was ironing a table runner when you called. — Я гладил дорожку на стол, когда ты позвонил. Действие уже шло; when вводит событие в прошлом. Выберите прошлый процесс.",
-        "uk": "table runner — вузька декоративна доріжка на стіл. I was ironing a table runner when you called. — Я прасував доріжку на стіл, коли ти зателефонував. Дія вже тривала; when вводить подію в минулому. Виберіть минулий процес."
+        "ru": "Вчера вы гладили дорожку для праздничного стола, когда позвонил друг. Table runner — узкая декоративная дорожка на стол. Обращаясь к другу, начните с процесса I was ironing a table runner и добавьте when you called. I was ironing a table runner when you called. — Я гладил дорожку на стол, когда ты позвонил. С I нужна was перед ironing: глажка шла в тот момент. Called называет событие в прошлом.",
+        "uk": "Учора ви прасували доріжку для святкового столу, коли зателефонував друг. Table runner — вузька декоративна доріжка на стіл. Звертаючись до друга, почніть із процесу I was ironing a table runner і додайте when you called. I was ironing a table runner when you called. — Я прасував доріжку на стіл, коли ти зателефонував. З I потрібна was перед ironing: прасування тривало в ту мить. Called називає подію в минулому."
       },
       "question": {
         "interactionId": "en:lesson-14:session-30:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Подсвечник перед приходом гостей",
+        "uk": "Свічник перед приходом гостей"
       },
       "bodyByLocale": {
-        "ru": "napkin ring — кольцо для салфетки. candlestick — подсвечник для высокой свечи. She was cleaning a candlestick when you called. — Она чистила подсвечник, когда ты позвонил. Выберите эту фразу.",
-        "uk": "napkin ring — кільце для серветки. candlestick — свічник для високої свічки. She was cleaning a candlestick when you called. — Вона чистила свічник, коли ти зателефонував. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра чистила подсвечник перед ужином, когда вам позвонил друг. Candlestick — подсвечник для высокой свечи. Рассказывая другу, соберите She was cleaning a candlestick и добавьте when you called. She was cleaning a candlestick when you called. — Она чистила подсвечник, когда ты позвонил. С she используйте was + cleaning для процесса; звонок передаётся формой прошлого времени called.",
+        "uk": "Учора ваша сестра чистила свічник перед вечерею, коли вам зателефонував друг. Candlestick — свічник для високої свічки. Розповідаючи другові, складіть She was cleaning a candlestick і додайте when you called. She was cleaning a candlestick when you called. — Вона чистила свічник, коли ти зателефонував. Із she використовуйте was + cleaning для процесу; дзвінок передається формою минулого часу called."
       },
       "question": {
         "interactionId": "en:lesson-14:session-30:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Искали или делали в тот момент",
-        "uk": "Шукали або робили в той момент"
+        "ru": "Поиск перед чаепитием",
+        "uk": "Пошук перед чаюванням"
       },
       "bodyByLocale": {
-        "ru": "tea cosy — мягкая грелка-чехол для заварочного чайника. We were looking for the tea cosy when you arrived. — Мы искали грелку для чайника, когда ты пришёл. Процесс уже шёл в момент прихода. Выберите прошедшее событие arrived.",
-        "uk": "tea cosy — м’яка грілка-чохол для заварювального чайника. We were looking for the tea cosy when you arrived. — Ми шукали грілку для чайника, коли ти прийшов. Процес уже тривав у момент приходу. Виберіть минулу подію arrived."
+        "ru": "Вчера вы с сестрой искали грелку для заварочного чайника, когда пришёл друг. Tea cosy — грелка-чехол для чайника. Обращаясь к другу, соедините We were looking for the tea cosy и you arrived через when. We were looking for the tea cosy when you arrived. — Мы искали грелку для чайника, когда ты пришёл. Were looking for описывает поиск в момент прихода, arrived — само событие. После looking сохраняйте for перед предметом поиска.",
+        "uk": "Учора ви із сестрою шукали грілку для заварювального чайника, коли прийшов друг. Tea cosy — грілка-чохол для чайника. Звертаючись до друга, поєднайте We were looking for the tea cosy і you arrived через when. We were looking for the tea cosy when you arrived. — Ми шукали грілку для чайника, коли ти прийшов. Were looking for описує пошук у момент приходу, arrived — саму подію. Після looking зберігайте for перед предметом пошуку."
       },
       "question": {
         "interactionId": "en:lesson-14:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2313a699ccf1735377d6fcd9830d1cba82a01b4d45b14a36fb4fc9473a864f57"
+  "introFingerprint": "6f0256c5f47daf98d8d5060d38546e9e7e1c7aa1541ebd5403ecc4b7af0b5c03"
 }

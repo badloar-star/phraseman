@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Потягнутися по щось
+### Автобус зупинився
 
-Reach for — потягнутися по щось. I was reaching for my bag when the bus stopped. — Я тягнувся по сумку, коли автобус зупинився. Процес було перервано подією.
+Учора ви тягнулися за сумкою в автобусі, і в цю мить автобус зупинився. Reach for — потягнутися за чимось. Почніть із процесу I was reaching for my bag, потім через when додайте подію the bus stopped. I was reaching for my bag when the bus stopped. — Я тягнувся за сумкою, коли автобус зупинився. Was reaching описує рух у ту мить, stopped — зупинку в минулому. Зберігайте for перед my bag.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ Reach for — потягнутися по щось. I was reaching for my bag wh
 
 ## Інтро 2
 
-### Крок назад і вбік
+### Пропустити людину із сумкою
 
-Step back — відступити на крок; move aside — відійти вбік. She was moving aside while I was carrying the bag. — Вона відходила вбік, поки я ніс сумку. Виберіть дію вбік.
+Учора ваша сестра відходила вбік у проході автобуса, поки ви несли сумку до виходу. Move aside — відійти вбік. Поєднайте два процеси через while: She was moving aside + while + I was carrying the bag. She was moving aside while I was carrying the bag. — Вона відходила вбік, поки я ніс сумку. Із she та I тут потрібна was. У move перед -ing прибирається e: moving; у carrying літера y зберігається.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Step back — відступити на крок; move aside — відійти 
 
 ## Інтро 3
 
-### Триматися
+### Триматися під час поїздки
 
-Hold on — триматися, не відпускати опору; hold on to a rail — триматися за поручень. We were holding on to the rail while the bus was moving. — Ми трималися за поручень, поки автобус їхав.
+Учора ви із сестрою трималися за поручень, поки автобус їхав. Hold on to the rail — триматися за поручень. Почніть із We were holding on to the rail, потім через while додайте the bus was moving. We were holding on to the rail while the bus was moving. — Ми трималися за поручень, поки автобус їхав. Із we потрібна were, із the bus — was; обидві форми з -ing описують процеси в один час.
 
 **Виберіть фразу для цієї ситуації.**
 

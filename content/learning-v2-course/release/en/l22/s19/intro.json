@@ -11,12 +11,12 @@
       "pageId": "en:lesson-22:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Научиться самому",
-        "uk": "Навчитися самому"
+        "ru": "Научиться самостоятельно",
+        "uk": "Навчитися самостійно"
       },
       "bodyByLocale": {
-        "ru": "Teach yourself — научиться самостоятельно, обучить самого себя. Если навык уже назван в разговоре, его можно не повторять: You can teach yourself. С преподавателем вы учитесь у него, а здесь организуете обучение сами. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Teach yourself — навчитися самостійно, навчити самого себе. Якщо навичку вже названо в розмові, її можна не повторювати: You can teach yourself. Із викладачем ви вчитеся в нього, а тут організовуєте навчання самі. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг хочет освоить шахматы, и вы говорите, что он может научиться самостоятельно. You can teach yourself — ты можешь научиться сам. Сначала You can, затем teach и yourself. Учить и учиться будет один человек — ваш собеседник, поэтому после teach ставим yourself, соответствующее you. Шахматы уже названы, и их можно не повторять.",
+        "uk": "Друг хоче опанувати шахи, і ви кажете, що він може навчитися самостійно. You can teach yourself — ти можеш навчитися сам. Спочатку You can, потім teach і yourself. Навчатиме й навчатиметься одна людина — ваш співрозмовник, тому після teach ставимо yourself, що відповідає you. Шахи вже названо, і їх можна не повторювати."
       },
       "question": {
         "interactionId": "en:lesson-22:session-19:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подготовиться и напомнить себе",
-        "uk": "Підготуватися й нагадати собі"
+        "ru": "Подготовиться к выступлению",
+        "uk": "Підготуватися до виступу"
       },
       "bodyByLocale": {
-        "ru": "Prepare yourself — подготовиться, привести себя в готовность к событию. Remind yourself — напомнить себе о чём-то; в примере цель уже известна. Напоминание можно написать и потом прочитать. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Prepare yourself — підготуватися, привести себе в готовність до події. Remind yourself — нагадати собі про щось; у прикладі мета вже відома. Нагадування можна написати й потім прочитати. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Завтра друг впервые выступает перед группой, и вы напоминаете ему о подготовке. You need to prepare yourself — тебе нужно подготовиться. После You need ставим to prepare, затем yourself. Yourself относится к тому же человеку, что и you: он готовит себя к выступлению. Местоимение ставим после prepare; your здесь не подходит, потому что оно обозначает принадлежность перед существительным.",
+        "uk": "Завтра друг уперше виступає перед групою, і ви нагадуєте йому про підготовку. You need to prepare yourself — тобі потрібно підготуватися. Після You need ставимо to prepare, потім yourself. Yourself стосується тієї самої людини, що й you: вона готує себе до виступу. Займенник ставимо після prepare; your тут не підходить, бо він позначає належність перед іменником."
       },
       "question": {
         "interactionId": "en:lesson-22:session-19:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-22:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Простить себя",
-        "uk": "Пробачити себе"
+        "ru": "Простить себе ошибку",
+        "uk": "Пробачити собі помилку"
       },
       "bodyByLocale": {
-        "ru": "Forgive yourself — простить себя за ошибку. Forgive Anna — простить Анну, а forgive yourself — самого себя. Меняя того, о ком говорим, меняем и местоимение: she — herself. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Forgive yourself — пробачити собі помилку. Forgive Anna — пробачити Анні, а forgive yourself — самому собі. Змінюючи того, про кого говоримо, змінюємо й займенник: she — herself. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг перепутал время встречи и продолжает винить себя, хотя вы уже помирились. You can forgive yourself — ты можешь простить себя. После You can ставим начальную форму forgive и yourself. Здесь тот, кто прощает, и тот, кого прощают, — один человек. Поэтому для you выбираем yourself.",
+        "uk": "Друг переплутав час зустрічі й далі звинувачує себе, хоча ви вже помирилися. You can forgive yourself — ти можеш пробачити собі. Після You can ставимо початкову форму forgive і yourself. Тут той, хто пробачає, і той, кому пробачають, — одна людина. Тому для you обираємо yourself."
       },
       "question": {
         "interactionId": "en:lesson-22:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5280b70f6c66ce8ef54cd4f6be2e6b4d44a144f7b957174f78cf765cb1dec437"
+  "introFingerprint": "63de4e2c0356297335f43c65a551ed875c7b8fc284906e51642dfcbf3e2ce6b7"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-22:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выразить себя",
-        "uk": "Висловити себе"
+        "ru": "Высказать свои мысли",
+        "uk": "Висловити свої думки"
       },
       "bodyByLocale": {
-        "ru": "Express yourself — выразить свои мысли и чувства словами, музыкой или другим способом. Это шире, чем просто speak — говорить. Здесь вы поддерживаете человека, которому трудно подобрать слова. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Express yourself — висловити свої думки й почуття словами, музикою або іншим способом. Це ширше, ніж просто speak — говорити. Тут ви підтримуєте людину, якій важко дібрати слова. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг стесняется рассказать, что думает о вашей совместной поездке. Вы даёте ему возможность высказаться. You can express yourself — ты можешь высказать свои мысли. После You can ставим начальную форму express, затем yourself. Yourself относится к собеседнику, названному словом you. В выражении express yourself это его собственные мысли и чувства.",
+        "uk": "Друг соромиться розповісти, що думає про вашу спільну поїздку. Ви даєте йому змогу висловитися. You can express yourself — ти можеш висловити свої думки. Після You can ставимо початкову форму express, потім yourself. Yourself стосується співрозмовника, названого словом you. У вислові express yourself це його власні думки й почуття."
       },
       "question": {
         "interactionId": "en:lesson-22:session-18:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Усилия и приятный подарок себе",
-        "uk": "Зусилля й приємний подарунок собі"
+        "ru": "Не требовать от себя лишнего",
+        "uk": "Не вимагати від себе зайвого"
       },
       "bodyByLocale": {
-        "ru": "Push yourself — заставлять себя стараться сильнее, прикладывать больше усилий. Это не буквальное «толкать себя». Treat yourself — порадовать себя чем-то приятным: например, купить любимый десерт. Здесь treat не значит «лечить». Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Push yourself — змушувати себе старатися більше, докладати більше зусиль. Це не буквальне «штовхати себе». Treat yourself — потішити себе чимось приємним: наприклад, купити улюблений десерт. Тут treat не означає «лікувати». Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг устал, но пытается закончить рисунок сегодня, хотя спешить не нужно. You do not need to push yourself — тебе не нужно заставлять себя стараться через силу. Сначала You do not need to, затем push и yourself. Yourself соотносится с you: человек оказывает давление на самого себя. Отрицание do not относится к need — необходимости нет.",
+        "uk": "Друг утомився, але намагається закінчити малюнок сьогодні, хоча поспішати не потрібно. You do not need to push yourself — тобі не потрібно змушувати себе старатися через силу. Спочатку You do not need to, потім push і yourself. Yourself відповідає you: людина тисне на саму себе. Заперечення do not стосується need — необхідності немає."
       },
       "question": {
         "interactionId": "en:lesson-22:session-18:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-22:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Защитить себя",
-        "uk": "Захистити себе"
+        "ru": "Защитить свою позицию",
+        "uk": "Захистити свою позицію"
       },
       "bodyByLocale": {
-        "ru": "Defend yourself — защитить себя. Можно защищать себя словами: объяснить свою позицию, когда вас обвиняют. В этом примере речь о разговоре, а не о драке. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Defend yourself — захистити себе. Можна захищати себе словами: пояснити свою позицію, коли вас звинувачують. У цьому прикладі йдеться про розмову, а не про бійку. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друга несправедливо обвиняют в опоздании всей группы, и вы предлагаете ему объяснить, что произошло. You can defend yourself — ты можешь защитить себя. После You can ставим defend и yourself. Защищает и получает защиту один человек — ваш собеседник, поэтому выбираем yourself для you. В этой сцене он защищает свою позицию словами.",
+        "uk": "Друга несправедливо звинувачують у запізненні всієї групи, і ви пропонуєте йому пояснити, що сталося. You can defend yourself — ти можеш захистити себе. Після You can ставимо defend і yourself. Захищає й отримує захист одна людина — ваш співрозмовник, тому обираємо yourself для you. У цій сцені він захищає свою позицію словами."
       },
       "question": {
         "interactionId": "en:lesson-22:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "62c8d36bb1425fcd3457c241d495250401c9d1b780c2bdcdd70b5d4a34dd69ee"
+  "introFingerprint": "a12a3ea51e997553d7eddcaaf43e08ee029feb2296ffa44f9cda72ae6a9584d8"
 }

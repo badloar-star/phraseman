@@ -11,12 +11,12 @@
       "pageId": "en:lesson-22:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Куртка с капюшоном",
-        "uk": "Куртка з капюшоном"
+        "ru": "Выбрать куртку с капюшоном",
+        "uk": "Обрати куртку з капюшоном"
       },
       "bodyByLocale": {
-        "ru": "Hooded — с капюшоном. Вы выбираете одну куртку и хотите именно куртку с капюшоном: the hooded one. One заменяет jacket. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
-        "uk": "Hooded — із капюшоном. Ви обираєте одну куртку й хочете саме куртку з капюшоном: the hooded one. One замінює jacket. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+        "ru": "Продавец показывает куртки, и вы выбираете одну с капюшоном. I want the hooded one — я хочу ту, что с капюшоном. После I want ставим the, описание hooded и one вместо jacket. One заменяет уже названную вещь в единственном числе; если бы выбирали несколько курток, jackets заменили бы на ones. Описание остаётся перед one или ones. Здесь one помогает не повторять слово jacket.",
+        "uk": "Продавець показує куртки, і ви обираєте одну з капюшоном. I want the hooded one — я хочу ту, що з капюшоном. Після I want ставимо the, опис hooded і one замість jacket. One замінює вже названу річ в однині; якби обирали кілька курток, jackets замінили б на ones. Опис залишається перед one або ones. Тут one допомагає не повторювати слово jacket."
       },
       "question": {
         "interactionId": "en:lesson-22:session-25:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Узор и свободный покрой",
-        "uk": "Візерунок і вільний крій"
+        "ru": "Выбрать шторы с узором",
+        "uk": "Обрати штори з візерунком"
       },
       "bodyByLocale": {
-        "ru": "Patterned — с узором, не однотонный. Узор может быть разным; striped — полосатый — уже знакомый частный случай. Вы выбираете шторы, то есть несколько предметов: the patterned ones. Loose-fitting — свободного покроя: рубашка не облегает тело. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
-        "uk": "Patterned — із візерунком, не однотонний. Візерунок може бути різним; striped — смугастий — уже знайомий окремий випадок. Ви обираєте штори, тобто кілька предметів: the patterned ones. Loose-fitting — вільного крою: сорочка не облягає тіло. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+        "ru": "Вы сравниваете однотонные шторы со шторами с узором и указываете на вторые. I like the patterned ones — мне нравятся те, что с узором. Сначала I like, затем the patterned ones. Ones заменяет curtains во множественном числе. Patterned сохраняем перед ones: это описание выбранных штор.",
+        "uk": "Ви порівнюєте однотонні штори зі шторами з візерунком і вказуєте на другі. I like the patterned ones — мені подобаються ті, що з візерунком. Спочатку I like, потім the patterned ones. Ones замінює curtains у множині. Patterned зберігаємо перед ones: це опис обраних штор."
       },
       "question": {
         "interactionId": "en:lesson-22:session-25:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-22:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Облегающие джинсы",
-        "uk": "Обтислі джинси"
+        "ru": "Отказаться от облегающих джинсов",
+        "uk": "Відмовитися від обтислих джинсів"
       },
       "bodyByLocale": {
-        "ru": "Tight-fitting — облегающий, плотно сидящий по фигуре. Это описание покроя, а не обязательно ошибка размера. Jeans — слово во множественном числе, поэтому говорим the tight-fitting ones, даже когда выбираем одну пару джинсов. One заменяет уже названное исчисляемое существительное в единственном числе, ones — во множественном: the red shirt → the red one; the red shirts → the red ones. Сохраняем описание вещи перед one / ones. Здесь one означает не счёт «один», а заменяет название вещи.",
-        "uk": "Tight-fitting — обтислий, такий, що щільно облягає фігуру. Це опис крою, а не обов’язково помилка розміру. Jeans — слово у множині, тому кажемо the tight-fitting ones, навіть коли обираємо одну пару джинсів. One замінює вже названий злічуваний іменник в однині, ones — у множині: the red shirt → the red one; the red shirts → the red ones. Зберігаємо опис речі перед one / ones. Тут one означає не лічбу «один», а замінює назву речі."
+        "ru": "Продавец предлагает облегающие джинсы, но вам не нравится такой покрой. I do not want the tight-fitting ones — я не хочу те, что облегают фигуру. Сначала I do not want — отказ, затем the tight-fitting ones. Ones заменяет jeans: в английском это слово во множественном числе даже для одной пары. Описание tight-fitting ставим перед ones.",
+        "uk": "Продавець пропонує обтислі джинси, але вам не подобається такий крій. I do not want the tight-fitting ones — я не хочу ті, що облягають фігуру. Спочатку I do not want — відмова, потім the tight-fitting ones. Ones замінює jeans: в англійській це слово у множині навіть для однієї пари. Опис tight-fitting ставимо перед ones."
       },
       "question": {
         "interactionId": "en:lesson-22:session-25:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8b71660fcb62362e79891c7756d18a7031b0a74db6cca2cca2cab4752fce4968"
+  "introFingerprint": "d2dd7f49a4a4bc9aac413e4dfce8dd4dce513139153585a48d0236121968798f"
 }

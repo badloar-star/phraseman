@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Заботиться о себе и верить в себя",
-        "uk": "Дбати про себе й вірити в себе"
+        "ru": "Позаботиться о себе",
+        "uk": "Подбати про себе"
       },
       "bodyByLocale": {
-        "ru": "Look after yourself — заботиться о себе: отдыхать, есть и учитывать свои потребности. Believe in yourself — верить в себя, доверять своим силам. В обоих выражениях yourself относится к собеседнику. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Look after yourself — дбати про себе: відпочивати, їсти та враховувати свої потреби. Believe in yourself — вірити в себе, довіряти своїм силам. В обох висловах yourself стосується співрозмовника. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг слишком занят подготовкой к празднику и забывает поесть. Вы напоминаете, что ему тоже нужно поесть. You need to look after yourself — тебе нужно позаботиться о себе. Сначала You need to, затем look after и yourself. Look after означает «заботиться о». Yourself относится к тому же человеку, что и you: заботиться он будет о себе. Ставим yourself после всего выражения look after.",
+        "uk": "Друг надто зайнятий підготовкою до свята й забуває поїсти. Ви нагадуєте, що йому теж потрібно поїсти. You need to look after yourself — тобі потрібно подбати про себе. Спочатку You need to, потім look after і yourself. Look after означає «дбати про». Yourself стосується тієї самої людини, що й you: дбатиме він про себе. Ставимо yourself після всього вислову look after."
       },
       "question": {
         "interactionId": "en:lesson-22:session-17:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Не звинувачувати себе"
       },
       "bodyByLocale": {
-        "ru": "Blame yourself — винить себя, считать себя ответственным за плохой результат. Если собеседник не виноват, можно сказать: You should not blame yourself. Не все русские глаголы на -ся требуют такого местоимения: например, relax — расслабиться. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Blame yourself — звинувачувати себе, вважати себе відповідальним за поганий результат. Якщо співрозмовник не винен, можна сказати: You should not blame yourself. Не всі українські дієслова на -ся потребують такого займенника: наприклад, relax — розслабитися. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг переживает, что прогулка сорвалась из-за дождя. Вы говорите, что он в этом не виноват. You should not blame yourself — тебе не стоит винить себя. После You should not ставим начальную форму blame, затем yourself. Yourself относится к you: собеседник винит самого себя. Not после should делает совет отрицательным.",
+        "uk": "Друг переживає, що прогулянка зірвалася через дощ. Ви кажете, що він у цьому не винен. You should not blame yourself — тобі не варто звинувачувати себе. Після You should not ставимо початкову форму blame, потім yourself. Yourself стосується you: співрозмовник звинувачує самого себе. Not після should робить пораду заперечною."
       },
       "question": {
         "interactionId": "en:lesson-22:session-17:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "13c8b0c421bb4dabe9d753d96c69fa6400b363d49af9270779b8b5cb98db2146"
+  "introFingerprint": "c3e75291b2ab75d4a34cae0fc01ab23346681aa31448348da3a51d0980722d82"
 }

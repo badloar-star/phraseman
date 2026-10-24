@@ -11,12 +11,12 @@
       "pageId": "en:lesson-22:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Быть собой",
-        "uk": "Бути собою"
+        "ru": "Быть собой среди друзей",
+        "uk": "Бути собою серед друзів"
       },
       "bodyByLocale": {
-        "ru": "Be yourself — быть собой, вести себя естественно, не изображать другого человека. Yourself здесь часть обычного выражения. Оно не означает «будь один»: речь о вашем поведении. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Be yourself — бути собою, поводитися природно, не вдавати іншу людину. Yourself тут частина звичайного вислову. Він не означає «будь сам»: йдеться про вашу поведінку. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг волнуется перед встречей с вашей компанией, и вы говорите, что ему не нужно притворяться. You can be yourself — ты можешь быть собой. Сначала You can, затем начальная форма be и yourself. Yourself относится к одному собеседнику — you. В выражении be yourself это означает вести себя естественно; форму your здесь поставить нельзя.",
+        "uk": "Друг хвилюється перед зустріччю з вашою компанією, і ви кажете, що йому не потрібно вдавати когось іншого. You can be yourself — ти можеш бути собою. Спочатку You can, потім початкова форма be і yourself. Yourself стосується одного співрозмовника — you. У вислові be yourself це означає поводитися природно; форму your тут поставити не можна."
       },
       "question": {
         "interactionId": "en:lesson-22:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Своя мысль и личное пространство",
-        "uk": "Власна думка й особистий простір"
+        "ru": "Составить своё мнение",
+        "uk": "Скласти власну думку"
       },
       "bodyByLocale": {
-        "ru": "Think for yourself — думать самостоятельно, формировать своё мнение. Keep to yourself — держаться особняком, мало общаться с другими. Это не то же самое, что keep something to yourself — сохранить что-то в тайне. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Think for yourself — думати самостійно, формувати власну думку. Keep to yourself — триматися осторонь, мало спілкуватися з іншими. Це не те саме, що keep something to yourself — зберегти щось у таємниці. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Друг собирается согласиться с остальными, хотя сам ещё не решил. Вы напоминаете ему, что он может подумать самостоятельно. You can think for yourself — ты можешь думать самостоятельно. После You can ставим think, затем for yourself. Yourself соотносится с you: речь о собственном суждении собеседника. Предлог for сохраняем как часть выражения.",
+        "uk": "Друг збирається погодитися з іншими, хоча сам ще не вирішив. Ви нагадуєте йому, що він може подумати самостійно. You can think for yourself — ти можеш думати самостійно. Після You can ставимо think, потім for yourself. Yourself відповідає you: ідеться про власне судження співрозмовника. Прийменник for зберігаємо як частину вислову."
       },
       "question": {
         "interactionId": "en:lesson-22:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-22:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "От своего имени",
-        "uk": "Від свого імені"
+        "ru": "Высказаться самому",
+        "uk": "Висловитися самому"
       },
       "bodyByLocale": {
-        "ru": "Speak for yourself — говорить от своего имени, представлять свою позицию. Отдельное резкое Speak for yourself! может означать «Говори за себя!». В нашем примере человек спокойно получает возможность высказаться сам. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Speak for yourself — говорити від свого імені, представляти власну позицію. Окреме різке Speak for yourself! може означати «Кажи за себе!». У нашому прикладі людина спокійно отримує можливість висловитися сама. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "На встрече за друга всё время отвечает другой человек. Вы поддерживаете друга и предлагаете ему высказаться самому. You can speak for yourself — ты можешь говорить от своего имени. Сначала You can, затем speak и for yourself. Yourself указывает на того же человека, что и you; for yourself здесь означает от своего имени. После can глагол speak остаётся в начальной форме.",
+        "uk": "На зустрічі за друга весь час відповідає інша людина. Ви підтримуєте друга й пропонуєте йому висловитися самому. You can speak for yourself — ти можеш говорити від свого імені. Спочатку You can, потім speak і for yourself. Yourself указує на ту саму людину, що й you; for yourself тут означає від свого імені. Після can дієслово speak залишається в початковій формі."
       },
       "question": {
         "interactionId": "en:lesson-22:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7d77b9da3dd958c3ce53ceed3d3dab507bd8d94d0808a3b9433d85c2e093fbdb"
+  "introFingerprint": "4d0637e4c1508aefb3c385493a012a4ccc2193dc2ed77d91d6f9ff65c9dd600b"
 }

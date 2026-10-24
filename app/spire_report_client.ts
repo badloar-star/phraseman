@@ -50,9 +50,21 @@ import {
 const FUNCTIONS_REGION = 'us-central1';
 const LOG = '[SPIRE-REPORT]';
 
+// зачем ([PEAK-CLOSE], Сверка 24.10: запись ступени на диск +1,2 с, на этаже +2,0 с — до неё нет монет): медленная операция диска
+// пишет ключ, размер и мс — видно, что именно держит запись (очередь отчётов, неделя, попытка)
+const SLOW_DISK_MS = 30;
+function timedDisk<T>(op: 'get' | 'set', key: string, bytes: number, run: () => Promise<T>): Promise<T> {
+  const startedAt = Date.now();
+  return run().then((value) => {
+    const ms = Date.now() - startedAt;
+    const size = op === 'get' && typeof value === 'string' ? value.length : bytes;
+    if (ms >= SLOW_DISK_MS) DebugLogger.info(LOG, `[PEAK-CLOSE] диск ${op} ${key} ${size}б за ${ms}мс`); // guard-ok: замер медленного диска
+    return value;
+  });
+}
 const store: SpireKeyValueStore = {
-  getItem: (key) => AsyncStorage.getItem(key),
-  setItem: (key, value) => AsyncStorage.setItem(key, value),
+  getItem: (key) => timedDisk('get', key, 0, () => AsyncStorage.getItem(key)),
+  setItem: (key, value) => timedDisk('set', key, value.length, () => AsyncStorage.setItem(key, value)),
 };
 
 const logger: SpireReportLogger = {
@@ -159,12 +171,19 @@ export async function spireRecordStepResult(
   report: SpireStepReport,
   coins?: Readonly<{ owner: string; coins: SpirePendingCoinsConfig }>,
 ) {
+  const recordStartedAt = Date.now();
   const applied = await spireRecordStep(store, { uid, lang, report, logger });
-  // зачем: после записи ступени память недели устарела — перечитываем фоном (локальный диск, 0 чтений облака), чтобы следующий вход нарисовал свежую.
-  weekMemory.delete(weekMemoryKey(uid, lang));
-  void spireReadWeekLocal(uid, lang).catch((error: unknown) => {
-    DebugLogger.warn(LOG, `peekWeek: перечитать неделю после ступени не удалось (${error instanceof Error ? error.message : String(error)})`);
-  });
+  DebugLogger.info(LOG, `[PEAK-CLOSE] ${report.reportId} spireRecordStep ${Date.now() - recordStartedAt}мс persisted=${String(applied.persisted)} effect=${applied.effect}`); // guard-ok: замер записи ступени
+  // зачем ([PEAK-CLOSE], координатор 24.10): записанная неделя уже в руках — кладём её в память, без второго чтения диска в секунду закрытия
+  if (applied.persisted) {
+    weekMemory.set(weekMemoryKey(uid, lang), applied.local);
+  } else {
+    // зачем: после записи ступени память недели устарела — перечитываем фоном (локальный диск, 0 чтений облака), чтобы следующий вход нарисовал свежую.
+    weekMemory.delete(weekMemoryKey(uid, lang));
+    void spireReadWeekLocal(uid, lang).catch((error: unknown) => {
+      DebugLogger.warn(LOG, `peekWeek: перечитать неделю после ступени не удалось (${error instanceof Error ? error.message : String(error)})`);
+    });
+  }
   // Серия — только за ПРОЙДЕННУЮ и новую ступень (провал и повтор дня не дают).
   if (report.outcome === 'passed' && applied.effect !== 'duplicate_ignored') {
     void markSpireStreakDay(report);

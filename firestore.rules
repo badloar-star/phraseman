@@ -3420,6 +3420,8 @@ service cloud.firestore {
       allow read, write: if isAdmin()
         && collection != 'users'
         && collection != 'accounts_v2'
+        && collection != 'story_announcements'
+        && collection != 'story_announcement_feed'
         && collection != 'home_polls_v2'
         && collection != 'account_deletion_tombstones'
         && collection != 'account_deletion_auth_markers'
@@ -4125,6 +4127,10 @@ service cloud.firestore {
     match /ai_operation_billing/{rowId} {
       allow read, write: if false;
     }
+
+    // Stories are served through authenticated callables; admin metadata stays server-only.
+    match /story_announcements/{id} { allow read, write: if false; }
+    match /story_announcement_feed/{id} { allow read, write: if false; }
 
     match /{document=**} {
       allow read, write: if false;

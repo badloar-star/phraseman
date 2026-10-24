@@ -1186,3 +1186,10 @@ export { spendCapBillingKillSwitch } from "./spend_cap_billing_kill_switch";
 export { homePollV2Vote } from "./home_poll_v2_vote";
 // Legacy 1.x league endpoints remain available, but their room writer now
 // strips historic synthetic members and never creates new ones.
+
+// зачем (координатор 24.10): исходник живых функций, выложенных 23.10 из дерева, — фиксируем в git, чтобы «бой = git».
+// Administrator-authored stories; content-only feed for clients.
+export { adminStoryAnnouncementsList, adminStoryAnnouncementCommand, storyAnnouncementsGet } from './story_announcements';
+
+// Admin Hosting uses this bounded read-only projection. The separate admin codebase is not configured for deployment yet.
+export { adminListOpsLog } from './admin_ops_log';

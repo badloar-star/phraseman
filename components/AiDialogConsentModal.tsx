@@ -21,9 +21,11 @@ interface Props {
   onDecline: () => void;
   /** зачем: пробрасывает гибрид «Световод + Чекан» в общий движок согласий (см. AiConsentSheetModal). */
   motionVariant?: 'classic' | 'hybrid';
+  /** Какой вход ИИ просит согласие: сценарий (ситуация) или «Свободный разговор» — у них разные вступления. */
+  mode?: 'scenario' | 'free';
 }
 
-function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVariant }: Props) {
+function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVariant, mode = 'scenario' }: Props) {
   const devReplay = useDevFeatureIntroReplay();
   const active = useRuntimeActive();
   const [realConsentShown, setRealConsentShown] = useState(visible);
@@ -53,6 +55,18 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
         id: 'Coba jawab lawan bicara dalam situasi yang dipilih. Boleh mencari kata dan mengulang kalimat — ini latihan, bukan wawancara kerja.',
         tr: 'Seçtiğin durumda karşındakine yanıt vermeyi dene. Kelime arayabilir, cümleye yeniden başlayabilirsin — bu pratik, iş görüşmesi değil.',
         pl: 'Spróbuj odpowiedzieć rozmówcy w wybranej sytuacji. Możesz szukać słów i zaczynać zdanie od nowa — to ćwiczenie, nie rozmowa o pracę.',
+      });
+  // зачем (Переводчик 22.10, пакет ai-dialog-consent-copy-free-mode): у «Свободного разговора» нет «выбранной ситуации» — своё вступление
+  const introductionFree = triLang(lang, {
+        ru: 'Говори о чём угодно — собеседник поддержит разговор на изучаемом языке. Ошибаться можно: это практика.',
+        uk: 'Говори про що завгодно — співрозмовник підтримає розмову мовою, яку вивчаєш. Помилятися можна: це практика.',
+        en: 'Talk about anything — your partner keeps the conversation going in the language you’re learning. Mistakes are fine: it’s practice.',
+        es: 'Habla de lo que quieras: tu interlocutor sigue la conversación en el idioma que aprendes. Equivocarse está bien: es práctica.',
+        'pt-BR': 'Fale sobre o que quiser — o parceiro mantém a conversa no idioma que você aprende. Errar faz parte: é prática.',
+        vi: 'Nói về bất cứ điều gì — người đối thoại sẽ tiếp lời bằng ngôn ngữ bạn đang học. Sai cũng không sao: đây là luyện tập.',
+        id: 'Bicarakan apa saja — lawan bicara melanjutkan obrolan dalam bahasa yang kamu pelajari. Salah itu wajar: ini latihan.',
+        tr: 'İstediğin her şeyden konuş — karşındaki öğrendiğin dilde sohbeti sürdürür. Hata yapmak sorun değil: bu bir pratik.',
+        pl: 'Mów o czym chcesz — rozmówca podtrzyma rozmowę w języku, którego się uczysz. Błędy są w porządku: to ćwiczenie.',
       });
   const title = triLang(lang, {
         ru: 'Включить AI-диалоги?',
@@ -90,7 +104,7 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
       illustration={DIALOGS_SCENE_V2_ENABLED
         ? <DialogsConsentTop><DialogueConsentChatReplay key={replayKey} lang={lang} variant={replayKey} /></DialogsConsentTop>
         : <DialogueConsentChatReplay key={replayKey} lang={lang} variant={replayKey} />}
-      introduction={introduction}
+      introduction={mode === 'free' ? introductionFree : introduction}
       title={title}
       body={body}
       acceptLabel={previewOnly ? featureIntroClose(lang) : triLang(lang, {

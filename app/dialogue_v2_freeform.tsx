@@ -14,6 +14,7 @@ import { DialogueHubRedirect } from '../components/dialogs/DialogueHubRedirect';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
 import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { triLang } from '../constants/i18n';
+import AiDialogConsentGate, { useAiDialogConsentAskAgain } from './ai_dialog_consent_gate';
 import {
   requestDialogueV2FreeformPreparedBotVoice,
   sendDialogueV2FreeformTurn,
@@ -23,6 +24,10 @@ import {
 /** Отказ «на сегодня всё» (DialogueV2FreeformUnavailableError.reason) — по полю, без instanceof: модуль клиента подменяют в тестах. */
 function isFreeformDailyCap(error: unknown): boolean {
   return (error as { reason?: unknown } | null)?.reason === 'daily_cap';
+}
+/** Отказ «нет согласия на ИИ» (DialogueV2FreeformUnavailableError.reason) — шлюз снова показывает окно согласия. */
+function isFreeformConsentRequired(error: unknown): boolean {
+  return (error as { reason?: unknown } | null)?.reason === 'ai_consent_required';
 }
 import {
   resolveBundledDialogueV2FreeformPreparedBotVoiceAsset,
@@ -98,7 +103,21 @@ function freeformOpeningMessages(studyTarget: unknown): readonly DialogueV2Freef
   return opening ? Object.freeze([Object.freeze({ id: 'assistant_opening', author: 'assistant' as const, text: opening })]) : Object.freeze([]);
 }
 
+/**
+ * зачем (координатор 22.10, пакет ai-consent-freeform-gate): «Свободный разговор» — тоже вход ИИ (реплики уходят в OpenAI), поэтому
+ * экран целиком за общим шлюзом согласия, как сценарные сессии и компаньон: пока согласия нет, экран не монтируется и сессия на
+ * сервере не стартует. В окне — вступление свободного режима.
+ */
 export default function DialogueV2FreeformRoute() {
+  return (
+    <AiDialogConsentGate mode="free" onDeclined={() => console.log('[AI-CONSENT] freeform:declined → screen not opened, no session')}>
+      <DialogueV2FreeformContent />
+    </AiDialogConsentGate>
+  );
+}
+
+function DialogueV2FreeformContent() {
+  const askConsentAgain = useAiDialogConsentAskAgain();
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const { accessResolved, hasPremiumAccess } = usePremium();
@@ -226,6 +245,10 @@ export default function DialogueV2FreeformRoute() {
       const message = error instanceof Error ? error.message : String(error);
       if (!current) {
         console.log('[DIALOGUE-V2] freeform: start failure ignored — contour changed', { generation, studyTarget: target, message }); // guard-ok
+      } else if (isFreeformConsentRequired(error)) {
+        // зачем (координатор 22.10): сервер не нашёл согласия — не «недоступно» и не тихие повторы, а снова окно согласия.
+        console.warn('[AI-CONSENT] freeform: start → server requires consent, ask again', { generation, studyTarget: target });
+        askConsentAgain('freeform_start');
       } else if (isFreeformDailyCap(error)) {
         // зачем: до завтра сервер ответит тем же — тихие повторы и уход в хаб бессмысленны, показываем «на сегодня всё».
         console.warn('[DIALOGUE-V2] freeform: start → daily cap, no retry', { generation, studyTarget: target });
@@ -237,7 +260,7 @@ export default function DialogueV2FreeformRoute() {
     } finally {
       if (startInFlightRef.current === generation) startInFlightRef.current = null;
     }
-  }, [clearStartRetryTimer, replaceSession]);
+  }, [askConsentAgain, clearStartRetryTimer, replaceSession]);
   startSessionRef.current = startCurrentSession;
   useEffect(() => clearStartRetryTimer, [clearStartRetryTimer]);
 

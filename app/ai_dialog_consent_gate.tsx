@@ -10,7 +10,7 @@
  *
  * Согласие уже принято → рендерим переданный экран как есть, без задержки.
  */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -33,8 +33,21 @@ import {
 } from './ai_dialog_consent';
 import BackGlyph from '../components/v2/BackGlyph';
 
-export default function AiDialogConsentGate({ children, onDeclined }: {
+/**
+ * Повторный запрос согласия изнутри экрана ИИ: сервер ответил ai_consent_required (например, согласие есть на телефоне, но не
+ * дошло до сервера). Экран прячется, окно согласия показывается снова; после «Включить» экран монтируется заново.
+ */
+const AiDialogConsentAskAgainContext = createContext<(cause: string) => void>((cause) => {
+  console.warn('[AI-CONSENT] ask_again: экран не под шлюзом — окно не показать', JSON.stringify({ cause })); // guard-ok: экран вне шлюза
+});
+export function useAiDialogConsentAskAgain(): (cause: string) => void {
+  return useContext(AiDialogConsentAskAgainContext);
+}
+
+export default function AiDialogConsentGate({ children, onDeclined, mode = 'scenario' }: {
   children: React.ReactNode;
+  /** Какой вход ИИ закрыт шлюзом: сценарий (ситуация) или «Свободный разговор» — у окна разные вступления. */
+  mode?: 'scenario' | 'free';
   /** зачем (находка d8b078e8e): сессия, куда пришли со списанной энергией, при отказе от ИИ возвращает её. */
   onDeclined?: () => void;
 }) {
@@ -53,16 +66,22 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
   const [gateVisible, setGateVisible] = useState(false);
 
   const evaluate = useCallback(() => {
-    if (!isAiDialogConsentHydrated()) return; // подождём — subscribeAiDialogConsent разбудит повторно.
+    if (!isAiDialogConsentHydrated()) {
+      console.log('[AI-CONSENT] gate:wait_hydration', JSON.stringify({ mode })); // guard-ok: подписка разбудит повторно
+      return;
+    }
     if (isAiDialogConsentGranted()) {
+      if (!readyRef.current) console.log('[AI-CONSENT] gate:granted → screen', JSON.stringify({ mode }));
       setReady(true);
       setGateVisible(false);
       return;
     }
     if (!hasAiDialogConsentDecision()) {
+      console.log('[AI-CONSENT] gate:undecided → ask', JSON.stringify({ mode }));
       setGateVisible(true);
       return;
     }
+    console.log('[AI-CONSENT] gate:denied → declined screen', JSON.stringify({ mode, screenShown: readyRef.current }));
     // denied — экран не открываем; показываем экран отказа с путём назад.
     setGateVisible(false);
     setDeclined(true);
@@ -75,6 +94,7 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
   }, [evaluate]);
 
   const onAccept = useCallback(() => {
+    console.log('[AI-CONSENT] gate:accept → screen, save + cloud', JSON.stringify({ mode }));
     setGateVisible(false);
     // зачем (2026-09-20): согласие теперь можно дать и с экрана отказа, поэтому
     // снимаем взведённый флаг — иначе следующий пересчёт из подписки вернул бы
@@ -83,19 +103,29 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
     // Optimistic: чат открывается сразу, запись согласия и отправка в облако
     // догоняют фоном; при сбое сети локальное решение уже сохранено.
     setReady(true);
-    void setAiDialogConsent('granted').then(() => {
-      void recordAiDialogConsentToCloud();
+    void setAiDialogConsent('granted').then(() => recordAiDialogConsentToCloud()).catch((error: unknown) => {
+      console.warn('[AI-CONSENT] gate:accept save failed', JSON.stringify({ mode, message: error instanceof Error ? error.message : String(error) }));
     });
-  }, []);
+  }, [mode]);
 
   const onDecline = useCallback(() => {
+    console.log('[AI-CONSENT] gate:decline → declined screen, save + cloud', JSON.stringify({ mode }));
     setGateVisible(false);
     setDeclined(true);
     onDeclinedRef.current?.();
-    void setAiDialogConsent('denied').then(() => {
-      void recordAiDialogConsentToCloud();
+    void setAiDialogConsent('denied').then(() => recordAiDialogConsentToCloud()).catch((error: unknown) => {
+      console.warn('[AI-CONSENT] gate:decline save failed', JSON.stringify({ mode, message: error instanceof Error ? error.message : String(error) }));
     });
-  }, []);
+  }, [mode]);
+
+  // зачем (координатор 22.10): сервер сказал ai_consent_required — экран ИИ прячем (его сессия не продолжится) и снова спрашиваем.
+  const askAgain = useCallback((cause: string) => {
+    console.warn('[AI-CONSENT] gate:ask_again → screen hidden, consent sheet', JSON.stringify({ mode, cause }));
+    setReady(false);
+    setDeclined(false);
+    setGateVisible(true);
+  }, [mode]);
+  const askAgainValue = useMemo(() => askAgain, [askAgain]);
 
   const declinedScreen = (
     <View style={[
@@ -183,9 +213,12 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
 
   return (
     <>
-      {ready ? children : declined ? declinedScreen : <View style={{ flex: 1, backgroundColor: glass.bg }} />}
+      <AiDialogConsentAskAgainContext.Provider value={askAgainValue}>
+        {ready ? children : declined ? declinedScreen : <View style={{ flex: 1, backgroundColor: glass.bg }} />}
+      </AiDialogConsentAskAgainContext.Provider>
       <AiDialogConsentModal
         visible={gateVisible}
+        mode={mode}
         lang={lang}
         onAccept={onAccept}
         onDecline={onDecline}

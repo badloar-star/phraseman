@@ -41,7 +41,8 @@ export type DialogueV2FreeformPreparedBotVoiceTextOnlyResponse = Readonly<{
 
 /** Callable failures may include internal provider details; UI gets one neutral state. */
 /** 'daily_cap' — сервер сказал «на сегодня всё» (общий дневной потолок ИИ или дневное окно); повтор бессмыслен до завтра. */
-export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap';
+// 'ai_consent_required' — сервер не нашёл согласия на ИИ: экран снова показывает окно согласия (шлюз), а не «недоступно».
+export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap' | 'ai_consent_required';
 
 export class DialogueV2FreeformUnavailableError extends Error {
   constructor(readonly reason: DialogueV2FreeformFailureReason = 'unavailable') {
@@ -52,7 +53,15 @@ export class DialogueV2FreeformUnavailableError extends Error {
 
 /** Ошибка старта/хода свободного разговора → наружу: причина «на сегодня всё» или обычное «недоступно». */
 function freeformFailure(error: unknown): DialogueV2FreeformUnavailableError {
+  if (isAiConsentRequiredError(error)) return new DialogueV2FreeformUnavailableError('ai_consent_required');
   return new DialogueV2FreeformUnavailableError(isAiDailyCapError(error) ? 'daily_cap' : 'unavailable');
+}
+
+/** Отказ сервера «нет согласия на ИИ» — по коду/сообщению ошибки вызова (failed-precondition 'ai_consent_required'). */
+export function isAiConsentRequiredError(error: unknown): boolean {
+  const row = (error && typeof error === 'object' ? error : {}) as { code?: unknown; message?: unknown; details?: unknown };
+  const details = row.details && typeof row.details === 'object' ? (row.details as { reason?: unknown }).reason : undefined;
+  return `${String(row.code ?? '')} ${String(row.message ?? '')} ${String(details ?? '')}`.includes('ai_consent_required');
 }
 
 type PlainRecord = Record<string, unknown>;

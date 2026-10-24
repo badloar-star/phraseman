@@ -67,6 +67,14 @@ jest.mock('../app/dialogue_v2_freeform_prepared_bot_voice_asset_registry', () =>
   resolveBundledDialogueV2FreeformPreparedBotVoiceAsset: jest.fn(async () => null),
 }));
 
+// зачем (координатор 22.10, пакет ai-consent-freeform-gate): маршрут — шлюз согласия на ИИ; здесь проверяется экран при данном
+// согласии, поэтому шлюз — прозрачная обёртка (его ветки и окно проверяют ai_entry_consent_gate_contract и тесты шлюза).
+const mockAskConsentAgain = jest.fn();
+jest.mock('../app/ai_dialog_consent_gate', () => ({
+  __esModule: true,
+  default: ({ children }: { children: unknown }) => children,
+  useAiDialogConsentAskAgain: () => mockAskConsentAgain,
+}));
 jest.mock('../app/dialogue_v2_freeform_opening', () => ({ dialogueV2FreeformOpening: (target: unknown) => mockOpening(target) }));
 // зачем (координатор 12.10): в стенде тихий повтор старта идёт через mockRetryDelay мс вместо 4 с — число попыток то же.
 let mockRetryDelay = 1;

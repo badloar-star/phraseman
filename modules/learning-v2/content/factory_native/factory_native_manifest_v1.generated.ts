@@ -4843,7 +4843,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 10,
-    sourceFingerprint: "e2e686f5fd6d66bbcb2a427ed8c4de54081347c26c6115dad88d5c8060bcda12",
+    sourceFingerprint: "fe82fb8deefcb063dd658a36583c0815bc161ca1810c440c467534379baeb937",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["В комнате жарко. Спросите подругу: «Вентилятор работает?»","Вы хотите испечь пирог. Спросите хозяйку: «У плиты есть духовка?»","Подруга не слышит сигнала. Спросите соседку: «Зуммер работает?»"],"uk":["У кімнаті спекотно. Спитайте подругу: «Вентилятор працює?»","Ви хочете спекти пиріг. Спитайте господиню: «У плити є духовка?»","Подруга не чує сигналу. Спитайте сусідку: «Зумер працює?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Вентилятор один: нужно Does.","После Does нужно work, без s."],["После Does нужно have, не has.","Плита одна: нужно Does."],["Зуммер один: нужно Does.","С действием work нужен вопрос с Does, а не с Is."]],"uk":[["Вентилятор один: потрібно Does.","Після Does потрібно work, без s."],["Після Does потрібно have, не has.","Плита одна: потрібно Does."],["Зумер один: потрібно Does.","З дією work потрібне запитання з Does, а не з Is."]]}),
@@ -4857,7 +4857,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 11,
-    sourceFingerprint: "2876578bb1e27f32ea2ada6285fed479eeaabeac6b791c5b2676d30c7de52cd3",
+    sourceFingerprint: "a1b8314a789150f8a030a28552ecc53a4d77199ecab5f18641b3aead88e433f4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Подруга хочет подстричься после работы. Спросите администратора: «Салон закрывается поздно?»","На витрине нет открыток. Спросите подругу: «Книжный магазин продаёт открытки?»","Вам нужны огурцы для салата. Спросите соседа: «Продавец овощей продаёт огурцы?»"],"uk":["Подруга хоче підстригтися після роботи. Спитайте адміністратора: «Салон зачиняється пізно?»","На вітрині немає листівок. Спитайте подругу: «Книгарня продає листівки?»","Вам потрібні огірки для салату. Спитайте сусіда: «Продавець овочів продає огірки?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Салон один: нужно Does.","После Does нужно close, без s."],["Магазин один: нужно Does.","После Does нужно sell, без s."],["Продавец один: нужно Does.","После Does нужно sell, без s."]],"uk":[["Салон один: потрібно Does.","Після Does потрібно close, без s."],["Магазин один: потрібно Does.","Після Does потрібно sell, без s."],["Продавець один: потрібно Does.","Після Does потрібно sell, без s."]]}),
@@ -4871,7 +4871,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 12,
-    sourceFingerprint: "6268056ad027c9b2451d7a1ed69c05a7b04656839f969887a594c78d5f971231",
+    sourceFingerprint: "10f898b1629c307e44577f182e8877a235d48fc7dc70fed29b5869713d594000",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы на автовокзале. Спросите у кассира: «Автобус отправляется рано?»","Вы засиделись в гостях. Спросите прохожего: «Метро ходит допоздна?»","Знакомая рассказывает о лётчике. Спросите её: «Лётчик живёт рядом?»"],"uk":["Ви на автовокзалі. Спитайте в касира: «Автобус відправляється рано?»","Ви засиділися в гостях. Спитайте перехожого: «Метро ходить допізна?»","Знайома розповідає про льотчика. Спитайте її: «Льотчик живе поруч?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Автобус один: нужно Does.","После Does нужно leave, без s."],["Метро одно: нужно Does.","После Does нужно run, без s."],["С действием live нужен вопрос с Does, а не с Is.","После Does нужно live, без s."]],"uk":[["Автобус один: потрібно Does.","Після Does потрібно leave, без s."],["Метро одне: потрібно Does.","Після Does потрібно run, без s."],["З дією live потрібне запитання з Does, а не з Is.","Після Does потрібно live, без s."]]}),
@@ -4885,7 +4885,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 13,
-    sourceFingerprint: "59916e8a85076ad1f77f8efab8f9b79e5e1c6530ced2c976efb0ae691c84f254",
+    sourceFingerprint: "03e86f1fed2afa58fb4bc61a3f1e643bf3b6fea6c598d1ab5b513088988c7fe1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы хотите позвать брата подруги в парк. Спросите подругу: «Он играет в шахматы?»","На фото сестра подруги с ракеткой. Спросите подругу: «Она играет в теннис?»","Друг рассказывает о дяде. Спросите друга: «Ваш дядя играет в гольф?»"],"uk":["Ви хочете покликати брата подруги в парк. Спитайте подругу: «Він грає в шахи?»","На фото сестра подруги з ракеткою. Спитайте подругу: «Вона грає в теніс?»","Друг розповідає про дядька. Спитайте друга: «Ваш дядько грає в гольф?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С he нужно Does.","После Does нужно play, без s."],["С she нужно Does.","После Does нужно play, без s."],["Дядя один: нужно Does.","После Does нужно play, без s."]],"uk":[["З he потрібно Does.","Після Does потрібно play, без s."],["З she потрібно Does.","Після Does потрібно play, без s."],["Дядько один: потрібно Does.","Після Does потрібно play, без s."]]}),
@@ -4899,7 +4899,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 14,
-    sourceFingerprint: "eff325f70fc5b6aa4bebe26f40b2220e8cf429a3b3a54ad311fb3e1f05b0305b",
+    sourceFingerprint: "69c072e3be0364865d3c57ec141a839d690943a2bcaaedaa3e79b31af10d288e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы видите школьника на фотографии в пиджаке. Спросите учительницу: «Школьник носит форму?»","Вы в приёмной школы. Спросите секретаря: «Директор преподаёт?»","Вы готовитесь к занятию. Спросите учительницу: «В школе есть школьная доска?»"],"uk":["Ви бачите школяра на фотографії в піджаку. Спитайте вчительку: «Школяр носить форму?»","Ви в приймальні школи. Спитайте секретаря: «Директор викладає?»","Ви готуєтеся до заняття. Спитайте вчительку: «У школі є шкільна дошка?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Школьник один: нужно Does.","После Does нужно wear, без s."],["Директор один: нужно Does.","После Does нужно teach, без s."],["После Does нужно have, не has.","Со словом school нужно Does."]],"uk":[["Школяр один: потрібно Does.","Після Does потрібно wear, без s."],["Директор один: потрібно Does.","Після Does потрібно teach, без s."],["Після Does потрібно have, не has.","Зі словом school потрібно Does."]]}),
@@ -4927,7 +4927,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 16,
-    sourceFingerprint: "c66d87beeacbf8cdaa9280461bdae39899ac81a2ed8c20d3f2cc6b8a0e86415c",
+    sourceFingerprint: "5be38dc1602679320663628145a51d3e0b7399b6267504b9c9aab778c09fadc1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы подъезжаете к ферме. Спросите подругу: «Фермер живёт здесь?»","Из соседней комнаты слышен голос птицы. Спросите хозяйку: «У вас есть попугай?»","Вы смотрите на аквариум. Спросите подругу о её родителях: «Они кормят золотую рыбку рано?»"],"uk":["Ви під’їжджаєте до ферми. Спитайте подругу: «Фермер живе тут?»","Із сусідньої кімнати чути голос птаха. Спитайте господиню: «У вас є папуга?»","Ви дивитеся на акваріум. Спитайте подругу про її батьків: «Вони годують золоту рибку рано?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Фермер один: нужно Does.","После Does нужно live, без s."],["С you нужно Do.","После Do нужно have, не has."],["С they нужно Do.","После Do нужно feed, без s."]],"uk":[["Фермер один: потрібно Does.","Після Does потрібно live, без s."],["З you потрібно Do.","Після Do потрібно have, не has."],["З they потрібно Do.","Після Do потрібно feed, без s."]]}),
@@ -5053,7 +5053,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 25,
-    sourceFingerprint: "bd10ec104c3fbf580ecd13a5fd74b9c73f0f5954d5e050ba153c5d50cd061e0e",
+    sourceFingerprint: "5e653997274db205515080577c5c12c900004a4afc8ad64b84836f1ac4f541e8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Друг рассказывает о своей компании. Спросите его: «Где вы встречаетесь?»","Вы встретили соседку у объявления. Спросите её: «Когда начинается пикник?»","Брат показывает билеты. Спросите его: «Когда заканчивается концерт?»"],"uk":["Друг розповідає про свою компанію. Спитайте його: «Де ви зустрічаєтеся?»","Ви зустріли сусідку біля оголошення. Спитайте її: «Коли починається пікнік?»","Брат показує квитки. Спитайте його: «Коли закінчується концерт?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужно do.","После Where нужно do."],["Пикник один: нужно does.","После does нужно start, без s."],["Концерт один: нужно does.","После does нужно finish, без es."]],"uk":[["З you потрібно do.","Після Where потрібно do."],["Пікнік один: потрібно does.","Після does потрібно start, без s."],["Концерт один: потрібно does.","Після does потрібно finish, без es."]]}),
@@ -5067,7 +5067,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 26,
-    sourceFingerprint: "ec414c67a727c9d0d6b433a4fc6a2c15869aead21b80a78dad27583059e45a74",
+    sourceFingerprint: "ee0c602996ee6eaf0018c4261b6104df73ef902d55c77ee066c1350e8b92e902",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вы узнаёте расписание уборщика. Спросите соседку: «Когда уборщик работает?»","Продавец рассказывает о соседе. Спросите его: «Где работает хирург?»","Брат показывает двор с машинами. Спросите его: «Где юрист паркуется?»"],"uk":["Ви дізнаєтеся розклад прибиральника. Спитайте сусідку: «Коли прибиральник працює?»","Продавець розповідає про сусіда. Спитайте його: «Де працює хірург?»","Брат показує двір із машинами. Спитайте його: «Де юрист паркується?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Уборщик один: нужно does.","После does нужно work, без s."],["Хирург один: нужно does.","После does нужно work, без s."],["Юрист один: нужно does.","После does нужно park, без s."]],"uk":[["Прибиральник один: потрібно does.","Після does потрібно work, без s."],["Хірург один: потрібно does.","Після does потрібно work, без s."],["Юрист один: потрібно does.","Після does потрібно park, без s."]]}),
@@ -5277,7 +5277,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 41,
-    sourceFingerprint: "826f6144b5e4f2a6e6904f18ab81482b41b9538597718db56d1b0e67b2fc9485",
+    sourceFingerprint: "12a62a5f8cdc8ac2e3e607ceef039111663dd1fd248a68f48c00545fb6d6fa44",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Подруга ночует у вас. Скажите ей: «Я обычно просыпаюсь рано».","Соседка спрашивает про чайник. Скажите ей: «Я обычно выключаю чайник из розетки».","Брат смотрит на замороженный суп. Скажите ему: «Я обычно размораживаю суп»."],"uk":["Подруга ночує у вас. Скажіть їй: «Я зазвичай прокидаюся рано».","Сусідка питає про чайник. Скажіть їй: «Я зазвичай вимикаю чайник з розетки».","Брат дивиться на заморожений суп. Скажіть йому: «Я зазвичай розморожую суп»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно wake, без s.","Для этой привычки нужно I usually wake, без am."],["После I нужно unplug, без s.","Здесь нужна форма unplug."],["После I нужно defrost, без s.","Для этой привычки после I usually нужно defrost."]],"uk":[["Після I потрібно wake, без s.","Для цієї звички потрібно I usually wake, без am."],["Після I потрібно unplug, без s.","Тут потрібна форма unplug."],["Після I потрібно defrost, без s.","Для цієї звички після I usually потрібно defrost."]]}),
@@ -5305,7 +5305,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 43,
-    sourceFingerprint: "925e23a7330ac01c045807171cd94950d0cff33b2256813903118663a9005f7c",
+    sourceFingerprint: "fb31b1f1cc508945d6f2a3252d90115115b562efeaf8c60d72ed1c0035a67be6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Руководитель спрашивает про связь с коллегой. Скажите ему: «Я часто пишу коллеге по почте».","Начальник спрашивает про отчёт. Скажите ему: «Я обычно пишу отчёт дома».","Клиент спрашивает о сроке. Скажите ему от лица команды: «Мы обычно успеваем к сроку»."],"uk":["Керівник питає про зв’язок із колегою. Скажіть йому: «Я часто пишу колезі електронною поштою».","Начальник питає про звіт. Скажіть йому: «Я зазвичай пишу звіт удома».","Клієнт питає про термін. Скажіть йому від імені команди: «Ми зазвичай встигаємо до терміну»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно email, без s.","Для привычки после I often нужно email."],["После I нужно write, без s.","Для привычки после I usually нужно write."],["После we нужно meet, без s.","Для привычки после We usually нужно meet."]],"uk":[["Після I потрібно email, без s.","Для звички після I often потрібно email."],["Після I потрібно write, без s.","Для звички після I usually потрібно write."],["Після we потрібно meet, без s.","Для звички після We usually потрібно meet."]]}),
@@ -5333,7 +5333,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 45,
-    sourceFingerprint: "7c3f2e24b1f79fa3dff4191d0db442d0f4d3da77915c9922c70bd40f42b6e90a",
+    sourceFingerprint: "c675e207b6cbf71f568f40d73b490eb1f37447c44da8703ce356aa6d0de91834",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Сосед идёт с вами в аптеку. Скажите ему: «Я обычно спрашиваю фармацевта».","Коллега замечает, что вы потираете лоб. Скажите ему: «У меня часто болит голова».","Подруга спрашивает, что вы сверяете в назначении. Скажите ей: «Я обычно проверяю дозу»."],"uk":["Сусід іде з вами в аптеку. Скажіть йому: «Я зазвичай питаю фармацевта».","Колега помічає, що ви потираєте лоб. Скажіть йому: «У мене часто болить голова».","Подруга питає, що ви звіряєте в призначенні. Скажіть їй: «Я зазвичай перевіряю дозу»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно ask, без s.","Для привычки после I usually нужно ask."],["После I нужно have, не has.","Здесь после I often нужно have."],["После I нужно check, без s.","Для привычки после I usually нужно check."]],"uk":[["Після I потрібно ask, без s.","Для звички після I usually потрібно ask."],["Після I потрібно have, не has.","Тут після I often потрібно have."],["Після I потрібно check, без s.","Для звички після I usually потрібно check."]]}),
@@ -5347,7 +5347,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 46,
-    sourceFingerprint: "39cfe01d4a2f112a9797aebb0b8acc0477d067e5243c50814edef1e28c680e1d",
+    sourceFingerprint: "98097f09b6eb943d8a0e60b1ab66d13eff921cb79557cab7a0dc2dc18eb42582",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Брат помогает готовить пасту. Скажите ему: «Я обычно тру сыр на тёрке».","Подруга спрашивает, часто ли вы пользуетесь венчиком. Скажите ей: «Я часто взбиваю яйца».","Сосед пробует суп. Скажите ему: «Я обычно приправляю суп»."],"uk":["Брат допомагає готувати пасту. Скажіть йому: «Я зазвичай тру сир на тертці».","Подруга питає, чи часто ви користуєтеся вінчиком. Скажіть їй: «Я часто збиваю яйця».","Сусід куштує суп. Скажіть йому: «Я зазвичай приправляю суп»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно grate, без s.","Для привычки после I usually нужно grate."],["После I нужно whisk, без s.","Для привычки после I often нужно whisk."],["После I нужно season, без s.","Для привычки после I usually нужно season."]],"uk":[["Після I потрібно grate, без s.","Для звички після I usually потрібно grate."],["Після I потрібно whisk, без s.","Для звички після I often потрібно whisk."],["Після I потрібно season, без s.","Для звички після I usually потрібно season."]]}),
@@ -5375,7 +5375,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 48,
-    sourceFingerprint: "86a33a7d4218a856cf2a05e013f7a85a35ee2ce3ae5fd2b6beb7c29927cbde50",
+    sourceFingerprint: "47411c066242376b0c5cfe2f73fc96c865c4c8ec93534daca9a3271db130944a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Подруга держит ваш телефон. Скажите ей: «Я обычно удаляю старые сообщения».","Сестра спрашивает, часто ли вы ищете телефон. Скажите ей: «Я часто ищу свой телефон».","Курьер звонит в дверь. Скажите ему: «Я обычно получаю посылки дома»."],"uk":["Подруга тримає ваш телефон. Скажіть їй: «Я зазвичай видаляю старі повідомлення».","Сестра питає, чи часто ви шукаєте телефон. Скажіть їй: «Я часто шукаю свій телефон».","Кур’єр дзвонить у двері. Скажіть йому: «Я зазвичай отримую посилки вдома»."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно delete, без s.","Для привычки нужна начальная форма глагола, без -ing."],["После I нужно search, без s.","После I often нужна форма search, без -ing."],["После I нужно receive, без s.","Для привычки нужна начальная форма глагола, без -ing."]],"uk":[["Після I потрібно delete, без s.","Для звички потрібна початкова форма дієслова, без -ing."],["Після I потрібно search, без s.","Після I often потрібна форма search, без -ing."],["Після I потрібно receive, без s.","Для звички потрібна початкова форма дієслова, без -ing."]]}),
@@ -5403,7 +5403,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 50,
-    sourceFingerprint: "ce31c0d0bd479b2336093cfc2af1099af45b4a46ff9f8a8cfb617fb1cc371911",
+    sourceFingerprint: "6cd25b59727e030bd19c329d159431b6b307aa980d505f03f3f437e5c5450362",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Друг спрашивает, как вы добираетесь домой поздно. Ответьте: «Я часто ловлю такси ночью».","Вы стоите у кассы. Спросите продавца: «Вы принимаете карты?»","Прохожий у остановки ждёт вашего вопроса. Спросите: «Где автовокзал?»"],"uk":["Друг питає, як ви добираєтеся додому пізно. Відповідьте: «Я часто ловлю таксі вночі».","Ви стоїте біля каси. Спитайте продавця: «Ви приймаєте картки?»","Перехожий біля зупинки чекає на ваше запитання. Спитайте: «Де автовокзал?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно hail, без s.","Здесь нужна форма hail."],["С you нужно Do.","После Do you нужно accept, без s."],["Автовокзал один: нужно is.","В этом вопросе is стоит перед the bus terminal."]],"uk":[["Після I потрібно hail, без s.","Тут потрібна форма hail."],["З you потрібно Do.","Після Do you потрібно accept, без s."],["Автовокзал один: потрібно is.","У цьому запитанні is стоїть перед the bus terminal."]]}),

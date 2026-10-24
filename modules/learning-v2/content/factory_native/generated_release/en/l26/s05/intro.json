@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Быстро и постоянно",
-        "uk": "Швидко й постійно"
+        "ru": "Почему говорите быстро",
+        "uk": "Чому говорите швидко"
       },
       "bodyByLocale": {
-        "ru": "Rapidly — быстро. I speak rapidly when I get nervous — я говорю быстро, когда нервничаю. Constantly — постоянно, непрерывно или очень часто. I move constantly when I dance — я постоянно двигаюсь, когда танцую. Rapidly описывает скорость, constantly — непрерывность или частоту: это не одно и то же. Здесь я рассказываю о своих привычных реакциях, поэтому Present Simple в обеих частях.",
-        "uk": "Rapidly — швидко. I speak rapidly when I get nervous — я говорю швидко, коли нервую. Constantly — постійно, безперервно або дуже часто. I move constantly when I dance — я постійно рухаюся, коли танцюю. Rapidly описує швидкість, constantly — безперервність або частоту: це не те саме. Тут я розповідаю про свої звичні реакції, тому Present Simple в обох частинах."
+        "ru": "Перед выступлением друг замечает, что вы торопитесь говорить. Объясните свою обычную реакцию: I speak rapidly when I get nervous — я говорю быстро, когда нервничаю. Собираем: I + speak + rapidly + when I get nervous — кто, что делает, как, в какой ситуации. Rapidly стоит после speak и описывает скорость речи. В обеих частях present simple, потому что вы рассказываете о повторяющейся реакции. После I используем speak и get без -s. When связывает быструю речь с волнением.",
+        "uk": "Перед виступом друг помічає, що ви поспішаєте говорити. Поясніть свою звичайну реакцію: I speak rapidly when I get nervous — я говорю швидко, коли нервую. Складаємо: I + speak + rapidly + when I get nervous — хто, що робить, як, у якій ситуації. Rapidly стоїть після speak і описує швидкість мовлення. В обох частинах present simple, бо ви розповідаєте про повторювану реакцію. Після I використовуємо speak і get без -s. When пов’язує швидке мовлення із хвилюванням."
       },
       "question": {
         "interactionId": "en:lesson-26:session-05:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0f3dca9e66ce21503f33feb818b742a5f4dadec4b66cdbdfe805200cf253fbd2"
+  "introFingerprint": "aacc1839ee63c0dae9985a0ef6b13788ca53b49d7caea55f926ab77ec40e30f0"
 }

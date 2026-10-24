@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Осанка и пульс",
-        "uk": "Постава й пульс"
+        "ru": "Проверить, как держите спину",
+        "uk": "Перевірити, як тримаєте спину"
       },
       "bodyByLocale": {
-        "ru": "Posture — осанка, то, как вы держите тело. I check my posture when my back feels tired — я проверяю свою осанку, когда чувствую усталость в спине. Это описание моей привычки. Pulse — пульс. My pulse gets faster when I run — мой пульс учащается, когда я бегу. В первой фразе I check без -s; во второй pulse — единственное число, поэтому gets. После I в условии — run.",
-        "uk": "Posture — постава, те, як ви тримаєте тіло. I check my posture when my back feels tired — я перевіряю свою поставу, коли відчуваю втому в спині. Це опис моєї звички. Pulse — пульс. My pulse gets faster when I run — мій пульс частішає, коли я біжу. У першій фразі I check без -s; у другій pulse — однина, тому gets. Після I в умові — run."
+        "ru": "Друг спрашивает, что вы обычно делаете, почувствовав усталость в спине. Ответьте: I check my posture when my back feels tired — я проверяю свою осанку, когда чувствую усталость в спине. Собираем: I + check + my posture + when my back feels tired — кто, что делает, что проверяет, в какой ситуации. Обе части в present simple: это ваша привычка. После I нужна check без -s. My back — единственное число, поэтому feels с -s; tired описывает ощущение.",
+        "uk": "Друг запитує, що ви зазвичай робите, відчувши втому в спині. Дайте відповідь: I check my posture when my back feels tired — я перевіряю свою поставу, коли відчуваю втому в спині. Складаємо: I + check + my posture + when my back feels tired — хто, що робить, що перевіряє, у якій ситуації. Обидві частини в present simple: це ваша звичка. Після I потрібна check без -s. My back — однина, тому feels із -s; tired описує відчуття."
       },
       "question": {
         "interactionId": "en:lesson-26:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Замечать сердцебиение",
-        "uk": "Помічати серцебиття"
+        "ru": "Замечать сердцебиение в тишине",
+        "uk": "Помічати серцебиття в тиші"
       },
       "bodyByLocale": {
-        "ru": "Heartbeat — сердцебиение. I notice my heartbeat when I lie quietly — я замечаю своё сердцебиение, когда лежу тихо. Heartbeat относится к биению сердца, pulse — к пульсу, который можно ощутить, например на запястье. В этой фразе говорящий описывает своё наблюдение. После I нужны notice и lie; lies используем с he или she. Обе части в настоящем времени, потому что речь о повторяющейся ситуации.",
-        "uk": "Heartbeat — серцебиття. I notice my heartbeat when I lie quietly — я помічаю своє серцебиття, коли тихо лежу. Heartbeat стосується биття серця, pulse — пульсу, який можна відчути, наприклад на зап’ястку. У цій фразі мовець описує своє спостереження. Після I потрібні notice і lie; lies використовуємо з he чи she. Обидві частини в теперішньому часі, бо йдеться про повторювану ситуацію."
+        "ru": "Вы рассказываете другу, в какой момент обычно замечаете биение своего сердца: I notice my heartbeat when I lie quietly — я замечаю своё сердцебиение, когда лежу тихо. Собираем: I + notice + my heartbeat + when I lie quietly — кто, что делает, что замечает, когда. В обеих частях present simple, потому что ситуация повторяется. После I используем notice и lie без -s. Quietly стоит после lie и уточняет, как вы лежите.",
+        "uk": "Ви розповідаєте другові, у який момент зазвичай помічаєте биття свого серця: I notice my heartbeat when I lie quietly — я помічаю своє серцебиття, коли тихо лежу. Складаємо: I + notice + my heartbeat + when I lie quietly — хто, що робить, що помічає, коли. В обох частинах present simple, бо ситуація повторюється. Після I використовуємо notice і lie без -s. Quietly стоїть після lie та уточнює, як ви лежите."
       },
       "question": {
         "interactionId": "en:lesson-26:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5cfe9bf1f8898943255b51ab93ad7d31222258ed35240d3356f561e4ef709de6"
+  "introFingerprint": "0680cb70c7c30679defcc600e50c291c5e0805dc857f5550413fea12abab1372"
 }

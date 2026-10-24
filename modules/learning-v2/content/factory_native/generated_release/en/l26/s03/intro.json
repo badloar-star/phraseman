@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вращение и качание",
-        "uk": "Обертання й гойдання"
+        "ru": "Что происходит при запуске стирки",
+        "uk": "Що відбувається при запуску прання"
       },
       "bodyByLocale": {
-        "ru": "Rotate — вращаться вокруг оси. The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Drum здесь — барабан машины, куда кладут бельё. Sway — плавно качаться из стороны в сторону. The trees sway when the wind blows — деревья качаются, когда дует ветер. Drum — один предмет: rotates; trees — несколько: sway.",
-        "uk": "Rotate — обертатися навколо осі. The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Drum тут — барабан машини, куди кладуть білизну. Sway — плавно гойдатися з боку в бік. The trees sway when the wind blows — дерева гойдаються, коли дме вітер. Drum — один предмет: rotates; trees — кілька: sway."
+        "ru": "Друг спрашивает, что начинает двигаться в стиральной машине. Объясните: The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Собираем: The drum + rotates + when I start the washing machine — что, как движется, при каком действии. В обеих частях present simple: описываем обычную работу машины. The drum — один барабан, поэтому rotates с -s. После I используем start без -s. When указывает, что запускает это движение.",
+        "uk": "Друг запитує, що починає рухатися в пральній машині. Поясніть: The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Складаємо: The drum + rotates + when I start the washing machine — що, як рухається, за якої дії. В обох частинах present simple: описуємо звичайну роботу машини. The drum — один барабан, тому rotates із -s. Після I використовуємо start без -s. When указує, що запускає цей рух."
       },
       "question": {
         "interactionId": "en:lesson-26:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ab42e2ed459ea30526b9bc7f527f744fe22642227705ba1e16825554fbeacc55"
+  "introFingerprint": "4eb5464976589b78882944b5db8baa429ad0ddc3eab5778ec0dcc8c2c4666517"
 }

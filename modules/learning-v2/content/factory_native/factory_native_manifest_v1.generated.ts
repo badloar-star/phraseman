@@ -19613,7 +19613,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 1,
-    sourceFingerprint: "662b8cab7599f5e64330e641d75fdb523bd49853b152a117f9486e9dfad46e60",
+    sourceFingerprint: "0f48ea86402c7811a7344128409bb473c931b1ef3601b3ac866f99438dec93a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для этого подлежащего в Present Simple нужна форма evaporates.","Обычная закономерность: Present Simple в обеих частях."],["Для этого подлежащего в Present Simple нужна форма condenses.","Обычная закономерность: Present Simple в обеих частях."],["Для этого подлежащего в Present Simple нужна форма stiffen.","Обычная закономерность: Present Simple в обеих частях."]],"uk":[["Для цього підмета в Present Simple потрібна форма evaporates.","Звичайна закономірність: Present Simple в обох частинах."],["Для цього підмета в Present Simple потрібна форма condenses.","Звичайна закономірність: Present Simple в обох частинах."],["Для цього підмета в Present Simple потрібна форма stiffen.","Звичайна закономірність: Present Simple в обох частинах."]]}),
@@ -19627,7 +19627,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 2,
-    sourceFingerprint: "83aeda8dd2bbc8c2f10d24669db830a17464911da8b37a37f7f1908cf14c69c6",
+    sourceFingerprint: "2d51add8458ce0269d61b998ad4bccee4d693190543b26d890dcd672bc3aabcf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В Present Simple с этим подлежащим нужна форма squeak.","Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола."],["В Present Simple с этим подлежащим нужна форма rustle.","Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола."],["В Present Simple с этим подлежащим нужна форма roars.","Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола."]],"uk":[["У Present Simple із цим підметом потрібна форма squeak.","Звичайний результат: Present Simple, а не форма з -ing без допоміжного дієслова."],["У Present Simple із цим підметом потрібна форма rustle.","Звичайний результат: Present Simple, а не форма з -ing без допоміжного дієслова."],["У Present Simple із цим підметом потрібна форма roars.","Звичайний результат: Present Simple, а не форма з -ing без допоміжного дієслова."]]}),
@@ -19641,7 +19641,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 3,
-    sourceFingerprint: "779c4809d683c81c66341a360f749dd530f0966581ea2847f0d88b9059bd8856",
+    sourceFingerprint: "cb235183c955660d787c4961477210f2d99df891853a1cdaef4da917ab5a7500",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В Present Simple с этим подлежащим нужна форма vibrates.","Обычная реакция: Present Simple в обеих частях."],["В Present Simple с этим подлежащим нужна форма rotates.","Обычная реакция: Present Simple в обеих частях."],["В Present Simple с этим подлежащим нужна форма flutter.","Обычная реакция: Present Simple в обеих частях."]],"uk":[["У Present Simple із цим підметом потрібна форма vibrates.","Звичайна реакція: Present Simple в обох частинах."],["У Present Simple із цим підметом потрібна форма rotates.","Звичайна реакція: Present Simple в обох частинах."],["У Present Simple із цим підметом потрібна форма flutter.","Звичайна реакція: Present Simple в обох частинах."]]}),
@@ -19655,7 +19655,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 4,
-    sourceFingerprint: "5dd8c64918b5cfc96123d2885619c74a99c33f98d99909fb6d97d24d11ded090",
+    sourceFingerprint: "b9961d973a39b115977115568bf9ab510da3cfa6af10371aef0d82e53e7bbb7c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В Present Simple с этим подлежащим нужна форма follow.","Привычная реакция: Present Simple в обеих частях."],["В Present Simple с этим подлежащим нужна форма check.","Привычная реакция: Present Simple в обеих частях."],["В Present Simple с этим подлежащим нужна форма notice.","Привычная реакция: Present Simple в обеих частях."]],"uk":[["У Present Simple із цим підметом потрібна форма follow.","Звична реакція: Present Simple в обох частинах."],["У Present Simple із цим підметом потрібна форма check.","Звична реакція: Present Simple в обох частинах."],["У Present Simple із цим підметом потрібна форма notice.","Звична реакція: Present Simple в обох частинах."]]}),
@@ -19669,7 +19669,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 5,
-    sourceFingerprint: "133a6927d57d4b809484894c10d80f5b67ecc0a023ee60e5c9eb13c781685bb0",
+    sourceFingerprint: "d196acf0506f8655cf257d555bf5db1af3acf59df0bbc3397141b30d1effb1bb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для этого подлежащего в Present Simple нужна форма open.","Привычный результат: Present Simple в обеих частях."],["Для этого подлежащего в Present Simple нужна форма speak.","Привычный результат: Present Simple в обеих частях."],["Для этого подлежащего в Present Simple нужна форма step.","Привычный результат: Present Simple в обеих частях."]],"uk":[["Для цього підмета в Present Simple потрібна форма open.","Звичний результат: Present Simple в обох частинах."],["Для цього підмета в Present Simple потрібна форма speak.","Звичний результат: Present Simple в обох частинах."],["Для цього підмета в Present Simple потрібна форма step.","Звичний результат: Present Simple в обох частинах."]]}),
@@ -19683,7 +19683,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 6,
-    sourceFingerprint: "1261846f6425c265e91f7280d98b48ab7e5966129f496a2813b3d3f3a471ec6e",
+    sourceFingerprint: "bed9c9d80bcd50b7b08e88b87ed2ff86cf3c8cd400b7e879b55998fdf8cd9ef0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим нужна форма feel.","Повторяющееся ощущение: Present Simple в обеих частях."],["С этим подлежащим нужна форма feel.","Повторяющееся ощущение: Present Simple в обеих частях."],["С этим подлежащим нужна форма throbs.","Повторяющееся ощущение: Present Simple в обеих частях."]],"uk":[["Із цим підметом потрібна форма feel.","Повторюване відчуття: Present Simple в обох частинах."],["Із цим підметом потрібна форма feel.","Повторюване відчуття: Present Simple в обох частинах."],["Із цим підметом потрібна форма throbs.","Повторюване відчуття: Present Simple в обох частинах."]]}),
@@ -19697,7 +19697,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 7,
-    sourceFingerprint: "84ed8e24fb60c8c792d1d66b61ff3d18e15026a62029bbe627d128c77dc2f16d",
+    sourceFingerprint: "2733d9fba0546abc51ea296ff4deb3cd593934e2dde3bde1cb371da6c98e2048",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В Present Simple нужна форма choose.","Обычное свойство или привычка: Present Simple в обеих частях."],["В Present Simple нужна форма breaks.","Обычное свойство или привычка: Present Simple в обеих частях."],["В Present Simple нужна форма choose.","Обычное свойство или привычка: Present Simple в обеих частях."]],"uk":[["У Present Simple потрібна форма choose.","Звичайна властивість або звичка: Present Simple в обох частинах."],["У Present Simple потрібна форма breaks.","Звичайна властивість або звичка: Present Simple в обох частинах."],["У Present Simple потрібна форма choose.","Звичайна властивість або звичка: Present Simple в обох частинах."]]}),

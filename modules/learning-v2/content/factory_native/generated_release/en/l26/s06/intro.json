@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тошнота и покалывание",
-        "uk": "Нудота й поколювання"
+        "ru": "Почему не читаете в машине",
+        "uk": "Чому не читаєте в машині"
       },
       "bodyByLocale": {
-        "ru": "Nauseous — испытывающий тошноту. I feel nauseous when I read in a car — меня тошнит, когда я читаю в машине. Tingle — ощущать покалывание. My feet tingle when I sit for too long — в ступнях покалывает, когда я слишком долго сижу. Это личные наблюдения говорящего, не утверждения обо всех людях. После I — feel и read; после feet — tingle.",
-        "uk": "Nauseous — той, хто відчуває нудоту. I feel nauseous when I read in a car — мене нудить, коли я читаю в машині. Tingle — відчувати поколювання. My feet tingle when I sit for too long — у ступнях поколює, коли я надто довго сиджу. Це особисті спостереження мовця, а не твердження про всіх людей. Після I — feel і read; після feet — tingle."
+        "ru": "Друг предлагает вам книгу в дороге, а вы объясняете свою обычную реакцию на чтение в машине: I feel nauseous when I read in a car — меня тошнит, когда я читаю в машине. Собираем: I + feel nauseous + when I read in a car — кто, какое ощущение испытывает, в какой ситуации. После I ставим feel, затем слово nauseous, описывающее ощущение. В части с when снова I и read без -s. Обе части в present simple: речь о том, что с вами обычно происходит, а не со всеми людьми.",
+        "uk": "Друг пропонує вам книжку в дорозі, а ви пояснюєте свою звичайну реакцію на читання в машині: I feel nauseous when I read in a car — мене нудить, коли я читаю в машині. Складаємо: I + feel nauseous + when I read in a car — хто, яке відчуття має, у якій ситуації. Після I ставимо feel, потім слово nauseous, що описує відчуття. У частині з when знову I та read без -s. Обидві частини в present simple: йдеться про те, що з вами зазвичай відбувається, а не з усіма людьми."
       },
       "question": {
         "interactionId": "en:lesson-26:session-06:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e22f836a2ddc70acb0a58d145d57b3ded1d42f0d2b0bee790996d553597585a8"
+  "introFingerprint": "fac383e2314ba94c143e2dbd59f70b0a0d6c2da68698d4179d5848cecbb51a63"
 }

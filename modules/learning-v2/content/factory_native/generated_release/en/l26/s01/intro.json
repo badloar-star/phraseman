@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Капли и брызги",
-        "uk": "Краплі й бризки"
+        "ru": "Откуда капли на холодной поверхности",
+        "uk": "Звідки краплі на холодній поверхні"
       },
       "bodyByLocale": {
-        "ru": "Condense — конденсироваться: пар превращается в капли. Steam condenses when it touches a cold surface — пар конденсируется при соприкосновении с холодной поверхностью. Splatter — разлетаться брызгами: Hot oil splatters when water gets into the pan — горячее масло разбрызгивается, когда в сковороду попадает вода. В обеих частях описываем обычное происходящее: condenses — touches, splatters — gets. После water, steam и oil здесь форма как с it, поэтому окончание -s.",
-        "uk": "Condense — конденсуватися: пара перетворюється на краплі. Steam condenses when it touches a cold surface — пара конденсується при зіткненні з холодною поверхнею. Splatter — розлітатися бризками: Hot oil splatters when water gets into the pan — гаряча олія розбризкується, коли в сковороду потрапляє вода. В обох частинах описуємо те, що відбувається зазвичай: condenses — touches, splatters — gets. Після water, steam та oil тут форма як з it, тому закінчення -s."
+        "ru": "На кухне вы замечаете капли на холодной поверхности и объясняете, как они появляются: Steam condenses when it touches a cold surface — пар конденсируется, когда соприкасается с холодной поверхностью. Собираем: Steam + condenses + when it touches a cold surface — что, что происходит, при каком условии. Обе части в present simple, потому что описываем закономерность. Steam согласуется как it, поэтому condenses с -s. В условии it заменяет пар; после it нужна touches с -es.",
+        "uk": "На кухні ви помічаєте краплі на холодній поверхні й пояснюєте, як вони з’являються: Steam condenses when it touches a cold surface — пара конденсується, коли торкається холодної поверхні. Складаємо: Steam + condenses + when it touches a cold surface — що, що відбувається, за якої умови. Обидві частини в present simple, бо описуємо закономірність. Steam узгоджується як it, тому condenses із -s. В умові it замінює пару; після it потрібна touches із -es."
       },
       "question": {
         "interactionId": "en:lesson-26:session-01:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3eef39e645414da29957e6415768b5f0c93738cda1b2e4ff51f4ec8fe9414052"
+  "introFingerprint": "0758860baffc185b32fa11f60c3c457de6d2eaf6f5e1d2bdd7e216d3a5560aed"
 }

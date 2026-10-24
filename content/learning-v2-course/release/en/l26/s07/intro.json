@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ломкий пластик и прозрачные банки",
-        "uk": "Ламкий пластик і прозорі банки"
+        "ru": "Почему пластик ломается",
+        "uk": "Чому пластик ламається"
       },
       "bodyByLocale": {
-        "ru": "Brittle — ломкий. Brittle plastic breaks if you bend it — ломкий пластик ломается, если его согнуть. Это характеристика именно ломкого пластика, а не любого пластика. Plastic — неисчисляемое, форма глагола как с it: breaks. Transparent — прозрачный. I use transparent jars when I store spices — я использую прозрачные банки для хранения специй. Сквозь стенки видно, что внутри.",
-        "uk": "Brittle — ламкий. Brittle plastic breaks if you bend it — ламкий пластик ламається, якщо його зігнути. Це характеристика саме ламкого пластику, а не будь-якого пластику. Plastic — незлічуване, форма дієслова як з it: breaks. Transparent — прозорий. I use transparent jars when I store spices — я використовую прозорі банки для зберігання спецій. Крізь стінки видно, що всередині."
+        "ru": "Друг пытается согнуть старую пластиковую деталь, а вы предупреждаете о свойстве материала: Brittle plastic breaks if you bend it — ломкий пластик ломается, если его согнуть. Собираем: Brittle plastic + breaks + if you bend it — материал, что с ним происходит, при каком условии. Обе части в present simple, потому что описываем свойство, а не отдельный будущий случай. Plastic согласуется как it, поэтому breaks с -s. После you нужна bend без -s; it в конце заменяет пластик.",
+        "uk": "Друг намагається зігнути стару пластикову деталь, а ви попереджаєте про властивість матеріалу: Brittle plastic breaks if you bend it — ламкий пластик ламається, якщо його зігнути. Складаємо: Brittle plastic + breaks + if you bend it — матеріал, що з ним відбувається, за якої умови. Обидві частини в present simple, бо описуємо властивість, а не окремий майбутній випадок. Plastic узгоджується як it, тому breaks із -s. Після you потрібна bend без -s; it наприкінці замінює пластик."
       },
       "question": {
         "interactionId": "en:lesson-26:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не видно насквозь",
-        "uk": "Не видно наскрізь"
+        "ru": "Выбрать шторы для тёмной комнаты",
+        "uk": "Вибрати штори для темної кімнати"
       },
       "bodyByLocale": {
-        "ru": "Opaque — непрозрачный, противоположность transparent. I choose opaque curtains when I want a dark room — я выбираю непрозрачные шторы, когда хочу тёмную комнату. Сквозь такую ткань не видно. Это пример моего обычного выбора, поэтому choose и want в Present Simple. If подчёркивает условие, when — ситуацию, в которой это обычно происходит; в zero conditional результат тоже в Present Simple.",
-        "uk": "Opaque — непрозорий, протилежність transparent. I choose opaque curtains when I want a dark room — я вибираю непрозорі штори, коли хочу темну кімнату. Крізь таку тканину не видно. Це приклад мого звичайного вибору, тому choose і want в Present Simple. If підкреслює умову, when — ситуацію, у якій це зазвичай відбувається; у zero conditional результат теж у Present Simple."
+        "ru": "Друг спрашивает, как вы выбираете шторы для затемнения комнаты. Ответьте: I choose opaque curtains when I want a dark room — я выбираю непрозрачные шторы, когда хочу тёмную комнату. Собираем: I + choose + opaque curtains + when I want a dark room — кто, что делает, что выбирает, в какой ситуации. В обеих частях present simple: это ваш обычный выбор. После I используем choose и want без -s. When связывает выбор штор с вашей потребностью затемнить комнату.",
+        "uk": "Друг запитує, як ви вибираєте штори для затемнення кімнати. Дайте відповідь: I choose opaque curtains when I want a dark room — я вибираю непрозорі штори, коли хочу темну кімнату. Складаємо: I + choose + opaque curtains + when I want a dark room — хто, що робить, що вибирає, у якій ситуації. В обох частинах present simple: це ваш звичайний вибір. Після I використовуємо choose і want без -s. When пов’язує вибір штор із вашою потребою затемнити кімнату."
       },
       "question": {
         "interactionId": "en:lesson-26:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e0794385f05b533d04ddb6842dbff7f0ed2f908ea04347245dcf8902e9c4552"
+  "introFingerprint": "f2dcecbdba3dcef004114b79061366b5edc9b67318e1bea5a210f64e37335171"
 }

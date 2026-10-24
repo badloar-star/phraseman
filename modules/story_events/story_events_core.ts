@@ -2,8 +2,8 @@
 // story_events_core.ts — чистая логика «историй» Главной (D192, владелец 14.10).
 //
 // зачем: у аватарки на Главной кольцо, как история в Instagram, когда есть хоть одно непросмотренное событие.
-// Событие — реальный факт о человеке: итог недели в Шпиле, рубеж серии, ранг монеты, ачивка — ровно четыре вида образца
-// docs/design/v2-app/stories-avatar.html (s1/s3). Новый вид — только после образца и одобрения владельца (гейт паритета).
+// Событие — реальный факт о человеке: итог недели в Шпиле, рубеж серии, ранг монеты, ачивка или открытая владельцем тема.
+// docs/design/v2-app/stories-avatar.html (s1/s3) задаёт механику кольца; новый слайд темы одобрен владельцем в этой задаче.
 // Здесь только правила списка: ключ повтора, срок жизни 7 дней, не больше 20 событий, «просмотрено».
 // Без React Native и без хранилища — чтобы правила проверялись тестом напрямую.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -11,7 +11,7 @@
 export const STORY_EVENT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const STORY_EVENT_LIMIT = 20;
 
-export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock';
+export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement';
 
 export type StoryEventPayload = Readonly<Record<string, string | number | boolean>>;
 
@@ -31,7 +31,7 @@ export type StoryAddDecision =
   | Readonly<{ added: false; list: StoryEventList; reason: 'duplicate' | 'expired' | 'invalid' }>;
 
 const STORY_TYPES: ReadonlySet<string> = new Set<StoryEventType>([
-  'spire_week', 'streak_milestone', 'coin_rank_up', 'achievement', 'theme_unlock',
+  'spire_week', 'streak_milestone', 'coin_rank_up', 'achievement', 'theme_unlock', 'announcement',
 ]);
 
 function part(payload: StoryEventPayload, name: string): string {
@@ -45,6 +45,7 @@ function part(payload: StoryEventPayload, name: string): string {
  */
 export function storyEventKey(type: StoryEventType, payload: StoryEventPayload): string {
   switch (type) {
+    case 'announcement': return `announcement:${part(payload, 'id')}:${part(payload, 'revision')}`;
     case 'spire_week': return `spire_week:${part(payload, 'weekId')}:${part(payload, 'lang')}`;
     // День в ключе: серия может оборваться и снова дойти до того же рубежа — это новый факт.
     case 'streak_milestone': return `streak_milestone:${part(payload, 'days')}:${part(payload, 'dayKey')}`;
@@ -56,6 +57,7 @@ export function storyEventKey(type: StoryEventType, payload: StoryEventPayload):
 }
 
 export function isStoryEventLive(event: StoryEvent, nowMs: number): boolean {
+  if(event.type==='announcement')return Number.isFinite(event.payload.expiresAtMs)&&event.atMs<=nowMs&&Number(event.payload.expiresAtMs)>nowMs;
   return nowMs - event.atMs < STORY_EVENT_TTL_MS && event.atMs - nowMs < STORY_EVENT_TTL_MS;
 }
 
@@ -133,4 +135,11 @@ export function parseStoryEvents(raw: string | null): StoryEventList {
 
 export function serializeStoryEvents(list: StoryEventList): string {
   return JSON.stringify({ v: 1, events: list });
+}
+
+/** Skip withdrawn announcements in the direction the user requested. */
+export function nextLiveStoryIndex(events:StoryEventList,target:number,current:number,liveIds?:readonly string[]):number {
+ let index=Math.max(0,target);const direction=target<current?-1:1;
+ while(index>=0&&index<events.length&&events[index].type==='announcement'&&liveIds&&!liveIds.includes(events[index].id))index+=direction;
+ return index;
 }

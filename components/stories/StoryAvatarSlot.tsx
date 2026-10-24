@@ -163,7 +163,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
         </TouchableOpacity>
       </View>
       {viewer && Viewer ? (
-        <Viewer lang={lang} events={viewer.events} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
+        <Viewer lang={lang} events={viewer.events} liveAnnouncementIds={stories.filter(event=>event.type==='announcement').map(event=>event.id)} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
       ) : null}
     </>
   );

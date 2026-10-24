@@ -1,5 +1,6 @@
 // use_story_events.ts — интерфейс «историй» для Дизайна (D192): кольцо у аватарки на Главной.
 // useStoryEvents() → { unseenCount, stories, markSeen }. Первый кадр — из памяти процесса (синхронно), диск догружает фоном.
+import { useAnnouncementStories } from './use_announcement_stories';
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { storyPlaybackQueue, storyRecentQueue, type StoryEventList } from './story_events_core';
 import { markSeen as markStorySeenInStore, peekStoryEventsSnapshot, primeStoryEvents, subscribeStoryEvents } from './story_events_store';
@@ -22,9 +23,12 @@ export function useStoryEvents(): UseStoryEventsResult {
   useEffect(() => {
     void primeStoryEvents('use_story_events');
   }, []);
+  const announcements=useAnnouncementStories(snapshot.enabled);
+  const markAnnouncementSeen = announcements.markSeen;
+  const stories=useMemo(()=>[...snapshot.stories,...announcements.stories],[snapshot.stories,announcements.stories]);
   // зачем: кольцо гаснет мгновенно (память), запись на диск идёт фоном — без ожидания и без спиннера.
-  const markSeen = useCallback((id: string) => { void markStorySeenInStore(id); }, []);
-  const playback = useMemo(() => storyPlaybackQueue(snapshot.stories), [snapshot.stories]);
-  const recent = useMemo(() => storyRecentQueue(snapshot.stories), [snapshot.stories]);
-  return { enabled: snapshot.enabled, unseenCount: snapshot.unseenCount, stories: snapshot.stories, playback, recent, markSeen };
+  const markSeen = useCallback((id: string) => { if(id.startsWith('announcement:'))markAnnouncementSeen(id);else void markStorySeenInStore(id); }, [markAnnouncementSeen]);
+  const playback = useMemo(() => storyPlaybackQueue(stories), [stories]);
+  const recent = useMemo(() => storyRecentQueue(stories), [stories]);
+  return { enabled: snapshot.enabled, unseenCount: stories.filter(event=>!event.seen).length, stories, playback, recent, markSeen };
 }

@@ -1,3 +1,4 @@
+import AnnouncementSlide from './AnnouncementSlide';
 // ═══════════════════════════════════════════════════════════════════════════
 // StorySlides.tsx — четыре вида кадра просмотра сторис (D192): итог недели, рубеж серии, ранг монеты, ачивка.
 //
@@ -36,6 +37,8 @@ export type StorySlideProps = Readonly<{
   lang: Lang;
   /** Ранг монеты человека (для маркера «ты здесь» на башне); null — базовая монета. */
   coinRank: number | null;
+  /** Просмотр на паузе (палец держит экран): анимации слайда стоят. */
+  paused?: boolean;
 }>;
 
 const num = (v: unknown, fallback = 0): number => (typeof v === 'number' && Number.isFinite(v) ? v : Number(v) || fallback);
@@ -173,6 +176,7 @@ function ThemeUnlockSlide({ event, lang }: StorySlideProps) {
 
 function StorySlide(props: StorySlideProps) {
   switch (props.event.type) {
+    case 'announcement': return <AnnouncementSlide event={props.event} paused={props.paused} />;
     case 'spire_week': return <WeekSlide {...props} />;
     case 'streak_milestone': return <StreakSlide {...props} />;
     case 'coin_rank_up': return <CoinRankSlide {...props} />;

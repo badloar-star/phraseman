@@ -147,6 +147,23 @@ describe('story_events_store', () => {
     }
   });
 
+  it('announcement fixtures cover ten valid layouts and stay in dev memory', async () => {
+    const g = globalThis as { __DEV__?: boolean };
+    expect(setDevStoriesSeed('announcements')).toBe(false);
+    g.__DEV__ = true;
+    try {
+      setDevStoriesFlag('on');
+      expect(setDevStoriesSeed('announcements')).toBe(true);
+      const stories = peekStoryEventsSnapshot().stories;
+      expect(stories).toHaveLength(10);
+      expect(new Set(stories.map(s => JSON.parse(String(s.payload.contentJson)).templateId)).size).toBe(10);
+      expect(stories.every(s => s.type === 'announcement')).toBe(true);
+      await expect(markSeen(stories[0].id)).resolves.toBe(true);
+      expect(peekStoryEventsSnapshot().unseenCount).toBe(9);
+      expect(mockStore).toEqual({});
+    } finally { delete g.__DEV__; }
+  });
+
   it('dev stories=on|off|inherit и storyseed=all|seen|none|off: только память, вне dev отклоняется', async () => {
     const g = globalThis as { __DEV__?: boolean };
     mockFlagOn = false;

@@ -78,6 +78,18 @@ function isDevBuild(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true;
 }
 
+function devAnnouncementStories(nowMs: number): StoryEventList {
+  const templates = ['leaf', 'editorial', 'ribbons', 'manifest', 'cards', 'margin', 'focus', 'steps', 'mosaic', 'tide'] as const;
+  return Object.freeze(templates.map((templateId, index) => {
+    const content = { templateId, badge: 'Проверка шаблона', title: `История ${index + 1}: ${templateId}`,
+      blocks: [{ text: 'Обновления и важные сообщения появляются здесь. Текст использует цвета выбранной темы.', size: 16, style: 'normal' }],
+      titleSize: 34, align: 'left', decoration: true, lifetime: 1, unit: 'hours', durationMs: 15000 };
+    return Object.freeze({ id: `dev-announcement-template-${index}:1`, type: 'announcement' as const,
+      payload: { contentJson: JSON.stringify(content), durationMs: 15000, expiresAtMs: nowMs + 3600000 },
+      atMs: nowMs - 10000 + index, seen: false });
+  }));
+}
+
 function devSeedStories(seen: boolean, nowMs: number): StoryEventList {
   const hour = 60 * 60 * 1000;
   const make = (type: StoryEventType, payload: StoryEventPayload, agoMs: number): StoryEvent =>
@@ -107,12 +119,12 @@ export function setDevStoriesFlag(mode: 'on' | 'off' | 'inherit'): boolean {
  * DEV: all — 4 непросмотренные истории (кольцо, s1-A/s2/s3), seen — те же просмотренные (кольца нет, s1-B), none — пусто (s1-C), off — снять.
  * Засев подменяет список аккаунта только в памяти. В стор-сборке отклоняется: false.
  */
-export function setDevStoriesSeed(mode: 'all' | 'seen' | 'none' | 'off'): boolean {
+export function setDevStoriesSeed(mode: 'all' | 'seen' | 'none' | 'off' | 'announcements'): boolean {
   if (!isDevBuild()) {
     info(`dev-seed: отклонено mode=${mode} (не dev-сборка)`);
     return false;
   }
-  devSeed = mode === 'off' ? null : mode === 'none' ? EMPTY : devSeedStories(mode === 'seen', Date.now());
+  devSeed = mode === 'off' ? null : mode === 'none' ? EMPTY : mode === 'announcements' ? devAnnouncementStories(Date.now()) : devSeedStories(mode === 'seen', Date.now());
   info(`dev-seed: mode=${mode} stories=${devSeed?.length ?? 'storage'}`);
   recompute(`dev_seed_${mode}`);
   return true;

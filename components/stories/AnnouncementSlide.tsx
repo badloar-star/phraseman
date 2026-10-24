@@ -1,0 +1,329 @@
+import React, { memo, useEffect, useMemo } from "react";
+import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import Svg, { Path, Rect, Line, Circle } from "react-native-svg";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+  cancelAnimation,
+} from "react-native-reanimated";
+import { useSpirePalette } from "../spire/useSpirePalette";
+import { useRuntimeActive } from "../../hooks/use_runtime_active";
+import {
+  normalizeAnnouncement,
+  type AnnouncementContent,
+} from "../../modules/story_events/story_announcements_contract";
+import type { StoryEvent } from "../../modules/story_events/story_events_core";
+function parse(event: StoryEvent): AnnouncementContent | null {
+  try {
+    const raw = JSON.parse(String(event.payload.contentJson));
+    const { id, revision, status, publishedAtMs, expiresAtMs, ...content } =
+      raw;
+    return normalizeAnnouncement(content);
+  } catch {
+    return null;
+  }
+}
+function AnnouncementSlide({ event, paused = false }: { event: StoryEvent; paused?: boolean }) {
+  const content = useMemo(() => parse(event), [event]);
+  const p = useSpirePalette();
+  const reduce = useReducedMotion();
+  const active = useRuntimeActive(true);
+  const motion = useSharedValue(0);
+  useEffect(() => {
+    // зачем (владелец 24.10: удержание = пауза): при паузе просмотра фон стоит на месте (cancelAnimation), при снятии — снова withRepeat
+    if (active && !reduce && !paused) {
+      motion.value = withRepeat(
+        withTiming(1, { duration: 6000, easing: Easing.inOut(Easing.sin) }),
+        -1,
+        true,
+      );
+    } else cancelAnimation(motion);
+    return () => cancelAnimation(motion);
+  }, [active, reduce, paused, motion]);
+  const template = content?.templateId;
+  const artStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateX:
+          template === "ribbons" ||
+          template === "steps" ||
+          template === "editorial"
+            ? motion.value * 12
+            : 0,
+      },
+      {
+        translateY:
+          template === "leaf" ||
+          template === "mosaic" ||
+          template === "margin" ||
+          template === "cards"
+            ? motion.value * 14
+            : 0,
+      },
+      {
+        rotate: `${template === "manifest" ? motion.value * 35 : template === "tide" ? motion.value * 8 : 0}deg`,
+      },
+      { scaleX: template === "focus" ? 1 + motion.value * 0.25 : 1 },
+    ],
+  }));
+  if (!content) return null;
+  const serif = template === "editorial",
+    center = template === "focus" || content.align === "center";
+  const bottom = ["leaf", "ribbons", "mosaic", "steps"].includes(template!);
+  const textAlign = center ? ("center" as const) : ("left" as const);
+  const color = p.accentGraphic;
+  return (
+    <View testID="story-announcement" style={s.root}>
+      {content.decoration ? (
+        <Animated.View
+          pointerEvents="none"
+          accessible={false}
+          style={[s.art, template === "tide" ? s.lowArt : null, artStyle]}
+        >
+          <Svg width="100%" height="100%" viewBox="0 0 300 220">
+            {template === "leaf" ? (
+              <Path
+                d="M160 20 Q260 0 285 110 Q200 150 160 20Z"
+                stroke={color}
+                strokeWidth="1.5"
+                fill={color}
+                fillOpacity={0.08}
+              />
+            ) : null}
+            {template === "editorial" ? (
+              <Line
+                x1="220"
+                y1="0"
+                x2="180"
+                y2="220"
+                stroke={color}
+                opacity={0.3}
+              />
+            ) : null}
+            {template === "ribbons" ? (
+              <>
+                {[40, 65, 90].map((y, i) => (
+                  <Line
+                    key={y}
+                    x1={60 + i * 15}
+                    y1={y + 35}
+                    x2="250"
+                    y2={y}
+                    stroke={color}
+                    strokeWidth={i === 0 ? 5 : 1}
+                    opacity={0.4}
+                  />
+                ))}
+              </>
+            ) : null}
+            {template === "manifest" ? (
+              <Circle
+                cx="300"
+                cy="110"
+                r="90"
+                stroke={color}
+                strokeWidth="8"
+                strokeDasharray="1 17"
+                fill="none"
+                opacity={0.3}
+              />
+            ) : null}
+            {template === "cards" ? (
+              <Rect
+                x="210"
+                y="55"
+                width="75"
+                height="100"
+                rx="12"
+                stroke={color}
+                fill="none"
+                opacity={0.2}
+              />
+            ) : null}
+            {template === "margin" ? (
+              <Line
+                x1="20"
+                y1="70"
+                x2="20"
+                y2="125"
+                stroke={color}
+                strokeWidth="4"
+              />
+            ) : null}
+            {template === "focus" ? (
+              <Line
+                x1="105"
+                y1="45"
+                x2="195"
+                y2="45"
+                stroke={color}
+                strokeWidth="2"
+              />
+            ) : null}
+            {template === "steps" ? (
+              <>
+                {[0, 1, 2].map((i) => (
+                  <Rect
+                    key={i}
+                    x={215 + i * 15}
+                    y={70 + i * 15}
+                    width="80"
+                    height="100"
+                    rx="10"
+                    stroke={color}
+                    fill="none"
+                    opacity={0.15}
+                  />
+                ))}
+              </>
+            ) : null}
+            {template === "mosaic" ? (
+              <>
+                {[0, 1, 2].map((i) => (
+                  <Rect
+                    key={i}
+                    x={70 + i * 40}
+                    y={65 + (i === 1 ? -12 : 0)}
+                    width="36"
+                    height="36"
+                    rx="6"
+                    stroke={color}
+                    fill={color}
+                    fillOpacity={0.08}
+                    opacity={0.5}
+                  />
+                ))}
+              </>
+            ) : null}
+            {template === "tide" ? (
+              <>
+                {[0, 10, 20].map((y) => (
+                  <Path
+                    key={y}
+                    d={`M-30 ${100 + y} Q140 ${20 + y} 330 ${115 + y}`}
+                    stroke={color}
+                    fill="none"
+                    opacity={0.25}
+                  />
+                ))}
+              </>
+            ) : null}
+          </Svg>
+        </Animated.View>
+      ) : null}
+      <ScrollView
+        style={s.scroll}
+        contentContainerStyle={[
+          s.content,
+          {
+            justifyContent: bottom
+              ? "flex-end"
+              : template === "tide"
+                ? "flex-start"
+                : "center",
+          },
+          template === "margin"
+            ? {
+                borderLeftWidth: 1,
+                borderLeftColor: p.hairline,
+                paddingLeft: 20,
+              }
+            : null,
+        ]}
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled
+      >
+        {content.badge ? (
+          <Text
+            style={{
+              color: p.accentTextSafe,
+              fontSize: 11,
+              letterSpacing: 1.5,
+              textTransform: "uppercase",
+              textAlign,
+              marginBottom: 8,
+            }}
+          >
+            {content.badge}
+          </Text>
+        ) : null}
+        {content.title ? (
+          <Text
+            accessibilityRole="header"
+            style={{
+              color: p.text,
+              fontSize: content.titleSize,
+              lineHeight: content.titleSize * 1.12,
+              fontWeight: serif || template === "focus" ? "400" : "700",
+              fontFamily: serif
+                ? Platform.select({ ios: "Georgia", android: "serif" })
+                : undefined,
+              fontStyle: serif ? "italic" : "normal",
+              textTransform: template === "manifest" ? "uppercase" : "none",
+              letterSpacing: -0.7,
+              textAlign,
+            }}
+          >
+            {content.title}
+          </Text>
+        ) : null}
+        {content.blocks.map((block, index) => (
+          <View
+            key={index}
+            style={[
+              { marginTop: 16 },
+              block.style === "quote"
+                ? {
+                    borderLeftWidth: 2,
+                    borderLeftColor: color,
+                    paddingLeft: 12,
+                  }
+                : null,
+              template === "cards" || block.style === "accent"
+                ? {
+                    padding: 14,
+                    borderWidth: 1,
+                    borderColor: p.hairline,
+                    borderRadius: 12,
+                  }
+                : null,
+              template === "steps"
+                ? {
+                    borderBottomWidth: 1,
+                    borderBottomColor: p.hairline,
+                    paddingBottom: 14,
+                  }
+                : null,
+            ]}
+          >
+            <Text
+              style={{
+                color: p.text,
+                fontSize: block.size,
+                lineHeight: block.size * 1.45,
+                fontWeight: block.style === "accent" ? "600" : "400",
+                fontStyle: block.style === "quote" ? "italic" : "normal",
+                textAlign,
+              }}
+            >
+              {template === "steps" ? "↗ " : ""}
+              {block.text}
+            </Text>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
+  );
+}
+const s = StyleSheet.create({
+  root: { width: "100%", flex: 1 },
+  scroll: { flex: 1 },
+  content: { flexGrow: 1, paddingVertical: 24 },
+  art: { position: "absolute", top: 0, left: 0, right: 0, height: 220 },
+  lowArt: { top: undefined, bottom: -20 },
+});
+export default memo(AnnouncementSlide);

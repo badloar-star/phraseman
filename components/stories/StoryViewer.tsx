@@ -1,3 +1,4 @@
+import { nextLiveStoryIndex } from '../../modules/story_events/story_events_core';
 // ═══════════════════════════════════════════════════════════════════════════
 // StoryViewer.tsx — полноэкранный просмотр сторис по аватару (D192): полосы прогресса, 10 с на событие, тапы, пауза, свайп вниз.
 //
@@ -56,6 +57,7 @@ export type StoryViewerProps = Readonly<{
   lang: Lang;
   /** Очередь просмотра (непросмотренные от старого к новому) — замораживается при открытии. */
   events: StoryEventList;
+  liveAnnouncementIds?: readonly string[];
   /** Ранг монеты человека 0…19 (для шапки и маркера на башне); null — базовая. */
   coinRank: number | null;
   /** Центр аватара в окне — откуда раскрывается просмотр. */
@@ -66,7 +68,7 @@ export type StoryViewerProps = Readonly<{
   testID?: string;
 }>;
 
-function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer' }: StoryViewerProps) {
+function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer' }: StoryViewerProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
@@ -74,6 +76,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
   const runtimeActive = useRuntimeActive(true);
   const events = useMemo(() => eventsProp, []); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: очередь замораживается на открытие
   const count = events.length;
+  const liveIdsRef=useRef(liveAnnouncementIds);liveIdsRef.current=liveAnnouncementIds;
   const [index, setIndex] = useState(0);
   const [screenReader, setScreenReader] = useState(false);
   const indexRef = useRef(0);
@@ -81,6 +84,8 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
   const heldRef = useRef(false);
   const runtimeRef = useRef(true);
   const pausedRef = useRef(false);
+  // зачем (владелец 24.10: «при зажатии она паузится»; 8 · МОМЕНТЫ): пауза касается не только полосы — анимация слайда (фон объявления) тоже стоит, пока палец на экране
+  const [pausedUi, setPausedUi] = useState(false);
   const screenReaderRef = useRef(false);
   const nowMs = useMemo(() => Date.now(), []);
 
@@ -116,14 +121,18 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
   const goRef = useRef<(k: number) => void>(() => undefined);
   const advance = useCallback(() => { goRef.current(indexRef.current + 1); }, []);
   const runBar = useCallback((from: number) => {
-    const left = Math.max(0, 1 - from) * STORY_SLIDE_MS;
+    const current=events[indexRef.current];
+    const duration=current?.type==='announcement'?Math.max(STORY_SLIDE_MS,Number(current.payload.durationMs)||STORY_SLIDE_MS):STORY_SLIDE_MS; // зачем (владелец 24.10): объявление тоже не короче 10 с
+    const left = Math.max(0, 1 - from) * duration;
     progress.value = withTiming(1, { duration: left, easing: EASE_LINEAR }, (finished) => { if (finished) runOnJS(advance)(); });
-  }, [advance, progress]);
+  }, [advance, progress, events]);
 
   const go = useCallback((target: number) => {
     if (closingRef.current) return;
     if (target >= count) { close('finished'); return; }
-    const k = Math.max(0, target);
+    const k = nextLiveStoryIndex(events,target,indexRef.current,liveIdsRef.current);
+    if(k<0){DebugLogger.info(LOG,`go: назад некуда (k=${k} цель=${target} индекс=${indexRef.current})`);return;}
+    if(k>=count){close('finished');return;}
     if (k !== indexRef.current) tryPlayV2Event('story', 'story_viewer'); // зачем (координатор 14.10): звук перелистывания сторис V2; флаг выключен — тишина
     indexRef.current = k;
     setIndex(k);
@@ -138,6 +147,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     if (!screenReaderRef.current && !pausedRef.current) runBar(0);
   }, [appear, close, count, events, progress, reduceMotion, runBar]);
   goRef.current = go;
+  useEffect(()=>{const current=events[indexRef.current];if(current?.type==='announcement'&&liveAnnouncementIds&&!liveAnnouncementIds.includes(current.id))goRef.current(indexRef.current+1);},[events,liveAnnouncementIds]);
 
   // пауза/возобновление: палец, фон приложения, диктор — любое «держит» полосу
   const syncPause = useCallback(() => {
@@ -145,10 +155,12 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     const shouldPause = heldRef.current || !runtimeRef.current || screenReaderRef.current;
     if (shouldPause && !pausedRef.current) {
       pausedRef.current = true;
+      setPausedUi(true);
       cancelAnimation(progress);
       DebugLogger.info(LOG, `пауза полоса=${progress.value.toFixed(2)} палец=${String(heldRef.current)} активно=${String(runtimeRef.current)} диктор=${String(screenReaderRef.current)}`);
     } else if (!shouldPause && pausedRef.current) {
       pausedRef.current = false;
+      setPausedUi(false);
       DebugLogger.info(LOG, `возобновление с полосы ${progress.value.toFixed(2)}`);
       runBar(progress.value);
     }
@@ -249,17 +261,17 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
               ))}
             </View>
             <View style={s.header}>
-              <SpireRankCoin rank={coinRank} size={32} />
+              {event?.type!=='announcement' ? <SpireRankCoin rank={coinRank} size={32} /> : null}
               <View style={s.headerCopy}>
-                <Text style={[s.name, { color: p.text }]}>{storyText(lang, 'title')}</Text>
-                <Text testID={`${testID}-when`} style={[s.when, { color: p.textSecondary }]}>{event ? storyWhenLabel(lang, event.atMs, nowMs) : ''}</Text>
+                {event?.type!=='announcement' ? <Text style={[s.name, { color: p.text }]}>{storyText(lang, 'title')}</Text> : null}
+                {event?.type!=='announcement' ? <Text testID={`${testID}-when`} style={[s.when, { color: p.textSecondary }]}>{event ? storyWhenLabel(lang, event.atMs, nowMs) : ''}</Text> : null}
               </View>
               <Pressable testID={`${testID}-close`} accessibilityRole="button" accessibilityLabel={storyText(lang, 'close')} hitSlop={6} onPress={() => close('button')} style={s.closeBtn}>
                 <Ionicons name="close" size={22} color={p.text} />
               </Pressable>
             </View>
-            <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents="none">
-              {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} /> : null}
+            <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>
+              {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} paused={pausedUi} /> : null}
             </Animated.View>
             {screenReader ? (
               <Pressable testID={`${testID}-next`} accessibilityRole="button" accessibilityLabel={storyText(lang, 'next')} onPress={() => go(indexRef.current + 1)} style={s.srNext} />

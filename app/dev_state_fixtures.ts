@@ -317,7 +317,7 @@ export type DevStateRequest = Readonly<{
   /** D192: флаг stories_v1 в памяти — on/off/inherit (без пересборки с EXPO_PUBLIC_STORIES_DEV). */
   stories?: 'on' | 'off' | 'inherit';
   /** D192: засев историй в памяти — all (4 непросмотренные), seen (4 просмотренные), none (пусто), off. */
-  storyseed?: 'all' | 'seen' | 'none' | 'off';
+  storyseed?: 'all' | 'seen' | 'none' | 'off' | 'announcements';
   /** Бета-тест Б16: имитация тапа по пушу этого типа тем же разбором, что настоящий тап (через 1,2 с после шагов). */
   notif?: (typeof DEV_NOTIF_TAP_TYPES)[number];
   lv2voice?: number | 'off';
@@ -481,7 +481,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.legacybonus = pick('legacybonus', ['demo', 'pearls', 'nothing', 'off'] as const);
   // зачем (координатор + Макеты 15.10, съёмка D192 stories-s1…s3): кольцо и просмотр сторис без удалённого конфига и настоящих фактов — только память
   request.stories = pick('stories', ['on', 'off', 'inherit'] as const);
-  request.storyseed = pick('storyseed', ['all', 'seen', 'none', 'off'] as const);
+  request.storyseed = pick('storyseed', ['all', 'seen', 'none', 'off', 'announcements'] as const);
   // зачем (бета-тест 15.10, Б16): проверить, что тап по каждому типу пуша открывает нужный экран, без настоящей рассылки
   request.notif = pick('notif', DEV_NOTIF_TAP_TYPES);
   // зачем (координатор 15.10, съёмка D194 voice-limit-001…006): остаток голоса на сегодня в курсе — только память

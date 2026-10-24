@@ -1,5 +1,7 @@
 import type { MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
+import type { Lang } from '../constants/i18n';
+import { irregularVerbLegacyPromptV1 } from './irregular_verb_form_caption';
 import {
   buildMistakePracticeSession,
   mistakePracticeRequestMismatch,
@@ -45,6 +47,8 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   mistakeIds?: readonly string[];
   storage?: MistakePracticeStorage;
   nowMs?: number;
+  /** Язык интерфейса: подпись формы для старых ошибок «Неправильных глаголов» (без неё задание без формы). */
+  interfaceLang?: Lang;
 }>, dependencies: MutableMistakeContentDependencies = {}): Promise<Readonly<{
   session: MistakePracticeSession;
   resumed: boolean;
@@ -141,9 +145,18 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     await clearMistakePracticeSession(input);
     accountFence.assertCurrent();
   }
+  // зачем (жалоба 23.10 №11 «Уходить/оставлять» → Left): старые ошибки «Неправильных глаголов» без подписи формы получают её
+  // из id задания — иначе тренировка показывает перевод глагола, а ждёт прошедшую форму.
+  let legacyPrompts = 0;
   const items = [...projection.items.values()].filter((item) =>
     !input.lessonId || item.lessonId === input.lessonId,
-  );
+  ).map((item) => {
+    const legacy = input.interfaceLang ? irregularVerbLegacyPromptV1(item, input.interfaceLang) : null;
+    if (!legacy) return item;
+    legacyPrompts += 1;
+    return { ...item, sourcePrompt: legacy };
+  });
+  if (legacyPrompts > 0) console.log('[MISTAKE-PRACTICE-PREPARE] irregular_legacy_prompt', JSON.stringify({ count: legacyPrompts })); // guard-ok: сколько старых ошибок дополнено
   if (retryRequested) {
     const requested = new Set(input.mistakeIds);
     const known = items.filter((item) => requested.has(item.mistakeId));

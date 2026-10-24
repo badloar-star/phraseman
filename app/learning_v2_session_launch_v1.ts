@@ -79,13 +79,40 @@ export function prepareLearningV2SessionRunV1(
   locator: LearningV2SessionLocatorV1,
   options: Readonly<{ devUnlockedDrafts: boolean }>,
 ): Promise<LearningV2PreparedSessionRunV1> {
+  if (options.devUnlockedDrafts) return Promise.resolve({ sessionRunId: Crypto.randomUUID(), handle: null });
+  const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+  // зачем (жалобы 24.10 №5/№6, «занятие 3 главы 1 стабильно не готовится, проверь связь»): на медленном телефоне сборка не
+  // укладывалась в срок, срок отклонял ожидание, а сама сборка шла дальше и её результат выбрасывался — следующий тап начинал
+  // с нуля и снова не успевал. Теперь незаконченная подготовка того же занятия переиспользуется: повторный тап (или прогрев)
+  // дожидается уже идущей работы, а не начинает новую.
+  const inflightKey = JSON.stringify([locator.environment, locator.seasonId, locator.studyTarget, locator.learnerSourceLocale, locator.lessonOrdinal, locator.sessionOrdinal]);
+  const running = inflightPreparations.get(inflightKey);
+  const operation = running ?? startPreparation(locator, sessionTag);
+  if (running) {
+    console.warn(`${LOG} [R08-PREP] reuse_inflight ${sessionTag}`); // guard-ok: повторный тап ждёт идущую подготовку
+  } else {
+    inflightPreparations.set(inflightKey, operation);
+    const clear = () => { if (inflightPreparations.get(inflightKey) === operation) inflightPreparations.delete(inflightKey); };
+    operation.then(clear, clear);
+  }
+  const timed = new Promise<LearningV2PreparedSessionRunV1>((_, reject) => {
+    const timer = setTimeout(() => {
+      console.warn(`${LOG} [R08-PREP] timeout ${sessionTag} ms=${LEARNING_V2_PREPARE_TIMEOUT_MS} — подготовка продолжается, повторный тап её подхватит`); // guard-ok: срок с причиной
+      reject(new Error(`learning_v2_session_prepare_timeout: lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal} ${LEARNING_V2_PREPARE_TIMEOUT_MS}ms`));
+    }, LEARNING_V2_PREPARE_TIMEOUT_MS);
+    void operation.then(() => clearTimeout(timer), () => clearTimeout(timer));
+  });
+  return Promise.race([operation, timed]);
+}
+
+const inflightPreparations = new Map<string, Promise<LearningV2PreparedSessionRunV1>>();
+
+function startPreparation(locator: LearningV2SessionLocatorV1, sessionTag: string): Promise<LearningV2PreparedSessionRunV1> {
   const sessionRunId = Crypto.randomUUID();
-  if (options.devUnlockedDrafts) return Promise.resolve({ sessionRunId, handle: null });
   // зачем (R08 🔴, Advisor 15.10): import() клиента и сборка материала — цепочка микрозадач; без уступки кадра она стартовала раньше
   // таймеров и rAF и держала JS-поток секундами. Сначала отдаём кадр, затем грузим; время шагов — в [R08-PREP].
   const preparedAt = Date.now();
-  const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
-  const operation = new Promise<void>((resolve) => { setTimeout(resolve, 0); })
+  return new Promise<void>((resolve) => { setTimeout(resolve, 0); })
     .then(() => {
       const importAt = Date.now();
       return loadLearningV2SessionClientV3().then((mod) => {
@@ -111,13 +138,6 @@ export function prepareLearningV2SessionRunV1(
       console.log(`${LOG} [R08-PREP] prepare ${sessionTag} total_ms=${Date.now() - preparedAt}`);
       return { sessionRunId, handle };
     });
-  const timed = new Promise<LearningV2PreparedSessionRunV1>((_, reject) => {
-    const timer = setTimeout(() => {
-      reject(new Error(`learning_v2_session_prepare_timeout: lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal} ${LEARNING_V2_PREPARE_TIMEOUT_MS}ms`));
-    }, LEARNING_V2_PREPARE_TIMEOUT_MS);
-    void operation.then(() => clearTimeout(timer), () => clearTimeout(timer));
-  });
-  return Promise.race([operation, timed]);
 }
 
 /** Передать плееру «готово». Модуль уже загружен (handle выдал он) — синхронно; иначе догружаем и пишем причину. */

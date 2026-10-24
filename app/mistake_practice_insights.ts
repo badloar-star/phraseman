@@ -23,11 +23,21 @@ async function loadCurrentMistakeJournal(
   studyTarget: MistakeStudyTarget,
   reconcileMutableContent = false,
 ): Promise<MistakeEventJournal> {
+  // зачем (жалобы 24.10 «Мои ошибки — Загружаем… весь день»): шаги чтения были немыми — по зависанию нельзя было сказать,
+  // где оно. Каждый шаг пишет [MISTAKES-LOAD] со временем; последний шаг виден хабу, когда он сдаётся по потолку.
+  const startedAt = Date.now();
+  const step = (stage: string, extra: Record<string, unknown> = {}) => {
+    mistakeJournalLoadStage = stage;
+    console.log('[MISTAKES-LOAD]', stage, JSON.stringify({ studyTarget, ms: Date.now() - startedAt, ...extra })); // guard-ok: шаг чтения
+  };
+  step('identity:start');
   const accountScope = await getStableId();
   const generation = captureAccountGeneration();
   assertCurrentAccount(generation, accountScope);
+  step('journal:start', { phase: generation.phase });
   const loadedJournal = await loadMistakeEventJournal({ accountScope, studyTarget });
   assertCurrentAccount(generation, accountScope);
+  step('journal:done', { events: loadedJournal.events.length, reconcile: reconcileMutableContent });
   if (!reconcileMutableContent) return loadedJournal;
   const reconciled = await reconcileMutableMistakeContent({
     accountScope,
@@ -35,7 +45,14 @@ async function loadCurrentMistakeJournal(
     journal: loadedJournal,
   });
   assertCurrentAccount(generation, accountScope);
+  step('reconcile:done', { unavailable: reconciled.unavailableCount });
   return reconciled.journal;
+}
+
+/** Последний пройденный шаг чтения журнала — для журнала хаба, когда чтение не уложилось в потолок. */
+let mistakeJournalLoadStage = 'idle';
+export function currentMistakeJournalLoadStage(): string {
+  return mistakeJournalLoadStage;
 }
 
 export async function getMistakePracticeReadyCount(

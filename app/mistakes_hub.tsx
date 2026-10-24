@@ -23,7 +23,8 @@ import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGat
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { MISTAKE_PRACTICE_MAX_SESSION, mistakePracticeSessionCostsEnergy } from '../modules/mistake-practice/session';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
-import { loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
+import { currentMistakeJournalLoadStage, loadMistakePracticeHubSnapshot, type MistakePracticeHubSnapshot } from './mistake_practice_insights';
+import { DebugLogger } from './debug-logger';
 import { isDevMistakesDemoOn } from './dev_mistakes_demo';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
@@ -74,6 +75,8 @@ export function dropMistakesHubPeek(): void {
 const SECONDS_PER_MISTAKE = 20;
 
 type HubMode = 'loading' | 'failed' | 'fresh' | 'allFixed' | 'todayDone' | 'normal';
+/** Сколько ждём локальный журнал до спокойного вида с «Попробовать снова» (чтение без сети обычно < 1 с). */
+const HUB_LOAD_CEILING_MS = 8_000;
 
 export default function MistakesHubScreen() {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
@@ -100,8 +103,22 @@ export default function MistakesHubScreen() {
 
   const load = useCallback((reason: string, isCancelled: () => boolean) => {
     const startedAt = Date.now();
+    // зачем (жалобы 24.10 №4/8/16, координатор: «экран обязан выходить из загрузки»): чтение журнала могло не ответить ни
+    // успехом, ни ошибкой — экран вечно «Загружаем…». Потолок переводит в спокойный вид с «Попробовать снова»; поздний ответ
+    // всё равно подставит снимок. Шаг, на котором застряли, уходит в прод-журнал сбоев (одна запись, дедуп по шагу).
+    let settled = false;
+    const ceiling = setTimeout(() => {
+      if (settled || isCancelled()) return;
+      const stage = currentMistakeJournalLoadStage();
+      console.warn('[MISTAKES-LOAD] hub:ceiling → failed', JSON.stringify({ reason, stage, ceilingMs: HUB_LOAD_CEILING_MS })); // guard-ok: потолок с причиной
+      DebugLogger.error('mistakes_hub:load_ceiling', new Error(`stage=${stage} reason=${reason}`), 'critical');
+      setFailed(true);
+      setFailNonce((value) => value + 1);
+    }, HUB_LOAD_CEILING_MS);
     return loadMistakePracticeHubSnapshot(target)
       .then((next) => {
+        settled = true;
+        clearTimeout(ceiling);
         if (isCancelled()) return;
         hubSnapshotPeek = { key: peekKey, snapshot: next };
         setSnapshot(next);
@@ -110,6 +127,8 @@ export default function MistakesHubScreen() {
         console.log('[MISTAKES-HUB] open', JSON.stringify({ reason, ready: next.readyCount, active: next.insights.active, corrected: next.insights.corrected, ms: Date.now() - startedAt }));
       })
       .catch((error: unknown) => {
+        settled = true;
+        clearTimeout(ceiling);
         // guard-ok: лог в catch обязателен; журнал локальный, отказ почти невозможен — но причина должна быть видна.
         console.warn('[MISTAKES-HUB] open:catch', reason, error instanceof Error ? error.message : String(error));
         if (!isCancelled()) {
@@ -362,6 +381,8 @@ export default function MistakesHubScreen() {
   const dockCta = (() => {
     if (mode === 'normal') return <PanelCta g={g} testID="mistakes-hub-start" label={`${copy.practice} ${Math.min(MISTAKE_PRACTICE_MAX_SESSION, readyCount)}`} onPress={openSheet} />;
     if (mode === 'loading') return <PanelCta g={g} label={copy.practice} onPress={() => undefined} disabled />;
+    // зачем (координатор 24.10): журнал не прочитался — человеку нужен явный повтор, а не «К урокам» при 30 ошибках
+    if (mode === 'failed') return <PanelCta g={g} testID="mistakes-hub-retry" label={copy.retry} onPress={() => { hapticTap(); silentRetryRef.current = 0; void load('retry_tap', () => false); }} />;
     return <PanelCta g={g} testID="mistakes-hub-to-lessons" label={copy.toLessons} onPress={() => { hapticTap(); router.push('/lessons_list' as never); }} />;
   })();
 

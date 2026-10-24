@@ -3464,8 +3464,21 @@ export default function LessonsTab({
         // Причина пишется в лог ([V2-LAUNCH]) на каждом отказе, текст честный: «Сейчас недоступно» и приглашение попробовать снова.
         const prepareFailureReason = error instanceof Error ? error.message : String(error);
         const bundledUnavailable = prepareFailureReason === "learning_v2_factory_session_unavailable";
-        console.warn(`[V2-LAUNCH] prepare_failed session=${sessionId} reason=${prepareFailureReason} bundledUnavailable=${bundledUnavailable ? "yes" : "no"} hint=${bundledUnavailable ? "unavailable_now" : "check_connection"}`);
-        showLearningV2DenialHint(bundledUnavailable ? triLang(lang, {
+        // зачем (жалобы 24.10 №5/№6): у английских занятий сети в подготовке нет — «проверь связь» на сроке подготовки врал.
+        // Срок значит «телефон ещё собирает занятие»; подготовка не бросается, повторный тап её подхватит.
+        const stillPreparing = prepareFailureReason.startsWith("learning_v2_session_prepare_timeout");
+        console.warn(`[V2-LAUNCH] prepare_failed session=${sessionId} reason=${prepareFailureReason} bundledUnavailable=${bundledUnavailable ? "yes" : "no"} hint=${bundledUnavailable ? "unavailable_now" : stillPreparing ? "still_preparing" : "check_connection"}`);
+        showLearningV2DenialHint(stillPreparing ? triLang(lang, {
+          ru: "Занятие ещё готовится. Нажми «Начать» через пару секунд",
+          en: "The session is still getting ready. Tap Start again in a few seconds",
+          uk: "Заняття ще готується. Натисни «Почати» за кілька секунд",
+          es: "La sesión aún se está preparando. Toca Empezar en unos segundos",
+          "pt-BR": "A sessão ainda está sendo preparada. Toque em Começar em alguns segundos",
+          vi: "Buổi học vẫn đang chuẩn bị. Nhấn Bắt đầu sau vài giây",
+          id: "Sesi masih disiapkan. Ketuk Mulai lagi dalam beberapa detik",
+          tr: "Oturum hâlâ hazırlanıyor. Birkaç saniye sonra Başla'ya dokun",
+          pl: "Zajęcia jeszcze się przygotowują. Stuknij „Zacznij” za kilka sekund",
+        }) : bundledUnavailable ? triLang(lang, {
           ru: "Сейчас недоступно. Попробуй снова чуть позже",
           en: "Not available right now. Please try again a little later",
           uk: "Зараз недоступно. Спробуй ще раз трохи пізніше",
@@ -3486,10 +3499,11 @@ export default function LessonsTab({
           tr: "Oturum yüklenmedi. Bağlantını kontrol edip tekrar dene",
           pl: "Sesja się nie wczytała. Sprawdź połączenie i spróbuj ponownie",
         }));
+        // зачем (жалобы 24.10): «warning» в прод-журнал сбоев не попадал — причину отказов у пользователей было не увидеть.
         DebugLogger.error(
           `learning_v2:session_launch_prepare:${sessionId}`,
           error instanceof Error ? error : new Error(String(error)),
-          "warning",
+          "critical",
         );
       });
   }, [

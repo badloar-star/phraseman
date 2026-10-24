@@ -221,7 +221,20 @@ export async function mergePhoneStatePracticeFacts<T>(
   ) {
     return { ...legacy };
   }
-  for (const [entityId, value] of Object.entries(legacy)) {
+  // зачем (жалобы 24.10 №4/8/16 «Мои ошибки — Загружаем… весь день», «исправить 30 — крутится»): журнал ошибок звал это
+  // при КАЖДОМ чтении и заново коммитил ВСЕ свои события по одному. Каждый повтор — эксклюзивная транзакция, хеш и разбор
+  // всей проекции практики: O(N²) от длины журнала, у давних учеников — минуты. Коммит идемпотентен (ключ practice:<тип>:<id>),
+  // поэтому уже лежащий в проекции факт повторно слать незачем: читаем проекцию ОДИН раз и коммитим только новые.
+  const startedAt = Date.now();
+  let known: Readonly<Record<string, T>> = {};
+  try {
+    const before = stateFrom(active, await active.store.readProjection("practice"));
+    known = (before?.facts?.[factType] as Readonly<Record<string, T>> | undefined) ?? {};
+  } catch (error: unknown) {
+    console.warn("[MISTAKES-LOAD] facts:read_before_failed → коммитим все", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+  }
+  const fresh = Object.entries(legacy).filter(([entityId]) => !Object.prototype.hasOwnProperty.call(known, entityId));
+  for (const [entityId, value] of fresh) {
     await commitPhoneStatePracticeFact(
       factType,
       entityId,
@@ -229,18 +242,23 @@ export async function mergePhoneStatePracticeFacts<T>(
       expectedStableUid,
     );
   }
-  try {
-    const state = stateFrom(
-      active,
-      await active.store.readProjection("practice"),
-    );
-    const remote = state?.facts?.[factType] as
-      | Readonly<Record<string, T>>
-      | undefined;
-    return { ...legacy, ...(remote ?? {}) };
-  } catch {
-    return { ...legacy };
+  let remote: Readonly<Record<string, T>> | undefined = known;
+  if (fresh.length > 0) {
+    try {
+      const state = stateFrom(
+        active,
+        await active.store.readProjection("practice"),
+      );
+      remote = state?.facts?.[factType] as
+        | Readonly<Record<string, T>>
+        | undefined;
+    } catch (error: unknown) {
+      console.warn("[MISTAKES-LOAD] facts:read_after_failed → только локальные", error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+      return { ...legacy };
+    }
   }
+  console.log("[MISTAKES-LOAD] facts", JSON.stringify({ factType, local: Object.keys(legacy).length, known: Object.keys(known).length, committed: fresh.length, ms: Date.now() - startedAt })); // guard-ok: одна строка на чтение
+  return { ...legacy, ...(remote ?? {}) };
 }
 
 export async function readOrImportPhoneStatePracticeRegister<T>(

@@ -2220,7 +2220,9 @@ export default function LearningV2DirectSessionPlayerV1() {
           practiceInteractionCount: runSummary.practiceInteractionCount,
         },
       });
-      if (!collected.ok) throw new Error("learning_v2_direct_session_incomplete");
+      // зачем (жалобы 24.10 №9/№13): консоль из релиза не доходит, а прод-журнал app_errors видел только голое «incomplete» —
+      // по 24 сбоям нельзя было сказать, чего не хватило. Состав недостачи едет в тексте ошибки (без данных человека).
+      if (!collected.ok) throw new Error(`learning_v2_direct_session_incomplete:l${lessonOrdinal}s${sessionOrdinal}:role=${sessionRole}:missingPractice=${collected.missingPracticeIds.length}:missingIntro=${collected.missingIntroIds.length}:first=${collected.missingPracticeIds[0] ?? collected.missingIntroIds[0] ?? "-"}`);
       const completion = materializeLearningV2CourseSessionCompletedSummaryV1({
         run,
         sessionRunId: sessionRunIdRef.current,

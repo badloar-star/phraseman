@@ -135,6 +135,53 @@ describe("PhoneState practice bridge", () => {
     expect(commit).toHaveBeenCalledTimes(1);
   });
 
+  // жалобы 24.10 №4/8/16: журнал ошибок на каждом чтении перекоммичивал ВСЕ события — у давних учеников минуты загрузки
+  test("merge commits only facts the projection does not hold yet and reads it once when nothing is new", async () => {
+    const commit = jest.fn(async () => ({ duplicate: false }));
+    const readProjection = jest.fn(async () => ({
+      state: {
+        facts: { completed_task: {}, mistake: { a: { n: 1 }, b: { n: 2 } }, mastered: {}, attempt: {} },
+        registers: {},
+        appliedOperationIds: [],
+      },
+    }));
+    configurePhoneStatePracticeBridge({
+      scope: { stableUid: "account-a", accountGeneration: 4 },
+      deviceId: "device-a",
+      store: { commit, readProjection, replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+
+    await expect(mergePhoneStatePracticeFacts("mistake", { a: { n: 1 }, b: { n: 2 } }))
+      .resolves.toEqual({ a: { n: 1 }, b: { n: 2 } });
+    expect(commit).not.toHaveBeenCalled();
+    expect(readProjection).toHaveBeenCalledTimes(1);
+
+    await mergePhoneStatePracticeFacts("mistake", { a: { n: 1 }, c: { n: 3 } });
+    expect(commit).toHaveBeenCalledTimes(1);
+    expect(commit).toHaveBeenCalledWith(expect.objectContaining({ entityId: "c" }), { idempotencyKey: "practice:mistake:c" });
+  });
+
+  // сторож роста (координатор 24.10): длинный журнал не должен давать N коммитов на каждое чтение — только новые факты
+  test("merge cost grows with new facts, not with journal length", async () => {
+    const held: Record<string, unknown> = {};
+    for (let i = 0; i < 500; i += 1) held[`m${i}`] = { i };
+    const commit = jest.fn(async () => ({ duplicate: false }));
+    const readProjection = jest.fn(async () => ({
+      state: { facts: { completed_task: {}, mistake: held, mastered: {}, attempt: {} }, registers: {}, appliedOperationIds: [] },
+    }));
+    configurePhoneStatePracticeBridge({
+      scope: { stableUid: "account-a", accountGeneration: 4 },
+      deviceId: "device-a",
+      store: { commit, readProjection, replay: jest.fn() } as never,
+      triggerSync: jest.fn(),
+    });
+    const local: Record<string, unknown> = { ...held, fresh1: { i: -1 }, fresh2: { i: -2 } };
+    for (let read = 0; read < 3; read += 1) await mergePhoneStatePracticeFacts("mistake", local);
+    // 3 чтения × 2 новых факта (мок не запоминает коммиты) — а не 3 × 502
+    expect(commit).toHaveBeenCalledTimes(6);
+  });
+
   test("register opening import is stable and does not overwrite an existing projection", async () => {
     const commit = jest.fn(async () => ({ duplicate: false }));
     const readProjection = jest.fn(async () => ({

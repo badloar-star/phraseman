@@ -668,6 +668,7 @@ function MistakePracticeSessionScreen() {
         facets: facetsFromParam(params.facetGroup),
         pool: reviewPool,
         mistakeIds: retryIds.ids,
+        interfaceLang: lang,
       });
       if (!cancelled && prepareStageRef.current === 'abandoned') {
         console.warn('[MISTAKES-GATE] session:prepare:late_after_ceiling → ignored', JSON.stringify({ resumed: prepared.resumed })); // guard-ok
@@ -774,7 +775,7 @@ function MistakePracticeSessionScreen() {
     return () => {
       cancelled = true;
     };
-  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, retryIds, reviewPool, requestedLength, router, studyTarget]);
+  }, [acknowledgeSessionStart, copy, entrySource, focusedMistakeId, hasPremiumAccess, lang, loadRevision, mistakeEnergyIntent, params.facetGroup, params.lessonId, persistSession, retryIds, reviewPool, requestedLength, router, studyTarget]);
 
   // зачем (D158): подготовка, не ответившая ни успехом, ни ошибкой, не держит экран вечно.
   useEffect(() => {

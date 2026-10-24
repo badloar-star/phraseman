@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-14:word:horror",
+    "correctText": "horror",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i01",
+    "correctText": "I do not like horror.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i02",
+    "correctText": "What would you like to watch?",
+    "correctResponseId": "en:lesson-27:session-14:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:word:trailer",
+    "correctText": "trailer",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i03",
+    "correctText": "Let us watch the trailer first.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i04",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-27:session-14:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:word:sequel",
+    "correctText": "sequel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i05",
+    "correctText": "Is this a sequel?",
+    "correctResponseId": "en:lesson-27:session-14:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i06",
+    "correctText": "Have you seen the first film?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i07",
+    "correctText": "saw",
+    "correctResponseId": "en:lesson-27:session-14:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:word:director",
+    "correctText": "director",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i08",
+    "correctText": "Who is the director?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i09",
+    "correctText": "She made the first film too.",
+    "correctResponseId": "en:lesson-27:session-14:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i10",
+    "correctText": "Please do not tell me the ending.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i11",
+    "correctText": "How long is it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i12",
+    "correctText": "finished",
+    "correctResponseId": "en:lesson-27:session-14:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i13",
+    "correctText": "I have already booked the seats.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i14",
+    "correctText": "The late show starts at nine.",
+    "correctResponseId": "en:lesson-27:session-14:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i15",
+    "correctText": "Let us meet ten minutes before it starts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i16",
+    "correctText": "She would come with us if she were here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-14:i17",
+    "correctText": "I will wait by the entrance.",
+    "correctResponseId": null
+  }
+]

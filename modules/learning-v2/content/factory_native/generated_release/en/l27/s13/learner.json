@@ -1,0 +1,1045 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-13:word:jazz",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — jazz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:word:jazz:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — jazz",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:word:jazz:audio",
+          "transcript": "jazz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:word:jazz:r1",
+            "targetText": "jazz",
+            "meaningByLocale": {
+              "ru": "Джаз.",
+              "uk": "Джаз."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "jazz",
+          "definitionByLocale": {
+            "ru": "Джаз.",
+            "uk": "Джаз."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что вам нравится джаз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Скажите, что вам нравится джаз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i01:audio",
+          "transcript": "I like jazz."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I like jazz.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, что друг обычно слушает.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что друг обычно слушает.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "What do you usually listen to?",
+        "localizedMeaning": {
+          "ru": "Уточните, что друг обычно слушает.",
+          "uk": "Уточніть, що друг зазвичай слухає."
+        },
+        "orderedTokens": [
+          "What",
+          "do",
+          "you",
+          "usually",
+          "listen",
+          "to"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:word:blues",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blues",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:word:blues:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blues",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:word:blues:audio",
+          "transcript": "blues"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:word:blues:r1",
+            "targetText": "blues",
+            "meaningByLocale": {
+              "ru": "Блюз; в названии жанра сохраняется -s.",
+              "uk": "Блюз; у назві жанру зберігається -s."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blues",
+          "definitionByLocale": {
+            "ru": "Блюз; в названии жанра сохраняется -s.",
+            "uk": "Блюз; у назві жанру зберігається -s."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i03:r1",
+          "text": "Is this blues?"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i03:r2",
+          "text": "Is this jazz?"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i03:r3",
+          "text": "Is this live?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i03:audio",
+          "transcript": "Is this blues?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:i03:r1",
+            "targetText": "Is this blues?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i03:r2",
+            "targetText": "Is this jazz?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i03:r3",
+            "targetText": "Is this live?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is this blues?",
+              "uk": "У записі звучить Is this blues?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is this blues?",
+              "uk": "У записі звучить Is this blues?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посоветуйте другу забронировать заранее.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i04:r1",
+          "text": "book"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i04:r2",
+          "text": "booked"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i04:r3",
+          "text": "to book"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посоветуйте другу забронировать заранее.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте другу забронировать заранее.",
+          "uk": "Порадьте другові забронювати заздалегідь."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ early.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-13:i04:r1",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i04:r2",
+            "text": "booked"
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i04:r3",
+            "text": "to book"
+          }
+        ],
+        "testedDimension": "Посоветуйте другу забронировать заранее.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i04:r2",
+            "correct": false,
+            "testedDimension": "Посоветуйте другу забронировать заранее.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма book.",
+              "uk": "Після would потрібна початкова форма book."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i04:r3",
+            "correct": false,
+            "testedDimension": "Посоветуйте другу забронировать заранее.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:word:rap",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rap",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:word:rap:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rap",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:word:rap:audio",
+          "transcript": "rap"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:word:rap:r1",
+            "targetText": "rap",
+            "meaningByLocale": {
+              "ru": "Рэп — музыкальный жанр.",
+              "uk": "Реп — музичний жанр."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rap",
+          "definitionByLocale": {
+            "ru": "Рэп — музыкальный жанр.",
+            "uk": "Реп — музичний жанр."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Предложите послушать рэп.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Предложите послушать рэп.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Shall we listen to some rap?",
+        "localizedMeaning": {
+          "ru": "Предложите послушать рэп.",
+          "uk": "Запропонуйте послухати реп."
+        },
+        "orderedTokens": [
+          "Shall",
+          "we",
+          "listen",
+          "to",
+          "some",
+          "rap"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сделать музыку немного тише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите сделать музыку немного тише.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i06:audio",
+          "transcript": "Could you turn it down a little?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you turn it down a little?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:word:folk",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — folk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:word:folk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — folk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:word:folk:audio",
+          "transcript": "folk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:word:folk:r1",
+            "targetText": "folk",
+            "meaningByLocale": {
+              "ru": "Фолк, народная музыка — здесь название жанра.",
+              "uk": "Фолк, народна музика — тут назва жанру."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "folk",
+          "definitionByLocale": {
+            "ru": "Фолк, народная музыка — здесь название жанра.",
+            "uk": "Фолк, народна музика — тут назва жанру."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i07",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i07:r1",
+          "text": "They play folk here."
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i07:r2",
+          "text": "They play jazz here."
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i07:r3",
+          "text": "They play folk there."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i07:audio",
+          "transcript": "They play folk here."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:i07:r1",
+            "targetText": "They play folk here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i07:r2",
+            "targetText": "They play jazz here.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i07:r3",
+            "targetText": "They play folk there.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They play folk here.",
+              "uk": "У записі звучить They play folk here."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит They play folk here.",
+              "uk": "У записі звучить They play folk here."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы слышали этот коллектив вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i08:r1",
+          "text": "heard"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i08:r2",
+          "text": "have heard"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i08:r3",
+          "text": "heared"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы слышали этот коллектив вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы слышали этот коллектив вчера.",
+          "uk": "Ви чули цей колектив учора."
+        },
+        "gappedTargetPhrase": "I ___ them yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-13:i08:r1",
+            "text": "heard"
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i08:r2",
+            "text": "have heard"
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i08:r3",
+            "text": "heared"
+          }
+        ],
+        "testedDimension": "Вы слышали этот коллектив вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы слышали этот коллектив вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь past simple.",
+              "uk": "Із yesterday тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы слышали этот коллектив вчера.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма hear — heard.",
+              "uk": "Минула форма hear — heard."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте приглашение пойти вместе.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Услышьте приглашение пойти вместе.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i09:audio",
+          "transcript": "Would you like to come with us?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Would you like to come with us?",
+        "orderedTokens": [
+          "Would",
+          "you",
+          "like",
+          "to",
+          "come",
+          "with",
+          "us"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните время начала концерта.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Уточните время начала концерта.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i10:audio",
+          "transcript": "What time does it start?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What time does it start?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i11:r1",
+          "text": "The doors open at seven."
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i11:r2",
+          "text": "The doors open at six."
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i11:r3",
+          "text": "The show starts at seven."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i11:audio",
+          "transcript": "The doors open at seven."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:i11:r1",
+            "targetText": "The doors open at seven.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i11:r2",
+            "targetText": "The doors open at six.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i11:r3",
+            "targetText": "The show starts at seven.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The doors open at seven.",
+              "uk": "У записі звучить The doors open at seven."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The doors open at seven.",
+              "uk": "У записі звучить The doors open at seven."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вечер занят. Представьте, что он свободен и вы идёте.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i12:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i12:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i12:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вечер занят. Представьте, что он свободен и вы идёте.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вечер занят. Представьте, что он свободен и вы идёте.",
+          "uk": "Вечір зайнятий. Уявіть, що він вільний і ви йдете."
+        },
+        "gappedTargetPhrase": "I would go if I ___ a free evening.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-13:i12:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i12:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i12:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вечер занят. Представьте, что он свободен и вы идёте.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i12:r2",
+            "correct": false,
+            "testedDimension": "Вечер занят. Представьте, что он свободен и вы идёте.",
+            "feedbackByLocale": {
+              "ru": "В условии had без would.",
+              "uk": "В умові had без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i12:r3",
+            "correct": false,
+            "testedDimension": "Вечер занят. Представьте, что он свободен и вы идёте.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма had.",
+              "uk": "Потрібна особова форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что вы купили два билета.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что вы купили два билета.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have bought two tickets.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что вы купили два билета.",
+          "uk": "Повідомте, що ви купили два квитки."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "bought",
+          "two",
+          "tickets"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите встретиться у входа.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Предложите встретиться у входа.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i14:audio",
+          "transcript": "Let us meet by the entrance."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us meet by the entrance.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о номере места.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i15:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о номере места.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i15:audio",
+          "transcript": "Which seat is yours?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Which seat is yours?",
+        "orderedTokens": [
+          "Which",
+          "seat",
+          "is",
+          "yours"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-13:i16:r1",
+          "text": "We are in the same row."
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i16:r2",
+          "text": "We are in the front row."
+        },
+        {
+          "responseId": "en:lesson-27:session-13:i16:r3",
+          "text": "We are in the same room."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-13:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-13:i16:audio",
+          "transcript": "We are in the same row."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-13:i16:r1",
+            "targetText": "We are in the same row.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i16:r2",
+            "targetText": "We are in the front row.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i16:r3",
+            "targetText": "We are in the same room.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-13:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are in the same row.",
+              "uk": "У записі звучить We are in the same row."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-13:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We are in the same row.",
+              "uk": "У записі звучить We are in the same row."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If she were here, she would sing along.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If she were here, she would sing along.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She would sing along if she were here.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If she were here, she would sing along.",
+          "uk": "Почніть із результату: If she were here, she would sing along."
+        },
+        "orderedTokens": [
+          "She",
+          "would",
+          "sing",
+          "along",
+          "if",
+          "she",
+          "were",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "13ae94092049366b14388b0c04bc6f9480447a93e1607e5906452fa3be1f70c3"
+}

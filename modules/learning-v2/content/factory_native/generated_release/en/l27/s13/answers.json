@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-13:word:jazz",
+    "correctText": "jazz",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i01",
+    "correctText": "I like jazz.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i02",
+    "correctText": "What do you usually listen to?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:word:blues",
+    "correctText": "blues",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i03",
+    "correctText": "Is this blues?",
+    "correctResponseId": "en:lesson-27:session-13:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i04",
+    "correctText": "book",
+    "correctResponseId": "en:lesson-27:session-13:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:word:rap",
+    "correctText": "rap",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i05",
+    "correctText": "Shall we listen to some rap?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i06",
+    "correctText": "Could you turn it down a little?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:word:folk",
+    "correctText": "folk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i07",
+    "correctText": "They play folk here.",
+    "correctResponseId": "en:lesson-27:session-13:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i08",
+    "correctText": "heard",
+    "correctResponseId": "en:lesson-27:session-13:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i09",
+    "correctText": "Would you like to come with us?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i10",
+    "correctText": "What time does it start?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i11",
+    "correctText": "The doors open at seven.",
+    "correctResponseId": "en:lesson-27:session-13:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i12",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-13:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i13",
+    "correctText": "I have bought two tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i14",
+    "correctText": "Let us meet by the entrance.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i15",
+    "correctText": "Which seat is yours?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i16",
+    "correctText": "We are in the same row.",
+    "correctResponseId": "en:lesson-27:session-13:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-13:i17",
+    "correctText": "She would sing along if she were here.",
+    "correctResponseId": null
+  }
+]

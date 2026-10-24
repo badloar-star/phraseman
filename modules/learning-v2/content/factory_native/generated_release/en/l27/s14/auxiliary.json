@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-14",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-14:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-14:intro1:r2": {
+          "ru": "После would нужно choose, не chose.",
+          "uk": "Після would потрібно choose, не chose."
+        },
+        "en:lesson-27:session-14:intro1:r3": {
+          "ru": "После would не ставим -ing.",
+          "uk": "Після would не ставимо -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-14:intro2:r2": {
+          "ru": "С last year здесь past simple.",
+          "uk": "Із last year тут past simple."
+        },
+        "en:lesson-27:session-14:intro2:r3": {
+          "ru": "В past simple нужна форма saw.",
+          "uk": "У past simple потрібна форма saw."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-14:intro3:r2": {
+          "ru": "После would нужна начальная форма come.",
+          "uk": "Після would потрібна початкова форма come."
+        },
+        "en:lesson-27:session-14:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5a3b688f6392046173cda87f9a5075558a7412bb719e397d134f1accee0923a4"
+}

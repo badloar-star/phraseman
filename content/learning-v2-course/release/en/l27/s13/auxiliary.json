@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-13",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-13:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-13:intro1:r2": {
+          "ru": "После would нужна начальная форма book.",
+          "uk": "Після would потрібна початкова форма book."
+        },
+        "en:lesson-27:session-13:intro1:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-13:intro2:r2": {
+          "ru": "С yesterday здесь past simple.",
+          "uk": "Із yesterday тут past simple."
+        },
+        "en:lesson-27:session-13:intro2:r3": {
+          "ru": "Прошедшая форма hear — heard.",
+          "uk": "Минула форма hear — heard."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-13:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-13:intro3:r2": {
+          "ru": "После would нужна начальная форма go.",
+          "uk": "Після would потрібна початкова форма go."
+        },
+        "en:lesson-27:session-13:intro3:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4471ed5c466d95e2a31f32f1dfefc332e19616d1a515f5409c1cf865b8335054"
+}

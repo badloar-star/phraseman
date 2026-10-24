@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-14",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-14:word:horror",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — horror",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:word:horror:audio"
+      ],
+      "accessibilityLabel": "Картка слова — horror",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:word:horror:audio",
+          "transcript": "horror"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:word:horror:r1",
+            "targetText": "horror",
+            "meaningByLocale": {
+              "ru": "Ужасы — в контексте жанра кино.",
+              "uk": "Жахи — у контексті жанру кіно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "horror",
+          "definitionByLocale": {
+            "ru": "Ужасы — в контексте жанра кино.",
+            "uk": "Жахи — у контексті жанру кіно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що ви не любите жахи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що ви не любите жахи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i01:audio",
+          "transcript": "I do not like horror."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I do not like horror.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i02:r1",
+          "text": "What would you like to watch?"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i02:r2",
+          "text": "What would you like to eat?"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i02:r3",
+          "text": "What would you like to read?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i02:audio",
+          "transcript": "What would you like to watch?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:i02:r1",
+            "targetText": "What would you like to watch?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i02:r2",
+            "targetText": "What would you like to eat?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i02:r3",
+            "targetText": "What would you like to read?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит What would you like to watch?",
+              "uk": "У записі звучить What would you like to watch?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит What would you like to watch?",
+              "uk": "У записі звучить What would you like to watch?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:word:trailer",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — trailer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:word:trailer:audio"
+      ],
+      "accessibilityLabel": "Картка слова — trailer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:word:trailer:audio",
+          "transcript": "trailer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:word:trailer:r1",
+            "targetText": "trailer",
+            "meaningByLocale": {
+              "ru": "Трейлер, короткий ролик о фильме.",
+              "uk": "Трейлер, короткий ролик про фільм."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trailer",
+          "definitionByLocale": {
+            "ru": "Трейлер, короткий ролик о фильме.",
+            "uk": "Трейлер, короткий ролик про фільм."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запропонуйте спочатку подивитися трейлер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запропонуйте спочатку подивитися трейлер.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Let us watch the trailer first.",
+        "localizedMeaning": {
+          "ru": "Предложите сначала посмотреть трейлер.",
+          "uk": "Запропонуйте спочатку подивитися трейлер."
+        },
+        "orderedTokens": [
+          "Let",
+          "us",
+          "watch",
+          "the",
+          "trailer",
+          "first"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На місці друга ви обрали б комедію.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i04:r1",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i04:r2",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i04:r3",
+          "text": "choosing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На місці друга ви обрали б комедію.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На месте друга вы выбрали бы комедию.",
+          "uk": "На місці друга ви обрали б комедію."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ a comedy.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-14:i04:r1",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i04:r2",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i04:r3",
+            "text": "choosing"
+          }
+        ],
+        "testedDimension": "На місці друга ви обрали б комедію.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "На місці друга ви обрали б комедію.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма choose.",
+              "uk": "Після would потрібна початкова форма choose."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "На місці друга ви обрали б комедію.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим -ing.",
+              "uk": "Після would не ставимо -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:word:sequel",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sequel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:word:sequel:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sequel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:word:sequel:audio",
+          "transcript": "sequel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:word:sequel:r1",
+            "targetText": "sequel",
+            "meaningByLocale": {
+              "ru": "Продолжение произведения, например фильма.",
+              "uk": "Продовження твору, наприклад фільму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sequel",
+          "definitionByLocale": {
+            "ru": "Продолжение произведения, например фильма.",
+            "uk": "Продовження твору, наприклад фільму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i05",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i05:r1",
+          "text": "Is this a sequel?"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i05:r2",
+          "text": "Is that a sequel?"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i05:r3",
+          "text": "Is this a comedy?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i05:audio",
+          "transcript": "Is this a sequel?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:i05:r1",
+            "targetText": "Is this a sequel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i05:r2",
+            "targetText": "Is that a sequel?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i05:r3",
+            "targetText": "Is this a comedy?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is this a sequel?",
+              "uk": "У записі звучить Is this a sequel?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is this a sequel?",
+              "uk": "У записі звучить Is this a sequel?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте друга, чи бачив він першу частину.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i06:audio"
+      ],
+      "accessibilityLabel": "Запитайте друга, чи бачив він першу частину.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i06:audio",
+          "transcript": "Have you seen the first film?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Have you seen the first film?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви подивилися його минулого року.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i07:r1",
+          "text": "saw"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i07:r2",
+          "text": "have seen"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i07:r3",
+          "text": "seen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви подивилися його минулого року.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы посмотрели его в прошлом году.",
+          "uk": "Ви подивилися його минулого року."
+        },
+        "gappedTargetPhrase": "I ___ it last year.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-14:i07:r1",
+            "text": "saw"
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i07:r2",
+            "text": "have seen"
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i07:r3",
+            "text": "seen"
+          }
+        ],
+        "testedDimension": "Ви подивилися його минулого року.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i07:r2",
+            "correct": false,
+            "testedDimension": "Ви подивилися його минулого року.",
+            "feedbackByLocale": {
+              "ru": "С last year здесь past simple.",
+              "uk": "Із last year тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i07:r3",
+            "correct": false,
+            "testedDimension": "Ви подивилися його минулого року.",
+            "feedbackByLocale": {
+              "ru": "Для past simple нужна форма saw.",
+              "uk": "Для past simple потрібна форма saw."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:word:director",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — director",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:word:director:audio"
+      ],
+      "accessibilityLabel": "Картка слова — director",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:word:director:audio",
+          "transcript": "director"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:word:director:r1",
+            "targetText": "director",
+            "meaningByLocale": {
+              "ru": "Режиссёр — в разговоре о кино.",
+              "uk": "Режисер — у розмові про кіно."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "director",
+          "definitionByLocale": {
+            "ru": "Режиссёр — в разговоре о кино.",
+            "uk": "Режисер — у розмові про кіно."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i08",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть, хто режисер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть, хто режисер.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Who is the director?",
+        "localizedMeaning": {
+          "ru": "Уточните, кто режиссёр.",
+          "uk": "Уточніть, хто режисер."
+        },
+        "orderedTokens": [
+          "Who",
+          "is",
+          "the",
+          "director"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i09",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i09:r1",
+          "text": "She made the first film too."
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i09:r2",
+          "text": "She wrote the first film too."
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i09:r3",
+          "text": "He made the first film too."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i09:audio",
+          "transcript": "She made the first film too."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:i09:r1",
+            "targetText": "She made the first film too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i09:r2",
+            "targetText": "She wrote the first film too.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i09:r3",
+            "targetText": "He made the first film too.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She made the first film too.",
+              "uk": "У записі звучить She made the first film too."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She made the first film too.",
+              "uk": "У записі звучить She made the first film too."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i10",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть не розповідати кінцівку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Попросіть не розповідати кінцівку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i10:audio",
+          "transcript": "Please do not tell me the ending."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please do not tell me the ending.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про тривалість фільму.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про тривалість фільму.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i11:audio",
+          "transcript": "How long is it?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "How long is it?",
+        "orderedTokens": [
+          "How",
+          "long",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви прийшли б, якби закінчували роботу раніше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i12:r1",
+          "text": "finished"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i12:r2",
+          "text": "would finished"
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i12:r3",
+          "text": "finishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви прийшли б, якби закінчували роботу раніше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пришли бы, если бы заканчивали работу раньше.",
+          "uk": "Ви прийшли б, якби закінчували роботу раніше."
+        },
+        "gappedTargetPhrase": "I would come if I ___ work earlier.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-14:i12:r1",
+            "text": "finished"
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i12:r2",
+            "text": "would finished"
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i12:r3",
+            "text": "finishing"
+          }
+        ],
+        "testedDimension": "Ви прийшли б, якби закінчували роботу раніше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i12:r2",
+            "correct": false,
+            "testedDimension": "Ви прийшли б, якби закінчували роботу раніше.",
+            "feedbackByLocale": {
+              "ru": "В условии finished без would.",
+              "uk": "В умові finished без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i12:r3",
+            "correct": false,
+            "testedDimension": "Ви прийшли б, якби закінчували роботу раніше.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма finished.",
+              "uk": "Потрібна особова форма finished."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте, що ви вже забронювали місця.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте, що ви вже забронювали місця.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already booked the seats.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что вы уже забронировали места.",
+          "uk": "Повідомте, що ви вже забронювали місця."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "booked",
+          "the",
+          "seats"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-14:i14:r1",
+          "text": "The late show starts at nine."
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i14:r2",
+          "text": "The late show starts at ten."
+        },
+        {
+          "responseId": "en:lesson-27:session-14:i14:r3",
+          "text": "The next show starts at nine."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i14:audio",
+          "transcript": "The late show starts at nine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-14:i14:r1",
+            "targetText": "The late show starts at nine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i14:r2",
+            "targetText": "The late show starts at ten.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i14:r3",
+            "targetText": "The next show starts at nine.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-14:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The late show starts at nine.",
+              "uk": "У записі звучить The late show starts at nine."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-14:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The late show starts at nine.",
+              "uk": "У записі звучить The late show starts at nine."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте зустрітися за десять хвилин до початку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i15:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте зустрітися за десять хвилин до початку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i15:audio",
+          "transcript": "Let us meet ten minutes before it starts."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Let us meet ten minutes before it starts.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із результату: If she were here, she would come with us.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із результату: If she were here, she would come with us.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She would come with us if she were here.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If she were here, she would come with us.",
+          "uk": "Почніть із результату: If she were here, she would come with us."
+        },
+        "orderedTokens": [
+          "She",
+          "would",
+          "come",
+          "with",
+          "us",
+          "if",
+          "she",
+          "were",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-14:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте обіцянку зачекати біля входу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-14:i17:audio"
+      ],
+      "accessibilityLabel": "Почуйте обіцянку зачекати біля входу.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-14:i17:audio",
+          "transcript": "I will wait by the entrance."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I will wait by the entrance.",
+        "orderedTokens": [
+          "I",
+          "will",
+          "wait",
+          "by",
+          "the",
+          "entrance"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "adbb2275f13541dcc9cedf08c256d4f9c21f64d531f0a303512445aeeeeee126"
+}

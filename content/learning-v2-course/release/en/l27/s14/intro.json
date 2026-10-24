@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-14",
+  "learningOutcomeByLocale": {
+    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-14:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какой фильм выбрать",
+        "uk": "Який фільм обрати"
+      },
+      "bodyByLocale": {
+        "ru": "Horror — ужасы, когда речь о кино: I do not like horror — я не люблю ужасы. Trailer — трейлер, короткий ролик о фильме. Let us watch the trailer first — давай сначала посмотрим трейлер. Он помогает понять, что это за фильм, но не заменяет весь фильм. Друг просит совета: If I were you, I would choose a comedy — на твоём месте я бы выбрал комедию. После would нужна начальная форма choose.",
+        "uk": "Horror — жахи, коли йдеться про кіно: I do not like horror — я не люблю жахи. Trailer — трейлер, короткий ролик про фільм. Let us watch the trailer first — давай спочатку подивимося трейлер. Він допомагає зрозуміти, що це за фільм, але не замінює весь фільм. Друг просить поради: If I were you, I would choose a comedy — на твоєму місці я б обрав комедію. Після would потрібна початкова форма choose."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-14:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-14:intro1:r1",
+              "text": "If I were you, I would choose a comedy."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro1:r2",
+              "text": "If I were you, I would chose a comedy."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro1:r3",
+              "text": "If I were you, I would choosing a comedy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-14:intro1:r1",
+              "text": "If I were you, I would choose a comedy."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro1:r2",
+              "text": "If I were you, I would chose a comedy."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro1:r3",
+              "text": "If I were you, I would choosing a comedy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-14:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Продолжение истории",
+        "uk": "Продовження історії"
+      },
+      "bodyByLocale": {
+        "ru": "Sequel — продолжение произведения, например фильма. Is this a sequel? — это продолжение? Director — режиссёр в разговоре о кино. Who is the director? — кто режиссёр? Вы уже видели первую часть: I have seen the first film — я видел первый фильм. I saw it last year — я посмотрел его в прошлом году: здесь названо законченное время, поэтому saw без have. See — saw — seen: разные формы нужны в разных конструкциях.",
+        "uk": "Sequel — продовження твору, наприклад фільму. Is this a sequel? — це продовження? Director — режисер у розмові про кіно. Who is the director? — хто режисер? Ви вже бачили першу частину: I have seen the first film — я бачив перший фільм. I saw it last year — я подивився його минулого року: тут названо завершений час, тому saw без have. See — saw — seen: різні форми потрібні в різних конструкціях."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-14:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-14:intro2:r1",
+              "text": "I saw it last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro2:r2",
+              "text": "I have seen it last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro2:r3",
+              "text": "I seen it last year."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-14:intro2:r1",
+              "text": "I saw it last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro2:r2",
+              "text": "I have seen it last year."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro2:r3",
+              "text": "I seen it last year."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-14:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Успеть на сеанс",
+        "uk": "Встигнути на сеанс"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете вечерний сеанс. I would come if I finished work earlier — я бы пришёл, если бы заканчивал работу раньше. Finished после if описывает воображаемое условие. Подруга сейчас далеко: If she were here, she would come with us — если бы она была здесь, она бы пошла с нами. Это не обещание её приезда. Вы договариваетесь встретиться у входа. Друг просит не рассказывать концовку; название продолжения уже подсказало, что главный герой всё-таки вернулся.",
+        "uk": "Ви обираєте вечірній сеанс. I would come if I finished work earlier — я б прийшов, якби закінчував роботу раніше. Finished після if описує уявну умову. Подруга зараз далеко: If she were here, she would come with us — якби вона була тут, вона б пішла з нами. Це не обіцянка її приїзду. Ви домовляєтеся зустрітися біля входу. Друг просить не розповідати кінцівку; назва продовження вже підказала, що головний герой усе-таки повернувся."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-14:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-14:intro3:r1",
+              "text": "If she were here, she would come with us."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro3:r2",
+              "text": "If she were here, she would came with us."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro3:r3",
+              "text": "If she were here, she would to come with us."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-14:intro3:r1",
+              "text": "If she were here, she would come with us."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro3:r2",
+              "text": "If she were here, she would came with us."
+            },
+            {
+              "responseId": "en:lesson-27:session-14:intro3:r3",
+              "text": "If she were here, she would to come with us."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6efe085e316bcf3231d3a7c347eacedea3e042d8d7d1eb3b2c3e07388db65847"
+}

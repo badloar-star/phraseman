@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что ты слушаешь",
+        "uk": "Що ти слухаєш"
+      },
+      "bodyByLocale": {
+        "ru": "Jazz — джаз. I like jazz — мне нравится джаз. Blues — блюз. Is this blues? — это блюз? У названия blues сохраняется -s, но здесь это название музыки, а не несколько предметов. Перед названиями жанров в этих фразах артикль не нужен. Вы выбираете концерт: If I were you, I would book early — на твоём месте я бы забронировал заранее. Were выражает воображаемое положение, would book — совет о действии.",
+        "uk": "Jazz — джаз. I like jazz — мені подобається джаз. Blues — блюз. Is this blues? — це блюз? У назві blues зберігається -s, але тут це назва музики, а не кілька предметів. Перед назвами жанрів у цих фразах артикль не потрібен. Ви обираєте концерт: If I were you, I would book early — на твоєму місці я б забронював заздалегідь. Were виражає уявне становище, would book — пораду щодо дії."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-13:intro1:r1",
+              "text": "If I were you, I would book early."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro1:r2",
+              "text": "If I were you, I would booked early."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro1:r3",
+              "text": "If I were you, I would to book early."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-13:intro1:r1",
+              "text": "If I were you, I would book early."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro1:r2",
+              "text": "If I were you, I would booked early."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro1:r3",
+              "text": "If I were you, I would to book early."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать музыку вместе",
+        "uk": "Обрати музику разом"
+      },
+      "bodyByLocale": {
+        "ru": "Rap — рэп. Shall we listen to some rap? — послушаем немного рэпа? Folk — фолк, народная музыка, когда мы говорим о жанре. They play folk here — здесь играют фолк. У folk бывают другие значения, но сейчас речь о музыке. Вы слышали группу вчера: I heard them yesterday — я слышал их вчера. Yesterday называет законченное время, поэтому heard без have. I have heard them before — я уже слышал их раньше: конкретное законченное время здесь не названо.",
+        "uk": "Rap — реп. Shall we listen to some rap? — послухаємо трохи репу? Folk — фолк, народна музика, коли ми говоримо про жанр. They play folk here — тут грають фолк. У folk бувають інші значення, але зараз ідеться про музику. Ви чули гурт учора: I heard them yesterday — я чув їх учора. Yesterday називає завершений час, тому heard без have. I have heard them before — я вже чув їх раніше: конкретного завершеного часу тут не названо."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-13:intro2:r1",
+              "text": "I heard them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro2:r2",
+              "text": "I have heard them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro2:r3",
+              "text": "I heared them yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-13:intro2:r1",
+              "text": "I heard them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro2:r2",
+              "text": "I have heard them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro2:r3",
+              "text": "I heared them yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пойти на концерт",
+        "uk": "Піти на концерт"
+      },
+      "bodyByLocale": {
+        "ru": "Would you like to come with us? — хочешь пойти с нами? Это приглашение. Друг занят: I would go if I had a free evening — я бы пошёл, если бы у меня был свободный вечер. Это уже воображаемое условие: had после if, would go в результате. Вы сообщаете о покупке: I have bought two tickets — я купил два билета. Друг говорит, что знает все песни. Вы просите его всё-таки дать певцу тоже немного попеть.",
+        "uk": "Would you like to come with us? — хочеш піти з нами? Це запрошення. Друг зайнятий: I would go if I had a free evening — я б пішов, якби мав вільний вечір. Це вже уявна умова: had після if, would go в результаті. Ви повідомляєте про покупку: I have bought two tickets — я купив два квитки. Друг каже, що знає всі пісні. Ви просите його все-таки дати співакові теж трохи поспівати."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-13:intro3:r1",
+              "text": "I would go if I had a free evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro3:r2",
+              "text": "I would went if I had a free evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro3:r3",
+              "text": "I would go if I would had a free evening."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-13:intro3:r1",
+              "text": "I would go if I had a free evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro3:r2",
+              "text": "I would went if I had a free evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-13:intro3:r3",
+              "text": "I would go if I would had a free evening."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "162968fcc2cc2017ffd4442e82295cc591882debc88e570324d479de063b1024"
+}

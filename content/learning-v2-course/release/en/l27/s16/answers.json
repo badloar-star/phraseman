@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-16:word:granola",
+    "correctText": "granola",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i01",
+    "correctText": "Is there granola in this yogurt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i02",
+    "correctText": "It comes with fresh fruit.",
+    "correctResponseId": "en:lesson-27:session-16:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i03",
+    "correctText": "Could I see the ingredients?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i04",
+    "correctText": "order",
+    "correctResponseId": "en:lesson-27:session-16:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:word:brownie",
+    "correctText": "brownie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i05",
+    "correctText": "Could I have a brownie?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i06",
+    "correctText": "Could you put it in a box?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:word:frosting",
+    "correctText": "frosting",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i07",
+    "correctText": "This cake has too much frosting for me.",
+    "correctResponseId": "en:lesson-27:session-16:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i08",
+    "correctText": "Who made this cake?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i09",
+    "correctText": "baked",
+    "correctResponseId": "en:lesson-27:session-16:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:word:yolk",
+    "correctText": "yolk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i10",
+    "correctText": "The recipe needs one yolk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i11",
+    "correctText": "I have already measured the flour.",
+    "correctResponseId": "en:lesson-27:session-16:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i12",
+    "correctText": "Could you pass me the large bowl?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i13",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-16:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i14",
+    "correctText": "She would help us if she were here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i15",
+    "correctText": "Please set a timer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i16",
+    "correctText": "I will make some tea.",
+    "correctResponseId": "en:lesson-27:session-16:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-16:i17",
+    "correctText": "Thanks for sharing the recipe.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-15:word:bowling",
+    "correctText": "bowling",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i01",
+    "correctText": "Would you like to go bowling?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i02",
+    "correctText": "How much is it per person?",
+    "correctResponseId": "en:lesson-27:session-15:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i03",
+    "correctText": "Can we rent shoes here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i04",
+    "correctText": "book",
+    "correctResponseId": "en:lesson-27:session-15:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:word:billiards",
+    "correctText": "billiards",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i05",
+    "correctText": "Shall we play billiards?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i06",
+    "correctText": "How does it work?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i07",
+    "correctText": "I have booked a table.",
+    "correctResponseId": "en:lesson-27:session-15:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:word:darts",
+    "correctText": "darts",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i08",
+    "correctText": "I prefer darts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i09",
+    "correctText": "played",
+    "correctResponseId": "en:lesson-27:session-15:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i10",
+    "correctText": "It is your turn.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:word:handball",
+    "correctText": "handball",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i11",
+    "correctText": "My sister plays handball.",
+    "correctResponseId": "en:lesson-27:session-15:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i12",
+    "correctText": "play",
+    "correctResponseId": "en:lesson-27:session-15:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i13",
+    "correctText": "What time shall we meet?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i14",
+    "correctText": "I would join you if I had a free evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i15",
+    "correctText": "Saturday works for me.",
+    "correctResponseId": "en:lesson-27:session-15:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i16",
+    "correctText": "Let us meet at the desk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-15:i17",
+    "correctText": "Thanks for inviting me.",
+    "correctResponseId": null
+  }
+]

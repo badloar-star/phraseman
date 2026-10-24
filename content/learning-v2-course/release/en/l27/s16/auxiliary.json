@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-16",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-16:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-16:intro1:r2": {
+          "ru": "После would нужна начальная форма order.",
+          "uk": "Після would потрібна початкова форма order."
+        },
+        "en:lesson-27:session-16:intro1:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-16:intro2:r2": {
+          "ru": "С yesterday здесь past simple.",
+          "uk": "Із yesterday тут past simple."
+        },
+        "en:lesson-27:session-16:intro2:r3": {
+          "ru": "Для прошлого события нужна форма baked.",
+          "uk": "Для минулої події потрібна форма baked."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-16:intro3:r2": {
+          "ru": "После would нужна начальная форма bake.",
+          "uk": "Після would потрібна початкова форма bake."
+        },
+        "en:lesson-27:session-16:intro3:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7c102046f5b85731bddea359c3e6b329d11c67b7303d0fae05a0efda53784130"
+}

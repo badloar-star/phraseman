@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-15",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-15:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-15:intro1:r2": {
+          "ru": "После would нужна начальная форма book.",
+          "uk": "Після would потрібна початкова форма book."
+        },
+        "en:lesson-27:session-15:intro1:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-15:intro2:r2": {
+          "ru": "С last Friday здесь past simple.",
+          "uk": "Із last Friday тут past simple."
+        },
+        "en:lesson-27:session-15:intro2:r3": {
+          "ru": "Для прошлого события нужна форма played.",
+          "uk": "Для минулої події потрібна форма played."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-15:intro3:r2": {
+          "ru": "После would нужна начальная форма play.",
+          "uk": "Після would потрібна початкова форма play."
+        },
+        "en:lesson-27:session-15:intro3:r3": {
+          "ru": "После would не ставим -ing.",
+          "uk": "Після would не ставимо -ing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5eacf42d10423a4ba61578920bd37ae25ae44c92d98991f7e2a33b4d82e51a21"
+}

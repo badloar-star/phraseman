@@ -1,0 +1,1040 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-16",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-16:word:granola",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — granola",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:word:granola:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — granola",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:word:granola:audio",
+          "transcript": "granola"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:word:granola:r1",
+            "targetText": "granola",
+            "meaningByLocale": {
+              "ru": "Гранола — запечённая смесь хлопьев с добавками.",
+              "uk": "Гранола — запечена суміш пластівців із додатками."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "granola",
+          "definitionByLocale": {
+            "ru": "Гранола — запечённая смесь хлопьев с добавками.",
+            "uk": "Гранола — запечена суміш пластівців із додатками."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, есть ли в йогурте гранола.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i01:audio"
+      ],
+      "accessibilityLabel": "Уточните, есть ли в йогурте гранола.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i01:audio",
+          "transcript": "Is there granola in this yogurt?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is there granola in this yogurt?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i02:r1",
+          "text": "It comes with fresh fruit."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i02:r2",
+          "text": "It comes with dried fruit."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i02:r3",
+          "text": "It comes without fruit."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i02:audio",
+          "transcript": "It comes with fresh fruit."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:i02:r1",
+            "targetText": "It comes with fresh fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i02:r2",
+            "targetText": "It comes with dried fruit.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i02:r3",
+            "targetText": "It comes without fruit.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It comes with fresh fruit.",
+              "uk": "У записі звучить It comes with fresh fruit."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It comes with fresh fruit.",
+              "uk": "У записі звучить It comes with fresh fruit."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите показать список ингредиентов.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите показать список ингредиентов.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I see the ingredients?",
+        "localizedMeaning": {
+          "ru": "Попросите показать список ингредиентов.",
+          "uk": "Попросіть показати список інгредієнтів."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "see",
+          "the",
+          "ingredients"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На месте друга вы заказали бы меньшую порцию.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i04:r1",
+          "text": "order"
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i04:r2",
+          "text": "ordered"
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i04:r3",
+          "text": "to order"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На месте друга вы заказали бы меньшую порцию.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На месте друга вы заказали бы меньшую порцию.",
+          "uk": "На місці друга ви замовили б меншу порцію."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ the smaller one.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-16:i04:r1",
+            "text": "order"
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i04:r2",
+            "text": "ordered"
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i04:r3",
+            "text": "to order"
+          }
+        ],
+        "testedDimension": "На месте друга вы заказали бы меньшую порцию.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i04:r2",
+            "correct": false,
+            "testedDimension": "На месте друга вы заказали бы меньшую порцию.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма order.",
+              "uk": "Після would потрібна початкова форма order."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i04:r3",
+            "correct": false,
+            "testedDimension": "На месте друга вы заказали бы меньшую порцию.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:word:brownie",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brownie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:word:brownie:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brownie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:word:brownie:audio",
+          "transcript": "brownie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:word:brownie:r1",
+            "targetText": "brownie",
+            "meaningByLocale": {
+              "ru": "Брауни — шоколадное пирожное.",
+              "uk": "Брауні — шоколадне тістечко."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brownie",
+          "definitionByLocale": {
+            "ru": "Брауни — шоколадное пирожное.",
+            "uk": "Брауні — шоколадне тістечко."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо закажите одно брауни.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо закажите одно брауни.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could I have a brownie?",
+        "localizedMeaning": {
+          "ru": "Вежливо закажите одно брауни.",
+          "uk": "Ввічливо замовте одне брауні."
+        },
+        "orderedTokens": [
+          "Could",
+          "I",
+          "have",
+          "a",
+          "brownie"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите упаковать десерт с собой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите упаковать десерт с собой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i06:audio",
+          "transcript": "Could you put it in a box?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you put it in a box?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:word:frosting",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — frosting",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:word:frosting:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — frosting",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:word:frosting:audio",
+          "transcript": "frosting"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:word:frosting:r1",
+            "targetText": "frosting",
+            "meaningByLocale": {
+              "ru": "Сладкое покрытие или крем для выпечки.",
+              "uk": "Солодке покриття або крем для випічки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "frosting",
+          "definitionByLocale": {
+            "ru": "Сладкое покрытие или крем для выпечки.",
+            "uk": "Солодке покриття або крем для випічки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i07:r1",
+          "text": "This cake has too much frosting for me."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i07:r2",
+          "text": "This cake has too much sugar for me."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i07:r3",
+          "text": "This cake has enough frosting for me."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i07:audio",
+          "transcript": "This cake has too much frosting for me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:i07:r1",
+            "targetText": "This cake has too much frosting for me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i07:r2",
+            "targetText": "This cake has too much sugar for me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i07:r3",
+            "targetText": "This cake has enough frosting for me.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cake has too much frosting for me.",
+              "uk": "У записі звучить This cake has too much frosting for me."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This cake has too much frosting for me.",
+              "uk": "У записі звучить This cake has too much frosting for me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос, кто испёк торт.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i08:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос, кто испёк торт.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i08:audio",
+          "transcript": "Who made this cake?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Who made this cake?",
+        "orderedTokens": [
+          "Who",
+          "made",
+          "this",
+          "cake"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы испекли его вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i09:r1",
+          "text": "baked"
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i09:r2",
+          "text": "have baked"
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i09:r3",
+          "text": "baking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы испекли его вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы испекли его вчера.",
+          "uk": "Ви спекли його вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-16:i09:r1",
+            "text": "baked"
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i09:r2",
+            "text": "have baked"
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i09:r3",
+            "text": "baking"
+          }
+        ],
+        "testedDimension": "Вы испекли его вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i09:r2",
+            "correct": false,
+            "testedDimension": "Вы испекли его вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь past simple.",
+              "uk": "Із yesterday тут past simple."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i09:r3",
+            "correct": false,
+            "testedDimension": "Вы испекли его вчера.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма baked.",
+              "uk": "Потрібна особова форма baked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:word:yolk",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — yolk",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:word:yolk:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — yolk",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:word:yolk:audio",
+          "transcript": "yolk"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:word:yolk:r1",
+            "targetText": "yolk",
+            "meaningByLocale": {
+              "ru": "Яичный желток.",
+              "uk": "Яєчний жовток."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "yolk",
+          "definitionByLocale": {
+            "ru": "Яичный желток.",
+            "uk": "Яєчний жовток."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, что рецепту нужен один желток.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что рецепту нужен один желток.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The recipe needs one yolk.",
+        "localizedMeaning": {
+          "ru": "Уточните, что рецепту нужен один желток.",
+          "uk": "Уточніть, що рецепту потрібен один жовток."
+        },
+        "orderedTokens": [
+          "The",
+          "recipe",
+          "needs",
+          "one",
+          "yolk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i11:r1",
+          "text": "I have already measured the flour."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i11:r2",
+          "text": "I have already measured the sugar."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i11:r3",
+          "text": "I have already bought the flour."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i11:audio",
+          "transcript": "I have already measured the flour."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:i11:r1",
+            "targetText": "I have already measured the flour.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i11:r2",
+            "targetText": "I have already measured the sugar.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i11:r3",
+            "targetText": "I have already bought the flour.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already measured the flour.",
+              "uk": "У записі звучить I have already measured the flour."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already measured the flour.",
+              "uk": "У записі звучить I have already measured the flour."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите передать большую миску.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i12:audio"
+      ],
+      "accessibilityLabel": "Попросите передать большую миску.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i12:audio",
+          "transcript": "Could you pass me the large bowl?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you pass me the large bowl?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пекли бы чаще, если бы кухня была больше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i13:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i13:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i13:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пекли бы чаще, если бы кухня была больше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пекли бы чаще, если бы кухня была больше.",
+          "uk": "Ви пекли б частіше, якби кухня була більшою."
+        },
+        "gappedTargetPhrase": "I would bake more often if I ___ a bigger kitchen.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-16:i13:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i13:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i13:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Вы пекли бы чаще, если бы кухня была больше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i13:r2",
+            "correct": false,
+            "testedDimension": "Вы пекли бы чаще, если бы кухня была больше.",
+            "feedbackByLocale": {
+              "ru": "В условии had без would.",
+              "uk": "В умові had без would."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i13:r3",
+            "correct": false,
+            "testedDimension": "Вы пекли бы чаще, если бы кухня была больше.",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма had.",
+              "uk": "Потрібна особова форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If she were here, she would help us.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If she were here, she would help us.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She would help us if she were here.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If she were here, she would help us.",
+          "uk": "Почніть із результату: If she were here, she would help us."
+        },
+        "orderedTokens": [
+          "She",
+          "would",
+          "help",
+          "us",
+          "if",
+          "she",
+          "were",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу поставить таймер.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i15:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу поставить таймер.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i15:audio",
+          "transcript": "Please set a timer."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please set a timer.",
+        "orderedTokens": [
+          "Please",
+          "set",
+          "a",
+          "timer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-16:i16:r1",
+          "text": "I will make some tea."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i16:r2",
+          "text": "I will make some coffee."
+        },
+        {
+          "responseId": "en:lesson-27:session-16:i16:r3",
+          "text": "I will bring some tea."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i16:audio",
+          "transcript": "I will make some tea."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-16:i16:r1",
+            "targetText": "I will make some tea.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i16:r2",
+            "targetText": "I will make some coffee.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i16:r3",
+            "targetText": "I will bring some tea.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-16:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will make some tea.",
+              "uk": "У записі звучить I will make some tea."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-16:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I will make some tea.",
+              "uk": "У записі звучить I will make some tea."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-16:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите друга за то, что он поделился рецептом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-16:i17:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите друга за то, что он поделился рецептом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-16:i17:audio",
+          "transcript": "Thanks for sharing the recipe."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thanks for sharing the recipe.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ab2c3eb9214f98c802f7983f02ce703c901547f893669a075c0178ce851de61f"
+}

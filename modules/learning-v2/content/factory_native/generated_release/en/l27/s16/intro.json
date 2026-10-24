@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-16",
+  "learningOutcomeByLocale": {
+    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-16:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заказать завтрак",
+        "uk": "Замовити сніданок"
+      },
+      "bodyByLocale": {
+        "ru": "Granola — гранола, запечённая смесь хлопьев, часто с орехами или сухофруктами. Is there granola in this yogurt? — в этом йогурте есть гранола? Состав бывает разным, поэтому по названию нельзя угадать все ингредиенты. Друг выбирает порцию: If I were you, I would order the smaller one — на твоём месте я бы заказал меньшую. После would — order без to; If I were you вводит совет.",
+        "uk": "Granola — гранола, запечена суміш пластівців, часто з горіхами або сухофруктами. Is there granola in this yogurt? — у цьому йогурті є гранола? Склад буває різним, тому за назвою не можна вгадати всі інгредієнти. Друг обирає порцію: If I were you, I would order the smaller one — на твоєму місці я б замовив меншу. Після would — order без to; If I were you вводить пораду."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-16:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-16:intro1:r1",
+              "text": "If I were you, I would order the smaller one."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro1:r2",
+              "text": "If I were you, I would ordered the smaller one."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro1:r3",
+              "text": "If I were you, I would to order the smaller one."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-16:intro1:r1",
+              "text": "If I were you, I would order the smaller one."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro1:r2",
+              "text": "If I were you, I would ordered the smaller one."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro1:r3",
+              "text": "If I were you, I would to order the smaller one."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-16:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать десерт",
+        "uk": "Обрати десерт"
+      },
+      "bodyByLocale": {
+        "ru": "Brownie — брауни, шоколадное пирожное. Could I have a brownie? — можно мне брауни? Одно пирожное — a brownie, несколько — brownies. Frosting — сладкое покрытие или крем для торта и другой выпечки; слово часто используют в американском английском. This cake has too much frosting for me — для меня на этом торте слишком много крема. Вы обсуждаете вчерашнюю выпечку: I baked it yesterday — я испёк это вчера. Yesterday — законченное время, поэтому baked без have.",
+        "uk": "Brownie — брауні, шоколадне тістечко. Could I have a brownie? — можна мені брауні? Одне тістечко — a brownie, кілька — brownies. Frosting — солодке покриття або крем для торта та іншої випічки; слово часто використовують в американській англійській. This cake has too much frosting for me — для мене на цьому торті забагато крему. Ви обговорюєте вчорашню випічку: I baked it yesterday — я спік це вчора. Yesterday — завершений час, тому baked без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-16:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-16:intro2:r1",
+              "text": "I baked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro2:r2",
+              "text": "I have baked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro2:r3",
+              "text": "I baking it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-16:intro2:r1",
+              "text": "I baked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro2:r2",
+              "text": "I have baked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro2:r3",
+              "text": "I baking it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-16:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Разобрать рецепт",
+        "uk": "Розібрати рецепт"
+      },
+      "bodyByLocale": {
+        "ru": "Yolk — яичный желток. The recipe needs one yolk — для рецепта нужен один желток. Не всё яйцо: yolk называет только желток. Вы хотели бы чаще печь: I would bake more often if I had a bigger kitchen — я бы пёк чаще, если бы у меня была кухня побольше. Had здесь воображаемое условие. I have already measured the flour — я уже отмерил муку: результат готов сейчас. Друг предлагает оставить десерт на завтра. Очень разумная мысль, пока перед вами не поставили тарелку с брауни.",
+        "uk": "Yolk — яєчний жовток. The recipe needs one yolk — для рецепта потрібен один жовток. Не все яйце: yolk називає лише жовток. Ви хотіли б частіше пекти: I would bake more often if I had a bigger kitchen — я б пік частіше, якби мав більшу кухню. Had тут — уявна умова. I have already measured the flour — я вже відміряв борошно: результат готовий зараз. Друг пропонує залишити десерт на завтра. Дуже розумна думка, поки перед вами не поставили тарілку з брауні."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-16:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-16:intro3:r1",
+              "text": "I would bake more often if I had a bigger kitchen."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro3:r2",
+              "text": "I would baked more often if I had a bigger kitchen."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro3:r3",
+              "text": "I would bake more often if I would had a bigger kitchen."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-16:intro3:r1",
+              "text": "I would bake more often if I had a bigger kitchen."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro3:r2",
+              "text": "I would baked more often if I had a bigger kitchen."
+            },
+            {
+              "responseId": "en:lesson-27:session-16:intro3:r3",
+              "text": "I would bake more often if I would had a bigger kitchen."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1e2045054dc22c1350daa068c74999cb32885eefb7698f2b153f1f8ce159d016"
+}

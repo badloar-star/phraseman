@@ -1,0 +1,2171 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-15",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-15:word:bowling",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — bowling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:bowling:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — bowling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:bowling:audio",
+            "transcript": "bowling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:bowling:r1",
+              "targetText": "bowling",
+              "meaningByLocale": {
+                "ru": "Боулинг — название игры.",
+                "uk": "Боулінг — назва гри."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bowling",
+            "definitionByLocale": {
+              "ru": "Боулинг — название игры.",
+              "uk": "Боулінг — назва гри."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i01",
+        "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Пригласите друга в боулинг.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i01:audio"
+        ],
+        "accessibilityLabel": "Пригласите друга в боулинг.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i01:audio",
+            "transcript": "Would you like to go bowling?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Would you like to go bowling?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i02:r1",
+            "text": "How much is it per person?"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i02:r2",
+            "text": "How much is it per hour?"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i02:r3",
+            "text": "How much is it per game?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i02:audio",
+            "transcript": "How much is it per person?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i02:r1",
+              "targetText": "How much is it per person?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i02:r2",
+              "targetText": "How much is it per hour?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i02:r3",
+              "targetText": "How much is it per game?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much is it per person?",
+                "uk": "У записі звучить How much is it per person?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much is it per person?",
+                "uk": "У записі звучить How much is it per person?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уточните, можно ли взять обувь напрокат.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните, можно ли взять обувь напрокат.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can we rent shoes here?",
+          "localizedMeaning": {
+            "ru": "Уточните, можно ли взять обувь напрокат.",
+            "uk": "Уточніть, чи можна взяти взуття напрокат."
+          },
+          "orderedTokens": [
+            "Can",
+            "we",
+            "rent",
+            "shoes",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На месте друга вы забронировали бы дорожку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i04:r1",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i04:r2",
+            "text": "booked"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i04:r3",
+            "text": "to book"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На месте друга вы забронировали бы дорожку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На месте друга вы забронировали бы дорожку.",
+            "uk": "На місці друга ви забронювали б доріжку."
+          },
+          "gappedTargetPhrase": "If I were you, I would ___ a lane.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-15:i04:r1",
+              "text": "book"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i04:r2",
+              "text": "booked"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i04:r3",
+              "text": "to book"
+            }
+          ],
+          "testedDimension": "На месте друга вы забронировали бы дорожку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i04:r2",
+              "correct": false,
+              "testedDimension": "На месте друга вы забронировали бы дорожку.",
+              "feedbackByLocale": {
+                "ru": "После would нужна начальная форма book.",
+                "uk": "Після would потрібна початкова форма book."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i04:r3",
+              "correct": false,
+              "testedDimension": "На месте друга вы забронировали бы дорожку.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:word:billiards",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — billiards",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:billiards:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — billiards",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:billiards:audio",
+            "transcript": "billiards"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:billiards:r1",
+              "targetText": "billiards",
+              "meaningByLocale": {
+                "ru": "Бильярд.",
+                "uk": "Більярд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "billiards",
+            "definitionByLocale": {
+              "ru": "Бильярд.",
+              "uk": "Більярд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите сыграть в бильярд.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите сыграть в бильярд.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall we play billiards?",
+          "localizedMeaning": {
+            "ru": "Предложите сыграть в бильярд.",
+            "uk": "Запропонуйте зіграти в більярд."
+          },
+          "orderedTokens": [
+            "Shall",
+            "we",
+            "play",
+            "billiards"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите объяснить, как это работает.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i06:audio"
+        ],
+        "accessibilityLabel": "Попросите объяснить, как это работает.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i06:audio",
+            "transcript": "How does it work?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How does it work?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i07:r1",
+            "text": "I have booked a table."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i07:r2",
+            "text": "I have booked a room."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i07:r3",
+            "text": "I have moved a table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i07:audio",
+            "transcript": "I have booked a table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i07:r1",
+              "targetText": "I have booked a table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i07:r2",
+              "targetText": "I have booked a room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i07:r3",
+              "targetText": "I have moved a table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have booked a table.",
+                "uk": "У записі звучить I have booked a table."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have booked a table.",
+                "uk": "У записі звучить I have booked a table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:word:darts",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — darts",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:darts:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — darts",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:darts:audio",
+            "transcript": "darts"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:darts:r1",
+              "targetText": "darts",
+              "meaningByLocale": {
+                "ru": "Дартс.",
+                "uk": "Дартс."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "darts",
+            "definitionByLocale": {
+              "ru": "Дартс.",
+              "uk": "Дартс."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что предпочитаете дартс.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что предпочитаете дартс.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I prefer darts.",
+          "localizedMeaning": {
+            "ru": "Скажите, что предпочитаете дартс.",
+            "uk": "Скажіть, що віддаєте перевагу дартсу."
+          },
+          "orderedTokens": [
+            "I",
+            "prefer",
+            "darts"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы играли в прошлую пятницу. Назовите законченное время.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i09:r1",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i09:r2",
+            "text": "have played"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i09:r3",
+            "text": "playing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы играли в прошлую пятницу. Назовите законченное время.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы играли в прошлую пятницу. Назовите законченное время.",
+            "uk": "Ви грали минулої п’ятниці. Назвіть завершений час."
+          },
+          "gappedTargetPhrase": "We ___ last Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-15:i09:r1",
+              "text": "played"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i09:r2",
+              "text": "have played"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i09:r3",
+              "text": "playing"
+            }
+          ],
+          "testedDimension": "Вы играли в прошлую пятницу. Назовите законченное время.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Вы играли в прошлую пятницу. Назовите законченное время.",
+              "feedbackByLocale": {
+                "ru": "С last Friday здесь past simple.",
+                "uk": "Із last Friday тут past simple."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Вы играли в прошлую пятницу. Назовите законченное время.",
+              "feedbackByLocale": {
+                "ru": "Нужна личная форма played.",
+                "uk": "Потрібна особова форма played."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, что сейчас ваша очередь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i10:audio"
+        ],
+        "accessibilityLabel": "Услышьте, что сейчас ваша очередь.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i10:audio",
+            "transcript": "It is your turn."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is your turn.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "your",
+            "turn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:word:handball",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — handball",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:handball:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — handball",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:handball:audio",
+            "transcript": "handball"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:handball:r1",
+              "targetText": "handball",
+              "meaningByLocale": {
+                "ru": "Гандбол.",
+                "uk": "Гандбол."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handball",
+            "definitionByLocale": {
+              "ru": "Гандбол.",
+              "uk": "Гандбол."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i11:r1",
+            "text": "My sister plays handball."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i11:r2",
+            "text": "My brother plays handball."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i11:r3",
+            "text": "My sister watches handball."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i11:audio",
+            "transcript": "My sister plays handball."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i11:r1",
+              "targetText": "My sister plays handball.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i11:r2",
+              "targetText": "My brother plays handball.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i11:r3",
+              "targetText": "My sister watches handball.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My sister plays handball.",
+                "uk": "У записі звучить My sister plays handball."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My sister plays handball.",
+                "uk": "У записі звучить My sister plays handball."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i12:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i12:r2",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i12:r3",
+            "text": "playing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+            "uk": "Сестри поруч немає. Уявіть, що вона тут і грає з вами."
+          },
+          "gappedTargetPhrase": "If she were here, she would ___ with us.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-15:i12:r1",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i12:r2",
+              "text": "played"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i12:r3",
+              "text": "playing"
+            }
+          ],
+          "testedDimension": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+              "feedbackByLocale": {
+                "ru": "После would нужна начальная форма play.",
+                "uk": "Після would потрібна початкова форма play."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим -ing.",
+                "uk": "Після would не ставимо -ing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните время встречи.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "Уточните время встречи.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i13:audio",
+            "transcript": "What time shall we meet?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What time shall we meet?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вы присоединились бы, если бы у вас был свободный вечер.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы присоединились бы, если бы у вас был свободный вечер.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I would join you if I had a free evening.",
+          "localizedMeaning": {
+            "ru": "Вы присоединились бы, если бы у вас был свободный вечер.",
+            "uk": "Ви приєдналися б, якби мали вільний вечір."
+          },
+          "orderedTokens": [
+            "I",
+            "would",
+            "join",
+            "you",
+            "if",
+            "I",
+            "had",
+            "a",
+            "free",
+            "evening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i15:r1",
+            "text": "Saturday works for me."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i15:r2",
+            "text": "Sunday works for me."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i15:r3",
+            "text": "Saturday works for us."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i15:audio",
+            "transcript": "Saturday works for me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i15:r1",
+              "targetText": "Saturday works for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i15:r2",
+              "targetText": "Sunday works for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i15:r3",
+              "targetText": "Saturday works for us.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Saturday works for me.",
+                "uk": "У записі звучить Saturday works for me."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Saturday works for me.",
+                "uk": "У записі звучить Saturday works for me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение встретиться у стойки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение встретиться у стойки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i16:audio",
+            "transcript": "Let us meet at the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Let us meet at the desk.",
+          "orderedTokens": [
+            "Let",
+            "us",
+            "meet",
+            "at",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поблагодарите друга за приглашение.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Поблагодарите друга за приглашение.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i17:audio",
+            "transcript": "Thanks for inviting me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thanks for inviting me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-15:word:bowling",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — bowling",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:bowling:audio"
+        ],
+        "accessibilityLabel": "Картка слова — bowling",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:bowling:audio",
+            "transcript": "bowling"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:bowling:r1",
+              "targetText": "bowling",
+              "meaningByLocale": {
+                "ru": "Боулинг — название игры.",
+                "uk": "Боулінг — назва гри."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "bowling",
+            "definitionByLocale": {
+              "ru": "Боулинг — название игры.",
+              "uk": "Боулінг — назва гри."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i01",
+        "ordinal": 5,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запросіть друга в боулінг.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i01:audio"
+        ],
+        "accessibilityLabel": "Запросіть друга в боулінг.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i01:audio",
+            "transcript": "Would you like to go bowling?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Would you like to go bowling?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i02:r1",
+            "text": "How much is it per person?"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i02:r2",
+            "text": "How much is it per hour?"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i02:r3",
+            "text": "How much is it per game?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i02:audio",
+            "transcript": "How much is it per person?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i02:r1",
+              "targetText": "How much is it per person?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i02:r2",
+              "targetText": "How much is it per hour?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i02:r3",
+              "targetText": "How much is it per game?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much is it per person?",
+                "uk": "У записі звучить How much is it per person?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How much is it per person?",
+                "uk": "У записі звучить How much is it per person?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Уточніть, чи можна взяти взуття напрокат.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть, чи можна взяти взуття напрокат.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can we rent shoes here?",
+          "localizedMeaning": {
+            "ru": "Уточните, можно ли взять обувь напрокат.",
+            "uk": "Уточніть, чи можна взяти взуття напрокат."
+          },
+          "orderedTokens": [
+            "Can",
+            "we",
+            "rent",
+            "shoes",
+            "here"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "На місці друга ви забронювали б доріжку.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i04:r1",
+            "text": "book"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i04:r2",
+            "text": "booked"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i04:r3",
+            "text": "to book"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "На місці друга ви забронювали б доріжку.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На месте друга вы забронировали бы дорожку.",
+            "uk": "На місці друга ви забронювали б доріжку."
+          },
+          "gappedTargetPhrase": "If I were you, I would ___ a lane.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-15:i04:r1",
+              "text": "book"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i04:r2",
+              "text": "booked"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i04:r3",
+              "text": "to book"
+            }
+          ],
+          "testedDimension": "На місці друга ви забронювали б доріжку.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i04:r2",
+              "correct": false,
+              "testedDimension": "На місці друга ви забронювали б доріжку.",
+              "feedbackByLocale": {
+                "ru": "После would нужна начальная форма book.",
+                "uk": "Після would потрібна початкова форма book."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i04:r3",
+              "correct": false,
+              "testedDimension": "На місці друга ви забронювали б доріжку.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:word:billiards",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — billiards",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:billiards:audio"
+        ],
+        "accessibilityLabel": "Картка слова — billiards",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:billiards:audio",
+            "transcript": "billiards"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:billiards:r1",
+              "targetText": "billiards",
+              "meaningByLocale": {
+                "ru": "Бильярд.",
+                "uk": "Більярд."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "billiards",
+            "definitionByLocale": {
+              "ru": "Бильярд.",
+              "uk": "Більярд."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте зіграти в більярд.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте зіграти в більярд.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Shall we play billiards?",
+          "localizedMeaning": {
+            "ru": "Предложите сыграть в бильярд.",
+            "uk": "Запропонуйте зіграти в більярд."
+          },
+          "orderedTokens": [
+            "Shall",
+            "we",
+            "play",
+            "billiards"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть пояснити, як це працює.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i06:audio"
+        ],
+        "accessibilityLabel": "Попросіть пояснити, як це працює.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i06:audio",
+            "transcript": "How does it work?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "How does it work?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i07:r1",
+            "text": "I have booked a table."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i07:r2",
+            "text": "I have booked a room."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i07:r3",
+            "text": "I have moved a table."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i07:audio",
+            "transcript": "I have booked a table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i07:r1",
+              "targetText": "I have booked a table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i07:r2",
+              "targetText": "I have booked a room.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i07:r3",
+              "targetText": "I have moved a table.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have booked a table.",
+                "uk": "У записі звучить I have booked a table."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I have booked a table.",
+                "uk": "У записі звучить I have booked a table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:word:darts",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — darts",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:darts:audio"
+        ],
+        "accessibilityLabel": "Картка слова — darts",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:darts:audio",
+            "transcript": "darts"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:darts:r1",
+              "targetText": "darts",
+              "meaningByLocale": {
+                "ru": "Дартс.",
+                "uk": "Дартс."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "darts",
+            "definitionByLocale": {
+              "ru": "Дартс.",
+              "uk": "Дартс."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що віддаєте перевагу дартсу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що віддаєте перевагу дартсу.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I prefer darts.",
+          "localizedMeaning": {
+            "ru": "Скажите, что предпочитаете дартс.",
+            "uk": "Скажіть, що віддаєте перевагу дартсу."
+          },
+          "orderedTokens": [
+            "I",
+            "prefer",
+            "darts"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви грали минулої п’ятниці. Назвіть завершений час.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i09:r1",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i09:r2",
+            "text": "have played"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i09:r3",
+            "text": "playing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви грали минулої п’ятниці. Назвіть завершений час.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы играли в прошлую пятницу. Назовите законченное время.",
+            "uk": "Ви грали минулої п’ятниці. Назвіть завершений час."
+          },
+          "gappedTargetPhrase": "We ___ last Friday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-15:i09:r1",
+              "text": "played"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i09:r2",
+              "text": "have played"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i09:r3",
+              "text": "playing"
+            }
+          ],
+          "testedDimension": "Ви грали минулої п’ятниці. Назвіть завершений час.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i09:r2",
+              "correct": false,
+              "testedDimension": "Ви грали минулої п’ятниці. Назвіть завершений час.",
+              "feedbackByLocale": {
+                "ru": "С last Friday здесь past simple.",
+                "uk": "Із last Friday тут past simple."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i09:r3",
+              "correct": false,
+              "testedDimension": "Ви грали минулої п’ятниці. Назвіть завершений час.",
+              "feedbackByLocale": {
+                "ru": "Нужна личная форма played.",
+                "uk": "Потрібна особова форма played."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, що зараз ваша черга.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i10:audio"
+        ],
+        "accessibilityLabel": "Почуйте, що зараз ваша черга.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i10:audio",
+            "transcript": "It is your turn."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is your turn.",
+          "orderedTokens": [
+            "It",
+            "is",
+            "your",
+            "turn"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:word:handball",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — handball",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:word:handball:audio"
+        ],
+        "accessibilityLabel": "Картка слова — handball",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:word:handball:audio",
+            "transcript": "handball"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:word:handball:r1",
+              "targetText": "handball",
+              "meaningByLocale": {
+                "ru": "Гандбол.",
+                "uk": "Гандбол."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "handball",
+            "definitionByLocale": {
+              "ru": "Гандбол.",
+              "uk": "Гандбол."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i11:r1",
+            "text": "My sister plays handball."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i11:r2",
+            "text": "My brother plays handball."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i11:r3",
+            "text": "My sister watches handball."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i11:audio",
+            "transcript": "My sister plays handball."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i11:r1",
+              "targetText": "My sister plays handball.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i11:r2",
+              "targetText": "My brother plays handball.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i11:r3",
+              "targetText": "My sister watches handball.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i11:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My sister plays handball.",
+                "uk": "У записі звучить My sister plays handball."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i11:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит My sister plays handball.",
+                "uk": "У записі звучить My sister plays handball."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Сестри поруч немає. Уявіть, що вона тут і грає з вами.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i12:r1",
+            "text": "play"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i12:r2",
+            "text": "played"
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i12:r3",
+            "text": "playing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сестри поруч немає. Уявіть, що вона тут і грає з вами.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Сестры рядом нет. Вообразите, что она здесь и играет с вами.",
+            "uk": "Сестри поруч немає. Уявіть, що вона тут і грає з вами."
+          },
+          "gappedTargetPhrase": "If she were here, she would ___ with us.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-15:i12:r1",
+              "text": "play"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i12:r2",
+              "text": "played"
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i12:r3",
+              "text": "playing"
+            }
+          ],
+          "testedDimension": "Сестри поруч немає. Уявіть, що вона тут і грає з вами.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i12:r2",
+              "correct": false,
+              "testedDimension": "Сестри поруч немає. Уявіть, що вона тут і грає з вами.",
+              "feedbackByLocale": {
+                "ru": "После would нужна начальная форма play.",
+                "uk": "Після would потрібна початкова форма play."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i12:r3",
+              "correct": false,
+              "testedDimension": "Сестри поруч немає. Уявіть, що вона тут і грає з вами.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим -ing.",
+                "uk": "Після would не ставимо -ing."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть час зустрічі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i13:audio"
+        ],
+        "accessibilityLabel": "Уточніть час зустрічі.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i13:audio",
+            "transcript": "What time shall we meet?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What time shall we meet?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Ви приєдналися б, якби мали вільний вечір.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви приєдналися б, якби мали вільний вечір.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I would join you if I had a free evening.",
+          "localizedMeaning": {
+            "ru": "Вы присоединились бы, если бы у вас был свободный вечер.",
+            "uk": "Ви приєдналися б, якби мали вільний вечір."
+          },
+          "orderedTokens": [
+            "I",
+            "would",
+            "join",
+            "you",
+            "if",
+            "I",
+            "had",
+            "a",
+            "free",
+            "evening"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-15:i15:r1",
+            "text": "Saturday works for me."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i15:r2",
+            "text": "Sunday works for me."
+          },
+          {
+            "responseId": "en:lesson-27:session-15:i15:r3",
+            "text": "Saturday works for us."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i15:audio",
+            "transcript": "Saturday works for me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-15:i15:r1",
+              "targetText": "Saturday works for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i15:r2",
+              "targetText": "Sunday works for me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i15:r3",
+              "targetText": "Saturday works for us.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-15:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Saturday works for me.",
+                "uk": "У записі звучить Saturday works for me."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-15:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Saturday works for me.",
+                "uk": "У записі звучить Saturday works for me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію зустрітися біля стійки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i16:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію зустрітися біля стійки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i16:audio",
+            "transcript": "Let us meet at the desk."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Let us meet at the desk.",
+          "orderedTokens": [
+            "Let",
+            "us",
+            "meet",
+            "at",
+            "the",
+            "desk"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-15:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подякуйте другові за запрошення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-15:i17:audio"
+        ],
+        "accessibilityLabel": "Подякуйте другові за запрошення.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-15:i17:audio",
+            "transcript": "Thanks for inviting me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thanks for inviting me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-15:word:bowling",
+      "correctText": "bowling",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i01",
+      "correctText": "Would you like to go bowling?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i02",
+      "correctText": "How much is it per person?",
+      "correctResponseId": "en:lesson-27:session-15:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i03",
+      "correctText": "Can we rent shoes here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i04",
+      "correctText": "book",
+      "correctResponseId": "en:lesson-27:session-15:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:word:billiards",
+      "correctText": "billiards",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i05",
+      "correctText": "Shall we play billiards?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i06",
+      "correctText": "How does it work?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i07",
+      "correctText": "I have booked a table.",
+      "correctResponseId": "en:lesson-27:session-15:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:word:darts",
+      "correctText": "darts",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i08",
+      "correctText": "I prefer darts.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i09",
+      "correctText": "played",
+      "correctResponseId": "en:lesson-27:session-15:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i10",
+      "correctText": "It is your turn.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:word:handball",
+      "correctText": "handball",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i11",
+      "correctText": "My sister plays handball.",
+      "correctResponseId": "en:lesson-27:session-15:i11:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i12",
+      "correctText": "play",
+      "correctResponseId": "en:lesson-27:session-15:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i13",
+      "correctText": "What time shall we meet?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i14",
+      "correctText": "I would join you if I had a free evening.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i15",
+      "correctText": "Saturday works for me.",
+      "correctResponseId": "en:lesson-27:session-15:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i16",
+      "correctText": "Let us meet at the desk.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-15:i17",
+      "correctText": "Thanks for inviting me.",
+      "correctResponseId": null
+    }
+  ]
+}

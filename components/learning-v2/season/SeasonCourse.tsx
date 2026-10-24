@@ -21,7 +21,10 @@ import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
-import type { SeasonEpisodeCard } from './season_course_model';
+import type { SeasonCard, SeasonEpisodeCard } from './season_course_model';
+import { seasonExamCaption, type SeasonExamStatus } from './season_exam_caption';
+import type { SeasonExamCaptionView } from './SeasonCourseView';
+import { learningV2ChapterExamCopy } from '../learning_v2_chapter_exam_copy';
 import { SEASON_COUNT_LOG, seasonEpisodeSubtitle, seasonEpisodeTasksShown } from '../../home/v2/scene/home_scene_count';
 import { hapticWarning } from '../../../hooks/use-haptics';
 
@@ -30,12 +33,14 @@ const LOG = '[SEASON-WIRE]';
 /** Какой полноэкранный список открыт поверх хаба (null — хаб). */
 export type SeasonListScreen = null | Readonly<{ kind: 'chapters' }> | Readonly<{ kind: 'episodes'; chapter: number }>;
 
-export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange' | 'lockShake' | 'examNote'> & Readonly<{
+export type SeasonCourseProps = Omit<SeasonCourseViewProps, 'onCardOpen' | 'onAllChapters' | 'focus' | 'onSelectedChange' | 'lockShake' | 'examCaption'> & Readonly<{
   /** Действия экзамена главы: вызываются только при включённом флаге. */
   onStartExam?: (chapterOrdinal: number) => void;
   onOpenByExam?: (chapterOrdinal: number) => void;
   /** Окно экзамена: описание, факты, цена ⚡1 / строка Plus по главе (данные Learning V2). */
   examInfo?: (chapterOrdinal: number) => Readonly<{ description: string | null; panel: SeasonExamPanel }> | null;
+  /** Состояние экзамена главы (можно сдать / пауза / сдан) по записям на телефоне; нет — «можно сдать». */
+  examStatus?: (chapterOrdinal: number, nowMs: number) => SeasonExamStatus;
   /** Только превью/Сверка (dev_season_preview): стартовая карта, раскрытая карта и открытый список. В бою не передаётся. */
   initialState?: Readonly<{ selectedIndex: number; expandedIndex: number | null; screen: SeasonListScreen }>;
 }>;
@@ -79,10 +84,15 @@ function SeasonCourse(props: SeasonCourseProps) {
     const examActions = SEASON_CHAPTER_EXAM_ENABLED;
     if (card.kind === 'exam') {
       const examInfo = props.examInfo ? props.examInfo(card.chapterOrdinal) : null;
-      const primary: SeasonExpandedAction | null = examActions && props.onStartExam
-        ? { label: seasonCardText(lang, 'startExam'), icon: 'trophy', onPress: () => { close(); props.onStartExam?.(card.chapterOrdinal); } }
+      // зачем (координатор 24.10; эталон chapter-exam-season.html, zoomX): «Начать экзамен» с ▶ — только когда экзамен можно сдать (не пауза, не сдан);
+      // под ней стеклянная «Позже» — закрывает карту (крестик эталона остаётся)
+      const status: SeasonExamStatus = props.examStatus ? props.examStatus(card.chapterOrdinal, Date.now()) : { state: 'available' };
+      const primary: SeasonExpandedAction | null = examActions && props.onStartExam && status.state === 'available'
+        ? { label: learningV2ChapterExamCopy(lang, 'start'), icon: 'play', onPress: () => { close(); props.onStartExam?.(card.chapterOrdinal); } }
         : null;
-      return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], primary, secondary: null };
+      let secondary: SeasonExpandedAction | null = null;
+      if (primary) secondary = { label: learningV2ChapterExamCopy(lang, 'later'), onPress: close };
+      return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], primary, secondary };
     }
     const info = props.episodeInfo(card);
     let primary: SeasonExpandedAction;
@@ -120,6 +130,17 @@ function SeasonCourse(props: SeasonCourseProps) {
     if (card && card.state === 'locked') { shakeLocked(index, 'carousel'); return; }
     setExpanded(index);
   }, [deck.cards, shakeLocked]);
+
+  // зачем (эталон chapter-exam-season.html, capX pause: «Пересдать через 59 мин»): отсчёт минут — раз в 30 с и только пока на карусели
+  // выбрана карта экзамена на паузе (Performance Bible: никаких вечных таймеров)
+  const [examNowMs, setExamNowMs] = useState(() => Date.now());
+  const selectedExamCard = deck.cards[selected]?.kind === 'exam' ? deck.cards[selected] : null;
+  const selectedExamCooldown = selectedExamCard !== null && props.examStatus !== undefined && props.examStatus(selectedExamCard.chapterOrdinal, examNowMs).state === 'cooldown';
+  useEffect(() => {
+    if (!selectedExamCooldown) return undefined;
+    const id = setInterval(() => setExamNowMs(Date.now()), 30_000);
+    return () => clearInterval(id);
+  }, [selectedExamCooldown]);
 
   // ── полноэкранные списки: «Все главы» и «Эпизоды главы» ──
   const currentCard = deck.cards[deck.currentIndex];
@@ -195,13 +216,28 @@ function SeasonCourse(props: SeasonCourseProps) {
     );
   }
 
-  // зачем (эталон chapter-exam-season.html, правка владельца 22.10 №10): строка под «Сдать экзамен» в подписи под каруселью — только когда
-  // экзамен включён и его можно начать; у последней главы — без «откроется глава»
+  // зачем (координатор 24.10; эталон chapter-exam-season.html, capX avail / pause / pass): подпись под каруселью у карты экзамена по его
+  // состоянию; «Сдать экзамен» раскрывает карту, «К главе N» переводит карусель на первую карту следующей главы.
+  // Обычная функция, не хук: выше стоят ранние return экранов «Все главы» / «Эпизоды главы».
   const chapterTotal = deck.chapters.length;
-  // обычная функция, не хук: выше стоят ранние return экранов «Все главы» / «Эпизоды главы»
-  const examNote = props.examInfo && props.onStartExam ? (chapterOrdinal: number): string => {
-    const facts = seasonCardText(lang, 'examFacts', { q: CHAPTER_EXAM_QUESTION_COUNT_V1, p: CHAPTER_EXAM_PASS_CORRECT_V1 });
-    return chapterOrdinal < chapterTotal ? `${seasonCardText(lang, 'examOpens', { n: chapterOrdinal + 1 })} · ${facts}` : facts;
+  const examCaption = props.examInfo ? (card: SeasonCard): SeasonExamCaptionView | null => {
+    const status: SeasonExamStatus = props.examStatus ? props.examStatus(card.chapterOrdinal, examNowMs) : { state: 'available' };
+    const nextEpisodes = deck.cards.filter((c) => c.kind === 'episode' && c.chapterOrdinal === card.chapterOrdinal + 1);
+    const nextRange = nextEpisodes.length > 0 ? { a: nextEpisodes[0]!.sessionOrdinal, b: nextEpisodes[nextEpisodes.length - 1]!.sessionOrdinal } : null;
+    const built = seasonExamCaption({
+      lang, chapterOrdinal: card.chapterOrdinal, chapterCount: chapterTotal, status, canStart: !!props.onStartExam,
+      questions: CHAPTER_EXAM_QUESTION_COUNT_V1, passFrom: CHAPTER_EXAM_PASS_CORRECT_V1, nextRange,
+    });
+    console.log(`${LOG} подпись экзамена`, JSON.stringify({ chapter: card.chapterOrdinal, status: status.state, action: built.action?.kind ?? null })); // guard-ok: какая подпись и почему
+    const action = built.action;
+    if (!action) return { kicker: built.kicker, title: built.title, action: null, note: built.note };
+    const index = deck.cards.findIndex((c) => (action.kind === 'open' ? c.id === card.id : c.chapterOrdinal === action.chapter));
+    const onPress = () => {
+      console.log(`${LOG} нажатие → подпись экзамена`, JSON.stringify({ kind: action.kind, chapter: card.chapterOrdinal, toIndex: index })); // guard-ok: куда ведёт нажатие
+      if (index < 0) return;
+      if (action.kind === 'open') openCard(index); else refocus(index);
+    };
+    return { kicker: built.kicker, title: built.title, action: { label: action.label, icon: action.icon, onPress }, note: built.note };
   } : undefined;
 
   return (
@@ -214,7 +250,7 @@ function SeasonCourse(props: SeasonCourseProps) {
         onCardOpen={openCard}
         lockShake={lockShake}
         onAllChapters={openChapters}
-        examNote={examNote}
+        examCaption={examCaption}
       />
       {expandedProps ? <SeasonExpandedCard {...expandedProps} /> : null}
     </View>

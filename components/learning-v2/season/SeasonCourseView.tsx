@@ -31,6 +31,10 @@ import {
 } from './season_course_model';
 import { SEASON_COUNT_LOG } from '../../home/v2/scene/home_scene_count';
 import { reportSeasonCoverTop, useScrollAtTop } from '../../../hooks/use_scene_status_bar';
+import type { SeasonCard } from './season_course_model';
+
+/** Подпись экзамена под каруселью (эталон chapter-exam-season.html, ex1): тексты и кнопка уже с действием. */
+export type SeasonExamCaptionView = Readonly<{ kicker: string; title: string; action: Readonly<{ label: string; icon: 'trophy' | 'play'; onPress: () => void }> | null; note: string | null }>;
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -88,8 +92,8 @@ export type SeasonCourseViewProps = Readonly<{
   onPrimary: (card: SeasonEpisodeCard) => void;
   onNotFromStart?: () => void;
   onCardOpen: (index: number) => void;
-  /** Строка под «Сдать экзамен» в подписи под каруселью (эталон chapter-exam-season.html); нет — у карты экзамена ни кнопки, ни строки. */
-  examNote?: (chapterOrdinal: number) => string;
+  /** Подпись под каруселью у карты экзамена по её состоянию (эталон chapter-exam-season.html); нет — «Экзамен главы» без кнопки. */
+  examCaption?: (card: SeasonCard) => SeasonExamCaptionView | null;
   /** Карусель встала на карту (после свайпа/тапа) — родителю нужно для «Вся глава». */
   onSelectedChange?: (index: number) => void;
   /** Поставить карусель на карту: родитель меняет seq, чтобы вернуться на ту же карту повторно («К эпизоду N», возврат из веера). */
@@ -179,8 +183,12 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
   const caption = useMemo(() => {
     if (!selectedCard) return { kicker: '', title: '' };
-    // зачем (эталон chapter-exam-season.html): у экзамена подпись «Глава N» / «Экзамен главы», а не одно и то же слово дважды
-    if (selectedCard.kind === 'exam') return { kicker: seasonCardText(lang, 'chapterShort', { n: selectedCard.chapterOrdinal }), title: seasonText(lang, 'exam') };
+    // зачем (координатор 24.10; эталон chapter-exam-season.html, capX): подпись экзамена — по его состоянию (можно сдать / пауза / сдан);
+    // закрытая карта экзамена — «Глава N» / «Экзамен главы» без кнопки
+    if (selectedCard.kind === 'exam') {
+      const exam = selectedCard.state !== 'locked' && props.examCaption ? props.examCaption(selectedCard) : null;
+      return exam ? { kicker: exam.kicker, title: exam.title, exam } : { kicker: seasonCardText(lang, 'chapterShort', { n: selectedCard.chapterOrdinal }), title: seasonText(lang, 'exam') };
+    }
     const ep = props.episodeInfo(selectedCard);
     return { kicker: [seasonEpisodeLabel(lang, selectedCard.sessionOrdinal), ep.taskLine].filter(Boolean).join(', '), title: ep.title };
   }, [lang, props, selectedCard]);
@@ -281,21 +289,21 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         <Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>
         {/* зачем (эталон chapter-exam-season.html, правка владельца 22.10 №10): «Сдать экзамен» раскрывает карту экзамена (там «Начать
             экзамен» с ⚡1 / строкой Plus — запуск и списание в одном месте), под кнопкой — «Сдашь — откроется глава N · 12 вопросов, сдать от 10» */}
-        {selectedCard && selectedCard.kind === 'exam' && selectedCard.state !== 'locked' && props.examNote ? (
-          <>
-            <V2Pressable
-              testID="season-caption-exam"
-              accessibilityRole="button"
-              accessibilityLabel={seasonCardText(lang, 'startExam')}
-              onPress={() => props.onCardOpen(selected)}
-              scaleTo={0.97}
-              style={[styles.captionExam, { backgroundColor: g.accent }]}
-            >
-              <Ionicons name="trophy" size={18} color={g.accentInk} />
-              <Text style={[styles.captionExamText, { color: g.accentInk }]}>{seasonCardText(lang, 'startExam')}</Text>
-            </V2Pressable>
-            <Text testID="season-caption-exam-note" style={[styles.captionNote, { color: g.secondary }]}>{props.examNote(selectedCard.chapterOrdinal)}</Text>
-          </>
+        {'exam' in caption && caption.exam && caption.exam.action ? (
+          <V2Pressable
+            testID="season-caption-exam"
+            accessibilityRole="button"
+            accessibilityLabel={caption.exam.action.label}
+            onPress={caption.exam.action.onPress}
+            scaleTo={0.97}
+            style={[styles.captionExam, { backgroundColor: g.accent }]}
+          >
+            <Ionicons name={caption.exam.action.icon} size={18} color={g.accentInk} />
+            <Text style={[styles.captionExamText, { color: g.accentInk }]}>{caption.exam.action.label}</Text>
+          </V2Pressable>
+        ) : null}
+        {'exam' in caption && caption.exam && caption.exam.note ? (
+          <Text testID="season-caption-exam-note" style={[styles.captionNote, { color: g.secondary }]}>{caption.exam.note}</Text>
         ) : null}
       </View>
 

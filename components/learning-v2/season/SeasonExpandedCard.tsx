@@ -28,7 +28,8 @@ const SHADOW = '0 26px 50px -22px rgba(0,0,0,0.6)'; // theme-exempt: тень р
 /** Окно перед стартом экзамена (chapter-exam-season.html `zoomX`): факты, цена ⚡1 для Free, строка для Plus. */
 export type SeasonExamPanel = Readonly<{ facts: readonly string[]; energyBadge: boolean; plusLine: string | null }>;
 
-export type SeasonExpandedAction = Readonly<{ label: string; icon: IonName; onPress: () => void }>;
+// зачем (эталон chapter-exam-season.html, zoomX): «Позже» — стеклянная кнопка без значка, поэтому значок необязателен
+export type SeasonExpandedAction = Readonly<{ label: string; icon?: IonName; onPress: () => void }>;
 
 export type SeasonExpandedCardProps = Readonly<{
   kind: 'episode' | 'exam';
@@ -93,7 +94,7 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
         ) : null}
         {p.primary ? (
           <V2Pressable hitSlop={6} accessibilityRole="button" onPress={p.primary.onPress} style={styles.primary} testID="season-expanded-primary">
-            <Ionicons name={p.primary.icon} size={18} color={INK} />
+            {p.primary.icon ? <Ionicons name={p.primary.icon} size={18} color={INK} /> : null}
             <Text style={styles.primaryText}>{p.primary.label}</Text>
             {p.exam?.energyBadge ? (
               <View style={styles.energy} testID="season-exam-energy"><Ionicons name="flash" size={13} color={INK} /><Text style={styles.energyText}>1</Text></View>
@@ -103,7 +104,7 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
         {p.primary && p.exam?.plusLine ? <Text style={styles.plusLine} testID="season-exam-plus">{p.exam.plusLine}</Text> : null}
         {p.secondary ? (
           <V2Pressable hitSlop={6} accessibilityRole="button" onPress={p.secondary.onPress} style={styles.secondary} testID="season-expanded-secondary">
-            <Ionicons name={p.secondary.icon} size={18} color={WHITE} />
+            {p.secondary.icon ? <Ionicons name={p.secondary.icon} size={18} color={WHITE} /> : null}
             <Text style={styles.secondaryText}>{p.secondary.label}</Text>
           </V2Pressable>
         ) : null}

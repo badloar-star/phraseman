@@ -29,7 +29,8 @@ import { factoryNativeLearningV2TaskCountV1 } from '../../../modules/learning-v2
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
-import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
+import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1, chapterExamAvailabilityV1, chapterExamKeyV1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
+import type { SeasonExamStatus } from './season_exam_caption';
 import { useEnergy } from '../../EnergyContext';
 import { usePremium } from '../../PremiumContext';
 import { useTheme } from '../../ThemeContext';
@@ -229,6 +230,15 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     ];
     return { description, panel: { facts, energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null } };
   }, [chapterCount, examFree, lang]);
+  // зачем (координатор 24.10; эталон chapter-exam-season.html, capX): состояние экзамена для подписи под каруселью — из записей, которые вкладка
+  // уже прочитала с диска (без новых чтений); правило паузы — движок Learning V2 (chapterExamAvailabilityV1)
+  const examStatus = useCallback((chapterOrdinal: number, nowMs: number): SeasonExamStatus => {
+    const record = examRecords ? examRecords[chapterExamKeyV1({ targetLanguage: 'en', lessonOrdinal: lesson, chapterOrdinal })] ?? null : null;
+    const availability = chapterExamAvailabilityV1({ record, chapterReached: true, nowMs });
+    if (availability.state === 'passed') return { state: 'passed', correct: availability.passedCorrect };
+    if (availability.state === 'cooldown') return { state: 'cooldown', lastCorrect: record?.lastCorrect ?? 0, minutesLeft: availability.minutesLeft };
+    return { state: 'available' };
+  }, [examRecords, lesson]);
   const onStartExam = useCallback((chapterOrdinal: number) => {
     const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' });
     console.log(`${LOG} нажатие → «Начать экзамен»`, JSON.stringify({ href, free: examFree })); // guard-ok: куда ведёт нажатие
@@ -328,6 +338,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onWords={onWords}
         onTheory={onTheory}
         examInfo={SEASON_CHAPTER_EXAM_ENABLED ? examInfo : undefined}
+        examStatus={SEASON_CHAPTER_EXAM_ENABLED ? examStatus : undefined}
         onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}
         onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}
       />

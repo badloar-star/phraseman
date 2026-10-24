@@ -12,13 +12,11 @@ describe('Сезон: подпись под каруселью у карты э�
     }
   });
 
-  it('подпись: «Глава N» / «Экзамен главы», кнопка раскрывает карту, строка — только когда экзамен включён и карта не закрыта', () => {
+  // зачем (24.10, кадры эталона): подпись экзамена теперь по состоянию — сторож tests/season_exam_captions_etalon_2026_10_25.test.ts
+  it('подпись: у закрытой карты экзамена — «Глава N» / «Экзамен главы» без кнопки; у открытой — из examCaption', () => {
     const view = readSource('components/learning-v2/season/SeasonCourseView.tsx');
-    expect(view).toContain("if (selectedCard.kind === 'exam') return { kicker: seasonCardText(lang, 'chapterShort', { n: selectedCard.chapterOrdinal }), title: seasonText(lang, 'exam') };");
-    expect(view).toContain("{selectedCard && selectedCard.kind === 'exam' && selectedCard.state !== 'locked' && props.examNote ? (");
-    expect(view).toContain('onPress={() => props.onCardOpen(selected)}');
-    const course = readSource('components/learning-v2/season/SeasonCourse.tsx');
-    expect(course).toContain('const examNote = props.examInfo && props.onStartExam ? (chapterOrdinal: number): string => {');
-    expect(course).toContain('examNote={examNote}');
+    expect(view).toContain("const exam = selectedCard.state !== 'locked' && props.examCaption ? props.examCaption(selectedCard) : null;");
+    expect(view).toContain('onPress={caption.exam.action.onPress}');
+    expect(readSource('components/learning-v2/season/SeasonCourse.tsx')).toContain('examCaption={examCaption}');
   });
 });

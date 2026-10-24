@@ -69,8 +69,8 @@
         "uk": "Виправити неправильну дату"
       },
       "bodyByLocale": {
-        "ru": "Inaccurate — неточный или ошибочный: в приглашении указали не тот день. Precise — точный и конкретный: вместо «позже» знакомая может назвать время. Accurate подчёркивает верность, precise — точность деталей. Ought to + начальная форма глагола означает «стоит, следовало бы» и часто близко к should. В обычном разговоре should встречается чаще; здесь осваиваем ещё один способ дать совет. После ought нужно to. Ought не меняется с he или she.",
-        "uk": "Inaccurate — неточний або помилковий: у запрошенні вказали не той день. Precise — точний і конкретний: замість «пізніше» знайома може назвати час. Accurate підкреслює правильність, precise — точність деталей. Ought to + початкова форма дієслова означає «варто, слід було б» і часто близьке до should. У звичайній розмові should трапляється частіше; тут опановуємо ще один спосіб дати пораду. Після ought потрібне to. Ought не змінюється з he або she."
+        "ru": "Вы с другом заметили, что в приглашении указан не тот день. Вы предлагаете исправить дату: We ought to correct the inaccurate date — «нам стоит исправить ошибочную дату». После We поставьте ought to — «стоит», затем correct — «исправить». The inaccurate date называет конкретную неверную дату в приглашении; inaccurate стоит перед date. В сочетании ought to correct нельзя пропускать to или добавлять -s к ought.",
+        "uk": "Ви з другом помітили, що в запрошенні вказано не той день. Ви пропонуєте виправити дату: We ought to correct the inaccurate date — «нам варто виправити помилкову дату». Після We поставте ought to — «варто», потім correct — «виправити». The inaccurate date називає конкретну неправильну дату в запрошенні; inaccurate стоїть перед date. У сполученні ought to correct не можна пропускати to або додавати -s до ought."
       },
       "question": {
         "interactionId": "en:lesson-20:session-28:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2424e9ec196156a4126d3daa2a2ac0e2ff9b20f4136fb65d1623d88de87b74d4"
+  "introFingerprint": "31b8522b1bc961b6a6993d7a855efec017ab2e6f7fa1cc85f576afe6d8c3b6b6"
 }

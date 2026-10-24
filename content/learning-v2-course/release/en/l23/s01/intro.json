@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Результат сейчас",
-        "uk": "Результат зараз"
+        "ru": "Ошибка в подсчёте видна сейчас",
+        "uk": "Помилка в підрахунку помітна зараз"
       },
       "bodyByLocale": {
-        "ru": "Miscount — ошибиться при подсчёте. Вы пересчитали билеты и обнаружили ошибку. Present Perfect связывает сделанное с ситуацией сейчас. Формула: I/you/we/they + have, he/she/it + has, затем третья форма глагола. У сегодняшних правильных глаголов она заканчивается на -ed. Have и has здесь не означают «иметь».",
-        "uk": "Miscount — помилитися під час підрахунку. Ви перерахували квитки й виявили помилку. Present Perfect пов’язує зроблене із ситуацією зараз. Формула: I/you/we/they + have, he/she/it + has, потім третя форма дієслова. У сьогоднішніх правильних дієслів вона закінчується на -ed. Have і has тут не означають «мати»."
+        "ru": "Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». Present Perfect связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем третья форма глагола. У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».",
+        "uk": "Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». Present Perfect пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім третя форма дієслова. У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати»."
       },
       "question": {
         "interactionId": "en:lesson-23:session-01:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "С she используем has",
-        "uk": "Із she використовуємо has"
+        "ru": "На линии другой человек",
+        "uk": "На лінії інша людина"
       },
       "bodyByLocale": {
-        "ru": "Misdial — набрать неправильный номер. Misdialled — третья форма в британском написании; американское misdialed тоже правильно. Сейчас на линии другой человек.",
-        "uk": "Misdial — набрати неправильний номер. Misdialled — третя форма у британському написанні; американське misdialed теж правильне. Зараз на лінії інша людина."
+        "ru": "Подруга хотела позвонить знакомому, но ошиблась в номере. She has misdialled the number — она набрала неправильный номер. Misdial означает «набрать неправильный номер». Собираем: she + has + misdialled + the number. С she используем has, затем третью форму misdialled. Это британское написание; американское misdialed тоже правильно. Has misdialled связывает ошибку с результатом сейчас: на линии другой человек.",
+        "uk": "Подруга хотіла зателефонувати знайомому, але помилилася в номері. She has misdialled the number — вона набрала неправильний номер. Misdial означає «набрати неправильний номер». Складаємо: she + has + misdialled + the number. Із she використовуємо has, потім третю форму misdialled. Це британське написання; американське misdialed теж правильне. Has misdialled пов’язує помилку з результатом зараз: на лінії інша людина."
       },
       "question": {
         "interactionId": "en:lesson-23:session-01:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сделать заново",
-        "uk": "Зробити заново"
+        "ru": "Сумку уложили заново",
+        "uk": "Сумку склали заново"
       },
       "bodyByLocale": {
-        "ru": "Repack — перепаковать, уложить вещи заново. Rebook — забронировать заново. We have repacked: сумка теперь собрана иначе. He has rebooked: у него теперь другое бронирование. Здесь не называем законченное время вроде yesterday.",
-        "uk": "Repack — перепакувати, скласти речі заново. Rebook — забронювати заново. We have repacked: сумка тепер складена інакше. He has rebooked: у нього тепер інше бронювання. Тут не називаємо завершений час на зразок yesterday."
+        "ru": "Вы с другом переложили вещи в сумке, чтобы всё поместилось. We have repacked the bag — мы перепаковали сумку. Repack означает «уложить вещи заново». Собираем: we + have + repacked + the bag. С we ставим have, repacked — третья форма repack с окончанием -ed. Have repacked сообщает о результате: сумка теперь собрана иначе.",
+        "uk": "Ви з другом переклали речі в сумці, щоб усе помістилося. We have repacked the bag — ми перепакували сумку. Repack означає «скласти речі заново». Складаємо: we + have + repacked + the bag. Із we ставимо have, repacked — третя форма repack із закінченням -ed. Have repacked повідомляє про результат: сумка тепер складена інакше."
       },
       "question": {
         "interactionId": "en:lesson-23:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "83f68744a93016b1f52d3813ca685d2da42a68b31dd201c725ffc3470e201392"
+  "introFingerprint": "8c0d053386d50ba1ad40718f7cda440c344aa3b330f9c48ae17762d5e52a35c8"
 }

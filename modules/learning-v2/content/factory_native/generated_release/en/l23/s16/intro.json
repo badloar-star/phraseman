@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Уже ездили верхом",
+        "uk": "Уже їздили верхи"
       },
       "bodyByLocale": {
-        "ru": "Horse — лошадь. Pony — пони, небольшая лошадь; это не просто жеребёнок. Ride a horse — ездить верхом. Три формы ride — rode — ridden. I have ridden a horse рассказывает о таком опыте.",
-        "uk": "Horse — кінь. Pony — поні, невеликий кінь; це не просто лоша. Ride a horse — їздити верхи. Три форми ride — rode — ridden. I have ridden a horse розповідає про такий досвід."
+        "ru": "Перед прогулкой инструктор спрашивает, есть ли у вас опыт верховой езды. I have ridden a horse — я ездил верхом на лошади. Horse означает «лошадь». Собираем: I + have + ridden + a horse. С I используем have. Три формы глагола: ride — rode — ridden; после have нужна ridden. Have ridden сообщает об опыте, без указания конкретной прогулки.",
+        "uk": "Перед прогулянкою інструктор запитує, чи маєте ви досвід верхової їзди. I have ridden a horse — я їздив верхи на коні. Horse означає «кінь». Складаємо: I + have + ridden + a horse. Із I використовуємо have. Три форми дієслова: ride — rode — ridden; після have потрібна ridden. Have ridden повідомляє про досвід, без зазначення конкретної прогулянки."
       },
       "question": {
         "interactionId": "en:lesson-23:session-16:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Назвать животное",
-        "uk": "Назвати тварину"
+        "ru": "Видели свинью на ферме",
+        "uk": "Бачили свиню на фермі"
       },
       "bodyByLocale": {
-        "ru": "Cow — корова, pig — свинья. Знакомое guinea pig значит «морская свинка», но pig само по себе — свинья. She has fed a cow: она кормила корову. Feed — fed — fed: вторая и третья формы совпадают.",
-        "uk": "Cow — корова, pig — свиня. Знайоме guinea pig означає «морська свинка», але pig саме по собі — свиня. She has fed a cow: вона годувала корову. Feed — fed — fed: друга й третя форми збігаються."
+        "ru": "Вы с другом побывали на ферме и рассказываете, что видели свинью. We have seen a pig — мы видели свинью. Pig означает «свинья». Собираем: we + have + seen + a pig. С we ставим have, seen — третья форма see. Have seen сообщает об опыте: вы видели животное, но фраза не говорит, что вы его кормили.",
+        "uk": "Ви з другом побували на фермі й розповідаєте, що бачили свиню. We have seen a pig — ми бачили свиню. Pig означає «свиня». Складаємо: we + have + seen + a pig. Із we ставимо have, seen — третя форма see. Have seen повідомляє про досвід: ви бачили тварину, але фраза не каже, що ви її годували."
       },
       "question": {
         "interactionId": "en:lesson-23:session-16:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4eaca86298790ff9368d46e973575c8556e19d98ac019988e2dc3cfaada33d71"
+  "introFingerprint": "43c7687d6bd6d3bc96fad67fb6dd62f855cc1904576b25af5c81f38c30417824"
 }

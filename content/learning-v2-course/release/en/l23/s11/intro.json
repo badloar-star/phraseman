@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Слова в меню",
-        "uk": "Слова в меню"
+        "ru": "Уже готовила морепродукты",
+        "uk": "Уже готувала морепродукти"
       },
       "bodyByLocale": {
-        "ru": "Shellfish — морепродукты с раковиной или панцирем: например, знакомые mussels и prawns. Обычная рыба сюда не относится. Lobster — омар, crab — краб. Эти названия помогают понять меню. В We have eaten lobster слово lobster означает еду, поэтому здесь без a.",
-        "uk": "Shellfish — морепродукти з мушлею або панциром: наприклад, знайомі mussels і prawns. Звичайна риба сюди не належить. Lobster — омар, crab — краб. Ці назви допомагають зрозуміти меню. У We have eaten lobster слово lobster означає їжу, тому тут без a."
+        "ru": "Вы выбираете блюдо для ужина и рассказываете о подруге, которая уже готовила моллюсков или ракообразных. She has cooked shellfish — она готовила такие морепродукты. Shellfish — морепродукты с раковиной или панцирем. Собираем: she + has + cooked + shellfish. После she ставим has, cooked — третья форма cook. Has cooked сообщает об опыте приготовления; дату ужина здесь не называем.",
+        "uk": "Ви вибираєте страву на вечерю й розповідаєте про подругу, яка вже готувала молюсків або ракоподібних. She has cooked shellfish — вона готувала такі морепродукти. Shellfish — морепродукти з мушлею або панциром. Складаємо: she + has + cooked + shellfish. Після she ставимо has, cooked — третя форма cook. Has cooked повідомляє про досвід приготування; дату вечері тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-11:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d2e8d2f33a892c0b7be6a136d493808d50fbb711060957a0cd3a4c4ccf55466f"
+  "introFingerprint": "f0390f051878126778af1e219f54345137c816100d95c7b856ef393cd90d580b"
 }

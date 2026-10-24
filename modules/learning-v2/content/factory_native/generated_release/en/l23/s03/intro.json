@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два действия при уборке",
-        "uk": "Дві дії під час прибирання"
+        "ru": "Стол уже обработан",
+        "uk": "Стіл уже оброблено"
       },
       "bodyByLocale": {
-        "ru": "Disinfect — дезинфицировать; это действие, а знакомое disinfectant — средство. Bleach здесь глагол «отбеливать». Disinfect the table — обработать стол, bleach the towels — отбелить полотенца. Не путайте эти действия с обычным мытьём.",
-        "uk": "Disinfect — дезінфікувати; це дія, а знайоме disinfectant — засіб. Bleach тут дієслово «відбілювати». Disinfect the table — обробити стіл, bleach the towels — відбілити рушники. Не плутайте ці дії зі звичайним миттям."
+        "ru": "Подруга закончила дезинфекцию стола и сообщает о выполненной работе. She has disinfected the table — она продезинфицировала стол. Disinfect означает «дезинфицировать». Собираем: she + has + disinfected + the table. С she ставим has, disinfected — третья форма disinfect с окончанием -ed. Has disinfected сообщает о завершённом действии: стол уже обработан.",
+        "uk": "Подруга завершила дезінфекцію столу й повідомляє про виконану роботу. She has disinfected the table — вона продезінфікувала стіл. Disinfect означає «дезінфікувати». Складаємо: she + has + disinfected + the table. Із she ставимо has, disinfected — третя форма disinfect із закінченням -ed. Has disinfected повідомляє про завершену дію: стіл уже оброблено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4749e69272d9664d6315da4031c526d57ebefad556689750f09244f4a40d4a15"
+  "introFingerprint": "6f9a7dd884990d03ac0733df5fe8cc40688bf78fd6c8f7e5b46b9135e09dd13b"
 }

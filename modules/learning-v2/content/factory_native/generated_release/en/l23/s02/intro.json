@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дома стало удобнее",
-        "uk": "Удома стало зручніше"
+        "ru": "На кухне стало удобнее",
+        "uk": "На кухні стало зручніше"
       },
       "bodyByLocale": {
-        "ru": "Reorganise — организовать что-то по-новому: например, разместить вещи на кухне так, чтобы ими было удобнее пользоваться. Американское написание reorganize тоже правильно. Redecorate — обновить отделку комнаты, например покрасить стены или сменить обои. Это разные изменения.",
-        "uk": "Reorganise — організувати щось по-новому: наприклад, розмістити речі на кухні так, щоб ними було зручніше користуватися. Американське написання reorganize теж правильне. Redecorate — оновити оздоблення кімнати, наприклад пофарбувати стіни або змінити шпалери. Це різні зміни."
+        "ru": "Вы разместили кухонные вещи по-новому, чтобы ими было удобнее пользоваться. I have reorganised the kitchen — я по-новому организовал пространство на кухне. Reorganise здесь означает «организовать по-новому». Собираем: I + have + reorganised + the kitchen. После I используем have, к reorganise добавляем -d. Have reorganised сообщает о результате: вещи теперь расположены удобнее. Американское написание reorganized тоже правильно.",
+        "uk": "Ви розмістили кухонні речі по-новому, щоб ними було зручніше користуватися. I have reorganised the kitchen — я по-новому організував простір на кухні. Reorganise тут означає «організувати по-новому». Складаємо: I + have + reorganised + the kitchen. Після I використовуємо have, до reorganise додаємо -d. Have reorganised повідомляє про результат: речі тепер розташовані зручніше. Американське написання reorganized теж правильне."
       },
       "question": {
         "interactionId": "en:lesson-23:session-02:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dd33f977579af1b2765152930fc541ffc64500a2dd9289ba684a2c9132b65421"
+  "introFingerprint": "d75e7d45e501a1efc797f3e9966743f5e1b440a6c0bdbcb2c8e584d80398dab7"
 }

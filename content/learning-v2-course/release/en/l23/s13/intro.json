@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Видели слона",
+        "uk": "Бачили слона"
       },
       "bodyByLocale": {
-        "ru": "Elephant — слон. Lion — лев. I have seen an elephant сообщает об опыте: я видел слона. Перед elephant нужен an, потому что слово начинается с гласного звука. Перед lion ставим a.",
-        "uk": "Elephant — слон. Lion — лев. I have seen an elephant повідомляє про досвід: я бачив слона. Перед elephant потрібен an, бо слово починається з голосного звука. Перед lion ставимо a."
+        "ru": "Друг спрашивает, доводилось ли вам видеть слона. I have seen an elephant — я видел слона. Elephant означает «слон». Собираем: I + have + seen + an elephant. После I ставим have, seen — третья форма see. Перед elephant выбираем an, потому что первый звук гласный. Have seen сообщает о таком опыте без даты.",
+        "uk": "Друг запитує, чи доводилося вам бачити слона. I have seen an elephant — я бачив слона. Elephant означає «слон». Складаємо: I + have + seen + an elephant. Після I ставимо have, seen — третя форма see. Перед elephant вибираємо an, тому що перший звук голосний. Have seen повідомляє про такий досвід без дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-13:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Назвать животное",
-        "uk": "Назвати тварину"
+        "ru": "Наблюдали за тигром",
+        "uk": "Спостерігали за тигром"
       },
       "bodyByLocale": {
-        "ru": "Tiger — тигр, giraffe — жираф. Watch a tiger — наблюдать за тигром некоторое время. See an elephant — увидеть слона. Это знакомое различие see и watch помогает точнее рассказать о посещении зоопарка.",
-        "uk": "Tiger — тигр, giraffe — жирафа. Watch a tiger — спостерігати за тигром певний час. See an elephant — побачити слона. Це знайома різниця між see та watch допомагає точніше розповісти про відвідування зоопарку."
+        "ru": "В зоопарке вы с другом некоторое время наблюдали, как двигается тигр, и теперь рассказываете об этом. We have watched a tiger — мы наблюдали за тигром. Tiger означает «тигр». Собираем: we + have + watched + a tiger. После we ставим have, watched — третья форма watch. Watch здесь означает наблюдать некоторое время. Have watched сообщает о вашем опыте наблюдения.",
+        "uk": "У зоопарку ви з другом певний час спостерігали, як рухається тигр, і тепер розповідаєте про це. We have watched a tiger — ми спостерігали за тигром. Tiger означає «тигр». Складаємо: we + have + watched + a tiger. Після we ставимо have, watched — третя форма watch. Watch тут означає спостерігати певний час. Have watched повідомляє про ваш досвід спостереження."
       },
       "question": {
         "interactionId": "en:lesson-23:session-13:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Рассказать об опыте",
-        "uk": "Розповісти про досвід"
+        "ru": "Уже рисовал жирафа",
+        "uk": "Уже малював жирафу"
       },
       "bodyByLocale": {
-        "ru": "Draw — drew — drawn. He has drawn a giraffe: он уже рисовал жирафа, у него есть такой опыт. Take a photo of — сфотографировать; третья форма take — taken. В рассказе об опыте не называем дату.",
-        "uk": "Draw — drew — drawn. He has drawn a giraffe: він уже малював жирафу, має такий досвід. Take a photo of — сфотографувати; третя форма take — taken. У розповіді про досвід не називаємо дату."
+        "ru": "На занятии по рисованию друг говорит, что уже рисовал жирафа. He has drawn a giraffe — он рисовал жирафа. Giraffe означает «жираф». Собираем: he + has + drawn + a giraffe. С he используем has; у draw три формы: draw — drew — drawn. После has нужна drawn. Has drawn сообщает об опыте рисования, без указания конкретного занятия.",
+        "uk": "На занятті з малювання друг каже, що вже малював жирафу. He has drawn a giraffe — він малював жирафу. Giraffe означає «жирафа». Складаємо: he + has + drawn + a giraffe. Із he використовуємо has; у draw три форми: draw — drew — drawn. Після has потрібна drawn. Has drawn повідомляє про досвід малювання, без зазначення конкретного заняття."
       },
       "question": {
         "interactionId": "en:lesson-23:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "99d83bf9e2d6dc6aabcf1a8ac426ddc285a3070e497ccf610fb49e1583759577"
+  "introFingerprint": "b4c3cf9b835d449dc6f50ef0780c20d4e5706258317eea28a6c8b721e3eb0bc6"
 }

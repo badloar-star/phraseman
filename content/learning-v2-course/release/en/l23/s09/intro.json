@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Увидеть своими глазами",
-        "uk": "Побачити на власні очі"
+        "ru": "Видела вулкан",
+        "uk": "Бачила вулкан"
       },
       "bodyByLocale": {
-        "ru": "Volcano — вулкан. She has seen a volcano — она видела вулкан; мы говорим о её опыте. Третья форма see — seen, не saw. Jungle — джунгли: We have walked through the jungle — мы ходили по джунглям. Хотя русский перевод множественный, здесь английское jungle — единственное число.",
-        "uk": "Volcano — вулкан. She has seen a volcano — вона бачила вулкан; ми говоримо про її досвід. Третя форма see — seen, не saw. Jungle — джунглі: We have walked through the jungle — ми ходили джунглями. Хоча український переклад у множині, тут англійське jungle — однина."
+        "ru": "Вы рассказываете о подруге, которая во время путешествия видела вулкан. She has seen a volcano — она видела вулкан. Volcano означает «вулкан». Собираем: she + has + seen + a volcano. С she используем has, seen — третья форма see. После has нужна seen, а не saw. Has seen сообщает об опыте: когда именно состоялась поездка, в этой фразе не уточняем.",
+        "uk": "Ви розповідаєте про подругу, яка під час подорожі бачила вулкан. She has seen a volcano — вона бачила вулкан. Volcano означає «вулкан». Складаємо: she + has + seen + a volcano. Із she використовуємо has, seen — третя форма see. Після has потрібна seen, а не saw. Has seen повідомляє про досвід: коли саме відбулася поїздка, у цій фразі не уточнюємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-09:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a9ba4d09ac54af6036ea6145ade7fa622e7e45c47ce0b7ebacf8819cda089eb0"
+  "introFingerprint": "b8e04faffb745c52adc4d0813d844949fb107cecb09ce63a8e6bcba4f11907cd"
 }

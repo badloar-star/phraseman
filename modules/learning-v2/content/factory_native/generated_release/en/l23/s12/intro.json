@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Куда вы ходили",
-        "uk": "Куди ви ходили"
+        "ru": "Бывали в цирке",
+        "uk": "Бували в цирку"
       },
       "bodyByLocale": {
-        "ru": "Circus — цирк. Exhibition — выставка, например картин или фотографий. We have been to a circus — мы бывали в цирке. Have been to говорит о посещении места, а не о том, что мы всё ещё там. An exhibition — одна выставка.",
-        "uk": "Circus — цирк. Exhibition — виставка, наприклад картин або фотографій. We have been to a circus — ми бували в цирку. Have been to говорить про відвідування місця, а не про те, що ми досі там. An exhibition — одна виставка."
+        "ru": "Друзья обсуждают цирк, и вы с сестрой говорите, что уже бывали там. We have been to a circus — мы бывали в цирке. Circus означает «цирк». Собираем: we + have + been + to a circus. С we ставим have; been — третья форма be. Сочетание have been to сообщает об опыте посещения: вы сходили и вернулись, а не находитесь там сейчас.",
+        "uk": "Друзі обговорюють цирк, і ви із сестрою кажете, що вже бували там. We have been to a circus — ми бували в цирку. Circus означає «цирк». Складаємо: we + have + been + to a circus. Із we ставимо have; been — третя форма be. Сполучення have been to повідомляє про досвід відвідування: ви сходили й повернулися, а не перебуваєте там зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2641c4d287fb25d9c783682e9debb2d4fd35a3a480821eef9c77fd06cde5a33c"
+  "introFingerprint": "58d8c38226e48af3ed7316df6a4fd14d34086b590fea11d1d2a766c54092ff6b"
 }

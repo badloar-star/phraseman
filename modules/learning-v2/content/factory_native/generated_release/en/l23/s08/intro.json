@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Самые маленькие",
-        "uk": "Найменші"
+        "ru": "Познакомились с малышом",
+        "uk": "Познайомилися з малюком"
       },
       "bodyByLocale": {
-        "ru": "Newborn — новорождённый ребёнок. Toddler — малыш, который учится ходить или недавно начал ходить; обычно это возраст примерно от одного до трёх лет. I have met their newborn: я уже познакомился с их новорождённым. Третья форма meet — met.",
-        "uk": "Newborn — новонароджена дитина. Toddler — малюк, який вчиться ходити або нещодавно почав ходити; зазвичай це вік приблизно від одного до трьох років. I have met their newborn: я вже познайомився з їхньою новонародженою дитиною. Третя форма meet — met."
+        "ru": "Вы навестили друзей и впервые увидели их новорождённого ребёнка. I have met their newborn — я познакомился с их новорождённым. Newborn здесь означает «новорождённый ребёнок». Собираем: I + have + met + their newborn. После I ставим have, met — третья форма meet. Their уточняет, чей это ребёнок. Have met сообщает, что знакомство уже состоялось.",
+        "uk": "Ви відвідали друзів і вперше побачили їхню новонароджену дитину. I have met their newborn — я познайомився з їхньою новонародженою дитиною. Newborn тут означає «новонароджена дитина». Складаємо: I + have + met + their newborn. Після I ставимо have, met — третя форма meet. Their уточнює, чия це дитина. Have met повідомляє, що знайомство вже відбулося."
       },
       "question": {
         "interactionId": "en:lesson-23:session-08:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться о присмотре",
-        "uk": "Домовитися про догляд"
+        "ru": "Няне уже позвонили",
+        "uk": "Няні вже зателефонували"
       },
       "bodyByLocale": {
-        "ru": "Childminder — в британском английском няня, которая за плату присматривает за детьми у себя дома. Это более точное слово, чем знакомое babysitter. She has called the childminder: она уже позвонила этой няне. С she и с the toddler ставим has.",
-        "uk": "Childminder — у британській англійській няня, яка за плату доглядає дітей у себе вдома. Це точніше слово, ніж знайоме babysitter. She has called the childminder: вона вже зателефонувала цій няні. Із she та з the toddler ставимо has."
+        "ru": "Подруга договаривалась о присмотре за ребёнком и уже позвонила няне. She has called the childminder — она позвонила няне. Childminder — британское название человека, который за плату присматривает за детьми, обычно у себя дома. Собираем: she + has + called + the childminder. С she ставим has, called — третья форма call с окончанием -ed. После called сразу называем человека, без to. Has called сообщает о состоявшемся звонке.",
+        "uk": "Подруга домовлялася про догляд за дитиною й уже зателефонувала няні. She has called the childminder — вона зателефонувала няні. Childminder — британська назва людини, яка за плату доглядає дітей, зазвичай у себе вдома. Складаємо: she + has + called + the childminder. Із she ставимо has, called — третя форма call із закінченням -ed. Після called одразу називаємо людину, без to. Has called повідомляє про дзвінок, який уже відбувся."
       },
       "question": {
         "interactionId": "en:lesson-23:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07dd6417d8512aca835566b52b3152a49db926b1f8d56a418b89bbb6d0b9e72a"
+  "introFingerprint": "97b18ec700366424a08521cc5db953e160028b07f2cebff7d3ee1910234cea4a"
 }

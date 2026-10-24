@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Больше или меньше реального",
-        "uk": "Більше чи менше за справжнє"
+        "ru": "Заплатили меньше обещанного",
+        "uk": "Заплатили менше обіцяного"
       },
       "bodyByLocale": {
-        "ru": "Overestimate — переоценить: например, ожидать слишком высокую стоимость. Это противоположно знакомому underestimate. Underpay — недоплатить человеку за работу. Третья форма underpaid, как paid у pay. They have underpaid me: мне теперь не хватает части обещанной суммы.",
-        "uk": "Overestimate — переоцінити: наприклад, очікувати зависоку вартість. Це протилежне знайомому underestimate. Underpay — недоплатити людині за роботу. Третя форма underpaid, як paid у pay. They have underpaid me: мені тепер бракує частини обіцяної суми."
+        "ru": "Вы выполнили работу, но получили меньше обещанной суммы. They have underpaid me — они мне недоплатили. Underpay означает «недоплатить». Собираем: they + have + underpaid + me. С they используем have; underpaid — третья форма underpay, как paid у pay. Me показывает, кому недоплатили. Have underpaid связывает выплату с результатом сейчас: части обещанных денег у вас нет.",
+        "uk": "Ви виконали роботу, але отримали менше обіцяної суми. They have underpaid me — вони мені недоплатили. Underpay означає «недоплатити». Складаємо: they + have + underpaid + me. Із they використовуємо have; underpaid — третя форма underpay, як paid у pay. Me показує, кому недоплатили. Have underpaid пов’язує виплату з результатом зараз: частини обіцяних грошей у вас немає."
       },
       "question": {
         "interactionId": "en:lesson-23:session-05:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0fed38c0a7fe01f5709d2cde922cd9cab3a5e47651a674dff6e2d610f69e2432"
+  "introFingerprint": "eb178197a5a4c856cf9f1aeee96c357a082a7ee6387aee5f330f8d201937f6c2"
 }

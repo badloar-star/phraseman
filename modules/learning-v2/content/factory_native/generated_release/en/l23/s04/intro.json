@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не так, как казалось",
-        "uk": "Не так, як здавалося"
+        "ru": "Поездка дороже, чем думали",
+        "uk": "Поїздка дорожча, ніж думали"
       },
       "bodyByLocale": {
-        "ru": "Underestimate — недооценить: например, решить, что поездка будет дешевле. Exaggerate — преувеличивать: описывать проблему как более серьёзную, чем она есть. We have underestimated the cost: теперь видно, что денег нужно больше.",
-        "uk": "Underestimate — недооцінити: наприклад, вирішити, що подорож буде дешевшою. Exaggerate — перебільшувати: описувати проблему як серйознішу, ніж вона є. We have underestimated the cost: тепер видно, що грошей потрібно більше."
+        "ru": "Вы с другом подсчитали расходы на поездку и поняли, что рассчитывали на слишком маленькую сумму. We have underestimated the cost — мы недооценили стоимость. Underestimate означает «недооценить». Собираем: we + have + underestimated + the cost. После we ставим have, к underestimate добавляем -d. Have underestimated связывает ошибочную оценку с результатом сейчас: на поездку нужно больше денег.",
+        "uk": "Ви з другом підрахували витрати на поїздку й зрозуміли, що розраховували на замалу суму. We have underestimated the cost — ми недооцінили вартість. Underestimate означає «недооцінити». Складаємо: we + have + underestimated + the cost. Після we ставимо have, до underestimate додаємо -d. Have underestimated пов’язує помилкову оцінку з результатом зараз: на поїздку потрібно більше грошей."
       },
       "question": {
         "interactionId": "en:lesson-23:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "32c53e4790ff8b3a364ba0effae63a49397f6cd062c6ba7175479d4b269f591b"
+  "introFingerprint": "52d0f7024f59c38d6d6a182bae8d9601e8ec153b16df61d189569ce17994d207"
 }

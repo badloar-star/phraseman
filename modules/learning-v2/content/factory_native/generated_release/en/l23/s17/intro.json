@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Осколки и засор",
-        "uk": "Скалки й засмічення"
+        "ru": "Осколки на полу",
+        "uk": "Скалки на підлозі"
       },
       "bodyByLocale": {
-        "ru": "Shatter — разбиться на много осколков. The glass has shattered: стакан разбился, и осколки сейчас на полу. Clog — засоряться. Знакомое unclog означает прочистить засор, а clog — засориться. В clogged буква g удваивается.",
-        "uk": "Shatter — розбитися на багато скалок. The glass has shattered: склянка розбилася, і скалки зараз на підлозі. Clog — засмічуватися. Знайоме unclog означає прочистити засмічення, а clog — засмітитися. У clogged літера g подвоюється."
+        "ru": "Стакан упал и разбился на много осколков. Вы объясняете, что случилось: The glass has shattered — стакан разбился. Shatter означает «разбиться на осколки». Собираем: the glass + has + shattered. Стакан один, поэтому ставим has; shattered — третья форма shatter с окончанием -ed. Present Perfect связывает событие с результатом сейчас: на полу лежат осколки.",
+        "uk": "Склянка впала й розбилася на багато скалок. Ви пояснюєте, що сталося: The glass has shattered — склянка розбилася. Shatter означає «розбитися на скалки». Складаємо: the glass + has + shattered. Склянка одна, тому ставимо has; shattered — третя форма shatter із закінченням -ed. Present Perfect пов’язує подію з результатом зараз: на підлозі лежать скалки."
       },
       "question": {
         "interactionId": "en:lesson-23:session-17:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "12268ca701278ca5bc7b257fb0e34b7fa8976583806f90cc22e2ee555f356eb3"
+  "introFingerprint": "415d42cc3500a562603066f9deace0e63f4b61ec6024811379eacee26ff25ee8"
 }

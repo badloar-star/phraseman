@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Появилось или исчезло",
-        "uk": "З’явилося чи зникло"
+        "ru": "На небе появились облака",
+        "uk": "На небі з’явилися хмари"
       },
       "bodyByLocale": {
-        "ru": "Appear — появиться, disappear — исчезнуть. Clouds have appeared: облака теперь видны. My keys have disappeared: ключей теперь нет на месте. Clouds и keys во множественном числе, поэтому используем have.",
-        "uk": "Appear — з’явитися, disappear — зникнути. Clouds have appeared: хмари тепер видно. My keys have disappeared: ключів тепер немає на місці. Clouds і keys у множині, тому використовуємо have."
+        "ru": "Небо было ясным, но теперь на нём видны облака. Clouds have appeared — появились облака. Appear означает «появиться». Собираем: clouds + have + appeared. Clouds во множественном числе, поэтому ставим have. Appeared — третья форма appear с окончанием -ed. Have appeared сообщает об изменении с видимым результатом: облака теперь на небе.",
+        "uk": "Небо було ясним, але тепер на ньому видно хмари. Clouds have appeared — з’явилися хмари. Appear означає «з’явитися». Складаємо: clouds + have + appeared. Clouds у множині, тому ставимо have. Appeared — третя форма appear із закінченням -ed. Have appeared повідомляє про зміну з видимим результатом: хмари тепер на небі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-06:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a733e0d71bb35230c0bffcd1489b724f0ff3a36c33f7fe821e9feef201e2f646"
+  "introFingerprint": "e73e321cba8141d10921233366790765b878d9bd63d87a31f41b63c05f3a2d22"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Увидеть животных или праздник",
-        "uk": "Побачити тварин чи свято"
+        "ru": "Бывала на сафари",
+        "uk": "Бувала на сафарі"
       },
       "bodyByLocale": {
-        "ru": "Safari здесь — туристическая поездка для наблюдения за дикими животными. On a safari — на сафари. Carnival — карнавал, праздник с костюмами, музыкой и шествием. She has been on a safari сообщает об опыте; been — третья форма be.",
-        "uk": "Safari тут — туристична поїздка для спостереження за дикими тваринами. On a safari — на сафарі. Carnival — карнавал, свято з костюмами, музикою та ходою. She has been on a safari повідомляє про досвід; been — третя форма be."
+        "ru": "Подруга уже ездила наблюдать за дикими животными, и вы рассказываете об этом опыте. She has been on a safari — она бывала на сафари. Safari здесь — туристическая поездка для наблюдения за животными. Собираем: she + has + been + on a safari. После she ставим has, been — третья форма be. Сочетание on a safari называет поездку. Has been сообщает, что такой опыт уже был, а не что подруга сейчас там.",
+        "uk": "Подруга вже їздила спостерігати за дикими тваринами, і ви розповідаєте про цей досвід. She has been on a safari — вона бувала на сафарі. Safari тут — туристична поїздка для спостереження за тваринами. Складаємо: she + has + been + on a safari. Після she ставимо has, been — третя форма be. Сполучення on a safari називає поїздку. Has been повідомляє, що такий досвід уже був, а не що подруга зараз там."
       },
       "question": {
         "interactionId": "en:lesson-23:session-10:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "27e3534a3dcc43ec94e06f8b3f238a9a1bfc319b9801933a7ad6c138b7e8dd62"
+  "introFingerprint": "6eb394a252078837badb6a24b25d66ff91f412e20889a5e249306f128129ba61"
 }

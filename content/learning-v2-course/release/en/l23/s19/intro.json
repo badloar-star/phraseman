@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Названия продуктов",
-        "uk": "Назви продуктів"
+        "ru": "Выращивала малину",
+        "uk": "Вирощувала малину"
       },
       "bodyByLocale": {
-        "ru": "Raspberries — малина, blueberries — голубика. Английские слова здесь во множественном числе, поэтому перед ними нет a. She has grown raspberries — она выращивала малину. Третья форма grow — grown, не grew.",
-        "uk": "Raspberries — малина, blueberries — лохина. Англійські слова тут у множині, тому перед ними немає a. She has grown raspberries — вона вирощувала малину. Третя форма grow — grown, не grew."
+        "ru": "Вы обсуждаете сад и рассказываете о подруге, которая раньше выращивала малину. She has grown raspberries — она выращивала малину. Raspberries означает «малина». Собираем: she + has + grown + raspberries. С she выбираем has, grown — третья форма grow, а не grew. Has grown сообщает об опыте выращивания; конкретный сезон здесь не называем.",
+        "uk": "Ви обговорюєте сад і розповідаєте про подругу, яка раніше вирощувала малину. She has grown raspberries — вона вирощувала малину. Raspberries означає «малина». Складаємо: she + has + grown + raspberries. Із she вибираємо has, grown — третя форма grow, а не grew. Has grown повідомляє про досвід вирощування; конкретного сезону тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-19:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что вы уже делали",
-        "uk": "Що ви вже робили"
+        "ru": "Уже пробовал киви",
+        "uk": "Уже куштував ківі"
       },
       "bodyByLocale": {
-        "ru": "Kiwi здесь — фрукт киви. A kiwi — один плод. He has tried a kiwi — он пробовал киви. В этих примерах have/has помогают рассказать об опыте: picked, grown, eaten и tried — третьи формы.",
-        "uk": "Kiwi тут — фрукт ківі. A kiwi — один плід. He has tried a kiwi — він куштував ківі. У цих прикладах have/has допомагають розповісти про досвід: picked, grown, eaten і tried — треті форми."
+        "ru": "Вы предлагаете другу киви и узнаёте, что он уже пробовал этот фрукт. He has tried a kiwi — он пробовал киви. Kiwi здесь — фрукт. Собираем: he + has + tried + a kiwi. С he используем has, tried — третья форма try. A kiwi называет один плод. Has tried сообщает об опыте: вкус ему уже знаком, хотя когда он попробовал киви, здесь не уточняется.",
+        "uk": "Ви пропонуєте другу ківі й дізнаєтеся, що він уже куштував цей фрукт. He has tried a kiwi — він куштував ківі. Kiwi тут — фрукт. Складаємо: he + has + tried + a kiwi. Із he використовуємо has, tried — третя форма try. A kiwi називає один плід. Has tried повідомляє про досвід: смак йому вже знайомий, хоча коли він скуштував ківі, тут не уточнюється."
       },
       "question": {
         "interactionId": "en:lesson-23:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a2a203a2c9bfa733a745b3ff4d534d93b7af76474766f0a79f5441f88dfb5f56"
+  "introFingerprint": "ad3c8a521c97e7d309d70b9020fb9ce469693a7e8e9a193818d007424383e167"
 }

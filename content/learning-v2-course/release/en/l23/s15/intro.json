@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Видели орла",
+        "uk": "Бачили орла"
       },
       "bodyByLocale": {
-        "ru": "Eagle — орёл, wolf — волк. I have seen an eagle — я видел орла. An нужен перед гласным звуком в eagle; перед wolf ставим a. Seen сообщает, что такая встреча уже была в вашей жизни.",
-        "uk": "Eagle — орел, wolf — вовк. I have seen an eagle — я бачив орла. An потрібен перед голосним звуком в eagle; перед wolf ставимо a. Seen повідомляє, що така зустріч уже була у вашому житті."
+        "ru": "Вы обсуждаете птиц и рассказываете, что уже видели орла. I have seen an eagle — я видел орла. Eagle означает «орёл». Собираем: I + have + seen + an eagle. После I ставим have, seen — третья форма see. Перед eagle выбираем an: первый звук гласный. Have seen сообщает об опыте встречи с птицей.",
+        "uk": "Ви обговорюєте птахів і розповідаєте, що вже бачили орла. I have seen an eagle — я бачив орла. Eagle означає «орел». Складаємо: I + have + seen + an eagle. Після I ставимо have, seen — третя форма see. Перед eagle вибираємо an: перший звук голосний. Have seen повідомляє про досвід зустрічі з птахом."
       },
       "question": {
         "interactionId": "en:lesson-23:session-15:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Назвать животное",
-        "uk": "Назвати тварину"
+        "ru": "Снимок змеи",
+        "uk": "Знімок змії"
       },
       "bodyByLocale": {
-        "ru": "Snake — змея, lizard — ящерица. Take a photo of a snake — сфотографировать змею. После have третья форма taken: We have taken a photo of a snake. Русское «сфотографировали» передаём знакомым сочетанием take a photo of.",
-        "uk": "Snake — змія, lizard — ящірка. Take a photo of a snake — сфотографувати змію. Після have третя форма taken: We have taken a photo of a snake. Українське «сфотографували» передаємо знайомим сполученням take a photo of."
+        "ru": "Во время прогулки вы с другом сфотографировали змею и теперь показываете снимок. We have taken a photo of a snake — мы сфотографировали змею. Snake означает «змея». Собираем: we + have + taken + a photo + of a snake. После we используем have, taken — третья форма take. Of a snake уточняет, кто изображён на фотографии. Have taken сообщает, что снимок уже сделан.",
+        "uk": "Під час прогулянки ви з другом сфотографували змію й тепер показуєте знімок. We have taken a photo of a snake — ми сфотографували змію. Snake означає «змія». Складаємо: we + have + taken + a photo + of a snake. Після we використовуємо have, taken — третя форма take. Of a snake уточнює, хто зображений на фотографії. Have taken повідомляє, що знімок уже зроблено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-15:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "43ddbae9519b56e35fc55cc7953fb5c6d50038c443b2e5cada6224295c58ec9d"
+  "introFingerprint": "6fa3deefc69b43228557be9f47293d85c83a9747da23fc34354beb7b488e7675"
 }

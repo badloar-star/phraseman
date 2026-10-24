@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-33:i01",
+    "correctText": "Could we talk for a moment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:word:awkwardly",
+    "correctText": "awkwardly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i02",
+    "correctText": "The conversation ended awkwardly.",
+    "correctResponseId": "en:lesson-27:session-33:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i03",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-33:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:word:sincerely",
+    "correctText": "sincerely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i04",
+    "correctText": "I sincerely hope you feel better.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i05",
+    "correctText": "I did not mean to upset you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i06",
+    "correctText": "sent",
+    "correctResponseId": "en:lesson-27:session-33:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i07",
+    "correctText": "Thank you for telling me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:word:urgently",
+    "correctText": "urgently",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i08",
+    "correctText": "I urgently need to speak to you.",
+    "correctResponseId": "en:lesson-27:session-33:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i09",
+    "correctText": "I have already read your message.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i10",
+    "correctText": "Would you rather sit outside?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i11",
+    "correctText": "tell",
+    "correctResponseId": "en:lesson-27:session-33:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:word:freely",
+    "correctText": "freely",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i12",
+    "correctText": "You can speak freely here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i13",
+    "correctText": "What would help you now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i14",
+    "correctText": "I would listen if you wanted to talk.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i15",
+    "correctText": "We can meet after lunch.",
+    "correctResponseId": "en:lesson-27:session-33:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i16",
+    "correctText": "There is no need to hurry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-33:i17",
+    "correctText": "Shall I call you this evening?",
+    "correctResponseId": null
+  }
+]

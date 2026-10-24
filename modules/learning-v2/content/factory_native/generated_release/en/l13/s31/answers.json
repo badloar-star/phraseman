@@ -6,18 +6,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-31:i01",
-    "correctText": "Did you accidentally break the cup yesterday?",
+    "correctText": "I accidentally broke a cup.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:i02",
-    "correctText": "Did she accidentally break the cup yesterday?",
+    "correctText": "Did you drop it yesterday?",
     "correctResponseId": "en:lesson-13:session-31:i02:r1"
   },
   {
     "interactionId": "en:lesson-13:session-31:i03",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-31:i03:r1"
+    "correctText": "Sorry about the mess.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:word:deliberately",
@@ -26,18 +26,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-31:i04",
-    "correctText": "Did you deliberately leave the window open yesterday?",
-    "correctResponseId": null
+    "correctText": "deliberately",
+    "correctResponseId": "en:lesson-13:session-31:i04:r1"
   },
   {
     "interactionId": "en:lesson-13:session-31:i05",
-    "correctText": "Did she deliberately leave the window open yesterday?",
-    "correctResponseId": "en:lesson-13:session-31:i05:r1"
+    "correctText": "I wanted some fresh air.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:i06",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-31:i06:r1"
+    "correctText": "Please close the window.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:word:properly",
@@ -46,18 +46,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-31:i07",
-    "correctText": "Did you close the door properly yesterday?",
-    "correctResponseId": null
+    "correctText": "Did the key work properly?",
+    "correctResponseId": "en:lesson-13:session-31:i07:r1"
   },
   {
     "interactionId": "en:lesson-13:session-31:i08",
-    "correctText": "Did she close the door properly yesterday?",
+    "correctText": "leave",
     "correctResponseId": "en:lesson-13:session-31:i08:r1"
   },
   {
     "interactionId": "en:lesson-13:session-31:i09",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-31:i09:r1"
+    "correctText": "It is beside your bag.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:word:completely",
@@ -66,42 +66,42 @@
   },
   {
     "interactionId": "en:lesson-13:session-31:i10",
-    "correctText": "Did you fill the bottle completely yesterday?",
+    "correctText": "The towel was completely dry.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:i11",
-    "correctText": "Did she fill the bottle completely yesterday?",
+    "correctText": "Did",
     "correctResponseId": "en:lesson-13:session-31:i11:r1"
   },
   {
     "interactionId": "en:lesson-13:session-31:i12",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-31:i12:r1"
-  },
-  {
-    "interactionId": "en:lesson-13:session-31:i13",
-    "correctText": "en:lesson-13:session-31:i13:p1=accidentally\nen:lesson-13:session-31:i13:p2=deliberately\nen:lesson-13:session-31:i13:p3=properly\nen:lesson-13:session-31:i13:p4=completely",
+    "correctText": "Can I have a clean towel?",
     "correctResponseId": null
   },
   {
+    "interactionId": "en:lesson-13:session-31:i13",
+    "correctText": "We finished the washing last night.",
+    "correctResponseId": "en:lesson-13:session-31:i13:r1"
+  },
+  {
     "interactionId": "en:lesson-13:session-31:i14",
-    "correctText": "We didn't break the plate yesterday.",
+    "correctText": "I did not find my socks.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:i15",
-    "correctText": "Did he open the window last night?",
+    "correctText": "Are you ready to go?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:i16",
-    "correctText": "Did you close the window properly last night?",
+    "correctText": "Please wait for me.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-31:i17",
-    "correctText": "She didn't accidentally break the cup yesterday.",
+    "correctText": "Remember the key.",
     "correctResponseId": null
   }
 ]

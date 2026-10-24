@@ -1,0 +1,1002 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-33",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-33:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте поговорити хвилинку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте поговорити хвилинку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i01:audio",
+          "transcript": "Could we talk for a moment?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we talk for a moment?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:word:awkwardly",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — awkwardly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:word:awkwardly:audio"
+      ],
+      "accessibilityLabel": "Картка слова — awkwardly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:word:awkwardly:audio",
+          "transcript": "awkwardly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:word:awkwardly:r1",
+            "targetText": "awkwardly",
+            "meaningByLocale": {
+              "ru": "Неловко.",
+              "uk": "Ніяково."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "awkwardly",
+          "definitionByLocale": {
+            "ru": "Неловко.",
+            "uk": "Ніяково."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-33:i02:r1",
+          "text": "The conversation ended awkwardly."
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i02:r2",
+          "text": "The conversation started awkwardly."
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i02:r3",
+          "text": "The conversation ended suddenly."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i02:audio",
+          "transcript": "The conversation ended awkwardly."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:i02:r1",
+            "targetText": "The conversation ended awkwardly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i02:r2",
+            "targetText": "The conversation started awkwardly.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i02:r3",
+            "targetText": "The conversation ended suddenly.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The conversation ended awkwardly.",
+              "uk": "У записі звучить The conversation ended awkwardly."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The conversation ended awkwardly.",
+              "uk": "У записі звучить The conversation ended awkwardly."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви зараз не знаєте, що сказати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-33:i03:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i03:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i03:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви зараз не знаєте, що сказати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сейчас не знаете, что сказать.",
+          "uk": "Ви зараз не знаєте, що сказати."
+        },
+        "gappedTargetPhrase": "I wish I ___ what to say.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-33:i03:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i03:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i03:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Ви зараз не знаєте, що сказати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви зараз не знаєте, що сказати.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь knew.",
+              "uk": "Після wish тут knew."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви зараз не знаєте, що сказати.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма knew.",
+              "uk": "Потрібна форма knew."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:word:sincerely",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — sincerely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:word:sincerely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — sincerely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:word:sincerely:audio",
+          "transcript": "sincerely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:word:sincerely:r1",
+            "targetText": "sincerely",
+            "meaningByLocale": {
+              "ru": "Искренне.",
+              "uk": "Щиро."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sincerely",
+          "definitionByLocale": {
+            "ru": "Искренне.",
+            "uk": "Щиро."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Побажайте другові почуватися краще.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Побажайте другові почуватися краще.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I sincerely hope you feel better.",
+        "localizedMeaning": {
+          "ru": "Пожелайте другу почувствовать себя лучше.",
+          "uk": "Побажайте другові почуватися краще."
+        },
+        "orderedTokens": [
+          "I",
+          "sincerely",
+          "hope",
+          "you",
+          "feel",
+          "better"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пояснення свого наміру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i05:audio"
+      ],
+      "accessibilityLabel": "Почуйте пояснення свого наміру.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i05:audio",
+          "transcript": "I did not mean to upset you."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I did not mean to upset you.",
+        "orderedTokens": [
+          "I",
+          "did",
+          "not",
+          "mean",
+          "to",
+          "upset",
+          "you"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Повідомлення було надіслано вчора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-33:i06:r1",
+          "text": "sent"
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i06:r2",
+          "text": "have sent"
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i06:r3",
+          "text": "sended"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомлення було надіслано вчора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сообщение было отправлено вчера.",
+          "uk": "Повідомлення було надіслано вчора."
+        },
+        "gappedTargetPhrase": "I ___ you a message yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-33:i06:r1",
+            "text": "sent"
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i06:r2",
+            "text": "have sent"
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i06:r3",
+            "text": "sended"
+          }
+        ],
+        "testedDimension": "Повідомлення було надіслано вчора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-33:i06:r2",
+            "correct": false,
+            "testedDimension": "Повідомлення було надіслано вчора.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь sent без have.",
+              "uk": "Із yesterday тут sent без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i06:r3",
+            "correct": false,
+            "testedDimension": "Повідомлення було надіслано вчора.",
+            "feedbackByLocale": {
+              "ru": "У send прошедшая форма sent.",
+              "uk": "У send минула форма sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Подякуйте за відвертість.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Подякуйте за відвертість.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i07:audio",
+          "transcript": "Thank you for telling me."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for telling me.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:word:urgently",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — urgently",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:word:urgently:audio"
+      ],
+      "accessibilityLabel": "Картка слова — urgently",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:word:urgently:audio",
+          "transcript": "urgently"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:word:urgently:r1",
+            "targetText": "urgently",
+            "meaningByLocale": {
+              "ru": "Срочно.",
+              "uk": "Терміново."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "urgently",
+          "definitionByLocale": {
+            "ru": "Срочно.",
+            "uk": "Терміново."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-33:i08:r1",
+          "text": "I urgently need to speak to you."
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i08:r2",
+          "text": "I urgently need to speak to her."
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i08:r3",
+          "text": "I urgently need to write to you."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i08:audio",
+          "transcript": "I urgently need to speak to you."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:i08:r1",
+            "targetText": "I urgently need to speak to you.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i08:r2",
+            "targetText": "I urgently need to speak to her.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i08:r3",
+            "targetText": "I urgently need to write to you.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I urgently need to speak to you.",
+              "uk": "У записі звучить I urgently need to speak to you."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I urgently need to speak to you.",
+              "uk": "У записі звучить I urgently need to speak to you."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Підтвердьте, що повідомлення вже прочитано.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Підтвердьте, що повідомлення вже прочитано.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already read your message.",
+        "localizedMeaning": {
+          "ru": "Подтвердите, что сообщение уже прочитано.",
+          "uk": "Підтвердьте, що повідомлення вже прочитано."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "read",
+          "your",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи не краще сісти надворі.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Уточніть, чи не краще сісти надворі.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i10:audio",
+          "transcript": "Would you rather sit outside?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you rather sit outside?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Порадьте розповісти їй.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-33:i11:r1",
+          "text": "tell"
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i11:r2",
+          "text": "told"
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i11:r3",
+          "text": "to tell"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Порадьте розповісти їй.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте рассказать ей.",
+          "uk": "Порадьте розповісти їй."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ her.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-33:i11:r1",
+            "text": "tell"
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i11:r2",
+            "text": "told"
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i11:r3",
+            "text": "to tell"
+          }
+        ],
+        "testedDimension": "Порадьте розповісти їй.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-33:i11:r2",
+            "correct": false,
+            "testedDimension": "Порадьте розповісти їй.",
+            "feedbackByLocale": {
+              "ru": "После would нужна форма tell.",
+              "uk": "Після would потрібна форма tell."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i11:r3",
+            "correct": false,
+            "testedDimension": "Порадьте розповісти їй.",
+            "feedbackByLocale": {
+              "ru": "После would нет to.",
+              "uk": "Після would немає to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:word:freely",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — freely",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:word:freely:audio"
+      ],
+      "accessibilityLabel": "Картка слова — freely",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:word:freely:audio",
+          "transcript": "freely"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:word:freely:r1",
+            "targetText": "freely",
+            "meaningByLocale": {
+              "ru": "Свободно, без стеснения или ограничений.",
+              "uk": "Вільно, без сорому чи обмежень."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freely",
+          "definitionByLocale": {
+            "ru": "Свободно, без стеснения или ограничений.",
+            "uk": "Вільно, без сорому чи обмежень."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запрошення говорити відверто.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Почуйте запрошення говорити відверто.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i12:audio",
+          "transcript": "You can speak freely here."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "You can speak freely here.",
+        "orderedTokens": [
+          "You",
+          "can",
+          "speak",
+          "freely",
+          "here"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, яка допомога потрібна зараз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Запитайте, яка допомога потрібна зараз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i13:audio",
+          "transcript": "What would help you now?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "What would help you now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почніть із результату: If you wanted to talk, I would listen.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Почніть із результату: If you wanted to talk, I would listen.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I would listen if you wanted to talk.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If you wanted to talk, I would listen.",
+          "uk": "Почніть із результату: If you wanted to talk, I would listen."
+        },
+        "orderedTokens": [
+          "I",
+          "would",
+          "listen",
+          "if",
+          "you",
+          "wanted",
+          "to",
+          "talk"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-33:i15:r1",
+          "text": "We can meet after lunch."
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i15:r2",
+          "text": "We can meet before lunch."
+        },
+        {
+          "responseId": "en:lesson-27:session-33:i15:r3",
+          "text": "We can meet after dinner."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i15:audio",
+          "transcript": "We can meet after lunch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-33:i15:r1",
+            "targetText": "We can meet after lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i15:r2",
+            "targetText": "We can meet before lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i15:r3",
+            "targetText": "We can meet after dinner.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-33:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can meet after lunch.",
+              "uk": "У записі звучить We can meet after lunch."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-33:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We can meet after lunch.",
+              "uk": "У записі звучить We can meet after lunch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть, що поспішати не потрібно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть, що поспішати не потрібно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i16:audio",
+          "transcript": "There is no need to hurry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "There is no need to hurry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запропонуйте зателефонувати ввечері.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-33:i17:audio"
+      ],
+      "accessibilityLabel": "Запропонуйте зателефонувати ввечері.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-33:i17:audio",
+          "transcript": "Shall I call you this evening?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I call you this evening?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f11f739507a226efab1fb6817ab73255fec991e9ba7b4eb71894deb67a0894e9"
+}

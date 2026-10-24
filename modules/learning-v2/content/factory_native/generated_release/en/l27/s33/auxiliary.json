@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-33",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-33:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-33:intro1:r2": {
+          "ru": "Здесь после wish ставим knew.",
+          "uk": "Тут після wish ставимо knew."
+        },
+        "en:lesson-27:session-33:intro1:r3": {
+          "ru": "В этой конструкции нужна knew.",
+          "uk": "У цій конструкції потрібна knew."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-33:intro2:r2": {
+          "ru": "С yesterday в этой сцене используем sent без have.",
+          "uk": "Із yesterday у цій сцені використовуємо sent без have."
+        },
+        "en:lesson-27:session-33:intro2:r3": {
+          "ru": "Прошедшая форма send — sent.",
+          "uk": "Минула форма send — sent."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-33:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-33:intro3:r2": {
+          "ru": "После would ставим listen без окончания.",
+          "uk": "Після would ставимо listen без закінчення."
+        },
+        "en:lesson-27:session-33:intro3:r3": {
+          "ru": "После would не нужно to.",
+          "uk": "Після would не потрібне to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5e45d3315e0fec2c6eb837f5489e68b3d5096264452b7d8139be3785d76a5053"
+}

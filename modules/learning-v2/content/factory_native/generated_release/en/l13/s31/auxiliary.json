@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-13:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-13:session-31:intro1:r2": {
-          "ru": "После did нужна break.",
-          "uk": "Після did потрібна break."
+          "ru": "После did нужна начальная форма drop.",
+          "uk": "Після did потрібна початкова форма drop."
         },
         "en:lesson-13:session-31:intro1:r3": {
-          "ru": "Здесь спрашивают о мытье.",
-          "uk": "Тут запитують про миття."
+          "ru": "Спрашиваем о вчера: используем Did.",
+          "uk": "Запитуємо про вчора: використовуємо Did."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-13:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-13:session-31:intro2:r2": {
-          "ru": "Accidentally — случайно.",
-          "uk": "Accidentally — випадково."
+          "ru": "После did ставим leave.",
+          "uk": "Після did ставимо leave."
         },
         "en:lesson-13:session-31:intro2:r3": {
-          "ru": "После did нужна leave.",
-          "uk": "Після did потрібна leave."
+          "ru": "Accidentally спрашивает о случайности, здесь уточняем намерение.",
+          "uk": "Accidentally запитує про випадковість, тут уточнюємо намір."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-13:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-13:session-31:intro3:r2": {
-          "ru": "Это вопрос о бутылке.",
-          "uk": "Це запитання про пляшку."
-        },
-        "en:lesson-13:session-31:intro3:r3": {
           "ru": "После did нужна close.",
           "uk": "Після did потрібна close."
+        },
+        "en:lesson-13:session-31:intro3:r3": {
+          "ru": "Здесь спрашивают, оставили ли дверь открытой.",
+          "uk": "Тут запитують, чи залишили двері відчиненими."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0b17b42b27b545b3658275acb70b8f5923a8991fddae723104b0a52402eb74f0"
+  "auxiliaryFingerprint": "32e7a5cbb379311772a16e46b3f4ab8b06f68d673878549026fdc707215b7209"
 }

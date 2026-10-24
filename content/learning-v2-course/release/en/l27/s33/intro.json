@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "wish о настоящем; if I were; would + base; present perfect / past simple",
+    "uk": "wish про теперішнє; if I were; would + base; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После неловкого разговора",
+        "uk": "Після ніякової розмови"
+      },
+      "bodyByLocale": {
+        "ru": "Awkwardly — неловко. The conversation ended awkwardly — разговор закончился неловко. Это может быть заминка или тишина: слово само по себе не означает ссору. Вы хотите снова заговорить: Could we talk for a moment? — можем поговорить минутку? I wish I knew what to say — жаль, что я не знаю, что сказать. Knew после wish описывает нынешнее затруднение.",
+        "uk": "Awkwardly — ніяково. The conversation ended awkwardly — розмова закінчилася ніяково. Це може бути заминка або тиша: саме слово не означає сварку. Ви хочете знову заговорити: Could we talk for a moment? — можемо поговорити хвилинку? I wish I knew what to say — шкода, що я не знаю, що сказати. Knew після wish описує теперішню складність."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-33:intro1:r1",
+              "text": "I wish I knew what to say."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro1:r2",
+              "text": "I wish I know what to say."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro1:r3",
+              "text": "I wish I knowing what to say."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-33:intro1:r1",
+              "text": "I wish I knew what to say."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro1:r2",
+              "text": "I wish I know what to say."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro1:r3",
+              "text": "I wish I knowing what to say."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сказать искренне и вовремя",
+        "uk": "Сказати щиро й вчасно"
+      },
+      "bodyByLocale": {
+        "ru": "Sincerely — искренне. I sincerely hope you feel better — я искренне надеюсь, что тебе станет лучше. Urgently — срочно: I urgently need to speak to you — мне срочно нужно с тобой поговорить. Например, друг уже уходит, а вы ещё не объяснились. I sent you a message yesterday — я отправил тебе сообщение вчера. I have already read your message — я уже прочитал твоё сообщение: важен результат сейчас.",
+        "uk": "Sincerely — щиро. I sincerely hope you feel better — я щиро сподіваюся, що тобі стане краще. Urgently — терміново: I urgently need to speak to you — мені терміново потрібно з тобою поговорити. Наприклад, друг уже йде, а ви ще не порозумілися. I sent you a message yesterday — я надіслав тобі повідомлення вчора. I have already read your message — я вже прочитав твоє повідомлення: важливий результат зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-33:intro2:r1",
+              "text": "I sent you a message yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro2:r2",
+              "text": "I have sent you a message yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro2:r3",
+              "text": "I sended you a message yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-33:intro2:r1",
+              "text": "I sent you a message yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro2:r2",
+              "text": "I have sent you a message yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro2:r3",
+              "text": "I sended you a message yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дать человеку возможность высказаться",
+        "uk": "Дати людині змогу висловитися"
+      },
+      "bodyByLocale": {
+        "ru": "Freely — свободно, без стеснения или ограничений. You can speak freely here — здесь можно говорить откровенно. Freely в этой фразе не значит бесплатно. If I were you, I would tell her — на твоём месте я бы ей сказал. Это совет, а не приказ. I would listen if you wanted to talk — я бы выслушал, если бы ты захотел поговорить. После would стоит listen, условие начинается с if. Можно также просто спросить: What would help you now? — что тебе сейчас помогло бы?",
+        "uk": "Freely — вільно, без сорому чи обмежень. You can speak freely here — тут можна говорити відверто. Freely у цій фразі не означає безкоштовно. If I were you, I would tell her — на твоєму місці я б їй сказав. Це порада, а не наказ. I would listen if you wanted to talk — я б вислухав, якби ти захотів поговорити. Після would стоїть listen, умова починається з if. Можна також просто запитати: What would help you now? — що тобі зараз допомогло б?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-33:intro3:r1",
+              "text": "I would listen if you wanted to talk."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro3:r2",
+              "text": "I would listened if you wanted to talk."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro3:r3",
+              "text": "I would to listen if you wanted to talk."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-33:intro3:r1",
+              "text": "I would listen if you wanted to talk."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro3:r2",
+              "text": "I would listened if you wanted to talk."
+            },
+            {
+              "responseId": "en:lesson-27:session-33:intro3:r3",
+              "text": "I would to listen if you wanted to talk."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "208365555faa31c0b06548ba45300ed2f73a8403912f6bc22cce48c7cd6219e7"
+}

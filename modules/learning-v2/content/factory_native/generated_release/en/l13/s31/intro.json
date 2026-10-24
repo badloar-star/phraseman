@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-13:session-31",
   "learningOutcomeByLocale": {
-    "ru": "review: past questions with finished time anchors",
-    "uk": "review: past questions with finished time anchors"
+    "ru": "past questions with finished time anchors",
+    "uk": "past questions with finished time anchors"
   },
   "pages": [
     {
@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Случайно",
-        "uk": "Випадково"
+        "ru": "Небольшая случайность",
+        "uk": "Невелика випадковість"
       },
       "bodyByLocale": {
-        "ru": "Accidentally — случайно, не намереваясь. Did you accidentally break the cup yesterday? — Ты вчера случайно разбил чашку? Выберите случайное действие.",
-        "uk": "Accidentally — випадково, не маючи наміру. Did you accidentally break the cup yesterday? — Ти вчора випадково розбив чашку? Виберіть випадкову дію."
+        "ru": "Accidentally — случайно, не намереваясь. I accidentally broke a cup — я случайно разбил чашку. Друг уточняет: Did you drop it yesterday? — ты уронил её вчера? В вопросе did уже показывает прошлое, поэтому ставим drop, а не dropped. Yesterday называет законченное время.",
+        "uk": "Accidentally — випадково, ненавмисно. I accidentally broke a cup — я випадково розбив чашку. Друг уточнює: Did you drop it yesterday? — ти впустив її вчора? У запитанні did уже показує минуле, тому ставимо drop, а не dropped. Yesterday називає завершений час."
       },
       "question": {
         "interactionId": "en:lesson-13:session-31:intro1:q",
@@ -28,29 +28,29 @@
           "ru": [
             {
               "responseId": "en:lesson-13:session-31:intro1:r1",
-              "text": "Did you accidentally break the cup yesterday?"
+              "text": "Did you drop it yesterday?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro1:r2",
-              "text": "Did you accidentally broke the cup yesterday?"
+              "text": "Did you dropped it yesterday?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro1:r3",
-              "text": "Did you wash the cup yesterday?"
+              "text": "Do you drop it yesterday?"
             }
           ],
           "uk": [
             {
               "responseId": "en:lesson-13:session-31:intro1:r1",
-              "text": "Did you accidentally break the cup yesterday?"
+              "text": "Did you drop it yesterday?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro1:r2",
-              "text": "Did you accidentally broke the cup yesterday?"
+              "text": "Did you dropped it yesterday?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro1:r3",
-              "text": "Did you wash the cup yesterday?"
+              "text": "Do you drop it yesterday?"
             }
           ]
         },
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Нарочно",
-        "uk": "Навмисно"
+        "ru": "Спросить о намерении",
+        "uk": "Запитати про намір"
       },
       "bodyByLocale": {
-        "ru": "Deliberately — нарочно, намеренно. Did you deliberately leave the window open? — Ты нарочно оставил окно открытым? Выберите намерение, не случайность.",
-        "uk": "Deliberately — навмисно, з наміром. Did you deliberately leave the window open? — Ти навмисно залишив вікно відчиненим? Виберіть намір, не випадковість."
+        "ru": "Deliberately — намеренно, нарочно. Did you deliberately leave the window open? — ты намеренно оставил окно открытым? Вопрос может быть спокойным уточнением: возможно, человек хотел проветрить комнату. I wanted some fresh air — мне хотелось свежего воздуха. Это объяснение, а не спор о том, кто виноват. После did в вопросе нужна leave, а left употребляется в утвердительном прошлом: I left it open.",
+        "uk": "Deliberately — навмисно. Did you deliberately leave the window open? — ти навмисно залишив вікно відчиненим? Запитання може бути спокійним уточненням: можливо, людина хотіла провітрити кімнату. I wanted some fresh air — мені хотілося свіжого повітря. Це пояснення, а не суперечка про те, хто винен. Після did у запитанні потрібна leave, а left уживаємо у стверджувальному минулому: I left it open."
       },
       "question": {
         "interactionId": "en:lesson-13:session-31:intro2:q",
@@ -86,11 +86,11 @@
             },
             {
               "responseId": "en:lesson-13:session-31:intro2:r2",
-              "text": "Did you accidentally leave the window open?"
+              "text": "Did you deliberately left the window open?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro2:r3",
-              "text": "Did you deliberately left the window open?"
+              "text": "Did you accidentally leave the window open?"
             }
           ],
           "uk": [
@@ -100,11 +100,11 @@
             },
             {
               "responseId": "en:lesson-13:session-31:intro2:r2",
-              "text": "Did you accidentally leave the window open?"
+              "text": "Did you deliberately left the window open?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro2:r3",
-              "text": "Did you deliberately left the window open?"
+              "text": "Did you accidentally leave the window open?"
             }
           ]
         },
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Как следует и полностью",
-        "uk": "Як слід і повністю"
+        "ru": "Как следует или полностью",
+        "uk": "Як слід чи повністю"
       },
       "bodyByLocale": {
-        "ru": "Properly — как следует, правильно; completely — полностью. Did you close the door properly? — Ты как следует закрыл дверь? Выберите дверь, не наполнение бутылки.",
-        "uk": "Properly — як слід, правильно; completely — повністю. Did you close the door properly? — Ти як слід зачинив двері? Виберіть двері, не наповнення пляшки."
+        "ru": "Properly — как следует, правильно. Did you close the door properly? — ты как следует закрыл дверь? Completely — полностью: The towel was completely dry — полотенце было совершенно сухим. Properly говорит о качестве действия, completely — о полноте или степени. Перед выходом можно спросить друга о двери и проверить, высохли ли вещи.",
+        "uk": "Properly — як слід, правильно. Did you close the door properly? — ти як слід зачинив двері? Completely — повністю: The towel was completely dry — рушник був зовсім сухий. Properly говорить про якість дії, completely — про повноту або ступінь. Перед виходом можна запитати друга про двері й перевірити, чи висохли речі."
       },
       "question": {
         "interactionId": "en:lesson-13:session-31:intro3:q",
@@ -140,11 +140,11 @@
             },
             {
               "responseId": "en:lesson-13:session-31:intro3:r2",
-              "text": "Did you fill the bottle completely?"
+              "text": "Did you closed the door properly?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro3:r3",
-              "text": "Did you closed the door properly?"
+              "text": "Did you leave the door open?"
             }
           ],
           "uk": [
@@ -154,11 +154,11 @@
             },
             {
               "responseId": "en:lesson-13:session-31:intro3:r2",
-              "text": "Did you fill the bottle completely?"
+              "text": "Did you closed the door properly?"
             },
             {
               "responseId": "en:lesson-13:session-31:intro3:r3",
-              "text": "Did you closed the door properly?"
+              "text": "Did you leave the door open?"
             }
           ]
         },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6817748004bfa18c87ccfa8db8a99c875eb7d4ec4a3eb5fc13ed9a15b7916734"
+  "introFingerprint": "379a22a6daa0a2c12fc0328b628c5533bcab3d56308c63dd6b2477e2f4a75dd7"
 }

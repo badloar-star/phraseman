@@ -5,6 +5,7 @@ import {
 } from "../generator_course_contract";
 import { hashCanonicalBody } from "../../policies/decision_registry";
 import { FACTORY_NATIVE_CATALOG_ROWS_V1 } from "./factory_native_catalog_v1.generated";
+import { FACTORY_NATIVE_TASK_COUNTS_V1 } from "./factory_native_task_counts_v1.generated";
 
 export const FACTORY_NATIVE_AUTHORED_LOCALES_V1 = Object.freeze([
   "ru",
@@ -22,6 +23,24 @@ export function factoryNativeLearningV2NewWordCountV1(
       row.lessonOrdinal === lessonOrdinal &&
       row.sessionOrdinal === sessionOrdinal,
   )?.newWordCount ?? null;
+}
+/**
+ * Число заданий практики занятия (карточки слов не в счёт) — для окна эпизода, без загрузки JSON занятия.
+ * зачем (3 · МАКЕТЫ 24.10, окно эпизода писало «0 заданий»): счёт сделан тем же сборщиком, что у плеера; если содержимое
+ * занятия с тех пор поменялось (отпечаток не совпал с каталогом) — null, и подпись не рисуется, а не врёт.
+ */
+export function factoryNativeLearningV2TaskCountV1(
+  lessonOrdinal: number,
+  sessionOrdinal: number,
+): number | null {
+  const entry = FACTORY_NATIVE_TASK_COUNTS_V1[`${lessonOrdinal}:${sessionOrdinal}`];
+  if (!entry) return null;
+  const row = FACTORY_NATIVE_CATALOG_ROWS_V1.find(
+    (candidate) =>
+      candidate.lessonOrdinal === lessonOrdinal &&
+      candidate.sessionOrdinal === sessionOrdinal,
+  );
+  return row && row.sourceFingerprint.startsWith(entry[1]) ? entry[0] : null;
 }
 export const FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1 = Object.freeze(
   Object.fromEntries(

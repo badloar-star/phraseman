@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-06:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-06:session-40:intro1:r2": {
-          "ru": "Про одного человека нужно lives, с s.",
-          "uk": "Про одну людину потрібно lives, з s."
+          "ru": "The newcomer можно заменить на he, поэтому нужно lives, с s.",
+          "uk": "The newcomer можна замінити на he, тому потрібно lives, з s."
         },
         "en:lesson-06:session-40:intro1:r3": {
           "ru": "Здесь действие: lives, без is.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "58bcfb4592d61cc9cb74efdc62553119871a4107163fe46fc2debf40d7005651"
+  "auxiliaryFingerprint": "b789ae9c28cf1e5ffe329013f5c28dd31dd35067c8562b98bf2f7508388453ef"
 }

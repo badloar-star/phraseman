@@ -29,7 +29,29 @@ export const SPIRE_ODDITY_PROMPT_TEMPLATES: Readonly<Record<string, OddityCopy>>
   'Найдите фразу с ошибкой согласования.': FIND_PHRASE_TO_FIX,
   // Английский пул (functions/src/tournament_pool_v11_oddity.ts) кладёт инструкцию в prompt.
   'Найдите предложение с грамматической ошибкой.': FIND_PHRASE_TO_FIX,
+  // зачем (Переводчик 24.10, скан 315 облачных заданий tpool_20260801_v10): у всех этот шаблон — без строки здесь каждый
+  // запуск писал [SPIRE-ODDITY-PROMPT] «незнакомый шаблон», хотя текст на экране и так верный.
+  'Найдите фразу, которую нужно исправить.': FIND_PHRASE_TO_FIX,
 });
+
+/**
+ * Варианты «Найди ошибку» с заглавной первой буквой.
+ * зачем (Переводчик 24.10, 13 облачных заданий): ошибочный вариант начинался со строчной («he am…»), три остальных — с
+ * заглавной, и ответ угадывался по форме. Чиним показ на телефоне (облако правим после релиза): только первая буква, остальное
+ * как есть. Проверка ответа идёт по номеру варианта (selectedIndex), текст на неё не влияет.
+ */
+export function capitalizeSpireOddityOptions(taskId: string, options: readonly string[]): string[] {
+  let fixed = 0;
+  const out = options.map((option) => {
+    const first = option.charAt(0);
+    const upper = first.toLocaleUpperCase('en-US');
+    if (first === upper) return option;
+    fixed += 1;
+    return upper + option.slice(1);
+  });
+  if (fixed > 0) console.log('[SPIRE-ODDITY-CASE]', JSON.stringify({ taskId, fixed, total: options.length })); // guard-ok: только когда поправлено
+  return out;
+}
 
 const warned = new Set<string>();
 

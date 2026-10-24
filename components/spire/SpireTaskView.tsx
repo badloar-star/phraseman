@@ -23,7 +23,7 @@ import { lv2Alpha } from '../learning-v2/LearningV2Glass';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireGameText, type SpireGameStringKey } from './spire_game_strings';
-import { localizeSpireOddityPrompt } from './spire_oddity_prompt';
+import { capitalizeSpireOddityOptions, localizeSpireOddityPrompt } from './spire_oddity_prompt';
 import SpirePairsBoard from './SpirePairsBoard';
 
 type Props = Readonly<{
@@ -76,7 +76,11 @@ function Option({ label, tone, disabled, onPress, testID }: Readonly<{ label: st
 }
 
 function ChoiceTask({ task, feedback, disabled, onChoice }: Props) {
-  const options = useMemo(() => strings(task.payload.options), [task]);
+  // зачем (Переводчик 24.10): в «Найди ошибку» строчная первая буква выдавала ответ — показываем все варианты с заглавной
+  const options = useMemo(() => {
+    const raw = strings(task.payload.options);
+    return task.mode === 'find_oddity' ? capitalizeSpireOddityOptions(task.taskId, raw) : raw;
+  }, [task]);
   const toneOf = (i: number): Tone => {
     if (!feedback) return 'idle';
     if (feedback.picked === i) return feedback.ok ? 'ok' : 'no';

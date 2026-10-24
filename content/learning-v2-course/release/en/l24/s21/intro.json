@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выступление и интервью",
-        "uk": "Виступ та інтерв’ю"
+        "ru": "Выступление идёт уже час",
+        "uk": "Виступ триває вже годину"
       },
       "bodyByLocale": {
-        "ru": "Comedian — комик, человек, который выступает с шутками. We have been watching a comedian for an hour — мы смотрим выступление комика уже час. Celebrity — знаменитость. She has been interviewing a celebrity since noon — она берёт интервью у знаменитости с полудня. В обоих случаях действие началось раньше и ещё продолжается. For an hour — длительность, since noon — начало.",
-        "uk": "Comedian — комік, людина, яка виступає з жартами. We have been watching a comedian for an hour — ми дивимося виступ коміка вже годину. Celebrity — знаменитість. She has been interviewing a celebrity since noon — вона бере інтерв’ю у знаменитості з полудня. В обох випадках дія почалася раніше й ще триває. For an hour — тривалість, since noon — початок."
+        "ru": "Вы с друзьями смотрите выступление комика. Прошёл час, а выступление ещё продолжается. We have been watching a comedian for an hour — мы смотрим выступление комика уже час. После we ставим have, затем been + watching. Эта связка показывает действие от прошлого момента до сейчас. A comedian называет, кого вы смотрите, а for an hour — сколько времени. Порядок — we + have been watching + a comedian + for an hour.",
+        "uk": "Ви з друзями дивитеся виступ коміка. Минула година, а виступ ще триває. We have been watching a comedian for an hour — ми дивимося виступ коміка вже годину. Після we ставимо have, потім been + watching. Ця сполука показує дію від минулого моменту до зараз. A comedian називає, кого ви дивитеся, а for an hour — скільки часу. Порядок — we + have been watching + a comedian + for an hour."
       },
       "question": {
         "interactionId": "en:lesson-24:session-21:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a45a43dcd7b738a20a2adb25549b9e7e73cba7b6e0da2db5e4efb07bd1a5fc96"
+  "introFingerprint": "1b44257d424c7e8ff4917d2d901f191796bbb84c535da3e37151c622f8fb23f4"
 }

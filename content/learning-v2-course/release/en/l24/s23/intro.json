@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Когда стемнело",
-        "uk": "Коли стемніло"
+        "ru": "Час при лунном свете",
+        "uk": "Година при місячному світлі"
       },
       "bodyByLocale": {
-        "ru": "Darkness — темнота, moonlight — лунный свет. We have been sitting in darkness for half an hour — мы сидим в темноте уже полчаса: например, свет отключился. They have been walking in the moonlight for an hour — они гуляют при лунном свете уже час. For называет длительность; после have been идут sitting и walking.",
-        "uk": "Darkness — темрява, moonlight — місячне світло. We have been sitting in darkness for half an hour — ми сидимо в темряві вже пів години: наприклад, вимкнулося світло. They have been walking in the moonlight for an hour — вони гуляють при місячному світлі вже годину. For називає тривалість; після have been стоять sitting і walking."
+        "ru": "Друзья вышли на прогулку при лунном свете час назад и ещё гуляют. They have been walking in the moonlight for an hour — они гуляют при лунном свете уже час. После they ставим have + been + walking: действие началось раньше и продолжается сейчас. In the moonlight описывает освещение, а for an hour называет длительность. Been нельзя пропустить: перед walking нужна полная связка have been.",
+        "uk": "Друзі вийшли на прогулянку при місячному світлі годину тому й досі гуляють. They have been walking in the moonlight for an hour — вони гуляють при місячному світлі вже годину. Після they ставимо have + been + walking: дія почалася раніше й триває зараз. In the moonlight описує освітлення, а for an hour називає тривалість. Been не можна пропустити: перед walking потрібна повна сполука have been."
       },
       "question": {
         "interactionId": "en:lesson-24:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cfb57e58a0a2729abe0b6b2545439c2ef72748cfb745d0d299421e7842477019"
+  "introFingerprint": "51e0616839809df16c61e7e339646a7e725a7dd7bb119ef836fac8d120344b54"
 }

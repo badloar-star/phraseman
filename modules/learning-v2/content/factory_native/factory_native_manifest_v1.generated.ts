@@ -18325,7 +18325,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 21,
-    sourceFingerprint: "a7f023f6a821a414a4384178d9b5ceb2f5df203f687ddb248f909933e8f50323",
+    sourceFingerprint: "727dbc0bdb89969a4e8c3f1f827b60e45714b091e3b742729443cc7a7e60bd29",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужно been перед действием с -ing.","С I и we нужно have, с she и he — has."],["Нужно been перед действием с -ing.","С I и we нужно have, с she и he — has."],["Нужно been перед действием с -ing.","С I и we нужно have, с she и he — has."]],"uk":[["Потрібне been перед дією з -ing.","З I та we потрібно have, з she та he — has."],["Потрібне been перед дією з -ing.","З I та we потрібно have, з she та he — has."],["Потрібне been перед дією з -ing.","З I та we потрібно have, з she та he — has."]]}),
@@ -18339,7 +18339,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 22,
-    sourceFingerprint: "578b89a23fced625802a9e71f7364dccf8d580a1bccab8184027ef5aab74bcc8",
+    sourceFingerprint: "c776055475282ce7db4716871aab90b1999171318e11c6723ae71c2cd5a0f5a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед действием с -ing нужно been.","С I и they нужно have, с she — has."],["Перед действием с -ing нужно been.","С I и they нужно have, с she — has."],["Перед действием с -ing нужно been.","С I и they нужно have, с she — has."]],"uk":[["Перед дією з -ing потрібне been.","З I та they потрібно have, з she — has."],["Перед дією з -ing потрібне been.","З I та they потрібно have, з she — has."],["Перед дією з -ing потрібне been.","З I та they потрібно have, з she — has."]]}),
@@ -18353,7 +18353,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 23,
-    sourceFingerprint: "9721556110eb22581af8afb926fbfcab87d36632228b8bff9a9d8ddb47e28eb2",
+    sourceFingerprint: "e1a9829484a4d69f21401f9f3346dbad5b744bcf3e4a3a1c21eeb2efdab63df7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед действием с -ing нужно been.","С I и they нужно have, с she — has."],["Перед действием с -ing нужно been.","С I и they нужно have, с she — has."],["Перед действием с -ing нужно been.","С I и they нужно have, с she — has."]],"uk":[["Перед дією з -ing потрібне been.","З I та they потрібно have, з she — has."],["Перед дією з -ing потрібне been.","З I та they потрібно have, з she — has."],["Перед дією з -ing потрібне been.","З I та they потрібно have, з she — has."]]}),
@@ -18367,7 +18367,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 24,
-    sourceFingerprint: "fb434e432cc3cd6053cc151f97a3f8dd8293ea51db8e006e3edf6ac27ce5511d",
+    sourceFingerprint: "da9906760f3c49007018d0a65688ebe4e753991ec0a34a80bfd1f51d945ba570",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед действием с -ing нужно been.","С fingers и feet нужно have, с skin — has."],["Перед действием с -ing нужно been.","С fingers и feet нужно have, с skin — has."],["Перед действием с -ing нужно been.","С fingers и feet нужно have, с skin — has."]],"uk":[["Перед дією з -ing потрібне been.","З fingers і feet потрібно have, зі skin — has."],["Перед дією з -ing потрібне been.","З fingers і feet потрібно have, зі skin — has."],["Перед дією з -ing потрібне been.","З fingers і feet потрібно have, зі skin — has."]]}),
@@ -18381,7 +18381,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 25,
-    sourceFingerprint: "7ca501d146d9db128a88cba8d5fd3c095bab218257b11ad13fb53e29b49b10c4",
+    sourceFingerprint: "7b638948045370783948f8737bb1944184bf8bed727ee094623682ccd747c3c5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С yesterday нужен Past Simple: found без have.","Yesterday — прошлое, поэтому found, а не find."],["С yesterday используем spent без has.","Для законченного прошлого нужна форма spent."],["Last week требует Past Simple: found без have.","Для прошлого нужна форма found."]],"uk":[["Із yesterday потрібен Past Simple: found без have.","Yesterday — минуле, тому found, а не find."],["Із yesterday використовуємо spent без has.","Для завершеного минулого потрібна форма spent."],["Last week потребує Past Simple: found без have.","Для минулого потрібна форма found."]]}),
@@ -18395,7 +18395,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 24, sessionOrdinal: 26,
-    sourceFingerprint: "316ebbd9f96a7e22cfc324d637ca2065a0e088088cf5b5ecbfa2742d5ecbf571",
+    sourceFingerprint: "0dbd670c45f5dacd81e80e2b37d944e7971d663c8d0e5673d2326e86426663ec",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После does нужна исходная форма contain.","В этом вопросе перед this box нужно does."],["С last year нужен required без has.","Для прошлого нужна форма required."],["С yesterday используем chased без has.","Для прошлого нужна форма chased."]],"uk":[["Після does потрібна початкова форма contain.","У цьому запитанні перед this box потрібне does."],["Із last year потрібне required без has.","Для минулого потрібна форма required."],["Із yesterday використовуємо chased без has.","Для минулого потрібна форма chased."]]}),

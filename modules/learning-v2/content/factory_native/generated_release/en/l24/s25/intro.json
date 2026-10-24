@@ -123,8 +123,8 @@
         "uk": "Монетка минулого тижня"
       },
       "bodyByLocale": {
-        "ru": "Cent — цент, penny — пенни. We have saved every cent — мы сберегли каждый цент: важен результат сейчас. They found a penny last week — они нашли пенни на прошлой неделе. Last week — законченный период, нужен found без have. Даже маленькая монетка помогает заметить большую разницу между «уже сделал» и «сделал тогда».",
-        "uk": "Cent — цент, penny — пенні. We have saved every cent — ми зберегли кожен цент: важливий результат зараз. They found a penny last week — вони знайшли пенні минулого тижня. Last week — завершений період, потрібне found без have. Навіть маленька монетка допомагає помітити велику різницю між «уже зробив» і «зробив тоді»."
+        "ru": "Вы вспоминаете, как друзья нашли монетку на прошлой неделе. They found a penny last week — они нашли пенни на прошлой неделе. После they ставим found, прошедшую форму find. Last week называет уже законченный период, поэтому выбираем Past Simple, без have. A penny обозначает одну монетку. Собираем they + found + a penny + last week.",
+        "uk": "Ви згадуєте, як друзі знайшли монетку минулого тижня. They found a penny last week — вони знайшли пенні минулого тижня. Після they ставимо found, минулу форму find. Last week називає вже завершений період, тому вибираємо Past Simple, без have. A penny позначає одну монетку. Складаємо they + found + a penny + last week."
       },
       "question": {
         "interactionId": "en:lesson-24:session-25:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fa2c50f15092f3c47568b39396c1a5110e9a01ec56fcef3e33c73a650b3a899d"
+  "introFingerprint": "7379e9cb7676b59e1052d53a58ebaa9b648c7bddf647344631a12f3bf0fb8c1d"
 }

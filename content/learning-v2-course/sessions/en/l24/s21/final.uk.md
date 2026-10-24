@@ -21,9 +21,9 @@ Laughter — сміх. I have been trying to hide my laughter for a minute — �
 
 ## Інтро 2
 
-### Виступ та інтерв’ю
+### Виступ триває вже годину
 
-Comedian — комік, людина, яка виступає з жартами. We have been watching a comedian for an hour — ми дивимося виступ коміка вже годину. Celebrity — знаменитість. She has been interviewing a celebrity since noon — вона бере інтерв’ю у знаменитості з полудня. В обох випадках дія почалася раніше й ще триває. For an hour — тривалість, since noon — початок.
+Ви з друзями дивитеся виступ коміка. Минула година, а виступ ще триває. We have been watching a comedian for an hour — ми дивимося виступ коміка вже годину. Після we ставимо have, потім been + watching. Ця сполука показує дію від минулого моменту до зараз. A comedian називає, кого ви дивитеся, а for an hour — скільки часу. Порядок — we + have been watching + a comedian + for an hour.
 
 **Виберіть фразу для цієї ситуації.**
 

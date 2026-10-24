@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что в коробке",
-        "uk": "Що в коробці"
+        "ru": "Что находится в коробке",
+        "uk": "Що міститься в коробці"
       },
       "bodyByLocale": {
-        "ru": "Contain — содержать. What does this box contain? — что находится в этой коробке? Если рассказываем о коробке, которую открыли вчера: The box contained books — в коробке были книги. Contained описывает содержимое тогда; contain — исходная форма после does.",
-        "uk": "Contain — містити. What does this box contain? — що міститься в цій коробці? Якщо розповідаємо про коробку, яку відкрили вчора: The box contained books — у коробці були книжки. Contained описує вміст тоді; contain — початкова форма після does."
+        "ru": "Перед вами закрытая коробка, и вы спрашиваете, что в ней находится. What does this box contain? — что находится в этой коробке? Начинаем с what — того, что хотим узнать. Затем ставим does перед this box: box — единственное число. После подлежащего нужна начальная форма contain, без -s, потому что форму вопроса уже задаёт does. Порядок — what + does + this box + contain?",
+        "uk": "Перед вами закрита коробка, і ви запитуєте, що в ній міститься. What does this box contain? — що міститься в цій коробці? Починаємо з what — того, що хочемо дізнатися. Потім ставимо does перед this box: box — однина. Після підмета потрібна початкова форма contain, без -s, тому що форму запитання вже задає does. Порядок — what + does + this box + contain?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-26:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Застава торік"
       },
       "bodyByLocale": {
-        "ru": "Require — требовать. Does this hotel require a deposit? — в этом отеле нужен залог? The hotel required a deposit last year — в прошлом году отель требовал залог. Last year относится к законченному прошлому: required без has. Так можно уточнить условия перед бронированием.",
-        "uk": "Require — вимагати. Does this hotel require a deposit? — у цьому готелі потрібна застава? The hotel required a deposit last year — торік готель вимагав заставу. Last year стосується завершеного минулого: required без has. Так можна уточнити умови перед бронюванням."
+        "ru": "Вы рассказываете о прошлогоднем проживании в отеле: тогда он требовал залог. The hotel required a deposit last year — в прошлом году отель требовал залог. После the hotel ставим required: require заканчивается на e, поэтому для Past Simple добавляем -d. A deposit называет, что требовалось. Last year задаёт законченный период, поэтому has перед required не нужен.",
+        "uk": "Ви розповідаєте про торішнє проживання в готелі: тоді він вимагав заставу. The hotel required a deposit last year — торік готель вимагав заставу. Після the hotel ставимо required: require закінчується на e, тому для Past Simple додаємо -d. A deposit називає, що вимагалося. Last year задає завершений період, тому has перед required не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-26:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "О чём думал и что случилось",
-        "uk": "Про що думав і що сталося"
+        "ru": "Собака гналась за мной вчера",
+        "uk": "Собака гнався за мною вчора"
       },
       "bodyByLocale": {
-        "ru": "Wonder — задумываться, задаваться вопросом. I have often wondered about that — я часто об этом задумывался: не называем законченное прошлое время. Chase — гнаться за. The dog chased me yesterday — вчера собака гналась за мной. Здесь yesterday, поэтому chased без has. После chase ставим того, за кем гонятся: chase cats, без for.",
-        "uk": "Wonder — замислюватися, ставити собі запитання. I have often wondered about that — я часто про це замислювався: не називаємо завершеного минулого часу. Chase — гнатися за. The dog chased me yesterday — учора собака гнався за мною. Тут yesterday, тому chased без has. Після chase ставимо того, за ким женуться: chase cats, без for."
+        "ru": "Вы рассказываете, как вчера за вами погналась собака. The dog chased me yesterday — вчера собака гналась за мной. После the dog ставим chased: к chase добавляем -d для Past Simple. Me называет того, за кем гнались; после chase не нужен предлог for. Yesterday указывает на законченный день, поэтому has не добавляем. Порядок — the dog + chased + me + yesterday.",
+        "uk": "Ви розповідаєте, як учора за вами погнався собака. The dog chased me yesterday — учора собака гнався за мною. Після the dog ставимо chased: до chase додаємо -d для Past Simple. Me називає того, за ким гналися; після chase не потрібен прийменник for. Yesterday указує на завершений день, тому has не додаємо. Порядок — the dog + chased + me + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fafe2ebbc11315c78bb4533c7a5dd30ec6da3cd1734e28fe304eac936b946139"
+  "introFingerprint": "ee25f61580e5dbf6a78d1603d664dac3effc22bd03dcfecc855207d809eeba8a"
 }

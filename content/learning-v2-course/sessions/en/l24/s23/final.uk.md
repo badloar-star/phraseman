@@ -35,9 +35,9 @@ Shadow — тінь з обрисами людини або предмета. З
 
 ## Інтро 3
 
-### Коли стемніло
+### Година при місячному світлі
 
-Darkness — темрява, moonlight — місячне світло. We have been sitting in darkness for half an hour — ми сидимо в темряві вже пів години: наприклад, вимкнулося світло. They have been walking in the moonlight for an hour — вони гуляють при місячному світлі вже годину. For називає тривалість; після have been стоять sitting і walking.
+Друзі вийшли на прогулянку при місячному світлі годину тому й досі гуляють. They have been walking in the moonlight for an hour — вони гуляють при місячному світлі вже годину. Після they ставимо have + been + walking: дія почалася раніше й триває зараз. In the moonlight описує освітлення, а for an hour називає тривалість. Been не можна пропустити: перед walking потрібна повна сполука have been.
 
 **Виберіть фразу для цієї ситуації.**
 

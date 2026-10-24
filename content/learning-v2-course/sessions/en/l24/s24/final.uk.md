@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Що турбує з ранку
+### Пальці кровоточать із ранку
 
-Bleed — кровоточити. My fingers sometimes bleed — мої пальці іноді кровоточать. А якщо важливо, як давно це триває: My fingers have been bleeding since this morning — мої пальці кровоточать із ранку. Fingers — множина, тому have. Тут ми описуємо відчуття й час його появи.
+Ви пояснюєте, що пальці почали кровоточити вранці й це триває зараз. My fingers have been bleeding since this morning — мої пальці кровоточать із ранку. Після my fingers вибираємо have: fingers — множина. Потім ставимо been і bleeding — bleed з -ing. Сполука have been bleeding показує процес до теперішнього моменту. Since this morning називає, коли він почався.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ Bleed — кровоточити. My fingers sometimes bleed — мої паль
 
 ## Інтро 2
 
-### Свербіння чи печіння
+### Шкіра свербить увесь ранок
 
-Itch — свербіти. Why does my skin itch? — чому в мене свербить шкіра? My skin has been itching all morning — шкіра свербить увесь ранок. Skin — однина, тому has. Sting — щипати: This soap makes my eyes sting — від цього мила щипає очі. Свербіння й печіння — різні відчуття.
+Ранок ще триває, і ви пояснюєте, що шкіра свербить увесь цей час. My skin has been itching all morning — шкіра свербить увесь ранок. Після my skin ставимо has: skin узгоджується як однина. Потім потрібні been та itching — itch з -ing. All morning називає тривалість процесу, який триває зараз. Порядок — my skin + has + been + itching + all morning.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ Itch — свербіти. Why does my skin itch? — чому в мене св�
 
 ## Інтро 3
 
-### Ноги у спекотну погоду
+### Ноги набрякають із ранку
 
-Swell — набрякати. My feet swell in hot weather — мої ноги набрякають у спекотну погоду: говоримо про повторювану ситуацію. My feet have been swelling since this morning — ноги набрякають із ранку: описуємо сьогоднішній процес. Feet — множина. У swelling дві l, як і в swell.
+Ви розповідаєте, що ноги почали набрякати вранці й процес триває. My feet have been swelling since this morning — мої ноги набрякають із ранку. My feet — множина, тому ставимо have. Потім been + swelling описує процес до теперішнього моменту. Swelling утворюється від swell з -ing; дві l зберігаються. Since this morning наприкінці вказує початок процесу.
 
 **Виберіть фразу для цієї ситуації.**
 

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Лодки и песок",
-        "uk": "Човни й пісок"
+        "ru": "Наблюдает за лодками всё утро",
+        "uk": "Спостерігає за човнами весь ранок"
       },
       "bodyByLocale": {
-        "ru": "Harbour — гавань: защищённое место у берега, где стоят лодки и корабли. She has been watching the boats in the harbour all morning — она наблюдает за лодками в гавани всё утро. Sand — песок. We have been playing in the sand for an hour — мы играем в песке уже час. Sand здесь неисчисляемое: a sand не нужно. Гавань — для лодок, песок — для замков.",
-        "uk": "Harbour — гавань: захищене місце біля берега, де стоять човни й кораблі. She has been watching the boats in the harbour all morning — вона спостерігає за човнами в гавані весь ранок. Sand — пісок. We have been playing in the sand for an hour — ми граємося в піску вже годину. Sand тут незлічуване: a sand не потрібне. Гавань — для човнів, пісок — для замків."
+        "ru": "Подруга с утра наблюдает за лодками в гавани и всё ещё остаётся у воды. She has been watching the boats in the harbour all morning — она наблюдает за лодками в гавани всё утро. После she выбираем has, затем ставим been и watching. The boats называет, за чем она наблюдает; in the harbour — где находятся лодки. All morning сообщает длительность ещё продолжающегося утреннего наблюдения.",
+        "uk": "Подруга зранку спостерігає за човнами в гавані й досі залишається біля води. She has been watching the boats in the harbour all morning — вона спостерігає за човнами в гавані весь ранок. Після she вибираємо has, потім ставимо been і watching. The boats називає, за чим вона спостерігає; in the harbour — де перебувають човни. All morning повідомляє тривалість ранкового спостереження, яке ще триває."
       },
       "question": {
         "interactionId": "en:lesson-24:session-22:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ba99aed1bdde05ab34a7f10b106e85958f26aa50eb3f5604f3e1a9f26c068786"
+  "introFingerprint": "3edb8584494fde7d6fb1d0365863278c48a7d6dc61791135476379ed757298b0"
 }

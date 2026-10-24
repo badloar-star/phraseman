@@ -35,9 +35,9 @@ Shadow — тень с очертаниями человека или предм
 
 ## Интро 3
 
-### Когда стемнело
+### Час при лунном свете
 
-Darkness — темнота, moonlight — лунный свет. We have been sitting in darkness for half an hour — мы сидим в темноте уже полчаса: например, свет отключился. They have been walking in the moonlight for an hour — они гуляют при лунном свете уже час. For называет длительность; после have been идут sitting и walking.
+Друзья вышли на прогулку при лунном свете час назад и ещё гуляют. They have been walking in the moonlight for an hour — они гуляют при лунном свете уже час. После they ставим have + been + walking: действие началось раньше и продолжается сейчас. In the moonlight описывает освещение, а for an hour называет длительность. Been нельзя пропустить: перед walking нужна полная связка have been.
 
 **Выберите фразу для этой ситуации.**
 

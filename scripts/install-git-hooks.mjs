@@ -57,6 +57,9 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Warns about silent catch blocks in ADDED lines (see scripts/guard_silent_catch.mjs). Owner rule: no silent catch.
+# 2026-10-25: four slipped in overnight. Warning only (exit 0) until the owner says to block — then add --strict.
+node scripts/guard_silent_catch.mjs
 # Blocks snapshot-style commits that write an OLD tree over fresh work
 # (see scripts/guard_mass_deletion.mjs — commit 95eec1717 lost a Home fix).
 node scripts/guard_mass_deletion.mjs

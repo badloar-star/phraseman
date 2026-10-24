@@ -8,7 +8,7 @@
 // появляется после списания энергии (D72 — энергия на первом задании).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo, useRef, type MutableRefObject } from 'react';
-import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
@@ -96,6 +96,13 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
   const fb = feedback && !feedback.ok ? feedback : null;
   // зачем ([PEAK-PERF], жалоба №3 «после 6–7 шага сильно тормозит»): время кадра и перерисовки ступени по фактам с устройства
   usePeakPerfProbe('step', `floor=${ctx.floor} step=${ctx.stepInFloor + 1} task=${counter}`);
+  // зачем (Сверка 24.10, кадры a1/a4/a6/st4: счётчик «k / 10» был последней строкой прокрутки — у низкого окна его перечёркивала системная полоса жестов, а после неверного ответа блок «Правильно + Дальше» стоял поверх него;
+  // правило «сперва логи»): счётчик вынесен из прокрутки в свою полосу под ней (низ экрана + 12), прокрутка кончается над ним. Замеры [SPIRE-STEP-OVERLAP]: окно прокрутки, содержимое, полоса счётчика, низ экрана.
+  const boxes = useRef({ viewport: 0, content: 0 });
+  const logLayout = (why: string, extra: Record<string, number>): void => {
+    console.log('[SPIRE-STEP-OVERLAP]', JSON.stringify({ why, task: counter, viewportH: Math.round(boxes.current.viewport), contentH: Math.round(boxes.current.content), insetsBottom: insets.bottom, answerShown: fb !== null, ...extra })); // guard-ok: числа раскладки ступени
+  };
+  const onCounterLayout = (e: LayoutChangeEvent): void => { logLayout('counter', { counterY: Math.round(e.nativeEvent.layout.y), counterH: Math.round(e.nativeEvent.layout.height) }); };
   return (
     <View style={[s.root, { backgroundColor: p.bg, paddingTop: insets.top }]} testID="spire-step">
       {/* зачем (закон владельца 22.10 «назад везде в одном месте»): кнопка — общая ScreenBackButton слоем; здесь её место в строке шапки */}
@@ -109,7 +116,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
         {/* зачем (spire-009, вердикт Макетов c0cd6e2ae, координатор 18.10): в образце (spire.html, stepHead) шапка ступени — заголовок и сердца, энергии справа нет; «⚡ 2» убрана. Пилюля остаётся на главной Шпиля, проп showEnergy сохранён для вызовов */}
       </View>
       <ScreenBackButton screen="spire_step" testID="spire-step-back" accessibilityLabel={spireText(lang, 'back')} onPress={props.onBack} />
-      <ScrollView contentContainerStyle={[s.content, { paddingBottom: insets.bottom + 32 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
+      <ScrollView style={s.scroll} contentContainerStyle={[s.content, { paddingBottom: 16 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast" onLayout={(e) => { boxes.current.viewport = e.nativeEvent.layout.height; }} onContentSizeChange={(_w, h) => { boxes.current.content = h; }}>
         <View style={s.ringWrap}>
           <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
         </View>
@@ -155,8 +162,10 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
             </V2Pressable>
           </View>
         ) : null}
-        <Text style={[s.footer, { color: p.textSecondary }]}>{`${counter} / ${SPIRE_STEP_TASK_COUNT}`}</Text>
       </ScrollView>
+      <View onLayout={onCounterLayout} style={[s.counterBar, { paddingBottom: insets.bottom + 12 }]}>
+        <Text style={[s.footer, { color: p.textSecondary }]} testID="spire-step-counter">{`${counter} / ${SPIRE_STEP_TASK_COUNT}`}</Text>
+      </View>
       {props.exitSlot}
       <SpireCountdownOverlay digit={props.countdownDigit ?? null} />
     </View>
@@ -188,9 +197,17 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
   const reportText = task && (typeof task.payload.phrase === 'string' || typeof task.payload.prompt === 'string')
     ? String(task.payload.phrase ?? task.payload.prompt)
     : task?.taskId;
-  const reportSlot = answering && task && reportableTarget ? (
-    <View style={s.reportRow}>
-      <SpireTaskReportButton
+  // зачем (координатор 24.10, замер [PEAK-PERF] 1→10): «решить задание» — только отладочная сборка, строкой рядом с «пожаловаться»
+  // (не поверх экрана); в релизе __DEV__ = false — файл кнопки не подключается
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const DevSolve = __DEV__ ? (require('./SpireDevSolveButton') as typeof import('./SpireDevSolveButton')).default : null;
+  const devSolve = DevSolve && answering && task && planTask ? (
+    <DevSolve task={task} saltId={pick.plan.saltId} fingerprints={planTask.answerFingerprints} onChoice={runner.submitChoice} onTokens={runner.submitTokens} onItems={runner.submitItems} />
+  ) : null;
+  const reportSlot = answering && task && (reportableTarget || devSolve) ? (
+    <View style={[s.reportRow, devSolve ? s.reportRowDev : null]}>
+      {devSolve}
+      {reportableTarget ? <SpireTaskReportButton
         claim={{
           stableUid: stableId,
           taskId: task.taskId,
@@ -206,7 +223,7 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
         taskText={reportText}
         removeFromRemainingRun={runner.reportCurrentTask}
         testID={`spire-task-report-${runner.displayTaskIndex}`}
-      />
+      /> : null}
     </View>
   ) : null;
   return (
@@ -314,7 +331,9 @@ const s = StyleSheet.create({
   sub: { fontSize: 16, lineHeight: 20, marginTop: 2 },
   hearts: { height: 37, borderRadius: 19, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 8 },
   heartOff: { opacity: 0.5 },
+  scroll: { flex: 1 },
   content: { paddingHorizontal: V2.screenPad },
+  counterBar: { paddingTop: 8, alignItems: 'center' },
   ringWrap: { marginTop: 34 },
   preparing: { marginTop: 40, fontSize: 16, textAlign: 'center' },
   hint: { marginTop: 18, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14, gap: 4 },
@@ -323,8 +342,9 @@ const s = StyleSheet.create({
   hintSub: { fontSize: 13, lineHeight: 18 },
   onward: { marginTop: 10, minHeight: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   onwardText: { fontSize: 16, fontWeight: '700' },
-  footer: { marginTop: 22, textAlign: 'center', fontSize: 16, fontWeight: '700' },
+  footer: { textAlign: 'center', fontSize: 16, fontWeight: '700' },
   reportRow: { minHeight: 44, marginTop: 10, alignItems: 'flex-end', justifyContent: 'center' },
+  reportRowDev: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
 });
 
 export default memo(SpireStepScreen);

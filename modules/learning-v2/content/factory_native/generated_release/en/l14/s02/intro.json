@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мерный кувшин",
-        "uk": "Мірний глечик"
+        "ru": "Как вы отмеряли молоко",
+        "uk": "Як ви відміряли молоко"
       },
       "bodyByLocale": {
-        "ru": "Measuring jug — мерный кувшин с делениями для жидкости. I was using a measuring jug. — Я пользовался мерным кувшином в тот момент. После was — using; в use перед -ing конечная e исчезает.",
-        "uk": "Measuring jug — мірний глечик із поділками для рідини. I was using a measuring jug. — Я користувався мірним глечиком у той момент. Після was — using; у use перед -ing кінцева e зникає."
+        "ru": "Вчера в четыре вы отмеряли молоко для пирога мерным кувшином. I was using a measuring jug. — Я пользовался мерным кувшином. Для действия в тот момент соберите I + was + using. После I нужна was; у use уберите конечную e и добавьте -ing: using. Затем укажите предмет: a measuring jug — один мерный кувшин.",
+        "uk": "Учора о четвертій ви відміряли молоко для пирога мірним глечиком. I was using a measuring jug. — Я користувався мірним глечиком. Для дії тієї миті складіть I + was + using. Після I потрібна was; у use приберіть кінцеву e й додайте -ing: using. Потім укажіть предмет: a measuring jug — один мірний глечик."
       },
       "question": {
         "interactionId": "en:lesson-14:session-02:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Скалка и форма",
-        "uk": "Качалка й форма"
+        "ru": "Что сестра мыла",
+        "uk": "Що сестра мила"
       },
       "bodyByLocale": {
-        "ru": "Rolling pin — скалка; cake tin — форма для выпечки пирога или торта. She was washing a cake tin. — Она мыла форму для выпечки. Выберите форму, а не скалку.",
-        "uk": "Rolling pin — качалка; cake tin — форма для випікання пирога або торта. She was washing a cake tin. — Вона мила форму для випікання. Виберіть форму, а не качалку."
+        "ru": "Вчера в четыре сестра стояла у раковины и мыла форму для выпечки. She was washing a cake tin. — Она мыла форму для выпечки. Соберите She + was + washing, чтобы описать её действие в тот момент. С she используем was, к wash добавляем -ing. Затем назовите то, что она мыла: a cake tin.",
+        "uk": "Учора о четвертій сестра стояла біля раковини й мила форму для випікання. She was washing a cake tin. — Вона мила форму для випікання. Складіть She + was + washing, щоб описати її дію тієї миті. З she використовуємо was, до wash додаємо -ing. Потім назвіть те, що вона мила: a cake tin."
       },
       "question": {
         "interactionId": "en:lesson-14:session-02:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Деревянная ложка",
-        "uk": "Дерев’яна ложка"
+        "ru": "Чем мы размешивали тесто",
+        "uk": "Чим ми розмішували тісто"
       },
       "bodyByLocale": {
-        "ru": "Wooden spoon — деревянная ложка. We were using a wooden spoon. — Мы пользовались деревянной ложкой. С we нужна were. Выберите сообщение о вчерашнем действии.",
-        "uk": "Wooden spoon — дерев’яна ложка. We were using a wooden spoon. — Ми користувалися дерев’яною ложкою. З we потрібна were. Виберіть повідомлення про вчорашню дію."
+        "ru": "Вчера в четыре вы с братом готовили тесто: он держал миску, а вы размешивали тесто деревянной ложкой. О вашем общем способе работы скажите: We were using a wooden spoon. — Мы пользовались деревянной ложкой. Соберите We + were + using. С we нужна were; у use уберите e и добавьте -ing. После using назовите инструмент: a wooden spoon — одну ложку, которой вы пользовались при совместной работе.",
+        "uk": "Учора о четвертій ви з братом готували тісто: він тримав миску, а ви розмішували тісто дерев’яною ложкою. Про ваш спільний спосіб роботи скажіть: We were using a wooden spoon. — Ми користувалися дерев’яною ложкою. Складіть We + were + using. З we потрібна were; у use приберіть e й додайте -ing. Після using назвіть інструмент: a wooden spoon — одну ложку, якою ви користувалися під час спільної роботи."
       },
       "question": {
         "interactionId": "en:lesson-14:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2acaf1e210d6cb5bca89de3c2eb0d2457e5ec11084004464868edb5837b0b162"
+  "introFingerprint": "90f4f2f59b29e9c1c6645f9b7f4bba41ae1086e478ade208adbe3e31a09acdc6"
 }

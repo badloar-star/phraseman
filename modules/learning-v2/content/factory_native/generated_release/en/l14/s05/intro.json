@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Игрушечный поезд",
-        "uk": "Іграшковий потяг"
+        "ru": "Во что вы играли",
+        "uk": "У що ви грали"
       },
       "bodyByLocale": {
-        "ru": "Toy train — игрушечный поезд. I was playing with a toy train. — Я играл с игрушечным поездом. Выберите действие, которое шло вчера в пять.",
-        "uk": "Toy train — іграшковий потяг. I was playing with a toy train. — Я грався з іграшковим потягом. Виберіть дію, яка тривала вчора о п’ятій."
+        "ru": "Вчера в пять вы сидели с ребёнком на ковре и катали игрушечный поезд. I was playing with a toy train. — Я играл с игрушечным поездом. Соберите I + was + playing, чтобы описать ваше действие в тот момент. С I нужна was, к play добавьте -ing. Затем добавьте with a toy train: with показывает, с какой игрушкой вы играли.",
+        "uk": "Учора о п’ятій ви сиділи з дитиною на килимі й катали іграшковий поїзд. I was playing with a toy train. — Я грав з іграшковим поїздом. Складіть I + was + playing, щоб описати вашу дію тієї миті. З I потрібна was, до play додайте -ing. Потім додайте with a toy train: with показує, з якою іграшкою ви грали."
       },
       "question": {
         "interactionId": "en:lesson-14:session-05:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Лодка и домик",
-        "uk": "Човен і будиночок"
+        "ru": "Чем была занята девочка",
+        "uk": "Чим була зайнята дівчинка"
       },
       "bodyByLocale": {
-        "ru": "Toy boat — игрушечная лодка; dollhouse — кукольный домик. She was playing with a dollhouse. — Она играла с кукольным домиком. Выберите домик.",
-        "uk": "Toy boat — іграшковий човен; dollhouse — ляльковий будиночок. She was playing with a dollhouse. — Вона гралася з ляльковим будиночком. Виберіть будиночок."
+        "ru": "Вчера в пять вы заглянули в детскую: девочка расставляла мебель в кукольном домике во время игры. She was playing with a dollhouse. — Она играла с кукольным домиком. Для действия в тот момент соберите She + was + playing. С she используем was, к play добавляем -ing. В конце поставьте with a dollhouse — с чем она играла.",
+        "uk": "Учора о п’ятій ви зазирнули до дитячої: дівчинка розставляла меблі в ляльковому будиночку під час гри. She was playing with a dollhouse. — Вона грала з ляльковим будиночком. Для дії тієї миті складіть She + was + playing. З she використовуємо was, до play додаємо -ing. Наприкінці поставте with a dollhouse — з чим вона грала."
       },
       "question": {
         "interactionId": "en:lesson-14:session-05:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Лошадка-качалка",
-        "uk": "Коник-гойдалка"
+        "ru": "Где сидел мальчик",
+        "uk": "Де сидів хлопчик"
       },
       "bodyByLocale": {
-        "ru": "Rocking horse — лошадка-качалка. He was sitting on a rocking horse. — Он сидел на лошадке-качалке. Выберите сообщение о том моменте прошлого.",
-        "uk": "Rocking horse — коник-гойдалка. He was sitting on a rocking horse. — Він сидів на конику-гойдалці. Виберіть повідомлення про той момент минулого."
+        "ru": "Вчера в пять вы вошли в детскую и увидели мальчика на лошадке-качалке. He was sitting on a rocking horse. — Он сидел на лошадке-качалке. Соберите He + was + sitting, чтобы описать его положение в тот момент. С he нужна was; у sit перед -ing удвойте t: sitting. Затем добавьте on a rocking horse: on показывает, на чём он сидел.",
+        "uk": "Учора о п’ятій ви зайшли до дитячої й побачили хлопчика на конику-гойдалці. He was sitting on a rocking horse. — Він сидів на конику-гойдалці. Складіть He + was + sitting, щоб описати його положення тієї миті. З he потрібна was; у sit перед -ing подвойте t: sitting. Потім додайте on a rocking horse: on показує, на чому він сидів."
       },
       "question": {
         "interactionId": "en:lesson-14:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fa2af4f62d9fd5d27df9ae2c97adea3778b09b6146f1351fb2a133490c8faa14"
+  "introFingerprint": "a982b47c8ed9bcbe29b5ecb8d59c377cdb2eb55018e139dc98a3a2e90508e347"
 }

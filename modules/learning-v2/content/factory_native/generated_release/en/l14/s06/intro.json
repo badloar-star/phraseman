@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Теннисный корт",
-        "uk": "Тенісний корт"
+        "ru": "Где мы играли в шесть",
+        "uk": "Де ми грали о шостій"
       },
       "bodyByLocale": {
-        "ru": "Tennis court — теннисный корт. We were playing on the tennis court. — Мы играли на теннисном корте. С we нужна were. Выберите прошлый момент.",
-        "uk": "Tennis court — тенісний корт. We were playing on the tennis court. — Ми грали на тенісному корті. З we потрібна were. Виберіть минулий момент."
+        "ru": "Вчера в шесть тренер увидел вас с другом на корте во время игры. We were playing on the tennis court. — Мы играли на теннисном корте. Для действия в тот момент соберите We + were + playing. С we нужна were; к play добавьте -ing. Затем укажите место: on the tennis court. Здесь используем on, когда говорим об игре на корте.",
+        "uk": "Учора о шостій тренер побачив вас із другом на корті під час гри. We were playing on the tennis court. — Ми грали на тенісному корті. Для дії тієї миті складіть We + were + playing. З we потрібна were; до play додайте -ing. Потім укажіть місце: on the tennis court. Тут використовуємо on, коли говоримо про гру на корті."
       },
       "question": {
         "interactionId": "en:lesson-14:session-06:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Партнёр и зритель",
-        "uk": "Партнер і глядач"
+        "ru": "С кем вы разговаривали",
+        "uk": "З ким ви розмовляли"
       },
       "bodyByLocale": {
-        "ru": "Teammate — товарищ по команде; spectator — зритель на спортивном событии. I was talking to a teammate. — Я разговаривал с товарищем по команде. Выберите товарища, а не зрителя.",
-        "uk": "Teammate — товариш по команді; spectator — глядач на спортивній події. I was talking to a teammate. — Я розмовляв із товаришем по команді. Виберіть товариша, а не глядача."
+        "ru": "Вчера в шесть вы стояли у спортивного зала и обсуждали тренировку с товарищем по команде. I was talking to a teammate. — Я разговаривал с товарищем по команде. Соберите I + was + talking: с I используем was, к talk добавляем -ing. Затем добавьте to a teammate — с кем вы разговаривали. В этой фразе после talking собеседника вводим через to.",
+        "uk": "Учора о шостій ви стояли біля спортивного залу й обговорювали тренування з товаришем по команді. I was talking to a teammate. — Я розмовляв із товаришем по команді. Складіть I + was + talking: з I використовуємо was, до talk додаємо -ing. Потім додайте to a teammate — з ким ви розмовляли. У цій фразі після talking співрозмовника вводимо через to."
       },
       "question": {
         "interactionId": "en:lesson-14:session-06:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Спортивный зал",
-        "uk": "Спортивна зала"
+        "ru": "Где ждали дети",
+        "uk": "Де чекали діти"
       },
       "bodyByLocale": {
-        "ru": "Sports hall — спортивный зал для тренировок и игр. They were waiting in the sports hall. — Они ждали в спортивном зале. Выберите правильную форму с they.",
-        "uk": "Sports hall — спортивна зала для тренувань та ігор. They were waiting in the sports hall. — Вони чекали у спортивній залі. Виберіть правильну форму з they."
+        "ru": "Вчера в шесть дети оставались в спортивном зале и ждали родителей. They were waiting in the sports hall. — Они ждали в спортивном зале. Чтобы описать ожидание в тот момент, соберите They + were + waiting. С they используем were, к wait добавляем -ing. Затем укажите место: in the sports hall. In показывает, что дети находились внутри зала.",
+        "uk": "Учора о шостій діти залишалися у спортивному залі й чекали батьків. They were waiting in the sports hall. — Вони чекали у спортивному залі. Щоб описати очікування тієї миті, складіть They + were + waiting. З they використовуємо were, до wait додаємо -ing. Потім укажіть місце: in the sports hall. In показує, що діти перебували всередині залу."
       },
       "question": {
         "interactionId": "en:lesson-14:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "eccc65eeed178742f1cd41b9144bcc51d6b95ef8967f9e6c1f2aa94852cb262c"
+  "introFingerprint": "80c591d9dfbb8729d9a73cfcf2ca1ff31aaafe9cb1923b574fa61207f6a66e53"
 }

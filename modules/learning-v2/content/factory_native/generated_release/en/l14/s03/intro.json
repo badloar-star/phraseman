@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кормушка",
-        "uk": "Годівниця"
+        "ru": "Что вы делали у кормушки",
+        "uk": "Що ви робили біля годівниці"
       },
       "bodyByLocale": {
-        "ru": "Bird feeder — кормушка для птиц. I was filling the bird feeder. — Я наполнял кормушку. Это действие шло в тот момент, вчера в десять. Выберите фразу.",
-        "uk": "Bird feeder — годівниця для птахів. I was filling the bird feeder. — Я наповнював годівницю. Ця дія тривала в той момент, учора о десятій. Виберіть фразу."
+        "ru": "Вчера в десять утра вы насыпали корм в садовую кормушку. I was filling the bird feeder. — Я наполнял кормушку. Для действия, которое шло в тот момент, соберите I + was + filling. После I нужна was; к fill добавьте -ing, сохранив обе l. Затем укажите предмет: the bird feeder — кормушку в вашем саду.",
+        "uk": "Учора о десятій ранку ви насипали корм у садову годівницю. I was filling the bird feeder. — Я наповнював годівницю. Для дії, яка тривала тієї миті, складіть I + was + filling. Після I потрібна was; до fill додайте -ing, зберігши обидві l. Потім укажіть предмет: the bird feeder — годівницю у вашому саду."
       },
       "question": {
         "interactionId": "en:lesson-14:session-03:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дорожка и клумба",
-        "uk": "Доріжка й клумба"
+        "ru": "Что сестра поливала",
+        "uk": "Що сестра поливала"
       },
       "bodyByLocale": {
-        "ru": "Garden path — садовая дорожка; flower bed — клумба. She was watering the flower bed. — Она поливала клумбу. Выберите клумбу, а не дорожку.",
-        "uk": "Garden path — садова доріжка; flower bed — клумба. She was watering the flower bed. — Вона поливала клумбу. Виберіть клумбу, а не доріжку."
+        "ru": "Вчера в десять сестра стояла у клумбы и поливала цветы. She was watering the flower bed. — Она поливала клумбу. Соберите She + was + watering, чтобы описать её действие в тот момент. С she используем was; к water в значении «поливать» добавьте -ing. После watering назовите то, что она поливала: the flower bed.",
+        "uk": "Учора о десятій сестра стояла біля клумби й поливала квіти. She was watering the flower bed. — Вона поливала клумбу. Складіть She + was + watering, щоб описати її дію тієї миті. З she використовуємо was; до water у значенні «поливати» додайте -ing. Після watering назвіть те, що вона поливала: the flower bed."
       },
       "question": {
         "interactionId": "en:lesson-14:session-03:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Яблоня",
-        "uk": "Яблуня"
+        "ru": "Как мы поливали дерево",
+        "uk": "Як ми поливали дерево"
       },
       "bodyByLocale": {
-        "ru": "Apple tree — яблоня. We were watering the apple tree. — Мы поливали яблоню. С we нужна were, затем watering. Выберите фразу о прошлом моменте.",
-        "uk": "Apple tree — яблуня. We were watering the apple tree. — Ми поливали яблуню. З we потрібна were, потім watering. Виберіть фразу про минулий момент."
+        "ru": "Вчера в десять вы с братом поливали яблоню: он держал шланг у корней, а вы помогали его направлять. We were watering the apple tree. — Мы поливали яблоню. Чтобы описать совместное действие в тот момент, соберите We + were + watering. С we нужна were, к water добавьте -ing. Затем добавьте the apple tree — яблоню, которую вы поливали.",
+        "uk": "Учора о десятій ви з братом поливали яблуню: він тримав шланг біля коріння, а ви допомагали його спрямовувати. We were watering the apple tree. — Ми поливали яблуню. Щоб описати спільну дію тієї миті, складіть We + were + watering. З we потрібна were, до water додайте -ing. Потім додайте the apple tree — яблуню, яку ви поливали."
       },
       "question": {
         "interactionId": "en:lesson-14:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "45f7b1fa06c9de068e7b2771f9579af6bd84af438a117a5734f3a7b2eb55281e"
+  "introFingerprint": "3dfdf1029cae1587c8ef0bcee2f4eb74c2cec734ccbc0e573de4746b8847995f"
 }

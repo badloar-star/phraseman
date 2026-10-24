@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Действие в тот момент",
-        "uk": "Дія в той момент"
+        "ru": "Что вы читали в восемь",
+        "uk": "Що ви читали о восьмій"
       },
       "bodyByLocale": {
-        "ru": "Comic book — комикс в виде книжки. Вчера в восемь я был занят чтением: I was reading a comic book. — Я читал комикс. Was reading показывает действие, которое шло в тот момент прошлого. Строим was + reading, не просто was read.",
-        "uk": "Comic book — комікс у вигляді книжки. Учора о восьмій я був зайнятий читанням: I was reading a comic book. — Я читав комікс. Was reading показує дію, яка тривала в той момент минулого. Будуємо was + reading, не просто was read."
+        "ru": "Вчера в восемь вечера вы сидели на диване и читали комикс. I was reading a comic book. — Я читал комикс. Past Continuous показывает действие, которое шло в определённый момент прошлого. Соберите предложение: I + was + reading + a comic book. Сначала назовите, кто действовал, затем поставьте was и глагол с -ing: read → reading. В конце добавьте, что читали. Здесь was reading передаёт процесс чтения в восемь, а не сообщает, что комикс уже прочитан.",
+        "uk": "Учора о восьмій вечора ви сиділи на дивані й читали комікс. I was reading a comic book. — Я читав комікс. Past Continuous показує дію, яка тривала в певний момент минулого. Складіть речення: I + was + reading + a comic book. Спочатку назвіть, хто діяв, потім поставте was і дієслово з -ing: read → reading. Наприкінці додайте, що читали. Тут was reading передає процес читання о восьмій, а не повідомляє, що комікс уже прочитано."
       },
       "question": {
         "interactionId": "en:lesson-14:session-01:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Was или were",
-        "uk": "Was чи were"
+        "ru": "Чем были заняты дети",
+        "uk": "Чим були зайняті діти"
       },
       "bodyByLocale": {
-        "ru": "Jigsaw puzzle — пазл из отдельных кусочков. They were doing a jigsaw puzzle. — Они собирали пазл. Для I/he/she/it используем was; для you/we/they — were. После этого — глагол с -ing. Выберите фразу об их занятии вчера в восемь.",
-        "uk": "Jigsaw puzzle — пазл з окремих шматочків. They were doing a jigsaw puzzle. — Вони складали пазл. Для I/he/she/it уживаємо was; для you/we/they — were. Після цього — дієслово з -ing. Виберіть фразу про їхнє заняття вчора о восьмій."
+        "ru": "Вчера в восемь дети сидели за столом и вместе собирали пазл. They were doing a jigsaw puzzle. — Они собирали пазл. Соберите They + were + doing + a jigsaw puzzle. Выбор was или were зависит от того, кто действует: с I, he, she, it нужна was; с you, we, they — were. Здесь говорим о детях через they, поэтому ставим were. Затем добавьте do с окончанием -ing: doing. Do a jigsaw puzzle означает «собирать пазл».",
+        "uk": "Учора о восьмій діти сиділи за столом і разом складали пазл. They were doing a jigsaw puzzle. — Вони складали пазл. Складіть They + were + doing + a jigsaw puzzle. Вибір was або were залежить від того, хто діє: з I, he, she, it потрібна was; з you, we, they — were. Тут говоримо про дітей через they, тому ставимо were. Потім додайте do із закінченням -ing: doing. Do a jigsaw puzzle означає «складати пазл»."
       },
       "question": {
         "interactionId": "en:lesson-14:session-01:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Две разные книжки",
-        "uk": "Дві різні книжки"
+        "ru": "Что делала сестра",
+        "uk": "Що робила сестра"
       },
       "bodyByLocale": {
-        "ru": "Colouring book — книжка-раскраска; picture book — книжка с картинками. She was using a colouring book. — Она занималась с раскраской. В этот момент она раскрашивала картинки. Выберите фразу о раскраске.",
-        "uk": "Colouring book — книжка-розмальовка; picture book — книжка з малюнками. She was using a colouring book. — Вона займалася з розмальовкою. У цей момент вона розмальовувала картинки. Виберіть фразу про розмальовку."
+        "ru": "Вчера в восемь младшая сестра раскрашивала картинки в раскраске. She was using a colouring book. — Она занималась с раскраской. Соберите She + was + using, чтобы описать её действие в тот момент. С she нужна was. У use уберите конечную e и добавьте -ing: using. После действия назовите предмет: a colouring book — одну книжку-раскраску.",
+        "uk": "Учора о восьмій молодша сестра розфарбовувала картинки в розмальовці. She was using a colouring book. — Вона займалася з розмальовкою. Складіть She + was + using, щоб описати її дію тієї миті. З she потрібна was. У use приберіть кінцеву e й додайте -ing: using. Після дії назвіть предмет: a colouring book — одну книжку-розмальовку."
       },
       "question": {
         "interactionId": "en:lesson-14:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8a69c833e7afbef122fdbcdb6fc740781e1e74cdd3e952d9eb36970280d99bea"
+  "introFingerprint": "ce0c65517512c27612a500df21760798b84961ddeb8c0312c1e3fe63cc919922"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бутылка с распылителем",
-        "uk": "Пляшка з розпилювачем"
+        "ru": "Что вы наполняли у раковины",
+        "uk": "Що ви наповнювали біля раковини"
       },
       "bodyByLocale": {
-        "ru": "Spray bottle — бутылка с распылителем. I was filling a spray bottle. — Я наполнял бутылку с распылителем. Выберите действие в тот момент прошлого.",
-        "uk": "Spray bottle — пляшка з розпилювачем. I was filling a spray bottle. — Я наповнював пляшку з розпилювачем. Виберіть дію в той момент минулого."
+        "ru": "Вчера в полдень вы готовились к уборке и наливали воду в бутылку с распылителем. I was filling a spray bottle. — Я наполнял бутылку с распылителем. Чтобы показать действие в процессе в тот момент, соберите I + was + filling. С I используем was, к fill добавляем -ing: обе l сохраняются. Затем назовите предмет: a spray bottle.",
+        "uk": "Учора опівдні ви готувалися до прибирання й наливали воду в пляшку з розпилювачем. I was filling a spray bottle. — Я наповнював пляшку з розпилювачем. Щоб показати дію в процесі тієї миті, складіть I + was + filling. З I використовуємо was, до fill додаємо -ing: обидві l зберігаються. Потім назвіть предмет: a spray bottle."
       },
       "question": {
         "interactionId": "en:lesson-14:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Щётка и мыльная вода",
-        "uk": "Щітка й мильна вода"
+        "ru": "Чем сестра оттирала грязь",
+        "uk": "Чим сестра відтирала бруд"
       },
       "bodyByLocale": {
-        "ru": "Scrubbing brush — жёсткая щётка для оттирания грязи; soapy water — мыльная вода. She was using a scrubbing brush. — Она пользовалась жёсткой щёткой. Выберите щётку.",
-        "uk": "Scrubbing brush — жорстка щітка для відтирання бруду; soapy water — мильна вода. She was using a scrubbing brush. — Вона користувалася жорсткою щіткою. Виберіть щітку."
+        "ru": "Вчера в полдень сестра оттирала грязь с пола жёсткой щёткой. She was using a scrubbing brush. — Она пользовалась жёсткой щёткой. Опишите её действие в тот момент: She + was + using. С she нужна was; у use уберите e и добавьте -ing. После using укажите, чем она пользовалась: a scrubbing brush.",
+        "uk": "Учора опівдні сестра відтирала бруд із підлоги жорсткою щіткою. She was using a scrubbing brush. — Вона користувалася жорсткою щіткою. Опишіть її дію тієї миті: She + was + using. З she потрібна was; у use приберіть e й додайте -ing. Після using укажіть, чим вона користувалася: a scrubbing brush."
       },
       "question": {
         "interactionId": "en:lesson-14:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мыльные пузыри",
-        "uk": "Мильні бульбашки"
+        "ru": "На что смотрели дети",
+        "uk": "На що дивилися діти"
       },
       "bodyByLocale": {
-        "ru": "Soap bubbles — мыльные пузыри. They were watching the soap bubbles. — Они наблюдали за мыльными пузырями. После they — were. Выберите фразу о прошлом.",
-        "uk": "Soap bubbles — мильні бульбашки. They were watching the soap bubbles. — Вони спостерігали за мильними бульбашками. Після they — were. Виберіть фразу про минуле."
+        "ru": "Вчера в полдень дети стояли возле раковины и следили за мыльными пузырями в воде. They were watching the soap bubbles. — Они наблюдали за мыльными пузырями. Соберите They + were + watching, чтобы описать их действие в тот момент. С they используем were, к watch добавляем -ing. После watching сразу назовите то, за чем наблюдали: the soap bubbles. Предлог перед этим дополнением не нужен.",
+        "uk": "Учора опівдні діти стояли біля раковини й стежили за мильними бульбашками у воді. They were watching the soap bubbles. — Вони спостерігали за мильними бульбашками. Складіть They + were + watching, щоб описати їхню дію тієї миті. З they використовуємо were, до watch додаємо -ing. Після watching одразу назвіть те, за чим спостерігали: the soap bubbles. Прийменник перед цим додатком не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-14:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d5d7858c882cdf7626d5512defcf6fd770d197105b1e5496c1aff9164db5fabe"
+  "introFingerprint": "15a292fe45c09a35ab32d25d79e553b05e4b0ce1153c62f8ae30aae50e3c6b8f"
 }

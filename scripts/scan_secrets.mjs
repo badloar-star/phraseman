@@ -105,6 +105,9 @@ const ALLOWLIST_FILES = new Set([
   'functions/src/dialogue_v2_memory_reader.test.ts',
   'functions/src/dialogue_v2_memory_writer.test.ts',
   'functions/src/dialogue_v2_memory_resume_callable.emulator.test.ts',
+  // зачем 2026-10-24 (Ядро, тест транспорта свободного диалога): строка-метка в константе теста — по ней тест проверяет,
+  // что ключ уходит только в заголовок, а не в тело запроса; это не ключ. Боевой транспорт в исключения не внесён.
+  'functions/src/dialogue_v2_freeform_openai_transport.test.ts',
   // зачем 2026-08-24: deliveryToken: 'delivery0000000001' — тестовая фикстура
   // спин-журнала (последовательные нули), не ключ; ловилась как named-secret-assign.
   'tests/phone_state_existing_journal_adapters.test.ts',

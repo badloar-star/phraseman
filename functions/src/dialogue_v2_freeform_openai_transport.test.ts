@@ -157,7 +157,10 @@ describe('Dialogue V2 Plus freeform OpenAI server transport', () => {
     const body = JSON.parse(String(init.body));
     expect(body.model).toBe('gpt-4o-mini');
     expect(body).toMatchObject({ max_tokens: 500, temperature: 0.8 });
-    expect(body.messages).toHaveLength(19);
+    // зачем (Ревизор 24.10): с a1b97ba76 (01.10, «первая реплика всегда уже на экране») сервер ставит открывающую фразу
+    // собеседника первым ходом: 2 системных + приветствие + 8 прошлых ходов × 2 + новая реплика = 20.
+    expect(body.messages).toHaveLength(20);
+    expect(body.messages[2]).toEqual({ role: 'assistant', content: expect.stringContaining('Salut') });
     expect(body.messages[0]).toEqual({
       role: 'system',
       content: producerRequest().systemInstruction,

@@ -354,6 +354,7 @@ export function createDialogueV2FreeformSessionTurnHandler(
   dependencies: DialogueV2FreeformSessionTurnDependencies,
 ): (request: TurnRequest) => Promise<TurnPublicResult> {
   return async (request) => {
+    const startedAtMs = Date.now();
     const authUid = request.auth?.uid;
     if (typeof authUid !== 'string' || !AUTH_UID_RE.test(authUid)) {
       logFreeformTurnRefusal('auth_required');
@@ -384,6 +385,12 @@ export function createDialogueV2FreeformSessionTurnHandler(
       logFreeformTurnRefusal(result ? 'turn_result_mismatch' : 'turn_result_invalid');
       throw unavailable();
     }
+    // зачем (жалоба T6 «вечные •••»): успешный ход был немым — по журналу не отличить «ответ ушёл» от «ответа не было».
+    // Только время и длина ответа, без текста реплик и без uid.
+    console.log('[DIALOGUE-V2-FREEFORM-TURN] ok', JSON.stringify({
+      ms: Date.now() - startedAtMs,
+      assistantChars: result.assistantMessage.length,
+    }));
     return Object.freeze({
       ok: true,
       assistantMessage: result.assistantMessage,

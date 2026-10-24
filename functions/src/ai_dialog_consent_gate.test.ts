@@ -4,7 +4,7 @@ import { __resetAiDialogConsentCacheForTests, checkAiDialogConsent } from './ai_
 // remote_config/app.bools.ai_dialog_consent_enforced; до включения — журнал would_refuse и пропуск.
 
 type Docs = Record<string, Record<string, unknown> | undefined>;
-function fakeDb(docs: Docs, opts: { switchThrows?: boolean } = {}) {
+function fakeDb(docs: Docs, opts: { switchThrows?: boolean; consentThrows?: boolean } = {}) {
   const reads: string[] = [];
   const db = {
     collection: (name: string) => ({
@@ -13,6 +13,7 @@ function fakeDb(docs: Docs, opts: { switchThrows?: boolean } = {}) {
           const path = `${name}/${id}`;
           reads.push(path);
           if (opts.switchThrows && path === 'remote_config/app') throw new Error('unavailable');
+          if (opts.consentThrows && name === 'user_consents') throw new Error('deadline-exceeded');
           const data = docs[path];
           return { exists: data !== undefined, data: () => data, get: (field: string) => data?.[field] };
         },
@@ -57,6 +58,15 @@ describe('шлюз согласия на ИИ-диалоги', () => {
     const { db } = fakeDb({}, { switchThrows: true });
     await expect(checkAiDialogConsent({ db, stableUid: 'u5', callable: 't' })).resolves.toBeUndefined();
     expect(warn.mock.calls.map((c) => String(c[0]))).toEqual(expect.arrayContaining([expect.stringContaining('switch_read_failed')]));
+  });
+
+  test('согласие не прочиталось → пропуск даже при включённом выключателе, причина в журнале (Ревизор 24.10)', async () => {
+    const { db, reads } = fakeDb({ 'remote_config/app': { bools: { ai_dialog_consent_enforced: true } } }, { consentThrows: true });
+    await expect(checkAiDialogConsent({ db, stableUid: 'u7', callable: 't' })).resolves.toBeUndefined();
+    const lines = warn.mock.calls.map((c) => String(c[0]));
+    expect(lines).toEqual([expect.stringContaining('consent_read_failed'), expect.stringContaining('pass_unverified')]);
+    expect(lines[0]).toContain('deadline-exceeded');
+    expect(reads).toEqual(['user_consents/u7']);
   });
 
   test('отзыв согласия: отказано не кэшируется, granted живёт не дольше минуты', async () => {

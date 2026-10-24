@@ -119,8 +119,17 @@ async function resolveExpectedPackHash(lang: SpireLang, tier: number, weekKey: s
   return hash;
 }
 
-export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+// зачем (жалобы 22–24.10 «ступень не прибавляется / монеты не меняются», журналы 22–24.10): ответ p50 3,6 с, p90 13,9 с,
+// 17 из 279 — 504 на общем пределе 15 с; работа при этом продолжалась (tookMs до 352 с), а телефон слал ту же пачку снова —
+// две транзакции одного человека мешали друг другу (в медленных пачках dups 2–3). Свой предел 60 с рвёт петлю «504 → повтор»;
+// phases в batch_done показывают, где уходят секунды (сперва логи, потом починка).
+const SPIRE_REPORT_OPTIONS = { ...HOT_CALLABLE_OPTIONS, timeoutSeconds: 60 } as const;
+let spireReportServedOnInstance = 0;
+
+export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => {
   const startedAt = Date.now();
+  const coldInstance = spireReportServedOnInstance === 0;
+  spireReportServedOnInstance += 1;
   const authUid = request.auth?.uid;
   if (!authUid) {
     warn('reject_unauthenticated', {});
@@ -154,12 +163,14 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     });
     throw error;
   }
+  const identityDoneAt = Date.now();
 
   const now = new Date();
   const nowMs = now.getTime();
   const serverWeekKey = getWeekKey(isoDateUtc(now));
   const weekStartMs = spireWeekStartMsFromDate(now);
   const config = await loadSpireConfigCached(nowMs);
+  const configDoneAt = Date.now();
   if (!config.liveForPlayers) {
     // Шпиль выключен в админке: отчёты не выбрасываем — клиент держит очередь и
     // дошлёт, когда включат. Это не отказ по правдоподобию.
@@ -177,12 +188,15 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
   for (const tier of tiers) {
     expectedPackHashByTier[tier] = await resolveExpectedPackHash(lang, tier, serverWeekKey, nowMs);
   }
+  const packDoneAt = Date.now();
+  let txAttempts = 0;
 
   // guard-ok: точечный документ по id, не листинг коллекции.
   const userRef = db.collection('users').doc(stableUid);
   // guard-ok: точечные документы по id, не листинг коллекции.
   const lbRef = db.collection('leaderboard').doc(stableUid);
   const outcome = await db.runTransaction(async (tx) => {
+    txAttempts += 1;
     // зачем: журнал монет защищается от второго prepare в одной попытке; SDK
     // повторяет колбэк с тем же tx при конфликте — сбрасываем отметку в начале.
     beginStarLedgerTransactionAttempt(tx);
@@ -324,6 +338,7 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
       fromSteps,
     };
   });
+  const txDoneAt = Date.now();
 
   for (const o of outcome.coins.outcomes) {
     if (o.status === 'rejected') {
@@ -356,6 +371,14 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     coinsPlanned: outcome.coins.planned,
     coinsGranted: outcome.coins.granted,
     tookMs: Date.now() - startedAt,
+    phases: {
+      coldInstance,
+      identityMs: identityDoneAt - startedAt,
+      configMs: configDoneAt - identityDoneAt,
+      packHashMs: packDoneAt - configDoneAt,
+      txMs: txDoneAt - packDoneAt,
+      txAttempts,
+    },
   });
 
   return {

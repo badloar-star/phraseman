@@ -18,7 +18,7 @@ const LOG = '[AI-CONSENT]';
 const CACHE_TTL_MS = 60_000;
 export const AI_DIALOG_CONSENT_REQUIRED = 'ai_consent_required';
 
-type ConsentState = 'granted' | 'denied' | 'unset' | 'missing';
+type ConsentState = 'granted' | 'denied' | 'unset' | 'missing' | 'read_failed';
 const grantedUntil = new Map<string, number>();
 let enforcedCache: { value: boolean; expiresAtMs: number } | null = null;
 
@@ -30,7 +30,14 @@ export function __resetAiDialogConsentCacheForTests(): void {
 async function readConsentState(db: admin.firestore.Firestore, stableUid: string, nowMs: number): Promise<{ state: ConsentState; source: 'cache' | 'firestore' }> {
   const cachedUntil = grantedUntil.get(stableUid);
   if (cachedUntil !== undefined && cachedUntil > nowMs) return { state: 'granted', source: 'cache' };
-  const snap = await db.collection('user_consents').doc(stableUid).get();
+  let snap: admin.firestore.DocumentSnapshot;
+  try {
+    snap = await db.collection('user_consents').doc(stableUid).get();
+  } catch (error) {
+    // зачем (Ревизор a6e2545b4 🟡): сбой Firestore (таймаут, квота) не должен ронять ход ИИ — «не смогли проверить» ≠ «нет согласия»
+    console.warn(`${LOG} consent_read_failed ${JSON.stringify({ uid: stableUid.slice(0, 6), reason: String(error instanceof Error ? error.message : error).slice(0, 120) })}`);
+    return { state: 'read_failed', source: 'firestore' };
+  }
   const raw = snap.exists ? snap.get('aiDialogConsent') : undefined;
   const state: ConsentState = raw === 'granted' || raw === 'denied' || raw === 'unset' ? raw : 'missing';
   if (state === 'granted') grantedUntil.set(stableUid, nowMs + CACHE_TTL_MS);
@@ -66,6 +73,11 @@ export async function checkAiDialogConsent(input: Readonly<{
   const { state, source } = await readConsentState(input.db, input.stableUid, nowMs);
   if (state === 'granted') {
     if (source === 'firestore') console.log(`${LOG} ok ${JSON.stringify({ callable: input.callable, uid: uidTag, source })}`);
+    return;
+  }
+  if (state === 'read_failed') {
+    // зачем (Ревизор 24.10): не смогли прочитать согласие — пропускаем и при включённом выключателе; причина уже в журнале
+    console.warn(`${LOG} pass_unverified ${JSON.stringify({ callable: input.callable, uid: uidTag })}`);
     return;
   }
   const enforced = await consentEnforced(input.db, nowMs);

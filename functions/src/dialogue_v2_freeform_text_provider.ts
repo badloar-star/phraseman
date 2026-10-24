@@ -127,10 +127,18 @@ function privateTargetPolicySentences(
   ]);
 }
 
+// зачем (жалоба T6, слово владельца 24.10: «я ноль, но хочу учиться, а как, если не знаю, что говорить»): новичок пишет
+// по-английски или на родном языке («Teach me», «Hi how are you») — ИИ не отвечает «не понимаю», а мягко помогает и даёт
+// одну готовую короткую фразу на изучаемом языке, которую можно сказать дальше.
+function beginnerHelpPolicySentence(target: DialogueV2StudyTarget): string {
+  const language = TARGET_LANGUAGE_NAMES[target];
+  return `If the learner writes in another language or seems to be a beginner, never say you do not understand: reply simply and kindly in ${language}, and offer one short ready-to-say ${language} phrase for their next message.`;
+}
+
 const ALL_PRIVATE_POLICY_SENTENCES = Object.freeze([
   ...PRIVATE_POLICY_SENTENCES,
   ...DIALOGUE_V2_STUDY_TARGETS.flatMap((target) => (
-    privateTargetPolicySentences(target)
+    [...privateTargetPolicySentences(target), beginnerHelpPolicySentence(target)]
   )),
 ]);
 
@@ -138,6 +146,7 @@ function privateTutorPolicy(target: DialogueV2StudyTarget): string {
   return [
     DIALOGUE_V2_FREEFORM_PRIVATE_POLICY_CANARY,
     ...privateTargetPolicySentences(target),
+    beginnerHelpPolicySentence(target),
     ...PRIVATE_POLICY_SENTENCES,
   ].join(' ');
 }

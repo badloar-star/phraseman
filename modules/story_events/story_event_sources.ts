@@ -3,6 +3,8 @@
 import { isStreakMilestone } from '../../components/streak/moments/streak_milestones';
 import { DebugLogger } from '../../app/debug-logger';
 import { recordStoryEvent, type StoryRecordResult } from './story_events_store';
+import { isPremiumThemeId, type PremiumThemeId } from '../../app/premium_theme_catalog';
+import { notePremiumThemeProgress } from '../../app/premium_theme_progress';
 
 type SpireWeekFact = Readonly<{
   weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number;
@@ -23,6 +25,7 @@ function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string
 
 export function recordSpireWeekStory(result: SpireWeekFact | null): Promise<StoryRecordResult> | undefined {
   if (!result) return undefined;
+  notePremiumThemeProgress('final_spire', result.newTier);
   return recordStoryEvent('spire_week', spireWeekPayload(result));
 }
 
@@ -37,12 +40,14 @@ export function markSpireWeekStoryShown(result: SpireWeekFact | null): Promise<S
 
 /** Рубеж серии — только числа из списка рубежей (streak_milestones.ts); прочие дни молча не пишем. */
 export function recordStreakMilestoneStory(days: number, dayKey: string): Promise<StoryRecordResult> | undefined {
+  notePremiumThemeProgress('streak_365', days);
   if (!isStreakMilestone(days)) return undefined;
   return recordStoryEvent('streak_milestone', { days, dayKey });
 }
 
 /** Повышение ранга монеты — после состоявшейся покупки (трата и ранг уже на диске). */
 export function recordCoinRankStory(toRank: number): Promise<StoryRecordResult> {
+  notePremiumThemeProgress('final_coin_rank', toRank);
   return recordStoryEvent('coin_rank_up', { toRank });
 }
 
@@ -50,4 +55,10 @@ export function recordCoinRankStory(toRank: number): Promise<StoryRecordResult> 
 export function recordAchievementStories(achievementIds: readonly string[]): void {
   if (achievementIds.length > 4) DebugLogger.info('[STORY-EVENTS]', `achievement: пачка из ${achievementIds.length} — пишем все, лимит 20 вытеснит старые`);
   for (const achievementId of achievementIds) void recordStoryEvent('achievement', { achievementId });
+}
+
+/** Новая постоянная тема: запись создаёт красное кольцо у аватара и живёт в недавних 7 дней. */
+export function recordThemeUnlockStory(themeId: PremiumThemeId): Promise<StoryRecordResult> | undefined {
+  if (!isPremiumThemeId(themeId)) return undefined;
+  return recordStoryEvent('theme_unlock', { themeId });
 }

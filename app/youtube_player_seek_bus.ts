@@ -13,6 +13,7 @@
 
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 import { noteTodayVideoPlaybackTick } from '../modules/today-tasks/today_tasks_video_ticks';
+import { notePremiumThemeVideoPlaybackTick } from './premium_theme_video_watch';
 
 type SeekHandler = (seconds: number) => void;
 type PositionListener = (positionSec: number) => void;
@@ -131,6 +132,7 @@ export function publishYoutubePosition(videoId: string, positionSec: number): vo
   noteTodayVideoPlaybackTick(videoId, Date.now(), (units, id, _dayKey, unitKey) => {
     void recordTodayTaskActivity({ kind: 'video', units, unitKey, source: `youtube:${id}` });
   });
+  notePremiumThemeVideoPlaybackTick(videoId, Date.now());
 }
 
 export function subscribeYoutubePosition(videoId: string, listener: PositionListener): () => void {

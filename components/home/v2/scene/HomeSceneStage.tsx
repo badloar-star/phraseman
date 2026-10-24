@@ -29,6 +29,8 @@ import { homeSceneWarmTone } from './home_scene_warm_tone';
 import { useShadowGlass } from '../../../v2/ShadowSurface';
 import type { HomeSceneState } from './home_scene_state';
 import type { HomeSceneStageTokens } from './home_scene_tokens';
+import { PremiumThemeMotion } from './PremiumThemeMotion';
+import { useTheme } from '../../../ThemeContext';
 
 const LOG = '[HOME-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
@@ -91,6 +93,7 @@ export default function HomeSceneStage(props: Props) {
 const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0 }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
+  const { liquidGlassThemeId, isDark } = useTheme();
   const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
@@ -121,6 +124,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       }}
     >
       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+      <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>
           <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
@@ -149,8 +153,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота, поверх текста допустимо), крупный — не выше свободного места */}
       <View style={s.heroSpace} pointerEvents="none">
         {art && heroReady ? (
-          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={[heroBounded ? s.heroBounded : s.hero, artDim ? s.heroDim : null]}>
-            <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
+          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : s.hero}>
+            <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
+              <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
+            </View>
           </Animated.View>
         ) : null}
       </View>
@@ -226,8 +232,9 @@ const baseStyles = StyleSheet.create({
   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden', justifyContent: 'space-between' },
   // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
   heroSpace: { flex: 1 },
-  hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO, padding: HERO_PAD, opacity: 0.96 },
-  heroBounded: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO, padding: HERO_PAD, opacity: 0.96 },
+  hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },
+  heroBounded: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO },
+  heroVisual: { width: '100%', height: '100%', padding: HERO_PAD, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
   heroImage: { width: '100%', height: '100%' },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },

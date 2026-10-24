@@ -1037,6 +1037,14 @@ export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from "./gift_access";
+// Шесть постоянных тем-наград: сервер проверяет условие и только после этого
+// пишет entitlement; клиент не может выдать тему локальным флагом.
+export {
+  premiumThemeEntitlementsGet,
+  premiumThemeConditionClaim,
+  premiumThemeVideoWatchReport,
+} from "./premium_themes";
+
 // зачем (D78/PM-080, Q109): videoWatchRunesClaim (руны за просмотр видео) удалена вместе
 // с кодом. В облаке функция доживает до min_app_version >= 2.0 (её зовёт 1.6.24) —
 // см. DEPLOY_NOW.md, Шаг 2. Полная выкладка предложит её удалить — до релиза отвечать «нет».

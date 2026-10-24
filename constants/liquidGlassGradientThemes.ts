@@ -43,6 +43,14 @@ export const LIQUID_GLASS_GRADIENT_THEMES = [
   { id: 'grad_ice', glowA: '#96DCFF', glowB: '#78A0FF', accent: '#BFE6FF', onAccent: '#0A2A44' },
   { id: 'grad_coral', glowA: '#FF645A', glowB: '#FFA046', accent: '#FFB0A0', onAccent: '#4A0F0A' },
   { id: 'grad_lilac', glowA: '#A78BFA', glowB: '#60A5FA', accent: '#D4C8FF', onAccent: '#24164A' },
+  // Премиальные темы достижений. Цвет работает на всём экране через те же
+  // семантические токены; уникальный арт Главной приезжает отдельным remote pack.
+  { id: 'grad_full_olive', glowA: '#778624', glowB: '#151E10', accent: '#C9D880', onAccent: '#10151B' },
+  { id: 'grad_full_ref_signal_lime', glowA: '#101406', glowB: '#020406', accent: '#C2FF46', onAccent: '#081017' },
+  { id: 'grad_full_ref_storm_violet', glowA: '#110C14', glowB: '#020406', accent: '#D697FF', onAccent: '#081017' },
+  { id: 'grad_full_titanium', glowA: '#34383D', glowB: '#0A0C0F', accent: '#FF665B', onAccent: '#10151B' },
+  { id: 'grad_full_horizon', glowA: '#12385A', glowB: '#060E1A', accent: '#FFBB78', onAccent: '#10151B' },
+  { id: 'grad_full_ref_gravity_blue', glowA: '#0B1214', glowB: '#020406', accent: '#86DFFF', onAccent: '#081017' },
 ] as const satisfies readonly LiquidGlassGradientTheme[];
 
 export type LiquidGlassGradientThemeId = typeof LIQUID_GLASS_GRADIENT_THEMES[number]['id'];

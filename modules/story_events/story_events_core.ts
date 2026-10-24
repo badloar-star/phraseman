@@ -11,7 +11,7 @@
 export const STORY_EVENT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const STORY_EVENT_LIMIT = 20;
 
-export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement';
+export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock';
 
 export type StoryEventPayload = Readonly<Record<string, string | number | boolean>>;
 
@@ -31,7 +31,7 @@ export type StoryAddDecision =
   | Readonly<{ added: false; list: StoryEventList; reason: 'duplicate' | 'expired' | 'invalid' }>;
 
 const STORY_TYPES: ReadonlySet<string> = new Set<StoryEventType>([
-  'spire_week', 'streak_milestone', 'coin_rank_up', 'achievement',
+  'spire_week', 'streak_milestone', 'coin_rank_up', 'achievement', 'theme_unlock',
 ]);
 
 function part(payload: StoryEventPayload, name: string): string {
@@ -50,6 +50,7 @@ export function storyEventKey(type: StoryEventType, payload: StoryEventPayload):
     case 'streak_milestone': return `streak_milestone:${part(payload, 'days')}:${part(payload, 'dayKey')}`;
     case 'coin_rank_up': return `coin_rank_up:${part(payload, 'toRank')}`;
     case 'achievement': return `achievement:${part(payload, 'achievementId')}`;
+    case 'theme_unlock': return `theme_unlock:${part(payload, 'themeId')}`;
     default: return '';
   }
 }

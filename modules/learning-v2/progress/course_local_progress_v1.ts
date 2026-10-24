@@ -315,7 +315,11 @@ export function createLearningV2CourseLocalProgressStoreV1(
           console.log("[LV2-PROGRESS] complete:out_of_chain", JSON.stringify({ courseSessionId, index, chain: current.completedSessionIds.length, wasOpened: before.openedSessionIds.includes(courseSessionId) })); // guard-ok: куда легло прохождение
         }
         current = await absorb(accountScopeHash, current, masks);
-        return viewOf(current, masks);
+        const view = viewOf(current, masks);
+        void import('../../../app/premium_theme_progress').then(({ notePremiumThemeProgress }) => {
+          notePremiumThemeProgress('learning_v2_complete', view.completedSessionIds.length);
+        });
+        return view;
       });
     },
     /** Открыть занятия (экзамен главы, входной тест): не пройдены, без звёзд, играть можно. Пройденное не трогается. */

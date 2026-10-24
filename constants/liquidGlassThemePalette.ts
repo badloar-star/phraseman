@@ -24,6 +24,7 @@ import {
   liquidGlassGradientTheme,
   type LiquidGlassGradientThemeId,
 } from './liquidGlassGradientThemes';
+import { premiumThemeTokenOverrides } from './premiumThemeVisualSpecs';
 
 export {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -77,7 +78,7 @@ type BaseGlassTokens = LiquidGlassBaseTokens;
  * `intensity` — положение ползунка (0…1, шаг 0.05), `level` — его корзина для старых ветвлений.
  */
 // зачем (замечание владельца 10.10): + токены поверхностей для экранов с зашитыми под макет цветами (liquidGlassSurfaceRoles.ts).
-export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string }>;
+export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string; /** Утверждённый отдельный пигмент нижней навигации премиальной темы. */ premiumDock?: string; premiumDockInk?: string; premiumEdge?: string }>;
 
 /** Вариант с проверенными полями: интенсивность квантована, уровень — её корзина. */
 function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVariant> {
@@ -167,6 +168,59 @@ export function getActiveLiquidGlassVariant(): Required<LiquidGlassVariant> {
 // отменена. Подложка шторок/окон и заливка контролов берутся из токенов ТЕКУЩЕЙ темы (opaqueSheet / opaqueControl); приём «Тень» остаётся (без рамок, тень/тон/скругление).
 
 /** Unknown or retired names safely return graphite. Without `variant` the active one is used. */
+/** Пигменты премиум-коллекции, которые закрепляются поверх расчёта: фон, поверхности, плашки, док, кромка, чернила. Роли контраста сюда не входят. */
+const PREMIUM_PIGMENT_KEYS = [
+  'bg', 'bgTop', 'bgBottom', 'opaqueCard', 'opaqueSheet', 'opaqueControl', 'card', 'sheet',
+  'plateFillFrom', 'plateFillTo', 'sheetPlateFillFrom', 'sheetPlateFillTo', 'raisedFillFrom', 'raisedFillTo',
+  'deepBase', 'deepBaseAlt', 'premiumDock', 'premiumDockInk', 'premiumEdge', 'text',
+] as const;
+function pickPremiumPigments(overrides: Readonly<Record<string, string>> | null): Record<string, string> {
+  if (!overrides) return {};
+  const out: Record<string, string> = {};
+  for (const key of PREMIUM_PIGMENT_KEYS) if (overrides[key] !== undefined) out[key] = overrides[key]!;
+  return out;
+}
+
+/**
+ * зачем (4 · ТЕМЫ 24.10): у премиум-тем поверхности задаёт коллекция, а «верно/неверно» и чернила на акценте приходят из её спецификации сырыми —
+ * «верно» на своей плитке давало 3,87–4,29, значок Plus и галочка пейвола 1,78–2,70. Доводим их от ИТОГОВЫХ поверхностей коллекции тем же приёмом,
+ * что у 23 тем (тон сохраняется, меняется глубина; чернила — тёмные или светлые, что контрастнее). Обычных тем не касается.
+ */
+function premiumLegibleRoles(
+  overrides: Readonly<Record<string, string>> | null,
+  built: Readonly<{ text: string; accent: string; accentInk: string; opaqueCard: string; opaqueControl: string }>,
+  roles: Readonly<{ good: string; bad: string; goodSoft: string; badSoft: string }>,
+): Record<string, string> {
+  if (!overrides) return {};
+  const card = overrides.opaqueCard ?? built.opaqueCard;
+  const control = overrides.opaqueControl ?? built.opaqueControl;
+  const text = overrides.text ?? built.text;
+  const on = (soft: string): string[] => [card, control, flattenOver(soft, card), flattenOver(soft, control)];
+  const accent = overrides.accent ?? built.accent;
+  const darkInk = '#000000'; // theme-exempt: крайние чернила для выбора контрастнейших на заливке акцента
+  const lightInk = '#FFFFFF'; // theme-exempt: крайние чернила для выбора контрастнейших на заливке акцента
+  const pickInk = (fill: string): string => {
+    const candidates = [text, built.accentInk, lightInk, darkInk];
+    return candidates.reduce((best, c) => (contrastHex(c, fill) > contrastHex(best, fill) ? c : best), candidates[0]!);
+  };
+  const good = legibleOn(roles.good, text, on(roles.goodSoft), 4.55);
+  const bad = legibleOn(roles.bad, text, on(roles.badSoft), 4.55);
+  // ctaInk — тёмные чернила на светлых заливках (подпись «верно/неверно» на good/bad, главная кнопка): у коллекции сырой spec.ink давал 2,89–4,18 на тёмном оформлении;
+  // берём из чернил коллекции и её фона те, что контрастнее на ОБЕИХ заливках
+  // ctaInk обязан читаться на самой главной кнопке/выбранном чипе (cta); на good/bad подпись «верно» берёт ctaInk ИЛИ белый (inkOn в makeLiquidGlassTheme) — достаточно одного из двух
+  const cta = overrides.cta ?? overrides.ctaFill ?? accent;
+  const inkCandidates = [overrides.ctaInk, overrides.bg, text].filter((c): c is string => typeof c === 'string' && /^#[0-9a-f]{6}/i.test(c));
+  const onSemantic = (c: string): number => Math.min(Math.max(contrastHex(c, good), contrastHex(lightInk, good)), Math.max(contrastHex(c, bad), contrastHex(lightInk, bad)));
+  const score = (c: string): number => Math.min(contrastHex(c, cta) / 4.5, onSemantic(c) / 4.5);
+  const ctaInk = inkCandidates.reduce((best, c) => (score(c) > score(best) ? c : best), inkCandidates[0]!);
+  return { good, bad, accentInk: pickInk(accent), ctaInk };
+}
+const contrastHex = (a: string, b: string): number => {
+  const l = (h: string): number => { const n = Number.parseInt(h.slice(1, 7), 16); const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }); return 0.2126 * c[0]! + 0.7152 * c[1]! + 0.0722 * c[2]!; };
+  const la = l(a); const lb = l(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+};
+
 export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = activeVariant): GlassTokens {
   // зачем: вызов вида ids.map(liquidGlassTokens) передаёт индекс вторым аргументом —
   // всё, что не вариант, трактуем как активный вариант, а не как «неизвестный уровень».
@@ -182,7 +236,12 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // зачем (координатор 13.10, разбор diff Темами Г2; решение владельца 12.10 «стиль «Тень» на всё приложение»): подложка шторок и окон в ТЁМНОМ оформлении — нейтральная
   // (#28282E, shadow-skin.css `.ph .sheet`) при любой теме, а не окрашенная тоном темы (у «Авроры» было #2B3839, у «Ириса» #33353E). Все производные (плашки шторок,
   // контраст текста на подложке) считаются уже от неё. Светлое оформление не меняется. Откат — git revert коммита с этой строкой.
-  const built = buildThemeTokens(themeId, variant);
+  const rawBuilt = buildThemeTokens(themeId, variant);
+  // Премиальные коллекции переносятся из утверждённого full-themes без
+  // повторного синтеза оттенков: одни и те же surface pigments красят весь UI.
+  const premiumOverrides = premiumThemeTokenOverrides(themeId, variant.appearance);
+  // зачем (4 · ТЕМЫ 24.10): «text» в пигментах — исходные чернила коллекции; кнопочные и акцентные роли из спреда ниже не закрепляем (см. pickPremiumPigments)
+  const built = premiumOverrides ? { ...rawBuilt, ...premiumOverrides } : rawBuilt;
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
@@ -224,6 +283,13 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     ...deriveLiquidGlassButtonRoles({ ...built, bad: paletteRoles.bad }),
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.
     ...paletteRoles,
+    // Последним слоем: derivation общего дизайн-системного набора не должна
+    // сдвинуть ни один утверждённый пигмент премиальной коллекции.
+    // зачем (4 · ТЕМЫ 24.10, слово владельца «Пусть чинит 4 · Темы»): последним слоем закрепляются только ПИГМЕНТЫ поверхностей премиум-темы.
+    // Производные роли (вторичный текст, акцент-текст/графика, главная кнопка) уже посчитаны от этих же пигментов общими legibleOn/deriveButtonRoles;
+    // прежний полный спред перетирал их сырыми значениями, и в светлом оформлении кнопка пейвола сливалась с листом (1,01–1,15).
+    ...pickPremiumPigments(premiumOverrides),
+    ...premiumLegibleRoles(premiumOverrides, built, paletteRoles),
     intensity: variant.intensity,
   });
   variantCache.set(key, tokens);

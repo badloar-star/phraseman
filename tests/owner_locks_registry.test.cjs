@@ -21,6 +21,8 @@ const SEARCH_DIRS = ['tests', 'functions/src'];
 // Храповик: сторожа, уже попавшие в реестр. Удалить строку из реестра можно только вместе со строкой здесь — это видно в ревью.
 // Новый замок → строка в реестре + путь сюда в том же коммите.
 const KNOWN_GUARDS = [
+  // 4 · ТЕМЫ 24.10: премиум-темы Codex проходят контраст всех тем, темы не продаются
+  'tests/premium_themes_contrast.test.ts',
   'tests/v2_tab_bar_liquid_glass_theme.test.cjs',
   'tests/owner_locks_spire_summit_2026_10_22.test.ts',
   'tests/owner_locks_spire_2026_10_22.test.ts',

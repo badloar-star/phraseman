@@ -35,6 +35,7 @@ const S = {
   // ── слайд «ачивка» ──
   achNext: ['Следующая — {n} {dn}', 'Наступна — {n} {dn}', 'Next — {n} {dn}', 'Siguiente — {n} {dn}', 'Próxima — {n} {dn}', 'Tiếp theo — {n} {dn}', 'Berikutnya — {n} {dn}', 'Sonraki — {n} {dn}', 'Następna — {n} {dn}'],
   achOverline: ['Ачивка', 'Ачівка', 'Achievement', 'Logro', 'Conquista', 'Thành tích', 'Pencapaian', 'Başarım', 'Osiągnięcie'],
+  themeOverline: ['Новая тема', 'Нова тема', 'New theme', 'Nuevo tema', 'Novo tema', 'Chủ đề mới', 'Tema baru', 'Yeni tema', 'Nowy motyw'],
 } as const satisfies Readonly<Record<string, Nine>>;
 
 export type StoryStringKey = keyof typeof S;

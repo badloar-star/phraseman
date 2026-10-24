@@ -11,6 +11,18 @@ export type ThemeSwatchSpec = Readonly<{ kind: 'linear'; stops: ThemeSwatchStops
  * но узнаваемые (иначе 13 тем не различить); в «Акценте/Максимуме» — фактура семейства.
  */
 export function themeSwatchSpec(id: string, vivid: boolean): ThemeSwatchSpec {
+  // Особые темы должны читаться по своему акценту уже в списке. Два тёмных
+  // фоновых stop-а делали аметист, титан и сингулярность почти одинаковыми.
+  const premiumStops: Readonly<Record<string, ThemeSwatchStops>> = Object.freeze({
+    grad_full_olive: [[0, '#E0EAA8'], [0.46, '#778624'], [1, '#151E10']],
+    grad_full_ref_signal_lime: [[0, '#D6FF72'], [0.42, '#638E18'], [1, '#020406']],
+    grad_full_ref_storm_violet: [[0, '#E3B0FF'], [0.45, '#742FA5'], [1, '#07050B']],
+    grad_full_titanium: [[0, '#FF766C'], [0.45, '#5D636B'], [1, '#0A0C0F']],
+    grad_full_horizon: [[0, '#FFC487'], [0.43, '#225F8E'], [1, '#060E1A']],
+    grad_full_ref_gravity_blue: [[0, '#9BE7FF'], [0.42, '#155D74'], [1, '#020406']],
+  });
+  const premium = premiumStops[id];
+  if (premium) return { kind: 'linear', stops: premium };
   // зачем (владелец 04.10, themes-gradient.html): кружок градиентной темы — два её пятна
   // по диагонали (как фишка темы в макете), при любой насыщенности.
   const gradient = liquidGlassGradientTheme(id);

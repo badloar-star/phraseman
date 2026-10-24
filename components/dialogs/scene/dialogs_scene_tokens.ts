@@ -78,6 +78,15 @@ const HEX6 = /^#[0-9a-f]{6}$/i;
 const DARK_ACCENT_MIX = 0.3;
 /** Доля нижнего цвета фона в затемнении светлой сцены (`color-mix(bot 62%, transparent)`). */
 const LIGHT_SCRIM_MIX = 0.62;
+/** Минимальный видимый стык низа светлой сцены с карточками под ней. */
+const LIGHT_SEAM_MIN = 1.12;
+
+/** Цвет затемнения s, при котором mix(base, s, k) = target (по каналам, с обрезкой в 0…255). */
+function scrimFor(base: string, target: string, k: number): string {
+  const ch = (h: string, i: number): number => Number.parseInt(h.slice(1 + i * 2, 3 + i * 2), 16);
+  const out = [0, 1, 2].map((i) => Math.max(0, Math.min(255, Math.round(ch(base, i) + (ch(target, i) - ch(base, i)) / k))));
+  return `#${out.map((v) => v.toString(16).padStart(2, '0')).join('')}`.toUpperCase();
+}
 
 function hex6(value: string, fallback: string): string {
   return HEX6.test(value) ? value : fallback;
@@ -103,7 +112,11 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
   // тёмное: к основе подмешан акцент темы, скрима нет; светлое: основа bgTop → bg и затемнение низа тоном bgBottom
   const top = dark ? mixHex(bgTop, gradFirst, DARK_ACCENT_MIX) : bgTop;
   const bottom = dark ? mixHex(t.bg, gradLast, DARK_ACCENT_MIX) : t.bg;
-  const textZone = dark ? bottom : mixHex(bottom, bgBottom, LIGHT_SCRIM_MIX);
+  const baseZone = dark ? bottom : mixHex(bottom, bgBottom, LIGHT_SCRIM_MIX);
+  // зачем (4 · ТЕМЫ 24.10, премиум-темы Codex): в светлых коллекциях фон и карточка почти одного тона — стык сцены с карточками 1,02 (< 1,1, не виден).
+  // Затемнение низа доводится тоном текста темы ровно до видимого стыка; у 23 тем стык уже ≥ 1,1 — шаг не нужен, вид не меняется.
+  let textZone = baseZone;
+  for (let i = 0; !dark && i < 20 && contrastRatio(textZone, hex6(t.opaqueCard, t.bg)) < LIGHT_SEAM_MIN; i += 1) textZone = mixHex(textZone, hex6(t.text, textZone), 0.02);
   // зачем (аудит контраста сцен 22.10, scene-contrast-audit / dialogs-cta-shape; координатор: «кнопка сливалась с фоном в 10 светлых градиентах»): в светлых темах, где заливка кнопки
   // даёт < 3:1 к зоне текста (grad_*: 1,0–1,5), кнопка берёт тон ТЕКСТА темы, подпись — цвет зоны текста; форма читается тоном, без обводки (13,6–15,6:1). Остальные 13 светлых и тёмные темы не меняются. Обратимо.
   const ctaShapeOk = dark || contrastRatio(t.cta, textZone) >= CTA_SHAPE_MIN_CONTRAST;
@@ -113,7 +126,8 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
     glowRight: t.bgGlow[0],
     glowLeft: t.bgGlow[1],
     glowBottom: dark ? null : t.bgGlow[2],
-    scrim: dark ? null : bgBottom,
+    // затемнение рисуется долей LIGHT_SCRIM_MIX поверх низа: если низ углублён ради стыка, цвет затемнения подбирается так, чтобы итог был ровно textZone
+    scrim: dark ? null : textZone === baseZone ? bgBottom : scrimFor(bottom, textZone, LIGHT_SCRIM_MIX),
     halo: t.accentGlow,
     text: t.text,
     secondary: legibleOn(t.secondary, t.text, textZone, DIALOGS_SCENE_MIN_TEXT_CONTRAST),

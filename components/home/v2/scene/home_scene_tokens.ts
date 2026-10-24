@@ -10,6 +10,7 @@
 // удалена 22.10 — её больше никто не звал (Главная, «Сегодня» и dev-входы берут homeSceneTokensForTheme).
 // ═══════════════════════════════════════════════════════════════════════════
 import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
+import { premiumSceneTop, premiumThemeVisualSpec } from '../../../../constants/premiumThemeVisualSpecs';
 
 export type HomeSceneTokens = Readonly<{
   sceneTop: string;
@@ -165,6 +166,18 @@ export type HomeSceneThemeInput = Readonly<{
   theme: HomeSceneThemeTokens;
 }>;
 
+/** Белый на верхе сцены премиум-темы — с запасом: на нём лежат белый 86 %, чипы на белом 14 % и полоса «Нет сети» (каждая ≥ 4,5). */
+const PREMIUM_SCENE_WHITE_TARGET = 6.2;
+function deepenForWhite(c: Rgb, target: number): Rgb {
+  if (whiteContrastOn(hexOf(c)) >= target) return c;
+  const [L, C, H] = homeSceneOklchOf(c);
+  for (let l = L; l > 0.05; l -= 0.01) {
+    const next = homeSceneFromOklch(l, C, H);
+    if (whiteContrastOn(hexOf(next)) >= target) return next;
+  }
+  return homeSceneFromOklch(0.05, C, H);
+}
+
 /** Цвета «Сцены» Главной по эталону home-scene-states.html (формула sceneTok страницы) из токенов выбранной темы. */
 export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false): HomeSceneStageTokens {
   const t = input.theme;
@@ -183,6 +196,15 @@ export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false
       ...todayRingTokens(accent),
     });
   };
+  const premium = premiumThemeVisualSpec(input.themeId);
+  if (premium) {
+    // зачем (4 · ТЕМЫ 24.10, слово владельца «Пусть чинит 4 · Темы»): у olive (тёмное) верх сцены из спецификации светлый — белые подписи, чип и «Нет сети» 3,94 < 4,5.
+    // Оттенок и насыщенность коллекции сохраняются, углубляется только светлота, пока белый на верхе не даст запас для 86 % белого и плашек 14 %.
+    const top = deepenForWhite(rgbOf(premiumSceneTop(premium)) ?? accent, PREMIUM_SCENE_WHITE_TARGET);
+    const bot = rgbOf(premium.sceneBottom) ?? (rgbOf(t.bg) as Rgb);
+    const glow = `${premium.edge}25`;
+    return done(top, bot, glow, top, bot, glow, false, ratioRgb(bot, rgbOf(t.opaqueCard) ?? [0, 0, 0]));
+  }
   if (input.appearance === 'dark') {
     const grad = t.accentGradient.length > 0 ? t.accentGradient : [t.accent, t.accent];
     const first = rgbOf(grad[0]) ?? accent;

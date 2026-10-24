@@ -12,10 +12,11 @@
 // рисует по готовому решению. /dev_home_scene_preview берёт факты из моков, решение — та же функция, вид — тот же HomeSceneView.
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
+import { premiumThemePackRevision, subscribePremiumThemePackCache } from '../../../../app/premium_theme_pack_cache';
 import type { Lang } from '../../../../constants/i18n';
 import { V2 } from '../../../../constants/v2Style';
 import { useTheme } from '../../../ThemeContext';
@@ -207,6 +208,7 @@ export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens 
 /** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */
 export function HomeSceneView(p: HomeSceneViewProps) {
   const { decision } = p;
+  const { liquidGlassThemeId } = useTheme();
   const [minuteTick, setMinuteTick] = useState(0);
   const evening = decision.state === 'streak_risk';
   const fixedClock = p.minutesToMidnight !== undefined;
@@ -225,7 +227,14 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     setHomeSceneStatusTint(tokens.sceneTop);
     return () => setHomeSceneStatusTint(null);
   }, [tokens.sceneTop, p.statusTint]);
-  const art = useMemo(() => resolveHomeSceneArt(decision.state, p.artTone), [decision.state, p.artTone]);
+  const premiumArtRevision = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
+  // The active premium pack is selected by theme id. Its cache revision does not
+  // change when switching between two packs that are already installed, so the
+  // theme id itself must invalidate this memo or the previous theme's hero leaks.
+  const art = useMemo(
+    () => resolveHomeSceneArt(decision.state, p.artTone),
+    [decision.state, p.artTone, premiumArtRevision, liquidGlassThemeId],
+  );
   useEffect(() => {
     console.log(LOG, 'art', JSON.stringify({ state: decision.state, name: art.name, origin: art.origin, hero512: art.hero512, tone: p.artTone, hasBase: art.base !== null, whiteContrastTop: Number(tokens.whiteContrastTop.toFixed(2)), seam: Number(tokens.seam.toFixed(2)), scrim: tokens.scrim })); // guard-ok: одна строка на смену героя
   }, [art, decision.state, p.artTone, tokens.whiteContrastTop, tokens.seam, tokens.scrim]);

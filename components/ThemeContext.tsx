@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef, useSyncExternalStore } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Appearance, useColorScheme, useWindowDimensions } from 'react-native';
 import { DARK, Theme, ThemeMode } from '../constants/theme';
@@ -31,6 +31,19 @@ import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoic
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { FOLLOW_SYSTEM_MARKER_KEY, decideFirstRunTheme, pickSystemDefaultTheme } from '../app/theme_first_run_default';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
+import {
+  peekPremiumThemeEntitlements,
+  primePremiumThemeEntitlements,
+  usePremiumThemeEntitlements,
+} from '../app/premium_theme_entitlements';
+import {
+  ensurePremiumThemePack,
+  premiumThemePackRevision,
+  primePremiumThemePackCache,
+  setActivePremiumThemeArt,
+  subscribePremiumThemePackCache,
+} from '../app/premium_theme_pack_cache';
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
 // Duolingo использует ~16px для основного текста, ~14px для вторичного
@@ -325,6 +338,8 @@ const logThemeWriteError = (key: string) => (e: unknown) => {
 };
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const premiumThemeEntitlements = usePremiumThemeEntitlements();
+  const premiumThemePackRev = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
   const { width: layoutW, height: layoutH } = useWindowDimensions();
   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
@@ -333,14 +348,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // зачем: пока палец на ползунке — перекраска без записи на диск; отпустил — null.
   const [previewLiquidGlassIntensity, setPreviewIntensityState] = useState<number | null>(null);
   // зачем (Сверка chain7 12.10): dev_state?theme=&level= — тема и оттенок ТОЛЬКО в памяти (app/dev_appearance_override.ts); сохранённый выбор и запись на диск не меняются
-  const [devThemeChoice, setDevThemeChoiceState] = useState(() => getDevThemeChoice());
-  useEffect(() => subscribeDevThemeChoice(setDevThemeChoiceState), []);
+  const devThemeChoice = useSyncExternalStore(subscribeDevThemeChoice, getDevThemeChoice, getDevThemeChoice);
   const liquidGlassIntensity = previewLiquidGlassIntensity ?? devThemeChoice?.intensity ?? appliedLiquidGlassIntensity;
   const liquidGlassColorLevel = liquidGlassLevelForIntensity(liquidGlassIntensity);
   const [savedLiquidGlassAppearance, setAppearanceState] = useState<LiquidGlassAppearance>(() => getActiveLiquidGlassVariant().appearance);
   // зачем (Макеты 15.10): dev_state?appearance=light|dark — оформление ТОЛЬКО в памяти (app/dev_appearance_override.ts); хранилище и сохранённый выбор не меняются. Без оверрайда — прежнее значение.
-  const [devAppearance, setDevAppearanceState] = useState<LiquidGlassAppearance | null>(() => getDevAppearance());
-  useEffect(() => subscribeDevAppearance(setDevAppearanceState), []);
+  const devAppearance = useSyncExternalStore(subscribeDevAppearance, getDevAppearance, getDevAppearance);
   const systemScheme = useColorScheme();
   const [followSystem, setFollowSystem] = useState<boolean>(() => followSystemInProcess);
   const systemDefault = pickSystemDefaultTheme(systemScheme);
@@ -386,6 +399,26 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [liquidGlassChoiceReady, setLiquidGlassChoiceReady] = useState<boolean>(() => themeHydratedInProcess);
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
   const liquidGlassThemeId = previewLiquidGlassThemeId ?? (devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? (followSystem ? resolveLiquidGlassTheme(systemDefault.themeId) : appliedLiquidGlassThemeId);
+  setActivePremiumThemeArt(liquidGlassThemeId, IS_DEV || Boolean(devThemeChoice?.themeId));
+  useEffect(() => {
+    if (!isPremiumThemeId(liquidGlassThemeId) || (!premiumThemeEntitlements.unlocked.has(liquidGlassThemeId) && !IS_DEV)) return undefined;
+    let cancelled = false;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    const loadSelectedPack = async (attempt: number): Promise<void> => {
+      const ready = await ensurePremiumThemePack(liquidGlassThemeId, 'selected');
+      if (IS_DEV) console.log('[PREMIUM-THEME-PACK] selected', JSON.stringify({ themeId: liquidGlassThemeId, attempt, ready })); // guard-ok: dev-проверка удалённого пакета выбранной темы
+      if (ready || cancelled || attempt >= 4) return;
+      // Route transitions temporarily close background-network admission. A
+      // selected theme must retry after that short quiet window; otherwise a
+      // one-shot deferred request leaves the standard art on screen forever.
+      retryTimer = setTimeout(() => { void loadSelectedPack(attempt + 1); }, 500 * (attempt + 1));
+    };
+    void loadSelectedPack(0);
+    return () => {
+      cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
+    };
+  }, [devThemeChoice?.themeId, liquidGlassThemeId, premiumThemeEntitlements.unlocked]);
   currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
   // зачем (координатор 18.10, первый запуск: «первый экран, онбординг и первая Главная — правильная тема с первого кадра, без вспышки другой темы»; правило «сперва логи»):
   // какая пара реально отрисована в каждом из первых кадров и ПОЧЕМУ: системная схема, следование системе, сохранённая/применённая тема (peek или хранилище),
@@ -405,10 +438,18 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setOskolokThemeMode(LEGACY_GRAPHITE_THEME_MODE);
   }, []);
 
-  // зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ» — любая тема из реестра доступна без Plus.
+  // Store: шесть тем достижений доступны только по серверному entitlement.
+  // Debug: все открыты для ручной сверки каждой темы на эмуляторе.
   const isLiquidGlassThemeAvailable = useCallback((id: LiquidGlassThemeId) => (
-    LIQUID_GLASS_THEME_IDS.includes(id)
-  ), []);
+    LIQUID_GLASS_THEME_IDS.includes(id) && (!isPremiumThemeId(id) || IS_DEV || premiumThemeEntitlements.unlocked.has(id))
+  ), [premiumThemeEntitlements.unlocked]);
+
+  useEffect(() => {
+    void Promise.all([primePremiumThemeEntitlements(), primePremiumThemePackCache()]);
+  }, []);
+
+  // зачем (решение владельца 30.09 «ТЕМЫ ВСЕ ФРИ» = темы не продаются; координатор 24.10): покупка Plus больше не засчитывается условием особой темы —
+  // прежний подписчик на premium_activated с повторами claimPremiumThemeCondition('plus_purchase') снят. Особые темы открываются только достижениями.
 
   // зачем (владелец 13.10): пока человек ничего не выбирал, пара тема/оформление/насыщенность следует за системным режимом и НЕ лежит в хранилище.
   // Первый же его выбор (тема, оформление или насыщенность) замораживает ту пару, которую он сейчас видит, и записывает её целиком — дальше это
@@ -476,7 +517,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setAppliedLiquidGlassThemeId(id);
     persisterRef.current?.commit('theme', id, previous);
     console.log(`[THEME-SWITCH] тап темы ${JSON.stringify({ from: previous, to: id })}`); // guard-ok: вход цепочки смены темы
-  }, []);
+  }, [freezeFollowSystem, releaseDevOverrides]);
 
   // зачем (темы 2.0): уровень и оформление меняются мгновенно (локальный state), запись
   // на диск догоняет фоном; ошибка записи только логируется — выбор на экране остаётся.
@@ -493,7 +534,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setPreviewIntensityState(null);
     if (IS_DEV) console.log('[THEME-INTENSITY] commit', { requested: intensity, saved: next, level });
     persisterRef.current?.commit('intensity', String(next), previous);
-  }, []);
+  }, [freezeFollowSystem, releaseDevOverrides]);
 
   const setPreviewLiquidGlassIntensity = useCallback((intensity: number | null) => {
     setPreviewIntensityState(intensity === null ? null : quantizeLiquidGlassIntensity(intensity));
@@ -511,7 +552,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     touchedRef.current.appearance = true;
     setAppearanceState(resolved);
     persisterRef.current?.commit('appearance', resolved, previous);
-  }, []);
+  }, [freezeFollowSystem, releaseDevOverrides]);
 
   const setLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
     if (!isLiquidGlassThemeAvailable(id)) return;
@@ -554,7 +595,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       console.log(`[THEME-BOOT] hydrate ${JSON.stringify({ msSinceBoot: Date.now() - THEME_BOOT_T0, storedTheme: storedId, storedAppearance: pairs[2]?.[1] ?? null, storedIntensity: pairs[3]?.[1] ?? null, onboardingDone: pairs[4]?.[1] ?? null, followMarker: pairs[5]?.[1] ?? null, bootScheme: String(Appearance.getColorScheme()), decision: `${firstRun.kind}/${firstRun.reason}` })}`); // guard-ok: одна строка на старт
       console.log(`[THEME-DEFAULT] ${firstRun.kind} ${JSON.stringify({ reason: firstRun.reason, apply: firstRun.apply, ...(firstRun.kind === 'new_user' ? { themeId: firstRun.themeId, intensity: firstRun.intensity } : {}) })}`);
       const newUserApply = firstRun.kind === 'new_user' && firstRun.apply ? firstRun : null;
-      const storedResolved = resolveLiquidGlassTheme(storedId);
+      // Право на премиальную тему читает сервер. Пока ответ не пришёл, сплеш
+      // остаётся закрытым; так заблокированная тема не мелькает первым кадром.
+      await primePremiumThemeEntitlements();
+      if (cancelled) return;
+      const storedCandidate = resolveLiquidGlassTheme(storedId);
+      const entitlementSnapshot = peekPremiumThemeEntitlements();
+      const storedResolved = isPremiumThemeId(storedCandidate)
+        && !entitlementSnapshot.unlocked.has(storedCandidate)
+        ? 'graphite'
+        : storedCandidate;
       // зачем (владелец 13.10): новичку тема не пишется в хранилище — пара «Сумерки/Океан» следует за системным режимом, пока он ничего не выбрал.
       // В хранилище лежит только метка; первый выбор замораживает пару (freezeFollowSystem). Старые пользователи сюда не попадают.
       const bootScheme = Appearance.getColorScheme();
@@ -578,7 +628,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         peekLiquidGlassThemeId = resolved;
         setAppliedLiquidGlassThemeId(resolved);
       }
-      if (storedId !== null && storedId !== resolved) {
+      const mayRepairStoredTheme = !isPremiumThemeId(storedCandidate) || entitlementSnapshot.authoritative;
+      if (storedId !== null && storedId !== resolved && mayRepairStoredTheme) {
         AsyncStorage.setItem(THEME_STORAGE_KEY, resolved).catch(logThemeWriteError(THEME_STORAGE_KEY));
       }
       // зачем (ползунок 2026-10-04): «Спокойно / Акцент / Максимум» → 0 / 0.5 / 1, на этих
@@ -718,7 +769,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [uiScale]);
 
   const value = useMemo<ThemeCtx>(
-    () => ({
+    () => {
+      // The art registry resolves remote sources outside this object. Reading
+      // the revision here republishes the context when a verified pack arrives.
+      void premiumThemePackRev;
+      return ({
       theme,
       isDark,
       statusBarLight,
@@ -752,8 +807,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       uiScale,
       f,
       ds,
-    }),
-    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassIntensity, setLiquidGlassIntensity, setPreviewLiquidGlassIntensity, liquidGlassAppearance, setLiquidGlassAppearance, liquidGlassChoiceReady, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
+      });
+    },
+    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassIntensity, setLiquidGlassIntensity, setPreviewLiquidGlassIntensity, liquidGlassAppearance, setLiquidGlassAppearance, liquidGlassChoiceReady, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds, premiumThemePackRev],
   );
 
   // зачем ([THEMES-PERF], dev): причина смены значения контекста, цена сборки темы и число перерисованных подписчиков за 250 мс после неё.
@@ -767,7 +823,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       console.log('[THEMES-PERF] first', JSON.stringify({ ...now, buildMs: themeBuildMsRef.current })); // guard-ok: dev-замер первого значения
       return undefined;
     }
-    const changed = (Object.keys(now) as Array<keyof typeof now>).filter((key) => now[key] !== prev[key]);
+    const changed = (Object.keys(now) as (keyof typeof now)[]).filter((key) => now[key] !== prev[key]);
     const callsAtChange = themePerfConsumerCalls;
     const writesAtChange = themePerfWrites;
     const changedAt = Date.now();

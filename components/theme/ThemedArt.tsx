@@ -4,7 +4,7 @@
 // лавандовая, предмет тот же. Пока картинок нет — нынешняя картинка этого места (реестр).
 //
 // Только именованный экспорт: файл лежит в app/, и default-экспорт превратил бы его в экран роутера.
-import React, { memo, useMemo } from 'react';
+import React, { memo, useMemo, useSyncExternalStore } from 'react';
 import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import { Image } from 'expo-image';
 import { useTheme } from '../ThemeContext';
@@ -16,6 +16,7 @@ import {
   type ThemedArtName,
 } from './themed_art_registry';
 import { spireRankSmallAccent } from '../spire/spire_rank_accent_small';
+import { premiumThemePackRevision, subscribePremiumThemePackCache } from '../../app/premium_theme_pack_cache';
 
 export type ThemedArtProps = Readonly<{
   name: ThemedArtName;
@@ -36,8 +37,15 @@ function ThemedArtImpl({ name, size = 96, width, height, style, brightness, acce
   const tokens = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity });
   // Комплект — по яркости фона темы: светлые → light, тёмные и тёмные градиентные → dark.
   const tone: ThemedArtBrightness = brightness ?? themedArtBrightnessForBackground(tokens.bg);
+  const premiumArtRevision = useSyncExternalStore(subscribePremiumThemePackCache, premiumThemePackRevision, premiumThemePackRevision);
   // Источники — из кэша реестра по имени+яркости: ползунок и смена темы их не пересоздают.
-  const art = useMemo(() => resolveThemedArt(name, tone), [name, tone]);
+  // Installed premium packs share one resolver. Switching between two already
+  // cached themes leaves the pack revision unchanged, therefore theme id is a
+  // required memo dependency to prevent stale art from the previous theme.
+  const art = useMemo(
+    () => resolveThemedArt(name, tone),
+    [name, tone, premiumArtRevision, liquidGlassThemeId],
+  );
   // зачем (координатор 18.10, R154): у значков рангов Пика маска .accent в реестре 1024² (~4 МБ в памяти ради 25 dp) — берём копию 128²; остальные предметы как были.
   const accent = art.accent ? spireRankSmallAccent(name, tone) ?? art.accent : null;
   // Цвет детали. Слоя .accent пока нет ни у одного предмета — тогда рисуется чистый предмет.

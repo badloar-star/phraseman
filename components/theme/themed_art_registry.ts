@@ -14,6 +14,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import type { ImageSourcePropType } from 'react-native';
 import { THEMED_ART_GENERATED } from './themed_art_assets.generated';
+import { resolveActivePremiumThemeArt } from '../../app/premium_theme_pack_cache';
 
 export const THEMED_ART_NAMES = [
   // Главная (7)
@@ -68,7 +69,7 @@ export type ThemedArtSlots = Readonly<{
   light?: ImageSourcePropType;
   lightAccent?: ImageSourcePropType;
 }>;
-export type ThemedArtOrigin = 'v2art' | 'v2art_other_brightness' | 'fallback' | 'none';
+export type ThemedArtOrigin = 'premium_remote' | 'v2art' | 'v2art_other_brightness' | 'fallback' | 'none';
 export type ThemedArtResolved = Readonly<{
   name: ThemedArtName;
   brightness: ThemedArtBrightness;
@@ -155,6 +156,8 @@ const cache = new Map<string, ThemedArtResolved>();
 export const themedArtCacheSize = (): number => cache.size;
 
 export function resolveThemedArt(name: ThemedArtName, brightness: ThemedArtBrightness): ThemedArtResolved {
+  const premium = resolveActivePremiumThemeArt(name);
+  if (premium) return Object.freeze({ name, brightness, base: premium, accent: null, origin: 'premium_remote' });
   const key = `${name}|${brightness}`;
   const hit = cache.get(key);
   if (hit) return hit;

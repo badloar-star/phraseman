@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-31",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-31:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-31:intro1:r2": {
+          "ru": "После wish здесь нужна форма knew.",
+          "uk": "Після wish тут потрібна форма knew."
+        },
+        "en:lesson-27:session-31:intro1:r3": {
+          "ru": "Здесь ставим knew.",
+          "uk": "Тут ставимо knew."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-31:intro2:r2": {
+          "ru": "После would нужна форма take.",
+          "uk": "Після would потрібна форма take."
+        },
+        "en:lesson-27:session-31:intro2:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-31:intro3:r2": {
+          "ru": "С a minute ago здесь found без have.",
+          "uk": "Із a minute ago тут found без have."
+        },
+        "en:lesson-27:session-31:intro3:r3": {
+          "ru": "Прошедшая форма find — found.",
+          "uk": "Минула форма find — found."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dc833c7bf9c80e5fd49775ce5d823d002e88481d7903a78f42a8f362f38a9e84"
+}

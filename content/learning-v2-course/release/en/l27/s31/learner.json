@@ -1,0 +1,1006 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-31",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-31:word:undecided",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — undecided",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:word:undecided:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — undecided",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:word:undecided:audio",
+          "transcript": "undecided"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:word:undecided:r1",
+            "targetText": "undecided",
+            "meaningByLocale": {
+              "ru": "Ещё не решивший, не определившийся.",
+              "uk": "Той, хто ще не вирішив, не визначився."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "undecided",
+          "definitionByLocale": {
+            "ru": "Ещё не решивший, не определившийся.",
+            "uk": "Той, хто ще не вирішив, не визначився."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что ещё не определились.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Скажите, что ещё не определились.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i01:audio",
+          "transcript": "I am still undecided."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am still undecided.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-31:i02:r1",
+          "text": "Which one would you choose?"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i02:r2",
+          "text": "Which one did you choose?"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i02:r3",
+          "text": "Which one would she choose?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i02:audio",
+          "transcript": "Which one would you choose?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:i02:r1",
+            "targetText": "Which one would you choose?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i02:r2",
+            "targetText": "Which one did you choose?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i02:r3",
+            "targetText": "Which one would she choose?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Which one would you choose?",
+              "uk": "У записі звучить Which one would you choose?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Which one would you choose?",
+              "uk": "У записі звучить Which one would you choose?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы не знаете любимого цвета подруги и хотели бы знать.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-31:i03:r1",
+          "text": "knew"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i03:r2",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i03:r3",
+          "text": "knowing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы не знаете любимого цвета подруги и хотели бы знать.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы не знаете любимого цвета подруги и хотели бы знать.",
+          "uk": "Ви не знаєте улюбленого кольору подруги й хотіли б знати."
+        },
+        "gappedTargetPhrase": "I wish I ___ her favourite colour.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-31:i03:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i03:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i03:r3",
+            "text": "knowing"
+          }
+        ],
+        "testedDimension": "Вы не знаете любимого цвета подруги и хотели бы знать.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-31:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы не знаете любимого цвета подруги и хотели бы знать.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь knew.",
+              "uk": "Після wish тут knew."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы не знаете любимого цвета подруги и хотели бы знать.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма knew.",
+              "uk": "Потрібна форма knew."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:word:unimportant",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unimportant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:word:unimportant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unimportant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:word:unimportant:audio",
+          "transcript": "unimportant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:word:unimportant:r1",
+            "targetText": "unimportant",
+            "meaningByLocale": {
+              "ru": "Неважный, несущественный.",
+              "uk": "Неважливий, несуттєвий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unimportant",
+          "definitionByLocale": {
+            "ru": "Неважный, несущественный.",
+            "uk": "Неважливий, несуттєвий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что эта деталь несущественна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что эта деталь несущественна.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "That detail is unimportant.",
+        "localizedMeaning": {
+          "ru": "Объясните, что эта деталь несущественна.",
+          "uk": "Поясніть, що ця деталь несуттєва."
+        },
+        "orderedTokens": [
+          "That",
+          "detail",
+          "is",
+          "unimportant"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение посмотреть другой вариант.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение посмотреть другой вариант.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i05:audio",
+          "transcript": "Let us look at the other one."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Let us look at the other one.",
+        "orderedTokens": [
+          "Let",
+          "us",
+          "look",
+          "at",
+          "the",
+          "other",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:word:uncommon",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — uncommon",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:word:uncommon:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — uncommon",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:word:uncommon:audio",
+          "transcript": "uncommon"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:word:uncommon:r1",
+            "targetText": "uncommon",
+            "meaningByLocale": {
+              "ru": "Нечастый, редко встречающийся.",
+              "uk": "Нечастий, такий, що рідко трапляється."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "uncommon",
+          "definitionByLocale": {
+            "ru": "Нечастый, редко встречающийся.",
+            "uk": "Нечастий, такий, що рідко трапляється."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-31:i06:r1",
+          "text": "This colour is uncommon."
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i06:r2",
+          "text": "That colour is uncommon."
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i06:r3",
+          "text": "This colour is common."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i06:audio",
+          "transcript": "This colour is uncommon."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:i06:r1",
+            "targetText": "This colour is uncommon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i06:r2",
+            "targetText": "That colour is uncommon.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i06:r3",
+            "targetText": "This colour is common.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-31:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This colour is uncommon.",
+              "uk": "У записі звучить This colour is uncommon."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This colour is uncommon.",
+              "uk": "У записі звучить This colour is uncommon."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, есть ли такой же поменьше.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите, есть ли такой же поменьше.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i07:audio",
+          "transcript": "Do you have a smaller one?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have a smaller one?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы взяли бы синий вариант, если бы он был меньше.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-31:i08:r1",
+          "text": "take"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i08:r2",
+          "text": "took"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i08:r3",
+          "text": "to take"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы взяли бы синий вариант, если бы он был меньше.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы взяли бы синий вариант, если бы он был меньше.",
+          "uk": "Ви взяли б синій варіант, якби він був меншим."
+        },
+        "gappedTargetPhrase": "I would ___ the blue one if it were smaller.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-31:i08:r1",
+            "text": "take"
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i08:r2",
+            "text": "took"
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i08:r3",
+            "text": "to take"
+          }
+        ],
+        "testedDimension": "Вы взяли бы синий вариант, если бы он был меньше.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы взяли бы синий вариант, если бы он был меньше.",
+            "feedbackByLocale": {
+              "ru": "После would ставим take.",
+              "uk": "Після would ставимо take."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы взяли бы синий вариант, если бы он был меньше.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите немного времени на решение.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите немного времени на решение.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you give me a moment?",
+        "localizedMeaning": {
+          "ru": "Попросите немного времени на решение.",
+          "uk": "Попросіть трохи часу на рішення."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "give",
+          "me",
+          "a",
+          "moment"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:word:unnoticed",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unnoticed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:word:unnoticed:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unnoticed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:word:unnoticed:audio",
+          "transcript": "unnoticed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:word:unnoticed:r1",
+            "targetText": "unnoticed",
+            "meaningByLocale": {
+              "ru": "Незамеченный.",
+              "uk": "Непомічений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unnoticed",
+          "definitionByLocale": {
+            "ru": "Незамеченный.",
+            "uk": "Непомічений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-31:i10:r1",
+          "text": "The note went unnoticed."
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i10:r2",
+          "text": "The change went unnoticed."
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i10:r3",
+          "text": "The mistake went unnoticed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i10:audio",
+          "transcript": "The note went unnoticed."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-31:i10:r1",
+            "targetText": "The note went unnoticed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i10:r2",
+            "targetText": "The change went unnoticed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i10:r3",
+            "targetText": "The mistake went unnoticed.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-31:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The note went unnoticed.",
+              "uk": "У записі звучить The note went unnoticed."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The note went unnoticed.",
+              "uk": "У записі звучить The note went unnoticed."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что только что нашли записку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что только что нашли записку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have just found it.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что только что нашли записку.",
+          "uk": "Повідомте, що щойно знайшли записку."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "just",
+          "found",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Назовите время: вы нашли её минуту назад.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-31:i12:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i12:r2",
+          "text": "have found"
+        },
+        {
+          "responseId": "en:lesson-27:session-31:i12:r3",
+          "text": "finded"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Назовите время: вы нашли её минуту назад.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Назовите время: вы нашли её минуту назад.",
+          "uk": "Назвіть час: ви знайшли її хвилину тому."
+        },
+        "gappedTargetPhrase": "I ___ it a minute ago.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-31:i12:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i12:r2",
+            "text": "have found"
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i12:r3",
+            "text": "finded"
+          }
+        ],
+        "testedDimension": "Назовите время: вы нашли её минуту назад.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-31:i12:r2",
+            "correct": false,
+            "testedDimension": "Назовите время: вы нашли её минуту назад.",
+            "feedbackByLocale": {
+              "ru": "С a minute ago здесь found без have.",
+              "uk": "Із a minute ago тут found без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-31:i12:r3",
+            "correct": false,
+            "testedDimension": "Назовите время: вы нашли её минуту назад.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма find — found.",
+              "uk": "Минула форма find — found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, это ли хотела подруга.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i13:audio"
+      ],
+      "accessibilityLabel": "Уточните, это ли хотела подруга.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i13:audio",
+          "transcript": "Is this the one she wanted?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this the one she wanted?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте подтверждение выбора.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте подтверждение выбора.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i14:audio",
+          "transcript": "That is exactly the right one."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "That is exactly the right one.",
+        "orderedTokens": [
+          "That",
+          "is",
+          "exactly",
+          "the",
+          "right",
+          "one"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что жаль отсутствия подруги.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что жаль отсутствия подруги.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wish she were here to choose.",
+        "localizedMeaning": {
+          "ru": "Скажите, что жаль отсутствия подруги.",
+          "uk": "Скажіть, що шкода відсутності подруги."
+        },
+        "orderedTokens": [
+          "I",
+          "wish",
+          "she",
+          "were",
+          "here",
+          "to",
+          "choose"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we knew her size, we would buy it.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we knew her size, we would buy it.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would buy it if we knew her size.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we knew her size, we would buy it.",
+          "uk": "Почніть із результату: If we knew her size, we would buy it."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "buy",
+          "it",
+          "if",
+          "we",
+          "knew",
+          "her",
+          "size"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-31:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите упаковать подарок.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-31:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите упаковать подарок.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-31:i17:audio",
+          "transcript": "Could you wrap it, please?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you wrap it, please?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2697a1babfcdf29c77eefe190ffd2c83cabbf2fdecdbfa37879ad1482dcfa662"
+}

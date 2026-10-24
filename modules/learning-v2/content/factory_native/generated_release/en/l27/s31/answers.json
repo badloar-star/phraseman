@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-31:word:undecided",
+    "correctText": "undecided",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i01",
+    "correctText": "I am still undecided.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i02",
+    "correctText": "Which one would you choose?",
+    "correctResponseId": "en:lesson-27:session-31:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i03",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-31:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:word:unimportant",
+    "correctText": "unimportant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i04",
+    "correctText": "That detail is unimportant.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i05",
+    "correctText": "Let us look at the other one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:word:uncommon",
+    "correctText": "uncommon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i06",
+    "correctText": "This colour is uncommon.",
+    "correctResponseId": "en:lesson-27:session-31:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i07",
+    "correctText": "Do you have a smaller one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i08",
+    "correctText": "take",
+    "correctResponseId": "en:lesson-27:session-31:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i09",
+    "correctText": "Could you give me a moment?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:word:unnoticed",
+    "correctText": "unnoticed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i10",
+    "correctText": "The note went unnoticed.",
+    "correctResponseId": "en:lesson-27:session-31:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i11",
+    "correctText": "I have just found it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i12",
+    "correctText": "found",
+    "correctResponseId": "en:lesson-27:session-31:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i13",
+    "correctText": "Is this the one she wanted?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i14",
+    "correctText": "That is exactly the right one.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i15",
+    "correctText": "I wish she were here to choose.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i16",
+    "correctText": "We would buy it if we knew her size.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-31:i17",
+    "correctText": "Could you wrap it, please?",
+    "correctResponseId": null
+  }
+]

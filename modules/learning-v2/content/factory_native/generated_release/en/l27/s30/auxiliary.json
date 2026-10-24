@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-30",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-30:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-30:intro1:r2": {
+          "ru": "После wish в этой фразе нужна форма knew.",
+          "uk": "Після wish у цій фразі потрібна форма knew."
+        },
+        "en:lesson-27:session-30:intro1:r3": {
+          "ru": "Здесь ставим knew.",
+          "uk": "Тут ставимо knew."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-30:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-30:intro2:r2": {
+          "ru": "После would нужна форма visit.",
+          "uk": "Після would потрібна форма visit."
+        },
+        "en:lesson-27:session-30:intro2:r3": {
+          "ru": "В условии здесь had без would.",
+          "uk": "В умові тут had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-30:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-30:intro3:r2": {
+          "ru": "С last night здесь sent без have.",
+          "uk": "Із last night тут sent без have."
+        },
+        "en:lesson-27:session-30:intro3:r3": {
+          "ru": "Прошедшая форма send — sent.",
+          "uk": "Минула форма send — sent."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c5e5517f0b7de507a46f3c124065a7f63f2ef049454de7e9fede282bf38301d"
+}

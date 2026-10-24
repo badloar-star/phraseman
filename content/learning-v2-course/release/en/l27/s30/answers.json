@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-30:i01",
+    "correctText": "Who told you that?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:word:untrue",
+    "correctText": "untrue",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i02",
+    "correctText": "That story is untrue.",
+    "correctResponseId": "en:lesson-27:session-30:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i03",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-30:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i04",
+    "correctText": "We are still meeting tonight.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:word:unrealistic",
+    "correctText": "unrealistic",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i05",
+    "correctText": "That plan is unrealistic.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i06",
+    "correctText": "Let us choose two places.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i07",
+    "correctText": "Which one would you like to see first?",
+    "correctResponseId": "en:lesson-27:session-30:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i08",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-30:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i09",
+    "correctText": "Could you bring your camera?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:word:unbelievable",
+    "correctText": "unbelievable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i10",
+    "correctText": "The view was unbelievable.",
+    "correctResponseId": "en:lesson-27:session-30:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i11",
+    "correctText": "I wish you were here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:word:unforgettable",
+    "correctText": "unforgettable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i12",
+    "correctText": "It was an unforgettable evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i13",
+    "correctText": "I have already sent the photos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i14",
+    "correctText": "sent",
+    "correctResponseId": "en:lesson-27:session-30:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i15",
+    "correctText": "We would show you around if you were here.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i16",
+    "correctText": "Please keep that photo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-30:i17",
+    "correctText": "Shall we meet again next month?",
+    "correctResponseId": null
+  }
+]

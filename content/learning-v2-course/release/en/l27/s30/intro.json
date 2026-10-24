@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить сообщение",
+        "uk": "Уточнити повідомлення"
+      },
+      "bodyByLocale": {
+        "ru": "Untrue — неправдивый, не соответствующий действительности. That story is untrue — эта история неправдива. Так оценивают содержание сообщения; само слово не объясняет, ошибся человек или намеренно солгал. Вы услышали, что встречу отменили, но знаете, что она состоится. Who told you that? — кто тебе это сказал? I wish I knew the whole story — жаль, что я не знаю всей истории. Knew после wish относится к тому, чего вы не знаете сейчас, а не к прошлому.",
+        "uk": "Untrue — неправдивий, такий, що не відповідає дійсності. That story is untrue — ця історія неправдива. Так оцінюють зміст повідомлення; саме слово не пояснює, помилилася людина чи навмисно збрехала. Ви почули, що зустріч скасували, але знаєте, що вона відбудеться. Who told you that? — хто тобі це сказав? I wish I knew the whole story — шкода, що я не знаю всієї історії. Knew після wish стосується того, чого ви не знаєте зараз, а не минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-30:intro1:r1",
+              "text": "I wish I knew the whole story."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro1:r2",
+              "text": "I wish I know the whole story."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro1:r3",
+              "text": "I wish I knowing the whole story."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-30:intro1:r1",
+              "text": "I wish I knew the whole story."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro1:r2",
+              "text": "I wish I know the whole story."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro1:r3",
+              "text": "I wish I knowing the whole story."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "План, который трудно выполнить",
+        "uk": "План, який важко виконати"
+      },
+      "bodyByLocale": {
+        "ru": "Unrealistic — нереалистичный, не учитывающий реальные возможности. That plan is unrealistic — этот план нереалистичен. Вы хотите посетить пять мест за один короткий вечер. Лучше выбрать главное: Let us choose two places — давай выберем два места. I would visit both if I had more time — я бы посетил оба, если бы было больше времени. Would visit описывает воображаемый результат, had — условие сейчас. Это не обещание успеть всё.",
+        "uk": "Unrealistic — нереалістичний, такий, що не враховує реальних можливостей. That plan is unrealistic — цей план нереалістичний. Ви хочете відвідати п’ять місць за один короткий вечір. Краще обрати головне: Let us choose two places — давай оберемо два місця. I would visit both if I had more time — я б відвідав обидва, якби мав більше часу. Would visit описує уявний результат, had — умову зараз. Це не обіцянка встигнути все."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-30:intro2:r1",
+              "text": "I would visit both if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro2:r2",
+              "text": "I would visited both if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro2:r3",
+              "text": "I would visit both if I would had more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-30:intro2:r1",
+              "text": "I would visit both if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro2:r2",
+              "text": "I would visited both if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro2:r3",
+              "text": "I would visit both if I would had more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вечер, который запомнился",
+        "uk": "Вечір, який запам’ятався"
+      },
+      "bodyByLocale": {
+        "ru": "Unbelievable — невероятный, такой, в который трудно поверить. The view was unbelievable — вид был невероятным. Здесь это сильное выражение восхищения, а не утверждение, что вид выдумали. Unforgettable — незабываемый. It was an unforgettable evening — это был незабываемый вечер. Перед unforgettable стоит an: слово начинается с гласного звука. Вы уже отправили снимки: I have already sent the photos. I sent them last night — я отправил их вчера вечером: с last night используем sent без have.",
+        "uk": "Unbelievable — неймовірний, такий, у який важко повірити. The view was unbelievable — краєвид був неймовірним. Тут це сильний вираз захоплення, а не твердження, що краєвид вигадали. Unforgettable — незабутній. It was an unforgettable evening — це був незабутній вечір. Перед unforgettable стоїть an: слово починається з голосного звука. Ви вже надіслали знімки: I have already sent the photos. I sent them last night — я надіслав їх учора ввечері: з last night використовуємо sent без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-30:intro3:r1",
+              "text": "I sent them last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro3:r2",
+              "text": "I have sent them last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro3:r3",
+              "text": "I sended them last night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-30:intro3:r1",
+              "text": "I sent them last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro3:r2",
+              "text": "I have sent them last night."
+            },
+            {
+              "responseId": "en:lesson-27:session-30:intro3:r3",
+              "text": "I sended them last night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "520d6be2114dd3b56d74bebbe248ed32321a4bbd77064cd8c8637d55326ab8f5"
+}

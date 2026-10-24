@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Решение ещё не принято",
+        "uk": "Рішення ще не ухвалене"
+      },
+      "bodyByLocale": {
+        "ru": "Undecided — ещё не решивший, не определившийся. I am still undecided — я ещё не определился. Вы выбираете подарок и не знаете, какой цвет понравится подруге: I wish I knew her favourite colour — жаль, что я не знаю её любимого цвета. Knew после wish относится к незнанию сейчас. Можно не угадывать, а попросить помощи: Which one would you choose? — какой ты бы выбрал?",
+        "uk": "Undecided — той, хто ще не вирішив, не визначився. I am still undecided — я ще не визначився. Ви обираєте подарунок і не знаєте, який колір сподобається подрузі: I wish I knew her favourite colour — шкода, що я не знаю її улюбленого кольору. Knew після wish стосується незнання зараз. Можна не вгадувати, а попросити допомоги: Which one would you choose? — який ти б обрав?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-31:intro1:r1",
+              "text": "I wish I knew her favourite colour."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro1:r2",
+              "text": "I wish I know her favourite colour."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro1:r3",
+              "text": "I wish I knowing her favourite colour."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-31:intro1:r1",
+              "text": "I wish I knew her favourite colour."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro1:r2",
+              "text": "I wish I know her favourite colour."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro1:r3",
+              "text": "I wish I knowing her favourite colour."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что действительно важно",
+        "uk": "Що справді важливо"
+      },
+      "bodyByLocale": {
+        "ru": "Unimportant — неважный, несущественный. That detail is unimportant — эта деталь несущественна. Это оценка конкретной детали, а не человека. Uncommon — нечастый, редко встречающийся. This colour is uncommon — этот цвет редко встречается. Слово не означает, что цвет обязательно лучше других. Вы обсуждаете выбор: I would take the blue one if it were smaller — я бы взял синий, если бы он был меньше. Would take — результат, were — воображаемое условие.",
+        "uk": "Unimportant — неважливий, несуттєвий. That detail is unimportant — ця деталь несуттєва. Це оцінка конкретної деталі, а не людини. Uncommon — нечастий, такий, що рідко трапляється. This colour is uncommon — цей колір рідко трапляється. Слово не означає, що колір обов’язково кращий за інші. Ви обговорюєте вибір: I would take the blue one if it were smaller — я б узяв синій, якби він був меншим. Would take — результат, were — уявна умова."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-31:intro2:r1",
+              "text": "I would take the blue one if it were smaller."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro2:r2",
+              "text": "I would took the blue one if it were smaller."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro2:r3",
+              "text": "I would to take the blue one if it were smaller."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-31:intro2:r1",
+              "text": "I would take the blue one if it were smaller."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro2:r2",
+              "text": "I would took the blue one if it were smaller."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro2:r3",
+              "text": "I would to take the blue one if it were smaller."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Заметить пропущенное",
+        "uk": "Помітити пропущене"
+      },
+      "bodyByLocale": {
+        "ru": "Unnoticed — незамеченный. The note went unnoticed — записку не заметили. Went unnoticed не означает, что записка куда-то ушла: это сочетание о том, что её не заметили. Подруга оставила пожелание к подарку, но записка лежала под книгой. I have just found it — я только что её нашёл. I found it a minute ago — я нашёл её минуту назад: с a minute ago используем found без have. Теперь можно уточнить выбор: Is this the one she wanted? — это тот, который она хотела?",
+        "uk": "Unnoticed — непомічений. The note went unnoticed — записку не помітили. Went unnoticed не означає, що записка кудись пішла: це сполучення про те, що її не помітили. Подруга залишила побажання щодо подарунка, але записка лежала під книжкою. I have just found it — я щойно її знайшов. I found it a minute ago — я знайшов її хвилину тому: з a minute ago використовуємо found без have. Тепер можна уточнити вибір: Is this the one she wanted? — це той, який вона хотіла?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-31:intro3:r1",
+              "text": "I found it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro3:r2",
+              "text": "I have found it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro3:r3",
+              "text": "I finded it a minute ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-31:intro3:r1",
+              "text": "I found it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro3:r2",
+              "text": "I have found it a minute ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-31:intro3:r3",
+              "text": "I finded it a minute ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0099c3144dd9bf11e75f79ef7e5687809dd384b57293f100930dc3e55ce87075"
+}

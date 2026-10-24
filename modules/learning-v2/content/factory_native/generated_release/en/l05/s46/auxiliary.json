@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-46:intro2:r2": {
-          "ru": "in значит «внутри», а палуба открыта сверху: на ней нужно on.",
-          "uk": "in означає «всередині», а палуба відкрита зверху: на ній потрібно on."
+          "ru": "Куртка лежит на палубе, поэтому on the deck; in означало бы «внутри».",
+          "uk": "Куртка лежить на палубі, тому on the deck; in означало б «усередині»."
         },
         "en:lesson-05:session-46:intro2:r3": {
           "ru": "Куртка одна, поэтому нужно is, а не are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "eefd707b49003869d89b99577a9ca5f88901a95e37eaee5f02dd86a6ae241b0b"
+  "auxiliaryFingerprint": "2eb867e27992d80f2e08b56c64e61aecff76629bd309e5dc71213adbc47826a8"
 }

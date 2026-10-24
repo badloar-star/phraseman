@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Убеждения и изучение",
-        "uk": "Переконання й вивчення"
+        "ru": "Два года на одном курсе",
+        "uk": "Два роки на одному курсі"
       },
       "bodyByLocale": {
-        "ru": "Belief — убеждение или вера во что-то. She has held this belief since childhood — она придерживается этого убеждения с детства. Held — форма hold после has; hold a belief означает придерживаться убеждения. Religion — религия. We have studied religion for two years — мы изучаем религию уже два года. Изучать религию не обязательно означает исповедовать её.",
-        "uk": "Belief — переконання або віра в щось. She has held this belief since childhood — вона дотримується цього переконання з дитинства. Held — форма hold після has; hold a belief означає дотримуватися переконання. Religion — релігія. We have studied religion for two years — ми вивчаємо релігію вже два роки. Вивчати релігію не обов’язково означає сповідувати її."
+        "ru": "Вы с одногруппниками уже два года изучаете религию в университете и продолжаете учёбу. We have studied religion for two years — мы изучаем религию уже два года. Religion означает «религия». Сначала называем учащихся — we, затем ставим have studied, потом предмет изучения — religion. В конце добавляем for two years. For вводит длительность: два года до настоящего момента, а не дату начала.",
+        "uk": "Ви з одногрупниками вже два роки вивчаєте релігію в університеті й продовжуєте навчання. We have studied religion for two years — ми вивчаємо релігію вже два роки. Religion означає «релігія». Спочатку називаємо тих, хто навчається, — we, потім ставимо have studied, далі предмет вивчення — religion. Наприкінці додаємо for two years. For вводить тривалість: два роки до теперішнього моменту, а не дату початку."
       },
       "question": {
         "interactionId": "en:lesson-24:session-04:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b808fd8e57d2021905eeb569470f8926bb05b33d6be927b732a38027c792b961"
+  "introFingerprint": "e291b46479e46083a79a66c17657fbc30ab70074442b4579b8dc0a1b3889ce75"
 }

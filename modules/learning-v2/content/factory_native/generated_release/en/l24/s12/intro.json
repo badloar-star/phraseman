@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Нынешний приступ",
-        "uk": "Нинішній напад"
+        "ru": "Как долго длится приступ",
+        "uk": "Як довго триває напад"
       },
       "bodyByLocale": {
-        "ru": "Migraine — мигрень. How long have you had this migraine? — как долго длится эта мигрень? This указывает на нынешний приступ. Inhaler — ингалятор. How long has she used this inhaler? — как давно она пользуется этим ингалятором? Слова помогают точно описать ситуацию на приёме.",
-        "uk": "Migraine — мігрень. How long have you had this migraine? — як довго триває ця мігрень? This указує на нинішній напад. Inhaler — інгалятор. How long has she used this inhaler? — як давно вона користується цим інгалятором? Слова допомагають точно описати ситуацію на прийомі."
+        "ru": "На приёме врач уточняет, как долго продолжается нынешний приступ мигрени. How long have you had this migraine? — как долго длится эта мигрень? Сначала how long спрашивает о длительности. Затем have ставим перед you, а после you — had, третью форму have. This migraine уточняет, что речь об этом приступе. Порядок — how long + have + you + had + this migraine?",
+        "uk": "На прийомі лікар уточнює, як довго триває нинішній напад мігрені. How long have you had this migraine? — як довго триває ця мігрень? Спочатку how long запитує про тривалість. Потім have ставимо перед you, а після you — had, третю форму have. This migraine уточнює, що йдеться про цей напад. Порядок — how long + have + you + had + this migraine?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "539793df4ea62fac0569e2092f50bfc59ae28608b87b8158be9943ca6ddf0c63"
+  "introFingerprint": "2c0498e0510acf35fbc95ef56f60eeb0d4511262aa7bb2770378da6969c14dca"
 }

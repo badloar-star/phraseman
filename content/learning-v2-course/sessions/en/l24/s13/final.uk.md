@@ -35,9 +35,9 @@ Nature — природа. How long has she been interested in nature? — як 
 
 ## Інтро 3
 
-### У музеї
+### Вік планети
 
-Planet — планета, universe — Всесвіт. У музеї ви чуєте How long has this planet existed? — як довго існує ця планета? Existed — знайома форма exist. How long have you studied the universe? — як давно ти вивчаєш Всесвіт? Це може бути запитання про заняття улюбленою темою. У цьому значенні кажемо the universe.
+У музеї ви дивитеся на зображення планети й запитуєте, як довго вона існує. How long has this planet existed? — як довго існує ця планета? Починаємо з how long, потім ставимо has перед this planet: planet — однина. Після підмета потрібна третя форма existed від exist. Present Perfect пов’язує початок існування з теперішнім. Порядок — how long + has + this planet + existed?
 
 **Виберіть фразу для цієї ситуації.**
 

@@ -69,8 +69,8 @@
         "uk": "Чекаємо зустрічі"
       },
       "bodyByLocale": {
-        "ru": "Excitement — радостное волнение. Например, вы ждёте встречи с друзьями: My excitement has grown since Monday — моё радостное волнение усиливается с понедельника. Grown — форма grow, здесь «усиливаться». Boredom — скука. Boredom has been a problem for weeks — скука остаётся проблемой уже несколько недель. Since Monday называет начало, for weeks — длительность.",
-        "uk": "Excitement — радісне хвилювання. Наприклад, ви чекаєте зустрічі з друзями: My excitement has grown since Monday — моє радісне хвилювання зростає з понеділка. Grown — форма grow, тут «посилюватися». Boredom — нудьга. Boredom has been a problem for weeks — нудьга залишається проблемою вже кілька тижнів. Since Monday називає початок, for weeks — тривалість."
+        "ru": "В понедельник вы договорились встретиться с друзьями и с каждым днём радуетесь встрече всё больше. My excitement has grown since Monday — моё радостное волнение усилилось с понедельника. Excitement означает «радостное волнение». Собираем предложение: my excitement + has + grown + since Monday. Волнение — одно чувство, поэтому ставим has; grown — третья форма grow. Since Monday указывает, с какого момента началось изменение, которое заметно сейчас.",
+        "uk": "У понеділок ви домовилися зустрітися з друзями й з кожним днем радієте зустрічі дедалі більше. My excitement has grown since Monday — моє радісне хвилювання посилилося з понеділка. Excitement означає «радісне хвилювання». Складаємо речення: my excitement + has + grown + since Monday. Хвилювання — одне почуття, тому ставимо has; grown — третя форма grow. Since Monday указує, з якого моменту почалася зміна, помітна зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-06:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2bc36d4f4f33a1e468860fd3efa158655f36922dcbee6a8f01a6ff3d30ba05a2"
+  "introFingerprint": "3a32bcb4123a4fc9acf6308976581ce2de0d294421666a050b0bddfe2c899056"
 }

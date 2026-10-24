@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Синяк или шрам",
-        "uk": "Синець чи шрам"
+        "ru": "Как давно появился синяк",
+        "uk": "Як давно з’явився синець"
       },
       "bodyByLocale": {
-        "ru": "Bruise — синяк, scar — шрам: это разные следы на коже. How long have you had this bruise? — как давно у тебя этот синяк? Угол стола, конечно, ничего не объяснит, но вы сможете сказать Since Monday — с понедельника. How long has he had this scar? — как давно у него этот шрам?",
-        "uk": "Bruise — синець, scar — шрам: це різні сліди на шкірі. How long have you had this bruise? — як давно в тебе цей синець? Кут столу, звісно, нічого не пояснить, але ви зможете сказати Since Monday — з понеділка. How long has he had this scar? — як давно в нього цей шрам?"
+        "ru": "Вы спрашиваете друга о синяке, который у него всё ещё виден. How long have you had this bruise? — как давно у тебя этот синяк? How long спрашивает, сколько времени прошло с появления синяка до сейчас. Затем have ставим перед you, а после you используем had — третью форму have. This bruise уточняет, о каком синяке речь. Собираем how long + have + you + had + this bruise?",
+        "uk": "Ви запитуєте друга про синець, який у нього досі видно. How long have you had this bruise? — як давно в тебе цей синець? How long запитує, скільки часу минуло від появи синця до зараз. Потім have ставимо перед you, а після you використовуємо had — третю форму have. This bruise уточнює, про який синець ідеться. Складаємо how long + have + you + had + this bruise?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-11:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "08071c4f530a3739452bb1586d8194bc26c835a8fc0362fa9fb1e7b41a263586"
+  "introFingerprint": "f5065bdd4789eefcda889697b97c9387aad586fa16a880c2af14291e5968728b"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Способности и воодушевление",
-        "uk": "Здібності й натхнення"
+        "ru": "Способности с детства",
+        "uk": "Здібності з дитинства"
       },
       "bodyByLocale": {
-        "ru": "Intelligence — ум, интеллект. She has shown great intelligence since childhood — она проявляет большие умственные способности с детства. Shown — форма show. Enthusiasm — энтузиазм, воодушевление. We have shared his enthusiasm for weeks — мы разделяем его воодушевление уже несколько недель. Например, все готовятся к общему походу. Since childhood называет начало, for weeks — длительность.",
-        "uk": "Intelligence — розум, інтелект. She has shown great intelligence since childhood — вона виявляє великі розумові здібності з дитинства. Shown — форма show. Enthusiasm — ентузіазм, натхнення. We have shared his enthusiasm for weeks — ми поділяємо його натхнення вже кілька тижнів. Наприклад, усі готуються до спільного походу. Since childhood називає початок, for weeks — тривалість."
+        "ru": "Ваша подруга ещё ребёнком легко решала трудные задачи и по-прежнему быстро находит решения. She has shown great intelligence since childhood — она проявляет большие умственные способности с детства. Intelligence здесь означает «умственные способности». После she ставим has, затем shown — третью форму show: she + has + shown + great intelligence. В конце добавляем since childhood: это начало периода, который продолжается до настоящего времени.",
+        "uk": "Ваша подруга ще дитиною легко розв’язувала складні задачі й досі швидко знаходить рішення. She has shown great intelligence since childhood — вона виявляє великі розумові здібності з дитинства. Intelligence тут означає «розумові здібності». Після she ставимо has, потім shown — третю форму show: she + has + shown + great intelligence. Наприкінці додаємо since childhood: це початок періоду, який триває до теперішнього часу."
       },
       "question": {
         "interactionId": "en:lesson-24:session-07:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "78e1424a5b61d4abab50443b36e723e3d93d2d812f2665b802ed585e1fb905bb"
+  "introFingerprint": "6d8046a359a538df7d415da374b2309466dfe02968ee8a724cc28ba9ab64227a"
 }

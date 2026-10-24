@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сложение",
-        "uk": "Додавання"
+        "ru": "Сумма уже проверена",
+        "uk": "Суму вже перевірено"
       },
       "bodyByLocale": {
-        "ru": "Plus — плюс. Two plus three is five — два плюс три — пять. Sum — сумма, результат сложения: the sum of two and three is five. I have already checked the sum — я уже проверил сумму. Калькулятор помогает, но сначала важно ввести правильные числа.",
-        "uk": "Plus — плюс. Two plus three is five — два плюс три — п’ять. Sum — сума, результат додавання: the sum of two and three is five. I have already checked the sum — я вже перевірив суму. Калькулятор допомагає, але спочатку важливо ввести правильні числа."
+        "ru": "Вы сложили цены покупок и уже проверили полученную сумму. I have already checked the sum — я уже проверил сумму. После I ставим have, затем already и третью форму checked. Already показывает, что проверка к настоящему моменту завершена. The sum называет, что вы проверили. Порядок — I + have + already + checked + the sum.",
+        "uk": "Ви додали ціни покупок і вже перевірили отриману суму. I have already checked the sum — я вже перевірив суму. Після I ставимо have, потім already й третю форму checked. Already показує, що перевірку на теперішній момент завершено. The sum називає, що ви перевірили. Порядок — I + have + already + checked + the sum."
       },
       "question": {
         "interactionId": "en:lesson-24:session-16:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Три билета",
-        "uk": "Три квитки"
+        "ru": "Стоимость трёх билетов",
+        "uk": "Вартість трьох квитків"
       },
       "bodyByLocale": {
-        "ru": "Multiply — умножать. Multiply the price by three — умножь цену на три. Представьте три одинаковых билета: цена одного умножается на три. We have already multiplied the price by three — мы уже это сделали. В форме multiplied y меняется на i перед -ed.",
-        "uk": "Multiply — множити. Multiply the price by three — помнож ціну на три. Уявіть три однакові квитки: ціна одного множиться на три. We have already multiplied the price by three — ми вже це зробили. У формі multiplied y змінюється на i перед -ed."
+        "ru": "Вы покупаете три одинаковых билета и уже умножили цену одного на три. We have already multiplied the price by three — мы уже умножили цену на три. После we ставим have + already + multiplied. Multiplied — третья форма multiply: y меняется на i перед -ed. The price называет число, которое умножали, by three — на сколько. Сообщаем о готовом результате расчёта.",
+        "uk": "Ви купуєте три однакові квитки й уже помножили ціну одного на три. We have already multiplied the price by three — ми вже помножили ціну на три. Після we ставимо have + already + multiplied. Multiplied — третя форма multiply: y змінюється на i перед -ed. The price називає число, яке множили, by three — на скільки. Повідомляємо про готовий результат розрахунку."
       },
       "question": {
         "interactionId": "en:lesson-24:session-16:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вычитаем скидку",
-        "uk": "Віднімаємо знижку"
+        "ru": "Скидку уже вычли",
+        "uk": "Знижку вже відняли"
       },
       "bodyByLocale": {
-        "ru": "Subtract — вычитать. Subtract the discount — вычти скидку. She has just subtracted the discount — она только что вычла скидку. Если билет стоит десять, а скидка два, остаётся восемь. Скидку вычитаем, а не прибавляем: пусть кошелёк порадуется.",
-        "uk": "Subtract — віднімати. Subtract the discount — відніми знижку. She has just subtracted the discount — вона щойно відняла знижку. Якщо квиток коштує десять, а знижка два, залишається вісім. Знижку віднімаємо, а не додаємо: нехай гаманець зрадіє."
+        "ru": "Продавец только что вычла скидку из стоимости покупки. She has just subtracted the discount — она только что вычла скидку. После she выбираем has, затем just — «только что» — и третью форму subtracted. The discount называет, что она вычла. Собираем she + has + just + subtracted + the discount: действие завершилось совсем недавно.",
+        "uk": "Продавчиня щойно відняла знижку від вартості покупки. She has just subtracted the discount — вона щойно відняла знижку. Після she вибираємо has, потім just — «щойно» — і третю форму subtracted. The discount називає, що вона відняла. Складаємо she + has + just + subtracted + the discount: дія завершилася зовсім недавно."
       },
       "question": {
         "interactionId": "en:lesson-24:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "265ce788aa041f77b1fc2a9452fb98a72114be9e88c10f9678f5623ac70cca1b"
+  "introFingerprint": "3f72d11d6c1d37b3d622917be57712b62779adb2e90d94cb82b61258842dc0ac"
 }

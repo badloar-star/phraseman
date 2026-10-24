@@ -35,9 +35,9 @@ Author — автор. She has been talking to the author for an hour — она
 
 ## Интро 3
 
-### О чём спорят читатели
+### Обсуждаем персонажа всё утро
 
-Character — персонаж книги или фильма, plot — сюжет, то есть связанные события истории. We have been discussing this character all morning — мы обсуждаем этого персонажа всё утро. They have been talking about the plot for half an hour — они обсуждают сюжет уже полчаса. После discuss сразу называем предмет, а после talk здесь нужно about.
+Вы с друзьями всё утро обсуждаете персонажа прочитанной книги; разговор продолжается. We have been discussing this character all morning — мы обсуждаем этого персонажа всё утро. После we ставим have + been + discussing. This character называет, кого обсуждаете; после discuss здесь не нужен about. All morning задаёт длительность в ещё не закончившееся утро. Порядок — we + have been discussing + this character + all morning.
 
 **Выберите фразу для этой ситуации.**
 

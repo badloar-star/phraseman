@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Срок или начало",
-        "uk": "Тривалість чи початок"
+        "ru": "Работает в родном городе",
+        "uk": "Працює в рідному місті"
       },
       "bodyByLocale": {
-        "ru": "District — район. We have lived in this district for three years — мы живём здесь уже три года. Hometown — родной город. He has worked in his hometown since 2020 — он работает там с 2020 года. Three years — сколько времени, поэтому for. 2020 — когда началось, поэтому since. В обоих примерах ситуация продолжается сейчас.",
-        "uk": "District — район. We have lived in this district for three years — ми живемо тут уже три роки. Hometown — рідне місто. He has worked in his hometown since 2020 — він працює там із 2020 року. Three years — скільки часу, тому for. 2020 — коли почалося, тому since. В обох прикладах ситуація триває зараз."
+        "ru": "Ваш знакомый начал работать в родном городе в 2020 году и работает там до сих пор. He has worked in his hometown since 2020 — он работает в своём родном городе с 2020 года. Hometown означает «родной город». Собираем: he + has + worked + in his hometown + since 2020. После he ставим has, затем worked — третью форму work. В конце since 2020 называет начало периода, который продолжается сейчас.",
+        "uk": "Ваш знайомий почав працювати в рідному місті у 2020 році й працює там досі. He has worked in his hometown since 2020 — він працює у своєму рідному місті з 2020 року. Hometown означає «рідне місто». Складаємо: he + has + worked + in his hometown + since 2020. Після he ставимо has, потім worked — третю форму work. Наприкінці since 2020 називає початок періоду, який триває зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8511aa55bc837f05eb65bf5ef0e1c71e14d51ff2cdbb9e73e25e780110de8c32"
+  "introFingerprint": "22f1e21333dd1df77c3bf6ca069a03aba09e4b71a792e8e1656db374df967e55"
 }

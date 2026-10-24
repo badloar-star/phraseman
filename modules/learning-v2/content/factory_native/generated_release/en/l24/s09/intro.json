@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Изменения во внешности",
-        "uk": "Зміни в зовнішності"
+        "ru": "Как давно у тебя брекеты",
+        "uk": "Як давно в тебе брекети"
       },
       "bodyByLocale": {
-        "ru": "Braces — брекеты. How long have you had braces? — как давно у тебя брекеты? Piercing — пирсинг. How long has he had this piercing? — как давно у него этот пирсинг? Во всех вопросах речь о том, что есть у человека сейчас, и о времени с момента появления.",
-        "uk": "Braces — брекети. How long have you had braces? — як давно в тебе брекети? Piercing — пірсинг. How long has he had this piercing? — як давно в нього цей пірсинг? У всіх запитаннях ідеться про те, що є в людини зараз, і про час від моменту появи."
+        "ru": "Вы заметили у друга брекеты и спрашиваете, как давно он их носит. How long have you had braces? — как давно у тебя брекеты? Начинаем с how long, потому что интересует длительность. Затем have ставим перед you, а had — после you. Had — третья форма have. В конце называем сами брекеты: braces. Порядок — how long + have + you + had + braces?",
+        "uk": "Ви помітили в друга брекети й запитуєте, як давно він їх носить. How long have you had braces? — як давно в тебе брекети? Починаємо з how long, тому що цікавить тривалість. Потім have ставимо перед you, а had — після you. Had — третя форма have. Наприкінці називаємо самі брекети: braces. Порядок — how long + have + you + had + braces?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "57832459355c7a195fb484c7b01a1f2cb7c5209a416be9310ea23b8c8149167e"
+  "introFingerprint": "6afd50be32959b5845414f400feec83769ac764f3407e9768a25ce9fbea45918"
 }

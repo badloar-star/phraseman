@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Истории и приключения",
-        "uk": "Історії та пригоди"
+        "ru": "Планируют приключение несколько недель",
+        "uk": "Планують пригоду кілька тижнів"
       },
       "bodyByLocale": {
-        "ru": "Romance — романтическая история или любовный роман. Это не любой роман: общее слово novel вы уже знаете. We have been discussing this romance all morning — мы обсуждаем этот любовный роман всё утро. Adventure — приключение. They have been planning an adventure for weeks — они планируют приключение уже несколько недель. Перед adventure здесь an, потому что слово начинается с гласного звука.",
-        "uk": "Romance — романтична історія або любовний роман. Це не будь-який роман: загальне слово novel ви вже знаєте. We have been discussing this romance all morning — ми обговорюємо цей любовний роман весь ранок. Adventure — пригода. They have been planning an adventure for weeks — вони планують пригоду вже кілька тижнів. Перед adventure тут an, бо слово починається з голосного звука."
+        "ru": "Друзья уже несколько недель продумывают необычный поход и ещё не закончили подготовку. They have been planning an adventure for weeks — они планируют приключение уже несколько недель. После they ставим have, затем been + planning. В planning перед -ing удваиваем n из plan. An adventure называет, что они планируют; an нужен перед гласным звуком. For weeks показывает, как долго продолжается планирование.",
+        "uk": "Друзі вже кілька тижнів продумують незвичайний похід і ще не закінчили підготовку. They have been planning an adventure for weeks — вони планують пригоду вже кілька тижнів. Після they ставимо have, потім been + planning. У planning перед -ing подвоюємо n із plan. An adventure називає, що вони планують; an потрібне перед голосним звуком. For weeks показує, як довго триває планування."
       },
       "question": {
         "interactionId": "en:lesson-24:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1a9ecd5aba3fa658b67007881ac64242604b07be536bcc3f6299761c7a5a058c"
+  "introFingerprint": "ddfc9b47ed8662d41bc852b494830f9f2acff8960eefc7dc6db755449d17fae6"
 }

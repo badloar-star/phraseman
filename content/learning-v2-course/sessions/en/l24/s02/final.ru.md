@@ -21,9 +21,9 @@ Decade — десятилетие, десять лет. I have worked here for a
 
 ## Интро 2
 
-### Сто лет и один семестр
+### Учимся уже семестр
 
-Century — век, сто лет. This bridge has stood here for a century — этот мост стоит здесь уже сто лет. Stood — форма stand после has. Semester — семестр, одна из частей учебного года. We have studied here for a semester — мы учимся здесь уже семестр. Studied — форма study после have.
+Вы с другом учитесь в одном колледже уже семестр и продолжаете занятия. We have studied here for a semester — мы учимся здесь уже семестр. Semester — семестр, часть учебного года. Собираем: we + have + studied + here + for a semester. После we используем have. В форме studied буква y из study меняется на i перед -ed. For a semester отвечает на вопрос «как долго»: речь о длительности учёбы до настоящего момента.
 
 **Выберите фразу для этой ситуации.**
 

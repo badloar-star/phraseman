@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Впечатление и помощь",
-        "uk": "Враження й допомога"
+        "ru": "Как давно она кажется расстроенной",
+        "uk": "Як давно вона здається засмученою"
       },
       "bodyByLocale": {
-        "ru": "Seem — казаться. How long has she seemed upset? — как давно она кажется расстроенной? Мы описываем впечатление, не утверждаем, что знаем её чувства. Depend — зависеть; говорим depend on. How long have you depended on your parents? — как давно ты зависишь от родителей? Например, речь о помощи с оплатой жилья.",
-        "uk": "Seem — здаватися. How long has she seemed upset? — як давно вона здається засмученою? Ми описуємо враження, не стверджуємо, що знаємо її почуття. Depend — залежати; кажемо depend on. How long have you depended on your parents? — як давно ти залежиш від батьків? Наприклад, ідеться про допомогу з оплатою житла."
+        "ru": "Подруга выглядит расстроенной. Вы спрашиваете того, кто был рядом, как давно это заметно. How long has she seemed upset? — как давно она кажется расстроенной? После how long ставим has перед she, затем seemed — третью форму seem. Upset описывает впечатление от её состояния. Мы не утверждаем, что знаем её чувства. Порядок — how long + has + she + seemed + upset?",
+        "uk": "Подруга має засмучений вигляд. Ви запитуєте того, хто був поруч, як давно це помітно. How long has she seemed upset? — як давно вона здається засмученою? Після how long ставимо has перед she, потім seemed — третю форму seem. Upset описує враження від її стану. Ми не стверджуємо, що знаємо її почуття. Порядок — how long + has + she + seemed + upset?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "af8df9b85d44d452cf2b6a9e97ecb183ab964d458c2cca3c167efb5349d8c215"
+  "introFingerprint": "3ae24ca4eb70769644cfdb8643f5ed3dec698c80e51f4978c22ea9525d183b11"
 }

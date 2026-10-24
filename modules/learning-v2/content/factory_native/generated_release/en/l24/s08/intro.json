@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Цель и правило",
-        "uk": "Мета й правило"
+        "ru": "Год без телефона за ужином",
+        "uk": "Рік без телефона за вечерею"
       },
       "bodyByLocale": {
-        "ru": "Goal — цель. She has had this goal since childhood — у неё эта цель с детства. Rule — правило. We have followed this rule for a year — мы соблюдаем это правило уже год. Идея может стать целью, а правило помогает организовать привычные дела: например, убирать телефон за ужином.",
-        "uk": "Goal — мета. She has had this goal since childhood — у неї ця мета з дитинства. Rule — правило. We have followed this rule for a year — ми дотримуємося цього правила вже рік. Ідея може стати метою, а правило допомагає організувати звичні справи: наприклад, прибирати телефон за вечерею."
+        "ru": "В вашей семье принято убирать телефоны за ужином. Вы соблюдаете это правило уже год и продолжаете сейчас. We have followed this rule for a year — мы соблюдаем это правило уже год. Rule означает «правило». Собираем: we + have + followed + this rule + for a year. С we используем have, а к правильному глаголу follow добавляем -ed. For a year обозначает длительность: сколько времени вы уже соблюдаете правило.",
+        "uk": "У вашій сім’ї заведено прибирати телефони за вечерею. Ви дотримуєтеся цього правила вже рік і продовжуєте зараз. We have followed this rule for a year — ми дотримуємося цього правила вже рік. Rule означає «правило». Складаємо: we + have + followed + this rule + for a year. Із we використовуємо have, а до правильного дієслова follow додаємо -ed. For a year позначає тривалість: скільки часу ви вже дотримуєтеся правила."
       },
       "question": {
         "interactionId": "en:lesson-24:session-08:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "50add6afeb066eabe94046e382276ed3c5230b74db7f8c702bb1d198272ce462"
+  "introFingerprint": "1c8278af4cd5fab306154a58c8160554159f3f0f62a654168991cc45641e236c"
 }

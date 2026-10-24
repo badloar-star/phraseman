@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "О чём спорят читатели",
-        "uk": "Про що сперечаються читачі"
+        "ru": "Обсуждаем персонажа всё утро",
+        "uk": "Обговорюємо персонажа весь ранок"
       },
       "bodyByLocale": {
-        "ru": "Character — персонаж книги или фильма, plot — сюжет, то есть связанные события истории. We have been discussing this character all morning — мы обсуждаем этого персонажа всё утро. They have been talking about the plot for half an hour — они обсуждают сюжет уже полчаса. После discuss сразу называем предмет, а после talk здесь нужно about.",
-        "uk": "Character — персонаж книжки чи фільму, plot — сюжет, тобто пов’язані події історії. We have been discussing this character all morning — ми обговорюємо цього персонажа весь ранок. They have been talking about the plot for half an hour — вони обговорюють сюжет уже пів години. Після discuss одразу називаємо предмет, а після talk тут потрібне about."
+        "ru": "Вы с друзьями всё утро обсуждаете персонажа прочитанной книги; разговор продолжается. We have been discussing this character all morning — мы обсуждаем этого персонажа всё утро. После we ставим have + been + discussing. This character называет, кого обсуждаете; после discuss здесь не нужен about. All morning задаёт длительность в ещё не закончившееся утро. Порядок — we + have been discussing + this character + all morning.",
+        "uk": "Ви з друзями весь ранок обговорюєте персонажа прочитаної книжки; розмова триває. We have been discussing this character all morning — ми обговорюємо цього персонажа весь ранок. Після we ставимо have + been + discussing. This character називає, кого обговорюєте; після discuss тут не потрібне about. All morning задає тривалість у ранок, який ще не закінчився. Порядок — we + have been discussing + this character + all morning."
       },
       "question": {
         "interactionId": "en:lesson-24:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "42ac6b18e37cd652af59c666ac7f93de3c38a8b080a852ad9606eee3f8549541"
+  "introFingerprint": "577a90d859cf8276d53a1507577dbc33d5f3b83a9bf2d71e87854158ecb8d005"
 }

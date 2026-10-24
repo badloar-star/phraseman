@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-14:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "В кино",
-        "uk": "У кіно"
+        "ru": "Как давно она снимается",
+        "uk": "Як давно вона знімається"
       },
       "bodyByLocale": {
-        "ru": "Act — играть роль, сниматься. She wants to act in films — она хочет сниматься в фильмах. How long has she acted in films? — как давно она снимается? Например, For five years — уже пять лет. Знакомое actor называет человека, act — его действие.",
-        "uk": "Act — грати роль, зніматися. She wants to act in films — вона хоче зніматися у фільмах. How long has she acted in films? — як давно вона знімається? Наприклад, For five years — вже п’ять років. Знайоме actor називає людину, act — її дію."
+        "ru": "Знакомая продолжает сниматься в кино, и вы хотите узнать, как давно она начала. How long has she acted in films? — как давно она снимается в фильмах? Сначала how long спрашивает о длительности. Затем has ставим перед she, а acted — после she. Acted — третья форма act с -ed. In films уточняет, где она играет роли. Собираем how long + has + she + acted + in films?",
+        "uk": "Знайома продовжує зніматися в кіно, і ви хочете дізнатися, як давно вона почала. How long has she acted in films? — як давно вона знімається у фільмах? Спочатку how long запитує про тривалість. Потім has ставимо перед she, а acted — після she. Acted — третя форма act з -ed. In films уточнює, де вона грає ролі. Складаємо how long + has + she + acted + in films?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-14:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Как он себя вёл",
-        "uk": "Як він поводився"
+        "ru": "Сегодня хорошо себя вёл",
+        "uk": "Сьогодні добре поводився"
       },
       "bodyByLocale": {
-        "ru": "Behave — вести себя. Please behave well — пожалуйста, веди себя хорошо. He has behaved well today — сегодня он хорошо себя вёл; день ещё продолжается. Хорошее поведение иногда означает просто не рассказывать концовку фильма соседу.",
-        "uk": "Behave — поводитися. Please behave well — будь ласка, поводься добре. He has behaved well today — сьогодні він добре поводився; день ще триває. Добра поведінка іноді означає просто не розповідати кінцівку фільму сусідові."
+        "ru": "День ещё продолжается. Вы рассказываете, что ребёнок сегодня хорошо себя вёл. He has behaved well today — сегодня он хорошо себя вёл. После he выбираем has, затем третью форму behaved: к behave добавляем -d. Well описывает поведение, today задаёт ещё не закончившийся день. Порядок — he + has + behaved + well + today.",
+        "uk": "День ще триває. Ви розповідаєте, що дитина сьогодні добре поводилася. He has behaved well today — сьогодні він добре поводився. Після he вибираємо has, потім третю форму behaved: до behave додаємо -d. Well описує поведінку, today задає ще не завершений день. Порядок — he + has + behaved + well + today."
       },
       "question": {
         "interactionId": "en:lesson-24:session-14:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-14:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пауза и продолжение",
-        "uk": "Пауза й продовження"
+        "ru": "Только что поставил на паузу",
+        "uk": "Щойно поставив на паузу"
       },
       "bodyByLocale": {
-        "ru": "Continue — продолжать; pause — делать паузу или ставить на паузу. I want to continue the story — я хочу продолжить рассказ. We have already continued the story — мы уже продолжили рассказ. I have just paused the film — я только что поставил фильм на паузу. Already сообщает, что действие уже произошло, just — что оно произошло совсем недавно.",
-        "uk": "Continue — продовжувати; pause — робити паузу або ставити на паузу. I want to continue the story — я хочу продовжити розповідь. We have already continued the story — ми вже продовжили розповідь. I have just paused the film — я щойно поставив фільм на паузу. Already повідомляє, що дія вже відбулася, just — що вона відбулася зовсім недавно."
+        "ru": "Друг вошёл в комнату, и вы только что остановили фильм, чтобы поговорить. I have just paused the film — я только что поставил фильм на паузу. После I ставим have, затем just — «только что» — и третью форму paused. The film называет, что вы поставили на паузу. Собираем I + have + just + paused + the film: действие завершилось совсем недавно.",
+        "uk": "Друг увійшов до кімнати, і ви щойно зупинили фільм, щоб поговорити. I have just paused the film — я щойно поставив фільм на паузу. Після I ставимо have, потім just — «щойно» — і третю форму paused. The film називає, що ви поставили на паузу. Складаємо I + have + just + paused + the film: дія завершилася зовсім недавно."
       },
       "question": {
         "interactionId": "en:lesson-24:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fc33d429578869972cb688695dee5bb1b1b9b4b730fab2a1a68ee5e64ff729e8"
+  "introFingerprint": "22e1f39c2314dfe36504e4ac8720e2b63df80a7c6c02cedd1e8b281fd6299267"
 }

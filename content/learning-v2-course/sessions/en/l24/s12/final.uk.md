@@ -35,9 +35,9 @@ Diabetes — діабет. How long has he had diabetes? — як давно в 
 
 ## Інтро 3
 
-### Нинішній напад
+### Як довго триває напад
 
-Migraine — мігрень. How long have you had this migraine? — як довго триває ця мігрень? This указує на нинішній напад. Inhaler — інгалятор. How long has she used this inhaler? — як давно вона користується цим інгалятором? Слова допомагають точно описати ситуацію на прийомі.
+На прийомі лікар уточнює, як довго триває нинішній напад мігрені. How long have you had this migraine? — як довго триває ця мігрень? Спочатку how long запитує про тривалість. Потім have ставимо перед you, а після you — had, третю форму have. This migraine уточнює, що йдеться про цей напад. Порядок — how long + have + you + had + this migraine?
 
 **Виберіть фразу для цієї ситуації.**
 

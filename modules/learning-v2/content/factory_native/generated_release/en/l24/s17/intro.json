@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Работа идёт уже месяц",
-        "uk": "Робота триває вже місяць"
+        "ru": "Ремонт идёт уже месяц",
+        "uk": "Ремонт триває вже місяць"
       },
       "bodyByLocale": {
-        "ru": "Renovate — ремонтировать, обновлять здание. We want to renovate this house — мы хотим отремонтировать этот дом. А если работа началась месяц назад и ещё идёт: We have been renovating this house for a month. Новая форма: have been + действие с -ing. Здесь важен длительный процесс, а не готовый результат.",
-        "uk": "Renovate — ремонтувати, оновлювати будівлю. We want to renovate this house — ми хочемо відремонтувати цей будинок. А якщо робота почалася місяць тому й ще триває: We have been renovating this house for a month. Нова форма: have been + дія з -ing. Тут важливий тривалий процес, а не готовий результат."
+        "ru": "Вы начали ремонтировать дом месяц назад и всё ещё работаете. We have been renovating this house for a month — мы ремонтируем этот дом уже месяц. Новая форма Present Perfect Continuous показывает процесс, начавшийся раньше и продолжающийся сейчас: have been + глагол с -ing. После we ставим have been renovating. В renovate убираем конечную e перед -ing. This house называет объект ремонта, for a month — длительность. Мы не утверждаем, что дом уже готов.",
+        "uk": "Ви почали ремонтувати будинок місяць тому й досі працюєте. We have been renovating this house for a month — ми ремонтуємо цей будинок уже місяць. Нова форма Present Perfect Continuous показує процес, який почався раніше й триває зараз: have been + дієслово з -ing. Після we ставимо have been renovating. У renovate прибираємо кінцеву e перед -ing. This house називає об’єкт ремонту, for a month — тривалість. Ми не стверджуємо, що будинок уже готовий."
       },
       "question": {
         "interactionId": "en:lesson-24:session-17:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что делаем и как давно",
-        "uk": "Що робимо й як давно"
+        "ru": "Выбираем покрытие уже час",
+        "uk": "Вибираємо покриття вже годину"
       },
       "bodyByLocale": {
-        "ru": "Insulation — теплоизоляция; flooring — напольное покрытие. They have been adding insulation since Monday — они добавляют теплоизоляцию с понедельника. We have been choosing flooring for an hour — мы выбираем покрытие уже час. Since называет начало, for — длительность, как и раньше. Been остаётся одинаковым после have и has.",
-        "uk": "Insulation — теплоізоляція; flooring — покриття для підлоги. They have been adding insulation since Monday — вони додають теплоізоляцію з понеділка. We have been choosing flooring for an hour — ми вибираємо покриття вже годину. Since називає початок, for — тривалість, як і раніше. Been залишається однаковим після have та has."
+        "ru": "Вы с близкими уже час выбираете напольное покрытие и пока не определились. We have been choosing flooring for an hour — мы выбираем напольное покрытие уже час. После we ставим have + been + choosing, чтобы показать продолжающийся процесс выбора. Choosing образуется от choose без конечной e перед -ing. Flooring называет, что выбираете, а for an hour — сколько времени это длится.",
+        "uk": "Ви з близькими вже годину вибираєте покриття для підлоги й поки не визначилися. We have been choosing flooring for an hour — ми вибираємо покриття для підлоги вже годину. Після we ставимо have + been + choosing, щоб показати процес вибору, який триває. Choosing утворюється від choose без кінцевої e перед -ing. Flooring називає, що вибираєте, а for an hour — скільки часу це триває."
       },
       "question": {
         "interactionId": "en:lesson-24:session-17:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6c8fec341b5fcf19ea1446eb5c1b9e3f7f6f53195f47d51a22c9e37475b56bbd"
+  "introFingerprint": "b86388118e44542ced97fbc688e550c91a9d6447e8077bbf0c4843d897043175"
 }

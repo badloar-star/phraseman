@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сто лет и один семестр",
-        "uk": "Сто років і один семестр"
+        "ru": "Учимся уже семестр",
+        "uk": "Навчаємося вже семестр"
       },
       "bodyByLocale": {
-        "ru": "Century — век, сто лет. This bridge has stood here for a century — этот мост стоит здесь уже сто лет. Stood — форма stand после has. Semester — семестр, одна из частей учебного года. We have studied here for a semester — мы учимся здесь уже семестр. Studied — форма study после have.",
-        "uk": "Century — століття, сто років. This bridge has stood here for a century — цей міст стоїть тут уже сто років. Stood — форма stand після has. Semester — семестр, одна з частин навчального року. We have studied here for a semester — ми навчаємося тут уже семестр. Studied — форма study після have."
+        "ru": "Вы с другом учитесь в одном колледже уже семестр и продолжаете занятия. We have studied here for a semester — мы учимся здесь уже семестр. Semester — семестр, часть учебного года. Собираем: we + have + studied + here + for a semester. После we используем have. В форме studied буква y из study меняется на i перед -ed. For a semester отвечает на вопрос «как долго»: речь о длительности учёбы до настоящего момента.",
+        "uk": "Ви з другом навчаєтеся в одному коледжі вже семестр і продовжуєте заняття. We have studied here for a semester — ми навчаємося тут уже семестр. Semester — семестр, частина навчального року. Складаємо: we + have + studied + here + for a semester. Після we використовуємо have. У формі studied літера y зі study змінюється на i перед -ed. For a semester відповідає на запитання «як довго»: ідеться про тривалість навчання до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-24:session-02:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6bd210ce830d524643e5a55bb4726af5e4329375485f5a43d3dda29c7cfe6fde"
+  "introFingerprint": "966da616c7c5f4950c57cdbcca47c33ea6e4ea50f7cda71e1b75075d87e7e8c1"
 }

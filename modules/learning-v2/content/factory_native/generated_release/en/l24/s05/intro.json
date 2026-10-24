@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сколько лет",
-        "uk": "Скільки років"
+        "ru": "С какого года он вдовец",
+        "uk": "З якого року він удівець"
       },
       "bodyByLocale": {
-        "ru": "Widow — вдова, женщина, у которой умер муж. Widower — вдовец, мужчина, у которого умерла жена. She has been a widow for two years — она вдова уже два года. He has been a widower since 2020 — он вдовец с 2020 года. For two years называет срок, since 2020 — его начало. В обоих примерах состояние продолжается сейчас.",
-        "uk": "Widow — вдова, жінка, у якої помер чоловік. Widower — вдівець, чоловік, у якого померла дружина. She has been a widow for two years — вона вдова вже два роки. He has been a widower since 2020 — він вдівець із 2020 року. For two years називає тривалість, since 2020 — її початок. В обох прикладах стан триває зараз."
+        "ru": "У знакомого умерла жена в 2020 году; с тех пор он вдовец. He has been a widower since 2020 — он вдовец с 2020 года. Widower означает «вдовец». Собираем: he + has + been + a widower + since 2020. Been — третья форма be; с he используем has. Widower — исчисляемое существительное: здесь называем одного человека, поэтому перед ним ставим a. Since 2020 показывает, когда началось состояние, которое сохраняется сейчас.",
+        "uk": "У знайомого померла дружина у 2020 році; відтоді він удівець. He has been a widower since 2020 — він удівець із 2020 року. Widower означає «вдівець». Складаємо: he + has + been + a widower + since 2020. Been — третя форма be; із he використовуємо has. Widower — злічуваний іменник: тут називаємо одну людину, тому перед ним ставимо a. Since 2020 показує, коли почався стан, який зберігається зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ecf3922d5f439bf80e36c9d7457bf542607e861558e477e404123ba4a967bb43"
+  "introFingerprint": "3246955bb3512484918d3c463f280efafe78a2f70dcc7ed618220f8fafb1ed2a"
 }

@@ -21,9 +21,9 @@ Turkish — турецкий язык. I have studied Turkish for a year — я 
 
 ## Интро 2
 
-### Начало и срок
+### Три месяца занятий
 
-Greek — греческий язык. She has studied Greek since May — она изучает греческий с мая. Dutch — нидерландский язык. We have studied Dutch for three months — мы изучаем нидерландский уже три месяца. После since называем начало, после for — длительность.
+Вы с другом начали изучать нидерландский три месяца назад и всё ещё ходите на занятия. We have studied Dutch for three months — мы изучаем нидерландский уже три месяца. Dutch здесь — название языка. Собираем: we + have + studied + Dutch + for three months. С we ставим have, studied — третья форма study. После for указываем длительность: three months. Так связываем начало учёбы в прошлом с её продолжением сейчас.
 
 **Выберите фразу для этой ситуации.**
 

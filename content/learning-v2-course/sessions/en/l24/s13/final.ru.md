@@ -35,9 +35,9 @@ Nature — природа. How long has she been interested in nature? — ка�
 
 ## Интро 3
 
-### В музее
+### Возраст планеты
 
-Planet — планета, universe — Вселенная. В музее вы слышите How long has this planet existed? — как долго существует эта планета? Existed — знакомая форма exist. How long have you studied the universe? — как давно ты изучаешь Вселенную? Это может быть вопрос о занятиях любимой темой. В этом значении говорим the universe.
+В музее вы смотрите на изображение планеты и спрашиваете, как долго она существует. How long has this planet existed? — как долго существует эта планета? Начинаем с how long, затем ставим has перед this planet: planet — единственное число. После подлежащего нужна третья форма existed от exist. Present Perfect связывает начало существования с настоящим. Порядок — how long + has + this planet + existed?
 
 **Выберите фразу для этой ситуации.**
 

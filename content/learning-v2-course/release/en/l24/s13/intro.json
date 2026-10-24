@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В музее",
-        "uk": "У музеї"
+        "ru": "Возраст планеты",
+        "uk": "Вік планети"
       },
       "bodyByLocale": {
-        "ru": "Planet — планета, universe — Вселенная. В музее вы слышите How long has this planet existed? — как долго существует эта планета? Existed — знакомая форма exist. How long have you studied the universe? — как давно ты изучаешь Вселенную? Это может быть вопрос о занятиях любимой темой. В этом значении говорим the universe.",
-        "uk": "Planet — планета, universe — Всесвіт. У музеї ви чуєте How long has this planet existed? — як довго існує ця планета? Existed — знайома форма exist. How long have you studied the universe? — як давно ти вивчаєш Всесвіт? Це може бути запитання про заняття улюбленою темою. У цьому значенні кажемо the universe."
+        "ru": "В музее вы смотрите на изображение планеты и спрашиваете, как долго она существует. How long has this planet existed? — как долго существует эта планета? Начинаем с how long, затем ставим has перед this planet: planet — единственное число. После подлежащего нужна третья форма existed от exist. Present Perfect связывает начало существования с настоящим. Порядок — how long + has + this planet + existed?",
+        "uk": "У музеї ви дивитеся на зображення планети й запитуєте, як довго вона існує. How long has this planet existed? — як довго існує ця планета? Починаємо з how long, потім ставимо has перед this planet: planet — однина. Після підмета потрібна третя форма existed від exist. Present Perfect пов’язує початок існування з теперішнім. Порядок — how long + has + this planet + existed?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a662bfda379517742d2a189dcfc3145a808d2c7bd72e8467ec3f224ed6b7c55b"
+  "introFingerprint": "eed7affdafb0d4252c44160a5d6e9b495815cf77e97d79df26b0611262d337ff"
 }

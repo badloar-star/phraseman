@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Начинка и основа",
-        "uk": "Начинка й основа"
+        "ru": "Начинка ещё не готова",
+        "uk": "Начинка ще не готова"
       },
       "bodyByLocale": {
-        "ru": "Filling — начинка. She has been preparing the filling for an hour — она готовит начинку уже час. Crust — корочка или основа пирога. We have been baking the crust for twenty minutes — мы выпекаем основу уже двадцать минут. В обоих предложениях называем длительность процесса, не утверждаем, что всё готово.",
-        "uk": "Filling — начинка. She has been preparing the filling for an hour — вона готує начинку вже годину. Crust — скоринка або основа пирога. We have been baking the crust for twenty minutes — ми випікаємо основу вже двадцять хвилин. В обох реченнях називаємо тривалість процесу, не стверджуємо, що все готове."
+        "ru": "Сестра начала готовить начинку час назад и ещё работает над ней. She has been preparing the filling for an hour — она готовит начинку уже час. После she ставим has, затем been + preparing: подчёркиваем продолжающийся процесс. Preparing образуется от prepare: убираем конечную e и добавляем -ing. The filling называет, что она готовит, а for an hour — длительность. Эта фраза не утверждает, что начинка уже готова.",
+        "uk": "Сестра почала готувати начинку годину тому й досі працює над нею. She has been preparing the filling for an hour — вона готує начинку вже годину. Після she ставимо has, потім been + preparing: підкреслюємо процес, який триває. Preparing утворюється від prepare: прибираємо кінцеву e й додаємо -ing. The filling називає, що вона готує, а for an hour — тривалість. Ця фраза не стверджує, що начинка вже готова."
       },
       "question": {
         "interactionId": "en:lesson-24:session-18:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fcc0fd89dd97fbe9e98462525e23ff9158f461a44ef93458c050af3b75aa7b52"
+  "introFingerprint": "c6335f03b149e0f9dc94f586f5bbb5b7f3c8ed3c9249ee53d34f56c36e28e3e5"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Уже обсудили",
-        "uk": "Уже обговорили"
+        "ru": "План поездки уже обсудили",
+        "uk": "План подорожі вже обговорили"
       },
       "bodyByLocale": {
-        "ru": "Discuss — обсуждать. We need to discuss the plan — нам нужно обсудить план. We have already discussed the plan — мы уже обсудили план. После discuss сразу называем тему: discuss the plan, без about. Можно обсуждать поездку с друзьями, это не только слово для работы.",
-        "uk": "Discuss — обговорювати. We need to discuss the plan — нам потрібно обговорити план. We have already discussed the plan — ми вже обговорили план. Після discuss одразу називаємо тему: discuss the plan, без about. Можна обговорювати подорож із друзями, це не лише слово для роботи."
+        "ru": "Вы с друзьями уже обсудили план поездки и сообщаете, что обсуждение завершено. We have already discussed the plan — мы уже обсудили план. После we ставим have, затем already — «уже» — и третью форму discussed. The plan называет тему; после discuss не нужен about. Порядок — we + have + already + discussed + the plan.",
+        "uk": "Ви з друзями вже обговорили план подорожі й повідомляєте, що обговорення завершено. We have already discussed the plan — ми вже обговорили план. Після we ставимо have, потім already — «уже» — і третю форму discussed. The plan називає тему; після discuss не потрібне about. Порядок — we + have + already + discussed + the plan."
       },
       "question": {
         "interactionId": "en:lesson-24:session-15:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ждём ответа",
-        "uk": "Чекаємо відповіді"
+        "ru": "Ответа пока нет",
+        "uk": "Відповіді поки немає"
       },
       "bodyByLocale": {
-        "ru": "Scream — кричать или вскрикивать, например от испуга. She has just screamed — она только что вскрикнула. Respond — отвечать или реагировать. He has not responded yet — он ещё не ответил. Yet ставим в конце; not показывает отрицание. Respond to a message — ответить на сообщение.",
-        "uk": "Scream — кричати або скрикувати, наприклад від переляку. She has just screamed — вона щойно скрикнула. Respond — відповідати або реагувати. He has not responded yet — він ще не відповів. Yet ставимо в кінці; not показує заперечення. Respond to a message — відповісти на повідомлення."
+        "ru": "Вы отправили другу сообщение, но ответа пока не получили. He has not responded yet — он ещё не ответил. После he выбираем has, затем not для отрицания и третью форму responded. Yet ставим в конце: ожидаемый ответ до сих пор не пришёл. Собираем he + has + not + responded + yet.",
+        "uk": "Ви надіслали другові повідомлення, але відповіді поки не отримали. He has not responded yet — він ще не відповів. Після he вибираємо has, потім not для заперечення й третю форму responded. Yet ставимо наприкінці: очікувана відповідь досі не надійшла. Складаємо he + has + not + responded + yet."
       },
       "question": {
         "interactionId": "en:lesson-24:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "818371a4178346e1bc9d8849620c3b2ac7f996f1652b5b6d74da3b933df51a39"
+  "introFingerprint": "04bf40cddcbca14645117e8da3fc4bd3ace61f8cabcc3b4872a3edb08c9218ba"
 }

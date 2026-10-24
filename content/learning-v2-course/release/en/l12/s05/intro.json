@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-05:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Место для парковки",
-        "uk": "Місце для паркування"
+        "ru": "Припарковаться на свободном месте",
+        "uk": "Припаркуватися на вільному місці"
       },
       "bodyByLocale": {
-        "ru": "Parking space — «место для парковки одной машины». Вчера вы припарковались на этом месте: I parked in the parking space. Park → parked. Выберите сообщение о завершённом действии вчера.",
-        "uk": "Parking space — «місце для паркування однієї машини». Учора ви припаркувалися на цьому місці: I parked in the parking space. Park → parked. Виберіть повідомлення про завершену дію вчора."
+        "ru": "Вчера вы припарковали машину на свободном парковочном месте. Расскажите об этом: I parked in the parking space yesterday — я припарковался на этом парковочном месте вчера. Начните с I, затем поставьте park в прошлом: parked, добавляем ed. Место добавьте через in: in the parking space. В конце укажите время: yesterday.",
+        "uk": "Учора ви припаркували машину на вільному паркувальному місці. Розкажіть про це: I parked in the parking space yesterday — я припаркувався на цьому паркувальному місці вчора. Почніть з I, потім поставте park у минулому: parked, додаємо ed. Місце додайте через in: in the parking space. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-05:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Автомойка",
-        "uk": "Автомийка"
+        "ru": "Брат побывал на автомойке",
+        "uk": "Брат побував на автомийці"
       },
       "bodyByLocale": {
-        "ru": "Car wash — «автомойка», место, где моют машины. Вчера мы побывали на автомойке: We visited the car wash. Visit → visited. Форма одна и с we, и с he: He visited the car wash. Выберите его вчерашнее действие.",
-        "uk": "Car wash — «автомийка», місце, де миють машини. Учора ми побували на автомийці: We visited the car wash. Visit → visited. Форма одна і з we, і з he: He visited the car wash. Виберіть його вчорашню дію."
+        "ru": "Вчера ваш брат отвёз машину на автомойку. Сообщите, где он побывал: He visited the car wash yesterday — он побывал на автомойке вчера. Сначала He, затем visit в прошлом: visited. Эта форма одинакова после he и we; s не добавляем. После visited прямо назовите место: the car wash, без предлога. Завершите предложение словом yesterday.",
+        "uk": "Учора ваш брат відвіз машину на автомийку. Повідомте, де він побував: He visited the car wash yesterday — він побував на автомийці вчора. Спочатку He, потім visit у минулому: visited. Ця форма однакова після he і we; s не додаємо. Після visited прямо назвіть місце: the car wash, без прийменника. Завершіть речення словом yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-05:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ключи и права",
-        "uk": "Ключі й посвідчення"
+        "ru": "Проверить водительское удостоверение",
+        "uk": "Перевірити посвідчення водія"
       },
       "bodyByLocale": {
-        "ru": "Car keys — «ключи от машины». Driving licence — «водительское удостоверение», британское написание названия. Вчера вы проверили своё удостоверение: I checked my driving licence. Check → checked. Выберите эту фразу.",
-        "uk": "Car keys — «ключі від машини». Driving licence — «посвідчення водія», британське написання назви. Учора ви перевірили своє посвідчення: I checked my driving licence. Check → checked. Виберіть цю фразу."
+        "ru": "Перед поездкой вы посмотрели срок действия своего водительского удостоверения. Скажите, что проверили: I checked my driving licence — я проверил своё водительское удостоверение. Начните с I, затем поставьте check в прошлом: checked, добавляем ed. После действия назовите документ: my driving licence. My показывает, что удостоверение ваше; артикль перед my не нужен. Licence — британское написание этого существительного.",
+        "uk": "Перед поїздкою ви подивилися строк дії свого посвідчення водія. Скажіть, що перевірили: I checked my driving licence — я перевірив своє посвідчення водія. Почніть з I, потім поставте check у минулому: checked, додаємо ed. Після дії назвіть документ: my driving licence. My показує, що посвідчення ваше; артикль перед my не потрібен. Licence — британське написання цього іменника."
       },
       "question": {
         "interactionId": "en:lesson-12:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "661f571011496d03b8882f44ba297d935cb542624f17eeda61007ec541a1938b"
+  "introFingerprint": "99cd8c9c3fc6d82d89aace6c1463312496248729ce7997e28aab24c1dde8f9b1"
 }

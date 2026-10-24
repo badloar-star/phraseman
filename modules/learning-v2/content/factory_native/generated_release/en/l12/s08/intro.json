@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Лобовое стекло",
-        "uk": "Лобове скло"
+        "ru": "Помыть лобовое стекло",
+        "uk": "Помити лобове скло"
       },
       "bodyByLocale": {
-        "ru": "Windscreen — «лобовое стекло машины», британское название. Вчера стекло было грязным: The windscreen was dirty. Вы его помыли: I washed the windscreen. Выберите действие мытья, а не описание состояния.",
-        "uk": "Windscreen — «лобове скло машини», британська назва. Учора скло було брудне: The windscreen was dirty. Ви його помили: I washed the windscreen. Виберіть дію миття, а не опис стану."
+        "ru": "Вчера вы смыли грязь с лобового стекла машины. Расскажите о своей работе: I washed the windscreen — я помыл лобовое стекло. Начните с I, затем поставьте wash в прошлом: washed, добавляем ed. После действия назовите предмет: the windscreen. Washed сообщает, что вы сделали; was использовалось бы для описания состояния стекла. Windscreen — британское название лобового стекла.",
+        "uk": "Учора ви змили бруд із лобового скла машини. Розкажіть про свою роботу: I washed the windscreen — я помив лобове скло. Почніть з I, потім поставте wash у минулому: washed, додаємо ed. Після дії назвіть предмет: the windscreen. Washed повідомляє, що ви зробили; was використовувалося б для опису стану скла. Windscreen — британська назва лобового скла."
       },
       "question": {
         "interactionId": "en:lesson-12:session-08:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Руль",
-        "uk": "Кермо"
+        "ru": "Сестра почистила руль",
+        "uk": "Сестра почистила кермо"
       },
       "bodyByLocale": {
-        "ru": "Steering wheel — «руль автомобиля». Вчера она его почистила: She cleaned the steering wheel. Clean → cleaned; в прошлом после she не добавляем -s. Выберите эту фразу.",
-        "uk": "Steering wheel — «кермо автомобіля». Учора вона його почистила: She cleaned the steering wheel. Clean → cleaned; у минулому після she не додаємо -s. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра протёрла руль своей машины. Сообщите о её действии: She cleaned the steering wheel — она почистила руль. Сначала She, затем clean в прошлом: cleaned. После she прошедшая форма остаётся cleaned, без s. После глагола назовите предмет: the steering wheel. The указывает на руль той машины, которую она чистила.",
+        "uk": "Учора ваша сестра протерла кермо своєї машини. Повідомте про її дію: She cleaned the steering wheel — вона почистила кермо. Спочатку She, потім clean у минулому: cleaned. Після she минула форма залишається cleaned, без s. Після дієслова назвіть предмет: the steering wheel. The вказує на кермо тієї машини, яку вона чистила."
       },
       "question": {
         "interactionId": "en:lesson-12:session-08:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Номер и сиденье",
-        "uk": "Номер і сидіння"
+        "ru": "Почистить сиденье",
+        "uk": "Почистити сидіння"
       },
       "bodyByLocale": {
-        "ru": "Number plate — «номерной знак автомобиля». Car seat — «сиденье в машине»; в этой сцене говорим об обычном сиденье в салоне. Вчера мы почистили сиденье: We cleaned the car seat. Выберите действие с сиденьем, не с номерным знаком.",
-        "uk": "Number plate — «номерний знак автомобіля». Car seat — «сидіння в машині»; у цій сцені йдеться про звичайне сидіння в салоні. Учора ми почистили сидіння: We cleaned the car seat. Виберіть дію із сидінням, не з номерним знаком."
+        "ru": "Вы с братом почистили заднее сиденье в салоне машины. Расскажите об этом: We cleaned the car seat — мы почистили сиденье в машине. We обозначает вас и брата. Затем поставьте действие в прошлом: clean → cleaned. После глагола назовите предмет: the car seat. Здесь car seat означает обычное сиденье в салоне; the указывает на то сиденье, которое вы чистили.",
+        "uk": "Ви з братом почистили заднє сидіння в салоні машини. Розкажіть про це: We cleaned the car seat — ми почистили сидіння в машині. We позначає вас і брата. Потім поставте дію в минулому: clean → cleaned. Після дієслова назвіть предмет: the car seat. Тут car seat означає звичайне сидіння в салоні; the вказує на те сидіння, яке ви чистили."
       },
       "question": {
         "interactionId": "en:lesson-12:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1f2979f78f22c1c579262e5e9971929297177d21db861d2d7e450c4cae893bc7"
+  "introFingerprint": "9f0668f0217faf17e7afd8100daf7a1612db591df673dc4cd6f503d735e5e176"
 }

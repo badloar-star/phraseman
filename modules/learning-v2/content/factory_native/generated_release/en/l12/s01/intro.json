@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Завершённое действие вчера",
-        "uk": "Завершена дія вчора"
+        "ru": "Раздеться перед сном вчера",
+        "uk": "Роздягнутися перед сном учора"
       },
       "bodyByLocale": {
-        "ru": "Раньше was/were помогали описать состояние: I was tired yesterday. Теперь расскажем о действии. Undress — «раздеваться». О привычке: I undress before bed. О завершённом действии вчера: I undressed before bed yesterday. У правильного глагола для такого прошлого добавляем -ed: undress → undressed. Дополнительное was перед глаголом здесь не нужно. Выберите рассказ о вчерашнем действии.",
-        "uk": "Раніше was/were допомагали описати стан: I was tired yesterday. Тепер розповімо про дію. Undress — «роздягатися». Про звичку: I undress before bed. Про завершену дію вчора: I undressed before bed yesterday. У правильного дієслова для такого минулого додаємо -ed: undress → undressed. Додаткове was перед дієсловом тут не потрібне. Виберіть розповідь про вчорашню дію."
+        "ru": "Вчера вечером вы разделись перед сном. Расскажите об этом законченном действии: I undressed before bed yesterday — я разделся перед сном вчера. Для завершённого действия в прошлом используем Past Simple. Начните с I, затем добавьте ed к правильному глаголу undress: undressed. После действия укажите before bed, а в конце yesterday. Знакомые was/were описывали состояние или местонахождение; перед undressed дополнительное was не нужно. Здесь речь об одном прошлом событии, а не о привычке.",
+        "uk": "Учора ввечері ви роздягнулися перед сном. Розкажіть про цю завершену дію: I undressed before bed yesterday — я роздягнувся перед сном учора. Для завершеної дії в минулому використовуємо Past Simple. Почніть з I, потім додайте ed до правильного дієслова undress: undressed. Після дії вкажіть before bed, а наприкінці yesterday. Знайомі was/were описували стан або місце перебування; перед undressed додаткове was не потрібне. Тут ідеться про одну минулу подію, а не про звичку."
       },
       "question": {
         "interactionId": "en:lesson-12:session-01:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пуговицы и шнурки",
-        "uk": "Ґудзики й шнурки"
+        "ru": "Развязать шнурки",
+        "uk": "Розв'язати шнурки"
       },
       "bodyByLocale": {
-        "ru": "Unbutton — «расстегнуть пуговицы»: I unbuttoned my coat. Untie — «развязать»: I untied my shoes. Здесь развязывают шнурки на обуви. Если глагол уже заканчивается на e, добавляем только d: untie → untied. Вчера вы развязали шнурки. Выберите эту фразу.",
-        "uk": "Unbutton — «розстебнути ґудзики»: I unbuttoned my coat. Untie — «розв’язати»: I untied my shoes. Тут розв’язують шнурки на взутті. Якщо дієслово вже закінчується на e, додаємо тільки d: untie → untied. Учора ви розв’язали шнурки. Виберіть цю фразу."
+        "ru": "Вчера вы развязали шнурки, прежде чем снять обувь. Скажите: I untied my shoes yesterday — я развязал шнурки на своей обуви вчера. Начните с I, затем поставьте untie в прошлом: untied. Если правильный глагол уже заканчивается на e, добавляем только d. После действия назовите обувь: my shoes. В этом сочетании untie my shoes означает развязать её шнурки. В конце добавьте yesterday.",
+        "uk": "Учора ви розв'язали шнурки, перш ніж зняти взуття. Скажіть: I untied my shoes yesterday — я розв'язав шнурки на своєму взутті вчора. Почніть з I, потім поставте untie у минулому: untied. Якщо правильне дієслово вже закінчується на e, додаємо лише d. Після дії назвіть взуття: my shoes. У цьому сполученні untie my shoes означає розв'язати його шнурки. Наприкінці додайте yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-01:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Развернуть плед",
-        "uk": "Розгорнути плед"
+        "ru": "Сестра развернула плед",
+        "uk": "Сестра розгорнула плед"
       },
       "bodyByLocale": {
-        "ru": "Unfold — «развернуть, расправить сложенную вещь». I unfolded the blanket. — «Я развернул плед». Форма прошлого одинакова с I, she и they: I unfolded; she unfolded; they unfolded. Не добавляем -s после she в прошлом времени. Вчера она развернула плед. Выберите эту фразу.",
-        "uk": "Unfold — «розгорнути, розправити складену річ». I unfolded the blanket. — «Я розгорнув плед». Форма минулого однакова з I, she і they: I unfolded; she unfolded; they unfolded. Не додаємо -s після she в минулому часі. Учора вона розгорнула плед. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра развернула сложенный плед на диване. Расскажите о её действии: She unfolded the blanket yesterday — она развернула плед вчера. Сначала She, затем unfold в прошлом: unfolded, добавляем ed. Эта форма одинакова после I, she и they: после she в прошлом s не добавляем. После глагола назовите предмет: the blanket. Завершите предложение словом yesterday.",
+        "uk": "Учора ваша сестра розгорнула складений плед на дивані. Розкажіть про її дію: She unfolded the blanket yesterday — вона розгорнула плед учора. Спочатку She, потім unfold у минулому: unfolded, додаємо ed. Ця форма однакова після I, she і they: після she в минулому s не додаємо. Після дієслова назвіть предмет: the blanket. Завершіть речення словом yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b61cca68d3ed90f9717348d403f3c610edccdfb76bc98acf63b8d7ab7efd0404"
+  "introFingerprint": "bf7a05b99418bed2a8439adeece734f06d98ae26fbf231521dc972944f8c1024"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выбрали вчера",
-        "uk": "Вибрали вчора"
+        "ru": "Выбрать букет в подарок",
+        "uk": "Вибрати букет у подарунок"
       },
       "bodyByLocale": {
-        "ru": "Не все глаголы получают -ed. У choose «выбирать» форма прошлого — chose: I chose a bunch of flowers. Bunch of flowers — «букет цветов». Запоминайте choose → chose целиком. Выберите сообщение о вчерашнем выборе.",
-        "uk": "Не всі дієслова отримують -ed. У choose «вибирати» форма минулого — chose: I chose a bunch of flowers. Bunch of flowers — «букет квітів». Запам’ятовуйте choose → chose цілком. Виберіть повідомлення про вчорашній вибір."
+        "ru": "Вчера вы выбрали букет цветов в подарок маме. Расскажите о выборе: I chose a bunch of flowers yesterday — я выбрал букет цветов вчера. Начните с I, затем поставьте choose в прошлом: chose. Не все глаголы получают ed: неправильную форму choose → chose запоминаем целиком. После действия назовите подарок: a bunch of flowers. В конце добавьте yesterday.",
+        "uk": "Учора ви вибрали букет квітів у подарунок мамі. Розкажіть про вибір: I chose a bunch of flowers yesterday — я вибрав букет квітів учора. Почніть з I, потім поставте choose у минулому: chose. Не всі дієслова отримують ed: неправильну форму choose → chose запам'ятовуємо цілком. Після дії назвіть подарунок: a bunch of flowers. Наприкінці додайте yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-09:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковая форма",
-        "uk": "Однакова форма"
+        "ru": "Сестра выбрала конфеты",
+        "uk": "Сестра вибрала цукерки"
       },
       "bodyByLocale": {
-        "ru": "Box of chocolates — «коробка шоколадных конфет». Birthday card — «открытка ко дню рождения», gift bag — «подарочный пакет». Chose одинаково с I, she и they. Она выбрала коробку конфет: She chose a box of chocolates. Выберите эту фразу.",
-        "uk": "Box of chocolates — «коробка шоколадних цукерок». Birthday card — «листівка до дня народження», gift bag — «подарунковий пакет». Chose однаково з I, she і they. Вона вибрала коробку цукерок: She chose a box of chocolates. Виберіть цю фразу."
+        "ru": "Ваша сестра выбрала коробку шоколадных конфет в подарок. Сообщите об этом: She chose a box of chocolates — она выбрала коробку шоколадных конфет. Сначала She, затем chose. Эта форма одинакова после I, she и they; s к ней не добавляем. После глагола назовите подарок: a box of chocolates. A относится к одной коробке, а of связывает её с содержимым.",
+        "uk": "Ваша сестра вибрала коробку шоколадних цукерок у подарунок. Повідомте про це: She chose a box of chocolates — вона вибрала коробку шоколадних цукерок. Спочатку She, потім chose. Ця форма однакова після I, she і they; s до неї не додаємо. Після дієслова назвіть подарунок: a box of chocolates. A стосується однієї коробки, а of пов'язує її з умістом."
       },
       "question": {
         "interactionId": "en:lesson-12:session-09:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё три формы целиком",
-        "uk": "Ще три форми цілком"
+        "ru": "Сходить в магазин",
+        "uk": "Сходити в магазин"
       },
       "bodyByLocale": {
-        "ru": "Go → went: I went to the shop — я сходил в магазин. See → saw: I saw my friend — я увидел друга. Have → had: We had tea — мы пили чай. Эти формы тоже запоминаем целиком, без -ed. Выберите сообщение о походе в магазин.",
-        "uk": "Go → went: I went to the shop — я сходив до магазину. See → saw: I saw my friend — я побачив друга. Have → had: We had tea — ми пили чай. Ці форми теж запам’ятовуємо цілком, без -ed. Виберіть повідомлення про похід до магазину."
+        "ru": "Вы сходили в магазин за подарком и рассказываете об этом дома. Скажите: I went to the shop — я сходил в магазин. Начните с I, затем поставьте go в прошлом: went. Добавьте направление: to the shop. Went — неправильная форма: её запоминаем целиком, без ed. По тому же принципу запоминаются see → saw («увидел») и have → had («имел», с едой и напитками — «ел», «пил»). Для вашего похода нужен именно went.",
+        "uk": "Ви сходили в магазин по подарунок і розповідаєте про це вдома. Скажіть: I went to the shop — я сходив у магазин. Почніть з I, потім поставте go у минулому: went. Додайте напрямок: to the shop. Went — неправильна форма: її запам'ятовуємо цілком, без ed. За тим самим принципом запам'ятовуються see → saw («побачив») і have → had («мав», із їжею та напоями — «їв», «пив»). Для вашого походу потрібне саме went."
       },
       "question": {
         "interactionId": "en:lesson-12:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9eb622fc2bea400acb4d5ef40176b47f174fcb8c647716b8f1273321cdabe606"
+  "introFingerprint": "734e54d517ebc4bab0db625da6237c6d6677901402fc701ad77fbbf491a2eb9b"
 }

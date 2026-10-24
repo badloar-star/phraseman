@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сапоги для дождя",
-        "uk": "Чоботи для дощу"
+        "ru": "Почистить сапоги после прогулки",
+        "uk": "Почистити чоботи після прогулянки"
       },
       "bodyByLocale": {
-        "ru": "Rain boots — «резиновые сапоги для дождя». Вчера сапоги были грязными: The rain boots were dirty. Вы их почистили: I cleaned the rain boots. Were описывает состояние, cleaned — действие. Выберите действие.",
-        "uk": "Rain boots — «гумові чоботи для дощу». Учора чоботи були брудні: The rain boots were dirty. Ви їх почистили: I cleaned the rain boots. Were описує стан, cleaned — дію. Виберіть дію."
+        "ru": "После вчерашней прогулки вы почистили резиновые сапоги. Расскажите о работе: I cleaned the rain boots — я почистил резиновые сапоги. Начните с I, затем поставьте clean в прошлом: cleaned, добавляем ed. После действия назовите предмет: the rain boots. Cleaned сообщает, что вы сделали. Для описания состояния сапог использовалось бы were, поскольку boots — множественное число.",
+        "uk": "Після вчорашньої прогулянки ви почистили гумові чоботи. Розкажіть про роботу: I cleaned the rain boots — я почистив гумові чоботи. Почніть з I, потім поставте clean у минулому: cleaned, додаємо ed. Після дії назвіть предмет: the rain boots. Cleaned повідомляє, що ви зробили. Для опису стану чобіт використовувалося б were, оскільки boots — множина."
       },
       "question": {
         "interactionId": "en:lesson-12:session-06:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кепка с козырьком",
-        "uk": "Кепка з козирком"
+        "ru": "Положить бейсболку в сумку",
+        "uk": "Покласти бейсболку в сумку"
       },
       "bodyByLocale": {
-        "ru": "Baseball cap — «бейсболка», кепка с козырьком. Вчера вы упаковали её в дорожную сумку: I packed my baseball cap. Pack → packed. Выберите вчерашнее действие.",
-        "uk": "Baseball cap — «бейсболка», кепка з козирком. Учора ви спакували її в дорожню сумку: I packed my baseball cap. Pack → packed. Виберіть учорашню дію."
+        "ru": "Вчера вы положили свою бейсболку в дорожную сумку. Сообщите об этом: I packed my baseball cap yesterday — я упаковал свою бейсболку вчера. Сначала I, затем действие в прошлом: pack → packed, добавляем ed. После глагола назовите вещь: my baseball cap. My показывает, что бейсболка ваша; артикль перед my не нужен. В конце укажите время: yesterday.",
+        "uk": "Учора ви поклали свою бейсболку в дорожню сумку. Повідомте про це: I packed my baseball cap yesterday — я спакував свою бейсболку вчора. Спочатку I, потім дія в минулому: pack → packed, додаємо ed. Після дієслова назвіть річ: my baseball cap. My показує, що бейсболка ваша; артикль перед my не потрібен. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-06:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Бельё и одежда для спорта",
-        "uk": "Білизна й одяг для спорту"
+        "ru": "Сестра постирала одежду для спорта",
+        "uk": "Сестра випрала одяг для спорту"
       },
       "bodyByLocale": {
-        "ru": "Underpants — «трусы», слово во множественном числе. Sports bra — «спортивный бюстгальтер», один предмет. Вчера она постирала спортивный бюстгальтер: She washed her sports bra. Wash → washed; после she в прошлом не добавляем -s. Выберите эту фразу.",
-        "uk": "Underpants — «труси», слово в множині. Sports bra — «спортивний бюстгальтер», один предмет. Учора вона випрала спортивний бюстгальтер: She washed her sports bra. Wash → washed; після she в минулому не додаємо -s. Виберіть цю фразу."
+        "ru": "Ваша сестра постирала свой спортивный бюстгальтер после тренировки. Расскажите о её действии: She washed her sports bra — она постирала свой спортивный бюстгальтер. Начните с She, затем поставьте wash в прошлом: washed. После she эта форма остаётся washed, без s. После действия назовите вещь: her sports bra. Her показывает, что вещь принадлежит сестре.",
+        "uk": "Ваша сестра випрала свій спортивний бюстгальтер після тренування. Розкажіть про її дію: She washed her sports bra — вона випрала свій спортивний бюстгальтер. Почніть із She, потім поставте wash у минулому: washed. Після she ця форма залишається washed, без s. Після дії назвіть річ: her sports bra. Her показує, що річ належить сестрі."
       },
       "question": {
         "interactionId": "en:lesson-12:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "736aeb46b04c4973f3e6d38849c8cbbee873ffce504925e02fe71c271ee7fa36"
+  "introFingerprint": "c0014fdd3f521c42eeebdf9125d324a27d4c4278eb3332498ae0c1303b76fd34"
 }

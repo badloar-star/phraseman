@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-15:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бросили мяч",
-        "uk": "Кинули м’яч"
+        "ru": "Бросить теннисный мяч",
+        "uk": "Кинути тенісний м'яч"
       },
       "bodyByLocale": {
-        "ru": "Tennis ball — «теннисный мяч». Throw → threw: I threw the tennis ball — я бросил теннисный мяч. Threw — форма прошлого для всех лиц. Выберите вчерашнее действие.",
-        "uk": "Tennis ball — «тенісний м’яч». Throw → threw: I threw the tennis ball — я кинув тенісний м’яч. Threw — форма минулого для всіх осіб. Виберіть учорашню дію."
+        "ru": "Вчера во дворе вы бросили теннисный мяч другу. Расскажите о своём действии: I threw the tennis ball yesterday — я бросил теннисный мяч вчера. Начните с I, затем поставьте throw в прошлом: threw. Это неправильная форма, ed не добавляем; threw подходит для всех лиц. После действия назовите предмет: the tennis ball. В конце укажите время: yesterday.",
+        "uk": "Учора у дворі ви кинули тенісний м'яч другові. Розкажіть про свою дію: I threw the tennis ball yesterday — я кинув тенісний м'яч учора. Почніть з I, потім поставте throw у минулому: threw. Це неправильна форма, ed не додаємо; threw підходить для всіх осіб. Після дії назвіть предмет: the tennis ball. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-15:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мяч и самолётик",
-        "uk": "М’яч і літачок"
+        "ru": "Сестра запустила самолётик",
+        "uk": "Сестра запустила літачок"
       },
       "bodyByLocale": {
-        "ru": "Rubber ball — «резиновый мяч», paper plane — «бумажный самолётик». She threw the paper plane — она запустила бумажный самолётик. Здесь throw передаёт бросок рукой. Выберите действие с самолётиком.",
-        "uk": "Rubber ball — «гумовий м’яч», paper plane — «паперовий літачок». She threw the paper plane — вона запустила паперовий літачок. Тут throw передає кидок рукою. Виберіть дію з літачком."
+        "ru": "Ваша сестра взяла бумажный самолётик и броском запустила его в воздух. Сообщите об этом: She threw the paper plane — она запустила бумажный самолётик. Сначала She, затем прошедшая форма throw: threw. После she она тоже остаётся threw, без окончания s. После глагола назовите предмет: the paper plane. The указывает на самолётик, который был у сестры.",
+        "uk": "Ваша сестра взяла паперовий літачок і кидком запустила його в повітря. Повідомте про це: She threw the paper plane — вона запустила паперовий літачок. Спочатку She, потім минула форма throw: threw. Після she вона також залишається threw, без закінчення s. Після дієслова назвіть предмет: the paper plane. The вказує на літачок, який був у сестри."
       },
       "question": {
         "interactionId": "en:lesson-12:session-15:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Скакалка",
-        "uk": "Скакалка"
+        "ru": "Пользоваться скакалкой",
+        "uk": "Користуватися скакалкою"
       },
       "bodyByLocale": {
-        "ru": "Skipping rope — «скакалка», британское название. We used the skipping rope — мы пользовались скакалкой. Use → used остаётся правильным глаголом, хотя throw → threw неправильный. Выберите действие в прошлом.",
-        "uk": "Skipping rope — «скакалка», британська назва. We used the skipping rope — ми користувалися скакалкою. Use → used залишається правильним дієсловом, хоча throw → threw неправильне. Виберіть дію в минулому."
+        "ru": "Вы с братом по очереди прыгали через одну скакалку во дворе. Скажите, чем вы пользовались: We used the skipping rope — мы пользовались скакалкой. We обозначает вас и брата. Затем поставьте use в прошлом: used, к конечной e добавляем d. После used прямо назовите предмет: the skipping rope, без предлога. The указывает на ту скакалку, которой вы пользовались вместе.",
+        "uk": "Ви з братом по черзі стрибали через одну скакалку у дворі. Скажіть, чим ви користувалися: We used the skipping rope — ми користувалися скакалкою. We позначає вас і брата. Потім поставте use у минулому: used, до кінцевої e додаємо d. Після used прямо назвіть предмет: the skipping rope, без прийменника. The вказує на ту скакалку, якою ви користувалися разом."
       },
       "question": {
         "interactionId": "en:lesson-12:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "259d65586674f281e564244536acd8d27c48c0085c20abe2f4e5a6c4c76b532c"
+  "introFingerprint": "31adfcd801c4a2362bea3949bbf118ea4c3b78b735303b8711ce77d5fdf035c4"
 }

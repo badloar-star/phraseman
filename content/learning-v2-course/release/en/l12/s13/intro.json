@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Солонка",
-        "uk": "Сільничка"
+        "ru": "Потрясти солонку",
+        "uk": "Струснути сільничку"
       },
       "bodyByLocale": {
-        "ru": "Salt shaker — «солонка с отверстиями». Shake → shook: I shook the salt shaker — я потряс солонку. Shook — форма прошлого, не shaked. Выберите действие в прошлом.",
-        "uk": "Salt shaker — «сільничка з отворами». Shake → shook: I shook the salt shaker — я потрусив сільничку. Shook — форма минулого, не shaked. Виберіть дію в минулому."
+        "ru": "За обедом вы потрясли солонку над тарелкой, чтобы посолить еду. Расскажите о действии: I shook the salt shaker — я потряс солонку. Сначала назовите себя: I. Затем поставьте shake в прошлом: shook. Это неправильная форма, ed не добавляем. После глагола назовите предмет: the salt shaker. The указывает на ту солонку, которой вы воспользовались.",
+        "uk": "За обідом ви струснули сільничку над тарілкою, щоб посолити їжу. Розкажіть про дію: I shook the salt shaker — я струснув сільничку. Спочатку назвіть себе: I. Потім поставте shake у минулому: shook. Це неправильна форма, ed не додаємо. Після дієслова назвіть предмет: the salt shaker. The вказує на ту сільничку, якою ви скористалися."
       },
       "question": {
         "interactionId": "en:lesson-12:session-13:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что вы пили",
-        "uk": "Що ви пили"
+        "ru": "Выпить молочный коктейль",
+        "uk": "Випити молочний коктейль"
       },
       "bodyByLocale": {
-        "ru": "Milkshake — «молочный коктейль», grape juice — «виноградный сок». I had a milkshake — я пил молочный коктейль. Have → had уже знакомо. Выберите сообщение о коктейле.",
-        "uk": "Milkshake — «молочний коктейль», grape juice — «виноградний сік». I had a milkshake — я пив молочний коктейль. Have → had уже знайоме. Виберіть повідомлення про коктейль."
+        "ru": "Вчера в кафе вы выпили молочный коктейль. Скажите, что вы пили: I had a milkshake — я пил молочный коктейль. Начните с I, затем поставьте have в прошлом: had. С напитком had здесь означает, что вы его пили. После глагола назовите напиток: a milkshake. A обозначает одну порцию коктейля.",
+        "uk": "Учора в кафе ви випили молочний коктейль. Скажіть, що ви пили: I had a milkshake — я пив молочний коктейль. Почніть з I, потім поставте have у минулому: had. Із напоєм had тут означає, що ви його пили. Після дієслова назвіть напій: a milkshake. A позначає одну порцію коктейлю."
       },
       "question": {
         "interactionId": "en:lesson-12:session-13:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кокосовое молоко",
-        "uk": "Кокосове молоко"
+        "ru": "Использовать молоко для супа",
+        "uk": "Використати молоко для супу"
       },
       "bodyByLocale": {
-        "ru": "Coconut milk — «кокосовое молоко». Мы использовали его для супа: We used coconut milk for the soup. Used сообщает действие, was — состояние: The coconut milk was cold. Выберите действие.",
-        "uk": "Coconut milk — «кокосове молоко». Ми використали його для супу: We used coconut milk for the soup. Used повідомляє дію, was — стан: The coconut milk was cold. Виберіть дію."
+        "ru": "Вы с сестрой приготовили суп с кокосовым молоком. Скажите, какой ингредиент использовали: We used coconut milk for the soup — мы использовали кокосовое молоко для супа. Начните с We: вы и сестра. Затем поставьте use в прошлом: used. После глагола назовите ингредиент: coconut milk, без a, поскольку milk здесь неисчисляемое. Добавьте for the soup, чтобы сказать, для чего использовали молоко.",
+        "uk": "Ви із сестрою приготували суп із кокосовим молоком. Скажіть, який інгредієнт використали: We used coconut milk for the soup — ми використали кокосове молоко для супу. Почніть із We: ви й сестра. Потім поставте use у минулому: used. Після дієслова назвіть інгредієнт: coconut milk, без a, оскільки milk тут незлічуване. Додайте for the soup, щоб сказати, для чого використали молоко."
       },
       "question": {
         "interactionId": "en:lesson-12:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ad0e2018d88fff04a0f1202c18bd7be9b6576f46ad37b2eb44589efd617f4f85"
+  "introFingerprint": "2ed544fa7d4fd052e1e18b7fe0ef908d6ee6763dbe40e42eb55aecabaf33b3a0"
 }

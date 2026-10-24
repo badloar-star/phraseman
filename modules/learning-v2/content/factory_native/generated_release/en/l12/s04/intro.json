@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Калитка",
-        "uk": "Хвіртка"
+        "ru": "Покрасить калитку",
+        "uk": "Пофарбувати хвіртку"
       },
       "bodyByLocale": {
-        "ru": "Garden gate — «садовая калитка». Вчера вы её покрасили: I painted the garden gate. Paint → painted. Это действие, которое уже закончилось. Выберите сообщение о вчерашней покраске.",
-        "uk": "Garden gate — «садова хвіртка». Учора ви її пофарбували: I painted the garden gate. Paint → painted. Це дія, яка вже завершилася. Виберіть повідомлення про вчорашнє фарбування."
+        "ru": "Вчера вы покрасили садовую калитку. Расскажите о законченной работе: I painted the garden gate yesterday — я покрасил садовую калитку вчера. Начните с I, затем поставьте paint в прошлом: painted, добавляем ed. После действия назовите предмет: the garden gate. В конце укажите время: yesterday. Такой порядок помогает сообщить, кто что сделал и когда.",
+        "uk": "Учора ви пофарбували садову хвіртку. Розкажіть про завершену роботу: I painted the garden gate yesterday — я пофарбував садову хвіртку вчора. Почніть з I, потім поставте paint у минулому: painted, додаємо ed. Після дії назвіть предмет: the garden gate. Наприкінці вкажіть час: yesterday. Такий порядок допомагає повідомити, хто що зробив і коли."
       },
       "question": {
         "interactionId": "en:lesson-12:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ступенька и дверная ручка",
-        "uk": "Сходинка й дверна ручка"
+        "ru": "Сестра проверила ручку",
+        "uk": "Сестра перевірила ручку"
       },
       "bodyByLocale": {
-        "ru": "Front step — «ступенька перед входом», door handle — «дверная ручка». Вчера она почистила ступеньку: She cleaned the front step. Затем проверила дверную ручку: She checked the door handle. Выберите действие с ручкой.",
-        "uk": "Front step — «сходинка перед входом», door handle — «дверна ручка». Учора вона почистила сходинку: She cleaned the front step. Потім перевірила дверну ручку: She checked the door handle. Виберіть дію з ручкою."
+        "ru": "Дверная ручка разболталась, и вчера ваша сестра проверила, хорошо ли она держится. Сообщите о проверке: She checked the door handle — она проверила дверную ручку. Сначала She, затем check в прошлом: checked, добавляем ed. После she используем эту же прошедшую форму, без s. После глагола назовите предмет: the door handle.",
+        "uk": "Дверна ручка розхиталася, і вчора ваша сестра перевірила, чи добре вона тримається. Повідомте про перевірку: She checked the door handle — вона перевірила дверну ручку. Спочатку She, потім check у минулому: checked, додаємо ed. Після she використовуємо цю саму минулу форму, без s. Після дієслова назвіть предмет: the door handle."
       },
       "question": {
         "interactionId": "en:lesson-12:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Садовый стул",
-        "uk": "Садовий стілець"
+        "ru": "Родители передвинули стул",
+        "uk": "Батьки пересунули стілець"
       },
       "bodyByLocale": {
-        "ru": "Garden chair — «садовый стул». Вчера мы его передвинули: We moved the garden chair. Move → moved. С they форма не меняется: They moved the garden chair. Выберите рассказ об их вчерашнем действии.",
-        "uk": "Garden chair — «садовий стілець». Учора ми його пересунули: We moved the garden chair. Move → moved. З they форма не змінюється: They moved the garden chair. Виберіть розповідь про їхню вчорашню дію."
+        "ru": "Вчера ваши родители передвинули садовый стул в тень. Расскажите об их действии: They moved the garden chair yesterday — они передвинули садовый стул вчера. Начните с They: речь о родителях. Затем поставьте move в прошлом: moved. У move уже есть конечная e, поэтому добавляем только d; форма одинакова после we и they. После действия назовите предмет: the garden chair, а в конце добавьте yesterday.",
+        "uk": "Учора ваші батьки пересунули садовий стілець у затінок. Розкажіть про їхню дію: They moved the garden chair yesterday — вони пересунули садовий стілець учора. Почніть із They: йдеться про батьків. Потім поставте move у минулому: moved. У move вже є кінцева e, тому додаємо лише d; форма однакова після we і they. Після дії назвіть предмет: the garden chair, а наприкінці додайте yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "56a89c4c25230825123444eb87f8cab9d01382b6c50fb470680c321c6ea36aab"
+  "introFingerprint": "2a17ff95b9d75fecb998c6bf50661e198c358d0f7a127520398be310e0844ba9"
 }

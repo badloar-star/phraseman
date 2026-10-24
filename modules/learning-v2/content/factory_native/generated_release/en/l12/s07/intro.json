@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Запасной ключ",
-        "uk": "Запасний ключ"
+        "ru": "Открыть дверь запасным ключом",
+        "uk": "Відчинити двері запасним ключем"
       },
       "bodyByLocale": {
-        "ru": "Spare key — «запасной ключ». Вчера вы воспользовались запасным ключом: I used the spare key. У use уже есть e, добавляем d: used. Выберите завершённое действие вчера.",
-        "uk": "Spare key — «запасний ключ». Учора ви скористалися запасним ключем: I used the spare key. У use вже є e, додаємо d: used. Виберіть завершену дію вчора."
+        "ru": "Вчера вы открыли дверь запасным ключом. Скажите, чем вы воспользовались: I used the spare key yesterday — я воспользовался запасным ключом вчера. Начните с I, затем поставьте use в прошлом: used. У use уже есть конечная e, поэтому добавляем только d. После действия назовите предмет: the spare key. В конце укажите время: yesterday.",
+        "uk": "Учора ви відчинили двері запасним ключем. Скажіть, чим ви скористалися: I used the spare key yesterday — я скористався запасним ключем учора. Почніть з I, потім поставте use у минулому: used. У use вже є кінцева e, тому додаємо лише d. Після дії назвіть предмет: the spare key. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Свободная комната",
-        "uk": "Вільна кімната"
+        "ru": "Сестра убрала комнату",
+        "uk": "Сестра прибрала кімнату"
       },
       "bodyByLocale": {
-        "ru": "Spare room — «свободная дополнительная комната», например для гостей. Вчера она убрала эту комнату: She cleaned the spare room. Clean → cleaned; с she в прошлом форма такая же, как с I. Выберите эту фразу.",
-        "uk": "Spare room — «вільна додаткова кімната», наприклад для гостей. Учора вона прибрала цю кімнату: She cleaned the spare room. Clean → cleaned; з she в минулому форма така сама, як з I. Виберіть цю фразу."
+        "ru": "Вчера ваша сестра убрала свободную комнату перед приездом гостя. Сообщите о её работе: She cleaned the spare room — она убрала свободную комнату. Сначала She, затем clean в прошлом: cleaned, добавляем ed. После she эта форма такая же, как после I, без s. После глагола назовите комнату: the spare room. The указывает на конкретную комнату, которую она убрала.",
+        "uk": "Учора ваша сестра прибрала вільну кімнату перед приїздом гостя. Повідомте про її роботу: She cleaned the spare room — вона прибрала вільну кімнату. Спочатку She, потім clean у минулому: cleaned, додаємо ed. Після she ця форма така сама, як після I, без s. Після дієслова назвіть кімнату: the spare room. The вказує на конкретну кімнату, яку вона прибрала."
       },
       "question": {
         "interactionId": "en:lesson-12:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мебель для гостя",
-        "uk": "Меблі для гостя"
+        "ru": "Разложить стул для гостя",
+        "uk": "Розкласти стілець для гостя"
       },
       "bodyByLocale": {
-        "ru": "Sofa bed — «диван-кровать». Folding chair — «складной стул». Знакомый unfold помогает рассказать, что стул разложили: We unfolded the folding chair. Вчера вы разложили стул, а не передвинули диван. Выберите это действие.",
-        "uk": "Sofa bed — «диван-ліжко». Folding chair — «складаний стілець». Знайоме unfold допомагає розповісти, що стілець розклали: We unfolded the folding chair. Учора ви розклали стілець, а не пересунули диван. Виберіть цю дію."
+        "ru": "Вы с братом разложили складной стул для гостя. Расскажите об этом: We unfolded the folding chair — мы разложили складной стул. Начните с We: вы и брат. Затем поставьте unfold в прошлом: unfolded, добавляем ed. После глагола назовите предмет: the folding chair. В этом предложении unfolded сообщает действие, а folding входит в название стула.",
+        "uk": "Ви з братом розклали складаний стілець для гостя. Розкажіть про це: We unfolded the folding chair — ми розклали складаний стілець. Почніть із We: ви й брат. Потім поставте unfold у минулому: unfolded, додаємо ed. Після дієслова назвіть предмет: the folding chair. У цьому реченні unfolded повідомляє дію, а folding входить до назви стільця."
       },
       "question": {
         "interactionId": "en:lesson-12:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "115911f89d60f7ae03c9b9a8ed7b981c7ba42cd94f068e9397b7b46b47e16a1a"
+  "introFingerprint": "7d74b8f6f96810aff07b67f3d4a5c5f0a2d30ef40c304ddaf3be1082482ccde4"
 }

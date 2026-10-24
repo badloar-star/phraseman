@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Велодорожка",
-        "uk": "Велодоріжка"
+        "ru": "Проехать по велодорожке",
+        "uk": "Проїхати велодоріжкою"
       },
       "bodyByLocale": {
-        "ru": "Cycle path — «велодорожка». Знакомый глагол cycle в прошлом получает d: cycle → cycled. Вчера вы ехали по велодорожке: I cycled along the cycle path yesterday. Выберите завершённое действие вчера.",
-        "uk": "Cycle path — «велодоріжка». Знайоме дієслово cycle в минулому отримує d: cycle → cycled. Учора ви їхали велодоріжкою: I cycled along the cycle path yesterday. Виберіть завершену дію вчора."
+        "ru": "Вчера вы ехали на велосипеде по велодорожке. Расскажите о законченной поездке: I cycled along the cycle path yesterday — я ехал на велосипеде по велодорожке вчера. Начните с I, затем поставьте cycle в прошлом: cycled. К конечной e добавляем только d. Маршрут укажите через along: along the cycle path. В конце добавьте yesterday.",
+        "uk": "Учора ви їхали велосипедом велодоріжкою. Розкажіть про завершену поїздку: I cycled along the cycle path yesterday — я їхав велосипедом велодоріжкою вчора. Почніть з I, потім поставте cycle у минулому: cycled. До кінцевої e додаємо лише d. Маршрут укажіть через along: along the cycle path. Наприкінці додайте yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-02:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Угол улицы и пробка",
-        "uk": "Ріг вулиці й затор"
+        "ru": "Подождать на углу",
+        "uk": "Почекати на розі"
       },
       "bodyByLocale": {
-        "ru": "Street corner — «угол улицы», traffic jam — «дорожная пробка». Вчера мы ждали на углу: We waited at the street corner. Позже были в пробке: We were in a traffic jam. Waited рассказывает о действии, were — о месте. Выберите действие ожидания на углу.",
-        "uk": "Street corner — «ріг вулиці», traffic jam — «дорожній затор». Учора ми чекали на розі: We waited at the street corner. Пізніше були в заторі: We were in a traffic jam. Waited розповідає про дію, were — про місце. Виберіть дію очікування на розі."
+        "ru": "Вчера вы с другом ждали знакомого на углу улицы. Сообщите об ожидании: We waited at the street corner — мы ждали на углу улицы. Начните с We: вы и друг. Затем поставьте wait в прошлом: waited, добавляем ed. Место добавьте через at: at the street corner. Waited называет ваше действие; were использовалось бы, чтобы сказать, где вы находились.",
+        "uk": "Учора ви з другом чекали знайомого на розі вулиці. Повідомте про очікування: We waited at the street corner — ми чекали на розі вулиці. Почніть із We: ви й друг. Потім поставте wait у минулому: waited, додаємо ed. Місце додайте через at: at the street corner. Waited називає вашу дію; were використовувалося б, щоб сказати, де ви перебували."
       },
       "question": {
         "interactionId": "en:lesson-12:session-02:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дорожный знак",
-        "uk": "Дорожній знак"
+        "ru": "Сестра проверила дорожный знак",
+        "uk": "Сестра перевірила дорожній знак"
       },
       "bodyByLocale": {
-        "ru": "Road sign — «дорожный знак». Вчера вы проверили знак: I checked the road sign. Check → checked. С she форма та же: She checked the road sign. Выберите рассказ о её вчерашнем действии.",
-        "uk": "Road sign — «дорожній знак». Учора ви перевірили знак: I checked the road sign. Check → checked. З she форма та сама: She checked the road sign. Виберіть розповідь про її вчорашню дію."
+        "ru": "Вчера ваша сестра посмотрела на дорожный знак, чтобы уточнить направление. Расскажите о проверке: She checked the road sign yesterday — она проверила дорожный знак вчера. Сначала She, затем check в прошлом: checked, добавляем ed. Эта форма одинакова после I и she, без s. После глагола назовите предмет: the road sign. В конце укажите время: yesterday.",
+        "uk": "Учора ваша сестра подивилася на дорожній знак, щоб уточнити напрямок. Розкажіть про перевірку: She checked the road sign yesterday — вона перевірила дорожній знак учора. Спочатку She, потім check у минулому: checked, додаємо ed. Ця форма однакова після I і she, без s. Після дієслова назвіть предмет: the road sign. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c08cd19047acfe1c035a2faba35b318d3c269cb9969ce0908a7e8247c0f5eaaa"
+  "introFingerprint": "85b0ba1d7de0478239e111ebe37b52ba72c5cb18ceab0b9479319b0278f1e5c3"
 }

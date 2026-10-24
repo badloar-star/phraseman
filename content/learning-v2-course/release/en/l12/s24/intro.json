@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для ногтей",
-        "uk": "Для нігтів"
+        "ru": "Почистили щипчики",
+        "uk": "Почистили щипчики"
       },
       "bodyByLocale": {
-        "ru": "Nail clippers — «щипчики для ногтей», nail file — «пилочка для ногтей». I cleaned the nail clippers — я почистил щипчики. Nail clippers — множественное число, но cleaned не меняется. Выберите сообщение о чистке.",
-        "uk": "Nail clippers — «щипчики для нігтів», nail file — «пилочка для нігтів». I cleaned the nail clippers — я почистив щипчики. Nail clippers — множина, але cleaned не змінюється. Виберіть повідомлення про чищення."
+        "ru": "Вчера после использования вы почистили щипчики для ногтей. Nail clippers — щипчики для ногтей. Расскажите об этом: I cleaned the nail clippers — Я почистил щипчики для ногтей. После I поставьте cleaned: к clean добавили -ed для прошлого. Затем назовите предмет: the nail clippers. Название clippers имеет форму множественного числа, но оно не меняет форму действия cleaned. The указывает на ваши щипчики.",
+        "uk": "Учора після використання ви почистили щипчики для нігтів. Nail clippers — щипчики для нігтів. Розкажіть про це: I cleaned the nail clippers — Я почистив щипчики для нігтів. Після I поставте cleaned: до clean додали -ed для минулого. Потім назвіть предмет: the nail clippers. Назва clippers має форму множини, але вона не змінює форму дії cleaned. The вказує на ваші щипчики."
       },
       "question": {
         "interactionId": "en:lesson-12:session-24:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ватная палочка",
-        "uk": "Ватна паличка"
+        "ru": "Упаковали ватные палочки",
+        "uk": "Спакували ватні палички"
       },
       "bodyByLocale": {
-        "ru": "Cotton bud — «ватная палочка», британское название. We packed the cotton buds — мы упаковали ватные палочки. Pack → packed. Выберите действие в прошлом.",
-        "uk": "Cotton bud — «ватна паличка», британська назва. We packed the cotton buds — ми запакували ватні палички. Pack → packed. Виберіть дію в минулому."
+        "ru": "Вчера вы с сестрой положили подготовленные ватные палочки в дорожную сумку. Cotton bud — ватная палочка. Соберите фразу: We + packed + the cotton buds. Получится We packed the cotton buds — Мы упаковали ватные палочки. Packed — форма pack для прошлого с -ed. Палочек несколько, поэтому к bud добавляем -s. The указывает на те палочки, которые вы подготовили для поездки.",
+        "uk": "Учора ви із сестрою поклали підготовлені ватні палички в дорожню сумку. Cotton bud — ватна паличка. Складіть фразу: We + packed + the cotton buds. Вийде We packed the cotton buds — Ми спакували ватні палички. Packed — форма pack для минулого з -ed. Паличок кілька, тому до bud додаємо -s. The вказує на ті палички, які ви підготували для поїздки."
       },
       "question": {
         "interactionId": "en:lesson-12:session-24:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вата",
-        "uk": "Вата"
+        "ru": "Упаковали немного ваты",
+        "uk": "Спакували трохи вати"
       },
       "bodyByLocale": {
-        "ru": "Cotton wool — «вата», британское название. I packed some cotton wool — я упаковал немного ваты. Это вещество: говорим some cotton wool, без a. Выберите сообщение о вате.",
-        "uk": "Cotton wool — «вата», британська назва. I packed some cotton wool — я запакував трохи вати. Це речовина: кажемо some cotton wool, без a. Виберіть повідомлення про вату."
+        "ru": "Вчера вы положили немного ваты в дорожную аптечку. Cotton wool — вата. Расскажите об этом: I packed some cotton wool — Я упаковал немного ваты. После I поставьте packed для прошлого действия, затем some cotton wool. Вата здесь вещество, а не один отдельный предмет, поэтому a не подходит. Some перед cotton wool передаёт некоторое, точно не названное количество.",
+        "uk": "Учора ви поклали трохи вати в дорожню аптечку. Cotton wool — вата. Розкажіть про це: I packed some cotton wool — Я спакував трохи вати. Після I поставте packed для минулої дії, потім some cotton wool. Вата тут речовина, а не один окремий предмет, тому a не підходить. Some перед cotton wool передає певну, точно не названу кількість."
       },
       "question": {
         "interactionId": "en:lesson-12:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fb39c60534315d9b53e887204d5fbcc920b521d40b8ef1a7db948ac63e559762"
+  "introFingerprint": "5ce02e4a613cc90fb0224e1bde5ac58cfbbd56ccaa9f34dc9a93a9bdaafc441d"
 }

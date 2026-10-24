@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Корзина для белья",
-        "uk": "Кошик для білизни"
+        "ru": "Корзина была полной",
+        "uk": "Кошик був повним"
       },
       "bodyByLocale": {
-        "ru": "Laundry basket — «корзина для белья». Вчера она была полной: The laundry basket was full yesterday. Сейчас она пустая: It is empty now. Выберите сообщение о вчерашнем состоянии корзины.",
-        "uk": "Laundry basket — «кошик для білизни». Учора він був повний: The laundry basket was full yesterday. Зараз він порожній: It is empty now. Виберіть повідомлення про вчорашній стан кошика."
+        "ru": "Вчера перед стиркой корзина была полна белья. Опишите её состояние: The laundry basket was full yesterday — корзина для белья была полной вчера. Начните с предмета: The laundry basket. Затем поставьте was: корзина одна, и речь о прошлом. После was добавьте состояние: full. В конце укажите время: yesterday.",
+        "uk": "Учора перед пранням кошик був повний білизни. Опишіть його стан: The laundry basket was full yesterday — кошик для білизни був повним учора. Почніть із предмета: The laundry basket. Потім поставте was: кошик один, і йдеться про минуле. Після was додайте стан: full. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-55:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сушилка",
-        "uk": "Сушарка"
+        "ru": "Сушилка стояла у окна",
+        "uk": "Сушарка стояла біля вікна"
       },
       "bodyByLocale": {
-        "ru": "Clothes horse — «напольная сушилка для белья». Это британское название целого предмета, а не животного. Несмотря на clothes, предмет один: The clothes horse was near the window. Выберите сообщение о сушилке у окна.",
-        "uk": "Clothes horse — «підлогова сушарка для білизни». Це британська назва цілого предмета, а не тварини. Попри clothes, предмет один: The clothes horse was near the window. Виберіть повідомлення про сушарку біля вікна."
+        "ru": "Вы вспоминаете, где вчера стояла напольная сушилка для белья. Скажите: The clothes horse was near the window — сушилка была у окна. Сначала назовите предмет: The clothes horse. Это британское название одной сушилки, поэтому используем was, несмотря на clothes внутри названия. Затем добавьте место: near the window. Near означает «рядом с»; дополнительный предлог после него здесь не нужен.",
+        "uk": "Ви згадуєте, де вчора стояла підлогова сушарка для білизни. Скажіть: The clothes horse was near the window — сушарка була біля вікна. Спочатку назвіть предмет: The clothes horse. Це британська назва однієї сушарки, тому використовуємо was, попри clothes всередині назви. Потім додайте місце: near the window. Near означає «поруч із»; додатковий прийменник після нього тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-11:session-55:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Для кухни",
-        "uk": "Для кухні"
+        "ru": "Две прихватки у плиты",
+        "uk": "Дві прихватки біля плити"
       },
       "bodyByLocale": {
-        "ru": "Washing-up brush — «щётка для мытья посуды». Oven glove — «кухонная рукавица-прихватка» для горячей посуды. Вчера у плиты были две такие рукавицы: There were two oven gloves near the cooker. Выберите эту фразу.",
-        "uk": "Washing-up brush — «щітка для миття посуду». Oven glove — «кухонна рукавиця-прихватка» для гарячого посуду. Учора біля плити було дві такі рукавиці: There were two oven gloves near the cooker. Виберіть цю фразу."
+        "ru": "Вчера у плиты лежали две кухонные рукавицы для горячей посуды. Сообщите, что там было: There were two oven gloves near the cooker — у плиты были две кухонные рукавицы. Начните с There were, потому что впервые сообщаете о наличии нескольких предметов в прошлом. Затем назовите количество и вещи: two oven gloves. В конце добавьте место: near the cooker.",
+        "uk": "Учора біля плити лежали дві кухонні рукавиці для гарячого посуду. Повідомте, що там було: There were two oven gloves near the cooker — біля плити були дві кухонні рукавиці. Почніть із There were, оскільки вперше повідомляєте про наявність кількох предметів у минулому. Потім назвіть кількість і речі: two oven gloves. Наприкінці додайте місце: near the cooker."
       },
       "question": {
         "interactionId": "en:lesson-11:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7b73a40185de4af5d05bff97b3e340e9d2027de7a2ca5f2b6ccb77a6d708127a"
+  "introFingerprint": "267d5d3d858f661b189b3bef368a28be821e547abbdaced51b1a3fb1667b4586"
 }

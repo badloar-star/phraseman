@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Восход солнца",
-        "uk": "Схід сонця"
+        "ru": "Солнце взошло в шесть",
+        "uk": "Сонце зійшло о шостій"
       },
       "bodyByLocale": {
-        "ru": "Rise → rose. The sun rose at six — солнце взошло в шесть. Rose здесь форма глагола rise, а не название цветка. Выберите сообщение о прошлом утре.",
-        "uk": "Rise → rose. The sun rose at six — сонце зійшло о шостій. Rose тут форма дієслова rise, а не назва квітки. Виберіть повідомлення про минулий ранок."
+        "ru": "Вчера вы рано проснулись и увидели восход в шесть часов. Расскажите, когда взошло солнце: The sun rose at six yesterday — солнце взошло в шесть вчера. Начните с The sun, затем поставьте rise в прошлом: rose. Это неправильная форма, ed не добавляем; rose здесь означает «взошло». Перед точным временем поставьте at: at six. В конце добавьте yesterday.",
+        "uk": "Учора ви рано прокинулися й побачили схід сонця о шостій годині. Розкажіть, коли зійшло сонце: The sun rose at six yesterday — сонце зійшло о шостій учора. Почніть із The sun, потім поставте rise у минулому: rose. Це неправильна форма, ed не додаємо; rose тут означає «зійшло». Перед точним часом поставте at: at six. Наприкінці додайте yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-12:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что было на завтрак",
-        "uk": "Що було на сніданок"
+        "ru": "Хлопья на завтрак",
+        "uk": "Пластівці на сніданок"
       },
       "bodyByLocale": {
-        "ru": "Breakfast cereal — «сухой завтрак, например хлопья», fruit yoghurt — «фруктовый йогурт». Have → had уже знакомо: I had breakfast cereal — я ел хлопья на завтрак. Выберите сообщение о хлопьях.",
-        "uk": "Breakfast cereal — «сухий сніданок, наприклад пластівці», fruit yoghurt — «фруктовий йогурт». Have → had уже знайоме: I had breakfast cereal — я їв пластівці на сніданок. Виберіть повідомлення про пластівці."
+        "ru": "Вчера утром вы съели миску хлопьев. Скажите, что вы ели: I had breakfast cereal — я ел хлопья на завтрак. Начните с I, затем поставьте have в прошлом: had. С названием еды had здесь означает, что вы её ели. После глагола назовите еду: breakfast cereal. Cereal здесь обозначает еду как массу, поэтому a перед ним не ставим.",
+        "uk": "Учора вранці ви з'їли миску пластівців. Скажіть, що ви їли: I had breakfast cereal — я їв пластівці на сніданок. Почніть з I, потім поставте have у минулому: had. Із назвою їжі had тут означає, що ви її їли. Після дієслова назвіть їжу: breakfast cereal. Cereal тут позначає їжу як масу, тому a перед ним не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-12:session-12:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Яйцо и сыр",
-        "uk": "Яйце й сир"
+        "ru": "Сестра ела мягкий сыр",
+        "uk": "Сестра їла м'який сир"
       },
       "bodyByLocale": {
-        "ru": "Boiled egg — «варёное яйцо», soft cheese — «мягкий сыр». I had a boiled egg — я ел варёное яйцо. Для сыра говорим some soft cheese или просто soft cheese: She had some soft cheese. Выберите сообщение о сыре.",
-        "uk": "Boiled egg — «варене яйце», soft cheese — «м’який сир». I had a boiled egg — я їв варене яйце. Для сиру кажемо some soft cheese або просто soft cheese: She had some soft cheese. Виберіть повідомлення про сир."
+        "ru": "Вчера за завтраком ваша сестра ела мягкий сыр. Сообщите об этом: She had some soft cheese — она ела мягкий сыр. Сначала She, затем had — прошедшая форма have. После действия назовите еду: some soft cheese. Cheese здесь неисчисляемое, поэтому a не ставим. Some обозначает неопределённое количество; можно сказать и просто soft cheese.",
+        "uk": "Учора за сніданком ваша сестра їла м'який сир. Повідомте про це: She had some soft cheese — вона їла м'який сир. Спочатку She, потім had — минула форма have. Після дії назвіть їжу: some soft cheese. Cheese тут незлічуване, тому a не ставимо. Some позначає невизначену кількість; можна сказати й просто soft cheese."
       },
       "question": {
         "interactionId": "en:lesson-12:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "069bd67dd511ef6ea1b1018b75c9d36ce2f1a5054026b14a5f403217b35adbd4"
+  "introFingerprint": "f15d0ff1dd6e04e4ef7834ef4ef28fff72be36980cca7049f09d10b65f437970"
 }

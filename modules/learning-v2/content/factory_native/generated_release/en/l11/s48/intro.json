@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мяч и зонт",
-        "uk": "М’яч і парасоля"
+        "ru": "Мяч лежал под зонтом",
+        "uk": "М'яч лежав під парасолею"
       },
       "bodyByLocale": {
-        "ru": "Beach ball — «пляжный мяч», обычно лёгкий надувной мяч. Beach umbrella — «пляжный зонт». Вчера мяч был под зонтом: The beach ball was under the beach umbrella. Выберите эту фразу.",
-        "uk": "Beach ball — «пляжний м’яч», зазвичай легкий надувний м’яч. Beach umbrella — «пляжна парасоля». Учора м’яч був під парасолею: The beach ball was under the beach umbrella. Виберіть цю фразу."
+        "ru": "Вчера на пляже ваш надувной мяч лежал под пляжным зонтом. Расскажите, где он был: The beach ball was under the beach umbrella — пляжный мяч был под пляжным зонтом. Сначала назовите предмет: The beach ball. Затем was, потому что мяч один и речь о прошлом. Место добавьте через under: under the beach umbrella. Under показывает, что мяч находился под зонтом.",
+        "uk": "Учора на пляжі ваш надувний м'яч лежав під пляжною парасолею. Розкажіть, де він був: The beach ball was under the beach umbrella — пляжний м'яч був під пляжною парасолею. Спочатку назвіть предмет: The beach ball. Потім was, тому що м'яч один і йдеться про минуле. Місце додайте через under: under the beach umbrella. Under показує, що м'яч був під парасолею."
       },
       "question": {
         "interactionId": "en:lesson-11:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пляжная сумка",
-        "uk": "Пляжна сумка"
+        "ru": "Сумка была мокрой",
+        "uk": "Сумка була мокрою"
       },
       "bodyByLocale": {
-        "ru": "Beach bag — «пляжная сумка». Вчера она была мокрой: The beach bag was wet yesterday. Сейчас она сухая: It is dry now. Выберите сообщение о вчерашнем состоянии сумки.",
-        "uk": "Beach bag — «пляжна сумка». Учора вона була мокра: The beach bag was wet yesterday. Зараз вона суха: It is dry now. Виберіть повідомлення про вчорашній стан сумки."
+        "ru": "Вчера после пляжа ваша пляжная сумка была мокрой. Опишите её состояние: The beach bag was wet yesterday — пляжная сумка была мокрой вчера. Начните с The beach bag, затем поставьте was: сумка одна, и речь о прошлом. После was добавьте признак wet. В конце укажите время: yesterday.",
+        "uk": "Учора після пляжу ваша пляжна сумка була мокрою. Опишіть її стан: The beach bag was wet yesterday — пляжна сумка була мокрою вчора. Почніть із The beach bag, потім поставте was: сумка одна, і йдеться про минуле. Після was додайте ознаку wet. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Морская ракушка",
-        "uk": "Морська мушля"
+        "ru": "Три ракушки на песке",
+        "uk": "Три мушлі на піску"
       },
       "bodyByLocale": {
-        "ru": "Seashell — «морская ракушка». Одно слово пишется слитно. Вчера на песке лежали три ракушки: There were three seashells on the sand. Несколько предметов — were. Выберите эту фразу.",
-        "uk": "Seashell — «морська мушля». Одне слово пишеться разом. Учора на піску лежали три мушлі: There were three seashells on the sand. Кілька предметів — were. Виберіть цю фразу."
+        "ru": "Вчера вы заметили на песке три морские ракушки. Расскажите, что там было: There were three seashells on the sand — на песке были три морские ракушки. Начните с There were: вы сообщаете о наличии нескольких предметов в прошлом. Затем назовите количество и вещи: three seashells, с s во множественном числе. В конце добавьте место: on the sand. Seashell пишется слитно.",
+        "uk": "Учора ви помітили на піску три морські мушлі. Розкажіть, що там було: There were three seashells on the sand — на піску були три морські мушлі. Почніть із There were: ви повідомляєте про наявність кількох предметів у минулому. Потім назвіть кількість і речі: three seashells, із s у множині. Наприкінці додайте місце: on the sand. Seashell пишеться разом."
       },
       "question": {
         "interactionId": "en:lesson-11:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e3641212a2e6bf05117a025ba8ce33f11f6c77bee996bbde8d6e32dcf169a65"
+  "introFingerprint": "d1426cb570bf3d0342d1151b0f3bde17c5a3ba2cabbd045d0b4d061cf7593397"
 }

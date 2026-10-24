@@ -5837,7 +5837,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 25,
-    sourceFingerprint: "c2e47c05e20320c5e80a99f58b924a0eba517360ebbc2df5d3b0a446d3055edd",
+    sourceFingerprint: "fac806babb0bdbc402a5436114da1b140b248a29fc18e862f3895d7a7852c936",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь другой смысл или неверное вопросительное слово. Нужно: Buy low-fat yoghurt.","В просьбе нужна Buy, без s."],["Здесь другой смысл или неверное вопросительное слово. Нужно: Buy full-fat yoghurt.","В просьбе нужна Buy, без s."],["Здесь другой смысл или неверное вопросительное слово. Нужно: Buy semi-skimmed milk.","В просьбе нужна Buy, без s."]],"uk":[["Тут інший зміст або неправильне питальне слово. Потрібно: Buy low-fat yoghurt.","У проханні потрібна Buy, без s."],["Тут інший зміст або неправильне питальне слово. Потрібно: Buy full-fat yoghurt.","У проханні потрібна Buy, без s."],["Тут інший зміст або неправильне питальне слово. Потрібно: Buy semi-skimmed milk.","У проханні потрібна Buy, без s."]]}),
@@ -5851,7 +5851,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 26,
-    sourceFingerprint: "2df6731804611fa161c93f5d1255f705f0e718b09d5f9a2599f44c2be8dab20a",
+    sourceFingerprint: "ec73697cfdc0f2db9e61aa65b0c2556b8871cf154d3bf61f84f00d5c1478138a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Дайте другу короткое указание включить лампу в розетку.","Скажите другу подключить подготовленный увлажнитель.","Скажите коллеге включить уже подключённый уничтожитель бумаг."],"uk":["Дайте другові коротку вказівку ввімкнути лампу в розетку.","Скажіть другові підключити підготовлений зволожувач.","Скажіть колезі ввімкнути вже підключений знищувач паперів."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С `it` нужен порядок `Plug it in`.","Для указания нужно `Plug`, без `s`."],["Для указания нужно Plug, без s.","Начните с Plug, без to."],["Для указания нужно Turn, без s.","Начните с Turn, без to."]],"uk":[["З `it` потрібен порядок `Plug it in`.","Для вказівки потрібне `Plug`, без `s`."],["Для вказівки потрібне Plug, без s.","Почніть з Plug, без to."],["Для вказівки потрібне Turn, без s.","Почніть з Turn, без to."]]}),
@@ -5865,7 +5865,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 27,
-    sourceFingerprint: "c5983226fd7d90e28e8e04dd4dbd557738e467b404487fb30f6bd63afd808d59",
+    sourceFingerprint: "3fce443c46b69bb956b224aa69564db6ca237b12a654463290d5db54d123dac3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите другу зарядить телефон.","Скажите другу зарядить внешний аккумулятор.","Дайте короткое указание проверить индикатор."],"uk":["Скажіть другові зарядити телефон.","Скажіть другові зарядити зовнішній акумулятор.","Дайте коротку вказівку перевірити індикатор."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для указания начните с `Charge`, без `to`.","Здесь нужно `Charge`, без `s`."],["Для указания нужно Charge, без s.","Начните с Charge, без to."],["Для указания нужно Check, без s.","Начните с Check, без to."]],"uk":[["Для вказівки почніть із `Charge`, без `to`.","Тут потрібне `Charge`, без `s`."],["Для вказівки потрібне Charge, без s.","Почніть із Charge, без to."],["Для вказівки потрібне Check, без s.","Почніть із Check, без to."]]}),
@@ -5879,7 +5879,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 28,
-    sourceFingerprint: "c97582dfabccde17ef62d1f468f41e6cd6c18b51ba75735be9d6cfb5270df65a",
+    sourceFingerprint: "f52c0532ff758ba45efef9459eb188ace594260c38e4854e5df8c5e73bf7c670",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите другу отогнуть манжету.","Скажите другу сложить бумагу по линии сгиба.","Скажите подруге проверить подгибку."],"uk":["Скажіть другові відігнути манжету.","Скажіть другові скласти папір по лінії згину.","Скажіть подрузі перевірити підгин."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для указания нужно Fold, без s.","Начните с Fold, без to."],["Для указания нужно Fold, без s.","Начните с Fold, без to."],["Для указания нужно Check, без s.","Начните с Check, без to."]],"uk":[["Для вказівки потрібне Fold, без s.","Почніть із Fold, без to."],["Для вказівки потрібне Fold, без s.","Почніть із Fold, без to."],["Для вказівки потрібне Check, без s.","Почніть із Check, без to."]]}),
@@ -5893,7 +5893,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 29,
-    sourceFingerprint: "3be9b322d752f3305fcfdc37a57f7e321e154b70bedcd7d6f3ceec4b45e2e5e4",
+    sourceFingerprint: "25ea71031e6db687e23da02de86637b4d7339a4e74136a584d52450afa32b874",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите другу измерить стол.","Скажите другу измерить ширину окна.","Скажите другу измерить высоту дверного проёма."],"uk":["Скажіть другові виміряти стіл.","Скажіть другові виміряти ширину вікна.","Скажіть другові виміряти висоту дверного прорізу."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для указания начните с `Measure`, без `to`.","Нужно `Measure`, без `s`."],["Для указания нужно Measure, без s.","Начните с Measure, без to."],["Для указания нужно Measure, без s.","Начните с Measure, без to."]],"uk":[["Для вказівки почніть із `Measure`, без `to`.","Потрібне `Measure`, без `s`."],["Для вказівки потрібне Measure, без s.","Почніть із Measure, без to."],["Для вказівки потрібне Measure, без s.","Почніть із Measure, без to."]]}),
@@ -5907,7 +5907,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 30,
-    sourceFingerprint: "ccc1ac9e143e5b7c249fcc5726e8f1ad25cfafc297c61995b2bb7a445e3ca77c",
+    sourceFingerprint: "e381f5aa6ae3f6f04637cbfaeee340f811457884666a2729db36b68398833b07",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите другу проверить содержимое.","Скажите другу проверить место назначения.","Скажите другу проверить стоимость пересылки."],"uk":["Скажіть другові перевірити вміст.","Скажіть другові перевірити місце призначення.","Скажіть другові перевірити вартість пересилання."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для указания нужно Check, без s.","Начните с Check, без to."],["Для указания нужно Check, без s.","Начните с Check, без to."],["Для указания нужно Check, без s.","Начните с Check, без to."]],"uk":[["Для вказівки потрібне Check, без s.","Почніть з Check, без to."],["Для вказівки потрібне Check, без s.","Почніть з Check, без to."],["Для вказівки потрібне Check, без s.","Почніть з Check, без to."]]}),
@@ -5935,7 +5935,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 32,
-    sourceFingerprint: "3175c96001c91fe99942f58f8d7ed433d0b2593b24f4c0212d0c329e5c3962f6",
+    sourceFingerprint: "073202a80a6a53b828f58e81dd29519f27e997b6446f9df8d22451647160827e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите другу прикрепить именную карточку.","Покажите на ламинатор и скажите «Включи его в розетку».","Скажите другу использовать упаковочный скотч."],"uk":["Скажіть другові прикріпити іменну картку.","Покажіть на ламінатор і скажіть «Увімкни його в розетку».","Скажіть другові використати пакувальний скотч."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для указания нужна начальная форма без s/es.","Для указания не нужно to."],["С it нужен порядок Plug it in.","Для указания нужно Plug, без s."],["Для указания нужна начальная форма без s/es.","Для указания не нужно to."]],"uk":[["Для вказівки потрібна початкова форма без s/es.","Для вказівки не потрібне to."],["З it потрібен порядок Plug it in.","Для вказівки потрібне Plug, без s."],["Для вказівки потрібна початкова форма без s/es.","Для вказівки не потрібне to."]]}),
@@ -5963,7 +5963,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 34,
-    sourceFingerprint: "03285f9d4cf7caf9df781426514246f4805acf8762b7c8d79a086a8b6768b9be",
+    sourceFingerprint: "820334035e0ceecc3f99de1b206b3faa2d6da38df37382aa40924f9b52853cee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Вежливо попросите соведущего не перебивать.","Скажите другу: «Не выхватывай его».","Вежливо попросите не высмеивать вас."],"uk":["Ввічливо попросіть співведучого не перебивати.","Скажіть другові: «Не вихоплюй його».","Ввічливо попросіть не висміювати вас."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -5977,7 +5977,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 35,
-    sourceFingerprint: "ca3a1f5bc201376fc0ce637ef89d9ef41bb4ede972697d499c6935bad1a46cd8",
+    sourceFingerprint: "a233c65fd490d461f672e3e15367543e9bfef0f9749e617f60c8a9b68eadb8aa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Предупредите друга: «Не пролей это».","Вежливо попросите не брызгать на вас.","Скажите другу не замачивать сумку."],"uk":["Попередьте друга: «Не пролий це».","Ввічливо попросіть не бризкати на вас.","Скажіть другові не замочувати сумку."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -5991,7 +5991,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 36,
-    sourceFingerprint: "834108b56f3f1eb23a77429ebce647e4278a4378e3b749571e7b0344286ba790",
+    sourceFingerprint: "08a4fab4416a7d472941bd8c6a665eea2a8c1e5334cf73f79e825423dc36dd46",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Предупредите друга: «Не поцарапай её».","Скажите другу не помять бутылку.","Предупредите друга не отколоть кусочек от чашки."],"uk":["Попередьте друга: «Не подряпай її».","Скажіть другові не пом’яти пляшку.","Попередьте друга не відколоти шматочок від чашки."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -6005,7 +6005,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 37,
-    sourceFingerprint: "1d8dff825e9c666d9d392d4d65c42fcbefc1d502438b0765298bbdfc706fe18b",
+    sourceFingerprint: "50c7d1caf9f06c9f004debbcfcd4a6d2592f5f343d7327aba4f3e6f6df247023",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Предупредите друга не сгибать линейку.","Скажите другу не мять сертификат.","Скажите другу не перекручивать провод."],"uk":["Попередьте друга не згинати лінійку.","Скажіть другові не м’яти сертифікат.","Скажіть другові не перекручувати дріт."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -6019,7 +6019,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 38,
-    sourceFingerprint: "8e1a79b19888f18d8d46d93bcb3d42dca2f67910d2b9a078631d1650f52ca9c5",
+    sourceFingerprint: "82782c41a58a18b19a14817ad4e9f009fc3546c32e7cc36f6b885620f2ca5f49",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Успокойте друга словами «Не паникуй».","Поддержите друга: «Не медли» — используйте hesitate.","Скажите другу не угадывать."],"uk":["Заспокойте друга словами «Не панікуй».","Підтримайте друга: «Не вагайся» — використайте hesitate.","Скажіть другові не вгадувати."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -6033,7 +6033,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 39,
-    sourceFingerprint: "c2def65d541a3b258a0769e654cff3fea979793fbf6b24ad4de5806ec4e6659c",
+    sourceFingerprint: "76941ec92343a2240fc394d67a4b3f2dcf49a8b47d4e14520ab24664ddba121f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите другу не толкаться.","Скажите другу не загораживать выход.","Скажите другу не тащить стул по полу."],"uk":["Скажіть другові не штовхатися.","Скажіть другові не загороджувати вихід.","Скажіть другові не тягти стілець по підлозі."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -6047,7 +6047,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 40,
-    sourceFingerprint: "3a77443092d8db64c54b94508ed955da061e6ea1721f0af33f33c88af0de5420",
+    sourceFingerprint: "52bfeae3d2611c1a16f40c9fbaf4a7064a3ff988067d5118278c22a3183cb65d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите просьбу для этой ситуации.","Выберите просьбу для этой ситуации.","Выберите просьбу для этой ситуации."],"uk":["Виберіть прохання для цієї ситуації.","Виберіть прохання для цієї ситуації.","Виберіть прохання для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."],["После don’t нужна форма без s/es.","После don’t не нужно to."]],"uk":[["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."],["Після don’t потрібна форма без s/es.","Після don’t не потрібне to."]]}),
@@ -6061,7 +6061,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 41,
-    sourceFingerprint: "706ff2788004243dc56881d738a6268a5a24dc268a7e4fced960f0e5ce78661f",
+    sourceFingerprint: "3c0781769e40143fe03160fc70f509b06f8b02f21e1a77312162e675ff898d30",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу о соответствующем умении.","Выберите фразу о соответствующем умении.","Выберите фразу о соответствующем умении."],"uk":["Виберіть фразу про відповідне вміння.","Виберіть фразу про відповідне вміння.","Виберіть фразу про відповідне вміння."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can нужна форма без s."],["После can не нужно to.","После can нужна форма без s."],["После can не нужно to.","После can нужна форма без s."]],"uk":[["Після can не потрібне to.","Після can потрібна форма без s."],["Після can не потрібне to.","Після can потрібна форма без s."],["Після can не потрібне to.","Після can потрібна форма без s."]]}),

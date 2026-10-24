@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-26",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-26:word:plug",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — plug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:plug:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — plug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:plug:audio",
+            "transcript": "plug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:plug:r1",
+              "targetText": "plug",
+              "meaningByLocale": {
+                "ru": "подключать вилкой к розетке; используется с in. Plug it in. — «Включи её в розетку». Здесь it — лампа; it ставится между plug и in.",
+                "uk": "підключати вилкою до розетки; вживається з in. Plug it in. — «Увімкни її в розетку». Тут it — лампа; it стоїть між plug та in."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plug",
+            "definitionByLocale": {
+              "ru": "подключать вилкой к розетке; используется с in. Plug it in. — «Включи её в розетку». Здесь it — лампа; it ставится между plug и in.",
+              "uk": "підключати вилкою до розетки; вживається з in. Plug it in. — «Увімкни її в розетку». Тут it — лампа; it стоїть між plug та in."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте указание «Включи её в розетку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте указание «Включи её в розетку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Plug it in.",
+          "localizedMeaning": {
+            "ru": "Дайте указание «Включи её в розетку»",
+            "uk": "Дайте вказівку «Увімкни її в розетку»"
+          },
+          "orderedTokens": [
+            "Plug",
+            "it",
+            "in"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i02:r1",
+            "text": "plug"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i02:r2",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i02:r3",
+            "text": "jog"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i02:audio",
+            "transcript": "plug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:i02:r1",
+              "targetText": "plug",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i02:r2",
+              "targetText": "pass",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i02:r3",
+              "targetText": "jog",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `plug`, а в этом варианте — `pass`.",
+                "uk": "У записі перше слово — `plug`, а в цьому варіанті — `pass`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `plug`, а в этом варианте — `jog`.",
+                "uk": "У записі перше слово — `plug`, а в цьому варіанті — `jog`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указания подключить лампу к розетке",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i03:r1",
+            "text": "Plug"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i03:r2",
+            "text": "Plugs"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i03:r3",
+            "text": "To plug"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указания подключить лампу к розетке",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указания подключить лампу к розетке",
+            "uk": "Виберіть форму для вказівки підключити лампу до розетки"
+          },
+          "gappedTargetPhrase": "___ it in.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-26:i03:r1",
+              "text": "Plug"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i03:r2",
+              "text": "Plugs"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i03:r3",
+              "text": "To plug"
+            }
+          ],
+          "testedDimension": "Выберите форму для указания подключить лампу к розетке",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указания подключить лампу к розетке",
+              "feedbackByLocale": {
+                "ru": "Для указания нужно Plug, без s.",
+                "uk": "Для вказівки потрібне Plug, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указания подключить лампу к розетке",
+              "feedbackByLocale": {
+                "ru": "Начните с Plug, без to.",
+                "uk": "Почніть з Plug, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-26:i04:p1",
+              "target": "plug in",
+              "meaningByLocale": {
+                "ru": "подключить к розетке",
+                "uk": "підключити до розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i04:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i04:p3",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i04:p4",
+              "target": "cable",
+              "meaningByLocale": {
+                "ru": "кабель",
+                "uk": "кабель"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plug in",
+            "lamp",
+            "socket",
+            "cable"
+          ],
+          "rightColumn": [
+            "подключить к розетке",
+            "лампа",
+            "розетка",
+            "кабель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i05:audio",
+            "transcript": "Plug it in."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Plug it in.",
+          "orderedTokens": [
+            "Plug",
+            "it",
+            "in"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:word:humidifier",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — humidifier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:humidifier:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — humidifier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:humidifier:audio",
+            "transcript": "humidifier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:humidifier:r1",
+              "targetText": "humidifier",
+              "meaningByLocale": {
+                "ru": "увлажнитель воздуха. Plug in the humidifier. — «Включи увлажнитель в розетку». Прибор, который повышает влажность воздуха.",
+                "uk": "зволожувач повітря. Plug in the humidifier. — «Увімкни зволожувач у розетку». Прилад, що підвищує вологість повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humidifier",
+            "definitionByLocale": {
+              "ru": "увлажнитель воздуха. Plug in the humidifier. — «Включи увлажнитель в розетку». Прибор, который повышает влажность воздуха.",
+              "uk": "зволожувач повітря. Plug in the humidifier. — «Увімкни зволожувач у розетку». Прилад, що підвищує вологість повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте указание «Включи увлажнитель в розетку». Начните с Plug in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте указание «Включи увлажнитель в розетку». Начните с Plug in",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Plug in the humidifier.",
+          "localizedMeaning": {
+            "ru": "Дайте указание «Включи увлажнитель в розетку». Начните с Plug in",
+            "uk": "Дайте вказівку «Увімкни зволожувач у розетку». Почніть із Plug in"
+          },
+          "orderedTokens": [
+            "Plug",
+            "in",
+            "the",
+            "humidifier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:word:shredder",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — shredder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:shredder:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — shredder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:shredder:audio",
+            "transcript": "shredder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:shredder:r1",
+              "targetText": "shredder",
+              "meaningByLocale": {
+                "ru": "уничтожитель бумаг. Turn on the shredder. — «Включи уничтожитель бумаг». Прибор режет бумагу на мелкие части; turn on — включить.",
+                "uk": "знищувач паперів. Turn on the shredder. — «Увімкни знищувач паперів». Прилад ріже папір на дрібні частини; turn on — увімкнути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shredder",
+            "definitionByLocale": {
+              "ru": "уничтожитель бумаг. Turn on the shredder. — «Включи уничтожитель бумаг». Прибор режет бумагу на мелкие части; turn on — включить.",
+              "uk": "знищувач паперів. Turn on the shredder. — «Увімкни знищувач паперів». Прилад ріже папір на дрібні частини; turn on — увімкнути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Прибор уже подключён. Скажите «Включи уничтожитель бумаг»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Прибор уже подключён. Скажите «Включи уничтожитель бумаг»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i07:audio",
+            "transcript": "Turn on the shredder."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Turn on the shredder.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для указания включить уничтожитель бумаг",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i08:r1",
+            "text": "Turn"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i08:r2",
+            "text": "Turns"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i08:r3",
+            "text": "To turn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для указания включить уничтожитель бумаг",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указания включить уничтожитель бумаг",
+            "uk": "Виберіть форму для вказівки ввімкнути знищувач паперів"
+          },
+          "gappedTargetPhrase": "___ on the shredder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-26:i08:r1",
+              "text": "Turn"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i08:r2",
+              "text": "Turns"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i08:r3",
+              "text": "To turn"
+            }
+          ],
+          "testedDimension": "Выберите форму для указания включить уничтожитель бумаг",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для указания включить уничтожитель бумаг",
+              "feedbackByLocale": {
+                "ru": "Для указания нужно Turn, без s.",
+                "uk": "Для вказівки потрібне Turn, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для указания включить уничтожитель бумаг",
+              "feedbackByLocale": {
+                "ru": "Начните с Turn, без to.",
+                "uk": "Почніть з Turn, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i09:r1",
+            "text": "Plug it in."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i09:r2",
+            "text": "Put it in."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i09:r3",
+            "text": "Take it in."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i09:audio",
+            "transcript": "Plug it in."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:i09:r1",
+              "targetText": "Plug it in.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i09:r2",
+              "targetText": "Put it in.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i09:r3",
+              "targetText": "Take it in.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Plug`, а в этом варианте — `Put`.",
+                "uk": "У записі перше слово — `Plug`, а в цьому варіанті — `Put`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Plug`, а в этом варианте — `Take`.",
+                "uk": "У записі перше слово — `Plug`, а в цьому варіанті — `Take`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-26:i10:p1",
+              "target": "plug in",
+              "meaningByLocale": {
+                "ru": "подключить к розетке",
+                "uk": "підключити до розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i10:p2",
+              "target": "humidifier",
+              "meaningByLocale": {
+                "ru": "увлажнитель воздуха",
+                "uk": "зволожувач повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i10:p3",
+              "target": "shredder",
+              "meaningByLocale": {
+                "ru": "уничтожитель бумаг",
+                "uk": "знищувач паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i10:p4",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plug in",
+            "humidifier",
+            "shredder",
+            "socket"
+          ],
+          "rightColumn": [
+            "подключить к розетке",
+            "увлажнитель воздуха",
+            "уничтожитель бумаг",
+            "розетка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу в том порядке, как она звучит",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу в том порядке, как она звучит",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i11:audio",
+            "transcript": "Turn on the shredder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Turn on the shredder.",
+          "orderedTokens": [
+            "Turn",
+            "on",
+            "the",
+            "shredder"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:word:extension-lead",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — extension lead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:extension-lead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — extension lead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:extension-lead:audio",
+            "transcript": "extension lead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:extension-lead:r1",
+              "targetText": "extension lead",
+              "meaningByLocale": {
+                "ru": "удлинитель. Can you pass me the extension lead? — «Можешь передать мне удлинитель?» Британское название электрического удлинителя; в американском английском — extension cord.",
+                "uk": "подовжувач. Can you pass me the extension lead? — «Можеш передати мені подовжувач?» Британська назва електричного подовжувача; в американській англійській — extension cord."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "extension lead",
+            "definitionByLocale": {
+              "ru": "удлинитель. Can you pass me the extension lead? — «Можешь передать мне удлинитель?» Британское название электрического удлинителя; в американском английском — extension cord.",
+              "uk": "подовжувач. Can you pass me the extension lead? — «Можеш передати мені подовжувач?» Британська назва електричного подовжувача; в американській англійській — extension cord."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Удлинитель лежит возле друга. Попросите «Можешь передать мне удлинитель?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Удлинитель лежит возле друга. Попросите «Можешь передать мне удлинитель?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the extension lead?",
+          "localizedMeaning": {
+            "ru": "Удлинитель лежит возле друга. Попросите «Можешь передать мне удлинитель?»",
+            "uk": "Подовжувач лежить біля друга. Попросіть «Можеш передати мені подовжувач?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "extension",
+            "lead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Коллега спрашивает, можете ли вы подготовить прибор. Скажите «Я могу включить уничтожитель бумаг»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Коллега спрашивает, можете ли вы подготовить прибор. Скажите «Я могу включить уничтожитель бумаг»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i13:audio",
+            "transcript": "I can turn on the shredder."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can turn on the shredder.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для просьбы передать удлинитель",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i14:r1",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i14:r2",
+            "text": "passes"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i14:r3",
+            "text": "to pass"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для просьбы передать удлинитель",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы передать удлинитель",
+            "uk": "Виберіть форму для прохання передати подовжувач"
+          },
+          "gappedTargetPhrase": "Can you ___ me the extension lead?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-26:i14:r1",
+              "text": "pass"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i14:r2",
+              "text": "passes"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i14:r3",
+              "text": "to pass"
+            }
+          ],
+          "testedDimension": "Выберите форму для просьбы передать удлинитель",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы передать удлинитель",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без es.",
+                "uk": "Після can потрібне pass, без es."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для просьбы передать удлинитель",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без to.",
+                "uk": "Після can потрібне pass, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i15:r1",
+            "text": "Plug in the humidifier."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i15:r2",
+            "text": "Plug in the printer."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i15:r3",
+            "text": "Plug in the lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i15:audio",
+            "transcript": "Plug in the humidifier."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:i15:r1",
+              "targetText": "Plug in the humidifier.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i15:r2",
+              "targetText": "Plug in the printer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i15:r3",
+              "targetText": "Plug in the lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи humidifier — «увлажнитель», а не printer — «принтер».",
+                "uk": "У записі humidifier — «зволожувач», а не printer — «принтер»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи humidifier, а не lamp — «лампа».",
+                "uk": "У записі humidifier, а не lamp — «лампа»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-26:i16:p1",
+              "target": "plug in",
+              "meaningByLocale": {
+                "ru": "подключить к розетке",
+                "uk": "підключити до розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i16:p2",
+              "target": "humidifier",
+              "meaningByLocale": {
+                "ru": "увлажнитель воздуха",
+                "uk": "зволожувач повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i16:p3",
+              "target": "shredder",
+              "meaningByLocale": {
+                "ru": "уничтожитель бумаг",
+                "uk": "знищувач паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i16:p4",
+              "target": "extension lead",
+              "meaningByLocale": {
+                "ru": "удлинитель",
+                "uk": "подовжувач"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plug in",
+            "humidifier",
+            "shredder",
+            "extension lead"
+          ],
+          "rightColumn": [
+            "подключить к розетке",
+            "увлажнитель воздуха",
+            "уничтожитель бумаг",
+            "удлинитель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг поставил принтер на стол. Вилка лежит возле розетки. Дайте короткое указание «Включи его в розетку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Друг поставил принтер на стол. Вилка лежит возле розетки. Дайте короткое указание «Включи его в розетку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i17:audio",
+            "transcript": "Plug it in."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Plug it in.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-26:word:plug",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — plug",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:plug:audio"
+        ],
+        "accessibilityLabel": "Картка слова — plug",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:plug:audio",
+            "transcript": "plug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:plug:r1",
+              "targetText": "plug",
+              "meaningByLocale": {
+                "ru": "подключать вилкой к розетке; используется с in. Plug it in. — «Включи её в розетку». Здесь it — лампа; it ставится между plug и in.",
+                "uk": "підключати вилкою до розетки; вживається з in. Plug it in. — «Увімкни її в розетку». Тут it — лампа; it стоїть між plug та in."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "plug",
+            "definitionByLocale": {
+              "ru": "подключать вилкой к розетке; используется с in. Plug it in. — «Включи её в розетку». Здесь it — лампа; it ставится между plug и in.",
+              "uk": "підключати вилкою до розетки; вживається з in. Plug it in. — «Увімкни її в розетку». Тут it — лампа; it стоїть між plug та in."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте вказівку «Увімкни її в розетку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте вказівку «Увімкни її в розетку»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Plug it in.",
+          "localizedMeaning": {
+            "ru": "Дайте указание «Включи её в розетку»",
+            "uk": "Дайте вказівку «Увімкни її в розетку»"
+          },
+          "orderedTokens": [
+            "Plug",
+            "it",
+            "in"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i02:r1",
+            "text": "plug"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i02:r2",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i02:r3",
+            "text": "jog"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i02:audio",
+            "transcript": "plug"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:i02:r1",
+              "targetText": "plug",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i02:r2",
+              "targetText": "pass",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i02:r3",
+              "targetText": "jog",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `plug`, а в этом варианте — `pass`.",
+                "uk": "У записі перше слово — `plug`, а в цьому варіанті — `pass`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `plug`, а в этом варианте — `jog`.",
+                "uk": "У записі перше слово — `plug`, а в цьому варіанті — `jog`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказівки підключити лампу до розетки",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i03:r1",
+            "text": "Plug"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i03:r2",
+            "text": "Plugs"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i03:r3",
+            "text": "To plug"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказівки підключити лампу до розетки",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указания подключить лампу к розетке",
+            "uk": "Виберіть форму для вказівки підключити лампу до розетки"
+          },
+          "gappedTargetPhrase": "___ it in.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-26:i03:r1",
+              "text": "Plug"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i03:r2",
+              "text": "Plugs"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i03:r3",
+              "text": "To plug"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказівки підключити лампу до розетки",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказівки підключити лампу до розетки",
+              "feedbackByLocale": {
+                "ru": "Для указания нужно Plug, без s.",
+                "uk": "Для вказівки потрібне Plug, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказівки підключити лампу до розетки",
+              "feedbackByLocale": {
+                "ru": "Начните с Plug, без to.",
+                "uk": "Почніть з Plug, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-26:i04:p1",
+              "target": "plug in",
+              "meaningByLocale": {
+                "ru": "подключить к розетке",
+                "uk": "підключити до розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i04:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i04:p3",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i04:p4",
+              "target": "cable",
+              "meaningByLocale": {
+                "ru": "кабель",
+                "uk": "кабель"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plug in",
+            "lamp",
+            "socket",
+            "cable"
+          ],
+          "rightColumn": [
+            "підключити до розетки",
+            "лампа",
+            "розетка",
+            "кабель"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i05:audio",
+            "transcript": "Plug it in."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Plug it in.",
+          "orderedTokens": [
+            "Plug",
+            "it",
+            "in"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:word:humidifier",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — humidifier",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:humidifier:audio"
+        ],
+        "accessibilityLabel": "Картка слова — humidifier",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:humidifier:audio",
+            "transcript": "humidifier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:humidifier:r1",
+              "targetText": "humidifier",
+              "meaningByLocale": {
+                "ru": "увлажнитель воздуха. Plug in the humidifier. — «Включи увлажнитель в розетку». Прибор, который повышает влажность воздуха.",
+                "uk": "зволожувач повітря. Plug in the humidifier. — «Увімкни зволожувач у розетку». Прилад, що підвищує вологість повітря."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "humidifier",
+            "definitionByLocale": {
+              "ru": "увлажнитель воздуха. Plug in the humidifier. — «Включи увлажнитель в розетку». Прибор, который повышает влажность воздуха.",
+              "uk": "зволожувач повітря. Plug in the humidifier. — «Увімкни зволожувач у розетку». Прилад, що підвищує вологість повітря."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Дайте вказівку «Увімкни зволожувач у розетку». Почніть із Plug in",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Дайте вказівку «Увімкни зволожувач у розетку». Почніть із Plug in",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Plug in the humidifier.",
+          "localizedMeaning": {
+            "ru": "Дайте указание «Включи увлажнитель в розетку». Начните с Plug in",
+            "uk": "Дайте вказівку «Увімкни зволожувач у розетку». Почніть із Plug in"
+          },
+          "orderedTokens": [
+            "Plug",
+            "in",
+            "the",
+            "humidifier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:word:shredder",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — shredder",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:shredder:audio"
+        ],
+        "accessibilityLabel": "Картка слова — shredder",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:shredder:audio",
+            "transcript": "shredder"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:shredder:r1",
+              "targetText": "shredder",
+              "meaningByLocale": {
+                "ru": "уничтожитель бумаг. Turn on the shredder. — «Включи уничтожитель бумаг». Прибор режет бумагу на мелкие части; turn on — включить.",
+                "uk": "знищувач паперів. Turn on the shredder. — «Увімкни знищувач паперів». Прилад ріже папір на дрібні частини; turn on — увімкнути."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shredder",
+            "definitionByLocale": {
+              "ru": "уничтожитель бумаг. Turn on the shredder. — «Включи уничтожитель бумаг». Прибор режет бумагу на мелкие части; turn on — включить.",
+              "uk": "знищувач паперів. Turn on the shredder. — «Увімкни знищувач паперів». Прилад ріже папір на дрібні частини; turn on — увімкнути."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Прилад уже підключений. Скажіть «Увімкни знищувач паперів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i07:audio"
+        ],
+        "accessibilityLabel": "Прилад уже підключений. Скажіть «Увімкни знищувач паперів»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i07:audio",
+            "transcript": "Turn on the shredder."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Turn on the shredder.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для вказівки ввімкнути знищувач паперів",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i08:r1",
+            "text": "Turn"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i08:r2",
+            "text": "Turns"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i08:r3",
+            "text": "To turn"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для вказівки ввімкнути знищувач паперів",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для указания включить уничтожитель бумаг",
+            "uk": "Виберіть форму для вказівки ввімкнути знищувач паперів"
+          },
+          "gappedTargetPhrase": "___ on the shredder.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-26:i08:r1",
+              "text": "Turn"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i08:r2",
+              "text": "Turns"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i08:r3",
+              "text": "To turn"
+            }
+          ],
+          "testedDimension": "Виберіть форму для вказівки ввімкнути знищувач паперів",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказівки ввімкнути знищувач паперів",
+              "feedbackByLocale": {
+                "ru": "Для указания нужно Turn, без s.",
+                "uk": "Для вказівки потрібне Turn, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для вказівки ввімкнути знищувач паперів",
+              "feedbackByLocale": {
+                "ru": "Начните с Turn, без to.",
+                "uk": "Почніть з Turn, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i09:r1",
+            "text": "Plug it in."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i09:r2",
+            "text": "Put it in."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i09:r3",
+            "text": "Take it in."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i09:audio",
+            "transcript": "Plug it in."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:i09:r1",
+              "targetText": "Plug it in.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i09:r2",
+              "targetText": "Put it in.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i09:r3",
+              "targetText": "Take it in.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Plug`, а в этом варианте — `Put`.",
+                "uk": "У записі перше слово — `Plug`, а в цьому варіанті — `Put`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `Plug`, а в этом варианте — `Take`.",
+                "uk": "У записі перше слово — `Plug`, а в цьому варіанті — `Take`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-26:i10:p1",
+              "target": "plug in",
+              "meaningByLocale": {
+                "ru": "подключить к розетке",
+                "uk": "підключити до розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i10:p2",
+              "target": "humidifier",
+              "meaningByLocale": {
+                "ru": "увлажнитель воздуха",
+                "uk": "зволожувач повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i10:p3",
+              "target": "shredder",
+              "meaningByLocale": {
+                "ru": "уничтожитель бумаг",
+                "uk": "знищувач паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i10:p4",
+              "target": "socket",
+              "meaningByLocale": {
+                "ru": "розетка",
+                "uk": "розетка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plug in",
+            "humidifier",
+            "shredder",
+            "socket"
+          ],
+          "rightColumn": [
+            "підключити до розетки",
+            "зволожувач повітря",
+            "знищувач паперів",
+            "розетка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу в тому порядку, як вона звучить",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу в тому порядку, як вона звучить",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i11:audio",
+            "transcript": "Turn on the shredder."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Turn on the shredder.",
+          "orderedTokens": [
+            "Turn",
+            "on",
+            "the",
+            "shredder"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:word:extension-lead",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — extension lead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:word:extension-lead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — extension lead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:word:extension-lead:audio",
+            "transcript": "extension lead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:word:extension-lead:r1",
+              "targetText": "extension lead",
+              "meaningByLocale": {
+                "ru": "удлинитель. Can you pass me the extension lead? — «Можешь передать мне удлинитель?» Британское название электрического удлинителя; в американском английском — extension cord.",
+                "uk": "подовжувач. Can you pass me the extension lead? — «Можеш передати мені подовжувач?» Британська назва електричного подовжувача; в американській англійській — extension cord."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "extension lead",
+            "definitionByLocale": {
+              "ru": "удлинитель. Can you pass me the extension lead? — «Можешь передать мне удлинитель?» Британское название электрического удлинителя; в американском английском — extension cord.",
+              "uk": "подовжувач. Can you pass me the extension lead? — «Можеш передати мені подовжувач?» Британська назва електричного подовжувача; в американській англійській — extension cord."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Подовжувач лежить біля друга. Попросіть «Можеш передати мені подовжувач?»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Подовжувач лежить біля друга. Попросіть «Можеш передати мені подовжувач?»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you pass me the extension lead?",
+          "localizedMeaning": {
+            "ru": "Удлинитель лежит возле друга. Попросите «Можешь передать мне удлинитель?»",
+            "uk": "Подовжувач лежить біля друга. Попросіть «Можеш передати мені подовжувач?»"
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "pass",
+            "me",
+            "the",
+            "extension",
+            "lead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Колега запитує, чи можете ви підготувати прилад. Скажіть «Я можу ввімкнути знищувач паперів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i13:audio"
+        ],
+        "accessibilityLabel": "Колега запитує, чи можете ви підготувати прилад. Скажіть «Я можу ввімкнути знищувач паперів»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i13:audio",
+            "transcript": "I can turn on the shredder."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can turn on the shredder.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для прохання передати подовжувач",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i14:r1",
+            "text": "pass"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i14:r2",
+            "text": "passes"
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i14:r3",
+            "text": "to pass"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для прохання передати подовжувач",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для просьбы передать удлинитель",
+            "uk": "Виберіть форму для прохання передати подовжувач"
+          },
+          "gappedTargetPhrase": "Can you ___ me the extension lead?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-26:i14:r1",
+              "text": "pass"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i14:r2",
+              "text": "passes"
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i14:r3",
+              "text": "to pass"
+            }
+          ],
+          "testedDimension": "Виберіть форму для прохання передати подовжувач",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання передати подовжувач",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без es.",
+                "uk": "Після can потрібне pass, без es."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для прохання передати подовжувач",
+              "feedbackByLocale": {
+                "ru": "После can нужно pass, без to.",
+                "uk": "Після can потрібне pass, без to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-26:i15:r1",
+            "text": "Plug in the humidifier."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i15:r2",
+            "text": "Plug in the printer."
+          },
+          {
+            "responseId": "en:lesson-08:session-26:i15:r3",
+            "text": "Plug in the lamp."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i15:audio",
+            "transcript": "Plug in the humidifier."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-26:i15:r1",
+              "targetText": "Plug in the humidifier.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i15:r2",
+              "targetText": "Plug in the printer.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i15:r3",
+              "targetText": "Plug in the lamp.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-26:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи humidifier — «увлажнитель», а не printer — «принтер».",
+                "uk": "У записі humidifier — «зволожувач», а не printer — «принтер»."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-26:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи humidifier, а не lamp — «лампа».",
+                "uk": "У записі humidifier, а не lamp — «лампа»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-26:i16:p1",
+              "target": "plug in",
+              "meaningByLocale": {
+                "ru": "подключить к розетке",
+                "uk": "підключити до розетки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i16:p2",
+              "target": "humidifier",
+              "meaningByLocale": {
+                "ru": "увлажнитель воздуха",
+                "uk": "зволожувач повітря"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i16:p3",
+              "target": "shredder",
+              "meaningByLocale": {
+                "ru": "уничтожитель бумаг",
+                "uk": "знищувач паперів"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-26:i16:p4",
+              "target": "extension lead",
+              "meaningByLocale": {
+                "ru": "удлинитель",
+                "uk": "подовжувач"
+              }
+            }
+          ],
+          "leftColumn": [
+            "plug in",
+            "humidifier",
+            "shredder",
+            "extension lead"
+          ],
+          "rightColumn": [
+            "підключити до розетки",
+            "зволожувач повітря",
+            "знищувач паперів",
+            "подовжувач"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-26:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Друг поставив принтер на стіл. Вилка лежить біля розетки. Дайте коротку вказівку «Увімкни його в розетку»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-26:i17:audio"
+        ],
+        "accessibilityLabel": "Друг поставив принтер на стіл. Вилка лежить біля розетки. Дайте коротку вказівку «Увімкни його в розетку»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-26:i17:audio",
+            "transcript": "Plug it in."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Plug it in.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-26:word:plug",
+      "correctText": "plug",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i01",
+      "correctText": "Plug it in.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i02",
+      "correctText": "plug",
+      "correctResponseId": "en:lesson-08:session-26:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i03",
+      "correctText": "Plug",
+      "correctResponseId": "en:lesson-08:session-26:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i05",
+      "correctText": "Plug it in.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:word:humidifier",
+      "correctText": "humidifier",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i06",
+      "correctText": "Plug in the humidifier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:word:shredder",
+      "correctText": "shredder",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i07",
+      "correctText": "Turn on the shredder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i08",
+      "correctText": "Turn",
+      "correctResponseId": "en:lesson-08:session-26:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i09",
+      "correctText": "Plug it in.",
+      "correctResponseId": "en:lesson-08:session-26:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i11",
+      "correctText": "Turn on the shredder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:word:extension-lead",
+      "correctText": "extension lead",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i12",
+      "correctText": "Can you pass me the extension lead?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i13",
+      "correctText": "I can turn on the shredder.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i14",
+      "correctText": "pass",
+      "correctResponseId": "en:lesson-08:session-26:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i15",
+      "correctText": "Plug in the humidifier.",
+      "correctResponseId": "en:lesson-08:session-26:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-26:i17",
+      "correctText": "Plug it in.",
+      "correctResponseId": null
+    }
+  ]
+}

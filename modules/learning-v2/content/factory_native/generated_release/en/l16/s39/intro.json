@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Будет ли куртка защищать от ветра",
+        "uk": "Чи захищатиме куртка від вітру"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. windproof — не пропускающий ветер. Вы пока не получили новую куртку и предполагаете, что она защитит от ветра. I think the new jacket will be windproof. — Думаю, новая куртка не будет пропускать ветер. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. windproof — такий, що не пропускає вітер. Ви поки не отримали нову куртку й припускаєте, що вона захистить від вітру. I think the new jacket will be windproof. — Думаю, нова куртка не пропускатиме вітер. Передайте думку-прогноз через will."
+        "ru": "Вы ждёте новую куртку и предполагаете, что она не будет пропускать ветер. Windproof — не пропускающий ветер. Передайте мнение: I think the new jacket will be windproof. Порядок: I think + the new jacket + will be + windproof. После will ставим be без to, затем свойство windproof. I think обозначает предположение, а не результат проверки куртки. Здесь тренируем will; другие формы могут подходить при другом акценте.",
+        "uk": "Ви чекаєте нову куртку й припускаєте, що вона не пропускатиме вітер. Windproof — той, що не пропускає вітер. Передайте думку: I think the new jacket will be windproof. Порядок: I think + the new jacket + will be + windproof. Після will ставимо be без to, потім властивість windproof. I think позначає припущення, а не результат перевірки куртки. Тут тренуємо will; інші форми можуть підходити за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-39:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Выбрать вместительный рюкзак",
+        "uk": "Обрати місткий рюкзак"
       },
       "bodyByLocale": {
-        "ru": "breathable — дышащий, пропускающий воздух — о материале. roomy — вместительный, с большим количеством места внутри. Вы решили выбрать рюкзак, в который поместятся все вещи; пока ещё не выбрали. I am going to choose a roomy backpack. — Я собираюсь выбрать вместительный рюкзак. Передайте заранее принятое намерение через going to.",
-        "uk": "breathable — дихаючий, такий, що пропускає повітря — про матеріал. roomy — місткий, з великою кількістю місця всередині. Ви вирішили вибрати рюкзак, у який умістяться всі речі; поки ще не вибрали. I am going to choose a roomy backpack. — Я збираюся вибрати місткий рюкзак. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили выбрать рюкзак, в который поместятся все вещи, но ещё не начали выбирать модель. Roomy — вместительный. Скажите о намерении: I am going to choose a roomy backpack. Соберите предложение: I + am going to + choose + a roomy backpack. С I используем am, после going to — choose в исходной форме. Roomy перед backpack описывает нужный рюкзак.",
+        "uk": "Ви вирішили обрати рюкзак, у який помістяться всі речі, але ще не почали обирати модель. Roomy — місткий. Скажіть про намір: I am going to choose a roomy backpack. Складіть речення: I + am going to + choose + a roomy backpack. З I використовуємо am, після going to — choose у початковій формі. Roomy перед backpack описує потрібний рюкзак."
       },
       "question": {
         "interactionId": "en:lesson-16:session-39:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Забрать палатку по договорённости",
+        "uk": "Забрати намет за домовленістю"
       },
       "bodyByLocale": {
-        "ru": "compact — компактный, занимающий мало места. Вы договорились с прокатом забрать компактную палатку завтра в назначенное время. We are collecting a compact tent tomorrow. — Мы забираем компактную палатку завтра. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "compact — компактний, що займає мало місця. Ви домовилися з прокатом забрати компактний намет завтра в призначений час. We are collecting a compact tent tomorrow. — Ми забираємо компактний намет завтра. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с другом договорились с прокатом завтра забрать компактную палатку. Compact — занимающий мало места. Передайте согласованный план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. С we ставим are, к collect добавляем -ing. Tomorrow и договорённость с прокатом показывают будущее значение Present Continuous.",
+        "uk": "Ви з другом домовилися з прокатом завтра забрати компактний намет. Compact — той, що займає мало місця. Передайте узгоджений план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. З we ставимо are, до collect додаємо -ing. Tomorrow та домовленість із прокатом показують майбутнє значення Present Continuous."
       },
       "question": {
         "interactionId": "en:lesson-16:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "08763bee7fb643c37f109b976f2f5d5b74909ec3c8799aaab336d3f55b3f1e1c"
+  "introFingerprint": "3e8ccb5c42a0c44443ec8862b2192ad67bff08e8dd1d9669f56e9701ef27ecc0"
 }

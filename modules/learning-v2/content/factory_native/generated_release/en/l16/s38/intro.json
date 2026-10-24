@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Прослужит ли сумка долго",
+        "uk": "Чи прослужить сумка довго"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. durable — долговечный, устойчивый к износу. Вы предполагаете, что новая сумка прослужит долго. I think the bag will be durable. — Думаю, сумка будет долговечной. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. durable — довговічний, стійкий до зношування. Ви припускаєте, що нова сумка служитиме довго. I think the bag will be durable. — Думаю, сумка буде довговічною. Передайте думку-прогноз через will."
+        "ru": "Вы выбираете новую сумку и предполагаете, что она выдержит долгое использование. Durable — долговечный, устойчивый к износу. Передайте мнение: I think the bag will be durable. Порядок: I think + the bag + will be + durable. После will ставим be без to, затем свойство durable. I think показывает предположение о сумке. Здесь упражняемся в will; другие формы могут подходить при другом акценте.",
+        "uk": "Ви обираєте нову сумку й припускаєте, що вона витримає тривале використання. Durable — довговічний, стійкий до зношування. Передайте думку: I think the bag will be durable. Порядок: I think + the bag + will be + durable. Після will ставимо be без to, потім властивість durable. I think показує припущення про сумку. Тут вправляємося у will; інші форми можуть підходити за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-38:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Намерение обойтись без одноразовой посуды",
+        "uk": "Намір обійтися без одноразового посуду"
       },
       "bodyByLocale": {
-        "ru": "lightweight — лёгкий по весу. disposable — одноразовый. Вы решили взять на пикник обычную посуду вместо одноразовой. Сообщите о намерении. I am going to avoid disposable plates. — Я собираюсь обходиться без одноразовых тарелок. Передайте заранее принятое намерение через going to.",
-        "uk": "lightweight — легкий за вагою. disposable — одноразовий. Ви вирішили взяти на пікнік звичайний посуд замість одноразового. Повідомте про намір. I am going to avoid disposable plates. — Я збираюся обходитися без одноразових тарілок. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили взять на пикник обычные тарелки и не использовать одноразовые. Disposable — одноразовый. Передайте намерение: I am going to avoid disposable plates. Соберите фразу: I + am going to + avoid + disposable plates. С I используем am, после going to — avoid в исходной форме. Disposable перед plates уточняет, каких тарелок вы намерены избегать.",
+        "uk": "Ви вирішили взяти на пікнік звичайні тарілки й не використовувати одноразові. Disposable — одноразовий. Передайте намір: I am going to avoid disposable plates. Складіть фразу: I + am going to + avoid + disposable plates. З I використовуємо am, після going to — avoid у початковій формі. Disposable перед plates уточнює, яких тарілок ви маєте намір уникати."
       },
       "question": {
         "interactionId": "en:lesson-16:session-38:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Покупка стульев назначена",
+        "uk": "Купівлю стільців призначено"
       },
       "bodyByLocale": {
-        "ru": "portable — переносной, удобный для переноса. Вы с другом договорились завтра встретиться в магазине и купить переносные стулья. We are buying portable chairs tomorrow. — Мы покупаем переносные стулья завтра. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "portable — переносний, зручний для перенесення. Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. We are buying portable chairs tomorrow. — Ми купуємо переносні стільці завтра. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с другом договорились завтра встретиться в магазине и купить переносные стулья. Portable — переносной. Передайте согласованный план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. С we ставим are, к buy добавляем -ing, сохраняя y: buying. Tomorrow и договорённость с другом показывают будущее значение Present Continuous.",
+        "uk": "Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Portable — переносний. Передайте узгоджений план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. З we ставимо are, до buy додаємо -ing, зберігаючи y: buying. Tomorrow та домовленість із другом показують майбутнє значення Present Continuous."
       },
       "question": {
         "interactionId": "en:lesson-16:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "342101f37a5e49bdc31008e0253716dc9e1d26a6a5289d7489b3a6045d5b98fd"
+  "introFingerprint": "a0238172f74d0eeeae3ac5eb8740f2a1ae731d78ca621f0e8d009e4581d2eb1f"
 }

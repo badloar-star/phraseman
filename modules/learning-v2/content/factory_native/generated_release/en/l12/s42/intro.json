@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Гроза",
-        "uk": "Гроза"
+        "ru": "Наблюдали за грозой из окна",
+        "uk": "Спостерігали за грозою з вікна"
       },
       "bodyByLocale": {
-        "ru": "Thunderstorm — «гроза». We watched the thunderstorm from the window — мы наблюдали за грозой из окна. Watch → watched, окончание /t/. Выберите прошлое наблюдение.",
-        "uk": "Thunderstorm — «гроза». We watched the thunderstorm from the window — ми спостерігали за грозою з вікна. Watch → watched, закінчення /t/. Виберіть минуле спостереження."
+        "ru": "Вчера вы с братом стояли у окна дома и наблюдали за грозой. Thunderstorm — гроза. Расскажите об этом: We watched the thunderstorm from the window — Мы наблюдали за грозой из окна. После We поставьте watched: окончание -ed обозначает прошлое и здесь звучит /t/. Затем назовите то, за чем наблюдали: the thunderstorm, без предлога после watched. В конце from the window уточняет, откуда вы смотрели.",
+        "uk": "Учора ви з братом стояли біля вікна вдома й спостерігали за грозою. Thunderstorm — гроза. Розкажіть про це: We watched the thunderstorm from the window — Ми спостерігали за грозою з вікна. Після We поставте watched: закінчення -ed позначає минуле й тут звучить /t/. Потім назвіть те, за чим спостерігали: the thunderstorm, без прийменника після watched. Наприкінці from the window уточнює, звідки ви дивилися."
       },
       "question": {
         "interactionId": "en:lesson-12:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Капля и морось",
-        "uk": "Крапля й мряка"
+        "ru": "Заметили каплю на стекле",
+        "uk": "Помітили краплю на склі"
       },
       "bodyByLocale": {
-        "ru": "Raindrop — «капля дождя», drizzle — «мелкий моросящий дождь». I noticed a raindrop on the window — я заметил каплю дождя на окне. Выберите сообщение об одной капле.",
-        "uk": "Raindrop — «крапля дощу», drizzle — «дрібний дощ, мряка». I noticed a raindrop on the window — я помітив краплю дощу на вікні. Виберіть повідомлення про одну краплю."
+        "ru": "Вчера вы посмотрели на оконное стекло и заметили на нём каплю дождя. Raindrop — капля дождя. Соберите фразу: I + noticed + a raindrop + on the window. Получится I noticed a raindrop on the window — Я заметил каплю дождя на окне. Noticed — форма notice для прошлого. A raindrop называет одну замеченную каплю, а on the window указывает, на какой поверхности она была.",
+        "uk": "Учора ви подивилися на віконне скло й помітили на ньому краплю дощу. Raindrop — крапля дощу. Складіть фразу: I + noticed + a raindrop + on the window. Вийде I noticed a raindrop on the window — Я помітив краплю дощу на вікні. Noticed — форма notice для минулого. A raindrop називає одну помічену краплю, а on the window вказує, на якій поверхні вона була."
       },
       "question": {
         "interactionId": "en:lesson-12:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Солнечный свет",
-        "uk": "Сонячне світло"
+        "ru": "Наслаждались солнцем",
+        "uk": "Насолоджувалися сонцем"
       },
       "bodyByLocale": {
-        "ru": "Sunshine — «солнечный свет». We enjoyed the sunshine — мы наслаждались солнечным светом. В enjoyed окончание /d/. Выберите приятное впечатление, не описание погоды.",
-        "uk": "Sunshine — «сонячне світло». We enjoyed the sunshine — ми насолоджувалися сонячним світлом. У enjoyed закінчення /d/. Виберіть приємне враження, не опис погоди."
+        "ru": "Вчера вы с другом сидели на солнечной скамейке, и вам было приятно греться на солнце. Sunshine — солнечный свет. Расскажите о впечатлении: We enjoyed the sunshine — Мы наслаждались солнечным светом. Сначала We, затем enjoyed: к enjoy добавили -ed для прошлого, окончание звучит /d/. После enjoyed сразу назовите то, что доставляло удовольствие: the sunshine. Дополнительный предлог между действием и предметом здесь не нужен.",
+        "uk": "Учора ви з другом сиділи на сонячній лавці, і вам було приємно грітися на сонці. Sunshine — сонячне світло. Розкажіть про враження: We enjoyed the sunshine — Ми насолоджувалися сонячним світлом. Спочатку We, потім enjoyed: до enjoy додали -ed для минулого, закінчення звучить /d/. Після enjoyed одразу назвіть те, що давало задоволення: the sunshine. Додатковий прийменник між дією та предметом тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-12:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ffbb1ae1aae3da7d4f2fbbf52063fdcb57cad873df7f19598718c33506bb0420"
+  "introFingerprint": "8db9a010bb5f2986f07b074cf63b3aa14a699d412e2a8b6681b3ed68d27c7319"
 }

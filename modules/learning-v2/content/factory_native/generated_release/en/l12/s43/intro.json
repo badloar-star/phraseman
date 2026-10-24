@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Нут",
-        "uk": "Нут"
+        "ru": "Приготовили нут вместе",
+        "uk": "Приготували нут разом"
       },
       "bodyByLocale": {
-        "ru": "Chickpeas — «нут». We cooked the chickpeas — мы приготовили нут. Cook → cooked, окончание /t/. Выберите прошлое действие.",
-        "uk": "Chickpeas — «нут». We cooked the chickpeas — ми приготували нут. Cook → cooked, закінчення /t/. Виберіть минулу дію."
+        "ru": "Вчера вы с другом приготовили нут, который заранее замочили. Chickpeas — нут. Расскажите о приготовлении: We cooked the chickpeas — Мы приготовили нут. Начните с We — мы, затем поставьте cooked: к cook добавили -ed для прошлого, здесь окончание звучит /t/. После действия назовите продукт: the chickpeas. The указывает на тот нут, который был подготовлен для вашего обеда.",
+        "uk": "Учора ви з другом приготували нут, який заздалегідь замочили. Chickpeas — нут. Розкажіть про приготування: We cooked the chickpeas — Ми приготували нут. Почніть із We — ми, потім поставте cooked: до cook додали -ed для минулого, тут закінчення звучить /t/. Після дії назвіть продукт: the chickpeas. The вказує на той нут, який був підготовлений для вашого обіду."
       },
       "question": {
         "interactionId": "en:lesson-12:session-43:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Фасоль и кукуруза",
-        "uk": "Квасоля й кукурудза"
+        "ru": "Добавили кукурузу в салат",
+        "uk": "Додали кукурудзу в салат"
       },
       "bodyByLocale": {
-        "ru": "Kidney beans — «крупная красная фасоль», sweetcorn — «сахарная кукуруза». I used sweetcorn in the salad — я использовал кукурузу в салате. Выберите сообщение о кукурузе.",
-        "uk": "Kidney beans — «велика червона квасоля», sweetcorn — «цукрова кукурудза». I used sweetcorn in the salad — я використав кукурудзу в салаті. Виберіть повідомлення про кукурудзу."
+        "ru": "Вчера вы готовили салат и использовали в нём кукурузу. Sweetcorn — сахарная кукуруза. Скажите: I used sweetcorn in the salad — Я использовал кукурузу в салате. После I поставьте used — форму use для прошлого. Затем назовите продукт: sweetcorn, без a, потому что здесь речь о продукте, а не об одной штуке. В конце добавьте in the salad, чтобы уточнить, в каком блюде вы его использовали.",
+        "uk": "Учора ви готували салат і використали в ньому кукурудзу. Sweetcorn — цукрова кукурудза. Скажіть: I used sweetcorn in the salad — Я використав кукурудзу в салаті. Після I поставте used — форму use для минулого. Потім назвіть продукт: sweetcorn, без a, бо тут ідеться про продукт, а не про одну штуку. Наприкінці додайте in the salad, щоб уточнити, у якій страві ви його використали."
       },
       "question": {
         "interactionId": "en:lesson-12:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кускус",
-        "uk": "Кускус"
+        "ru": "Сестра хотела кускус",
+        "uk": "Сестра хотіла кускус"
       },
       "bodyByLocale": {
-        "ru": "Couscous — «кускус, мелкая пшеничная крупа». She wanted couscous for lunch — она хотела кускус на обед. В wanted окончание /ɪd/. Выберите желание в прошлом.",
-        "uk": "Couscous — «кускус, дрібна пшенична крупа». She wanted couscous for lunch — вона хотіла кускус на обід. У wanted закінчення /ɪd/. Виберіть бажання в минулому."
+        "ru": "Вчера перед обедом сестра сказала, что хочет кускус. Couscous — кускус. Расскажите о её желании в тот момент: She wanted couscous for lunch — Она хотела кускус на обед. После She поставьте wanted: к want добавили -ed для прошлого; окончание звучит /ɪd/. Далее назовите желаемую еду: couscous. В конце for lunch показывает, на какой приём пищи она её хотела.",
+        "uk": "Учора перед обідом сестра сказала, що хоче кускус. Couscous — кускус. Розкажіть про її бажання в той момент: She wanted couscous for lunch — Вона хотіла кускус на обід. Після She поставте wanted: до want додали -ed для минулого; закінчення звучить /ɪd/. Далі назвіть бажану їжу: couscous. Наприкінці for lunch показує, на який прийом їжі вона її хотіла."
       },
       "question": {
         "interactionId": "en:lesson-12:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "455b71ba88eb8e4019ac73b131122bc96e4da36c855cdf567617c0ab28205817"
+  "introFingerprint": "283a5abdecf13d5f497c3d029ccf65746f8686571ac890ac26fda8fe12c96e3e"
 }

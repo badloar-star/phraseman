@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бирка для багажа",
-        "uk": "Бирка для багажу"
+        "ru": "Проверили багажную бирку",
+        "uk": "Перевірили багажну бирку"
       },
       "bodyByLocale": {
-        "ru": "Luggage tag — «бирка для багажа». I checked the luggage tag — я проверил багажную бирку. В checked окончание /t/. Выберите прошлую проверку.",
-        "uk": "Luggage tag — «бирка для багажу». I checked the luggage tag — я перевірив багажну бирку. У checked закінчення /t/. Виберіть минулу перевірку."
+        "ru": "Вчера перед поездкой вы проверили имя на бирке своей сумки. Luggage tag — багажная бирка. Расскажите о проверке: I checked the luggage tag — Я проверил багажную бирку. Начните с I, затем поставьте checked: к check добавили -ed для прошлого действия. В checked окончание произносится /t/. После действия назовите предмет: the luggage tag. The указывает на бирку вашей сумки.",
+        "uk": "Учора перед поїздкою ви перевірили ім’я на бирці своєї сумки. Luggage tag — багажна бирка. Розкажіть про перевірку: I checked the luggage tag — Я перевірив багажну бирку. Почніть з I, потім поставте checked: до check додали -ed для минулої дії. У checked закінчення вимовляється /t/. Після дії назвіть предмет: the luggage tag. The вказує на бирку вашої сумки."
       },
       "question": {
         "interactionId": "en:lesson-12:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ремень сумки",
-        "uk": "Ремінь сумки"
+        "ru": "Проверили ремень вместе",
+        "uk": "Перевірили ремінь разом"
       },
       "bodyByLocale": {
-        "ru": "Shoulder strap — «плечевой ремень сумки». We checked the shoulder strap — мы проверили плечевой ремень. Выберите проверку, не описание ремня.",
-        "uk": "Shoulder strap — «плечовий ремінь сумки». We checked the shoulder strap — ми перевірили плечовий ремінь. Виберіть перевірку, не опис ременя."
+        "ru": "Вчера вы с другом проверили, надёжно ли держится плечевой ремень дорожной сумки. Shoulder strap — плечевой ремень. Вы действовали вместе, поэтому начните с We — мы. Добавьте checked и назовите предмет: the shoulder strap. Получится We checked the shoulder strap — Мы проверили плечевой ремень. С we форма прошлого та же: checked с -ed. Порядок: кто + действие в прошлом + что проверили.",
+        "uk": "Учора ви з другом перевірили, чи надійно тримається плечовий ремінь дорожньої сумки. Shoulder strap — плечовий ремінь. Ви діяли разом, тому почніть із We — ми. Додайте checked і назвіть предмет: the shoulder strap. Вийде We checked the shoulder strap — Ми перевірили плечовий ремінь. Із we форма минулого та сама: checked з -ed. Порядок: хто + дія в минулому + що перевірили."
       },
       "question": {
         "interactionId": "en:lesson-12:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Карманы",
-        "uk": "Кишені"
+        "ru": "Сестра почистила карман",
+        "uk": "Сестра почистила кишеню"
       },
       "bodyByLocale": {
-        "ru": "Side pocket — «боковой карман», inside pocket — «внутренний карман». She cleaned the inside pocket — она почистила внутренний карман. В cleaned окончание /d/. Выберите внутренний карман.",
-        "uk": "Side pocket — «бічна кишеня», inside pocket — «внутрішня кишеня». She cleaned the inside pocket — вона почистила внутрішню кишеню. У cleaned закінчення /d/. Виберіть внутрішню кишеню."
+        "ru": "Вчера ваша сестра почистила внутренний карман своей сумки. Inside pocket — внутренний карман. Расскажите о сестре: She cleaned the inside pocket — Она почистила внутренний карман. Сначала She, затем cleaned — clean с -ed для прошлого; здесь окончание звучит /d/. После действия укажите предмет: the inside pocket. С she в прошлом используем cleaned, без добавочного -s.",
+        "uk": "Учора ваша сестра почистила внутрішню кишеню своєї сумки. Inside pocket — внутрішня кишеня. Розкажіть про сестру: She cleaned the inside pocket — Вона почистила внутрішню кишеню. Спочатку She, потім cleaned — clean з -ed для минулого; тут закінчення звучить /d/. Після дії вкажіть предмет: the inside pocket. Із she в минулому використовуємо cleaned, без додаткового -s."
       },
       "question": {
         "interactionId": "en:lesson-12:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0beee1e532c6eae69c24c7636c1fd66a31ff06bf507898ab13b1c9426525b2d1"
+  "introFingerprint": "5202e493f5a3ec01ec83fcb6dfbbaf8aca1d1c8a925ee0d6e3d4a63e5b87fe7b"
 }

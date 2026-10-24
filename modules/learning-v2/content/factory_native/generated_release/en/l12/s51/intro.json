@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кубик льда",
-        "uk": "Кубик льоду"
+        "ru": "Добавили лёд в напиток",
+        "uk": "Додали лід у напій"
       },
       "bodyByLocale": {
-        "ru": "Ice cube — кубик льда. I added an ice cube — я добавил кубик льда. В added окончание звучит /ɪd/. Выберите прошлое действие.",
-        "uk": "Ice cube — кубик льоду. I added an ice cube — я додав кубик льоду. У added закінчення звучить /ɪd/. Виберіть минулу дію."
+        "ru": "Вчера ваш напиток был тёплым, и вы добавили в него кубик льда. Расскажите об этом: I added an ice cube — Я добавил кубик льда. После I поставьте added: к add добавили -ed для прошлого, и это окончание звучит /ɪd/. Затем назовите то, что добавили: an ice cube. Перед одним кубиком нужно an, потому что ice начинается с гласного звука.",
+        "uk": "Учора ваш напій був теплим, і ви додали в нього кубик льоду. Розкажіть про це: I added an ice cube — Я додав кубик льоду. Після I поставте added: до add додали -ed для минулого, і це закінчення звучить /ɪd/. Потім назвіть те, що додали: an ice cube. Перед одним кубиком потрібне an, бо ice починається з голосного звука."
       },
       "question": {
         "interactionId": "en:lesson-12:session-51:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Форма для льда",
-        "uk": "Форма для льоду"
+        "ru": "Наполнили форму для льда",
+        "uk": "Наповнили форму для льоду"
       },
       "bodyByLocale": {
-        "ru": "Ice tray — форма для льда. I filled the ice tray — я наполнил форму для льда. В filled окончание /d/. Выберите наполнение формы.",
-        "uk": "Ice tray — форма для льоду. I filled the ice tray — я наповнив форму для льоду. У filled закінчення /d/. Виберіть наповнення форми."
+        "ru": "Вчера вы налили воду в форму, чтобы приготовить лёд. Ice tray — форма для льда. Соберите сообщение о сделанном: I + filled + the ice tray. Получится I filled the ice tray — Я наполнил форму для льда. К fill добавляем -ed для прошлого; в filled окончание звучит /d/. Предмет идёт после действия. The указывает на конкретную форму, которую вы наполнили.",
+        "uk": "Учора ви налили воду у форму, щоб приготувати лід. Ice tray — форма для льоду. Складіть повідомлення про зроблене: I + filled + the ice tray. Вийде I filled the ice tray — Я наповнив форму для льоду. До fill додаємо -ed для минулого; у filled закінчення звучить /d/. Предмет іде після дії. The вказує на конкретну форму, яку ви наповнили."
       },
       "question": {
         "interactionId": "en:lesson-12:session-51:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пакет и контейнер",
-        "uk": "Пакет і контейнер"
+        "ru": "Вымыли контейнер",
+        "uk": "Вимили контейнер"
       },
       "bodyByLocale": {
-        "ru": "Freezer bag — пакет для замораживания продуктов; food container — контейнер для еды. I washed the food container — я вымыл контейнер для еды. Выберите контейнер.",
-        "uk": "Freezer bag — пакет для заморожування продуктів; food container — контейнер для їжі. I washed the food container — я вимив контейнер для їжі. Виберіть контейнер."
+        "ru": "Вчера после обеда вы вымыли контейнер, в котором принесли еду. Food container — контейнер для еды. Расскажите об этом: I washed the food container — Я вымыл контейнер для еды. Сначала I, затем washed — wash с окончанием -ed для прошлого действия. После него назовите вымытый предмет: the food container. The связывает фразу с тем самым контейнером из вашего обеда.",
+        "uk": "Учора після обіду ви вимили контейнер, у якому принесли їжу. Food container — контейнер для їжі. Розкажіть про це: I washed the food container — Я вимив контейнер для їжі. Спочатку I, потім washed — wash із закінченням -ed для минулої дії. Після нього назвіть вимитий предмет: the food container. The пов’язує фразу з тим самим контейнером від вашого обіду."
       },
       "question": {
         "interactionId": "en:lesson-12:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3fbada5984caac77788a114fa51a5013c4413af4b6c5f833f94e18aa3fbdb8f4"
+  "introFingerprint": "4e46135d7f0e275dfc0cf89aca24289dfccd4754b90a257507568af7283dc317"
 }

@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Проходим через дверь",
-        "uk": "Проходимо крізь двері"
+        "ru": "Идти спиной вперёд",
+        "uk": "Іти спиною вперед"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом несёте стол. Вы идёте спиной вперёд: I am walking backwards — «Я иду задом наперёд». Backwards — «назад, задом наперёд». В узкой двери друг поворачивается боком: He is moving sideways — «Он двигается боком». Sideways — «боком, в сторону». Оба действия происходят сейчас: am walking и is moving.",
-        "uk": "Ви з другом несете стіл. Ви йдете спиною вперед: I am walking backwards — «Я йду задом наперед». Backwards — «назад, задом наперед». У вузьких дверях друг повертається боком: He is moving sideways — «Він рухається боком». Sideways — «боком, убік». Обидві дії відбуваються зараз: am walking та is moving."
+        "ru": "Вы с другом несёте стол, и вам приходится идти спиной вперёд. Вы предупреждаете друга: I am walking backwards — «Я иду задом наперёд». Начинаем с I, затем ставим am walking для движения прямо сейчас. После walking добавляем backwards: это слово объясняет, как вы идёте. Перед backwards предлог не нужен. Сохраняем обе части am walking; walk без -ing после am здесь не подходит.",
+        "uk": "Ви з другом несете стіл, і вам доводиться йти спиною вперед. Ви попереджаєте друга: I am walking backwards — «Я йду задом наперед». Починаємо з I, потім ставимо am walking для руху просто зараз. Після walking додаємо backwards: це слово пояснює, як ви йдете. Перед backwards прийменник не потрібен. Зберігаємо обидві частини am walking; walk без -ing після am тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-10:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4b24e453783371e05a5f06302c4f2e14fcc320ee20608d2341382eef6b417ae1"
+  "introFingerprint": "a82e6d06e7022ecbe0aa1b7f1a1c8f408d52bae7a8befb5a5d9618e0dd234d9d"
 }

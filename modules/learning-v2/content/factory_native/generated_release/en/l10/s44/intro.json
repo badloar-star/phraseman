@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-44:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Узнать друг друга при встрече",
-        "uk": "Упізнати одне одного під час зустрічі"
+        "ru": "Описать сестру при встрече",
+        "uk": "Описати сестру під час зустрічі"
       },
       "bodyByLocale": {
-        "ru": "Друг ищет вас у кафе. Denim — «джинсовая ткань»: I am wearing a denim jacket — «На мне джинсовая куртка». Вы также описываете сестру рядом. Flowery — «с цветочным рисунком»: She is wearing a flowery dress — «На ней платье с цветочным рисунком». Am/is wearing описывает одежду, которая на вас сейчас.",
-        "uk": "Друг шукає вас біля кафе. Denim — «джинсова тканина»: I am wearing a denim jacket — «На мені джинсова куртка». Ви також описуєте сестру поруч. Flowery — «із квітковим малюнком»: She is wearing a flowery dress — «На ній сукня із квітковим малюнком». Am/is wearing описує одяг, який на вас зараз."
+        "ru": "Друг ищет вашу сестру у кафе. Вы объясняете, как её узнать: She is wearing a flowery dress — «На ней платье с цветочным рисунком». Начинаем с she, затем ставим is wearing, чтобы описать одежду на ней сейчас. С she нужна is, а у wear — окончание -ing. Дальше a flowery dress: a относится к одному платью, а flowery — «с цветочным рисунком» — стоит перед dress.",
+        "uk": "Друг шукає вашу сестру біля кафе. Ви пояснюєте, як її впізнати: She is wearing a flowery dress — «На ній сукня із квітковим малюнком». Починаємо з she, потім ставимо is wearing, щоб описати одяг на ній зараз. З she потрібна is, а у wear — закінчення -ing. Далі a flowery dress: a стосується однієї сукні, а flowery — «із квітковим малюнком» — стоїть перед dress."
       },
       "question": {
         "interactionId": "en:lesson-10:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "00b31fbde293a8b89d6b8ccebf21c0c48a07b7c0432d4afea05d5ec82fdbc32c"
+  "introFingerprint": "50ddefa6c42256f44a3739ffb8d58b22ab92662da6192c11521cdc1bd26c6d60"
 }

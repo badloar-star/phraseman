@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Меняем план",
-        "uk": "Змінюємо план"
+        "ru": "Дождь продолжается",
+        "uk": "Дощ триває"
       },
       "bodyByLocale": {
-        "ru": "После обеда вы выглядываете в окно: дождь продолжается. Still — «всё ещё»: It is still raining — «Всё ещё идёт дождь». Still стоит между is и raining. Вы хотели гулять, но теперь смотрите фильм: We are watching a film instead — «Вместо этого мы смотрим фильм». Instead — «вместо этого». Слово в конце связывает новый выбор с прежним планом.",
-        "uk": "Після обіду ви визираєте у вікно: дощ триває. Still — «усе ще»: It is still raining — «Усе ще йде дощ». Still стоїть між is і raining. Ви хотіли гуляти, але тепер дивитеся фільм: We are watching a film instead — «Натомість ми дивимося фільм». Instead — «натомість». Слово наприкінці пов’язує новий вибір із попереднім планом."
+        "ru": "После обеда вы выглядываете в окно: дождь, начавшийся раньше, ещё не закончился. It is still raining — «Всё ещё идёт дождь». Для дождя сейчас используем it is raining. Чтобы показать, что он продолжается, вставляем still — «всё ещё» — между is и raining. Получается it + is + still + raining. Still не заменяет ни is, ни форму raining с -ing.",
+        "uk": "Після обіду ви визираєте у вікно: дощ, який почався раніше, ще не закінчився. It is still raining — «Усе ще йде дощ». Для дощу зараз використовуємо it is raining. Щоб показати, що він триває, вставляємо still — «усе ще» — між is і raining. Отримуємо it + is + still + raining. Still не замінює ні is, ні форму raining із -ing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9732bf6d4dcf46e0f9b723e4c49c5642f2d1cdb95abefbf2f489e256a956255c"
+  "introFingerprint": "1650157e06590368b2e2af23ebba18e941a03fdbbc3cf861dba754d284e82ef6"
 }

@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "В какой сумке телефон",
-        "uk": "У якій сумці телефон"
+        "ru": "Пустая сумка",
+        "uk": "Порожня сумка"
       },
       "bodyByLocale": {
-        "ru": "Вы проверяете запасную сумку: она пуста. Nothing — «ничего»: There is nothing in the bag — «В сумке ничего нет». Nothing уже выражает отрицание, поэтому not не добавляем. Телефон точно дома, но точное место вы забыли. Somewhere — «где-то»: My phone is somewhere in the house — «Мой телефон где-то в доме».",
-        "uk": "Ви перевіряєте запасну сумку: вона порожня. Nothing — «нічого»: There is nothing in the bag — «У сумці нічого немає». Nothing уже виражає заперечення, тому not не додаємо. Телефон точно вдома, але точне місце ви забули. Somewhere — «десь»: My phone is somewhere in the house — «Мій телефон десь у будинку»."
+        "ru": "Перед поездкой вы открываете запасную сумку и видите, что она пуста: There is nothing in the bag — «В сумке ничего нет». Начинаем с there is, затем ставим nothing — «ничего», а в конце называем место in the bag. Nothing согласуется с is и уже передаёт отрицание: добавлять not в эту фразу не нужно. Здесь there is сообщает о содержимом сумки, а in the bag указывает, где вы проверили.",
+        "uk": "Перед поїздкою ви відкриваєте запасну сумку й бачите, що вона порожня: There is nothing in the bag — «У сумці нічого немає». Починаємо з there is, потім ставимо nothing — «нічого», а наприкінці називаємо місце in the bag. Nothing узгоджується з is і вже передає заперечення: додавати not до цієї фрази не потрібно. Тут there is повідомляє про вміст сумки, а in the bag указує, де ви перевірили."
       },
       "question": {
         "interactionId": "en:lesson-10:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee2fadb3c410cfc6fcab0d9e11fd55a82e34d9bd82bc5d14cc9112f79d8d0cf5"
+  "introFingerprint": "a190abca5bea051397d17e8334aa8112098566dd367f26728db0eb0d3d91c7d7"
 }

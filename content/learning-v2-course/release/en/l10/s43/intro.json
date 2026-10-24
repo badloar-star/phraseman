@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Хлеб и сыр",
-        "uk": "Хліб і сир"
+        "ru": "Отрезать тонкий ломтик",
+        "uk": "Відрізати тонку скибку"
       },
       "bodyByLocale": {
-        "ru": "К супу вы нарезаете хлеб. Thin — «тонкий»: I am cutting a thin slice — «Я отрезаю тонкий ломтик». Действие идёт сейчас: am cutting. Вы берёте сыр, который трудно разрезать. Hard — «твёрдый»: This cheese is hard — «Этот сыр твёрдый». Is hard описывает свойство, а не действие.",
-        "uk": "До супу ви нарізаєте хліб. Thin — «тонкий»: I am cutting a thin slice — «Я відрізаю тонку скибку». Дія триває зараз: am cutting. Ви берете сир, який важко розрізати. Hard — «твердий»: This cheese is hard — «Цей сир твердий». Is hard описує властивість, а не дію."
+        "ru": "К супу вы отрезаете тонкий ломтик хлеба и говорите, что делаете: I am cutting a thin slice — «Я отрезаю тонкий ломтик». После I ставим am cutting, потому что действие происходит сейчас. У cut перед -ing удваиваем t: cutting. Затем a thin slice: a относится к одному ломтику, а thin — «тонкий» — стоит перед slice. Вся фраза описывает один ломтик, который вы сейчас отрезаете.",
+        "uk": "До супу ви відрізаєте тонку скибку хліба й кажете, що робите: I am cutting a thin slice — «Я відрізаю тонку скибку». Після I ставимо am cutting, тому що дія відбувається зараз. У cut перед -ing подвоюємо t: cutting. Потім a thin slice: a стосується однієї скибки, а thin — «тонкий» — стоїть перед slice. Уся фраза описує одну скибку, яку ви зараз відрізаєте."
       },
       "question": {
         "interactionId": "en:lesson-10:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3fee5d7547c2ac11e9060829c4539941c3b9c2f90a3390e9f43f715a78ad9b23"
+  "introFingerprint": "b6449185246cc530bfec0a43896c241687549f4a83cdd7cc6c8f14b2a0bc9391"
 }

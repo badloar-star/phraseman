@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Другой стул",
-        "uk": "Інший стілець"
+        "ru": "Уточнить, занято ли место",
+        "uk": "Уточнити, чи зайняте місце"
       },
       "bodyByLocale": {
-        "ru": "Один из двух стульев стоит у шумной двери. Другой вам нравится больше: I prefer the other chair — «Я предпочитаю другой стул». Other — «другой»; the other chair здесь — второй из двух известных стульев. Перед тем как сесть, уточните у посетителя рядом: Is anyone sitting here? — «Здесь кто-нибудь сидит?» Anyone — «кто-нибудь» в вопросе. Вы спрашиваете о месте, занятом сейчас: is + sitting.",
-        "uk": "Один із двох стільців стоїть біля шумних дверей. Інший вам подобається більше: I prefer the other chair — «Я віддаю перевагу іншому стільцю». Other — «інший»; the other chair тут — другий із двох відомих стільців. Перш ніж сісти, уточніть у відвідувача поруч: Is anyone sitting here? — «Тут хто-небудь сидить?» Anyone — «хто-небудь» у запитанні. Ви запитуєте про місце, зайняте зараз: is + sitting."
+        "ru": "В кафе вы видите свободный стул, но не знаете, занято ли место. Спросите посетителя рядом: Is anyone sitting here? — «Здесь кто-нибудь сидит?» Для вопроса о текущей ситуации ставим is перед anyone — «кто-нибудь», затем sitting и место here. С anyone нужна is, не are. В sit перед -ing удваиваем t: sitting. Получается вопросительный порядок: is + anyone + sitting + here.",
+        "uk": "У кафе ви бачите вільний стілець, але не знаєте, чи зайняте місце. Запитайте відвідувача поруч: Is anyone sitting here? — «Тут хто-небудь сидить?» Для запитання про поточну ситуацію ставимо is перед anyone — «хто-небудь», потім sitting і місце here. З anyone потрібна is, не are. У sit перед -ing подвоюємо t: sitting. Отримуємо питальний порядок: is + anyone + sitting + here."
       },
       "question": {
         "interactionId": "en:lesson-10:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d37e88577b88448af0c889ce6383c20c5d83a686d2d9206663c85c94739ed6c5"
+  "introFingerprint": "c04776195f936896ec463fced0a44a5dc5b4641b219779f6c705989d65b83c9f"
 }

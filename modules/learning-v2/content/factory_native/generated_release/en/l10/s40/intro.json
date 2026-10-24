@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "За столом",
-        "uk": "За столом"
+        "ru": "Приятный запах супа",
+        "uk": "Приємний запах супу"
       },
       "bodyByLocale": {
-        "ru": "Сестра спрашивает, почему вы не отвечаете. Chew — «жевать»: I am chewing — «Я жую». Это действие сейчас. Суп на столе приятно пахнет. Smell — «пахнуть»: This soup smells good — «Этот суп хорошо пахнет». Здесь smell описывает свойство супа, поэтому smells, не is smelling. После единственного числа soup добавляем s.",
-        "uk": "Сестра запитує, чому ви не відповідаєте. Chew — «жувати»: I am chewing — «Я жую». Це дія зараз. Суп на столі приємно пахне. Smell — «пахнути»: This soup smells good — «Цей суп добре пахне». Тут smell описує властивість супу, тому smells, не is smelling. Після однини soup додаємо s."
+        "ru": "Сестра поставила перед вами суп, и вы замечаете его приятный запах: This soup smells good — «Этот суп хорошо пахнет». Начинаем с this soup, затем ставим smells и оценку good. Smell здесь означает «пахнуть» и описывает свойство супа, поэтому используем Present Simple. С this soup нужна форма smells с -s. Дополнительное is не нужно: smells уже служит глаголом в предложении.",
+        "uk": "Сестра поставила перед вами суп, і ви помічаєте його приємний запах: This soup smells good — «Цей суп добре пахне». Починаємо з this soup, потім ставимо smells та оцінку good. Smell тут означає «пахнути» й описує властивість супу, тому використовуємо Present Simple. З this soup потрібна форма smells із -s. Додаткове is не потрібне: smells уже є дієсловом у реченні."
       },
       "question": {
         "interactionId": "en:lesson-10:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f3e58b1d96b3c90e56c715157eb308419c04aa2dd1581df48c35b101b38133e"
+  "introFingerprint": "204cf790f2739beda5ec6be85d9a43ab7e6b01c408574ba960356e74ab1ac6fa"
 }

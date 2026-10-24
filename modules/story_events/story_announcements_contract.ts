@@ -139,8 +139,9 @@ export function liveAnnouncements(
         publishedAtMs: Number(v.publishedAtMs),
         expiresAtMs: Number(v.expiresAtMs),
       });
-    } catch {
-      /* Fail closed on malformed remote content. */
+    } catch (error) {
+      // зачем: битое объявление пропускается (fail closed), но причина видна в журнале — без текста и идентификаторов
+      console.warn("[STORY-ANNOUNCE] объявление отброшено как повреждённое", String(error));
     }
   }
   return out.sort((a, b) => a.publishedAtMs - b.publishedAtMs).slice(0, 20);

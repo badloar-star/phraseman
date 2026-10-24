@@ -924,9 +924,13 @@ const STORY_EVENTS_PREFIX = 'story_events_v1';
 // зачем (координатор 24.10, кэш прав на особые темы): открытые темы хранятся на телефоне по владельцу — стираются при выходе и удалении аккаунта.
 // Ключ = app/premium_theme_entitlements.ts CACHE_KEY_PREFIX ('premium_theme_entitlements_v1:<stableId>').
 const PREMIUM_THEME_ENTITLEMENTS_PREFIX = 'premium_theme_entitlements_v1';
+// зачем (координатор 24.10, Ревизор: опрос объявлений): кэш ответа объявлений и список «просмотрено» лежат на телефоне по владельцу — при выходе и удалении
+// аккаунта стираются, чтобы чужие объявления не остались. Ключи = modules/story_events/use_announcement_stories.ts.
+const STORY_ANNOUNCEMENTS_CACHE_PREFIX = 'story_announcements_cache_v1';
+const STORY_ANNOUNCEMENTS_SEEN_PREFIX = 'story_announcements_seen_v1';
 const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
   ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, STORY_EVENTS_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
-  PREMIUM_THEME_ENTITLEMENTS_PREFIX,
+  PREMIUM_THEME_ENTITLEMENTS_PREFIX, STORY_ANNOUNCEMENTS_CACHE_PREFIX, STORY_ANNOUNCEMENTS_SEEN_PREFIX,
 ];
 // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): ключи-утечки (список и смысл — app/account_switch_leak_keys.ts) стираются шагом
 // «только стирание»; реэкспорт — для сторожей и журнала.

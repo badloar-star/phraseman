@@ -6,7 +6,11 @@ import {
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
 } from "../../app/account_generation";
-import { DebugLogger } from "../../app/debug-logger";
+import {
+  announcementRefreshDue,
+  parseAnnouncementsCache,
+  serializeAnnouncementsCache,
+} from "./announcement_fetch_policy";
 import {
   liveAnnouncements,
   announcementSeenKey,
@@ -14,7 +18,13 @@ import {
 } from "./story_announcements_contract";
 import type { StoryEventList } from "./story_events_core";
 const EMPTY: StoryEventList = Object.freeze([]);
-/** Separate from personal events: announcement expiry is server-defined, never the seven-day TTL. */
+const LOG = "[STORY-ANNOUNCE]";
+/**
+ * Separate from personal events: announcement expiry is server-defined, never the seven-day TTL.
+ *
+ * зачем (Ревизор 24.10, Firebase-экономия): прежний опрос раз в 60 с у всех пользователей заменён кэшем на телефоне + запросом при входе и при
+ * возвращении в приложение не чаще раза в 30 мин (announcement_fetch_policy). Кэш показывается с первого кадра, свежий ответ догоняет фоном.
+ */
 export function useAnnouncementStories(enabled: boolean) {
   const [token, setToken] = useState(captureAccountGeneration);
   const [snapshot, setSnapshot] = useState<{
@@ -33,10 +43,12 @@ export function useAnnouncementStories(enabled: boolean) {
       inFlight = false,
       rows: PublishedAnnouncement[] = [],
       seen = new Set<string>(),
-      offset = 0;
+      offset = 0,
+      lastFetchedAtMs: number | null = null;
     let expiry: ReturnType<typeof setTimeout> | undefined;
     let writes = Promise.resolve();
     const key = `story_announcements_seen_v1:${token.stableId}`;
+    const cacheKey = `story_announcements_cache_v1:${token.stableId}`;
     const valid = () => !disposed && isCurrentAccountGeneration(token);
     const emit = () => {
       if (!valid()) return;
@@ -67,9 +79,15 @@ export function useAnnouncementStories(enabled: boolean) {
           ),
         );
     };
-    const fetch = async () => {
+    const fetch = async (why: string) => {
       if (!valid() || inFlight || AppState.currentState !== "active") return;
+      // зачем: в сеть не чаще раза в TTL — иначе берём то, что уже на телефоне (кэш + локальное истечение)
+      if (!announcementRefreshDue(lastFetchedAtMs, Date.now())) {
+        console.log(LOG, "запрос пропущен: кэш свежий", JSON.stringify({ why, ageMs: Date.now() - (lastFetchedAtMs ?? 0), rows: rows.length })); // guard-ok: ветка и значение, которое её решило
+        return;
+      }
       inFlight = true;
+      const startedAt = Date.now();
       try {
         const [{ getApp }, { getFunctions, httpsCallable }] = await Promise.all(
           [
@@ -92,19 +110,29 @@ export function useAnnouncementStories(enabled: boolean) {
           throw new Error("invalid_story_response");
         offset = response.data.nowMs - Date.now();
         rows = liveAnnouncements(response.data.items, response.data.nowMs);
+        const fetchedAtMs = Date.now();
+        lastFetchedAtMs = fetchedAtMs;
+        console.log(LOG, "ответ получен", JSON.stringify({ why, items: response.data.items.length, live: rows.length, tookMs: Date.now() - startedAt })); // guard-ok: что вернулось и сколько заняло
+        const cacheValue = serializeAnnouncementsCache({ fetchedAtMs, serverNowMs: response.data.nowMs, items: response.data.items });
+        writes = writes
+          .then(() => AsyncStorage.setItem(cacheKey, cacheValue))
+          .catch((error) => console.warn(LOG, "кэш не записан", String(error)));
         emit();
       } catch (error) {
-        if (valid()) DebugLogger.warn("[STORY-ANNOUNCEMENTS]", String(error));
+        if (valid()) console.warn(LOG, "запрос в сеть не удался (кэш остаётся)", String(error));
       } finally {
         inFlight = false;
       }
     };
-    const ready = AsyncStorage.getItem(key)
+    const ready = Promise.all([
+      AsyncStorage.getItem(key),
+      AsyncStorage.getItem(cacheKey),
+    ])
       .catch((error) => {
-        if (valid()) DebugLogger.warn("[STORY-ANNOUNCEMENTS]", String(error));
-        return null;
+        if (valid()) console.warn(LOG, "чтение памяти телефона не удалось", String(error));
+        return [null, null] as [string | null, string | null];
       })
-      .then((raw) => {
+      .then(([raw, cacheRaw]) => {
         if (!valid()) return;
         try {
           const parsed: unknown = JSON.parse(raw ?? "[]");
@@ -114,8 +142,19 @@ export function useAnnouncementStories(enabled: boolean) {
                 .filter((x): x is string => typeof x === "string")
                 .slice(-1000),
             );
-        } catch {
-          /* corrupt seen cache is reset */
+        } catch (error) {
+          // зачем: испорченный список «просмотрено» сбрасывается; причина — в журнале (без идентификатора человека)
+          console.warn(LOG, "список просмотренного повреждён — сброшен", String(error));
+        }
+        const cache = parseAnnouncementsCache(cacheRaw);
+        if (cache) {
+          lastFetchedAtMs = cache.fetchedAtMs;
+          offset = cache.serverNowMs - cache.fetchedAtMs;
+          rows = liveAnnouncements(cache.items, Date.now() + offset);
+          console.log(LOG, "кэш прочитан", JSON.stringify({ ageMs: Date.now() - cache.fetchedAtMs, live: rows.length })); // guard-ok: показываем кэш с первого кадра
+          emit();
+        } else if (cacheRaw) {
+          console.warn(LOG, "кэш объявлений повреждён — игнорируем, идём в сеть");
         }
         markRef.current = (id) => {
           if (!valid() || !rows.some((a) => announcementSeenKey(a) === id))
@@ -127,28 +166,24 @@ export function useAnnouncementStories(enabled: boolean) {
           writes = writes
             .then(() => AsyncStorage.setItem(key, value))
             .catch((error) =>
-              DebugLogger.warn("[STORY-ANNOUNCEMENTS]", String(error)),
+              console.warn(LOG, "запись «просмотрено» не удалась", String(error)),
             );
         };
-        return fetch();
+        return fetch("вход");
       })
       .catch((error) => {
-        if (valid()) DebugLogger.warn("[STORY-ANNOUNCEMENTS]", String(error));
+        if (valid()) console.warn(LOG, "сбой инициализации", String(error));
       });
     const subscription = AppState.addEventListener("change", (state) => {
       if (state === "active")
         void ready.then(() => {
           emit();
-          void fetch();
+          void fetch("возвращение в приложение");
         });
     });
-    const refresh = setInterval(() => {
-      void ready.then(fetch);
-    }, 60000);
     return () => {
       disposed = true;
       markRef.current = () => undefined;
-      clearInterval(refresh);
       if (expiry) clearTimeout(expiry);
       subscription.remove();
     };

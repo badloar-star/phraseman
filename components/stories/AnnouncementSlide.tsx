@@ -23,7 +23,9 @@ function parse(event: StoryEvent): AnnouncementContent | null {
     const { id, revision, status, publishedAtMs, expiresAtMs, ...content } =
       raw;
     return normalizeAnnouncement(content);
-  } catch {
+  } catch (error) {
+    // зачем: слайд с нечитаемым содержимым не рисуется, причина — в журнале (без текста объявления)
+    console.warn("[STORY-ANNOUNCE] слайд: содержимое не разобрано", String(error));
     return null;
   }
 }

@@ -14405,7 +14405,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 21,
-    sourceFingerprint: "142c8ab1d22f4df5ffceedc86a748ed8161e1371a86ca98058c230c8cd969a92",
+    sourceFingerprint: "a77cf5f14f841de0a38d2b12015c759c8b48deb47d6ae48e2872dd3694a4e34a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."]],"uk":[["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."]]}),
@@ -14419,7 +14419,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 22,
-    sourceFingerprint: "a8a9f9fb1c2ceae201e2685debed603095d58ba2f8ba150628f3b6b0c5ae02a7",
+    sourceFingerprint: "053f7ec00b47ef4754dac8e8655a98e53c078cd999df50de3cdc7fd5726b05cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."]],"uk":[["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."]]}),
@@ -14433,7 +14433,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 23,
-    sourceFingerprint: "657f6c6508d2f5e57e9cd395857e42c1746efa9ce6b4928e83488d579fd4fbbe",
+    sourceFingerprint: "728528c39514feaf58510a076deac108124e923d1cd4d737c8ebc1224c3afe9d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."]],"uk":[["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."]]}),
@@ -14447,7 +14447,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 24,
-    sourceFingerprint: "ec40e206cc5ac4e4a9e42b2edaf7c8b5eed1dd499936b9077e40954b1f0fbc29",
+    sourceFingerprint: "c0ecdd7e1a263786d5fa351d33d3e4997ab37f5d2d99d986ee0d89abd61a1d3e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."],["После May I нет to.","В вопросе о разрешении порядок May I, не I may."]],"uk":[["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."],["Після May I немає to.","У питанні про дозвіл порядок May I, не I may."]]}),

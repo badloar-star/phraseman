@@ -123,8 +123,8 @@
         "uk": "Речі після ремонту"
       },
       "bodyByLocale": {
-        "ru": "Вы помогаете подруге разбирать вещи после ремонта. На подоконнике стоит абажур в пыли, и никто уже не помнит, откуда он взялся. lampshade — «абажур». Спросить о владельце можно так: Whose lampshade is this? — «Чей это абажур?» Вещь одна: is this.",
-        "uk": "Ви допомагаєте подрузі розбирати речі після ремонту. На підвіконні стоїть абажур у пилу, і ніхто вже не пам’ятає, звідки він узявся. lampshade — «абажур». Спитати про власника можна так: Whose lampshade is this? — «Чий це абажур?» Річ одна: is this."
+        "ru": "Вы помогаете подруге разбирать вещи после ремонта. На подоконнике стоит абажур; вы не знаете, принадлежит ли он подруге или кому-то из её соседей. lampshade — «абажур». Спросить о владельце можно так: Whose lampshade is this? — «Чей это абажур?» Чтобы спросить «чей», ставим Whose перед названием вещи: lampshade. После него идут is this, потому что абажур один. Порядок слов: Whose + lampshade + is this?",
+        "uk": "Ви допомагаєте подрузі розбирати речі після ремонту. На підвіконні стоїть абажур; ви не знаєте, належить він подрузі чи комусь із її сусідів. lampshade — «абажур». Спитати про власника можна так: Whose lampshade is this? — «Чий це абажур?» Щоб спитати «чий», ставимо Whose перед назвою речі: lampshade. Після неї йдуть is this, бо абажур один. Порядок слів: Whose + lampshade + is this?"
       },
       "question": {
         "interactionId": "en:lesson-06:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "02eec6fc48cb9c9e1e5bb25d10a9a79be76582ecec3a4e661ebea41aecaf3abf"
+  "introFingerprint": "d347a8c6d29e3e63bbfa52f61fe66bf6d8bcfb768bdb41e162cb8f5b519e6304"
 }

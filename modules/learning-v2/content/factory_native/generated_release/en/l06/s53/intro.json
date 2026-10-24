@@ -123,8 +123,8 @@
         "uk": "Знахідка в роздягальні"
       },
       "bodyByLocale": {
-        "ru": "У раздевалки клиники на стуле лежит стетоскоп, а врачей поблизости нет. Вы пришли помогать с бумагами и не хотите оставлять находку без хозяина. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чей это стетоскоп?» Вещь одна: is this.",
-        "uk": "Біля роздягальні клініки на стільці лежить стетоскоп, а лікарів поблизу немає. Ви прийшли допомагати з паперами й не хочете лишати знахідку без господаря. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чий це стетоскоп?» Річ одна: is this."
+        "ru": "Вы помогаете с бумагами в клинике и замечаете на стуле у раздевалки стетоскоп. Рядом разговаривают коллеги; вы хотите узнать у них, кому вернуть находку. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чей это стетоскоп?» Начинаем с Whose — «чей», сразу называем вещь: stethoscope. Затем ставим is this, потому что предмет один. Собираем вопрос: Whose + stethoscope + is this? Who означает «кто» и здесь не подходит.",
+        "uk": "Ви допомагаєте з паперами в клініці й помічаєте на стільці біля роздягальні стетоскоп. Поруч розмовляють колеги; ви хочете дізнатися в них, кому повернути знахідку. stethoscope — «стетоскоп». Whose stethoscope is this? — «Чий це стетоскоп?» Починаємо з Whose — «чий», одразу називаємо річ: stethoscope. Потім ставимо is this, бо предмет один. Складаємо питання: Whose + stethoscope + is this? Who означає «хто» й тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-06:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2ed99c41f3d9f1d14dd7f50902859df8f703881b53fceb2c8bf2b621163d3596"
+  "introFingerprint": "6e1e69747bd8d5eec900fd3d5fc4565b4073872c89f76cbdc4237d7cb4a6c642"
 }

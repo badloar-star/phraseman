@@ -19,6 +19,7 @@ import {
   addSpirePendingCoins,
   hydrateSpirePendingCoins,
   settleSpirePendingCoins,
+  settleSpirePendingByBalance,
   spirePendingCoinsTotal,
   spireStepPendingCoins,
 } from '../app/spire/spire_pending_coins';
@@ -85,5 +86,42 @@ describe('исходники: где кладём, где гасим, что п�
     const flush = read('app', 'spire', 'spire_flush_wallet.ts');
     expect(flush.match(/settleSpirePendingCoins\(stableId, verdicts, true/g)?.length).toBe(2);
     expect(read('app', '(tabs)', 'home.tsx')).toContain('runesBalance: runesBalance + spirePendingCoins,');
+  });
+});
+
+describe('Ревизор 24.10: три сценария гашения и одно число', () => {
+  const read = (...p: string[]) => normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', ...p), 'utf8'));
+  it('1) вердикт очереди гасит вместе с влитым балансом', () => {
+    addSpirePendingCoins('me', 'v1', 10, NOW, 500);
+    settleSpirePendingCoins('me', [{ reportId: 'v1', verdict: 'accepted' }], true, 500, 510);
+    expect(spirePendingCoinsTotal('me', NOW)).toBe(0);
+  });
+
+  it('2) баланс вырос из облака без вердиктов: base + накопленные монеты → гасим, не задваиваем', () => {
+    addSpirePendingCoins('me', 'g1', 10, NOW, 500);
+    addSpirePendingCoins('me', 'g2', 40, NOW + 1, 500);
+    settleSpirePendingByBalance('me', 505);
+    expect(spirePendingCoinsTotal('me', NOW)).toBe(50);
+    settleSpirePendingByBalance('me', 510);
+    expect(spirePendingCoinsTotal('me', NOW)).toBe(40);
+    settleSpirePendingByBalance('me', 550);
+    expect(spirePendingCoinsTotal('me', NOW)).toBe(0);
+  });
+
+  it('3) без вердикта и без роста — через 48 ч уходит из показа', () => {
+    addSpirePendingCoins('me', 't1', 10, NOW, 500);
+    expect(spirePendingCoinsTotal('me', NOW + SPIRE_PENDING_TTL_MS + 1)).toBe(0);
+  });
+
+  it('одно число: Главная, магазин и чип берут показ из runes_system; Главная не перерисовывается скрытой', () => {
+    const runes = read('app', 'runes_system.ts');
+    expect(runes).toContain('export function peekDisplayedRunes(): number');
+    expect(runes).toContain('pending.settleSpirePendingByBalance(');
+    expect(read('app', 'shop.tsx')).toContain('subscribeDisplayedRunes(setShownRunes)');
+    expect(read('components', 'RuneBalanceChip.tsx')).toContain('subscribeDisplayedRunes(setBalance)');
+    const home = read('app', '(tabs)', 'home.tsx');
+    expect(home).toContain('if (!homeRuntimeActive) return undefined;');
+    expect(home).toContain('return subscribeDisplayedRunes(read);');
+    expect(read('app', 'spire_report_client.ts')).toContain('Date.now(), peekRunes());');
   });
 });

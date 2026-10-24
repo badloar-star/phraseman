@@ -21,7 +21,8 @@ export const SPIRE_PENDING_TTL_MS = 48 * 60 * 60 * 1000;
 const SUMMIT_FLOOR = 15;
 
 export type SpirePendingCoinsConfig = Readonly<{ perStep: number; perFloorPerLevel: number; guardianMultiplier: number; summitBonus: number }>;
-export type SpirePendingEntry = Readonly<{ reportId: string; coins: number; atMs: number }>;
+/** base — баланс кошелька в момент засчёта: облако прибавило base + coins и больше → монеты уже в балансе (Ревизор 24.10). */
+export type SpirePendingEntry = Readonly<{ reportId: string; coins: number; atMs: number; base?: number }>;
 
 /** Целое ≥1 — как spireCoinAmount сервера (предел журнала сервер держит сам; здесь суммы конфига малы). */
 function amount(raw: number): number {
@@ -55,7 +56,7 @@ const isEntry = (v: unknown): v is SpirePendingEntry => !!v && typeof v === 'obj
 function fresh(list: readonly SpirePendingEntry[], nowMs: number, owner: string): readonly SpirePendingEntry[] {
   const kept = list.filter((e) => nowMs - e.atMs < SPIRE_PENDING_TTL_MS);
   for (const e of list) {
-    if (!kept.includes(e)) DebugLogger.warn(SPIRE, `${PEAK_COINS} drop reason=ttl report=${e.reportId} coins=${e.coins} owner=${owner.slice(0, 6)}`);
+    if (!kept.includes(e)) DebugLogger.warn(SPIRE, `${PEAK_COINS} settle reason=ttl_48h drop report=${e.reportId} coins=${e.coins} owner=${owner.slice(0, 6)}`);
   }
   return kept;
 }
@@ -87,7 +88,7 @@ export async function hydrateSpirePendingCoins(owner: string, nowMs: number = Da
 }
 
 /** Ступень засчитана на телефоне → ожидающее начисление. Повтор того же reportId ничего не добавляет. */
-export function addSpirePendingCoins(owner: string, reportId: string, coins: number, nowMs: number = Date.now()): void {
+export function addSpirePendingCoins(owner: string, reportId: string, coins: number, nowMs: number = Date.now(), base?: number): void {
   if (!owner || !reportId || !Number.isSafeInteger(coins) || coins <= 0) {
     DebugLogger.warn(SPIRE, `${PEAK_COINS} add skip reason=bad_input owner=${owner ? 'yes' : 'no'} report=${reportId || '-'} coins=${coins}`);
     return;
@@ -97,8 +98,8 @@ export function addSpirePendingCoins(owner: string, reportId: string, coins: num
     DebugLogger.info(SPIRE, `${PEAK_COINS} add skip reason=duplicate report=${reportId}`);
     return;
   }
-  const next = [...list, { reportId, coins, atMs: nowMs }];
-  DebugLogger.info(SPIRE, `${PEAK_COINS} add report=${reportId} coins=${coins} Σ=${next.reduce((s, e) => s + e.coins, 0)}`);
+  const next = [...list, { reportId, coins, atMs: nowMs, ...(Number.isSafeInteger(base) && (base as number) >= 0 ? { base } : {}) }];
+  DebugLogger.info(SPIRE, `${PEAK_COINS} add report=${reportId} coins=${coins} base=${base ?? '-'} Σ=${next.reduce((s, e) => s + e.coins, 0)}`);
   publish(owner, next);
 }
 
@@ -120,17 +121,40 @@ export function settleSpirePendingCoins(
     const v = verdicts.get(e.reportId);
     if (!v) return true;
     if (v.verdict === 'rejected') {
-      DebugLogger.warn(SPIRE, `${PEAK_COINS} drop reason=rejected report=${e.reportId} coins=${e.coins} server=${v.reason ?? '-'}`);
+      DebugLogger.warn(SPIRE, `${PEAK_COINS} settle reason=rejected report=${e.reportId} coins=${e.coins} server=${v.reason ?? '-'}`);
       return false;
     }
     if (!balanceApplied) {
       DebugLogger.info(SPIRE, `${PEAK_COINS} settle wait report=${e.reportId} verdict=${v.verdict} — баланс не влит, держим`);
       return true;
     }
-    DebugLogger.info(SPIRE, `${PEAK_COINS} settle report=${e.reportId} verdict=${v.verdict} coins=${e.coins} balanceBefore=${balanceBefore ?? '-'} balanceAfter=${balanceAfter ?? '-'}`);
+    DebugLogger.info(SPIRE, `${PEAK_COINS} settle reason=verdict_${v.verdict} report=${e.reportId} coins=${e.coins} balanceBefore=${balanceBefore ?? '-'} balanceAfter=${balanceAfter ?? '-'}`);
     return false;
   });
   if (next.length !== list.length) publish(owner, next);
+}
+
+/**
+ * Гасим по росту баланса (Ревизор 24.10): баланс пришёл из облака без вердиктов очереди (синк снимка, другой экран) — если
+ * кошелёк дорос до base + накопленных монет ожидающих с той же базой, эти монеты уже в нём, показ без задвоения.
+ */
+export function settleSpirePendingByBalance(owner: string | null | undefined, balance: number): void {
+  if (!owner || !Number.isFinite(balance)) return;
+  const list = memory.get(owner) ?? [];
+  if (list.length === 0) return;
+  const running = new Map<number, number>();
+  const settled = new Set<string>();
+  for (const e of [...list].sort((a, b) => a.atMs - b.atMs)) {
+    if (e.base === undefined) continue;
+    const sum = (running.get(e.base) ?? 0) + e.coins;
+    running.set(e.base, sum);
+    if (balance >= e.base + sum) settled.add(e.reportId);
+  }
+  if (settled.size === 0) return;
+  for (const e of list) {
+    if (settled.has(e.reportId)) DebugLogger.info(SPIRE, `${PEAK_COINS} settle reason=balance_grew report=${e.reportId} coins=${e.coins} base=${e.base} balance=${balance}`);
+  }
+  publish(owner, list.filter((e) => !settled.has(e.reportId)));
 }
 
 /** Σ ожидающих владельца (для показа на Главной). */

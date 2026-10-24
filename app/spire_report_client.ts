@@ -30,6 +30,7 @@ import { peekStableId } from './stable_id';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { spireCurrentWeekKey } from '../components/spire/spire_tower_model';
 import { addSpirePendingCoins, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire/spire_pending_coins';
+import { peekRunes } from './runes_system';
 import {
   type SpireFlushResponse,
   type SpireFlushTrigger,
@@ -171,7 +172,8 @@ export async function spireRecordStepResult(
     // («ожидающие», гасит ответ spireReportSteps). Этаж ДО ступени: закрыт этаж — маркер уже на следующем.
     if (applied.persisted && coins) {
       const floorBefore = applied.effect === 'floor_cleared' ? applied.local.floor - 1 : applied.local.floor;
-      addSpirePendingCoins(coins.owner, report.reportId, spireStepPendingCoins(coins.coins, floorBefore, applied.effect === 'floor_cleared'));
+      // base — кошелёк в момент засчёта: облако дорастило его до base + монет → гасим без вердикта (Ревизор 24.10)
+      addSpirePendingCoins(coins.owner, report.reportId, spireStepPendingCoins(coins.coins, floorBefore, applied.effect === 'floor_cleared'), Date.now(), peekRunes());
     }
   }
   return applied;

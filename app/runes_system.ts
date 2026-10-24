@@ -242,3 +242,34 @@ export async function primeRunesPeekFromBoot(): Promise<void> {
 // см. app/_layout.tsx рядом с EnergyProvider. Обещание намеренно не ожидается:
 // чтение диска не должно задерживать сам импорт.
 void primeRunesPeekFromBoot();
+
+// ─── показ монет: кошелёк + «ожидающие» монеты ступеней Пика ─────────────────
+// зачем (Ревизор 24.10 к 2eb0f97c6, [PEAK-COINS]): одно число для всех мест показа (Главная, магазин, чипы) — иначе на Главной
+// монет больше, чем в магазине. «Ожидающие» — только показ: тратить их нельзя (кошелёк, покупки и проверки баланса их не видят).
+// Ожидающие гаснут вердиктом очереди Пика, ростом баланса из облака (здесь, при каждом изменении снимка) или через 48 ч.
+let pendingCoinsModule: typeof import('./spire/spire_pending_coins') | null = null;
+function pendingCoins(): typeof import('./spire/spire_pending_coins') {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  if (!pendingCoinsModule) pendingCoinsModule = require('./spire/spire_pending_coins') as typeof import('./spire/spire_pending_coins');
+  return pendingCoinsModule;
+}
+
+/** Число монет для показа: тратимый баланс + ожидающие монеты Пика своего владельца. */
+export function peekDisplayedRunes(): number {
+  const owner = captureAccountGeneration().stableId?.trim();
+  return readFromSnapshot().balance + pendingCoins().spirePendingCoinsTotal(owner);
+}
+
+/** Подписка на показ монет: меняется и кошелёк, и ожидающие. Рост кошелька гасит ожидающие, которые в нём уже есть. */
+export function subscribeDisplayedRunes(listener: (value: number) => void): () => void {
+  const pending = pendingCoins();
+  const emit = (): void => listener(peekDisplayedRunes());
+  const owner = captureAccountGeneration().stableId?.trim();
+  if (owner) void pending.hydrateSpirePendingCoins(owner).then(emit);
+  const offWallet = subscribeRunesSnapshot((next) => {
+    pending.settleSpirePendingByBalance(captureAccountGeneration().stableId?.trim(), next.balance);
+    emit();
+  });
+  const offPending = pending.subscribeSpirePendingCoins(emit);
+  return () => { offWallet(); offPending(); };
+}

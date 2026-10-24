@@ -4,8 +4,7 @@ import { useRouter } from 'expo-router';
 
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { getRunesBalance, peekRunes } from '../app/runes_system';
-import { subscribeAppSnapshot } from '../app/app_snapshot_store';
+import { getRunesBalance, peekDisplayedRunes, peekRunes, subscribeDisplayedRunes } from '../app/runes_system';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -79,7 +78,8 @@ export const RuneBalanceChip = memo(function RuneBalanceChip({
   const router = useRouter();
   const { lang } = useLang();
   // Первый кадр — синхронно из снапшота: никакого «0 и прыжок» (Performance Bible).
-  const [balance, setBalance] = useState(() => peekRunes());
+  // зачем (Ревизор 24.10, [PEAK-COINS]): чип показывает то же число, что Главная и магазин — кошелёк + ожидающие монеты Пика
+  const [balance, setBalance] = useState(() => peekDisplayedRunes());
 
   // Авторитетное чтение вынесено в ref-функцию: её зовут ДВА разных эффекта
   // (вход на экран и смена аккаунта), а сама подписка при этом не пересоздаётся.
@@ -97,7 +97,7 @@ export const RuneBalanceChip = memo(function RuneBalanceChip({
       // Поздний ответ не затирает свежее значение: ни после размонтирования,
       // ни после очередной смены аккаунта.
       if (cancelledRef.current || !isCurrentAccountGeneration(token, stableId)) return;
-      setBalance(value.balance);
+      setBalance(value.balance + (peekDisplayedRunes() - peekRunes()));
     });
   }, []);
 
@@ -115,7 +115,7 @@ export const RuneBalanceChip = memo(function RuneBalanceChip({
     // начисление — сегодня слушателей нет и вреда не видно, но анимация
     // сработала бы дважды, как только её подключат. Главная по этой же причине
     // читает снапшот напрямую.
-    const unsubscribe = subscribeAppSnapshot(() => setBalance(peekRunes()));
+    const unsubscribe = subscribeDisplayedRunes(setBalance);
     // Смена аккаунта: обнуляем показ, чтобы чужой баланс не мелькнул на экране
     // нового пользователя, и сразу перечитываем под нового — иначе игрок видел бы
     // ноль до первого начисления. guard-ok: это НЕ понижение баланса — кошелёк

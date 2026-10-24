@@ -27,6 +27,7 @@ import { SPIRE_FLOOR_COUNT, spireStepsIn } from '../spire_tower_model';
 import { useSpirePalette } from '../useSpirePalette';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { logMomentReward } from './moment_reward_log';
+import { usePeakPerfProbe } from '../../../app/spire/peak_perf_probe';
 import { stepMomentText } from './step_moment_strings';
 import { useAfterRoundChoice } from '../use_after_round_choice';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
@@ -181,6 +182,8 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
 }
 
 function SpireStepResultMoment(props: SpireStepResultMomentProps) {
+  // зачем ([PEAK-PERF], замер Сверки 24.10: кадр 1483 мс при закрытии ступени): кадры и перерисовки окна итога — тяжёлый ли его показ
+  usePeakPerfProbe('result', `kind=${props.outcome.kind} floor=${props.outcome.floorBefore}`);
   const testID = props.testID ?? 'step-moment';
   const passed = props.outcome.kind !== 'failed';
   const footPad = useMomentFootPad();

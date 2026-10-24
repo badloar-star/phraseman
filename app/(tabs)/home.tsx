@@ -70,7 +70,7 @@ import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
 import { useSpireWeekMoment } from '../spire/use_spire_week_moment';
-import { hydrateSpirePendingCoins, spirePendingCoinsTotal, subscribeSpirePendingCoins } from '../spire/spire_pending_coins';
+import { spirePendingCoinsTotal } from '../spire/spire_pending_coins';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
 import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
@@ -82,6 +82,7 @@ import {
   readSavedCardsFirstRun,
 } from '../saved_cards_first_run';
 import { getRunesBalance, peekRunes } from '../runes_system';
+import { subscribeDisplayedRunes } from '../runes_system';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
 // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
@@ -1467,17 +1468,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем ([PEAK-COINS], координатор 24.10): монеты ступени Пика — на плашке сразу («ожидающие», сервер сверит при досылке очереди);
     // только показ: кошелёк и покупки их не видят. Свой владелец — чужие ожидающие не показываем.
     const [spirePendingCoins, setSpirePendingCoins] = useState(() => spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim()));
+    // зачем (замер Сверки 24.10: кадр 1,5 с при закрытии ступени; Ревизор: одно число монет): ожидающие идут через общий показ кошелька
+    // (runes_system.subscribeDisplayedRunes — он же гасит их по росту баланса), а Главная перерисовывается только когда она на экране:
+    // скрытая под Пиком 3000-строчная Главная не должна пересобираться на каждом начислении ступени
     useEffect(() => {
         const read = () => setSpirePendingCoins(spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim()));
-        const owner = captureAccountGeneration().stableId?.trim();
-        if (owner) void hydrateSpirePendingCoins(owner).then(read);
-        const unsubscribe = subscribeSpirePendingCoins(read);
-        const accountSub = subscribeAccountGeneration((token) => {
-            const next = token.stableId?.trim();
-            if (next) void hydrateSpirePendingCoins(next).then(read); else read();
-        });
-        return () => { unsubscribe(); accountSub.remove(); };
-    }, []);
+        if (!homeRuntimeActive) return undefined;
+        read();
+        return subscribeDisplayedRunes(read);
+    }, [homeRuntimeActive]);
     useEffect(() => {
         if (spirePendingCoins > 0) console.log('[PEAK-COINS]', JSON.stringify({ screen: 'home', pending: spirePendingCoins, shown: runesBalance + spirePendingCoins, wallet: runesBalance })); // guard-ok: что увидел пользователь
     }, [runesBalance, spirePendingCoins]);

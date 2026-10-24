@@ -126,8 +126,8 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   }, [clock]);
 
   const later = useCallback((fn: () => void, ms: number) => {
-    const t = setTimeout(fn, ms);
-    timersRef.current.push(t); DebugLogger.info(LOG, `${PEAK_PERF} runner: таймер +${ms}мс, в списке ${timersRef.current.length}`); // зачем ([PEAK-PERF]): растёт ли список таймеров от задания к заданию
+    const t = setTimeout(() => { timersRef.current = timersRef.current.filter((x) => x !== t); fn(); }, ms); // зачем (замер Сверки 24.10: список рос 1→2→3): сработавший таймер уходит из списка
+    timersRef.current.push(t); DebugLogger.info(LOG, `${PEAK_PERF} runner: таймер +${ms}мс, ждут ${timersRef.current.length}`); // зачем ([PEAK-PERF]): сколько таймеров реально ждут
   }, []);
 
   // ── 1. Списание энергии на первом задании (D72); стартует после отсчёта ──

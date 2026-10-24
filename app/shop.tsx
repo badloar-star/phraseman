@@ -21,7 +21,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { peekRunesBalance, subscribeRunesBalance } from './runes_system';
+import { peekDisplayedRunes, peekRunesBalance, subscribeDisplayedRunes, subscribeRunesBalance } from './runes_system';
 import RuneGlyph from '../components/RuneGlyph';
 import SheetSwipeClose from '../components/modal_fx/SheetSwipeClose';
 import {
@@ -237,6 +237,10 @@ function ShopScreenImpl() {
   const scrimOpacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => subscribeRunesBalance((value) => setRunes(value.balance)), []);
+  // зачем (Ревизор 24.10, [PEAK-COINS]): в шапке магазина то же число, что на Главной (кошелёк + ожидающие монеты Пика);
+  // хватает ли на покупку — по тратимому балансу `runes`, ожидающие потратить нельзя
+  const [shownRunes, setShownRunes] = useState(() => peekDisplayedRunes());
+  useEffect(() => subscribeDisplayedRunes(setShownRunes), []);
   useEffect(() => () => {
     if (noticeTimer.current) clearTimeout(noticeTimer.current);
   }, []);
@@ -354,7 +358,7 @@ function ShopScreenImpl() {
             key={currency}
             testID={`shop-wallet-${currency}`}
             accessibilityRole="button"
-            accessibilityLabel={`${triLang(lang, CURRENCY_GENITIVE[currency])}: ${runes}`}
+            accessibilityLabel={`${triLang(lang, CURRENCY_GENITIVE[currency])}: ${shownRunes}`}
             onPress={() => setCategory('all')}
             style={({ pressed }) => [
               styles.wallet,
@@ -365,7 +369,7 @@ function ShopScreenImpl() {
               <CurrencyMark currency={currency} size={17} color={WALLET_ICON_INK} />
             </View>
             <Text style={[styles.walletAmount, { color: t.textPrimary, fontSize: f.h3 }]}>
-              {runes}
+              {shownRunes}
             </Text>
             <Ionicons name="add" size={19} color={t.textMuted} style={styles.walletPlus} />
           </Pressable>

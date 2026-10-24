@@ -133,7 +133,7 @@ export const MiniDots = memo(function MiniDots({ g, n }: Readonly<{ g: Lv2Glass;
 });
 
 /** Ряд панели: слово 18/700, под ним перевод 14, справа — произвольное (полоски, число). Между рядами — тонкая линия. */
-export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, first, onPress, testID, danger }: Readonly<{ g: Lv2Glass; title: string; subtitle?: string | null; right?: React.ReactNode; first?: boolean; onPress?: () => void; testID?: string; danger?: boolean }>) {
+export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, first, onPress, onLongPress, testID, danger }: Readonly<{ g: Lv2Glass; title: string; subtitle?: string | null; right?: React.ReactNode; first?: boolean; onPress?: () => void; onLongPress?: () => void; testID?: string; danger?: boolean }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   const body = (
@@ -147,7 +147,7 @@ export const PanelRow = memo(function PanelRow({ g, title, subtitle, right, firs
     </>
   );
   return onPress ? (
-    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={subtitle ? `${title}, ${subtitle}` : title} onPress={onPress} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>{body}</Pressable>
+    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={subtitle ? `${title}, ${subtitle}` : title} onPress={onPress} onLongPress={onLongPress} delayLongPress={onLongPress ? 380 : undefined} style={({ pressed }) => [styles.row, pressed && styles.pressed]}>{body}</Pressable>
   ) : (
     <View testID={testID} style={styles.row}>{body}</View>
   );

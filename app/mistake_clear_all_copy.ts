@@ -16,6 +16,9 @@ export type MistakeClearAllCopy = Readonly<{
   cancel: string;
   /** Тост после очистки. */
   done: string;
+  /** Пункт удаления одной ошибки (долгое нажатие на строку) и тост после него (владелец 24.10: «ошибки можно удалять»). */
+  deleteOne: string;
+  doneOne: string;
   undo: string;
   failed: string;
   undoFailed: string;
@@ -24,38 +27,47 @@ export type MistakeClearAllCopy = Readonly<{
 
 export const MISTAKE_CLEAR_ALL_COPY: Readonly<Record<Lang, MistakeClearAllCopy>> = {
   ru: {
+    deleteOne: 'Удалить', doneOne: 'Ошибка удалена',
     menu: 'Очистить все ошибки', confirmTitle: 'Удалить {N} из разбора?', confirm: 'Удалить', cancel: 'Отмена', done: 'Ошибки удалены', undo: 'Вернуть',
     failed: 'Не удалось удалить ошибки. Попробуй ещё раз', undoFailed: 'Не удалось вернуть ошибки', mistakes: { one: 'ошибку', few: 'ошибки', many: 'ошибок' },
   },
   uk: {
+    deleteOne: 'Видалити', doneOne: 'Помилку видалено',
     menu: 'Очистити всі помилки', confirmTitle: 'Видалити {N} з розбору?', confirm: 'Видалити', cancel: 'Скасувати', done: 'Помилки видалено', undo: 'Повернути',
     failed: 'Не вдалося видалити помилки. Спробуй ще раз', undoFailed: 'Не вдалося повернути помилки', mistakes: { one: 'помилку', few: 'помилки', many: 'помилок' },
   },
   en: {
+    deleteOne: 'Remove', doneOne: 'Mistake removed',
     menu: 'Clear all mistakes', confirmTitle: 'Remove {N} from review?', confirm: 'Remove', cancel: 'Cancel', done: 'Mistakes removed', undo: 'Undo',
     failed: "Couldn't remove the mistakes. Try again", undoFailed: "Couldn't restore the mistakes", mistakes: { one: 'mistake', few: 'mistakes', many: 'mistakes' },
   },
   es: {
+    deleteOne: 'Borrar', doneOne: 'Error borrado',
     menu: 'Borrar todos los errores', confirmTitle: '¿Borrar {N} del repaso?', confirm: 'Borrar', cancel: 'Cancelar', done: 'Errores borrados', undo: 'Deshacer',
     failed: 'No se pudieron borrar los errores. Inténtalo de nuevo', undoFailed: 'No se pudieron recuperar los errores', mistakes: { one: 'error', few: 'errores', many: 'errores' },
   },
   'pt-BR': {
+    deleteOne: 'Remover', doneOne: 'Erro removido',
     menu: 'Limpar todos os erros', confirmTitle: 'Remover {N} da revisão?', confirm: 'Remover', cancel: 'Cancelar', done: 'Erros removidos', undo: 'Desfazer',
     failed: 'Não foi possível remover os erros. Tente de novo', undoFailed: 'Não foi possível restaurar os erros', mistakes: { one: 'erro', few: 'erros', many: 'erros' },
   },
   vi: {
+    deleteOne: 'Xóa', doneOne: 'Đã xóa lỗi',
     menu: 'Xóa tất cả lỗi', confirmTitle: 'Xóa {N} khỏi phần ôn?', confirm: 'Xóa', cancel: 'Hủy', done: 'Đã xóa các lỗi', undo: 'Hoàn tác',
     failed: 'Không xóa được các lỗi. Hãy thử lại', undoFailed: 'Không khôi phục được các lỗi', mistakes: { one: 'lỗi', few: 'lỗi', many: 'lỗi' },
   },
   id: {
+    deleteOne: 'Hapus', doneOne: 'Kesalahan dihapus',
     menu: 'Hapus semua kesalahan', confirmTitle: 'Hapus {N} dari latihan?', confirm: 'Hapus', cancel: 'Batal', done: 'Kesalahan dihapus', undo: 'Urungkan',
     failed: 'Gagal menghapus kesalahan. Coba lagi', undoFailed: 'Gagal memulihkan kesalahan', mistakes: { one: 'kesalahan', few: 'kesalahan', many: 'kesalahan' },
   },
   tr: {
+    deleteOne: 'Kaldır', doneOne: 'Hata kaldırıldı',
     menu: 'Tüm hataları temizle', confirmTitle: '{N} listeden kaldırılsın mı?', confirm: 'Kaldır', cancel: 'İptal', done: 'Hatalar kaldırıldı', undo: 'Geri al',
     failed: 'Hatalar kaldırılamadı. Tekrar dene', undoFailed: 'Hatalar geri getirilemedi', mistakes: { one: 'hata', few: 'hata', many: 'hata' },
   },
   pl: {
+    deleteOne: 'Usuń', doneOne: 'Błąd usunięty',
     menu: 'Wyczyść wszystkie błędy', confirmTitle: 'Usunąć {N} z powtórek?', confirm: 'Usuń', cancel: 'Anuluj', done: 'Błędy usunięte', undo: 'Cofnij',
     failed: 'Nie udało się usunąć błędów. Spróbuj ponownie', undoFailed: 'Nie udało się przywrócić błędów', mistakes: { one: 'błąd', few: 'błędy', many: 'błędów' },
   },

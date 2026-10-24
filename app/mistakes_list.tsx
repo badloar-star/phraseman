@@ -55,8 +55,10 @@ const PAGE = 40;
 
 // зачем (аудит скорости Авторизации 13.10, п.3): PanelRow уже в memo, но onPress и right создавались заново в каждом рендере экрана — каждый ввод в поиске
 // перерисовывал все строки. Строка-обёртка в memo получает item и стабильный onOpen, остальное собирает внутри.
-const MistakeListRow = memo(function MistakeListRow({ g, item, first, onOpen }: Readonly<{ g: Lv2Glass; item: MistakePracticeListItem; first: boolean; onOpen: (item: MistakePracticeListItem) => void }>) {
+const MistakeListRow = memo(function MistakeListRow({ g, item, first, onOpen, onAskDelete }: Readonly<{ g: Lv2Glass; item: MistakePracticeListItem; first: boolean; onOpen: (item: MistakePracticeListItem) => void; onAskDelete?: (item: MistakePracticeListItem) => void }>) {
   const open = useCallback(() => onOpen(item), [item, onOpen]);
+  // зачем (владелец 24.10 «ошибки можно удалять»): долгое нажатие на ждущую ошибку — шторка «Удалить»; исправленные не удаляются
+  const askDelete = useMemo(() => (onAskDelete && item.status === 'active' ? () => onAskDelete(item) : undefined), [item, onAskDelete]);
   return (
     <PanelRow
       g={g}
@@ -66,6 +68,7 @@ const MistakeListRow = memo(function MistakeListRow({ g, item, first, onOpen }: 
       subtitle={item.meaning}
       right={<MiniDots g={g} n={item.status === 'corrected' ? 3 : item.qualifyingDays} />}
       onPress={open}
+      onLongPress={askDelete}
     />
   );
 });
@@ -195,6 +198,46 @@ export default function MistakesListScreen() {
       },
     }).finally(() => { clearingRef.current = false; });
   }, [lang, target]);
+
+  // зачем (владелец 24.10 «ошибки можно удалять», координатор): одна ошибка — долгое нажатие → «Удалить». Строка пропадает в тот же
+  // кадр, журнал пишет 'hidden' фоном (синк уносит на другие устройства, полная чистка не воскресит), тост «Ошибка удалена · Вернуть».
+  const [deleteTarget, setDeleteTarget] = useState<MistakePracticeListItem | null>(null);
+  const askDeleteOne = useCallback((item: MistakePracticeListItem) => {
+    hapticTap();
+    console.log('[MISTAKES-DELETE] ask', JSON.stringify({ mistakeId: item.mistakeId.slice(-8), status: item.status })); // guard-ok: вход удаления
+    setDeleteTarget(item);
+  }, []);
+  const closeDelete = useCallback(() => setDeleteTarget(null), []);
+  const deleteOne = useCallback(() => {
+    const item = deleteTarget;
+    setDeleteTarget(null);
+    if (!item) return;
+    if (clearingRef.current) {
+      console.warn('[MISTAKES-DELETE] ignored', JSON.stringify({ reason: 'another_delete_running' })); // guard-ok: ранний выход с причиной
+      return;
+    }
+    const before = itemsRef.current;
+    clearingRef.current = true;
+    hapticTap();
+    console.log('[MISTAKES-DELETE] confirm', JSON.stringify({ mistakeId: item.mistakeId.slice(-8) })); // guard-ok: подтверждение
+    void clearAllMistakesWithUndo({
+      studyTarget: target,
+      lang,
+      visibleMistakeIds: [item.mistakeId],
+      onlyMistakeIds: [item.mistakeId],
+      onOptimistic: () => {
+        dropMistakesHubPeek();
+        if (mountedRef.current) setItems((prev) => (prev ? withoutLocallyHiddenMistakes(prev) : prev));
+      },
+      onRevertOptimistic: () => {
+        dropMistakesHubPeek();
+        console.log('[MISTAKES-DELETE] revert', JSON.stringify({ mistakeId: item.mistakeId.slice(-8) })); // guard-ok: откат (Вернуть или сбой)
+        if (mountedRef.current && before) setItems(before);
+      },
+    }).then((outcome) => {
+      console.log('[MISTAKES-DELETE] outcome', JSON.stringify({ outcome })); // guard-ok: итог
+    }).finally(() => { clearingRef.current = false; });
+  }, [deleteTarget, lang, target]);
 
   // зачем (макет Б): строка ведёт в КАРТОЧКУ ошибки — там хроника и разбор, а отработка одной ошибки запускается оттуда осознанной кнопкой.
   const openOne = useCallback((item: MistakePracticeListItem) => {
@@ -333,7 +376,7 @@ export default function MistakesListScreen() {
                 <View style={[styles.skel, { backgroundColor: g.line, height: 12, width: '30%', marginTop: 8 }]} />
               </View>
             )) : visible.slice(0, limit).map((item, index) => (
-              <MistakeListRow key={item.mistakeId} g={g} first={index === 0} item={item} onOpen={openOne} />
+              <MistakeListRow key={item.mistakeId} g={g} first={index === 0} item={item} onOpen={openOne} onAskDelete={askDeleteOne} />
             ))}
           </Panel>
         </ScrollView>
@@ -348,6 +391,9 @@ export default function MistakesListScreen() {
       <ScreenBackButton screen="mistakes_list" testID="mistakes-list-back" accessibilityLabel={copy.back} onPress={searching ? closeSearch : goBack} />
       <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistakes-list-sheet">
         <SheetRow g={g} testID="mistakes-list-clear-all" icon="trash-outline" title={clearCopy.menu} danger onPress={askClear} />
+      </PanelSheet>
+      <PanelSheet visible={deleteTarget !== null} onClose={closeDelete} testID="mistakes-list-row-sheet">
+        <SheetRow g={g} testID="mistakes-list-delete-one" icon="trash-outline" title={clearCopy.deleteOne} danger onPress={deleteOne} />
       </PanelSheet>
       <ThemedConfirmModal
         visible={confirmOpen}

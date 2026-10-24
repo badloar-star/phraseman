@@ -32,6 +32,8 @@ const stableId = (prefix: string, body: unknown): string => `${prefix}:v1:${sha2
 export async function hideAllMistakes(input: Readonly<{
   accountScope: string;
   studyTarget: MistakeStudyTarget;
+  /** Удалить только эти ошибки (долгое нажатие на строку, «Удалить» в карточке); без списка — все активные. */
+  onlyMistakeIds?: readonly string[];
   nowMs?: number;
   /** Только для тестов. */
   storage?: MistakePracticeStorage;
@@ -40,8 +42,9 @@ export async function hideAllMistakes(input: Readonly<{
   console.log(`${LOG} hideAll:enter`, JSON.stringify({ studyTarget: input.studyTarget }));
   try {
     const journal = await loadMistakeEventJournal({ accountScope: input.accountScope, studyTarget: input.studyTarget, storage: input.storage });
-    const active = [...projectMistakes(journal.events).items.values()].filter((item) => item.status === 'active');
-    console.log(`${LOG} hideAll:read`, JSON.stringify({ journalEvents: journal.events.length, active: active.length, ms: Date.now() - startedAt }));
+    const only = input.onlyMistakeIds ? new Set(input.onlyMistakeIds) : null;
+    const active = [...projectMistakes(journal.events).items.values()].filter((item) => item.status === 'active' && (!only || only.has(item.mistakeId)));
+    console.log(`${LOG} hideAll:read`, JSON.stringify({ journalEvents: journal.events.length, active: active.length, only: only ? only.size : null, ms: Date.now() - startedAt }));
     if (active.length === 0) {
       console.warn(`${LOG} hideAll:nothing_to_clear`, JSON.stringify({ studyTarget: input.studyTarget }));
       return { ok: false, reason: 'nothing_to_clear' };

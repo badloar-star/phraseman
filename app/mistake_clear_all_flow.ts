@@ -23,6 +23,8 @@ export type ClearAllMistakesInput = Readonly<{
   lang: Lang;
   /** Ошибки, которые человек видит на экране («ждут»): убираются из показа до записи. */
   visibleMistakeIds: readonly string[];
+  /** зачем (владелец 24.10 «ошибки можно удалять»): удалить только эти (одна строка) — тот же путь, тост «Ошибка удалена · Вернуть». */
+  onlyMistakeIds?: readonly string[];
   /** Экран пустеет сразу, до записи журнала. */
   onOptimistic: () => void;
   /** Откат на экране сразу (при сбое записи и при «Вернуть»), до перечитывания журнала. */
@@ -54,20 +56,20 @@ function notifyJournalChanged(): void {
 type ToastLangKey = 'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 const LANGS: readonly ToastLangKey[] = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 
-const pick = (field: 'done' | 'failed' | 'undoFailed' | 'undo'): Readonly<Record<ToastLangKey, string>> =>
+const pick = (field: 'done' | 'doneOne' | 'failed' | 'undoFailed' | 'undo'): Readonly<Record<ToastLangKey, string>> =>
   Object.fromEntries(LANGS.map((key) => [key, MISTAKE_CLEAR_ALL_COPY[key][field]])) as Record<ToastLangKey, string>;
 
-const toastTexts = (field: 'done' | 'failed' | 'undoFailed') => {
+const toastTexts = (field: 'done' | 'doneOne' | 'failed' | 'undoFailed') => {
   const m = pick(field);
   return { ru: m.ru, uk: m.uk, en: m.en, es: m.es, 'pt-BR': m['pt-BR'], vi: m.vi, id: m.id, tr: m.tr, pl: m.pl };
 };
 
 const failureToast = (field: 'failed' | 'undoFailed') => actionToastTri('error', toastTexts(field));
 
-const doneToast = (onUndo: () => void) => {
+const doneToast = (onUndo: () => void, field: 'done' | 'doneOne' = 'done') => {
   const label = pick('undo');
   return {
-    ...actionToastTri('success', toastTexts('done')),
+    ...actionToastTri('success', toastTexts(field)),
     action: {
       labelRu: label.ru, labelUk: label.uk, labelEn: label.en, labelEs: label.es, labelPtBr: label['pt-BR'],
       labelVi: label.vi, labelId: label.id, labelTr: label.tr, labelPl: label.pl,
@@ -90,7 +92,8 @@ export async function clearAllMistakesWithUndo(input: ClearAllMistakesInput): Pr
   onOptimistic();
   try {
     const accountScope = await getStableId();
-    const result = await hideAllMistakes({ accountScope, studyTarget });
+    const result = await hideAllMistakes({ accountScope, studyTarget, onlyMistakeIds: input.onlyMistakeIds });
+    if (input.onlyMistakeIds) console.log('[MISTAKES-DELETE] write', JSON.stringify({ requested: input.onlyMistakeIds.length, ok: result.ok, reason: result.ok ? null : result.reason })); // guard-ok: итог записи удаления
     if (!result.ok) {
       unmarkMistakesHiddenLocally(visibleMistakeIds);
       onRevertOptimistic();
@@ -106,7 +109,7 @@ export async function clearAllMistakesWithUndo(input: ClearAllMistakesInput): Pr
     trackMistakePracticeEvent('mistake_practice_hidden', { study_target: studyTarget, reason: 'clear_all', count: result.mistakes.length });
     console.log(`${LOG} result`, JSON.stringify({ ok: true, cleared: result.mistakes.length, appended: result.appendedCount, ms: Date.now() - startedAt }));
     notifyJournalChanged();
-    emitAppEvent('action_toast', doneToast(() => undoClear({ studyTarget, accountScope, mistakes: result.mistakes, onRevertOptimistic })));
+    emitAppEvent('action_toast', doneToast(() => undoClear({ studyTarget, accountScope, mistakes: result.mistakes, onRevertOptimistic }), input.onlyMistakeIds?.length === 1 ? 'doneOne' : 'done'));
     return 'cleared';
   } catch (error: unknown) {
     console.warn(`${LOG} catch`, error instanceof Error ? error.message : String(error));

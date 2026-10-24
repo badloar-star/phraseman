@@ -26,6 +26,7 @@ import { mistakeSourceLabel } from './mistake_facet_copy';
 import { mistakeFacetExplanation } from './mistake_facet_explanations';
 import { loadMistakeDetail, type MistakeDetail, type MistakeTimelineEntry } from './mistake_detail_model';
 import { hideMistake, type MistakeHideReason } from './mistake_hide';
+import { clearAllMistakesWithUndo } from './mistake_clear_all_flow';
 import { markMistakeHiddenLocally, unmarkMistakeHiddenLocally } from './mistake_local_hidden';
 import { peekMistakeDetailDraft } from './mistake_detail_draft';
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
@@ -200,6 +201,21 @@ export default function MistakeDetailScreen() {
     hapticTap();
     setMenuOpen(false);
     trackMistakePracticeEvent('mistake_practice_hidden', { study_target: target, reason });
+    if (reason === 'removed') {
+      // зачем (владелец 24.10 «ошибки можно удалять»): «Удалить» из карточки — тем же путём, что строка списка: тост
+      // «Ошибка удалена · Вернуть», откат событием 'restored'; список узнаёт об изменениях через подписку журнала.
+      console.log('[MISTAKES-DELETE] detail', JSON.stringify({ mistakeId: detail.mistakeId.slice(-8) })); // guard-ok: вход удаления из карточки
+      goBack();
+      void clearAllMistakesWithUndo({
+        studyTarget: target,
+        lang,
+        visibleMistakeIds: [detail.mistakeId],
+        onlyMistakeIds: [detail.mistakeId],
+        onOptimistic: () => undefined,
+        onRevertOptimistic: () => undefined,
+      }).finally(() => { hidingRef.current = false; });
+      return;
+    }
     // зачем (аудит Optimistic UI п.2): список после «назад» не показывает скрытую ни на кадр — пометка до записи журнала.
     markMistakeHiddenLocally(detail.mistakeId);
     goBack();
@@ -214,7 +230,7 @@ export default function MistakeDetailScreen() {
         }));
       }
     })().finally(() => { hidingRef.current = false; });
-  }, [copy.hideFailed, detail, goBack, target]);
+  }, [copy.hideFailed, detail, goBack, lang, target]);
 
   const loaded = detail !== null && detail !== 'missing';
   // зачем (аудит Optimistic UI п.3): пока журнал читается — шапка из черновика строки списка, а не пустой экран с «‹».

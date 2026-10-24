@@ -33,6 +33,10 @@ import {
 } from "../modules/learning-v2/runtime/hold_capture_route_v1";
 import { noteSwallowed } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { DebugLogger } from "../app/debug-logger";
+import { awaitPreviousCaptureReleaseV1 } from "../modules/learning-v2/runtime/await_previous_capture_release_v1";
+
+/** Сколько ждём освобождения микрофона прежней записью перед новой (жалоба №6, быстрый «Дальше»). */
+const PREVIOUS_CAPTURE_RELEASE_CEILING_MS = 1_500;
 
 export type LearningV2LocalHoldToTalkStatusV1 =
   | "idle"
@@ -94,6 +98,8 @@ export function useLearningV2LocalHoldToTalkV1(
   const captureRouteRef = useRef<"pcm" | "system" | null>(null);
   const pcmRecordingRef = useRef<HoldRecording | null>(null);
   const pcmFinishingRef = useRef(false);
+  // зачем (жалоба №6): остановка прежней записи (recording.stop()) ещё освобождает микрофон, когда следующее задание уже зовёт startPcm
+  const pcmStopInFlightRef = useRef<Promise<unknown> | null>(null);
   const listenersRef = useRef<Subscription[]>([]);
   const stopTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const systemRestartTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
@@ -413,6 +419,16 @@ export function useLearningV2LocalHoldToTalkV1(
       setStatus("idle");
       return;
     }
+    // зачем (жалоба №6, быстрый «Дальше»): новая запись не поднимается, пока прежняя держит микрофон — дожидаемся её освобождения (с потолком)
+    const previousRelease = await awaitPreviousCaptureReleaseV1(pcmStopInFlightRef.current, PREVIOUS_CAPTURE_RELEASE_CEILING_MS);
+    if (previousRelease.outcome !== "none") micLog("pcm:waited_previous_release", { ...previousRelease, holding: holdPressRef.current, stale: generation !== generationRef.current });
+    if (!mountedRef.current || generation !== generationRef.current) return;
+    if (!holdPressRef.current) {
+      micLog("pcm:not_started", { reason: "released_while_waiting_previous_release" });
+      captureRouteRef.current = null;
+      setStatus("idle");
+      return;
+    }
     let recording: HoldRecording | null = null;
     recording = startHoldRecording({
       onFirstAudio: () => {
@@ -528,7 +544,13 @@ export function useLearningV2LocalHoldToTalkV1(
     setStatus("finishing");
     let wavUri: string | null = null;
     try {
-      wavUri = await recording.stop();
+      const stopping = recording.stop();
+      pcmStopInFlightRef.current = stopping;
+      void stopping.then(
+        () => { if (pcmStopInFlightRef.current === stopping) pcmStopInFlightRef.current = null; },
+        () => { if (pcmStopInFlightRef.current === stopping) pcmStopInFlightRef.current = null; },
+      );
+      wavUri = await stopping;
       micLog("pcm:stopped", { hasFile: Boolean(wavUri), stale: generation !== generationRef.current });
       if (
         !mountedRef.current ||

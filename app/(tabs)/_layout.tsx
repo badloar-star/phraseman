@@ -17,7 +17,7 @@ import { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/home_scene
 import { SEASON_SCENE_V2_ENABLED } from '../../components/learning-v2/season/season_flags';
 import { useIsFocused } from '@react-navigation/native';
 import { useHomeSceneStatusTint } from '../../components/home/v2/scene/home_scene_status_tint';
-import { useAnimatedAtTop, useLightStatusBar, useSeasonCoverTop } from '../../hooks/use_scene_status_bar';
+import { useAnimatedAtTop, useSceneStatusBar, useSeasonCoverTop } from '../../hooks/use_scene_status_bar';
 import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
@@ -679,8 +679,8 @@ function TabScaffold({
   const homeSceneTint = useHomeSceneStatusTint();
   const homeSceneAtTop = useAnimatedAtTop(topFadeScroll?.scrollY);
   const seasonCover = useSeasonCoverTop();
-  useLightStatusBar('home', tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0 && homeSceneTint !== null && homeSceneAtTop, 'home_scene_under_clock');
-  useLightStatusBar('season', tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1 && seasonCover.mounted && seasonCover.atTop, 'season_cover_under_clock');
+  useSceneStatusBar('home', tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0 && homeSceneTint !== null && homeSceneAtTop, 'home_scene_under_clock', homeSceneTint);
+  useSceneStatusBar('season', tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1 && seasonCover.mounted && seasonCover.atTop, 'season_cover_under_clock');
   useEffect(() => {
     console.log('[TABBAR-HIDE]', JSON.stringify({ requested: tabBarHidden, visualIdx, owner: visualIdx === 1 ? 'lessons' : 'other', result: barHidden ? 'apply' : tabBarHidden ? 'skip_not_lessons' : 'visible', atMs: Date.now() })); // guard-ok: одна строка на смену
   }, [tabBarHidden, visualIdx, barHidden]);

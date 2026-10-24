@@ -8,6 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { Animated, StatusBar, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { sceneStatusBarStyle } from '../components/v2/scene_status_bar_icons';
 
 const LOG = '[SCENE-STATUSBAR]';
 
@@ -16,21 +17,26 @@ export const SCENE_STATUS_BAR_SWITCH_Y = 60;
 
 /** Стек строки состояния RN; тесты подменяют поля (в тестовой среде StatusBar может не быть). */
 export const sceneStatusBarStack = {
-  push: (): unknown => (StatusBar && typeof StatusBar.pushStackEntry === 'function' ? StatusBar.pushStackEntry({ barStyle: 'light-content', animated: true }) : null),
+  push: (barStyle: 'light-content' | 'dark-content'): unknown => (StatusBar && typeof StatusBar.pushStackEntry === 'function' ? StatusBar.pushStackEntry({ barStyle, animated: true }) : null),
   pop: (entry: unknown): void => { if (entry && StatusBar && typeof StatusBar.popStackEntry === 'function') StatusBar.popStackEntry(entry as never); },
 };
 
-/** Светлые значки строки состояния, пока on; снятие — возврат к бару темы. */
-export function useLightStatusBar(tag: string, on: boolean, why: string): void {
+/**
+ * Значки строки состояния над сценой, пока on; снятие — возврат к бару темы.
+ * зачем (координатор 24.10, замечание 4 · ТЕМЫ): стиль — по яркости верха сцены (sceneStatusBarStyle, порог как у круга «назад»);
+ * верха нет (обложка Сезона — градиент главы) — светлые значки.
+ */
+export function useSceneStatusBar(tag: string, on: boolean, why: string, sceneTop: string | null = null): void {
+  const barStyle = sceneTop ? sceneStatusBarStyle(sceneTop) : 'light-content';
   useEffect(() => {
     if (!on) return undefined;
-    const entry = sceneStatusBarStack.push();
-    console.log(LOG, JSON.stringify({ tag, light: true, why, applied: entry !== null })); // guard-ok: одна строка на вход (applied=false — нет StatusBar)
+    const entry = sceneStatusBarStack.push(barStyle);
+    console.log(LOG, JSON.stringify({ tag, on: true, barStyle, sceneTop, why, applied: entry !== null })); // guard-ok: одна строка на вход (applied=false — нет StatusBar)
     return () => {
       sceneStatusBarStack.pop(entry);
-      console.log(LOG, JSON.stringify({ tag, light: false, why: 'released: screen_left_or_scrolled_or_condition_off' })); // guard-ok: одна строка на выход
+      console.log(LOG, JSON.stringify({ tag, on: false, barStyle, why: 'released: screen_left_or_scrolled_or_condition_off' })); // guard-ok: одна строка на выход
     };
-  }, [on, tag]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: why только для журнала
+  }, [on, tag, barStyle]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: why и sceneTop только для журнала
 }
 
 /** «Сцена у верха» по Animated.Value прокрутки (значение маски верха вкладок: 0 у верха); слушатель только сравнивает с порогом. */

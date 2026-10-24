@@ -14,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { useLightStatusBar, useScrollAtTop } from '../../../../hooks/use_scene_status_bar';
+import { useSceneStatusBar, useScrollAtTop } from '../../../../hooks/use_scene_status_bar';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { useStableSafeAreaInsets } from '../../../../app/stable_safe_area_metrics';
@@ -97,7 +97,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   // зачем (координатор 24.10, Р2): сцена «Сегодня» тёмная — пока она под часами и экран в фокусе, значки строки состояния светлые
   const focused = useIsFocused();
   const [sceneAtTop, onSceneScroll] = useScrollAtTop();
-  useLightStatusBar('today', focused && sceneAtTop, 'today_scene_under_clock');
+  useSceneStatusBar('today', focused && sceneAtTop, 'today_scene_under_clock', tokens.sceneTop);
   // разделитель строк: цвет текста 7 % (эталон `.rw + .rw`: color-mix(var(--tx) 7%))
   const separator = `${card.text.slice(0, 7)}12`;
   return (

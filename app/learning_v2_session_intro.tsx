@@ -383,6 +383,9 @@ export default function LearningV2SessionIntro({
   const insets = useStableSafeAreaInsets();
   const reducedMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
+  // зачем (Сверка 24.10, §55–57: на «Схеме» 2/3 варианты B и C закрыты нижней кнопкой «Дальше»): нижняя панель абсолютная, запас прокрутки был фиксирован (94 + низ экрана) —
+  // теперь запас берётся с настоящей высоты панели (onLayout), минимум прежний. Журнал [INTRO-OVERLAP]: высота панели, окно прокрутки, содержимое, отступы.
+  const [barHeight, setBarHeight] = useState(0);
   const [selectedCorrectIndex, setSelectedCorrectIndex] = useState<
     number | null
   >(null);
@@ -678,8 +681,10 @@ export default function LearningV2SessionIntro({
             contentContainerStyle={[
               sx.scrollContent,
               compact && sx.scrollContentCompact,
-              { paddingBottom: 94 + insets.bottom },
+              { paddingBottom: Math.max(94 + insets.bottom, barHeight + 16) },
             ]}
+            onLayout={(e) => console.log('[INTRO-OVERLAP] scroll', JSON.stringify({ page: safeIndex, viewportH: Math.round(e.nativeEvent.layout.height), barHeight: Math.round(barHeight), padBottom: Math.max(94 + insets.bottom, barHeight + 16), insetsBottom: insets.bottom, compact }))} // guard-ok: размеры окна прокрутки
+            onContentSizeChange={(_w, h) => console.log('[INTRO-OVERLAP] content', JSON.stringify({ page: safeIndex, contentH: Math.round(h), barHeight: Math.round(barHeight) }))} // guard-ok: размер содержимого
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
           >
@@ -852,6 +857,7 @@ export default function LearningV2SessionIntro({
         </View>
 
         <View
+          onLayout={(e) => { const h = e.nativeEvent.layout.height; console.log('[INTRO-OVERLAP] bar', JSON.stringify({ page: safeIndex, height: Math.round(h), previous: Math.round(barHeight), insetsBottom: insets.bottom })); if (Math.abs(h - barHeight) > 1) setBarHeight(h); }} // guard-ok: высота нижней панели
           style={[
             sx.bottomBar,
             {

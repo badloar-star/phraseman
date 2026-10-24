@@ -47,7 +47,9 @@ test("Learning V2 uses a dedicated new intro renderer instead of the legacy less
   expect(intro).toContain("style={sx.scroll}");
   expect(intro).toContain("const sx = useScaledTextStyles(styles);");
   expect(intro).toContain("slide: { flex: 1, minHeight: 0 }");
-  expect(intro).toContain("{ paddingBottom: 94 + insets.bottom }");
+  // зачем (Сверка 24.10, §55–57: варианты B и C закрыты кнопкой «Дальше»): запас под нижнюю панель — не меньше прежних 94 + низ экрана и не меньше настоящей высоты панели + 16, журнал [INTRO-OVERLAP]
+  expect(intro).toContain("{ paddingBottom: Math.max(94 + insets.bottom, barHeight + 16) }");
+  expect(intro).toContain("[INTRO-OVERLAP] bar");
   expect(intro).toContain("bottomBar: {");
 });
 

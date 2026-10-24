@@ -11,12 +11,12 @@
       "pageId": "en:lesson-22:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Продвигаться вперёд",
-        "uk": "Рухатися вперед"
+        "ru": "Заниматься ради результата",
+        "uk": "Займатися заради результату"
       },
       "bodyByLocale": {
-        "ru": "Make progress — делать успехи, продвигаться в учёбе или деле. Progress здесь неисчисляемое: make progress, без a. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
-        "uk": "Make progress — робити успіхи, просуватися в навчанні чи справі. Progress тут незлічуване: make progress, без a. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+        "ru": "Вы учитесь играть на гитаре и объясняете, зачем занимаетесь каждый день. I practise every day to make progress — я занимаюсь каждый день, чтобы делать успехи. I practise every day сообщает действие и его частоту. To make progress добавляет цель. После to нужен make в начальной форме. Progress здесь неисчисляемое: говорим make progress без a.",
+        "uk": "Ви вчитеся грати на гітарі й пояснюєте, навіщо займаєтеся щодня. I practise every day to make progress — я займаюся щодня, щоб робити успіхи. I practise every day повідомляє дію та її частоту. To make progress додає мету. Після to потрібен make у початковій формі. Progress тут незлічуване: кажемо make progress без a."
       },
       "question": {
         "interactionId": "en:lesson-22:session-31:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сосредоточиться и запомнить",
-        "uk": "Зосередитися й запам’ятати"
+        "ru": "Не отвлекаться на телефон",
+        "uk": "Не відволікатися на телефон"
       },
       "bodyByLocale": {
-        "ru": "Stay focused — оставаться сосредоточенным на деле. Learn a poem by heart — выучить стихотворение наизусть. By heart означает, что вы помните текст и можете сказать его без чтения. В примере телефон выключают, чтобы не отвлекаться. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
-        "uk": "Stay focused — залишатися зосередженим на справі. Learn a poem by heart — вивчити вірш напам’ять. By heart означає, що ви пам’ятаєте текст і можете сказати його без читання. У прикладі телефон вимикають, щоб не відволікатися. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+        "ru": "Вы садитесь за домашнее задание и выключаете телефон, чтобы не отвлекаться. I turn off my phone to stay focused — я выключаю телефон, чтобы оставаться сосредоточенным. Сначала действие I turn off my phone, затем цель to stay focused. После to ставим начальную форму stay. Focused описывает состояние, которое вы хотите сохранить.",
+        "uk": "Ви сідаєте за домашнє завдання й вимикаєте телефон, щоб не відволікатися. I turn off my phone to stay focused — я вимикаю телефон, щоб залишатися зосередженим. Спочатку дія I turn off my phone, потім мета to stay focused. Після to ставимо початкову форму stay. Focused описує стан, який ви хочете зберегти."
       },
       "question": {
         "interactionId": "en:lesson-22:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-22:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Проверить свою работу",
-        "uk": "Перевірити свою роботу"
+        "ru": "Перечитать свою работу",
+        "uk": "Перечитати свою роботу"
       },
       "bodyByLocale": {
-        "ru": "Check my work — проверить свою работу, например написанный текст. My относится к говорящему: I check my work. Для we будет our work, для you — your work. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
-        "uk": "Check my work — перевірити свою роботу, наприклад написаний текст. My стосується мовця: I check my work. Для we буде our work, для you — your work. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+        "ru": "Вы закончили письменное задание и перечитываете текст, чтобы проверить его. I read it again to check my work — я читаю его ещё раз, чтобы проверить свою работу. I read it again называет действие; it заменяет уже названный текст. To check my work объясняет цель. После to ставим начальную форму check, затем дополнение my work.",
+        "uk": "Ви закінчили письмове завдання й перечитуєте текст, щоб перевірити його. I read it again to check my work — я читаю його ще раз, щоб перевірити свою роботу. I read it again називає дію; it замінює вже названий текст. To check my work пояснює мету. Після to ставимо початкову форму check, потім додаток my work."
       },
       "question": {
         "interactionId": "en:lesson-22:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7886faddd6af90fdde91f1e0d65182ff3e5004547816c4c43124de86127fe8a7"
+  "introFingerprint": "eeacff6131ff85c21060d7fcd3cffe00401e1f6f0a5b91bc47e979a4c44e4392"
 }

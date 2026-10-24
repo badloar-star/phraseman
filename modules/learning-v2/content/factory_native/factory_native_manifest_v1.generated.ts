@@ -16841,7 +16841,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 27,
-    sourceFingerprint: "bf1b1496df514c3a8ba067e745bcb29172d0d2f94df6bb980b60ce98ce961456",
+    sourceFingerprint: "3fd45278aeb6814e79793c2193e17f7b92689eea8a4f37c3853fb71a8ca4de57",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."],["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."],["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."]],"uk":[["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."],["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."],["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."]]}),
@@ -16855,7 +16855,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 28,
-    sourceFingerprint: "86f468adc6e8a4f7f82b35ce83bd2d5d2b80f0c48ac4e89eaf8d99293607173e",
+    sourceFingerprint: "5bde2971f5c7f95692402f622dcf651d9d44969471a845052e894368afc65bde",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."],["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."],["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."]],"uk":[["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."],["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."],["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."]]}),
@@ -16869,7 +16869,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 29,
-    sourceFingerprint: "0e015e81e3e8ad0a6a48601ae142c9a50173986e45755143cdc1c10159c23ca9",
+    sourceFingerprint: "38416a900b9097f885a00739114cf80445fecd1ed7ee79c904b7aa48fe3dcee2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."],["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."],["В этой ситуации название вещи заменяем one для единственного числа или ones для множественного.","В этой ситуации название вещи заменяем one для единственного числа или ones для множественного."]],"uk":[["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."],["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."],["У цій ситуації назву речі замінюємо one для однини або ones для множини.","У цій ситуації назву речі замінюємо one для однини або ones для множини."]]}),
@@ -16883,7 +16883,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 30,
-    sourceFingerprint: "7cc35812ce928a5e529578df773e0749d9508f2410c041aaf44b7e9eb121a631",
+    sourceFingerprint: "11321d0ebd9065cc4bd1ad59658d633888c9d84754dd7358881b515df30d8699",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -16897,7 +16897,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 31,
-    sourceFingerprint: "ff78780d84b5a4832f584f27c2c65e0a85efb1169482c5ce9e5678e7006d6e63",
+    sourceFingerprint: "2ed85bcfb0c4ba55c406cf0c4d4cf538d700e5148a66693117e8c253d72714f4",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -16911,7 +16911,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 32,
-    sourceFingerprint: "43a44e7427d99130066977eb43c7c2e7e77a817a7be030c4eaee5f514962291c",
+    sourceFingerprint: "a58e838ceb72604193b09a599d62c53abdc06de1a881d8044cdaa7468406109c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -16925,7 +16925,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 33,
-    sourceFingerprint: "229239681cce19c465a88b0943b7fc2a2954067c36955d312bbb2bfcd829c5f6",
+    sourceFingerprint: "4d07aecd9cb713bc8585437e8487c3055b32864ce674c74c06570d6a55c41db9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."]],"uk":[["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."]]}),
@@ -16939,7 +16939,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 34,
-    sourceFingerprint: "46aedf03c2d04d199a6032d7a4469b57d773f80b17ff89c31231a0d9185ce1be",
+    sourceFingerprint: "c8fd1bd2e0dfee7045ace8cd287275b5b967dd182c0765610fde8e1a8032e640",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."]],"uk":[["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."]]}),
@@ -16953,7 +16953,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 35,
-    sourceFingerprint: "3d905f6fff1cabb26ecfbf69184129889e2c8e7e794307755132c4ab68d7a3ac",
+    sourceFingerprint: "268f001cae7721055642f46b0aeb64405913bc79b652f62f1b0b6a494ff5505c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."]],"uk":[["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."]]}),
@@ -16967,7 +16967,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 36,
-    sourceFingerprint: "b1382fa9a9ebb56ba1e80d773663bf2553eb3cdfa4fefdb382a80ef6e27ac839",
+    sourceFingerprint: "9563d6a72010b978e325376234c90388bea8813c17bb331c0c7137c1f40f5433",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."],["Здесь один новый вариант: another + существительное в единственном числе.","Здесь один новый вариант: another + существительное в единственном числе."]],"uk":[["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."],["Тут один новий варіант: another + іменник в однині.","Тут один новий варіант: another + іменник в однині."]]}),
@@ -16981,7 +16981,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 37,
-    sourceFingerprint: "9e6b2f62ae2329a5cf20a05b63ac8ae89f7a619430e5baebc0d02c9a3ce5ad8b",
+    sourceFingerprint: "eae02f9a1402bb5a122fee1479058611035e814e9a31bc70026ad75b5ba4d0be",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -16995,7 +16995,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 38,
-    sourceFingerprint: "26bce93be1d85f425178df8daa3e084ace71b731ee89d517f9f51af9a3bab977",
+    sourceFingerprint: "fc0aa15e510aa26a14a05bc34fa40e9c1b9e081f05e900455417ff250cfdf98e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17009,7 +17009,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 39,
-    sourceFingerprint: "c398811aaa0915a30bd4f431025dd45ae61844b35f0de86a90b8644c35066abc",
+    sourceFingerprint: "b710085adc02ac28906bb248e4f681c577ceed72761d91be59d7bf75585cc4ca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17023,7 +17023,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 40,
-    sourceFingerprint: "1d7c817e0a8e02b267e5586f249a94a72cd2cf61151325443f9ad75f079245f8",
+    sourceFingerprint: "ebe1ad5fbcdf6047f0cc0338b2147379031ee7489cfb36a9ce4545f7cfe0375a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17037,7 +17037,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 41,
-    sourceFingerprint: "111581a082e967746c99c46e1437cb69e8742abe3e836ec3b141c89125b3233b",
+    sourceFingerprint: "fe4f46c6bbda54c70a0e5a45d7eda8f41dccd3512147efacc3c48381612c13d8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17051,7 +17051,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 42,
-    sourceFingerprint: "ca66d6b97da3d1db5227b2785878da1788f4f867190212c29cfbfdb4bc54bd28",
+    sourceFingerprint: "01a9f3501a29673cc7850ba702637e0c581615edeecfd424a9d0cecc9c3a06fd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17065,7 +17065,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 43,
-    sourceFingerprint: "f07dee5cfd16c01ebbcb8218444fc181608b3718f66e0d74dc1327cff6074fdd",
+    sourceFingerprint: "6b8ab8d0e3a7a235bbccd74391f31758d31c23b0a7dc2008ea4f54dbf7f11bc6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17079,7 +17079,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 44,
-    sourceFingerprint: "3f085160a65cb01d649a0454638ecc9a81607bd40d931100d72c7c6b942b1fd8",
+    sourceFingerprint: "2ee5b18a244d5b5266343c3c56e0845f9daa954dc333ebfc9725cbffe4a54a32",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17093,7 +17093,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 45,
-    sourceFingerprint: "935ef4e08e6f47947dc2f47cabe0f138e42f5a9d85acf326d7ab9ed7452f108a",
+    sourceFingerprint: "a803a88e5b9a3bd0668be164cd7e2a54e45c52da380c469db192cb70dcc29540",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),

@@ -14713,7 +14713,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 43,
-    sourceFingerprint: "5765739213d9d61fc7a7baf6df0f960b81461e983f21d81ed7fbd8a0637e0573",
+    sourceFingerprint: "976fb0609f26e9946efd4f379aa3277a790f6867e5cf2bd5f61e13dbbb729dee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14727,7 +14727,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 44,
-    sourceFingerprint: "9bf3926be4f35dc3c83e53759f840925866cd371ce0265d68e1b23fd44d59504",
+    sourceFingerprint: "706aa98d89e04782e8a7ba960511f16b145b01922793d8040a030da2829da8e8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14741,7 +14741,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 45,
-    sourceFingerprint: "46b6bf20c603b1b3c1f49bf6053be4aee4c8e902bc467630330817dab7431670",
+    sourceFingerprint: "f1536d2b6270487cf09e69846263ebe587c047eb53af44aab7478907149d7b77",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14755,7 +14755,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 46,
-    sourceFingerprint: "32d92f2326d02e91257aa57b1ac2d2c20c3cf6d312e5a9add92792cecaa0da04",
+    sourceFingerprint: "5ba29401b59762c2e3246fc7cfc3ba5ebf1bce7c0d09cb4412dcf69f77513408",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14769,7 +14769,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 47,
-    sourceFingerprint: "505678ad25c70bd6fb9f2d23b22e534147029a0ff580ecb5385bfbba126310f5",
+    sourceFingerprint: "157c3d37f6690f44b5a98789a4f3e53ab1fb8553b3b9fb8073afed9f12c5b64b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14783,7 +14783,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 48,
-    sourceFingerprint: "c835f112791d507643e9375584a9533a983f930a64257592eb447c4cc83ffac3",
+    sourceFingerprint: "6e1859d5fd7af717363f298acf7edff3581157932d60aed1e897905d8102b141",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14797,7 +14797,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 49,
-    sourceFingerprint: "4b1784b697c246ca07680186bbca88e671f8f461ea6746d83b8d584b29d7a1d5",
+    sourceFingerprint: "7f257a7946e2f1504128070f6f24482aa3f80ea2f92753b4f2282eb98463b6df",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14811,7 +14811,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 50,
-    sourceFingerprint: "c3530ff2fc786be62680f2269ced90583a7beb438fe8dfaed9da17d1a7bda4ce",
+    sourceFingerprint: "409366baab90954674b720b6ea799a896c49db5aa2bf54caa33dc21370687dae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14825,7 +14825,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 51,
-    sourceFingerprint: "b86bf29fdfaf0a02bcfba9e53ed65ca679338a204f3036f27ffc2a390c555bcb",
+    sourceFingerprint: "073b9852d9669e5b12b24a29ec913d34033b78e1ca798e02c4beaf88feaba4ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."],["После Could I нет to.","В вопросе о разрешении порядок Could I, не I could."]],"uk":[["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."],["Після Could I немає to.","У питанні про дозвіл порядок Could I, не I could."]]}),
@@ -14839,7 +14839,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 52,
-    sourceFingerprint: "6a69b40120136abc2648e26dbde62c97de15ac44493db42ca3e910fdcd6933a6",
+    sourceFingerprint: "5e76c5cf0aa2c36d327c8f9f104e342f0e01aa531f7562269eae9d362b442f36",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14853,7 +14853,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 53,
-    sourceFingerprint: "1395b0d4854a5f42272db3bda2f8a936a8c894a2a5ec5e30a285cab43dc805e7",
+    sourceFingerprint: "b0adff9e889b241fe349a75385579ad540ab5a0a2a2d06b3602de47cae69ea1a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14867,7 +14867,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 54,
-    sourceFingerprint: "a3eb0d059b88f0ce4c9237b773f6b792439888c7ed7b0f3a035e20830c027332",
+    sourceFingerprint: "3142929551348829524025eba15f95fa5a498fa623b19763322e648c00139a80",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),
@@ -14881,7 +14881,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 19, sessionOrdinal: 55,
-    sourceFingerprint: "e2033db193734cc0b448aafd59e13956c09c1702af4319985ea72329ab4ee9fc",
+    sourceFingerprint: "5a282fc838724c0629ce1daf35d7eb27be9863294e19f994ffe0639600120999",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."],["Can не получает окончания -s.","После can не нужно to."]],"uk":[["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."],["Can не отримує закінчення -s.","Після can не потрібне to."]]}),

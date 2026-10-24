@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-35",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-35:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-35:intro1:r2": {
+          "ru": "Вы благодарите за внимание: нужно considerate.",
+          "uk": "Ви дякуєте за увагу: потрібне considerate."
+        },
+        "en:lesson-27:session-35:intro1:r3": {
+          "ru": "С that в прошлом здесь was.",
+          "uk": "Із that у минулому тут was."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-35:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-35:intro2:r2": {
+          "ru": "С yesterday здесь put без have.",
+          "uk": "Із yesterday тут put без have."
+        },
+        "en:lesson-27:session-35:intro2:r3": {
+          "ru": "Прошедшая форма put тоже put.",
+          "uk": "Минула форма put також put."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-35:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-35:intro3:r2": {
+          "ru": "В пожелании о настоящем здесь had.",
+          "uk": "У побажанні про теперішнє тут had."
+        },
+        "en:lesson-27:session-35:intro3:r3": {
+          "ru": "Нужна форма had.",
+          "uk": "Потрібна форма had."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "20cdeb33c5f66d6ef803cf2213abecd37774a7b2803e9d110e5d2c7b32ce89b4"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Учитывать чужое удобство",
+        "uk": "Зважати на зручність інших"
+      },
+      "bodyByLocale": {
+        "ru": "Considerate — внимательный к другим, учитывающий их потребности. That was considerate of you — это было заботливо с твоей стороны. Например, друг заранее спросил, удобно ли вам выехать раньше. Inconsiderate — не считающийся с другими. That was inconsiderate — это было невнимательно по отношению к другим: например, человек шумел рядом со спящим пассажиром. Эти слова оценивают внимание к другим, а не внимательность при чтении. Выберите благодарность другу, который учёл ваше удобство.",
+        "uk": "Considerate — уважний до інших, зважає на їхні потреби. That was considerate of you — це було турботливо з твого боку. Наприклад, друг заздалегідь запитав, чи зручно вам виїхати раніше. Inconsiderate — не зважає на інших. That was inconsiderate — це було неуважно до інших: наприклад, людина шуміла поруч із пасажиром, який спав. Ці слова оцінюють ставлення до інших, а не уважність під час читання. Виберіть подяку другові, який подбав про вашу зручність."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-35:intro1:r1",
+              "text": "That was considerate of you."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro1:r2",
+              "text": "That was inconsiderate of you."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro1:r3",
+              "text": "That were considerate of you."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-35:intro1:r1",
+              "text": "That was considerate of you."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro1:r2",
+              "text": "That was inconsiderate of you."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro1:r3",
+              "text": "That were considerate of you."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Забытые вещи",
+        "uk": "Забуті речі"
+      },
+      "bodyByLocale": {
+        "ru": "Absent-minded — рассеянный: погружённый в свои мысли и поэтому забывающий о мелочах. I am a bit absent-minded today — я сегодня немного рассеянный. Слово не ставит диагноз и не означает, что человек всегда такой. Вы ищете билеты: I have already checked my bag — я уже проверил сумку. I put them on the table yesterday — я положил их на стол вчера. С yesterday называем законченное действие через past simple.",
+        "uk": "Absent-minded — розсіяний: заглиблений у свої думки й тому забуває про дрібниці. I am a bit absent-minded today — я сьогодні трохи розсіяний. Слово не встановлює діагнозу й не означає, що людина завжди така. Ви шукаєте квитки: I have already checked my bag — я вже перевірив сумку. I put them on the table yesterday — я поклав їх на стіл учора. Із yesterday називаємо завершену дію через past simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-35:intro2:r1",
+              "text": "I put them on the table yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro2:r2",
+              "text": "I have put them on the table yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro2:r3",
+              "text": "I putted them on the table yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-35:intro2:r1",
+              "text": "I put them on the table yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro2:r2",
+              "text": "I have put them on the table yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro2:r3",
+              "text": "I putted them on the table yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Выслушать опасения",
+        "uk": "Вислухати занепокоєння"
+      },
+      "bodyByLocale": {
+        "ru": "Dismiss — отмахнуться от слов или опасений, не принять всерьёз. Please do not dismiss my worries — пожалуйста, не отмахивайся от моих опасений. Здесь речь о разговоре, не об увольнении. If I were you, I would listen first — на твоём месте я бы сначала выслушал. I wish we had more time — жаль, что у нас сейчас нет больше времени. Had после wish относится к настоящему. I would feel calmer if we left earlier — мне было бы спокойнее, если бы мы выехали раньше.",
+        "uk": "Dismiss — відмахнутися від слів або занепокоєння, не сприйняти серйозно. Please do not dismiss my worries — будь ласка, не відмахуйся від моїх побоювань. Тут ідеться про розмову, не про звільнення з роботи. If I were you, I would listen first — на твоєму місці я б спочатку вислухав. I wish we had more time — шкода, що в нас зараз немає більше часу. Had після wish стосується теперішнього. I would feel calmer if we left earlier — мені було б спокійніше, якби ми виїхали раніше."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-35:intro3:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro3:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro3:r3",
+              "text": "I wish we having more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-35:intro3:r1",
+              "text": "I wish we had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro3:r2",
+              "text": "I wish we have more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-35:intro3:r3",
+              "text": "I wish we having more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a7eb80eb14b4851c70bf3ffbccafaa079031c2464c832d735fb663f4c1d819cf"
+}

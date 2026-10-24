@@ -11,13 +11,13 @@
   },
   {
     "interactionId": "en:lesson-13:session-32:i02",
-    "correctText": "Did she buy blackcurrants yesterday?",
+    "correctText": "How much were they?",
     "correctResponseId": "en:lesson-13:session-32:i02:r1"
   },
   {
     "interactionId": "en:lesson-13:session-32:i03",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-32:i03:r1"
+    "correctText": "Can you pass me the bowl?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:word:redcurrants",
@@ -26,18 +26,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-32:i04",
-    "correctText": "Did you wash the redcurrants yesterday?",
-    "correctResponseId": null
+    "correctText": "These redcurrants are sour.",
+    "correctResponseId": "en:lesson-13:session-32:i04:r1"
   },
   {
     "interactionId": "en:lesson-13:session-32:i05",
-    "correctText": "Did she wash the redcurrants yesterday?",
+    "correctText": "wash",
     "correctResponseId": "en:lesson-13:session-32:i05:r1"
   },
   {
     "interactionId": "en:lesson-13:session-32:i06",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-32:i06:r1"
+    "correctText": "Please leave them on the plate.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:word:gooseberries",
@@ -46,18 +46,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-32:i07",
-    "correctText": "Did you wash the gooseberries yesterday?",
+    "correctText": "Where did you buy the gooseberries?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:i08",
-    "correctText": "Did she wash the gooseberries yesterday?",
-    "correctResponseId": "en:lesson-13:session-32:i08:r1"
+    "correctText": "I picked them yesterday.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:i09",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-32:i09:r1"
+    "correctText": "Where is the basket?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:word:cranberries",
@@ -66,42 +66,42 @@
   },
   {
     "interactionId": "en:lesson-13:session-32:i10",
-    "correctText": "Did you buy cranberries yesterday?",
-    "correctResponseId": null
+    "correctText": "The cranberries are in the freezer.",
+    "correctResponseId": "en:lesson-13:session-32:i10:r1"
   },
   {
     "interactionId": "en:lesson-13:session-32:i11",
-    "correctText": "Did she buy cranberries yesterday?",
+    "correctText": "Did",
     "correctResponseId": "en:lesson-13:session-32:i11:r1"
   },
   {
     "interactionId": "en:lesson-13:session-32:i12",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-32:i12:r1"
+    "correctText": "Let us make some sauce.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:i13",
-    "correctText": "en:lesson-13:session-32:i13:p1=blackcurrants\nen:lesson-13:session-32:i13:p2=redcurrants\nen:lesson-13:session-32:i13:p3=gooseberries\nen:lesson-13:session-32:i13:p4=cranberries",
+    "correctText": "Can I have a spoon?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:i14",
-    "correctText": "We didn't bake a pie yesterday.",
+    "correctText": "We did not add any salt.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:i15",
-    "correctText": "Did he buy fruit last week?",
-    "correctResponseId": null
+    "correctText": "Is the oven ready?",
+    "correctResponseId": "en:lesson-13:session-32:i15:r1"
   },
   {
     "interactionId": "en:lesson-13:session-32:i16",
-    "correctText": "Did you buy blackcurrants last week?",
+    "correctText": "Please cut a small piece.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-32:i17",
-    "correctText": "She didn't wash the gooseberries yesterday.",
+    "correctText": "Thank you for the lovely pie.",
     "correctResponseId": null
   }
 ]

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-35:i01",
+    "correctText": "Does that time suit you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:word:considerate",
+    "correctText": "considerate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i02",
+    "correctText": "That was considerate of you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i03",
+    "correctText": "Could we stop for a few minutes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:word:inconsiderate",
+    "correctText": "inconsiderate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i04",
+    "correctText": "That was inconsiderate.",
+    "correctResponseId": "en:lesson-27:session-35:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i05",
+    "correctText": "Please keep your voice down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i06",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-35:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:word:absent-minded",
+    "correctText": "absent-minded",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i07",
+    "correctText": "I am a bit absent-minded today.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i08",
+    "correctText": "Where did you last see the tickets?",
+    "correctResponseId": "en:lesson-27:session-35:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i09",
+    "correctText": "I have already checked my bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i10",
+    "correctText": "put",
+    "correctResponseId": "en:lesson-27:session-35:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i11",
+    "correctText": "They are under your coat.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:word:dismiss",
+    "correctText": "dismiss",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i12",
+    "correctText": "Please do not dismiss my worries.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i13",
+    "correctText": "listen",
+    "correctResponseId": "en:lesson-27:session-35:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i14",
+    "correctText": "What are you worried about?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i15",
+    "correctText": "I would feel calmer if we left earlier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i16",
+    "correctText": "We can leave at half past eight.",
+    "correctResponseId": "en:lesson-27:session-35:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-35:i17",
+    "correctText": "Thank you for waiting.",
+    "correctResponseId": null
+  }
+]

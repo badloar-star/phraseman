@@ -4930,7 +4930,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 32,
-    sourceFingerprint: "50ca5771006c44892ee8924933d8fc15ae0c8a3fb2a140bdef4cd0a4cc9998a6",
+    sourceFingerprint: "4cb89ef9fe05c99ca915e591848167b4336b689eb67dadd1a778f3968911570e",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past questions with finished time anchors","uk":"review: past questions with finished time anchors"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
@@ -10435,6 +10435,13 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     sourceFingerprint: "922276837fdb60653f396c3840e6bc47dcf5dad0d52cae8ff9b0b33a1206f9d3",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; if I were; would + base; present perfect / past simple","uk":"wish + past; if I were; would + base; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 35,
+    sourceFingerprint: "57e00d94008f1d331b7a395a8ef2dcef6315ac49a094296577cf8e7a8aabaa51",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; if I were; unreal condition; present perfect / past simple","uk":"wish + past; if I were; unreal condition; present perfect / past simple"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
   }),
 ]);

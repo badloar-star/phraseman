@@ -28,8 +28,8 @@
             "responseId": "en:lesson-13:session-32:word:blackcurrants:r1",
             "targetText": "blackcurrants",
             "meaningByLocale": {
-              "ru": "ягоды чёрной смородины.",
-              "uk": "ягоди чорної смородини."
+              "ru": "Чёрная смородина, ягоды.",
+              "uk": "Чорна смородина, ягоди."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "blackcurrants",
           "definitionByLocale": {
-            "ru": "ягоды чёрной смородины.",
-            "uk": "ягоди чорної смородини."
+            "ru": "Чёрная смородина, ягоды.",
+            "uk": "Чорна смородина, ягоди."
           }
         }
       },
@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: Ты вчера купил чёрную смородину?",
+      "prompt": "Уточните вчерашнюю покупку.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: Ты вчера купил чёрную смородину?",
+      "accessibilityLabel": "Уточните вчерашнюю покупку.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Did you buy blackcurrants yesterday?",
         "localizedMeaning": {
-          "ru": "Скажите: Ты вчера купил чёрную смородину?",
-          "uk": "Скажіть: Ти вчора купив чорну смородину?"
+          "ru": "Уточните вчерашнюю покупку.",
+          "uk": "Уточніть учорашню покупку."
         },
         "orderedTokens": [
           "Did",
@@ -90,15 +90,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-32:i02:r1",
-          "text": "Did she buy blackcurrants yesterday?"
+          "text": "How much were they?"
         },
         {
           "responseId": "en:lesson-13:session-32:i02:r2",
-          "text": "Did you buy blackcurrants yesterday?"
+          "text": "How much was it?"
         },
         {
           "responseId": "en:lesson-13:session-32:i02:r3",
-          "text": "Did they buy blackcurrants yesterday?"
+          "text": "Where were they?"
         }
       ],
       "mediaIds": [],
@@ -110,23 +110,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-32:i02:audio",
-          "transcript": "Did she buy blackcurrants yesterday?"
+          "transcript": "How much were they?"
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-13:session-32:i02:r1",
-            "targetText": "Did she buy blackcurrants yesterday?",
+            "targetText": "How much were they?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-13:session-32:i02:r2",
-            "targetText": "Did you buy blackcurrants yesterday?",
+            "targetText": "How much was it?",
             "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-13:session-32:i02:r3",
-            "targetText": "Did they buy blackcurrants yesterday?",
+            "targetText": "Where were they?",
             "meaningByLocale": null
           }
         ],
@@ -137,8 +137,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Did she buy blackcurrants yesterday?",
-              "uk": "У записі звучить Did she buy blackcurrants yesterday?"
+              "ru": "В записи звучит How much were they?",
+              "uk": "У записі звучить How much were they?"
             }
           },
           {
@@ -146,8 +146,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Did she buy blackcurrants yesterday?",
-              "uk": "У записі звучить Did she buy blackcurrants yesterday?"
+              "ru": "В записи звучит How much were they?",
+              "uk": "У записі звучить How much were they?"
             }
           }
         ],
@@ -159,68 +159,32 @@
     {
       "interactionId": "en:lesson-13:session-32:i03",
       "ordinal": 7,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-32:i03:r1",
-          "text": "Did"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i03:r2",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i03:r3",
-          "text": "Does"
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите передать миску.",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "audioTargetIds": [
+        "en:lesson-13:session-32:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите передать миску.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-32:i03:audio",
+          "transcript": "Can you pass me the bowl?"
         },
-        "gappedTargetPhrase": "___ you buy blackcurrants yesterday?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-13:session-32:i03:r1",
-            "text": "Did"
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i03:r2",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i03:r3",
-            "text": "Does"
-          }
-        ],
-        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-32:i03:r2",
-            "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-            "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i03:r3",
-            "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-            "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can you pass me the bowl?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -250,8 +214,8 @@
             "responseId": "en:lesson-13:session-32:word:redcurrants:r1",
             "targetText": "redcurrants",
             "meaningByLocale": {
-              "ru": "ягоды красной смородины.",
-              "uk": "ягоди червоної смородини."
+              "ru": "Красная смородина, ягоды.",
+              "uk": "Червона смородина, ягоди."
             }
           }
         ],
@@ -261,8 +225,8 @@
         "wordCard": {
           "word": "redcurrants",
           "definitionByLocale": {
-            "ru": "ягоды красной смородины.",
-            "uk": "ягоди червоної смородини."
+            "ru": "Красная смородина, ягоды.",
+            "uk": "Червона смородина, ягоди."
           }
         }
       },
@@ -272,105 +236,70 @@
       "interactionId": "en:lesson-13:session-32:i04",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажите: Ты вчера помыл красную смородину?",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: Ты вчера помыл красную смородину?",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Did you wash the redcurrants yesterday?",
-        "localizedMeaning": {
-          "ru": "Скажите: Ты вчера помыл красную смородину?",
-          "uk": "Скажіть: Ти вчора помив червону смородину?"
-        },
-        "orderedTokens": [
-          "Did",
-          "you",
-          "wash",
-          "the",
-          "redcurrants",
-          "yesterday"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-32:i05",
-      "ordinal": 10,
-      "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
         {
-          "responseId": "en:lesson-13:session-32:i05:r1",
-          "text": "Did she wash the redcurrants yesterday?"
+          "responseId": "en:lesson-13:session-32:i04:r1",
+          "text": "These redcurrants are sour."
         },
         {
-          "responseId": "en:lesson-13:session-32:i05:r2",
-          "text": "Did you wash the redcurrants yesterday?"
+          "responseId": "en:lesson-13:session-32:i04:r2",
+          "text": "These redcurrants are sweet."
         },
         {
-          "responseId": "en:lesson-13:session-32:i05:r3",
-          "text": "Did they wash the redcurrants yesterday?"
+          "responseId": "en:lesson-13:session-32:i04:r3",
+          "text": "These blackcurrants are sour."
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-13:session-32:i05:audio"
+        "en:lesson-13:session-32:i04:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-32:i05:audio",
-          "transcript": "Did she wash the redcurrants yesterday?"
+          "audioTargetId": "en:lesson-13:session-32:i04:audio",
+          "transcript": "These redcurrants are sour."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
-            "responseId": "en:lesson-13:session-32:i05:r1",
-            "targetText": "Did she wash the redcurrants yesterday?",
+            "responseId": "en:lesson-13:session-32:i04:r1",
+            "targetText": "These redcurrants are sour.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-13:session-32:i05:r2",
-            "targetText": "Did you wash the redcurrants yesterday?",
+            "responseId": "en:lesson-13:session-32:i04:r2",
+            "targetText": "These redcurrants are sweet.",
             "meaningByLocale": null
           },
           {
-            "responseId": "en:lesson-13:session-32:i05:r3",
-            "targetText": "Did they wash the redcurrants yesterday?",
+            "responseId": "en:lesson-13:session-32:i04:r3",
+            "targetText": "These blackcurrants are sour.",
             "meaningByLocale": null
           }
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-13:session-32:i05:r2",
+            "responseId": "en:lesson-13:session-32:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Did she wash the redcurrants yesterday?",
-              "uk": "У записі звучить Did she wash the redcurrants yesterday?"
+              "ru": "В записи звучит These redcurrants are sour.",
+              "uk": "У записі звучить These redcurrants are sour."
             }
           },
           {
-            "responseId": "en:lesson-13:session-32:i05:r3",
+            "responseId": "en:lesson-13:session-32:i04:r3",
             "correct": false,
             "testedDimension": "Послушайте и выберите",
             "feedbackByLocale": {
-              "ru": "В записи звучит Did she wash the redcurrants yesterday?",
-              "uk": "У записі звучить Did she wash the redcurrants yesterday?"
+              "ru": "В записи звучит These redcurrants are sour.",
+              "uk": "У записі звучить These redcurrants are sour."
             }
           }
         ],
@@ -380,70 +309,103 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-13:session-32:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
+      "interactionId": "en:lesson-13:session-32:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
+      "prompt": "Спросите, помыл ли друг фрукты утром.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-13:session-32:i06:r1",
-          "text": "Did"
+          "responseId": "en:lesson-13:session-32:i05:r1",
+          "text": "wash"
         },
         {
-          "responseId": "en:lesson-13:session-32:i06:r2",
-          "text": "Do"
+          "responseId": "en:lesson-13:session-32:i05:r2",
+          "text": "washed"
         },
         {
-          "responseId": "en:lesson-13:session-32:i06:r3",
-          "text": "Does"
+          "responseId": "en:lesson-13:session-32:i05:r3",
+          "text": "washing"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "accessibilityLabel": "Спросите, помыл ли друг фрукты утром.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
+          "ru": "Спросите, помыл ли друг фрукты утром.",
+          "uk": "Запитайте, чи помив друг фрукти вранці."
         },
-        "gappedTargetPhrase": "___ you wash the redcurrants yesterday?",
+        "gappedTargetPhrase": "Did you ___ the fruit this morning?",
         "gapOptions": [
           {
-            "responseId": "en:lesson-13:session-32:i06:r1",
-            "text": "Did"
+            "responseId": "en:lesson-13:session-32:i05:r1",
+            "text": "wash"
           },
           {
-            "responseId": "en:lesson-13:session-32:i06:r2",
-            "text": "Do"
+            "responseId": "en:lesson-13:session-32:i05:r2",
+            "text": "washed"
           },
           {
-            "responseId": "en:lesson-13:session-32:i06:r3",
-            "text": "Does"
+            "responseId": "en:lesson-13:session-32:i05:r3",
+            "text": "washing"
           }
         ],
-        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+        "testedDimension": "Спросите, помыл ли друг фрукты утром.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-13:session-32:i06:r2",
+            "responseId": "en:lesson-13:session-32:i05:r2",
             "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "testedDimension": "Спросите, помыл ли друг фрукты утром.",
             "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
+              "ru": "После did нужна wash.",
+              "uk": "Після did потрібна wash."
             }
           },
           {
-            "responseId": "en:lesson-13:session-32:i06:r3",
+            "responseId": "en:lesson-13:session-32:i05:r3",
             "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
+            "testedDimension": "Спросите, помыл ли друг фрукты утром.",
             "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
+              "ru": "Используем начальную форму wash.",
+              "uk": "Використовуємо початкову форму wash."
             }
           }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-32:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите оставить ягоды на тарелке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-32:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите оставить ягоды на тарелке.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-32:i06:audio",
+          "transcript": "Please leave them on the plate."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please leave them on the plate.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -473,8 +435,8 @@
             "responseId": "en:lesson-13:session-32:word:gooseberries:r1",
             "targetText": "gooseberries",
             "meaningByLocale": {
-              "ru": "ягоды крыжовника.",
-              "uk": "ягоди аґрусу."
+              "ru": "Крыжовник, ягоды.",
+              "uk": "Аґрус, ягоди."
             }
           }
         ],
@@ -484,8 +446,8 @@
         "wordCard": {
           "word": "gooseberries",
           "definitionByLocale": {
-            "ru": "ягоды крыжовника.",
-            "uk": "ягоди аґрусу."
+            "ru": "Крыжовник, ягоды.",
+            "uk": "Аґрус, ягоди."
           }
         }
       },
@@ -497,25 +459,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: Ты вчера помыл крыжовник?",
+      "prompt": "Спросите, где друг купил крыжовник.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: Ты вчера помыл крыжовник?",
+      "accessibilityLabel": "Спросите, где друг купил крыжовник.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Did you wash the gooseberries yesterday?",
+        "targetPhrase": "Where did you buy the gooseberries?",
         "localizedMeaning": {
-          "ru": "Скажите: Ты вчера помыл крыжовник?",
-          "uk": "Скажіть: Ти вчора помив аґрус?"
+          "ru": "Спросите, где друг купил крыжовник.",
+          "uk": "Запитайте, де друг купив аґрус."
         },
         "orderedTokens": [
-          "Did",
+          "Where",
+          "did",
           "you",
-          "wash",
+          "buy",
           "the",
-          "gooseberries",
-          "yesterday"
+          "gooseberries"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -530,75 +492,35 @@
       "interactionId": "en:lesson-13:session-32:i08",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-32:i08:r1",
-          "text": "Did she wash the gooseberries yesterday?"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i08:r2",
-          "text": "Did you wash the gooseberries yesterday?"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i08:r3",
-          "text": "Did they wash the gooseberries yesterday?"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте ответ: ягоды собрали вчера.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-32:i08:audio"
       ],
-      "accessibilityLabel": "Послушайте и выберите",
+      "accessibilityLabel": "Услышьте ответ: ягоды собрали вчера.",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-32:i08:audio",
-          "transcript": "Did she wash the gooseberries yesterday?"
+          "transcript": "I picked them yesterday."
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-13:session-32:i08:r1",
-            "targetText": "Did she wash the gooseberries yesterday?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i08:r2",
-            "targetText": "Did you wash the gooseberries yesterday?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i08:r3",
-            "targetText": "Did they wash the gooseberries yesterday?",
-            "meaningByLocale": null
-          }
+        "hiddenTargetPhrase": "I picked them yesterday.",
+        "orderedTokens": [
+          "I",
+          "picked",
+          "them",
+          "yesterday"
         ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-32:i08:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит Did she wash the gooseberries yesterday?",
-              "uk": "У записі звучить Did she wash the gooseberries yesterday?"
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i08:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит Did she wash the gooseberries yesterday?",
-              "uk": "У записі звучить Did she wash the gooseberries yesterday?"
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
       },
       "scriptedAlternate": null
     },
@@ -606,67 +528,31 @@
       "interactionId": "en:lesson-13:session-32:i09",
       "ordinal": 15,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-32:i09:r1",
-          "text": "Did"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i09:r2",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i09:r3",
-          "text": "Does"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, где стоит корзина.",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
+      "audioTargetIds": [
+        "en:lesson-13:session-32:i09:audio"
+      ],
+      "accessibilityLabel": "Спросите, где стоит корзина.",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-32:i09:audio",
+          "transcript": "Where is the basket?"
         },
-        "gappedTargetPhrase": "___ you wash the gooseberries yesterday?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-13:session-32:i09:r1",
-            "text": "Did"
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i09:r2",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i09:r3",
-            "text": "Does"
-          }
-        ],
-        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-32:i09:r2",
-            "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-            "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i09:r3",
-            "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-            "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "Where is the basket?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -696,8 +582,8 @@
             "responseId": "en:lesson-13:session-32:word:cranberries:r1",
             "targetText": "cranberries",
             "meaningByLocale": {
-              "ru": "ягоды клюквы.",
-              "uk": "ягоди журавлини."
+              "ru": "Клюква, ягоды.",
+              "uk": "Журавлина, ягоди."
             }
           }
         ],
@@ -707,8 +593,8 @@
         "wordCard": {
           "word": "cranberries",
           "definitionByLocale": {
-            "ru": "ягоды клюквы.",
-            "uk": "ягоди журавлини."
+            "ru": "Клюква, ягоды.",
+            "uk": "Журавлина, ягоди."
           }
         }
       },
@@ -718,26 +604,171 @@
       "interactionId": "en:lesson-13:session-32:i10",
       "ordinal": 17,
       "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-32:i10:r1",
+          "text": "The cranberries are in the freezer."
+        },
+        {
+          "responseId": "en:lesson-13:session-32:i10:r2",
+          "text": "The cranberries are in the fridge."
+        },
+        {
+          "responseId": "en:lesson-13:session-32:i10:r3",
+          "text": "The gooseberries are in the freezer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-32:i10:audio",
+          "transcript": "The cranberries are in the freezer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-32:i10:r1",
+            "targetText": "The cranberries are in the freezer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i10:r2",
+            "targetText": "The cranberries are in the fridge.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i10:r3",
+            "targetText": "The gooseberries are in the freezer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-32:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cranberries are in the freezer.",
+              "uk": "У записі звучить The cranberries are in the freezer."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cranberries are in the freezer.",
+              "uk": "У записі звучить The cranberries are in the freezer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-32:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, достали ли ягоды прошлым вечером.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-32:i11:r1",
+          "text": "Did"
+        },
+        {
+          "responseId": "en:lesson-13:session-32:i11:r2",
+          "text": "Do"
+        },
+        {
+          "responseId": "en:lesson-13:session-32:i11:r3",
+          "text": "Does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, достали ли ягоды прошлым вечером.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, достали ли ягоды прошлым вечером.",
+          "uk": "Запитайте, чи дістали ягоди минулого вечора."
+        },
+        "gappedTargetPhrase": "___ you take them out last night?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-13:session-32:i11:r1",
+            "text": "Did"
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i11:r2",
+            "text": "Do"
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i11:r3",
+            "text": "Does"
+          }
+        ],
+        "testedDimension": "Спросите, достали ли ягоды прошлым вечером.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Спросите, достали ли ягоды прошлым вечером.",
+            "feedbackByLocale": {
+              "ru": "Last night указывает на прошлое: Did.",
+              "uk": "Last night указує на минуле: Did."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Спросите, достали ли ягоды прошлым вечером.",
+            "feedbackByLocale": {
+              "ru": "Вопрос о прошлом начинается с Did.",
+              "uk": "Запитання про минуле починається з Did."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-32:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: Ты вчера купил клюкву?",
+      "prompt": "Предложите сделать соус.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: Ты вчера купил клюкву?",
+      "accessibilityLabel": "Предложите сделать соус.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "Did you buy cranberries yesterday?",
+        "targetPhrase": "Let us make some sauce.",
         "localizedMeaning": {
-          "ru": "Скажите: Ты вчера купил клюкву?",
-          "uk": "Скажіть: Ти вчора купив журавлину?"
+          "ru": "Предложите сделать соус.",
+          "uk": "Запропонуйте зробити соус."
         },
         "orderedTokens": [
-          "Did",
-          "you",
-          "buy",
-          "cranberries",
-          "yesterday"
+          "Let",
+          "us",
+          "make",
+          "some",
+          "sauce"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -749,219 +780,34 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-13:session-32:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-32:i11:r1",
-          "text": "Did she buy cranberries yesterday?"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i11:r2",
-          "text": "Did you buy cranberries yesterday?"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i11:r3",
-          "text": "Did they buy cranberries yesterday?"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-13:session-32:i11:audio"
-      ],
-      "accessibilityLabel": "Послушайте и выберите",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-32:i11:audio",
-          "transcript": "Did she buy cranberries yesterday?"
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-13:session-32:i11:r1",
-            "targetText": "Did she buy cranberries yesterday?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i11:r2",
-            "targetText": "Did you buy cranberries yesterday?",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i11:r3",
-            "targetText": "Did they buy cranberries yesterday?",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-32:i11:r2",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит Did she buy cranberries yesterday?",
-              "uk": "У записі звучить Did she buy cranberries yesterday?"
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i11:r3",
-            "correct": false,
-            "testedDimension": "Послушайте и выберите",
-            "feedbackByLocale": {
-              "ru": "В записи звучит Did she buy cranberries yesterday?",
-              "uk": "У записі звучить Did she buy cranberries yesterday?"
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-32:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вопрос о вчерашнем действии. Выберите начало",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-32:i12:r1",
-          "text": "Did"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i12:r2",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-13:session-32:i12:r3",
-          "text": "Does"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вопрос о вчерашнем действии. Выберите начало",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
-        },
-        "gappedTargetPhrase": "___ you buy cranberries yesterday?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-13:session-32:i12:r1",
-            "text": "Did"
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i12:r2",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i12:r3",
-            "text": "Does"
-          }
-        ],
-        "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-32:i12:r2",
-            "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-            "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-32:i12:r3",
-            "correct": false,
-            "testedDimension": "Вопрос о вчерашнем действии. Выберите начало",
-            "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-13:session-32:i13",
       "ordinal": 20,
-      "purpose": "retrieval_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "Соедините выражения с переводом",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите ложку.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соедините выражения с переводом",
+      "audioTargetIds": [
+        "en:lesson-13:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Попросите ложку.",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-13:session-32:i13:p1",
-            "target": "blackcurrants",
-            "meaningByLocale": {
-              "ru": "ягоды чёрной смородины",
-              "uk": "ягоди чорної смородини"
-            }
-          },
-          {
-            "pairId": "en:lesson-13:session-32:i13:p2",
-            "target": "redcurrants",
-            "meaningByLocale": {
-              "ru": "ягоды красной смородины",
-              "uk": "ягоди червоної смородини"
-            }
-          },
-          {
-            "pairId": "en:lesson-13:session-32:i13:p3",
-            "target": "gooseberries",
-            "meaningByLocale": {
-              "ru": "ягоды крыжовника",
-              "uk": "ягоди аґрусу"
-            }
-          },
-          {
-            "pairId": "en:lesson-13:session-32:i13:p4",
-            "target": "cranberries",
-            "meaningByLocale": {
-              "ru": "ягоды клюквы",
-              "uk": "ягоди журавлини"
-            }
-          }
-        ],
-        "leftColumn": [
-          "blackcurrants",
-          "redcurrants",
-          "gooseberries",
-          "cranberries"
-        ],
-        "rightColumn": [
-          "ягоды чёрной смородины",
-          "ягоды красной смородины",
-          "ягоды крыжовника",
-          "ягоды клюквы"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-32:i13:audio",
+          "transcript": "Can I have a spoon?"
         },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I have a spoon?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -972,28 +818,28 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите услышанную фразу",
+      "prompt": "Услышьте уточнение о соли.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-32:i14:audio"
       ],
-      "accessibilityLabel": "Соберите услышанную фразу",
+      "accessibilityLabel": "Услышьте уточнение о соли.",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-32:i14:audio",
-          "transcript": "We didn't bake a pie yesterday."
+          "transcript": "We did not add any salt."
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We didn't bake a pie yesterday.",
+        "hiddenTargetPhrase": "We did not add any salt.",
         "orderedTokens": [
           "We",
-          "didn't",
-          "bake",
-          "a",
-          "pie",
-          "yesterday"
+          "did",
+          "not",
+          "add",
+          "any",
+          "salt"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1008,30 +854,102 @@
       "interactionId": "en:lesson-13:session-32:i15",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите услышанную фразу",
-      "responseOptions": [],
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-32:i15:r1",
+          "text": "Is the oven ready?"
+        },
+        {
+          "responseId": "en:lesson-13:session-32:i15:r2",
+          "text": "Is the sauce ready?"
+        },
+        {
+          "responseId": "en:lesson-13:session-32:i15:r3",
+          "text": "Was the oven ready?"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-32:i15:audio"
       ],
-      "accessibilityLabel": "Соберите услышанную фразу",
+      "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
-        "family": "listen_build_dictation",
+        "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-32:i15:audio",
-          "transcript": "Did he buy fruit last week?"
+          "transcript": "Is the oven ready?"
         },
         "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Did he buy fruit last week?",
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-32:i15:r1",
+            "targetText": "Is the oven ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i15:r2",
+            "targetText": "Is the sauce ready?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i15:r3",
+            "targetText": "Was the oven ready?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-32:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is the oven ready?",
+              "uk": "У записі звучить Is the oven ready?"
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-32:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Is the oven ready?",
+              "uk": "У записі звучить Is the oven ready?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-32:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Попросите маленький кусочек пирога.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Попросите маленький кусочек пирога.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Please cut a small piece.",
+        "localizedMeaning": {
+          "ru": "Попросите маленький кусочек пирога.",
+          "uk": "Попросіть маленький шматочок пирога."
+        },
         "orderedTokens": [
-          "Did",
-          "he",
-          "buy",
-          "fruit",
-          "last",
-          "week"
+          "Please",
+          "cut",
+          "a",
+          "small",
+          "piece"
         ],
         "authoredDistractorTokens": [],
         "slotFeedback": [],
@@ -1043,59 +961,26 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-13:session-32:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Спросите друга: ты купил чёрную смородину на прошлой неделе?",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-13:session-32:i16:audio"
-      ],
-      "accessibilityLabel": "Спросите друга: ты купил чёрную смородину на прошлой неделе?",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-32:i16:audio",
-          "transcript": "Did you buy blackcurrants last week?"
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "Did you buy blackcurrants last week?",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-13:session-32:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите: она не помыла крыжовник вчера",
+      "prompt": "Поблагодарите за угощение.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-32:i17:audio"
       ],
-      "accessibilityLabel": "Скажите: она не помыла крыжовник вчера",
+      "accessibilityLabel": "Поблагодарите за угощение.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-32:i17:audio",
-          "transcript": "She didn't wash the gooseberries yesterday."
+          "transcript": "Thank you for the lovely pie."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "She didn't wash the gooseberries yesterday.",
+        "targetPhrase": "Thank you for the lovely pie.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1115,5 +1000,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "61220040e44f7e24edb82ec0e583dabc0c1004da448d5f3f942674306095f704"
+  "learnerFingerprint": "c7c4eb5aaf7cdfcbe0cc711196378fead166a12ec054f6af883c20a91f5597a6"
 }

@@ -51,101 +51,97 @@ Gooseberry — аґрус; cranberry — журавлина. У множині: 
 
 **1 · Картка слова — blackcurrants**
 <!-- interaction_id: en:lesson-13:session-32:word:blackcurrants; family: word_card -->
-> **blackcurrants** — ягоди чорної смородини.
+> **blackcurrants** — Чорна смородина, ягоди.
 
-**2 · Скажіть: Ти вчора купив чорну смородину?**
+**2 · Уточніть учорашню покупку.**
 <!-- interaction_id: en:lesson-13:session-32:i01; family: phrase_builder -->
 Плитки: `yesterday` `blackcurrants` `buy` `you` `Did` → **Did you buy blackcurrants yesterday?**
 
 **3 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-13:session-32:i02; family: listen_choose -->
-🔊 *Did she buy blackcurrants yesterday?* → **Did she buy blackcurrants yesterday?** · Did you buy blackcurrants yesterday? · Did they buy blackcurrants yesterday?
-- Did you buy blackcurrants yesterday? — *У записі звучить Did she buy blackcurrants yesterday?*
-- Did they buy blackcurrants yesterday? — *У записі звучить Did she buy blackcurrants yesterday?*
+🔊 *How much were they?* → **How much were they?** · How much was it? · Where were they?
+- How much was it? — *У записі звучить How much were they?*
+- Where were they? — *У записі звучить How much were they?*
 
-**4 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-32:i03; family: context_gap_grammar -->
-___ you buy blackcurrants yesterday? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**4 · Попросіть передати миску.**
+<!-- interaction_id: en:lesson-13:session-32:i03; family: scripted_repeat_compare -->
+🎙 **Can you pass me the bowl?**
 
 **5 · Картка слова — redcurrants**
 <!-- interaction_id: en:lesson-13:session-32:word:redcurrants; family: word_card -->
-> **redcurrants** — ягоди червоної смородини.
+> **redcurrants** — Червона смородина, ягоди.
 
-**6 · Скажіть: Ти вчора помив червону смородину?**
-<!-- interaction_id: en:lesson-13:session-32:i04; family: phrase_builder -->
-Плитки: `yesterday` `redcurrants` `the` `wash` `you` `Did` → **Did you wash the redcurrants yesterday?**
+**6 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-32:i04; family: listen_choose -->
+🔊 *These redcurrants are sour.* → **These redcurrants are sour.** · These redcurrants are sweet. · These blackcurrants are sour.
+- These redcurrants are sweet. — *У записі звучить These redcurrants are sour.*
+- These blackcurrants are sour. — *У записі звучить These redcurrants are sour.*
 
-**7 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-32:i05; family: listen_choose -->
-🔊 *Did she wash the redcurrants yesterday?* → **Did she wash the redcurrants yesterday?** · Did you wash the redcurrants yesterday? · Did they wash the redcurrants yesterday?
-- Did you wash the redcurrants yesterday? — *У записі звучить Did she wash the redcurrants yesterday?*
-- Did they wash the redcurrants yesterday? — *У записі звучить Did she wash the redcurrants yesterday?*
+**7 · Запитайте, чи помив друг фрукти вранці.**
+<!-- interaction_id: en:lesson-13:session-32:i05; family: context_gap_grammar -->
+Did you ___ the fruit this morning? → **wash** · washed · washing
+- washed — *Після did потрібна wash.*
+- washing — *Використовуємо початкову форму wash.*
 
-**8 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-32:i06; family: context_gap_grammar -->
-___ you wash the redcurrants yesterday? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**8 · Попросіть залишити ягоди на тарілці.**
+<!-- interaction_id: en:lesson-13:session-32:i06; family: scripted_repeat_compare -->
+🎙 **Please leave them on the plate.**
 
 **9 · Картка слова — gooseberries**
 <!-- interaction_id: en:lesson-13:session-32:word:gooseberries; family: word_card -->
-> **gooseberries** — ягоди аґрусу.
+> **gooseberries** — Аґрус, ягоди.
 
-**10 · Скажіть: Ти вчора помив аґрус?**
+**10 · Запитайте, де друг купив аґрус.**
 <!-- interaction_id: en:lesson-13:session-32:i07; family: phrase_builder -->
-Плитки: `yesterday` `gooseberries` `the` `wash` `you` `Did` → **Did you wash the gooseberries yesterday?**
+Плитки: `gooseberries` `the` `buy` `you` `did` `Where` → **Where did you buy the gooseberries?**
 
-**11 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-32:i08; family: listen_choose -->
-🔊 *Did she wash the gooseberries yesterday?* → **Did she wash the gooseberries yesterday?** · Did you wash the gooseberries yesterday? · Did they wash the gooseberries yesterday?
-- Did you wash the gooseberries yesterday? — *У записі звучить Did she wash the gooseberries yesterday?*
-- Did they wash the gooseberries yesterday? — *У записі звучить Did she wash the gooseberries yesterday?*
+**11 · Почуйте відповідь: ягоди зібрали вчора.**
+<!-- interaction_id: en:lesson-13:session-32:i08; family: listen_build_dictation -->
+🔊 *I picked them yesterday.* Плитки: `yesterday` `them` `picked` `I` → **I picked them yesterday.**
 
-**12 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-32:i09; family: context_gap_grammar -->
-___ you wash the gooseberries yesterday? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**12 · Запитайте, де стоїть кошик.**
+<!-- interaction_id: en:lesson-13:session-32:i09; family: scripted_repeat_compare -->
+🎙 **Where is the basket?**
 
 **13 · Картка слова — cranberries**
 <!-- interaction_id: en:lesson-13:session-32:word:cranberries; family: word_card -->
-> **cranberries** — ягоди журавлини.
+> **cranberries** — Журавлина, ягоди.
 
-**14 · Скажіть: Ти вчора купив журавлину?**
-<!-- interaction_id: en:lesson-13:session-32:i10; family: phrase_builder -->
-Плитки: `yesterday` `cranberries` `buy` `you` `Did` → **Did you buy cranberries yesterday?**
+**14 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-32:i10; family: listen_choose -->
+🔊 *The cranberries are in the freezer.* → **The cranberries are in the freezer.** · The cranberries are in the fridge. · The gooseberries are in the freezer.
+- The cranberries are in the fridge. — *У записі звучить The cranberries are in the freezer.*
+- The gooseberries are in the freezer. — *У записі звучить The cranberries are in the freezer.*
 
-**15 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-32:i11; family: listen_choose -->
-🔊 *Did she buy cranberries yesterday?* → **Did she buy cranberries yesterday?** · Did you buy cranberries yesterday? · Did they buy cranberries yesterday?
-- Did you buy cranberries yesterday? — *У записі звучить Did she buy cranberries yesterday?*
-- Did they buy cranberries yesterday? — *У записі звучить Did she buy cranberries yesterday?*
+**15 · Запитайте, чи дістали ягоди минулого вечора.**
+<!-- interaction_id: en:lesson-13:session-32:i11; family: context_gap_grammar -->
+___ you take them out last night? → **Did** · Do · Does
+- Do — *Last night указує на минуле: Did.*
+- Does — *Запитання про минуле починається з Did.*
 
-**16 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-32:i12; family: context_gap_grammar -->
-___ you buy cranberries yesterday? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**16 · Запропонуйте зробити соус.**
+<!-- interaction_id: en:lesson-13:session-32:i12; family: phrase_builder -->
+Плитки: `sauce` `some` `make` `us` `Let` → **Let us make some sauce.**
 
-**17 · Поєднайте вирази з перекладом**
-<!-- interaction_id: en:lesson-13:session-32:i13; family: speed_match -->
-blackcurrants — ягоди чорної смородини · redcurrants — ягоди червоної смородини · gooseberries — ягоди аґрусу · cranberries — ягоди журавлини
+**17 · Попросіть ложку.**
+<!-- interaction_id: en:lesson-13:session-32:i13; family: scripted_repeat_compare -->
+🎙 **Can I have a spoon?**
 
-**18 · Складіть почуту фразу**
+**18 · Почуйте уточнення про сіль.**
 <!-- interaction_id: en:lesson-13:session-32:i14; family: listen_build_dictation -->
-🔊 *We didn't bake a pie yesterday.* Плитки: `yesterday` `pie` `a` `bake` `didn't` `We` → **We didn't bake a pie yesterday.**
+🔊 *We did not add any salt.* Плитки: `salt` `any` `add` `not` `did` `We` → **We did not add any salt.**
 
-**19 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-32:i15; family: listen_build_dictation -->
-🔊 *Did he buy fruit last week?* Плитки: `week` `last` `fruit` `buy` `he` `Did` → **Did he buy fruit last week?**
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-32:i15; family: listen_choose -->
+🔊 *Is the oven ready?* → **Is the oven ready?** · Is the sauce ready? · Was the oven ready?
+- Is the sauce ready? — *У записі звучить Is the oven ready?*
+- Was the oven ready? — *У записі звучить Is the oven ready?*
 
-**20 · Запитайте друга: ти купив чорну смородину минулого тижня?**
-<!-- interaction_id: en:lesson-13:session-32:i16; family: scripted_repeat_compare -->
-🎙 **Did you buy blackcurrants last week?**
+**20 · Попросіть маленький шматочок пирога.**
+<!-- interaction_id: en:lesson-13:session-32:i16; family: phrase_builder -->
+Плитки: `piece` `small` `a` `cut` `Please` → **Please cut a small piece.**
 
-**21 · Скажіть: вона не помила аґрус учора**
+**21 · Подякуйте за частування.**
 <!-- interaction_id: en:lesson-13:session-32:i17; family: scripted_repeat_compare -->
-🎙 **She didn't wash the gooseberries yesterday.**
+🎙 **Thank you for the lovely pie.**
 

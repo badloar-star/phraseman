@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if I were you; present perfect / past simple",
+    "uk": "if + past simple, would + base verb; if I were you; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "После трудного дня",
+        "uk": "Після важкого дня"
+      },
+      "bodyByLocale": {
+        "ru": "Stressful — напряжённый, вызывающий стресс. It was a stressful day — это был напряжённый день. Так описывают день или ситуацию; о своём состоянии можно сказать знакомое I feel stressed. Вы хотели бы отдохнуть, но ещё заняты: I would go for a walk if I had time — я бы пошёл на прогулку, если бы было время. Had описывает воображаемое условие сейчас, would go — результат. Это не рассказ о вчерашней прогулке.",
+        "uk": "Stressful — напружений, такий, що спричиняє стрес. It was a stressful day — це був напружений день. Так описують день або ситуацію; про свій стан можна сказати знайоме I feel stressed. Ви хотіли б відпочити, але ще зайняті: I would go for a walk if I had time — я б пішов на прогулянку, якби мав час. Had описує уявну умову зараз, would go — результат. Це не розповідь про вчорашню прогулянку."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-19:intro1:r1",
+              "text": "I would go for a walk if I had time."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro1:r2",
+              "text": "I would went for a walk if I had time."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro1:r3",
+              "text": "I would go for a walk if I would had time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-19:intro1:r1",
+              "text": "I would go for a walk if I had time."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro1:r2",
+              "text": "I would went for a walk if I had time."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro1:r3",
+              "text": "I would go for a walk if I would had time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Какой отдых вам нужен",
+        "uk": "Який відпочинок вам потрібен"
+      },
+      "bodyByLocale": {
+        "ru": "Restful — спокойный, дающий отдых. We had a restful weekend — у нас были спокойные выходные, и мы отдохнули. Не обязательно ничего не делать: кому-то подходит тихая прогулка. Content — довольный, удовлетворённый. В этом значении ударение на втором слоге. I am content with a quiet evening — меня вполне устраивает тихий вечер. With связывает content с тем, чем человек доволен. Это прилагательное о состоянии человека, а не слово о содержимом сумки.",
+        "uk": "Restful — спокійний, такий, що дає відпочити. We had a restful weekend — у нас були спокійні вихідні, і ми відпочили. Не обов’язково нічого не робити: комусь підходить тиха прогулянка. Content — задоволений. У цьому значенні наголос на другому складі. I am content with a quiet evening — мене цілком влаштовує тихий вечір. With пов’язує content із тим, чим людина задоволена. Це прикметник про стан людини, а не слово про вміст сумки."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-19:intro2:r1",
+              "text": "I am content with a quiet evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro2:r2",
+              "text": "I am content at a quiet evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro2:r3",
+              "text": "I am content of a quiet evening."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-19:intro2:r1",
+              "text": "I am content with a quiet evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro2:r2",
+              "text": "I am content at a quiet evening."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro2:r3",
+              "text": "I am content of a quiet evening."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попросить передышку",
+        "uk": "Попросити перепочинок"
+      },
+      "bodyByLocale": {
+        "ru": "Desperate — отчаянный; desperate for something означает «очень сильно нуждающийся в чём-то». I am desperate for a break — мне ужасно нужна передышка. Это сильнее обычного I need a break, поэтому не стоит так называть каждое небольшое желание. Друг предлагает взять часть дел на себя: I have already washed the dishes — я уже помыл посуду. Здесь важен готовый результат. I washed them an hour ago — я помыл её час назад: an hour ago называет законченное время, поэтому washed без have. Теперь можно договориться о прогулке.",
+        "uk": "Desperate — відчайдушний; desperate for something означає «той, хто дуже сильно потребує чогось». I am desperate for a break — мені страшенно потрібен перепочинок. Це сильніше за звичайне I need a break, тому не варто так називати кожне невелике бажання. Друг пропонує взяти частину справ на себе: I have already washed the dishes — я вже помив посуд. Тут важливий готовий результат. I washed them an hour ago — я помив його годину тому: an hour ago називає завершений час, тому washed без have. Тепер можна домовитися про прогулянку."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-19:intro3:r1",
+              "text": "I washed them an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro3:r2",
+              "text": "I have washed them an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro3:r3",
+              "text": "I wash them an hour ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-19:intro3:r1",
+              "text": "I washed them an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro3:r2",
+              "text": "I have washed them an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-19:intro3:r3",
+              "text": "I wash them an hour ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bddca2b231d451392404af94d52cc55db901d4adc78afe3ebca45f767b28ec6d"
+}

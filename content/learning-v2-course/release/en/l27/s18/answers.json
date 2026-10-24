@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-18:word:unhelpful",
+    "correctText": "unhelpful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i01",
+    "correctText": "The answer was unhelpful.",
+    "correctResponseId": "en:lesson-27:session-18:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i02",
+    "correctText": "Could you explain it another way?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i03",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-18:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i04",
+    "correctText": "Which entrance should I use?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:word:unpaid",
+    "correctText": "unpaid",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i05",
+    "correctText": "This bill is unpaid.",
+    "correctResponseId": "en:lesson-27:session-18:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i06",
+    "correctText": "I have paid already.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i07",
+    "correctText": "paid",
+    "correctResponseId": "en:lesson-27:session-18:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:word:unaware",
+    "correctText": "unaware",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i08",
+    "correctText": "I was unaware of the change.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i09",
+    "correctText": "Did you receive our message?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i10",
+    "correctText": "It went to my old address.",
+    "correctResponseId": "en:lesson-27:session-18:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:word:unacceptable",
+    "correctText": "unacceptable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i11",
+    "correctText": "This delay is unacceptable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i12",
+    "correctText": "Could you check it again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i13",
+    "correctText": "keep",
+    "correctResponseId": "en:lesson-27:session-18:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i14",
+    "correctText": "They would help if they knew about the problem.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i15",
+    "correctText": "I have found your payment.",
+    "correctResponseId": "en:lesson-27:session-18:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i16",
+    "correctText": "Everything is fine now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-18:i17",
+    "correctText": "Thank you for sorting it out.",
+    "correctResponseId": null
+  }
+]

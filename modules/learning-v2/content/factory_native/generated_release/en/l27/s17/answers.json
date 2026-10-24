@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-17:word:aboard",
+    "correctText": "aboard",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i01",
+    "correctText": "Welcome aboard.",
+    "correctResponseId": "en:lesson-27:session-17:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i02",
+    "correctText": "Is this seat taken?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i03",
+    "correctText": "left",
+    "correctResponseId": "en:lesson-27:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i04",
+    "correctText": "Could you help me with this bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:word:layover",
+    "correctText": "layover",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i05",
+    "correctText": "We have a two-hour layover.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i06",
+    "correctText": "Which way should we go?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i07",
+    "correctText": "The next gate is upstairs.",
+    "correctResponseId": "en:lesson-27:session-17:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:word:backpacker",
+    "correctText": "backpacker",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i08",
+    "correctText": "She is a backpacker.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i09",
+    "correctText": "join",
+    "correctResponseId": "en:lesson-27:session-17:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i10",
+    "correctText": "Shall we sit here for a while?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:word:getaway",
+    "correctText": "getaway",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i11",
+    "correctText": "We need a weekend getaway.",
+    "correctResponseId": "en:lesson-27:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i12",
+    "correctText": "Let us invite our friends.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i13",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-17:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i14",
+    "correctText": "I would take the bus if I knew the route.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i15",
+    "correctText": "Which day works for you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i16",
+    "correctText": "We can meet at the station.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-17:i17",
+    "correctText": "I will send you the details.",
+    "correctResponseId": "en:lesson-27:session-17:i17:r1"
+  }
+]

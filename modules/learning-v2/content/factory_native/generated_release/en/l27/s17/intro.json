@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "if-clause without would; result with would",
+    "uk": "if-clause without would; result with would"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выйти пораньше",
+        "uk": "Вийти раніше"
+      },
+      "bodyByLocale": {
+        "ru": "Aboard — на борту или на транспортном средстве, например в поезде. Welcome aboard — добро пожаловать на борт. Вы обсуждаете время выхода: If we left now, we would arrive early — если бы мы вышли сейчас, мы бы приехали рано. В этом типе воображаемого условия после if ставим past simple: left. Would стоит в результате: would arrive. Left здесь не сообщение, что мы уже вышли. Можно поменять порядок: We would arrive early if we left now.",
+        "uk": "Aboard — на борту або на транспортному засобі, наприклад у потязі. Welcome aboard — ласкаво просимо на борт. Ви обговорюєте час виходу: If we left now, we would arrive early — якби ми вийшли зараз, ми б приїхали рано. У цьому типі уявної умови після if ставимо past simple: left. Would стоїть у результаті: would arrive. Left тут не повідомлення, що ми вже вийшли. Можна змінити порядок: We would arrive early if we left now."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-17:intro1:r1",
+              "text": "We would arrive early if we left now."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro1:r2",
+              "text": "We would arrived early if we left now."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro1:r3",
+              "text": "We would arrive early if we would left now."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-17:intro1:r1",
+              "text": "We would arrive early if we left now."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro1:r2",
+              "text": "We would arrived early if we left now."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro1:r3",
+              "text": "We would arrive early if we would left now."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пересадка и попутчик",
+        "uk": "Пересадка й попутник"
+      },
+      "bodyByLocale": {
+        "ru": "Layover — остановка между частями поездки, часто ожидание следующего рейса при пересадке. We have a two-hour layover — у нас двухчасовая пересадка. Backpacker — путешественник с рюкзаком, обычно тот, кто перемещается с ним между местами. She is a backpacker — она путешествует с рюкзаком. У вас мало времени: I would join you if I had more time — я бы присоединился, если бы у меня было больше времени. Had — условие, would join — результат; порядок частей не меняет это распределение.",
+        "uk": "Layover — зупинка між частинами поїздки, часто очікування наступного рейсу під час пересадки. We have a two-hour layover — у нас двогодинна пересадка. Backpacker — мандрівник із рюкзаком, зазвичай той, хто пересувається з ним між місцями. She is a backpacker — вона мандрує з рюкзаком. У вас мало часу: I would join you if I had more time — я б приєднався, якби мав більше часу. Had — умова, would join — результат; порядок частин не змінює цього розподілу."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-17:intro2:r1",
+              "text": "I would join you if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro2:r2",
+              "text": "I would joined you if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro2:r3",
+              "text": "I would join you if I would had more time."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-17:intro2:r1",
+              "text": "I would join you if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro2:r2",
+              "text": "I would joined you if I had more time."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro2:r3",
+              "text": "I would join you if I would had more time."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Небольшая поездка",
+        "uk": "Невелика поїздка"
+      },
+      "bodyByLocale": {
+        "ru": "Getaway — короткая поездка для отдыха, разговорное слово. We need a weekend getaway — нам нужна поездка куда-нибудь на выходные. Друзья ещё не знают о планах: They would come if they knew — они бы приехали, если бы знали. Knew — форма know; would come — результат. Это не уверенное обещание за друзей, а предположение о другой ситуации. Вы планировали ехать налегке. Рюкзак пока один, но список того, что «точно пригодится», уже на двух страницах.",
+        "uk": "Getaway — коротка поїздка для відпочинку, розмовне слово. We need a weekend getaway — нам потрібна поїздка кудись на вихідні. Друзі ще не знають про плани: They would come if they knew — вони б приїхали, якби знали. Knew — форма know; would come — результат. Це не впевнена обіцянка за друзів, а припущення про іншу ситуацію. Ви планували їхати без зайвих речей. Рюкзак поки один, але список того, що «точно знадобиться», уже на двох сторінках."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-17:intro3:r1",
+              "text": "They would come if they knew."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro3:r2",
+              "text": "They would came if they knew."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro3:r3",
+              "text": "They would come if they would knew."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-17:intro3:r1",
+              "text": "They would come if they knew."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro3:r2",
+              "text": "They would came if they knew."
+            },
+            {
+              "responseId": "en:lesson-27:session-17:intro3:r3",
+              "text": "They would come if they would knew."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3d7c8e9aad79760fa341a393b1c98c7ebb5178d9b3926314d406e083f8047fe4"
+}

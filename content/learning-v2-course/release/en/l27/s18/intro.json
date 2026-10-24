@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "if-clause without would; result with would; if I were you; past simple / present perfect",
+    "uk": "if-clause without would; result with would; if I were you; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ответ не помог",
+        "uk": "Відповідь не допомогла"
+      },
+      "bodyByLocale": {
+        "ru": "Unhelpful — бесполезный в ситуации, не помогающий решить вопрос; о человеке может означать «не желающий помочь». The answer was unhelpful — ответ не помог. Вы не поняли, куда идти: I would find it if I had a clear address — я бы нашёл это место, если бы у меня был точный адрес. В условии had без would, в результате would find. Could you explain it another way? — можете объяснить по-другому? Это просьба сделать объяснение понятнее.",
+        "uk": "Unhelpful — марний у ситуації, такий, що не допомагає розв’язати питання; про людину може означати «неохочий допомогти». The answer was unhelpful — відповідь не допомогла. Ви не зрозуміли, куди йти: I would find it if I had a clear address — я б знайшов це місце, якби мав точну адресу. В умові had без would, у результаті would find. Could you explain it another way? — можете пояснити інакше? Це прохання зробити пояснення зрозумілішим."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-18:intro1:r1",
+              "text": "I would find it if I had a clear address."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro1:r2",
+              "text": "I would found it if I had a clear address."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro1:r3",
+              "text": "I would find it if I would had a clear address."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-18:intro1:r1",
+              "text": "I would find it if I had a clear address."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro1:r2",
+              "text": "I would found it if I had a clear address."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro1:r3",
+              "text": "I would find it if I would had a clear address."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить оплату",
+        "uk": "Уточнити оплату"
+      },
+      "bodyByLocale": {
+        "ru": "Unpaid — неоплаченный; в другом контексте — работа без оплаты. This bill is unpaid — этот счёт не оплачен. Unaware — не знающий о чём-либо. I was unaware of the change — я не знал об изменении. После unaware в этом примере стоит of. Вы показываете чек: I paid yesterday — я заплатил вчера. Yesterday называет законченное время: paid без have. I have paid already — я уже заплатил: важен результат сейчас.",
+        "uk": "Unpaid — неоплачений; в іншому контексті — робота без оплати. This bill is unpaid — цей рахунок не оплачений. Unaware — той, хто не знає про щось. I was unaware of the change — я не знав про зміну. Після unaware у цьому прикладі стоїть of. Ви показуєте чек: I paid yesterday — я заплатив учора. Yesterday називає завершений час: paid без have. I have paid already — я вже заплатив: важливий результат зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-18:intro2:r1",
+              "text": "I paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro2:r2",
+              "text": "I have paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro2:r3",
+              "text": "I payed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-18:intro2:r1",
+              "text": "I paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro2:r2",
+              "text": "I have paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro2:r3",
+              "text": "I payed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спокойно назвать проблему",
+        "uk": "Спокійно назвати проблему"
+      },
+      "bodyByLocale": {
+        "ru": "Unacceptable — неприемлемый. This delay is unacceptable — такая задержка неприемлема. Это сильная, прямая оценка; она жёстче, чем «мне это не подходит». Дальше можно попросить конкретное действие: Could you check it again? — можете проверить ещё раз? Друг советует сохранить чек: If I were you, I would keep the receipt — на твоём месте я бы сохранил чек. Would keep — результат, were — воображаемое положение. Наконец чек найден: в том самом кармане, который вы проверили первым и слишком быстро.",
+        "uk": "Unacceptable — неприйнятний. This delay is unacceptable — така затримка неприйнятна. Це сильна, пряма оцінка; вона жорсткіша, ніж «мені це не підходить». Далі можна попросити конкретну дію: Could you check it again? — можете перевірити ще раз? Друг радить зберегти чек: If I were you, I would keep the receipt — на твоєму місці я б зберіг чек. Would keep — результат, were — уявне становище. Нарешті чек знайдено: у тій самій кишені, яку ви перевірили першою й надто швидко."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-18:intro3:r1",
+              "text": "If I were you, I would keep the receipt."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro3:r2",
+              "text": "If I were you, I would kept the receipt."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro3:r3",
+              "text": "If I were you, I would to keep the receipt."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-18:intro3:r1",
+              "text": "If I were you, I would keep the receipt."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro3:r2",
+              "text": "If I were you, I would kept the receipt."
+            },
+            {
+              "responseId": "en:lesson-27:session-18:intro3:r3",
+              "text": "If I were you, I would to keep the receipt."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf71162e3140c4e61d53c94c6a03bda55df52af79077fd205b1014826d33bfc3"
+}

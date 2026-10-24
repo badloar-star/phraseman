@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-19:word:stressful",
+    "correctText": "stressful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i01",
+    "correctText": "It was a stressful day.",
+    "correctResponseId": "en:lesson-27:session-19:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i02",
+    "correctText": "Do you need any help?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i03",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-19:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:word:desperate",
+    "correctText": "desperate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i04",
+    "correctText": "I am desperate for a break.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i05",
+    "correctText": "I can finish this for you.",
+    "correctResponseId": "en:lesson-27:session-19:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i06",
+    "correctText": "Thank you for helping me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:word:restful",
+    "correctText": "restful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i07",
+    "correctText": "We had a restful weekend.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i08",
+    "correctText": "turn",
+    "correctResponseId": "en:lesson-27:session-19:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i09",
+    "correctText": "Would you rather stay at home?",
+    "correctResponseId": "en:lesson-27:session-19:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:word:content",
+    "correctText": "content",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i10",
+    "correctText": "I am content with a quiet evening.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i11",
+    "correctText": "I have already washed the dishes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i12",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-27:session-19:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i13",
+    "correctText": "We would arrive early if we left now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i14",
+    "correctText": "Shall we meet outside the shop?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i15",
+    "correctText": "Give me ten minutes.",
+    "correctResponseId": "en:lesson-27:session-19:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i16",
+    "correctText": "Please bring your keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-19:i17",
+    "correctText": "I am ready when you are.",
+    "correctResponseId": null
+  }
+]

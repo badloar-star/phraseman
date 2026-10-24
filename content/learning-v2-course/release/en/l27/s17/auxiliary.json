@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-17",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-17:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-17:intro1:r2": {
+          "ru": "После would нужна начальная форма arrive.",
+          "uk": "Після would потрібна початкова форма arrive."
+        },
+        "en:lesson-27:session-17:intro1:r3": {
+          "ru": "В этом условии left без would.",
+          "uk": "У цій умові left без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-17:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-17:intro2:r2": {
+          "ru": "После would нужно join.",
+          "uk": "Після would потрібно join."
+        },
+        "en:lesson-27:session-17:intro2:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-17:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-17:intro3:r2": {
+          "ru": "После would нужна начальная форма come.",
+          "uk": "Після would потрібна початкова форма come."
+        },
+        "en:lesson-27:session-17:intro3:r3": {
+          "ru": "В условии knew без would.",
+          "uk": "В умові knew без would."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "83eb707ec09f992b80de65bb01181da4b2590204e5d18f7f7f5c177b9f52cf1b"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-19",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-19:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-19:intro1:r2": {
+          "ru": "После would ставим go.",
+          "uk": "Після would ставимо go."
+        },
+        "en:lesson-27:session-19:intro1:r3": {
+          "ru": "В этом условии нужно had без would.",
+          "uk": "У цій умові потрібне had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-19:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-19:intro2:r2": {
+          "ru": "Здесь довольны чем-то: content with.",
+          "uk": "Тут задоволені чимось: content with."
+        },
+        "en:lesson-27:session-19:intro2:r3": {
+          "ru": "В этом сочетании нужно with.",
+          "uk": "У цьому сполученні потрібне with."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-19:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-19:intro3:r2": {
+          "ru": "С an hour ago здесь washed без have.",
+          "uk": "Із an hour ago тут washed без have."
+        },
+        "en:lesson-27:session-19:intro3:r3": {
+          "ru": "О законченном действии в прошлом говорим washed.",
+          "uk": "Про завершену дію в минулому кажемо washed."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e579abccd5c187e1d351e2677245e4e7e2c69ff830be43533e3b75f602ed7ab0"
+}

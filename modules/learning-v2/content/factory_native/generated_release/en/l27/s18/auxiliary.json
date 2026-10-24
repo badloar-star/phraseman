@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-18",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-18:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-18:intro1:r2": {
+          "ru": "После would нужна начальная форма find.",
+          "uk": "Після would потрібна початкова форма find."
+        },
+        "en:lesson-27:session-18:intro1:r3": {
+          "ru": "В условии had без would.",
+          "uk": "В умові had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-18:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-18:intro2:r2": {
+          "ru": "С yesterday здесь past simple.",
+          "uk": "Із yesterday тут past simple."
+        },
+        "en:lesson-27:session-18:intro2:r3": {
+          "ru": "В этом значении прошедшая форма pay — paid.",
+          "uk": "У цьому значенні минула форма pay — paid."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-18:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-18:intro3:r2": {
+          "ru": "После would нужна начальная форма keep.",
+          "uk": "Після would потрібна початкова форма keep."
+        },
+        "en:lesson-27:session-18:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5b361bb6cbf70d1613de7403dc3c0d5b0f9dc55c871517533e523977e092a049"
+}

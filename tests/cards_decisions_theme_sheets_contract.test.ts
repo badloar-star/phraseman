@@ -9,11 +9,14 @@ describe('cards-007: выделение карточек', () => {
     expect(read('app/flashcards/CollectionGalleryView.tsx')).toContain('{!canCreatePack && selectedCount > 0 ? (');
     expect(read('app/flashcards/CollectionListView.tsx')).toContain('{!canCreatePack && selectedIds.size > 0 ? (');
   });
-  it('две колонки: перевод показывается целиком (владелец 18.10 отменил «до двух строк»), без «стоимость прое…»', () => {
+  // зачем (24.10, координатор): раскладку «две колонки» (styles.col1) удалили вместе с ползунком и щипком — решение владельца 22.10
+  // «ползунок… убираем, оставляем только их нормальный вид» (CARDS_LOCKED.md, 3b60cfdf4 → 3bb32f502). Смысл сторожа прежний: перевод на
+  // единственном (нормальном) лице плитки показывается целиком, без «стоимость прое…» — проверяем его строку row0/text.
+  it('перевод на лице плитки показывается целиком (владелец 18.10 отменил «до двух строк»), без «стоимость прое…»', () => {
     const src = read('components/cards-grid/CardsGallery.tsx');
-    const at = src.indexOf('<View style={[styles.col1, pad]}>');
+    const at = src.indexOf('<View style={styles.text}>{back ? trEl :');
     expect(at).toBeGreaterThan(0);
-    expect(src.slice(at, at + 120)).toContain('{trEl}');
+    expect(src).toContain('{card.back}</Text>');
     expect(src).not.toMatch(/numberOfLines|ellipsizeMode/);
   });
 });

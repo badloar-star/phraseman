@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Планы изменились",
-        "uk": "Плани змінилися"
+        "ru": "Если бы поездка могла длиться дольше",
+        "uk": "Якби поїздка могла тривати довше"
       },
       "bodyByLocale": {
-        "ru": "Unfortunate — неудачный, досадный. That is unfortunate — как досадно. Так можно отреагировать на неприятную новость: нужный автобус сегодня не ходит. Это оценка обстоятельств, а не обвинение человека. Is there another way to get there? — есть другой способ туда добраться? Вы обсуждаете поездку: We would stay longer if we had more time — мы бы остались дольше, если бы у нас было больше времени. Would stay стоит в результате, had — в воображаемом условии.",
-        "uk": "Unfortunate — невдалий, прикрий. That is unfortunate — як прикро. Так можна відреагувати на неприємну новину: потрібний автобус сьогодні не ходить. Це оцінка обставин, а не звинувачення людини. Is there another way to get there? — є інший спосіб туди дістатися? Ви обговорюєте поїздку: We would stay longer if we had more time — ми б залишилися довше, якби мали більше часу. Would stay стоїть у результаті, had — в уявній умові."
+        "ru": "Вы с другом хотите задержаться в месте отдыха, но сегодня нужно возвращаться. Объясните: We would stay longer if we had more time — мы бы остались дольше, если бы у нас было больше времени. Would stay — воображаемый результат. If we had more time — условие, которого сейчас нет. Собираем предложение: We + would stay + longer + if we had more time — кто, что сделал бы, насколько дольше, при каком условии. После would нужна stay; в условии had без would.",
+        "uk": "Ви з другом хочете затриматися в місці відпочинку, але сьогодні потрібно повертатися. Поясніть: We would stay longer if we had more time — ми б залишилися довше, якби мали більше часу. Would stay — уявний результат. If we had more time — умова, якої зараз немає. Складаємо речення: We + would stay + longer + if we had more time — хто, що зробив би, наскільки довше, за якої умови. Після would потрібна stay; в умові had без would."
       },
       "question": {
         "interactionId": "en:lesson-27:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Решить, как добраться",
-        "uk": "Вирішити, як дістатися"
+        "ru": "Посоветовать более ранний автобус",
+        "uk": "Порадити раніший автобус"
       },
       "bodyByLocale": {
-        "ru": "Roadside — обочина, край дороги. We stopped at the roadside — мы остановились у обочины. Рядом с другим существительным слово может описывать место: a roadside café — придорожное кафе. Unwise — неразумный, неосмотрительный. It would be unwise to rush — торопиться было бы неразумно. Это оценка решения; она не означает, что человек глупый. Друг предлагает более ранний автобус: If I were you, I would take the earlier bus — на твоём месте я бы сел на более ранний автобус.",
-        "uk": "Roadside — узбіччя, край дороги. We stopped at the roadside — ми зупинилися на узбіччі. Поруч з іншим іменником слово може описувати місце: a roadside café — придорожнє кафе. Unwise — нерозумний, необачний. It would be unwise to rush — поспішати було б нерозумно. Це оцінка рішення; вона не означає, що людина дурна. Друг пропонує раніший автобус: If I were you, I would take the earlier bus — на твоєму місці я б сів на раніший автобус."
+        "ru": "Друг выбирает автобус и опасается опоздать к месту встречи. Вы считаете, что лучше выехать раньше. Посоветуйте: If I were you, I would take the earlier bus — на твоём месте я бы сел на более ранний автобус. If I were you вводит совет. Собираем предложение: If I were you, + I would + take + the earlier bus — на твоём месте, я бы, какое действие, какой автобус. После условия ставим запятую; после would — take без to.",
+        "uk": "Друг вибирає автобус і побоюється запізнитися до місця зустрічі. Ви вважаєте, що краще виїхати раніше. Порадьте: If I were you, I would take the earlier bus — на твоєму місці я б сів на раніший автобус. If I were you вводить пораду. Складаємо речення: If I were you, + I would + take + the earlier bus — на твоєму місці, я б, яка дія, який автобус. Після умови ставимо кому; після would — take без to."
       },
       "question": {
         "interactionId": "en:lesson-27:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Объяснить, что не устраивает",
-        "uk": "Пояснити, що не влаштовує"
+        "ru": "Когда проверили расписание",
+        "uk": "Коли перевірили розклад"
       },
       "bodyByLocale": {
-        "ru": "Dissatisfied — недовольный, неудовлетворённый. I am dissatisfied with the service — я недоволен обслуживанием. With связывает оценку с её причиной. Это прямое, довольно сдержанное выражение жалобы; дальше полезно назвать конкретную проблему. I asked for a window seat — я просил место у окна. Затем вы уточняете расписание: Have you checked the timetable? — ты проверил расписание? Если называете законченное время, скажите I checked it this morning — я проверил его сегодня утром. Сейчас в нашей сцене уже вечер.",
-        "uk": "Dissatisfied — незадоволений. I am dissatisfied with the service — я незадоволений обслуговуванням. With пов’язує оцінку з її причиною. Це прямий, досить стриманий спосіб поскаржитися; далі корисно назвати конкретну проблему. I asked for a window seat — я просив місце біля вікна. Потім ви уточнюєте розклад: Have you checked the timetable? — ти перевірив розклад? Якщо називаєте завершений час, скажіть I checked it this morning — я перевірив його сьогодні вранці. Зараз у нашій сцені вже вечір."
+        "ru": "Сейчас вечер. Друг спрашивает, когда вы проверяли расписание, и вы отвечаете про уже закончившееся утро: I checked it this morning — я проверил его сегодня утром. It заменяет the timetable. Checked — прошедшая форма check. В этой ситуации утро завершилось, поэтому нужен Past Simple без have. Собираем предложение: I + checked + it + this morning — кто, действие в прошлом, что проверил, когда.",
+        "uk": "Зараз вечір. Друг запитує, коли ви перевіряли розклад, і ви відповідаєте про ранок, який уже закінчився: I checked it this morning — я перевірив його сьогодні вранці. It замінює the timetable. Checked — минула форма check. У цій ситуації ранок завершився, тому потрібен Past Simple без have. Складаємо речення: I + checked + it + this morning — хто, дія в минулому, що перевірив, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "52da507d88d0b38bcf0c6af42ce28c7e7ba777505a08b45099154755789c4e28"
+  "introFingerprint": "ba790654da94f001e3880adcad112aad4fe854d6e7334500444d2442a2532f9c"
 }

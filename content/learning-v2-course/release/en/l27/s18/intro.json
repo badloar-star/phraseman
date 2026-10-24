@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ответ не помог",
-        "uk": "Відповідь не допомогла"
+        "ru": "Если бы был точный адрес",
+        "uk": "Якби була точна адреса"
       },
       "bodyByLocale": {
-        "ru": "Unhelpful — бесполезный в ситуации, не помогающий решить вопрос; о человеке может означать «не желающий помочь». The answer was unhelpful — ответ не помог. Вы не поняли, куда идти: I would find it if I had a clear address — я бы нашёл это место, если бы у меня был точный адрес. В условии had без would, в результате would find. Could you explain it another way? — можете объяснить по-другому? Это просьба сделать объяснение понятнее.",
-        "uk": "Unhelpful — марний у ситуації, такий, що не допомагає розв’язати питання; про людину може означати «неохочий допомогти». The answer was unhelpful — відповідь не допомогла. Ви не зрозуміли, куди йти: I would find it if I had a clear address — я б знайшов це місце, якби мав точну адресу. В умові had без would, у результаті would find. Could you explain it another way? — можете пояснити інакше? Це прохання зробити пояснення зрозумілішим."
+        "ru": "Вам объяснили дорогу, но точного адреса места встречи у вас нет. Скажите: I would find it if I had a clear address — я бы нашёл это место, если бы у меня был точный адрес. It заменяет место встречи. Would find — воображаемый результат, if I had a clear address — условие сейчас. Собираем предложение: I + would find + it + if I had a clear address — кто, что сделал бы, что нашёл бы, при каком условии. После would нужна find, а в условии had без would.",
+        "uk": "Вам пояснили дорогу, але точної адреси місця зустрічі у вас немає. Скажіть: I would find it if I had a clear address — я б знайшов це місце, якби мав точну адресу. It замінює місце зустрічі. Would find — уявний результат, if I had a clear address — умова зараз. Складаємо речення: I + would find + it + if I had a clear address — хто, що зробив би, що знайшов би, за якої умови. Після would потрібна find, а в умові had без would."
       },
       "question": {
         "interactionId": "en:lesson-27:session-18:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уточнить оплату",
-        "uk": "Уточнити оплату"
+        "ru": "Когда оплатили счёт",
+        "uk": "Коли оплатили рахунок"
       },
       "bodyByLocale": {
-        "ru": "Unpaid — неоплаченный; в другом контексте — работа без оплаты. This bill is unpaid — этот счёт не оплачен. Unaware — не знающий о чём-либо. I was unaware of the change — я не знал об изменении. После unaware в этом примере стоит of. Вы показываете чек: I paid yesterday — я заплатил вчера. Yesterday называет законченное время: paid без have. I have paid already — я уже заплатил: важен результат сейчас.",
-        "uk": "Unpaid — неоплачений; в іншому контексті — робота без оплати. This bill is unpaid — цей рахунок не оплачений. Unaware — той, хто не знає про щось. I was unaware of the change — я не знав про зміну. Після unaware у цьому прикладі стоїть of. Ви показуєте чек: I paid yesterday — я заплатив учора. Yesterday називає завершений час: paid без have. I have paid already — я вже заплатив: важливий результат зараз."
+        "ru": "Вас спрашивают, когда вы оплатили счёт. Это было вчера. Ответьте: I paid yesterday — я заплатил вчера. Paid — прошедшая форма pay в значении оплаты, не payed. Yesterday называет законченное время, поэтому have не нужен. Собираем предложение: I + paid + yesterday — кто, действие в прошлом, когда. За что вы заплатили, уже понятно из вопроса.",
+        "uk": "Вас запитують, коли ви оплатили рахунок. Це було вчора. Дайте відповідь: I paid yesterday — я заплатив учора. Paid — минула форма pay у значенні оплати, не payed. Yesterday називає завершений час, тому have не потрібне. Складаємо речення: I + paid + yesterday — хто, дія в минулому, коли. За що ви заплатили, уже зрозуміло із запитання."
       },
       "question": {
         "interactionId": "en:lesson-27:session-18:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Спокойно назвать проблему",
-        "uk": "Спокійно назвати проблему"
+        "ru": "Посоветовать сохранить чек",
+        "uk": "Порадити зберегти чек"
       },
       "bodyByLocale": {
-        "ru": "Unacceptable — неприемлемый. This delay is unacceptable — такая задержка неприемлема. Это сильная, прямая оценка; она жёстче, чем «мне это не подходит». Дальше можно попросить конкретное действие: Could you check it again? — можете проверить ещё раз? Друг советует сохранить чек: If I were you, I would keep the receipt — на твоём месте я бы сохранил чек. Would keep — результат, were — воображаемое положение. Наконец чек найден: в том самом кармане, который вы проверили первым и слишком быстро.",
-        "uk": "Unacceptable — неприйнятний. This delay is unacceptable — така затримка неприйнятна. Це сильна, пряма оцінка; вона жорсткіша, ніж «мені це не підходить». Далі можна попросити конкретну дію: Could you check it again? — можете перевірити ще раз? Друг радить зберегти чек: If I were you, I would keep the receipt — на твоєму місці я б зберіг чек. Would keep — результат, were — уявне становище. Нарешті чек знайдено: у тій самій кишені, яку ви перевірили першою й надто швидко."
+        "ru": "Друг только что оплатил покупку. Вы считаете, что чек лучше сохранить. Посоветуйте: If I were you, I would keep the receipt — на твоём месте я бы сохранил чек. If I were you вводит совет. Собираем предложение: If I were you, + I would + keep + the receipt — на твоём месте, я бы, что сделал, что сохранил. После условия ставим запятую, после would — начальную форму keep без to.",
+        "uk": "Друг щойно оплатив покупку. Ви вважаєте, що чек краще зберегти. Порадьте: If I were you, I would keep the receipt — на твоєму місці я б зберіг чек. If I were you вводить пораду. Складаємо речення: If I were you, + I would + keep + the receipt — на твоєму місці, я б, що зробив, що зберіг. Після умови ставимо кому, після would — початкову форму keep без to."
       },
       "question": {
         "interactionId": "en:lesson-27:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cf71162e3140c4e61d53c94c6a03bda55df52af79077fd205b1014826d33bfc3"
+  "introFingerprint": "a1d580cddd3c74d0c0501d5a3ecbb111d3584dc81e904eb2033e58a566b2aa1d"
 }

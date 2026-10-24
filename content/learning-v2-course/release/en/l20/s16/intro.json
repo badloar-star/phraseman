@@ -69,8 +69,8 @@
         "uk": "Неприємна розмова"
       },
       "bodyByLocale": {
-        "ru": "Unpleasant — неприятный. Клиент грубо разговаривает, а сотруднице приходится с ним общаться. Uncertain — неопределённый: вы пока не знаете, где будете работать через год, но всё равно строите планы. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
-        "uk": "Unpleasant — неприємний. Клієнт грубо розмовляє, а працівниці доводиться з ним спілкуватися. Uncertain — невизначений: ви поки не знаєте, де працюватимете через рік, але все одно будуєте плани. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+        "ru": "Покупатель грубо разговаривает, а сотруднице магазина приходится его обслуживать: She has to deal with an unpleasant customer — «ей приходится иметь дело с неприятным покупателем». После She выбираем has to, затем deal with — «иметь дело с». Deal остаётся в начальной форме, а to после has нельзя пропускать. An unpleasant customer называет покупателя: unpleasant стоит перед customer, а an — перед гласным звуком в unpleasant.",
+        "uk": "Покупець грубо розмовляє, а працівниці магазину доводиться його обслуговувати: She has to deal with an unpleasant customer — «їй доводиться мати справу з неприємним покупцем». Після She вибираємо has to, потім deal with — «мати справу з». Deal залишається в початковій формі, а to після has не можна пропускати. An unpleasant customer називає покупця: unpleasant стоїть перед customer, а an — перед голосним звуком в unpleasant."
       },
       "question": {
         "interactionId": "en:lesson-20:session-16:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1ba03534c4bd500c94455943747f870c2e0a55b968a955596d6a2917457ea2e7"
+  "introFingerprint": "d8dba75b667dae455b2fc8cdc8582526ae28fee5299f2d501610b04b71b57c83"
 }

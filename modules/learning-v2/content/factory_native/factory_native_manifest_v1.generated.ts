@@ -14965,7 +14965,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 5,
-    sourceFingerprint: "1d10b76a98ad3ab571e5abc4404c454aec034beb8f10bbb58e23f3025ef8bfdb",
+    sourceFingerprint: "82efb24b8d5b1f3fe8d982ce1f8198ce436560f142066362f2f650904512960b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."]],"uk":[["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."]]}),
@@ -14979,7 +14979,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 6,
-    sourceFingerprint: "42bfafb97b9edbc810160b3bf47d312255048e61fdbd944ac0d001d9f965a86f",
+    sourceFingerprint: "e89a0f1eaf9da4c7172e20b403e6c1dbad8777a2e364ffb60e2981b8dbb3d176",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."]],"uk":[["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."]]}),
@@ -14993,7 +14993,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 7,
-    sourceFingerprint: "57bfa2dfd29391dcb125f859fc5b16cb30544bbe89bff9088a9acc14b9a4c528",
+    sourceFingerprint: "f79e64e5efcfa455208873f22126cedd3b13e9aaa2a6cc8f013cbbb486e753a9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."]],"uk":[["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."]]}),
@@ -15007,7 +15007,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 8,
-    sourceFingerprint: "b7836747390d7190f4b850ac18264731a46e4ae0ba11e180bd624c63b0519069",
+    sourceFingerprint: "7fa7e3e144e5167aa02ab0414054de7c31ac1ab17978b80db863a44f60460653",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."],["Must не получает окончания -s.","После must не нужно to."]],"uk":[["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."],["Must не отримує закінчення -s.","Після must не потрібне to."]]}),
@@ -15021,7 +15021,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 9,
-    sourceFingerprint: "e2f6382fd82b90246f9d4fd8d56767e12cd41b6c22063bbee1fb7fdea828a832",
+    sourceFingerprint: "cd16755effa275466157f8109a6e75d387fe28d29edcfcc144ed088ee4d0d8b3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","I have read означает «я уже прочитал». Для необходимости нужно I have to read."],["С she используйте has to.","В конструкции нужно to перед глаголом."],["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","I have read означає «я вже прочитав». Для необхідності потрібно I have to read."],["З she використайте has to.","У конструкції потрібне to перед дієсловом."],["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15035,7 +15035,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 10,
-    sourceFingerprint: "1dcc31733b7518d27ba49b39bfca5efc55baaf641b818d97eb3e306fe05826cb",
+    sourceFingerprint: "f9be3251fa3aaa397aa4de6513426fc1c3b299ba418a4730d380485365cd4c9d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15049,7 +15049,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 11,
-    sourceFingerprint: "612b02e283a1591deb6221f34f922542a607a18142082a413000bb5dce4248dc",
+    sourceFingerprint: "6148a0824636c66ca0f6c5703efdadc8cc7dc8229f80bea482150d3df7343b5f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","I have read — уже прочитал; здесь речь о необходимости: have to read."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","I have read — уже прочитав; тут ідеться про необхідність: have to read."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15063,7 +15063,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 12,
-    sourceFingerprint: "863a4d6b382d3cbbe8cf55c4289731f27c00201c9242ac8cb2356acea1d48eeb",
+    sourceFingerprint: "96db10458fe90a4b74d35021c8eb4806d4cd795b680803ce6259701e4050f355",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15077,7 +15077,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 13,
-    sourceFingerprint: "71ed377ebb64c1a2c108145b65161aec1eead0dfd7955fe16239e03801a044d8",
+    sourceFingerprint: "be72a7358217cb9bf4666cb876e696b0436aa2fb285aeedd4e8a9856859b4b86",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15091,7 +15091,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 14,
-    sourceFingerprint: "3ddeb96ea5619ec814c33b6ee823fbfafe4df292415194de58e154e8e5c7f8ae",
+    sourceFingerprint: "20fb739bc31c2a4bcfdf1d6d4fd52fbdedef07b5a022b489348f9063b03f2283",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15105,7 +15105,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 15,
-    sourceFingerprint: "14091df23060ca3a27a02997b5de1ab38877d6f6c75e40449fbff601a9473eaa",
+    sourceFingerprint: "a78e6dea6ef4cfcdd303358355c68c7dfb5c37a9c9d118b1f4b5331012eecc90",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15119,7 +15119,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 16,
-    sourceFingerprint: "cbfa1c2f9670ed0176a6692714573f71253fbf8927f6f0d794988348eedd672a",
+    sourceFingerprint: "2eb6fde949e2b79d228afd24728ba7e53c83e4c5395b89f974c201a754c62f05",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С этим подлежащим используйте have to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."],["С he или she используйте has to.","В конструкции нужно to перед глаголом."]],"uk":[["Із цим підметом використайте have to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."],["З he або she використайте has to.","У конструкції потрібне to перед дієсловом."]]}),
@@ -15133,7 +15133,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 17,
-    sourceFingerprint: "d747ae99a402d0cd0352a8142d9af47f8849ccaddc4ba014264c28625285dfc9",
+    sourceFingerprint: "d7f081d65ee044f769e84c72635c097b81602d98a92cce90a757d1b2b2fd3b79",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15147,7 +15147,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 18,
-    sourceFingerprint: "0c75c7172e5f31c6546f0d9120a51905d5b3467d47cf23c58b5154319c3fb5ed",
+    sourceFingerprint: "0a9a24bd2e14812d2213e43bdcc79f691f8cb030f892b24ba839972194c41ed8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15161,7 +15161,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 19,
-    sourceFingerprint: "94a69bc9fa76a818c93ddf68921b93ba153684b2f06433edb048039b75e835b6",
+    sourceFingerprint: "e4452e2abba863949267711ea5857f40e9f1886aac43def5e94c63c3ef9f4bdf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15175,7 +15175,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 20,
-    sourceFingerprint: "51e415b54cf61b447341c8e41a97ebc7a9201f4437d61785fdb439a839b53cc1",
+    sourceFingerprint: "dfd33b463b79756fc133e50d3ef277b8448d01eb07bbef7dc15acb2becdd1ec1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15189,7 +15189,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 21,
-    sourceFingerprint: "02baef40cb4162decb5c21f5136d46911cd1978b1b9d8d394c8a1c9b30b9da3a",
+    sourceFingerprint: "46f81b0cc07713f8f175794cbe02969f26638632e58eb714a85282f55c150417",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15203,7 +15203,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 22,
-    sourceFingerprint: "efc5a566749f39d0ab40d9764f84a41fd89eb4bc7fbb25aa3050d23c3ec041ed",
+    sourceFingerprint: "870b9ee49692bc3f2baa4d961a09c92be1b8de4edbe23f00a825a1e23807f3f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15217,7 +15217,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 23,
-    sourceFingerprint: "e8c56f4d33e8ec5962f23ba627d85f4aa09e30a7b30d0b56e09758624a8fba5b",
+    sourceFingerprint: "1bada55f7fa738f499c4cf75194cc5628b3a7f36bfeebfa9d633ff0911a689e6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15231,7 +15231,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 24,
-    sourceFingerprint: "5e137bab409dfac971d23c03c64f49a923b015895ed9592307cd20ed3d21e2d0",
+    sourceFingerprint: "11e92281dcb36c4edbf812a6af6a6028213b756d3304fc146c322d3bafa1eccd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."],["Should не получает окончания -s.","После should не нужно to."]],"uk":[["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."],["Should не отримує закінчення -s.","Після should не потрібне to."]]}),
@@ -15245,7 +15245,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 25,
-    sourceFingerprint: "0c497855edf90cf60d8d3bae2b1bcbb46a801ddbd5309e68bce021a4276965cf",
+    sourceFingerprint: "11c6d3758359b21b07ed17d15ab3e9ca3ec635ddb9c39a0d2f702bd57386f883",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Ought не получает окончания -s.","После ought нужно to."],["Ought не получает окончания -s.","После ought нужно to."],["Ought не получает окончания -s.","После ought нужно to."]],"uk":[["Ought не отримує закінчення -s.","Після ought потрібне to."],["Ought не отримує закінчення -s.","Після ought потрібне to."],["Ought не отримує закінчення -s.","Після ought потрібне to."]]}),
@@ -15259,7 +15259,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 20, sessionOrdinal: 26,
-    sourceFingerprint: "15dc2053b3a084ec579297412dc08ee15ecd2aa4ac2454b008f518147236222b",
+    sourceFingerprint: "4bf1bc53e2fa5ea2377dfd4948ceeef2e59c75452b28c50af157874fc7224976",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Ought не получает окончания -s.","После ought нужно to."],["Ought не получает окончания -s.","После ought нужно to."],["Ought не получает окончания -s.","После ought нужно to."]],"uk":[["Ought не отримує закінчення -s.","Після ought потрібне to."],["Ought не отримує закінчення -s.","Після ought потрібне to."],["Ought не отримує закінчення -s.","Після ought потрібне to."]]}),

@@ -69,8 +69,8 @@
         "uk": "Заповнити поле у формі"
       },
       "bodyByLocale": {
-        "ru": "Occupation — профессия или род занятий. В форме есть обязательное поле, и знакомая должна его заполнить. Position — должность: её друг хочет получить работу, для которой нужно подать заявление. Have to + начальная форма глагола означает «нужно, приходится». Часто причина — требование или обстоятельства. С I, you, we, they используем have to, с he и she — has to. To сохраняем. Must и have to иногда близки по смыслу; здесь тренируем форму have/has to.",
-        "uk": "Occupation — професія або рід занять. У формі є обовʼязкове поле, і знайома має його заповнити. Position — посада: її друг хоче отримати роботу, на яку потрібно подати заяву. Have to + початкова форма дієслова означає «потрібно, доводиться». Часто причина — вимога або обставини. З I, you, we, they використовуємо have to, з he та she — has to. To зберігаємо. Must і have to іноді близькі за змістом; тут тренуємо форму have/has to."
+        "ru": "Знакомая заполняет форму с обязательным полем occupation — «профессия, род занятий». Вы объясняете: She has to enter her occupation — «ей нужно указать свой род занятий». После She используем has to, затем enter — «вписать, указать» — без окончания. Her occupation обозначает сведения о самой знакомой. Соберите фразу: кто — She, необходимость — has to, действие — enter, что указать — her occupation. To перед enter сохраняем.",
+        "uk": "Знайома заповнює форму з обовʼязковим полем occupation — «професія, рід занять». Ви пояснюєте: She has to enter her occupation — «їй потрібно вказати свій рід занять». Після She використовуємо has to, потім enter — «вписати, вказати» — без закінчення. Her occupation позначає відомості про саму знайому. Складіть фразу: хто — She, необхідність — has to, дія — enter, що вказати — her occupation. To перед enter зберігаємо."
       },
       "question": {
         "interactionId": "en:lesson-20:session-09:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d6e650a6179afcdb695a52bba699a4a578d5a54cf2e0507e4d3caf1158de1744"
+  "introFingerprint": "f562a1e03400e362541594edb791539d3e8044617bb2a5d1e6b98cab26173569"
 }

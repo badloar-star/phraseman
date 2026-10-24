@@ -23,6 +23,8 @@ export const DIALOG_SAY_HINTS_LAYOUT = {
   phrase: { size: 14, line: 19 },
   meaning: { size: 13, line: 17, marginTop: 2 },
   wrap: { marginBottom: 10, labelGap: 6 },
+  /** Тесный режим (открыта клавиатура): без строки-подписи, фраза до 2 строк, смысл 1 строка, отступ снизу 8. */
+  compact: { phraseLines: 2, meaningLines: 1, marginBottom: 8 },
 } as const;
 
 type Props = Readonly<{
@@ -33,20 +35,25 @@ type Props = Readonly<{
   onUse: (text: string) => void;
   /** Поле закрыто (лимит, запись) — карточки приглушены и не нажимаются. */
   disabled?: boolean;
+  /** Тесный режим: пока открыта клавиатура на маленьком экране ленте реплик нужна высота (жалоба тестера 24.10). */
+  compact?: boolean;
   testID?: string;
 }>;
 
-export const DialogSayHints = memo(function DialogSayHints({ lang, hints, onUse, disabled = false, testID = 'dialog-say-hints' }: Props) {
+export const DialogSayHints = memo(function DialogSayHints({ lang, hints, onUse, disabled = false, compact = false, testID = 'dialog-say-hints' }: Props) {
   const glass = useDialogueGlass();
   const reduceMotion = useReducedMotion();
   if (hints.length === 0) return null;
   const L = DIALOG_SAY_HINTS_LAYOUT;
   return (
-    <Animated.View entering={reduceMotion ? undefined : FadeInDown.duration(180)} style={styles.wrap} testID={testID}>
-      <View style={styles.labelRow}>
-        <Ionicons name="bulb-outline" size={L.label.icon} color={glass.secondary} />
-        <Text maxFontSizeMultiplier={1.3} style={[styles.label, { color: glass.secondary }]}>{dialogSayHintsLabel(lang)}</Text>
-      </View>
+    <Animated.View entering={reduceMotion ? undefined : FadeInDown.duration(180)} style={compact ? styles.wrapCompact : styles.wrap} testID={testID}>
+      {/* зачем: в тесном режиме подпись уходит (−23 dp), сами фразы и смысл остаются — подсказка не пропадает, пока человек печатает */}
+      {compact ? null : (
+        <View style={styles.labelRow}>
+          <Ionicons name="bulb-outline" size={L.label.icon} color={glass.secondary} />
+          <Text maxFontSizeMultiplier={1.3} style={[styles.label, { color: glass.secondary }]}>{dialogSayHintsLabel(lang)}</Text>
+        </View>
+      )}
       {/* guard-ok: не более трёх карточек (sanitizeDialogSayHints) — виртуализация FlatList дороже самого списка */}
       <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="always" contentContainerStyle={styles.row} decelerationRate="fast">
         {hints.map((hint) => (
@@ -61,8 +68,8 @@ export const DialogSayHints = memo(function DialogSayHints({ lang, hints, onUse,
             testID={`${testID}-item`}
             style={[styles.card, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass), opacity: disabled ? 0.55 : 1 }]}
           >
-            <Text maxFontSizeMultiplier={1.3} numberOfLines={3} style={[styles.phrase, { color: glass.text }]}>{hint.text}</Text>
-            {hint.meaning ? <Text maxFontSizeMultiplier={1.3} numberOfLines={3} style={[styles.meaning, { color: glass.secondary }]}>{hint.meaning}</Text> : null}
+            <Text maxFontSizeMultiplier={1.3} numberOfLines={compact ? L.compact.phraseLines : 3} style={[styles.phrase, { color: glass.text }]}>{hint.text}</Text>
+            {hint.meaning ? <Text maxFontSizeMultiplier={1.3} numberOfLines={compact ? L.compact.meaningLines : 3} style={[styles.meaning, { color: glass.secondary }]}>{hint.meaning}</Text> : null}
           </PressableScale>
         ))}
       </ScrollView>
@@ -73,6 +80,7 @@ export const DialogSayHints = memo(function DialogSayHints({ lang, hints, onUse,
 const L = DIALOG_SAY_HINTS_LAYOUT;
 const styles = StyleSheet.create({
   wrap: { marginBottom: L.wrap.marginBottom },
+  wrapCompact: { marginBottom: L.compact.marginBottom },
   labelRow: { flexDirection: 'row', alignItems: 'center', gap: L.label.gap, marginBottom: L.wrap.labelGap },
   label: { fontSize: L.label.size, lineHeight: L.label.line, fontWeight: '700' },
   row: { gap: L.card.gap, paddingRight: 4 },

@@ -5473,7 +5473,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 55,
-    sourceFingerprint: "efa0939c6ea85ede72d558a7e11d7950d20739820989b3238b307d3442ab2558",
+    sourceFingerprint: "90d0730cb9f31aa723584e93649b0a62c26f494c072ac6286024cc7572de7cf8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Тренер спрашивает про мокрую футболку. Ответьте: «Я часто потею в спортзале».","Друг спрашивает, как вы обычно реагируете на холодную воду. Ответьте: «Я обычно дрожу в холодной воде».","Администратор у входа ждёт вашего вопроса. Спросите: «Где кабинет врача?»"],"uk":["Тренер питає про мокру футболку. Відповідьте: «Я часто пітнію в спортзалі».","Друг питає, як ви зазвичай реагуєте на холодну воду. Відповідьте: «Я зазвичай тремчу в холодній воді».","Адміністратор біля входу чекає на ваше запитання. Спитайте: «Де кабінет лікаря?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I нужно sweat, без s.","Здесь нужна форма sweat."],["После I нужно shiver, без s.","После I usually нужна форма shiver, без -ing."],["Кабинет один: нужно is.","В этом вопросе is стоит перед the surgery."]],"uk":[["Після I потрібно sweat, без s.","Тут потрібна форма sweat."],["Після I потрібно shiver, без s.","Після I usually потрібна форма shiver, без -ing."],["Кабінет один: потрібно is.","У цьому запитанні is стоїть перед the surgery."]]}),
@@ -5529,7 +5529,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 3,
-    sourceFingerprint: "82f9db9a36cb969f85a3549f752fb7bd584340bb0d32725ffc0f247346ecf502",
+    sourceFingerprint: "191d8d65151b6e16994629e7275966daf6cdc8be8c54f1c40a2b477b027ae1fd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Турист просит помочь. Скажите ему: «Я умею говорить по-английски».","Подруга спрашивает о брате. Скажите ей: «Он умеет редактировать фото».","Вы нашли джинсы в сушилке. Спросите соседку: «Чьи это джинсы?»"],"uk":["Турист просить допомогти. Скажіть йому: «Я вмію говорити англійською».","Подруга питає про брата. Скажіть їй: «Він уміє редагувати фото».","Ви знайшли джинси в сушарці. Спитайте сусідку: «Чиї це джинси?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can слово speak идёт без to.","После can нужно speak, без s."],["После he остаётся can, без s.","После can нужно edit, без s."],["Jeans — форма множественного числа, поэтому нужно are these.","Для «чьи» нужно whose."]],"uk":[["Після can слово speak йде без to.","Після can потрібно speak, без s."],["Після he залишається can, без s.","Після can потрібно edit, без s."],["Jeans — форма множини, тому потрібно are these.","Для «чиї» потрібно whose."]]}),
@@ -5543,7 +5543,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 4,
-    sourceFingerprint: "910b6048bc5f69b10cc6bbf0a9707a6c0390f96fc3dbf09acfdbf3390d9f7a68",
+    sourceFingerprint: "25275494dc179aec011bd21183b5bf1de4d6babbe0f08c1f64c6795239fe9c68",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Подруга просит голосовое сообщение. Скажите ей: «Я могу записать сообщение».","Коллега спрашивает о сестре. Скажите: «Она умеет начищать туфли».","Вы нашли часы на скамейке. Спросите соседку: «Чьи это часы?»"],"uk":["Подруга просить голосове повідомлення. Скажіть їй: «Я можу записати повідомлення».","Колега питає про сестру. Скажіть: «Вона вміє начищати туфлі».","Ви знайшли годинник на лаві. Спитайте сусідку: «Чий це годинник?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can слово record идёт без to.","После can нужно record, без s."],["После she остаётся can, без s.","После can нужно polish, без es."],["Wristwatch — единственное число: нужно is this.","Для «чьи» нужно whose."]],"uk":[["Після can слово record йде без to.","Після can потрібно record, без s."],["Після she залишається can, без s.","Після can потрібно polish, без es."],["Wristwatch — однина: потрібно is this.","Для «чий» потрібно whose."]]}),
@@ -5557,7 +5557,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 5,
-    sourceFingerprint: "b7589160926a272a92b0c07117939c4a6219ef7fd506ea80e040f70dfe3a8099",
+    sourceFingerprint: "7f2a38d0c40c60c4dc0fe7bdec2428c4a098df89020d96c41db17ba520030b3e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Друг просит настроить гитару. Скажите ему: «Я умею настраивать гитару».","Подруга спрашивает о сестре. Скажите ей: «Она умеет хорошо заплетать косы».","Вы заметили джемпер на стуле. Спросите коллегу: «Чей это джемпер?»"],"uk":["Друг просить налаштувати гітару. Скажіть йому: «Я вмію налаштовувати гітару».","Подруга питає про сестру. Скажіть їй: «Вона вміє добре заплітати коси».","Ви помітили джемпер на стільці. Спитайте колегу: «Чий це джемпер?»"]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can слово tune идёт без to.","После can нужно tune, без s."],["После can нужно braid, без s.","После she остаётся can, без s."],["Jumper — единственное число: нужно is this.","Сначала whose jumper, потом is this."]],"uk":[["Після can слово tune йде без to.","Після can потрібно tune, без s."],["Після can потрібно braid, без s.","Після she залишається can, без s."],["Jumper — однина: потрібно is this.","Спочатку whose jumper, потім is this."]]}),
@@ -5641,7 +5641,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 11,
-    sourceFingerprint: "a543bfd96a720777a96ce5622a573d1d202ec0fac426619ab0d5224f7c34e197",
+    sourceFingerprint: "bdf21cf70a2b2365ccdfb0d07c0731d1acec2b46b688b3c6de3d6127fa51a35b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Can означает «умею».","После can’t не нужно to."],["Здесь говорится о стирке.","После can’t нужна do."],["Can’t означает «не могу».","После can не нужно to."]],"uk":[["Can означає «вмію».","Після can’t не потрібне to."],["Тут ідеться про прання.","Після can’t потрібна do."],["Can’t означає «не можу».","Після can не потрібне to."]]}),
@@ -5697,7 +5697,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 15,
-    sourceFingerprint: "68ee10707029854e73b09d1fc777fc93955d094818a3997d3fa8cd22c4aef27c",
+    sourceFingerprint: "e00a9f3f8fa9d1dd4c66c3ce68755ea3ed9df0bfb09f4321783646d0a6624285",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь другой смысл или неверное вопросительное слово. Нужно: I can use the clothes airer.","После can глагол без to и s."],["Здесь другой смысл или неверное вопросительное слово. Нужно: Whose laundry bag is this?","Один мешок: is this."],["Здесь другой смысл или неверное вопросительное слово. Нужно: I can find a dishwasher tablet.","После can глагол без to и s."]],"uk":[["Тут інший зміст або неправильне питальне слово. Потрібно: I can use the clothes airer.","Після can дієслово без to й s."],["Тут інший зміст або неправильне питальне слово. Потрібно: Whose laundry bag is this?","Один мішок: is this."],["Тут інший зміст або неправильне питальне слово. Потрібно: I can find a dishwasher tablet.","Після can дієслово без to й s."]]}),

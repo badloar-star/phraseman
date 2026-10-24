@@ -2739,7 +2739,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 55,
-    sourceFingerprint: "efa0939c6ea85ede72d558a7e11d7950d20739820989b3238b307d3442ab2558",
+    sourceFingerprint: "90d0730cb9f31aa723584e93649b0a62c26f494c072ac6286024cc7572de7cf8",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"рассказывать о привычках тела и спрашивать «Где …?»","uk":"розповідати про звички тіла та питати «Де …?»"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 7","uk":"Англійська · Урок 7"}),
@@ -2767,21 +2767,21 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 3,
-    sourceFingerprint: "82f9db9a36cb969f85a3549f752fb7bd584340bb0d32725ffc0f247346ecf502",
+    sourceFingerprint: "191d8d65151b6e16994629e7275966daf6cdc8be8c54f1c40a2b477b027ae1fd",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить об умениях с can и спрашивать Can you…?","uk":"говорити про вміння з can і питати Can you…?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 4,
-    sourceFingerprint: "910b6048bc5f69b10cc6bbf0a9707a6c0390f96fc3dbf09acfdbf3390d9f7a68",
+    sourceFingerprint: "25275494dc179aec011bd21183b5bf1de4d6babbe0f08c1f64c6795239fe9c68",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить об умениях с can, спрашивать Can you…? и отвечать Yes, I can","uk":"говорити про вміння з can, питати Can you…? і відповідати Yes, I can"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 5,
-    sourceFingerprint: "b7589160926a272a92b0c07117939c4a6219ef7fd506ea80e040f70dfe3a8099",
+    sourceFingerprint: "7f2a38d0c40c60c4dc0fe7bdec2428c4a098df89020d96c41db17ba520030b3e",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить об умениях с can","uk":"говорити про вміння з can"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
@@ -2823,7 +2823,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 11,
-    sourceFingerprint: "a543bfd96a720777a96ce5622a573d1d202ec0fac426619ab0d5224f7c34e197",
+    sourceFingerprint: "bdf21cf70a2b2365ccdfb0d07c0731d1acec2b46b688b3c6de3d6127fa51a35b",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"can / can’t + глагол без to","uk":"can / can’t + дієслово без to"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),
@@ -2851,7 +2851,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 15,
-    sourceFingerprint: "68ee10707029854e73b09d1fc777fc93955d094818a3997d3fa8cd22c4aef27c",
+    sourceFingerprint: "e00a9f3f8fa9d1dd4c66c3ce68755ea3ed9df0bfb09f4321783646d0a6624285",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"can, whose","uk":"can, whose"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 8","uk":"Англійська · Урок 8"}),

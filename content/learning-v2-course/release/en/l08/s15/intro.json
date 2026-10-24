@@ -15,8 +15,8 @@
         "uk": "Висушити білизну"
       },
       "bodyByLocale": {
-        "ru": "Clothes airer — сушилка-стойка для белья, без мотора; tumble dryer — сушильная машина. I can use the clothes airer — я могу воспользоваться сушилкой-стойкой. Выберите стойку.",
-        "uk": "Clothes airer — сушарка-стійка для білизни, без мотора; tumble dryer — сушильна машина. I can use the clothes airer — я можу скористатися сушаркою-стійкою. Виберіть стійку."
+        "ru": "Вы постирали футболки и хотите развесить их дома. В комнате стоит свободная сушилка-стойка. Clothes airer — «сушилка-стойка для белья». I can use the clothes airer — «Я могу воспользоваться сушилкой-стойкой». Сначала I называет говорящего, затем can use — что он может сделать. После can ставим use без to и окончания -s; the clothes airer называет конкретную стойку в комнате.",
+        "uk": "Ви випрали футболки й хочете розвісити їх удома. У кімнаті стоїть вільна сушарка-стійка. Clothes airer — «сушарка-стійка для білизни». I can use the clothes airer — «Я можу скористатися сушаркою-стійкою». Спочатку I називає мовця, потім can use — що він може зробити. Після can ставимо use без to й закінчення -s; the clothes airer називає конкретну стійку в кімнаті."
       },
       "question": {
         "interactionId": "en:lesson-08:session-15:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Чей мешок?",
-        "uk": "Чий мішок?"
+        "ru": "Мешок возле стиральной машины",
+        "uk": "Мішок біля пральної машини"
       },
       "bodyByLocale": {
-        "ru": "Laundry bag — мешок для белья. Whose laundry bag is this? — Чей это мешок для белья? Повторяем whose: спрашиваем о владельце.",
-        "uk": "Laundry bag — мішок для білизни. Whose laundry bag is this? — Чий це мішок для білизни? Повторюємо whose: запитуємо про власника."
+        "ru": "В общей прачечной возле стиральной машины остался мешок с бельём. Вы хотите узнать, кому его вернуть. Laundry bag — «мешок для белья». Whose laundry bag is this? — «Чей это мешок для белья?» В начале whose laundry bag спрашивает о владельце мешка. Затем ставим is this: мешок один, поэтому is, а не are.",
+        "uk": "У спільній пральні біля пральної машини залишився мішок із білизною. Ви хочете дізнатися, кому його повернути. Laundry bag — «мішок для білизни». Whose laundry bag is this? — «Чий це мішок для білизни?» На початку whose laundry bag запитує про власника мішка. Потім ставимо is this: мішок один, тому is, а не are."
       },
       "question": {
         "interactionId": "en:lesson-08:session-15:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-08:session-15:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Помыть посуду",
-        "uk": "Помити посуд"
+        "ru": "Таблетка для посудомоечной машины",
+        "uk": "Таблетка для посудомийної машини"
       },
       "bodyByLocale": {
-        "ru": "Dishwasher tablet — таблетка для посудомоечной машины. I can find a dishwasher tablet — я могу найти таблетку для посудомоечной машины. Выберите эту фразу.",
-        "uk": "Dishwasher tablet — таблетка для посудомийної машини. I can find a dishwasher tablet — я можу знайти таблетку для посудомийної машини. Виберіть цю фразу."
+        "ru": "Друг загрузил посудомоечную машину, но не видит моющего средства. Вы знаете, в каком шкафу оно лежит, и предлагаете помочь. Dishwasher tablet — «таблетка для посудомоечной машины». I can find a dishwasher tablet — «Я могу найти таблетку для посудомоечной машины». После I can ставим find без to и окончания -s. Затем a dishwasher tablet называет то, что вы можете найти: одну таблетку.",
+        "uk": "Друг завантажив посудомийну машину, але не бачить мийного засобу. Ви знаєте, у якій шафі він лежить, і пропонуєте допомогти. Dishwasher tablet — «таблетка для посудомийної машини». I can find a dishwasher tablet — «Я можу знайти таблетку для посудомийної машини». Після I can ставимо find без to й закінчення -s. Потім a dishwasher tablet називає те, що ви можете знайти: одну таблетку."
       },
       "question": {
         "interactionId": "en:lesson-08:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "62933f5f04f3a8a6be77991a7a20b755496230d67cc2982d9f431f55b0b47c8a"
+  "introFingerprint": "157aa24efb083a08600fd78ce9fb7ea87574d20e9c4572c7677d3183f2e7e521"
 }

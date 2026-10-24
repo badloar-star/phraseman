@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Под землёй",
-        "uk": "Під землею"
+        "ru": "Нарисовать корень",
+        "uk": "Намалювати корінь"
       },
       "bodyByLocale": {
-        "ru": "Root — корень растения. I am going to draw a root. — Я собираюсь нарисовать корень. Going to сообщает о вашем намерении. Вы ещё не рисуете.",
-        "uk": "Root — корінь рослини. I am going to draw a root. — Я збираюся намалювати корінь. Going to повідомляє про ваш намір. Ви ще не малюєте."
+        "ru": "Вы рассматриваете выкопанное растение и решили нарисовать его корень. Root — корень. I am going to draw a root. — Я собираюсь нарисовать корень. Начните с I am going to, затем действие draw и то, что нарисуете, — a root. После going to нужна draw, без изменений. Вы пока только сообщаете о своём решении, а не рисуете.",
+        "uk": "Ви розглядаєте викопану рослину й вирішили намалювати її корінь. Root — корінь. I am going to draw a root. — Я збираюся намалювати корінь. Почніть з I am going to, потім дія draw і те, що намалюєте, — a root. Після going to потрібне draw, без змін. Ви поки лише повідомляєте про своє рішення, а не малюєте."
       },
       "question": {
         "interactionId": "en:lesson-15:session-08:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Стебель и пыльца",
-        "uk": "Стебло й пилок"
+        "ru": "Рассмотреть пыльцу",
+        "uk": "Розглянути пилок"
       },
       "bodyByLocale": {
-        "ru": "Stem — стебель растения; pollen — пыльца цветов. She is going to look at the pollen. — Она собирается рассмотреть пыльцу. Pollen — неисчисляемое слово.",
-        "uk": "Stem — стебло рослини; pollen — пилок квітів. She is going to look at the pollen. — Вона збирається роздивитися пилок. Pollen — незлічуване слово."
+        "ru": "Ваша дочь заметила пыльцу на цветке и решила рассмотреть её через лупу. Pollen — пыльца. She is going to look at the pollen. — Она собирается рассмотреть пыльцу. Начните с She is going to look. На что она посмотрит, добавьте через at: at the pollen. С She нужно is. The pollen — конкретная пыльца на этом цветке; look после going to не меняется.",
+        "uk": "Ваша донька помітила пилок на квітці й вирішила розглянути його через лупу. Pollen — пилок. She is going to look at the pollen. — Вона збирається розглянути пилок. Почніть з She is going to look. На що вона подивиться, додайте через at: at the pollen. З She потрібне is. The pollen — конкретний пилок на цій квітці; look після going to не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-15:session-08:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Острый шип",
-        "uk": "Гострий шип"
+        "ru": "Шип на розе",
+        "uk": "Колючка на троянді"
       },
       "bodyByLocale": {
-        "ru": "Thorn — шип на растении, например на розе. We are going to draw a thorn. — Мы собираемся нарисовать шип. С we нужна are; после going to — draw.",
-        "uk": "Thorn — шип на рослині, наприклад на троянді. We are going to draw a thorn. — Ми збираємося намалювати шип. З we потрібна are; після going to — draw."
+        "ru": "Вы с ребёнком заметили шип на розе и решили нарисовать его в альбоме. Thorn — шип. We are going to draw a thorn. — Мы собираемся нарисовать шип. Сначала We are going to: с We нужно are. Затем добавьте draw и a thorn. Не ставьте drawing после going to: здесь действие остаётся в форме draw.",
+        "uk": "Ви з дитиною помітили колючку на троянді й вирішили намалювати її в альбомі. Thorn — колючка. We are going to draw a thorn. — Ми збираємося намалювати колючку. Спочатку We are going to: з We потрібне are. Потім додайте draw і a thorn. Не ставте drawing після going to: тут дія залишається у формі draw."
       },
       "question": {
         "interactionId": "en:lesson-15:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "546a4df3933bfbad1e0620126fb866080b26bbd55c22d8b8d0a0562c01ff3864"
+  "introFingerprint": "896af9bf22d8a08695d529e3c105ea366ff7cfb581303a1c36d60f7e5c220f04"
 }

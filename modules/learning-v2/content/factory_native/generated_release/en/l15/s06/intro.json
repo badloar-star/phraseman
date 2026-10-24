@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-06:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два спальных места",
-        "uk": "Два спальні місця"
+        "ru": "Выбрать спальное место",
+        "uk": "Вибрати спальне місце"
       },
       "bodyByLocale": {
-        "ru": "Bunk bed — двухъярусная кровать. I am going to sleep in a bunk bed. — Я собираюсь спать на двухъярусной кровати. Вы уже выбрали спальное место.",
-        "uk": "Bunk bed — двоярусне ліжко. I am going to sleep in a bunk bed. — Я збираюся спати на двоярусному ліжку. Ви вже вибрали спальне місце."
+        "ru": "Вы уже выбрали двухъярусную кровать для ночёвки в домике. Bunk bed — двухъярусная кровать. Чтобы сообщить о принятом решении, соберите I + am going to + sleep: «я собираюсь спать». После going to действие называем начальной формой sleep. Добавьте место: in a bunk bed. Получится: I am going to sleep in a bunk bed. — Я собираюсь спать на двухъярусной кровати.",
+        "uk": "Ви вже вибрали двоярусне ліжко для ночівлі в будиночку. Bunk bed — двоярусне ліжко. Щоб повідомити про ухвалене рішення, складіть I + am going to + sleep: «я збираюся спати». Після going to дію називаємо початковою формою sleep. Додайте місце: in a bunk bed. Вийде: I am going to sleep in a bunk bed. — Я збираюся спати на двоярусному ліжку."
       },
       "question": {
         "interactionId": "en:lesson-15:session-06:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что положить на землю",
-        "uk": "Що покласти на землю"
+        "ru": "Взять коврик для сна",
+        "uk": "Взяти килимок для сну"
       },
       "bodyByLocale": {
-        "ru": "Sleeping mat — коврик для сна; groundsheet — непромокаемая подстилка под палатку или под спальное место. She is going to take a sleeping mat. — Она собирается взять коврик для сна.",
-        "uk": "Sleeping mat — килимок для сну; groundsheet — непромокальна підстилка під намет або спальне місце. She is going to take a sleeping mat. — Вона збирається взяти килимок для сну."
+        "ru": "Ваша сестра решила взять в поездку коврик для сна. Sleeping mat — коврик для сна. Говоря о её намерении, начните с She is going to: с she нужна is. Затем добавьте действие take и предмет a sleeping mat. She is going to take a sleeping mat. — Она собирается взять коврик для сна.",
+        "uk": "Ваша сестра вирішила взяти в поїздку килимок для сну. Sleeping mat — килимок для сну. Говорячи про її намір, почніть із She is going to: із she потрібна is. Потім додайте дію take і предмет a sleeping mat. She is going to take a sleeping mat. — Вона збирається взяти килимок для сну."
       },
       "question": {
         "interactionId": "en:lesson-15:session-06:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сохранить продукты холодными",
-        "uk": "Зберегти продукти холодними"
+        "ru": "Уложить напитки",
+        "uk": "Покласти напої"
       },
       "bodyByLocale": {
-        "ru": "Cool box — переносной термоконтейнер для еды и напитков. We are going to put the drinks in a cool box. — Мы собираемся положить напитки в термоконтейнер. Выберите правильную форму с we.",
-        "uk": "Cool box — переносний термоконтейнер для їжі та напоїв. We are going to put the drinks in a cool box. — Ми збираємося покласти напої в термоконтейнер. Виберіть правильну форму з we."
+        "ru": "Вы с другом решили положить напитки в термоконтейнер перед поездкой. Cool box — переносной термоконтейнер. Для вашего общего намерения начните с We are going to, затем добавьте put — «положить». Укажите, что и куда: the drinks in a cool box. We are going to put the drinks in a cool box. — Мы собираемся положить напитки в термоконтейнер. После going сохраняйте to перед put.",
+        "uk": "Ви з другом вирішили покласти напої в термоконтейнер перед поїздкою. Cool box — переносний термоконтейнер. Для вашого спільного наміру почніть із We are going to, потім додайте put — «покласти». Укажіть, що й куди: the drinks in a cool box. We are going to put the drinks in a cool box. — Ми збираємося покласти напої в термоконтейнер. Після going зберігайте to перед put."
       },
       "question": {
         "interactionId": "en:lesson-15:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cac2d7bd6664fc68abe899832b00ea06bfb2acd55cbda1e3913e8803461d37b1"
+  "introFingerprint": "962650c2be9fde20b924fe1edda93d85c0ca440936e28d31f395c36fe869fc1a"
 }

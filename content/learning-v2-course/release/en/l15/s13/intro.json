@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Признак уже виден",
-        "uk": "Ознаку вже видно"
+        "ru": "Надвигается ливень",
+        "uk": "Насувається злива"
       },
       "bodyByLocale": {
-        "ru": "downpour — сильный ливень. Небо почти чёрное; уже падают первые крупные капли. There is going to be a downpour. — Сейчас будет ливень. По видимому признаку делаем прогноз: be going to + начальная форма глагола.",
-        "uk": "downpour — сильна злива. Небо майже чорне; уже падають перші великі краплі. There is going to be a downpour. — Зараз буде злива. За видимою ознакою робимо прогноз: be going to + початкова форма дієслова."
+        "ru": "Небо почти чёрное, и уже падают первые крупные капли. Downpour — сильный ливень. There is going to be a downpour. — Похоже, сейчас будет ливень. Чтобы предсказать появление события, начните с There is going to be. Затем добавьте a downpour. Не пропускайте ни to, ни be. Тучи и первые капли объясняют, почему вы ожидаете ливень.",
+        "uk": "Небо майже чорне, й уже падають перші великі краплі. Downpour — сильна злива. There is going to be a downpour. — Схоже, зараз буде злива. Щоб передбачити появу події, почніть з There is going to be. Потім додайте a downpour. Не пропускайте ні to, ні be. Хмари й перші краплі пояснюють, чому ви очікуєте зливу."
       },
       "question": {
         "interactionId": "en:lesson-15:session-13:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два изменения",
-        "uk": "Ще дві зміни"
+        "ru": "Ветер усиливается",
+        "uk": "Вітер посилюється"
       },
       "bodyByLocale": {
-        "ru": "gale — очень сильный ветер; gust — внезапный порыв ветра. Ветер быстро усиливается; большие ветви уже сильно качаются. There is going to be a gale. — Похоже, будет очень сильный ветер. Выберите прогноз.",
-        "uk": "gale — дуже сильний вітер; gust — раптовий порив вітру. Вітер швидко посилюється; великі гілки вже сильно гойдаються. There is going to be a gale. — Схоже, буде дуже сильний вітер. Виберіть прогноз."
+        "ru": "Ветер быстро усиливается, и большие ветви уже сильно качаются. Gale — очень сильный ветер. There is going to be a gale. — Похоже, будет очень сильный ветер. Соберите прогноз: There is going to be, затем a gale. С a gale нужно is, а не are. Going to показывает ожидание на основании того, как ветер меняется сейчас.",
+        "uk": "Вітер швидко посилюється, і великі гілки вже сильно гойдаються. Gale — дуже сильний вітер. There is going to be a gale. — Схоже, буде дуже сильний вітер. Складіть прогноз: There is going to be, потім a gale. З a gale потрібне is, а не are. Going to показує очікування на підставі того, як вітер змінюється зараз."
       },
       "question": {
         "interactionId": "en:lesson-15:session-13:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Основание для прогноза",
-        "uk": "Підстава для прогнозу"
+        "ru": "Снег превращается в кашу",
+        "uk": "Сніг перетворюється на кашу"
       },
       "bodyByLocale": {
-        "ru": "slush — мокрая снежная каша. Снег на дороге уже тает; воздух становится теплее. There is going to be slush on the road. — На дороге будет снежная каша. После going to форма глагола не меняется.",
-        "uk": "slush — мокра снігова каша. Сніг на дорозі вже тане; повітря стає теплішим. There is going to be slush on the road. — На дорозі буде снігова каша. Після going to форма дієслова не змінюється."
+        "ru": "Снег на дороге начинает таять, воздух становится теплее. Slush — мокрая снежная каша. There is going to be slush on the road. — На дороге будет снежная каша. Сначала There is going to be, затем slush и место on the road. Снежную кашу здесь не считают поштучно, поэтому is; a перед slush не нужно. Так прогнозируем результат таяния снега.",
+        "uk": "Сніг на дорозі починає танути, повітря стає теплішим. Slush — мокра снігова каша. There is going to be slush on the road. — На дорозі буде снігова каша. Спочатку There is going to be, потім slush і місце on the road. Снігову кашу тут не рахують поштучно, тому is; a перед slush не потрібне. Так прогнозуємо результат танення снігу."
       },
       "question": {
         "interactionId": "en:lesson-15:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0df97ff4add90e91035f3b7162e39e82a86b87ae1d329926619727be7bab333b"
+  "introFingerprint": "a70a6afa048f1368d7f20831c82dec03a38554448d9b97175c562e5e534a653b"
 }

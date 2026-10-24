@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Признак уже виден",
-        "uk": "Ознаку вже видно"
+        "ru": "Вода у края раковины",
+        "uk": "Вода біля краю раковини"
       },
       "bodyByLocale": {
-        "ru": "overflow — переполниться и перелиться через край. Вода уже у края раковины, а кран открыт. The sink is going to overflow. — Раковина вот-вот переполнится. Going to бывает не только планом: здесь это прогноз по тому, что видно сейчас. Предмет ничего не планирует.",
-        "uk": "overflow — переповнитися й перелитися через край. Вода вже біля краю раковини, а кран відкритий. The sink is going to overflow. — Раковина ось-ось переповниться. Going to буває не лише планом: тут це прогноз за тим, що видно зараз. Предмет нічого не планує."
+        "ru": "Вода уже у края раковины, а кран открыт. Overflow — переполниться и перелиться через край. The sink is going to overflow. — Раковина вот-вот переполнится. Going to передаёт не только намерение: здесь вы прогнозируете результат по видимому уровню воды. Раковина ничего не планирует. Соберите предупреждение: The sink + is going to + overflow. Раковина одна, поэтому is; после going to действие не меняется.",
+        "uk": "Вода вже біля краю раковини, а кран відкритий. Overflow — переповнитися й перелитися через край. The sink is going to overflow. — Раковина ось-ось переповниться. Going to передає не лише намір: тут ви прогнозуєте результат за видимим рівнем води. Раковина нічого не планує. Складіть попередження: The sink + is going to + overflow. Раковина одна, тому is; після going to дія не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-15:session-09:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два изменения",
-        "uk": "Ще дві зміни"
+        "ru": "Башня наклонилась",
+        "uk": "Вежа нахилилася"
       },
       "bodyByLocale": {
-        "ru": "topple — опрокинуться, потеряв равновесие; burst — лопнуть. Башня из кубиков сильно наклонилась. The tower is going to topple. — Башня вот-вот опрокинется. Выберите прогноз.",
-        "uk": "topple — перекинутися, втративши рівновагу; burst — луснути. Вежа з кубиків сильно нахилилася. The tower is going to topple. — Вежа ось-ось перекинеться. Виберіть прогноз."
+        "ru": "Башня из кубиков сильно наклонилась и теряет равновесие. Topple — опрокинуться. The tower is going to topple. — Башня вот-вот опрокинется. Начните с The tower is going to, затем добавьте topple без окончания. Не пропускайте to после going. Наклон башни — причина вашего прогноза, а going to сообщает ожидаемый результат.",
+        "uk": "Вежа з кубиків сильно нахилилася й утрачає рівновагу. Topple — перекинутися. The tower is going to topple. — Вежа ось-ось перекинеться. Почніть з The tower is going to, потім додайте topple без закінчення. Не пропускайте to після going. Нахил вежі — причина вашого прогнозу, а going to повідомляє очікуваний результат."
       },
       "question": {
         "interactionId": "en:lesson-15:session-09:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Основание для прогноза",
-        "uk": "Підстава для прогнозу"
+        "ru": "Полка трещит",
+        "uk": "Полиця тріщить"
       },
       "bodyByLocale": {
-        "ru": "collapse — обрушиться, сложиться под тяжестью. Полка трещит под тяжёлыми книгами. The shelf is going to collapse. — Полка вот-вот обрушится. После going to форма глагола не меняется.",
-        "uk": "collapse — обвалитися, скластися під вагою. Полиця тріщить під важкими книжками. The shelf is going to collapse. — Полиця ось-ось обвалиться. Після going to форма дієслова не змінюється."
+        "ru": "Полка трещит под тяжестью книг. Collapse — обрушиться. The shelf is going to collapse. — Полка вот-вот обрушится. Назовите предмет — The shelf, затем добавьте is going to и действие collapse. После going to не добавляем к collapse окончание -s. Треск и тяжесть книг дают основание ожидать обрушения.",
+        "uk": "Полиця тріщить під вагою книжок. Collapse — обвалитися. The shelf is going to collapse. — Полиця ось-ось обвалиться. Назвіть предмет — The shelf, потім додайте is going to і дію collapse. Після going to не додаємо до collapse закінчення -s. Тріск і вага книжок дають підставу очікувати обвалення."
       },
       "question": {
         "interactionId": "en:lesson-15:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f48ec19828c593d91ae9cb14fc93792b6780565ef2d28137b8ea5cdad6ddcc89"
+  "introFingerprint": "4c04167a4654db6ed9206176a932dc6c3a6c843660b2fabf3fc730666c075dad"
 }

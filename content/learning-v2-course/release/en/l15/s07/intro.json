@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Флажки на верёвке",
-        "uk": "Прапорці на мотузці"
+        "ru": "Повесить флажки",
+        "uk": "Повісити прапорці"
       },
       "bodyByLocale": {
-        "ru": "Bunting — гирлянда из флажков. I am going to hang the bunting. — Я собираюсь повесить гирлянду из флажков. Здесь bunting — неисчисляемое: не добавляем a.",
-        "uk": "Bunting — гірлянда з прапорців. I am going to hang the bunting. — Я збираюся повісити гірлянду з прапорців. Тут bunting — незлічуване: не додаємо a."
+        "ru": "Вы готовите комнату к празднику и решили повесить купленную гирлянду из флажков. Bunting — гирлянда из флажков. I am going to hang the bunting. — Я собираюсь повесить гирлянду из флажков. Начните с I am going to, затем действие hang и украшение the bunting. После going нужно to; hang остаётся без изменений. The bunting указывает на ту гирлянду, которую вы приготовили.",
+        "uk": "Ви готуєте кімнату до свята й вирішили повісити куплену гірлянду з прапорців. Bunting — гірлянда з прапорців. I am going to hang the bunting. — Я збираюся повісити гірлянду з прапорців. Почніть з I am going to, потім дія hang і прикраса the bunting. Після going потрібне to; hang залишається без змін. The bunting указує на ту гірлянду, яку ви підготували."
       },
       "question": {
         "interactionId": "en:lesson-15:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шарики и подарки",
-        "uk": "Кульки й подарунки"
+        "ru": "Подписать подарок",
+        "uk": "Підписати подарунок"
       },
       "bodyByLocale": {
-        "ru": "Balloon pump — насос для воздушных шариков; gift tag — ярлычок на подарок с именем или пожеланием. She is going to write a gift tag. — Она собирается подписать ярлычок на подарок.",
-        "uk": "Balloon pump — насос для повітряних кульок; gift tag — ярличок на подарунок з ім’ям або побажанням. She is going to write a gift tag. — Вона збирається підписати ярличок на подарунок."
+        "ru": "Ваша сестра упаковала подарок и решила подписать ярлычок, чтобы было понятно, кому он предназначен. Gift tag — ярлычок на подарок. She is going to write a gift tag. — Она собирается подписать ярлычок на подарок. Начните с She is going to: с She нужно is. Затем добавьте write и a gift tag. Write после going to не меняется. Так сообщаем о решении сестры.",
+        "uk": "Ваша сестра запакувала подарунок і вирішила підписати ярличок, щоб було зрозуміло, кому він призначений. Gift tag — ярличок на подарунок. She is going to write a gift tag. — Вона збирається підписати ярличок на подарунок. Почніть з She is going to: з She потрібне is. Потім додайте write і a gift tag. Write після going to не змінюється. Так повідомляємо про рішення сестри."
       },
       "question": {
         "interactionId": "en:lesson-15:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Праздничная хлопушка",
-        "uk": "Святкова хлопавка"
+        "ru": "Купить хлопушку",
+        "uk": "Купити хлопавку"
       },
       "bodyByLocale": {
-        "ru": "Party popper — маленькая праздничная хлопушка с конфетти. We are going to buy a party popper. — Мы собираемся купить хлопушку. После going to используйте buy, не bought.",
-        "uk": "Party popper — маленька святкова хлопавка з конфеті. We are going to buy a party popper. — Ми збираємося купити хлопавку. Після going to використовуйте buy, не bought."
+        "ru": "Вы с другом решили купить хлопушку с конфетти для праздника. Party popper — праздничная хлопушка. We are going to buy a party popper. — Мы собираемся купить хлопушку. Начните с We are going to, затем действие buy и покупка a party popper. С We нужно are. Не заменяйте buy на bought: после going to требуется buy.",
+        "uk": "Ви з другом вирішили купити хлопавку з конфеті для свята. Party popper — святкова хлопавка. We are going to buy a party popper. — Ми збираємося купити хлопавку. Почніть з We are going to, потім дія buy і покупка a party popper. З We потрібне are. Не замінюйте buy на bought: після going to потрібне buy."
       },
       "question": {
         "interactionId": "en:lesson-15:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a9e0ab05c95f3e1ee2ae90c7962f7d5ebc0e411bf4e445ad642d5d65fc361e80"
+  "introFingerprint": "cd8196c620d22162d6fdb9de6db0de3746e1f8801c4ac4c20c47210702c1b480"
 }

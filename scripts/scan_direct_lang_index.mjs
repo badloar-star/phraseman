@@ -42,6 +42,8 @@ function listFiles() {
 const keyName = (p) => (p.name && (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) ? p.name.text : null);
 
 function offendersIn(rel) {
+  // зачем (Переводчик 24.10): файл есть в git, но удалён в дереве (другая сессия ещё не закоммитила) — пропуск с причиной, а не падение всей проверки
+  if (!fs.existsSync(path.join(ROOT, rel))) { console.warn(`[I18N-SCAN] skip missing ${rel}`); return []; }
   const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   if (!/\[(lang|uiLang|interfaceLang|appLang|currentLang|sourceUi)\]/.test(src)) return [];
   const sf = ts.createSourceFile(rel, src, ts.ScriptTarget.Latest, true, rel.endsWith('x') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);

@@ -87,6 +87,8 @@ function selfCheck() {
 selfCheck();
 
 function scanFile(rel) {
+  // зачем (Переводчик 24.10): файл есть в git, но удалён в дереве (другая сессия ещё не закоммитила) — пропуск с причиной, а не падение всей проверки
+  if (!fs.existsSync(path.join(ROOT, rel))) { console.warn(`[I18N-SCAN] skip missing ${rel}`); return 0; }
   const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   if (!/\bru\b/.test(src) || !/\buk\b/.test(src)) return 0;
   const sf = ts.createSourceFile(rel, src, ts.ScriptTarget.Latest, true, rel.endsWith('x') ? ts.ScriptKind.TSX : ts.ScriptKind.TS);

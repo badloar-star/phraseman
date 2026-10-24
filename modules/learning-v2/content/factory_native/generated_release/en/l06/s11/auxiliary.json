@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-06:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-11:intro3:r2": {
-          "ru": "Домашнее задание одно, поэтому нужно is, а не are.",
-          "uk": "Домашнє завдання одне, тому потрібно is, а не are."
+          "ru": "Homework — неисчисляемое слово, поэтому нужно is, а не are.",
+          "uk": "Homework — незлічуване слово, тому потрібно is, а не are."
         },
         "en:lesson-06:session-11:intro3:r3": {
           "ru": "has значит «имеет», а нужно сказать, какое оно: is urgent.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1ef31826cb86a0dccf0b810b7556800cb548586cb4a8a8f2125253078fd8b0f6"
+  "auxiliaryFingerprint": "ca55dd664ed55d4654f8758104d8f3f11e83c1d16308a553ae194cd7cba5d64b"
 }

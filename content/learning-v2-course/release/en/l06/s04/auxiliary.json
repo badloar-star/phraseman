@@ -36,11 +36,11 @@
           "uk": "Перед carry слово are не потрібне: They carry."
         },
         "en:lesson-06:session-04:intro3:r3": {
-          "ru": "sack — мешок, а несут цемент: нужно cement.",
-          "uk": "sack — мішок, а несуть цемент: потрібно cement."
+          "ru": "После they нужна форма carry, а не carries.",
+          "uk": "Після they потрібна форма carry, а не carries."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a2bfe19515d4d35b5fc5b3fdbfab9797b39eb21d5545932d9e4510870fcebada"
+  "auxiliaryFingerprint": "9932e95ef2c7e900bf06d0467e36de47bf920c66afe3eafc42ba3786480498e6"
 }

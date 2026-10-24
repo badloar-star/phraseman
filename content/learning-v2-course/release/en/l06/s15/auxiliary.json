@@ -23,8 +23,8 @@
           "uk": "Після we потрібно are, а не is."
         },
         "en:lesson-06:session-15:intro2:r3": {
-          "ru": "Без are предложение не получается: когда говорим, где мы, нужно We are.",
-          "uk": "Без are речення не виходить: коли кажемо, де ми, потрібно We are."
+          "ru": "Без are предложение не получается: после we здесь нужно are.",
+          "uk": "Без are речення не виходить: після we тут потрібно are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "b5c188fbf3160c61c9cd6b8a48abdae75b1ca8be31763e22084abcb1e4894c40"
+  "auxiliaryFingerprint": "12d0e09dfcd89f58848f9da9ce6aee0440a2735c957a943f90c7f2f4479a97bd"
 }

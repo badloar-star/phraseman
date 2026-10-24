@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-06:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-14:intro3:r2": {
-          "ru": "laundry — одно слово, поэтому нужно is, а не are.",
-          "uk": "laundry — одне слово, тому потрібно is, а не are."
+          "ru": "laundry здесь неисчисляемое, поэтому нужно is, а не are.",
+          "uk": "laundry тут незлічуване, тому потрібно is, а не are."
         },
         "en:lesson-06:session-14:intro3:r3": {
           "ru": "Вещи внутри сушилки, поэтому нужно in, а не on.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2168e954928fef53a9ad02147d3fde6f1e2661158ceb0ddd4b84919fb6583c3b"
+  "auxiliaryFingerprint": "d2e3b4994462e557189e83a4e5f1ce9c738c6d53c6f536243db847eac0219b43"
 }

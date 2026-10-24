@@ -10,8 +10,8 @@
           "uk": "Перед chop слово am не потрібне: I chop."
         },
         "en:lesson-06:session-07:intro1:r3": {
-          "ru": "Лука много, поэтому нужно onions.",
-          "uk": "Цибулин багато, тому потрібно onions."
+          "ru": "После I нужна форма chop без s.",
+          "uk": "Після I потрібна форма chop без s."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "41557ae11bd7b402cd20879bb5f2a7c319211a6a39767658b546e0ec7a0af601"
+  "auxiliaryFingerprint": "559be231e8caea708f062a7edaa2d5a6aaecb34a0d464765efd66dcfa4ea4497"
 }

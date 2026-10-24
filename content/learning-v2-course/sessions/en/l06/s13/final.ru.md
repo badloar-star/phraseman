@@ -45,7 +45,7 @@
 **Брат достаёт плавки и спрашивает, чьи они. Скажите: «Эти плавки мои».**
 
 - ✅ **These trunks are mine.**
-- ❌ This trunks is mine. — *trunks — всегда несколько, поэтому нужно These и are.*
+- ❌ This trunks is mine. — *trunks в значении «плавки» имеет форму множественного числа даже для одной пары, поэтому нужно These и are.*
 - ❌ These trunks is mine. — *После These нужно are, а не is.*
 
 ---

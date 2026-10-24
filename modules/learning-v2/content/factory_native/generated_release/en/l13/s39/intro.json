@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вырасти",
-        "uk": "Вирости"
+        "ru": "Где прошло детство друга",
+        "uk": "Де минуло дитинство друга"
       },
       "bodyByLocale": {
-        "ru": "Grow up — вырасти, провести детство. Did you grow up here? — Ты вырос здесь? После did нужна grow, не grew. Выберите вопрос.",
-        "uk": "Grow up — вирости, провести дитинство. Did you grow up here? — Ти виріс тут? Після did потрібна grow, не grew. Виберіть запитання."
+        "ru": "Вы гуляете с другом по его знакомому району. Спросите, вырос ли он здесь: Did you grow up here? — Ты вырос здесь? Соберите Did + you + grow up + here. После did нужна начальная форма grow, не grew. Частицу up сохраняем: grow up означает «вырасти». В конце here указывает на место, где вы сейчас находитесь.",
+        "uk": "Ви гуляєте з другом знайомим йому районом. Запитайте, чи виріс він тут: Did you grow up here? — Ти виріс тут? Складіть Did + you + grow up + here. Після did потрібна початкова форма grow, не grew. Частку up зберігаємо: grow up означає «вирости». Наприкінці here вказує на місце, де ви зараз перебуваєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-39:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Воспитать",
-        "uk": "Виховати"
+        "ru": "Где друг воспитывал детей",
+        "uk": "Де друг виховував дітей"
       },
       "bodyByLocale": {
-        "ru": "Bring up здесь — воспитать ребёнка. Did you bring up your children here? — Ты воспитал своих детей здесь? Выберите вопрос о воспитании детей.",
-        "uk": "Bring up тут — виховати дитину. Did you bring up your children here? — Ти виховав своїх дітей тут? Виберіть запитання про виховання дітей."
+        "ru": "Друг показывает вам свой старый дом. Его дети уже взрослые. Уточните, воспитал ли он их здесь: Did you bring up your children here? — Ты воспитал своих детей здесь? Соберите Did + you + bring up. После did используйте bring, не brought, сохранив up. Затем добавьте your children — кого он воспитывал, и here — где.",
+        "uk": "Друг показує вам свій старий будинок. Його діти вже дорослі. Уточніть, чи виховав він їх тут: Did you bring up your children here? — Ти виховав своїх дітей тут? Складіть Did + you + bring up. Після did використовуйте bring, не brought, зберігши up. Потім додайте your children — кого він виховував, і here — де."
       },
       "question": {
         "interactionId": "en:lesson-13:session-39:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ладить и поссориться",
-        "uk": "Ладнати й посваритися"
+        "ru": "Какими были отношения с братом",
+        "uk": "Якими були стосунки з братом"
       },
       "bodyByLocale": {
-        "ru": "Get along — ладить, иметь хорошие отношения. Fall out — поссориться. Did you get along with your brother? — Ты ладил с братом? Выберите хорошие отношения.",
-        "uk": "Get along — ладнати, мати добрі стосунки. Fall out — посваритися. Did you get along with your brother? — Ти ладнав із братом? Виберіть добрі стосунки."
+        "ru": "Друг вспоминает детство с братом. Спросите, ладили ли они тогда: Did you get along with your brother? — Ты ладил с братом? Соберите Did + you + get along. После did нужна get, не got. Затем добавьте with your brother: with показывает, с кем у друга были такие отношения. Сочетание get along здесь означает «ладить».",
+        "uk": "Друг згадує дитинство з братом. Запитайте, чи ладнали вони тоді: Did you get along with your brother? — Ти ладнав із братом? Складіть Did + you + get along. Після did потрібна get, не got. Потім додайте with your brother: with показує, з ким у друга були такі стосунки. Сполучення get along тут означає «ладнати»."
       },
       "question": {
         "interactionId": "en:lesson-13:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fdb6a3a48ff0cae48cfa4989291d61b0b212b0d08b813c8fd6e3908469d650fb"
+  "introFingerprint": "0e9ad0a8b4f6b0fe98b7b183f261d67d1cf590e329c5bf86917a38046f5e6c8b"
 }

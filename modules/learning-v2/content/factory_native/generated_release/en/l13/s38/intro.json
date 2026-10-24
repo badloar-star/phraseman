@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Зайти в гости",
-        "uk": "Зайти в гості"
+        "ru": "Заходил ли друг вчера",
+        "uk": "Чи заходив друг учора"
       },
       "bodyByLocale": {
-        "ru": "Come over — прийти в гости, обычно ненадолго. Did you come over yesterday? — Ты вчера заходил в гости? Выберите вчерашний визит.",
-        "uk": "Come over — прийти в гості, зазвичай ненадовго. Did you come over yesterday? — Ти вчора заходив у гості? Виберіть учорашній візит."
+        "ru": "Вы дома. Сосед сказал, что вчера к вам кто-то приходил, пока вас не было. Уточните у друга: Did you come over yesterday? — Ты вчера заходил в гости? Соберите Did + you + come over. После did нужна come, не came; over сохраняем в значении «в гости». В конце добавьте yesterday — когда был возможный визит.",
+        "uk": "Ви вдома. Сусід сказав, що вчора до вас хтось приходив, поки вас не було. Уточніть у друга: Did you come over yesterday? — Ти вчора заходив у гості? Складіть Did + you + come over. Після did потрібна come, не came; over зберігаємо у значенні «у гості». Наприкінці додайте yesterday — коли був можливий візит."
       },
       "question": {
         "interactionId": "en:lesson-13:session-38:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уйти",
-        "uk": "Піти геть"
+        "ru": "Ушёл ли друг в тот момент",
+        "uk": "Чи пішов друг тієї миті"
       },
       "bodyByLocale": {
-        "ru": "Go away — уйти, удалиться из этого места. Then he went away — затем он ушёл. Выберите вопрос об уходе.",
-        "uk": "Go away — піти геть, віддалитися з цього місця. Then he went away — потім він пішов геть. Виберіть запитання про відхід."
+        "ru": "Друг вчера ждал вас у закрытой двери и узнал от соседа, что вы вернётесь поздно. Уточните, ушёл ли он тогда: Did you go away then? — Ты тогда ушёл? Соберите Did + you + go away. После did используйте go, не went, сохранив away — «прочь из этого места». Затем добавьте then — в тот момент, о котором вы говорите.",
+        "uk": "Друг учора чекав на вас біля зачинених дверей і дізнався від сусіда, що ви повернетеся пізно. Уточніть, чи пішов він тоді: Did you go away then? — Ти тоді пішов? Складіть Did + you + go away. Після did використовуйте go, не went, зберігши away — «геть із цього місця». Потім додайте then — тієї миті, про яку ви говорите."
       },
       "question": {
         "interactionId": "en:lesson-13:session-38:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Начать и выйти наружу",
-        "uk": "Розпочати й вийти надвір"
+        "ru": "Вышел ли друг после обеда",
+        "uk": "Чи вийшов друг після обіду"
       },
       "bodyByLocale": {
-        "ru": "Go ahead здесь — приступить к намеченному действию. Come out — выйти наружу к говорящему. Друг вчера ждал вас во дворе: Did you come out after lunch? — Ты вышел после обеда? Выберите выход во двор.",
-        "uk": "Go ahead тут — розпочати заплановану дію. Come out — вийти надвір до мовця. Друг учора чекав на вас у дворі: Did you come out after lunch? — Ти вийшов після обіду? Виберіть вихід у двір."
+        "ru": "Вчера вы ждали друга во дворе, но ненадолго отошли. Теперь спросите, вышел ли он к вам после обеда: Did you come out after lunch? — Ты вышел после обеда? Соберите Did + you + come out. После did нужна come, не came; out означает выход наружу. В конце добавьте after lunch — после обеда.",
+        "uk": "Учора ви чекали на друга надворі, але ненадовго відійшли. Тепер запитайте, чи вийшов він до вас після обіду: Did you come out after lunch? — Ти вийшов після обіду? Складіть Did + you + come out. Після did потрібна come, не came; out означає вихід назовні. Наприкінці додайте after lunch — після обіду."
       },
       "question": {
         "interactionId": "en:lesson-13:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f8c68532c94b570322e0b5a68e843481173fe38733ce9434652781a22a0bf8c1"
+  "introFingerprint": "84da9bbd6dee452dc639ff9476b04cb5ae83b092f309ac40a1c5656b52cb7c08"
 }

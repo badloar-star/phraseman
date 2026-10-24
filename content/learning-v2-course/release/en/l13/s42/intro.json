@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сумка через плечо",
-        "uk": "Сумка через плече"
+        "ru": "Какую сумку друг взял",
+        "uk": "Яку сумку друг узяв"
       },
       "bodyByLocale": {
-        "ru": "Shoulder bag — сумка, которую носят на плече. Did you take your shoulder bag? — Ты взял свою сумку через плечо? Выберите вопрос о прошлом.",
-        "uk": "Shoulder bag — сумка, яку носять на плечі. Did you take your shoulder bag? — Ти взяв свою сумку через плече? Виберіть запитання про минуле."
+        "ru": "Друг вчера уехал на прогулку по городу. Уточните, взял ли он свою сумку через плечо: Did you take your shoulder bag? — Ты взял свою сумку через плечо? Соберите Did + you + take. После did используйте take, не прошедшую форму took. Затем добавьте your shoulder bag. При обращении к другу your означает «твоя»; после него артикль не нужен.",
+        "uk": "Друг учора поїхав на прогулянку містом. Уточніть, чи взяв він свою сумку через плече: Did you take your shoulder bag? — Ти взяв свою сумку через плече? Складіть Did + you + take. Після did використовуйте take, не минулу форму took. Потім додайте your shoulder bag. Коли звертаєтеся до друга, your означає «твоя»; після нього артикль не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-13:session-42:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-42:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Спортивная сумка",
-        "uk": "Спортивна сумка"
+        "ru": "Собрал ли друг вещи на тренировку",
+        "uk": "Чи зібрав друг речі на тренування"
       },
       "bodyByLocale": {
-        "ru": "Sports bag — спортивная сумка. First I packed my sports bag — сначала я собрал спортивную сумку. Выберите вопрос об этой сумке.",
-        "uk": "Sports bag — спортивна сумка. First I packed my sports bag — спершу я спакував спортивну сумку. Виберіть запитання про цю сумку."
+        "ru": "Друг вчера готовился к тренировке. Спросите, собрал ли он спортивную сумку: Did you pack your sports bag? — Ты собрал свою спортивную сумку? Соберите Did + you + pack. В вопросе о вчерашней подготовке прошлое выражает did, поэтому pack остаётся без -ed. Затем назовите сумку: your sports bag.",
+        "uk": "Друг учора готувався до тренування. Запитайте, чи зібрав він спортивну сумку: Did you pack your sports bag? — Ти зібрав свою спортивну сумку? Складіть Did + you + pack. У запитанні про вчорашню підготовку минуле виражає did, тому pack залишається без -ed. Потім назвіть сумку: your sports bag."
       },
       "question": {
         "interactionId": "en:lesson-13:session-42:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-42:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Для умывания и покупок",
-        "uk": "Для вмивання й покупок"
+        "ru": "Готовы ли вещи для умывания",
+        "uk": "Чи готові речі для вмивання"
       },
       "bodyByLocale": {
-        "ru": "Washbag — дорожная сумочка для туалетных принадлежностей; shopping bag — сумка для покупок. Did you pack your washbag? — Ты собрал сумочку с туалетными принадлежностями? Выберите её.",
-        "uk": "Washbag — дорожня сумочка для туалетного приладдя; shopping bag — сумка для покупок. Did you pack your washbag? — Ти спакував сумочку з туалетним приладдям? Виберіть її."
+        "ru": "Друг вчера собирался в поездку с ночёвкой. Уточните, собрал ли он дорожную сумочку с туалетными принадлежностями: Did you pack your washbag? — Ты собрал сумочку с туалетными принадлежностями? Соберите Did + you + pack + your washbag. Did стоит перед you, после you нужна начальная форма pack. В конце your washbag называет сумочку друга.",
+        "uk": "Друг учора збирався в поїздку з ночівлею. Уточніть, чи зібрав він дорожню сумочку з туалетним приладдям: Did you pack your washbag? — Ти зібрав сумочку з туалетним приладдям? Складіть Did + you + pack + your washbag. Did стоїть перед you, після you потрібна початкова форма pack. Наприкінці your washbag називає сумочку друга."
       },
       "question": {
         "interactionId": "en:lesson-13:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "247c3bbba4359332dd48c0b23a7c6416fb535b0b93b64f11133978aa54d0714f"
+  "introFingerprint": "ff0d2d1ebd8f08d28761e2b617a98dbef5f1adc9e53d818131d01f4766b6d75e"
 }

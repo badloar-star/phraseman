@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Бортпроводник",
-        "uk": "Бортпровідник"
+        "ru": "Поблагодарить за помощь",
+        "uk": "Подякувати за допомогу"
       },
       "bodyByLocale": {
-        "ru": "Flight attendant — бортпроводник или бортпроводница. Did you thank the flight attendant yesterday? — Ты вчера поблагодарил бортпроводника? Выберите прошлое действие.",
-        "uk": "Flight attendant — бортпровідник або бортпровідниця. Did you thank the flight attendant yesterday? — Ти вчора подякував бортпровідникові? Виберіть минулу дію."
+        "ru": "Во время вчерашнего перелёта бортпроводник помог вашему другу с сумкой. Вы спрашиваете, поблагодарил ли друг его. Flight attendant — бортпроводник или бортпроводница. Начните с Did you, затем поставьте thank и назовите человека: the flight attendant. В конце добавьте yesterday. Получится Did you thank the flight attendant yesterday? — Ты вчера поблагодарил бортпроводника? После Did нужен thank без -ed. Человека ставим сразу после thank, без to.",
+        "uk": "Під час учорашнього перельоту бортпровідник допоміг вашому другові із сумкою. Ви запитуєте, чи подякував друг йому. Flight attendant — бортпровідник або бортпровідниця. Почніть із Did you, потім поставте thank і назвіть людину: the flight attendant. Наприкінці додайте yesterday. Вийде Did you thank the flight attendant yesterday? — Ти вчора подякував бортпровідникові? Після Did потрібне thank без -ed. Людину ставимо одразу після thank, без to."
       },
       "question": {
         "interactionId": "en:lesson-13:session-30:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Досмотр и регистрация",
-        "uk": "Огляд і реєстрація"
+        "ru": "Найти стойку регистрации",
+        "uk": "Знайти стійку реєстрації"
       },
       "bodyByLocale": {
-        "ru": "Security check — досмотр безопасности; check-in desk — стойка регистрации. Did you find the check-in desk? — Ты нашёл стойку регистрации? Выберите стойку, не досмотр.",
-        "uk": "Security check — огляд безпеки; check-in desk — стійка реєстрації. Did you find the check-in desk? — Ти знайшов стійку реєстрації? Виберіть стійку, не огляд."
+        "ru": "Друг вчера впервые летел из этого аэропорта. Вы уточняете, нашёл ли он стойку регистрации — check-in desk. Для вопроса о прошлом поставьте Did перед you, затем find и название нужной стойки: the check-in desk. Получится Did you find the check-in desk? — Ты нашёл стойку регистрации? Прошедшее время обозначено Did, поэтому используем find, а не found. После find сразу называем то, что искали.",
+        "uk": "Друг учора вперше летів із цього аеропорту. Ви уточнюєте, чи знайшов він стійку реєстрації — check-in desk. Для запитання про минуле поставте Did перед you, потім find і назву потрібної стійки: the check-in desk. Вийде Did you find the check-in desk? — Ти знайшов стійку реєстрації? Минулий час позначено Did, тому використовуємо find, а не found. Після find одразу називаємо те, що шукали."
       },
       "question": {
         "interactionId": "en:lesson-13:session-30:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Зал ожидания вылета",
-        "uk": "Зал очікування вильоту"
+        "ru": "Где ждали вылета",
+        "uk": "Де чекали вильоту"
       },
       "bodyByLocale": {
-        "ru": "Departure lounge — зал ожидания для вылетающих пассажиров. Did you wait in the departure lounge yesterday? — Ты вчера ждал в зале вылета? Выберите вопрос о вчерашнем ожидании.",
-        "uk": "Departure lounge — зал очікування для пасажирів, які вилітають. Did you wait in the departure lounge yesterday? — Ти вчора чекав у залі вильоту? Виберіть запитання про вчорашнє очікування."
+        "ru": "Вы обсуждаете вчерашний перелёт друга и уточняете, ждал ли он в зале вылета. Departure lounge — зал ожидания для вылетающих пассажиров. Начните с Did you wait, затем укажите место: in the departure lounge. Время поставьте в конце: yesterday. Получится Did you wait in the departure lounge yesterday? — Ты вчера ждал в зале вылета? После Did используем wait без -ed; in показывает, что ожидание происходило внутри зала.",
+        "uk": "Ви обговорюєте вчорашній переліт друга й уточнюєте, чи чекав він у залі вильоту. Departure lounge — зал очікування для пасажирів, які вилітають. Почніть із Did you wait, потім укажіть місце: in the departure lounge. Час поставте наприкінці: yesterday. Вийде Did you wait in the departure lounge yesterday? — Ти вчора чекав у залі вильоту? Після Did використовуємо wait без -ed; in показує, що очікування відбувалося всередині залу."
       },
       "question": {
         "interactionId": "en:lesson-13:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "51749fec370e2ec8ce28b33f1ec62ad747e7d9478733c6c7afa23da403fcd3fb"
+  "introFingerprint": "41c6e51a53b04c060140a2f6ec2cbe5695cb069b385a0f076f8502abf3365a46"
 }

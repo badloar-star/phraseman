@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пощекотать",
-        "uk": "Полоскотати"
+        "ru": "Почему брат смеялся",
+        "uk": "Чому брат сміявся"
       },
       "bodyByLocale": {
-        "ru": "Tickle — щекотать. Did you tickle your brother? — Ты щекотал брата? После did нужна tickle. Выберите вопрос.",
-        "uk": "Tickle — лоскотати. Did you tickle your brother? — Ти лоскотав брата? Після did потрібна tickle. Виберіть запитання."
+        "ru": "Вчера во время игры младший брат друга громко смеялся. Уточните у друга, щекотал ли он брата: Did you tickle your brother? — Ты щекотал брата? Соберите Did + you + tickle. После did нужна tickle без -d, потому что прошлое уже выражено словом did. Затем добавьте your brother — брата того, к кому обращаетесь.",
+        "uk": "Учора під час гри молодший брат друга голосно сміявся. Уточніть у друга, чи лоскотав він брата: Did you tickle your brother? — Ти лоскотав брата? Складіть Did + you + tickle. Після did потрібна tickle без -d, бо минуле вже виражене словом did. Потім додайте your brother — брата того, до кого звертаєтеся."
       },
       "question": {
         "interactionId": "en:lesson-13:session-41:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Прищемить палец",
-        "uk": "Прищемити палець"
+        "ru": "Что случилось с пальцем",
+        "uk": "Що сталося з пальцем"
       },
       "bodyByLocale": {
-        "ru": "Pinch — ущипнуть или прищемить. Здесь случайность с дверью: Did you pinch your finger in the door? — Ты прищемил палец дверью? Выберите вопрос о пальце.",
-        "uk": "Pinch — ущипнути або прищемити. Тут випадковість із дверима: Did you pinch your finger in the door? — Ти прищемив палець дверима? Виберіть запитання про палець."
+        "ru": "Друг вчера закрыл дверь и вскрикнул. Спросите, прищемил ли он палец: Did you pinch your finger in the door? — Ты прищемил палец дверью? Соберите Did + you + pinch. После did используйте pinch без -ed. Затем добавьте your finger — что он прищемил, и in the door — где это случилось. В английском здесь нужен in, хотя по-русски говорим «дверью».",
+        "uk": "Друг учора зачинив двері й скрикнув. Запитайте, чи прищемив він палець: Did you pinch your finger in the door? — Ти прищемив палець дверима? Складіть Did + you + pinch. Після did використовуйте pinch без -ed. Потім додайте your finger — що він прищемив, та in the door — де це сталося. В англійській тут потрібен in, хоча українською говоримо «дверима»."
       },
       "question": {
         "interactionId": "en:lesson-13:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Похлопать и погладить",
-        "uk": "Поплескати й погладити"
+        "ru": "Погладил ли друг кошку",
+        "uk": "Чи погладив друг кішку"
       },
       "bodyByLocale": {
-        "ru": "Pat — мягко похлопать ладонью; stroke — погладить плавным движением руки. Did you stroke the cat? — Ты погладил кошку? Выберите поглаживание кошки.",
-        "uk": "Pat — легенько поплескати долонею; stroke — погладити плавним рухом руки. Did you stroke the cat? — Ти погладив кішку? Виберіть погладжування кішки."
+        "ru": "Вчера кошка подошла к другу и села рядом. Спросите, погладил ли он её: Did you stroke the cat? — Ты погладил кошку? Соберите Did + you + stroke. После did глагол stroke остаётся без -d. Затем добавьте the cat — ту кошку, которая подошла к другу. Между stroke и the cat предлог не нужен.",
+        "uk": "Учора кішка підійшла до друга й сіла поруч. Запитайте, чи погладив він її: Did you stroke the cat? — Ти погладив кішку? Складіть Did + you + stroke. Після did дієслово stroke залишається без -d. Потім додайте the cat — ту кішку, яка підійшла до друга. Між stroke і the cat прийменник не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-13:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0256f1904e2ffbe380423b1410cc945e99f6285d0b175c67c1b0bfc5c5787bd1"
+  "introFingerprint": "2093f1da7b4754edca7e4f86711e1ca64cef3d5eca170f6f1cc880b7bb6b17f2"
 }

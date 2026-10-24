@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Чёрная смородина",
-        "uk": "Чорна смородина"
+        "ru": "Купили ли ягоды вчера",
+        "uk": "Чи купили ягоди вчора"
       },
       "bodyByLocale": {
-        "ru": "Blackcurrant — чёрная смородина; blackcurrants — ягоды чёрной смородины. Did you buy blackcurrants yesterday? — Ты вчера купил чёрную смородину? Выберите вчерашнюю покупку.",
-        "uk": "Blackcurrant — чорна смородина; blackcurrants — ягоди чорної смородини. Did you buy blackcurrants yesterday? — Ти вчора купив чорну смородину? Виберіть учорашню купівлю."
+        "ru": "Для пирога нужна чёрная смородина. Друг вчера был на рынке, и вы уточняете, купил ли он её. Blackcurrants — ягоды чёрной смородины. Начните вопрос о прошлом с Did you, затем поставьте buy и назовите покупку: blackcurrants. Время добавьте в конце: yesterday. Получится Did you buy blackcurrants yesterday? — Ты вчера купил чёрную смородину? После Did нужна начальная форма buy, а не bought.",
+        "uk": "Для пирога потрібна чорна смородина. Друг учора був на ринку, і ви уточнюєте, чи купив він її. Blackcurrants — ягоди чорної смородини. Почніть запитання про минуле з Did you, потім поставте buy і назвіть покупку: blackcurrants. Час додайте наприкінці: yesterday. Вийде Did you buy blackcurrants yesterday? — Ти вчора купив чорну смородину? Після Did потрібна початкова форма buy, а не bought."
       },
       "question": {
         "interactionId": "en:lesson-13:session-32:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Красная смородина",
-        "uk": "Червона смородина"
+        "ru": "Готовы ли ягоды для пирога",
+        "uk": "Чи готові ягоди для пирога"
       },
       "bodyByLocale": {
-        "ru": "Redcurrant — красная смородина; redcurrants — её ягоды. Did you wash the redcurrants? — Ты помыл красную смородину? Выберите красную, не чёрную.",
-        "uk": "Redcurrant — червона смородина; redcurrants — її ягоди. Did you wash the redcurrants? — Ти помив червону смородину? Виберіть червону, не чорну."
+        "ru": "Вы вспоминаете приготовление вчерашнего пирога и уточняете у друга, помыл ли он красную смородину. Redcurrants — ягоды красной смородины. Соберите вопрос: Did + you + wash + the redcurrants? Получится Did you wash the redcurrants? — Ты помыл красную смородину? После Did you ставим wash без -ed. The указывает на конкретные ягоды для того пирога, о которых вы оба знаете.",
+        "uk": "Ви згадуєте приготування вчорашнього пирога й уточнюєте в друга, чи помив він порічки. Redcurrants — ягоди порічок. Складіть запитання: Did + you + wash + the redcurrants? Вийде Did you wash the redcurrants? — Ти помив порічки? Після Did you ставимо wash без -ed. The вказує на конкретні ягоди для того пирога, про які ви обоє знаєте."
       },
       "question": {
         "interactionId": "en:lesson-13:session-32:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Крыжовник и клюква",
-        "uk": "Аґрус і журавлина"
+        "ru": "Уточнить покупку клюквы",
+        "uk": "Уточнити покупку журавлини"
       },
       "bodyByLocale": {
-        "ru": "Gooseberry — крыжовник; cranberry — клюква. Во множественном числе: gooseberries, cranberries. Выберите: ты вчера купил клюкву?",
-        "uk": "Gooseberry — аґрус; cranberry — журавлина. У множині: gooseberries, cranberries. Виберіть: ти вчора купив журавлину?"
+        "ru": "Вы собираетесь испечь пирог с клюквой и спрашиваете друга о вчерашней покупке. Cranberries — ягоды клюквы. Поставьте Did перед you, затем используйте buy, назовите ягоды cranberries и добавьте yesterday в конце. Получится Did you buy cranberries yesterday? — Ты вчера купил клюкву? Did обозначает вопрос о прошлом, поэтому buy не меняется на bought. Yesterday уточняет завершённый день покупки.",
+        "uk": "Ви збираєтеся спекти пиріг із журавлиною й запитуєте друга про вчорашню покупку. Cranberries — ягоди журавлини. Поставте Did перед you, потім використайте buy, назвіть ягоди cranberries і додайте yesterday наприкінці. Вийде Did you buy cranberries yesterday? — Ти вчора купив журавлину? Did позначає запитання про минуле, тому buy не змінюється на bought. Yesterday уточнює завершений день покупки."
       },
       "question": {
         "interactionId": "en:lesson-13:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0e798e2658875770aae67889560dab348e9cdfba6bd5b2e12d045dad6c7f316f"
+  "introFingerprint": "95286e8a22821c3ebb447e0a5a2304a0cd477900eb71baf270287c181be17f3f"
 }

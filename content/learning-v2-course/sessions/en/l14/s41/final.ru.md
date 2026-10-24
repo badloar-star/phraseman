@@ -7,9 +7,9 @@
 
 ## Интро 1
 
-### Одновременные действия
+### Фотография в саду
 
-butterfly — бабочка. I was watching a butterfly while you were taking a photo. — Я наблюдал за бабочкой, пока ты фотографировал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.
+Вчера вы наблюдали за бабочкой, пока друг фотографировал её. Butterfly — бабочка. Обращаясь к другу, соедините свой процесс I was watching a butterfly с его процессом you were taking a photo через while. I was watching a butterfly while you were taking a photo. — Я наблюдал за бабочкой, пока ты фотографировал. С I нужна was, с you — were; у take перед -ing убирается e: taking.
 
 **Выберите фразу для этой ситуации.**
 
@@ -21,9 +21,9 @@ butterfly — бабочка. I was watching a butterfly while you were taking a
 
 ## Интро 2
 
-### Ещё два слова
+### Рисунок во время разговора
 
-ladybird — божья коровка. bee — пчела. She was drawing a bee while I was talking. — Она рисовала пчелу, пока я говорил. Выберите фразу о двух процессах в прошлом.
+Вчера ваша сестра рисовала пчелу, пока вы рассказывали ей о прогулке. Bee — пчела. Соберите две части: She was drawing a bee + while + I was talking. She was drawing a bee while I was talking. — Она рисовала пчелу, пока я говорил. С she и I здесь ставьте was перед действием с -ing. While связывает два процесса, которые шли одновременно.
 
 **Выберите фразу для этой ситуации.**
 
@@ -35,9 +35,9 @@ ladybird — божья коровка. bee — пчела. She was drawing a be
 
 ## Интро 3
 
-### Событие на фоне процесса
+### Звонок в сад
 
-wasp — оса. We were watching a wasp when you called. — Мы наблюдали за осой, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.
+Вчера вы с сестрой наблюдали за осой на цветке, когда позвонил друг. Wasp — оса. Обращаясь к другу, назовите процесс We were watching a wasp и добавьте when you called. We were watching a wasp when you called. — Мы наблюдали за осой, когда ты позвонил. Were watching показывает занятие в момент звонка, а called — произошедшее событие. После watching ставьте a wasp без предлога.
 
 **Выберите фразу для этой ситуации.**
 

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одновременные действия",
-        "uk": "Одночасні дії"
+        "ru": "Фотография в саду",
+        "uk": "Фотографія в саду"
       },
       "bodyByLocale": {
-        "ru": "butterfly — бабочка. I was watching a butterfly while you were taking a photo. — Я наблюдал за бабочкой, пока ты фотографировал. While вводит действие, которое шло одновременно. Выберите два процесса в прошлом.",
-        "uk": "butterfly — метелик. I was watching a butterfly while you were taking a photo. — Я спостерігав за метеликом, поки ти фотографував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому."
+        "ru": "Вчера вы наблюдали за бабочкой, пока друг фотографировал её. Butterfly — бабочка. Обращаясь к другу, соедините свой процесс I was watching a butterfly с его процессом you were taking a photo через while. I was watching a butterfly while you were taking a photo. — Я наблюдал за бабочкой, пока ты фотографировал. С I нужна was, с you — were; у take перед -ing убирается e: taking.",
+        "uk": "Учора ви спостерігали за метеликом, поки друг фотографував його. Butterfly — метелик. Звертаючись до друга, поєднайте свій процес I was watching a butterfly з його процесом you were taking a photo через while. I was watching a butterfly while you were taking a photo. — Я спостерігав за метеликом, поки ти фотографував. З I потрібна was, із you — were; у take перед -ing прибирається e: taking."
       },
       "question": {
         "interactionId": "en:lesson-14:session-41:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Рисунок во время разговора",
+        "uk": "Малюнок під час розмови"
       },
       "bodyByLocale": {
-        "ru": "ladybird — божья коровка. bee — пчела. She was drawing a bee while I was talking. — Она рисовала пчелу, пока я говорил. Выберите фразу о двух процессах в прошлом.",
-        "uk": "ladybird — сонечко, комаха. bee — бджола. She was drawing a bee while I was talking. — Вона малювала бджолу, поки я говорив. Виберіть фразу про два процеси в минулому."
+        "ru": "Вчера ваша сестра рисовала пчелу, пока вы рассказывали ей о прогулке. Bee — пчела. Соберите две части: She was drawing a bee + while + I was talking. She was drawing a bee while I was talking. — Она рисовала пчелу, пока я говорил. С she и I здесь ставьте was перед действием с -ing. While связывает два процесса, которые шли одновременно.",
+        "uk": "Учора ваша сестра малювала бджолу, поки ви розповідали їй про прогулянку. Bee — бджола. Складіть дві частини: She was drawing a bee + while + I was talking. She was drawing a bee while I was talking. — Вона малювала бджолу, поки я говорив. Із she та I тут ставте was перед дією з -ing. While поєднує два процеси, що тривали одночасно."
       },
       "question": {
         "interactionId": "en:lesson-14:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Событие на фоне процесса",
-        "uk": "Подія на тлі процесу"
+        "ru": "Звонок в сад",
+        "uk": "Дзвінок у сад"
       },
       "bodyByLocale": {
-        "ru": "wasp — оса. We were watching a wasp when you called. — Мы наблюдали за осой, когда ты позвонил. When здесь вводит звонок. Выберите прошлое событие called.",
-        "uk": "wasp — оса. We were watching a wasp when you called. — Ми спостерігали за осою, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called."
+        "ru": "Вчера вы с сестрой наблюдали за осой на цветке, когда позвонил друг. Wasp — оса. Обращаясь к другу, назовите процесс We were watching a wasp и добавьте when you called. We were watching a wasp when you called. — Мы наблюдали за осой, когда ты позвонил. Were watching показывает занятие в момент звонка, а called — произошедшее событие. После watching ставьте a wasp без предлога.",
+        "uk": "Учора ви із сестрою спостерігали за осою на квітці, коли зателефонував друг. Wasp — оса. Звертаючись до друга, назвіть процес We were watching a wasp і додайте when you called. We were watching a wasp when you called. — Ми спостерігали за осою, коли ти зателефонував. Were watching показує заняття в момент дзвінка, а called — подію, що сталася. Після watching ставте a wasp без прийменника."
       },
       "question": {
         "interactionId": "en:lesson-14:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "57a90ff26c829f5a6c819b87f75ae6031c88ced13f4303b0e92be739d4edf889"
+  "introFingerprint": "ea690dd709c3fe83caff0a5018f0b6cc8dd8dc6c9bc1f224089312635b7b737d"
 }

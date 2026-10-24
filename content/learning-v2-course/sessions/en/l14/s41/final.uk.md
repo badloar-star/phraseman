@@ -7,9 +7,9 @@
 
 ## Інтро 1
 
-### Одночасні дії
+### Фотографія в саду
 
-butterfly — метелик. I was watching a butterfly while you were taking a photo. — Я спостерігав за метеликом, поки ти фотографував. While вводить дію, яка тривала одночасно. Виберіть два процеси в минулому.
+Учора ви спостерігали за метеликом, поки друг фотографував його. Butterfly — метелик. Звертаючись до друга, поєднайте свій процес I was watching a butterfly з його процесом you were taking a photo через while. I was watching a butterfly while you were taking a photo. — Я спостерігав за метеликом, поки ти фотографував. З I потрібна was, із you — were; у take перед -ing прибирається e: taking.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -21,9 +21,9 @@ butterfly — метелик. I was watching a butterfly while you were taking a
 
 ## Інтро 2
 
-### Ще два слова
+### Малюнок під час розмови
 
-ladybird — сонечко, комаха. bee — бджола. She was drawing a bee while I was talking. — Вона малювала бджолу, поки я говорив. Виберіть фразу про два процеси в минулому.
+Учора ваша сестра малювала бджолу, поки ви розповідали їй про прогулянку. Bee — бджола. Складіть дві частини: She was drawing a bee + while + I was talking. She was drawing a bee while I was talking. — Вона малювала бджолу, поки я говорив. Із she та I тут ставте was перед дією з -ing. While поєднує два процеси, що тривали одночасно.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -35,9 +35,9 @@ ladybird — сонечко, комаха. bee — бджола. She was drawing
 
 ## Інтро 3
 
-### Подія на тлі процесу
+### Дзвінок у сад
 
-wasp — оса. We were watching a wasp when you called. — Ми спостерігали за осою, коли ти зателефонував. When тут вводить дзвінок. Виберіть минулу подію called.
+Учора ви із сестрою спостерігали за осою на квітці, коли зателефонував друг. Wasp — оса. Звертаючись до друга, назвіть процес We were watching a wasp і додайте when you called. We were watching a wasp when you called. — Ми спостерігали за осою, коли ти зателефонував. Were watching показує заняття в момент дзвінка, а called — подію, що сталася. Після watching ставте a wasp без прийменника.
 
 **Виберіть фразу для цієї ситуації.**
 

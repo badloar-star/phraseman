@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два действия одновременно",
-        "uk": "Дві дії одночасно"
+        "ru": "Остановиться у амбара",
+        "uk": "Зупинитися біля комори"
       },
       "bodyByLocale": {
-        "ru": "barn — амбар, большое хозяйственное строение на ферме. I was looking at a barn while you were taking a photo. — Я смотрел на амбар, пока ты фотографировал. While вводит процесс, который шёл в то же время. Выберите два действия в прошлом.",
-        "uk": "barn — комора, велика господарська будівля на фермі. I was looking at a barn while you were taking a photo. — Я дивився на комору, поки ти фотографував. While вводить процес, який тривав у той самий час. Виберіть дві дії в минулому."
+        "ru": "Вчера вы рассматривали амбар на ферме, пока друг фотографировал его. Barn — амбар. Обращаясь к другу, соедините I was looking at a barn и you were taking a photo через while. I was looking at a barn while you were taking a photo. — Я смотрел на амбар, пока ты фотографировал. С I нужна was, с you — were. Оба процесса шли одновременно; сохраняйте at после looking, чтобы указать, на что вы смотрели.",
+        "uk": "Учора ви розглядали комору на фермі, поки друг фотографував її. Barn — комора, велика господарська будівля. Звертаючись до друга, поєднайте I was looking at a barn і you were taking a photo через while. I was looking at a barn while you were taking a photo. — Я дивився на комору, поки ти фотографував. З I потрібна was, із you — were. Обидва процеси тривали одночасно; зберігайте at після looking, щоб указати, на що ви дивилися."
       },
       "question": {
         "interactionId": "en:lesson-14:session-40:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ещё два слова",
-        "uk": "Ще два слова"
+        "ru": "Рисунок во дворе",
+        "uk": "Малюнок у дворі"
       },
       "bodyByLocale": {
-        "ru": "stable — конюшня. henhouse — курятник. She was drawing a henhouse while I was talking. — Она рисовала курятник, пока я говорил. Выберите эту фразу о прошлом.",
-        "uk": "stable — стайня. henhouse — курник. She was drawing a henhouse while I was talking. — Вона малювала курник, поки я говорив. Виберіть цю фразу про минуле."
+        "ru": "Вчера ваша сестра рисовала курятник, пока вы рассказывали ей о ферме. Henhouse — курятник. Начните с её процесса She was drawing a henhouse и через while добавьте ваш: I was talking. She was drawing a henhouse while I was talking. — Она рисовала курятник, пока я говорил. С she и I здесь ставьте was перед действием с -ing: оба действия продолжались в тот момент.",
+        "uk": "Учора ваша сестра малювала курник, поки ви розповідали їй про ферму. Henhouse — курник. Почніть із її процесу She was drawing a henhouse і через while додайте ваш: I was talking. She was drawing a henhouse while I was talking. — Вона малювала курник, поки я говорив. Із she та I тут ставте was перед дією з -ing: обидві дії тривали в ту мить."
       },
       "question": {
         "interactionId": "en:lesson-14:session-40:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Процесс и звонок",
-        "uk": "Процес і дзвінок"
+        "ru": "Звонок во время переноски сена",
+        "uk": "Дзвінок під час перенесення сіна"
       },
       "bodyByLocale": {
-        "ru": "hay — сено, высушенная трава. We were carrying hay when you called. — Мы несли сено, когда ты позвонил. When вводит звонок: короткое событие на фоне процесса. Выберите прошлое событие called.",
-        "uk": "hay — сіно, висушена трава. We were carrying hay when you called. — Ми несли сіно, коли ти зателефонував. When вводить дзвінок: коротку подію на тлі процесу. Виберіть минулу подію called."
+        "ru": "Вчера вы с братом несли сено в сарай, когда позвонил друг. Hay — сено. Рассказывая другу об этом моменте, соберите We were carrying hay, затем добавьте when you called. We were carrying hay when you called. — Мы несли сено, когда ты позвонил. Were carrying передаёт процесс, а called — событие на его фоне. В carrying буква y сохраняется перед -ing.",
+        "uk": "Учора ви з братом несли сіно до сараю, коли зателефонував друг. Hay — сіно. Розповідаючи другові про цю мить, складіть We were carrying hay, потім додайте when you called. We were carrying hay when you called. — Ми несли сіно, коли ти зателефонував. Were carrying передає процес, а called — подію на його тлі. У carrying літера y зберігається перед -ing."
       },
       "question": {
         "interactionId": "en:lesson-14:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "718d0340266d67b676ac93a04617578801de46155c7855e1edf51b2393ed0872"
+  "introFingerprint": "ade8b08d52382850bba8b9bbe9504d4c8b237bb46964606eb3c880ef42433011"
 }

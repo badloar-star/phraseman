@@ -69,8 +69,8 @@
         "uk": "Дочитати опис"
       },
       "bodyByLocale": {
-        "ru": "Description — описание. Вы дочитываете описание квартиры перед тем, как договориться о просмотре. Questionnaire — анкета с вопросами: вы заполняете её перед началом курса. Fill in the questionnaire — заполнить анкету; fill → filling с двумя l, как в исходном fill. После finish («закончить») действие выражаем формой на -ing: finish writing. Здесь must finish означает «мне нужно закончить»: после must стоит начальная форма finish, а после finish — writing. Не ставим to перед writing.",
-        "uk": "Description — опис. Ви дочитуєте опис квартири перед тим, як домовитися про перегляд. Questionnaire — анкета із запитаннями: ви заповнюєте її перед початком курсу. Fill in the questionnaire — заповнити анкету; fill → filling із двома l, як у початковому fill. Після finish («закінчити») дію виражаємо формою на -ing: finish writing. Тут must finish означає «мені потрібно закінчити»: після must стоїть початкова форма finish, а після finish — writing. Не ставимо to перед writing."
+        "ru": "Вы читаете описание квартиры и хотите закончить его перед звонком владельцу: I must finish reading the description — «мне нужно дочитать описание». После I must ставим finish без to, а после finish — reading, форму read на -ing. Затем the description — текст, который дочитываете. В этой цепочке именно finish требует reading: I must + finish + reading + the description.",
+        "uk": "Ви читаєте опис квартири й хочете закінчити його перед дзвінком власникові: I must finish reading the description — «мені потрібно дочитати опис». Після I must ставимо finish без to, а після finish — reading, форму read на -ing. Потім the description — текст, який дочитуєте. У цьому ланцюжку саме finish вимагає reading: I must + finish + reading + the description."
       },
       "question": {
         "interactionId": "en:lesson-21:session-03:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Підготувати виступ"
       },
       "bodyByLocale": {
-        "ru": "Presentation — выступление, в котором вы представляете информацию слушателям, часто с иллюстрациями. Завтра вы рассказываете группе о поездке, а сегодня нужно закончить подготовку. Prepare → preparing: конечная немая e исчезает. После finish («закончить») действие выражаем формой на -ing: finish writing. Здесь must finish означает «мне нужно закончить»: после must стоит начальная форма finish, а после finish — writing. Не ставим to перед writing.",
-        "uk": "Presentation — виступ, у якому ви представляєте інформацію слухачам, часто з ілюстраціями. Завтра ви розповідаєте групі про поїздку, а сьогодні потрібно закінчити підготовку. Prepare → preparing: кінцева німа e зникає. Після finish («закінчити») дію виражаємо формою на -ing: finish writing. Тут must finish означає «мені потрібно закінчити»: після must стоїть початкова форма finish, а після finish — writing. Не ставимо to перед writing."
+        "ru": "Завтра вы рассказываете группе о поездке, а сегодня заканчиваете подготовку: I must finish preparing the presentation — «мне нужно закончить подготовку выступления». После I must идёт finish в начальной форме. После finish нужна preparing: у prepare убираем конечную e и добавляем -ing. The presentation в конце называет выступление, которое готовите. To перед preparing не ставим.",
+        "uk": "Завтра ви розповідаєте групі про поїздку, а сьогодні закінчуєте підготовку: I must finish preparing the presentation — «мені потрібно закінчити підготовку виступу». Після I must іде finish у початковій формі. Після finish потрібна preparing: у prepare прибираємо кінцеву e й додаємо -ing. The presentation наприкінці називає виступ, який готуєте. To перед preparing не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-21:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0f83732b99488737dfefd30c88786c54950f254cf743c2d7e9a5cad8bd686135"
+  "introFingerprint": "1cf3ff8737f93b25d105ac8c8d2f06e1113423dd2054bdb5b2238c967b39bbb2"
 }

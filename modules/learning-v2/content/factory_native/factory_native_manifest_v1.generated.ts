@@ -15693,7 +15693,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 1,
-    sourceFingerprint: "d6cc6c7f7e8004fe6369905ac053b9c632dc8ed82a119cd19890ac20e6add5e5",
+    sourceFingerprint: "05b21cb483dfda7886e7bb05568464fee30b6fc987f2f450fbea9fdfc636755b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После enjoy нужна форма на -ing, а не to + глагол.","После enjoy действие выражаем формой на -ing."],["После enjoy нужна форма на -ing, а не to + глагол.","После enjoy действие выражаем формой на -ing."],["После enjoy нужна форма на -ing, а не to + глагол.","После enjoy действие выражаем формой на -ing."]],"uk":[["Після enjoy потрібна форма на -ing, а не to + дієслово.","Після enjoy дію виражаємо формою на -ing."],["Після enjoy потрібна форма на -ing, а не to + дієслово.","Після enjoy дію виражаємо формою на -ing."],["Після enjoy потрібна форма на -ing, а не to + дієслово.","Після enjoy дію виражаємо формою на -ing."]]}),
@@ -15707,7 +15707,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 2,
-    sourceFingerprint: "2435eeb9695438962d16322a6dae5f0f77a5500ec8fa3eac50f05848b71d6c82",
+    sourceFingerprint: "43a343234d86e63ec2d36f79b52711517f04cc84e1c9d7d10343c73fdcbcf14c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После enjoy нужна форма на -ing, а не to + глагол.","После enjoy действие выражаем формой на -ing."],["После enjoy нужна форма на -ing, а не to + глагол.","После enjoy действие выражаем формой на -ing."],["После enjoy нужна форма на -ing, а не to + глагол.","После enjoy действие выражаем формой на -ing."]],"uk":[["Після enjoy потрібна форма на -ing, а не to + дієслово.","Після enjoy дію виражаємо формою на -ing."],["Після enjoy потрібна форма на -ing, а не to + дієслово.","Після enjoy дію виражаємо формою на -ing."],["Після enjoy потрібна форма на -ing, а не to + дієслово.","Після enjoy дію виражаємо формою на -ing."]]}),
@@ -15721,7 +15721,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 3,
-    sourceFingerprint: "e06a3f0813aa1be0120f90c232f714244e904a1941d0ee7450f80d4ff0b91423",
+    sourceFingerprint: "a7573de4b34ba5e8d8abde0222ca40d50c56b12ab9e5e3d82b35f1e9502f88a5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После finish нужна форма на -ing, а не to + глагол.","После finish действие выражаем формой на -ing."],["После finish нужна форма на -ing, а не to + глагол.","После finish действие выражаем формой на -ing."],["После finish нужна форма на -ing, а не to + глагол.","После finish действие выражаем формой на -ing."]],"uk":[["Після finish потрібна форма на -ing, а не to + дієслово.","Після finish дію виражаємо формою на -ing."],["Після finish потрібна форма на -ing, а не to + дієслово.","Після finish дію виражаємо формою на -ing."],["Після finish потрібна форма на -ing, а не to + дієслово.","Після finish дію виражаємо формою на -ing."]]}),
@@ -15735,7 +15735,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 4,
-    sourceFingerprint: "07fba023484a3e44eaed4b5031e72bfe15f839739bd00ef925e90e7c1232f0a7",
+    sourceFingerprint: "f9f56f678b13c81b231d66c4da4fcccdcd332e830e6363585bd2a2675431a3cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После avoid нужна форма на -ing, а не to + глагол.","После avoid действие выражаем формой на -ing."],["После avoid нужна форма на -ing, а не to + глагол.","После avoid действие выражаем формой на -ing."],["После avoid нужна форма на -ing, а не to + глагол.","После avoid действие выражаем формой на -ing."]],"uk":[["Після avoid потрібна форма на -ing, а не to + дієслово.","Після avoid дію виражаємо формою на -ing."],["Після avoid потрібна форма на -ing, а не to + дієслово.","Після avoid дію виражаємо формою на -ing."],["Після avoid потрібна форма на -ing, а не to + дієслово.","Після avoid дію виражаємо формою на -ing."]]}),
@@ -15749,7 +15749,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 21, sessionOrdinal: 5,
-    sourceFingerprint: "3bf6e801c6a756e8e1d5b1577ca3146727e730a06a087f398c975d984199ffc4",
+    sourceFingerprint: "b17aaf50fe1f99da67eca1db6bdde61c9f9a4e64558ad4da22a179f1d8f79122",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После mind нужна форма на -ing, а не to + глагол.","После mind действие выражаем формой на -ing."],["После mind нужна форма на -ing, а не to + глагол.","После mind действие выражаем формой на -ing."],["После mind нужна форма на -ing, а не to + глагол.","После mind действие выражаем формой на -ing."]],"uk":[["Після mind потрібна форма на -ing, а не to + дієслово.","Після mind дію виражаємо формою на -ing."],["Після mind потрібна форма на -ing, а не to + дієслово.","Після mind дію виражаємо формою на -ing."],["Після mind потрібна форма на -ing, а не to + дієслово.","Після mind дію виражаємо формою на -ing."]]}),

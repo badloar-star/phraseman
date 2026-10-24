@@ -15,8 +15,8 @@
         "uk": "Прикрасити дім"
       },
       "bodyByLocale": {
-        "ru": "Decorate — украшать. Перед праздником вам нравится делать дом уютнее: расставлять цветы и вешать украшения. После enjoy («получать удовольствие, любить что-то делать») действие называем формой на -ing: enjoy decorating. Это не Present Continuous: am/is/are здесь не нужны. To перед вторым глаголом тоже не ставим. У decorate и sunbathe конечная немая e исчезает перед -ing; к experiment и brew просто добавляем -ing.",
-        "uk": "Decorate — прикрашати. Перед святом вам подобається робити дім затишнішим: розставляти квіти й вішати прикраси. Після enjoy («отримувати задоволення, любити щось робити») дію називаємо формою на -ing: enjoy decorating. Це не Present Continuous: am/is/are тут не потрібні. To перед другим дієсловом теж не ставимо. У decorate і sunbathe кінцева німа e зникає перед -ing; до experiment і brew просто додаємо -ing."
+        "ru": "Перед праздником вы с удовольствием украшаете дом: I enjoy decorating my home — «мне нравится украшать свой дом». После I enjoy действие называем формой на -ing: у decorate убираем конечную e и получаем decorating. My home ставим после decorating — что украшаете. Здесь говорим о том, что нравится делать, поэтому am перед decorating не нужно; после enjoy также не ставим to.",
+        "uk": "Перед святом ви із задоволенням прикрашаєте дім: I enjoy decorating my home — «мені подобається прикрашати свій дім». Після I enjoy дію називаємо формою на -ing: у decorate прибираємо кінцеву e й отримуємо decorating. My home ставимо після decorating — що прикрашаєте. Тут говоримо про те, що подобається робити, тому am перед decorating не потрібне; після enjoy також не ставимо to."
       },
       "question": {
         "interactionId": "en:lesson-21:session-02:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Пробувати рецепти"
       },
       "bodyByLocale": {
-        "ru": "Experiment — пробовать разные способы и смотреть, что получится. Вам нравится менять знакомые рецепты: например, добавлять другие овощи. Brew — заваривать чай или готовить кофе с помощью горячей воды; вы любите сам процесс приготовления кофе утром. После enjoy («получать удовольствие, любить что-то делать») действие называем формой на -ing: enjoy decorating. Это не Present Continuous: am/is/are здесь не нужны. To перед вторым глаголом тоже не ставим. У decorate и sunbathe конечная немая e исчезает перед -ing; к experiment и brew просто добавляем -ing.",
-        "uk": "Experiment — пробувати різні способи й дивитися, що вийде. Вам подобається змінювати знайомі рецепти: наприклад, додавати інші овочі. Brew — заварювати чай або готувати каву за допомогою гарячої води; ви любите сам процес приготування кави вранці. Після enjoy («отримувати задоволення, любити щось робити») дію називаємо формою на -ing: enjoy decorating. Це не Present Continuous: am/is/are тут не потрібні. To перед другим дієсловом теж не ставимо. У decorate і sunbathe кінцева німа e зникає перед -ing; до experiment і brew просто додаємо -ing."
+        "ru": "На кухне вам нравится менять знакомые рецепты и пробовать новые сочетания: I enjoy experimenting with recipes — «мне нравится экспериментировать с рецептами». После I enjoy идёт experimenting: к experiment добавляем -ing. With recipes уточняет, с чем экспериментируете. Сохраняем with после experimenting, но to перед experimenting не ставим.",
+        "uk": "На кухні вам подобається змінювати знайомі рецепти й пробувати нові поєднання: I enjoy experimenting with recipes — «мені подобається експериментувати з рецептами». Після I enjoy іде experimenting: до experiment додаємо -ing. With recipes уточнює, із чим експериментуєте. Зберігаємо with після experimenting, але to перед experimenting не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-21:session-02:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Відпочивати на пляжі"
       },
       "bodyByLocale": {
-        "ru": "Sunbathe — загорать: отдыхать на солнце. Вы рассказываете, что вам нравится делать на пляже. Sunbathing — одно слово; перед -ing конечная e исчезает. После enjoy («получать удовольствие, любить что-то делать») действие называем формой на -ing: enjoy decorating. Это не Present Continuous: am/is/are здесь не нужны. To перед вторым глаголом тоже не ставим. У decorate и sunbathe конечная немая e исчезает перед -ing; к experiment и brew просто добавляем -ing.",
-        "uk": "Sunbathe — засмагати: відпочивати на сонці. Ви розповідаєте, що вам подобається робити на пляжі. Sunbathing — одне слово; перед -ing кінцева e зникає. Після enjoy («отримувати задоволення, любити щось робити») дію називаємо формою на -ing: enjoy decorating. Це не Present Continuous: am/is/are тут не потрібні. To перед другим дієсловом теж не ставимо. У decorate і sunbathe кінцева німа e зникає перед -ing; до experiment і brew просто додаємо -ing."
+        "ru": "Друг спрашивает, что вам нравится делать на пляже: I enjoy sunbathing — «мне нравится загорать». После I enjoy нужна форма на -ing. У sunbathe убираем конечную e и добавляем -ing: sunbathing пишется одним словом. Это название любимого занятия после enjoy, поэтому не добавляем ни to, ни am перед sunbathing.",
+        "uk": "Друг запитує, що вам подобається робити на пляжі: I enjoy sunbathing — «мені подобається засмагати». Після I enjoy потрібна форма на -ing. У sunbathe прибираємо кінцеву e й додаємо -ing: sunbathing пишеться одним словом. Це назва улюбленого заняття після enjoy, тому не додаємо ні to, ні am перед sunbathing."
       },
       "question": {
         "interactionId": "en:lesson-21:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "92876e54534a0985a3b2b40b6da5bb16271842443ffa7dd0bdf36252ceab3a33"
+  "introFingerprint": "9983a4722c3aa379380ed0abc64dec917604abc5793e30f6ca78517c4a25b758"
 }

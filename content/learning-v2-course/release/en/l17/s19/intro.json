@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Немного есть",
-        "uk": "Трохи є"
+        "ru": "Место для вещей гостей",
+        "uk": "Місце для речей гостей"
       },
       "bodyByLocale": {
-        "ru": "storage space — место для хранения вещей. guest room — гостевая комната. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что хоть немного места для вещей есть.",
-        "uk": "storage space — місце для зберігання речей. guest room — гостьова кімната. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що хоч трохи місця для речей є."
+        "ru": "Вы готовите дом к приезду гостей: на полке осталось немного места для их вещей. Storage space — место для хранения; здесь space неисчисляемое. Чтобы подчеркнуть, что немного места всё же есть, соберите фразу: We have + a little + storage space → We have a little storage space. A little ставим перед названием того, что есть в небольшом количестве. Little без a подчёркивало бы нехватку места.",
+        "uk": "Ви готуєте дім до приїзду гостей: на полиці залишилося трохи місця для їхніх речей. Storage space — місце для зберігання; тут space незлічуване. Щоб підкреслити, що трохи місця все ж є, складіть фразу: We have + a little + storage space → We have a little storage space. A little ставимо перед назвою того, що є в невеликій кількості. Little без a підкреслювало б нестачу місця."
       },
       "question": {
         "interactionId": "en:lesson-17:session-19:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6477b4dbf57d7a990c7c3f9cb05a1825d523f7289d049a78d91b9cbf9570e2af"
+  "introFingerprint": "6f30411a1d3fa589c346915a3bb465f0e32775dd42c0a2560e61cbd8b98ddcf2"
 }

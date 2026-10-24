@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Немного есть",
-        "uk": "Трохи є"
+        "ru": "Опыт уже есть",
+        "uk": "Досвід уже є"
       },
       "bodyByLocale": {
-        "ru": "work experience — опыт работы. job interview — собеседование при приёме на работу. Это исчисляемое слово: few. С неисчисляемым используем a little или little. A little подчёркивает наличие некоторого количества, но не обещает, что его достаточно. Подчеркните, что некоторый опыт у вас есть, а не его нехватку.",
-        "uk": "work experience — досвід роботи. job interview — співбесіда під час прийняття на роботу. Це злічуване слово: few. Із незлічуваним використовуємо a little або little. A little підкреслює наявність певної кількості, але не обіцяє, що її достатньо. Підкресліть, що певний досвід у вас є, а не його брак."
+        "ru": "На собеседовании вас спрашивают о прежней работе. Вы работали всего несколько месяцев, но хотите подчеркнуть, что опыт уже есть: I have a little work experience — у меня есть небольшой опыт работы. Соберите предложение: I have + a little + work experience. Experience здесь неисчисляемое, поэтому используем little, не few. A little выделяет наличие опыта, не утверждая, что его достаточно. Little без a подчёркивало бы, что опыта мало.",
+        "uk": "На співбесіді вас запитують про попередню роботу. Ви працювали лише кілька місяців, але хочете підкреслити, що досвід уже є: I have a little work experience — у мене є невеликий досвід роботи. Складіть речення: I have + a little + work experience. Experience тут незлічуване, тому використовуємо little, не few. A little виділяє наявність досвіду, не стверджуючи, що його достатньо. Little без a підкреслювало б, що досвіду мало."
       },
       "question": {
         "interactionId": "en:lesson-17:session-20:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3228356fa0f7921f566f61d5383514a6d6c7757caae0f6e4d55139166ce067ee"
+  "introFingerprint": "a353ede640619536051befd42e9a28d9292a6a8b0c42ed041192915c683ca3a5"
 }

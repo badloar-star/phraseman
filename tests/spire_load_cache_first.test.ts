@@ -70,7 +70,9 @@ describe('💸 Пик: без опроса раз в 5 минут, журнал 
   it('досылка — вход, фон, закрытие этажа, уход с экрана; таймера нет', () => {
     const hook = read('app/spire/use_spire_game.ts');
     expect(hook).not.toMatch(/setInterval\(\(\) => flush\('interval'\)/);
-    expect(hook).toContain("if (kind === 'floor' || kind === 'summit') flush('floor_closed');");
+    // [PEAK-CLOSE] 24.10: досылка уехала в хвост закрытия (после анимаций), правило то же — закрытие этажа/вершины
+    expect(hook).toContain("flushTrigger: kind === 'floor' || kind === 'summit' ? 'floor_closed' : spireNearWeekEnd(Date.now()) ? 'week_end' : null");
+    expect(read('app/spire/spire_step_close.ts')).toContain('if (tail.flushTrigger) tail.flush(tail.flushTrigger);');
     expect(hook).toContain("flush('app_background')");
     expect(hook).toContain("flush('screen_leave')");
   });
@@ -81,7 +83,7 @@ describe('💸 Пик: без опроса раз в 5 минут, журнал 
     expect(spireNearWeekEnd(sunday2330)).toBe(true);
     expect(spireNearWeekEnd(Date.UTC(2026, 9, 18, 22, 59))).toBe(false);
     expect(spireNearWeekEnd(Date.UTC(2026, 9, 19, 0, 5))).toBe(false); // новая неделя — до конца почти 7 дней
-    expect(read('app/spire/use_spire_game.ts')).toContain("else if (spireNearWeekEnd(Date.now())) flush('week_end');");
+    expect(read('app/spire/use_spire_game.ts')).toContain("spireNearWeekEnd(Date.now()) ? 'week_end' : null");
   });
   it('каждый запрос и пропуск отчётов и комнаты пишет причину', () => {
     const report = read('app/spire_report_client.ts');

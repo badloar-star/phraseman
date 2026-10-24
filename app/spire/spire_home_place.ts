@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useSyncExternalStore } from 'react';
 
-import type { SpireLang } from '../../modules/spire/report_queue';
+import type { SpireLang, SpireWeekLocal } from '../../modules/spire/report_queue';
 import type { SpireRoomSnapshot } from '../../modules/spire/room_rows';
 
 export type SpireHomePlace = Readonly<{ lang: SpireLang; place: number }>;
@@ -50,7 +50,7 @@ export function spireHomePlaceFrom(rows: readonly Readonly<{ isMe: boolean; step
  * Посчитать место из копий на устройстве (после прогрева комнаты PM-214, вне первого кадра Главной).
  * room — уже прочитанная комната этой недели (spire_load_trace.warmSpireRoomFromDisk).
  */
-export async function refreshSpireHomePlace(uid: string, lang: SpireLang, room: SpireRoomSnapshot): Promise<number | null> {
+export async function refreshSpireHomePlace(uid: string, lang: SpireLang, room: SpireRoomSnapshot, weekInMemory?: SpireWeekLocal): Promise<number | null> {
   const startedAt = Date.now();
   const seq = ++refreshSeq;
   try {
@@ -67,7 +67,8 @@ export async function refreshSpireHomePlace(uid: string, lang: SpireLang, room: 
       publish(null);
       return null;
     }
-    const week = await readCurrentLocalWeek(lang);
+    // зачем ([PEAK-CLOSE], координатор 24.10): после ступени неделя уже в памяти — не перечитываем её с диска
+    const week = weekInMemory ?? await readCurrentLocalWeek(lang);
     const mine = week && week.weekKey === room.weekId ? week : null;
     const { rankBy } = spireResolveRankBy(config, room.weekId);
     const rows = spireBuildRoomRows({
@@ -89,14 +90,14 @@ export async function refreshSpireHomePlace(uid: string, lang: SpireLang, room: 
 }
 
 /** После ступени: комната из памяти процесса (Пик её уже держит). Нет комнаты — пропуск с журналом, без сети. */
-export async function refreshSpireHomePlaceFromMemory(uid: string, lang: SpireLang): Promise<number | null> {
+export async function refreshSpireHomePlaceFromMemory(uid: string, lang: SpireLang, weekInMemory?: SpireWeekLocal): Promise<number | null> {
   const { peekSpireRoom } = await import('./spire_room_client');
   const room = peekSpireRoom(uid, lang);
   if (!room) {
     log('skip', { why: 'no_room_in_memory', lang, trigger: 'step_finish' });
     return null;
   }
-  return refreshSpireHomePlace(uid, lang, room);
+  return refreshSpireHomePlace(uid, lang, room, weekInMemory);
 }
 
 /** Только для тестов. */

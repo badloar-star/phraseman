@@ -19,7 +19,9 @@ const WIRING: ReadonlyArray<Readonly<{ file: string; kind: string; marker: RegEx
   { file: 'app/dialogue_v2_session_outcome_store.ts', kind: 'dialog', marker: /recordTodayTaskActivity\(\{\s*kind:\s*'dialog'/ },
   { file: 'hooks/usePracticeRunes.ts', kind: 'cards+mistakes', marker: /todayTaskKindForPracticeActivity\(input\.activity\)/ },
   { file: 'app/youtube_player_seek_bus.ts', kind: 'video', marker: /noteTodayVideoPlaybackTick\(/ },
-  { file: 'app/spire/use_spire_game.ts', kind: 'spire_steps', marker: /recordTodayTaskActivity\(\{\s*kind:\s*'spire_steps'/ },
+  // [PEAK-CLOSE] 24.10: засчёт ступени — в хвосте закрытия (после анимаций окна итога), вызов из use_spire_game
+  { file: 'app/spire/spire_step_close.ts', kind: 'spire_steps', marker: /recordTodayTaskActivity\(\{\s*kind:\s*'spire_steps'/ },
+  { file: 'app/spire/use_spire_game.ts', kind: 'spire_steps', marker: /spireRunStepCloseTail\(\{[^;]*countToday: passedNew/ },
 ];
 
 describe('«Сегодня»: проводка событий активности', () => {

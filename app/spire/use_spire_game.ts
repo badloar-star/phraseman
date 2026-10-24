@@ -30,7 +30,7 @@ import { spireResolveRankBy } from './spire_rank_by_resolve';
 import type { SpireFriendChip } from '../../components/spire/spire_room_types';
 import { spireCurrentWeekKey, spireFloorOfSteps } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
-import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
+import { spireCloseMark, spireRunStepCloseTail, spireSameWeek } from './spire_step_close';
 import { spireFlushNow, spireRecordStepResult } from '../spire_report_client';
 import { useSpireRejectRollback } from './spire_screen_rollback';
 import { animateNextLayoutTransition } from '../smooth_layout';
@@ -315,7 +315,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
 
   // ── Итог ступени: сначала экран (optimistic), потом диск; не записалось — откат ──
   const onStepFinish = useCallback((finish: SpireStepFinish) => {
-    const s = session;
+    const s = session; const closeT0 = Date.now(); // [PEAK-CLOSE] отсчёт шагов закрытия
     setSession(null);
     if (!s || !ids || !lang || !config) {
       // зачем (аудит Optimistic UI, 12.10): итог ступени терялся молча — раннему выходу нужна причина (сперва логи)
@@ -335,7 +335,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       kind, report: finish.report, errors: 3 - finish.state.hearts, usedMs: finish.state.elapsedBudgetMs,
       budgetMs: finish.state.budgetMs, floorBefore: base.floor, local: applied.local, failReason: finish.state.failReason,
     };
-    setOutcome(view);
+    setOutcome(view); spireCloseMark(finish.report.reportId, closeT0, `окно итога ${kind} и маркер поставлены`);
     // зачем (координатор 14.10): звуки Пика V2 — ступень / этаж / вершина в момент итога; провал без звука; флаг sound_v2 выключен — тишина
     // зачем (координатор 14.10): отклик игры — СРАЗУ, без задержки; мост отмечает «событие сыграно». Момент Пика при показе играет своё событие через playUnlessRecentlyPlayed и молчит,
     // если такое же только что прозвучало отсюда (двойного звука нет, а без момента звук как был).
@@ -353,15 +353,11 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         setOutcome({ ...view, kind: 'save_failed', local: base });
         return;
       }
-      setWeek(res.local); if (kind === 'floor' || kind === 'summit') flush('floor_closed'); else if (spireNearWeekEnd(Date.now())) flush('week_end'); void import('./spire_home_place').then((m) => m.refreshSpireHomePlaceFromMemory(ids.uid, lang as SpireLang)); // бейдж места на Главной — после ступени, комната из памяти, без сети; // 💸 закрыт этаж — место меняется; последний час недели (Ревизор 17.10) — каждая ступень, чтобы попала в подсчёт пн 00:01
-      // зачем (D49 + PM-280-A2, «Сегодня»): пройденная НОВАЯ ступень, легшая на
-      // диск, засчитывает «Пройти N ступеней Шпиля». Провал и повтор того же отчёта
-      // не считаются; ключ — reportId (повтор записи не двигает счётчик дважды).
-      if (finish.report.outcome === 'passed' && res.effect !== 'duplicate_ignored') {
-        void recordTodayTaskActivity({ kind: 'spire_steps', unitKey: `spire:${finish.report.reportId}`, source: 'spire_step_passed' });
-      } else {
-        DebugLogger.info('[TODAY-TASKS]', `spire:skip outcome=${finish.report.outcome} effect=${res.effect} report=${finish.report.reportId}`);
-      }
+      spireCloseMark(finish.report.reportId, closeT0, `записано на диск effect=${res.effect}`);
+      // зачем ([PEAK-CLOSE], Сверка 24.10): та же неделя повторным setWeek давала второй полный проход экрана Пика в кадре закрытия
+      if (!spireSameWeek(weekRef.current, res.local)) setWeek(res.local); else spireCloseMark(finish.report.reportId, closeT0, 'неделя с диска та же — без второго прохода');
+      const passedNew = finish.report.outcome === 'passed' && res.effect !== 'duplicate_ignored';
+      spireRunStepCloseTail({ reportId: finish.report.reportId, t0: closeT0, uid: ids.uid, lang: lang as SpireLang, local: res.local, flush, flushTrigger: kind === 'floor' || kind === 'summit' ? 'floor_closed' : spireNearWeekEnd(Date.now()) ? 'week_end' : null, countToday: passedNew, skipWhy: `outcome=${finish.report.outcome} effect=${res.effect}` }); // 💸 облако — только на закрытии этажа и в конце недели, как раньше
     }).catch((error: unknown) => {
       DebugLogger.warn(LOG, `game: запись ступени упала (${String(error)}) — откат маркера`);
       if (lastReportRef.current !== finish.report.reportId) return;

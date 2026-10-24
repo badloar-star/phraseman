@@ -34,3 +34,11 @@ describe('таймеры раннера ступени', () => {
     expect(runner).toContain('const t = setTimeout(() => { timersRef.current = timersRef.current.filter((x) => x !== t); fn(); }, ms);');
   });
 });
+
+describe('экран Пика при закрытии ступени', () => {
+  it('смена этажа переключает карточку в том же рендере, без второго прохода эффектом (Сверка 24.10: selected 4→5 двумя проходами)', () => {
+    const home = read('components', 'spire', 'SpireHomeScreen.tsx');
+    expect(home).not.toContain('useEffect(() => { if (myFloor !== null) setSelected(myFloor); }, [myFloor]);');
+    expect(home).toContain('const [floorSeen, setFloorSeen] = useState(myFloor); if (myFloor !== floorSeen) { setFloorSeen(myFloor); if (myFloor !== null) setSelected(myFloor); }');
+  });
+});

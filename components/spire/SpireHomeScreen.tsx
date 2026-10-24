@@ -213,8 +213,9 @@ export default function SpireHomeScreen() {
 
   const myFloor = week ? Math.min(week.floor, SPIRE_FLOOR_COUNT) : null;
   const { summit, stepInFloor: shownStepInFloor } = useSpireSummit(week, myFloor, preview ? 'dev-preview' : 'local_week'); // ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок»
-  // Маркер поднялся на новый этаж — карточка этажа следует за ним.
-  useEffect(() => { if (myFloor !== null) setSelected(myFloor); }, [myFloor]);
+  // Маркер поднялся на новый этаж — карточка этажа следует за ним. зачем (Сверка 24.10, [PEAK-PERF] кадры 1,3–1,7 с при закрытии ступени: [SPIRE-DOCK] home selected 4→5 двумя проходами):
+  // переключаем в том же рендере (сброс состояния при смене этажа), а не эффектом — без лишнего полного прохода экрана Пика со старым этажом
+  const [floorSeen, setFloorSeen] = useState(myFloor); if (myFloor !== floorSeen) { setFloorSeen(myFloor); if (myFloor !== null) setSelected(myFloor); }
   const shownFloor = selected ?? myFloor ?? 1;
   // зачем (Макеты spire-gap-009, поручение координатора 15.10; правило «сперва логи»): что именно решает вид кнопки и окна башни — этаж, комната, откуда значения.
   useEffect(() => {

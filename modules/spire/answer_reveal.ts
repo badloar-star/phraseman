@@ -14,6 +14,8 @@ import { arenaAnswerFingerprint } from '../arena/answer_check';
 
 /** Потолок перебора сборки: ~8 слов из 9 — это 9!/1! ≈ 360k, режем раньше. */
 export const SPIRE_REVEAL_MAX_TRIES = 40_000;
+/** Потолок для поиска после ошибки на экране (жалоба №3, координатор 24.10): 40 000 стояли в кадре секундами. */
+export const SPIRE_REVEAL_FAST_TRIES = 5_000;
 
 /** Индекс верного варианта выбора или null (отпечаток не совпал ни с одним). */
 export function spireRevealChoiceIndex(saltId: string, taskId: string, optionCount: number, fingerprint: string): number | null {
@@ -43,6 +45,7 @@ export function spireRevealTokens(
   wordBank: readonly string[],
   tokenCount: number,
   fingerprint: string,
+  maxTries: number = SPIRE_REVEAL_MAX_TRIES,
 ): readonly string[] | null {
   if (tokenCount < 1 || tokenCount > wordBank.length) return null;
   let tries = 0;
@@ -54,7 +57,7 @@ export function spireRevealTokens(
       return arenaAnswerFingerprint(saltId, taskId, path) === fingerprint ? [...path] : null;
     }
     for (let i = 0; i < wordBank.length; i += 1) {
-      if (tries >= SPIRE_REVEAL_MAX_TRIES) return null;
+      if (tries >= maxTries) return null;
       if (used[i]) continue;
       used[i] = true;
       path.push(wordBank[i]);

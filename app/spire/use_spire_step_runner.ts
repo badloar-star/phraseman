@@ -16,7 +16,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 
 import { useEnergy, useEnergySessionIntent } from '../../components/EnergyContext';
-import { spireRevealChoiceIndex, spireRevealItemIndexes, spireRevealTokens } from '../../modules/spire/answer_reveal';
+import { spireRevealChoiceIndex, spireRevealItemIndexes } from '../../modules/spire/answer_reveal';
 import type { SpireStepPick } from '../../modules/spire/pack_plan';
 import { spireReportFromStepState, type SpireLang, type SpireStepReport } from '../../modules/spire/report_queue';
 import {
@@ -34,7 +34,8 @@ import { DebugLogger } from '../debug-logger';
 import { spireBumpStepAttempt } from './spire_local_store';
 import { spireCaptureMistakeOutcome } from './spire_mistake_capture';
 import { useSpireCountdown } from './use_spire_countdown';
-import { measurePeakWork, PEAK_PERF } from './peak_perf_probe';
+import { PEAK_PERF } from './peak_perf_probe';
+import { revealTokensAfterPaint } from './spire_reveal_deferred';
 const LOG = '[SPIRE]';
 const TICK_MS = 250;
 const CORRECT_FLASH_MS = 280;
@@ -158,7 +159,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase]);
-
   // ── 2. Первое задание на экране → подтверждаем старт; не показалось → возврат (D87) ──
   useEffect(() => {
     if (phase !== 'playing' || chargedRef.current !== 'spent') return;
@@ -167,7 +167,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       DebugLogger.info(LOG, `step: первое задание показано, старт подтверждён ok=${String(ok)}`);
     });
   }, [phase, acknowledgeSessionStart, intent.operationId]);
-
   useEffect(() => {
     // зачем: StrictMode в dev прогоняет эффект дважды — флаг жизни восстанавливаем здесь.
     aliveRef.current = true;
@@ -183,7 +182,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   // ── 3. Финал ступени → отчёт наверх (один раз) ──
   const finish = useCallback((final: SpireStepState) => {
     if (finishedRef.current) return;
@@ -197,7 +195,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     setPhase('finished');
     inputRef.current.onFinish({ state: final, report });
   }, [ctx]);
-
   // ── 4. Тик таймера: только в активной фазе (при показе ошибки таймер стоит, макет §5) ──
   useEffect(() => {
     if (phase !== 'playing') return undefined;
@@ -264,7 +261,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   }, [commit]);
 
   // ── 6. Ответ ──
-  const afterAnswer = useCallback((next: SpireStepState, fb: SpireFeedback, given: string, correct: string | readonly string[] | null) => {
+  const afterAnswer = useCallback((next: SpireStepState, fb: SpireFeedback, given: string, correctOrLater: string | readonly string[] | null | Promise<readonly string[] | null>) => {
     commit(next);
     setFeedback(fb);
     if (fb.ok) {
@@ -275,8 +272,11 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     const task = pick.tasks[fb.taskIndex];
     // зачем (обзор R1 п.4): «не сохранилось» человеку — только при настоящем сбое записи (false); штатный пропуск
     // (пары, «найди лишнее», язык без журнала) оставляет null и ничего не показывает.
-    void spireCaptureMistakeOutcome({ studyTarget: inputRef.current.studyTarget, attemptKey: `${inputRef.current.runId}:${fb.taskIndex}`, task, correct, given })
-      .then((outcome) => {
+    // зачем (жалоба №3, координатор 24.10): верный порядок сборки ищется после отрисовки ошибки — подставляем его в подсказку и в «Мои ошибки», когда найден
+    void Promise.resolve(correctOrLater).then((correct) => {
+      if (correct !== correctOrLater && Array.isArray(correct)) setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, correctText: correct.join(' ') } : cur));
+      return spireCaptureMistakeOutcome({ studyTarget: inputRef.current.studyTarget, attemptKey: `${inputRef.current.runId}:${fb.taskIndex}`, task, correct, given });
+    }).then((outcome) => {
         const mistakeSaved = outcome === 'saved' ? true : outcome === 'failed' ? false : null;
         DebugLogger.info(LOG, `step: «Мои ошибки» задание ${fb.taskIndex + 1} → ${outcome} (строка: ${mistakeSaved === true ? 'сохранена' : mistakeSaved === false ? 'не удалось' : 'нет'})`);
         setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, mistakeSaved } : cur));
@@ -314,9 +314,9 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     const ok = next.hearts === cur.hearts;
     const bank = Array.isArray(task.payload.wordBank) ? task.payload.wordBank.map(textOf) : [];
     const count = Number(task.payload.correctTokenCount) || tokens.length;
-    const correct = ok ? tokens : measurePeakWork(`runner: поиск верного порядка задание ${cur.taskIndex + 1} банк=${bank.length} слов=${count}`, () => spireRevealTokens(pick.plan.saltId, task.taskId, bank, count, pick.plan.tasks[cur.taskIndex].answerFingerprints[0] ?? '')); // зачем ([PEAK-PERF]): перебор до 40 000 порядков синхронно в кадре — меряем цену на устройстве
-    DebugLogger.info(LOG, `step: задание ${cur.taskIndex + 1} сборка ok=${String(ok)} верный порядок ${correct ? 'найден' : 'не найден'}`);
-    afterAnswer(next, { taskIndex: cur.taskIndex, ok, picked: null, itemIndex: null, correctIndex: null, correctText: correct ? correct.join(' ') : null, mistakeSaved: null }, tokens.join(' '), correct);
+    DebugLogger.info(LOG, `step: задание ${cur.taskIndex + 1} сборка ok=${String(ok)}${ok ? '' : ' — верный порядок ищем после отрисовки ошибки'}`);
+    const correctLater = ok ? tokens : revealTokensAfterPaint({ saltId: pick.plan.saltId, taskId: task.taskId, bank, count, fingerprint: pick.plan.tasks[cur.taskIndex].answerFingerprints[0] ?? '', taskNo: cur.taskIndex + 1 });
+    afterAnswer(next, { taskIndex: cur.taskIndex, ok, picked: null, itemIndex: null, correctIndex: null, correctText: ok ? tokens.join(' ') : null, mistakeSaved: null }, tokens.join(' '), correctLater);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [afterAnswer, pick, phase, feedback, exitOpen]);
 

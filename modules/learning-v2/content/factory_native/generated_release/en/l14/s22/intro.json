@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Соевый соус",
-        "uk": "Соєвий соус"
+        "ru": "Что вы делали, когда пришёл друг",
+        "uk": "Що ви робили, коли прийшов друг"
       },
       "bodyByLocale": {
-        "ru": "Soy sauce — соевый соус. I was adding soy sauce. — Я добавлял соевый соус. Описываем процесс как фон истории. Выберите прошлый процесс.",
-        "uk": "Soy sauce — соєвий соус. I was adding soy sauce. — Я додавав соєвий соус. Описуємо процес як тло історії. Виберіть минулий процес."
+        "ru": "Вчера друг вошёл на кухню в тот момент, когда вы наливали соевый соус в сковороду. I was adding soy sauce. — Я добавлял соевый соус. Покажите действие, которое уже происходило в момент его прихода: I + was + adding. С I используем was, а к add добавляем -ing. В конце укажите, что добавляли: soy sauce.",
+        "uk": "Учора друг увійшов на кухню тієї миті, коли ви наливали соєвий соус у сковороду. I was adding soy sauce. — Я додавав соєвий соус. Покажіть дію, яка вже відбувалася в момент його приходу: I + was + adding. З I використовуємо was, а до add додаємо -ing. Наприкінці вкажіть, що додавали: soy sauce."
       },
       "question": {
         "interactionId": "en:lesson-14:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два вида масла",
-        "uk": "Два види олії"
+        "ru": "На чём сестра готовила",
+        "uk": "На чому сестра готувала"
       },
       "bodyByLocale": {
-        "ru": "Sesame oil — кунжутное масло; sunflower oil — подсолнечное масло. She was using sesame oil. — Она использовала кунжутное масло. Выберите кунжутное масло.",
-        "uk": "Sesame oil — кунжутна олія; sunflower oil — соняшникова олія. She was using sesame oil. — Вона використовувала кунжутну олію. Виберіть кунжутну олію."
+        "ru": "Вы вспоминаете вчерашний ужин: когда вы зашли на кухню, сестра готовила с кунжутным маслом. She was using sesame oil. — Она использовала кунжутное масло. Соберите She + was + using, чтобы описать её действие в тот момент. После she нужна was; у use уберите конечную e и добавьте -ing. Затем назовите то, что она использовала: sesame oil.",
+        "uk": "Ви згадуєте вчорашню вечерю: коли ви зайшли на кухню, сестра готувала з кунжутною олією. She was using sesame oil. — Вона використовувала кунжутну олію. Складіть She + was + using, щоб описати її дію тієї миті. Після she потрібна was; у use приберіть кінцеву e й додайте -ing. Потім назвіть те, що вона використовувала: sesame oil."
       },
       "question": {
         "interactionId": "en:lesson-14:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Томатная паста",
-        "uk": "Томатна паста"
+        "ru": "Что мы добавляли в суп",
+        "uk": "Що ми додавали в суп"
       },
       "bodyByLocale": {
-        "ru": "Tomato paste — густая томатная паста. We were adding tomato paste. — Мы добавляли томатную пасту. С we используем were.",
-        "uk": "Tomato paste — густа томатна паста. We were adding tomato paste. — Ми додавали томатну пасту. З we вживаємо were."
+        "ru": "Вчера мама позвала вас к телефону, когда вы с братом добавляли томатную пасту в суп. We were adding tomato paste. — Мы добавляли томатную пасту. Чтобы сказать, чем вы были заняты в тот момент, соберите We + were + adding. С we используем were, а действие передаём формой add + -ing. После adding укажите продукт: tomato paste.",
+        "uk": "Учора мама покликала вас до телефону, коли ви з братом додавали томатну пасту в суп. We were adding tomato paste. — Ми додавали томатну пасту. Щоб сказати, чим ви були зайняті тієї миті, складіть We + were + adding. З we використовуємо were, а дію передаємо формою add + -ing. Після adding вкажіть продукт: tomato paste."
       },
       "question": {
         "interactionId": "en:lesson-14:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b16cee3e88f453c02643ac057a2dcc5987eb21ec816ea6896e24deee2efae014"
+  "introFingerprint": "f4297f175c7e10a5def53c38e534369c2efd4aa7502dabf19996cfdbb3312a52"
 }

@@ -10485,7 +10485,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 21,
-    sourceFingerprint: "1f68a7135eec036ee10cc3aea6de24dbc814818adfad7626be9fa42b10dbd735",
+    sourceFingerprint: "8836421555f949a1efb5618a09512e155f49cf9bf5e1a05b5704e62f43c253ed",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Am using — сейчас.","С I нужна was."],["Это использование зубной нити.","С she нужна was."],["Are looking — настоящее.","С we нужна were."]],"uk":[["Am using — зараз.","З I потрібна was."],["Це використання зубної нитки.","З she потрібна was."],["Are looking — теперішній час.","З we потрібна were."]]}),
@@ -10499,7 +10499,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 22,
-    sourceFingerprint: "52b778a138234e4516ba96f970c8fe3c27d56d1ae376acdc6417524e54d2d186",
+    sourceFingerprint: "7f8b594a54e9c7b812f65f273443056b91aca27e904ca9ba05250ccaa0036f0e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Am adding — сейчас.","После was нужна форма adding."],["Sunflower oil — подсолнечное масло.","С she нужна was."],["С we нужна were.","Are adding — сейчас."]],"uk":[["Am adding — зараз.","Після was потрібна форма adding."],["Sunflower oil — соняшникова олія.","З she потрібна was."],["З we потрібна were.","Are adding — зараз."]]}),
@@ -10513,7 +10513,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 14, sessionOrdinal: 23,
-    sourceFingerprint: "1de50d855b57683891a3b11bbecc685d69a1f30a91fb14849d353bdc7d4b514d",
+    sourceFingerprint: "9b28f6a66b4f1f7e1401790141a6154f4ce0dce6a9f380507be306d988b2c511",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Am adding — сейчас.","С I нужна was."],["Это добавление соды.","С she нужна was."],["Are using — сейчас.","С we нужна were."]],"uk":[["Am adding — зараз.","З I потрібна was."],["Це додавання соди.","З she потрібна was."],["Are using — зараз.","З we потрібна were."]]}),

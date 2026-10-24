@@ -11,12 +11,12 @@
       "pageId": "en:lesson-14:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Разрыхлитель",
-        "uk": "Розпушувач"
+        "ru": "Что происходило у миски",
+        "uk": "Що відбувалося біля миски"
       },
       "bodyByLocale": {
-        "ru": "Baking powder — разрыхлитель для выпечки. I was adding baking powder. — Я добавлял разрыхлитель. Выберите процесс в прошлом.",
-        "uk": "Baking powder — розпушувач для випічки. I was adding baking powder. — Я додавав розпушувач. Виберіть процес у минулому."
+        "ru": "Друг показывает вчерашнее фото с вашей кухни: вы насыпаете разрыхлитель в тесто. Объясните, что вы делали в тот момент: I was adding baking powder. — Я добавлял разрыхлитель. Соберите I + was + adding: после I поставьте was, а к add добавьте -ing. Так показываем действие в процессе в определённый момент прошлого. В конце назовите то, что добавляли: baking powder.",
+        "uk": "Друг показує вчорашнє фото з вашої кухні: ви насипаєте розпушувач у тісто. Поясніть, що ви робили тієї миті: I was adding baking powder. — Я додавав розпушувач. Складіть I + was + adding: після I поставте was, а до add додайте -ing. Так показуємо дію в процесі в певний момент минулого. Наприкінці назвіть те, що додавали: baking powder."
       },
       "question": {
         "interactionId": "en:lesson-14:session-23:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-14:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сода и обычная мука",
-        "uk": "Сода й звичайне борошно"
+        "ru": "Что сестра отмеряла",
+        "uk": "Що сестра відміряла"
       },
       "bodyByLocale": {
-        "ru": "Baking soda — пищевая сода; plain flour — мука без добавленного разрыхлителя. She was measuring plain flour. — Она отмеряла обычную муку. Выберите муку.",
-        "uk": "Baking soda — харчова сода; plain flour — борошно без доданого розпушувача. She was measuring plain flour. — Вона відміряла звичайне борошно. Виберіть борошно."
+        "ru": "На вчерашнем снимке сестра стоит у весов и отмеряет муку без разрыхлителя. She was measuring plain flour. — Она отмеряла муку без разрыхлителя. Чтобы описать её действие в тот момент, соберите She + was + measuring. С she используем was; у measure уберите конечную e и добавьте -ing. После действия назовите продукт: plain flour.",
+        "uk": "На вчорашньому знімку сестра стоїть біля ваг і відміряє борошно без розпушувача. She was measuring plain flour. — Вона відміряла борошно без розпушувача. Щоб описати її дію тієї миті, складіть She + was + measuring. З she використовуємо was; у measure приберіть кінцеву e й додайте -ing. Після дії назвіть продукт: plain flour."
       },
       "question": {
         "interactionId": "en:lesson-14:session-23:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-14:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мука с разрыхлителем",
-        "uk": "Борошно з розпушувачем"
+        "ru": "С какой мукой мы работали",
+        "uk": "З яким борошном ми працювали"
       },
       "bodyByLocale": {
-        "ru": "Self-raising flour — мука с уже добавленным разрыхлителем. We were using self-raising flour. — Мы использовали муку с разрыхлителем. Это название продукта на упаковке. Выберите прошлый процесс.",
-        "uk": "Self-raising flour — борошно з уже доданим розпушувачем. We were using self-raising flour. — Ми використовували борошно з розпушувачем. Це назва продукту на пакованні. Виберіть минулий процес."
+        "ru": "Вы с братом рассматриваете вчерашнее фото: вы вместе готовите тесто, а рядом стоит пакет муки с разрыхлителем. We were using self-raising flour. — Мы использовали муку с разрыхлителем. Соберите We + were + using, чтобы описать, с чем вы работали в тот момент. С we нужна were; у use уберите конечную e и добавьте -ing. В конце добавьте название муки: self-raising flour.",
+        "uk": "Ви з братом розглядаєте вчорашнє фото: ви разом готуєте тісто, а поруч стоїть пакет борошна з розпушувачем. We were using self-raising flour. — Ми використовували борошно з розпушувачем. Складіть We + were + using, щоб описати, з чим ви працювали тієї миті. З we потрібна were; у use приберіть кінцеву e й додайте -ing. Наприкінці додайте назву борошна: self-raising flour."
       },
       "question": {
         "interactionId": "en:lesson-14:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c10a007a829c0dededc3b449490fdace84c67732ab0a2e1ee567e02734ec93a6"
+  "introFingerprint": "655afade34b7f958ba6c08d4337225f8c0ba578aa6f1cbd64930c726f354e08a"
 }

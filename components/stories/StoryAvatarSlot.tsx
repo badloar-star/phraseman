@@ -64,10 +64,17 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
   const ring = enabled && unseenCount > 0;
-  // зачем (координатор 15.10, R21; было 14.10 — «недавние» 7 дней): после просмотра аватар снова ведёт в профиль — иначе кнопка
-  // неделю меняет смысл. Просмотр открывается только пока есть непросмотренное (кольцо горит).
-  const queue = useMemo<StoryEventList>(() => (ring ? playback : []), [playback, ring]);
+  // зачем (владелец 24.10: «истории должны открываться»; решение координатора 24.10, меняет R21 15.10): тап по аватару ВСЕГДА открывает истории, если есть живые слайды —
+  // сначала непросмотренные (кольцо горит), иначе все живые от старых к новым (список Ядра — новые первыми, поэтому переворачиваем); в профиль тап ведёт только когда историй нет (или флаг выключен).
+  const queue = useMemo<StoryEventList>(() => (ring ? playback : enabled ? [...stories].reverse() : []), [enabled, playback, ring, stories]);
   const opensStories = queue.length > 0;
+  // зачем (владелец 24.10: «истории должны открываться»; правило «сперва логи»): почему кольцо есть или его нет — флаг, число непросмотренных, очередь просмотра и живых событий; одной строкой на изменение
+  const decisionKey = `${String(enabled)}|${unseenCount}|${playback.length}|${stories.length}|${String(ring)}|${queue.length}`;
+  const decisionLoggedRef = useRef('');
+  if (decisionLoggedRef.current !== decisionKey) {
+    decisionLoggedRef.current = decisionKey;
+    DebugLogger.info('[STORIES]', `кольцо: флаг=${String(enabled)} непросмотрено=${unseenCount} очередь=${queue.length} к просмотру=${playback.length} живых=${stories.length} → ${ring ? 'кольцо горит' : 'кольца нет'}, тап ведёт ${opensStories ? (ring ? 'в просмотр непросмотренных' : 'в просмотр с первого слайда') : 'в профиль'}`);
+  }
 
   const open = useCallback(() => {
     if (viewer) { DebugLogger.info(LOG, 'тап: просмотр уже открыт'); return; }

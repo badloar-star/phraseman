@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// StoryViewer.tsx — полноэкранный просмотр сторис по аватару (D192): полосы прогресса, 2,4 с на событие, тапы, пауза, свайп вниз.
+// StoryViewer.tsx — полноэкранный просмотр сторис по аватару (D192): полосы прогресса, 10 с на событие, тапы, пауза, свайп вниз.
 //
 // зачем (владелец 14.10: «как история в Instagram»; образец docs/design/v2-app/stories-avatar.html, s2): тап по аватару раскрывает просмотр из аватара за 380 мс (кривая .32,.72,0,1),
-// сверху полосы по числу событий (3 dp, каждая заполняется 2,4 с линейно), шапка «монета 32 · Твои события · когда · ✕», тап слева 32 % — назад, справа — дальше, удержание — пауза,
+// сверху полосы по числу событий (3 dp, каждая заполняется 10 с линейно), шапка «монета 32 · Твои события · когда · ✕», тап слева 32 % — назад, справа — дальше, удержание — пауза,
 // свайп вниз или ✕ — закрыть (уезжает вниз и гаснет, 320 мс), после последнего закрывается сам. Звуки V2: `story` на каждом кадре, `sheet_close` на закрытии. Монета — только аватар ранга.
 // Всё движение на UI-треде (Reanimated + Gesture Handler): таймер полосы — withTiming, а не setTimeout. Список событий замораживается в момент открытия: пока человек смотрит, кольцо
 // на Главной уже может погаснуть (markSeen по мере показа), а очередь просмотра не должна меняться под пальцем. Просмотренным событие считается, когда его кадр показан.
@@ -11,7 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Modal, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { AccessibilityInfo, Modal, Pressable, StyleSheet, Text, View, useWindowDimensions, type GestureResponderEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { Easing, cancelAnimation, interpolate, runOnJS, useAnimatedStyle, useReducedMotion, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
@@ -29,8 +29,12 @@ import StorySlide from './StorySlides';
 import { storyText, storyWhenLabel } from './story_strings';
 
 const LOG = '[STORY-VIEWER]';
-/** Длительность одного события, мс (образец: 2,4 с). */
-export const STORY_SLIDE_MS = 2400;
+/**
+ * Длительность одного события, мс.
+ * зачем (владелец 24.10, через координатора: «каждая история должна продолжаться хотя бы секунд 10»): было 2,4 с по образцу stories-avatar.html — за это время текст не прочесть.
+ * Пауза удержанием останавливает отсчёт, полоса стоит на месте.
+ */
+export const STORY_SLIDE_MS = 10000;
 /** Раскрытие из аватара, мс (образец `storyIn`: 380 мс, cubic-bezier(.32,.72,0,1)). */
 export const STORY_ENTER_MS = 380;
 /** Закрытие: уезжает вниз и гаснет, мс (образец `.closing`: 320 мс). */
@@ -150,7 +154,21 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     }
   }, [progress, runBar]);
 
-  const setHold = useCallback((value: boolean) => { heldRef.current = value; syncPause(); }, [syncPause]);
+  // зачем (владелец 24.10: «как в Инстаграме — при зажатии экрана она паузится»; 8 · МОМЕНТЫ: у Инстаграма пауза мгновенная): удержание — два источника. Касание (onTouchStart/End на корне) ставит паузу с ПЕРВОГО касания,
+  // не ждёт 220 мс long-press; жест (long-press / свайп) держит паузу, если Gesture Handler отменит сырые касания (Android отдаёт ACTION_CANCEL, когда жест стал активным). Пауза снимается, когда нет ни касания, ни жеста.
+  const gestureHeldRef = useRef(false);
+  const touchHeldRef = useRef(false);
+  const applyHold = useCallback((why: string) => {
+    const next = gestureHeldRef.current || touchHeldRef.current;
+    if (next === heldRef.current) return;
+    heldRef.current = next;
+    DebugLogger.info(LOG, `удержание ${next ? 'есть' : 'снято'} (${why}) касание=${String(touchHeldRef.current)} жест=${String(gestureHeldRef.current)}`);
+    syncPause();
+  }, [syncPause]);
+  const setHold = useCallback((value: boolean) => { gestureHeldRef.current = value; applyHold(value ? 'жест' : 'жест закончен'); }, [applyHold]);
+  const onTouchStart = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('касание'); }, [applyHold]);
+  const onTouchEnd = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('палец поднят'); }, [applyHold]);
+  const onTouchCancel = useCallback(() => { touchHeldRef.current = false; applyHold('касание отменено'); }, [applyHold]);
   useEffect(() => { runtimeRef.current = runtimeActive; syncPause(); }, [runtimeActive, syncPause]);
 
   // старт: раскрытие из аватара и первый кадр; диктор — без автоперехода
@@ -219,7 +237,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => close('back')}>
       <SheetSwipeRoot>
         <GestureDetector gesture={gesture}>
-          <Animated.View testID={testID} accessibilityViewIsModal style={[s.root, sheetStyle]}>
+          <Animated.View testID={testID} accessibilityViewIsModal style={[s.root, sheetStyle]} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onTouchCancel={onTouchCancel}>
             <LinearGradient colors={[p.bgTop, p.bg]} locations={[0, 0.7]} style={StyleSheet.absoluteFill} pointerEvents="none" />
             <View style={[s.bars, { paddingTop: insets.top + 10 }]} testID={`${testID}-bars`}>
               {events.map((e, i) => (

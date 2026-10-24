@@ -59,6 +59,7 @@ const KNOWN_GUARDS = [
   'tests/owner_locks_placement_ui_2026_10_24.test.ts',
   'tests/placement_view_model_2026_10_24.test.ts',
   'tests/dialog_say_hints_2026_10_24.test.ts',
+  'tests/stories_viewer_owner_locks_2026_10_24.test.ts',
   'tests/owner_locks_light_theme_2026_10_24.test.ts', // 9 · САЙТ 24.10: стандартная тема одна — светлая
 ];
 

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-42",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; unreal condition; present perfect / past simple",
+    "uk": "wish + past; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-42:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать плед",
+        "uk": "Вибрати плед"
+      },
+      "bodyByLocale": {
+        "ru": "Warmth — тепло. I need a little more warmth — мне нужно немного больше тепла. Вы устраиваетесь вечером в кресле и просите плед. Softness — мягкость. I like the softness of this blanket — мне нравится мягкость этого пледа. I wish the room were warmer — хотелось бы, чтобы в комнате было теплее. Were после wish описывает желаемую обстановку сейчас.",
+        "uk": "Warmth — тепло. I need a little more warmth — мені потрібно трохи більше тепла. Ви влаштовуєтеся ввечері в кріслі й просите плед. Softness — м’якість. I like the softness of this blanket — мені подобається м’якість цього пледа. I wish the room were warmer — хотілося б, щоб у кімнаті було тепліше. Were після wish описує бажану обстановку зараз."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-42:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-42:intro1:r1",
+              "text": "I wish the room were warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro1:r2",
+              "text": "I wish the room is warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro1:r3",
+              "text": "I wish the room be warmer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-42:intro1:r1",
+              "text": "I wish the room were warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro1:r2",
+              "text": "I wish the room is warmer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro1:r3",
+              "text": "I wish the room be warmer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-42:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Попробовать подушку",
+        "uk": "Спробувати подушку"
+      },
+      "bodyByLocale": {
+        "ru": "Firmness — упругость, плотность: насколько подушка сопротивляется нажатию, а не сразу проваливается. I like the firmness of this cushion — мне нравится упругость этой подушки. Softness относится к мягкости; человеку может нравиться и мягкая ткань, и упругая подушка. Could I try that cushion? — можно попробовать ту подушку? I have already moved the chair — я уже переставил кресло. I moved it yesterday — я переставил его вчера: past simple с законченным временем.",
+        "uk": "Firmness — пружність, щільність: наскільки подушка чинить опір натисканню, а не одразу провалюється. I like the firmness of this cushion — мені подобається пружність цієї подушки. Softness стосується м’якості; людині може подобатися і м’яка тканина, і пружна подушка. Could I try that cushion? — можна спробувати ту подушку? I have already moved the chair — я вже переставив крісло. I moved it yesterday — я переставив його вчора: past simple із завершеним часом."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-42:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-42:intro2:r1",
+              "text": "I moved it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro2:r2",
+              "text": "I have moved it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro2:r3",
+              "text": "I moving it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-42:intro2:r1",
+              "text": "I moved it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro2:r2",
+              "text": "I have moved it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro2:r3",
+              "text": "I moving it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-42:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изменить освещение",
+        "uk": "Змінити освітлення"
+      },
+      "bodyByLocale": {
+        "ru": "Brightness — яркость. The brightness bothers me — яркий свет мне мешает. Вы говорите о свете лампы рядом с креслом. Could you move the lamp a little? — можешь немного передвинуть лампу? I would sit here if the light were softer — я бы сидел здесь, если бы свет был мягче. Would sit — результат, were — условие. А затем можно спросить другого человека: Are you comfortable there? — тебе там удобно?",
+        "uk": "Brightness — яскравість. The brightness bothers me — яскраве світло мені заважає. Ви говорите про світло лампи біля крісла. Could you move the lamp a little? — можеш трохи пересунути лампу? I would sit here if the light were softer — я б сидів тут, якби світло було м’якшим. Would sit — результат, were — умова. А потім можна запитати іншу людину: Are you comfortable there? — тобі там зручно?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-42:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-42:intro3:r1",
+              "text": "I would sit here if the light were softer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro3:r2",
+              "text": "I would sat here if the light were softer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro3:r3",
+              "text": "I would to sit here if the light were softer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-42:intro3:r1",
+              "text": "I would sit here if the light were softer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro3:r2",
+              "text": "I would sat here if the light were softer."
+            },
+            {
+              "responseId": "en:lesson-27:session-42:intro3:r3",
+              "text": "I would to sit here if the light were softer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d61e5bd7a6ea94678ad9865b6779c36fcc8fe7dd33e7335b39c4d372968fa8f8"
+}

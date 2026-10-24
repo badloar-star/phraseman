@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-42:word:warmth",
+    "correctText": "warmth",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i01",
+    "correctText": "I need a little more warmth.",
+    "correctResponseId": "en:lesson-27:session-42:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i02",
+    "correctText": "Could you pass me the blanket?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:word:softness",
+    "correctText": "softness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i03",
+    "correctText": "I like the softness of this blanket.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i04",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-42:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i05",
+    "correctText": "Shall I close the window?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:word:firmness",
+    "correctText": "firmness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i06",
+    "correctText": "I like the firmness of this cushion.",
+    "correctResponseId": "en:lesson-27:session-42:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i07",
+    "correctText": "Could I try that cushion?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i08",
+    "correctText": "I have already moved the chair.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i09",
+    "correctText": "moved",
+    "correctResponseId": "en:lesson-27:session-42:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:word:brightness",
+    "correctText": "brightness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i10",
+    "correctText": "The brightness bothers me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i11",
+    "correctText": "Could you move the lamp a little?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i12",
+    "correctText": "sit",
+    "correctResponseId": "en:lesson-27:session-42:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i13",
+    "correctText": "I have already turned the other lamp off.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i14",
+    "correctText": "Are you comfortable there?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i15",
+    "correctText": "This chair is close to the window.",
+    "correctResponseId": "en:lesson-27:session-42:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i16",
+    "correctText": "We would put the chair there if we had more space.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-42:i17",
+    "correctText": "Could you get my book from the shelf?",
+    "correctResponseId": null
+  }
+]

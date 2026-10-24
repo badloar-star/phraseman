@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-42:word:warmth",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — warmth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:word:warmth:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — warmth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:word:warmth:audio",
+          "transcript": "warmth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:word:warmth:r1",
+            "targetText": "warmth",
+            "meaningByLocale": {
+              "ru": "Тепло.",
+              "uk": "Тепло."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "warmth",
+          "definitionByLocale": {
+            "ru": "Тепло.",
+            "uk": "Тепло."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-42:i01:r1",
+          "text": "I need a little more warmth."
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i01:r2",
+          "text": "I need a little more light."
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i01:r3",
+          "text": "We need a little more warmth."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i01:audio",
+          "transcript": "I need a little more warmth."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:i01:r1",
+            "targetText": "I need a little more warmth.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i01:r2",
+            "targetText": "I need a little more light.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i01:r3",
+            "targetText": "We need a little more warmth.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-42:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need a little more warmth.",
+              "uk": "У записі звучить I need a little more warmth."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I need a little more warmth.",
+              "uk": "У записі звучить I need a little more warmth."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите передать плед.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Попросите передать плед.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i02:audio",
+          "transcript": "Could you pass me the blanket?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you pass me the blanket?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:word:softness",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — softness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:word:softness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — softness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:word:softness:audio",
+          "transcript": "softness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:word:softness:r1",
+            "targetText": "softness",
+            "meaningByLocale": {
+              "ru": "Мягкость.",
+              "uk": "М’якість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "softness",
+          "definitionByLocale": {
+            "ru": "Мягкость.",
+            "uk": "М’якість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, чем нравится плед.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, чем нравится плед.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I like the softness of this blanket.",
+        "localizedMeaning": {
+          "ru": "Объясните, чем нравится плед.",
+          "uk": "Поясніть, чим подобається плед."
+        },
+        "orderedTokens": [
+          "I",
+          "like",
+          "the",
+          "softness",
+          "of",
+          "this",
+          "blanket"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы более тёплую комнату сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-42:i04:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i04:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i04:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы более тёплую комнату сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы более тёплую комнату сейчас.",
+          "uk": "Вам хотілося б теплішої кімнати зараз."
+        },
+        "gappedTargetPhrase": "I wish the room ___ warmer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-42:i04:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i04:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i04:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы более тёплую комнату сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-42:i04:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы более тёплую комнату сейчас.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i04:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы более тёплую комнату сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i05",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите закрыть окно.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i05:audio"
+      ],
+      "accessibilityLabel": "Предложите закрыть окно.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i05:audio",
+          "transcript": "Shall I close the window?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall I close the window?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:word:firmness",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — firmness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:word:firmness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — firmness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:word:firmness:audio",
+          "transcript": "firmness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:word:firmness:r1",
+            "targetText": "firmness",
+            "meaningByLocale": {
+              "ru": "Упругость, плотность подушки.",
+              "uk": "Пружність, щільність подушки."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "firmness",
+          "definitionByLocale": {
+            "ru": "Упругость, плотность подушки.",
+            "uk": "Пружність, щільність подушки."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-42:i06:r1",
+          "text": "I like the firmness of this cushion."
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i06:r2",
+          "text": "I like the softness of this cushion."
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i06:r3",
+          "text": "I like the firmness of that cushion."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i06:audio",
+          "transcript": "I like the firmness of this cushion."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:i06:r1",
+            "targetText": "I like the firmness of this cushion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i06:r2",
+            "targetText": "I like the softness of this cushion.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i06:r3",
+            "targetText": "I like the firmness of that cushion.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-42:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the firmness of this cushion.",
+              "uk": "У записі звучить I like the firmness of this cushion."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the firmness of this cushion.",
+              "uk": "У записі звучить I like the firmness of this cushion."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу попробовать другую подушку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу попробовать другую подушку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i07:audio",
+          "transcript": "Could I try that cushion?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I try that cushion?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "try",
+          "that",
+          "cushion"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что кресло уже переставили.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что кресло уже переставили.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already moved the chair.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что кресло уже переставили.",
+          "uk": "Повідомте, що крісло вже переставили."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "moved",
+          "the",
+          "chair"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что сделали это вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-42:i09:r1",
+          "text": "moved"
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i09:r2",
+          "text": "have moved"
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i09:r3",
+          "text": "moving"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что сделали это вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что сделали это вчера.",
+          "uk": "Уточніть, що зробили це вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-42:i09:r1",
+            "text": "moved"
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i09:r2",
+            "text": "have moved"
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i09:r3",
+            "text": "moving"
+          }
+        ],
+        "testedDimension": "Уточните, что сделали это вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-42:i09:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что сделали это вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь moved.",
+              "uk": "Із yesterday тут moved."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i09:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что сделали это вчера.",
+            "feedbackByLocale": {
+              "ru": "Для прошлого нужна moved.",
+              "uk": "Для минулого потрібна moved."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:word:brightness",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — brightness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:word:brightness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — brightness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:word:brightness:audio",
+          "transcript": "brightness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:word:brightness:r1",
+            "targetText": "brightness",
+            "meaningByLocale": {
+              "ru": "Яркость.",
+              "uk": "Яскравість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brightness",
+          "definitionByLocale": {
+            "ru": "Яркость.",
+            "uk": "Яскравість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажите, что яркий свет мешает.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажите, что яркий свет мешает.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The brightness bothers me.",
+        "localizedMeaning": {
+          "ru": "Скажите, что яркий свет мешает.",
+          "uk": "Скажіть, що яскраве світло заважає."
+        },
+        "orderedTokens": [
+          "The",
+          "brightness",
+          "bothers",
+          "me"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите немного передвинуть лампу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i11:audio"
+      ],
+      "accessibilityLabel": "Попросите немного передвинуть лампу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i11:audio",
+          "transcript": "Could you move the lamp a little?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you move the lamp a little?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы сели бы здесь при более мягком свете.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-42:i12:r1",
+          "text": "sit"
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i12:r2",
+          "text": "sat"
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i12:r3",
+          "text": "to sit"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы сели бы здесь при более мягком свете.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы сели бы здесь при более мягком свете.",
+          "uk": "Ви сіли б тут за м’якшого світла."
+        },
+        "gappedTargetPhrase": "I would ___ here if the light were softer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-42:i12:r1",
+            "text": "sit"
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i12:r2",
+            "text": "sat"
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i12:r3",
+            "text": "to sit"
+          }
+        ],
+        "testedDimension": "Вы сели бы здесь при более мягком свете.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-42:i12:r2",
+            "correct": false,
+            "testedDimension": "Вы сели бы здесь при более мягком свете.",
+            "feedbackByLocale": {
+              "ru": "После would нужна sit.",
+              "uk": "Після would потрібна sit."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i12:r3",
+            "correct": false,
+            "testedDimension": "Вы сели бы здесь при более мягком свете.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте, что вторую лампу уже выключили.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Услышьте, что вторую лампу уже выключили.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i13:audio",
+          "transcript": "I have already turned the other lamp off."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I have already turned the other lamp off.",
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "turned",
+          "the",
+          "other",
+          "lamp",
+          "off"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Узнайте, удобно ли другому человеку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Узнайте, удобно ли другому человеку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i14:audio",
+          "transcript": "Are you comfortable there?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Are you comfortable there?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-42:i15:r1",
+          "text": "This chair is close to the window."
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i15:r2",
+          "text": "This chair is close to the door."
+        },
+        {
+          "responseId": "en:lesson-27:session-42:i15:r3",
+          "text": "That chair is close to the window."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i15:audio",
+          "transcript": "This chair is close to the window."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-42:i15:r1",
+            "targetText": "This chair is close to the window.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i15:r2",
+            "targetText": "This chair is close to the door.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i15:r3",
+            "targetText": "That chair is close to the window.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-42:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chair is close to the window.",
+              "uk": "У записі звучить This chair is close to the window."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-42:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chair is close to the window.",
+              "uk": "У записі звучить This chair is close to the window."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we had more space, we would put the chair there.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we had more space, we would put the chair there.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would put the chair there if we had more space.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we had more space, we would put the chair there.",
+          "uk": "Почніть із результату: If we had more space, we would put the chair there."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "put",
+          "the",
+          "chair",
+          "there",
+          "if",
+          "we",
+          "had",
+          "more",
+          "space"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-42:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите книгу с полки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Попросите книгу с полки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-42:i17:audio",
+          "transcript": "Could you get my book from the shelf?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you get my book from the shelf?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6e0b96fdaefc323f6eb3a530db3362ed3408dbfa04c51adbf093589082405f28"
+}

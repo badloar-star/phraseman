@@ -209,7 +209,8 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   }, [go, headerH, winW]);
 
   const gesture = useMemo(() => {
-    const tap = Gesture.Tap().maxDuration(250).onEnd((e, ok) => { if (ok) runOnJS(onTapAt)(e.x, e.y); });
+    // зачем (аудит Optimistic UI 24.10): тап короче удержания. Раньше tap=250 мс > hold=220 мс: отпустил на 230 мс — и пауза, и перелистывание сразу после неё; теперь «дольше STORY_HOLD_MS» — только удержание
+    const tap = Gesture.Tap().maxDuration(STORY_HOLD_MS - 30).onEnd((e, ok) => { if (ok) runOnJS(onTapAt)(e.x, e.y); });
     const hold = Gesture.LongPress().minDuration(STORY_HOLD_MS).maxDistance(24)
       .onStart(() => { runOnJS(setHold)(true); })
       .onFinalize(() => { runOnJS(setHold)(false); });

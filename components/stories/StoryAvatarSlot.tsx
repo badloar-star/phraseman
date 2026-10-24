@@ -8,8 +8,8 @@
 // Холодный старт (координатор 14.10): StoryRing (Svg + Reanimated) и StoryViewer (жесты, Modal, слайды) подключаются через require ВНУТРИ функций — только когда кольцо нужно (есть непросмотренное)
 // или человек тапнул по аватару с событиями. Флаг выключен / событий нет → слот не грузит ни одного модуля сторис, кроме лёгких констант, строк и хука данных.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
-import { TouchableOpacity, View, type GestureResponderEvent, type ImageSourcePropType } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { InteractionManager, TouchableOpacity, View, type GestureResponderEvent, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import type { Lang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
@@ -68,6 +68,15 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   // сначала непросмотренные (кольцо горит), иначе все живые от старых к новым (список Ядра — новые первыми, поэтому переворачиваем); в профиль тап ведёт только когда историй нет (или флаг выключен).
   const queue = useMemo<StoryEventList>(() => (ring ? playback : enabled ? [...stories].reverse() : []), [enabled, playback, ring, stories]);
   const opensStories = queue.length > 0;
+  // зачем (аудит Optimistic UI 24.10, п.2 «кольцо открывает истории сразу»): просмотр подключается лениво (холодный старт), и первое нажатие платило за загрузку Reanimated-жестов — задержка перед раскрытием.
+  // Пока есть что смотреть, прогреваем модуль после первых взаимодействий, вне пути запуска; require кэшируется, повторный вызов бесплатен.
+  useEffect(() => {
+    if (!opensStories) return;
+    const task = InteractionManager.runAfterInteractions(() => {
+      try { loadStoryViewer(); } catch (error: unknown) { DebugLogger.warn(LOG, `прогрев StoryViewer не удался: ${String(error)}`); }
+    });
+    return () => { task.cancel(); };
+  }, [opensStories]);
   // зачем (владелец 24.10: «истории должны открываться»; правило «сперва логи»): почему кольцо есть или его нет — флаг, число непросмотренных, очередь просмотра и живых событий; одной строкой на изменение
   const decisionKey = `${String(enabled)}|${unseenCount}|${playback.length}|${stories.length}|${String(ring)}|${queue.length}`;
   const decisionLoggedRef = useRef('');

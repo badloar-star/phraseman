@@ -19,6 +19,8 @@ jest.mock('react-native', () => ({
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },
   NativeModules: {},
   AccessibilityInfo: { isScreenReaderEnabled: () => Promise.resolve(false) },
+  // зачем (аудит Optimistic UI 24.10): слот аватара прогревает модуль просмотра после первых взаимодействий
+  InteractionManager: { runAfterInteractions: (cb: () => void) => { cb(); return { cancel: () => undefined }; } },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }),
 }));
 jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Circle: 'Circle', Defs: 'Defs', LinearGradient: 'LinearGradient', Stop: 'Stop' }));

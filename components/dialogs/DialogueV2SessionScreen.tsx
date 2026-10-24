@@ -37,6 +37,8 @@ import { glassTone } from './glass/glassTone';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
+import { DialogSayHints } from './hints/DialogSayHints';
+import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import DialogWhySheet from './DialogWhySheet';
 import { useDialogInputLayoutTrace } from './glass/useDialogInputLayoutTrace';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
@@ -153,6 +155,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   goal?: Readonly<{ kicker: string; label: string }> | null;
   /** Текст окна «Подсказка». */
   hintText?: string | null;
+  /** «Можно сказать…» над полем ввода: 1–3 фразы на изучаемом языке со смыслом (владелец 24.10 «постоянно должны быть подсказки»). */
+  sayHints?: readonly DialogSayHint[];
   translatedIds?: ReadonlySet<string>;
   onToggleTranslation?: (messageId: string) => void;
   whyTarget?: DialogueV2WhyTarget | null;
@@ -197,6 +201,7 @@ export type DialogueV2SessionScreenProps = Readonly<{
 }>;
 
 const EMPTY_SET: ReadonlySet<string> = new Set<string>();
+const NO_SAY_HINTS: readonly DialogSayHint[] = Object.freeze([]);
 
 /** Design 2.0 text-chat surface; session authority lives in the route, not here. */
 export function DialogueV2SessionScreen({
@@ -217,6 +222,7 @@ export function DialogueV2SessionScreen({
   showEnergy = false,
   goal = null,
   hintText = null,
+  sayHints = NO_SAY_HINTS,
   translatedIds = EMPTY_SET,
   onToggleTranslation,
   whyTarget = null,
@@ -554,6 +560,8 @@ export function DialogueV2SessionScreen({
         ) : null}
         {bottom === 'input' ? (
           <View ref={inputTrace.barRef} collapsable={false} onLayout={inputTrace.onBarLayout} style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
+            {/* зачем (владелец 24.10 через координатора): «Можно сказать…» всегда над полем; тап кладёт фразу в черновик, отправляет человек сам */}
+            <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy || inputLocked} testID="dialogue-v2-session-say-hints" />
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <Pressable
                 onPressIn={onStartVoice}

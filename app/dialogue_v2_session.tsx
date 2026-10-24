@@ -27,6 +27,7 @@ import {
   type DialogueV2TurnFailureReason,
 } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
+import { dialogueV2ScenarioSayHints } from './dialogue_v2_say_hints_pick';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { markDialogueV2Done } from './dialogue_v2_done_store';
 import { markDialogueV2DoneToday } from './dialogue_v2_day_mark';
@@ -945,6 +946,8 @@ function SessionContent() {
       } : null}
       // зачем (dialogs-015/017): подсказка — только из разбора хода; подмена текстом цели дублировала карточку цели.
       hintText={coaching.hint ?? null}
+      // зачем (владелец 24.10): «Можно сказать…» по текущей цели шага, из локального набора — без сети
+      sayHints={dialogueV2ScenarioSayHints({ studyTarget: String(studyTarget), objectiveLabel: currentObjective?.label ?? null, interfaceLang: lang })}
       translatedIds={coaching.translatedIds}
       onToggleTranslation={coaching.toggleTranslation}
       whyTarget={whyMessage && whyMessage.explanation ? {

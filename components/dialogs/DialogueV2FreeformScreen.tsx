@@ -10,6 +10,8 @@ import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_me
 import type { Lang } from '../../constants/i18n';
 import { DialogueGlassSysError, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
+import { DialogSayHints } from './hints/DialogSayHints';
+import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import {
   DialogueGlassBubble,
   DialogueGlassBubbleText,
@@ -64,7 +66,11 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   voiceNotice?: string | null;
   /** R52: сбой хода — плашка с «Повторить» под лентой (как в сценарном диалоге), а не весь экран «недоступно». */
   turnError?: Readonly<{ message: string; retryLabel?: string; onRetry?: () => void }> | null;
+  /** «Можно сказать…» над полем ввода: 1–3 фразы на изучаемом языке со смыслом (владелец 24.10 «постоянно должны быть подсказки»). */
+  sayHints?: readonly DialogSayHint[];
 }>;
+
+const NO_SAY_HINTS: readonly DialogSayHint[] = Object.freeze([]);
 
 /** A dedicated V2 freeform surface, deliberately separate from scenario sessions. */
 export function DialogueV2FreeformScreen({
@@ -87,6 +93,7 @@ export function DialogueV2FreeformScreen({
   voiceUnavailable = false,
   voiceNotice = null,
   turnError = null,
+  sayHints = NO_SAY_HINTS,
 }: DialogueV2FreeformScreenProps) {
   const glass = useDialogueGlass();
   const voiceBusy = voiceStatus !== 'idle';
@@ -155,6 +162,8 @@ export function DialogueV2FreeformScreen({
         </ScrollView>
 
         <View style={[styles.composer, { backgroundColor: glass.bg }]}>
+          {/* зачем (владелец 24.10 через координатора): «Можно сказать…» всегда над полем; тап кладёт фразу в черновик, отправляет человек сам */}
+          <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy} testID="dialogue-v2-freeform-say-hints" />
           <View style={styles.composerRow}>
             <Pressable
               onPressIn={onStartVoice}

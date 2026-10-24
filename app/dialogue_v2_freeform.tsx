@@ -16,6 +16,7 @@ import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { triLang } from '../constants/i18n';
 import AiDialogConsentGate, { useAiDialogConsentAskAgain } from './ai_dialog_consent_gate';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
+import { dialogueV2FreeformSayHints } from './dialogue_v2_say_hints_pick';
 import {
   requestDialogueV2FreeformPreparedBotVoice,
   sendDialogueV2FreeformTurn,
@@ -575,5 +576,11 @@ function DialogueV2FreeformContent() {
     );
   }
 
-  return <DialogueV2FreeformScreen title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
+  // зачем (владелец 24.10): фразы «Можно сказать…» по числу своих реплик — привет → о себе → поддержать разговор
+  const sayHints = dialogueV2FreeformSayHints({
+    studyTarget: String(studyTarget),
+    learnerTurnsSent: messages.reduce((count, message) => (message.author === 'learner' ? count + 1 : count), 0),
+    interfaceLang: lang,
+  });
+  return <DialogueV2FreeformScreen sayHints={sayHints} title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

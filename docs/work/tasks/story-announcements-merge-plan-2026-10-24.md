@@ -34,3 +34,7 @@ Owner: 2 · ДИЗАЙН
 ## Rollback
 Пакет — отдельным коммитом поверх моих правок; откат одним revert.
 Governance-ID: TG-461B68155700
+
+Governance-ID: TG-CE824FF14FF3
+
+Governance-ID: TG-C2D5FFD08AD4

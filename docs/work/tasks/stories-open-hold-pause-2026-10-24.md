@@ -25,3 +25,5 @@ Owner: 2 · ДИЗАЙН
 ## Rollback
 Откат коммитов просмотрщика; данные историй не менялись.
 Governance-ID: TG-9BD2E650F0CF
+
+Governance-ID: TG-990B63318072

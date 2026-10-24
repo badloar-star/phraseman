@@ -1,0 +1,1000 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-46",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-46:word:incomplete",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — incomplete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:word:incomplete:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — incomplete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:word:incomplete:audio",
+          "transcript": "incomplete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:word:incomplete:r1",
+            "targetText": "incomplete",
+            "meaningByLocale": {
+              "ru": "Неполный, незавершённый.",
+              "uk": "Неповний, незавершений."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "incomplete",
+          "definitionByLocale": {
+            "ru": "Неполный, незавершённый.",
+            "uk": "Неповний, незавершений."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, что набор неполный.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, что набор неполный.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The set is incomplete.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что набор неполный.",
+          "uk": "Повідомте, що набір неповний."
+        },
+        "orderedTokens": [
+          "The",
+          "set",
+          "is",
+          "incomplete"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-46:i02:r1",
+          "text": "One part is missing."
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i02:r2",
+          "text": "Two parts are missing."
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i02:r3",
+          "text": "One part is broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i02:audio",
+          "transcript": "One part is missing."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:i02:r1",
+            "targetText": "One part is missing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i02:r2",
+            "targetText": "Two parts are missing.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i02:r3",
+            "targetText": "One part is broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит One part is missing.",
+              "uk": "У записі звучить One part is missing."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит One part is missing.",
+              "uk": "У записі звучить One part is missing."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i03",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите проверить коробку ещё раз.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i03:audio"
+      ],
+      "accessibilityLabel": "Попросите проверить коробку ещё раз.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i03:audio",
+          "transcript": "Could you check the box again?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you check the box again?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы уже проверили все детали.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-46:i04:r1",
+          "text": "checked"
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i04:r2",
+          "text": "check"
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i04:r3",
+          "text": "checking"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы уже проверили все детали.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы уже проверили все детали.",
+          "uk": "Ви вже перевірили всі деталі."
+        },
+        "gappedTargetPhrase": "I have already ___ the parts.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-46:i04:r1",
+            "text": "checked"
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i04:r2",
+            "text": "check"
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i04:r3",
+            "text": "checking"
+          }
+        ],
+        "testedDimension": "Вы уже проверили все детали.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-46:i04:r2",
+            "correct": false,
+            "testedDimension": "Вы уже проверили все детали.",
+            "feedbackByLocale": {
+              "ru": "После have здесь checked.",
+              "uk": "Після have тут checked."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i04:r3",
+            "correct": false,
+            "testedDimension": "Вы уже проверили все детали.",
+            "feedbackByLocale": {
+              "ru": "Здесь have checked.",
+              "uk": "Тут have checked."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:word:unreadable",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unreadable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:word:unreadable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unreadable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:word:unreadable:audio",
+          "transcript": "unreadable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:word:unreadable:r1",
+            "targetText": "unreadable",
+            "meaningByLocale": {
+              "ru": "Такой, что невозможно прочитать.",
+              "uk": "Такий, що неможливо прочитати."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unreadable",
+          "definitionByLocale": {
+            "ru": "Такой, что невозможно прочитать.",
+            "uk": "Такий, що неможливо прочитати."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте проблему с инструкцией.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте проблему с инструкцией.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i05:audio",
+          "transcript": "The instructions are unreadable."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The instructions are unreadable.",
+        "orderedTokens": [
+          "The",
+          "instructions",
+          "are",
+          "unreadable"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите другой экземпляр инструкции.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Попросите другой экземпляр инструкции.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i06:audio",
+          "transcript": "Could I have another copy?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could I have another copy?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хотелось бы более чёткой печати.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-46:i07:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хотелось бы более чёткой печати.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хотелось бы более чёткой печати.",
+          "uk": "Хотілося б чіткішого друку."
+        },
+        "gappedTargetPhrase": "I wish the print ___ clearer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-46:i07:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Хотелось бы более чёткой печати.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-46:i07:r2",
+            "correct": false,
+            "testedDimension": "Хотелось бы более чёткой печати.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i07:r3",
+            "correct": false,
+            "testedDimension": "Хотелось бы более чёткой печати.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:word:unsuitable",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unsuitable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:word:unsuitable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unsuitable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:word:unsuitable:audio",
+          "transcript": "unsuitable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:word:unsuitable:r1",
+            "targetText": "unsuitable",
+            "meaningByLocale": {
+              "ru": "Неподходящий для определённой цели.",
+              "uk": "Непридатний для певної мети."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unsuitable",
+          "definitionByLocale": {
+            "ru": "Неподходящий для определённой цели.",
+            "uk": "Непридатний для певної мети."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-46:i08:r1",
+          "text": "This shelf is unsuitable for our bathroom."
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i08:r2",
+          "text": "This shelf is unsuitable for our kitchen."
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i08:r3",
+          "text": "That shelf is unsuitable for our bathroom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i08:audio",
+          "transcript": "This shelf is unsuitable for our bathroom."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:i08:r1",
+            "targetText": "This shelf is unsuitable for our bathroom.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i08:r2",
+            "targetText": "This shelf is unsuitable for our kitchen.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i08:r3",
+            "targetText": "That shelf is unsuitable for our bathroom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This shelf is unsuitable for our bathroom.",
+              "uk": "У записі звучить This shelf is unsuitable for our bathroom."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This shelf is unsuitable for our bathroom.",
+              "uk": "У записі звучить This shelf is unsuitable for our bathroom."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, можно ли вернуть покупку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Уточните, можно ли вернуть покупку.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i09:audio",
+          "transcript": "Can I return it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I return it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Сообщите, когда открыли коробку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сообщите, когда открыли коробку.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I opened the box yesterday.",
+        "localizedMeaning": {
+          "ru": "Сообщите, когда открыли коробку.",
+          "uk": "Повідомте, коли відкрили коробку."
+        },
+        "orderedTokens": [
+          "I",
+          "opened",
+          "the",
+          "box",
+          "yesterday"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу продавца показать чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу продавца показать чек.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i11:audio",
+          "transcript": "Could I see your receipt?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could I see your receipt?",
+        "orderedTokens": [
+          "Could",
+          "I",
+          "see",
+          "your",
+          "receipt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:word:unusable",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unusable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:word:unusable:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unusable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:word:unusable:audio",
+          "transcript": "unusable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:word:unusable:r1",
+            "targetText": "unusable",
+            "meaningByLocale": {
+              "ru": "Непригодный к использованию.",
+              "uk": "Непридатний до використання."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unusable",
+          "definitionByLocale": {
+            "ru": "Непригодный к использованию.",
+            "uk": "Непридатний до використання."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что полкой пока нельзя пользоваться.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что полкой пока нельзя пользоваться.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The shelf is unusable without that part.",
+        "localizedMeaning": {
+          "ru": "Объясните, что полкой пока нельзя пользоваться.",
+          "uk": "Поясніть, що полицею поки не можна користуватися."
+        },
+        "orderedTokens": [
+          "The",
+          "shelf",
+          "is",
+          "unusable",
+          "without",
+          "that",
+          "part"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i13",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите прислать недостающую деталь.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Попросите прислать недостающую деталь.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i13:audio",
+          "transcript": "Could you send the missing part?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you send the missing part?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посоветуйте сохранить чек.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-46:i14:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i14:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i14:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посоветуйте сохранить чек.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте сохранить чек.",
+          "uk": "Порадьте зберегти чек."
+        },
+        "gappedTargetPhrase": "If I ___ you, I would keep the receipt.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-46:i14:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i14:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Посоветуйте сохранить чек.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-46:i14:r2",
+            "correct": false,
+            "testedDimension": "Посоветуйте сохранить чек.",
+            "feedbackByLocale": {
+              "ru": "Совет: If I were you.",
+              "uk": "Порада: If I were you."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i14:r3",
+            "correct": false,
+            "testedDimension": "Посоветуйте сохранить чек.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции were.",
+              "uk": "У цій конструкції were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-46:i15:r1",
+          "text": "The replacement will arrive on Friday."
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i15:r2",
+          "text": "The replacement will arrive on Monday."
+        },
+        {
+          "responseId": "en:lesson-27:session-46:i15:r3",
+          "text": "The replacement arrived on Friday."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i15:audio",
+          "transcript": "The replacement will arrive on Friday."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-46:i15:r1",
+            "targetText": "The replacement will arrive on Friday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i15:r2",
+            "targetText": "The replacement will arrive on Monday.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i15:r3",
+            "targetText": "The replacement arrived on Friday.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-46:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The replacement will arrive on Friday.",
+              "uk": "У записі звучить The replacement will arrive on Friday."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-46:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The replacement will arrive on Friday.",
+              "uk": "У записі звучить The replacement will arrive on Friday."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с условия: We would keep the shelf if it were suitable.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с условия: We would keep the shelf if it were suitable.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "If it were suitable, we would keep the shelf.",
+        "localizedMeaning": {
+          "ru": "Начните с условия: We would keep the shelf if it were suitable.",
+          "uk": "Почніть з умови: We would keep the shelf if it were suitable."
+        },
+        "orderedTokens": [
+          "If",
+          "it",
+          "were",
+          "suitable,",
+          "we",
+          "would",
+          "keep",
+          "the",
+          "shelf"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите пока поставить книги на стол.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-46:i17:audio"
+      ],
+      "accessibilityLabel": "Предложите пока поставить книги на стол.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-46:i17:audio",
+          "transcript": "Shall we put the books on the table for now?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Shall we put the books on the table for now?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "99abbe6d29ef17ebe6ea9ec58b2984333eb7ea80a1328b21f1329f71a5400bf7"
+}

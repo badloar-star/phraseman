@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-46:word:incomplete",
+    "correctText": "incomplete",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i01",
+    "correctText": "The set is incomplete.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i02",
+    "correctText": "One part is missing.",
+    "correctResponseId": "en:lesson-27:session-46:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i03",
+    "correctText": "Could you check the box again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i04",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-27:session-46:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:word:unreadable",
+    "correctText": "unreadable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i05",
+    "correctText": "The instructions are unreadable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i06",
+    "correctText": "Could I have another copy?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i07",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-46:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:word:unsuitable",
+    "correctText": "unsuitable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i08",
+    "correctText": "This shelf is unsuitable for our bathroom.",
+    "correctResponseId": "en:lesson-27:session-46:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i09",
+    "correctText": "Can I return it?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i10",
+    "correctText": "I opened the box yesterday.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i11",
+    "correctText": "Could I see your receipt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:word:unusable",
+    "correctText": "unusable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i12",
+    "correctText": "The shelf is unusable without that part.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i13",
+    "correctText": "Could you send the missing part?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i14",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-46:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i15",
+    "correctText": "The replacement will arrive on Friday.",
+    "correctResponseId": "en:lesson-27:session-46:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i16",
+    "correctText": "If it were suitable, we would keep the shelf.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-46:i17",
+    "correctText": "Shall we put the books on the table for now?",
+    "correctResponseId": null
+  }
+]

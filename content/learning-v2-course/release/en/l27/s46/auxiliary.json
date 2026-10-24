@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-46",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-46:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-46:intro1:r2": {
+          "ru": "С yesterday здесь opened без have.",
+          "uk": "Із yesterday тут opened без have."
+        },
+        "en:lesson-27:session-46:intro1:r3": {
+          "ru": "Нужна форма opened.",
+          "uk": "Потрібна форма opened."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-46:intro2:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-27:session-46:intro2:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-46:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-46:intro3:r2": {
+          "ru": "После would нужна keep.",
+          "uk": "Після would потрібна keep."
+        },
+        "en:lesson-27:session-46:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c9d5d0c8c1e8c4a65c3e15c7000c0572313715b4a6ebd214a11b98dab964f42a"
+}

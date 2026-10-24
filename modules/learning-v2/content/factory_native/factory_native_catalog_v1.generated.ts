@@ -10514,4 +10514,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; if I were; present perfect / past simple; unreal condition","uk":"wish + past; if I were; present perfect / past simple; unreal condition"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 46,
+    sourceFingerprint: "604e65905afb4ae2b0e155fc311384e4b1511691751b878e2f354428b7f74478",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"present perfect / past simple; wish + past; if I were; unreal condition","uk":"present perfect / past simple; wish + past; if I were; unreal condition"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+  }),
 ]);

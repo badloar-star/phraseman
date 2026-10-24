@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-49",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-49:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-49:intro1:r2": {
+          "ru": "О прошлом здесь говорим made.",
+          "uk": "Про минуле тут говоримо made."
+        },
+        "en:lesson-27:session-49:intro1:r3": {
+          "ru": "Нужна форма made.",
+          "uk": "Потрібна форма made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-49:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-49:intro2:r2": {
+          "ru": "После wish здесь had.",
+          "uk": "Після wish тут had."
+        },
+        "en:lesson-27:session-49:intro2:r3": {
+          "ru": "Нужна форма had.",
+          "uk": "Потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-49:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-49:intro3:r2": {
+          "ru": "С ago здесь checked без have.",
+          "uk": "Із ago тут checked без have."
+        },
+        "en:lesson-27:session-49:intro3:r3": {
+          "ru": "Нужна форма checked.",
+          "uk": "Потрібна форма checked."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "82d28a656667eda46007eb8b8f2d1cf78f98d7268595b7177b36c044545fbfc5"
+}

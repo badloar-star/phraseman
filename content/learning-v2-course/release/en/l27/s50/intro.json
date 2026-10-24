@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заметить успех",
+        "uk": "Помітити успіх"
+      },
+      "bodyByLocale": {
+        "ru": "Accomplishment — достижение, то, что удалось сделать благодаря усилиям. Learning to swim was a real accomplishment — научиться плавать было настоящим достижением. Вы разговариваете с другом после занятия. Steadily — постепенно и устойчиво, без резких скачков. You are improving steadily — ты постепенно становишься лучше. Здесь речь о постепенном улучшении навыка, а не о скорости плавания.",
+        "uk": "Accomplishment — досягнення, те, що вдалося зробити завдяки зусиллям. Learning to swim was a real accomplishment — навчитися плавати було справжнім досягненням. Ви розмовляєте з другом після заняття. Steadily — поступово й стабільно, без різких стрибків. You are improving steadily — ти поступово стаєш кращим. Тут ідеться про поступове поліпшення навички, а не про швидкість плавання."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-50:intro1:r1",
+              "text": "You are improving steadily."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro1:r2",
+              "text": "You is improving steadily."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro1:r3",
+              "text": "You improving steadily."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-50:intro1:r1",
+              "text": "You are improving steadily."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro1:r2",
+              "text": "You is improving steadily."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro1:r3",
+              "text": "You improving steadily."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Продолжать без спешки",
+        "uk": "Продовжувати без поспіху"
+      },
+      "bodyByLocale": {
+        "ru": "Persistence — настойчивость, продолжение попыток, когда не всё получается сразу. It takes persistence — для этого нужна настойчивость. I wish I felt more confident — хотелось бы чувствовать себя увереннее. Felt после wish выражает желание сейчас, а не вчерашнее чувство. If I were you, I would ask the instructor — на твоём месте я бы спросил инструктора. Во время занятия можно попросить: Could you show me again? — можешь показать мне ещё раз?",
+        "uk": "Persistence — наполегливість, продовження спроб, коли не все виходить одразу. It takes persistence — для цього потрібна наполегливість. I wish I felt more confident — хотілося б почуватися впевненіше. Felt після wish виражає бажання зараз, а не вчорашнє відчуття. If I were you, I would ask the instructor — на твоєму місці я б запитав інструктора. Під час заняття можна попросити: Could you show me again? — можеш показати мені ще раз?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-50:intro2:r1",
+              "text": "I wish I felt more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro2:r2",
+              "text": "I wish I feel more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro2:r3",
+              "text": "I wish I feeling more confident."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-50:intro2:r1",
+              "text": "I wish I felt more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro2:r2",
+              "text": "I wish I feel more confident."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro2:r3",
+              "text": "I wish I feeling more confident."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Поддержать друга",
+        "uk": "Підтримати друга"
+      },
+      "bodyByLocale": {
+        "ru": "Dedication — увлечённость делом и готовность уделять ему силы и время. I admire your dedication — я восхищаюсь твоей увлечённостью. Вы замечаете, что друг регулярно ходит на занятия. I have already booked the next lesson — я уже записался на следующее занятие. I booked it yesterday — я записался вчера. В первом случае важен результат сейчас; во втором названо законченное время. We would practise together if our lessons were on the same day — мы бы занимались вместе, если бы наши занятия были в один день.",
+        "uk": "Dedication — захопленість справою й готовність приділяти їй сили та час. I admire your dedication — я захоплююся твоєю відданістю справі. Ви помічаєте, що друг регулярно ходить на заняття. I have already booked the next lesson — я вже записався на наступне заняття. I booked it yesterday — я записався вчора. У першому випадку важливий результат зараз; у другому названо завершений час. We would practise together if our lessons were on the same day — ми б займалися разом, якби наші заняття були в один день."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-50:intro3:r1",
+              "text": "I booked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro3:r2",
+              "text": "I have booked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro3:r3",
+              "text": "I booking it yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-50:intro3:r1",
+              "text": "I booked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro3:r2",
+              "text": "I have booked it yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-50:intro3:r3",
+              "text": "I booking it yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2d813ff8bbbde377374c56c587e0e2911a58a4e7a965073ef25f9c5cef324e50"
+}

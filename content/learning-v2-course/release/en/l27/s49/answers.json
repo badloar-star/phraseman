@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-49:word:expectation",
+    "correctText": "expectation",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i01",
+    "correctText": "That was my expectation.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i02",
+    "correctText": "How far are we walking?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i03",
+    "correctText": "It takes about an hour.",
+    "correctResponseId": "en:lesson-27:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:word:assumption",
+    "correctText": "assumption",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i04",
+    "correctText": "I made the wrong assumption.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i05",
+    "correctText": "Could we stop for a few minutes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i06",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-49:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i07",
+    "correctText": "Is there a shorter way back?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:word:perspective",
+    "correctText": "perspective",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i08",
+    "correctText": "I can see your perspective.",
+    "correctResponseId": "en:lesson-27:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i09",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-49:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i10",
+    "correctText": "I would like to get back before dark.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:word:unexpectedly",
+    "correctText": "unexpectedly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i11",
+    "correctText": "It started raining unexpectedly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i12",
+    "correctText": "Shall we wait under the roof?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i13",
+    "correctText": "checked",
+    "correctResponseId": "en:lesson-27:session-49:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i14",
+    "correctText": "The next bus leaves in twenty minutes.",
+    "correctResponseId": "en:lesson-27:session-49:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i15",
+    "correctText": "I have already checked the bus times.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i16",
+    "correctText": "We would get home sooner if we took the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-49:i17",
+    "correctText": "Are you happy with that plan?",
+    "correctResponseId": null
+  }
+]

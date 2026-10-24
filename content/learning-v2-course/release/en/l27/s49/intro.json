@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить ожидания",
+        "uk": "Уточнити очікування"
+      },
+      "bodyByLocale": {
+        "ru": "Expectation — ожидание: то, что, по вашему мнению, должно произойти. That was my expectation — именно этого я ожидал. Вы думали, что прогулка будет короткой. Assumption — предположение, принятое без проверки. I made the wrong assumption — я сделал неверное предположение. Друг не обещал короткий маршрут: вы просто так решили. Теперь можно спросить: How far are we walking? — как далеко мы идём пешком?",
+        "uk": "Expectation — очікування: те, що, на вашу думку, має статися. That was my expectation — саме цього я очікував. Ви думали, що прогулянка буде короткою. Assumption — припущення, прийняте без перевірки. I made the wrong assumption — я зробив хибне припущення. Друг не обіцяв короткого маршруту: ви просто так вирішили. Тепер можна запитати: How far are we walking? — як далеко ми йдемо пішки?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-49:intro1:r1",
+              "text": "I made the wrong assumption."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro1:r2",
+              "text": "I make the wrong assumption yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro1:r3",
+              "text": "I making the wrong assumption."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-49:intro1:r1",
+              "text": "I made the wrong assumption."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro1:r2",
+              "text": "I make the wrong assumption yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro1:r3",
+              "text": "I making the wrong assumption."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Понять друг друга",
+        "uk": "Зрозуміти одне одного"
+      },
+      "bodyByLocale": {
+        "ru": "Perspective — взгляд на ситуацию, точка зрения. I can see your perspective — я понимаю твою точку зрения. Друг хотел долгой прогулки, а вы устали и хотите поскорее вернуться. I wish I had more energy — хотелось бы, чтобы у меня было больше сил. Had после wish выражает желание сейчас. If I were you, I would take a break — на твоём месте я бы сделал перерыв. Можно предложить решение без спора о том, кто прав.",
+        "uk": "Perspective — погляд на ситуацію, точка зору. I can see your perspective — я розумію твою точку зору. Друг хотів довгої прогулянки, а ви втомилися й хочете швидше повернутися. I wish I had more energy — хотілося б, щоб я мав більше сил. Had після wish виражає бажання зараз. If I were you, I would take a break — на твоєму місці я б зробив перерву. Можна запропонувати рішення без суперечки про те, хто має рацію."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-49:intro2:r1",
+              "text": "I wish I had more energy."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro2:r2",
+              "text": "I wish I have more energy."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro2:r3",
+              "text": "I wish I having more energy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-49:intro2:r1",
+              "text": "I wish I had more energy."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro2:r2",
+              "text": "I wish I have more energy."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro2:r3",
+              "text": "I wish I having more energy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Изменить маршрут",
+        "uk": "Змінити маршрут"
+      },
+      "bodyByLocale": {
+        "ru": "Unexpectedly — неожиданно. It started raining unexpectedly — неожиданно начался дождь. I have already checked the bus times — я уже посмотрел расписание автобусов: результат важен сейчас. I checked them ten minutes ago — я посмотрел его десять минут назад: конкретное прошлое время. We would get home sooner if we took the bus — мы бы добрались домой быстрее, если бы поехали автобусом. Would get — результат, took — условие. Можно начать с условия: If we took the bus, we would get home sooner.",
+        "uk": "Unexpectedly — несподівано. It started raining unexpectedly — несподівано почався дощ. I have already checked the bus times — я вже подивився розклад автобусів: результат важливий зараз. I checked them ten minutes ago — я подивився його десять хвилин тому: конкретний минулий час. We would get home sooner if we took the bus — ми б дісталися додому швидше, якби поїхали автобусом. Would get — результат, took — умова. Можна почати з умови: If we took the bus, we would get home sooner."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-49:intro3:r1",
+              "text": "I checked them ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro3:r2",
+              "text": "I have checked them ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro3:r3",
+              "text": "I checking them ten minutes ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-49:intro3:r1",
+              "text": "I checked them ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro3:r2",
+              "text": "I have checked them ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-49:intro3:r3",
+              "text": "I checking them ten minutes ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d462733547158d0f1a4259c272a5365ab5558a6db7f8bb1301ac08c54cd2b120"
+}

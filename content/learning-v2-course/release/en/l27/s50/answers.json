@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-50:word:accomplishment",
+    "correctText": "accomplishment",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i01",
+    "correctText": "Learning to swim was a real accomplishment.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i02",
+    "correctText": "How was your lesson?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:word:steadily",
+    "correctText": "steadily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i03",
+    "correctText": "You are improving steadily.",
+    "correctResponseId": "en:lesson-27:session-50:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i04",
+    "correctText": "I have already booked the next lesson.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i05",
+    "correctText": "booked",
+    "correctResponseId": "en:lesson-27:session-50:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i06",
+    "correctText": "Could you show me again?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:word:persistence",
+    "correctText": "persistence",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i07",
+    "correctText": "It takes persistence.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i08",
+    "correctText": "felt",
+    "correctResponseId": "en:lesson-27:session-50:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i09",
+    "correctText": "The next lesson starts at half past five.",
+    "correctResponseId": "en:lesson-27:session-50:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i10",
+    "correctText": "How long does the lesson last?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:word:dedication",
+    "correctText": "dedication",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i11",
+    "correctText": "I admire your dedication.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i12",
+    "correctText": "Shall we take a short break?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i13",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-50:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i14",
+    "correctText": "Shall we walk to the bus stop together?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i15",
+    "correctText": "We would practise together if our lessons were on the same day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i16",
+    "correctText": "I can come on Tuesday instead.",
+    "correctResponseId": "en:lesson-27:session-50:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-50:i17",
+    "correctText": "Can we confirm the time tomorrow?",
+    "correctResponseId": null
+  }
+]

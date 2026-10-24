@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Багажник",
-        "uk": "Багажник"
+        "ru": "Закрыли багажник",
+        "uk": "Зачинили багажник"
       },
       "bodyByLocale": {
-        "ru": "Car boot — «багажник автомобиля», британское название. I closed the car boot — я закрыл багажник. Close → closed, окончание /d/. Выберите прошлое действие.",
-        "uk": "Car boot — «багажник автомобіля», британська назва. I closed the car boot — я закрив багажник. Close → closed, закінчення /d/. Виберіть минулу дію."
+        "ru": "Вчера после погрузки сумок вы закрыли багажник машины. Car boot — багажник автомобиля. Расскажите об этом действии: I closed the car boot — Я закрыл багажник. После I поставьте closed: у close уже есть e, поэтому для прошлого добавили -d. Окончание здесь звучит /d/. Затем назовите то, что закрыли: the car boot. The указывает на багажник вашей машины.",
+        "uk": "Учора після завантаження сумок ви зачинили багажник машини. Car boot — багажник автомобіля. Розкажіть про цю дію: I closed the car boot — Я зачинив багажник. Після I поставте closed: у close вже є e, тому для минулого додали -d. Закінчення тут звучить /d/. Потім назвіть те, що зачинили: the car boot. The вказує на багажник вашої машини."
       },
       "question": {
         "interactionId": "en:lesson-12:session-41:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Капот и зеркало",
-        "uk": "Капот і дзеркало"
+        "ru": "Сестра помыла капот",
+        "uk": "Сестра помила капот"
       },
       "bodyByLocale": {
-        "ru": "Car bonnet — «капот автомобиля», wing mirror — «боковое зеркало автомобиля». Оба названия британские. She washed the car bonnet — она помыла капот. Выберите сообщение о капоте.",
-        "uk": "Car bonnet — «капот автомобіля», wing mirror — «бічне дзеркало автомобіля». Обидві назви британські. She washed the car bonnet — вона помила капот. Виберіть повідомлення про капот."
+        "ru": "Вчера ваша сестра помыла испачканный капот машины. Car bonnet — капот автомобиля. Соберите сообщение о её действии: She + washed + the car bonnet. Получится She washed the car bonnet — Она помыла капот. Окончание -ed у washed показывает прошлое. После действия идёт предмет: the car bonnet. С she в прошлом нужна форма washed, а не начальная wash и не форма с -s.",
+        "uk": "Учора ваша сестра помила забруднений капот машини. Car bonnet — капот автомобіля. Складіть повідомлення про її дію: She + washed + the car bonnet. Вийде She washed the car bonnet — Вона помила капот. Закінчення -ed у washed показує минуле. Після дії йде предмет: the car bonnet. Із she в минулому потрібна форма washed, а не початкова wash і не форма з -s."
       },
       "question": {
         "interactionId": "en:lesson-12:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дверца машины",
-        "uk": "Дверцята машини"
+        "ru": "Закрыли тяжёлую дверцу вместе",
+        "uk": "Зачинили важкі дверцята разом"
       },
       "bodyByLocale": {
-        "ru": "Car door — «дверца автомобиля». We closed the car door — мы закрыли дверцу. Closed сообщает действие, was open — прежнее состояние. Выберите действие.",
-        "uk": "Car door — «дверцята автомобіля». We closed the car door — ми зачинили дверцята. Closed повідомляє дію, was open — колишній стан. Виберіть дію."
+        "ru": "Вчера вы с другом вместе закрыли тяжёлую дверцу машины. Car door — дверца автомобиля. Расскажите о вашем действии: We closed the car door — Мы закрыли дверцу машины. Начните с We, затем добавьте closed — форму close для прошлого, и назовите предмет: the car door. Closed сообщает, что вы сделали с дверцей. Поэтому здесь нужен глагол действия после We, а не описание состояния дверцы.",
+        "uk": "Учора ви з другом разом зачинили важкі дверцята машини. Car door — дверцята автомобіля. Розкажіть про вашу дію: We closed the car door — Ми зачинили дверцята машини. Почніть із We, потім додайте closed — форму close для минулого, і назвіть предмет: the car door. Closed повідомляє, що ви зробили з дверцятами. Тому тут потрібне дієслово дії після We, а не опис стану дверцят."
       },
       "question": {
         "interactionId": "en:lesson-12:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6e60ef3dd88961caf5a829ba6bc3fb58530d16e357d67661e02a32305f9a2ea7"
+  "introFingerprint": "30ed470e683365500f4336d1df6e05d1e0a25ef0a224d5b00c9581e5b50f53e5"
 }

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-47:word:unannounced",
+    "correctText": "unannounced",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i01",
+    "correctText": "Please do not come unannounced.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i02",
+    "correctText": "Would tomorrow afternoon suit you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i03",
+    "correctText": "I will be home after four.",
+    "correctResponseId": "en:lesson-27:session-47:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:word:uninvited",
+    "correctText": "uninvited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i04",
+    "correctText": "He arrived uninvited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i05",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-47:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i06",
+    "correctText": "May I bring a friend?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i07",
+    "correctText": "I have already made other plans.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:word:boundary",
+    "correctText": "boundary",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i08",
+    "correctText": "Please respect this boundary.",
+    "correctResponseId": "en:lesson-27:session-47:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i09",
+    "correctText": "Please knock before you come in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i10",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-47:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i11",
+    "correctText": "We can meet another day.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:word:unwelcome",
+    "correctText": "unwelcome",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i12",
+    "correctText": "A late visit would be unwelcome.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i13",
+    "correctText": "made",
+    "correctResponseId": "en:lesson-27:session-47:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i14",
+    "correctText": "Would Saturday morning be better?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i15",
+    "correctText": "That would be much better for me.",
+    "correctResponseId": "en:lesson-27:session-47:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i16",
+    "correctText": "If we chose a better time, we would enjoy the visit more.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-47:i17",
+    "correctText": "Thank you for understanding.",
+    "correctResponseId": null
+  }
+]

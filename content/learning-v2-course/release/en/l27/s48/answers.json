@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-48:word:tactful",
+    "correctText": "tactful",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i01",
+    "correctText": "That was a tactful reply.",
+    "correctResponseId": "en:lesson-27:session-48:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i02",
+    "correctText": "Could we talk for a minute?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i03",
+    "correctText": "The noise kept me awake.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:word:insensitive",
+    "correctText": "insensitive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i04",
+    "correctText": "That comment was insensitive.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i05",
+    "correctText": "I am sorry I woke you up.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i06",
+    "correctText": "turned",
+    "correctResponseId": "en:lesson-27:session-48:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i07",
+    "correctText": "I need to get up early tomorrow.",
+    "correctResponseId": "en:lesson-27:session-48:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:word:consideration",
+    "correctText": "consideration",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i08",
+    "correctText": "Please show some consideration.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i09",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-48:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i10",
+    "correctText": "I can finish the call in the kitchen.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i11",
+    "correctText": "Could you close the door quietly?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:word:peacefully",
+    "correctText": "peacefully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i12",
+    "correctText": "I slept peacefully last night.",
+    "correctResponseId": "en:lesson-27:session-48:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i13",
+    "correctText": "turned",
+    "correctResponseId": "en:lesson-27:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i14",
+    "correctText": "If I were you, I would use headphones.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i15",
+    "correctText": "Would that work for you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i16",
+    "correctText": "If the room were quieter, we would both sleep better.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-48:i17",
+    "correctText": "Shall we talk again tomorrow?",
+    "correctResponseId": null
+  }
+]

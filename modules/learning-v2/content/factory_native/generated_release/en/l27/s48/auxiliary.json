@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-48",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-48:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-48:intro1:r2": {
+          "ru": "Для прошлого нужна kept.",
+          "uk": "Для минулого потрібна kept."
+        },
+        "en:lesson-27:session-48:intro1:r3": {
+          "ru": "Здесь нужна форма kept.",
+          "uk": "Тут потрібна форма kept."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-48:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-48:intro2:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-27:session-48:intro2:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-48:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-48:intro3:r2": {
+          "ru": "С ago здесь turned без have.",
+          "uk": "Із ago тут turned без have."
+        },
+        "en:lesson-27:session-48:intro3:r3": {
+          "ru": "Нужна форма turned.",
+          "uk": "Потрібна форма turned."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9a504a4fe398854d5b05a9aa938397dfc6cd9dafcb5679087f971aa1d94e550c"
+}

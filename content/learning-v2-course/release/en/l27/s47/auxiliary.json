@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-47",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-47:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-47:intro1:r2": {
+          "ru": "После do not нужна come.",
+          "uk": "Після do not потрібна come."
+        },
+        "en:lesson-27:session-47:intro1:r3": {
+          "ru": "После do not используем начальную форму come.",
+          "uk": "Після do not використовуємо початкову форму come."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-47:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-47:intro2:r2": {
+          "ru": "После wish здесь had.",
+          "uk": "Після wish тут had."
+        },
+        "en:lesson-27:session-47:intro2:r3": {
+          "ru": "Нужна форма had.",
+          "uk": "Потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-47:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-47:intro3:r2": {
+          "ru": "С yesterday здесь made без have.",
+          "uk": "Із yesterday тут made без have."
+        },
+        "en:lesson-27:session-47:intro3:r3": {
+          "ru": "Нужна форма made.",
+          "uk": "Потрібна форма made."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f1a4ef5f3a2457fd4a072e4e0bd650c24cc3856ada7c2db5781043c6c9d7163a"
+}

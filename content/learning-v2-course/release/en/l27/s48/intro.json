@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбрать слова",
+        "uk": "Вибрати слова"
+      },
+      "bodyByLocale": {
+        "ru": "Tactful — тактичный: умеющий сказать что-то деликатно, не обижая зря. That was a tactful reply — это был тактичный ответ. Insensitive — нечуткий, не учитывающий чувства другого. That comment was insensitive — это замечание было нечутким. Вы обсуждаете поздний телефонный разговор, который разбудил соседа. Лучше назвать конкретную проблему: The noise kept me awake — шум не давал мне спать.",
+        "uk": "Tactful — тактовний: той, хто вміє сказати щось делікатно, не ображаючи даремно. That was a tactful reply — це була тактовна відповідь. Insensitive — нечутливий, неуважний до почуттів іншого. That comment was insensitive — це зауваження було нечутливим. Ви обговорюєте пізню телефонну розмову, яка розбудила сусіда. Краще назвати конкретну проблему: The noise kept me awake — шум не давав мені спати."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-48:intro1:r1",
+              "text": "The noise kept me awake."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro1:r2",
+              "text": "The noise keep me awake yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro1:r3",
+              "text": "The noise keeping me awake."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-48:intro1:r1",
+              "text": "The noise kept me awake."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro1:r2",
+              "text": "The noise keep me awake yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro1:r3",
+              "text": "The noise keeping me awake."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Учесть другого человека",
+        "uk": "Зважити на іншу людину"
+      },
+      "bodyByLocale": {
+        "ru": "Consideration — внимание к другим, учёт их потребностей. Please show some consideration — пожалуйста, подумай и о других. Так можно попросить человека учитывать чужие потребности. I wish the room were quieter at night — хотелось бы, чтобы ночью в комнате было тише. Were после wish описывает желаемое положение сейчас. If I were you, I would use headphones — на твоём месте я бы пользовался наушниками. Это предложение решения, а не запрет разговаривать вообще.",
+        "uk": "Consideration — увага до інших, урахування їхніх потреб. Please show some consideration — будь ласка, подумай і про інших. Так можна попросити людину враховувати чужі потреби. I wish the room were quieter at night — хотілося б, щоб уночі в кімнаті було тихіше. Were після wish описує бажане становище зараз. If I were you, I would use headphones — на твоєму місці я б користувався навушниками. Це пропозиція розв’язання, а не заборона розмовляти взагалі."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-48:intro2:r1",
+              "text": "I wish the room were quieter at night."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro2:r2",
+              "text": "I wish the room is quieter at night."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro2:r3",
+              "text": "I wish the room be quieter at night."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-48:intro2:r1",
+              "text": "I wish the room were quieter at night."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro2:r2",
+              "text": "I wish the room is quieter at night."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro2:r3",
+              "text": "I wish the room be quieter at night."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о вечере",
+        "uk": "Домовитися про вечір"
+      },
+      "bodyByLocale": {
+        "ru": "Peacefully — спокойно, мирно. I slept peacefully last night — прошлой ночью я спокойно спал. Это может описывать сон без шума и тревог. I have already turned the sound down — я уже убавил звук: результат сейчас. I turned it down an hour ago — я убавил его час назад: конкретное прошлое время. We would both sleep better if the room were quieter — мы оба спали бы лучше, если бы в комнате было тише. В условии were, в результате would sleep.",
+        "uk": "Peacefully — спокійно, мирно. I slept peacefully last night — минулої ночі я спокійно спав. Це може описувати сон без шуму й тривог. I have already turned the sound down — я вже зменшив звук: результат зараз. I turned it down an hour ago — я зменшив його годину тому: конкретний минулий час. We would both sleep better if the room were quieter — ми обоє спали б краще, якби в кімнаті було тихіше. В умові were, у результаті would sleep."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-48:intro3:r1",
+              "text": "I turned it down an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro3:r2",
+              "text": "I have turned it down an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro3:r3",
+              "text": "I turning it down an hour ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-48:intro3:r1",
+              "text": "I turned it down an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro3:r2",
+              "text": "I have turned it down an hour ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-48:intro3:r3",
+              "text": "I turning it down an hour ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7930f7da2805580c130a760dc8f3e00990c0ada7157748d58f6dc1afa2246f1a"
+}

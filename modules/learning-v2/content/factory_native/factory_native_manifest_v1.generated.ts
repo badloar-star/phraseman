@@ -9519,7 +9519,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 8,
-    sourceFingerprint: "4700244905ba6cf8bb74e05e1f3b07437c3f3ddef4090443f7cf990256b52100",
+    sourceFingerprint: "35981d192bda4bf08a83d063fc2b5deb18c6ccd3932af3c96761ba9c83105311",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После did нужна buy, не bought.","Eat — есть, а нужно купить."],["Это цельнозерновой хлеб.","После did нужна buy."],["После did нужна try.","Buy — купить, а нужно попробовать."]],"uk":[["Після did потрібна buy, не bought.","Eat — їсти, а потрібно купити."],["Це цільнозерновий хліб.","Після did потрібна buy."],["Після did потрібна try.","Buy — купити, а потрібно скуштувати."]]}),
@@ -9533,7 +9533,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 9,
-    sourceFingerprint: "31a061f79091b848dba240c689aee0a9bc56fea137bc9089bf13df7d564290c1",
+    sourceFingerprint: "8b2c2445d781ce002558a863e42f71c30179e30f7f2282ea54d8bf657e9b6ca7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Это сообщение о покупке, без отрицания.","После didn't нужна buy."],["Это о возврате долга.","После didn't нужна save."],["Здесь речь о возврате туфель в магазин.","После didn't нужна give."]],"uk":[["Це повідомлення про купівлю, без заперечення.","Після didn't потрібна buy."],["Це про повернення боргу.","Після didn't потрібна save."],["Тут ідеться про повернення туфель до крамниці.","Після didn't потрібна give."]]}),
@@ -9547,7 +9547,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 10,
-    sourceFingerprint: "ddc034c2ee3915134c1b39dad07fd05ccd8d35a05bdeb85cd027c816b953152b",
+    sourceFingerprint: "ece4fdf071ec04e4ac2c0b2dd967c0578deabf11cf90471380bb2c9c2bb1551c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь одежду отдали.","После didn't нужна give."],["Здесь речь о сумках.","После didn't нужна leave."],["Здесь речь о том, заперли ли дом.","После didn't нужна take."]],"uk":[["Тут одяг віддали.","Після didn't потрібна give."],["Тут ідеться про сумки.","Після didn't потрібна leave."],["Тут ідеться про те, чи замкнули будинок.","Після didn't потрібна take."]]}),
@@ -9561,7 +9561,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 11,
-    sourceFingerprint: "13aec463c8fcceacedc11625509bafe04816f5dd51dee14f564732b464fbf436",
+    sourceFingerprint: "2e29e0b807436bf82abb303633d94c8e02def675a8c7750ff180506db7990e7c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь громкость увеличили.","После didn't нужна turn."],["Turn up — увеличить громкость.","После didn't нужна turn."],["Это об одежде.","После didn't нужна wake."]],"uk":[["Тут гучність збільшили.","Після didn't потрібна turn."],["Turn up — збільшити гучність.","Після didn't потрібна turn."],["Це про одяг.","Після didn't потрібна wake."]]}),
@@ -9575,7 +9575,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 12,
-    sourceFingerprint: "54728e4b94a6ec44cdbffc186cbf6f882eba3e99262c8192138af3936469b581",
+    sourceFingerprint: "971d28ece3cba0ea537596356f4bc82b65cacd2281da7c1efc77f36b15a23ec0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Это сообщение о том, что человек прилёг.","После didn't нужна lie."],["Здесь человек не выходил из дома.","После didn't нужна stay."],["Здесь человек вернулся рано.","После didn't нужна come."]],"uk":[["Це повідомлення про те, що людина прилягла.","Після didn't потрібна lie."],["Тут людина не виходила з дому.","Після didn't потрібна stay."],["Тут людина повернулася рано.","Після didn't потрібна come."]]}),

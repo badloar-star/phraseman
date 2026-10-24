@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-10:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Отдать без оплаты",
-        "uk": "Віддати без оплати"
+        "ru": "Одежду не отдали",
+        "uk": "Одяг не віддали"
       },
       "bodyByLocale": {
-        "ru": "Give away — отдать бесплатно, не ожидать возврата. I didn't give away the clothes — я не отдал одежду бесплатно. Выберите отрицание о прошлом.",
-        "uk": "Give away — віддати безкоштовно, не очікувати повернення. I didn't give away the clothes — я не віддав одяг безкоштовно. Виберіть заперечення про минуле."
+        "ru": "Вчера вы разбирали одежду перед переездом. Друг думает, что вы её раздали, но вы оставили её себе. Give away здесь означает отдать бесплатно, без возврата. Соберите сообщение: I + didn't + give away + the clothes. Получится I didn't give away the clothes. — Я не отдал одежду бесплатно. После didn't нужна начальная форма give, а не gave. The clothes здесь стоит после give away и называет конкретную одежду.",
+        "uk": "Учора ви розбирали одяг перед переїздом. Друг думає, що ви його роздали, але ви залишили його собі. Give away тут означає віддати безкоштовно, без повернення. Складіть повідомлення: I + didn't + give away + the clothes. Вийде I didn't give away the clothes. — Я не віддав одяг безкоштовно. Після didn't потрібна початкова форма give, а не gave. The clothes тут стоїть після give away і називає конкретний одяг."
       },
       "question": {
         "interactionId": "en:lesson-13:session-10:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-10:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Не оставить вещи",
-        "uk": "Не залишити речі"
+        "ru": "Всю одежду забрали",
+        "uk": "Увесь одяг забрали"
       },
       "bodyByLocale": {
-        "ru": "Leave behind — оставить вещи, уезжая или уходя; иногда — забыть их. I didn't leave behind any clothes — я не оставил никакой одежды. Выберите одежду, не сумки.",
-        "uk": "Leave behind — залишити речі, від’їжджаючи чи йдучи; іноді — забути їх. I didn't leave behind any clothes — я не залишив жодного одягу. Виберіть одяг, не сумки."
+        "ru": "Вчера вы съехали из квартиры и забрали всю свою одежду. Leave behind означает оставить что-то позади, уходя или уезжая. Начните с I didn't leave behind, затем добавьте any clothes. Получится I didn't leave behind any clothes. — Я не оставил никакой одежды. После didn't используем leave, а не left. Any clothes в отрицании означает, что никакой одежды там не осталось.",
+        "uk": "Учора ви виїхали з квартири й забрали весь свій одяг. Leave behind означає залишити щось позаду, йдучи або їдучи. Почніть із I didn't leave behind, потім додайте any clothes. Вийде I didn't leave behind any clothes. — Я не залишив жодного одягу. Після didn't використовуємо leave, а не left. Any clothes у запереченні означає, що жодного одягу там не залишилося."
       },
       "question": {
         "interactionId": "en:lesson-13:session-10:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-10:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Запереть дом и вынести мусор",
-        "uk": "Замкнути будинок і винести сміття"
+        "ru": "Мусор остался дома",
+        "uk": "Сміття залишилося вдома"
       },
       "bodyByLocale": {
-        "ru": "Lock up — запереть помещение перед уходом; take out здесь — вынести. I didn't take out the rubbish — я не вынес мусор. Выберите сообщение о мусоре.",
-        "uk": "Lock up — замкнути приміщення перед виходом; take out тут — винести. I didn't take out the rubbish — я не виніс сміття. Виберіть повідомлення про сміття."
+        "ru": "Вчера перед отъездом вы забыли вынести пакет с мусором. Take out здесь означает вынести. Начните с I didn't, затем поставьте take out и назовите то, что осталось: the rubbish. Получится I didn't take out the rubbish. — Я не вынес мусор. Didn't отрицает действие в прошлом; после него нужен take, а не took. Out сохраняется после глагола и передаёт движение наружу.",
+        "uk": "Учора перед від’їздом ви забули винести пакет зі сміттям. Take out тут означає винести. Почніть із I didn't, потім поставте take out і назвіть те, що залишилося: the rubbish. Вийде I didn't take out the rubbish. — Я не виніс сміття. Didn't заперечує дію в минулому; після нього потрібне take, а не took. Out зберігається після дієслова й передає рух назовні."
       },
       "question": {
         "interactionId": "en:lesson-13:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3cf95ad08c63217a0ded9b8f5d31c16847c3644776067f05ae6f7023f0bc7256"
+  "introFingerprint": "e69b1ba5828dc857b001c740c5e92915e40daf52f31944eacd8e20c2c625b3d8"
 }

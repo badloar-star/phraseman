@@ -51,101 +51,97 @@ Finally — нарешті, наприкінці послідовності. In 
 
 **1 · Картка слова — first of all**
 <!-- interaction_id: en:lesson-13:session-33:word:first-of-all; family: word_card -->
-> **first of all** — насамперед, першою справою.
+> **first of all** — Насамперед.
 
-**2 · Скажіть: Насамперед я перевірив адресу**
+**2 · Почніть розповідь із перевірки адреси.**
 <!-- interaction_id: en:lesson-13:session-33:i01; family: phrase_builder -->
 Плитки: `address` `the` `checked` `I` `all,` `of` `First` → **First of all, I checked the address.**
 
-**3 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-33:i02; family: listen_choose -->
-🔊 *First of all, she checked the address.* → **First of all, she checked the address.** · First of all, I checked the address. · First of all, she checked the ticket.
-- First of all, I checked the address. — *У записі звучить First of all, she checked the address.*
-- First of all, she checked the ticket. — *У записі звучить First of all, she checked the address.*
+**3 · Попросіть показати вулицю на карті.**
+<!-- interaction_id: en:lesson-13:session-33:i02; family: scripted_repeat_compare -->
+🎙 **Could you show me this street on the map?**
 
-**4 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-33:i03; family: context_gap_grammar -->
-___ you check the address first? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**4 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-33:i03; family: listen_choose -->
+🔊 *It is next to the bakery.* → **It is next to the bakery.** · It is opposite the bakery. · It is next to the bank.
+- It is opposite the bakery. — *У записі звучить It is next to the bakery.*
+- It is next to the bank. — *У записі звучить It is next to the bakery.*
 
 **5 · Картка слова — at first**
 <!-- interaction_id: en:lesson-13:session-33:word:at-first; family: word_card -->
-> **at first** — спочатку.
+> **at first** — Спочатку.
 
-**6 · Скажіть: Спочатку я чекав надворі**
-<!-- interaction_id: en:lesson-13:session-33:i04; family: phrase_builder -->
-Плитки: `outside` `waited` `I` `first,` `At` → **At first, I waited outside.**
+**6 · Почуйте, де людина спочатку чекала.**
+<!-- interaction_id: en:lesson-13:session-33:i04; family: listen_build_dictation -->
+🔊 *At first, I waited outside.* Плитки: `outside` `waited` `I` `first,` `At` → **At first, I waited outside.**
 
-**7 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-33:i05; family: listen_choose -->
-🔊 *At first, she waited outside.* → **At first, she waited outside.** · At first, I waited outside. · At first, she waited inside.
-- At first, I waited outside. — *У записі звучить At first, she waited outside.*
-- At first, she waited inside. — *У записі звучить At first, she waited outside.*
+**7 · Дізнайтеся, чи друг зателефонував перед виходом.**
+<!-- interaction_id: en:lesson-13:session-33:i05; family: context_gap_grammar -->
+Did you ___ before you left? → **call** · called · calling
+- called — *Після did потрібна call.*
+- calling — *Після did використовуємо call.*
 
-**8 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-33:i06; family: context_gap_grammar -->
-___ you wait outside at first? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**8 · Уточніть, у які двері ввійти.**
+<!-- interaction_id: en:lesson-13:session-33:i06; family: scripted_repeat_compare -->
+🎙 **Which door should I use?**
 
-**9 · Картка слова — finally**
-<!-- interaction_id: en:lesson-13:session-33:word:finally; family: word_card -->
-> **finally** — нарешті, наприкінці послідовності.
-
-**10 · Скажіть: Нарешті я знайшов будинок**
+**9 · Продовжте розповідь: потім запитали сусіда.**
 <!-- interaction_id: en:lesson-13:session-33:i07; family: phrase_builder -->
-Плитки: `house` `the` `found` `I` `Finally,` → **Finally, I found the house.**
+Плитки: `neighbour` `a` `asked` `I` `Then` → **Then I asked a neighbour.**
+
+**10 · Картка слова — finally**
+<!-- interaction_id: en:lesson-13:session-33:word:finally; family: word_card -->
+> **finally** — Нарешті, наприкінці послідовності.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-13:session-33:i08; family: listen_choose -->
-🔊 *Finally, she found the house.* → **Finally, she found the house.** · Finally, I found the house. · Finally, she found the shop.
-- Finally, I found the house. — *У записі звучить Finally, she found the house.*
-- Finally, she found the shop. — *У записі звучить Finally, she found the house.*
+🔊 *Finally, I found the house.* → **Finally, I found the house.** · Finally, I found the shop. · Finally, we found the house.
+- Finally, I found the shop. — *У записі звучить Finally, I found the house.*
+- Finally, we found the house. — *У записі звучить Finally, I found the house.*
 
-**12 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-33:i09; family: context_gap_grammar -->
-___ you find the house yesterday? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**12 · Перепросіть за запізнення.**
+<!-- interaction_id: en:lesson-13:session-33:i09; family: scripted_repeat_compare -->
+🎙 **I am sorry I am late.**
 
-**13 · Картка слова — in the end**
+**13 · Скажіть, що ви не заблукали.**
+<!-- interaction_id: en:lesson-13:session-33:i10; family: context_gap_grammar -->
+We did not ___ lost. → **get** · got · getting
+- got — *Після did not потрібна get.*
+- getting — *Після did not використовуємо get.*
+
+**14 · Почуйте запитання про час приїзду.**
+<!-- interaction_id: en:lesson-13:session-33:i11; family: listen_build_dictation -->
+🔊 *What time did you arrive?* Плитки: `arrive` `you` `did` `time` `What` → **What time did you arrive?**
+
+**15 · Картка слова — in the end**
 <!-- interaction_id: en:lesson-13:session-33:word:in-the-end; family: word_card -->
-> **in the end** — зрештою.
+> **in the end** — Зрештою.
 
-**14 · Скажіть: Зрештою я поїхав автобусом**
-<!-- interaction_id: en:lesson-13:session-33:i10; family: phrase_builder -->
-Плитки: `bus` `the` `took` `I` `end,` `the` `In` → **In the end, I took the bus.**
+**16 · Розкажіть про остаточний вибір транспорту.**
+<!-- interaction_id: en:lesson-13:session-33:i12; family: phrase_builder -->
+Плитки: `bus` `the` `took` `we` `end,` `the` `In` → **In the end, we took the bus.**
 
-**15 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-33:i11; family: listen_choose -->
-🔊 *In the end, she took the bus.* → **In the end, she took the bus.** · In the end, I took the bus. · In the end, she took the train.
-- In the end, I took the bus. — *У записі звучить In the end, she took the bus.*
-- In the end, she took the train. — *У записі звучить In the end, she took the bus.*
+**17 · Уточніть, чи друг купив квиток.**
+<!-- interaction_id: en:lesson-13:session-33:i13; family: context_gap_grammar -->
+Did you ___ a ticket? → **buy** · bought · buying
+- bought — *Після did потрібна buy.*
+- buying — *Після did використовуємо buy.*
 
-**16 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-33:i12; family: context_gap_grammar -->
-___ you take the bus in the end? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**18 · Уточніть, чи їде автобус до станції.**
+<!-- interaction_id: en:lesson-13:session-33:i14; family: scripted_repeat_compare -->
+🎙 **Does this bus go to the station?**
 
-**17 · Поєднайте вирази з перекладом**
-<!-- interaction_id: en:lesson-13:session-33:i13; family: speed_match -->
-first of all — насамперед, першою справою · at first — спочатку · finally — нарешті, наприкінці послідовності · in the end — зрештою
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-33:i15; family: listen_choose -->
+🔊 *The next stop is yours.* → **The next stop is yours.** · The last stop is yours. · The next stop is ours.
+- The last stop is yours. — *У записі звучить The next stop is yours.*
+- The next stop is ours. — *У записі звучить The next stop is yours.*
 
-**18 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-33:i14; family: listen_build_dictation -->
-🔊 *Then I called my friend.* Плитки: `friend` `my` `called` `I` `Then` → **Then I called my friend.**
+**20 · Скажіть, де залишили парасолю.**
+<!-- interaction_id: en:lesson-13:session-33:i16; family: phrase_builder -->
+Плитки: `door` `the` `by` `umbrella` `my` `left` `I` → **I left my umbrella by the door.**
 
-**19 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-33:i15; family: listen_build_dictation -->
-🔊 *We didn't walk home in the end.* Плитки: `end` `the` `in` `home` `walk` `didn't` `We` → **We didn't walk home in the end.**
-
-**20 · Скажіть: насамперед вона перевірила квиток**
-<!-- interaction_id: en:lesson-13:session-33:i16; family: scripted_repeat_compare -->
-🎙 **First of all, she checked the ticket.**
-
-**21 · Скажіть: зрештою я зателефонував другові**
+**21 · Подякуйте за допомогу.**
 <!-- interaction_id: en:lesson-13:session-33:i17; family: scripted_repeat_compare -->
-🎙 **In the end, I called my friend.**
+🎙 **Thank you for helping me.**
 

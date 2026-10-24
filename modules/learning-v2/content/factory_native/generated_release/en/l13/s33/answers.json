@@ -11,12 +11,12 @@
   },
   {
     "interactionId": "en:lesson-13:session-33:i02",
-    "correctText": "First of all, she checked the address.",
-    "correctResponseId": "en:lesson-13:session-33:i02:r1"
+    "correctText": "Could you show me this street on the map?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-33:i03",
-    "correctText": "Did",
+    "correctText": "It is next to the bakery.",
     "correctResponseId": "en:lesson-13:session-33:i03:r1"
   },
   {
@@ -31,13 +31,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-33:i05",
-    "correctText": "At first, she waited outside.",
+    "correctText": "call",
     "correctResponseId": "en:lesson-13:session-33:i05:r1"
   },
   {
     "interactionId": "en:lesson-13:session-33:i06",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-33:i06:r1"
+    "correctText": "Which door should I use?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i07",
+    "correctText": "Then I asked a neighbour.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-33:word:finally",
@@ -45,19 +50,24 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-13:session-33:i07",
-    "correctText": "Finally, I found the house.",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-13:session-33:i08",
-    "correctText": "Finally, she found the house.",
+    "correctText": "Finally, I found the house.",
     "correctResponseId": "en:lesson-13:session-33:i08:r1"
   },
   {
     "interactionId": "en:lesson-13:session-33:i09",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-33:i09:r1"
+    "correctText": "I am sorry I am late.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i10",
+    "correctText": "get",
+    "correctResponseId": "en:lesson-13:session-33:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-13:session-33:i11",
+    "correctText": "What time did you arrive?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-33:word:in-the-end",
@@ -65,43 +75,33 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-13:session-33:i10",
-    "correctText": "In the end, I took the bus.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-13:session-33:i11",
-    "correctText": "In the end, she took the bus.",
-    "correctResponseId": "en:lesson-13:session-33:i11:r1"
-  },
-  {
     "interactionId": "en:lesson-13:session-33:i12",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-33:i12:r1"
+    "correctText": "In the end, we took the bus.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-33:i13",
-    "correctText": "en:lesson-13:session-33:i13:p1=first of all\nen:lesson-13:session-33:i13:p2=at first\nen:lesson-13:session-33:i13:p3=finally\nen:lesson-13:session-33:i13:p4=in the end",
-    "correctResponseId": null
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-13:session-33:i13:r1"
   },
   {
     "interactionId": "en:lesson-13:session-33:i14",
-    "correctText": "Then I called my friend.",
+    "correctText": "Does this bus go to the station?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-33:i15",
-    "correctText": "We didn't walk home in the end.",
-    "correctResponseId": null
+    "correctText": "The next stop is yours.",
+    "correctResponseId": "en:lesson-13:session-33:i15:r1"
   },
   {
     "interactionId": "en:lesson-13:session-33:i16",
-    "correctText": "First of all, she checked the ticket.",
+    "correctText": "I left my umbrella by the door.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-33:i17",
-    "correctText": "In the end, I called my friend.",
+    "correctText": "Thank you for helping me.",
     "correctResponseId": null
   }
 ]

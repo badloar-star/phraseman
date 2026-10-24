@@ -51,101 +51,97 @@ Finally — наконец, в конце последовательности. 
 
 **1 · Карточка слова — first of all**
 <!-- interaction_id: en:lesson-13:session-33:word:first-of-all; family: word_card -->
-> **first of all** — первым делом.
+> **first of all** — Первым делом.
 
-**2 · Скажите: Первым делом я проверил адрес**
+**2 · Начните рассказ с проверки адреса.**
 <!-- interaction_id: en:lesson-13:session-33:i01; family: phrase_builder -->
 Плитки: `address` `the` `checked` `I` `all,` `of` `First` → **First of all, I checked the address.**
 
-**3 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-13:session-33:i02; family: listen_choose -->
-🔊 *First of all, she checked the address.* → **First of all, she checked the address.** · First of all, I checked the address. · First of all, she checked the ticket.
-- First of all, I checked the address. — *В записи звучит First of all, she checked the address.*
-- First of all, she checked the ticket. — *В записи звучит First of all, she checked the address.*
+**3 · Попросите показать улицу на карте.**
+<!-- interaction_id: en:lesson-13:session-33:i02; family: scripted_repeat_compare -->
+🎙 **Could you show me this street on the map?**
 
-**4 · Вопрос о вчерашнем действии. Выберите начало**
-<!-- interaction_id: en:lesson-13:session-33:i03; family: context_gap_grammar -->
-___ you check the address first? → **Did** · Do · Does
-- Do — *Для прошлого нужна форма Did.*
-- Does — *Это не форма прошлого. Нужна Did.*
+**4 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-13:session-33:i03; family: listen_choose -->
+🔊 *It is next to the bakery.* → **It is next to the bakery.** · It is opposite the bakery. · It is next to the bank.
+- It is opposite the bakery. — *В записи звучит It is next to the bakery.*
+- It is next to the bank. — *В записи звучит It is next to the bakery.*
 
 **5 · Карточка слова — at first**
 <!-- interaction_id: en:lesson-13:session-33:word:at-first; family: word_card -->
-> **at first** — вначале.
+> **at first** — Вначале.
 
-**6 · Скажите: Вначале я ждал снаружи**
-<!-- interaction_id: en:lesson-13:session-33:i04; family: phrase_builder -->
-Плитки: `outside` `waited` `I` `first,` `At` → **At first, I waited outside.**
+**6 · Услышьте, где человек сначала ждал.**
+<!-- interaction_id: en:lesson-13:session-33:i04; family: listen_build_dictation -->
+🔊 *At first, I waited outside.* Плитки: `outside` `waited` `I` `first,` `At` → **At first, I waited outside.**
 
-**7 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-13:session-33:i05; family: listen_choose -->
-🔊 *At first, she waited outside.* → **At first, she waited outside.** · At first, I waited outside. · At first, she waited inside.
-- At first, I waited outside. — *В записи звучит At first, she waited outside.*
-- At first, she waited inside. — *В записи звучит At first, she waited outside.*
+**7 · Узнайте, позвонил ли друг перед выходом.**
+<!-- interaction_id: en:lesson-13:session-33:i05; family: context_gap_grammar -->
+Did you ___ before you left? → **call** · called · calling
+- called — *После did нужна call.*
+- calling — *После did используем call.*
 
-**8 · Вопрос о вчерашнем действии. Выберите начало**
-<!-- interaction_id: en:lesson-13:session-33:i06; family: context_gap_grammar -->
-___ you wait outside at first? → **Did** · Do · Does
-- Do — *Для прошлого нужна форма Did.*
-- Does — *Это не форма прошлого. Нужна Did.*
+**8 · Уточните, в какую дверь войти.**
+<!-- interaction_id: en:lesson-13:session-33:i06; family: scripted_repeat_compare -->
+🎙 **Which door should I use?**
 
-**9 · Карточка слова — finally**
-<!-- interaction_id: en:lesson-13:session-33:word:finally; family: word_card -->
-> **finally** — наконец, в конце последовательности.
-
-**10 · Скажите: Наконец я нашёл дом**
+**9 · Продолжите рассказ: затем спросили соседа.**
 <!-- interaction_id: en:lesson-13:session-33:i07; family: phrase_builder -->
-Плитки: `house` `the` `found` `I` `Finally,` → **Finally, I found the house.**
+Плитки: `neighbour` `a` `asked` `I` `Then` → **Then I asked a neighbour.**
+
+**10 · Карточка слова — finally**
+<!-- interaction_id: en:lesson-13:session-33:word:finally; family: word_card -->
+> **finally** — Наконец, в конце последовательности.
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-13:session-33:i08; family: listen_choose -->
-🔊 *Finally, she found the house.* → **Finally, she found the house.** · Finally, I found the house. · Finally, she found the shop.
-- Finally, I found the house. — *В записи звучит Finally, she found the house.*
-- Finally, she found the shop. — *В записи звучит Finally, she found the house.*
+🔊 *Finally, I found the house.* → **Finally, I found the house.** · Finally, I found the shop. · Finally, we found the house.
+- Finally, I found the shop. — *В записи звучит Finally, I found the house.*
+- Finally, we found the house. — *В записи звучит Finally, I found the house.*
 
-**12 · Вопрос о вчерашнем действии. Выберите начало**
-<!-- interaction_id: en:lesson-13:session-33:i09; family: context_gap_grammar -->
-___ you find the house yesterday? → **Did** · Do · Does
-- Do — *Для прошлого нужна форма Did.*
-- Does — *Это не форма прошлого. Нужна Did.*
+**12 · Извинитесь за опоздание.**
+<!-- interaction_id: en:lesson-13:session-33:i09; family: scripted_repeat_compare -->
+🎙 **I am sorry I am late.**
 
-**13 · Карточка слова — in the end**
+**13 · Скажите, что вы не заблудились.**
+<!-- interaction_id: en:lesson-13:session-33:i10; family: context_gap_grammar -->
+We did not ___ lost. → **get** · got · getting
+- got — *После did not нужна get.*
+- getting — *После did not используем get.*
+
+**14 · Услышьте вопрос о времени приезда.**
+<!-- interaction_id: en:lesson-13:session-33:i11; family: listen_build_dictation -->
+🔊 *What time did you arrive?* Плитки: `arrive` `you` `did` `time` `What` → **What time did you arrive?**
+
+**15 · Карточка слова — in the end**
 <!-- interaction_id: en:lesson-13:session-33:word:in-the-end; family: word_card -->
-> **in the end** — в итоге.
+> **in the end** — В итоге.
 
-**14 · Скажите: В итоге я поехал на автобусе**
-<!-- interaction_id: en:lesson-13:session-33:i10; family: phrase_builder -->
-Плитки: `bus` `the` `took` `I` `end,` `the` `In` → **In the end, I took the bus.**
+**16 · Расскажите об окончательном выборе транспорта.**
+<!-- interaction_id: en:lesson-13:session-33:i12; family: phrase_builder -->
+Плитки: `bus` `the` `took` `we` `end,` `the` `In` → **In the end, we took the bus.**
 
-**15 · Послушайте и выберите**
-<!-- interaction_id: en:lesson-13:session-33:i11; family: listen_choose -->
-🔊 *In the end, she took the bus.* → **In the end, she took the bus.** · In the end, I took the bus. · In the end, she took the train.
-- In the end, I took the bus. — *В записи звучит In the end, she took the bus.*
-- In the end, she took the train. — *В записи звучит In the end, she took the bus.*
+**17 · Уточните, купил ли друг билет.**
+<!-- interaction_id: en:lesson-13:session-33:i13; family: context_gap_grammar -->
+Did you ___ a ticket? → **buy** · bought · buying
+- bought — *После did нужна buy.*
+- buying — *После did используем buy.*
 
-**16 · Вопрос о вчерашнем действии. Выберите начало**
-<!-- interaction_id: en:lesson-13:session-33:i12; family: context_gap_grammar -->
-___ you take the bus in the end? → **Did** · Do · Does
-- Do — *Для прошлого нужна форма Did.*
-- Does — *Это не форма прошлого. Нужна Did.*
+**18 · Уточните, идёт ли автобус до станции.**
+<!-- interaction_id: en:lesson-13:session-33:i14; family: scripted_repeat_compare -->
+🎙 **Does this bus go to the station?**
 
-**17 · Соедините выражения с переводом**
-<!-- interaction_id: en:lesson-13:session-33:i13; family: speed_match -->
-first of all — первым делом · at first — вначале · finally — наконец, в конце последовательности · in the end — в итоге
+**19 · Послушайте и выберите**
+<!-- interaction_id: en:lesson-13:session-33:i15; family: listen_choose -->
+🔊 *The next stop is yours.* → **The next stop is yours.** · The last stop is yours. · The next stop is ours.
+- The last stop is yours. — *В записи звучит The next stop is yours.*
+- The next stop is ours. — *В записи звучит The next stop is yours.*
 
-**18 · Соберите услышанную фразу**
-<!-- interaction_id: en:lesson-13:session-33:i14; family: listen_build_dictation -->
-🔊 *Then I called my friend.* Плитки: `friend` `my` `called` `I` `Then` → **Then I called my friend.**
+**20 · Скажите, где оставили зонт.**
+<!-- interaction_id: en:lesson-13:session-33:i16; family: phrase_builder -->
+Плитки: `door` `the` `by` `umbrella` `my` `left` `I` → **I left my umbrella by the door.**
 
-**19 · Соберите услышанную фразу**
-<!-- interaction_id: en:lesson-13:session-33:i15; family: listen_build_dictation -->
-🔊 *We didn't walk home in the end.* Плитки: `end` `the` `in` `home` `walk` `didn't` `We` → **We didn't walk home in the end.**
-
-**20 · Скажите: первым делом она проверила билет**
-<!-- interaction_id: en:lesson-13:session-33:i16; family: scripted_repeat_compare -->
-🎙 **First of all, she checked the ticket.**
-
-**21 · Скажите: в итоге я позвонил другу**
+**21 · Поблагодарите за помощь.**
 <!-- interaction_id: en:lesson-13:session-33:i17; family: scripted_repeat_compare -->
-🎙 **In the end, I called my friend.**
+🎙 **Thank you for helping me.**
 

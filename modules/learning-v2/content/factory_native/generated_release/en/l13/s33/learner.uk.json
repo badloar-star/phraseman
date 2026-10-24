@@ -28,8 +28,8 @@
             "responseId": "en:lesson-13:session-33:word:first-of-all:r1",
             "targetText": "first of all",
             "meaningByLocale": {
-              "ru": "первым делом.",
-              "uk": "насамперед, першою справою."
+              "ru": "Первым делом.",
+              "uk": "Насамперед."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "first of all",
           "definitionByLocale": {
-            "ru": "первым делом.",
-            "uk": "насамперед, першою справою."
+            "ru": "Первым делом.",
+            "uk": "Насамперед."
           }
         }
       },
@@ -52,17 +52,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: Насамперед я перевірив адресу",
+      "prompt": "Почніть розповідь із перевірки адреси.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: Насамперед я перевірив адресу",
+      "accessibilityLabel": "Почніть розповідь із перевірки адреси.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "First of all, I checked the address.",
         "localizedMeaning": {
-          "ru": "Скажите: Первым делом я проверил адрес",
-          "uk": "Скажіть: Насамперед я перевірив адресу"
+          "ru": "Начните рассказ с проверки адреса.",
+          "uk": "Почніть розповідь із перевірки адреси."
         },
         "orderedTokens": [
           "First",
@@ -85,76 +85,33 @@
     {
       "interactionId": "en:lesson-13:session-33:i02",
       "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-33:i02:r1",
-          "text": "First of all, she checked the address."
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i02:r2",
-          "text": "First of all, I checked the address."
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i02:r3",
-          "text": "First of all, she checked the ticket."
-        }
-      ],
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати вулицю на карті.",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-33:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте й виберіть",
+      "accessibilityLabel": "Попросіть показати вулицю на карті.",
       "modePayload": {
-        "family": "listen_choose",
+        "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-33:i02:audio",
-          "transcript": "First of all, she checked the address."
+          "transcript": "Could you show me this street on the map?"
         },
         "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-13:session-33:i02:r1",
-            "targetText": "First of all, she checked the address.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i02:r2",
-            "targetText": "First of all, I checked the address.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i02:r3",
-            "targetText": "First of all, she checked the ticket.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-33:i02:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит First of all, she checked the address.",
-              "uk": "У записі звучить First of all, she checked the address."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i02:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит First of all, she checked the address.",
-              "uk": "У записі звучить First of all, she checked the address."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
+        "targetPhrase": "Could you show me this street on the map?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -162,68 +119,75 @@
       "interactionId": "en:lesson-13:session-33:i03",
       "ordinal": 7,
       "purpose": "supported_practice",
-      "family": "context_gap_grammar",
+      "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "prompt": "Послухайте й виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-33:i03:r1",
-          "text": "Did"
+          "text": "It is next to the bakery."
         },
         {
           "responseId": "en:lesson-13:session-33:i03:r2",
-          "text": "Do"
+          "text": "It is opposite the bakery."
         },
         {
           "responseId": "en:lesson-13:session-33:i03:r3",
-          "text": "Does"
+          "text": "It is next to the bank."
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "audioTargetIds": [
+        "en:lesson-13:session-33:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-33:i03:audio",
+          "transcript": "It is next to the bakery."
         },
-        "gappedTargetPhrase": "___ you check the address first?",
-        "gapOptions": [
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-13:session-33:i03:r1",
-            "text": "Did"
+            "targetText": "It is next to the bakery.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-13:session-33:i03:r2",
-            "text": "Do"
+            "targetText": "It is opposite the bakery.",
+            "meaningByLocale": null
           },
           {
             "responseId": "en:lesson-13:session-33:i03:r3",
-            "text": "Does"
+            "targetText": "It is next to the bank.",
+            "meaningByLocale": null
           }
         ],
-        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-13:session-33:i03:r2",
             "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
+              "ru": "В записи звучит It is next to the bakery.",
+              "uk": "У записі звучить It is next to the bakery."
             }
           },
           {
             "responseId": "en:lesson-13:session-33:i03:r3",
             "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
+              "ru": "В записи звучит It is next to the bakery.",
+              "uk": "У записі звучить It is next to the bakery."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -252,8 +216,8 @@
             "responseId": "en:lesson-13:session-33:word:at-first:r1",
             "targetText": "at first",
             "meaningByLocale": {
-              "ru": "вначале.",
-              "uk": "спочатку."
+              "ru": "Вначале.",
+              "uk": "Спочатку."
             }
           }
         ],
@@ -263,8 +227,8 @@
         "wordCard": {
           "word": "at first",
           "definitionByLocale": {
-            "ru": "вначале.",
-            "uk": "спочатку."
+            "ru": "Вначале.",
+            "uk": "Спочатку."
           }
         }
       },
@@ -274,20 +238,23 @@
       "interactionId": "en:lesson-13:session-33:i04",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: Спочатку я чекав надворі",
+      "prompt": "Почуйте, де людина спочатку чекала.",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: Спочатку я чекав надворі",
+      "audioTargetIds": [
+        "en:lesson-13:session-33:i04:audio"
+      ],
+      "accessibilityLabel": "Почуйте, де людина спочатку чекала.",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "At first, I waited outside.",
-        "localizedMeaning": {
-          "ru": "Скажите: Вначале я ждал снаружи",
-          "uk": "Скажіть: Спочатку я чекав надворі"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-33:i04:audio",
+          "transcript": "At first, I waited outside."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "At first, I waited outside.",
         "orderedTokens": [
           "At",
           "first,",
@@ -308,141 +275,65 @@
       "interactionId": "en:lesson-13:session-33:i05",
       "ordinal": 10,
       "purpose": "supported_practice",
-      "family": "listen_choose",
+      "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
+      "prompt": "Дізнайтеся, чи друг зателефонував перед виходом.",
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-33:i05:r1",
-          "text": "At first, she waited outside."
+          "text": "call"
         },
         {
           "responseId": "en:lesson-13:session-33:i05:r2",
-          "text": "At first, I waited outside."
+          "text": "called"
         },
         {
           "responseId": "en:lesson-13:session-33:i05:r3",
-          "text": "At first, she waited inside."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-13:session-33:i05:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-33:i05:audio",
-          "transcript": "At first, she waited outside."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-13:session-33:i05:r1",
-            "targetText": "At first, she waited outside.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i05:r2",
-            "targetText": "At first, I waited outside.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i05:r3",
-            "targetText": "At first, she waited inside.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-33:i05:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит At first, she waited outside.",
-              "uk": "У записі звучить At first, she waited outside."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i05:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит At first, she waited outside.",
-              "uk": "У записі звучить At first, she waited outside."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-33:i06",
-      "ordinal": 11,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Запитання про вчорашню дію. Виберіть початок",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-33:i06:r1",
-          "text": "Did"
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i06:r2",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i06:r3",
-          "text": "Does"
+          "text": "calling"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "accessibilityLabel": "Дізнайтеся, чи друг зателефонував перед виходом.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
+          "ru": "Узнайте, позвонил ли друг перед выходом.",
+          "uk": "Дізнайтеся, чи друг зателефонував перед виходом."
         },
-        "gappedTargetPhrase": "___ you wait outside at first?",
+        "gappedTargetPhrase": "Did you ___ before you left?",
         "gapOptions": [
           {
-            "responseId": "en:lesson-13:session-33:i06:r1",
-            "text": "Did"
+            "responseId": "en:lesson-13:session-33:i05:r1",
+            "text": "call"
           },
           {
-            "responseId": "en:lesson-13:session-33:i06:r2",
-            "text": "Do"
+            "responseId": "en:lesson-13:session-33:i05:r2",
+            "text": "called"
           },
           {
-            "responseId": "en:lesson-13:session-33:i06:r3",
-            "text": "Does"
+            "responseId": "en:lesson-13:session-33:i05:r3",
+            "text": "calling"
           }
         ],
-        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "testedDimension": "Дізнайтеся, чи друг зателефонував перед виходом.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-13:session-33:i06:r2",
+            "responseId": "en:lesson-13:session-33:i05:r2",
             "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "testedDimension": "Дізнайтеся, чи друг зателефонував перед виходом.",
             "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
+              "ru": "После did нужна call.",
+              "uk": "Після did потрібна call."
             }
           },
           {
-            "responseId": "en:lesson-13:session-33:i06:r3",
+            "responseId": "en:lesson-13:session-33:i05:r3",
             "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "testedDimension": "Дізнайтеся, чи друг зателефонував перед виходом.",
             "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
+              "ru": "После did используем call.",
+              "uk": "Після did використовуємо call."
             }
           }
         ]
@@ -450,8 +341,75 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-13:session-33:word:finally",
+      "interactionId": "en:lesson-13:session-33:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, у які двері ввійти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-33:i06:audio"
+      ],
+      "accessibilityLabel": "Уточніть, у які двері ввійти.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-33:i06:audio",
+          "transcript": "Which door should I use?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Which door should I use?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-33:i07",
       "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Продовжте розповідь: потім запитали сусіда.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Продовжте розповідь: потім запитали сусіда.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Then I asked a neighbour.",
+        "localizedMeaning": {
+          "ru": "Продолжите рассказ: затем спросили соседа.",
+          "uk": "Продовжте розповідь: потім запитали сусіда."
+        },
+        "orderedTokens": [
+          "Then",
+          "I",
+          "asked",
+          "a",
+          "neighbour"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-33:word:finally",
+      "ordinal": 13,
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
@@ -474,8 +432,8 @@
             "responseId": "en:lesson-13:session-33:word:finally:r1",
             "targetText": "finally",
             "meaningByLocale": {
-              "ru": "наконец, в конце последовательности.",
-              "uk": "нарешті, наприкінці послідовності."
+              "ru": "Наконец, в конце последовательности.",
+              "uk": "Нарешті, наприкінці послідовності."
             }
           }
         ],
@@ -485,43 +443,9 @@
         "wordCard": {
           "word": "finally",
           "definitionByLocale": {
-            "ru": "наконец, в конце последовательности.",
-            "uk": "нарешті, наприкінці послідовності."
+            "ru": "Наконец, в конце последовательности.",
+            "uk": "Нарешті, наприкінці послідовності."
           }
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-33:i07",
-      "ordinal": 13,
-      "purpose": "guided_practice",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: Нарешті я знайшов будинок",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: Нарешті я знайшов будинок",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "Finally, I found the house.",
-        "localizedMeaning": {
-          "ru": "Скажите: Наконец я нашёл дом",
-          "uk": "Скажіть: Нарешті я знайшов будинок"
-        },
-        "orderedTokens": [
-          "Finally,",
-          "I",
-          "found",
-          "the",
-          "house"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
         }
       },
       "scriptedAlternate": null
@@ -536,15 +460,15 @@
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-33:i08:r1",
-          "text": "Finally, she found the house."
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i08:r2",
           "text": "Finally, I found the house."
         },
         {
+          "responseId": "en:lesson-13:session-33:i08:r2",
+          "text": "Finally, I found the shop."
+        },
+        {
           "responseId": "en:lesson-13:session-33:i08:r3",
-          "text": "Finally, she found the shop."
+          "text": "Finally, we found the house."
         }
       ],
       "mediaIds": [],
@@ -556,23 +480,23 @@
         "family": "listen_choose",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-33:i08:audio",
-          "transcript": "Finally, she found the house."
+          "transcript": "Finally, I found the house."
         },
         "slowReferenceAudio": null,
         "localizedMeaningChoices": [
           {
             "responseId": "en:lesson-13:session-33:i08:r1",
-            "targetText": "Finally, she found the house.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i08:r2",
             "targetText": "Finally, I found the house.",
             "meaningByLocale": null
           },
           {
+            "responseId": "en:lesson-13:session-33:i08:r2",
+            "targetText": "Finally, I found the shop.",
+            "meaningByLocale": null
+          },
+          {
             "responseId": "en:lesson-13:session-33:i08:r3",
-            "targetText": "Finally, she found the shop.",
+            "targetText": "Finally, we found the house.",
             "meaningByLocale": null
           }
         ],
@@ -583,8 +507,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Finally, she found the house.",
-              "uk": "У записі звучить Finally, she found the house."
+              "ru": "В записи звучит Finally, I found the house.",
+              "uk": "У записі звучить Finally, I found the house."
             }
           },
           {
@@ -592,8 +516,8 @@
             "correct": false,
             "testedDimension": "Послухайте й виберіть",
             "feedbackByLocale": {
-              "ru": "В записи звучит Finally, she found the house.",
-              "uk": "У записі звучить Finally, she found the house."
+              "ru": "В записи звучит Finally, I found the house.",
+              "uk": "У записі звучить Finally, I found the house."
             }
           }
         ],
@@ -606,65 +530,98 @@
       "interactionId": "en:lesson-13:session-33:i09",
       "ordinal": 15,
       "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перепросіть за запізнення.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Перепросіть за запізнення.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-33:i09:audio",
+          "transcript": "I am sorry I am late."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am sorry I am late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-33:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Запитання про вчорашню дію. Виберіть початок",
+      "prompt": "Скажіть, що ви не заблукали.",
       "responseOptions": [
         {
-          "responseId": "en:lesson-13:session-33:i09:r1",
-          "text": "Did"
+          "responseId": "en:lesson-13:session-33:i10:r1",
+          "text": "get"
         },
         {
-          "responseId": "en:lesson-13:session-33:i09:r2",
-          "text": "Do"
+          "responseId": "en:lesson-13:session-33:i10:r2",
+          "text": "got"
         },
         {
-          "responseId": "en:lesson-13:session-33:i09:r3",
-          "text": "Does"
+          "responseId": "en:lesson-13:session-33:i10:r3",
+          "text": "getting"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
+      "accessibilityLabel": "Скажіть, що ви не заблукали.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
+          "ru": "Скажите, что вы не заблудились.",
+          "uk": "Скажіть, що ви не заблукали."
         },
-        "gappedTargetPhrase": "___ you find the house yesterday?",
+        "gappedTargetPhrase": "We did not ___ lost.",
         "gapOptions": [
           {
-            "responseId": "en:lesson-13:session-33:i09:r1",
-            "text": "Did"
+            "responseId": "en:lesson-13:session-33:i10:r1",
+            "text": "get"
           },
           {
-            "responseId": "en:lesson-13:session-33:i09:r2",
-            "text": "Do"
+            "responseId": "en:lesson-13:session-33:i10:r2",
+            "text": "got"
           },
           {
-            "responseId": "en:lesson-13:session-33:i09:r3",
-            "text": "Does"
+            "responseId": "en:lesson-13:session-33:i10:r3",
+            "text": "getting"
           }
         ],
-        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+        "testedDimension": "Скажіть, що ви не заблукали.",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-13:session-33:i09:r2",
+            "responseId": "en:lesson-13:session-33:i10:r2",
             "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "testedDimension": "Скажіть, що ви не заблукали.",
             "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
+              "ru": "После did not нужна get.",
+              "uk": "Після did not потрібна get."
             }
           },
           {
-            "responseId": "en:lesson-13:session-33:i09:r3",
+            "responseId": "en:lesson-13:session-33:i10:r3",
             "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
+            "testedDimension": "Скажіть, що ви не заблукали.",
             "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
+              "ru": "После did not используем get.",
+              "uk": "Після did not використовуємо get."
             }
           }
         ]
@@ -672,9 +629,46 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-13:session-33:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте запитання про час приїзду.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Почуйте запитання про час приїзду.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-33:i11:audio",
+          "transcript": "What time did you arrive?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "What time did you arrive?",
+        "orderedTokens": [
+          "What",
+          "time",
+          "did",
+          "you",
+          "arrive"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-13:session-33:word:in-the-end",
-      "ordinal": 16,
-      "purpose": "guided_practice",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Картка слова — in the end",
@@ -696,8 +690,8 @@
             "responseId": "en:lesson-13:session-33:word:in-the-end:r1",
             "targetText": "in the end",
             "meaningByLocale": {
-              "ru": "в итоге.",
-              "uk": "зрештою."
+              "ru": "В итоге.",
+              "uk": "Зрештою."
             }
           }
         ],
@@ -707,36 +701,36 @@
         "wordCard": {
           "word": "in the end",
           "definitionByLocale": {
-            "ru": "в итоге.",
-            "uk": "зрештою."
+            "ru": "В итоге.",
+            "uk": "Зрештою."
           }
         }
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-13:session-33:i10",
-      "ordinal": 17,
+      "interactionId": "en:lesson-13:session-33:i12",
+      "ordinal": 19,
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: Зрештою я поїхав автобусом",
+      "prompt": "Розкажіть про остаточний вибір транспорту.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: Зрештою я поїхав автобусом",
+      "accessibilityLabel": "Розкажіть про остаточний вибір транспорту.",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "In the end, I took the bus.",
+        "targetPhrase": "In the end, we took the bus.",
         "localizedMeaning": {
-          "ru": "Скажите: В итоге я поехал на автобусе",
-          "uk": "Скажіть: Зрештою я поїхав автобусом"
+          "ru": "Расскажите об окончательном выборе транспорта.",
+          "uk": "Розкажіть про остаточний вибір транспорту."
         },
         "orderedTokens": [
           "In",
           "the",
           "end,",
-          "I",
+          "we",
           "took",
           "the",
           "bus"
@@ -751,219 +745,70 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-13:session-33:i11",
-      "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "listen_choose",
-      "inputMode": "single_choice",
-      "prompt": "Послухайте й виберіть",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-33:i11:r1",
-          "text": "In the end, she took the bus."
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i11:r2",
-          "text": "In the end, I took the bus."
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i11:r3",
-          "text": "In the end, she took the train."
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-13:session-33:i11:audio"
-      ],
-      "accessibilityLabel": "Послухайте й виберіть",
-      "modePayload": {
-        "family": "listen_choose",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-33:i11:audio",
-          "transcript": "In the end, she took the bus."
-        },
-        "slowReferenceAudio": null,
-        "localizedMeaningChoices": [
-          {
-            "responseId": "en:lesson-13:session-33:i11:r1",
-            "targetText": "In the end, she took the bus.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i11:r2",
-            "targetText": "In the end, I took the bus.",
-            "meaningByLocale": null
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i11:r3",
-            "targetText": "In the end, she took the train.",
-            "meaningByLocale": null
-          }
-        ],
-        "transcriptRevealPolicy": "after_first_attempt",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-33:i11:r2",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In the end, she took the bus.",
-              "uk": "У записі звучить In the end, she took the bus."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i11:r3",
-            "correct": false,
-            "testedDimension": "Послухайте й виберіть",
-            "feedbackByLocale": {
-              "ru": "В записи звучит In the end, she took the bus.",
-              "uk": "У записі звучить In the end, she took the bus."
-            }
-          }
-        ],
-        "isWordCard": false,
-        "wordCard": null
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-33:i12",
-      "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Запитання про вчорашню дію. Виберіть початок",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-13:session-33:i12:r1",
-          "text": "Did"
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i12:r2",
-          "text": "Do"
-        },
-        {
-          "responseId": "en:lesson-13:session-33:i12:r3",
-          "text": "Does"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Запитання про вчорашню дію. Виберіть початок",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вопрос о вчерашнем действии. Выберите начало",
-          "uk": "Запитання про вчорашню дію. Виберіть початок"
-        },
-        "gappedTargetPhrase": "___ you take the bus in the end?",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-13:session-33:i12:r1",
-            "text": "Did"
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i12:r2",
-            "text": "Do"
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i12:r3",
-            "text": "Does"
-          }
-        ],
-        "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-13:session-33:i12:r2",
-            "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
-            "feedbackByLocale": {
-              "ru": "Для прошлого нужна форма Did.",
-              "uk": "Для минулого потрібна форма Did."
-            }
-          },
-          {
-            "responseId": "en:lesson-13:session-33:i12:r3",
-            "correct": false,
-            "testedDimension": "Запитання про вчорашню дію. Виберіть початок",
-            "feedbackByLocale": {
-              "ru": "Это не форма прошлого. Нужна Did.",
-              "uk": "Це не форма минулого. Потрібна Did."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
       "interactionId": "en:lesson-13:session-33:i13",
       "ordinal": 20,
       "purpose": "retrieval_practice",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "Поєднайте вирази з перекладом",
-      "responseOptions": [],
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть, чи друг купив квиток.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-33:i13:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-13:session-33:i13:r2",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-13:session-33:i13:r3",
+          "text": "buying"
+        }
+      ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поєднайте вирази з перекладом",
+      "accessibilityLabel": "Уточніть, чи друг купив квиток.",
       "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, купил ли друг билет.",
+          "uk": "Уточніть, чи друг купив квиток."
+        },
+        "gappedTargetPhrase": "Did you ___ a ticket?",
+        "gapOptions": [
           {
-            "pairId": "en:lesson-13:session-33:i13:p1",
-            "target": "first of all",
-            "meaningByLocale": {
-              "ru": "первым делом",
-              "uk": "насамперед, першою справою"
-            }
+            "responseId": "en:lesson-13:session-33:i13:r1",
+            "text": "buy"
           },
           {
-            "pairId": "en:lesson-13:session-33:i13:p2",
-            "target": "at first",
-            "meaningByLocale": {
-              "ru": "вначале",
-              "uk": "спочатку"
-            }
+            "responseId": "en:lesson-13:session-33:i13:r2",
+            "text": "bought"
           },
           {
-            "pairId": "en:lesson-13:session-33:i13:p3",
-            "target": "finally",
-            "meaningByLocale": {
-              "ru": "наконец, в конце последовательности",
-              "uk": "нарешті, наприкінці послідовності"
-            }
-          },
-          {
-            "pairId": "en:lesson-13:session-33:i13:p4",
-            "target": "in the end",
-            "meaningByLocale": {
-              "ru": "в итоге",
-              "uk": "зрештою"
-            }
+            "responseId": "en:lesson-13:session-33:i13:r3",
+            "text": "buying"
           }
         ],
-        "leftColumn": [
-          "first of all",
-          "at first",
-          "finally",
-          "in the end"
-        ],
-        "rightColumn": [
-          "насамперед, першою справою",
-          "спочатку",
-          "нарешті, наприкінці послідовності",
-          "зрештою"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
+        "testedDimension": "Уточніть, чи друг купив квиток.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-33:i13:r2",
+            "correct": false,
+            "testedDimension": "Уточніть, чи друг купив квиток.",
+            "feedbackByLocale": {
+              "ru": "После did нужна buy.",
+              "uk": "Після did потрібна buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-33:i13:r3",
+            "correct": false,
+            "testedDimension": "Уточніть, чи друг купив квиток.",
+            "feedbackByLocale": {
+              "ru": "После did используем buy.",
+              "uk": "Після did використовуємо buy."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -971,100 +816,24 @@
     {
       "interactionId": "en:lesson-13:session-33:i14",
       "ordinal": 21,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть почуту фразу",
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточніть, чи їде автобус до станції.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-33:i14:audio"
       ],
-      "accessibilityLabel": "Складіть почуту фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-33:i14:audio",
-          "transcript": "Then I called my friend."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "Then I called my friend.",
-        "orderedTokens": [
-          "Then",
-          "I",
-          "called",
-          "my",
-          "friend"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-33:i15",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "listen_build_dictation",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть почуту фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-13:session-33:i15:audio"
-      ],
-      "accessibilityLabel": "Складіть почуту фразу",
-      "modePayload": {
-        "family": "listen_build_dictation",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-33:i15:audio",
-          "transcript": "We didn't walk home in the end."
-        },
-        "slowReferenceAudio": null,
-        "hiddenTargetPhrase": "We didn't walk home in the end.",
-        "orderedTokens": [
-          "We",
-          "didn't",
-          "walk",
-          "home",
-          "in",
-          "the",
-          "end"
-        ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": [],
-        "completionFeedbackByLocale": {
-          "ru": "",
-          "uk": ""
-        }
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-13:session-33:i16",
-      "ordinal": 23,
-      "purpose": "guided_practice",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: насамперед вона перевірила квиток",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-13:session-33:i16:audio"
-      ],
-      "accessibilityLabel": "Скажіть: насамперед вона перевірила квиток",
+      "accessibilityLabel": "Уточніть, чи їде автобус до станції.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-13:session-33:i16:audio",
-          "transcript": "First of all, she checked the ticket."
+          "audioTargetId": "en:lesson-13:session-33:i14:audio",
+          "transcript": "Does this bus go to the station?"
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "First of all, she checked the ticket.",
+        "targetPhrase": "Does this bus go to the station?",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1078,26 +847,138 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-13:session-33:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-13:session-33:i15:r1",
+          "text": "The next stop is yours."
+        },
+        {
+          "responseId": "en:lesson-13:session-33:i15:r2",
+          "text": "The last stop is yours."
+        },
+        {
+          "responseId": "en:lesson-13:session-33:i15:r3",
+          "text": "The next stop is ours."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-13:session-33:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-13:session-33:i15:audio",
+          "transcript": "The next stop is yours."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-13:session-33:i15:r1",
+            "targetText": "The next stop is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-33:i15:r2",
+            "targetText": "The last stop is yours.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-13:session-33:i15:r3",
+            "targetText": "The next stop is ours.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-13:session-33:i15:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The next stop is yours.",
+              "uk": "У записі звучить The next stop is yours."
+            }
+          },
+          {
+            "responseId": "en:lesson-13:session-33:i15:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The next stop is yours.",
+              "uk": "У записі звучить The next stop is yours."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-13:session-33:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Скажіть, де залишили парасолю.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Скажіть, де залишили парасолю.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I left my umbrella by the door.",
+        "localizedMeaning": {
+          "ru": "Скажите, где оставили зонт.",
+          "uk": "Скажіть, де залишили парасолю."
+        },
+        "orderedTokens": [
+          "I",
+          "left",
+          "my",
+          "umbrella",
+          "by",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-13:session-33:i17",
       "ordinal": 24,
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть: зрештою я зателефонував другові",
+      "prompt": "Подякуйте за допомогу.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-13:session-33:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть: зрештою я зателефонував другові",
+      "accessibilityLabel": "Подякуйте за допомогу.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
           "audioTargetId": "en:lesson-13:session-33:i17:audio",
-          "transcript": "In the end, I called my friend."
+          "transcript": "Thank you for helping me."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "In the end, I called my friend.",
+        "targetPhrase": "Thank you for helping me.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -1117,5 +998,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "77f1373fa17f740f397aecf0623264573db2ed9cd5f221e74757c0d0e9518697"
+  "learnerFingerprint": "8877cfb3fe1c4bcf1d8f9492feed2604c214266d13429e3032da150473ffb71a"
 }

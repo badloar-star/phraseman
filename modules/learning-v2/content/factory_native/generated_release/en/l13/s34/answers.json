@@ -11,12 +11,12 @@
   },
   {
     "interactionId": "en:lesson-13:session-34:i02",
-    "correctText": "Did she set off early?",
-    "correctResponseId": "en:lesson-13:session-34:i02:r1"
+    "correctText": "Where are the keys?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-34:i03",
-    "correctText": "Did",
+    "correctText": "We left at eight.",
     "correctResponseId": "en:lesson-13:session-34:i03:r1"
   },
   {
@@ -31,13 +31,18 @@
   },
   {
     "interactionId": "en:lesson-13:session-34:i05",
-    "correctText": "Did she stop off at a café?",
+    "correctText": "order",
     "correctResponseId": "en:lesson-13:session-34:i05:r1"
   },
   {
     "interactionId": "en:lesson-13:session-34:i06",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-34:i06:r1"
+    "correctText": "Could I have a glass of water?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-13:session-34:i07",
+    "correctText": "We stayed for twenty minutes.",
+    "correctResponseId": "en:lesson-13:session-34:i07:r1"
   },
   {
     "interactionId": "en:lesson-13:session-34:word:drop-off",
@@ -45,19 +50,19 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-13:session-34:i07",
-    "correctText": "Did you drop off the parcel?",
+    "interactionId": "en:lesson-13:session-34:i08",
+    "correctText": "Can you drop off the parcel?",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-13:session-34:i08",
-    "correctText": "Did she drop off the parcel?",
-    "correctResponseId": "en:lesson-13:session-34:i08:r1"
+    "interactionId": "en:lesson-13:session-34:i09",
+    "correctText": "Then we went to the station.",
+    "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-13:session-34:i09",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-34:i09:r1"
+    "interactionId": "en:lesson-13:session-34:i10",
+    "correctText": "miss",
+    "correctResponseId": "en:lesson-13:session-34:i10:r1"
   },
   {
     "interactionId": "en:lesson-13:session-34:word:run-into",
@@ -65,43 +70,38 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-13:session-34:i10",
-    "correctText": "Did you run into your neighbour?",
-    "correctResponseId": null
-  },
-  {
     "interactionId": "en:lesson-13:session-34:i11",
-    "correctText": "Did she run into your neighbour?",
+    "correctText": "Did you run into your neighbour?",
     "correctResponseId": "en:lesson-13:session-34:i11:r1"
   },
   {
     "interactionId": "en:lesson-13:session-34:i12",
-    "correctText": "Did",
-    "correctResponseId": "en:lesson-13:session-34:i12:r1"
+    "correctText": "How is she?",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-34:i13",
-    "correctText": "en:lesson-13:session-34:i13:p1=set off\nen:lesson-13:session-34:i13:p2=stop off\nen:lesson-13:session-34:i13:p3=drop off\nen:lesson-13:session-34:i13:p4=run into",
+    "correctText": "Where did you park?",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-34:i14",
-    "correctText": "Then we stopped off at a shop.",
-    "correctResponseId": null
+    "correctText": "wait",
+    "correctResponseId": "en:lesson-13:session-34:i14:r1"
   },
   {
     "interactionId": "en:lesson-13:session-34:i15",
-    "correctText": "We didn't arrive late in the end.",
-    "correctResponseId": null
+    "correctText": "They waited by the front door.",
+    "correctResponseId": "en:lesson-13:session-34:i15:r1"
   },
   {
     "interactionId": "en:lesson-13:session-34:i16",
-    "correctText": "First of all, we set off at eight.",
+    "correctText": "In the end, we arrived on time.",
     "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-13:session-34:i17",
-    "correctText": "Then she dropped off the parcel.",
+    "correctText": "Can I help you with your bag?",
     "correctResponseId": null
   }
 ]

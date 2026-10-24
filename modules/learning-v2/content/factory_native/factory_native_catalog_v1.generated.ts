@@ -4937,14 +4937,14 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 33,
-    sourceFingerprint: "3399f261144e06726b9e43093694785e58d7070bfdc5d6f133fe7678b4e71c33",
+    sourceFingerprint: "122fbb146d0750a7beb246d7a12199550a9dc1f89dfd5a28aac59d0bda9525c6",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"new: past event sequence; review: did/did not","uk":"new: past event sequence; review: did/did not"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 34,
-    sourceFingerprint: "5c0647101cdbdf5be1bdd3a982c9e3ed47837094035135692411f4cf50ab2dbb",
+    sourceFingerprint: "e57e1e4d5221fbaff61e354cda44f8a13f4d602670564d4b9e5db638574b0044",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: past event sequence","uk":"review: past event sequence"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),

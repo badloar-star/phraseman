@@ -51,101 +51,99 @@ Drop off тут — завезти й залишити річ або людин�
 
 **1 · Картка слова — set off**
 <!-- interaction_id: en:lesson-13:session-34:word:set-off; family: word_card -->
-> **set off** — вирушити в дорогу.
+> **set off** — Вирушити в дорогу.
 
-**2 · Скажіть: Ти вирушив у дорогу рано?**
+**2 · Запитайте, чи рано друг вирушив.**
 <!-- interaction_id: en:lesson-13:session-34:i01; family: phrase_builder -->
 Плитки: `early` `off` `set` `you` `Did` → **Did you set off early?**
 
-**3 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-34:i02; family: listen_choose -->
-🔊 *Did she set off early?* → **Did she set off early?** · Did you set off early? · Did they set off early?
-- Did you set off early? — *У записі звучить Did she set off early?*
-- Did they set off early? — *У записі звучить Did she set off early?*
+**3 · Перед виходом запитайте, де ключі.**
+<!-- interaction_id: en:lesson-13:session-34:i02; family: scripted_repeat_compare -->
+🎙 **Where are the keys?**
 
-**4 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-34:i03; family: context_gap_grammar -->
-___ you set off early? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**4 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-34:i03; family: listen_choose -->
+🔊 *We left at eight.* → **We left at eight.** · We left at nine. · They left at eight.
+- We left at nine. — *У записі звучить We left at eight.*
+- They left at eight. — *У записі звучить We left at eight.*
 
 **5 · Картка слова — stop off**
 <!-- interaction_id: en:lesson-13:session-34:word:stop-off; family: word_card -->
-> **stop off** — ненадовго зупинитися дорогою.
+> **stop off** — Ненадовго зупинитися дорогою.
 
-**6 · Скажіть: Ти ненадовго зупинився в кафе дорогою?**
-<!-- interaction_id: en:lesson-13:session-34:i04; family: phrase_builder -->
-Плитки: `café` `a` `at` `off` `stop` `you` `Did` → **Did you stop off at a café?**
+**6 · Почуйте запитання про зупинку в кафе.**
+<!-- interaction_id: en:lesson-13:session-34:i04; family: listen_build_dictation -->
+🔊 *Did you stop off at a café?* Плитки: `café` `a` `at` `off` `stop` `you` `Did` → **Did you stop off at a café?**
 
-**7 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-34:i05; family: listen_choose -->
-🔊 *Did she stop off at a café?* → **Did she stop off at a café?** · Did you stop off at a café? · Did they stop off at a café?
-- Did you stop off at a café? — *У записі звучить Did she stop off at a café?*
-- Did they stop off at a café? — *У записі звучить Did she stop off at a café?*
+**7 · Уточніть, чи друг замовив чай.**
+<!-- interaction_id: en:lesson-13:session-34:i05; family: context_gap_grammar -->
+Did you ___ tea? → **order** · ordered · ordering
+- ordered — *Після did потрібна order.*
+- ordering — *Після did використовуємо order.*
 
-**8 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-34:i06; family: context_gap_grammar -->
-___ you stop off at a café? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**8 · Попросіть склянку води в кафе.**
+<!-- interaction_id: en:lesson-13:session-34:i06; family: scripted_repeat_compare -->
+🎙 **Could I have a glass of water?**
 
-**9 · Картка слова — drop off**
+**9 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-34:i07; family: listen_choose -->
+🔊 *We stayed for twenty minutes.* → **We stayed for twenty minutes.** · We stayed for ten minutes. · They stayed for twenty minutes.
+- We stayed for ten minutes. — *У записі звучить We stayed for twenty minutes.*
+- They stayed for twenty minutes. — *У записі звучить We stayed for twenty minutes.*
+
+**10 · Картка слова — drop off**
 <!-- interaction_id: en:lesson-13:session-34:word:drop-off; family: word_card -->
-> **drop off** — завезти й залишити в потрібному місці.
+> **drop off** — Завезти й залишити в потрібному місці.
 
-**10 · Скажіть: Ти завіз посилку?**
-<!-- interaction_id: en:lesson-13:session-34:i07; family: phrase_builder -->
-Плитки: `parcel` `the` `off` `drop` `you` `Did` → **Did you drop off the parcel?**
+**11 · Попросіть завезти посилку.**
+<!-- interaction_id: en:lesson-13:session-34:i08; family: phrase_builder -->
+Плитки: `parcel` `the` `off` `drop` `you` `Can` → **Can you drop off the parcel?**
 
-**11 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-34:i08; family: listen_choose -->
-🔊 *Did she drop off the parcel?* → **Did she drop off the parcel?** · Did you drop off the parcel? · Did they drop off the parcel?
-- Did you drop off the parcel? — *У записі звучить Did she drop off the parcel?*
-- Did they drop off the parcel? — *У записі звучить Did she drop off the parcel?*
+**12 · Продовжте розповідь поїздкою на станцію.**
+<!-- interaction_id: en:lesson-13:session-34:i09; family: phrase_builder -->
+Плитки: `station` `the` `to` `went` `we` `Then` → **Then we went to the station.**
 
-**12 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-34:i09; family: context_gap_grammar -->
-___ you drop off the parcel? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**13 · Скажіть, що ви не запізнилися на потяг.**
+<!-- interaction_id: en:lesson-13:session-34:i10; family: context_gap_grammar -->
+We did not ___ the train. → **miss** · missed · missing
+- missed — *Після did not потрібна miss.*
+- missing — *Після did not використовуємо miss.*
 
-**13 · Картка слова — run into**
+**14 · Картка слова — run into**
 <!-- interaction_id: en:lesson-13:session-34:word:run-into; family: word_card -->
-> **run into** — випадково зустріти знайомого.
-
-**14 · Скажіть: Ти випадково зустрів сусіда?**
-<!-- interaction_id: en:lesson-13:session-34:i10; family: phrase_builder -->
-Плитки: `neighbour` `your` `into` `run` `you` `Did` → **Did you run into your neighbour?**
+> **run into** — Випадково зустріти знайомого.
 
 **15 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-13:session-34:i11; family: listen_choose -->
-🔊 *Did she run into your neighbour?* → **Did she run into your neighbour?** · Did you run into your neighbour? · Did they run into your neighbour?
-- Did you run into your neighbour? — *У записі звучить Did she run into your neighbour?*
-- Did they run into your neighbour? — *У записі звучить Did she run into your neighbour?*
+🔊 *Did you run into your neighbour?* → **Did you run into your neighbour?** · Did you run into your teacher? · Did they run into your neighbour?
+- Did you run into your teacher? — *У записі звучить Did you run into your neighbour?*
+- Did they run into your neighbour? — *У записі звучить Did you run into your neighbour?*
 
-**16 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-34:i12; family: context_gap_grammar -->
-___ you run into your neighbour? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**16 · Друг зустрів вашу сусідку. Запитайте, як у неї справи.**
+<!-- interaction_id: en:lesson-13:session-34:i12; family: scripted_repeat_compare -->
+🎙 **How is she?**
 
-**17 · Поєднайте вирази з перекладом**
-<!-- interaction_id: en:lesson-13:session-34:i13; family: speed_match -->
-set off — вирушити в дорогу · stop off — ненадовго зупинитися дорогою · drop off — завезти й залишити в потрібному місці · run into — випадково зустріти знайомого
+**17 · Почуйте запитання про паркування.**
+<!-- interaction_id: en:lesson-13:session-34:i13; family: listen_build_dictation -->
+🔊 *Where did you park?* Плитки: `park` `you` `did` `Where` → **Where did you park?**
 
-**18 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-34:i14; family: listen_build_dictation -->
-🔊 *Then we stopped off at a shop.* Плитки: `shop` `a` `at` `off` `stopped` `we` `Then` → **Then we stopped off at a shop.**
+**18 · Дізнайтеся, чи друзі чекали вашого приїзду.**
+<!-- interaction_id: en:lesson-13:session-34:i14; family: context_gap_grammar -->
+Did they ___ for you? → **wait** · waited · waiting
+- waited — *Після did потрібна wait.*
+- waiting — *Після did використовуємо wait.*
 
-**19 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-34:i15; family: listen_build_dictation -->
-🔊 *We didn't arrive late in the end.* Плитки: `end` `the` `in` `late` `arrive` `didn't` `We` → **We didn't arrive late in the end.**
+**19 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-34:i15; family: listen_choose -->
+🔊 *They waited by the front door.* → **They waited by the front door.** · They waited by the back door. · We waited by the front door.
+- They waited by the back door. — *У записі звучить They waited by the front door.*
+- We waited by the front door. — *У записі звучить They waited by the front door.*
 
-**20 · Скажіть: насамперед ми вирушили о восьмій**
-<!-- interaction_id: en:lesson-13:session-34:i16; family: scripted_repeat_compare -->
-🎙 **First of all, we set off at eight.**
+**20 · Завершіть розповідь: зрештою приїхали вчасно.**
+<!-- interaction_id: en:lesson-13:session-34:i16; family: phrase_builder -->
+Плитки: `time` `on` `arrived` `we` `end,` `the` `In` → **In the end, we arrived on time.**
 
-**21 · Скажіть: потім вона завезла посилку**
+**21 · Запропонуйте допомогти із сумкою.**
 <!-- interaction_id: en:lesson-13:session-34:i17; family: scripted_repeat_compare -->
-🎙 **Then she dropped off the parcel.**
+🎙 **Can I help you with your bag?**
 

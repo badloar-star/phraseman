@@ -20,6 +20,8 @@
     "docs/motion-handoff",
     "tests",
     "_archive",
+    // зачем (координатор 24.10): архив чужих неотслеживаемых копий — не исходники приложения; ровно эта папка, не весь docs
+    "docs/work/archive",
     // Historical Learning V2 evidence copies and retired DE Task 6c CLIs are not app/runtime sources.
     "content/learning-v2-course/curriculum/de/_archive_2026-10-15",
     "content/learning-v2-course/outputs/**/source-snapshot",

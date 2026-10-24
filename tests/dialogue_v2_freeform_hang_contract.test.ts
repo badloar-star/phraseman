@@ -29,6 +29,15 @@ describe('«Свободный разговор» не висит на «••�
     expect(screen).toContain('[FREEFORM-HANG] turn:shown');
   });
 
+  // зачем (координатор 24.10: сервер отвечал 200 за 9–20 с, а «•••» висели — залипание на клиенте): страж «•••»
+  it('страж «•••»: дольше потолков старта и хода точки не висят; отброшенный ответ пишет причину', () => {
+    expect(screen).toContain('const FREEFORM_DOTS_WATCHDOG_MS = DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS + DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS + 6_000;');
+    expect(screen).toMatch(/\[FREEFORM-HANG\] watchdog: dots too long → retry bar[\s\S]{0,600}setSending\(false\);\s*setTurnFailed\(true\);/);
+    expect(screen).toContain('[FREEFORM-HANG] turn:result_dropped');
+    // поздний настоящий ответ снимает плашку
+    expect(screen).toMatch(/text: result\.assistantMessage,\s*\}\)\]\)\);\s*\/\/[^\n]*\n\s*setTurnFailed\(false\);/);
+  });
+
   it('сбой хода гасит «•••» и ставит плашку с «Повторить»; «нет согласия» — снова окно согласия', () => {
     expect(screen).toMatch(/if \(current\) setTurnFailed\(true\);/);
     expect(screen).toMatch(/finally \{\s*if \(isCurrentPending\(pending\)\) \{\s*setSending\(false\);/);

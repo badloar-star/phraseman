@@ -34,6 +34,9 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack, push: mockPush, replace: mockReplace }) }));
 jest.mock('../app/dialogue_v2_freeform_client', () => ({
+  // потолки вызовов — для стража «•••» экрана (координатор 24.10)
+  DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS: 22_000,
+  DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS: 32_000,
   startDialogueV2FreeformSession: (...args: unknown[]) => mockStart(...args),
   sendDialogueV2FreeformTurn: (...args: unknown[]) => mockTurn(...args),
   requestDialogueV2FreeformPreparedBotVoice: (...args: unknown[]) => mockPreparedBotVoiceRequest(...args),

@@ -19,7 +19,14 @@ import {
   requestDialogueV2FreeformPreparedBotVoice,
   sendDialogueV2FreeformTurn,
   startDialogueV2FreeformSession,
+  DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS,
+  DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS,
 } from './dialogue_v2_freeform_client';
+
+/** Страж «•••»: дольше потолков старта и хода вместе (плюс запас) точки не висят. */
+const FREEFORM_DOTS_WATCHDOG_MS = DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS + DIALOGUE_V2_FREEFORM_TURN_TIMEOUT_MS + 6_000;
+// зачем: потолок не число (подменённый модуль) — страж не должен срабатывать мгновенно и рушить очередь отправки
+const FREEFORM_DOTS_WATCHDOG_SAFE_MS = Number.isFinite(FREEFORM_DOTS_WATCHDOG_MS) && FREEFORM_DOTS_WATCHDOG_MS > 0 ? FREEFORM_DOTS_WATCHDOG_MS : 60_000;
 
 /** Отказ «на сегодня всё» (DialogueV2FreeformUnavailableError.reason) — по полю, без instanceof: модуль клиента подменяют в тестах. */
 function isFreeformDailyCap(error: unknown): boolean {
@@ -303,6 +310,13 @@ function DialogueV2FreeformContent() {
       if (!result) throw new Error('freeform_turn_unavailable');
       if (!isCurrentPending(pending)) {
         console.log('[DIALOGUE-V2] freeform: late turn result ignored — contour changed', { turnId: pending.turnId }); // guard-ok
+        // зачем (T6 «вечные •••»): почему ответ сервера не показан — какое поле контура разошлось
+        const live = sessionRef.current;
+        console.warn('[FREEFORM-HANG] turn:result_dropped', JSON.stringify({
+          turnId: pending.turnId, pendingGeneration: pending.generation, generation: generationRef.current,
+          targetSame: targetRef.current === pending.studyTarget, hasSession: !!live,
+          sessionSame: live?.sessionId === pending.sessionId, sessionGeneration: live?.generation ?? null,
+        }));
         return;
       }
       setMessages((current) => Object.freeze([...current, Object.freeze({
@@ -310,6 +324,9 @@ function DialogueV2FreeformContent() {
         author: 'assistant' as const,
         text: result.assistantMessage,
       })]));
+      // поздний настоящий ответ после стража «•••» — плашку сбоя убираем, ответ уже в ленте
+      setTurnFailed(false);
+      console.log('[FREEFORM-HANG] turn:shown', JSON.stringify({ turnId: pending.turnId, shown: 'assistant_reply', chars: result.assistantMessage.length }));
       // The reviewed catalog is deliberately null, so this bridge is inert:
       // it cannot invoke the callable or add voice UI metadata at present.
       void resolveCurrentDialogueV2FreeformPreparedBotVoice({
@@ -346,6 +363,24 @@ function DialogueV2FreeformContent() {
       }
     }
   }, [askConsentAgain, isCurrentPending]);
+
+  // зачем (координатор 24.10, «•••» висели при ответе сервера за 9–20 с): страж — если «•••» висят дольше потолков старта и хода
+  // вместе, пишем всё состояние, гасим точки и ставим плашку «Повторить». Без стража любое залипание экрана было вечным.
+  useEffect(() => {
+    if (!sending) return undefined;
+    const since = Date.now();
+    const timer = setTimeout(() => {
+      console.warn('[FREEFORM-HANG] watchdog: dots too long → retry bar', JSON.stringify({
+        ms: Date.now() - since, hasSession: !!sessionRef.current, queued: queuedMessageRef.current !== null,
+        pendingTurnId: pendingRef.current?.turnId ?? null, starting: startingRef.current, startInFlight: startInFlightRef.current,
+        generation: generationRef.current,
+      }));
+      startingRef.current = false;
+      setSending(false);
+      setTurnFailed(true);
+    }, FREEFORM_DOTS_WATCHDOG_SAFE_MS);
+    return () => clearTimeout(timer);
+  }, [sending]);
 
   const sendRef = useRef<(queued: string | null) => Promise<void>>(async () => undefined);
   useEffect(() => {

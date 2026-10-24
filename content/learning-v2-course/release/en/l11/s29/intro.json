@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Городская администрация",
-        "uk": "Міська адміністрація"
+        "ru": "Открытая администрация вчера",
+        "uk": "Відкрита адміністрація вчора"
       },
       "bodyByLocale": {
-        "ru": "Town hall — «здание городской администрации», также «ратуша». Вчера оно было открыто: The town hall was open yesterday. Сейчас закрыто: It is closed now. Выберите сообщение о вчерашнем дне.",
-        "uk": "Town hall — «будівля міської адміністрації», також «ратуша». Учора вона була відчинена: The town hall was open yesterday. Зараз зачинена: It is closed now. Виберіть повідомлення про вчорашній день."
+        "ru": "Вы вспоминаете вчерашнюю прогулку: здание городской администрации было открыто. Скажите: The town hall was open yesterday. Начните с конкретного здания the town hall. Затем поставьте was: здание одно, а речь о прошлом. Добавьте состояние open — «открыто» — и время yesterday. Так вы сообщаете, каким здание было вчера, а не что происходит сейчас.",
+        "uk": "Ви згадуєте вчорашню прогулянку: будівля міської адміністрації була відкрита. Скажіть: The town hall was open yesterday. Почніть із конкретної будівлі the town hall. Потім поставте was: будівля одна, а йдеться про минуле. Додайте стан open — «відкрита» — і час yesterday. Так ви повідомляєте, якою будівля була вчора, а не що відбувається зараз."
       },
       "question": {
         "interactionId": "en:lesson-11:session-29:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пожарная часть и машина",
-        "uk": "Пожежна частина й машина"
+        "ru": "Пожарная машина у части",
+        "uk": "Пожежна машина біля частини"
       },
       "bodyByLocale": {
-        "ru": "Fire station — «пожарная часть», fire engine — «пожарная машина». Здесь engine входит в название машины, его не нужно переводить отдельно. Вчера рядом с пожарной частью была пожарная машина: There was a fire engine near the fire station. Выберите эту фразу.",
-        "uk": "Fire station — «пожежна частина», fire engine — «пожежна машина». Тут engine входить до назви машини, його не потрібно перекладати окремо. Учора поруч із пожежною частиною була пожежна машина: There was a fire engine near the fire station. Виберіть цю фразу."
+        "ru": "Вчера вы заметили пожарную машину рядом с пожарной частью. Скажите: There was a fire engine near the fire station. Начните с there was, чтобы сообщить об одном предмете в прошлом. Затем назовите его — a fire engine: перед одной впервые упоминаемой машиной нужно a. В конце укажите место near the fire station — «рядом с пожарной частью». Fire engine обозначает машину целиком, а fire station — здание части.",
+        "uk": "Учора ви помітили пожежну машину поруч із пожежною частиною. Скажіть: There was a fire engine near the fire station. Почніть із there was, щоб повідомити про один предмет у минулому. Потім назвіть його — a fire engine: перед однією вперше згаданою машиною потрібне a. Наприкінці вкажіть місце near the fire station — «поруч із пожежною частиною». Fire engine позначає машину загалом, а fire station — будівлю частини."
       },
       "question": {
         "interactionId": "en:lesson-11:session-29:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Машина скорой помощи",
-        "uk": "Машина швидкої допомоги"
+        "ru": "Скорая помощь у больницы",
+        "uk": "Швидка допомога біля лікарні"
       },
       "bodyByLocale": {
-        "ru": "Ambulance — «машина скорой помощи». Перед начальным гласным звуком ставим an: There was an ambulance near the hospital — «Рядом с больницей была машина скорой помощи». Если машины две: There were two ambulances. Выберите фразу об одной машине у больницы.",
-        "uk": "Ambulance — «машина швидкої допомоги». Перед початковим голосним звуком ставимо an: There was an ambulance near the hospital — «Поруч із лікарнею була машина швидкої допомоги». Якщо машин дві: There were two ambulances. Виберіть фразу про одну машину біля лікарні."
+        "ru": "Вы вспоминаете, что вчера рядом с больницей стояла одна машина скорой помощи. Скажите: There was an ambulance near the hospital. Начните с there was, потому что сообщаете об одной машине в прошлом. Затем добавьте an ambulance. Перед начальным гласным звуком в ambulance выбираем an, а не a. Завершите фразу местом near the hospital — «рядом с больницей».",
+        "uk": "Ви згадуєте, що вчора поруч із лікарнею стояла одна машина швидкої допомоги. Скажіть: There was an ambulance near the hospital. Почніть із there was, бо повідомляєте про одну машину в минулому. Потім додайте an ambulance. Перед початковим голосним звуком в ambulance обираємо an, а не a. Завершіть фразу місцем near the hospital — «поруч із лікарнею»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-29:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b52ff682feec9a8099c1cab057ba9e006ca199a4c4df798601697327970eaaa4"
+  "introFingerprint": "270593ac236b164b3b4df0ee8378fe608e1ec804caa3338d54bf688a508ddbf8"
 }

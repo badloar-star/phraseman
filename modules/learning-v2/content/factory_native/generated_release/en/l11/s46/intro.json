@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для рук и губ",
-        "uk": "Для рук і губ"
+        "ru": "Крем был в сумке",
+        "uk": "Крем був у сумці"
       },
       "bodyByLocale": {
-        "ru": "Hand cream — «крем для рук», lip balm — «бальзам для губ». Вчера крем для рук был в сумке: The hand cream was in my bag yesterday. Сейчас он на столе: It is on the table now. Выберите вчерашнее место крема.",
-        "uk": "Hand cream — «крем для рук», lip balm — «бальзам для губ». Учора крем для рук був у сумці: The hand cream was in my bag yesterday. Зараз він на столі: It is on the table now. Виберіть учорашнє місце крему."
+        "ru": "Вы вспоминаете, что вчера крем для рук лежал в вашей сумке. Скажите: The hand cream was in my bag yesterday — крем для рук был в моей сумке вчера. Сначала назовите средство: The hand cream. Затем поставьте was: cream здесь неисчисляемое, и речь о прошлом. Добавьте место in my bag, а в конце время yesterday.",
+        "uk": "Ви згадуєте, що вчора крем для рук лежав у вашій сумці. Скажіть: The hand cream was in my bag yesterday — крем для рук був у моїй сумці вчора. Спочатку назвіть засіб: The hand cream. Потім поставте was: cream тут незлічуване, і йдеться про минуле. Додайте місце in my bag, а наприкінці час yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Пена для бритья",
-        "uk": "Піна для гоління"
+        "ru": "Уточнить место пены для бритья",
+        "uk": "Уточнити місце піни для гоління"
       },
       "bodyByLocale": {
-        "ru": "Shaving foam — «пена для бритья». Вчера она стояла у умывальника: The shaving foam was next to the washbasin. Спросите об этом: Was the shaving foam next to the washbasin? Выберите этот вопрос.",
-        "uk": "Shaving foam — «піна для гоління». Учора вона стояла біля умивальника: The shaving foam was next to the washbasin. Запитайте про це: Was the shaving foam next to the washbasin? Виберіть це запитання."
+        "ru": "Вы не помните, стояла ли вчера пена для бритья рядом с умывальником, и спрашиваете об этом брата. Скажите: Was the shaving foam next to the washbasin? — пена для бритья была рядом с умывальником? Для вопроса поставьте Was перед названием средства: the shaving foam. Затем добавьте место: next to the washbasin. Foam здесь неисчисляемое, поэтому используем was, а не were.",
+        "uk": "Ви не пам'ятаєте, чи стояла вчора піна для гоління поруч з умивальником, і запитуєте про це брата. Скажіть: Was the shaving foam next to the washbasin? — піна для гоління була поруч з умивальником? Для запитання поставте Was перед назвою засобу: the shaving foam. Потім додайте місце: next to the washbasin. Foam тут незлічуване, тому використовуємо was, а не were."
       },
       "question": {
         "interactionId": "en:lesson-11:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Лосьон для тела",
-        "uk": "Лосьйон для тіла"
+        "ru": "Лосьона не было в ванной",
+        "uk": "Лосьйону не було у ванній"
       },
       "bodyByLocale": {
-        "ru": "Body lotion — «лосьон для тела». Вчера он был не в ванной: The body lotion was not in the bathroom. Теперь он там: It is in the bathroom now. Выберите сообщение о вчерашнем месте: в ванной его не было.",
-        "uk": "Body lotion — «лосьйон для тіла». Учора він був не у ванній: The body lotion was not in the bathroom. Тепер він там: It is in the bathroom now. Виберіть повідомлення про вчорашнє місце: у ванній його не було."
+        "ru": "Вчера вы искали лосьон для тела в ванной, но его там не было. Сообщите об этом: The body lotion was not in the bathroom — лосьона для тела не было в ванной. Начните с The body lotion, затем поставьте was и сразу после него not для отрицания. В конце добавьте место: in the bathroom. Lotion здесь неисчисляемое, поэтому выбираем was.",
+        "uk": "Учора ви шукали лосьйон для тіла у ванній, але його там не було. Повідомте про це: The body lotion was not in the bathroom — лосьйону для тіла не було у ванній. Почніть із The body lotion, потім поставте was і відразу після нього not для заперечення. Наприкінці додайте місце: in the bathroom. Lotion тут незлічуване, тому вибираємо was."
       },
       "question": {
         "interactionId": "en:lesson-11:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe73d9552c05b44a4250ddd62c5eed8968966eb47a0550185e1287742d669417"
+  "introFingerprint": "f967b3b0d293c9a9d52d348b14ef4d13f21a5d32dccb72bcef9781ba366126f4"
 }

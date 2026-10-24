@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Машинист",
-        "uk": "Машиніст"
+        "ru": "Был ли машинист готов",
+        "uk": "Чи був машиніст готовий"
       },
       "bodyByLocale": {
-        "ru": "Train driver — «машинист поезда». Вчера машинист был готов: The train driver was ready yesterday. Вопрос: Was the train driver ready? Если машинистов два: The two train drivers were ready. Выберите вопрос об одном машинисте.",
-        "uk": "Train driver — «машиніст поїзда». Учора машиніст був готовий: The train driver was ready yesterday. Запитання: Was the train driver ready? Якщо машиністів двоє: The two train drivers were ready. Виберіть запитання про одного машиніста."
+        "ru": "Вы обсуждаете вчерашнюю поездку и спрашиваете, был ли машинист готов к отправлению. Спросите: Was the train driver ready? Начните с was, затем назовите одного человека the train driver и добавьте состояние ready — «готов». В вопросе о прошлом was стоит перед тем, о ком спрашиваем. Дополнительное did не нужно.",
+        "uk": "Ви обговорюєте вчорашню поїздку й запитуєте, чи був машиніст готовий до відправлення. Запитайте: Was the train driver ready? Почніть із was, потім назвіть одну людину the train driver і додайте стан ready — «готовий». У запитанні про минуле was стоїть перед тим, про кого запитуємо. Додаткове did не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-11:session-30:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Билетная касса",
-        "uk": "Квиткова каса"
+        "ru": "Закрытая касса вчера",
+        "uk": "Зачинена каса вчора"
       },
       "bodyByLocale": {
-        "ru": "Ticket office — «билетная касса», место, где покупают билеты. Вчера касса была закрыта: The ticket office was closed yesterday. Сейчас открыта: The ticket office is open now. Выберите сообщение о вчерашней кассе.",
-        "uk": "Ticket office — «квиткова каса», місце, де купують квитки. Учора каса була зачинена: The ticket office was closed yesterday. Зараз відчинена: The ticket office is open now. Виберіть повідомлення про вчорашню касу."
+        "ru": "Вчера вы подошли к билетной кассе, но она была закрыта. Скажите: The ticket office was closed yesterday. Сначала назовите конкретную кассу the ticket office. Затем поставьте was: касса одна, а речь о прошлом. Добавьте её состояние closed — «закрыта» — и время yesterday. Эта фраза сообщает о состоянии кассы, а не о действии человека, который её закрыл.",
+        "uk": "Учора ви підійшли до квиткової каси, але вона була зачинена. Скажіть: The ticket office was closed yesterday. Спочатку назвіть конкретну касу the ticket office. Потім поставте was: каса одна, а йдеться про минуле. Додайте її стан closed — «зачинена» — і час yesterday. Ця фраза повідомляє про стан каси, а не про дію людини, яка її зачинила."
       },
       "question": {
         "interactionId": "en:lesson-11:session-30:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Железная дорога и табло",
-        "uk": "Залізниця й табло"
+        "ru": "Табло на стене",
+        "uk": "Табло на стіні"
       },
       "bodyByLocale": {
-        "ru": "Railway — «железная дорога», обычное британское слово. Departure board — «табло отправлений»: на нём смотрят время отправления транспорта. Вчера на стене было табло: There was a departure board on the wall. Один предмет: there was a. Выберите эту фразу.",
-        "uk": "Railway — «залізниця», звичайне британське слово. Departure board — «табло відправлень»: на ньому дивляться час відправлення транспорту. Учора на стіні було табло: There was a departure board on the wall. Один предмет: there was a. Виберіть цю фразу."
+        "ru": "Вы вспоминаете вчерашний вокзал: на стене висело табло отправлений. Скажите: There was a departure board on the wall. Начните с there was, чтобы сообщить об одном предмете в определённом месте в прошлом. Затем назовите его — a departure board, табло со временем отправления транспорта. Перед одним впервые упоминаемым табло нужно a. Завершите фразу местом on the wall — «на стене».",
+        "uk": "Ви згадуєте вчорашній вокзал: на стіні висіло табло відправлень. Скажіть: There was a departure board on the wall. Почніть із there was, щоб повідомити про один предмет у певному місці в минулому. Потім назвіть його — a departure board, табло з часом відправлення транспорту. Перед одним уперше згаданим табло потрібне a. Завершіть фразу місцем on the wall — «на стіні»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7528f145327a50fde6ba703ecbdeb01aa8a9cb20b1d4af895b991807f9767870"
+  "introFingerprint": "5972437c811580c429b40e9d3072bd8379943ef063467c699795c2e2c7bda42d"
 }

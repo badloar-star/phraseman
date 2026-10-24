@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Банкомат",
-        "uk": "Банкомат"
+        "ru": "Банкомат у магазина",
+        "uk": "Банкомат біля магазину"
       },
       "bodyByLocale": {
-        "ru": "Cash machine — «банкомат». Вчера у магазина был банкомат: There was a cash machine near the shop. Если их было два: There were two cash machines near the shop. Выберите сообщение об одном банкомате.",
-        "uk": "Cash machine — «банкомат». Учора біля магазину був банкомат: There was a cash machine near the shop. Якщо їх було два: There were two cash machines near the shop. Виберіть повідомлення про один банкомат."
+        "ru": "Вы вспоминаете, что вчера рядом с магазином стоял банкомат. Скажите: There was a cash machine near the shop — рядом с магазином был банкомат. Начните с there was: так сообщаем, что в прошлом где-то был один предмет. Затем назовите его — a cash machine. Перед названием одного банкомата, о котором сообщаем впервые, нужно a. В конце укажите место near the shop.",
+        "uk": "Ви згадуєте, що вчора поруч із магазином стояв банкомат. Скажіть: There was a cash machine near the shop — поруч із магазином був банкомат. Почніть із there was: так повідомляємо, що в минулому десь був один предмет. Потім назвіть його — a cash machine. Перед назвою одного банкомата, про який повідомляємо вперше, потрібне a. Наприкінці вкажіть місце near the shop."
       },
       "question": {
         "interactionId": "en:lesson-11:session-39:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-39:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Банковская карта",
-        "uk": "Банківська картка"
+        "ru": "Где вчера была ваша карта",
+        "uk": "Де вчора була ваша картка"
       },
       "bodyByLocale": {
-        "ru": "Bank card — общее название банковской карты. Debit card — «дебетовая карта»: при обычной оплате деньги идут с вашего счёта. Карта вчера лежала в сумке: My debit card was in my bag yesterday. Сейчас она здесь: It is here now. Выберите вчерашнее место карты.",
-        "uk": "Bank card — загальна назва банківської картки. Debit card — «дебетова картка»: за звичайної оплати гроші йдуть із вашого рахунку. Картка вчора лежала в сумці: My debit card was in my bag yesterday. Зараз вона тут: It is here now. Виберіть учорашнє місце картки."
+        "ru": "Вы вспоминаете, где вчера лежала ваша дебетовая карта: в вашей сумке. Скажите: My debit card was in my bag yesterday. Начните с my debit card — «моя дебетовая карта». Карта одна, поэтому дальше поставьте was для прошлого. Добавьте место in my bag и время yesterday. My перед card и bag показывает, что и карта, и сумка ваши; дополнительный the после my не нужен.",
+        "uk": "Ви згадуєте, де вчора лежала ваша дебетова картка: у вашій сумці. Скажіть: My debit card was in my bag yesterday. Почніть із my debit card — «моя дебетова картка». Картка одна, тому далі поставте was для минулого. Додайте місце in my bag і час yesterday. My перед card і bag показує, що і картка, і сумка ваші; додаткове the після my не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-11:session-39:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-39:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Кредитная карта",
-        "uk": "Кредитна картка"
+        "ru": "Спросить о карте в кошельке",
+        "uk": "Запитати про картку в гаманці"
       },
       "bodyByLocale": {
-        "ru": "Credit card — «кредитная карта»: оплата использует кредит банка. Это другой тип bank card, чем debit card. Чтобы спросить, была ли кредитная карта в кошельке, поставьте was перед предметом: Was the credit card in your wallet? Выберите этот вопрос.",
-        "uk": "Credit card — «кредитна картка»: оплата використовує кредит банку. Це інший тип bank card, ніж debit card. Щоб запитати, чи була кредитна картка в гаманці, поставте was перед предметом: Was the credit card in your wallet? Виберіть це запитання."
+        "ru": "Друг ищет кредитную карту, и вы спрашиваете, была ли она в его кошельке. Спросите: Was the credit card in your wallet? — кредитная карта была в твоём кошельке? Начните с was, затем назовите одну карту — the credit card. После неё укажите место in your wallet. Your означает, что кошелёк принадлежит собеседнику. В таком вопросе was стоит перед названием предмета.",
+        "uk": "Друг шукає кредитну картку, і ви запитуєте, чи була вона в його гаманці. Запитайте: Was the credit card in your wallet? — кредитна картка була у твоєму гаманці? Почніть із was, потім назвіть одну картку — the credit card. Після неї вкажіть місце in your wallet. Your означає, що гаманець належить співрозмовнику. У такому запитанні was стоїть перед назвою предмета."
       },
       "question": {
         "interactionId": "en:lesson-11:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b4270146d24f3b89bfc6ad2b496ee1d44b35eb85adf20f0fb77d962f09c9c8d7"
+  "introFingerprint": "c204a24f4fa3c640869d25394ab4eda0f72b980d17c41923640985a715beb6ec"
 }

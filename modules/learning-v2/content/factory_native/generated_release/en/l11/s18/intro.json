@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-18:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Фасоль к завтраку",
-        "uk": "Квасоля до сніданку"
+        "ru": "Фасоль на тарелке",
+        "uk": "Квасоля на тарілці"
       },
       "bodyByLocale": {
-        "ru": "Baked beans — «фасоль в томатном соусе», которую часто едят на завтрак в Великобритании. По-английски beans — множественное число, хотя русский перевод «фасоль» в единственном: There were baked beans on the plate — «На тарелке была фасоль в томатном соусе». Выберите эту фразу о вчерашнем завтраке.",
-        "uk": "Baked beans — «квасоля в томатному соусі», яку часто їдять на сніданок у Великій Британії. Англійське beans — множина, хоча український переклад «квасоля» в однині: There were baked beans on the plate — «На тарілці була квасоля в томатному соусі». Виберіть цю фразу про вчорашній сніданок."
+        "ru": "Вы вспоминаете вчерашний завтрак: на тарелке была фасоль в томатном соусе. Скажите: There were baked beans on the plate. Начните с there were, затем назовите еду baked beans и добавьте место on the plate. В английском beans — множественное число, хотя по-русски «фасоль» — единственное. Поэтому для прошлого нужна форма were. Выбирайте её по английскому слову beans.",
+        "uk": "Ви згадуєте вчорашній сніданок: на тарілці була квасоля в томатному соусі. Скажіть: There were baked beans on the plate. Почніть із there were, потім назвіть їжу baked beans і додайте місце on the plate. В англійській beans — множина, хоча українською «квасоля» — однина. Тому для минулого потрібна форма were. Обирайте її за англійським словом beans."
       },
       "question": {
         "interactionId": "en:lesson-11:session-18:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рис и перец",
-        "uk": "Рис і перець"
+        "ru": "Рис в шкафу",
+        "uk": "Рис у шафі"
       },
       "bodyByLocale": {
-        "ru": "Brown rice — «бурый рис», black pepper — «чёрный перец», приправа. Rice и pepper в этих значениях не считаем по отдельным штукам: перед ними не нужен a, а после there в прошлом ставим was. There was brown rice in the cupboard — «В шкафу был бурый рис». Выберите эту фразу.",
-        "uk": "Brown rice — «бурий рис», black pepper — «чорний перець», приправа. Rice і pepper у цих значеннях не рахуємо по окремих штуках: перед ними не потрібен a, а після there в минулому ставимо was. There was brown rice in the cupboard — «У шафі був бурий рис». Виберіть цю фразу."
+        "ru": "Разбирая покупки, вы вспоминаете, что бурый рис уже был в шкафу. Скажите: There was brown rice in the cupboard. Начните с there was, чтобы сообщить о наличии продукта в прошлом. Затем назовите его — brown rice. Rice здесь неисчисляемое: вы говорите о продукте, а не считаете отдельные зёрна. Поэтому нужны was и название без a. В конце добавьте место in the cupboard.",
+        "uk": "Розбираючи покупки, ви згадуєте, що бурий рис уже був у шафі. Скажіть: There was brown rice in the cupboard. Почніть із there was, щоб повідомити про наявність продукту в минулому. Потім назвіть його — brown rice. Rice тут незлічуване: ви говорите про продукт, а не рахуєте окремі зерна. Тому потрібні was і назва без a. Наприкінці додайте місце in the cupboard."
       },
       "question": {
         "interactionId": "en:lesson-11:session-18:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-18:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Минеральная вода",
-        "uk": "Мінеральна вода"
+        "ru": "Вода в бутылке",
+        "uk": "Вода в пляшці"
       },
       "bodyByLocale": {
-        "ru": "Mineral water — «минеральная вода». There was mineral water in the bottle — «В бутылке была минеральная вода». Water здесь неисчисляемое: was, без a перед mineral water. Если говорим о знакомой бутылке: Was the bottle empty? — «Бутылка была пустой?» Вчера в ней была вода. Выберите сообщение о воде внутри бутылки.",
-        "uk": "Mineral water — «мінеральна вода». There was mineral water in the bottle — «У пляшці була мінеральна вода». Water тут незлічуване: was, без a перед mineral water. Якщо говоримо про знайому пляшку: Was the bottle empty? — «Пляшка була порожня?» Учора в ній була вода. Виберіть повідомлення про воду всередині пляшки."
+        "ru": "Вы вспоминаете вчерашнюю бутылку: внутри была минеральная вода. Скажите: There was mineral water in the bottle. Начните с there was, затем назовите жидкость mineral water. Здесь water неисчисляемое: вы не считаете бутылки или порции, поэтому используйте was без a перед названием воды. Завершите фразу местом in the bottle — «в бутылке».",
+        "uk": "Ви згадуєте вчорашню пляшку: усередині була мінеральна вода. Скажіть: There was mineral water in the bottle. Почніть із there was, потім назвіть рідину mineral water. Тут water незлічуване: ви не рахуєте пляшки або порції, тому використовуйте was без a перед назвою води. Завершіть фразу місцем in the bottle — «у пляшці»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f2a5f4ec4d57aea41089f68d2b5069e4a29a2d2b832d9eb4e5e22f708e835fd0"
+  "introFingerprint": "f9ae93fcc97e3e5e373785ee0b099fe0d260006f223fcf1b21c9aca571b0546f"
 }

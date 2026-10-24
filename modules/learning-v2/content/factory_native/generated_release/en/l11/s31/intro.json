@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Примерочная",
-        "uk": "Примірювальна"
+        "ru": "Была ли примерочная свободна",
+        "uk": "Чи була примірочна вільна"
       },
       "bodyByLocale": {
-        "ru": "Changing room — «примерочная» в магазине одежды. Free здесь значит «свободная, не занятая»: Was the changing room free? — «Примерочная была свободна?» Если в ней никого не было, ответьте: Yes, it was. Выберите вопрос о свободной примерочной.",
-        "uk": "Changing room — «примірювальна» в магазині одягу. Free тут означає «вільна, не зайнята»: Was the changing room free? — «Примірювальна була вільна?» Якщо в ній нікого не було, відповідайте: Yes, it was. Виберіть запитання про вільну примірювальну."
+        "ru": "Друг вчера хотел примерить одежду, и вы спрашиваете, была ли примерочная свободна. Спросите: Was the changing room free? Начните с was, затем назовите одну комнату the changing room и добавьте её состояние free. Здесь free означает «не занятая». В таком вопросе was стоит перед предметом, а did не нужен. Если примерочная была свободна, короткий ответ — Yes, it was. It заменяет the changing room.",
+        "uk": "Друг учора хотів приміряти одяг, і ви запитуєте, чи була примірочна вільна. Запитайте: Was the changing room free? Почніть із was, потім назвіть одну кімнату the changing room і додайте її стан free. Тут free означає «не зайнята». У такому запитанні was стоїть перед предметом, а did не потрібне. Якщо примірочна була вільна, коротка відповідь — Yes, it was. It замінює the changing room."
       },
       "question": {
         "interactionId": "en:lesson-11:session-31:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Витрина и корзина",
-        "uk": "Вітрина й кошик"
+        "ru": "Две корзины у двери",
+        "uk": "Два кошики біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Shop window — «витрина магазина», shopping basket — «корзина для покупок». Вчера в витрине было платье: There was a dress in the shop window. А у двери стояли две корзины: There were two shopping baskets next to the door. Выберите фразу о двух корзинах.",
-        "uk": "Shop window — «вітрина магазину», shopping basket — «кошик для покупок». Учора у вітрині була сукня: There was a dress in the shop window. А біля дверей стояли два кошики: There were two shopping baskets next to the door. Виберіть фразу про два кошики."
+        "ru": "Вы вспоминаете вчерашний магазин: рядом с дверью стояли две корзины для покупок. Скажите: There were two shopping baskets next to the door. Начните с there were, чтобы сообщить о нескольких предметах в прошлом. Затем назовите количество и предметы — two shopping baskets. Множественное число получает baskets; перед two артикль a не нужен. Завершите фразу местом next to the door — «рядом с дверью».",
+        "uk": "Ви згадуєте вчорашній магазин: поруч із дверима стояли два кошики для покупок. Скажіть: There were two shopping baskets next to the door. Почніть із there were, щоб повідомити про кілька предметів у минулому. Потім назвіть кількість і предмети — two shopping baskets. Множини набуває baskets; перед two артикль a не потрібен. Завершіть фразу місцем next to the door — «поруч із дверима»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ценник",
-        "uk": "Цінник"
+        "ru": "Был ли ценник на пальто",
+        "uk": "Чи був цінник на пальті"
       },
       "bodyByLocale": {
-        "ru": "Price tag — «ценник», ярлык с ценой на товаре. Вчера на пальто был ценник: There was a price tag on the coat. Если спрашиваем о знакомом ценнике: Was the price tag on the coat? Выберите вопрос.",
-        "uk": "Price tag — «цінник», ярлик із ціною на товарі. Учора на пальті був цінник: There was a price tag on the coat. Якщо запитуємо про знайомий цінник: Was the price tag on the coat? Виберіть запитання."
+        "ru": "Вы обсуждаете вчерашнюю покупку и спрашиваете, был ли знакомый вам ценник на пальто. Спросите: Was the price tag on the coat? Сначала поставьте was, затем назовите конкретный ценник — the price tag — и добавьте место on the coat. Ценник один, поэтому нужна форма was. Она сама начинает вопрос о прошлом; добавлять did перед was не нужно.",
+        "uk": "Ви обговорюєте вчорашню покупку й запитуєте, чи був знайомий вам цінник на пальті. Запитайте: Was the price tag on the coat? Спочатку поставте was, потім назвіть конкретний цінник — the price tag — і додайте місце on the coat. Цінник один, тому потрібна форма was. Вона сама починає запитання про минуле; додавати did перед was не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-11:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8c923e99e1da3cf0355b1e808a7360d4826eba64ba3335a83079d6cb3d6750b1"
+  "introFingerprint": "0bcfc026519fda98f7713696e0b4f759f48efaa8ba811eae5e361854059cc68c"
 }

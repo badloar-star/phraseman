@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Котёнок",
-        "uk": "Кошеня"
+        "ru": "Был ли котёнок голодным",
+        "uk": "Чи було кошеня голодним"
       },
       "bodyByLocale": {
-        "ru": "Kitten — «котёнок». Вчера у подруги на кухне был котёнок: There was a kitten in the kitchen. Если котят два: There were two kittens. Когда спрашиваем о знакомом котёнке: Was the kitten hungry? — «Котёнок был голодным?» Выберите вопрос о котёнке.",
-        "uk": "Kitten — «кошеня». Учора в подруги на кухні було кошеня: There was a kitten in the kitchen. Якщо кошенят двоє: There were two kittens. Коли запитуємо про знайоме кошеня: Was the kitten hungry? — «Кошеня було голодне?» Виберіть запитання про кошеня."
+        "ru": "Подруга вчера присматривала за знакомым вам котёнком. Спросите о его состоянии: Was the kitten hungry? — котёнок был голодным? Начните с was, затем назовите одного котёнка the kitten и добавьте состояние hungry. Was стоит перед тем, о ком спрашиваем. Дополнительное did не нужно: вопрос о прошлом уже строится с was.",
+        "uk": "Подруга вчора доглядала за знайомим вам кошеням. Запитайте про його стан: Was the kitten hungry? — кошеня було голодним? Почніть із was, потім назвіть одне кошеня the kitten і додайте стан hungry. Was стоїть перед тим, про кого запитуємо. Додаткове did не потрібне: запитання про минуле вже будується з was."
       },
       "question": {
         "interactionId": "en:lesson-11:session-21:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Зоомагазин и корм",
-        "uk": "Зоомагазин і корм"
+        "ru": "Корм в миске",
+        "uk": "Корм у мисці"
       },
       "bodyByLocale": {
-        "ru": "Pet shop — «зоомагазин», pet food — «корм для домашних животных». Вспоминая прежний район: There was a pet shop near our house — «Рядом с нашим домом был зоомагазин». Корм не считаем по штукам: There was pet food in the bowl — «В миске был корм». Перед pet food здесь нет a. Выберите фразу о корме в миске.",
-        "uk": "Pet shop — «зоомагазин», pet food — «корм для домашніх тварин». Згадуючи колишній район: There was a pet shop near our house — «Поруч із нашим будинком був зоомагазин». Корм не рахуємо по штуках: There was pet food in the bowl — «У мисці був корм». Перед pet food тут немає a. Виберіть фразу про корм у мисці."
+        "ru": "Вы вспоминаете вчерашнюю миску питомца: в ней был корм. Скажите: There was pet food in the bowl. Начните с there was, чтобы сообщить о наличии еды в прошлом. Затем добавьте pet food — «корм для домашних животных». Food здесь неисчисляемое: корм не считаем отдельными предметами, поэтому нужны was и название без a. Завершите фразу местом in the bowl — «в миске».",
+        "uk": "Ви згадуєте вчорашню миску улюбленця: у ній був корм. Скажіть: There was pet food in the bowl. Почніть із there was, щоб повідомити про наявність їжі в минулому. Потім додайте pet food — «корм для домашніх тварин». Food тут незлічуване: корм не рахуємо окремими предметами, тому потрібні was і назва без a. Завершіть фразу місцем in the bowl — «у мисці»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-21:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Поводок",
-        "uk": "Повідець"
+        "ru": "Поводок у двери",
+        "uk": "Повідець біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Dog lead — «поводок для собаки», обычное британское название. Вчера рядом с дверью лежал поводок: There was a dog lead next to the door. Сейчас вы ищете его: I am looking for it right now. Выберите фразу о том, что было рядом с дверью вчера.",
-        "uk": "Dog lead — «повідець для собаки», звичайна британська назва. Учора поруч із дверима лежав повідець: There was a dog lead next to the door. Зараз ви шукаєте його: I am looking for it right now. Виберіть фразу про те, що було поруч із дверима вчора."
+        "ru": "Вы вспоминаете, что вчера рядом с дверью лежал поводок для собаки. Скажите: There was a dog lead next to the door. Начните с there was: сообщаем об одном предмете в прошлом. Затем назовите его — a dog lead. Перед одним впервые упоминаемым поводком нужно a. В конце добавьте место next to the door — «рядом с дверью». Dog lead — британское название поводка.",
+        "uk": "Ви згадуєте, що вчора поруч із дверима лежав повідець для собаки. Скажіть: There was a dog lead next to the door. Почніть із there was: повідомляємо про один предмет у минулому. Потім назвіть його — a dog lead. Перед одним уперше згаданим повідцем потрібне a. Наприкінці додайте місце next to the door — «поруч із дверима». Dog lead — британська назва повідця."
       },
       "question": {
         "interactionId": "en:lesson-11:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a0a255a31968b3cb3a804bd03830ed3750356ff27f901f6b9ebebbe468a14aab"
+  "introFingerprint": "6bc3349ca35b2d88bd3a243372de490376f8ea7691ed83a613b61456618b92ea"
 }

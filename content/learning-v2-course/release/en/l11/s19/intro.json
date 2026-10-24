@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Еда с собой",
-        "uk": "Їжа із собою"
+        "ru": "Контейнер в сумке",
+        "uk": "Контейнер у сумці"
       },
       "bodyByLocale": {
-        "ru": "Lunch box — «контейнер для обеда», water bottle — «бутылка для воды». Один предмет: There was a lunch box in the bag — «В сумке был контейнер для обеда». Два: There were two water bottles in the bag — «В сумке были две бутылки для воды». Во множественном числе окончание получает последнее слово: bottles. Выберите фразу об одном контейнере.",
-        "uk": "Lunch box — «контейнер для обіду», water bottle — «пляшка для води». Один предмет: There was a lunch box in the bag — «У сумці був контейнер для обіду». Два: There were two water bottles in the bag — «У сумці були дві пляшки для води». У множині закінчення отримує останнє слово: bottles. Виберіть фразу про один контейнер."
+        "ru": "Вы вспоминаете вчерашнюю прогулку: в сумке был контейнер для обеда. Скажите: There was a lunch box in the bag. Начните с there was, чтобы сообщить об одном предмете в прошлом. Затем назовите его — a lunch box. Контейнер один и упоминается впервые, поэтому перед названием нужно a. Завершите фразу местом in the bag — «в сумке».",
+        "uk": "Ви згадуєте вчорашню прогулянку: у сумці був контейнер для обіду. Скажіть: There was a lunch box in the bag. Почніть із there was, щоб повідомити про один предмет у минулому. Потім назвіть його — a lunch box. Контейнер один і згадується вперше, тому перед назвою потрібне a. Завершіть фразу місцем in the bag — «у сумці»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-19:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Список покупок",
-        "uk": "Список покупок"
+        "ru": "Спросить о списке покупок",
+        "uk": "Запитати про список покупок"
       },
       "bodyByLocale": {
-        "ru": "Shopping list — «список покупок». Вчера на столе был список: There was a shopping list on the table. Если спрашиваем, где был уже известный список: Was the shopping list in your bag? — «Список покупок был в твоей сумке?» Выберите вопрос другу о его сумке.",
-        "uk": "Shopping list — «список покупок». Учора на столі був список: There was a shopping list on the table. Якщо запитуємо, де був уже відомий список: Was the shopping list in your bag? — «Список покупок був у твоїй сумці?» Виберіть запитання другові про його сумку."
+        "ru": "Друг ищет знакомый вам список покупок. Спросите, был ли он в его сумке: Was the shopping list in your bag? Начните с was, затем назовите один конкретный список the shopping list и добавьте место in your bag. Your показывает, что сумка принадлежит другу, к которому вы обращаетесь. В вопросе о прошлом was стоит перед предметом; добавлять did не нужно.",
+        "uk": "Друг шукає знайомий вам список покупок. Запитайте, чи був він у його сумці: Was the shopping list in your bag? Почніть із was, потім назвіть один конкретний список the shopping list і додайте місце in your bag. Your показує, що сумка належить другові, до якого ви звертаєтеся. У запитанні про минуле was стоїть перед предметом; додавати did не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-11:session-19:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-19:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Бумажный пакет",
-        "uk": "Паперовий пакет"
+        "ru": "Два пакета на стуле",
+        "uk": "Два пакети на стільці"
       },
       "bodyByLocale": {
-        "ru": "Paper bag — «бумажный пакет». Вчера на стуле лежали два пакета: There were two paper bags on the chair. Обычное действие: I usually take a bag. Действие сейчас: I am packing a bag right now. В фразе о вчерашних пакетах нужно were. Выберите её.",
-        "uk": "Paper bag — «паперовий пакет». Учора на стільці лежали два пакети: There were two paper bags on the chair. Звичайна дія: I usually take a bag. Дія зараз: I am packing a bag right now. У фразі про вчорашні пакети потрібно were. Виберіть її."
+        "ru": "Вы вспоминаете, что вчера на стуле лежали два бумажных пакета. Скажите: There were two paper bags on the chair. Начните с there were, потому что говорите о нескольких предметах в прошлом. Затем назовите количество и предметы — two paper bags. Окончание -s получает bags, а paper не меняется. В конце укажите место on the chair. Were показывает прошлое; are здесь не подходит.",
+        "uk": "Ви згадуєте, що вчора на стільці лежали два паперові пакети. Скажіть: There were two paper bags on the chair. Почніть із there were, бо говорите про кілька предметів у минулому. Потім назвіть кількість і предмети — two paper bags. Закінчення -s отримує bags, а paper не змінюється. Наприкінці вкажіть місце on the chair. Were показує минуле; are тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-11:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb4e078bfe96ec8476512d87d821b36536ff7e24efb20b0027c4d97b4e323a25"
+  "introFingerprint": "ee83f2e3ff7cdd830fcadecdf6467fb2e8860780214537d19aa4294c2f5fd2c3"
 }

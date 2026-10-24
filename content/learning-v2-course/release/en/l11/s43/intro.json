@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-43:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Короткие или длинные рукава",
-        "uk": "Короткі чи довгі рукави"
+        "ru": "Рубашка с короткими рукавами",
+        "uk": "Сорочка з короткими рукавами"
       },
       "bodyByLocale": {
-        "ru": "Short-sleeved — «с короткими рукавами», long-sleeved — «с длинными рукавами». Это описания одежды: a short-sleeved shirt, a long-sleeved shirt. Вчера на стуле лежала рубашка с короткими рукавами. Выберите её описание: The shirt was short-sleeved.",
-        "uk": "Short-sleeved — «з короткими рукавами», long-sleeved — «з довгими рукавами». Це описи одягу: a short-sleeved shirt, a long-sleeved shirt. Учора на стільці лежала сорочка з короткими рукавами. Виберіть її опис: The shirt was short-sleeved."
+        "ru": "Вы вспоминаете рубашку, которую вчера выбрали: у неё были короткие рукава. Опишите её: The shirt was short-sleeved — рубашка была с короткими рукавами. Начните с The shirt, затем поставьте was: рубашка одна, речь о прошлом. После was добавьте признак short-sleeved. Это цельное описание одежды пишется через дефис; long-sleeved означало бы «с длинными рукавами».",
+        "uk": "Ви згадуєте сорочку, яку вчора вибрали: вона мала короткі рукави. Опишіть її: The shirt was short-sleeved — сорочка була з короткими рукавами. Почніть із The shirt, потім поставте was: сорочка одна, йдеться про минуле. Після was додайте ознаку short-sleeved. Цей цілісний опис одягу пишеться через дефіс; long-sleeved означало б «з довгими рукавами»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-43:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Школьная форма",
-        "uk": "Шкільна форма"
+        "ru": "Форма была чистой",
+        "uk": "Форма була чистою"
       },
       "bodyByLocale": {
-        "ru": "School uniform — «школьная форма». Вчера она была чистой: The school uniform was clean yesterday. Хотя форма может состоять из нескольких вещей, uniform здесь в единственном числе: was. Выберите сообщение о вчерашнем состоянии.",
-        "uk": "School uniform — «шкільна форма». Учора вона була чиста: The school uniform was clean yesterday. Хоча форма може складатися з кількох речей, uniform тут в однині: was. Виберіть повідомлення про вчорашній стан."
+        "ru": "Вчера перед школой ваша школьная форма была чистой. Скажите: The school uniform was clean yesterday — школьная форма была чистой вчера. Сначала назовите предмет: The school uniform. Затем was: uniform здесь в единственном числе, даже если комплект состоит из нескольких вещей. После was поставьте признак clean, а в конце время yesterday.",
+        "uk": "Учора перед школою ваша шкільна форма була чистою. Скажіть: The school uniform was clean yesterday — шкільна форма була чистою вчора. Спочатку назвіть предмет: The school uniform. Потім was: uniform тут в однині, навіть якщо комплект складається з кількох речей. Після was поставте ознаку clean, а наприкінці час yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-43:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-43:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обувь для прогулок",
-        "uk": "Взуття для прогулянок"
+        "ru": "Обувь была мокрой?",
+        "uk": "Взуття було мокрим?"
       },
       "bodyByLocale": {
-        "ru": "Walking shoes — «обувь для прогулок», удобные закрытые туфли или ботинки для ходьбы. Shoes — множественное число. Вчера они были мокрыми: The walking shoes were wet. Спросите об этом: Were the walking shoes wet? Выберите вопрос о вчерашнем состоянии обуви.",
-        "uk": "Walking shoes — «взуття для прогулянок», зручні закриті туфлі чи черевики для ходьби. Shoes — множина. Учора вони були мокрі: The walking shoes were wet. Запитайте про це: Were the walking shoes wet? Виберіть запитання про вчорашній стан взуття."
+        "ru": "Вы не помните, была ли вчера обувь для прогулок мокрой, и спрашиваете об этом брата. Скажите: Were the walking shoes wet? — обувь для прогулок была мокрой? Для вопроса поставьте Were перед названием вещей: the walking shoes. Shoes — множественное число, поэтому нужна were. После названия добавьте признак wet. Were показывает, что вы спрашиваете о прошлом.",
+        "uk": "Ви не пам'ятаєте, чи було вчора взуття для прогулянок мокрим, і запитуєте про це брата. Скажіть: Were the walking shoes wet? — взуття для прогулянок було мокрим? Для запитання поставте Were перед назвою речей: the walking shoes. Shoes — множина, тому потрібна were. Після назви додайте ознаку wet. Were показує, що ви запитуєте про минуле."
       },
       "question": {
         "interactionId": "en:lesson-11:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bffad8226343015feb1b8e308985e963affb76f2bb61d5a63ee30c56f7a87a4d"
+  "introFingerprint": "0f57ef4975c53cc6f60cd8d0734d61c0e57acc7cd42cb77fb67d795d7202bf30"
 }

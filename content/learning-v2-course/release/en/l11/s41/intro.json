@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-41:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Два бутерброда",
-        "uk": "Два бутерброди"
+        "ru": "Сколько бутербродов было на тарелке",
+        "uk": "Скільки бутербродів було на тарілці"
       },
       "bodyByLocale": {
-        "ru": "Cheese sandwich — «бутерброд с сыром», ham sandwich — «бутерброд с ветчиной». Вчера бутерброд с сыром был свежим: The cheese sandwich was fresh. Их было два: There were two cheese sandwiches on the plate. После sandwich во множественном числе добавляем -es: sandwiches. Выберите сообщение о двух бутербродах с сыром.",
-        "uk": "Cheese sandwich — «бутерброд із сиром», ham sandwich — «бутерброд із шинкою». Учора бутерброд із сиром був свіжий: The cheese sandwich was fresh. Їх було два: There were two cheese sandwiches on the plate. Після sandwich у множині додаємо -es: sandwiches. Виберіть повідомлення про два бутерброди із сиром."
+        "ru": "Вы вспоминаете вчерашний перекус: на тарелке лежали два бутерброда с сыром. Скажите: There were two cheese sandwiches on the plate — на тарелке было два бутерброда с сыром. Начните с there were, чтобы сообщить, что в прошлом где-то было несколько предметов. Затем назовите количество и предметы: two cheese sandwiches. У sandwich множественное число образуется с -es: sandwiches. В конце добавьте место on the plate.",
+        "uk": "Ви згадуєте вчорашній перекус: на тарілці лежали два бутерброди із сиром. Скажіть: There were two cheese sandwiches on the plate — на тарілці було два бутерброди із сиром. Почніть із there were, щоб повідомити, що в минулому десь було кілька предметів. Потім назвіть кількість і предмети: two cheese sandwiches. У sandwich множина утворюється з -es: sandwiches. Наприкінці додайте місце on the plate."
       },
       "question": {
         "interactionId": "en:lesson-11:session-41:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Горячий шоколад",
-        "uk": "Гарячий шоколад"
+        "ru": "Слишком сладкий напиток",
+        "uk": "Занадто солодкий напій"
       },
       "bodyByLocale": {
-        "ru": "Hot chocolate — название напитка: «горячий шоколад». Напиток может остыть, но его название не меняется. Вчера он был слишком сладким: The hot chocolate was too sweet yesterday. Сегодня вкус другой. Выберите сообщение о вчерашнем напитке.",
-        "uk": "Hot chocolate — назва напою: «гарячий шоколад». Напій може охолонути, але його назва не змінюється. Учора він був надто солодкий: The hot chocolate was too sweet yesterday. Сьогодні смак інший. Виберіть повідомлення про вчорашній напій."
+        "ru": "Вы рассказываете о вчерашнем горячем шоколаде: он был слишком сладким. Скажите: The hot chocolate was too sweet yesterday. Сначала назовите напиток — the hot chocolate, затем поставьте was для его состояния в прошлом. Дальше добавьте too sweet: too перед прилагательным означает «слишком». Завершите фразу словом yesterday — «вчера». Здесь chocolate — название напитка, поэтому используем was, а не were.",
+        "uk": "Ви розповідаєте про вчорашній гарячий шоколад: він був занадто солодким. Скажіть: The hot chocolate was too sweet yesterday. Спочатку назвіть напій — the hot chocolate, потім поставте was для його стану в минулому. Далі додайте too sweet: too перед прикметником означає «занадто». Завершіть фразу словом yesterday — «учора». Тут chocolate — назва напою, тому використовуємо was, а не were."
       },
       "question": {
         "interactionId": "en:lesson-11:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Фруктовый сок",
-        "uk": "Фруктовий сік"
+        "ru": "Спросить о температуре сока",
+        "uk": "Запитати про температуру соку"
       },
       "bodyByLocale": {
-        "ru": "Fruit juice — «фруктовый сок», общее название соков из фруктов. Вчера сок был холодным: The fruit juice was cold. Чтобы спросить об этом: Was the fruit juice cold? Короткий ответ: Yes, it was. Выберите вопрос о температуре сока.",
-        "uk": "Fruit juice — «фруктовий сік», загальна назва соків із фруктів. Учора сік був холодний: The fruit juice was cold. Щоб запитати про це: Was the fruit juice cold? Коротка відповідь: Yes, it was. Виберіть запитання про температуру соку."
+        "ru": "Друг пил фруктовый сок вчера, и вы хотите узнать, был ли сок холодным. Спросите: Was the fruit juice cold? — фруктовый сок был холодным? Начните вопрос с was, затем назовите напиток the fruit juice и добавьте состояние cold. Juice здесь неисчисляемое, поэтому нужна форма was. Если друг подтверждает, короткий ответ строится так: Yes, it was — да. It заменяет название сока.",
+        "uk": "Друг пив фруктовий сік учора, і ви хочете дізнатися, чи був сік холодним. Запитайте: Was the fruit juice cold? — фруктовий сік був холодним? Почніть запитання з was, потім назвіть напій the fruit juice і додайте стан cold. Juice тут незлічуване, тому потрібна форма was. Якщо друг підтверджує, коротка відповідь будується так: Yes, it was — так. It замінює назву соку."
       },
       "question": {
         "interactionId": "en:lesson-11:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "37cfa0acaeb00d61265a5b59c4e0160e039de1edaf157ee13256e6dd83ce115b"
+  "introFingerprint": "5b430d5b648d5d5d5e4eb329737b73ba9be8ded87325ed9cc3364389e32c6843"
 }

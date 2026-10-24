@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Корзина и плед",
-        "uk": "Кошик і плед"
+        "ru": "Корзина была полной",
+        "uk": "Кошик був повним"
       },
       "bodyByLocale": {
-        "ru": "Picnic basket — «корзина для пикника», picnic blanket — «плед для пикника», который расстилают на земле. Вчера корзина была полной: The picnic basket was full yesterday. Сейчас она пустая: It is empty now. Выберите вчерашнее состояние корзины.",
-        "uk": "Picnic basket — «кошик для пікніка», picnic blanket — «плед для пікніка», який розстеляють на землі. Учора кошик був повний: The picnic basket was full yesterday. Зараз він порожній: It is empty now. Виберіть учорашній стан кошика."
+        "ru": "Вчера перед пикником корзину наполнили едой. Опишите её состояние: The picnic basket was full yesterday — корзина для пикника была полной вчера. Начните с The picnic basket. Затем поставьте was: корзина одна, и речь о прошлом. После was добавьте признак full. В конце укажите время yesterday.",
+        "uk": "Учора перед пікніком кошик наповнили їжею. Опишіть його стан: The picnic basket was full yesterday — кошик для пікніка був повним учора. Почніть із The picnic basket. Потім поставте was: кошик один, і йдеться про минуле. Після was додайте ознаку full. Наприкінці вкажіть час yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сумка для холодных продуктов",
-        "uk": "Сумка для холодних продуктів"
+        "ru": "Сумка была в машине?",
+        "uk": "Сумка була в машині?"
       },
       "bodyByLocale": {
-        "ru": "Cool bag — «сумка-холодильник»: сумка, которая помогает сохранять еду и напитки холодными. Вчера она была в машине: The cool bag was in the car. Спросите об этом: Was the cool bag in the car? Выберите этот вопрос.",
-        "uk": "Cool bag — «сумка-холодильник»: сумка, яка допомагає зберігати їжу й напої холодними. Учора вона була в машині: The cool bag was in the car. Запитайте про це: Was the cool bag in the car? Виберіть це запитання."
+        "ru": "Вы не помните, была ли вчера сумка-холодильник в машине, и уточняете это у друга. Спросите: Was the cool bag in the car? — сумка-холодильник была в машине? Начните с Was, затем назовите предмет: the cool bag. Сумка одна, поэтому нужна was. После названия добавьте место: in the car. Cool bag — сумка, которая помогает сохранять продукты холодными.",
+        "uk": "Ви не пам'ятаєте, чи була вчора сумка-холодильник у машині, й уточнюєте це в друга. Запитайте: Was the cool bag in the car? — сумка-холодильник була в машині? Почніть із Was, потім назвіть предмет: the cool bag. Сумка одна, тому потрібна was. Після назви додайте місце: in the car. Cool bag — сумка, яка допомагає зберігати продукти холодними."
       },
       "question": {
         "interactionId": "en:lesson-11:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Бумажные тарелки",
-        "uk": "Паперові тарілки"
+        "ru": "Четыре тарелки в корзине",
+        "uk": "Чотири тарілки в кошику"
       },
       "bodyByLocale": {
-        "ru": "Paper plate — «бумажная тарелка». Вчера в корзине было четыре тарелки: There were four paper plates in the basket. Множественное число получает plate: plates. Выберите сообщение о четырёх тарелках.",
-        "uk": "Paper plate — «паперова тарілка». Учора в кошику було чотири тарілки: There were four paper plates in the basket. Множину отримує plate: plates. Виберіть повідомлення про чотири тарілки."
+        "ru": "Вчера в корзине для пикника лежали четыре бумажные тарелки. Сообщите, что там было: There were four paper plates in the basket — в корзине были четыре бумажные тарелки. Начните с There were для нескольких предметов в прошлом. Затем назовите количество и предметы: four paper plates. Окончание s добавляем к plate, а paper не меняем. В конце укажите место: in the basket.",
+        "uk": "Учора в кошику для пікніка лежали чотири паперові тарілки. Повідомте, що там було: There were four paper plates in the basket — у кошику були чотири паперові тарілки. Почніть із There were для кількох предметів у минулому. Потім назвіть кількість і предмети: four paper plates. Закінчення s додаємо до plate, а paper не змінюємо. Наприкінці вкажіть місце: in the basket."
       },
       "question": {
         "interactionId": "en:lesson-11:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "69649e9618bfdf386364ca53d3626e30420617cbb0f9ac085f4bd2858c8eaa18"
+  "introFingerprint": "9ebde382138c7e8a37257071c444dd76acd922e49f7ea822b53c2a3ef177bad7"
 }

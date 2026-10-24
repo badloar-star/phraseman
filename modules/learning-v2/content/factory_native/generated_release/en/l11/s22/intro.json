@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мама и папа",
-        "uk": "Мама й тато"
+        "ru": "Оба родителя были дома",
+        "uk": "Обоє батьків були вдома"
       },
       "bodyByLocale": {
-        "ru": "Mum — «мама», dad — «папа». Это повседневные семейные слова вместо более нейтральных mother и father. Mum — обычный британский вариант. My mum was at home — «Моя мама была дома». О двух людях: My mum and dad were at home. Выберите фразу о маме и папе вместе.",
-        "uk": "Mum — «мама», dad — «тато». Це повсякденні сімейні слова замість більш нейтральних mother і father. Mum — звичайний британський варіант. My mum was at home — «Моя мама була вдома». Про двох людей: My mum and dad were at home. Виберіть фразу про маму й тата разом."
+        "ru": "Вы рассказываете другу, что вчера мама и папа были дома. Скажите: My mum and dad were at home. Сначала назовите обоих людей: my mum and dad. And соединяет маму и папу, поэтому для двух людей в прошлом нужна форма were. Затем добавьте место at home. Mum и dad — повседневные семейные слова «мама» и «папа»; mum — британский вариант.",
+        "uk": "Ви розповідаєте другові, що вчора мама й тато були вдома. Скажіть: My mum and dad were at home. Спочатку назвіть обох людей: my mum and dad. And поєднує маму й тата, тому для двох людей у минулому потрібна форма were. Потім додайте місце at home. Mum і dad — повсякденні сімейні слова «мама» й «тато»; mum — британський варіант."
       },
       "question": {
         "interactionId": "en:lesson-11:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Бабушка",
-        "uk": "Бабуся"
+        "ru": "Подтвердить, где была бабушка",
+        "uk": "Підтвердити, де була бабуся"
       },
       "bodyByLocale": {
-        "ru": "Grandma — «бабушка», домашнее слово вместо grandmother. Вопрос: Was your grandma in the garden? — «Твоя бабушка была в саду?» Коротко отвечаем: Yes, she was или No, she wasn’t. Вчера бабушка была в саду. Выберите утвердительный ответ.",
-        "uk": "Grandma — «бабуся», домашнє слово замість grandmother. Запитання: Was your grandma in the garden? — «Твоя бабуся була в саду?» Коротко відповідаємо: Yes, she was або No, she wasn’t. Учора бабуся була в саду. Виберіть ствердну відповідь."
+        "ru": "Друг спрашивает о вчерашнем дне: Was your grandma in the garden? — твоя бабушка была в саду? Вы знаете, что была. Ответьте: Yes, she was. После yes поставьте she вместо grandma и повторите was из вопроса. В коротком ответе место можно не повторять. Для отрицания в таком же вопросе используется wasn’t — сокращение was not, но здесь вы подтверждаете: Yes, she was.",
+        "uk": "Друг запитує про вчорашній день: Was your grandma in the garden? — твоя бабуся була в саду? Ви знаєте, що була. Відповідайте: Yes, she was. Після yes поставте she замість grandma й повторіть was із запитання. У короткій відповіді місце можна не повторювати. Для заперечення в такому самому запитанні використовується wasn’t — скорочення was not, але тут ви підтверджуєте: Yes, she was."
       },
       "question": {
         "interactionId": "en:lesson-11:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дедушка",
-        "uk": "Дідусь"
+        "ru": "Дедушка не устал",
+        "uk": "Дідусь не втомився"
       },
       "bodyByLocale": {
-        "ru": "Grandpa — «дедушка», домашнее слово вместо grandfather. My grandpa was not tired — «Мой дедушка не был уставшим». Not ставим после was. Оба родных: My grandma and grandpa were in the garden. Выберите фразу о дедушке, который не был уставшим.",
-        "uk": "Grandpa — «дідусь», домашнє слово замість grandfather. My grandpa was not tired — «Мій дідусь не був утомлений». Not ставимо після was. Обоє рідних: My grandma and grandpa were in the garden. Виберіть фразу про дідуся, який не був утомлений."
+        "ru": "Вы вспоминаете вчерашний вечер: ваш дедушка не был уставшим. Скажите: My grandpa was not tired. Начните с my grandpa — «мой дедушка». Один человек в прошлом требует was. Сразу после was поставьте отрицание not, затем добавьте состояние tired — «уставший». Порядок was not показывает, что вы отрицаете это состояние.",
+        "uk": "Ви згадуєте вчорашній вечір: ваш дідусь не був утомленим. Скажіть: My grandpa was not tired. Почніть із my grandpa — «мій дідусь». Одна людина в минулому потребує was. Одразу після was поставте заперечення not, потім додайте стан tired — «утомлений». Порядок was not показує, що ви заперечуєте цей стан."
       },
       "question": {
         "interactionId": "en:lesson-11:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "39f248abd25a41d3f74d54f7bbd2d592cbfb0f9f54afdeffa3b1e3ef29efa263"
+  "introFingerprint": "8e198558eb99e2133d065810b77f7364d66968466c74a65af419095bd4281314"
 }

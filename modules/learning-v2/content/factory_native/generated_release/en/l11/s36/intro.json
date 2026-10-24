@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Зеркало в ванной",
-        "uk": "Дзеркало у ванній"
+        "ru": "Каким было зеркало вчера",
+        "uk": "Яким було дзеркало вчора"
       },
       "bodyByLocale": {
-        "ru": "Bathroom mirror — «зеркало в ванной». Вчера оно было грязным: The bathroom mirror was dirty yesterday. После уборки оно чистое: It is clean now. Выберите фразу о вчерашнем состоянии зеркала.",
-        "uk": "Bathroom mirror — «дзеркало у ванній». Учора воно було брудне: The bathroom mirror was dirty yesterday. Після прибирання воно чисте: It is clean now. Виберіть фразу про вчорашній стан дзеркала."
+        "ru": "Вы вспоминаете зеркало в ванной до уборки: вчера оно было грязным. Скажите: The bathroom mirror was dirty yesterday. Начните с the bathroom mirror — «зеркало в ванной». Это один предмет, поэтому дальше нужна форма was для прошлого. Затем добавьте состояние dirty — «грязное» — и время yesterday. Получается: предмет, was, состояние, время.",
+        "uk": "Ви згадуєте дзеркало у ванній до прибирання: учора воно було брудним. Скажіть: The bathroom mirror was dirty yesterday. Почніть із the bathroom mirror — «дзеркало у ванній». Це один предмет, тому далі потрібна форма was для минулого. Потім додайте стан dirty — «брудне» — і час yesterday. Виходить: предмет, was, стан, час."
       },
       "question": {
         "interactionId": "en:lesson-11:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шторка и щётка",
-        "uk": "Шторка й щітка"
+        "ru": "Сухая шторка сейчас",
+        "uk": "Суха шторка зараз"
       },
       "bodyByLocale": {
-        "ru": "Shower curtain — «шторка для душа». Toilet brush — «ёршик для унитаза». Вчера шторка была мокрой: The shower curtain was wet. Сейчас сухая: The shower curtain is dry now. Выберите сообщение о сухой шторке сейчас.",
-        "uk": "Shower curtain — «шторка для душу». Toilet brush — «йоржик для унітаза». Учора шторка була мокра: The shower curtain was wet. Зараз суха: The shower curtain is dry now. Виберіть повідомлення про суху шторку зараз."
+        "ru": "Вы проверяете шторку для душа и видите, что сейчас она сухая. Скажите: The shower curtain is dry now — шторка для душа сейчас сухая. Сначала назовите предмет the shower curtain. Шторка одна, а речь о настоящем, поэтому поставьте is. После него добавьте состояние dry и время now. Now показывает, что вы описываете состояние в момент разговора.",
+        "uk": "Ви перевіряєте шторку для душу й бачите, що зараз вона суха. Скажіть: The shower curtain is dry now — шторка для душу зараз суха. Спочатку назвіть предмет the shower curtain. Шторка одна, а йдеться про теперішнє, тому поставте is. Після нього додайте стан dry і час now. Now показує, що ви описуєте стан у момент розмови."
       },
       "question": {
         "interactionId": "en:lesson-11:session-36:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Мыльница",
-        "uk": "Мильниця"
+        "ru": "Мыльница у умывальника",
+        "uk": "Мильниця біля умивальника"
       },
       "bodyByLocale": {
-        "ru": "Soap dish — «мыльница», небольшая подставка для куска мыла. Вчера она была рядом с умывальником: There was a soap dish next to the washbasin. С двумя мыльницами было бы there were two soap dishes. Сейчас говорим об одной. Выберите фразу.",
-        "uk": "Soap dish — «мильниця», невелика підставка для шматка мила. Учора вона була поруч з умивальником: There was a soap dish next to the washbasin. Із двома мильницями було б there were two soap dishes. Зараз говоримо про одну. Виберіть фразу."
+        "ru": "Вы вспоминаете вчерашнюю ванную: рядом с умывальником стояла мыльница, подставка для куска мыла. Скажите: There was a soap dish next to the washbasin. Начните с there was, чтобы сообщить, что в прошлом где-то был один предмет. Затем назовите его — a soap dish: перед одним впервые упоминаемым предметом нужно a. В конце укажите место next to the washbasin — «рядом с умывальником».",
+        "uk": "Ви згадуєте вчорашню ванну: поруч з умивальником стояла мильниця, підставка для шматка мила. Скажіть: There was a soap dish next to the washbasin. Почніть із there was, щоб повідомити, що в минулому десь був один предмет. Потім назвіть його — a soap dish: перед одним уперше згаданим предметом потрібне a. Наприкінці вкажіть місце next to the washbasin — «поруч з умивальником»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d815be5cc8dad8e43fdc0e3fe7939ba1f83519c463a4a4312c352219c50abc79"
+  "introFingerprint": "b1d150a10ff14786745ceec092886327ff13fff40bdc31fe38472d5bf743dc5f"
 }

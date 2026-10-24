@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Батончик",
-        "uk": "Батончик"
+        "ru": "Батончик в сумке",
+        "uk": "Батончик у сумці"
       },
       "bodyByLocale": {
-        "ru": "Cereal bar — «злаковый батончик». Вчера в сумке был один батончик: There was a cereal bar in my bag. Два батончика: There were two cereal bars. Выберите сообщение об одном батончике в сумке.",
-        "uk": "Cereal bar — «злаковий батончик». Учора в сумці був один батончик: There was a cereal bar in my bag. Два батончики: There were two cereal bars. Виберіть повідомлення про один батончик у сумці."
+        "ru": "Вы вспоминаете вчерашнюю прогулку: в вашей сумке был злаковый батончик. Скажите: There was a cereal bar in my bag. Начните с there was, чтобы сообщить об одном предмете в прошлом. Затем назовите его — a cereal bar. Батончик можно посчитать; перед одним впервые упоминаемым батончиком нужно a. Завершите фразу местом in my bag — «в моей сумке».",
+        "uk": "Ви згадуєте вчорашню прогулянку: у вашій сумці був злаковий батончик. Скажіть: There was a cereal bar in my bag. Почніть із there was, щоб повідомити про один предмет у минулому. Потім назвіть його — a cereal bar. Батончик можна порахувати; перед одним уперше згаданим батончиком потрібне a. Завершіть фразу місцем in my bag — «у моїй сумці»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-28:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два вида сока",
-        "uk": "Два види соку"
+        "ru": "Холодный яблочный сок",
+        "uk": "Холодний яблучний сік"
       },
       "bodyByLocale": {
-        "ru": "Orange juice — «апельсиновый сок», apple juice — «яблочный сок». О соке как жидкости говорим без a: There was orange juice in the bottle. Вчера яблочный сок был холодным: The apple juice was cold yesterday. Сейчас он тёплый: It is warm now. Выберите фразу о вчерашнем яблочном соке.",
-        "uk": "Orange juice — «апельсиновий сік», apple juice — «яблучний сік». Про сік як рідину говоримо без a: There was orange juice in the bottle. Учора яблучний сік був холодний: The apple juice was cold yesterday. Зараз він теплий: It is warm now. Виберіть фразу про вчорашній яблучний сік."
+        "ru": "Вы вспоминаете вчерашний перекус: яблочный сок был холодным. Скажите: The apple juice was cold yesterday. Начните с конкретного напитка the apple juice. Juice здесь обозначает жидкость без подсчёта порций, поэтому дальше нужна форма was, а не were. Добавьте состояние cold и время yesterday. Перед названием сока как жидкости не ставим a; здесь the указывает на тот сок, который вы вспоминаете.",
+        "uk": "Ви згадуєте вчорашній перекус: яблучний сік був холодним. Скажіть: The apple juice was cold yesterday. Почніть із конкретного напою the apple juice. Juice тут позначає рідину без підрахунку порцій, тому далі потрібна форма was, а не were. Додайте стан cold і час yesterday. Перед назвою соку як рідини не ставимо a; тут the вказує на той сік, який ви згадуєте."
       },
       "question": {
         "interactionId": "en:lesson-11:session-28:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Фруктовый салат",
-        "uk": "Фруктовий салат"
+        "ru": "Салат в миске",
+        "uk": "Салат у мисці"
       },
       "bodyByLocale": {
-        "ru": "Fruit salad — «фруктовый салат». Сейчас говорим о еде в миске, без подсчёта порций: There was fruit salad in the bowl — «В миске был фруктовый салат». В этой фразе не нужен a. Вспомните вчерашний перекус и выберите это сообщение.",
-        "uk": "Fruit salad — «фруктовий салат». Зараз говоримо про їжу в мисці, без підрахунку порцій: There was fruit salad in the bowl — «У мисці був фруктовий салат». У цій фразі не потрібне a. Згадайте вчорашній перекус і виберіть це повідомлення."
+        "ru": "Вы рассказываете, что было в миске во время вчерашнего перекуса: фруктовый салат. Скажите: There was fruit salad in the bowl. Начните с there was, чтобы сообщить о наличии еды в прошлом. Затем назовите еду fruit salad. Здесь вы не считаете отдельные порции, поэтому a не нужно и используем was. В конце добавьте место in the bowl — «в миске». После there нельзя пропускать was.",
+        "uk": "Ви розповідаєте, що було в мисці під час учорашнього перекусу: фруктовий салат. Скажіть: There was fruit salad in the bowl. Почніть із there was, щоб повідомити про наявність їжі в минулому. Потім назвіть їжу fruit salad. Тут ви не рахуєте окремі порції, тому a не потрібне й використовуємо was. Наприкінці додайте місце in the bowl — «у мисці». Після there не можна пропускати was."
       },
       "question": {
         "interactionId": "en:lesson-11:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dad6b6f54dd80fa727baf967f4bf093b51f1ae1a3bf175da541021e4e64a1952"
+  "introFingerprint": "30702eec1371c41c1dfa4f80d1088b67c33c4d623e8f52f141ca0f4aa015a153"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Общественный туалет",
-        "uk": "Громадський туалет"
+        "ru": "Что было рядом со станцией",
+        "uk": "Що було поруч зі станцією"
       },
       "bodyByLocale": {
-        "ru": "Public toilet — «общественный туалет». В поездке полезно знать, где он есть. Вспоминая вчерашний маршрут, скажем: There was a public toilet near the station — «Рядом со станцией был общественный туалет». Один объект: there was a. Выберите сообщение о прошлом.",
-        "uk": "Public toilet — «громадський туалет». У поїздці корисно знати, де він є. Згадуючи вчорашній маршрут, скажемо: There was a public toilet near the station — «Поруч зі станцією був громадський туалет». Один об’єкт: there was a. Виберіть повідомлення про минуле."
+        "ru": "Вы вспоминаете вчерашний маршрут: рядом со станцией был общественный туалет. Скажите: There was a public toilet near the station. Начните с there was, чтобы сообщить об одном объекте в определённом месте в прошлом. Затем назовите объект — a public toilet. Перед одним впервые упоминаемым объектом нужно a. В конце добавьте место near the station — «рядом со станцией».",
+        "uk": "Ви згадуєте вчорашній маршрут: поруч зі станцією був громадський туалет. Скажіть: There was a public toilet near the station. Почніть із there was, щоб повідомити про один об’єкт у певному місці в минулому. Потім назвіть об’єкт — a public toilet. Перед одним уперше згаданим об’єктом потрібне a. Наприкінці додайте місце near the station — «поруч зі станцією»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто был за рулём",
-        "uk": "Хто був за кермом"
+        "ru": "Два водителя у станции",
+        "uk": "Двоє водіїв біля станції"
       },
       "bodyByLocale": {
-        "ru": "Bus driver — «водитель автобуса», taxi driver — «водитель такси». There was a bus driver next to the bus — «Рядом с автобусом был водитель автобуса». Несколько водителей: There were two taxi drivers near the station — «Рядом со станцией были два водителя такси». Выберите фразу о двух водителях такси.",
-        "uk": "Bus driver — «водій автобуса», taxi driver — «водій таксі». There was a bus driver next to the bus — «Поруч з автобусом був водій автобуса». Кілька водіїв: There were two taxi drivers near the station — «Поруч зі станцією були два водії таксі». Виберіть фразу про двох водіїв таксі."
+        "ru": "Вчера рядом со станцией вы видели двух водителей такси. Скажите: There were two taxi drivers near the station. Начните с there were, потому что сообщаете о нескольких людях в прошлом. Затем укажите количество и людей — two taxi drivers. Окончание -s получает drivers, а taxi не меняется. Перед two артикль a не нужен. Завершите фразу местом near the station.",
+        "uk": "Учора поруч зі станцією ви бачили двох водіїв таксі. Скажіть: There were two taxi drivers near the station. Почніть із there were, бо повідомляєте про кількох людей у минулому. Потім укажіть кількість і людей — two taxi drivers. Закінчення -s отримує drivers, а taxi не змінюється. Перед two артикль a не потрібен. Завершіть фразу місцем near the station."
       },
       "question": {
         "interactionId": "en:lesson-11:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пешеходный переход",
-        "uk": "Пішохідний перехід"
+        "ru": "Переход рядом со школой",
+        "uk": "Перехід поруч зі школою"
       },
       "bodyByLocale": {
-        "ru": "Pedestrian crossing — «пешеходный переход», место для перехода через дорогу. There was a pedestrian crossing near the school — «Рядом со школой был пешеходный переход». Это один объект, хотя английское название состоит из двух слов. Поэтому was, а не were. Выберите эту фразу.",
-        "uk": "Pedestrian crossing — «пішохідний перехід», місце для переходу через дорогу. There was a pedestrian crossing near the school — «Поруч зі школою був пішохідний перехід». Це один об’єкт, хоча англійська назва складається з двох слів. Тому was, а не were. Виберіть цю фразу."
+        "ru": "Вы вспоминаете дорогу к школе: рядом с ней был пешеходный переход. Скажите: There was a pedestrian crossing near the school. Сначала поставьте there was, затем назовите один объект — a pedestrian crossing — и добавьте место near the school. Название состоит из двух слов, но переход один, поэтому нужны was и a. После there нельзя пропускать was: оно указывает на прошлое.",
+        "uk": "Ви згадуєте дорогу до школи: поруч із нею був пішохідний перехід. Скажіть: There was a pedestrian crossing near the school. Спочатку поставте there was, потім назвіть один об’єкт — a pedestrian crossing — і додайте місце near the school. Назва складається з двох слів, але перехід один, тому потрібні was і a. Після there не можна пропускати was: воно вказує на минуле."
       },
       "question": {
         "interactionId": "en:lesson-11:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b4b3ae753324188d5f6416399c2cf01bfc4dab897a1a32a275e9b20611e9109d"
+  "introFingerprint": "cf828df547cee5563c92fcf92b6a1561c2f0634308f37d9946474c95908b53e7"
 }

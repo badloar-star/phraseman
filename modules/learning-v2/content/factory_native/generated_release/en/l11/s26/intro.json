@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Питание для малыша",
-        "uk": "Харчування для малюка"
+        "ru": "Где вчера было детское питание",
+        "uk": "Де вчора було дитяче харчування"
       },
       "bodyByLocale": {
-        "ru": "Baby food — «детское питание». Это еда, а не отдельный предмет, поэтому говорим без a: There was baby food in the cupboard — «В шкафу было детское питание». О месте вчера: Yesterday the baby food was in the cupboard. Выберите сообщение о вчерашнем месте питания.",
-        "uk": "Baby food — «дитяче харчування». Це їжа, а не окремий предмет, тому говоримо без a: There was baby food in the cupboard — «У шафі було дитяче харчування». Про місце вчора: Yesterday the baby food was in the cupboard. Виберіть повідомлення про вчорашнє місце харчування."
+        "ru": "Родные ищут детское питание, а вы помните, что вчера оно было в шкафу. Скажите: Yesterday the baby food was in the cupboard. Начните с yesterday, чтобы сразу указать время. Затем назовите конкретное питание the baby food и поставьте was: food здесь неисчисляемое, поэтому were не подходит. В конце добавьте место in the cupboard. Питание как еду не считаем отдельными предметами, поэтому перед baby food не ставим a.",
+        "uk": "Рідні шукають дитяче харчування, а ви пам’ятаєте, що вчора воно було в шафі. Скажіть: Yesterday the baby food was in the cupboard. Почніть із yesterday, щоб одразу вказати час. Потім назвіть конкретне харчування the baby food і поставте was: food тут незлічуване, тому were не підходить. Наприкінці додайте місце in the cupboard. Харчування як їжу не рахуємо окремими предметами, тому перед baby food не ставимо a."
       },
       "question": {
         "interactionId": "en:lesson-11:session-26:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Бутылочка",
-        "uk": "Пляшечка"
+        "ru": "Две бутылочки на столе",
+        "uk": "Дві пляшечки на столі"
       },
       "bodyByLocale": {
-        "ru": "Baby bottle — «детская бутылочка» для кормления. Один предмет: There was a baby bottle on the table. Два: There were two baby bottles on the table — «На столе были две детские бутылочки». Окончание множественного числа добавляем к bottle. Выберите фразу о двух бутылочках.",
-        "uk": "Baby bottle — «дитяча пляшечка» для годування. Один предмет: There was a baby bottle on the table. Два: There were two baby bottles on the table — «На столі були дві дитячі пляшечки». Закінчення множини додаємо до bottle. Виберіть фразу про дві пляшечки."
+        "ru": "Вы вспоминаете вчерашний стол: на нём стояли две детские бутылочки для кормления. Скажите: There were two baby bottles on the table. Начните с there were, чтобы сообщить о нескольких предметах в прошлом. Затем добавьте количество и предметы — two baby bottles. Окончание -s получает bottle, а baby не меняется. Перед two не ставим a. Завершите фразу местом on the table.",
+        "uk": "Ви згадуєте вчорашній стіл: на ньому стояли дві дитячі пляшечки для годування. Скажіть: There were two baby bottles on the table. Почніть із there were, щоб повідомити про кілька предметів у минулому. Потім додайте кількість і предмети — two baby bottles. Закінчення -s отримує bottle, а baby не змінюється. Перед two не ставимо a. Завершіть фразу місцем on the table."
       },
       "question": {
         "interactionId": "en:lesson-11:session-26:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Коляска и стульчик",
-        "uk": "Коляска й стільчик"
+        "ru": "Коляска у двери",
+        "uk": "Коляска біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Pram — «детская коляска», обычно для маленького ребёнка, который лежит. High chair — «детский стульчик для кормления». Вчера коляска стояла у двери: The pram was next to the door yesterday. Сейчас стульчик на кухне: The high chair is in the kitchen now. Выберите сообщение о коляске вчера.",
-        "uk": "Pram — «дитяча коляска», зазвичай для маленької дитини, яка лежить. High chair — «дитячий стільчик для годування». Учора коляска стояла біля дверей: The pram was next to the door yesterday. Зараз стільчик на кухні: The high chair is in the kitchen now. Виберіть повідомлення про коляску вчора."
+        "ru": "Вы вспоминаете, где вчера стояла детская коляска: рядом с дверью. Скажите: The pram was next to the door yesterday. Начните с конкретного предмета the pram. Pram — коляска, в которой маленький ребёнок обычно лежит. Коляска одна, поэтому для её места в прошлом поставьте was. Затем добавьте next to the door — «рядом с дверью» — и время yesterday.",
+        "uk": "Ви згадуєте, де вчора стояла дитяча коляска: поруч із дверима. Скажіть: The pram was next to the door yesterday. Почніть із конкретного предмета the pram. Pram — коляска, у якій маленька дитина зазвичай лежить. Коляска одна, тому для її місця в минулому поставте was. Потім додайте next to the door — «поруч із дверима» — і час yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c5ac0cb36c76e288dba0225e7fab1ecd2d2f83992237f425a1004fb8abaebfec"
+  "introFingerprint": "baf7c870a7a29abf805fc85f6825e494f2cb2cebad6a63c0e4acd74c0c370f83"
 }

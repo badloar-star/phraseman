@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Курица и картофель",
-        "uk": "Курка й картопля"
+        "ru": "Две картофелины на тарелке",
+        "uk": "Дві картоплини на тарілці"
       },
       "bodyByLocale": {
-        "ru": "Roast chicken — «запечённая курица», baked potato — «печёная картофелина». Вчера курица была горячей: The roast chicken was hot. Здесь chicken — еда, поэтому was. Картофелин было две: There were two baked potatoes on the plate. Выберите сообщение о двух картофелинах.",
-        "uk": "Roast chicken — «запечена курка», baked potato — «печена картоплина». Учора курка була гаряча: The roast chicken was hot. Тут chicken — їжа, тому was. Картоплин було дві: There were two baked potatoes on the plate. Виберіть повідомлення про дві картоплини."
+        "ru": "Вы вспоминаете вчерашний обед: на тарелке были две печёные картофелины. Скажите: There were two baked potatoes on the plate. Чтобы сообщить, что в прошлом где-то было несколько предметов, начните с there were. Затем укажите количество и еду: two baked potatoes. После two нужна форма множественного числа potatoes: к potato добавляется -es. В конце назовите место on the plate — «на тарелке».",
+        "uk": "Ви згадуєте вчорашній обід: на тарілці були дві печені картоплини. Скажіть: There were two baked potatoes on the plate. Щоб повідомити, що в минулому десь було кілька предметів, почніть із there were. Потім укажіть кількість і їжу: two baked potatoes. Після two потрібна форма множини potatoes: до potato додається -es. Наприкінці назвіть місце on the plate — «на тарілці»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-40:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Куриный суп",
-        "uk": "Курячий суп"
+        "ru": "Каким был вчерашний суп",
+        "uk": "Яким був учорашній суп"
       },
       "bodyByLocale": {
-        "ru": "Chicken soup — «куриный суп». В этом названии chicken указывает, из чего суп. Вчера суп был горячим: The chicken soup was hot yesterday. Сейчас он холодный: It is cold now. Выберите сообщение о вчерашнем супе.",
-        "uk": "Chicken soup — «курячий суп». У цій назві chicken вказує, з чого суп. Учора суп був гарячий: The chicken soup was hot yesterday. Зараз він холодний: It is cold now. Виберіть повідомлення про вчорашній суп."
+        "ru": "Вы рассказываете о курином супе на вчерашнем обеде: он был горячим. Скажите: The chicken soup was hot yesterday — вчера куриный суп был горячим. Начните с названия конкретного блюда the chicken soup. Здесь chicken уточняет, какой это суп. Затем поставьте was: soup в этой фразе неисчисляемое, а речь о прошлом. После was добавьте состояние hot и время yesterday.",
+        "uk": "Ви розповідаєте про курячий суп на вчорашньому обіді: він був гарячим. Скажіть: The chicken soup was hot yesterday — учора курячий суп був гарячим. Почніть із назви конкретної страви the chicken soup. Тут chicken уточнює, який це суп. Потім поставте was: soup у цій фразі незлічуване, а йдеться про минуле. Після was додайте стан hot і час yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-40:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Зелёный салат",
-        "uk": "Зелений салат"
+        "ru": "Уточнить, был ли салат свежим",
+        "uk": "Уточнити, чи був салат свіжим"
       },
       "bodyByLocale": {
-        "ru": "Green salad — «зелёный салат», салат из свежих листьев, иногда с другими овощами. Вчера салат был свежим. Спросите об этом: Was the green salad fresh? Короткий ответ: Yes, it was. Выберите этот вопрос.",
-        "uk": "Green salad — «зелений салат», салат зі свіжого листя, іноді з іншими овочами. Учора салат був свіжий. Запитайте про це: Was the green salad fresh? Коротка відповідь: Yes, it was. Виберіть це запитання."
+        "ru": "Друг ел зелёный салат вчера, и вы спрашиваете о его свежести. Спросите: Was the green salad fresh? — зелёный салат был свежим? Для вопроса о прошлом поставьте was перед названием блюда the green salad. После него добавьте fresh — «свежий». Здесь речь об одном салате, поэтому нужна форма was. Подтверждение можно дать коротко: Yes, it was — да. It заменяет название салата.",
+        "uk": "Друг їв зелений салат учора, і ви запитуєте про його свіжість. Запитайте: Was the green salad fresh? — зелений салат був свіжим? Для запитання про минуле поставте was перед назвою страви the green salad. Після неї додайте fresh — «свіжий». Тут ідеться про один салат, тому потрібна форма was. Підтвердити можна коротко: Yes, it was — так. It замінює назву салату."
       },
       "question": {
         "interactionId": "en:lesson-11:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3a3fa61602c8a69f81521a73c170f473dbf533af1bc64d3993c64ed31308ae15"
+  "introFingerprint": "90816adcdbb0c1507c0d7c0a2e6e7d4ff8e4a32cb887864b7524b74909caa299"
 }

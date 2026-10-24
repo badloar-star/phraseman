@@ -11,12 +11,12 @@
       "pageId": "en:lesson-11:session-32:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Стойка регистрации",
-        "uk": "Стійка реєстрації"
+        "ru": "Стойка у двери",
+        "uk": "Стійка біля дверей"
       },
       "bodyByLocale": {
-        "ru": "Reception desk — «стойка регистрации» в гостинице. Вчера около двери была стойка: There was a reception desk near the door. Мы сообщаем о наличии предмета в прошлом. Выберите эту фразу.",
-        "uk": "Reception desk — «стійка реєстрації» в готелі. Учора біля дверей була стійка: There was a reception desk near the door. Ми повідомляємо про наявність предмета в минулому. Виберіть цю фразу."
+        "ru": "Вы рассказываете другу о вчерашнем приезде в гостиницу: около двери стояла стойка регистрации. Скажите: There was a reception desk near the door. Начните с there was, чтобы сообщить, что в прошлом где-то был один предмет. Затем назовите его — a reception desk. Перед одной впервые упоминаемой стойкой нужно a. Завершите фразу местом near the door — «около двери».",
+        "uk": "Ви розповідаєте другові про вчорашній приїзд до готелю: біля дверей стояла стійка реєстрації. Скажіть: There was a reception desk near the door. Почніть із there was, щоб повідомити, що в минулому десь був один предмет. Потім назвіть його — a reception desk. Перед однією вперше згаданою стійкою потрібне a. Завершіть фразу місцем near the door — «біля дверей»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-32:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-11:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Карта-ключ",
-        "uk": "Картка-ключ"
+        "ru": "Где вчера была карта-ключ",
+        "uk": "Де вчора була картка-ключ"
       },
       "bodyByLocale": {
-        "ru": "Key card — «карта-ключ» от номера. Вчера она была в сумке: My key card was in my bag yesterday. Сейчас лежит на столе: It is on the table now. Выберите фразу о вчерашнем месте карты.",
-        "uk": "Key card — «картка-ключ» від номера. Учора вона була в сумці: My key card was in my bag yesterday. Зараз лежить на столі: It is on the table now. Виберіть фразу про вчорашнє місце картки."
+        "ru": "Вы ищете карту-ключ от номера и вспоминаете: вчера она лежала в вашей сумке. Скажите: My key card was in my bag yesterday. Сначала назовите предмет my key card — «моя карта-ключ». Карта одна, поэтому для прошлого поставьте was. После него добавьте место in my bag и время yesterday. My перед card и bag показывает, что карта и сумка принадлежат вам; артикль после my не нужен.",
+        "uk": "Ви шукаєте картку-ключ від номера й згадуєте: учора вона лежала у вашій сумці. Скажіть: My key card was in my bag yesterday. Спочатку назвіть предмет my key card — «моя картка-ключ». Картка одна, тому для минулого поставте was. Після нього додайте місце in my bag і час yesterday. My перед card і bag показує, що картка й сумка належать вам; артикль після my не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-11:session-32:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-11:session-32:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Завтрак и номер",
-        "uk": "Сніданок і номер"
+        "ru": "Кровать в номере",
+        "uk": "Ліжко в номері"
       },
       "bodyByLocale": {
-        "ru": "Breakfast room — «зал для завтрака», double bed — «двуспальная кровать». В номере была одна такая кровать: There was a double bed in the room. Double означает «двуспальная», а не две отдельные кровати, поэтому was. Выберите эту фразу.",
-        "uk": "Breakfast room — «зала для сніданку», double bed — «двоспальне ліжко». У номері було одне таке ліжко: There was a double bed in the room. Double означає «двоспальне», а не два окремі ліжка, тому was. Виберіть цю фразу."
+        "ru": "Вы описываете вчерашний гостиничный номер: там стояла одна двуспальная кровать. Скажите: There was a double bed in the room. Начните с there was: сообщаем об одном предмете в прошлом. Затем добавьте a double bed. Double описывает кровать для двух человек, но сама кровать одна, поэтому нужны a и was. В конце назовите место in the room — «в номере».",
+        "uk": "Ви описуєте вчорашній готельний номер: там стояло одне двоспальне ліжко. Скажіть: There was a double bed in the room. Почніть із there was: повідомляємо про один предмет у минулому. Потім додайте a double bed. Double описує ліжко для двох людей, але саме ліжко одне, тому потрібні a і was. Наприкінці назвіть місце in the room — «у номері»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0ee6bdbfbb6d2a7859e74f7fa4cb71a36e7e54d68d4cf03f8671f6d86a87fd54"
+  "introFingerprint": "4ff04a49fecc68eb15db81b11b9bb95a157d6310e76369ced1c1da8dd705e015"
 }

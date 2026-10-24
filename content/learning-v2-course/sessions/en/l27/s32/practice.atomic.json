@@ -1,0 +1,2097 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-32",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-32:word:fascinate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — fascinate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:fascinate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — fascinate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:fascinate:audio",
+            "transcript": "fascinate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:fascinate:r1",
+              "targetText": "fascinate",
+              "meaningByLocale": {
+                "ru": "Очень интересовать, увлекать.",
+                "uk": "Дуже цікавити, захоплювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fascinate",
+            "definitionByLocale": {
+              "ru": "Очень интересовать, увлекать.",
+              "uk": "Дуже цікавити, захоплювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i01:r1",
+            "text": "Old photographs fascinate me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i01:r2",
+            "text": "Old buildings fascinate me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i01:r3",
+            "text": "Old photographs fascinate her."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i01:audio",
+            "transcript": "Old photographs fascinate me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:i01:r1",
+              "targetText": "Old photographs fascinate me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i01:r2",
+              "targetText": "Old buildings fascinate me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i01:r3",
+              "targetText": "Old photographs fascinate her.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i01:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Old photographs fascinate me.",
+                "uk": "У записі звучить Old photographs fascinate me."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i01:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Old photographs fascinate me.",
+                "uk": "У записі звучить Old photographs fascinate me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите друга, с чего он хочет начать.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Спросите друга, с чего он хочет начать.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i02:audio",
+            "transcript": "What would you like to see first?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What would you like to see first?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам хотелось бы знать больше об этом месте.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i03:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i03:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i03:r3",
+            "text": "knowing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам хотелось бы знать больше об этом месте.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам хотелось бы знать больше об этом месте.",
+            "uk": "Вам хотілося б знати більше про це місце."
+          },
+          "gappedTargetPhrase": "I wish I ___ more about this place.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-32:i03:r1",
+              "text": "knew"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i03:r2",
+              "text": "know"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i03:r3",
+              "text": "knowing"
+            }
+          ],
+          "testedDimension": "Вам хотелось бы знать больше об этом месте.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Вам хотелось бы знать больше об этом месте.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь knew.",
+                "uk": "Після wish тут knew."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Вам хотелось бы знать больше об этом месте.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма knew.",
+                "uk": "Потрібна форма knew."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:word:discourage",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — discourage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:discourage:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — discourage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:discourage:audio",
+            "transcript": "discourage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:discourage:r1",
+              "targetText": "discourage",
+              "meaningByLocale": {
+                "ru": "Обескураживать, отбивать охоту.",
+                "uk": "Знеохочувати, відбивати бажання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discourage",
+            "definitionByLocale": {
+              "ru": "Обескураживать, отбивать охоту.",
+              "uk": "Знеохочувати, відбивати бажання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что очередь вас не отпугнула.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что очередь вас не отпугнула.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The queue did not discourage us.",
+          "localizedMeaning": {
+            "ru": "Скажите, что очередь вас не отпугнула.",
+            "uk": "Скажіть, що черга вас не відлякала."
+          },
+          "orderedTokens": [
+            "The",
+            "queue",
+            "did",
+            "not",
+            "discourage",
+            "us"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i05:r1",
+            "text": "How long is the wait?"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i05:r2",
+            "text": "How long is the tour?"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i05:r3",
+            "text": "How long is the film?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i05:audio",
+            "transcript": "How long is the wait?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:i05:r1",
+              "targetText": "How long is the wait?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i05:r2",
+              "targetText": "How long is the tour?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i05:r3",
+              "targetText": "How long is the film?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long is the wait?",
+                "uk": "У записі звучить How long is the wait?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long is the wait?",
+                "uk": "У записі звучить How long is the wait?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:word:frustrate",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — frustrate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:frustrate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — frustrate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:frustrate:audio",
+            "transcript": "frustrate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:frustrate:r1",
+              "targetText": "frustrate",
+              "meaningByLocale": {
+                "ru": "Раздражать или огорчать, мешая сделать желаемое.",
+                "uk": "Дратувати або засмучувати, заважаючи зробити бажане."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frustrate",
+            "definitionByLocale": {
+              "ru": "Раздражать или огорчать, мешая сделать желаемое.",
+              "uk": "Дратувати або засмучувати, заважаючи зробити бажане."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Объясните свою реакцию на задержки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i06:audio"
+        ],
+        "accessibilityLabel": "Объясните свою реакцию на задержки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i06:audio",
+            "transcript": "Small delays can frustrate me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Small delays can frustrate me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Сообщите, что билеты уже куплены.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Сообщите, что билеты уже куплены.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already bought the tickets.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что билеты уже куплены.",
+            "uk": "Повідомте, що квитки вже куплені."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "bought",
+            "the",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточните, что купили их вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i08:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i08:r3",
+            "text": "buyed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните, что купили их вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните, что купили их вчера.",
+            "uk": "Уточніть, що купили їх учора."
+          },
+          "gappedTargetPhrase": "I ___ them yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-32:i08:r1",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i08:r2",
+              "text": "have bought"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i08:r3",
+              "text": "buyed"
+            }
+          ],
+          "testedDimension": "Уточните, что купили их вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Уточните, что купили их вчера.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь bought без have.",
+                "uk": "Із yesterday тут bought без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Уточните, что купили их вчера.",
+              "feedbackByLocale": {
+                "ru": "Прошедшая форма buy — bought.",
+                "uk": "Минула форма buy — bought."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу показать билеты.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу показать билеты.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i09:audio",
+            "transcript": "Could I see your tickets, please?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I see your tickets, please?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "see",
+            "your",
+            "tickets,",
+            "please"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:word:overwhelm",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — overwhelm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:overwhelm:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — overwhelm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:overwhelm:audio",
+            "transcript": "overwhelm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:overwhelm:r1",
+              "targetText": "overwhelm",
+              "meaningByLocale": {
+                "ru": "Подавлять, перегружать количеством впечатлений или дел.",
+                "uk": "Пригнічувати, перевантажувати кількістю вражень або справ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overwhelm",
+            "definitionByLocale": {
+              "ru": "Подавлять, перегружать количеством впечатлений или дел.",
+              "uk": "Пригнічувати, перевантажувати кількістю вражень або справ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i10:r1",
+            "text": "Large crowds overwhelm me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i10:r2",
+            "text": "Loud noises overwhelm me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i10:r3",
+            "text": "Large crowds overwhelm him."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i10:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i10:audio",
+            "transcript": "Large crowds overwhelm me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:i10:r1",
+              "targetText": "Large crowds overwhelm me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i10:r2",
+              "targetText": "Loud noises overwhelm me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i10:r3",
+              "targetText": "Large crowds overwhelm him.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i10:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Large crowds overwhelm me.",
+                "uk": "У записі звучить Large crowds overwhelm me."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i10:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Large crowds overwhelm me.",
+                "uk": "У записі звучить Large crowds overwhelm me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, что хотелось бы более тихое место.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, что хотелось бы более тихое место.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wish this place were quieter.",
+          "localizedMeaning": {
+            "ru": "Скажите, что хотелось бы более тихое место.",
+            "uk": "Скажіть, що хотілося б тихішого місця."
+          },
+          "orderedTokens": [
+            "I",
+            "wish",
+            "this",
+            "place",
+            "were",
+            "quieter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите перейти куда-нибудь потише.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i12:audio"
+        ],
+        "accessibilityLabel": "Попросите перейти куда-нибудь потише.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i12:audio",
+            "transcript": "Could we go somewhere quieter?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we go somewhere quieter?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте предложение присесть снаружи.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Услышьте предложение присесть снаружи.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i13:audio",
+            "transcript": "There is a bench outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a bench outside.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "bench",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы остались бы дольше, если бы людей было меньше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i14:r1",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i14:r2",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i14:r3",
+            "text": "to stay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы остались бы дольше, если бы людей было меньше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы остались бы дольше, если бы людей было меньше.",
+            "uk": "Ви залишилися б довше, якби людей було менше."
+          },
+          "gappedTargetPhrase": "I would ___ longer if there were fewer people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-32:i14:r1",
+              "text": "stay"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i14:r2",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i14:r3",
+              "text": "to stay"
+            }
+          ],
+          "testedDimension": "Вы остались бы дольше, если бы людей было меньше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Вы остались бы дольше, если бы людей было меньше.",
+              "feedbackByLocale": {
+                "ru": "После would нужна форма stay.",
+                "uk": "Після would потрібна форма stay."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Вы остались бы дольше, если бы людей было меньше.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите несколько минут отдыха.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Попросите несколько минут отдыха.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i15:audio",
+            "transcript": "Can we take a few minutes?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can we take a few minutes?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If we came earlier, we would avoid the queue.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If we came earlier, we would avoid the queue.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would avoid the queue if we came earlier.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we came earlier, we would avoid the queue.",
+            "uk": "Почніть із результату: If we came earlier, we would avoid the queue."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "avoid",
+            "the",
+            "queue",
+            "if",
+            "we",
+            "came",
+            "earlier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Предложите вернуться утром в другой день.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Предложите вернуться утром в другой день.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i17:audio",
+            "transcript": "Shall we come back another morning?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we come back another morning?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-32:word:fascinate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — fascinate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:fascinate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — fascinate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:fascinate:audio",
+            "transcript": "fascinate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:fascinate:r1",
+              "targetText": "fascinate",
+              "meaningByLocale": {
+                "ru": "Очень интересовать, увлекать.",
+                "uk": "Дуже цікавити, захоплювати."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "fascinate",
+            "definitionByLocale": {
+              "ru": "Очень интересовать, увлекать.",
+              "uk": "Дуже цікавити, захоплювати."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i01:r1",
+            "text": "Old photographs fascinate me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i01:r2",
+            "text": "Old buildings fascinate me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i01:r3",
+            "text": "Old photographs fascinate her."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i01:audio",
+            "transcript": "Old photographs fascinate me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:i01:r1",
+              "targetText": "Old photographs fascinate me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i01:r2",
+              "targetText": "Old buildings fascinate me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i01:r3",
+              "targetText": "Old photographs fascinate her.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i01:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Old photographs fascinate me.",
+                "uk": "У записі звучить Old photographs fascinate me."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i01:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Old photographs fascinate me.",
+                "uk": "У записі звучить Old photographs fascinate me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте друга, з чого він хоче почати.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i02:audio"
+        ],
+        "accessibilityLabel": "Запитайте друга, з чого він хоче почати.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i02:audio",
+            "transcript": "What would you like to see first?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "What would you like to see first?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вам хотілося б знати більше про це місце.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i03:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i03:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i03:r3",
+            "text": "knowing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вам хотілося б знати більше про це місце.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вам хотелось бы знать больше об этом месте.",
+            "uk": "Вам хотілося б знати більше про це місце."
+          },
+          "gappedTargetPhrase": "I wish I ___ more about this place.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-32:i03:r1",
+              "text": "knew"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i03:r2",
+              "text": "know"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i03:r3",
+              "text": "knowing"
+            }
+          ],
+          "testedDimension": "Вам хотілося б знати більше про це місце.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i03:r2",
+              "correct": false,
+              "testedDimension": "Вам хотілося б знати більше про це місце.",
+              "feedbackByLocale": {
+                "ru": "После wish здесь knew.",
+                "uk": "Після wish тут knew."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i03:r3",
+              "correct": false,
+              "testedDimension": "Вам хотілося б знати більше про це місце.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма knew.",
+                "uk": "Потрібна форма knew."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:word:discourage",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — discourage",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:discourage:audio"
+        ],
+        "accessibilityLabel": "Картка слова — discourage",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:discourage:audio",
+            "transcript": "discourage"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:discourage:r1",
+              "targetText": "discourage",
+              "meaningByLocale": {
+                "ru": "Обескураживать, отбивать охоту.",
+                "uk": "Знеохочувати, відбивати бажання."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "discourage",
+            "definitionByLocale": {
+              "ru": "Обескураживать, отбивать охоту.",
+              "uk": "Знеохочувати, відбивати бажання."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i04",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що черга вас не відлякала.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що черга вас не відлякала.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "The queue did not discourage us.",
+          "localizedMeaning": {
+            "ru": "Скажите, что очередь вас не отпугнула.",
+            "uk": "Скажіть, що черга вас не відлякала."
+          },
+          "orderedTokens": [
+            "The",
+            "queue",
+            "did",
+            "not",
+            "discourage",
+            "us"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i05:r1",
+            "text": "How long is the wait?"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i05:r2",
+            "text": "How long is the tour?"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i05:r3",
+            "text": "How long is the film?"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i05:audio",
+            "transcript": "How long is the wait?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:i05:r1",
+              "targetText": "How long is the wait?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i05:r2",
+              "targetText": "How long is the tour?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i05:r3",
+              "targetText": "How long is the film?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long is the wait?",
+                "uk": "У записі звучить How long is the wait?"
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит How long is the wait?",
+                "uk": "У записі звучить How long is the wait?"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:word:frustrate",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — frustrate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:frustrate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — frustrate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:frustrate:audio",
+            "transcript": "frustrate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:frustrate:r1",
+              "targetText": "frustrate",
+              "meaningByLocale": {
+                "ru": "Раздражать или огорчать, мешая сделать желаемое.",
+                "uk": "Дратувати або засмучувати, заважаючи зробити бажане."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "frustrate",
+            "definitionByLocale": {
+              "ru": "Раздражать или огорчать, мешая сделать желаемое.",
+              "uk": "Дратувати або засмучувати, заважаючи зробити бажане."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i06",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поясніть свою реакцію на затримки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i06:audio"
+        ],
+        "accessibilityLabel": "Поясніть свою реакцію на затримки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i06:audio",
+            "transcript": "Small delays can frustrate me."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Small delays can frustrate me.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Повідомте, що квитки вже куплені.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Повідомте, що квитки вже куплені.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already bought the tickets.",
+          "localizedMeaning": {
+            "ru": "Сообщите, что билеты уже куплены.",
+            "uk": "Повідомте, що квитки вже куплені."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "bought",
+            "the",
+            "tickets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточніть, що купили їх учора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i08:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i08:r3",
+            "text": "buyed"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть, що купили їх учора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните, что купили их вчера.",
+            "uk": "Уточніть, що купили їх учора."
+          },
+          "gappedTargetPhrase": "I ___ them yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-32:i08:r1",
+              "text": "bought"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i08:r2",
+              "text": "have bought"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i08:r3",
+              "text": "buyed"
+            }
+          ],
+          "testedDimension": "Уточніть, що купили їх учора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Уточніть, що купили їх учора.",
+              "feedbackByLocale": {
+                "ru": "С yesterday здесь bought без have.",
+                "uk": "Із yesterday тут bought без have."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Уточніть, що купили їх учора.",
+              "feedbackByLocale": {
+                "ru": "Прошедшая форма buy — bought.",
+                "uk": "Минула форма buy — bought."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання показати квитки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i09:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання показати квитки.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i09:audio",
+            "transcript": "Could I see your tickets, please?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Could I see your tickets, please?",
+          "orderedTokens": [
+            "Could",
+            "I",
+            "see",
+            "your",
+            "tickets,",
+            "please"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:word:overwhelm",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — overwhelm",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:word:overwhelm:audio"
+        ],
+        "accessibilityLabel": "Картка слова — overwhelm",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:word:overwhelm:audio",
+            "transcript": "overwhelm"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:word:overwhelm:r1",
+              "targetText": "overwhelm",
+              "meaningByLocale": {
+                "ru": "Подавлять, перегружать количеством впечатлений или дел.",
+                "uk": "Пригнічувати, перевантажувати кількістю вражень або справ."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "overwhelm",
+            "definitionByLocale": {
+              "ru": "Подавлять, перегружать количеством впечатлений или дел.",
+              "uk": "Пригнічувати, перевантажувати кількістю вражень або справ."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i10",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i10:r1",
+            "text": "Large crowds overwhelm me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i10:r2",
+            "text": "Loud noises overwhelm me."
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i10:r3",
+            "text": "Large crowds overwhelm him."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i10:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i10:audio",
+            "transcript": "Large crowds overwhelm me."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-32:i10:r1",
+              "targetText": "Large crowds overwhelm me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i10:r2",
+              "targetText": "Loud noises overwhelm me.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i10:r3",
+              "targetText": "Large crowds overwhelm him.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i10:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Large crowds overwhelm me.",
+                "uk": "У записі звучить Large crowds overwhelm me."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i10:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Large crowds overwhelm me.",
+                "uk": "У записі звучить Large crowds overwhelm me."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i11",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, що хотілося б тихішого місця.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, що хотілося б тихішого місця.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I wish this place were quieter.",
+          "localizedMeaning": {
+            "ru": "Скажите, что хотелось бы более тихое место.",
+            "uk": "Скажіть, що хотілося б тихішого місця."
+          },
+          "orderedTokens": [
+            "I",
+            "wish",
+            "this",
+            "place",
+            "were",
+            "quieter"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i12",
+        "ordinal": 19,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть перейти кудись тихіше.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i12:audio"
+        ],
+        "accessibilityLabel": "Попросіть перейти кудись тихіше.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i12:audio",
+            "transcript": "Could we go somewhere quieter?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could we go somewhere quieter?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте пропозицію сісти надворі.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i13:audio"
+        ],
+        "accessibilityLabel": "Почуйте пропозицію сісти надворі.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i13:audio",
+            "transcript": "There is a bench outside."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "There is a bench outside.",
+          "orderedTokens": [
+            "There",
+            "is",
+            "a",
+            "bench",
+            "outside"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви залишилися б довше, якби людей було менше.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-32:i14:r1",
+            "text": "stay"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i14:r2",
+            "text": "stayed"
+          },
+          {
+            "responseId": "en:lesson-27:session-32:i14:r3",
+            "text": "to stay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви залишилися б довше, якби людей було менше.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы остались бы дольше, если бы людей было меньше.",
+            "uk": "Ви залишилися б довше, якби людей було менше."
+          },
+          "gappedTargetPhrase": "I would ___ longer if there were fewer people.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-32:i14:r1",
+              "text": "stay"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i14:r2",
+              "text": "stayed"
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i14:r3",
+              "text": "to stay"
+            }
+          ],
+          "testedDimension": "Ви залишилися б довше, якби людей було менше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-32:i14:r2",
+              "correct": false,
+              "testedDimension": "Ви залишилися б довше, якби людей було менше.",
+              "feedbackByLocale": {
+                "ru": "После would нужна форма stay.",
+                "uk": "Після would потрібна форма stay."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-32:i14:r3",
+              "correct": false,
+              "testedDimension": "Ви залишилися б довше, якби людей було менше.",
+              "feedbackByLocale": {
+                "ru": "После would не ставим to.",
+                "uk": "Після would не ставимо to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть кілька хвилин відпочинку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i15:audio"
+        ],
+        "accessibilityLabel": "Попросіть кілька хвилин відпочинку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i15:audio",
+            "transcript": "Can we take a few minutes?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Can we take a few minutes?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть із результату: If we came earlier, we would avoid the queue.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть із результату: If we came earlier, we would avoid the queue.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would avoid the queue if we came earlier.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we came earlier, we would avoid the queue.",
+            "uk": "Почніть із результату: If we came earlier, we would avoid the queue."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "avoid",
+            "the",
+            "queue",
+            "if",
+            "we",
+            "came",
+            "earlier"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-32:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запропонуйте повернутися вранці іншого дня.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-32:i17:audio"
+        ],
+        "accessibilityLabel": "Запропонуйте повернутися вранці іншого дня.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-32:i17:audio",
+            "transcript": "Shall we come back another morning?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Shall we come back another morning?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-32:word:fascinate",
+      "correctText": "fascinate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i01",
+      "correctText": "Old photographs fascinate me.",
+      "correctResponseId": "en:lesson-27:session-32:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i02",
+      "correctText": "What would you like to see first?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i03",
+      "correctText": "knew",
+      "correctResponseId": "en:lesson-27:session-32:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:word:discourage",
+      "correctText": "discourage",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i04",
+      "correctText": "The queue did not discourage us.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i05",
+      "correctText": "How long is the wait?",
+      "correctResponseId": "en:lesson-27:session-32:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:word:frustrate",
+      "correctText": "frustrate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i06",
+      "correctText": "Small delays can frustrate me.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i07",
+      "correctText": "I have already bought the tickets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i08",
+      "correctText": "bought",
+      "correctResponseId": "en:lesson-27:session-32:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i09",
+      "correctText": "Could I see your tickets, please?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:word:overwhelm",
+      "correctText": "overwhelm",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i10",
+      "correctText": "Large crowds overwhelm me.",
+      "correctResponseId": "en:lesson-27:session-32:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i11",
+      "correctText": "I wish this place were quieter.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i12",
+      "correctText": "Could we go somewhere quieter?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i13",
+      "correctText": "There is a bench outside.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i14",
+      "correctText": "stay",
+      "correctResponseId": "en:lesson-27:session-32:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i15",
+      "correctText": "Can we take a few minutes?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i16",
+      "correctText": "We would avoid the queue if we came earlier.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:i17",
+      "correctText": "Shall we come back another morning?",
+      "correctResponseId": null
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past simple / were; unreal condition; present perfect / past simple",
+    "uk": "wish + past simple / were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рассказать, что вас увлекает",
+        "uk": "Розповісти, що вас захоплює"
+      },
+      "bodyByLocale": {
+        "ru": "Fascinate — очень интересовать, увлекать. Old photographs fascinate me — старые фотографии меня увлекают. Здесь фотографии вызывают интерес, а me называет того, кому интересно. Вы пришли на выставку и спрашиваете друга: What would you like to see first? — что ты хотел бы посмотреть сначала? I wish I knew more about this place — жаль, что я не знаю больше об этом месте. Knew после wish относится к знанию сейчас, а не к прошлому.",
+        "uk": "Fascinate — дуже цікавити, захоплювати. Old photographs fascinate me — старі фотографії мене захоплюють. Тут фотографії викликають інтерес, а me називає того, кому цікаво. Ви прийшли на виставку й запитуєте друга: What would you like to see first? — що ти хотів би подивитися спочатку? I wish I knew more about this place — шкода, що я не знаю більше про це місце. Knew після wish стосується знання зараз, а не минулого."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-32:intro1:r1",
+              "text": "I wish I knew more about this place."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro1:r2",
+              "text": "I wish I know more about this place."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro1:r3",
+              "text": "I wish I knowing more about this place."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-32:intro1:r1",
+              "text": "I wish I knew more about this place."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro1:r2",
+              "text": "I wish I know more about this place."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro1:r3",
+              "text": "I wish I knowing more about this place."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Очередь и задержка",
+        "uk": "Черга й затримка"
+      },
+      "bodyByLocale": {
+        "ru": "Discourage — обескураживать, отбивать охоту. The queue did not discourage us — очередь нас не отпугнула. После did not стоит discourage без окончания. Frustrate — раздражать или огорчать, мешая сделать желаемое. Small delays can frustrate me — небольшие задержки могут меня раздражать. Вы описываете свою реакцию, а не обвиняете собеседника. Билеты уже куплены: I have already bought the tickets. I bought them yesterday — я купил их вчера: с yesterday используем bought без have.",
+        "uk": "Discourage — знеохочувати, відбивати бажання. The queue did not discourage us — черга нас не відлякала. Після did not стоїть discourage без закінчення. Frustrate — дратувати або засмучувати, заважаючи зробити бажане. Small delays can frustrate me — невеликі затримки можуть мене дратувати. Ви описуєте свою реакцію, а не звинувачуєте співрозмовника. Квитки вже куплені: I have already bought the tickets. I bought them yesterday — я купив їх учора: з yesterday використовуємо bought без have."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-32:intro2:r1",
+              "text": "I bought them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro2:r2",
+              "text": "I have bought them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro2:r3",
+              "text": "I buyed them yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-32:intro2:r1",
+              "text": "I bought them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro2:r2",
+              "text": "I have bought them yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro2:r3",
+              "text": "I buyed them yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Попросить более спокойное место",
+        "uk": "Попросити спокійніше місце"
+      },
+      "bodyByLocale": {
+        "ru": "Overwhelm — подавлять, перегружать количеством впечатлений или дел. Large crowds overwhelm me — мне тяжело среди больших толп людей. Это описание ощущения, не название болезни. I wish this place were quieter — хотелось бы, чтобы здесь было тише. Were описывает желаемое настоящее. Затем нужна конкретная просьба: Could we go somewhere quieter? — можем пойти куда-нибудь потише? I would stay longer if there were fewer people — я бы остался дольше, если бы людей было меньше. Would stay — результат, were — условие.",
+        "uk": "Overwhelm — пригнічувати, перевантажувати кількістю вражень або справ. Large crowds overwhelm me — мені важко серед великих натовпів людей. Це опис відчуття, не назва хвороби. I wish this place were quieter — хотілося б, щоб тут було тихіше. Were описує бажане теперішнє. Потім потрібне конкретне прохання: Could we go somewhere quieter? — можемо піти кудись тихіше? I would stay longer if there were fewer people — я б залишився довше, якби людей було менше. Would stay — результат, were — умова."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-32:intro3:r1",
+              "text": "I wish this place were quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro3:r2",
+              "text": "I wish this place is quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro3:r3",
+              "text": "I wish this place be quieter."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-32:intro3:r1",
+              "text": "I wish this place were quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro3:r2",
+              "text": "I wish this place is quieter."
+            },
+            {
+              "responseId": "en:lesson-27:session-32:intro3:r3",
+              "text": "I wish this place be quieter."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3ba8cf051f14496e9d560252ccc26928adb6cd4bfd378dba4118e946bd0e674a"
+}

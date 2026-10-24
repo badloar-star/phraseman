@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-32:word:fascinate",
+    "correctText": "fascinate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i01",
+    "correctText": "Old photographs fascinate me.",
+    "correctResponseId": "en:lesson-27:session-32:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i02",
+    "correctText": "What would you like to see first?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i03",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-32:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:word:discourage",
+    "correctText": "discourage",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i04",
+    "correctText": "The queue did not discourage us.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i05",
+    "correctText": "How long is the wait?",
+    "correctResponseId": "en:lesson-27:session-32:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:word:frustrate",
+    "correctText": "frustrate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i06",
+    "correctText": "Small delays can frustrate me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i07",
+    "correctText": "I have already bought the tickets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i08",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-27:session-32:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i09",
+    "correctText": "Could I see your tickets, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:word:overwhelm",
+    "correctText": "overwhelm",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i10",
+    "correctText": "Large crowds overwhelm me.",
+    "correctResponseId": "en:lesson-27:session-32:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i11",
+    "correctText": "I wish this place were quieter.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i12",
+    "correctText": "Could we go somewhere quieter?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i13",
+    "correctText": "There is a bench outside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i14",
+    "correctText": "stay",
+    "correctResponseId": "en:lesson-27:session-32:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i15",
+    "correctText": "Can we take a few minutes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i16",
+    "correctText": "We would avoid the queue if we came earlier.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-32:i17",
+    "correctText": "Shall we come back another morning?",
+    "correctResponseId": null
+  }
+]

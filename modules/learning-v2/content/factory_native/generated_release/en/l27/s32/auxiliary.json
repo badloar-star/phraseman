@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-32",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-32:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-32:intro1:r2": {
+          "ru": "После wish здесь нужна форма knew.",
+          "uk": "Після wish тут потрібна форма knew."
+        },
+        "en:lesson-27:session-32:intro1:r3": {
+          "ru": "В этой конструкции ставим knew.",
+          "uk": "У цій конструкції ставимо knew."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-32:intro2:r2": {
+          "ru": "С yesterday здесь bought без have.",
+          "uk": "Із yesterday тут bought без have."
+        },
+        "en:lesson-27:session-32:intro2:r3": {
+          "ru": "Прошедшая форма buy — bought.",
+          "uk": "Минула форма buy — bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-32:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-32:intro3:r2": {
+          "ru": "В этом пожелании о настоящем используем were.",
+          "uk": "У цьому побажанні про теперішнє використовуємо were."
+        },
+        "en:lesson-27:session-32:intro3:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "381de1011b6025b2f090fbbf287761fcc19a702fb2e207500a030bf31ddcfd5d"
+}

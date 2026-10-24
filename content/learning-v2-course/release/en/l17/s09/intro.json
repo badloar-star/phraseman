@@ -11,12 +11,12 @@
       "pageId": "en:lesson-17:session-09:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сколько отдельных предметов",
-        "uk": "Скільки окремих предметів"
+        "ru": "Орехи для украшения пирога",
+        "uk": "Горіхи для прикрашання пирога"
       },
       "bodyByLocale": {
-        "ru": "pecan — орех пекан. Pecan — один орех, pecans — несколько. Вопрос о количестве отдельных предметов строим с how many и существительным во множественном числе.",
-        "uk": "pecan — горіх пекан. Pecan — один горіх, pecans — декілька. Питання про кількість окремих предметів будуємо з how many та іменником у множині."
+        "ru": "Вы украшаете пирог и спрашиваете друга, сколько орехов нужно отложить. Pecan — орех пекан; один орех можно посчитать, поэтому спрашиваем how many pecans. Соберите вопрос: How many pecans + do + we + need? → How many pecans do we need? После many ставим множественное pecans, затем do, we и need.",
+        "uk": "Ви прикрашаєте пиріг і запитуєте друга, скільки горіхів потрібно відкласти. Pecan — горіх пекан; один горіх можна порахувати, тому запитуємо how many pecans. Складіть запитання: How many pecans + do + we + need? → How many pecans do we need? Після many ставимо множину pecans, потім do, we і need."
       },
       "question": {
         "interactionId": "en:lesson-17:session-09:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сколько неисчисляемого",
-        "uk": "Скільки незлічуваного"
+        "ru": "Количество блюда на ужин",
+        "uk": "Кількість страви на вечерю"
       },
       "bodyByLocale": {
-        "ru": "polenta — полента, каша из кукурузной крупы. Brazil nut — бразильский орех; во множественном числе Brazil nuts. Считаем орехи с many. А polenta — общее название блюда: how much polenta, без множественного -s.",
-        "uk": "polenta — полента, каша з кукурудзяної крупи. Brazil nut — бразильський горіх; у множині Brazil nuts. Рахуємо горіхи з many. А polenta — загальна назва страви: how much polenta, без множинного -s."
+        "ru": "Вы готовите ужин для гостей и уточняете у друга, сколько поленты понадобится. Polenta — каша из кукурузной крупы; здесь спрашиваем об общем количестве блюда, поэтому используем неисчисляемое polenta. Соберите вопрос: How much polenta + do + we + need? → How much polenta do we need? Much стоит перед polenta, затем идут do, we и need. Окончание -s к polenta здесь не добавляем.",
+        "uk": "Ви готуєте вечерю для гостей і уточнюєте в друга, скільки поленти знадобиться. Polenta — каша з кукурудзяної крупи; тут запитуємо про загальну кількість страви, тому використовуємо незлічуване polenta. Складіть запитання: How much polenta + do + we + need? → How much polenta do we need? Much стоїть перед polenta, далі йдуть do, we і need. Закінчення -s до polenta тут не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-09:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-17:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Количество в отрицании",
-        "uk": "Кількість у запереченні"
+        "ru": "Крупы осталось немного",
+        "uk": "Крупи залишилося небагато"
       },
       "bodyByLocale": {
-        "ru": "semolina — манная крупа. В отрицании сохраняется то же правило: don't have many Brazil nuts, но don't have much semolina. Not much и not many означают «не много»; точное количество из этих слов неизвестно.",
-        "uk": "semolina — манна крупа. У запереченні зберігається те саме правило: don't have many Brazil nuts, але don't have much semolina. Not much і not many означають «небагато»; точна кількість із цих слів невідома."
+        "ru": "Вы открыли пакет манной крупы перед приготовлением каши и видите, что её осталось немного. Semolina — манная крупа, неисчисляемое слово. Сообщите об этом: We don't have much semolina. Порядок слов: We + don't + have + much semolina. Don't перед have образует отрицание, much относится к количеству крупы. Фраза означает «у нас не так много манной крупы», а не её полное отсутствие.",
+        "uk": "Ви відкрили пакет манної крупи перед приготуванням каші й бачите, що її залишилося небагато. Semolina — манна крупа, незлічуване слово. Повідомте про це: We don't have much semolina. Порядок слів: We + don't + have + much semolina. Don't перед have утворює заперечення, much стосується кількості крупи. Фраза означає «у нас не так багато манної крупи», а не її повну відсутність."
       },
       "question": {
         "interactionId": "en:lesson-17:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1f85649907f23698589a4ec992bf077f95cb3ff49015811e1098a8a883c5789a"
+  "introFingerprint": "35200a5f96fa2e048ef5207fcacc9e54b08ee2dca221bcdfb595262245b5124e"
 }

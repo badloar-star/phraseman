@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Немного времени есть",
-        "uk": "Трохи часу є"
+        "ru": "Время для отдыха нашлось",
+        "uk": "Час для відпочинку знайшовся"
       },
       "bodyByLocale": {
-        "ru": "leisure — досуг, свободное от работы и обязанностей время. Acquaintance — знакомый человек; acquaintances — знакомые. Few acquaintances: знакомых мало. С неисчисляемым выбираем a little или little. A little leisure time — немного свободного времени есть; это ещё не обещает, что его достаточно. Вы нашли время для отдыха. Подчеркните, что немного свободного времени есть.",
-        "uk": "leisure — дозвілля, вільний від роботи й обов’язків час. Acquaintance — знайома людина; acquaintances — знайомі. Few acquaintances: знайомих мало. Із незлічуваним вибираємо a little або little. A little leisure time — трохи вільного часу є; це ще не обіцяє, що його достатньо. Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є."
+        "ru": "Вы закончили домашние дела и можете немного отдохнуть вместе. Leisure time — свободное время; time здесь неисчисляемое. Чтобы сообщить, что немного времени всё же есть, соберите предложение: We have + a little + leisure time → We have a little leisure time. A little перед leisure time подчёркивает наличие небольшого количества времени. Little без a означало бы акцент на его нехватке.",
+        "uk": "Ви закінчили домашні справи й можете трохи відпочити разом. Leisure time — вільний час; time тут незлічуване. Щоб повідомити, що трохи часу все ж є, складіть речення: We have + a little + leisure time → We have a little leisure time. A little перед leisure time підкреслює наявність невеликої кількості часу. Little без a означало б акцент на його нестачі."
       },
       "question": {
         "interactionId": "en:lesson-17:session-17:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "79ede52fbe46118b71ba7a41d4e708dcc923dfd04f5e13f47d135967f72b710c"
+  "introFingerprint": "cbebc8de502c77254eabe755c899aa24578e624f14919735bffeea78408bc6c9"
 }

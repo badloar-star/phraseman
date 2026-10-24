@@ -11,12 +11,12 @@
       "pageId": "en:lesson-17:session-11:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Количество отдельных предметов или людей",
-        "uk": "Кількість окремих предметів або людей"
+        "ru": "Кто ездит этим поездом",
+        "uk": "Хто їздить цим потягом"
       },
       "bodyByLocale": {
-        "ru": "commuter — человек, регулярно ездящий из дома на работу или учёбу. commuter можно посчитать: many + commuters во множественном числе.",
-        "uk": "commuter — людина, яка регулярно їздить із дому на роботу або навчання. commuter можна порахувати: many + commuters у множині."
+        "ru": "Вы выбираете утренний поезд на работу и спрашиваете знакомого, сколько людей обычно ездит им на работу или учёбу. Commuter — такой постоянный пассажир. Людей можно посчитать: how many commuters. Добавьте use this train: How many commuters use this train? Здесь спрашиваем, кто совершает действие, поэтому how many commuters само занимает место подлежащего; do не добавляем. После множественного commuters ставим use без -s.",
+        "uk": "Ви обираєте ранковий потяг на роботу й запитуєте знайомого, скільки людей зазвичай їздить ним на роботу або навчання. Commuter — такий постійний пасажир. Людей можна порахувати: how many commuters. Додайте use this train: How many commuters use this train? Тут запитуємо, хто виконує дію, тому how many commuters саме займає місце підмета; do не додаємо. Після множини commuters ставимо use без -s."
       },
       "question": {
         "interactionId": "en:lesson-17:session-11:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Количество неисчисляемого",
-        "uk": "Кількість незлічуваного"
+        "ru": "Насколько загружены дороги",
+        "uk": "Наскільки завантажені дороги"
       },
       "bodyByLocale": {
-        "ru": "congestion — загруженность дорог, скопление транспорта. motorist — автомобилист, водитель автомобиля. motorist можно посчитать: many + motorists во множественном числе. congestion в этом значении — неисчисляемое слово: much.",
-        "uk": "congestion — завантаженість доріг, скупчення транспорту. motorist — автомобіліст, водій автомобіля. motorist можна порахувати: many + motorists у множині. congestion у цьому значенні — незлічуване слово: much."
+        "ru": "Перед поездкой на работу вы спрашиваете коллегу о загруженности дорог сегодня. Congestion — скопление транспорта, неисчисляемое слово. Соберите вопрос: How much congestion + is there + today? → How much congestion is there today? Much ставим перед congestion. В вопросе о наличии используем порядок is there, а today указывает время.",
+        "uk": "Перед поїздкою на роботу ви запитуєте колегу про завантаженість доріг сьогодні. Congestion — скупчення транспорту, незлічуване слово. Складіть запитання: How much congestion + is there + today? → How much congestion is there today? Much ставимо перед congestion. У запитанні про наявність використовуємо порядок is there, а today вказує час."
       },
       "question": {
         "interactionId": "en:lesson-17:session-11:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-17:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не много — в отрицании",
-        "uk": "Небагато — у запереченні"
+        "ru": "Воздух в новом районе",
+        "uk": "Повітря в новому районі"
       },
       "bodyByLocale": {
-        "ru": "pollution — загрязнение окружающей среды. pollution в этом значении — неисчисляемое слово: much. В отрицании сохраняется выбор many для отдельных предметов и much для неисчисляемого. Not much / not many означают «не так много» без точного числа.",
-        "uk": "pollution — забруднення довкілля. pollution у цьому значенні — незлічуване слово: much. У запереченні зберігається вибір many для окремих предметів і much для незлічуваного. Not much / not many означають «небагато» без точної кількості."
+        "ru": "Вы обсуждаете с другом район, где по данным местного отчёта загрязнение невелико, и хотите сообщить именно это. Pollution — загрязнение, неисчисляемое слово. Соберите фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't сообщает об отсутствии большого количества, much относится к pollution, а here означает «здесь». Фраза не утверждает, что загрязнения нет совсем.",
+        "uk": "Ви обговорюєте з другом район, де за даними місцевого звіту забруднення невелике, і хочете повідомити саме це. Pollution — забруднення, незлічуване слово. Складіть фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't повідомляє про відсутність великої кількості, much стосується pollution, а here означає «тут». Фраза не стверджує, що забруднення немає зовсім."
       },
       "question": {
         "interactionId": "en:lesson-17:session-11:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bb9f453e2adc60d2ae65047833bbd68f04f97a822ca3ac2b9050c60f229396c9"
+  "introFingerprint": "308a7ad721e086be5456de6c2ae10fd30885a9a16ffa8e2ed887bff6de91cbc7"
 }

@@ -12599,7 +12599,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 4,
-    sourceFingerprint: "4b98ab00cb7f6d696f74b3f2640c2cbc6b2efd73b64861c937e9cbbbb2c6cee8",
+    sourceFingerprint: "3bfb46a1f7d5115acf477a38a339994c42e404c7145bbf995e6e12799347c714",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Candidate начинается с согласного звука: a candidate.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без a."],["У vacancy во множественном числе y меняется на ies: vacancies.","Не ставьте a перед two."],["Paperwork — неисчисляемое слово: is, не are.","В этом значении у слова нет множественного -s."]],"uk":[["Candidate починається з приголосного звука: a candidate.","Тут не можна залишати злічуваний іменник в однині без a."],["У vacancy у множині y змінюється на ies: vacancies.","Не ставте a перед two."],["Paperwork — незлічуване слово: is, не are.","У цьому значенні слово не має множинного -s."]]}),
@@ -12613,7 +12613,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 5,
-    sourceFingerprint: "e10fb692a2440c4106c164ef9a3e0d94b68075f07579167e146f8b569830cf88",
+    sourceFingerprint: "fd18d675994049b5cd52c6f41adfb7d774cae582c06f968e7a29878d46bf25a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Wrapper начинается с согласного звука: a wrapper; буква w не произносится.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля."],["После two нужно множественное cigarette ends.","Не ставьте a перед two."],["Litter в значении мусора — неисчисляемое слово: is.","В этом значении у слова нет множественного -s."]],"uk":[["Wrapper починається з приголосного звука: a wrapper; літера w не вимовляється.","Тут не можна залишати злічуваний іменник в однині без артикля."],["Після two потрібна множина cigarette ends.","Не ставте a перед two."],["Litter у значенні сміття — незлічуване слово: is.","У цьому значенні слово не має множинного -s."]]}),
@@ -12627,7 +12627,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 6,
-    sourceFingerprint: "10e286714b61176946c63d6e1339e65173905b0fd5400d3ce26283cd9c7582a9",
+    sourceFingerprint: "e6fef1941facac6cbb47d1040e4d57b191ab08bc96d079ad4890a9262ef6066b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Errand начинается с гласного звука: an errand.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля."],["После two нужно множественное replacements.","Не ставьте a перед two."],["Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.","В этом значении у слова нет множественного -s."]],"uk":[["Errand починається з голосного звука: an errand.","Тут не можна залишати злічуваний іменник в однині без артикля."],["Після two потрібна множина replacements.","Не ставте a перед two."],["Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s.","У цьому значенні слово не має множинного -s."]]}),
@@ -12641,7 +12641,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 7,
-    sourceFingerprint: "5ecd9c3a5fce09e0531fb334f7ffdff7a12bb205edcfd7af3f5ade8714fd26cb",
+    sourceFingerprint: "5cb4411d2ece24939b1f8f1f9cf1f7523915597b73da6cab2496dd91521ff640",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Sapling начинается с согласного звука: a sapling.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля."],["После two нужно множественное planters.","Не ставьте a перед two."],["Gravel как материал — неисчисляемое слово: is.","В этом значении у слова нет множественного -s."]],"uk":[["Sapling починається з приголосного звука: a sapling.","Тут не можна залишати злічуваний іменник в однині без артикля."],["Після two потрібна множина planters.","Не ставте a перед two."],["Gravel як матеріал — незлічуване слово: is.","У цьому значенні слово не має множинного -s."]]}),
@@ -12655,7 +12655,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 8,
-    sourceFingerprint: "1c474eeb8dd2a3e74fa1971792aca822addb3fc164a9a1cc5aebbfb0089c5119",
+    sourceFingerprint: "318cb5f535a6f461cfd61d1cd40c81e02c17abf6f48bc3f06bdc46f2aaa73a9e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Appliance начинается с гласного звука: an appliance.","Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля."],["После two нужно множественное estimates.","Не ставьте a перед two."],["Packaging как упаковочные материалы — неисчисляемое слово: is.","В этом значении у слова нет множественного -s."]],"uk":[["Appliance починається з голосного звука: an appliance.","Тут не можна залишати злічуваний іменник в однині без артикля."],["Після two потрібна множина estimates.","Не ставте a перед two."],["Packaging як пакувальні матеріали — незлічуване слово: is.","У цьому значенні слово не має множинного -s."]]}),
@@ -12669,7 +12669,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 9,
-    sourceFingerprint: "b3ec55f7919712a04f0366502d0b3a39c3c5b1906c84d211016166340da3425b",
+    sourceFingerprint: "bf280a420cac82168c0eacd32738cb8c484809c9b06adad7c399afdb90d96ba7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Pecan можно посчитать: many + pecans во множественном числе.","Артикль a здесь не ставится перед many или much."],["Polenta как блюдо — неисчисляемое слово: much.","Артикль a здесь не ставится перед many или much."],["Semolina как крупа — неисчисляемое слово: much, не many.","Артикль a здесь не ставится перед many или much."]],"uk":[["Pecan можна порахувати: many + pecans у множині.","Артикль a тут не ставиться перед many або much."],["Polenta як страва — незлічуване слово: much.","Артикль a тут не ставиться перед many або much."],["Semolina як крупа — незлічуване слово: much, не many.","Артикль a тут не ставиться перед many або much."]]}),
@@ -12683,7 +12683,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 10,
-    sourceFingerprint: "7338f0a799d4e9e9fde0817b0159b82f6f1f2dd6200e6b4d5ed3a2bd23df4b04",
+    sourceFingerprint: "9fc923f898d6573853ba80f0baaf1215ff2dd43afad2a2f91a632eac318b7035",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["assignment можно посчитать: many + assignments во множественном числе.","Перед many/much здесь не ставим артикль a."],["coursework в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["revision в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["assignment можна порахувати: many + assignments у множині.","Перед many/much тут не ставимо артикль a."],["coursework у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["revision у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12697,7 +12697,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 11,
-    sourceFingerprint: "87f0f44fd2e379394168d4eb8b89b8cd5b543e420f11e4a81f9f72c1421c936b",
+    sourceFingerprint: "479ea2a7309a1c69f314b45c824eaab73eddfc1425b6042bfb51a1b75508713f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["commuter можно посчитать: many + commuters во множественном числе.","Перед many/much здесь не ставим артикль a."],["congestion в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["pollution в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["commuter можна порахувати: many + commuters у множині.","Перед many/much тут не ставимо артикль a."],["congestion у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["pollution у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12711,7 +12711,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 12,
-    sourceFingerprint: "cbaeeafca4fbb885bf90a3e3321546ae334406899160f8e2f6b3b4869e4a129e",
+    sourceFingerprint: "3777e166b7e2021a99fe3bcf48c03e414bb8ddfb220879011e5eea08ed66887f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["qualification можно посчитать: many + qualifications во множественном числе.","Перед many/much здесь не ставим артикль a."],["knowledge в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["tuition в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["qualification можна порахувати: many + qualifications у множині.","Перед many/much тут не ставимо артикль a."],["knowledge у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["tuition у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12725,7 +12725,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 13,
-    sourceFingerprint: "198fa6215ef1643f2139a6cdca42ae41a61090119977e0486f752438c24e94cd",
+    sourceFingerprint: "66bfcb5734bd20c44764ccee8d7fd761e441856c4132cd3794d05a21c3fae1d6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["participant можно посчитать: many + participants во множественном числе.","Перед many/much здесь не ставим артикль a."],["entertainment в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["funding в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["participant можна порахувати: many + participants у множині.","Перед many/much тут не ставимо артикль a."],["entertainment у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["funding у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12739,7 +12739,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 14,
-    sourceFingerprint: "fba60e57aba6d3d5e59b811b0d2353f9e7af37ea3e1b7eee1708eabf35fc9992",
+    sourceFingerprint: "20b355f98ac26db758d46dbb5a46d83ef53fa67aa0f689631f706e224317c0cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["lodger можно посчитать: many + lodgers во множественном числе.","Перед many/much здесь не ставим артикль a."],["accommodation в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["maintenance в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["lodger можна порахувати: many + lodgers у множині.","Перед many/much тут не ставимо артикль a."],["accommodation у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["maintenance у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12753,7 +12753,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 15,
-    sourceFingerprint: "6762cf4741d83622eae7dd49d1039833fb36d60d46cb27aed9602db39f7f6959",
+    sourceFingerprint: "30ca180d6b6017fe06040728977ba8fdb803feaa9e074cfd1a514b936bbbb398",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["trainee можно посчитать: many + trainees во множественном числе.","Перед many/much здесь не ставим артикль a."],["supervision в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["guidance в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["trainee можна порахувати: many + trainees у множині.","Перед many/much тут не ставимо артикль a."],["supervision у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["guidance у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12767,7 +12767,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 16,
-    sourceFingerprint: "17b3fa73821753c4a6c805d8c6dc5046e41f0858640a4afb3d9e66384f392187",
+    sourceFingerprint: "6b49b7bf4595dcb6e1205fe84c2041917f000879c1bb333f18010fff805d46f5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["poet можно посчитать: many + poets во множественном числе.","Перед many/much здесь не ставим артикль a."],["poetry в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."],["prose в этом значении — неисчисляемое слово: much.","Перед many/much здесь не ставим артикль a."]],"uk":[["poet можна порахувати: many + poets у множині.","Перед many/much тут не ставимо артикль a."],["poetry у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."],["prose у цьому значенні — незлічуване слово: much.","Перед many/much тут не ставимо артикль a."]]}),
@@ -12781,7 +12781,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 17, sessionOrdinal: 17,
-    sourceFingerprint: "1a85aa232e7df5b59dd7aabb04d896f0f2fa9258973d459c4df1694f74ba885e",
+    sourceFingerprint: "5ecd57bd267299f9870ff3f8c1d885a5bae978fd6ddce6f5adea84bb2d2ca0e0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта форма грамматически возможна, но меняет акцент. Следуйте смыслу ситуации.","Для отдельных людей нужно few, не little."],["Эта форма грамматически возможна, но меняет акцент. Следуйте смыслу ситуации.","Для неисчисляемого здесь нужно little, не few."],["Эта форма грамматически возможна, но меняет акцент. Следуйте смыслу ситуации.","Для неисчисляемого здесь нужно little, не few."]],"uk":[["Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації.","Для окремих людей потрібне few, не little."],["Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації.","Для незлічуваного тут потрібне little, не few."],["Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації.","Для незлічуваного тут потрібне little, не few."]]}),

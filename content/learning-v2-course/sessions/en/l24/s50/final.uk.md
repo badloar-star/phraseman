@@ -35,9 +35,9 @@ Lower — нижній. She opened the lower drawer yesterday — учора в�
 
 ## Інтро 3
 
-### Усередині й зовні
+### Пофарбував зовнішні двері
 
-Inner — внутрішній, outer — зовнішній. We have checked the inner pocket — ми перевірили внутрішню кишеню. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Обидва слова стоять перед іменником і уточнюють, де розташований предмет: усередині чи зовні. Із yesterday потрібне painted без has.
+Ви показуєте сусідові зовнішні двері й розповідаєте, що брат пофарбував їх учора. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Після he ставимо painted: учорашній день завершився, тому потрібен Past Simple, без has. The outer door називає, які двері пофарбували; outer стоїть перед door. Yesterday наприкінці додає час. Основа — he + painted + the outer door + yesterday.
 
 **Виберіть фразу для цієї ситуації.**
 

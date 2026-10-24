@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Люди и насекомые",
-        "uk": "Люди та комахи"
+        "ru": "Насекомое на окне",
+        "uk": "Комаха на вікні"
       },
       "bodyByLocale": {
-        "ru": "Human — человеческий. We have drawn a human face — мы нарисовали человеческое лицо. Drawn — форма draw после have. Insect — насекомое: например, знакомый ant, муравей. He found an insect on the window yesterday — вчера он нашёл насекомое на окне. Перед insect используем an, а с yesterday — found без has.",
-        "uk": "Human — людський. We have drawn a human face — ми намалювали людське обличчя. Drawn — форма draw після have. Insect — комаха: наприклад, знайоме ant, мураха. He found an insect on the window yesterday — учора він знайшов комаху на вікні. Перед insect використовуємо an, а із yesterday — found без has."
+        "ru": "Друг рассказывает о вчерашней находке на окне. He found an insect on the window yesterday — вчера он нашёл насекомое на окне. Yesterday называет законченный день, поэтому после he ставим прошедшую форму found от find. Затем an insect отвечает на вопрос «что нашёл?», on the window — «где?». Перед insect нужен an, потому что слово начинается с гласного звука. В этой фразе о вчерашнем событии have или has не добавляем.",
+        "uk": "Друг розповідає про вчорашню знахідку на вікні. He found an insect on the window yesterday — учора він знайшов комаху на вікні. Yesterday називає завершений день, тому після he ставимо минулу форму found від find. Потім an insect відповідає на запитання «що знайшов?», on the window — «де?». Перед insect потрібне an, тому що слово починається з голосного звука. У цій фразі про вчорашню подію have або has не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "17d5e4aa297cfe13b318a138f4644f8fa9cc05bfbacbc28beab06437978077eb"
+  "introFingerprint": "ad5d689bfea2b4267f104ba19925e27ac4b3cef65c0992d13bb077c2efe5621c"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Медленно дышу",
-        "uk": "Повільно дихаю"
+        "ru": "Как я обычно дышу",
+        "uk": "Як я зазвичай дихаю"
       },
       "bodyByLocale": {
-        "ru": "Breathe — дышать. I breathe slowly — я дышу медленно. После I в простом настоящем времени используем breathe без s. Для действия, которое длится до сих пор, можно сказать I have been breathing slowly for a minute — я дышу медленно уже минуту. В breathing конечная e исчезает.",
-        "uk": "Breathe — дихати. I breathe slowly — я дихаю повільно. Після I у простому теперішньому часі використовуємо breathe без s. Для дії, що триває досі, можна сказати I have been breathing slowly for a minute — я дихаю повільно вже хвилину. У breathing кінцева e зникає."
+        "ru": "Вы рассказываете, что обычно делаете во время спокойной разминки: дышите медленно. I breathe slowly — я дышу медленно. Для привычного действия используем Present Simple. После I ставим breathe без -s. Slowly описывает, как вы дышите, и стоит после глагола. Получается I + breathe + slowly; для этого утверждения дополнительный глагол не нужен.",
+        "uk": "Ви розповідаєте, що зазвичай робите під час спокійної розминки: дихаєте повільно. I breathe slowly — я дихаю повільно. Для звичної дії використовуємо Present Simple. Після I ставимо breathe без -s. Slowly описує, як ви дихаєте, і стоїть після дієслова. Виходить I + breathe + slowly; для цього твердження додаткове дієслово не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-24:session-49:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Разные действия",
-        "uk": "Різні дії"
+        "ru": "Почему собака лижет лапы",
+        "uk": "Чому собака лиже лапи"
       },
       "bodyByLocale": {
-        "ru": "Lick — лизать. Dogs lick their paws — собаки лижут свои лапы. Suck — сосать. Some babies suck their thumbs — некоторые младенцы сосут большие пальцы. Это разные действия: lick — касаться языком, suck — втягивать ртом. Вчерашнее действие передаём через licked или sucked: The dog licked my hand yesterday — вчера собака лизнула мою руку.",
-        "uk": "Lick — лизати. Dogs lick their paws — собаки лижуть свої лапи. Suck — смоктати. Some babies suck their thumbs — деякі немовлята смокчуть великі пальці. Це різні дії: lick — торкатися язиком, suck — втягувати ротом. Учорашню дію передаємо через licked або sucked: The dog licked my hand yesterday — учора собака лизнула мою руку."
+        "ru": "Ребёнок заметил, как собака ухаживает за собой, и вы объясняете обычное поведение собак. Dogs lick their paws — собаки лижут свои лапы. Начинаем с dogs во множественном числе. Затем ставим lick без -s: в Present Simple с таким подлежащим окончание -s не добавляем. Their paws называет, что собаки лижут: собственные лапы. Порядок — кто + действие + что.",
+        "uk": "Дитина помітила, як собака доглядає за собою, і ви пояснюєте звичайну поведінку собак. Dogs lick their paws — собаки лижуть свої лапи. Починаємо з dogs у множині. Потім ставимо lick без -s: у Present Simple з таким підметом закінчення -s не додаємо. Their paws називає, що собаки лижуть: власні лапи. Порядок — хто + дія + що."
       },
       "question": {
         "interactionId": "en:lesson-24:session-49:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Простая просьба",
-        "uk": "Просте прохання"
+        "ru": "Просьба после полоскания",
+        "uk": "Прохання після полоскання"
       },
       "bodyByLocale": {
-        "ru": "Spit — плевать, выплёвывать. Please spit out the water — пожалуйста, выплюньте воду. После please в такой просьбе используем базовую форму spit. Out уточняет движение наружу. Про прошлое можно сказать He spat out the water yesterday — вчера он выплюнул воду. Spat — прошедшая форма spit.",
-        "uk": "Spit — плювати, випльовувати. Please spit out the water — будь ласка, виплюньте воду. Після please у такому проханні використовуємо базову форму spit. Out уточнює рух назовні. Про минуле можна сказати He spat out the water yesterday — учора він виплюнув воду. Spat — минула форма spit."
+        "ru": "Человек прополоскал рот водой, и вы просите его выплюнуть её. Please spit out the water — пожалуйста, выплюньте воду. Начинаем с please для вежливости, затем ставим начальную форму spit. В такой просьбе подлежащее you обычно не произносим. Out входит в spit out — «выплюнуть», а the water называет, что нужно выплюнуть. Формы spits и spitting здесь не подходят.",
+        "uk": "Людина прополоскала рот водою, і ви просите її виплюнути воду. Please spit out the water — будь ласка, виплюньте воду. Починаємо з please для ввічливості, потім ставимо початкову форму spit. У такому проханні підмет you зазвичай не вимовляємо. Out входить до spit out — «виплюнути», а the water називає, що потрібно виплюнути. Форми spits та spitting тут не підходять."
       },
       "question": {
         "interactionId": "en:lesson-24:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "72f9fa96f28f410f6c7fe743238ee47c62bfba155ab16df382b9940396cbedf0"
+  "introFingerprint": "9d4b9f4582d2b81942dd4cd25e5887d744e814e9a041614dd18eebcb8b9be778"
 }

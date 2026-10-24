@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Внутри и снаружи",
-        "uk": "Усередині й зовні"
+        "ru": "Покрасил наружную дверь",
+        "uk": "Пофарбував зовнішні двері"
       },
       "bodyByLocale": {
-        "ru": "Inner — внутренний, outer — наружный. We have checked the inner pocket — мы проверили внутренний карман. He painted the outer door yesterday — вчера он покрасил наружную дверь. Оба слова стоят перед существительным и уточняют, где расположен предмет: внутри или снаружи. С yesterday нужен painted без has.",
-        "uk": "Inner — внутрішній, outer — зовнішній. We have checked the inner pocket — ми перевірили внутрішню кишеню. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Обидва слова стоять перед іменником і уточнюють, де розташований предмет: усередині чи зовні. Із yesterday потрібне painted без has."
+        "ru": "Вы показываете соседу наружную дверь и рассказываете, что брат покрасил её вчера. He painted the outer door yesterday — вчера он покрасил наружную дверь. После he ставим painted: вчерашний день закончился, поэтому нужен Past Simple, без has. The outer door называет, какую дверь покрасили; outer стоит перед door. Yesterday в конце добавляет время. Основа — he + painted + the outer door + yesterday.",
+        "uk": "Ви показуєте сусідові зовнішні двері й розповідаєте, що брат пофарбував їх учора. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Після he ставимо painted: учорашній день завершився, тому потрібен Past Simple, без has. The outer door називає, які двері пофарбували; outer стоїть перед door. Yesterday наприкінці додає час. Основа — he + painted + the outer door + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bac95131dc0d856b3ad1403c0eb2f3a6d7a7dc4c5b24e3b9572d214f4332a095"
+  "introFingerprint": "8a851cd60ecfc18d91fc7f2366750c03460d2d6414c270bd87b5ff0d763a4fad"
 }

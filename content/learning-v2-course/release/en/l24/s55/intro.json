@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Скульптура и пейзаж",
-        "uk": "Скульптура та пейзаж"
+        "ru": "Пейзаж на прошлой неделе",
+        "uk": "Пейзаж минулого тижня"
       },
       "bodyByLocale": {
-        "ru": "Sculpture — скульптура. We have seen this sculpture — мы видели эту скульптуру. Landscape — пейзаж: вид местности или его изображение. He painted a landscape last week — на прошлой неделе он написал пейзаж. Здесь речь о картине. Last week уже закончилась, поэтому painted без has.",
-        "uk": "Sculpture — скульптура. We have seen this sculpture — ми бачили цю скульптуру. Landscape — пейзаж: вигляд місцевості або його зображення. He painted a landscape last week — минулого тижня він намалював пейзаж фарбами. Тут ідеться про картину. Last week уже завершився, тому painted без has."
+        "ru": "Вы показываете картину друга и рассказываете, когда он её написал. He painted a landscape last week — на прошлой неделе он написал пейзаж. Last week называет завершившийся период, поэтому используем Past Simple. После he ставим painted: к правильному глаголу paint добавляем -ed. A landscape называет, что он нарисовал красками, а last week в конце — когда. Have или has в этом предложении не нужны.",
+        "uk": "Ви показуєте картину друга й розповідаєте, коли він її намалював. He painted a landscape last week — минулого тижня він намалював пейзаж фарбами. Last week називає завершений період, тому використовуємо Past Simple. Після he ставимо painted: до правильного дієслова paint додаємо -ed. A landscape називає, що він намалював фарбами, а last week наприкінці — коли. Have або has у цьому реченні не потрібні."
       },
       "question": {
         "interactionId": "en:lesson-24:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ddb30c18ca1e44754b2fc5cba04736b390d44b9266602681fa7ff00f900b967d"
+  "introFingerprint": "fb9a78060fe95be57f3617374263486f7c39526b47cf4cb8bcc2c25163b89fca"
 }

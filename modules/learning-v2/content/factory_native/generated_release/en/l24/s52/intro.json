@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Диплом и стипендия",
-        "uk": "Диплом і стипендія"
+        "ru": "Получила диплом вчера",
+        "uk": "Отримала диплом учора"
       },
       "bodyByLocale": {
-        "ru": "Diploma — диплом. She received her diploma yesterday — вчера она получила диплом. Scholarship — стипендия на обучение, финансовая поддержка учёбы. We have applied for a scholarship — мы подали заявление на стипендию. Apply for указывает, что хотим получить; apply to — куда обращаемся. С yesterday нужен received без has.",
-        "uk": "Diploma — диплом. She received her diploma yesterday — учора вона отримала диплом. Scholarship — стипендія на навчання, фінансова підтримка навчання. We have applied for a scholarship — ми подали заяву на стипендію. Apply for указує, що хочемо отримати; apply to — куди звертаємося. Із yesterday потрібне received без has."
+        "ru": "Сестра вчера получила диплом, и вы рассказываете об этом другу. She received her diploma yesterday — вчера она получила диплом. Начинаем с she, затем ставим received: вчерашний день закончился, поэтому нужен Past Simple. Receive — правильный глагол, к нему добавляем -d, поскольку он уже заканчивается на e. Her diploma называет, что она получила, а yesterday в конце — когда. Has перед received здесь не ставим.",
+        "uk": "Сестра вчора отримала диплом, і ви розповідаєте про це другові. She received her diploma yesterday — учора вона отримала диплом. Починаємо з she, потім ставимо received: учорашній день завершився, тому потрібен Past Simple. Receive — правильне дієслово, до нього додаємо -d, оскільки воно вже закінчується на e. Her diploma називає, що вона отримала, а yesterday наприкінці — коли. Has перед received тут не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-52:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "09f6b9ab210fb79a8da3a1c4fbec9410fb2b0476e7768a48f291176f1bdac0a0"
+  "introFingerprint": "997dc400802892ee07fd207b039c19daf29d8c4628b745ce752d2536e34dfe18"
 }

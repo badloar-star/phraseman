@@ -11,12 +11,12 @@
       "pageId": "en:lesson-24:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обнять малыша",
-        "uk": "Обійняти малюка"
+        "ru": "Малыша уже обняли",
+        "uk": "Малюка вже обійняли"
       },
       "bodyByLocale": {
-        "ru": "Cuddle — ласково обнимать, прижимать к себе: малыша, близкого человека или питомца. She has cuddled the baby — она ласково обняла малыша. Здесь мы сообщаем, что это уже произошло, без указания законченного момента. С she используем has cuddled. Если добавим yesterday, понадобится Past Simple: She cuddled the baby yesterday.",
-        "uk": "Cuddle — ніжно обіймати, притискати до себе: малюка, близьку людину чи домашню тварину. She has cuddled the baby — вона ніжно обійняла малюка. Тут повідомляємо, що це вже відбулося, без зазначення завершеного моменту. Із she використовуємо has cuddled. Якщо додамо yesterday, знадобиться Past Simple: She cuddled the baby yesterday."
+        "ru": "Малыш плакал, мама прижала его к себе, и вы сообщаете об этом сейчас. She has cuddled the baby — она ласково обняла малыша. После she выбираем has, затем ставим третью форму cuddled. У правильного глагола cuddle она образуется добавлением -d. The baby называет, кого обняли. Здесь важен результат к настоящему моменту, а законченная дата не названа: she + has + cuddled + the baby.",
+        "uk": "Малюк плакав, мама притиснула його до себе, і ви повідомляєте про це зараз. She has cuddled the baby — вона ніжно обійняла малюка. Після she вибираємо has, потім ставимо третю форму cuddled. У правильного дієслова cuddle вона утворюється додаванням -d. The baby називає, кого обійняли. Тут важливий результат на теперішній момент, а завершеної дати не названо: she + has + cuddled + the baby."
       },
       "question": {
         "interactionId": "en:lesson-24:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-24:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Слёзы и боль",
-        "uk": "Сльози й біль"
+        "ru": "Слёзы после фильма",
+        "uk": "Сльози після фільму"
       },
       "bodyByLocale": {
-        "ru": "Sob — рыдать, плакать с прерывистым дыханием. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday называет законченное прошлое, поэтому sobbed. В этой форме удваиваем b. Groan — стонать: например, от боли. I have groaned with pain all morning — я всё утро стону от боли. Утро ещё продолжается; говорящий описывает повторявшиеся до настоящего момента стоны. С I используем have groaned.",
-        "uk": "Sob — ридати, плакати з уривчастим диханням. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday називає завершене минуле, тому sobbed. У цій формі подвоюємо b. Groan — стогнати: наприклад, від болю. I have groaned with pain all morning — я весь ранок стогну від болю. Ранок ще триває; мовець описує стогони, що повторювалися до теперішнього моменту. Із I використовуємо have groaned."
+        "ru": "Вы вспоминаете, как друг вчера расплакался после грустного фильма. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday указывает на законченный день, поэтому после he нужен Past Simple: sobbed. В коротком глаголе sob перед -ed удваиваем конечную b. After the film уточняет, после чего он плакал; yesterday — когда. Собираем he + sobbed + after the film + yesterday.",
+        "uk": "Ви згадуєте, як друг учора розплакався після сумного фільму. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday указує на завершений день, тому після he потрібен Past Simple: sobbed. У короткому дієслові sob перед -ed подвоюємо кінцеву b. After the film уточнює, після чого він плакав; yesterday — коли. Складаємо he + sobbed + after the film + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-48:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "332505eac0b0b6a843d535d1f178a37c2b712d283d2bc235dc89d0035be05e34"
+  "introFingerprint": "1108b1ac6a91a4b9d067e224607240992d286636766faf8975dda7d8bce86648"
 }

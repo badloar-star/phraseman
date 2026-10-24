@@ -69,8 +69,8 @@
         "uk": "Не наважуюся стрибнути"
       },
       "bodyByLocale": {
-        "ru": "Dare — осмеливаться. I do not dare to jump — я не осмеливаюсь прыгнуть. В этом варианте после do not стоит dare, затем to jump. Про вчера можно сказать I did not dare to jump yesterday — вчера я не осмелился прыгнуть. После did not тоже остаётся dare.",
-        "uk": "Dare — наважуватися. I do not dare to jump — я не наважуюся стрибнути. У цьому варіанті після do not стоїть dare, потім to jump. Про вчора можна сказати I did not dare to jump yesterday — учора я не наважився стрибнути. Після did not теж залишається dare."
+        "ru": "Вы стоите перед небольшим ручьём и боитесь перепрыгнуть на другой берег. I do not dare to jump — я не осмеливаюсь прыгнуть. Начинаем с I, затем ставим do not: говорим о том, на что сейчас не решаемся. После do not нужна начальная форма dare, без -s и -ing. В конце to jump называет действие, на которое не хватает смелости. Порядок: I + do not + dare + to jump.",
+        "uk": "Ви стоїте перед невеликим струмком і боїтеся перестрибнути на інший берег. I do not dare to jump — я не наважуюся стрибнути. Починаємо з I, потім ставимо do not: говоримо про те, на що зараз не наважуємося. Після do not потрібна початкова форма dare, без -s та -ing. Наприкінці to jump називає дію, на яку бракує сміливості. Порядок: I + do not + dare + to jump."
       },
       "question": {
         "interactionId": "en:lesson-24:session-54:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-24:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Состояние и травма",
-        "uk": "Стан і травма"
+        "ru": "Берегу колено",
+        "uk": "Бережу коліно"
       },
       "bodyByLocale": {
-        "ru": "Suffer — страдать. Some people suffer from allergies — некоторые люди страдают от аллергии. Suffer from связывает состояние с его причиной. Injure — травмировать. I do not want to injure my knee — я не хочу травмировать колено. После to нужна базовая форма injure. О результате можно сказать I have injured my knee — я травмировал колено.",
-        "uk": "Suffer — страждати. Some people suffer from allergies — деякі люди страждають від алергії. Suffer from пов’язує стан із його причиною. Injure — травмувати. I do not want to injure my knee — я не хочу травмувати коліно. Після to потрібна базова форма injure. Про результат можна сказати I have injured my knee — я травмував коліно."
+        "ru": "Вам предлагают упражнение с прыжком, но вы опасаетесь травмировать колено. I do not want to injure my knee — я не хочу травмировать колено. Сначала I + do not + want выражает ваше нежелание. Затем to injure называет действие: после want используем to и начальную форму injure, без -s и -ing. My knee в конце уточняет, какую часть тела вы бережёте.",
+        "uk": "Вам пропонують вправу зі стрибком, але ви побоюєтеся травмувати коліно. I do not want to injure my knee — я не хочу травмувати коліно. Спочатку I + do not + want виражає ваше небажання. Потім to injure називає дію: після want використовуємо to та початкову форму injure, без -s та -ing. My knee наприкінці уточнює, яку частину тіла ви бережете."
       },
       "question": {
         "interactionId": "en:lesson-24:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "854a47e5aab3c99f1a84c6372be47d732f6d550b93ab47a789c7f3ef4ab46957"
+  "introFingerprint": "d2b3824d5770abe2632277e909ea3f130d5fc4b1be57087b456cf2bae5865f2a"
 }

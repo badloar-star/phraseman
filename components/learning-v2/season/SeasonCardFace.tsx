@@ -69,7 +69,8 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, sta
     return (
       <View style={[styles.card, styles.examCard]}>
         <LinearGradient colors={colors} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
-        <View style={styles.seal}><Ionicons name="trophy" size={24} color={WHITE} /></View>
+        {/* зачем (замок владельца 22.10 «замочек трясётся», координатор 24.10): у закрытого экзамена плашки замка нет — тап трясёт печать, иначе была бы одна вибрация без движения */}
+        <Animated.View style={[styles.seal, lockShake]} testID="season-exam-seal"><Ionicons name="trophy" size={24} color={WHITE} /></Animated.View>
         <Text style={styles.phrase} numberOfLines={3}>{phrase}</Text>
         {state === 'locked' ? <View style={styles.mute} pointerEvents="none" /> : null}
       </View>

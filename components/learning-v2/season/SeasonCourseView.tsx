@@ -162,7 +162,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     if (card.kind === 'exam') {
       return (
         <SeasonCardFace kind="exam" state={card.state} ordinal={card.chapterOrdinal} art={art} dark={dark} glyph={info.icon}
-          phrase={`${seasonText(lang, 'exam')} ${card.chapterOrdinal}`} progress={null} />
+          phrase={`${seasonText(lang, 'exam')} ${card.chapterOrdinal}`} progress={null} shakeSeq={props.lockShake && props.lockShake.index === index ? props.lockShake.seq : 0} />
       );
     }
     const ep = props.episodeInfo(card);

@@ -47,6 +47,11 @@ describe('Замки владельца 22.10: хаб урока', () => {
     expect(face).toContain('withSequence(');
     expect(face).toContain('useReducedMotion');
   });
+  // координатор 24.10: закрытый экзамен — та же тряска (печать), иначе тап по нему только вибрирует
+  it('закрытый экзамен трясёт печать, как эпизод — плашку замка', () => {
+    expect(face).toContain('<Animated.View style={[styles.seal, lockShake]} testID="season-exam-seal">');
+    expect(view).toMatch(/<SeasonCardFace kind="exam"[\s\S]{0,300}shakeSeq=\{props\.lockShake && props\.lockShake\.index === index \? props\.lockShake\.seq : 0\}/);
+  });
   it('в модале нет «закрытой» ветки: ни «просмотр», ни «Откроется после эпизода N», ни «К эпизоду N»', () => {
     expect(expanded).not.toMatch(/locked|lockLine|lock-closed/u);
     expect(course).not.toMatch(/seasonUnlockAfter|'preview'|'toEpisode'|'openByExam'|lockLine/u);

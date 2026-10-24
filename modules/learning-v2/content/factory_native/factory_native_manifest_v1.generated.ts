@@ -13663,7 +13663,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 24,
-    sourceFingerprint: "52fda5d5977f87cbca1ccbf6a5b4caa4c0c5e599d0bfd8f57dbe9bef23f51c4b",
+    sourceFingerprint: "884ffbc3231795d404ff543f74680f27d6eb278c84fdd149391e616f9562dc0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В конструкции равенства нужна обычная форма long.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма short.","Нужно два as: as … as."],["В конструкции равенства нужна обычная форма quiet.","Нужно два as: as … as."]],"uk":[["У конструкції рівності потрібна звичайна форма long.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма short.","Потрібні два as: as … as."],["У конструкції рівності потрібна звичайна форма quiet.","Потрібні два as: as … as."]]}),
@@ -13677,7 +13677,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 25,
-    sourceFingerprint: "55abfe9548e69f9502d7a806dd24d533a6d65e051d635946db828c407d686845",
+    sourceFingerprint: "4d5c231e39bd75e44089e08a94936d90c05ea62af491c823bcf7315648fadc80",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too big.","По ситуации требуется too big: условие либо мешает, либо выполнено."],["Правильный порядок: light enough.","По ситуации требуется light enough: условие либо мешает, либо выполнено."],["Правильный порядок: large enough.","По ситуации требуется large enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too big.","За ситуацією потрібне too big: умова або заважає, або виконана."],["Правильний порядок: light enough.","За ситуацією потрібне light enough: умова або заважає, або виконана."],["Правильний порядок: large enough.","За ситуацією потрібне large enough: умова або заважає, або виконана."]]}),
@@ -13691,7 +13691,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 26,
-    sourceFingerprint: "77bc1f54a980a4c39e875ad95f60edd5a0971894cba448c0a9fa56775d8eca66",
+    sourceFingerprint: "8796f0b014f72c31dbd10ea1ae922a9f30f1aa0d998ed3e654cdcb3e51ab8aee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too large.","По ситуации требуется too large: условие либо мешает, либо выполнено."],["Правильный порядок: strong enough.","По ситуации требуется strong enough: условие либо мешает, либо выполнено."],["Правильный порядок: long enough.","По ситуации требуется long enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too large.","За ситуацією потрібне too large: умова або заважає, або виконана."],["Правильний порядок: strong enough.","За ситуацією потрібне strong enough: умова або заважає, або виконана."],["Правильний порядок: long enough.","За ситуацією потрібне long enough: умова або заважає, або виконана."]]}),
@@ -13705,7 +13705,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 18, sessionOrdinal: 27,
-    sourceFingerprint: "954412607f740fcdb470cfb5aa9ef2b59e0afed0f03ede0a9e51ae8391001614",
+    sourceFingerprint: "7b9c10dbdc72bd9c9b606d86c007cefefdb4f6c80e6935d6e5edaf503d301c64",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильный порядок: too small.","По ситуации требуется too small: условие либо мешает, либо выполнено."],["Правильный порядок: large enough.","По ситуации требуется large enough: условие либо мешает, либо выполнено."],["Правильный порядок: long enough.","По ситуации требуется long enough: условие либо мешает, либо выполнено."]],"uk":[["Правильний порядок: too small.","За ситуацією потрібне too small: умова або заважає, або виконана."],["Правильний порядок: large enough.","За ситуацією потрібне large enough: умова або заважає, або виконана."],["Правильний порядок: long enough.","За ситуацією потрібне long enough: умова або заважає, або виконана."]]}),

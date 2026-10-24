@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одинаковое качество 1",
-        "uk": "Однакова якість 1"
+        "ru": "Сравнить длительность поездок",
+        "uk": "Порівняти тривалість поїздок"
       },
       "bodyByLocale": {
-        "ru": "weekend break — короткая поездка на выходные. city break — короткий отдых в городе. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as long as.",
-        "uk": "weekend break — коротка поїздка на вихідні. city break — короткий відпочинок у місті. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as long as."
+        "ru": "Друзья уезжают на выходные на два дня, как и вы. Your weekend break is as long as ours — ваша поездка на выходные такая же долгая, как наша. После Your weekend break is поставьте as long as: long находится между двумя as. В конце ours заменяет our weekend break, чтобы не повторять название поездки. При равной длительности нужна обычная форма long, не longer.",
+        "uk": "Друзі їдуть на вихідні на два дні, як і ви. Your weekend break is as long as ours — ваша поїздка на вихідні така сама тривала, як наша. Після Your weekend break is поставте as long as: long стоїть між двома as. Наприкінці ours замінює our weekend break, щоб не повторювати назву поїздки. За однакової тривалості потрібна звичайна форма long, не longer."
       },
       "question": {
         "interactionId": "en:lesson-18:session-24:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одинаковое качество 2",
-        "uk": "Однакова якість 2"
+        "ru": "Сравнить короткие выезды",
+        "uk": "Порівняти короткі виїзди"
       },
       "bodyByLocale": {
-        "ru": "camping trip — поездка с ночёвкой в палатке. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as short as.",
-        "uk": "camping trip — поїздка з ночівлею в наметі. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as short as."
+        "ru": "Вы смотрите программу поездки с палаткой: она длится всего одну ночь, как и ваша поездка. This camping trip is as short as ours — эта поездка с палаткой такая же короткая, как наша. Начните с This camping trip is, затем поставьте as short as. Обычное прилагательное short стоит между двумя as, а ours в конце обозначает вашу поездку.",
+        "uk": "Ви дивитеся програму поїздки з наметом: вона триває лише одну ніч, як і ваша поїздка. This camping trip is as short as ours — ця поїздка з наметом така сама коротка, як наша. Почніть із This camping trip is, потім поставте as short as. Звичайний прикметник short стоїть між двома as, а ours наприкінці позначає вашу поїздку."
       },
       "question": {
         "interactionId": "en:lesson-18:session-24:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Одинаковое качество 3",
-        "uk": "Однакова якість 3"
+        "ru": "Сравнить спокойный отдых",
+        "uk": "Порівняти спокійний відпочинок"
       },
       "bodyByLocale": {
-        "ru": "beach holiday — пляжный отдых. У выбранной пары одинаковое качество или цена. Используем as + обычное прилагательное + as: as quiet as.",
-        "uk": "beach holiday — пляжний відпочинок. Вибрана пара має однакову якість або ціну. Використовуємо as + звичайний прикметник + as: as quiet as."
+        "ru": "Вы с друзьями отдыхаете на разных пляжах: у них так же тихо и спокойно, как у вас. Your beach holiday is as quiet as ours — ваш пляжный отдых такой же спокойный, как наш. После Your beach holiday is поставьте as quiet as, затем ours. Два as связывают равную степень качества; quiet остаётся в обычной форме.",
+        "uk": "Ви з друзями відпочиваєте на різних пляжах: у них так само тихо й спокійно, як у вас. Your beach holiday is as quiet as ours — ваш пляжний відпочинок такий самий спокійний, як наш. Після Your beach holiday is поставте as quiet as, потім ours. Два as пов’язують однаковий ступінь якості; quiet залишається у звичайній формі."
       },
       "question": {
         "interactionId": "en:lesson-18:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb0734dc4521f1955d0d1b13e200591557cefd26b78e6980a4631e5a882c2334"
+  "introFingerprint": "4c2c8e23311b65350703e17b9230b18dcaa20de2213b995a608f1aff1e8fea75"
 }

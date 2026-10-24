@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Батат",
-        "uk": "Батат"
+        "ru": "Что приготовили вчера",
+        "uk": "Що приготували вчора"
       },
       "bodyByLocale": {
-        "ru": "Sweet potato — батат, сладкий корнеплод. Did you cook a sweet potato yesterday? — Ты вчера приготовил батат? Выберите вопрос о вчерашнем действии.",
-        "uk": "Sweet potato — батат, солодкий коренеплід. Did you cook a sweet potato yesterday? — Ти вчора приготував батат? Виберіть запитання про вчорашню дію."
+        "ru": "Вы обсуждаете вчерашний ужин друга и уточняете, приготовил ли он батат. Sweet potato — батат. Начните вопрос о прошлом с Did you, затем поставьте cook и назовите один корнеплод: a sweet potato. В конце добавьте yesterday. Получится Did you cook a sweet potato yesterday? — Ты вчера приготовил батат? Did уже обозначает прошлое, поэтому cook остаётся без -ed. A здесь относится к одному целому батату.",
+        "uk": "Ви обговорюєте вчорашню вечерю друга й уточнюєте, чи приготував він батат. Sweet potato — батат. Почніть запитання про минуле з Did you, потім поставте cook і назвіть один коренеплід: a sweet potato. Наприкінці додайте yesterday. Вийде Did you cook a sweet potato yesterday? — Ти вчора приготував батат? Did уже позначає минуле, тому cook залишається без -ed. A тут стосується одного цілого батату."
       },
       "question": {
         "interactionId": "en:lesson-13:session-27:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Репа и пастернак",
-        "uk": "Ріпа й пастернак"
+        "ru": "Почистили ли овощ",
+        "uk": "Чи почистили овоч"
       },
       "bodyByLocale": {
-        "ru": "Turnip — репа; parsnip — пастернак, светлый корнеплод, похожий по форме на морковь. Did you peel the parsnip? — Ты почистил пастернак? Выберите пастернак.",
-        "uk": "Turnip — ріпа; parsnip — пастернак, світлий коренеплід, схожий формою на моркву. Did you peel the parsnip? — Ти почистив пастернак? Виберіть пастернак."
+        "ru": "Друг вчера готовил суп с пастернаком. Вы уточняете, почистил ли он этот корнеплод. Parsnip — пастернак. Поставьте Did перед you, затем peel — почистить — и назовите конкретный овощ: the parsnip. Получится Did you peel the parsnip? — Ты почистил пастернак? После Did используем peel без -ed. The показывает, что речь о том самом овоще для супа.",
+        "uk": "Друг учора готував суп із пастернаком. Ви уточнюєте, чи почистив він цей коренеплід. Parsnip — пастернак. Поставте Did перед you, потім peel — почистити — і назвіть конкретний овоч: the parsnip. Вийде Did you peel the parsnip? — Ти почистив пастернак? Після Did використовуємо peel без -ed. The показує, що йдеться про той самий овоч для супу."
       },
       "question": {
         "interactionId": "en:lesson-13:session-27:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Тыква для супа",
-        "uk": "Гарбуз для супу"
+        "ru": "Когда купили тыкву",
+        "uk": "Коли купили гарбуз"
       },
       "bodyByLocale": {
-        "ru": "Butternut squash — мускатная тыква грушевидной формы. Did you buy a butternut squash last week? — Ты купил такую тыкву на прошлой неделе? Выберите last week без предлога.",
-        "uk": "Butternut squash — мускатний гарбуз грушоподібної форми. Did you buy a butternut squash last week? — Ти купив такий гарбуз минулого тижня? Виберіть last week без прийменника."
+        "ru": "Вы собираетесь готовить суп и спрашиваете друга, купил ли он мускатную тыкву на прошлой неделе. Butternut squash — мускатная тыква грушевидной формы. Соберите вопрос: Did + you + buy + a butternut squash + last week? Получится Did you buy a butternut squash last week? — Ты купил мускатную тыкву на прошлой неделе? После Did нужен buy, а не bought. Время last week ставим без предлога; a обозначает одну целую тыкву.",
+        "uk": "Ви збираєтеся готувати суп і запитуєте друга, чи купив він мускатний гарбуз минулого тижня. Butternut squash — мускатний гарбуз грушоподібної форми. Складіть запитання: Did + you + buy + a butternut squash + last week? Вийде Did you buy a butternut squash last week? — Ти купив мускатний гарбуз минулого тижня? Після Did потрібне buy, а не bought. Час last week ставимо без прийменника; a позначає один цілий гарбуз."
       },
       "question": {
         "interactionId": "en:lesson-13:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f733d99da996784e3e1ebb96faf73177892c9affa651c1aee56c269a2c02bbe5"
+  "introFingerprint": "7e2ca101f857d0d6434f27dd22fdeb71807cf795ed011175d0f91714bf29aaad"
 }

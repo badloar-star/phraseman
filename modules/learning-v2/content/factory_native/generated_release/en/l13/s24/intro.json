@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Честно",
-        "uk": "Чесно"
+        "ru": "Честный ответ",
+        "uk": "Чесна відповідь"
       },
       "bodyByLocale": {
-        "ru": "Honestly — честно. Did you answer honestly? — Ты ответил честно? Выберите вопрос о прошлом.",
-        "uk": "Honestly — чесно. Did you answer honestly? — Ти відповів чесно? Виберіть запитання про минуле."
+        "ru": "Вчера друга спросили, понравился ли ему подарок. Вы уточняете, ответил ли он честно. Honestly означает честно и здесь описывает ответ. Начните вопрос с Did you, затем поставьте answer и добавьте honestly в конце. Получится Did you answer honestly? — Ты ответил честно? После Did нужна начальная форма answer без -ed. Honestly уточняет, как человек ответил.",
+        "uk": "Учора друга запитали, чи сподобався йому подарунок. Ви уточнюєте, чи відповів він чесно. Honestly означає чесно й тут описує відповідь. Почніть запитання з Did you, потім поставте answer і додайте honestly наприкінці. Вийде Did you answer honestly? — Ти відповів чесно? Після Did потрібна початкова форма answer без -ed. Honestly уточнює, як людина відповіла."
       },
       "question": {
         "interactionId": "en:lesson-13:session-24:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "По-доброму",
-        "uk": "По-доброму"
+        "ru": "Доброжелательный разговор",
+        "uk": "Доброзичлива розмова"
       },
       "bodyByLocale": {
-        "ru": "Kindly — по-доброму, доброжелательно. Did she speak kindly? — Она говорила доброжелательно? Выберите доброжелательность, не сердитый тон.",
-        "uk": "Kindly — по-доброму, доброзичливо. Did she speak kindly? — Вона говорила доброзичливо? Виберіть доброзичливість, не сердитий тон."
+        "ru": "Подруга вчера объясняла ребёнку его ошибку. Вы спрашиваете друга, говорила ли она по-доброму. Kindly здесь означает доброжелательно. Соберите вопрос: Did + she + speak + kindly? Получится Did she speak kindly? — Она говорила доброжелательно? После Did используем speak, а не spoke; это правило действует и с she. Kindly ставим после speak, чтобы описать манеру разговора.",
+        "uk": "Подруга вчора пояснювала дитині її помилку. Ви запитуєте друга, чи говорила вона по-доброму. Kindly тут означає доброзичливо. Складіть запитання: Did + she + speak + kindly? Вийде Did she speak kindly? — Вона говорила доброзичливо? Після Did використовуємо speak, а не spoke; це правило діє й із she. Kindly ставимо після speak, щоб описати манеру розмови."
       },
       "question": {
         "interactionId": "en:lesson-13:session-24:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Смело и спокойно",
-        "uk": "Сміливо й спокійно"
+        "ru": "Сохранить спокойствие",
+        "uk": "Зберегти спокій"
       },
       "bodyByLocale": {
-        "ru": "Bravely — смело, несмотря на страх; calmly — спокойно. Did you answer calmly? — Ты ответил спокойно? Выберите спокойный ответ.",
-        "uk": "Bravely — сміливо, попри страх; calmly — спокійно. Did you answer calmly? — Ти відповів спокійно? Виберіть спокійну відповідь."
+        "ru": "Во вчерашнем разговоре другу сделали резкое замечание. Вы уточняете, ответил ли он спокойно. Calmly означает спокойно. Поставьте Did перед you, затем answer и calmly: Did you answer calmly? — Ты ответил спокойно? Прошлое уже обозначено Did, поэтому answer остаётся без -ed. Calmly относится к действию answer и сообщает, каким был тон ответа.",
+        "uk": "Під час учорашньої розмови другові зробили різке зауваження. Ви уточнюєте, чи відповів він спокійно. Calmly означає спокійно. Поставте Did перед you, потім answer і calmly: Did you answer calmly? — Ти відповів спокійно? Минуле вже позначено Did, тому answer залишається без -ed. Calmly стосується дії answer й повідомляє, яким був тон відповіді."
       },
       "question": {
         "interactionId": "en:lesson-13:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb8876d726e702deb01391929f44b4e5d7018ed00c60d8dd63af6733bcb7583b"
+  "introFingerprint": "f004dfcbed4d711ef475ff1a766055d65a72d14aa1cf2afa18a05dbdd205b231"
 }

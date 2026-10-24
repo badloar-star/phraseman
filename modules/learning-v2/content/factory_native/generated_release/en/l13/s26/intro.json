@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сарай в саду",
-        "uk": "Сарай у саду"
+        "ru": "Вчерашняя уборка в сарае",
+        "uk": "Учорашнє прибирання в сараї"
       },
       "bodyByLocale": {
-        "ru": "Garden shed — небольшой сарай в саду для инструментов и вещей. Did you clean the garden shed yesterday? — Ты вчера убрал садовый сарай? Выберите вчера, не каждый день.",
-        "uk": "Garden shed — невеликий сарай у саду для інструментів і речей. Did you clean the garden shed yesterday? — Ти вчора прибрав садовий сарай? Виберіть учора, не щодня."
+        "ru": "Друг вчера наводил порядок в саду. Вы уточняете, убрал ли он сарай для инструментов — garden shed. Начните вопрос с Did you, затем поставьте clean и назовите место уборки: the garden shed. В конце добавьте yesterday. Получится Did you clean the garden shed yesterday? — Ты вчера убрал садовый сарай? Did указывает на прошлое, поэтому clean оставляем без -ed. Yesterday относится ко всему действию.",
+        "uk": "Друг учора наводив лад у саду. Ви уточнюєте, чи прибрав він сарай для інструментів — garden shed. Почніть запитання з Did you, потім поставте clean і назвіть місце прибирання: the garden shed. Наприкінці додайте yesterday. Вийде Did you clean the garden shed yesterday? — Ти вчора прибрав садовий сарай? Did указує на минуле, тому clean залишаємо без -ed. Yesterday стосується всієї дії."
       },
       "question": {
         "interactionId": "en:lesson-13:session-26:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Вокруг двери",
-        "uk": "Навколо дверей"
+        "ru": "Когда покрасили раму",
+        "uk": "Коли пофарбували раму"
       },
       "bodyByLocale": {
-        "ru": "Doorframe — дверная рама. Did she paint the doorframe last week? — Она покрасила дверную раму на прошлой неделе? Перед last week не ставим in. Выберите правильный вопрос.",
-        "uk": "Doorframe — дверна рама. Did she paint the doorframe last week? — Вона пофарбувала дверну раму минулого тижня? Перед last week не ставимо in. Виберіть правильне запитання."
+        "ru": "Вы заметили свежую краску на дверной раме. Друг говорил, что его сестра собиралась её покрасить; вы уточняете, сделала ли она это на прошлой неделе. Doorframe — дверная рама. Соберите вопрос: Did + she + paint + the doorframe + last week? Получится Did she paint the doorframe last week? — Она покрасила дверную раму на прошлой неделе? Даже с she после Did ставим paint без окончания. Перед last week предлог не нужен.",
+        "uk": "Ви помітили свіжу фарбу на дверній рамі. Друг казав, що його сестра збиралася її пофарбувати; ви уточнюєте, чи зробила вона це минулого тижня. Doorframe — дверна рама. Складіть запитання: Did + she + paint + the doorframe + last week? Вийде Did she paint the doorframe last week? — Вона пофарбувала дверну раму минулого тижня? Навіть із she після Did ставимо paint без закінчення. Перед last week прийменник не потрібний."
       },
       "question": {
         "interactionId": "en:lesson-13:session-26:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Окно и шторы",
-        "uk": "Вікно й штори"
+        "ru": "Почистили ли карниз",
+        "uk": "Чи почистили карниз"
       },
       "bodyByLocale": {
-        "ru": "Window frame — оконная рама; curtain rail — карниз для штор, по которому двигаются крепления шторы. Выберите: ты вчера почистил карниз?",
-        "uk": "Window frame — віконна рама; curtain rail — карниз для штор, яким рухаються кріплення штори. Виберіть: ти вчора почистив карниз?"
+        "ru": "Вы обсуждаете вчерашнюю уборку с другом и уточняете, почистил ли он карниз для штор. Curtain rail — карниз, по которому двигаются крепления шторы. Поставьте Did перед you, затем clean и the curtain rail. Время добавьте в конце: yesterday. Получится Did you clean the curtain rail yesterday? — Ты вчера почистил карниз для штор? После Did используем clean, а не cleaned. The указывает на конкретный карниз в комнате.",
+        "uk": "Ви обговорюєте вчорашнє прибирання з другом і уточнюєте, чи почистив він карниз для штор. Curtain rail — карниз, яким рухаються кріплення штори. Поставте Did перед you, потім clean і the curtain rail. Час додайте наприкінці: yesterday. Вийде Did you clean the curtain rail yesterday? — Ти вчора почистив карниз для штор? Після Did використовуємо clean, а не cleaned. The вказує на конкретний карниз у кімнаті."
       },
       "question": {
         "interactionId": "en:lesson-13:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4e713c620420d7b5a394dbd65718207d075f5255fbf33418cc334e30a1d607e2"
+  "introFingerprint": "95a5e4f26089473c964cdfc52150f0ee211774d6a629e5aadf1356a704f7b17c"
 }

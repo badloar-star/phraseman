@@ -49,6 +49,14 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Blocks commits whose relative imports point at files that are not in git (see scripts/guard_tracked_imports.mjs).
+# 2026-10-24 15d7faf14 committed SpireStepScreen.tsx importing a dev button that existed only on disk: every session
+# built fine, a store build from a clean HEAD would have failed «Unable to resolve module». Changed files only: <1 s.
+node scripts/guard_tracked_imports.mjs --staged
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Blocks snapshot-style commits that write an OLD tree over fresh work
 # (see scripts/guard_mass_deletion.mjs — commit 95eec1717 lost a Home fix).
 node scripts/guard_mass_deletion.mjs

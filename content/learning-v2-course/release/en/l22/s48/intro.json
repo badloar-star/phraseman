@@ -11,12 +11,12 @@
       "pageId": "en:lesson-22:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вскипятить воду",
-        "uk": "Закип’ятити воду"
+        "ru": "Вода для чая",
+        "uk": "Вода для чаю"
       },
       "bodyByLocale": {
-        "ru": "Boil the water — вскипятить воду. В этом сочетании water неисчисляемое: речь о воде для вашего чая, а не об одной отдельной вещи. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
-        "uk": "Boil the water — закип’ятити воду. У цьому сполученні water незлічуване: йдеться про воду для вашого чаю, а не про одну окрему річ. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+        "ru": "Вы хотите приготовить чай и наполняете чайник водой, чтобы вскипятить её. I fill the kettle to boil the water — я наполняю чайник, чтобы вскипятить воду. Собираем: I fill the kettle + to + boil the water. Первая часть сообщает, что вы делаете, а to boil the water — зачем. To означает «чтобы», после него нужна начальная форма boil.",
+        "uk": "Ви хочете приготувати чай і наповнюєте чайник водою, щоб закип’ятити її. I fill the kettle to boil the water — я наповнюю чайник, щоб закип’ятити воду. Складаємо: I fill the kettle + to + boil the water. Перша частина повідомляє, що ви робите, а to boil the water — навіщо. To означає «щоб», після нього потрібна початкова форма boil."
       },
       "question": {
         "interactionId": "en:lesson-22:session-48:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-22:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Овощи и яйцо",
-        "uk": "Овочі та яйце"
+        "ru": "Нож для овощей",
+        "uk": "Ніж для овочів"
       },
       "bodyByLocale": {
-        "ru": "Chop the vegetables — нарезать овощи на небольшие кусочки. Fry an egg — пожарить яйцо на сковороде. Перед egg нужен an, потому что слово начинается с гласного звука. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
-        "uk": "Chop the vegetables — нарізати овочі на невеликі шматочки. Fry an egg — посмажити яйце на сковороді. Перед egg потрібен an, бо слово починається з голосного звука. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+        "ru": "Вы готовите овощи к ужину и объясняете, зачем взяли этот нож. I use this knife to chop the vegetables — я пользуюсь этим ножом, чтобы нарезать овощи. Собираем: I use this knife + to + chop the vegetables. To chop the vegetables называет цель. После to ставим chop без окончаний. Chop здесь означает нарезать на небольшие кусочки.",
+        "uk": "Ви готуєте овочі до вечері й пояснюєте, навіщо взяли цей ніж. I use this knife to chop the vegetables — я користуюся цим ножем, щоб нарізати овочі. Складаємо: I use this knife + to + chop the vegetables. To chop the vegetables називає мету. Після to ставимо chop без закінчень. Chop тут означає нарізати на невеликі шматочки."
       },
       "question": {
         "interactionId": "en:lesson-22:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-22:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Испечь торт",
-        "uk": "Спекти торт"
+        "ru": "Духовка для торта",
+        "uk": "Духовка для торта"
       },
       "bodyByLocale": {
-        "ru": "Bake a cake — испечь торт или кекс в духовке. Cake не всегда многослойный торт с кремом: это может быть простой кекс. Bake отличается от fry: здесь используется духовка, а не жарка на сковороде. Чтобы назвать цель действия, используем to + начальную форму: I use an umbrella to stay dry. Первая часть говорит, что вы делаете, вторая — зачем. Здесь to означает «чтобы».",
-        "uk": "Bake a cake — спекти торт або кекс у духовці. Cake не завжди багатошаровий торт із кремом: це може бути простий кекс. Bake відрізняється від fry: тут використовується духовка, а не смаження на пательні. Щоб назвати мету дії, використовуємо to + початкову форму: I use an umbrella to stay dry. Перша частина каже, що ви робите, друга — навіщо. Тут to означає «щоб»."
+        "ru": "Вы собираетесь испечь торт и включаете духовку. I turn on the oven to bake a cake — я включаю духовку, чтобы испечь торт. Собираем: I turn on the oven + to + bake a cake. Turn on the oven — действие, to bake a cake — его цель. После to нужна начальная форма bake. Так объясняем, зачем включаем духовку.",
+        "uk": "Ви збираєтеся спекти торт і вмикаєте духовку. I turn on the oven to bake a cake — я вмикаю духовку, щоб спекти торт. Складаємо: I turn on the oven + to + bake a cake. Turn on the oven — дія, to bake a cake — її мета. Після to потрібна початкова форма bake. Так пояснюємо, навіщо вмикаємо духовку."
       },
       "question": {
         "interactionId": "en:lesson-22:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "eec12409accb63967d4410b2c38737bb3fc153e0de1f523e1ef8b8facee6f6ed"
+  "introFingerprint": "9f266993612e690c8289bd1eb4f2df724b65bba519ffb77ee7416bffd8829b47"
 }

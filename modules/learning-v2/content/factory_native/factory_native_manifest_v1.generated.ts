@@ -17107,7 +17107,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 46,
-    sourceFingerprint: "1749683d483ba598a95ead34bfb998318a18307be5b358b902996f5837c4787f",
+    sourceFingerprint: "b2f0a47a009a3bde4437f7db0d7e687f365be1c4d313bbcecf904d21fa9e44cd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17121,7 +17121,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 47,
-    sourceFingerprint: "50daec601a98c280b3534a4abf886efa5c8b1cb62e2f094b049a52581ad6277b",
+    sourceFingerprint: "f93b3f5eb2dd0c8a562b7cf368be73c2811a00248356a3aaa4266b39f575c995",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17135,7 +17135,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 48,
-    sourceFingerprint: "ec681e42935c2cbf85221c4fffbde869e2a1c23bd88f6836822b57573db7e73c",
+    sourceFingerprint: "97c4ffae5206d66c3a9721e7e62c419a5d6328143ac75d8fd17fe4f12c1560c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17149,7 +17149,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 49,
-    sourceFingerprint: "388f9dc4eaaa99494e1c7fde8dc049d7aee7bc246232babd88cdc079e172c6e6",
+    sourceFingerprint: "92ff56f1f54b8a2dd5ff3d8cb9171e1a231d869688dc0eb9a525dfc5f2dc4a97",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17163,7 +17163,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 50,
-    sourceFingerprint: "cc16a1de9fccb62beb55600687bcb5901551ee7c867270f3b647182c469bcd35",
+    sourceFingerprint: "378b716aa815d684a2297019ddceca611a03d8135aae0589df058c22f5f70c6d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17177,7 +17177,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 51,
-    sourceFingerprint: "54e59ad353a25a26cd5a8af94a33a2e71191091d8b9bd96642c9bde2a82dcf05",
+    sourceFingerprint: "4f1011821790096fc5535e77910a2dd71866b87f7685bc2fbc43da06224aaf0c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17191,7 +17191,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 52,
-    sourceFingerprint: "c9e14143cfe88696838147f287aa76683449b764704359c2f8022e099d2a19a7",
+    sourceFingerprint: "8e11afad88d6aa643fffc08fbcfff3dcdaf939d8e7bac0e838bfc8ba1677a375",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."],["Цель выражается через to + начальную форму глагола.","Цель выражается через to + начальную форму глагола."]],"uk":[["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."],["Мета виражається через to + початкову форму дієслова.","Мета виражається через to + початкову форму дієслова."]]}),
@@ -17205,7 +17205,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 53,
-    sourceFingerprint: "e97f5bde0b89b91b951b1f6ff2a11595b73807324919dca73e63490412c10948",
+    sourceFingerprint: "ffe5ac64637ff69f13a57c29ce20f6a85ac014f1846fe2135fdae9615b55168b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17219,7 +17219,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 54,
-    sourceFingerprint: "8512819a24185c738a70474a0493a36afe001a895b2b2e1dc75bfaccaf8539f9",
+    sourceFingerprint: "75728f1c8152ef7646178349b322cb1a55737c9f27e6281cb3f1e9e53ef518c1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17233,7 +17233,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 55,
-    sourceFingerprint: "87ba5f50ec906f4083cb56fa2b57ea15b756ce8e2bf873b13b197efb2a36357c",
+    sourceFingerprint: "c75861a9a37763ad7868f711a632181e20f94aeb0f427d5da7345fa43310430a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),
@@ -17247,7 +17247,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 22, sessionOrdinal: 56,
-    sourceFingerprint: "84f4b33b7849cd32b6c59c2bc000f8f198efb7ddbb9167d7144f952cf3b9336e",
+    sourceFingerprint: "291e40f094ae5bc9833a0343ba0e4d479871721a80b49c7b41e37ecc8c2a874e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."],["После could нужна начальная форма глагола.","После could нужна начальная форма глагола."]],"uk":[["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."],["Після could потрібна початкова форма дієслова.","Після could потрібна початкова форма дієслова."]]}),

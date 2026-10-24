@@ -19977,7 +19977,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 27,
-    sourceFingerprint: "06430f31e375a14aa582a90214e0706fd4482f918471ddfd2a0c7fe992d8c857",
+    sourceFingerprint: "97693c966de80b92c5cea89caf69e971cc3d28ab8be5247767e2f88e8050b51c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна форма get без -s.","Для привычки нужен get, не отдельное getting."],["После have нужна форма apologised.","Для результата сейчас здесь нужно have already apologised."],["После unless в этом условии have без will.","С I используется have, не has."]],"uk":[["З I потрібна форма get без -s.","Для звички потрібне get, не окреме getting."],["Після have потрібна форма apologised.","Для результату зараз тут потрібно have already apologised."],["Після unless у цій умові have без will.","З I вживається have, не has."]]}),
@@ -19991,7 +19991,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 28,
-    sourceFingerprint: "e3af8f7e69897ba122dc29cad049221ed87e36abf61ee60acb8aa2e8f9756237",
+    sourceFingerprint: "4bbc3a02bbaea1e0faea18a415ffe8adbb60b3e466e4a12dd7e4140f05468e2c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужно eat без -s.","Для привычки нужен eat, а не отдельное eating."],["После before здесь arrives без will.","С everyone глагол получает -s: arrives."],["После unless в этом условии needs без will.","С it нужно needs с -s."]],"uk":[["З I потрібно eat без -s.","Для звички потрібне eat, а не окреме eating."],["Після before тут arrives без will.","З everyone дієслово отримує -s: arrives."],["Після unless у цій умові needs без will.","З it потрібно needs із -s."]]}),
@@ -20005,7 +20005,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 29,
-    sourceFingerprint: "7c348c01b0198b0d0ea61c1fb77cdfde86875ffe4df53c61af24525739ada914",
+    sourceFingerprint: "0c04c7159ca5e961785b7ccd2b7ff738d927c607178727649b60f34bde9b3c42",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После have нужна форма taken, не took.","Garbage в этом значении неисчисляемое; a не нужно."],["После before в этом будущем придаточном leave без will.","С we нужно leave без -s."],["После unless здесь rains без will.","С it нужна форма rains с -s."]],"uk":[["Після have потрібна форма taken, не took.","Garbage у цьому значенні незлічуване; a не потрібне."],["Після before у цьому майбутньому підрядному leave без will.","З we потрібно leave без -s."],["Після unless тут rains без will.","З it потрібна форма rains із -s."]]}),
@@ -20019,7 +20019,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 30,
-    sourceFingerprint: "c0e85e64172cfac666c213859e196fa378545d34f2f7788765668e85554ebdcb",
+    sourceFingerprint: "fb7c5ebf1bc2b0544b7c056ede03f5881e8db05f5deae2f4b601dd8d006f9802",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После when здесь reach без will.","С I используется reach без -s."],["После have нужна форма bought.","В вопросе о результате здесь have bought, не have buying."],["После unless здесь gets без will.","The rain требует формы gets с -s."]],"uk":[["Після when тут reach без will.","З I вживається reach без -s."],["Після have потрібна форма bought.","У запитанні про результат тут have bought, не have buying."],["Після unless тут gets без will.","The rain потребує форми gets із -s."]]}),
@@ -20033,7 +20033,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 31,
-    sourceFingerprint: "80e462b8f84a7c3248c01f6552468ae7645d8c95d3b69743448015777ece590b",
+    sourceFingerprint: "a54262350db0a091e161d94607c76181fec661d668e0b7e500e949a689537bd0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После unless здесь is без will.","С it используется is."],["После when здесь leave без will.","С we нужно leave без -s."],["Left задаёт прошлое; раньше него — had charged.","Здесь нужно had charged для действия, которое я выполнил раньше."]],"uk":[["Після unless тут is без will.","З it вживається is."],["Після when тут leave без will.","З we потрібно leave без -s."],["Left задає минуле; раніше за нього — had charged.","Тут потрібно had charged для дії, яку я виконав раніше."]]}),
@@ -20047,7 +20047,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 32,
-    sourceFingerprint: "ac7e1c65ca2c9880f170f324d9e09fcc74aee76fbd29ba8e8c201d3e2138b4f8",
+    sourceFingerprint: "48d926d396925c002c96b26c817c2b82f7f0f656dd31939909c1892df6ca671e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После when в этом будущем придаточном finish без will.","С you нужно finish без -s."],["После if в этом условии is без will.","Здесь eggplant в единственном числе; нужно is."],["Closed задаёт прошлое; более раннее действие — had paid.","Was paid означает, что заплатили мне; здесь я сам заплатил за покупку."]],"uk":[["Після when у цьому майбутньому підрядному finish без will.","З you потрібно finish без -s."],["Після if у цій умові is без will.","Тут eggplant в однині; потрібно is."],["Closed задає минуле; раніша дія — had paid.","Was paid означає, що заплатили мені; тут я сам заплатив за покупку."]]}),
@@ -20061,7 +20061,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 33,
-    sourceFingerprint: "3c7cd350f1223077af7847d3df98af45daa90ecbfb98c3053bcb23554c411f4b",
+    sourceFingerprint: "312ffa6abc706e73ef95e8ff67dfb5d727e0ceb6f35cc5024a41c78eaf8a1cf6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Порядок частей не разрешает will после if в этом условии.","В условии нужно is; обещанное решение здесь will take."],["You will call — сообщение о будущем; здесь нужна просьба call.","После if в этом условии need без will."],["После if здесь is, независимо от порядка частей.","Unless меняет условие: еду навынос возьмём, если кафе не заполнено."]],"uk":[["Порядок частин не дозволяє will після if у цій умові.","В умові потрібно is; обіцяне рішення тут will take."],["You will call — повідомлення про майбутнє; тут потрібне прохання call.","Після if у цій умові need без will."],["Після if тут is, незалежно від порядку частин.","Unless змінює умову: їжу навинос візьмемо, якщо кафе не заповнене."]]}),
@@ -20075,7 +20075,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 34,
-    sourceFingerprint: "767700fb41861dcc0babe3390b2782a85cd783d9af2f6ff97a846de39ed510dd",
+    sourceFingerprint: "f79e00294739ffe023da43c9d87a6f35c9e2ac74e320a3544092dc9b4d8126e8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После have нужна форма bought.","Для результата сейчас нужно have bought."],["В этом условии после if нужно is без will.","Unless изменяет условие на противоположное."],["Речь о двух прошлых событиях; более раннее — had cut.","После had нужна форма cut, не cutting."]],"uk":[["Після have потрібна форма bought.","Для результату зараз потрібно have bought."],["У цій умові після if потрібно is без will.","Unless змінює умову на протилежну."],["Ідеться про дві минулі події; раніша — had cut.","Після had потрібна форма cut, не cutting."]]}),
@@ -20089,7 +20089,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 35,
-    sourceFingerprint: "5256582e98062f5607a51db4bb06620e0412d386ea6f2f987d25b8a4b7637ea7",
+    sourceFingerprint: "1feeabde17418b9f8686039bc78d7dd318682d52d02414044fdd7c9e6f833a3a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В придаточном времени после when здесь comes без will.","С she нужна форма comes."],["Unless меняет смысл: если ты не занят.","После if здесь are без will."],["Went to bed задаёт прошлое, поэтому более раннее действие — had locked.","После had нужна форма locked."]],"uk":[["У підрядному часу після when тут comes без will.","З she потрібна форма comes."],["Unless змінює зміст: якщо ти не зайнятий.","Після if тут are без will."],["Went to bed задає минуле, тому раніша дія — had locked.","Після had потрібна форма locked."]]}),

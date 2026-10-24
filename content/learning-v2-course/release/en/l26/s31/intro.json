@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Выбрать дорогу",
-        "uk": "Вибрати дорогу"
+        "ru": "Поехать по дороге, если она не закрыта",
+        "uk": "Поїхати дорогою, якщо вона не закрита"
       },
       "bodyByLocale": {
-        "ru": "Freeway — скоростная автомобильная дорога с въездами и съездами. We will take the freeway unless it is closed — мы поедем по скоростной дороге, если она не закрыта. Unless вводит исключение из плана; после него is без will. Gasoline — бензин, другое распространённое слово для petrol. We need more gasoline — нам нужно больше бензина. В этом значении gasoline неисчисляемое: без a и без множественного -s.",
-        "uk": "Freeway — швидкісна автомобільна дорога з в’їздами та з’їздами. We will take the freeway unless it is closed — ми поїдемо швидкісною дорогою, якщо її не закрито. Unless вводить виняток із плану; після нього is без will. Gasoline — бензин, інше поширене слово для petrol. We need more gasoline — нам потрібно більше бензину. У цьому значенні gasoline незлічуване: без a та без множинного -s."
+        "ru": "Вы выбираете маршрут и оставляете один повод его изменить — закрытие скоростной дороги. Скажите: We will take the freeway unless it is closed — мы поедем по скоростной дороге, если она не закрыта. Собираем: We + will take + the freeway + unless it is closed — кто, как поедет, по какой дороге, при каком исключении изменит план. Unless уже содержит смысл если не. В его части используем is без will; it заменяет дорогу.",
+        "uk": "Ви вибираєте маршрут і залишаєте один привід його змінити — закриття швидкісної дороги. Скажіть: We will take the freeway unless it is closed — ми поїдемо швидкісною дорогою, якщо вона не закрита. Складаємо: We + will take + the freeway + unless it is closed — хто, як поїде, якою дорогою, за якого винятку змінить план. Unless уже містить зміст якщо не. У його частині використовуємо is без will; it замінює дорогу."
       },
       "question": {
         "interactionId": "en:lesson-26:session-31:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Попросить об остановке",
-        "uk": "Попросити про зупинку"
+        "ru": "Остановиться после съезда",
+        "uk": "Зупинитися після з’їзду"
       },
       "bodyByLocale": {
-        "ru": "Restroom — туалет в общественном месте. Where is the restroom? — где туалет? В дороге можно попросить We need to stop — нам нужно остановиться. Если остановку обещают после съезда: We will stop when we leave the freeway — мы остановимся, когда съедем со скоростной дороги. После when в придаточном о будущем leave без will.",
-        "uk": "Restroom — туалет у громадському місці. Where is the restroom? — де туалет? У дорозі можна попросити We need to stop — нам потрібно зупинитися. Якщо зупинку обіцяють після з’їзду: We will stop when we leave the freeway — ми зупинимося, коли з’їдемо зі швидкісної дороги. Після when у підрядному про майбутнє leave без will."
+        "ru": "Пассажир просит об остановке, и вы договариваетесь остановиться после съезда. Скажите: We will stop when we leave the freeway — мы остановимся, когда съедем со скоростной дороги. Собираем: We + will stop + when we leave the freeway — кто, что сделает, когда. Будущую остановку выражаем через will stop. После when, задающего её время, используем leave без will. С we окончание -s не нужно.",
+        "uk": "Пасажир просить про зупинку, і ви домовляєтеся зупинитися після з’їзду. Скажіть: We will stop when we leave the freeway — ми зупинимося, коли з’їдемо зі швидкісної дороги. Складаємо: We + will stop + when we leave the freeway — хто, що зробить, коли. Майбутню зупинку виражаємо через will stop. Після when, яке задає її час, використовуємо leave без will. З we закінчення -s не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-26:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Сообщить, где вы",
-        "uk": "Повідомити, де ви"
+        "ru": "Телефон был заряжен до отъезда",
+        "uk": "Телефон був заряджений до від’їзду"
       },
       "bodyByLocale": {
-        "ru": "Cellphone — мобильный телефон. My cellphone is in my bag — мой телефон в сумке. Вы проверяете, заряжен ли он: Have you charged your cellphone yet? — ты уже зарядил телефон? Ответ I have already charged it — я уже его зарядил сообщает о готовом результате. Если он был заряжен до начала поездки: I had charged it by the time we left — я зарядил его к тому времени, как мы выехали.",
-        "uk": "Cellphone — мобільний телефон. My cellphone is in my bag — мій телефон у сумці. Ви перевіряєте, чи заряджено його: Have you charged your cellphone yet? — ти вже зарядив телефон? Відповідь I have already charged it — я вже його зарядив повідомляє про готовий результат. Якщо його було заряджено до початку поїздки: I had charged it by the time we left — я зарядив його до того часу, як ми виїхали."
+        "ru": "Вы рассказываете о вчерашней поездке: телефон вы зарядили ещё до выезда. Скажите: I had charged it by the time we left — я зарядил его к тому времени, как мы выехали. Собираем: I + had charged + it + by the time we left — кто, что сделал раньше, что зарядил, к какому моменту в прошлом. Had charged показывает зарядку до отъезда. После had нужна charged; it заменяет телефон, left обозначает более поздний отъезд.",
+        "uk": "Ви розповідаєте про вчорашню поїздку: телефон ви зарядили ще до виїзду. Скажіть: I had charged it by the time we left — я зарядив його до того часу, як ми виїхали. Складаємо: I + had charged + it + by the time we left — хто, що зробив раніше, що зарядив, до якого моменту в минулому. Had charged показує заряджання до від’їзду. Після had потрібна charged; it замінює телефон, left позначає пізніший від’їзд."
       },
       "question": {
         "interactionId": "en:lesson-26:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2c12c3c27c08705049c5b9d25a747e8e85d35f18d77412d6585634b1d9c855bd"
+  "introFingerprint": "a93c28823f01ae53ca77d2e4948ca674c4cce9b9cf9bed1424e8312d1857e8ef"
 }

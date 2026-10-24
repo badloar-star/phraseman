@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "В гости к другу",
-        "uk": "У гості до друга"
+        "ru": "Позвонить у дома друга",
+        "uk": "Зателефонувати біля будинку друга"
       },
       "bodyByLocale": {
-        "ru": "Apartment — квартира. My friend has a small apartment — у моего друга небольшая квартира. Это ещё одно распространённое слово наряду с flat. Crosswalk — пешеходный переход: Meet me at the crosswalk — встреть меня у перехода. Договориться о звонке можно так: I will call when I reach your building — я позвоню, когда подойду к твоему дому. После when в этом будущем придаточном reach без will.",
-        "uk": "Apartment — квартира. My friend has a small apartment — у мого друга невелика квартира. Це ще одне поширене слово поряд із flat. Crosswalk — пішохідний перехід: Meet me at the crosswalk — зустрінь мене біля переходу. Домовитися про дзвінок можна так: I will call when I reach your building — я зателефоную, коли підійду до твого будинку. Після when у цьому майбутньому підрядному reach без will."
+        "ru": "Вы идёте в гости и договариваетесь, как друг узнает о вашем приходе. Скажите: I will call when I reach your building — я позвоню, когда подойду к твоему дому. Собираем: I + will call + when I reach your building — кто, что сделает, когда. Will call выражает обещание. После when, задающего время будущего звонка, используем reach без will. После I к reach не добавляем -es.",
+        "uk": "Ви йдете в гості й домовляєтеся, як друг дізнається про ваш прихід. Скажіть: I will call when I reach your building — я зателефоную, коли підійду до твого будинку. Складаємо: I + will call + when I reach your building — хто, що зробить, коли. Will call виражає обіцянку. Після when, яке задає час майбутнього дзвінка, використовуємо reach без will. Після I до reach не додаємо -es."
       },
       "question": {
         "interactionId": "en:lesson-26:session-30:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-30:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что принести к чаю",
-        "uk": "Що принести до чаю"
+        "ru": "Куплены ли конфеты",
+        "uk": "Чи куплено цукерки"
       },
       "bodyByLocale": {
-        "ru": "Cookie — печенье, отдельная печенюшка: a cookie, two cookies. Candy — конфеты, сладости. В выражении a bag of candy слово candy обозначает содержимое пакета в целом: пакет конфет. Вы уже приготовили угощение: I have already packed the cookies — я уже упаковал печенье. Друг спрашивает Have you bought any candy yet? — ты уже купил конфеты? Вопрос с yet уточняет результат к настоящему моменту.",
-        "uk": "Cookie — печиво, окрема печивина: a cookie, two cookies. Candy — цукерки, солодощі. У виразі a bag of candy слово candy позначає вміст пакета загалом: пакет цукерок. Ви вже підготували частування: I have already packed the cookies — я вже запакував печиво. Друг запитує Have you bought any candy yet? — ти вже купив цукерки? Запитання з yet уточнює результат на цей момент."
+        "ru": "Вы с другом собираете угощение к чаю и хотите узнать, куплены ли конфеты. Спросите: Have you bought any candy yet? — ты уже купил конфеты? Собираем вопрос: Have + you + bought + any candy + yet? Have ставим перед you; после подлежащего нужна третья форма buy — bought. Any candy называет покупку, yet в конце уточняет, сделано ли это к настоящему моменту.",
+        "uk": "Ви з другом збираєте частування до чаю й хочете дізнатися, чи куплено цукерки. Запитайте: Have you bought any candy yet? — ти вже купив цукерки? Складаємо запитання: Have + you + bought + any candy + yet? Have ставимо перед you; після підмета потрібна третя форма buy — bought. Any candy називає покупку, yet у кінці уточнює, чи зроблено це до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-30:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Если планы изменятся",
-        "uk": "Якщо плани зміняться"
+        "ru": "Выйти, если дождь не усилится",
+        "uk": "Вийти, якщо дощ не посилиться"
       },
       "bodyByLocale": {
-        "ru": "Вы собираетесь гулять, но хотите оставить возможность зайти внутрь: We will go out unless the rain gets worse — мы выйдем, если дождь не усилится. Unless называет исключение из плана; после него gets без will. Если дождь обычно меняет ваши планы: If it rains, we stay indoors — если идёт дождь, мы остаёмся в помещении. В этой привычной ситуации обе части стоят в Present Simple.",
-        "uk": "Ви збираєтеся гуляти, але хочете залишити можливість зайти всередину: We will go out unless the rain gets worse — ми вийдемо, якщо дощ не посилиться. Unless називає виняток із плану; після нього gets без will. Якщо дощ зазвичай змінює ваші плани: If it rains, we stay indoors — якщо йде дощ, ми залишаємося в приміщенні. У цій звичній ситуації обидві частини стоять у Present Simple."
+        "ru": "Вы готовы выйти на прогулку, но отмените её при усилении дождя. Скажите: We will go out unless the rain gets worse — мы выйдем, если дождь не усилится. Собираем: We + will go out + unless the rain gets worse — кто, что сделает, при каком исключении отменит план. Unless означает если не, поэтому дополнительное not не нужно. После unless используем gets без will; с the rain к get добавляем -s.",
+        "uk": "Ви готові вийти на прогулянку, але скасуєте її, якщо дощ посилиться. Скажіть: We will go out unless the rain gets worse — ми вийдемо, якщо дощ не посилиться. Складаємо: We + will go out + unless the rain gets worse — хто, що зробить, за якого винятку скасує план. Unless означає якщо не, тому додаткове not не потрібне. Після unless використовуємо gets без will; з the rain до get додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "801074ae07d690c71bc0b7b427a22d1ba454125216ceae815d6d4f9e14d383b7"
+  "introFingerprint": "c60c0504fd5dbbed95cd0d2e5ca73aebe6b9e26de72ae4807070389457972396"
 }

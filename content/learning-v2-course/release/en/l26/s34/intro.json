@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Кто купит продукты?",
-        "uk": "Хто купить продукти?"
+        "ru": "Продукты уже куплены",
+        "uk": "Продукти вже куплено"
       },
       "bodyByLocale": {
-        "ru": "Groceries — продукты, которые покупают для дома. Это слово здесь во множественном числе: The groceries are in the kitchen — продукты на кухне. Have you bought the groceries yet? — ты уже купил продукты? I have already bought them — я уже их купил. Вопрос с yet проверяет результат к настоящему моменту; already в ответе говорит, что дело уже сделано. Если покупки ещё впереди: I will go when you get home — я пойду, когда ты придёшь домой. После when здесь get, без will.",
-        "uk": "Groceries — продукти, які купують для дому. Це слово тут у множині: The groceries are in the kitchen — продукти на кухні. Have you bought the groceries yet? — ти вже купив продукти? I have already bought them — я вже їх купив. Запитання з yet перевіряє результат на теперішній момент; already у відповіді означає, що справу вже зроблено. Якщо покупки ще попереду: I will go when you get home — я піду, коли ти прийдеш додому. Після when тут get, без will."
+        "ru": "Друг предлагает сходить за продуктами, но покупки уже сделаны. Ответьте: I have already bought them — я уже их купил. Them заменяет groceries — продукты. Собираем: I + have + already + bought + them — кто, have, уже, действие, что купил. Already ставим между have и bought. После have нужна третья форма buy — bought. Present perfect сообщает о результате сейчас: продукты куплены, идти за ними не нужно.",
+        "uk": "Друг пропонує сходити по продукти, але покупки вже зроблено. Дайте відповідь: I have already bought them — я вже їх купив. Them замінює groceries — продукти. Складаємо: I + have + already + bought + them — хто, have, уже, дія, що купив. Already ставимо між have і bought. Після have потрібна третя форма buy — bought. Present perfect повідомляє про результат зараз: продукти куплено, йти по них не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-26:session-34:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дать фруктам дозреть",
-        "uk": "Дати фруктам достигнути"
+        "ru": "Если груша мягкая",
+        "uk": "Якщо груша м’яка"
       },
       "bodyByLocale": {
-        "ru": "Ripen — созревать, дозревать. These pears will ripen — эти груши дозреют. Не обещайте точный срок, если не знаете его. Вы выбираете спелый фрукт: If the pear is soft, we can eat it — если груша мягкая, мы можем её съесть. Можно поставить условие в конец: We can eat it if the pear is soft. Времена и смысл от перестановки не меняются. Для привычки: I wash fruit when I get home — я мою фрукты, когда прихожу домой. Здесь оба действия в Present Simple.",
-        "uk": "Ripen — достигати, дозрівати. These pears will ripen — ці груші достигнуть. Не обіцяйте точного строку, якщо не знаєте його. Ви обираєте стиглий фрукт: If the pear is soft, we can eat it — якщо груша м’яка, ми можемо її з’їсти. Можна поставити умову в кінець: We can eat it if the pear is soft. Часи й зміст від перестановки не змінюються. Для звички: I wash fruit when I get home — я мию фрукти, коли приходжу додому. Тут обидві дії в Present Simple."
+        "ru": "Вы с другом выбираете грушу для перекуса. Скажите: We can eat it if the pear is soft — мы можем её съесть, если груша мягкая. Собираем: We + can eat + it + if the pear is soft — кто, что может сделать, что съесть, при каком условии. После can нужна eat без to. В условии после if используем is без will; it заменяет выбранную грушу.",
+        "uk": "Ви з другом вибираєте грушу для перекусу. Скажіть: We can eat it if the pear is soft — ми можемо її з’їсти, якщо груша м’яка. Складаємо: We + can eat + it + if the pear is soft — хто, що може зробити, що з’їсти, за якої умови. Після can потрібна eat без to. В умові після if використовуємо is без will; it замінює вибрану грушу."
       },
       "question": {
         "interactionId": "en:lesson-26:session-34:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Приготовить перекус",
-        "uk": "Приготувати перекус"
+        "ru": "Нарезали фрукты до прихода",
+        "uk": "Нарізали фрукти до приходу"
       },
       "bodyByLocale": {
-        "ru": "Pit — косточка внутри персика или другого подобного плода. Remove the pit — убери косточку. Crunch — хрустеть, например когда ешь что-то твёрдое: These apples crunch when you bite them — эти яблоки хрустят, когда их кусаешь. Друг спрашивает о вчерашнем перекусе. I had cut the fruit by the time he arrived — я нарезал фрукты к тому времени, как он пришёл. Had cut показывает более раннее действие, arrived — более позднее. А I have just cut the fruit означает, что фрукты нарезаны только что, сейчас.",
-        "uk": "Pit — кісточка всередині персика або іншого подібного плоду. Remove the pit — прибери кісточку. Crunch — хрустіти, наприклад коли їси щось тверде: These apples crunch when you bite them — ці яблука хрустять, коли їх кусаєш. Друг запитує про вчорашній перекус. I had cut the fruit by the time he arrived — я нарізав фрукти до того часу, як він прийшов. Had cut показує ранішу дію, arrived — пізнішу. А I have just cut the fruit означає, що фрукти нарізано щойно, зараз."
+        "ru": "Вчера друг пришёл к уже подготовленному перекусу. Расскажите: I had cut the fruit by the time he arrived — я нарезал фрукты к тому времени, как он пришёл. Собираем: I + had cut + the fruit + by the time he arrived — кто, что сделал раньше, что нарезал, к какому моменту в прошлом. Had cut показывает действие до прихода. После had нужна третья форма cut, которая не меняется; cutting здесь не подходит.",
+        "uk": "Учора друг прийшов до вже підготовленого перекусу. Розкажіть: I had cut the fruit by the time he arrived — я нарізав фрукти до того часу, як він прийшов. Складаємо: I + had cut + the fruit + by the time he arrived — хто, що зробив раніше, що нарізав, до якого моменту в минулому. Had cut показує дію до приходу. Після had потрібна третя форма cut, яка не змінюється; cutting тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-26:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "57e2b2dc44b78f8b938893de9de3367ac694057f0d8e0e27227e71013cab011a"
+  "introFingerprint": "32c864be48009d7eaa94154f6c0da801b1c86c4b2b2f3026d24ceaa27bff6a54"
 }

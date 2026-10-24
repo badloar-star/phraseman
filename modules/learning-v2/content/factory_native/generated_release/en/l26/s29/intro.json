@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Убрать перед выходом",
-        "uk": "Прибрати перед виходом"
+        "ru": "Вынесен ли мусор",
+        "uk": "Чи винесено сміття"
       },
       "bodyByLocale": {
-        "ru": "Garbage — мусор, бытовые отходы. Это ещё одно распространённое слово для знакомого rubbish. Take out the garbage — вынеси мусор. Garbage здесь неисчисляемое: без a и без окончания -s. Если вас спрашивают, выполнено ли дело: Have you taken out the garbage yet? — ты уже вынес мусор? Можно ответить I have already done it — я уже это сделал.",
-        "uk": "Garbage — сміття, побутові відходи. Це ще одне поширене слово для знайомого rubbish. Take out the garbage — винеси сміття. Garbage тут незлічуване: без a та без закінчення -s. Якщо вас запитують, чи виконано справу: Have you taken out the garbage yet? — ти вже виніс сміття? Можна відповісти I have already done it — я вже це зробив."
+        "ru": "Перед выходом вы уточняете у друга, выполнено ли домашнее дело. Спросите: Have you taken out the garbage yet? — ты уже вынес мусор? Собираем: Have + you + taken out + the garbage + yet? Have ставим перед you, затем используем третью форму take — taken, не took. Yet в конце спрашивает о результате к настоящему моменту. The garbage обозначает тот мусор, который нужно было вынести; garbage здесь неисчисляемое, поэтому a не ставим.",
+        "uk": "Перед виходом ви уточнюєте в друга, чи виконано хатню справу. Запитайте: Have you taken out the garbage yet? — ти вже виніс сміття? Складаємо: Have + you + taken out + the garbage + yet? Have ставимо перед you, потім використовуємо третю форму take — taken, не took. Yet у кінці запитує про результат до теперішнього моменту. The garbage позначає те сміття, яке потрібно було винести; garbage тут незлічуване, тому a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-26:session-29:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Найти вещи и закрыть кран",
-        "uk": "Знайти речі й закрити кран"
+        "ru": "Закрыть кран до выхода",
+        "uk": "Закрити кран до виходу"
       },
       "bodyByLocale": {
-        "ru": "Faucet — водопроводный кран; то же бытовое значение, что у tap. The faucet is dripping — из крана капает. Closet — шкаф или небольшая кладовая для одежды и вещей. My coat is in the closet — моё пальто в шкафу. Перед выходом можно пообещать I will turn off the faucet before we leave — я закрою кран, прежде чем мы уйдём. После before здесь leave без will.",
-        "uk": "Faucet — водопровідний кран; те саме побутове значення, що в tap. The faucet is dripping — з крана капає. Closet — шафа або невелика комора для одягу й речей. My coat is in the closet — моє пальто в шафі. Перед виходом можна пообіцяти I will turn off the faucet before we leave — я закрию кран, перш ніж ми підемо. Після before тут leave без will."
+        "ru": "Вы собираетесь выйти из дома и обещаете проверить воду: I will turn off the faucet before we leave — я закрою кран, прежде чем мы уйдём. Собираем: I + will turn off + the faucet + before we leave — кто, что сделает, что закроет, до какого момента. Будущее обещание выражает will turn off. После before, задающего время действия, используем leave без will. С we к leave не добавляем -s.",
+        "uk": "Ви збираєтеся вийти з дому й обіцяєте перевірити воду: I will turn off the faucet before we leave — я закрию кран, перш ніж ми підемо. Складаємо: I + will turn off + the faucet + before we leave — хто, що зробить, що закриє, до якого моменту. Майбутню обіцянку виражає will turn off. Після before, яке задає час дії, використовуємо leave без will. З we до leave не додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-29:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-29:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться, где ждать",
-        "uk": "Домовитися, де чекати"
+        "ru": "Ждать снаружи, если не будет дождя",
+        "uk": "Чекати надворі, якщо не буде дощу"
       },
       "bodyByLocale": {
-        "ru": "Sidewalk — тротуар, дорожка для пешеходов рядом с дорогой. Please stay on the sidewalk — пожалуйста, оставайся на тротуаре. Если вы договорились ждать у дома: I will wait outside unless it rains — я подожду снаружи, если не пойдёт дождь. Unless называет исключение; после него rains без will. Ожидаемый момент можно выразить с when: I will leave when you arrive — я уйду, когда ты придёшь.",
-        "uk": "Sidewalk — тротуар, доріжка для пішоходів поруч із дорогою. Please stay on the sidewalk — будь ласка, залишайся на тротуарі. Якщо ви домовилися чекати біля будинку: I will wait outside unless it rains — я почекаю надворі, якщо не піде дощ. Unless називає виняток; після нього rains без will. Очікуваний момент можна виразити з when: I will leave when you arrive — я піду, коли ти прийдеш."
+        "ru": "Вы договариваетесь ждать друга у дома, но при дожде зайдёте внутрь. Скажите: I will wait outside unless it rains — я подожду снаружи, если не пойдёт дождь. Собираем: I + will wait + outside + unless it rains — кто, что сделает, где, какое исключение изменит план. Unless означает если не; дополнительное not не нужно. Для погоды используем it, поэтому rain получает -s. После unless здесь rains без will.",
+        "uk": "Ви домовляєтеся чекати друга біля будинку, але в разі дощу зайдете всередину. Скажіть: I will wait outside unless it rains — я почекаю надворі, якщо не піде дощ. Складаємо: I + will wait + outside + unless it rains — хто, що зробить, де, який виняток змінить план. Unless означає якщо не; додаткове not не потрібне. Для погоди використовуємо it, тому rain отримує -s. Після unless тут rains без will."
       },
       "question": {
         "interactionId": "en:lesson-26:session-29:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0174804e94b35b6778ede1371c0dd748ce85bf6520be41d5250e77df722ca9bf"
+  "introFingerprint": "e18e89d6923fdf771a713c914ecf46d3711b33c570491c0433fe1222881a8d47"
 }

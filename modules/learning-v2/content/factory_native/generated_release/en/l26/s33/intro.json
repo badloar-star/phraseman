@@ -69,8 +69,8 @@
         "uk": "Спочатку прохання чи спочатку умова"
       },
       "bodyByLocale": {
-        "ru": "Railroad — железная дорога. Diner — небольшое простое кафе, где можно поесть. The diner is near the railroad — кафе рядом с железной дорогой. Вы можете попросить If you need help, call me — если нужна помощь, позвони мне. Или начать с просьбы: Call me if you need help. Это одна договорённость в двух порядках. Повелительное call не превращается в will call при перестановке.",
-        "uk": "Railroad — залізниця. Diner — невелике просте кафе, де можна поїсти. The diner is near the railroad — кафе поруч із залізницею. Можна попросити If you need help, call me — якщо потрібна допомога, зателефонуй мені. Або почати з прохання: Call me if you need help. Це одна домовленість у двох порядках. Наказове call не перетворюється на will call під час перестановки."
+        "ru": "Друг собирается сам разобраться с трудным делом. Предложите обратиться к вам: If you need help, call me — если нужна помощь, позвони мне. Можно начать с просьбы: Call me if you need help. Собираем две части: call + me — что сделать и кому позвонить; if + you + need + help — при каком условии. Переставляем целые части, не меняя их форм. Когда условие первое, после него нужна запятая; после просьбы перед if — нет. Call без подлежащего остаётся просьбой в обоих порядках.",
+        "uk": "Друг збирається сам розібратися зі складною справою. Запропонуйте звернутися до вас: If you need help, call me — якщо потрібна допомога, зателефонуй мені. Можна почати з прохання: Call me if you need help. Складаємо дві частини: call + me — що зробити й кому зателефонувати; if + you + need + help — за якої умови. Переставляємо цілі частини, не змінюючи їхніх форм. Коли умова перша, після неї потрібна кома; після прохання перед if — ні. Call без підмета залишається проханням в обох порядках."
       },
       "question": {
         "interactionId": "en:lesson-26:session-33:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Изменить план ужина",
-        "uk": "Змінити план вечері"
+        "ru": "Если в кафе нет мест",
+        "uk": "Якщо в кафе немає місць"
       },
       "bodyByLocale": {
-        "ru": "Takeout — готовая еда навынос. We will get takeout if the diner is full — мы возьмём еду навынос, если в кафе нет мест. Можно начать с условия: If the diner is full, we will get takeout. В обоих вариантах кафе без свободных мест — условие, еда навынос — решение. Отдельно можно сказать We will eat there unless it is full — мы поедим там, если в нём есть места. Не заменяйте if на unless только ради другого порядка: unless меняет само условие.",
-        "uk": "Takeout — готова їжа навинос. We will get takeout if the diner is full — ми візьмемо їжу навинос, якщо в кафе немає місць. Можна почати з умови: If the diner is full, we will get takeout. В обох варіантах кафе без вільних місць — умова, їжа навинос — рішення. Окремо можна сказати We will eat there unless it is full — ми поїмо там, якщо в ньому є місця. Не замінюйте if на unless лише заради іншого порядку: unless змінює саму умову."
+        "ru": "Вы планируете ужин в кафе и обсуждаете запасной вариант: We will get takeout if the diner is full — мы возьмём еду навынос, если в кафе нет мест. Поставим условие первым: If the diner is full, we will get takeout. Собираем: If + the diner + is + full, + we + will get + takeout — условие, затем решение. Теперь после условия нужна запятая. Перестановка не меняет форм: в условии остаётся is, в решении — will get.",
+        "uk": "Ви плануєте вечерю в кафе й обговорюєте запасний варіант: We will get takeout if the diner is full — ми візьмемо їжу навинос, якщо в кафе немає місць. Поставмо умову першою: If the diner is full, we will get takeout. Складаємо: If + the diner + is + full, + we + will get + takeout — умова, потім рішення. Тепер після умови потрібна кома. Перестановка не змінює форм: в умові залишається is, у рішенні — will get."
       },
       "question": {
         "interactionId": "en:lesson-26:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b31af92ceed83761cee697bd3d8012a9b9b4c3e1d1bd87f9ce49fbe38111811f"
+  "introFingerprint": "75960492288b5818ead8673858e615e90a41566ddcf3a13a5fb8caa4f11c4d3d"
 }

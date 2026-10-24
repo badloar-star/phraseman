@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-28:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Чего хочется к чаю",
-        "uk": "Чого хочеться до чаю"
+        "ru": "Сразу съесть печенье",
+        "uk": "Відразу з’їсти печиво"
       },
       "bodyByLocale": {
-        "ru": "Crave — очень хотеть, испытывать сильное желание, часто съесть что-то определённое. I sometimes crave something sweet — мне иногда очень хочется сладкого. Dunk — ненадолго окунать: I like to dunk biscuits in tea — я люблю макать печенье в чай. О своей привычке можно сказать If I dunk a biscuit, I eat it straight away — если я макаю печенье, я сразу его съедаю. В обеих частях Present Simple, потому что речь об обычном действии.",
-        "uk": "Crave — дуже хотіти, відчувати сильне бажання, часто з’їсти щось певне. I sometimes crave something sweet — мені іноді дуже хочеться солодкого. Dunk — ненадовго занурювати: I like to dunk biscuits in tea — я люблю вмочати печиво в чай. Про свою звичку можна сказати If I dunk a biscuit, I eat it straight away — якщо я вмочаю печиво, я відразу його з’їдаю. В обох частинах Present Simple, бо йдеться про звичну дію."
+        "ru": "Друг замечает, что вы не держите намокшее печенье в руке. Объясните привычку: If I dunk a biscuit, I eat it straight away — если я макаю печенье, я сразу его съедаю. Собираем: If + I + dunk + a biscuit, + I + eat + it + straight away — условие, затем обычное действие. В обеих частях present simple: это повторяющаяся привычка. После I нужны dunk и eat без -s. После начального условия ставим запятую.",
+        "uk": "Друг помічає, що ви не тримаєте намокле печиво в руці. Поясніть звичку: If I dunk a biscuit, I eat it straight away — якщо я вмочую печиво, я відразу його з’їдаю. Складаємо: If + I + dunk + a biscuit, + I + eat + it + straight away — умова, потім звичайна дія. В обох частинах present simple: це повторювана звичка. Після I потрібні dunk і eat без -s. Після початкової умови ставимо кому."
       },
       "question": {
         "interactionId": "en:lesson-26:session-28:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Готовить к приходу гостей",
-        "uk": "Готувати до приходу гостей"
+        "ru": "Замариновать до прихода гостей",
+        "uk": "Замаринувати до приходу гостей"
       },
       "bodyByLocale": {
-        "ru": "Marinate — мариновать, оставлять продукт в смеси масла, специй и других ингредиентов для вкуса. I have already marinated the vegetables — я уже замариновал овощи. Already показывает готовый результат сейчас. Если вы только обещаете это сделать до прихода гостей: I will marinate them before everyone arrives — я замариную их до того, как все придут. После before в этом придаточном о будущем стоит arrives без will.",
-        "uk": "Marinate — маринувати, залишати продукт у суміші олії, спецій та інших інгредієнтів для смаку. I have already marinated the vegetables — я вже замаринував овочі. Already показує готовий результат зараз. Якщо ви лише обіцяєте зробити це до приходу гостей: I will marinate them before everyone arrives — я замариную їх до того, як усі прийдуть. Після before у цьому підрядному про майбутнє стоїть arrives без will."
+        "ru": "Вы распределяете подготовку ужина и обещаете заняться овощами: I will marinate them before everyone arrives — я замариную их до того, как все придут. Собираем: I + will marinate + them + before everyone arrives — кто, что сделает, что подготовит, до какого момента. Them заменяет овощи. После before, задающего время будущего действия, нужна arrives без will. Everyone требует формы с -s.",
+        "uk": "Ви розподіляєте підготовку вечері й обіцяєте зайнятися овочами: I will marinate them before everyone arrives — я замариную їх до того, як усі прийдуть. Складаємо: I + will marinate + them + before everyone arrives — хто, що зробить, що підготує, до якого моменту. Them замінює овочі. Після before, яке задає час майбутньої дії, потрібна arrives без will. Everyone потребує форми з -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-28:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-28:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что слышно на кухне",
-        "uk": "Що чути на кухні"
+        "ru": "Не солить без необходимости",
+        "uk": "Не солити без потреби"
       },
       "bodyByLocale": {
-        "ru": "Sizzle — шипеть при жарке. The onions are sizzling — лук шипит на сковороде. Вы слышите звук сейчас, поэтому здесь are sizzling. Рядом друг готовит соус. Можно попросить: Do not add salt unless it needs more — не добавляй соль, если её не нужно больше. Unless вводит исключение из просьбы не добавлять соль; внутри условия needs без will.",
-        "uk": "Sizzle — шипіти під час смаження. The onions are sizzling — цибуля шипить на сковороді. Ви чуєте звук зараз, тому тут are sizzling. Поруч друг готує соус. Можна попросити: Do not add salt unless it needs more — не додавай сіль, якщо її не потрібно більше. Unless вводить виняток із прохання не додавати сіль; усередині умови needs без will."
+        "ru": "Друг готовит соус, который вы уже посолили. Попросите: Do not add salt unless it needs more — не добавляй соль, если её не нужно больше. Собираем: Do not + add + salt + unless it needs more — запрет действия, что не добавлять, исключение. Unless разрешает добавить соль только при необходимости. It заменяет соус; needs после it получает -s. После unless здесь настоящее needs без will.",
+        "uk": "Друг готує соус, який ви вже посолили. Попросіть: Do not add salt unless it needs more — не додавай сіль, якщо її не потрібно більше. Складаємо: Do not + add + salt + unless it needs more — заборона дії, що не додавати, виняток. Unless дозволяє додати сіль лише за потреби. It замінює соус; needs після it отримує -s. Після unless тут теперішня форма needs без will."
       },
       "question": {
         "interactionId": "en:lesson-26:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "86795525f4a18d84fa5878a40517e017fc8429f9cfdeaf36ee51193d3f88c128"
+  "introFingerprint": "94b626b5dd3625a0c81a67d974ddc47e214295e0780ce8a11ff6ba20528a1845"
 }

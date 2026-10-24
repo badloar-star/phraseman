@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вы отвлеклись",
-        "uk": "Ви відволіклися"
+        "ru": "Спросить после возвращения",
+        "uk": "Запитати після повернення"
       },
       "bodyByLocale": {
-        "ru": "Daydream — мечтать, отвлекаясь от того, что происходит вокруг. I sometimes daydream on the bus — я иногда мечтаю о своём в автобусе. Друг задал вопрос, а вы задумались: Could you say that again? — можешь сказать это ещё раз? Если это обычная ситуация: I ask again when I miss a question — я переспрашиваю, когда пропускаю вопрос. Для будущего решения: I will ask when she comes back — я спрошу, когда она вернётся. После when остаётся comes, без will.",
-        "uk": "Daydream — мріяти, відволікаючись від того, що відбувається навколо. I sometimes daydream on the bus — я іноді мрію про своє в автобусі. Друг поставив запитання, а ви замислилися: Could you say that again? — можеш сказати це ще раз? Якщо це звичайна ситуація: I ask again when I miss a question — я перепитую, коли пропускаю запитання. Для майбутнього рішення: I will ask when she comes back — я запитаю, коли вона повернеться. Після when залишається comes, без will."
+        "ru": "Вы хотите задать подруге вопрос, но она ненадолго вышла. Скажите: I will ask when she comes back — я спрошу, когда она вернётся. Собираем: I + will ask + when she comes back — кто, что сделает, когда. В главной части будущее передаёт will ask. После when, задающего время вопроса, используем present simple: comes back без will. С she к come добавляем -s.",
+        "uk": "Ви хочете поставити подрузі запитання, але вона ненадовго вийшла. Скажіть: I will ask when she comes back — я запитаю, коли вона повернеться. Складаємо: I + will ask + when she comes back — хто, що зробить, коли. У головній частині майбутнє передає will ask. Після when, яке задає час запитання, використовуємо present simple: comes back без will. З she до come додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-35:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Случайно услышать",
-        "uk": "Випадково почути"
+        "ru": "Открыть дверь занятому другу",
+        "uk": "Відчинити двері зайнятому другові"
       },
       "bodyByLocale": {
-        "ru": "Overhear — случайно услышать чужой разговор или слова, сказанные не вам. I did not mean to overhear — я не хотел случайно это услышать. Формы прошедшего времени и причастия — overheard: I have just overheard your question — я только что случайно услышал твой вопрос. Это не означает, что вы намеренно подслушивали. Можно предложить помощь: If you are busy, I can answer the door — если ты занят, я могу открыть дверь. То же условие в конце: I can answer the door if you are busy.",
-        "uk": "Overhear — випадково почути чужу розмову або слова, сказані не вам. I did not mean to overhear — я не хотів випадково це почути. Форми минулого часу й дієприкметника — overheard: I have just overheard your question — я щойно випадково почув твоє запитання. Це не означає, що ви навмисно підслуховували. Можна запропонувати допомогу: If you are busy, I can answer the door — якщо ти зайнятий, я можу відчинити двері. Та сама умова в кінці: I can answer the door if you are busy."
+        "ru": "В дверь звонят, а друг занят. Предложите: I can answer the door if you are busy — я могу открыть дверь, если ты занят. Собираем: I + can answer + the door + if you are busy — кто, что может сделать, на что отреагировать, при каком условии. Answer the door означает открыть дверь тому, кто позвонил или постучал. После can нужна answer без to; в условии с you используем are.",
+        "uk": "У двері дзвонять, а друг зайнятий. Запропонуйте: I can answer the door if you are busy — я можу відчинити двері, якщо ти зайнятий. Складаємо: I + can answer + the door + if you are busy — хто, що може зробити, на що відреагувати, за якої умови. Answer the door означає відчинити двері тому, хто подзвонив або постукав. Після can потрібна answer без to; в умові з you використовуємо are."
       },
       "question": {
         "interactionId": "en:lesson-26:session-35:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Собраться на ночь",
-        "uk": "Зібратися на ніч"
+        "ru": "Заперли дверь до сна",
+        "uk": "Замкнули двері до сну"
       },
       "bodyByLocale": {
-        "ru": "Nightgown — ночная рубашка, одежда для сна. Robe — халат; знакомое bathrobe — более конкретное название банного халата. My nightgown is in the bag — моя ночная рубашка в сумке. Your robe is on the chair — твой халат на стуле. Перед сном: Have you locked the door yet? — ты уже запер дверь? I have already checked it — я уже проверил её. О вчерашнем вечере: I had locked the door by the time everyone went to bed — я запер дверь к тому времени, как все легли спать. Had locked обозначает более раннее действие в прошлом.",
-        "uk": "Nightgown — нічна сорочка, одяг для сну. Robe — халат; знайоме bathrobe — конкретніша назва банного халата. My nightgown is in the bag — моя нічна сорочка в сумці. Your robe is on the chair — твій халат на стільці. Перед сном: Have you locked the door yet? — ти вже замкнув двері? I have already checked it — я вже перевірив їх. Про вчорашній вечір: I had locked the door by the time everyone went to bed — я замкнув двері до того часу, як усі лягли спати. Had locked позначає ранішу дію в минулому."
+        "ru": "Вы рассказываете о вчерашнем вечере: когда все легли спать, входная дверь уже была заперта. Скажите: I had locked the door by the time everyone went to bed — я запер дверь к тому времени, как все легли спать. Собираем: I + had locked + the door + by the time everyone went to bed — кто, что сделал раньше, что запер, к какому моменту в прошлом. Had locked показывает запирание до отхода ко сну. После had нужна locked с -ed.",
+        "uk": "Ви розповідаєте про вчорашній вечір: коли всі лягли спати, вхідні двері вже були замкнені. Скажіть: I had locked the door by the time everyone went to bed — я замкнув двері до того часу, як усі лягли спати. Складаємо: I + had locked + the door + by the time everyone went to bed — хто, що зробив раніше, що замкнув, до якого моменту в минулому. Had locked показує замикання до відходу до сну. Після had потрібна locked із -ed."
       },
       "question": {
         "interactionId": "en:lesson-26:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "65d2a90a783586b28b1fce347e7d4dc3bd691d5d53b77d32eab0ce64c399d1c4"
+  "introFingerprint": "09d08845dabc1073f20f3bee803c5a67aeb3e7a85f7b628a043912b14398ddd1"
 }

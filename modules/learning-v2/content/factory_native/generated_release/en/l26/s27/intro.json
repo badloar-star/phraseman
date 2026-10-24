@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Настроение и предпочтения",
-        "uk": "Настрій і вподобання"
+        "ru": "Когда портится настроение",
+        "uk": "Коли псується настрій"
       },
       "bodyByLocale": {
-        "ru": "Moody — с переменчивым настроением, иногда угрюмый. I get moody when I am tired — у меня портится настроение, когда я устал. Это привычная связь: Present Simple в обеих частях. Fussy — привередливый, требовательный к мелочам. I am not fussy about food — я не привередлив в еде. Эти слова помогают описать себя и предпочтения; они не объясняют автоматически причины чужого поведения.",
-        "uk": "Moody — з мінливим настроєм, іноді похмурий. I get moody when I am tired — у мене псується настрій, коли я втомлений. Це звичний зв’язок: Present Simple в обох частинах. Fussy — вередливий, прискіпливий до дрібниць. I am not fussy about food — я не перебірливий у їжі. Ці слова допомагають описати себе та вподобання; вони не пояснюють автоматично причин чужої поведінки."
+        "ru": "Друг спрашивает, почему к вечеру вы иногда становитесь угрюмым. Объясните свою привычную реакцию: I get moody when I am tired — у меня портится настроение, когда я устал. Собираем: I + get + moody + when I am tired — кто, становится, каким, когда. Обе части стоят в present simple, потому что связь повторяется. После I нужна get без -s; в части с tired используем am.",
+        "uk": "Друг запитує, чому надвечір ви іноді стаєте похмурим. Поясніть свою звичну реакцію: I get moody when I am tired — у мене псується настрій, коли я втомлений. Складаємо: I + get + moody + when I am tired — хто, стає, яким, коли. Обидві частини стоять у present simple, бо зв’язок повторюється. Після I потрібна get без -s; у частині з tired використовуємо am."
       },
       "question": {
         "interactionId": "en:lesson-26:session-27:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шутка и извинение",
-        "uk": "Жарт і вибачення"
+        "ru": "Извинение уже принесено",
+        "uk": "Ви вже перепросили"
       },
       "bodyByLocale": {
-        "ru": "Cheeky — дерзкий, нахальный, иногда с оттенком забавной смелости. A cheeky joke — дерзкая шутка. Genuine — настоящий, искренний: a genuine apology — искреннее извинение. Значение зависит от существительного: genuine leather — натуральная кожа. Если шутка задела друга, можно сказать I have already apologised — я уже извинился. Already показывает, что действие уже выполнено к настоящему моменту.",
-        "uk": "Cheeky — зухвалий, нахабний, іноді з відтінком кумедної сміливості. A cheeky joke — зухвалий жарт. Genuine — справжній, щирий: a genuine apology — щире вибачення. Значення залежить від іменника: genuine leather — натуральна шкіра. Якщо жарт зачепив друга, можна сказати I have already apologised — я вже вибачився. Already показує, що дію вже виконано на цей момент."
+        "ru": "Вы задели друга шуткой. Собеседник советует извиниться, но вы уже это сделали. Ответьте: I have already apologised — я уже извинился. Собираем: I + have + already + apologised — кто, have, уже, действие. Already ставим между have и третьей формой apologised. В apologised к apologise добавлено -d. Present perfect сообщает о выполненном действии к настоящему моменту.",
+        "uk": "Ви зачепили друга жартом. Співрозмовник радить перепросити, але ви вже це зробили. Дайте відповідь: I have already apologised — я вже перепросив. Складаємо: I + have + already + apologised — хто, have, уже, дія. Already ставимо між have і третьою формою apologised. В apologised до apologise додано -d. Present perfect повідомляє про виконану дію до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-27:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться о встрече",
-        "uk": "Домовитися про зустріч"
+        "ru": "Прийти, если не придётся работать",
+        "uk": "Прийти, якщо не доведеться працювати"
       },
       "bodyByLocale": {
-        "ru": "На встречу можно поставить условие: I will come unless I have to work — я приду, если мне не придётся работать. После unless здесь have без will. Ожидаемое время обозначаем иначе: We will eat when everyone arrives — поедим, когда все придут. When называет ожидаемый момент; unless — исключение из плана. Если ужин приготовлен до прихода гостей, можно сказать I had cooked dinner by the time they arrived — я приготовил ужин к тому времени, как они пришли.",
-        "uk": "Для зустрічі можна поставити умову: I will come unless I have to work — я прийду, якщо мені не доведеться працювати. Після unless тут have без will. Очікуваний час позначаємо інакше: We will eat when everyone arrives — поїмо, коли всі прийдуть. When називає очікуваний момент; unless — виняток із плану. Якщо вечерю приготовлено до приходу гостей, можна сказати I had cooked dinner by the time they arrived — я приготував вечерю до того часу, як вони прийшли."
+        "ru": "Друг приглашает вас на встречу. Вы придёте, кроме случая, когда потребуется выйти на работу: I will come unless I have to work — я приду, если мне не придётся работать. Собираем: I + will come + unless I have to work — кто, что сделает, какое исключение отменит план. Unless означает если не; дополнительное not не нужно. После unless используем have без will. Have to work означает необходимость работать.",
+        "uk": "Друг запрошує вас на зустріч. Ви прийдете, крім випадку, коли доведеться вийти на роботу: I will come unless I have to work — я прийду, якщо мені не доведеться працювати. Складаємо: I + will come + unless I have to work — хто, що зробить, який виняток скасує план. Unless означає якщо не; додаткове not не потрібне. Після unless використовуємо have без will. Have to work означає необхідність працювати."
       },
       "question": {
         "interactionId": "en:lesson-26:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "253c1fc87829243e06b765b2f6d0cc8afd13a3d7f3987025f015bfcdf05ac849"
+  "introFingerprint": "2db51562efe76bcd3f9c79bd5446360980755dc5c28503bcd756600edd9bccfc"
 }

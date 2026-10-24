@@ -18829,7 +18829,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 1,
-    sourceFingerprint: "478d6344806458e598a9a4ac639e05216e38b626f58f1641c12da8bc29cf9e90",
+    sourceFingerprint: "917ebf3f6ff76f6da66d76b107cf60462c86289bf1581be89fc7ac606bba49a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна базовая форма live.","Здесь используем live без ing."],["После used to нужно play.","Здесь нужна базовая форма play."],["После used to нужно visit.","Здесь нужна базовая форма visit."]],"uk":[["Після used to потрібна базова форма live.","Тут використовуємо live без ing."],["Після used to потрібно play.","Тут потрібна базова форма play."],["Після used to потрібно visit.","Тут потрібна базова форма visit."]]}),
@@ -18843,7 +18843,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 2,
-    sourceFingerprint: "2fa59f8a7b57ebb51e9e9098fcfdd3912fc43597c313addada339ce56c670b73",
+    sourceFingerprint: "eca6b998ba9bb5afa137f951aad493b56142f2dd3fc43015b9ec99a095efa5ec",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма do.","После used to используем do без ing."],["После used to нужно practise.","Здесь нужна базовая форма practise."],["После used to нужно study.","Здесь нужна базовая форма study."]],"uk":[["Після used to потрібна форма do.","Після used to використовуємо do без ing."],["Після used to потрібно practise.","Тут потрібна базова форма practise."],["Після used to потрібно study.","Тут потрібна базова форма study."]]}),
@@ -18857,7 +18857,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 3,
-    sourceFingerprint: "a4b25f76077fa75ac23d3431a0bdf01cfd0c8feb243bda5d2945c81c06b0ffe6",
+    sourceFingerprint: "e9b539b20ad869816793d7f4a2f73735ada1cda77bc48ecc62f2bc0ad35b6c02",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма know.","Здесь нужна базовая форма know."],["После used to нужно talk.","Здесь нужна базовая форма talk."],["После used to нужно have.","Здесь нужна базовая форма have."]],"uk":[["Після used to потрібна форма know.","Тут потрібна базова форма know."],["Після used to потрібно talk.","Тут потрібна базова форма talk."],["Після used to потрібно have.","Тут потрібна базова форма have."]]}),
@@ -18871,7 +18871,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 4,
-    sourceFingerprint: "cc4c39da4dd69a81c1acd83ae85fbe232a2a7dee1caad9d2603c173ee67b4022",
+    sourceFingerprint: "b038e6b5eef88db793b23f8509ab2d17485ff30863f835a1807fcf2c4579d66d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма visit.","Здесь нужна базовая форма visit."],["После used to нужно take.","Здесь нужна базовая форма take."],["После used to нужно buy.","Здесь нужна базовая форма buy."]],"uk":[["Після used to потрібна форма visit.","Тут потрібна базова форма visit."],["Після used to потрібно take.","Тут потрібна базова форма take."],["Після used to потрібно buy.","Тут потрібна базова форма buy."]]}),
@@ -18885,7 +18885,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 5,
-    sourceFingerprint: "a5c3af91d4d59d4cc38852164255bf8fd44dbbcde9cb3430a2def2dc1493678c",
+    sourceFingerprint: "ca4c15cb9d1832a6e58eb8d3057cb7023abab34ef7edcc67233129c0239001c0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма teach.","Используйте базовую форму teach."],["После used to нужна форма work.","Используйте базовую форму work."],["После used to нужна форма live.","Используйте базовую форму live."]],"uk":[["Після used to потрібна форма teach.","Використайте базову форму teach."],["Після used to потрібна форма work.","Використайте базову форму work."],["Після used to потрібна форма live.","Використайте базову форму live."]]}),
@@ -18899,7 +18899,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 6,
-    sourceFingerprint: "a37836e1d49673c56846d88a3fcfa34a21a18e8abd3aef9022b24b228dfdfa9e",
+    sourceFingerprint: "ccc858d0a702e66a06fd02727724063f1abf92894069e0769748d4ef2b23c229",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма talk.","Используйте базовую форму talk."],["После used to нужна форма worry.","Используйте базовую форму worry."],["После used to нужна форма like.","Используйте базовую форму like."]],"uk":[["Після used to потрібна форма talk.","Використайте базову форму talk."],["Після used to потрібна форма worry.","Використайте базову форму worry."],["Після used to потрібна форма like.","Використайте базову форму like."]]}),
@@ -18913,7 +18913,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 7,
-    sourceFingerprint: "90ebb496476be4bbdd65bfc99abc0661bf452ba9ba067a5cead112cf81aa133a",
+    sourceFingerprint: "ad9f8ade3ef4652e015269c5b9be9caed468b70e726178549cdc1c692a36dd66",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма ignore.","Используйте базовую форму ignore."],["После used to нужна форма wake.","Используйте базовую форму wake."],["После used to нужна форма run.","Используйте базовую форму run."]],"uk":[["Після used to потрібна форма ignore.","Використайте базову форму ignore."],["Після used to потрібна форма wake.","Використайте базову форму wake."],["Після used to потрібна форма run.","Використайте базову форму run."]]}),
@@ -18927,7 +18927,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 8,
-    sourceFingerprint: "5ddff7a3be722f82ae4cde56714e29659281be245930180907cbc05075c7a162",
+    sourceFingerprint: "6a7d627a0ba0d3c576c5ceb494c8d009446f5b74cbc17e485e67bcd16e1c9543",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После used to нужна форма envy.","Используйте базовую форму envy."],["После used to нужна форма reward.","Используйте базовую форму reward."],["После used to нужна форма demand.","Используйте базовую форму demand."]],"uk":[["Після used to потрібна форма envy.","Використайте базову форму envy."],["Після used to потрібна форма reward.","Використайте базову форму reward."],["Після used to потрібна форма demand.","Використайте базову форму demand."]]}),
@@ -18941,7 +18941,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 9,
-    sourceFingerprint: "36d851b44ee75e36651c38bca979fab5d82e4ba568f524a40bf67c9c24ee5550",
+    sourceFingerprint: "c2b19d328c94030d8e72b2672871001525a6e2b34cfcfa7b52c45c5dc4e9f7bc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would ставим глагол без to.","После would нужна базовая форма, без -ed."],["После would ставим глагол без to.","После would нужна базовая форма, без -ed."],["После would ставим глагол без to.","После would нужна базовая форма, без -ed."]],"uk":[["Після would ставимо дієслово без to.","Після would потрібна базова форма, без -ed."],["Після would ставимо дієслово без to.","Після would потрібна базова форма, без -ed."],["Після would ставимо дієслово без to.","Після would потрібна базова форма, без -ed."]]}),
@@ -18955,7 +18955,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 10,
-    sourceFingerprint: "a4fddb095f41374da8c0467e19cfb9c3324e53055771a3b1f236563e138611df",
+    sourceFingerprint: "2184ecf251a7699b48f6a371993a351db4e3bc480c59bab8a50211740fb904ae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна форма cheer.","Используйте базовую форму cheer."],["После would нужна форма comfort.","Используйте базовую форму comfort."],["После would нужна форма play.","Используйте базовую форму play."]],"uk":[["Після would потрібна форма cheer.","Використайте базову форму cheer."],["Після would потрібна форма comfort.","Використайте базову форму comfort."],["Після would потрібна форма play.","Використайте базову форму play."]]}),
@@ -18969,7 +18969,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 11,
-    sourceFingerprint: "7bbfb06879c95ce52790b41352595bb789efc7f89152ed12791ea37c4b6217bd",
+    sourceFingerprint: "e1b530ebaeddb4c49fca6729b2395a241ef23d8f893499b8512cb6b9a39dfef3",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна форма dress.","Используйте базовую форму dress."],["После would нужна форма make.","Используйте базовую форму make."],["После would нужна форма build.","Используйте базовую форму build."]],"uk":[["Після would потрібна форма dress.","Використайте базову форму dress."],["Після would потрібна форма make.","Використайте базову форму make."],["Після would потрібна форма build.","Використайте базову форму build."]]}),
@@ -18983,7 +18983,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 12,
-    sourceFingerprint: "7a9de8545d26c01d28ead93798d56d61f8bcee6d50d67bc15fc5ea223987ca75",
+    sourceFingerprint: "4c698ff6d65702f53e7590f435299f4c8dac22bc8ce2604c26057057b8f3082d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна форма peek.","Используйте базовую форму peek."],["После would нужна форма poke.","Используйте базовую форму poke."],["После would нужна форма nudge.","Используйте базовую форму nudge."]],"uk":[["Після would потрібна форма peek.","Використайте базову форму peek."],["Після would потрібна форма poke.","Використайте базову форму poke."],["Після would потрібна форма nudge.","Використайте базову форму nudge."]]}),
@@ -18997,7 +18997,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 13,
-    sourceFingerprint: "db96244207e13ea93eb3faed94325aa6c0c622e048a1b82233e3e94b259d19ed",
+    sourceFingerprint: "00cdcc75150067f852c6b96720ac17d86f32c7371c0e8f71864b99183f1572d5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна форма grab.","Используйте базовую форму grab."],["После would нужна форма tiptoe.","Используйте базовую форму tiptoe."],["После would нужна форма imitate.","Используйте базовую форму imitate."]],"uk":[["Після would потрібна форма grab.","Використайте базову форму grab."],["Після would потрібна форма tiptoe.","Використайте базову форму tiptoe."],["Після would потрібна форма imitate.","Використайте базову форму imitate."]]}),
@@ -19011,7 +19011,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 25, sessionOrdinal: 14,
-    sourceFingerprint: "fa438a2766c315472a2ed4a9e5e2ca4d470273718b3089d6900a338f69be9846",
+    sourceFingerprint: "a724ea0810f9c77a509c56b1dbbc4fb0fdd94e25b278d9ea6d1eb57b6df53a27",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна форма gargle.","Используйте базовую форму gargle."],["После would нужна форма massage.","Используйте базовую форму massage."],["После would нужна форма dye.","Используйте базовую форму dye."]],"uk":[["Після would потрібна форма gargle.","Використайте базову форму gargle."],["Після would потрібна форма massage.","Використайте базову форму massage."],["Після would потрібна форма dye.","Використайте базову форму dye."]]}),

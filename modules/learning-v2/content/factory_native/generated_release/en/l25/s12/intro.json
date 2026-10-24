@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Палка и верёвка",
-        "uk": "Палиця й мотузка"
+        "ru": "Игра на песке",
+        "uk": "Гра на піску"
       },
       "bodyByLocale": {
-        "ru": "Poke — тыкать пальцем или предметом. In those days we would poke the sand with a stick — в те времена мы часто тыкали палкой в песок. With a stick показывает, чем это делали. Tug — дёргать, тянуть рывком. As a child I would tug at the rope — в детстве я часто дёргал верёвку. Tug at the rope описывает попытку потянуть верёвку, не обязательно сдвинуть её. После would используем poke и tug.",
-        "uk": "Poke — тикати пальцем або предметом. In those days we would poke the sand with a stick — у ті часи ми часто тикали палицею в пісок. With a stick показує, чим це робили. Tug — смикати, тягнути ривком. As a child I would tug at the rope — у дитинстві я часто смикав мотузку. Tug at the rope описує спробу потягнути мотузку, не обов’язково зрушити її. Після would використовуємо poke і tug."
+        "ru": "Вы вспоминаете, как в детстве играли на песке и часто тыкали в него палкой. In those days we would poke the sand with a stick — в те времена мы часто тыкали палкой в песок. Начинаем с in those days, чтобы задать период в прошлом. Затем ставим we + would + poke: кто действовал, указание на повторявшееся действие и глагол в начальной форме. После would не добавляем к poke -ed. The sand называет, во что тыкали, а with a stick — чем.",
+        "uk": "Ви згадуєте, як у дитинстві гралися на піску й часто тикали в нього палицею. In those days we would poke the sand with a stick — у ті часи ми часто тикали палицею в пісок. Починаємо з in those days, щоб задати період у минулому. Потім ставимо we + would + poke: хто діяв, вказівка на повторювану дію та дієслово в початковій формі. Після would не додаємо до poke -ed. The sand називає, у що тикали, а with a stick — чим."
       },
       "question": {
         "interactionId": "en:lesson-25:session-12:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07392e54a9857f31b2d050628dbae62e92eedf313e036bbe1fbbc9a953e609d9"
+  "introFingerprint": "3cb029165ea2a469a343a856d9e2e607c621bd781a1ae0acd1e22f5339f9f55a"
 }

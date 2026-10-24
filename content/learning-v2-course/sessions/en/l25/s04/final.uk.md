@@ -21,9 +21,9 @@ Former — колишній. I used to visit my former neighbour — раніш�
 
 ## Інтро 2
 
-### Часто чи час від часу
+### Часті перерви
 
-Frequent — частий. She used to take frequent breaks — раніше вона часто робила перерви. Frequent описує breaks: перерви були частими. Occasional — такий, що трапляється час від часу. We used to have occasional guests — раніше гості приходили до нас лише час від часу. Це рідше, ніж frequent.
+Ви розповідаєте про колегу: на колишній роботі вона часто робила перерви, а тепер працює інакше. She used to take frequent breaks — раніше вона часто робила перерви. Після she ставимо used to + take: це її колишня звичка, тому після used to потрібне take, не took. Потім додаємо frequent breaks — часті перерви. Frequent ставимо перед breaks, тому що це слово описує перерви. Основа речення: she + used to + take + frequent breaks.
 
 **Виберіть фразу для цієї ситуації.**
 

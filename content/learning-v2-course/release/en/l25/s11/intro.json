@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Куклы и самокаты",
-        "uk": "Ляльки й самокати"
+        "ru": "Куклы для домашних спектаклей",
+        "uk": "Ляльки для домашніх вистав"
       },
       "bodyByLocale": {
-        "ru": "Puppet — театральная кукла, которую человек приводит в движение рукой или нитями. In those days we would make puppets — в те времена мы часто делали театральных кукол. Scooter — самокат. Вспоминаем школьные годы: After school we would ride our scooters — после школы мы обычно катались на самокатах. После would используем make и ride, не made и rode.",
-        "uk": "Puppet — театральна лялька, яку людина рухає рукою або нитками. In those days we would make puppets — у ті часи ми часто робили театральних ляльок. Scooter — самокат. Згадуємо шкільні роки: After school we would ride our scooters — після школи ми зазвичай каталися на самокатах. Після would використовуємо make і ride, не made і rode."
+        "ru": "Вы вспоминаете детство: для домашних спектаклей вы часто делали театральных кукол. In those days we would make puppets — в те времена мы часто делали театральных кукол. Начинаем с in those days — периода в прошлом. После we ставим would, затем make: would уже показывает, что речь о повторявшемся действии в прошлом, поэтому made здесь не нужно. Puppets в конце называет, что вы делали. Так получается we + would + make + puppets.",
+        "uk": "Ви згадуєте дитинство: для домашніх вистав ви часто робили театральних ляльок. In those days we would make puppets — у ті часи ми часто робили театральних ляльок. Починаємо з in those days — періоду в минулому. Після we ставимо would, потім make: would уже показує, що йдеться про повторювану дію в минулому, тому made тут не потрібне. Puppets наприкінці називає, що ви робили. Так виходить we + would + make + puppets."
       },
       "question": {
         "interactionId": "en:lesson-25:session-11:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5dde7d54d9f59cfaef6514f9c04a860baded0e5ec75e29aeda8934b63dc8127a"
+  "introFingerprint": "ebbc4a6213de2fdeb778e361bb0f1592d061a3e352f50c6c9b9d91f088205d5c"
 }

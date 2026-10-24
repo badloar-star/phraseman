@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "С кем мы работали",
-        "uk": "З ким ми працювали"
+        "ru": "Прежняя работа со взрослыми",
+        "uk": "Колишня робота з дорослими"
       },
       "bodyByLocale": {
-        "ru": "Disabled — с инвалидностью. I used to work with disabled adults — раньше я работал со взрослыми с инвалидностью. Homeless — бездомный, без постоянного жилья. We used to help homeless people — раньше мы помогали бездомным людям. В обоих примерах used to описывает то, что мы регулярно делали раньше.",
-        "uk": "Disabled — з інвалідністю. I used to work with disabled adults — раніше я працював із дорослими з інвалідністю. Homeless — бездомний, без постійного житла. We used to help homeless people — раніше ми допомагали бездомним людям. В обох прикладах used to описує те, що ми регулярно робили раніше."
+        "ru": "Вы рассказываете о прежней работе со взрослыми с инвалидностью. Теперь вы работаете в другой сфере. I used to work with disabled adults — раньше я работал со взрослыми с инвалидностью. После I ставим used to + work: обозначаем прежнюю работу и сохраняем work в начальной форме. With вводит тех, с кем вы работали. Disabled adults называет эту группу людей; disabled ставим перед adults. Used to относится к вашей работе, а не к изменению состояния этих людей.",
+        "uk": "Ви розповідаєте про колишню роботу з дорослими з інвалідністю. Тепер ви працюєте в іншій сфері. I used to work with disabled adults — раніше я працював із дорослими з інвалідністю. Після I ставимо used to + work: позначаємо колишню роботу та зберігаємо work у початковій формі. With уводить тих, із ким ви працювали. Disabled adults називає цю групу людей; disabled ставимо перед adults. Used to стосується вашої роботи, а не зміни стану цих людей."
       },
       "question": {
         "interactionId": "en:lesson-25:session-05:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2e155a12a4a90e3ec4b334801a898678f9f37841ff252a099c246c5ad6807057"
+  "introFingerprint": "a99a941b161cb409d0302501005d811bc9f501f6abec4e4441f3dcfbd11f73cf"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-09:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Привычки в отпуске",
-        "uk": "Звички у відпустці"
+        "ru": "Фотографии из отпуска",
+        "uk": "Фотографії з відпустки"
       },
       "bodyByLocale": {
-        "ru": "Scenery — пейзаж, виды природы. In those days we would photograph the scenery — в те времена мы обычно фотографировали пейзажи. Atmosphere — атмосфера, обстановка. On our old holidays we would enjoy the quiet atmosphere — во время прежних отпусков мы наслаждались спокойной атмосферой. После would нужен глагол без -ed и без to: would photograph, would enjoy.",
-        "uk": "Scenery — краєвид, види природи. In those days we would photograph the scenery — у ті часи ми зазвичай фотографували краєвиди. Atmosphere — атмосфера, обстановка. On our old holidays we would enjoy the quiet atmosphere — під час колишніх відпусток ми насолоджувалися спокійною атмосферою. Після would потрібне дієслово без -ed і без to: would photograph, would enjoy."
+        "ru": "Вы рассматриваете старые снимки и вспоминаете, как во время отпуска часто фотографировали пейзажи. In those days we would photograph the scenery — в те времена мы обычно фотографировали пейзажи. Сначала in those days задаёт период в прошлом. Затем ставим we + would + photograph: кто действовал и что регулярно делал. После would нужен photograph без to и без -ed. В конце the scenery называет, что попадало на фотографии.",
+        "uk": "Ви розглядаєте старі знімки й згадуєте, як під час відпустки часто фотографували краєвиди. In those days we would photograph the scenery — у ті часи ми зазвичай фотографували краєвиди. Спочатку in those days задає період у минулому. Потім ставимо we + would + photograph: хто діяв і що регулярно робив. Після would потрібне photograph без to та без -ed. Наприкінці the scenery називає, що потрапляло на фотографії."
       },
       "question": {
         "interactionId": "en:lesson-25:session-09:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розмови в школі"
       },
       "bodyByLocale": {
-        "ru": "Environment — окружающая среда: воздух, вода, земля и жизнь вокруг нас. At my old school we would discuss the environment — в моей прежней школе мы регулярно обсуждали окружающую среду. Would discuss — повторявшееся действие. Для прежнего состояния или места проживания сохраняем знакомое used to: I used to live by the lake. В таком рассказе would не заменяет used to автоматически.",
-        "uk": "Environment — довкілля: повітря, вода, земля й життя навколо нас. At my old school we would discuss the environment — у моїй колишній школі ми регулярно обговорювали довкілля. Would discuss — дія, що повторювалася. Для колишнього стану або місця проживання зберігаємо знайоме used to: I used to live by the lake. У такій розповіді would не замінює used to автоматично."
+        "ru": "Вы рассказываете о прежней школе: на занятиях вы регулярно обсуждали окружающую среду. At my old school we would discuss the environment — в моей прежней школе мы регулярно обсуждали окружающую среду. At my old school задаёт место и отсылает к школьным годам. Затем ставим we + would + discuss: would с начальной формой discuss передаёт повторявшиеся обсуждения. После discuss сразу добавляем тему — the environment. Здесь не нужен предлог about: discuss уже означает «обсуждать что-либо».",
+        "uk": "Ви розповідаєте про колишню школу: на заняттях ви регулярно обговорювали довкілля. At my old school we would discuss the environment — у моїй колишній школі ми регулярно обговорювали довкілля. At my old school задає місце й відсилає до шкільних років. Потім ставимо we + would + discuss: would з початковою формою discuss передає повторювані обговорення. Після discuss відразу додаємо тему — the environment. Тут не потрібен прийменник about: discuss уже означає «обговорювати щось»."
       },
       "question": {
         "interactionId": "en:lesson-25:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8fa9c538b5c3d14171c7bc0f5be61171389a1de8f05691a96fdfac822ee33389"
+  "introFingerprint": "6149769c7848f33c14728c98b5f2c1b111dacfda66a3e167fc5fef1e2894013a"
 }

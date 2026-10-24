@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Прежние правила",
-        "uk": "Колишні правила"
+        "ru": "Поощряла хорошую работу",
+        "uk": "Заохочувала гарну роботу"
       },
       "bodyByLocale": {
-        "ru": "Reward — награждать, поощрять. She used to reward good work — раньше она поощряла хорошую работу. Punish — наказывать. Our teacher used to punish bad behaviour — наш учитель раньше наказывал за плохое поведение. Мы вспоминаем прежние порядки: за хорошую работу давали награду, за плохое поведение — наказание. После used to глаголы reward и punish не получают -ed.",
-        "uk": "Reward — нагороджувати, заохочувати. She used to reward good work — раніше вона заохочувала гарну роботу. Punish — карати. Our teacher used to punish bad behaviour — наш учитель раніше карав за погану поведінку. Ми згадуємо колишні порядки: за гарну роботу давали нагороду, за погану поведінку — покарання. Після used to дієслова reward і punish не отримують -ed."
+        "ru": "Вы вспоминаете прежнюю учительницу: она обычно давала небольшую награду за хорошо выполненную работу. She used to reward good work — раньше она поощряла хорошую работу. Начинаем с she, затем ставим used to: говорим о её прежней привычке. После used to нужна начальная форма reward, без -ed и без -s, даже с she. Good work называет, что она поощряла. Получается she + used to + reward + good work.",
+        "uk": "Ви згадуєте колишню вчительку: вона зазвичай давала невелику нагороду за добре виконану роботу. She used to reward good work — раніше вона заохочувала гарну роботу. Починаємо з she, потім ставимо used to: говоримо про її колишню звичку. Після used to потрібна початкова форма reward, без -ed та без -s, навіть із she. Good work називає, що вона заохочувала. Виходить she + used to + reward + good work."
       },
       "question": {
         "interactionId": "en:lesson-25:session-08:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1c2c44e019bad019bb0cfaaa10119bcd4df8098ba6708c3f2fe19c9ed256221d"
+  "introFingerprint": "457042157d9f96093a3067425bf5b01fef0bacd56d20a59d963ba6c61dc6138d"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Часто или время от времени",
-        "uk": "Часто чи час від часу"
+        "ru": "Частые перерывы",
+        "uk": "Часті перерви"
       },
       "bodyByLocale": {
-        "ru": "Frequent — частый. She used to take frequent breaks — раньше она часто делала перерывы. Frequent описывает breaks: перерывы были частыми. Occasional — случающийся время от времени. We used to have occasional guests — раньше гости приходили к нам лишь время от времени. Это реже, чем frequent.",
-        "uk": "Frequent — частий. She used to take frequent breaks — раніше вона часто робила перерви. Frequent описує breaks: перерви були частими. Occasional — такий, що трапляється час від часу. We used to have occasional guests — раніше гості приходили до нас лише час від часу. Це рідше, ніж frequent."
+        "ru": "Вы рассказываете о коллеге: на прежней работе она часто прерывалась, а теперь работает иначе. She used to take frequent breaks — раньше она часто делала перерывы. После she ставим used to + take: это её прежняя привычка, поэтому после used to нужен take, не took. Затем добавляем frequent breaks — частые перерывы. Frequent ставим перед breaks, потому что это слово описывает перерывы. Основа предложения: she + used to + take + frequent breaks.",
+        "uk": "Ви розповідаєте про колегу: на колишній роботі вона часто робила перерви, а тепер працює інакше. She used to take frequent breaks — раніше вона часто робила перерви. Після she ставимо used to + take: це її колишня звичка, тому після used to потрібне take, не took. Потім додаємо frequent breaks — часті перерви. Frequent ставимо перед breaks, тому що це слово описує перерви. Основа речення: she + used to + take + frequent breaks."
       },
       "question": {
         "interactionId": "en:lesson-25:session-04:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "709a0ce9ffd5817b726eddd286f91df5caf12e64cf3754860c3ba50dec2eca05"
+  "introFingerprint": "f060b56796c12e628722ef0d2848e743d6bfa379266242397567e615a296196e"
 }

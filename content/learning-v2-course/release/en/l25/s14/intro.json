@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-14:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уход за собой",
-        "uk": "Догляд за собою"
+        "ru": "Плечи после работы",
+        "uk": "Плечі після роботи"
       },
       "bodyByLocale": {
-        "ru": "Вспоминаем прежнюю работу. Massage — массировать. After work she would massage her shoulders — после работы она обычно массировала себе плечи. Her shoulders — её собственные плечи. Pluck — выщипывать. In those days she would pluck her eyebrows — в те времена она обычно выщипывала брови. После would оставляем massage и pluck без окончания.",
-        "uk": "Згадуємо колишню роботу. Massage — масажувати. After work she would massage her shoulders — після роботи вона зазвичай масажувала собі плечі. Her shoulders — її власні плечі. Pluck — вищипувати. In those days she would pluck her eyebrows — у ті часи вона зазвичай вищипувала брови. Після would залишаємо massage і pluck без закінчення."
+        "ru": "Вы рассказываете о прежней работе сестры: после смены она обычно массировала себе плечи. After work she would massage her shoulders — после работы она обычно массировала себе плечи. After work указывает, когда это происходило. Затем собираем she + would + massage: называем человека и его повторявшееся действие в прошлом. Даже с she после would оставляем massage без -s. В конце her shoulders уточняет, что она массировала: собственные плечи.",
+        "uk": "Ви розповідаєте про колишню роботу сестри: після зміни вона зазвичай масажувала собі плечі. After work she would massage her shoulders — після роботи вона зазвичай масажувала собі плечі. After work указує, коли це відбувалося. Потім складаємо she + would + massage: називаємо людину та її повторювану дію в минулому. Навіть із she після would залишаємо massage без -s. Наприкінці her shoulders уточнює, що вона масажувала: власні плечі."
       },
       "question": {
         "interactionId": "en:lesson-25:session-14:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Фарбували волосся вдома"
       },
       "bodyByLocale": {
-        "ru": "Dye — красить волосы или ткань. In those days we would dye our hair at home — в те времена мы обычно красили волосы дома. Our hair — наши волосы; в этом значении hair не получает окончание -s. Would dye описывает то, что делали время от времени в прошлом. Dye пишется с y и e; это не die — «умирать».",
-        "uk": "Dye — фарбувати волосся або тканину. In those days we would dye our hair at home — у ті часи ми зазвичай фарбували волосся вдома. Our hair — наше волосся; у цьому значенні hair не отримує закінчення -s. Would dye описує те, що робили час від часу в минулому. Dye пишеться з y та e; це не die — «помирати»."
+        "ru": "Вы вспоминаете период, когда вы с сестрой обычно красили волосы дома. In those days we would dye our hair at home — в те времена мы обычно красили волосы дома. Сначала задаём прошлый период словами in those days. Затем ставим we + would + dye: would показывает повторявшееся действие, поэтому после него нужна начальная форма dye. Дальше добавляем our hair — что красили — и at home — где. Our hair означает «наши волосы»; hair здесь обозначает волосы в целом и не получает -s.",
+        "uk": "Ви згадуєте період, коли ви із сестрою зазвичай фарбували волосся вдома. In those days we would dye our hair at home — у ті часи ми зазвичай фарбували волосся вдома. Спочатку задаємо минулий період словами in those days. Потім ставимо we + would + dye: would показує повторювану дію, тому після нього потрібна початкова форма dye. Далі додаємо our hair — що фарбували — та at home — де. Our hair означає «наше волосся»; hair тут позначає волосся загалом і не отримує -s."
       },
       "question": {
         "interactionId": "en:lesson-25:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c47613c3e7d5453a8d00b8cfb5243431a9e9021ef8df03f57da2f6d2916ee5bc"
+  "introFingerprint": "ecaf70d353d0c2f0586c1aab5034950ff37ff525ae8b73bae108373ae0c80c50"
 }

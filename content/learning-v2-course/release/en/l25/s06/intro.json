@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Взрослая жизнь и деньги",
-        "uk": "Доросле життя й гроші"
+        "ru": "Страх перед взрослой жизнью",
+        "uk": "Страх перед дорослим життям"
       },
       "bodyByLocale": {
-        "ru": "Adulthood — взрослая жизнь. Представьте подростка, который боялся будущих обязанностей: I used to worry about adulthood — раньше я переживал из-за будущей взрослой жизни. Attitude — отношение к чему-либо. We used to have the same attitude to money — раньше у нас было одинаковое отношение к деньгам. Теперь один предпочитает копить, а другой — тратить.",
-        "uk": "Adulthood — доросле життя. Уявіть підлітка, який боявся майбутніх обов’язків: I used to worry about adulthood — раніше я хвилювався через майбутнє доросле життя. Attitude — ставлення до чогось. We used to have the same attitude to money — раніше в нас було однакове ставлення до грошей. Тепер один воліє заощаджувати, а інший — витрачати."
+        "ru": "Вы вспоминаете подростковые годы: тогда вас тревожили будущие взрослые обязанности, а теперь этот страх прошёл. I used to worry about adulthood — раньше я переживал из-за будущей взрослой жизни. После I ставим used to + worry: эта конструкция показывает прежнее переживание, которого теперь нет. Worry оставляем в начальной форме, не worried. About adulthood добавляет, о чём вы переживали. Порядок частей: кто + used to + действие + его тема.",
+        "uk": "Ви згадуєте підліткові роки: тоді вас тривожили майбутні дорослі обов’язки, а тепер цей страх минув. I used to worry about adulthood — раніше я хвилювався через майбутнє доросле життя. Після I ставимо used to + worry: ця конструкція показує колишнє переживання, якого тепер немає. Worry залишаємо в початковій формі, не worried. About adulthood додає, про що ви хвилювалися. Порядок частин: хто + used to + дія + її тема."
       },
       "question": {
         "interactionId": "en:lesson-25:session-06:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c81102fd0332640ce9b714c4a5aca289f0c5f6d1e2ceee882a0fe012bd590135"
+  "introFingerprint": "a44da32e28d9d9429e6d0c87ff1a4ab1bb40c9204d32d1ccf71d00af69c978a1"
 }

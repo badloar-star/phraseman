@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Два вида спорта",
-        "uk": "Два види спорту"
+        "ru": "Прежнее увлечение сестры",
+        "uk": "Колишнє захоплення сестри"
       },
       "bodyByLocale": {
-        "ru": "Archery — стрельба из лука. She used to practise archery — раньше она занималась стрельбой из лука. Fencing — фехтование. We used to go fencing — раньше мы ходили на фехтование. После used to стоит базовый глагол: practise или go. Fencing здесь называет спорт; форма go при этом не меняется на going.",
-        "uk": "Archery — стрільба з лука. She used to practise archery — раніше вона займалася стрільбою з лука. Fencing — фехтування. We used to go fencing — раніше ми ходили на фехтування. Після used to стоїть базове дієслово: practise або go. Fencing тут називає спорт; форма go при цьому не змінюється на going."
+        "ru": "Раньше сестра регулярно ходила на стрельбу из лука, но теперь выбрала другое увлечение. She used to practise archery — раньше она занималась стрельбой из лука. Начинаем с she, затем ставим used to + practise: описываем занятие, которое было привычным раньше. Practise остаётся в начальной форме, без -s и -ed. Archery в конце называет вид спорта. Получается she + used to + practise + archery.",
+        "uk": "Раніше сестра регулярно ходила на стрільбу з лука, але тепер обрала інше захоплення. She used to practise archery — раніше вона займалася стрільбою з лука. Починаємо з she, потім ставимо used to + practise: описуємо заняття, яке було звичним раніше. Practise залишається в початковій формі, без -s та -ed. Archery наприкінці називає вид спорту. Виходить she + used to + practise + archery."
       },
       "question": {
         "interactionId": "en:lesson-25:session-02:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Вчився фотографувати"
       },
       "bodyByLocale": {
-        "ru": "Photography — фотография как занятие или искусство. He used to study photography — раньше он изучал фотографию. Это не отдельный снимок: для него подходит знакомое photo. После used to нужен study без ed и без ing. Для одного занятия вчера сказали бы He studied photography yesterday.",
-        "uk": "Photography — фотографія як заняття або мистецтво. He used to study photography — раніше він вивчав фотографію. Це не окремий знімок: для нього підходить знайоме photo. Після used to потрібне study без ed і без ing. Для одного заняття вчора сказали б He studied photography yesterday."
+        "ru": "Вы рассказываете о брате: раньше он учился фотографии, а теперь занимается другим делом. He used to study photography — раньше он изучал фотографию. После he ставим used to: обучение относится к прежнему периоду его жизни. Затем используем study в начальной форме, без -ed и -ing. Photography в конце называет предмет изучения. Здесь собираем he + used to + study + photography.",
+        "uk": "Ви розповідаєте про брата: раніше він вивчав фотографію, а тепер займається іншою справою. He used to study photography — раніше він вивчав фотографію. Після he ставимо used to: навчання належить до колишнього періоду його життя. Потім використовуємо study в початковій формі, без -ed та -ing. Photography наприкінці називає предмет вивчення. Тут складаємо he + used to + study + photography."
       },
       "question": {
         "interactionId": "en:lesson-25:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6c5f506641aa1b3142f248410d5e92e8c45b21c05fbc3a000631dbff1e54110e"
+  "introFingerprint": "d42f316a6edd22fda4ba6233f6548fd261af407c30554c758a778905a6341ef7"
 }

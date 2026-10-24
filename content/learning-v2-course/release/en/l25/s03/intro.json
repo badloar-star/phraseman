@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто угодно и что-то",
-        "uk": "Хто завгодно й щось"
+        "ru": "Разговаривал с кем угодно",
+        "uk": "Розмовляв із ким завгодно"
       },
       "bodyByLocale": {
-        "ru": "Anybody здесь — кто угодно. I used to talk to anybody — раньше я разговаривал с кем угодно, без разбора. Это утверждение о прежней привычке. Something — что-то. She used to eat something before school — раньше она что-то ела перед школой. Не уточняем, какую именно еду. После used to остаются talk и eat.",
-        "uk": "Anybody тут — хто завгодно. I used to talk to anybody — раніше я розмовляв із ким завгодно, без розбору. Це твердження про колишню звичку. Something — щось. She used to eat something before school — раніше вона щось їла перед школою. Не уточнюємо, яку саме їжу. Після used to залишаються talk і eat."
+        "ru": "Вы вспоминаете, как раньше легко вступали в разговор с любым человеком, а теперь стали осторожнее. I used to talk to anybody — раньше я разговаривал с кем угодно. После I ставим used to + talk: так показываем прежнюю привычку, сохраняя talk в начальной форме. Затем to anybody называет собеседника. Второе to относится к talk to — «разговаривать с»; первое входит в used to. Anybody здесь означает, что вы не выбирали, с кем разговаривать.",
+        "uk": "Ви згадуєте, як раніше легко починали розмову з будь-якою людиною, а тепер стали обережнішими. I used to talk to anybody — раніше я розмовляв із ким завгодно. Після I ставимо used to + talk: так показуємо колишню звичку, зберігаючи talk у початковій формі. Потім to anybody називає співрозмовника. Друге to належить до talk to — «розмовляти з»; перше входить до used to. Anybody тут означає, що ви не вибирали, з ким розмовляти."
       },
       "question": {
         "interactionId": "en:lesson-25:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f954a43be23f614d87e59ec7044ffc546838011496f4d959a3e0a967eefe08a2"
+  "introFingerprint": "05f16ee57a632efbdfdf28509ba8f94572ad10bf3f1c8298c5c91c3d1d9ef11a"
 }

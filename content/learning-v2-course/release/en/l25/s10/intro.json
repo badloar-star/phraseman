@@ -69,8 +69,8 @@
         "uk": "Підтримка після гри"
       },
       "bodyByLocale": {
-        "ru": "Loser — проигравший в игре или соревновании. In those days we would comfort the loser — в те времена мы обычно утешали проигравшего. Здесь loser обозначает результат игры, не оценку человека. Athlete — спортсмен. In those days I would train with an athlete — в те времена я регулярно тренировался со спортсменом. После would используем comfort и train, без окончания прошедшего времени.",
-        "uk": "Loser — той, хто програв у грі чи змаганні. In those days we would comfort the loser — у ті часи ми зазвичай втішали того, хто програв. Тут loser позначає результат гри, а не оцінку людини. Athlete — спортсмен. In those days I would train with an athlete — у ті часи я регулярно тренувався зі спортсменом. Після would використовуємо comfort і train, без закінчення минулого часу."
+        "ru": "Вы вспоминаете детские игры: после каждого матча вы старались утешить того, кто проиграл. In those days we would comfort the loser — в те времена мы обычно утешали проигравшего. In those days задаёт прошлый период, we называет тех, кто поддерживал игрока. Затем ставим would + comfort: повторявшееся действие выражаем с начальной формой comfort, без -ed. После глагола добавляем the loser — кого утешали. Здесь loser означает проигравшего в игре, а не оценку человека.",
+        "uk": "Ви згадуєте дитячі ігри: після кожного матчу ви намагалися втішити того, хто програв. In those days we would comfort the loser — у ті часи ми зазвичай втішали того, хто програв. In those days задає минулий період, we називає тих, хто підтримував гравця. Потім ставимо would + comfort: повторювану дію виражаємо з початковою формою comfort, без -ed. Після дієслова додаємо the loser — кого втішали. Тут loser означає того, хто програв у грі, а не оцінку людини."
       },
       "question": {
         "interactionId": "en:lesson-25:session-10:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c22289746be140dfffc4704548ee0224e44310f951b1b0217d42a75b62f389e3"
+  "introFingerprint": "6896bf3ad9494dbde07371757dc70fcb05acdb016dbc633707fbfd45cc2f8a27"
 }

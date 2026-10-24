@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тихо пройти и посмеяться",
-        "uk": "Тихо пройти й посміятися"
+        "ru": "Тихо мимо спальни",
+        "uk": "Тихо повз спальню"
       },
       "bodyByLocale": {
-        "ru": "Tiptoe — идти на цыпочках, например чтобы никого не разбудить. In those days I would tiptoe past the bedroom — в те времена я обычно проходил на цыпочках мимо спальни. Past the bedroom означает «мимо спальни». Chuckle — тихо смеяться. As a child he would chuckle at our jokes — в детстве он часто тихо смеялся над нашими шутками. Chuckle at a joke — тихо смеяться над шуткой. После would используем tiptoe и chuckle.",
-        "uk": "Tiptoe — іти навшпиньки, наприклад щоб нікого не розбудити. In those days I would tiptoe past the bedroom — у ті часи я зазвичай проходив навшпиньки повз спальню. Past the bedroom означає «повз спальню». Chuckle — тихо сміятися. As a child he would chuckle at our jokes — у дитинстві він часто тихо сміявся з наших жартів. Chuckle at a joke — тихо сміятися з жарту. Після would використовуємо tiptoe і chuckle."
+        "ru": "Вы вспоминаете время, когда дома днём спал маленький ребёнок: вы обычно проходили мимо спальни на цыпочках. In those days I would tiptoe past the bedroom — в те времена я обычно проходил на цыпочках мимо спальни. In those days задаёт прошлый период. Дальше ставим I, затем would и начальную форму tiptoe: так описываем действие, которое повторялось в тот период. Окончание -ed после would не нужно. Past the bedroom добавляет, мимо какого места вы проходили.",
+        "uk": "Ви згадуєте час, коли вдома вдень спала маленька дитина: ви зазвичай проходили повз спальню навшпиньки. In those days I would tiptoe past the bedroom — у ті часи я зазвичай проходив навшпиньки повз спальню. In those days задає минулий період. Далі ставимо I, потім would і початкову форму tiptoe: так описуємо дію, яка повторювалася в той період. Закінчення -ed після would не потрібне. Past the bedroom додає, повз яке місце ви проходили."
       },
       "question": {
         "interactionId": "en:lesson-25:session-13:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8140640e3015ee17d839bb2c0b2ae6500b2b363513318bb8683213bc4c55fe6c"
+  "introFingerprint": "e5dbb67350a5e7d2e13914b5d05259cfde8871abc85a5cafa8da1be687bd17f0"
 }

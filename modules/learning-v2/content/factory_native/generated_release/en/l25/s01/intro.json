@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Места прежних прогулок",
-        "uk": "Місця колишніх прогулянок"
+        "ru": "Игры во дворе",
+        "uk": "Ігри у дворі"
       },
       "bodyByLocale": {
-        "ru": "Estate здесь — жилой массив, группа жилых домов. She used to play on this estate — раньше она играла в этом жилом массиве. Это повторялось, а не случилось один раз. Orchard — фруктовый сад. We used to walk through the orchard — раньше мы гуляли по фруктовому саду. Для she и we форма одинаковая: used to + play или walk.",
-        "uk": "Estate тут — житловий масив, група житлових будинків. She used to play on this estate — раніше вона гралася в цьому житловому масиві. Це повторювалося, а не сталося один раз. Orchard — фруктовий сад. We used to walk through the orchard — раніше ми гуляли фруктовим садом. Для she і we форма однакова: used to + play або walk."
+        "ru": "Вы показываете подруге жилой массив, где она часто играла в детстве. Теперь она живёт в другом месте. She used to play on this estate — раньше она играла в этом жилом массиве. Сначала называем человека she, затем ставим used to + play: так передаём прежнюю привычку. После used to оставляем play без -ed и без -s, даже с she. On this estate добавляет место, где она играла.",
+        "uk": "Ви показуєте подрузі житловий масив, де вона часто гралася в дитинстві. Тепер вона живе в іншому місці. She used to play on this estate — раніше вона гралася в цьому житловому масиві. Спочатку називаємо людину she, потім ставимо used to + play: так передаємо колишню звичку. Після used to залишаємо play без -ed та без -s, навіть із she. On this estate додає місце, де вона гралася."
       },
       "question": {
         "interactionId": "en:lesson-25:session-01:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-25:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Прежняя привычка",
-        "uk": "Колишня звичка"
+        "ru": "Походы на аттракционы",
+        "uk": "Походи на атракціони"
       },
       "bodyByLocale": {
-        "ru": "Fairground — площадка с аттракционами. They used to visit the fairground — раньше они ходили туда, но теперь эта привычка изменилась. После used to нужен visit без ed и без ing. Для одного отдельного визита вчера подошло бы visited yesterday; used to выбираем для прежней привычки.",
-        "uk": "Fairground — майданчик з атракціонами. They used to visit the fairground — раніше вони ходили туди, але тепер ця звичка змінилася. Після used to потрібне visit без ed і без ing. Для одного окремого візиту вчора підійшло б visited yesterday; used to вибираємо для колишньої звички."
+        "ru": "Вы вспоминаете друзей, которые раньше часто ходили на площадку с аттракционами, но теперь перестали туда ходить. They used to visit the fairground — раньше они ходили на площадку с аттракционами. После they ставим used to, чтобы обозначить прежнюю привычку. Затем нужна начальная форма visit, без -ed и -ing. The fairground называет место посещений; после visit перед ним не нужен предлог to.",
+        "uk": "Ви згадуєте друзів, які раніше часто ходили на майданчик з атракціонами, але тепер перестали туди ходити. They used to visit the fairground — раніше вони ходили на майданчик з атракціонами. Після they ставимо used to, щоб позначити колишню звичку. Потім потрібна початкова форма visit, без -ed та -ing. The fairground називає місце відвідувань; після visit перед ним не потрібен прийменник to."
       },
       "question": {
         "interactionId": "en:lesson-25:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5e48129ee014f0f2098ce0f90f53e35b37f4b53e3a380ed3a5c07484f9572aa3"
+  "introFingerprint": "b5126ddb8ecd86bc83843b43fd0800d40b435190ba917adab07389d121d6e544"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Проверить содержимое коробки",
-        "uk": "Перевірити вміст коробки"
+        "ru": "Когда открыли коробку",
+        "uk": "Коли відкрили коробку"
       },
       "bodyByLocale": {
-        "ru": "Incomplete — неполный, незавершённый. The set is incomplete — в наборе не хватает деталей. Вы открыли коробку с полкой и обнаружили, что одного крепления нет. I opened the box yesterday — я открыл коробку вчера. I have already checked the parts — я уже проверил детали. В первом случае называем законченное время, во втором сообщаем о результате проверки сейчас.",
-        "uk": "Incomplete — неповний, незавершений. The set is incomplete — у наборі бракує деталей. Ви відкрили коробку з полицею й виявили, що одного кріплення немає. I opened the box yesterday — я відкрив коробку вчора. I have already checked the parts — я вже перевірив деталі. У першому випадку називаємо завершений час, у другому повідомляємо про результат перевірки зараз."
+        "ru": "Продавец спрашивает, когда вы открыли коробку с полкой. Это было вчера. Ответьте: I opened the box yesterday — я открыл коробку вчера. Yesterday называет законченное время, поэтому используем Past Simple: opened. К обычному глаголу open добавляем -ed. Have здесь не нужен: вы отвечаете именно на вопрос о времени вчера.\n\nСобираем предложение: I + opened + the box + yesterday — кто → действие в прошлом → что открыли → когда.",
+        "uk": "Продавець запитує, коли ви відкрили коробку з полицею. Це було вчора. Дайте відповідь: I opened the box yesterday — я відкрив коробку вчора. Yesterday називає завершений час, тому використовуємо Past Simple: opened. До звичайного дієслова open додаємо -ed. Have тут не потрібне: ви відповідаєте саме на запитання про час учора.\n\nСкладаємо речення: I + opened + the box + yesterday — хто → дія в минулому → що відкрили → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Попросить понятную инструкцию",
-        "uk": "Попросити зрозумілу інструкцію"
+        "ru": "Хотелось бы видеть чёткую печать",
+        "uk": "Хотілося б бачити чіткий друк"
       },
       "bodyByLocale": {
-        "ru": "Unreadable — нечитаемый, такой, что невозможно прочитать. The instructions are unreadable — инструкцию невозможно прочитать. Здесь речь о смазанной печати, а не о незнакомом языке. I wish the print were clearer — хотелось бы, чтобы печать была чётче. Were после wish выражает желаемое положение сейчас. Unsuitable — неподходящий. This shelf is unsuitable for our bathroom — эта полка не подходит для нашей ванной. Например, продавец сказал, что она предназначена только для сухих помещений.",
-        "uk": "Unreadable — нечитабельний, такий, що неможливо прочитати. The instructions are unreadable — інструкцію неможливо прочитати. Тут ідеться про розмазаний друк, а не про незнайому мову. I wish the print were clearer — хотілося б, щоб друк був чіткішим. Were після wish виражає бажане становище зараз. Unsuitable — непридатний для певної мети, невідповідний. This shelf is unsuitable for our bathroom — ця полиця не підходить для нашої ванної. Наприклад, продавець сказав, що вона призначена лише для сухих приміщень."
+        "ru": "Буквы в инструкции расплываются, и вы не можете их разобрать. Вы хотите, чтобы печать была чётче. Скажите: I wish the print were clearer — хотелось бы, чтобы печать была чётче. Print здесь — печать, clearer — более чёткая. После I wish форма were описывает желаемое положение сейчас: в действительности печать недостаточно чёткая. Это желание, а не рассказ о прошлом.\n\nСобираем предложение: I wish + the print + were + clearer — желание → о чём говорим → were → каким хотим это видеть.",
+        "uk": "Літери в інструкції розпливаються, і ви не можете їх розібрати. Ви хочете, щоб друк був чіткішим. Скажіть: I wish the print were clearer — хотілося б, щоб друк був чіткішим. Print тут — друк, clearer — чіткіший. Після I wish форма were описує бажане становище зараз: насправді друк недостатньо чіткий. Це бажання, а не розповідь про минуле.\n\nСкладаємо речення: I wish + the print + were + clearer — бажання → про що говоримо → were → яким хочемо це бачити."
       },
       "question": {
         "interactionId": "en:lesson-27:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Договориться о замене",
-        "uk": "Домовитися про заміну"
+        "ru": "При каком условии оставили бы полку",
+        "uk": "За якої умови залишили б полицю"
       },
       "bodyByLocale": {
-        "ru": "Unusable — непригодный к использованию. Without the missing part, the shelf is unusable — без недостающей детали полкой нельзя пользоваться. Unsuitable означает «не подходит для определённой цели», а unusable — «пользоваться невозможно». Could you send the missing part? — можете прислать недостающую деталь? If I were you, I would keep the receipt — на твоём месте я бы сохранил чек. We would keep the shelf if it were suitable — мы бы оставили полку, если бы она подходила.",
-        "uk": "Unusable — непридатний до використання. Without the missing part, the shelf is unusable — без деталі, якої бракує полицею не можна користуватися. Unsuitable означає «не підходить для певної мети», а unusable — «користуватися неможливо». Could you send the missing part? — можете надіслати деталь, якої бракує? If I were you, I would keep the receipt — на твоєму місці я б зберіг чек. We would keep the shelf if it were suitable — ми б залишили полицю, якби вона підходила."
+        "ru": "Полка не подходит для вашей ванной, поэтому вы хотите её вернуть. Объясните продавцу: We would keep the shelf if it were suitable — мы бы оставили полку, если бы она подходила. Suitable — подходящий. We would keep the shelf — воображаемый результат; if it were suitable — условие, которое сейчас не выполняется. После would ставим начальную форму keep без to.\n\nСобираем предложение: We + would keep + the shelf + if it were suitable — кто → что сделал бы → что оставил бы → при каком условии.",
+        "uk": "Полиця не підходить для вашої ванної, тому ви хочете її повернути. Поясніть продавцеві: We would keep the shelf if it were suitable — ми б залишили полицю, якби вона підходила. Suitable — відповідний, такий, що підходить. We would keep the shelf — уявний результат; if it were suitable — умова, яка зараз не виконується. Після would ставимо початкову форму keep без to.\n\nСкладаємо речення: We + would keep + the shelf + if it were suitable — хто → що зробив би → що залишив би → за якої умови."
       },
       "question": {
         "interactionId": "en:lesson-27:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "60ab121c300571088ef29b1e5df6f2597987c667d12f8054773f558640261fe9"
+  "introFingerprint": "168b3bb9b16b542988fbc7598acdd3ecb10ce63f3926869d3c12624b8f064a66"
 }

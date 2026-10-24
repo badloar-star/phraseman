@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-53:intro1:r2": {
+          "ru": "В этом совете используем were.",
+          "uk": "У цій пораді використовуємо were."
+        },
+        "en:lesson-27:session-53:intro1:r3": {
+          "ru": "После would — go.",
+          "uk": "Після would — go."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-53:intro2:r2": {
+          "ru": "После have нужна seen.",
+          "uk": "Після have потрібна seen."
+        },
+        "en:lesson-27:session-53:intro2:r3": {
+          "ru": "Здесь have seen, не have seeing.",
+          "uk": "Тут have seen, не have seeing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-53:intro3:r2": {
+          "ru": "О желаемой ситуации сейчас — wish I knew.",
+          "uk": "Про бажану ситуацію зараз — wish I knew."
+        },
+        "en:lesson-27:session-53:intro3:r3": {
+          "ru": "Нужна форма knew.",
+          "uk": "Потрібна форма knew."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ffad1ea850328e4a2915a8fe57e41c1cad9cd811d623f9cddf5e1511f605d51b"
+}

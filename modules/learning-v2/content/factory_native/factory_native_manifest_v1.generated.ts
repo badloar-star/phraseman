@@ -21027,7 +21027,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 46,
-    sourceFingerprint: "604e65905afb4ae2b0e155fc311384e4b1511691751b878e2f354428b7f74478",
+    sourceFingerprint: "c371f4362dfe22c88d03bca401378422b4b1816bbb2e622ce7ee2e27357a9e14",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С yesterday здесь opened без have.","Нужна форма opened."],["После wish здесь were.","Нужна форма were."],["После would нужна keep.","После would не ставим to."]],"uk":[["Із yesterday тут opened без have.","Потрібна форма opened."],["Після wish тут were.","Потрібна форма were."],["Після would потрібна keep.","Після would не ставимо to."]]}),
@@ -21041,7 +21041,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 47,
-    sourceFingerprint: "f55b2e8df39e93e92b68e798013318c5043e057ee3bda1b7bcf46aaa8e6edc7f",
+    sourceFingerprint: "69f139d19b45395af04b51ad987c83a8b0c0e65a410aa6783c7700234a132768",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После do not нужна come.","После do not используем начальную форму come."],["После wish здесь had.","Нужна форма had."],["С yesterday здесь made без have.","Нужна форма made."]],"uk":[["Після do not потрібна come.","Після do not використовуємо початкову форму come."],["Після wish тут had.","Потрібна форма had."],["Із yesterday тут made без have.","Потрібна форма made."]]}),
@@ -21055,7 +21055,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 48,
-    sourceFingerprint: "4105280b08b8184e738d80c8c0136ba5d4a80b8906460e7c9e115bf66fd3d876",
+    sourceFingerprint: "312e10cefa61fc5afff9a3e29a964ff990238b8b7824eb922296b2cac3bde25a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для прошлого нужна kept.","Здесь нужна форма kept."],["После wish здесь were.","Нужна форма were."],["С ago здесь turned без have.","Нужна форма turned."]],"uk":[["Для минулого потрібна kept.","Тут потрібна форма kept."],["Після wish тут were.","Потрібна форма were."],["Із ago тут turned без have.","Потрібна форма turned."]]}),
@@ -21069,7 +21069,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 49,
-    sourceFingerprint: "36227f7ff82c55d872b2d0fbafe8417043d700a1db9083bbac578fa3ceca3778",
+    sourceFingerprint: "770a64874ca76418b7239255f998814383bee6b2bb651801664c3a8736c796b0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["О прошлом здесь говорим made.","Нужна форма made."],["После wish здесь had.","Нужна форма had."],["С ago здесь checked без have.","Нужна форма checked."]],"uk":[["Про минуле тут говоримо made.","Потрібна форма made."],["Після wish тут had.","Потрібна форма had."],["Із ago тут checked без have.","Потрібна форма checked."]]}),
@@ -21083,7 +21083,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 50,
-    sourceFingerprint: "d311d4b3fa23466ad7e15701b9d46c7181c65bf0b9c75da3395653b21700d593",
+    sourceFingerprint: "cceb7a684c64281c502df5287df1816d3c8a87623779b7cf19bb43166e028f11",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С you нужна are.","Перед improving нужна are."],["После wish здесь felt.","Нужна форма felt."],["С yesterday здесь booked без have.","Нужна форма booked."]],"uk":[["Із you потрібна are.","Перед improving потрібна are."],["Після wish тут felt.","Потрібна форма felt."],["Із yesterday тут booked без have.","Потрібна форма booked."]]}),
@@ -21097,7 +21097,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 51,
-    sourceFingerprint: "7281fbf9d0c541a3d4e23789561fa5aaa38a3a2ee414e4416cc67d84f2d05346",
+    sourceFingerprint: "c27807608645026285205185c7d8afc56fd86599c43e4daf5d9cdfb89842dfca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужна am.","Перед прилагательным нужна am."],["После wish здесь were.","Нужна форма were."],["С yesterday здесь wrote без have.","Нужна форма wrote."]],"uk":[["Із I потрібна am.","Перед прикметником потрібна am."],["Після wish тут were.","Потрібна форма were."],["Із yesterday тут wrote без have.","Потрібна форма wrote."]]}),
@@ -21111,7 +21111,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 52,
-    sourceFingerprint: "b91c605a248b72d96294dee3798358939d7def6e9158a28545ac03fd5e1cd5cb",
+    sourceFingerprint: "f0aeaefe5788b43ed1aee066b9678f022f3c417005faf7b4e5319918e1055ea8",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["О прошлом здесь говорим joined.","Нужна форма joined."],["После wish здесь were.","Нужна форма were."],["С yesterday здесь spoke без have.","Нужна форма spoke."]],"uk":[["Про минуле тут говоримо joined.","Потрібна форма joined."],["Після wish тут were.","Потрібна форма were."],["Із yesterday тут spoke без have.","Потрібна форма spoke."]]}),
@@ -21122,5 +21122,19 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
     loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/en/l27/s52/learner.uk.json") as unknown : require("./generated_release/en/l27/s52/learner.json") as unknown,
     loadAnswers: () => require("./generated_release/en/l27/s52/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/en/l27/s52/auxiliary.json") as unknown,
+  }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 27, sessionOrdinal: 53,
+    sourceFingerprint: "6432f157dae938457965423de01085374e6b74f1a5b748ccc5c12323dc354c05",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В этом совете используем were.","После would — go."],["После have нужна seen.","Здесь have seen, не have seeing."],["О желаемой ситуации сейчас — wish I knew.","Нужна форма knew."]],"uk":[["У цій пораді використовуємо were.","Після would — go."],["Після have потрібна seen.","Тут have seen, не have seeing."],["Про бажану ситуацію зараз — wish I knew.","Потрібна форма knew."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"wish + past; if I were; unreal condition; present perfect / past simple","uk":"wish + past; if I were; unreal condition; present perfect / past simple"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 27","uk":"Урок 27"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Попросите друзей подождать здесь."},{"ordinal":2,"title":"Карточка слова — retrace"},{"ordinal":3,"title":"Предложите вернуться по своим следам."},{"ordinal":4,"title":"Послушайте и выберите"},{"ordinal":5,"title":"Вы не знаете, где сумка, но хотели бы знать."},{"ordinal":6,"title":"Карточка слова — rejoin"},{"ordinal":7,"title":"Скажите, где снова присоединитесь к друзьям."},{"ordinal":8,"title":"Спросите сотрудника, не видел ли он синюю сумку."},{"ordinal":9,"title":"Послушайте и выберите"},{"ordinal":10,"title":"Карточка слова — locate"},{"ordinal":11,"title":"Попросите помочь найти сумку."},{"ordinal":12,"title":"Уточните время ухода из кафе."},{"ordinal":13,"title":"Услышьте просьбу сотрудника."},{"ordinal":14,"title":"Уточните цвет и размер: сумка синяя и маленькая."},{"ordinal":15,"title":"Карточка слова — reappear"},{"ordinal":16,"title":"Перед уходом за сумкой попросите друга ждать вашего возвращения."},{"ordinal":17,"title":"Послушайте и выберите"},{"ordinal":18,"title":"Посоветуйте другу проверить карманы сумки."},{"ordinal":19,"title":"Сообщите, что ключи уже нашлись."},{"ordinal":20,"title":"Начните с результата: If we had more time, we would check the park."},{"ordinal":21,"title":"Поблагодарите сотрудника за помощь."}],"uk":[{"ordinal":1,"title":"Попросіть друзів зачекати тут."},{"ordinal":2,"title":"Картка слова — retrace"},{"ordinal":3,"title":"Запропонуйте повернутися тим самим шляхом."},{"ordinal":4,"title":"Послухайте й виберіть"},{"ordinal":5,"title":"Ви не знаєте, де сумка, але хотіли б знати."},{"ordinal":6,"title":"Картка слова — rejoin"},{"ordinal":7,"title":"Скажіть, де знову приєднаєтеся до друзів."},{"ordinal":8,"title":"Запитайте працівника, чи не бачив він синьої сумки."},{"ordinal":9,"title":"Послухайте й виберіть"},{"ordinal":10,"title":"Картка слова — locate"},{"ordinal":11,"title":"Попросіть допомогти знайти сумку."},{"ordinal":12,"title":"Уточніть час виходу з кафе."},{"ordinal":13,"title":"Почуйте прохання працівника."},{"ordinal":14,"title":"Уточніть колір і розмір: сумка синя й маленька."},{"ordinal":15,"title":"Картка слова — reappear"},{"ordinal":16,"title":"Перш ніж піти по сумку, попросіть друга чекати на ваше повернення."},{"ordinal":17,"title":"Послухайте й виберіть"},{"ordinal":18,"title":"Порадьте другові перевірити кишені сумки."},{"ordinal":19,"title":"Повідомте, що ключі вже знайшлися."},{"ordinal":20,"title":"Почніть з результату: If we had more time, we would check the park."},{"ordinal":21,"title":"Подякуйте працівникові за допомогу."}]}),
+    loadIntro: () => require("./generated_release/en/l27/s53/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/en/l27/s53/learner.uk.json") as unknown : require("./generated_release/en/l27/s53/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/en/l27/s53/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/en/l27/s53/auxiliary.json") as unknown,
   }),
 ]);

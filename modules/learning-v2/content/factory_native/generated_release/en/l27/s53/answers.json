@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-53:i01",
+    "correctText": "Could you wait here for me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:word:retrace",
+    "correctText": "retrace",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i02",
+    "correctText": "Let’s retrace our steps.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i03",
+    "correctText": "We sat on the bench by the café.",
+    "correctResponseId": "en:lesson-27:session-53:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i04",
+    "correctText": "knew",
+    "correctResponseId": "en:lesson-27:session-53:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:word:rejoin",
+    "correctText": "rejoin",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i05",
+    "correctText": "I will rejoin you at the café.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i06",
+    "correctText": "Have you seen a blue bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i07",
+    "correctText": "There is a bag behind the counter.",
+    "correctResponseId": "en:lesson-27:session-53:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:word:locate",
+    "correctText": "locate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i08",
+    "correctText": "Can you help me locate my bag?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i09",
+    "correctText": "left",
+    "correctResponseId": "en:lesson-27:session-53:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i10",
+    "correctText": "Please describe your bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i11",
+    "correctText": "It is small and blue.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:word:reappear",
+    "correctText": "reappear",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i12",
+    "correctText": "Wait here until I reappear.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i13",
+    "correctText": "The waiter brought my bag back.",
+    "correctResponseId": "en:lesson-27:session-53:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i14",
+    "correctText": "If I were you, I would check the pockets.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i15",
+    "correctText": "I have already found my keys.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i16",
+    "correctText": "We would check the park if we had more time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-53:i17",
+    "correctText": "Thank you for your help.",
+    "correctResponseId": null
+  }
+]

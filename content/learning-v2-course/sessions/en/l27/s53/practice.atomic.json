@@ -1,0 +1,2027 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-53",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-53:i01",
+        "ordinal": 4,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите друзей подождать здесь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i01:audio"
+        ],
+        "accessibilityLabel": "Попросите друзей подождать здесь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i01:audio",
+            "transcript": "Could you wait here for me?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you wait here for me?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:retrace",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — retrace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:retrace:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — retrace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:retrace:audio",
+            "transcript": "retrace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:retrace:r1",
+              "targetText": "retrace",
+              "meaningByLocale": {
+                "ru": "Пройти обратно тем же путём.",
+                "uk": "Пройти назад тим самим шляхом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retrace",
+            "definitionByLocale": {
+              "ru": "Пройти обратно тем же путём.",
+              "uk": "Пройти назад тим самим шляхом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Предложите вернуться по своим следам.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Предложите вернуться по своим следам.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let’s retrace our steps.",
+          "localizedMeaning": {
+            "ru": "Предложите вернуться по своим следам.",
+            "uk": "Запропонуйте повернутися тим самим шляхом."
+          },
+          "orderedTokens": [
+            "Let’s",
+            "retrace",
+            "our",
+            "steps"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i03:r1",
+            "text": "We sat on the bench by the café."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i03:r2",
+            "text": "We sat on the bench by the shop."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i03:r3",
+            "text": "We stood by the café."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i03:audio",
+            "transcript": "We sat on the bench by the café."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:i03:r1",
+              "targetText": "We sat on the bench by the café.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i03:r2",
+              "targetText": "We sat on the bench by the shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i03:r3",
+              "targetText": "We stood by the café.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat on the bench by the café.",
+                "uk": "У записі звучить We sat on the bench by the café."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat on the bench by the café.",
+                "uk": "У записі звучить We sat on the bench by the café."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы не знаете, где сумка, но хотели бы знать.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i04:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i04:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i04:r3",
+            "text": "knowing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы не знаете, где сумка, но хотели бы знать.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, где сумка, но хотели бы знать.",
+            "uk": "Ви не знаєте, де сумка, але хотіли б знати."
+          },
+          "gappedTargetPhrase": "I wish I ___ where it was.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-53:i04:r1",
+              "text": "knew"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i04:r2",
+              "text": "know"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i04:r3",
+              "text": "knowing"
+            }
+          ],
+          "testedDimension": "Вы не знаете, где сумка, но хотели бы знать.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы не знаете, где сумка, но хотели бы знать.",
+              "feedbackByLocale": {
+                "ru": "Wish + knew о ситуации сейчас.",
+                "uk": "Wish + knew про ситуацію зараз."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы не знаете, где сумка, но хотели бы знать.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма knew.",
+                "uk": "Потрібна форма knew."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:rejoin",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — rejoin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:rejoin:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — rejoin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:rejoin:audio",
+            "transcript": "rejoin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:rejoin:r1",
+              "targetText": "rejoin",
+              "meaningByLocale": {
+                "ru": "Снова присоединиться.",
+                "uk": "Знову приєднатися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rejoin",
+            "definitionByLocale": {
+              "ru": "Снова присоединиться.",
+              "uk": "Знову приєднатися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, где снова присоединитесь к друзьям.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, где снова присоединитесь к друзьям.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will rejoin you at the café.",
+          "localizedMeaning": {
+            "ru": "Скажите, где снова присоединитесь к друзьям.",
+            "uk": "Скажіть, де знову приєднаєтеся до друзів."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "rejoin",
+            "you",
+            "at",
+            "the",
+            "café"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Спросите сотрудника, не видел ли он синюю сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i06:audio"
+        ],
+        "accessibilityLabel": "Спросите сотрудника, не видел ли он синюю сумку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i06:audio",
+            "transcript": "Have you seen a blue bag?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Have you seen a blue bag?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i07:r1",
+            "text": "There is a bag behind the counter."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i07:r2",
+            "text": "There is a bag under the table."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i07:r3",
+            "text": "There are bags behind the counter."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i07:audio",
+            "transcript": "There is a bag behind the counter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:i07:r1",
+              "targetText": "There is a bag behind the counter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i07:r2",
+              "targetText": "There is a bag under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i07:r3",
+              "targetText": "There are bags behind the counter.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a bag behind the counter.",
+                "uk": "У записі звучить There is a bag behind the counter."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a bag behind the counter.",
+                "uk": "У записі звучить There is a bag behind the counter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:locate",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — locate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:locate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — locate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:locate:audio",
+            "transcript": "locate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:locate:r1",
+              "targetText": "locate",
+              "meaningByLocale": {
+                "ru": "Найти, установить местоположение.",
+                "uk": "Знайти, встановити місцезнаходження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "locate",
+            "definitionByLocale": {
+              "ru": "Найти, установить местоположение.",
+              "uk": "Знайти, встановити місцезнаходження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросите помочь найти сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросите помочь найти сумку.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you help me locate my bag?",
+          "localizedMeaning": {
+            "ru": "Попросите помочь найти сумку.",
+            "uk": "Попросіть допомогти знайти сумку."
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "help",
+            "me",
+            "locate",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточните время ухода из кафе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i09:r1",
+            "text": "left"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i09:r2",
+            "text": "have left"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i09:r3",
+            "text": "leaving"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточните время ухода из кафе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните время ухода из кафе.",
+            "uk": "Уточніть час виходу з кафе."
+          },
+          "gappedTargetPhrase": "I ___ the café an hour ago.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-53:i09:r1",
+              "text": "left"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i09:r2",
+              "text": "have left"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i09:r3",
+              "text": "leaving"
+            }
+          ],
+          "testedDimension": "Уточните время ухода из кафе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Уточните время ухода из кафе.",
+              "feedbackByLocale": {
+                "ru": "С an hour ago используем left.",
+                "uk": "Із an hour ago використовуємо left."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Уточните время ухода из кафе.",
+              "feedbackByLocale": {
+                "ru": "Нужен Past Simple: left.",
+                "uk": "Потрібен Past Simple: left."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте просьбу сотрудника.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i10:audio"
+        ],
+        "accessibilityLabel": "Услышьте просьбу сотрудника.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i10:audio",
+            "transcript": "Please describe your bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please describe your bag.",
+          "orderedTokens": [
+            "Please",
+            "describe",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i11",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните цвет и размер: сумка синяя и маленькая.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Уточните цвет и размер: сумка синяя и маленькая.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i11:audio",
+            "transcript": "It is small and blue."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is small and blue.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:reappear",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — reappear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:reappear:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — reappear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:reappear:audio",
+            "transcript": "reappear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:reappear:r1",
+              "targetText": "reappear",
+              "meaningByLocale": {
+                "ru": "Снова появиться.",
+                "uk": "Знову з’явитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reappear",
+            "definitionByLocale": {
+              "ru": "Снова появиться.",
+              "uk": "Знову з’явитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перед уходом за сумкой попросите друга ждать вашего возвращения.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перед уходом за сумкой попросите друга ждать вашего возвращения.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Wait here until I reappear.",
+          "localizedMeaning": {
+            "ru": "Перед уходом за сумкой попросите друга ждать вашего возвращения.",
+            "uk": "Перш ніж піти по сумку, попросіть друга чекати на ваше повернення."
+          },
+          "orderedTokens": [
+            "Wait",
+            "here",
+            "until",
+            "I",
+            "reappear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i13:r1",
+            "text": "The waiter brought my bag back."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i13:r2",
+            "text": "The waiter brought my coat back."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i13:r3",
+            "text": "The waiter took my bag away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i13:audio",
+            "transcript": "The waiter brought my bag back."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:i13:r1",
+              "targetText": "The waiter brought my bag back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i13:r2",
+              "targetText": "The waiter brought my coat back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i13:r3",
+              "targetText": "The waiter took my bag away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i13:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The waiter brought my bag back.",
+                "uk": "У записі звучить The waiter brought my bag back."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i13:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The waiter brought my bag back.",
+                "uk": "У записі звучить The waiter brought my bag back."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Посоветуйте другу проверить карманы сумки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посоветуйте другу проверить карманы сумки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If I were you, I would check the pockets.",
+          "localizedMeaning": {
+            "ru": "Посоветуйте другу проверить карманы сумки.",
+            "uk": "Порадьте другові перевірити кишені сумки."
+          },
+          "orderedTokens": [
+            "If",
+            "I",
+            "were",
+            "you,",
+            "I",
+            "would",
+            "check",
+            "the",
+            "pockets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Сообщите, что ключи уже нашлись.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Сообщите, что ключи уже нашлись.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i15:audio",
+            "transcript": "I have already found my keys."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already found my keys.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с результата: If we had more time, we would check the park.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с результата: If we had more time, we would check the park.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would check the park if we had more time.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we had more time, we would check the park.",
+            "uk": "Почніть з результату: If we had more time, we would check the park."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "check",
+            "the",
+            "park",
+            "if",
+            "we",
+            "had",
+            "more",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Поблагодарите сотрудника за помощь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Поблагодарите сотрудника за помощь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i17:audio",
+            "transcript": "Thank you for your help."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thank you for your help.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-53:i01",
+        "ordinal": 4,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть друзів зачекати тут.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i01:audio"
+        ],
+        "accessibilityLabel": "Попросіть друзів зачекати тут.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i01:audio",
+            "transcript": "Could you wait here for me?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you wait here for me?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:retrace",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — retrace",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:retrace:audio"
+        ],
+        "accessibilityLabel": "Картка слова — retrace",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:retrace:audio",
+            "transcript": "retrace"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:retrace:r1",
+              "targetText": "retrace",
+              "meaningByLocale": {
+                "ru": "Пройти обратно тем же путём.",
+                "uk": "Пройти назад тим самим шляхом."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "retrace",
+            "definitionByLocale": {
+              "ru": "Пройти обратно тем же путём.",
+              "uk": "Пройти назад тим самим шляхом."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Запропонуйте повернутися тим самим шляхом.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Запропонуйте повернутися тим самим шляхом.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Let’s retrace our steps.",
+          "localizedMeaning": {
+            "ru": "Предложите вернуться по своим следам.",
+            "uk": "Запропонуйте повернутися тим самим шляхом."
+          },
+          "orderedTokens": [
+            "Let’s",
+            "retrace",
+            "our",
+            "steps"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i03:r1",
+            "text": "We sat on the bench by the café."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i03:r2",
+            "text": "We sat on the bench by the shop."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i03:r3",
+            "text": "We stood by the café."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i03:audio",
+            "transcript": "We sat on the bench by the café."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:i03:r1",
+              "targetText": "We sat on the bench by the café.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i03:r2",
+              "targetText": "We sat on the bench by the shop.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i03:r3",
+              "targetText": "We stood by the café.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat on the bench by the café.",
+                "uk": "У записі звучить We sat on the bench by the café."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит We sat on the bench by the café.",
+                "uk": "У записі звучить We sat on the bench by the café."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви не знаєте, де сумка, але хотіли б знати.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i04:r1",
+            "text": "knew"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i04:r2",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i04:r3",
+            "text": "knowing"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви не знаєте, де сумка, але хотіли б знати.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы не знаете, где сумка, но хотели бы знать.",
+            "uk": "Ви не знаєте, де сумка, але хотіли б знати."
+          },
+          "gappedTargetPhrase": "I wish I ___ where it was.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-53:i04:r1",
+              "text": "knew"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i04:r2",
+              "text": "know"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i04:r3",
+              "text": "knowing"
+            }
+          ],
+          "testedDimension": "Ви не знаєте, де сумка, але хотіли б знати.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, де сумка, але хотіли б знати.",
+              "feedbackByLocale": {
+                "ru": "Wish + knew о ситуации сейчас.",
+                "uk": "Wish + knew про ситуацію зараз."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви не знаєте, де сумка, але хотіли б знати.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма knew.",
+                "uk": "Потрібна форма knew."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:rejoin",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — rejoin",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:rejoin:audio"
+        ],
+        "accessibilityLabel": "Картка слова — rejoin",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:rejoin:audio",
+            "transcript": "rejoin"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:rejoin:r1",
+              "targetText": "rejoin",
+              "meaningByLocale": {
+                "ru": "Снова присоединиться.",
+                "uk": "Знову приєднатися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "rejoin",
+            "definitionByLocale": {
+              "ru": "Снова присоединиться.",
+              "uk": "Знову приєднатися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, де знову приєднаєтеся до друзів.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, де знову приєднаєтеся до друзів.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I will rejoin you at the café.",
+          "localizedMeaning": {
+            "ru": "Скажите, где снова присоединитесь к друзьям.",
+            "uk": "Скажіть, де знову приєднаєтеся до друзів."
+          },
+          "orderedTokens": [
+            "I",
+            "will",
+            "rejoin",
+            "you",
+            "at",
+            "the",
+            "café"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Запитайте працівника, чи не бачив він синьої сумки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i06:audio"
+        ],
+        "accessibilityLabel": "Запитайте працівника, чи не бачив він синьої сумки.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i06:audio",
+            "transcript": "Have you seen a blue bag?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Have you seen a blue bag?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i07:r1",
+            "text": "There is a bag behind the counter."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i07:r2",
+            "text": "There is a bag under the table."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i07:r3",
+            "text": "There are bags behind the counter."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i07:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i07:audio",
+            "transcript": "There is a bag behind the counter."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:i07:r1",
+              "targetText": "There is a bag behind the counter.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i07:r2",
+              "targetText": "There is a bag under the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i07:r3",
+              "targetText": "There are bags behind the counter.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a bag behind the counter.",
+                "uk": "У записі звучить There is a bag behind the counter."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит There is a bag behind the counter.",
+                "uk": "У записі звучить There is a bag behind the counter."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:locate",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — locate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:locate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — locate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:locate:audio",
+            "transcript": "locate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:locate:r1",
+              "targetText": "locate",
+              "meaningByLocale": {
+                "ru": "Найти, установить местоположение.",
+                "uk": "Знайти, встановити місцезнаходження."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "locate",
+            "definitionByLocale": {
+              "ru": "Найти, установить местоположение.",
+              "uk": "Знайти, встановити місцезнаходження."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Попросіть допомогти знайти сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Попросіть допомогти знайти сумку.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Can you help me locate my bag?",
+          "localizedMeaning": {
+            "ru": "Попросите помочь найти сумку.",
+            "uk": "Попросіть допомогти знайти сумку."
+          },
+          "orderedTokens": [
+            "Can",
+            "you",
+            "help",
+            "me",
+            "locate",
+            "my",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Уточніть час виходу з кафе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i09:r1",
+            "text": "left"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i09:r2",
+            "text": "have left"
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i09:r3",
+            "text": "leaving"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Уточніть час виходу з кафе.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Уточните время ухода из кафе.",
+            "uk": "Уточніть час виходу з кафе."
+          },
+          "gappedTargetPhrase": "I ___ the café an hour ago.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-53:i09:r1",
+              "text": "left"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i09:r2",
+              "text": "have left"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i09:r3",
+              "text": "leaving"
+            }
+          ],
+          "testedDimension": "Уточніть час виходу з кафе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Уточніть час виходу з кафе.",
+              "feedbackByLocale": {
+                "ru": "С an hour ago используем left.",
+                "uk": "Із an hour ago використовуємо left."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i09:r3",
+              "correct": false,
+              "testedDimension": "Уточніть час виходу з кафе.",
+              "feedbackByLocale": {
+                "ru": "Нужен Past Simple: left.",
+                "uk": "Потрібен Past Simple: left."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте прохання працівника.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i10:audio"
+        ],
+        "accessibilityLabel": "Почуйте прохання працівника.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i10:audio",
+            "transcript": "Please describe your bag."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Please describe your bag.",
+          "orderedTokens": [
+            "Please",
+            "describe",
+            "your",
+            "bag"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i11",
+        "ordinal": 17,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть колір і розмір: сумка синя й маленька.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i11:audio"
+        ],
+        "accessibilityLabel": "Уточніть колір і розмір: сумка синя й маленька.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i11:audio",
+            "transcript": "It is small and blue."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "It is small and blue.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:word:reappear",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — reappear",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:word:reappear:audio"
+        ],
+        "accessibilityLabel": "Картка слова — reappear",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:word:reappear:audio",
+            "transcript": "reappear"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:word:reappear:r1",
+              "targetText": "reappear",
+              "meaningByLocale": {
+                "ru": "Снова появиться.",
+                "uk": "Знову з’явитися."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "reappear",
+            "definitionByLocale": {
+              "ru": "Снова появиться.",
+              "uk": "Знову з’явитися."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Перш ніж піти по сумку, попросіть друга чекати на ваше повернення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Перш ніж піти по сумку, попросіть друга чекати на ваше повернення.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Wait here until I reappear.",
+          "localizedMeaning": {
+            "ru": "Перед уходом за сумкой попросите друга ждать вашего возвращения.",
+            "uk": "Перш ніж піти по сумку, попросіть друга чекати на ваше повернення."
+          },
+          "orderedTokens": [
+            "Wait",
+            "here",
+            "until",
+            "I",
+            "reappear"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i13",
+        "ordinal": 20,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-53:i13:r1",
+            "text": "The waiter brought my bag back."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i13:r2",
+            "text": "The waiter brought my coat back."
+          },
+          {
+            "responseId": "en:lesson-27:session-53:i13:r3",
+            "text": "The waiter took my bag away."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i13:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i13:audio",
+            "transcript": "The waiter brought my bag back."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-53:i13:r1",
+              "targetText": "The waiter brought my bag back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i13:r2",
+              "targetText": "The waiter brought my coat back.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i13:r3",
+              "targetText": "The waiter took my bag away.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-53:i13:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The waiter brought my bag back.",
+                "uk": "У записі звучить The waiter brought my bag back."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-53:i13:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит The waiter brought my bag back.",
+                "uk": "У записі звучить The waiter brought my bag back."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Порадьте другові перевірити кишені сумки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Порадьте другові перевірити кишені сумки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If I were you, I would check the pockets.",
+          "localizedMeaning": {
+            "ru": "Посоветуйте другу проверить карманы сумки.",
+            "uk": "Порадьте другові перевірити кишені сумки."
+          },
+          "orderedTokens": [
+            "If",
+            "I",
+            "were",
+            "you,",
+            "I",
+            "would",
+            "check",
+            "the",
+            "pockets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i15",
+        "ordinal": 22,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Повідомте, що ключі вже знайшлися.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i15:audio"
+        ],
+        "accessibilityLabel": "Повідомте, що ключі вже знайшлися.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i15:audio",
+            "transcript": "I have already found my keys."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I have already found my keys.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть з результату: If we had more time, we would check the park.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть з результату: If we had more time, we would check the park.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "We would check the park if we had more time.",
+          "localizedMeaning": {
+            "ru": "Начните с результата: If we had more time, we would check the park.",
+            "uk": "Почніть з результату: If we had more time, we would check the park."
+          },
+          "orderedTokens": [
+            "We",
+            "would",
+            "check",
+            "the",
+            "park",
+            "if",
+            "we",
+            "had",
+            "more",
+            "time"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-53:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Подякуйте працівникові за допомогу.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-53:i17:audio"
+        ],
+        "accessibilityLabel": "Подякуйте працівникові за допомогу.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-53:i17:audio",
+            "transcript": "Thank you for your help."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Thank you for your help.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-53:i01",
+      "correctText": "Could you wait here for me?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:word:retrace",
+      "correctText": "retrace",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i02",
+      "correctText": "Let’s retrace our steps.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i03",
+      "correctText": "We sat on the bench by the café.",
+      "correctResponseId": "en:lesson-27:session-53:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i04",
+      "correctText": "knew",
+      "correctResponseId": "en:lesson-27:session-53:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:word:rejoin",
+      "correctText": "rejoin",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i05",
+      "correctText": "I will rejoin you at the café.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i06",
+      "correctText": "Have you seen a blue bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i07",
+      "correctText": "There is a bag behind the counter.",
+      "correctResponseId": "en:lesson-27:session-53:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:word:locate",
+      "correctText": "locate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i08",
+      "correctText": "Can you help me locate my bag?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i09",
+      "correctText": "left",
+      "correctResponseId": "en:lesson-27:session-53:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i10",
+      "correctText": "Please describe your bag.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i11",
+      "correctText": "It is small and blue.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:word:reappear",
+      "correctText": "reappear",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i12",
+      "correctText": "Wait here until I reappear.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i13",
+      "correctText": "The waiter brought my bag back.",
+      "correctResponseId": "en:lesson-27:session-53:i13:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i14",
+      "correctText": "If I were you, I would check the pockets.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i15",
+      "correctText": "I have already found my keys.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i16",
+      "correctText": "We would check the park if we had more time.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-53:i17",
+      "correctText": "Thank you for your help.",
+      "correctResponseId": null
+    }
+  ]
+}

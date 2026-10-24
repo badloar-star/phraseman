@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
+    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Посоветовать вернуться",
+        "uk": "Порадити повернутися"
+      },
+      "bodyByLocale": {
+        "ru": "Друг заметил пропажу сумки вскоре после выхода из кафе. Вы считаете, что стоит вернуться туда. Посоветуйте: If I were you, I would go back — на твоём месте я бы вернулся. If I were you — на твоём месте; I would go back — я бы вернулся. В этом совете используем were, а после would — начальную форму go.\n\nСобираем предложение: If I were you + I would + go back — на твоём месте → я бы → действие в начальной форме; после условия перед I ставим запятую.",
+        "uk": "Друг помітив зникнення сумки невдовзі після виходу з кафе. Ви вважаєте, що варто повернутися туди. Порадьте: If I were you, I would go back — на твоєму місці я б повернувся. If I were you — на твоєму місці; I would go back — я б повернувся. У цій пораді використовуємо were, а після would — початкову форму go.\n\nСкладаємо речення: If I were you + I would + go back — на твоєму місці → я б → дія в початковій формі; після умови перед I ставимо кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-53:intro1:r1",
+              "text": "If I were you, I would go back."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro1:r2",
+              "text": "If I am you, I would go back."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro1:r3",
+              "text": "If I were you, I would went back."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-53:intro1:r1",
+              "text": "If I were you, I would go back."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro1:r2",
+              "text": "If I am you, I would go back."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro1:r3",
+              "text": "If I were you, I would went back."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить о потерянной сумке",
+        "uk": "Запитати про загублену сумку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы возвращаетесь в кафе и обращаетесь к сотруднику. Вам нужно узнать, не видел ли он вашу синюю сумку. Спросите: Have you seen a blue bag? — вы не видели синюю сумку? Важен ответ, который поможет найти её сейчас; конкретное прошлое время не названо. В вопросе Present Perfect have стоит перед you, а после подлежащего нужна третья форма see — seen.\n\nСобираем предложение: Have + you + seen + a blue bag? — have для вопроса → кто → третья форма глагола → что ищем.",
+        "uk": "Ви повертаєтеся до кафе й звертаєтеся до працівника. Вам потрібно дізнатися, чи не бачив він вашої синьої сумки. Запитайте: Have you seen a blue bag? — ви не бачили синьої сумки? Важлива відповідь, яка допоможе знайти її зараз; конкретний минулий час не названий. У запитанні Present Perfect have стоїть перед you, а після підмета потрібна третя форма see — seen.\n\nСкладаємо речення: Have + you + seen + a blue bag? — have для запитання → хто → третя форма дієслова → що шукаємо."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-53:intro2:r1",
+              "text": "Have you seen a blue bag?"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro2:r2",
+              "text": "Have you saw a blue bag?"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro2:r3",
+              "text": "Have you seeing a blue bag?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-53:intro2:r1",
+              "text": "Have you seen a blue bag?"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro2:r2",
+              "text": "Have you saw a blue bag?"
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro2:r3",
+              "text": "Have you seeing a blue bag?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Хотелось бы знать, где сумка",
+        "uk": "Хотілося б знати, де сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не нашли сумку и не знаете, где она. Скажите другу: I wish I knew where it was — жаль, что я не знаю, где она. Wish + knew выражает желание о нынешнем положении. Внутри where it was сохраняется порядок it was: это часть сообщения о желании, а не отдельный вопрос. Не добавляйте do или did.\n\nСобираем предложение: I wish + I knew + where it was — желание → что хотелось бы знать → содержание: где она; внутри последней части сначала it, затем was.",
+        "uk": "Ви ще не знайшли сумку й не знаєте, де вона. Скажіть другові: I wish I knew where it was — шкода, що я не знаю, де вона. Wish + knew виражає бажання щодо теперішнього становища. Усередині where it was зберігається порядок it was: це частина повідомлення про бажання, а не окреме запитання. Не додавайте do або did.\n\nСкладаємо речення: I wish + I knew + where it was — бажання → що хотілося б знати → зміст: де вона; усередині останньої частини спочатку it, потім was."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-53:intro3:r1",
+              "text": "I wish I knew where it was."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro3:r2",
+              "text": "I wish I know where it was."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro3:r3",
+              "text": "I wish I knowing where it was."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-53:intro3:r1",
+              "text": "I wish I knew where it was."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro3:r2",
+              "text": "I wish I know where it was."
+            },
+            {
+              "responseId": "en:lesson-27:session-53:intro3:r3",
+              "text": "I wish I knowing where it was."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8fbdc6300563c2ba7bb8af3cd2f8551363bb32806edc4e3e94ceabcf7c44b0df"
+}

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Уточнить ожидания",
-        "uk": "Уточнити очікування"
+        "ru": "Признать ошибочное предположение",
+        "uk": "Визнати помилкове припущення"
       },
       "bodyByLocale": {
-        "ru": "Expectation — ожидание: то, что, по вашему мнению, должно произойти. That was my expectation — именно этого я ожидал. Вы думали, что прогулка будет короткой. Assumption — предположение, принятое без проверки. I made the wrong assumption — я сделал неверное предположение. Друг не обещал короткий маршрут: вы просто так решили. Теперь можно спросить: How far are we walking? — как далеко мы идём пешком?",
-        "uk": "Expectation — очікування: те, що, на вашу думку, має статися. That was my expectation — саме цього я очікував. Ви думали, що прогулянка буде короткою. Assumption — припущення, прийняте без перевірки. I made the wrong assumption — я зробив хибне припущення. Друг не обіцяв короткого маршруту: ви просто так вирішили. Тепер можна запитати: How far are we walking? — як далеко ми йдемо пішки?"
+        "ru": "Вы решили, что прогулка будет короткой, хотя друг этого не обещал. Теперь оказалось, что маршрут длинный. Признайте свою ошибку: I made the wrong assumption — я сделал неверное предположение. Assumption — предположение, принятое без проверки. Make an assumption — сделать предположение; made — прошедшая форма make. The wrong assumption означает то самое предположение о длине прогулки.\n\nСобираем предложение: I + made + the wrong assumption — кто → действие в прошлом → какое предположение сделал.",
+        "uk": "Ви вирішили, що прогулянка буде короткою, хоча друг цього не обіцяв. Тепер виявилося, що маршрут довгий. Визнайте свою помилку: I made the wrong assumption — я зробив хибне припущення. Assumption — припущення, прийняте без перевірки. Make an assumption — зробити припущення; made — минула форма make. The wrong assumption означає саме те припущення про довжину прогулянки.\n\nСкладаємо речення: I + made + the wrong assumption — хто → дія в минулому → яке припущення зробив."
       },
       "question": {
         "interactionId": "en:lesson-27:session-49:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Понять друг друга",
-        "uk": "Зрозуміти одне одного"
+        "ru": "Хотелось бы больше сил",
+        "uk": "Хотілося б більше сил"
       },
       "bodyByLocale": {
-        "ru": "Perspective — взгляд на ситуацию, точка зрения. I can see your perspective — я понимаю твою точку зрения. Друг хотел долгой прогулки, а вы устали и хотите поскорее вернуться. I wish I had more energy — хотелось бы, чтобы у меня было больше сил. Had после wish выражает желание сейчас. If I were you, I would take a break — на твоём месте я бы сделал перерыв. Можно предложить решение без спора о том, кто прав.",
-        "uk": "Perspective — погляд на ситуацію, точка зору. I can see your perspective — я розумію твою точку зору. Друг хотів довгої прогулянки, а ви втомилися й хочете швидше повернутися. I wish I had more energy — хотілося б, щоб я мав більше сил. Had після wish виражає бажання зараз. If I were you, I would take a break — на твоєму місці я б зробив перерву. Можна запропонувати рішення без суперечки про те, хто має рацію."
+        "ru": "Вы устали во время прогулки и чувствуете, что сил почти нет. Скажите: I wish I had more energy — хотелось бы, чтобы у меня было больше сил. Energy здесь — силы, энергия. После I wish используем had: вы представляете желаемое положение сейчас, которое отличается от действительности. Это не рассказ о том, сколько сил было раньше.\n\nСобираем предложение: I wish + I + had + more energy — желание → кто → had → чего хотелось бы больше.",
+        "uk": "Ви втомилися під час прогулянки й відчуваєте, що сил майже немає. Скажіть: I wish I had more energy — хотілося б, щоб у мене було більше сил. Energy тут — сили, енергія. Після I wish використовуємо had: ви уявляєте бажане становище зараз, яке відрізняється від дійсності. Це не розповідь про те, скільки сил було раніше.\n\nСкладаємо речення: I wish + I + had + more energy — бажання → хто → had → чого хотілося б більше."
       },
       "question": {
         "interactionId": "en:lesson-27:session-49:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Изменить маршрут",
-        "uk": "Змінити маршрут"
+        "ru": "Когда проверили расписание",
+        "uk": "Коли перевірили розклад"
       },
       "bodyByLocale": {
-        "ru": "Unexpectedly — неожиданно. It started raining unexpectedly — неожиданно начался дождь. I have already checked the bus times — я уже посмотрел расписание автобусов: результат важен сейчас. I checked them ten minutes ago — я посмотрел его десять минут назад: конкретное прошлое время. We would get home sooner if we took the bus — мы бы добрались домой быстрее, если бы поехали автобусом. Would get — результат, took — условие. Можно начать с условия: If we took the bus, we would get home sooner.",
-        "uk": "Unexpectedly — несподівано. It started raining unexpectedly — несподівано почався дощ. I have already checked the bus times — я вже подивився розклад автобусів: результат важливий зараз. I checked them ten minutes ago — я подивився його десять хвилин тому: конкретний минулий час. We would get home sooner if we took the bus — ми б дісталися додому швидше, якби поїхали автобусом. Would get — результат, took — умова. Можна почати з умови: If we took the bus, we would get home sooner."
+        "ru": "Друг спрашивает, когда вы смотрели расписание автобусов. Это было десять минут назад. Ответьте: I checked them ten minutes ago — я проверил его десять минут назад. Them относится к bus times, буквально «времени отправления автобусов». Ten minutes ago называет законченный момент. Поэтому нужен Past Simple checked, без have.\n\nСобираем предложение: I + checked + them + ten minutes ago — кто → действие в прошлом → что проверил → когда.",
+        "uk": "Друг запитує, коли ви дивилися розклад автобусів. Це було десять хвилин тому. Дайте відповідь: I checked them ten minutes ago — я перевірив його десять хвилин тому. Them стосується bus times, буквально «часу відправлення автобусів». Ten minutes ago називає завершений момент. Тому потрібен Past Simple checked, без have.\n\nСкладаємо речення: I + checked + them + ten minutes ago — хто → дія в минулому → що перевірив → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d462733547158d0f1a4259c272a5365ab5558a6db7f8bb1301ac08c54cd2b120"
+  "introFingerprint": "be6dfeefaa7b78db04d32c4025807a0b5160ca37d411c0afaf76303e61560a79"
 }

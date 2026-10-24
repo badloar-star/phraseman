@@ -106,6 +106,7 @@ import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene
 import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
+import { useHomeFriendPairRow } from '../../hooks/use_home_friend_pair_row';
 import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
 import { getV2Palette, V2 } from '../../constants/v2Style';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
@@ -575,6 +576,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // зачем (D49, PM-259): живые задания дня вместо заглушки — прогресс, done и монеты
     // считает modules/today-tasks; хук стоит до раннего return (правила хуков).
     const todayTasks = useTodayTasks(lang, studyTarget);
+    // зачем (координатор 22.10, идея 1 «Серия вдвоём» 8 · МОМЕНТЫ, макет friends-full homeRow): строка пары первой в «Сегодня»; флаг
+    // FRIENDS_TOGETHER_UI_ENABLED и ноль чтений Firestore — внутри хука; тап — как «Пройти урок» (go ниже, зовётся только при тапе)
+    const homeFriendPairRow = useHomeFriendPairRow(todayTasks.tasks, (task) => go(task.route));
     // зачем (Сверка home4, «в приложении нет строки урока (0 из 2)»; сперва логи): какой набор дня пришёл и что осталось в карточке «Сегодня» — набор дня = 3 типа из 6, детерминированно от (владелец, день) (D49, selectTodayTaskKinds),
     // поэтому урока в наборе может не быть, а видео со «Сценой» убрано из карточки
     const todayKindsKey = todayTasks.tasks.map((task) => `${task.kind}:${task.progress}/${task.target}${task.done ? '✓' : ''}`).join(',');
@@ -2800,6 +2804,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               title={HOME_SCENE_V2_ENABLED ? homeTodayTitle : homeTodayTitle.toUpperCase()}
               scene={HOME_SCENE_V2_ENABLED ? { count: todayOfLine(lang, homeTodayCardTasks.filter((task) => task.done).length, homeTodayCardTasks.length) } : null}
               tasks={homeTodayCardTasks}
+              pairRow={homeFriendPairRow}
               onOpenTask={(task) => go(task.route)}
               surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
                 title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),

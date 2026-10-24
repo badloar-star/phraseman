@@ -15,6 +15,7 @@ import HomeV2SeeAllButton from './HomeV2SeeAllButton';
 import { useTheme } from '../../ThemeContext';
 import { homeSceneTokensForTheme } from './scene/home_scene_tokens';
 import { todayRingsOnCard } from './today_scene/today_scene_ring_look';
+import type { HomeFriendPairRow } from '../../../hooks/use_home_friend_pair_row';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
   lesson: 'book-outline',
@@ -38,6 +39,8 @@ type Props = {
   doneColors?: readonly string[] | null;
   /** зачем (владелец 22.10, scenes-compact в.2; снимок Сверки home3): «Сцена» Главной — белая карточка r28 с заголовком «Сегодня · N из M» внутри, строки без плашек, разделители тонкой линией. */
   scene?: Readonly<{ count: string }> | null;
+  /** «Серия вдвоём · Лидия» (идея 1, 8 · МОМЕНТЫ; макет friends-full homeRow): первая строка над задачами — друг уже занимался, я ещё нет; null/нет — не рисуется. */
+  pairRow?: HomeFriendPairRow | null;
 };
 
 /**
@@ -62,6 +65,7 @@ function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
   if ((a.scene?.count ?? null) !== (b.scene?.count ?? null)) return false;
   if ((a.surveyRow?.title ?? null) !== (b.surveyRow?.title ?? null) || (a.surveyRow?.subtitle ?? null) !== (b.surveyRow?.subtitle ?? null)) return false;
   if ((a.seeAll?.label ?? null) !== (b.seeAll?.label ?? null)) return false;
+  if ((a.pairRow?.friendUid ?? null) !== (b.pairRow?.friendUid ?? null) || (a.pairRow?.title ?? null) !== (b.pairRow?.title ?? null) || (a.pairRow?.subtitle ?? null) !== (b.pairRow?.subtitle ?? null)) return false;
   const ac = a.doneColors ?? [];
   const bc = b.doneColors ?? [];
   if (ac.length !== bc.length || ac.some((c, i) => c !== bc[i])) return false;
@@ -74,8 +78,8 @@ function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
 
 type ViewProps = Props & Readonly<{ latestRef: React.MutableRefObject<Props> }>;
 
-const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, scene, latestRef }: ViewProps) {
-  useRenderCause('home:today', () => ({ title, tasks, surveyRow, seeAll, doneColors }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
+const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, surveyRow, seeAll, doneColors, scene, pairRow, latestRef }: ViewProps) {
+  useRenderCause('home:today', () => ({ title, tasks, surveyRow, seeAll, doneColors, pairRow }), renderWindowEpoch()); // зачем (координатор 15.10): причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
@@ -105,6 +109,24 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
           <Text accessibilityRole="header" style={[s.sceneTitle, { color: g.text }]}>{title}</Text>
           <Text style={[s.sceneCount, { color: g.secondary }]}>{scene.count}</Text>
         </V2Pressable>
+        {/* зачем (идея 1 «Серия вдвоём», 8 · МОМЕНТЫ; макет friends-full homeRow): первая строка — друг уже занимался, я ещё нет; тап — как «Пройти урок» */}
+        {pairRow ? (
+          <V2Pressable
+            testID="home-v2-today-pair"
+            accessibilityRole="button"
+            accessibilityLabel={`${pairRow.title}. ${pairRow.subtitle}. 0/1`}
+            onPress={() => latestRef.current.pairRow?.onPress()}
+            scaleTo={0.98}
+            style={s.sceneRow}
+          >
+            <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="flame" size={18} color={g.text} /></View>
+            <View style={s.copy}>
+              <Text style={[s.taskTitle, { color: g.text }]}>{pairRow.title}</Text>
+              <Text style={[s.taskSubtitle, { color: g.secondary }]}>{pairRow.subtitle}</Text>
+            </View>
+            <Text style={[s.counter, { color: g.secondary }]}>0/1</Text>
+          </V2Pressable>
+        ) : null}
         {tasks.map((task, index) => {
           const doneColor = doneColors?.[index] ?? sceneTicks[index] ?? g.good;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
@@ -120,7 +142,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
                 latestRef.current.onOpenTask(task);
               }}
               scaleTo={0.98}
-              style={[s.sceneRow, index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` } : null]} // shadow-ok: разделитель строк (линия сверху, не обводка контейнера)
+              style={[s.sceneRow, index > 0 || pairRow ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` } : null]} // shadow-ok: разделитель строк (линия сверху, не обводка контейнера)
             >
               <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name={KIND_ICON[task.kind]} size={18} color={g.text} /></View>
               <View style={s.copy}>
@@ -163,6 +185,25 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
         </View>
       ) : null}
       <View style={s.list}>
+        {/* зачем (идея 1 «Серия вдвоём», 8 · МОМЕНТЫ; макет friends-full homeRow): первая строка над задачами, отступ 10 снизу — как в макете */}
+        {pairRow ? (
+          <V2Pressable
+            testID="home-v2-today-pair"
+            accessibilityRole="button"
+            accessibilityLabel={`${pairRow.title}. ${pairRow.subtitle}. 0/1`}
+            onPress={() => latestRef.current.pairRow?.onPress()}
+            scaleTo={0.98}
+            style={[s.row, rowGlass, s.pairGap]}
+          >
+            <View style={[s.check, { borderColor: p.textMuted }]} /* guard-ok: D43 отметка-кружок, как у заданий */ />
+            <V2IconTile name="flame" size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
+            <View style={s.copy}>
+              <Text style={[s.taskTitle, { color: p.text }]}>{pairRow.title}</Text>
+              <Text style={[s.taskSubtitle, { color: p.textSecondary }]}>{pairRow.subtitle}</Text>
+            </View>
+            <Text style={[s.counter, { color: p.textSecondary }]}>0/1</Text>
+          </V2Pressable>
+        ) : null}
         {tasks.map((task, index) => {
           const doneColor = doneColors?.[index] ?? p.iconTint;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
@@ -246,6 +287,7 @@ const s = StyleSheet.create({
   header: { ...V2_TYPE.overline, fontSize: 13, lineHeight: 17, letterSpacing: 1.6 },
   // зачем («Тень» 12.10): между строками-плашками ≥ 10, иначе тени слипаются
   list: { gap: 10 },
+  pairGap: { marginBottom: 10 }, // строка «Серия вдвоём» отделена от задач дня (макет friends-full: margin-bottom 10)
   row: {
     minHeight: 58,
     paddingVertical: 10, // зачем (13.10): строка с переносом текста (опрос) растёт, а не садится на нижний край; задачи в 2 строки по 37 px остаются 58

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Покупка без спешки",
-        "uk": "Покупка без поспіху"
+        "ru": "Если бы хватало денег",
+        "uk": "Якби вистачало грошей"
       },
       "bodyByLocale": {
-        "ru": "Вы выбираете вещи для комнаты. Wisely — разумно, с обдуманным выбором: Spend your money wisely — трать деньги разумно. Вы представляете, что сделали бы с большей суммой: I would buy a better bed if I had enough money — я бы купил кровать получше, если бы у меня было достаточно денег. После would — buy, после if — had. Это воображаемый вариант сейчас, а не рассказ о прошлой покупке.",
-        "uk": "Ви обираєте речі для кімнати. Wisely — розумно, з обдуманим вибором: Spend your money wisely — витрачай гроші розумно. Ви уявляєте, що зробили б із більшою сумою: I would buy a better bed if I had enough money — я б купив краще ліжко, якби в мене було достатньо грошей. Після would — buy, після if — had. Це уявний варіант зараз, а не розповідь про минулу покупку."
+        "ru": "Вы выбираете кровать для гостей, но денег на понравившуюся модель не хватает. Объясните: I would buy a better bed if I had enough money — я бы купил кровать получше, если бы у меня было достаточно денег. Собираем: I + would buy + a better bed + if I had enough money — кто, что сделал бы, что купил бы, при каком условии. После would нужна buy, не bought. В условии используем had без would: нужной суммы сейчас нет.",
+        "uk": "Ви вибираєте ліжко для гостей, але грошей на модель, яка сподобалася, бракує. Поясніть: I would buy a better bed if I had enough money — я б купив краще ліжко, якби мав достатньо грошей. Складаємо: I + would buy + a better bed + if I had enough money — хто, що зробив би, що купив би, за якої умови. Після would потрібна buy, не bought. В умові використовуємо had без would: потрібної суми зараз немає."
       },
       "question": {
         "interactionId": "en:lesson-27:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Ждать близких",
-        "uk": "Чекати на близьких"
+        "ru": "Если бы работали рядом",
+        "uk": "Якби працювали поруч"
       },
       "bodyByLocale": {
-        "ru": "Eagerly — с нетерпением, с большим желанием. The children are eagerly waiting for you — дети с нетерпением ждут тебя. Deeply — глубоко; с чувствами часто означает «очень сильно». She cares deeply about her family — семья для неё очень важна, она очень заботится о своих близких. Вы хотите чаще приезжать: I would see them more often if I worked nearby — я бы чаще с ними виделся, если бы работал рядом. Сейчас работа далеко, поэтому здесь воображаемое условие worked.",
-        "uk": "Eagerly — з нетерпінням, із великим бажанням. The children are eagerly waiting for you — діти з нетерпінням чекають на тебе. Deeply — глибоко; з почуттями часто означає «дуже сильно». She cares deeply about her family — сім’я для неї дуже важлива, вона дуже піклується про своїх близьких. Ви хочете частіше приїжджати: I would see them more often if I worked nearby — я б частіше з ними бачився, якби працював поруч. Зараз робота далеко, тому тут уявна умова worked."
+        "ru": "Вы редко видитесь с близкими, потому что работаете далеко от них. Объясните: I would see them more often if I worked nearby — я бы чаще с ними виделся, если бы работал рядом. Собираем: I + would see + them + more often + if I worked nearby — кто, что делал бы, с кем, как часто, при каком условии. Them заменяет близких. После would нужна see; worked после if представляет другое положение сейчас.",
+        "uk": "Ви рідко бачитеся з близькими, бо працюєте далеко від них. Поясніть: I would see them more often if I worked nearby — я б частіше з ними бачився, якби працював поруч. Складаємо: I + would see + them + more often + if I worked nearby — хто, що робив би, з ким, як часто, за якої умови. Them замінює близьких. Після would потрібна see; worked після if представляє інше становище зараз."
       },
       "question": {
         "interactionId": "en:lesson-27:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Почти готово",
-        "uk": "Майже готово"
+        "ru": "Когда собрали кровать",
+        "uk": "Коли зібрали ліжко"
       },
       "bodyByLocale": {
-        "ru": "Practically здесь означает «практически, почти». We have practically finished — мы практически закончили. Осталось немного работы. Это не всегда «практично»: смысл зависит от фразы. Вы собирали кровать вчера: We built it yesterday — мы собрали её вчера. Yesterday называет законченное время, поэтому built без have. Комната почти готова; осталось найти винтик, который всё это время лежал у вас в кармане.",
-        "uk": "Practically тут означає «практично, майже». We have practically finished — ми практично закінчили. Залишилося небагато роботи. Це не завжди «практично» в сенсі зручності: значення залежить від фрази. Ви складали ліжко вчора: We built it yesterday — ми склали його вчора. Yesterday називає завершений час, тому built без have. Кімната майже готова; залишилося знайти гвинтик, який увесь цей час лежав у вас у кишені."
+        "ru": "Гость замечает новую кровать и спрашивает, когда вы её собрали. Ответьте: We built it yesterday — мы собрали её вчера. Собираем: We + built + it + yesterday — кто, действие в прошлом, что собрали, когда. Built — прошедшая форма build, не builded. It заменяет кровать. Yesterday указывает законченное время, поэтому здесь built без have.",
+        "uk": "Гість помічає нове ліжко й запитує, коли ви його зібрали. Дайте відповідь: We built it yesterday — ми зібрали його вчора. Складаємо: We + built + it + yesterday — хто, дія в минулому, що зібрали, коли. Built — минула форма build, не builded. It замінює ліжко. Yesterday указує завершений час, тому тут built без have."
       },
       "question": {
         "interactionId": "en:lesson-27:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b8f825525e19a81bf8809ab3bf5fbbce7ab56b39d843dea8709459a0e033e8d5"
+  "introFingerprint": "1cf8cc5d2a20285d55206be3a8b34687ddc46f0a722efc7113b22d9efef2453d"
 }

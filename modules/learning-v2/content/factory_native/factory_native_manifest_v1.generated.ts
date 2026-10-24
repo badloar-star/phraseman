@@ -20397,7 +20397,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 1,
-    sourceFingerprint: "06ccff0528c04bf1501a84102e5595a696c8397f47665b4cf8941d83947d590a",
+    sourceFingerprint: "58c4fa75019308c73003e08866f8f48ab5ebc1f854c0533ab1724e0f95614d92",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["В условии нужно had, без would.","После would нужна начальная форма travel."],["После would нужно grow.","В условии нужно had без would."],["После would не ставим to.","Прошедшая форма find — found."]],"uk":[["В умові потрібно had, без would.","Після would потрібна початкова форма travel."],["Після would потрібно grow.","В умові потрібно had без would."],["Після would не ставимо to.","Минула форма find — found."]]}),
@@ -20411,7 +20411,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 2,
-    sourceFingerprint: "86e3d864388133ceb51b09014c45bb98b1046e0720f6fb5958cfba853bf54341",
+    sourceFingerprint: "86c66ef89fe58ea8ae8ae45b1b78d3a91c8ed58366161d7944daa814b33d28e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна начальная форма talk.","В условии нужно had без would."],["С законченным yesterday здесь past simple.","Для вчерашнего события нужно called."],["После would нужно read без -ing.","В условии здесь had, не would have."]],"uk":[["Після would потрібна початкова форма talk.","В умові потрібно had без would."],["Із завершеним yesterday тут past simple.","Для вчорашньої події потрібно called."],["Після would потрібно read без -ing.","В умові тут had, не would have."]]}),
@@ -20425,7 +20425,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 3,
-    sourceFingerprint: "cafc07fd0a84efe53aba06085ba5f1609c8c2f7eba7bd310c44fbb8b61d60e0c",
+    sourceFingerprint: "90ddcc632974d5296d6548c2724b0e0536dcd2bf4995eb9c717c7e9c8a1b0164",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна начальная форма keep.","После if здесь had без would."],["Have took неверно; при законченном времени здесь took.","Речь о завершённой утренней прогулке: took."],["После would нужно visit.","В условии lived без would."]],"uk":[["Після would потрібна початкова форма keep.","Після if тут had без would."],["Have took неправильно; із завершеним часом тут took.","Йдеться про завершену ранкову прогулянку: took."],["Після would потрібно visit.","В умові lived без would."]]}),
@@ -20439,7 +20439,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 27, sessionOrdinal: 4,
-    sourceFingerprint: "e17f0f1a79e29731b7ca798edbde6c571995184cf74b490c3c47fa3f7518408d",
+    sourceFingerprint: "c3379441edae84f7e4d5a3fa3b030d75409199aa4764cf49b8b39f275be5e931",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После would нужна форма buy.","В условии had без would."],["После would нужно see.","В условии worked без would."],["При законченном yesterday здесь past simple.","Прошедшая форма build — built."]],"uk":[["Після would потрібна форма buy.","В умові had без would."],["Після would потрібно see.","В умові worked без would."],["Із завершеним yesterday тут past simple.","Минула форма build — built."]]}),

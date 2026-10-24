@@ -11,12 +11,12 @@
       "pageId": "en:lesson-08:session-53:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Одеться",
-        "uk": "Одягнутися"
+        "ru": "Одеться самостоятельно",
+        "uk": "Одягнутися самостійно"
       },
       "bodyByLocale": {
-        "ru": "Get dressed — одеться. I can get dressed — я умею одеваться. После can остаётся get. Выберите фразу об умении.",
-        "uk": "Get dressed — одягнутися. I can get dressed — я вмію одягатися. Після can залишається get. Виберіть фразу про вміння."
+        "ru": "Перед прогулкой взрослый предлагает помочь вам одеться, но вы уже умеете делать это самостоятельно. Вы отвечаете: I can get dressed — «Я умею одеваться». Get dressed означает «одеться». Начинаем с I, затем ставим can, чтобы сказать об умении. После can используем get без to и без -s; слово dressed остаётся частью сочетания get dressed.",
+        "uk": "Перед прогулянкою дорослий пропонує допомогти вам одягнутися, але ви вже вмієте робити це самостійно. Ви відповідаєте: I can get dressed — «Я вмію одягатися». Get dressed означає «одягнутися». Починаємо з I, потім ставимо can, щоб сказати про вміння. Після can використовуємо get без to й без -s; слово dressed залишається частиною сполучення get dressed."
       },
       "question": {
         "interactionId": "en:lesson-08:session-53:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-08:session-53:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Зубы и волосы",
-        "uk": "Зуби й волосся"
+        "ru": "Почистить зубы",
+        "uk": "Почистити зуби"
       },
       "bodyByLocale": {
-        "ru": "Brush your teeth — чистить зубы; comb your hair — расчёсывать волосы. You can brush your teeth — ты умеешь чистить зубы. Выберите фразу о зубах.",
-        "uk": "Brush your teeth — чистити зуби; comb your hair — розчісувати волосся. You can brush your teeth — ти вмієш чистити зуби. Виберіть фразу про зуби."
+        "ru": "Утром ребёнок просит почистить ему зубы, хотя уже научился делать это сам. Вы напоминаете: You can brush your teeth — «Ты умеешь чистить зубы». Brush your teeth означает «чистить зубы». Обращаемся к ребёнку с you, затем ставим can и brush без окончания -s. Your teeth показывает, что речь о его собственных зубах. После can не добавляем to.",
+        "uk": "Уранці дитина просить почистити їй зуби, хоча вже навчилася робити це сама. Ви нагадуєте: You can brush your teeth — «Ти вмієш чистити зуби». Brush your teeth означає «чистити зуби». Звертаємося до дитини з you, потім ставимо can і brush без закінчення -s. Your teeth показує, що йдеться про її власні зуби. Після can не додаємо to."
       },
       "question": {
         "interactionId": "en:lesson-08:session-53:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-08:session-53:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Умыться",
-        "uk": "Умитися"
+        "ru": "Умыться самостоятельно",
+        "uk": "Умитися самостійно"
       },
       "bodyByLocale": {
-        "ru": "Wash your face — умыться, вымыть лицо. You can wash your face — ты умеешь умываться. Your показывает, что речь о твоём лице. Выберите эту фразу.",
-        "uk": "Wash your face — умитися, вимити обличчя. You can wash your face — ти вмієш умиватися. Your показує, що йдеться про твоє обличчя. Виберіть цю фразу."
+        "ru": "Ребёнок освоил умывание и утром снова просит помощи. Вы подбадриваете его: You can wash your face — «Ты умеешь умываться». Wash your face буквально означает «мыть своё лицо». Начинаем с you can, затем ставим wash без to. В конце your face называет, что нужно мыть; your связывает лицо с тем, к кому вы обращаетесь.",
+        "uk": "Дитина навчилася вмиватися й уранці знову просить допомоги. Ви підбадьорюєте її: You can wash your face — «Ти вмієш умиватися». Wash your face буквально означає «мити своє обличчя». Починаємо з you can, потім ставимо wash без to. Наприкінці your face називає, що потрібно мити; your пов’язує обличчя з тим, до кого ви звертаєтеся."
       },
       "question": {
         "interactionId": "en:lesson-08:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9bdd62182eed23686c0d4db1b191a0cb4ad92d2dd08a769ea61237290788d631"
+  "introFingerprint": "b717f7dad020294d2a11f3a3757513d7c6f98122e32ac6cdd8f263762cbc7e64"
 }

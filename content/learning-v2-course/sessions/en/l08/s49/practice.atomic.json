@@ -1,0 +1,2331 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-49",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-49:word:research",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — research",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:research:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — research",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:research:audio",
+            "transcript": "research"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:research:r1",
+              "targetText": "research",
+              "meaningByLocale": {
+                "ru": "исследовать, изучать вопрос. I can research it. — «Я могу изучить этот вопрос». Здесь research — действие: искать и изучать сведения.",
+                "uk": "досліджувати, вивчати питання. I can research it. — «Я можу дослідити це питання». Тут research — дія: шукати й вивчати відомості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "research",
+            "definitionByLocale": {
+              "ru": "исследовать, изучать вопрос. I can research it. — «Я могу изучить этот вопрос». Здесь research — действие: искать и изучать сведения.",
+              "uk": "досліджувати, вивчати питання. I can research it. — «Я можу дослідити це питання». Тут research — дія: шукати й вивчати відомості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите «Я могу изучить этот вопрос»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Я могу изучить этот вопрос»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can research it.",
+          "localizedMeaning": {
+            "ru": "Скажите «Я могу изучить этот вопрос»",
+            "uk": "Скажіть «Я можу дослідити це питання»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "research",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i02:r1",
+            "text": "research"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i02:r2",
+            "text": "newspaper"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i02:r3",
+            "text": "camp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i02:audio",
+            "transcript": "research"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:i02:r1",
+              "targetText": "research",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i02:r2",
+              "targetText": "newspaper",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i02:r3",
+              "targetText": "camp",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `research`, а в этом варианте — `newspaper`.",
+                "uk": "У записі перше слово — `research`, а в цьому варіанті — `newspaper`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `research`, а в этом варианте — `camp`.",
+                "uk": "У записі перше слово — `research`, а в цьому варіанті — `camp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i03:r1",
+            "text": "research"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i03:r2",
+            "text": "to research"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i03:r3",
+            "text": "researches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+            "uk": "Виберіть форму для фрази «Я можу дослідити це питання»"
+          },
+          "gappedTargetPhrase": "I can ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-49:i03:r1",
+              "text": "research"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i03:r2",
+              "text": "to research"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i03:r3",
+              "text": "researches"
+            }
+          ],
+          "testedDimension": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+              "feedbackByLocale": {
+                "ru": "После can нужно research, без es.",
+                "uk": "Після can потрібне research, без es."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-49:i04:p1",
+              "target": "research",
+              "meaningByLocale": {
+                "ru": "исследовать",
+                "uk": "досліджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i04:p2",
+              "target": "canal",
+              "meaningByLocale": {
+                "ru": "канал",
+                "uk": "канал"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i04:p3",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i04:p4",
+              "target": "camp",
+              "meaningByLocale": {
+                "ru": "ночевать в палатке",
+                "uk": "ночувати в наметі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "research",
+            "canal",
+            "newspaper",
+            "camp"
+          ],
+          "rightColumn": [
+            "исследовать",
+            "канал",
+            "газета",
+            "ночевать в палатке"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i05:audio",
+            "transcript": "I can research it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can research it.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "research",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:word:verify",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — verify",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:verify:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — verify",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:verify:audio",
+            "transcript": "verify"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:verify:r1",
+              "targetText": "verify",
+              "meaningByLocale": {
+                "ru": "проверять достоверность, подтверждать. She can verify the date. — «Она может проверить дату».",
+                "uk": "перевіряти достовірність, підтверджувати. She can verify the date. — «Вона може перевірити дату»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "verify",
+            "definitionByLocale": {
+              "ru": "проверять достоверность, подтверждать. She can verify the date. — «Она может проверить дату».",
+              "uk": "перевіряти достовірність, підтверджувати. She can verify the date. — «Вона може перевірити дату»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите «Она может проверить дату»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите «Она может проверить дату»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can verify the date.",
+          "localizedMeaning": {
+            "ru": "Скажите «Она может проверить дату»",
+            "uk": "Скажіть «Вона може перевірити дату»"
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "verify",
+            "the",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:word:source",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — source",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:source:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — source",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:source:audio",
+            "transcript": "source"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:source:r1",
+              "targetText": "source",
+              "meaningByLocale": {
+                "ru": "источник информации. I can find the source. — «Я могу найти источник». Например, книга или публикация, откуда взята цитата.",
+                "uk": "джерело інформації. I can find the source. — «Я можу знайти джерело». Наприклад, книжка або публікація, звідки взято цитату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "source",
+            "definitionByLocale": {
+              "ru": "источник информации. I can find the source. — «Я могу найти источник». Например, книга или публикация, откуда взята цитата.",
+              "uk": "джерело інформації. I can find the source. — «Я можу знайти джерело». Наприклад, книжка або публікація, звідки взято цитату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите «Я могу найти источник»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите «Я могу найти источник»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i07:audio",
+            "transcript": "I can find the source."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can find the source.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для фразы «Она может проверить дату»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i08:r1",
+            "text": "verify"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i08:r2",
+            "text": "verifies"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i08:r3",
+            "text": "to verify"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для фразы «Она может проверить дату»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Она может проверить дату»",
+            "uk": "Виберіть форму для фрази «Вона може перевірити дату»"
+          },
+          "gappedTargetPhrase": "She can ___ the date.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-49:i08:r1",
+              "text": "verify"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i08:r2",
+              "text": "verifies"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i08:r3",
+              "text": "to verify"
+            }
+          ],
+          "testedDimension": "Выберите форму для фразы «Она может проверить дату»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Она может проверить дату»",
+              "feedbackByLocale": {
+                "ru": "После can нужно verify, даже с she.",
+                "uk": "Після can потрібне verify, навіть із she."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Она может проверить дату»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i09:r1",
+            "text": "I can research it."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i09:r2",
+            "text": "I can research this."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i09:r3",
+            "text": "I can research that."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i09:audio",
+            "transcript": "I can research it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:i09:r1",
+              "targetText": "I can research it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i09:r2",
+              "targetText": "I can research this.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i09:r3",
+              "targetText": "I can research that.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи it, а не this.",
+                "uk": "У записі it, а не this."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи it, а не that.",
+                "uk": "У записі it, а не that."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-49:i10:p1",
+              "target": "research",
+              "meaningByLocale": {
+                "ru": "исследовать",
+                "uk": "досліджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i10:p2",
+              "target": "verify",
+              "meaningByLocale": {
+                "ru": "проверять достоверность",
+                "uk": "перевіряти достовірність"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i10:p3",
+              "target": "source",
+              "meaningByLocale": {
+                "ru": "источник информации",
+                "uk": "джерело інформації"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i10:p4",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            }
+          ],
+          "leftColumn": [
+            "research",
+            "verify",
+            "source",
+            "newspaper"
+          ],
+          "rightColumn": [
+            "исследовать",
+            "проверять достоверность",
+            "источник информации",
+            "газета"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i11:audio",
+            "transcript": "She can verify the date."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can verify the date.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "verify",
+            "the",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:word:archive",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — archive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:archive:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — archive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:archive:audio",
+            "transcript": "archive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:archive:r1",
+              "targetText": "archive",
+              "meaningByLocale": {
+                "ru": "архив: место хранения документов. I can visit the archive. — «Я могу посетить архив».",
+                "uk": "архів: місце зберігання документів. I can visit the archive. — «Я можу відвідати архів»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "archive",
+            "definitionByLocale": {
+              "ru": "архив: место хранения документов. I can visit the archive. — «Я могу посетить архив».",
+              "uk": "архів: місце зберігання документів. I can visit the archive. — «Я можу відвідати архів»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Старые планы города хранятся в архиве. Скажите «Я могу посетить архив»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Старые планы города хранятся в архиве. Скажите «Я могу посетить архив»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can visit the archive.",
+          "localizedMeaning": {
+            "ru": "Старые планы города хранятся в архиве. Скажите «Я могу посетить архив»",
+            "uk": "Старі плани міста зберігаються в архіві. Скажіть «Я можу відвідати архів»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "visit",
+            "the",
+            "archive"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Расскажите «Я часто ночую в палатке»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i13:audio"
+        ],
+        "accessibilityLabel": "Расскажите «Я часто ночую в палатке»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i13:audio",
+            "transcript": "I often camp."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often camp.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для фразы «Я могу найти источник»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i14:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i14:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i14:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для фразы «Я могу найти источник»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Я могу найти источник»",
+            "uk": "Виберіть форму для фрази «Я можу знайти джерело»"
+          },
+          "gappedTargetPhrase": "I can ___ the source.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-49:i14:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i14:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i14:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Выберите форму для фразы «Я могу найти источник»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Я могу найти источник»",
+              "feedbackByLocale": {
+                "ru": "После can нужно find, без s.",
+                "uk": "Після can потрібне find, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Я могу найти источник»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i15:r1",
+            "text": "I can swim."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i15:r2",
+            "text": "I can drive."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i15:r3",
+            "text": "I can whistle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i15:audio",
+            "transcript": "I can swim."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:i15:r1",
+              "targetText": "I can swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i15:r2",
+              "targetText": "I can drive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i15:r3",
+              "targetText": "I can whistle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-49:i16:p1",
+              "target": "research",
+              "meaningByLocale": {
+                "ru": "исследовать",
+                "uk": "досліджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i16:p2",
+              "target": "verify",
+              "meaningByLocale": {
+                "ru": "проверять достоверность",
+                "uk": "перевіряти достовірність"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i16:p3",
+              "target": "source",
+              "meaningByLocale": {
+                "ru": "источник информации",
+                "uk": "джерело інформації"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i16:p4",
+              "target": "archive",
+              "meaningByLocale": {
+                "ru": "архив",
+                "uk": "архів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "research",
+            "verify",
+            "source",
+            "archive"
+          ],
+          "rightColumn": [
+            "исследовать",
+            "проверять достоверность",
+            "источник информации",
+            "архив"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Команда хочет узнать историю старого здания. Скажите «Я могу изучить этот вопрос»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Команда хочет узнать историю старого здания. Скажите «Я могу изучить этот вопрос»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i17:audio",
+            "transcript": "I can research it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can research it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-49:word:research",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — research",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:research:audio"
+        ],
+        "accessibilityLabel": "Картка слова — research",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:research:audio",
+            "transcript": "research"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:research:r1",
+              "targetText": "research",
+              "meaningByLocale": {
+                "ru": "исследовать, изучать вопрос. I can research it. — «Я могу изучить этот вопрос». Здесь research — действие: искать и изучать сведения.",
+                "uk": "досліджувати, вивчати питання. I can research it. — «Я можу дослідити це питання». Тут research — дія: шукати й вивчати відомості."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "research",
+            "definitionByLocale": {
+              "ru": "исследовать, изучать вопрос. I can research it. — «Я могу изучить этот вопрос». Здесь research — действие: искать и изучать сведения.",
+              "uk": "досліджувати, вивчати питання. I can research it. — «Я можу дослідити це питання». Тут research — дія: шукати й вивчати відомості."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть «Я можу дослідити це питання»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Я можу дослідити це питання»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can research it.",
+          "localizedMeaning": {
+            "ru": "Скажите «Я могу изучить этот вопрос»",
+            "uk": "Скажіть «Я можу дослідити це питання»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "research",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i02:r1",
+            "text": "research"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i02:r2",
+            "text": "newspaper"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i02:r3",
+            "text": "camp"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i02:audio",
+            "transcript": "research"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:i02:r1",
+              "targetText": "research",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i02:r2",
+              "targetText": "newspaper",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i02:r3",
+              "targetText": "camp",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `research`, а в этом варианте — `newspaper`.",
+                "uk": "У записі перше слово — `research`, а в цьому варіанті — `newspaper`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `research`, а в этом варианте — `camp`.",
+                "uk": "У записі перше слово — `research`, а в цьому варіанті — `camp`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для фрази «Я можу дослідити це питання»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i03:r1",
+            "text": "research"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i03:r2",
+            "text": "to research"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i03:r3",
+            "text": "researches"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для фрази «Я можу дослідити це питання»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Я могу изучить этот вопрос»",
+            "uk": "Виберіть форму для фрази «Я можу дослідити це питання»"
+          },
+          "gappedTargetPhrase": "I can ___ it.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-49:i03:r1",
+              "text": "research"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i03:r2",
+              "text": "to research"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i03:r3",
+              "text": "researches"
+            }
+          ],
+          "testedDimension": "Виберіть форму для фрази «Я можу дослідити це питання»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Я можу дослідити це питання»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Я можу дослідити це питання»",
+              "feedbackByLocale": {
+                "ru": "После can нужно research, без es.",
+                "uk": "Після can потрібне research, без es."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-49:i04:p1",
+              "target": "research",
+              "meaningByLocale": {
+                "ru": "исследовать",
+                "uk": "досліджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i04:p2",
+              "target": "canal",
+              "meaningByLocale": {
+                "ru": "канал",
+                "uk": "канал"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i04:p3",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i04:p4",
+              "target": "camp",
+              "meaningByLocale": {
+                "ru": "ночевать в палатке",
+                "uk": "ночувати в наметі"
+              }
+            }
+          ],
+          "leftColumn": [
+            "research",
+            "canal",
+            "newspaper",
+            "camp"
+          ],
+          "rightColumn": [
+            "досліджувати",
+            "канал",
+            "газета",
+            "ночувати в наметі"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i05:audio",
+            "transcript": "I can research it."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can research it.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "research",
+            "it"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:word:verify",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — verify",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:verify:audio"
+        ],
+        "accessibilityLabel": "Картка слова — verify",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:verify:audio",
+            "transcript": "verify"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:verify:r1",
+              "targetText": "verify",
+              "meaningByLocale": {
+                "ru": "проверять достоверность, подтверждать. She can verify the date. — «Она может проверить дату».",
+                "uk": "перевіряти достовірність, підтверджувати. She can verify the date. — «Вона може перевірити дату»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "verify",
+            "definitionByLocale": {
+              "ru": "проверять достоверность, подтверждать. She can verify the date. — «Она может проверить дату».",
+              "uk": "перевіряти достовірність, підтверджувати. She can verify the date. — «Вона може перевірити дату»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть «Вона може перевірити дату»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть «Вона може перевірити дату»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She can verify the date.",
+          "localizedMeaning": {
+            "ru": "Скажите «Она может проверить дату»",
+            "uk": "Скажіть «Вона може перевірити дату»"
+          },
+          "orderedTokens": [
+            "She",
+            "can",
+            "verify",
+            "the",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:word:source",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — source",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:source:audio"
+        ],
+        "accessibilityLabel": "Картка слова — source",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:source:audio",
+            "transcript": "source"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:source:r1",
+              "targetText": "source",
+              "meaningByLocale": {
+                "ru": "источник информации. I can find the source. — «Я могу найти источник». Например, книга или публикация, откуда взята цитата.",
+                "uk": "джерело інформації. I can find the source. — «Я можу знайти джерело». Наприклад, книжка або публікація, звідки взято цитату."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "source",
+            "definitionByLocale": {
+              "ru": "источник информации. I can find the source. — «Я могу найти источник». Например, книга или публикация, откуда взята цитата.",
+              "uk": "джерело інформації. I can find the source. — «Я можу знайти джерело». Наприклад, книжка або публікація, звідки взято цитату."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть «Я можу знайти джерело»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть «Я можу знайти джерело»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i07:audio",
+            "transcript": "I can find the source."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can find the source.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для фрази «Вона може перевірити дату»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i08:r1",
+            "text": "verify"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i08:r2",
+            "text": "verifies"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i08:r3",
+            "text": "to verify"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для фрази «Вона може перевірити дату»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Она может проверить дату»",
+            "uk": "Виберіть форму для фрази «Вона може перевірити дату»"
+          },
+          "gappedTargetPhrase": "She can ___ the date.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-49:i08:r1",
+              "text": "verify"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i08:r2",
+              "text": "verifies"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i08:r3",
+              "text": "to verify"
+            }
+          ],
+          "testedDimension": "Виберіть форму для фрази «Вона може перевірити дату»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Вона може перевірити дату»",
+              "feedbackByLocale": {
+                "ru": "После can нужно verify, даже с she.",
+                "uk": "Після can потрібне verify, навіть із she."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Вона може перевірити дату»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i09:r1",
+            "text": "I can research it."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i09:r2",
+            "text": "I can research this."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i09:r3",
+            "text": "I can research that."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i09:audio",
+            "transcript": "I can research it."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:i09:r1",
+              "targetText": "I can research it.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i09:r2",
+              "targetText": "I can research this.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i09:r3",
+              "targetText": "I can research that.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи it, а не this.",
+                "uk": "У записі it, а не this."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи it, а не that.",
+                "uk": "У записі it, а не that."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-49:i10:p1",
+              "target": "research",
+              "meaningByLocale": {
+                "ru": "исследовать",
+                "uk": "досліджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i10:p2",
+              "target": "verify",
+              "meaningByLocale": {
+                "ru": "проверять достоверность",
+                "uk": "перевіряти достовірність"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i10:p3",
+              "target": "source",
+              "meaningByLocale": {
+                "ru": "источник информации",
+                "uk": "джерело інформації"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i10:p4",
+              "target": "newspaper",
+              "meaningByLocale": {
+                "ru": "газета",
+                "uk": "газета"
+              }
+            }
+          ],
+          "leftColumn": [
+            "research",
+            "verify",
+            "source",
+            "newspaper"
+          ],
+          "rightColumn": [
+            "досліджувати",
+            "перевіряти достовірність",
+            "джерело інформації",
+            "газета"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i11:audio",
+            "transcript": "She can verify the date."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can verify the date.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "verify",
+            "the",
+            "date"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:word:archive",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — archive",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:word:archive:audio"
+        ],
+        "accessibilityLabel": "Картка слова — archive",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:word:archive:audio",
+            "transcript": "archive"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:word:archive:r1",
+              "targetText": "archive",
+              "meaningByLocale": {
+                "ru": "архив: место хранения документов. I can visit the archive. — «Я могу посетить архив».",
+                "uk": "архів: місце зберігання документів. I can visit the archive. — «Я можу відвідати архів»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "archive",
+            "definitionByLocale": {
+              "ru": "архив: место хранения документов. I can visit the archive. — «Я могу посетить архив».",
+              "uk": "архів: місце зберігання документів. I can visit the archive. — «Я можу відвідати архів»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Старі плани міста зберігаються в архіві. Скажіть «Я можу відвідати архів»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Старі плани міста зберігаються в архіві. Скажіть «Я можу відвідати архів»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can visit the archive.",
+          "localizedMeaning": {
+            "ru": "Старые планы города хранятся в архиве. Скажите «Я могу посетить архив»",
+            "uk": "Старі плани міста зберігаються в архіві. Скажіть «Я можу відвідати архів»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "visit",
+            "the",
+            "archive"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Розкажіть «Я часто ночую в наметі»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i13:audio"
+        ],
+        "accessibilityLabel": "Розкажіть «Я часто ночую в наметі»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i13:audio",
+            "transcript": "I often camp."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often camp.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для фрази «Я можу знайти джерело»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i14:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i14:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i14:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для фрази «Я можу знайти джерело»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Я могу найти источник»",
+            "uk": "Виберіть форму для фрази «Я можу знайти джерело»"
+          },
+          "gappedTargetPhrase": "I can ___ the source.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-49:i14:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i14:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i14:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Виберіть форму для фрази «Я можу знайти джерело»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Я можу знайти джерело»",
+              "feedbackByLocale": {
+                "ru": "После can нужно find, без s.",
+                "uk": "Після can потрібне find, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Я можу знайти джерело»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-49:i15:r1",
+            "text": "I can swim."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i15:r2",
+            "text": "I can drive."
+          },
+          {
+            "responseId": "en:lesson-08:session-49:i15:r3",
+            "text": "I can whistle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i15:audio",
+            "transcript": "I can swim."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-49:i15:r1",
+              "targetText": "I can swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i15:r2",
+              "targetText": "I can drive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i15:r3",
+              "targetText": "I can whistle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-49:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-49:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-49:i16:p1",
+              "target": "research",
+              "meaningByLocale": {
+                "ru": "исследовать",
+                "uk": "досліджувати"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i16:p2",
+              "target": "verify",
+              "meaningByLocale": {
+                "ru": "проверять достоверность",
+                "uk": "перевіряти достовірність"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i16:p3",
+              "target": "source",
+              "meaningByLocale": {
+                "ru": "источник информации",
+                "uk": "джерело інформації"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-49:i16:p4",
+              "target": "archive",
+              "meaningByLocale": {
+                "ru": "архив",
+                "uk": "архів"
+              }
+            }
+          ],
+          "leftColumn": [
+            "research",
+            "verify",
+            "source",
+            "archive"
+          ],
+          "rightColumn": [
+            "досліджувати",
+            "перевіряти достовірність",
+            "джерело інформації",
+            "архів"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-49:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Команда хоче дізнатися історію старої будівлі. Скажіть «Я можу дослідити це питання»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-49:i17:audio"
+        ],
+        "accessibilityLabel": "Команда хоче дізнатися історію старої будівлі. Скажіть «Я можу дослідити це питання»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-49:i17:audio",
+            "transcript": "I can research it."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can research it.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-49:word:research",
+      "correctText": "research",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i01",
+      "correctText": "I can research it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i02",
+      "correctText": "research",
+      "correctResponseId": "en:lesson-08:session-49:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i03",
+      "correctText": "research",
+      "correctResponseId": "en:lesson-08:session-49:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i05",
+      "correctText": "I can research it.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:word:verify",
+      "correctText": "verify",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i06",
+      "correctText": "She can verify the date.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:word:source",
+      "correctText": "source",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i07",
+      "correctText": "I can find the source.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i08",
+      "correctText": "verify",
+      "correctResponseId": "en:lesson-08:session-49:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i09",
+      "correctText": "I can research it.",
+      "correctResponseId": "en:lesson-08:session-49:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i11",
+      "correctText": "She can verify the date.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:word:archive",
+      "correctText": "archive",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i12",
+      "correctText": "I can visit the archive.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i13",
+      "correctText": "I often camp.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i14",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-49:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i15",
+      "correctText": "I can swim.",
+      "correctResponseId": "en:lesson-08:session-49:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-49:i17",
+      "correctText": "I can research it.",
+      "correctResponseId": null
+    }
+  ]
+}

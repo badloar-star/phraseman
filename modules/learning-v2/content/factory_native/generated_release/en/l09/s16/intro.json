@@ -69,8 +69,8 @@
         "uk": "Пауза перед портретом"
       },
       "bodyByLocale": {
-        "ru": "Фотограф протирает объектив перед портретом выпускницы. Photographer — «фотограф». The photographer is cleaning the lens — «Фотограф чистит объектив». Он делает это сейчас, поэтому is cleaning. The photographer works here — «Фотограф работает здесь» — сообщает о его обычном месте работы, а не о действии в эту секунду. Профессия сама по себе не показывает действие: слово cleaning объясняет, чем занят фотограф.",
-        "uk": "Фотограф протирає об’єктив перед портретом випускниці. Photographer — «фотограф». The photographer is cleaning the lens — «Фотограф чистить об’єктив». Він робить це зараз, тому is cleaning. The photographer works here — «Фотограф працює тут» — повідомляє про його звичайне місце роботи, а не про дію цієї секунди. Професія сама собою не показує дію: слово cleaning пояснює, чим зайнятий фотограф."
+        "ru": "Вы ждёте портретного снимка, а фотограф пока протирает объектив. Photographer — «фотограф». Вы объясняете спутнику причину паузы: The photographer is cleaning the lens — «Фотограф чистит объектив». Сначала называем человека: the photographer. Затем ставим is и cleaning, потому что описываем его действие сейчас. В конце называем предмет, который он чистит: the lens. После is нужна форма cleaning с -ing; одного слова clean здесь недостаточно.",
+        "uk": "Ви чекаєте на портретний знімок, а фотограф поки протирає об’єктив. Photographer — «фотограф». Ви пояснюєте супутнику причину паузи: The photographer is cleaning the lens — «Фотограф чистить об’єктив». Спочатку називаємо людину: the photographer. Потім ставимо is і cleaning, бо описуємо його дію зараз. Наприкінці називаємо предмет, який він чистить: the lens. Після is потрібна форма cleaning із -ing; одного слова clean тут недостатньо."
       },
       "question": {
         "interactionId": "en:lesson-09:session-16:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ef560348812faa3875bff26cd666dbf77c282e7904d6667e36d5d615f502e9f4"
+  "introFingerprint": "af327d1cc4d13c1a5592bf83ccba88c500e1ade1f92b6e1c1b09d6f8aa26ad47"
 }

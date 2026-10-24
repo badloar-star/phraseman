@@ -6075,7 +6075,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 42,
-    sourceFingerprint: "f61bd7475a0065b2b8b0fca6a4bd4483fb416f328fc2293eb58add16dbf9da62",
+    sourceFingerprint: "cb1e53c061ed555b02d01563f43a14a747c095d1d123b29eb2a560a9f1853a21",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."]],"uk":[["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."]]}),
@@ -6089,7 +6089,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 43,
-    sourceFingerprint: "462501c43dea637f709bbf3827915ac94bc19e73c9e94fdbe548ddb7d858adad",
+    sourceFingerprint: "f1ef0ce5851c0659c3cdefc3ca8c73c4c9023eb6ec019fa60b5f59baf7115c2d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."]],"uk":[["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."]]}),
@@ -6103,7 +6103,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 44,
-    sourceFingerprint: "68ca748705a922a58ddb1465dd3082c9aee34c78392ddb00e6a602285ab16bc4",
+    sourceFingerprint: "4662be657f64108467a70acb79dc50baad4c24a4d0ca03d839c0896b5452dea1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."]],"uk":[["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."]]}),
@@ -6117,7 +6117,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 45,
-    sourceFingerprint: "64bb53da5b0e7ff6cf6eb840d3e11112727ceb32d83fe485de6ee23a0b4d1419",
+    sourceFingerprint: "3a1774f8c61c7880e181645e617e6c04ea1b27823b577e776d224e166d9cc23e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."]],"uk":[["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."]]}),
@@ -6131,7 +6131,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 46,
-    sourceFingerprint: "cc4a37bfd7213ac3e145a0ec656ad2418a19a1fea39ddb797d4d8388433e8051",
+    sourceFingerprint: "0e43795128e88d2fdd89a5d533925dc5368b834fb0ff5df168fb8a0e27d4f0dd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта фраза не передаёт нужный смысл. Здесь: You can ask for help.","После can нужен глагол без to и окончания s."],["Эта фраза не передаёт нужный смысл. Здесь: We can take a break.","После can нужен глагол без to и окончания s."],["Эта фраза не передаёт нужный смысл. Здесь: You can change your mind.","После can нужен глагол без to и окончания s."]],"uk":[["Ця фраза не передає потрібний зміст. Тут: You can ask for help.","Після can потрібне дієслово без to й закінчення s."],["Ця фраза не передає потрібний зміст. Тут: We can take a break.","Після can потрібне дієслово без to й закінчення s."],["Ця фраза не передає потрібний зміст. Тут: You can change your mind.","Після can потрібне дієслово без to й закінчення s."]]}),
@@ -6145,7 +6145,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 47,
-    sourceFingerprint: "ba04edb51fffa864d1132c8ed31bb2e32309ddf6d1614153d77e774adb180633",
+    sourceFingerprint: "7c0498a44785825b55eb3421db70ffc86fce2bd210d509fd71ba4e62c6f4765d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."]],"uk":[["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."]]}),
@@ -6159,7 +6159,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 48,
-    sourceFingerprint: "4add3fe48cdd0546b0c974adab0ca818cc996a2552acf178359d1325a888c895",
+    sourceFingerprint: "5104e642c4805733821de8b7389d6c7381e075fe3e93914267410222ba0ee0e5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."],["После can не нужно to.","После can действие остаётся без s."]],"uk":[["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."],["Після can не потрібне to.","Після can дія залишається без s."]]}),
@@ -6173,7 +6173,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 49,
-    sourceFingerprint: "da3ab924f77314fd479210d7ff07af047266c5de86c487a3ca3d2a9a45135c70",
+    sourceFingerprint: "11d7c40bf9ad4e3a674e8911ca3a71670733a44fc47279676b60dfeaa1ee051f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие остаётся без окончания s/es."],["После can не нужно to.","После can действие остаётся без окончания s/es."],["После can не нужно to.","После can действие остаётся без окончания s/es."]],"uk":[["Після can не потрібне to.","Після can дія залишається без закінчення s/es."],["Після can не потрібне to.","Після can дія залишається без закінчення s/es."],["Після can не потрібне to.","Після can дія залишається без закінчення s/es."]]}),
@@ -6201,7 +6201,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 51,
-    sourceFingerprint: "6132a8e9a741e87ca53a9179c88715e0c87bbe784c3be0f6dc48d67bd0da8899",
+    sourceFingerprint: "59a7df87f8f7b3258eb9b66b19bab8dc7c68658d11b63055715b9ff8035c24cf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие без s/es."],["После can не нужно to.","После can действие без s/es."],["После can не нужно to.","После can действие без s/es."]],"uk":[["Після can не потрібне to.","Після can дія без s/es."],["Після can не потрібне to.","Після can дія без s/es."],["Після can не потрібне to.","Після can дія без s/es."]]}),
@@ -6229,7 +6229,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 53,
-    sourceFingerprint: "0090081bdf37938fb5d2a0a3ba98b0a909c33cecc609c8703d4c6e7a611e23c0",
+    sourceFingerprint: "e3c66a34b7ec28882eae50c49e67162d0d54063d05c1ae3daa055b3689f6f974",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта фраза не передаёт нужный смысл. Здесь: I can get dressed.","После can нужен глагол без to и окончания s."],["Эта фраза не передаёт нужный смысл. Здесь: You can brush your teeth.","После can нужен глагол без to и окончания s."],["Эта фраза не передаёт нужный смысл. Здесь: You can wash your face.","После can нужен глагол без to и окончания s."]],"uk":[["Ця фраза не передає потрібний зміст. Тут: I can get dressed.","Після can потрібне дієслово без to й закінчення s."],["Ця фраза не передає потрібний зміст. Тут: You can brush your teeth.","Після can потрібне дієслово без to й закінчення s."],["Ця фраза не передає потрібний зміст. Тут: You can wash your face.","Після can потрібне дієслово без to й закінчення s."]]}),
@@ -6243,7 +6243,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 54,
-    sourceFingerprint: "84c75e244d1bd3a052146a42128334ea96de2c8ac02a2d75b0ff7b16a303a0d0",
+    sourceFingerprint: "7e7f49d653f4db51bd268f890d79a4f414b95982589550e5c4ab8ed3cd41e235",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can или can’t не нужно to.","После can или can’t действие без s/es."],["После can или can’t не нужно to.","После can или can’t действие без s/es."],["После can или can’t не нужно to.","После can или can’t действие без s/es."]],"uk":[["Після can або can’t не потрібне to.","Після can або can’t дія без s/es."],["Після can або can’t не потрібне to.","Після can або can’t дія без s/es."],["Після can або can’t не потрібне to.","Після can або can’t дія без s/es."]]}),
@@ -6257,7 +6257,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 55,
-    sourceFingerprint: "28ae3d05d0a1b0e4c50dbef6c697bea12dae5135df530bf0e42c8dbc41b704ca",
+    sourceFingerprint: "6663ce394ddb7107d077c338c8d03a7542443ba60013bfb4091f1e695f7bdaaa",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие без s/es."],["После can не нужно to.","После can действие без s/es."],["После can не нужно to.","После can действие без s/es."]],"uk":[["Після can не потрібне to.","Після can дія без s/es."],["Після can не потрібне to.","Після can дія без s/es."],["Після can не потрібне to.","Після can дія без s/es."]]}),
@@ -6271,7 +6271,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 8, sessionOrdinal: 56,
-    sourceFingerprint: "4cf40bce02e9cf56721843a2ebb4ed5a16c4ca1a50f9d261e973b93a63615531",
+    sourceFingerprint: "f0910b8397105bdeade3f5af7e00632ecc6807b4eb26817ce8326a429ee859a1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После can не нужно to.","После can действие без s/es."],["После can не нужно to.","После can действие без s/es."],["После can не нужно to.","После can действие без s/es."]],"uk":[["Після can не потрібне to.","Після can дія без s/es."],["Після can не потрібне to.","Після can дія без s/es."],["Після can не потрібне to.","Після can дія без s/es."]]}),
@@ -6369,7 +6369,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 7,
-    sourceFingerprint: "2ed486043eb4dec1e51fe61d59886c07aaf50f58b3da0ba4619c7e984b73c6ec",
+    sourceFingerprint: "1f04fccf4027092a6ed350819723ab2ab0bead3faaf7d1c6dcdc3f1fb24c4e44",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I перед действием нужно am.","После am/is здесь нужна форма с -ing."],["Здесь перед действием нужно is.","После am/is здесь нужна форма с -ing."],["Здесь перед действием нужно is.","После am/is здесь нужна форма с -ing."]],"uk":[["Із I перед дією потрібне am.","Після am/is тут потрібна форма з -ing."],["Тут перед дією потрібне is.","Після am/is тут потрібна форма з -ing."],["Тут перед дією потрібне is.","Після am/is тут потрібна форма з -ing."]]}),
@@ -6453,7 +6453,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 13,
-    sourceFingerprint: "4e818ba9d2d0efeecc97a68b78834f88d0b438027a1e0f0a3734ecd5ff3bfeea",
+    sourceFingerprint: "9a21ebd80a58a390d7f2de116ab1a7ddec6a20e59918dc65bd6dd229dc0e4efc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С he перед sneezing нужно is.","Для действия сейчас после is нужна форма sneezing."],["С this здесь нужно is.","Am употребляется с I; здесь this is."],["С she перед not нужно is.","Для действия сейчас здесь нужна форма drawing."]],"uk":[["Із he перед sneezing потрібне is.","Для дії зараз після is потрібна форма sneezing."],["Із this тут потрібне is.","Am уживається з I; тут this is."],["Із she перед not потрібне is.","Для дії зараз тут потрібна форма drawing."]]}),
@@ -6467,7 +6467,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 14,
-    sourceFingerprint: "c00e9bcf880671e7735d829caaedbf236b38954c8aefbe75072f7abf8d2814be",
+    sourceFingerprint: "826e1f963391467cdded76fd384a1c4703e4595354d2fc1c49792c9b9fe1b79e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед yawning с I нужно am.","После am для действия сейчас нужна форма yawning."],["Перед not с he нужно is.","После is not здесь нужна форма sleeping."],["Перед carrying здесь нужно is.","После is для действия сейчас нужна форма carrying."]],"uk":[["Перед yawning із I потрібне am.","Після am для дії зараз потрібна форма yawning."],["Перед not із he потрібне is.","Після is not тут потрібна форма sleeping."],["Перед carrying тут потрібне is.","Після is для дії зараз потрібна форма carrying."]]}),
@@ -6495,7 +6495,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 16,
-    sourceFingerprint: "e28a417c532c00957aae9c5e267532ff86208366adb6f6ae447ecbdbc71be0d6",
+    sourceFingerprint: "7f1e54e4918d57ed6230d113a86aa76937248ca1ca596a5340711d8b8f4545bd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После don’t нужна базовая форма touch.","Для такой просьбы нужно don’t перед touch."],["Перед cleaning здесь нужно is.","Действие сейчас: is cleaning."],["Перед not working нужна форма is.","После is not здесь нужна форма working."]],"uk":[["Після don’t потрібна базова форма touch.","Для такого прохання потрібне don’t перед touch."],["Перед cleaning тут потрібне is.","Дія зараз: is cleaning."],["Перед not working потрібна форма is.","Після is not тут потрібна форма working."]]}),
@@ -6537,7 +6537,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 19,
-    sourceFingerprint: "ca73643dc03d127afad2bcc60eef5f12c65c40a60b64c9906ccef0419d094b0d",
+    sourceFingerprint: "26d5b19a880d5f9426116232ef7f120501a23e5080a21602a5ced33495ee4bae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед sweating с I нужно am.","Для действия сейчас после am нужна форма sweating."],["Здесь ventilation требует is.","В таком вопросе нужна форма working."],["Для привычного действия с I подходит wear.","Обычное действие: I wear, без am."]],"uk":[["Перед sweating із I потрібне am.","Для дії зараз після am потрібна форма sweating."],["Тут ventilation потребує is.","У такому запитанні потрібна форма working."],["Для звичної дії з I підходить wear.","Звична дія: I wear, без am."]]}),
@@ -6565,7 +6565,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 21,
-    sourceFingerprint: "c0b110a19cd35f1b7a7dc7369890744da3639a1ec6cdb0b7412be33a1b3309bc",
+    sourceFingerprint: "a6ed438cd756a9ed8b06323c7bb36089beab5b12b54983e83bd38edef4b91aab",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I перед sighing нужно am.","Для действия сейчас после am нужно sighing."],["С he нужна форма is.","В вопросе о действии сейчас сохраняем sighing."],["Перед not sighing с I нужно am.","После am not здесь нужна форма sighing."]],"uk":[["Із I перед sighing потрібне am.","Для дії зараз після am потрібне sighing."],["Із he потрібна форма is.","У запитанні про дію зараз зберігаємо sighing."],["Перед not sighing із I потрібне am.","Після am not тут потрібна форма sighing."]]}),
@@ -6607,7 +6607,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 24,
-    sourceFingerprint: "fa819f57dd3515348096d56a58bff7bc19def0db9b95f52138c8e05f22c34db8",
+    sourceFingerprint: "5f538ffc87046c2fb01779bf6e46808322cd3954d51febaa3830af2242101d99",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед inspecting с he нужно is.","Для действия сейчас после is нужно inspecting."],["С you нужна форма are.","В вопросе о действии сейчас нужна форма reading."],["После don’t нужна форма touch без -ing.","После don’t не добавляем -es."]],"uk":[["Перед inspecting із he потрібне is.","Для дії зараз після is потрібне inspecting."],["Із you потрібна форма are.","У запитанні про дію зараз потрібна форма reading."],["Після don’t потрібна форма touch без -ing.","Після don’t не додаємо -es."]]}),
@@ -6621,7 +6621,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 25,
-    sourceFingerprint: "80f49ccc1e23629a1540fbe0c3fc966de26465d303a8df02cc320458f7af0721",
+    sourceFingerprint: "c1d3d9826ef18df1b23e26611dd0efe0efc5c101c487b2de1629ed5d03ec50f1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед glowing нужно is.","Для действия сейчас после is нужна форма glowing."],["После is здесь нужна форма glowing.","С одним ember нужна форма is."],["Перед glowing нужно is.","После is здесь нужна форма glowing."]],"uk":[["Перед glowing потрібне is.","Для дії зараз після is потрібна форма glowing."],["Після is тут потрібна форма glowing.","З одним ember потрібна форма is."],["Перед glowing потрібне is.","Після is тут потрібна форма glowing."]]}),
@@ -6635,7 +6635,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 26,
-    sourceFingerprint: "b5224145d30c49bdc1ac9b3aab04a914e1c74406fa9b5e691b6f27b4ba621b2d",
+    sourceFingerprint: "1073f355400e6f1069579d23d7a0a0c65dd2ef429e8b4c277efc77070411650e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед spinning нужна форма is, в отрицании — is not.","После is нужна форма spinning, не spin."],["Один диск: is, не are.","После is нужна форма spinning, не spin."],["Перед spinning нужна форма is, в отрицании — is not.","После is нужна форма spinning, не spin."]],"uk":[["Перед spinning потрібна форма is, у запереченні — is not.","Після is потрібна форма spinning, не spin."],["Один диск: is, не are.","Після is потрібна форма spinning, не spin."],["Перед spinning потрібна форма is, у запереченні — is not.","Після is потрібна форма spinning, не spin."]]}),
@@ -6663,7 +6663,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 28,
-    sourceFingerprint: "0286105d00abdd26198ee85a4683e465033f2983c6bc4f773c52bf1f96795a3a",
+    sourceFingerprint: "936a36397c5440639aa600f014e22385e55f7baa89d97ebe8f65c8ced1de3da5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед drifting нужна форма is.","После is нужна форма drifting."],["Перед прилагательным здесь нужна форма is.","Одно течение: is."],["Перед not drifting нужно is.","После is not нужна форма drifting."]],"uk":[["Перед drifting потрібна форма is.","Після is потрібна форма drifting."],["Перед прикметником тут потрібна форма is.","Одна течія: is."],["Перед not drifting потрібне is.","Після is not потрібна форма drifting."]]}),
@@ -6691,7 +6691,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 30,
-    sourceFingerprint: "ae9702b15424113a9bf01ac29acc745c5217f025ef07fe83053760693c1ea52b",
+    sourceFingerprint: "ab107562f4ed8556f7d2d01958c45c04825e34cc6a12eae0e2ac1d7e883143c7",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С we нужна форма are.","После are для действия сейчас нужна форма queuing."],["С we здесь нужна связка are.","С we нужна форма are, не is."],["Перед helping нужно is.","После is для действия сейчас нужна форма helping."]],"uk":[["З we потрібна форма are.","Після are для дії зараз потрібна форма queuing."],["З we тут потрібна зв’язка are.","З we потрібна форма are, не is."],["Перед helping потрібне is.","Після is для дії зараз потрібна форма helping."]]}),
@@ -6705,7 +6705,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 31,
-    sourceFingerprint: "d1e5e367bf7203d490a1d72a02e8d18527445655c8ebfc1b5e28dfb333582573",
+    sourceFingerprint: "4577289e78c2c1e255cb752daeb79c022298bd89c997265dfee3334fa6ba203d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед floating нужно is.","После is для наблюдения сейчас нужна форма floating."],["Перед not floating нужно is.","После is not нужна форма floating."],["Перед местом здесь нужна связка is.","Foam здесь вещество, поэтому is."]],"uk":[["Перед floating потрібне is.","Після is для спостереження зараз потрібна форма floating."],["Перед not floating потрібне is.","Після is not потрібна форма floating."],["Перед місцем тут потрібна зв’язка is.","Foam тут речовина, тому is."]]}),
@@ -6719,7 +6719,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 32,
-    sourceFingerprint: "0a85a85a616ee105993ef9e35cb5cdc38614516edb9b19f4b49e0f811d33a319",
+    sourceFingerprint: "8f377742391d82734afa86f64ca1137520d98101ecf796b17e29c0a20deace84",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Для одного животного здесь нужно a jellyfish.","С it употребляем is."],["Один морской конёк: is.","После is для действия сейчас нужна форма swimming."],["После don’t нужна форма touch.","Для отрицательной просьбы нужно don’t."]],"uk":[["Для однієї тварини тут потрібне a jellyfish.","З it уживаємо is."],["Один морський коник: is.","Після is для дії зараз потрібна форма swimming."],["Після don’t потрібна форма touch.","Для заперечного прохання потрібне don’t."]]}),
@@ -6747,7 +6747,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 34,
-    sourceFingerprint: "8330c5d6a968ac233976bcd124e8589bdabbab8d468fdce60703152caed2e77e",
+    sourceFingerprint: "793f0ab772f4db671d49af13c91e2052d2c9fa57b191965b7f350a0124902d2c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Правильно tying: ie меняется на y.","После am для действия сейчас нужна форма tying."],["Перед одним исчисляемым предметом здесь нужно a.","С it используем is."],["Между предметом и признаком здесь нужна связка is.","Одна петля: is."]],"uk":[["Правильно tying: ie змінюється на y.","Після am для дії зараз потрібна форма tying."],["Перед одним злічуваним предметом тут потрібне a.","З it використовуємо is."],["Між предметом і ознакою тут потрібна зв’язка is.","Одна петля: is."]]}),
@@ -6761,7 +6761,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 35,
-    sourceFingerprint: "18f80ac6e4b9c020141749f0c793022706f7767818947dfd4a259ee3bdd11054",
+    sourceFingerprint: "67cd6ec126d84c29f766e46700c144a7cbf7351046c977d7a60211bc7a5cb01a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Здесь hopping с двумя p; hoping — форма другого глагола.","После am для действия сейчас нужна форма hopping."],["Один воробей: is.","После is для действия сейчас нужна форма hopping."],["После don’t нужна форма touch.","Для отрицательной просьбы нужно don’t."]],"uk":[["Тут hopping із двома p; hoping — форма іншого дієслова.","Після am для дії зараз потрібна форма hopping."],["Один горобець: is.","Після is для дії зараз потрібна форма hopping."],["Після don’t потрібна форма touch.","Для заперечного прохання потрібне don’t."]]}),

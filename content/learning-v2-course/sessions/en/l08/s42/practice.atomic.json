@@ -1,0 +1,2327 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-08:session-42",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-08:session-42:word:navigate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — navigate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:navigate:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — navigate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:navigate:audio",
+            "transcript": "navigate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:navigate:r1",
+              "targetText": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться, прокладывать путь. I can navigate. — «Я умею ориентироваться».",
+                "uk": "орієнтуватися, прокладати шлях. I can navigate. — «Я вмію орієнтуватися»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "navigate",
+            "definitionByLocale": {
+              "ru": "ориентироваться, прокладывать путь. I can navigate. — «Я умею ориентироваться».",
+              "uk": "орієнтуватися, прокладати шлях. I can navigate. — «Я вмію орієнтуватися»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите «Я умею ориентироваться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите «Я умею ориентироваться»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can navigate.",
+          "localizedMeaning": {
+            "ru": "Соберите «Я умею ориентироваться»",
+            "uk": "Складіть «Я вмію орієнтуватися»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "navigate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i02:r1",
+            "text": "navigate"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i02:r2",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i02:r3",
+            "text": "decorate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i02:audio",
+            "transcript": "navigate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:i02:r1",
+              "targetText": "navigate",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i02:r2",
+              "targetText": "share",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i02:r3",
+              "targetText": "decorate",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `navigate`, а в этом варианте — `share`.",
+                "uk": "У записі перше слово — `navigate`, а в цьому варіанті — `share`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `navigate`, а в этом варианте — `decorate`.",
+                "uk": "У записі перше слово — `navigate`, а в цьому варіанті — `decorate`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для фразы о своём умении ориентироваться",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i03:r1",
+            "text": "navigate"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i03:r2",
+            "text": "to navigate"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i03:r3",
+            "text": "navigates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для фразы о своём умении ориентироваться",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы о своём умении ориентироваться",
+            "uk": "Виберіть форму для фрази про своє вміння орієнтуватися"
+          },
+          "gappedTargetPhrase": "I can ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-42:i03:r1",
+              "text": "navigate"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i03:r2",
+              "text": "to navigate"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i03:r3",
+              "text": "navigates"
+            }
+          ],
+          "testedDimension": "Выберите форму для фразы о своём умении ориентироваться",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы о своём умении ориентироваться",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `navigate`, без `to`.",
+                "uk": "Після `can` потрібне `navigate`, без `to`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы о своём умении ориентироваться",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `navigate`, без `s`.",
+                "uk": "Після `can` потрібне `navigate`, без `s`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-42:i04:p1",
+              "target": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться",
+                "uk": "орієнтуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i04:p2",
+              "target": "bus shelter",
+              "meaningByLocale": {
+                "ru": "павильон на остановке",
+                "uk": "павільйон на зупинці"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i04:p3",
+              "target": "share",
+              "meaningByLocale": {
+                "ru": "пользоваться вместе",
+                "uk": "користуватися разом"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i04:p4",
+              "target": "decorate",
+              "meaningByLocale": {
+                "ru": "украшать",
+                "uk": "прикрашати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navigate",
+            "bus shelter",
+            "share",
+            "decorate"
+          ],
+          "rightColumn": [
+            "ориентироваться",
+            "павильон на остановке",
+            "пользоваться вместе",
+            "украшать"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i05:audio",
+            "transcript": "I can navigate."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can navigate.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "navigate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:word:landmark",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — landmark",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:landmark:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — landmark",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:landmark:audio",
+            "transcript": "landmark"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:landmark:r1",
+              "targetText": "landmark",
+              "meaningByLocale": {
+                "ru": "ориентир: заметный объект, помогающий узнать место. I can see the landmark. — «Я вижу ориентир».",
+                "uk": "орієнтир: помітний об’єкт, що допомагає впізнати місце. I can see the landmark. — «Я бачу орієнтир»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "landmark",
+            "definitionByLocale": {
+              "ru": "ориентир: заметный объект, помогающий узнать место. I can see the landmark. — «Я вижу ориентир».",
+              "uk": "орієнтир: помітний об’єкт, що допомагає впізнати місце. I can see the landmark. — «Я бачу орієнтир»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Башня видна с берега. Скажите «Я вижу ориентир»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Башня видна с берега. Скажите «Я вижу ориентир»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see the landmark.",
+          "localizedMeaning": {
+            "ru": "Башня видна с берега. Скажите «Я вижу ориентир»",
+            "uk": "Вежу видно з берега. Скажіть «Я бачу орієнтир»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "the",
+            "landmark"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:word:trailhead",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — trailhead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:trailhead:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — trailhead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:trailhead:audio",
+            "transcript": "trailhead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:trailhead:r1",
+              "targetText": "trailhead",
+              "meaningByLocale": {
+                "ru": "начало пешеходной тропы. She can find the trailhead. — «Она может найти начало тропы».",
+                "uk": "початок пішохідної стежки. She can find the trailhead. — «Вона може знайти початок стежки»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trailhead",
+            "definitionByLocale": {
+              "ru": "начало пешеходной тропы. She can find the trailhead. — «Она может найти начало тропы».",
+              "uk": "початок пішохідної стежки. She can find the trailhead. — «Вона може знайти початок стежки»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажите «Она может найти начало тропы»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Скажите «Она может найти начало тропы»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i07:audio",
+            "transcript": "She can find the trailhead."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can find the trailhead.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для фразы «Она может найти начало тропы»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i08:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i08:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i08:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для фразы «Она может найти начало тропы»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Она может найти начало тропы»",
+            "uk": "Виберіть форму для фрази «Вона може знайти початок стежки»"
+          },
+          "gappedTargetPhrase": "She can ___ the trailhead.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-42:i08:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i08:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i08:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Выберите форму для фразы «Она может найти начало тропы»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Она может найти начало тропы»",
+              "feedbackByLocale": {
+                "ru": "После can нужно find, даже с she.",
+                "uk": "Після can потрібне find, навіть із she."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Она может найти начало тропы»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i09:r1",
+            "text": "I can navigate."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i09:r2",
+            "text": "I can swim."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i09:r3",
+            "text": "I can whistle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i09:audio",
+            "transcript": "I can navigate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:i09:r1",
+              "targetText": "I can navigate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i09:r2",
+              "targetText": "I can swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i09:r3",
+              "targetText": "I can whistle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `navigate`, а в этом варианте — `swim`.",
+                "uk": "У записі останнє слово — `navigate`, а в цьому варіанті — `swim`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `navigate`, а в этом варианте — `whistle`.",
+                "uk": "У записі останнє слово — `navigate`, а в цьому варіанті — `whistle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-42:i10:p1",
+              "target": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться",
+                "uk": "орієнтуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i10:p2",
+              "target": "landmark",
+              "meaningByLocale": {
+                "ru": "ориентир",
+                "uk": "орієнтир"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i10:p3",
+              "target": "trailhead",
+              "meaningByLocale": {
+                "ru": "начало тропы",
+                "uk": "початок стежки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i10:p4",
+              "target": "share",
+              "meaningByLocale": {
+                "ru": "пользоваться вместе",
+                "uk": "користуватися разом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navigate",
+            "landmark",
+            "trailhead",
+            "share"
+          ],
+          "rightColumn": [
+            "ориентироваться",
+            "ориентир",
+            "начало тропы",
+            "пользоваться вместе"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i11:audio",
+            "transcript": "She can find the trailhead."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can find the trailhead.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "find",
+            "the",
+            "trailhead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:word:waypoint",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — waypoint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:waypoint:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — waypoint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:waypoint:audio",
+            "transcript": "waypoint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:waypoint:r1",
+              "targetText": "waypoint",
+              "meaningByLocale": {
+                "ru": "точка маршрута, отмеченная на карте или в навигаторе. I can find the waypoint. — «Я могу найти эту точку маршрута».",
+                "uk": "точка маршруту, позначена на карті або в навігаторі. I can find the waypoint. — «Я можу знайти цю точку маршруту»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waypoint",
+            "definitionByLocale": {
+              "ru": "точка маршрута, отмеченная на карте или в навигаторе. I can find the waypoint. — «Я могу найти эту точку маршрута».",
+              "uk": "точка маршруту, позначена на карті або в навігаторі. I can find the waypoint. — «Я можу знайти цю точку маршруту»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "В навигаторе отмечена точка маршрута. Скажите «Я могу найти эту точку маршрута»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "В навигаторе отмечена точка маршрута. Скажите «Я могу найти эту точку маршрута»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the waypoint.",
+          "localizedMeaning": {
+            "ru": "В навигаторе отмечена точка маршрута. Скажите «Я могу найти эту точку маршрута»",
+            "uk": "У навігаторі позначено точку маршруту. Скажіть «Я можу знайти цю точку маршруту»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "waypoint"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы часто украшаете помещение к праздникам. Используйте decorate: «Я часто занимаюсь украшением»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Вы часто украшаете помещение к праздникам. Используйте decorate: «Я часто занимаюсь украшением»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i13:audio",
+            "transcript": "I often decorate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often decorate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Выберите форму для фразы «Я вижу ориентир»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i14:r1",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i14:r2",
+            "text": "sees"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i14:r3",
+            "text": "to see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Выберите форму для фразы «Я вижу ориентир»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Я вижу ориентир»",
+            "uk": "Виберіть форму для фрази «Я бачу орієнтир»"
+          },
+          "gappedTargetPhrase": "I can ___ the landmark.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-42:i14:r1",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i14:r2",
+              "text": "sees"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i14:r3",
+              "text": "to see"
+            }
+          ],
+          "testedDimension": "Выберите форму для фразы «Я вижу ориентир»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Я вижу ориентир»",
+              "feedbackByLocale": {
+                "ru": "После can нужно see, без s.",
+                "uk": "Після can потрібне see, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Выберите форму для фразы «Я вижу ориентир»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i15:r1",
+            "text": "I can swim."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i15:r2",
+            "text": "I can drive."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i15:r3",
+            "text": "I can whistle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i15:audio",
+            "transcript": "I can swim."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:i15:r1",
+              "targetText": "I can swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i15:r2",
+              "targetText": "I can drive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i15:r3",
+              "targetText": "I can whistle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова со значениями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-42:i16:p1",
+              "target": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться",
+                "uk": "орієнтуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i16:p2",
+              "target": "landmark",
+              "meaningByLocale": {
+                "ru": "ориентир",
+                "uk": "орієнтир"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i16:p3",
+              "target": "trailhead",
+              "meaningByLocale": {
+                "ru": "начало тропы",
+                "uk": "початок стежки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i16:p4",
+              "target": "waypoint",
+              "meaningByLocale": {
+                "ru": "точка маршрута",
+                "uk": "точка маршруту"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navigate",
+            "landmark",
+            "trailhead",
+            "waypoint"
+          ],
+          "rightColumn": [
+            "ориентироваться",
+            "ориентир",
+            "начало тропы",
+            "точка маршрута"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Во время похода группа ищет человека, который умеет находить путь по карте. Скажите «Я умею ориентироваться»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Во время похода группа ищет человека, который умеет находить путь по карте. Скажите «Я умею ориентироваться»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i17:audio",
+            "transcript": "I can navigate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can navigate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-08:session-42:word:navigate",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — navigate",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:navigate:audio"
+        ],
+        "accessibilityLabel": "Картка слова — navigate",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:navigate:audio",
+            "transcript": "navigate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:navigate:r1",
+              "targetText": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться, прокладывать путь. I can navigate. — «Я умею ориентироваться».",
+                "uk": "орієнтуватися, прокладати шлях. I can navigate. — «Я вмію орієнтуватися»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "navigate",
+            "definitionByLocale": {
+              "ru": "ориентироваться, прокладывать путь. I can navigate. — «Я умею ориентироваться».",
+              "uk": "орієнтуватися, прокладати шлях. I can navigate. — «Я вмію орієнтуватися»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть «Я вмію орієнтуватися»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть «Я вмію орієнтуватися»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can navigate.",
+          "localizedMeaning": {
+            "ru": "Соберите «Я умею ориентироваться»",
+            "uk": "Складіть «Я вмію орієнтуватися»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "navigate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i02",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i02:r1",
+            "text": "navigate"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i02:r2",
+            "text": "share"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i02:r3",
+            "text": "decorate"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i02:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i02:audio",
+            "transcript": "navigate"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:i02:r1",
+              "targetText": "navigate",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i02:r2",
+              "targetText": "share",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i02:r3",
+              "targetText": "decorate",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i02:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `navigate`, а в этом варианте — `share`.",
+                "uk": "У записі перше слово — `navigate`, а в цьому варіанті — `share`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i02:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть слово",
+              "feedbackByLocale": {
+                "ru": "В записи первое слово — `navigate`, а в этом варианте — `decorate`.",
+                "uk": "У записі перше слово — `navigate`, а в цьому варіанті — `decorate`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для фрази про своє вміння орієнтуватися",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i03:r1",
+            "text": "navigate"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i03:r2",
+            "text": "to navigate"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i03:r3",
+            "text": "navigates"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для фрази про своє вміння орієнтуватися",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы о своём умении ориентироваться",
+            "uk": "Виберіть форму для фрази про своє вміння орієнтуватися"
+          },
+          "gappedTargetPhrase": "I can ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-42:i03:r1",
+              "text": "navigate"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i03:r2",
+              "text": "to navigate"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i03:r3",
+              "text": "navigates"
+            }
+          ],
+          "testedDimension": "Виберіть форму для фрази про своє вміння орієнтуватися",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i03:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази про своє вміння орієнтуватися",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `navigate`, без `to`.",
+                "uk": "Після `can` потрібне `navigate`, без `to`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i03:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази про своє вміння орієнтуватися",
+              "feedbackByLocale": {
+                "ru": "После `can` нужно `navigate`, без `s`.",
+                "uk": "Після `can` потрібне `navigate`, без `s`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-42:i04:p1",
+              "target": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться",
+                "uk": "орієнтуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i04:p2",
+              "target": "bus shelter",
+              "meaningByLocale": {
+                "ru": "павильон на остановке",
+                "uk": "павільйон на зупинці"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i04:p3",
+              "target": "share",
+              "meaningByLocale": {
+                "ru": "пользоваться вместе",
+                "uk": "користуватися разом"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i04:p4",
+              "target": "decorate",
+              "meaningByLocale": {
+                "ru": "украшать",
+                "uk": "прикрашати"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navigate",
+            "bus shelter",
+            "share",
+            "decorate"
+          ],
+          "rightColumn": [
+            "орієнтуватися",
+            "павільйон на зупинці",
+            "користуватися разом",
+            "прикрашати"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i05",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i05:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i05:audio",
+            "transcript": "I can navigate."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I can navigate.",
+          "orderedTokens": [
+            "I",
+            "can",
+            "navigate"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:word:landmark",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — landmark",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:landmark:audio"
+        ],
+        "accessibilityLabel": "Картка слова — landmark",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:landmark:audio",
+            "transcript": "landmark"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:landmark:r1",
+              "targetText": "landmark",
+              "meaningByLocale": {
+                "ru": "ориентир: заметный объект, помогающий узнать место. I can see the landmark. — «Я вижу ориентир».",
+                "uk": "орієнтир: помітний об’єкт, що допомагає впізнати місце. I can see the landmark. — «Я бачу орієнтир»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "landmark",
+            "definitionByLocale": {
+              "ru": "ориентир: заметный объект, помогающий узнать место. I can see the landmark. — «Я вижу ориентир».",
+              "uk": "орієнтир: помітний об’єкт, що допомагає впізнати місце. I can see the landmark. — «Я бачу орієнтир»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Вежу видно з берега. Скажіть «Я бачу орієнтир»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вежу видно з берега. Скажіть «Я бачу орієнтир»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can see the landmark.",
+          "localizedMeaning": {
+            "ru": "Башня видна с берега. Скажите «Я вижу ориентир»",
+            "uk": "Вежу видно з берега. Скажіть «Я бачу орієнтир»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "see",
+            "the",
+            "landmark"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:word:trailhead",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — trailhead",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:trailhead:audio"
+        ],
+        "accessibilityLabel": "Картка слова — trailhead",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:trailhead:audio",
+            "transcript": "trailhead"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:trailhead:r1",
+              "targetText": "trailhead",
+              "meaningByLocale": {
+                "ru": "начало пешеходной тропы. She can find the trailhead. — «Она может найти начало тропы».",
+                "uk": "початок пішохідної стежки. She can find the trailhead. — «Вона може знайти початок стежки»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "trailhead",
+            "definitionByLocale": {
+              "ru": "начало пешеходной тропы. She can find the trailhead. — «Она может найти начало тропы».",
+              "uk": "початок пішохідної стежки. She can find the trailhead. — «Вона може знайти початок стежки»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i07",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Скажіть «Вона може знайти початок стежки»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i07:audio"
+        ],
+        "accessibilityLabel": "Скажіть «Вона може знайти початок стежки»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i07:audio",
+            "transcript": "She can find the trailhead."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "She can find the trailhead.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i08",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для фрази «Вона може знайти початок стежки»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i08:r1",
+            "text": "find"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i08:r2",
+            "text": "finds"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i08:r3",
+            "text": "to find"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для фрази «Вона може знайти початок стежки»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Она может найти начало тропы»",
+            "uk": "Виберіть форму для фрази «Вона може знайти початок стежки»"
+          },
+          "gappedTargetPhrase": "She can ___ the trailhead.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-42:i08:r1",
+              "text": "find"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i08:r2",
+              "text": "finds"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i08:r3",
+              "text": "to find"
+            }
+          ],
+          "testedDimension": "Виберіть форму для фрази «Вона може знайти початок стежки»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i08:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Вона може знайти початок стежки»",
+              "feedbackByLocale": {
+                "ru": "После can нужно find, даже с she.",
+                "uk": "Після can потрібне find, навіть із she."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i08:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Вона може знайти початок стежки»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i09:r1",
+            "text": "I can navigate."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i09:r2",
+            "text": "I can swim."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i09:r3",
+            "text": "I can whistle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i09:audio",
+            "transcript": "I can navigate."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:i09:r1",
+              "targetText": "I can navigate.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i09:r2",
+              "targetText": "I can swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i09:r3",
+              "targetText": "I can whistle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `navigate`, а в этом варианте — `swim`.",
+                "uk": "У записі останнє слово — `navigate`, а в цьому варіанті — `swim`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `navigate`, а в этом варианте — `whistle`.",
+                "uk": "У записі останнє слово — `navigate`, а в цьому варіанті — `whistle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-42:i10:p1",
+              "target": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться",
+                "uk": "орієнтуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i10:p2",
+              "target": "landmark",
+              "meaningByLocale": {
+                "ru": "ориентир",
+                "uk": "орієнтир"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i10:p3",
+              "target": "trailhead",
+              "meaningByLocale": {
+                "ru": "начало тропы",
+                "uk": "початок стежки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i10:p4",
+              "target": "share",
+              "meaningByLocale": {
+                "ru": "пользоваться вместе",
+                "uk": "користуватися разом"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navigate",
+            "landmark",
+            "trailhead",
+            "share"
+          ],
+          "rightColumn": [
+            "орієнтуватися",
+            "орієнтир",
+            "початок стежки",
+            "користуватися разом"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте й складіть фразу",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте й складіть фразу",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i11:audio",
+            "transcript": "She can find the trailhead."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "She can find the trailhead.",
+          "orderedTokens": [
+            "She",
+            "can",
+            "find",
+            "the",
+            "trailhead"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:word:waypoint",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — waypoint",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:word:waypoint:audio"
+        ],
+        "accessibilityLabel": "Картка слова — waypoint",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:word:waypoint:audio",
+            "transcript": "waypoint"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:word:waypoint:r1",
+              "targetText": "waypoint",
+              "meaningByLocale": {
+                "ru": "точка маршрута, отмеченная на карте или в навигаторе. I can find the waypoint. — «Я могу найти эту точку маршрута».",
+                "uk": "точка маршруту, позначена на карті або в навігаторі. I can find the waypoint. — «Я можу знайти цю точку маршруту»."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "waypoint",
+            "definitionByLocale": {
+              "ru": "точка маршрута, отмеченная на карте или в навигаторе. I can find the waypoint. — «Я могу найти эту точку маршрута».",
+              "uk": "точка маршруту, позначена на карті або в навігаторі. I can find the waypoint. — «Я можу знайти цю точку маршруту»."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "У навігаторі позначено точку маршруту. Скажіть «Я можу знайти цю точку маршруту»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "У навігаторі позначено точку маршруту. Скажіть «Я можу знайти цю точку маршруту»",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I can find the waypoint.",
+          "localizedMeaning": {
+            "ru": "В навигаторе отмечена точка маршрута. Скажите «Я могу найти эту точку маршрута»",
+            "uk": "У навігаторі позначено точку маршруту. Скажіть «Я можу знайти цю точку маршруту»"
+          },
+          "orderedTokens": [
+            "I",
+            "can",
+            "find",
+            "the",
+            "waypoint"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви часто прикрашаєте приміщення до свят. Використайте decorate: «Я часто займаюся прикрашанням»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i13:audio"
+        ],
+        "accessibilityLabel": "Ви часто прикрашаєте приміщення до свят. Використайте decorate: «Я часто займаюся прикрашанням»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i13:audio",
+            "transcript": "I often decorate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I often decorate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Виберіть форму для фрази «Я бачу орієнтир»",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i14:r1",
+            "text": "see"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i14:r2",
+            "text": "sees"
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i14:r3",
+            "text": "to see"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Виберіть форму для фрази «Я бачу орієнтир»",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму для фразы «Я вижу ориентир»",
+            "uk": "Виберіть форму для фрази «Я бачу орієнтир»"
+          },
+          "gappedTargetPhrase": "I can ___ the landmark.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-08:session-42:i14:r1",
+              "text": "see"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i14:r2",
+              "text": "sees"
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i14:r3",
+              "text": "to see"
+            }
+          ],
+          "testedDimension": "Виберіть форму для фрази «Я бачу орієнтир»",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i14:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Я бачу орієнтир»",
+              "feedbackByLocale": {
+                "ru": "После can нужно see, без s.",
+                "uk": "Після can потрібне see, без s."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i14:r3",
+              "correct": false,
+              "testedDimension": "Виберіть форму для фрази «Я бачу орієнтир»",
+              "feedbackByLocale": {
+                "ru": "После can не нужно to.",
+                "uk": "Після can не потрібне to."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-08:session-42:i15:r1",
+            "text": "I can swim."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i15:r2",
+            "text": "I can drive."
+          },
+          {
+            "responseId": "en:lesson-08:session-42:i15:r3",
+            "text": "I can whistle."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть фразу",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i15:audio",
+            "transcript": "I can swim."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-08:session-42:i15:r1",
+              "targetText": "I can swim.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i15:r2",
+              "targetText": "I can drive.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i15:r3",
+              "targetText": "I can whistle.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-08:session-42:i15:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `drive`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `drive`."
+              }
+            },
+            {
+              "responseId": "en:lesson-08:session-42:i15:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть фразу",
+              "feedbackByLocale": {
+                "ru": "В записи последнее слово — `swim`, а в этом варианте — `whistle`.",
+                "uk": "У записі останнє слово — `swim`, а в цьому варіанті — `whistle`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова зі значеннями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова зі значеннями",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-08:session-42:i16:p1",
+              "target": "navigate",
+              "meaningByLocale": {
+                "ru": "ориентироваться",
+                "uk": "орієнтуватися"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i16:p2",
+              "target": "landmark",
+              "meaningByLocale": {
+                "ru": "ориентир",
+                "uk": "орієнтир"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i16:p3",
+              "target": "trailhead",
+              "meaningByLocale": {
+                "ru": "начало тропы",
+                "uk": "початок стежки"
+              }
+            },
+            {
+              "pairId": "en:lesson-08:session-42:i16:p4",
+              "target": "waypoint",
+              "meaningByLocale": {
+                "ru": "точка маршрута",
+                "uk": "точка маршруту"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navigate",
+            "landmark",
+            "trailhead",
+            "waypoint"
+          ],
+          "rightColumn": [
+            "орієнтуватися",
+            "орієнтир",
+            "початок стежки",
+            "точка маршруту"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-08:session-42:i17",
+        "ordinal": 24,
+        "purpose": "independent_check",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Під час походу група шукає людину, яка вміє знаходити шлях за картою. Скажіть «Я вмію орієнтуватися»",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-08:session-42:i17:audio"
+        ],
+        "accessibilityLabel": "Під час походу група шукає людину, яка вміє знаходити шлях за картою. Скажіть «Я вмію орієнтуватися»",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-08:session-42:i17:audio",
+            "transcript": "I can navigate."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I can navigate.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "scriptedRepeatRevealPolicy": {
+            "schemaVersion": "learning-v2-scripted-repeat-reveal-policy.v1",
+            "revealAfter": "first_submitted_attempt",
+            "answerExposedBeforeAttempt": false,
+            "targetPhraseVisibleBeforeAttempt": false,
+            "referenceAudioAvailableBeforeAttempt": false,
+            "modelPlaybackAvailableBeforeAttempt": false
+          },
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-08:session-42:word:navigate",
+      "correctText": "navigate",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i01",
+      "correctText": "I can navigate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i02",
+      "correctText": "navigate",
+      "correctResponseId": "en:lesson-08:session-42:i02:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i03",
+      "correctText": "navigate",
+      "correctResponseId": "en:lesson-08:session-42:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i04",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i05",
+      "correctText": "I can navigate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:word:landmark",
+      "correctText": "landmark",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i06",
+      "correctText": "I can see the landmark.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:word:trailhead",
+      "correctText": "trailhead",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i07",
+      "correctText": "She can find the trailhead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i08",
+      "correctText": "find",
+      "correctResponseId": "en:lesson-08:session-42:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i09",
+      "correctText": "I can navigate.",
+      "correctResponseId": "en:lesson-08:session-42:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i10",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i11",
+      "correctText": "She can find the trailhead.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:word:waypoint",
+      "correctText": "waypoint",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i12",
+      "correctText": "I can find the waypoint.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i13",
+      "correctText": "I often decorate.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i14",
+      "correctText": "see",
+      "correctResponseId": "en:lesson-08:session-42:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i15",
+      "correctText": "I can swim.",
+      "correctResponseId": "en:lesson-08:session-42:i15:r1"
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i16",
+      "correctText": "",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-08:session-42:i17",
+      "correctText": "I can navigate.",
+      "correctResponseId": null
+    }
+  ]
+}

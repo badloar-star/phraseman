@@ -14,8 +14,8 @@ export const SEASON_CARD_COPY = {
   openByExam: ['Открыть экзаменом главы', 'Відкрити іспитом розділу', 'Unlock with the chapter exam', 'Abrir con el examen del capítulo', 'Abrir com o exame do capítulo', 'Mở bằng bài thi chương', 'Buka dengan ujian bab', 'Ünite sınavıyla aç', 'Otwórz egzaminem rozdziału'],
   // зачем (эталон chapter-exam-season.html, правка владельца 22.10 №10): строка под «Сдать экзамен» в подписи под каруселью;
   // склеиваются через « · ». Кроме ru — предложение для «Переводчика».
-  examOpens: ['Сдашь — откроется глава {n}', 'Складеш — відкриється розділ {n}', 'Pass and chapter {n} opens', 'Si apruebas, se abre el capítulo {n}', 'Passou, o capítulo {n} abre', 'Đạt là mở chương {n}', 'Lulus, bab {n} terbuka', 'Geçersen {n}. ünite açılır', 'Zdasz — otworzy się rozdział {n}'],
-  examFacts: ['{q} вопросов, сдать от {p}', '{q} питань, скласти від {p}', '{q} questions, pass with {p}', '{q} preguntas, apruebas con {p}', '{q} perguntas, passa com {p}', '{q} câu hỏi, đạt từ {p}', '{q} soal, lulus mulai {p}', '{q} soru, {p} doğruyla geçersin', '{q} pytań, zaliczasz od {p}'],
+  examOpens: ['Сдашь — откроется глава {n}', 'Складеш — відкриється розділ {n}', 'Pass to unlock chapter {n}', 'Si apruebas, se abre el capítulo {n}', 'Se passar, abre o capítulo {n}', 'Đạt để mở chương {n}', 'Lulus untuk membuka bab {n}', 'Geçersen {n}. ünite açılır', 'Zdasz — otworzy się rozdział {n}'],
+  examFacts: ['{q} вопросов, сдать от {p}', '{q} питань, скласти від {p}', '{q} questions, {p} to pass', '{q} preguntas, apruebas con {p}', '{q} perguntas, passa com {p}', '{q} câu hỏi, cần đúng {p}', '{q} soal, minimal {p} benar', '{q} soru, {p} doğruyla geçersin', '{q} pytań, zaliczasz od {p}'],
   startExam: ['Сдать экзамен', 'Скласти іспит', 'Take the exam', 'Hacer el examen', 'Fazer o exame', 'Làm bài thi', 'Ikuti ujian', 'Sınava gir', 'Przystąp do egzaminu'],
   chapterShort: ['Глава {n}', 'Розділ {n}', 'Chapter {n}', 'Capítulo {n}', 'Capítulo {n}', 'Chương {n}', 'Bab {n}', 'Ünite {n}', 'Rozdział {n}'],
   preview: ['просмотр', 'перегляд', 'preview', 'vista previa', 'prévia', 'xem trước', 'pratinjau', 'önizleme', 'podgląd'],

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш прогноз",
-        "uk": "Ваш прогноз"
+        "ru": "Предположить, что чай остынет",
+        "uk": "Припустити, що чай охолоне"
       },
       "bodyByLocale": {
-        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. lukewarm — чуть тёплый. I think the tea will be lukewarm. — Думаю, чай будет чуть тёплым. Выберите прогноз с will.",
-        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. lukewarm — ледь теплий. I think the tea will be lukewarm. — Думаю, чай буде ледь теплим. Виберіть прогноз із will."
+        "ru": "Вы налили чай, но сможете выпить его только после долгого звонка. Вы предполагаете, что к тому времени он остынет. I think the tea will be lukewarm. — Думаю, чай будет чуть тёплым. Начните с I think — «думаю», затем назовите предмет the tea. Чтобы описать его будущее состояние, добавьте will be и признак lukewarm. Соберите I think + the tea + will be + lukewarm. После will нужен be, без to и без замены на is.",
+        "uk": "Ви налили чай, але зможете випити його лише після довгого дзвінка. Ви припускаєте, що до того часу він охолоне. I think the tea will be lukewarm. — Думаю, чай буде ледь теплим. Почніть з I think — «думаю», потім назвіть предмет the tea. Щоб описати його майбутній стан, додайте will be й ознаку lukewarm. Складіть I think + the tea + will be + lukewarm. Після will потрібне be, без to і без заміни на is."
       },
       "question": {
         "interactionId": "en:lesson-16:session-08:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После will — начальная форма",
-        "uk": "Після will — початкова форма"
+        "ru": "Предположить, что суп будет горячим",
+        "uk": "Припустити, що суп буде гарячим"
       },
       "bodyByLocale": {
-        "ru": "scalding — обжигающе горячий. I think the soup will be scalding. — Думаю, суп будет обжигающе горячим. Выберите прогноз с will.",
-        "uk": "scalding — обпікаюче гарячий. I think the soup will be scalding. — Думаю, суп буде обпікаюче гарячим. Виберіть прогноз із will."
+        "ru": "Суп ещё кипит, а подавать его будут через минуту. Вы предполагаете, что он будет обжигать. I think the soup will be scalding. — Думаю, суп будет обжигающе горячим. После I think поставьте the soup — о чём говорите. Затем добавьте will be и состояние scalding. Порядок такой: I think + the soup + will be + scalding. Даже с the soup после will используем be, а не is.",
+        "uk": "Суп ще кипить, а подаватимуть його за хвилину. Ви припускаєте, що він обпікатиме. I think the soup will be scalding. — Думаю, суп буде обпікаюче гарячим. Після I think поставте the soup — про що говорите. Потім додайте will be і стан scalding. Порядок такий: I think + the soup + will be + scalding. Навіть із the soup після will використовуємо be, а не is."
       },
       "question": {
         "interactionId": "en:lesson-16:session-08:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Предположение о будущем",
-        "uk": "Припущення про майбутнє"
+        "ru": "Предположить, что мясо будет жёстким",
+        "uk": "Припустити, що м'ясо буде жорстким"
       },
       "bodyByLocale": {
-        "ru": "fizzy — газированный, с пузырьками. chewy — требующий долгого жевания. I think the meat will be chewy. — Думаю, мясо будет трудно прожевать. Выберите прогноз с will.",
-        "uk": "fizzy — газований, із бульбашками. chewy — такий, що потребує тривалого жування. I think the meat will be chewy. — Думаю, м’ясо буде важко прожувати. Виберіть прогноз із will."
+        "ru": "Мясо давно жарится и подсыхает. Вы предполагаете, что за ужином его будет трудно жевать. I think the meat will be chewy. — Думаю, мясо будет трудно прожевать. Начните с I think, затем поставьте the meat — предмет прогноза. Добавьте will be и признак chewy. Получается I think + the meat + will be + chewy. Между will и be не нужно to: will be уже передаёт «будет».",
+        "uk": "М'ясо давно смажиться й підсихає. Ви припускаєте, що за вечерею його буде важко жувати. I think the meat will be chewy. — Думаю, м'ясо буде важко прожувати. Почніть з I think, потім поставте the meat — предмет прогнозу. Додайте will be й ознаку chewy. Виходить I think + the meat + will be + chewy. Між will і be не потрібне to: will be вже передає «буде»."
       },
       "question": {
         "interactionId": "en:lesson-16:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "54ccbf555fda5093759725e674eb5151d277364e404924b37b5333f37de995b4"
+  "introFingerprint": "a1e3a100b8313a72082221bb6405e690901222b3f4f681a7e3f1f423525e97a5"
 }

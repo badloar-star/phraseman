@@ -11871,7 +11871,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 8,
-    sourceFingerprint: "c6cc863fc70e902791a6dcc5d3e1fd103c89f759d6d5d042654e4b5d77266dac",
+    sourceFingerprint: "94bad232e3fe12ca6f04adf935d4879e77a39fb172ca9d0df815e79feb4c1eb0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: be."],["После will не ставим to.","После will нужна начальная форма: be."],["После will не ставим to.","После will нужна начальная форма: be."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: be."],["Після will не ставимо to.","Після will потрібна початкова форма: be."],["Після will не ставимо to.","Після will потрібна початкова форма: be."]]}),
@@ -11885,7 +11885,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 9,
-    sourceFingerprint: "480e3476de99a96999876aebdb5106477930ff5c11d4b225e179491edb6feda9",
+    sourceFingerprint: "7773d40a6b64bae1a600138488162968a1439737b2c00cfff69ef8b0cff23ccb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11899,7 +11899,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 10,
-    sourceFingerprint: "a2a348a70e2d7c9a6be46f5a897b08a6ca471bc611b3e0a96d6caf2f8307e99f",
+    sourceFingerprint: "f5b1445e7de7a1480a84b76a528ed03db8a465dc73eeb5e1e5ec4d30d2a498ab",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11913,7 +11913,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 11,
-    sourceFingerprint: "ce540a622ab7c6e591d6db394a34b57c1f1520e9076f2ecaa25f622cd963f088",
+    sourceFingerprint: "18e13d83a1c05c2218c6700bd59f95231f0ef1ac217f17267888e21abc2a9f8e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11927,7 +11927,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 12,
-    sourceFingerprint: "71fd337bad3c74004ceaf2b56e1eab5c618d1bceb069ea7cd36ea6d8b3615e57",
+    sourceFingerprint: "bb1d6f48212ca5e9f3901c094e3773c41a8017dba917d28bd34223f6d9716a4f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11941,7 +11941,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 13,
-    sourceFingerprint: "3e263db49d35cd2e523b96cf9d73905a5f218a9e44da843ac3e91c73cc41a899",
+    sourceFingerprint: "0a21be08e6c51a4533a9a46ac25c2b1983b3b622aa0068bd411e7cb77f8f453c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11955,7 +11955,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 14,
-    sourceFingerprint: "5b9bfe277393e8c5c77c25f08347c3212c97f898768ea7899956d30c09e96c2b",
+    sourceFingerprint: "3065f748138e67861e7b88350130aba2fd72a70fa673fa80f47e817fae90a36f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11969,7 +11969,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 15,
-    sourceFingerprint: "cb62f67abc91516f7a80167ec7916f800093aa56367be6cf41185e32982c4eca",
+    sourceFingerprint: "7c17d6208f22d51271ea96ab61db8b4fd3644f0476235393416f3304e5e72129",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11983,7 +11983,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 16,
-    sourceFingerprint: "55bac7f6910dccc955f5f884ae79404f38211dc12bb50f0d94410db3df105cb4",
+    sourceFingerprint: "d3e8e851dc3983d31002c71a8e991a502abc9cfbb6660ce1c3e81cf731c12fbe",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это решение на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає це рішення на майбутнє. Тут потрібне I'll."]]}),
@@ -11997,7 +11997,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 17,
-    sourceFingerprint: "1761de8e9b2ee1543093cdfed19790adb27142cb99fa3ca7a69e64f5ab684481",
+    sourceFingerprint: "07d42ba555c0daf2d9894ac75f0f49eb6800b1a5b8d5c14307d2c067acf60a46",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."]]}),
@@ -12011,7 +12011,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 18,
-    sourceFingerprint: "9945a00cd9eac7aff0f8034cc696b11aa60e4000bae07813364d7d24e2a2a7d7",
+    sourceFingerprint: "8184b79e3478ea7ab0497a27fb30ab44dd5c7fdab70eb9d01bf5e1e0a88a6059",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."]]}),
@@ -12025,7 +12025,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 19,
-    sourceFingerprint: "a5f1068697509ff29e039c7221f8293d117518f566bc8fb37ba3e1f260910b6e",
+    sourceFingerprint: "ea567453c1e892c1f48b59e59283e973b4d73f7c049fbd03c0f9725ec4f123e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."]]}),
@@ -12039,7 +12039,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 20,
-    sourceFingerprint: "f0a72e4a002e9bf615393ba5876fecf1d2bbd9e4019a504f711baf8760b1527b",
+    sourceFingerprint: "c8920bd4d4226fc35634ade5b1f5667cb2456a46617a65fc85a389129a3f0bc1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."]]}),
@@ -12053,7 +12053,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 21,
-    sourceFingerprint: "e5547d76b2d8daf577ef96a4b7176d4986479d84e9c43c0bf12a8da1739a88ed",
+    sourceFingerprint: "1116a1f52f033008a6aeaafa62c42cf6c4b4448a9ccedd6239fbedd00bdc3cee",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."]]}),
@@ -12067,7 +12067,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 22,
-    sourceFingerprint: "877029197528e844b6b098b66f301bcd264a86d722bdda7ae296312c31e88a36",
+    sourceFingerprint: "3dba47be232b42719419fcdc598da64cf7c890497a9652b07d76da6a94ef5026",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."],["После I'll не нужно to.","Без will фраза не передаёт это обещание на будущее. Здесь нужно I'll."]],"uk":[["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."],["Після I'll не потрібне to.","Без will фраза не передає цю обіцянку на майбутнє. Тут потрібне I'll."]]}),

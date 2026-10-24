@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Забрать по дороге",
-        "uk": "Забрати дорогою"
+        "ru": "Забрали ли посылку",
+        "uk": "Чи забрали посилку"
       },
       "bodyByLocale": {
-        "ru": "Pick up здесь значит забрать, например посылку. Did you pick up the parcel? — Ты забрал посылку? Учим выражение целиком. Выберите этот вопрос.",
-        "uk": "Pick up тут означає забрати, наприклад посилку. Did you pick up the parcel? — Ти забрав посилку? Вчимо вираз цілком. Виберіть це запитання."
+        "ru": "Друг вчера собирался забрать посылку по дороге домой. Вы уточняете, сделал ли он это. Pick up здесь означает забрать. Начните вопрос с Did you, затем поставьте pick up и назовите посылку: the parcel. Получится Did you pick up the parcel? — Ты забрал посылку? После Did нужна начальная форма pick без -ed. Up сохраняется; the parcel здесь стоит после pick up.",
+        "uk": "Друг учора збирався забрати посилку дорогою додому. Ви уточнюєте, чи зробив він це. Pick up тут означає забрати. Почніть запитання з Did you, потім поставте pick up і назвіть посилку: the parcel. Вийде Did you pick up the parcel? — Ти забрав посилку? Після Did потрібна початкова форма pick без -ed. Up зберігається; the parcel тут стоїть після pick up."
       },
       "question": {
         "interactionId": "en:lesson-13:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Убрать вещи на место",
-        "uk": "Прибрати речі на місце"
+        "ru": "Одежда на своём месте",
+        "uk": "Одяг на своєму місці"
       },
       "bodyByLocale": {
-        "ru": "Put away — убрать на место. Did you put away the clothes? — Ты убрал одежду на место? Get back — вернуться. Did she get back late? — Она вернулась поздно? Выберите вопрос об одежде.",
-        "uk": "Put away — прибрати на місце. Did you put away the clothes? — Ти прибрав одяг на місце? Get back — повернутися. Did she get back late? — Вона повернулася пізно? Виберіть запитання про одяг."
+        "ru": "Вчера друг разбирал чистую одежду. Вы спрашиваете, убрал ли он её на место. Put away означает убрать на место. Соберите вопрос: Did + you + put away + the clothes? Получится Did you put away the clothes? — Ты убрал одежду на место? Did ставим перед you, чтобы спросить о прошлом. После него нужен put; у этого глагола начальная и прошедшая формы совпадают. Away сохраняем после put.",
+        "uk": "Учора друг розбирав чистий одяг. Ви запитуєте, чи прибрав він його на місце. Put away означає прибрати на місце. Складіть запитання: Did + you + put away + the clothes? Вийде Did you put away the clothes? — Ти прибрав одяг на місце? Did ставимо перед you, щоб запитати про минуле. Після нього потрібне put; у цього дієслова початкова й минула форми збігаються. Away зберігаємо після put."
       },
       "question": {
         "interactionId": "en:lesson-13:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что-то закончилось",
-        "uk": "Щось закінчилося"
+        "ru": "Закончился запас молока",
+        "uk": "Закінчився запас молока"
       },
       "bodyByLocale": {
-        "ru": "Run out of — остаться без чего-то, потому что запас закончился. Did you run out of milk? — У тебя закончилось молоко? После did — run, не ran. Выберите этот вопрос.",
-        "uk": "Run out of — залишитися без чогось, бо запас закінчився. Did you run out of milk? — У тебе закінчилося молоко? Після did — run, не ran. Виберіть це запитання."
+        "ru": "Друг вчера не смог добавить молоко в кофе. Вы уточняете, закончилось ли оно у него. Run out of означает остаться без чего-то, потому что запас закончился. Поставьте Did перед you, затем run out of и milk. Получится Did you run out of milk? — У тебя закончилось молоко? После Did используем run, а не ran. Milk ставим после of: оно называет закончившийся продукт.",
+        "uk": "Друг учора не зміг додати молоко до кави. Ви уточнюєте, чи закінчилося воно в нього. Run out of означає залишитися без чогось, бо запас закінчився. Поставте Did перед you, потім run out of і milk. Вийде Did you run out of milk? — У тебе закінчилося молоко? Після Did використовуємо run, а не ran. Milk ставимо після of: воно називає продукт, який закінчився."
       },
       "question": {
         "interactionId": "en:lesson-13:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bc35145ca1dd312af1bf5d727e8bb45b15193670bf438944758986ab4fe667b0"
+  "introFingerprint": "dce893f825c8d16f4df767904f3349baa302bda03fb3d279c8dd9736f28187cc"
 }

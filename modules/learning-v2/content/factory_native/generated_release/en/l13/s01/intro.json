@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-01:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Как спросить о прошлом",
-        "uk": "Як запитати про минуле"
+        "ru": "Убрали ли кухню вчера",
+        "uk": "Чи прибрали кухню вчора"
       },
       "bodyByLocale": {
-        "ru": "Вы уже умеете сказать: You cleaned the kitchen — ты убрал кухню. Теперь вопрос: Did you clean the kitchen? — Ты убрал кухню? Did ставим перед you, а после you — clean, без -ed. Выберите вопрос о вчерашней уборке.",
-        "uk": "Ви вже вмієте сказати: You cleaned the kitchen — ти прибрав кухню. Тепер запитання: Did you clean the kitchen? — Ти прибрав кухню? Did ставимо перед you, а після you — clean, без -ed. Виберіть запитання про вчорашнє прибирання."
+        "ru": "Друг вчера собирался убрать кухню. Вы не знаете, сделал ли он это, и хотите спросить. Для вопроса о прошлом действии поставьте Did перед тем, кто действует: Did you. Затем используйте начальную форму clean и назовите место: the kitchen. Получится Did you clean the kitchen? — Ты убрал кухню? В сообщении о прошлом у clean было бы -ed, но в вопросе прошлое уже показывает Did. Поэтому порядок такой: Did + кто + начальная форма действия + что.",
+        "uk": "Друг учора збирався прибрати кухню. Ви не знаєте, чи зробив він це, і хочете запитати. Для запитання про минулу дію поставте Did перед тим, хто діє: Did you. Потім використайте початкову форму clean і назвіть місце: the kitchen. Вийде Did you clean the kitchen? — Ти прибрав кухню? У повідомленні про минуле в clean було б -ed, але в запитанні минуле вже показує Did. Тому порядок такий: Did + хто + початкова форма дії + що."
       },
       "question": {
         "interactionId": "en:lesson-13:session-01:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-01:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Хлебница и кружка",
-        "uk": "Хлібниця й кухоль"
+        "ru": "Помыли ли кружку",
+        "uk": "Чи помили кухоль"
       },
       "bodyByLocale": {
-        "ru": "Bread bin — хлебница; coffee mug — кофейная кружка. Did you wash the coffee mug? — Ты помыл кофейную кружку? Сначала did, потом you, затем wash. Выберите вопрос о кружке.",
-        "uk": "Bread bin — хлібниця; coffee mug — кухоль для кави. Did you wash the coffee mug? — Ти помив кухоль для кави? Спочатку did, потім you, далі wash. Виберіть запитання про кухоль."
+        "ru": "После вчерашнего завтрака друг убирал посуду. Вы уточняете, помыл ли он кофейную кружку — coffee mug. Начните с Did you, затем поставьте wash и the coffee mug. Получится Did you wash the coffee mug? — Ты помыл кофейную кружку? После Did нужна начальная форма wash без -ed. The указывает на конкретную кружку, которой пользовались за завтраком.",
+        "uk": "Після вчорашнього сніданку друг прибирав посуд. Ви уточнюєте, чи помив він кавовий кухоль — coffee mug. Почніть із Did you, потім поставте wash і the coffee mug. Вийде Did you wash the coffee mug? — Ти помив кавовий кухоль? Після Did потрібна початкова форма wash без -ed. The вказує на конкретний кухоль, яким користувалися за сніданком."
       },
       "question": {
         "interactionId": "en:lesson-13:session-01:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-01:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Что осталось на столе",
-        "uk": "Що залишилося на столі"
+        "ru": "Помыла ли сестра ситечко",
+        "uk": "Чи помила сестра ситечко"
       },
       "bodyByLocale": {
-        "ru": "Dish rack — сушилка для посуды; tea strainer — ситечко для чая. Did she wash the tea strainer? — Она помыла ситечко для чая? С she тоже используем did + wash. Выберите этот вопрос.",
-        "uk": "Dish rack — сушарка для посуду; tea strainer — ситечко для чаю. Did she wash the tea strainer? — Вона помила ситечко для чаю? З she теж використовуємо did + wash. Виберіть це запитання."
+        "ru": "Вчера сестра друга заваривала чай через ситечко. Вы спрашиваете друга, помыла ли она его. Tea strainer — ситечко для чая. Соберите вопрос: Did + she + wash + the tea strainer? Получится Did she wash the tea strainer? — Она помыла ситечко для чая? She называет сестру и стоит после Did. С she правило то же: после Did используем wash без окончания.",
+        "uk": "Учора сестра друга заварювала чай через ситечко. Ви запитуєте друга, чи помила вона його. Tea strainer — ситечко для чаю. Складіть запитання: Did + she + wash + the tea strainer? Вийде Did she wash the tea strainer? — Вона помила ситечко для чаю? She називає сестру й стоїть після Did. Із she правило те саме: після Did використовуємо wash без закінчення."
       },
       "question": {
         "interactionId": "en:lesson-13:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2a11a50235a0c51f0baa97eb6825641bcde696852859e756301bbbd51a7763b2"
+  "introFingerprint": "620291c7614256dd5b4f4e2d224f57ab8b73b75bdf1f0fe9f89fea024c10e69e"
 }

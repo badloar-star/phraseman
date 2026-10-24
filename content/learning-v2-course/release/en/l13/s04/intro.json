@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Нектарин",
-        "uk": "Нектарин"
+        "ru": "Попробовали ли нектарин",
+        "uk": "Чи скуштували нектарин"
       },
       "bodyByLocale": {
-        "ru": "Nectarine — нектарин. Did you try a nectarine? — Ты попробовал нектарин? Хотя в сообщении было tried, после did нужна try. Выберите вопрос о прошлом.",
-        "uk": "Nectarine — нектарин. Did you try a nectarine? — Ти скуштував нектарин? Хоча в повідомленні було tried, після did потрібна try. Виберіть запитання про минуле."
+        "ru": "Друг вчера купил на рынке нектарины. Вы спрашиваете, попробовал ли он один. Nectarine — нектарин. Начните с Did you, затем поставьте try и назовите фрукт: a nectarine. Получится Did you try a nectarine? — Ты попробовал нектарин? Did обозначает вопрос о прошлом, поэтому после него нужен try, а не tried. A перед nectarine указывает на один плод.",
+        "uk": "Друг учора купив на ринку нектарини. Ви запитуєте, чи скуштував він один. Nectarine — нектарин. Почніть із Did you, потім поставте try і назвіть фрукт: a nectarine. Вийде Did you try a nectarine? — Ти скуштував нектарин? Did позначає запитання про минуле, тому після нього потрібне try, а не tried. A перед nectarine вказує на один плід."
       },
       "question": {
         "interactionId": "en:lesson-13:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Тёмная ягода",
-        "uk": "Темна ягода"
+        "ru": "Ягода для сестры",
+        "uk": "Ягода для сестри"
       },
       "bodyByLocale": {
-        "ru": "Blackberry — ежевика. Did she try a blackberry? — Она попробовала ежевику? Выберите вопрос о ней, не о вас.",
-        "uk": "Blackberry — ожина. Did she try a blackberry? — Вона скуштувала ожину? Виберіть запитання про неї, не про вас."
+        "ru": "Вчера сестре друга предложили ежевику на рынке. Вы спрашиваете друга, попробовала ли она одну ягоду. Blackberry — ягода ежевики. Соберите вопрос: Did + she + try + a blackberry? Получится Did she try a blackberry? — Она попробовала ягоду ежевики? She называет сестру и стоит после Did. Далее нужна начальная форма try; a blackberry обозначает одну ягоду.",
+        "uk": "Учора сестрі друга запропонували ожину на ринку. Ви запитуєте друга, чи скуштувала вона одну ягоду. Blackberry — ягода ожини. Складіть запитання: Did + she + try + a blackberry? Вийде Did she try a blackberry? — Вона скуштувала ягоду ожини? She називає сестру й стоїть після Did. Далі потрібна початкова форма try; a blackberry позначає одну ягоду."
       },
       "question": {
         "interactionId": "en:lesson-13:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Инжир и гранат",
-        "uk": "Інжир і гранат"
+        "ru": "Какой фрукт попробовали",
+        "uk": "Який фрукт скуштували"
       },
       "bodyByLocale": {
-        "ru": "Fig — инжир; pomegranate — гранат. Did you try a fig? — Ты попробовал инжир? Выберите инжир, не гранат.",
-        "uk": "Fig — інжир; pomegranate — гранат. Did you try a fig? — Ти скуштував інжир? Виберіть інжир, не гранат."
+        "ru": "Вчера на рынке другу предложили инжир. Вы уточняете, попробовал ли он его. Fig — плод инжира. Поставьте Did перед you, затем try и a fig. Получится Did you try a fig? — Ты попробовал инжир? После Did используем try без изменения на tried. A fig называет один плод, который предложили попробовать, и стоит сразу после try.",
+        "uk": "Учора на ринку другові запропонували інжир. Ви уточнюєте, чи скуштував він його. Fig — плід інжиру. Поставте Did перед you, потім try і a fig. Вийде Did you try a fig? — Ти скуштував інжир? Після Did використовуємо try без зміни на tried. A fig називає один плід, який запропонували скуштувати, і стоїть одразу після try."
       },
       "question": {
         "interactionId": "en:lesson-13:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b9e24ef04d97ce7bd38ef58eeec8d93edb872a6f81c06cf65559e0ac5deb236f"
+  "introFingerprint": "dff95916d1c9e0e42402884c1dc2375cc0a0c13b09596d418a1f31c9514bc129"
 }

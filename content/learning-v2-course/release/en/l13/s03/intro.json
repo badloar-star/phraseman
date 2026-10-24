@@ -11,12 +11,12 @@
       "pageId": "en:lesson-13:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Баклажан",
-        "uk": "Баклажан"
+        "ru": "Приготовили ли баклажан",
+        "uk": "Чи приготували баклажан"
       },
       "bodyByLocale": {
-        "ru": "Aubergine — баклажан, британское название. Did you cook the aubergine? — Ты приготовил баклажан? После did используем cook, не cooked. Выберите вопрос о прошлом.",
-        "uk": "Aubergine — баклажан, британська назва. Did you cook the aubergine? — Ти приготував баклажан? Після did використовуємо cook, не cooked. Виберіть запитання про минуле."
+        "ru": "Вчера вы оставили другу баклажан для ужина. Теперь спрашиваете, приготовил ли он его. Aubergine — баклажан. Начните с Did you, затем поставьте cook и назовите овощ: the aubergine. Получится Did you cook the aubergine? — Ты приготовил баклажан? После Did нужна начальная форма cook без -ed. The указывает на конкретный баклажан, который вы оставили.",
+        "uk": "Учора ви залишили другові баклажан для вечері. Тепер запитуєте, чи приготував він його. Aubergine — баклажан. Почніть із Did you, потім поставте cook і назвіть овоч: the aubergine. Вийде Did you cook the aubergine? — Ти приготував баклажан? Після Did потрібна початкова форма cook без -ed. The вказує на конкретний баклажан, який ви залишили."
       },
       "question": {
         "interactionId": "en:lesson-13:session-03:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-13:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кабачок",
-        "uk": "Кабачок"
+        "ru": "Помыла ли сестра кабачок",
+        "uk": "Чи помила сестра кабачок"
       },
       "bodyByLocale": {
-        "ru": "Courgette — кабачок, британское название. Did she wash the courgette? — Она помыла кабачок? Выберите вопрос о мытье, не о приготовлении.",
-        "uk": "Courgette — кабачок, британська назва. Did she wash the courgette? — Вона помила кабачок? Виберіть запитання про миття, не про приготування."
+        "ru": "Сестра друга вчера помогала готовить ужин. Вы уточняете, помыла ли она кабачок. Courgette — кабачок. Соберите вопрос: Did + she + wash + the courgette? Получится Did she wash the courgette? — Она помыла кабачок? She называет сестру и стоит после Did. Далее используем wash без -ed; предмет, который мыли, ставим сразу после wash.",
+        "uk": "Сестра друга вчора допомагала готувати вечерю. Ви уточнюєте, чи помила вона кабачок. Courgette — кабачок. Складіть запитання: Did + she + wash + the courgette? Вийде Did she wash the courgette? — Вона помила кабачок? She називає сестру й стоїть після Did. Далі використовуємо wash без -ed; предмет, який мили, ставимо одразу після wash."
       },
       "question": {
         "interactionId": "en:lesson-13:session-03:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-13:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё два овоща",
-        "uk": "Ще два овочі"
+        "ru": "Лук для салата",
+        "uk": "Цибуля для салату"
       },
       "bodyByLocale": {
-        "ru": "Brussels sprouts — брюссельская капуста, маленькие кочанчики; spring onion — зелёный лук с небольшой светлой луковицей. Did you wash the spring onion? — Ты помыл зелёный лук? Выберите лук.",
-        "uk": "Brussels sprouts — брюссельська капуста, маленькі качанчики; spring onion — зелена цибуля з невеликою світлою цибулиною. Did you wash the spring onion? — Ти помив зелену цибулю? Виберіть цибулю."
+        "ru": "Вчера друг нарезал зелёный лук для салата. Вы спрашиваете, помыл ли он его перед этим. Spring onion — зелёный лук с небольшой светлой луковицей. Начните с Did you wash и добавьте the spring onion. Получится Did you wash the spring onion? — Ты помыл зелёный лук? Did уже обозначает прошлое, поэтому wash остаётся без -ed. The показывает, что речь о конкретном луке для вчерашнего салата.",
+        "uk": "Учора друг нарізав зелену цибулю для салату. Ви запитуєте, чи помив він її перед цим. Spring onion — зелена цибуля з невеликою світлою цибулиною. Почніть із Did you wash і додайте the spring onion. Вийде Did you wash the spring onion? — Ти помив зелену цибулю? Did уже позначає минуле, тому wash залишається без -ed. The показує, що йдеться про конкретну цибулю для вчорашнього салату."
       },
       "question": {
         "interactionId": "en:lesson-13:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ca70e12ad213ad84bd1a3157ca97b583b0a96828d40352d3cdb658bb1dbfba38"
+  "introFingerprint": "f21389095455479758f588ab2cb6514ff62bbe2c8a61e9e1be905bb006365ea5"
 }

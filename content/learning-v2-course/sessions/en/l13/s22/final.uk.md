@@ -51,101 +51,97 @@ Angrily — сердито; happily — радісно. Did you smile happily? �
 
 **1 · Картка слова — politely**
 <!-- interaction_id: en:lesson-13:session-22:word:politely; family: word_card -->
-> **politely** — ввічливо.
+> **politely** — Ввічливо.
 
-**2 · Скажіть: Ти попросив ввічливо?**
-<!-- interaction_id: en:lesson-13:session-22:i01; family: phrase_builder -->
-Плитки: `politely` `ask` `you` `Did` → **Did you ask politely?**
+**2 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-22:i01; family: listen_choose -->
+🔊 *Did you ask politely?* → **Did you ask politely?** · Did you answer politely? · Did she ask politely?
+- Did you answer politely? — *У записі звучить Did you ask politely?*
+- Did she ask politely? — *У записі звучить Did you ask politely?*
 
-**3 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-22:i02; family: listen_choose -->
-🔊 *Did she ask politely?* → **Did she ask politely?** · Did you ask politely? · Did they ask politely?
-- Did you ask politely? — *У записі звучить Did she ask politely?*
-- Did they ask politely? — *У записі звучить Did she ask politely?*
+**3 · Попросіть людину повторити сказане.**
+<!-- interaction_id: en:lesson-13:session-22:i02; family: scripted_repeat_compare -->
+🎙 **Could you say that again, please?**
 
-**4 · Запитання про вчорашню дію. Виберіть початок**
+**4 · Запитайте, чи знайшов друг потрібне місце.**
 <!-- interaction_id: en:lesson-13:session-22:i03; family: context_gap_grammar -->
-___ you ask politely? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+Did you ___ the place? → **find** · found · finding
+- found — *Після did потрібна find.*
+- finding — *Потрібна початкова форма find.*
 
 **5 · Картка слова — patiently**
 <!-- interaction_id: en:lesson-13:session-22:word:patiently; family: word_card -->
-> **patiently** — терпляче.
+> **patiently** — Терпляче.
 
-**6 · Скажіть: Ти чекав терпляче?**
+**6 · Розкажіть, як чекали біля дверей.**
 <!-- interaction_id: en:lesson-13:session-22:i04; family: phrase_builder -->
-Плитки: `patiently` `wait` `you` `Did` → **Did you wait patiently?**
+Плитки: `door` `the` `by` `patiently` `waited` `We` → **We waited patiently by the door.**
 
-**7 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-22:i05; family: listen_choose -->
-🔊 *Did she wait patiently?* → **Did she wait patiently?** · Did you wait patiently? · Did they wait patiently?
-- Did you wait patiently? — *У записі звучить Did she wait patiently?*
-- Did they wait patiently? — *У записі звучить Did she wait patiently?*
+**7 · Почуйте запитання про тривалість очікування.**
+<!-- interaction_id: en:lesson-13:session-22:i05; family: listen_build_dictation -->
+🔊 *How long did you wait?* Плитки: `wait` `you` `did` `long` `How` → **How long did you wait?**
 
-**8 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-22:i06; family: context_gap_grammar -->
-___ you wait patiently? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**8 · Запропонуйте людині сісти.**
+<!-- interaction_id: en:lesson-13:session-22:i06; family: scripted_repeat_compare -->
+🎙 **Please take a seat.**
 
-**9 · Картка слова — angrily**
+**9 · Запитайте, чи прийшов друг вчасно.**
+<!-- interaction_id: en:lesson-13:session-22:i07; family: context_gap_grammar -->
+Did your friend ___ on time? → **arrive** · arrived · arriving
+- arrived — *Після did використовуємо arrive.*
+- arriving — *Потрібна початкова форма arrive.*
+
+**10 · Картка слова — angrily**
 <!-- interaction_id: en:lesson-13:session-22:word:angrily; family: word_card -->
-> **angrily** — сердито.
-
-**10 · Скажіть: Ти відповів сердито?**
-<!-- interaction_id: en:lesson-13:session-22:i07; family: phrase_builder -->
-Плитки: `angrily` `answer` `you` `Did` → **Did you answer angrily?**
+> **angrily** — Сердито.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-13:session-22:i08; family: listen_choose -->
-🔊 *Did she answer angrily?* → **Did she answer angrily?** · Did you answer angrily? · Did they answer angrily?
-- Did you answer angrily? — *У записі звучить Did she answer angrily?*
-- Did they answer angrily? — *У записі звучить Did she answer angrily?*
+🔊 *I answered angrily.* → **I answered angrily.** · I answered politely. · I spoke angrily.
+- I answered politely. — *У записі звучить I answered angrily.*
+- I spoke angrily. — *У записі звучить I answered angrily.*
 
-**12 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-22:i09; family: context_gap_grammar -->
-___ you answer angrily? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**12 · Перепросіть за свій тон.**
+<!-- interaction_id: en:lesson-13:session-22:i09; family: scripted_repeat_compare -->
+🎙 **Sorry about my tone.**
 
-**13 · Картка слова — happily**
-<!-- interaction_id: en:lesson-13:session-22:word:happily; family: word_card -->
-> **happily** — радісно.
-
-**14 · Скажіть: Ти радісно усміхнувся?**
+**13 · Поясніть, що не чули запитання.**
 <!-- interaction_id: en:lesson-13:session-22:i10; family: phrase_builder -->
-Плитки: `happily` `smile` `you` `Did` → **Did you smile happily?**
+Плитки: `question` `the` `hear` `not` `did` `I` → **I did not hear the question.**
 
-**15 · Послухайте й виберіть**
-<!-- interaction_id: en:lesson-13:session-22:i11; family: listen_choose -->
-🔊 *Did she smile happily?* → **Did she smile happily?** · Did you smile happily? · Did they smile happily?
-- Did you smile happily? — *У записі звучить Did she smile happily?*
-- Did they smile happily? — *У записі звучить Did she smile happily?*
+**14 · Почуйте спокійне прохання.**
+<!-- interaction_id: en:lesson-13:session-22:i11; family: listen_build_dictation -->
+🔊 *Please speak more slowly.* Плитки: `slowly` `more` `speak` `Please` → **Please speak more slowly.**
 
-**16 · Запитання про вчорашню дію. Виберіть початок**
-<!-- interaction_id: en:lesson-13:session-22:i12; family: context_gap_grammar -->
-___ you smile happily? → **Did** · Do · Does
-- Do — *Для минулого потрібна форма Did.*
-- Does — *Це не форма минулого. Потрібна Did.*
+**15 · Картка слова — happily**
+<!-- interaction_id: en:lesson-13:session-22:word:happily; family: word_card -->
+> **happily** — Радісно.
 
-**17 · Поєднайте вирази з перекладом**
-<!-- interaction_id: en:lesson-13:session-22:i13; family: speed_match -->
-politely — ввічливо · patiently — терпляче · angrily — сердито · happily — радісно
+**16 · Розкажіть про радісну зустріч дітей.**
+<!-- interaction_id: en:lesson-13:session-22:i12; family: phrase_builder -->
+Плитки: `happily` `waved` `children` `The` → **The children waved happily.**
 
-**18 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-22:i14; family: listen_build_dictation -->
-🔊 *We didn't wait long.* Плитки: `long` `wait` `didn't` `We` → **We didn't wait long.**
+**17 · Послухайте й виберіть**
+<!-- interaction_id: en:lesson-13:session-22:i13; family: listen_choose -->
+🔊 *Who did you meet outside?* → **Who did you meet outside?** · Who did you meet inside? · Where did you meet your friend?
+- Who did you meet inside? — *У записі звучить Who did you meet outside?*
+- Where did you meet your friend? — *У записі звучить Who did you meet outside?*
 
-**19 · Складіть почуту фразу**
-<!-- interaction_id: en:lesson-13:session-22:i15; family: listen_build_dictation -->
-🔊 *Did he answer the question?* Плитки: `question` `the` `answer` `he` `Did` → **Did he answer the question?**
+**18 · Запитайте, чи допоміг друг нести сумку.**
+<!-- interaction_id: en:lesson-13:session-22:i14; family: context_gap_grammar -->
+Did he ___ you with the bag? → **help** · helped · helping
+- helped — *Після did потрібна help.*
+- helping — *Використовуємо help без закінчення.*
 
-**20 · Запитайте друга: ти вчора попросив ввічливо?**
-<!-- interaction_id: en:lesson-13:session-22:i16; family: scripted_repeat_compare -->
-🎙 **Did you ask politely yesterday?**
+**19 · Подякуйте за допомогу.**
+<!-- interaction_id: en:lesson-13:session-22:i15; family: scripted_repeat_compare -->
+🎙 **Thank you for your help.**
 
-**21 · Скажіть: учора вона не відповіла сердито**
+**20 · Повідомте, коли ви пішли додому.**
+<!-- interaction_id: en:lesson-13:session-22:i16; family: phrase_builder -->
+Плитки: `six` `at` `home` `went` `We` → **We went home at six.**
+
+**21 · Попрощайтеся до завтра.**
 <!-- interaction_id: en:lesson-13:session-22:i17; family: scripted_repeat_compare -->
-🎙 **She didn't answer angrily yesterday.**
+🎙 **See you tomorrow.**
 

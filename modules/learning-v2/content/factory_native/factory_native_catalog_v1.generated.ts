@@ -4860,7 +4860,7 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 13, sessionOrdinal: 22,
-    sourceFingerprint: "1628466cb9bf335332460072b05d28c9b6e5a5e3cfdae495b09b3d4e136b0a3c",
+    sourceFingerprint: "f6947968d108ef4e1053e33ae49c8ca702294c7f19d0569139cf1d41ba837127",
     newWordCount: 4,
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"review: base form after did","uk":"review: base form after did"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 13","uk":"Англійська · Урок 13"}),

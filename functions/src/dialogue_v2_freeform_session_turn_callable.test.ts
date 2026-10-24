@@ -407,6 +407,7 @@ describe('Dialogue V2 Plus freeform session turn callable', () => {
       memory: '256MiB',
       minInstances: 0,
       maxInstances: 20,
+      cpu: 1,
     });
 
     const source = readFileSync(

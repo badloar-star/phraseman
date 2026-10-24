@@ -15,7 +15,9 @@ import {
 import { reserveDailySpend } from './spend_cap';
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
-const PROVIDER_MAX_TOKENS = 500;
+// зачем (координатор 24.10): 300, а не 200 — в кириллице и других нелатинских языках токены тяжелее, при 200 ответ рвался бы;
+// оборванный лимитом ответ режется до конца последнего предложения (dialogueV2FreeformTrimToSentence).
+const PROVIDER_MAX_TOKENS = 300;
 const PROVIDER_TEMPERATURE = 0.8;
 const MIN_API_KEY_LENGTH = 32;
 const MAX_API_KEY_LENGTH = 512;
@@ -117,13 +119,25 @@ function firstArrayValue(value: unknown): unknown {
   }
 }
 
-function providerContent(value: unknown): string | null {
+function providerContent(value: unknown): Readonly<{ content: string; finishReason: string | null }> | null {
   const payload = exactDataRecord(value);
   const choice = exactDataRecord(firstArrayValue(payload?.choices));
   const message = exactDataRecord(choice?.message);
-  return typeof message?.content === 'string' && message.content.length > 0
-    ? message.content
-    : null;
+  if (typeof message?.content !== 'string' || message.content.length === 0) return null;
+  return { content: message.content, finishReason: typeof choice?.finish_reason === 'string' ? choice.finish_reason : null };
+}
+
+// Конец предложения: . ! ? … и их CJK-формы, с идущими следом кавычками/скобками и эмодзи.
+const SENTENCE_END_RE = /[.!?…。！？](?:["'»”’)\]]|\s?\p{Extended_Pictographic}|️)*(?=\s|$)/gu;
+
+/**
+ * Ответ, оборванный лимитом токенов, режется до конца последнего полного предложения.
+ * Нет ни одного конца предложения → текст возвращается как есть (лучше хвост без точки, чем пустой ответ).
+ */
+export function dialogueV2FreeformTrimToSentence(text: string): string {
+  let lastEnd = -1;
+  for (const match of text.matchAll(SENTENCE_END_RE)) lastEnd = (match.index ?? 0) + match[0].length;
+  return lastEnd > 0 ? text.slice(0, lastEnd).trimEnd() : text;
 }
 
 function memoryInstruction(
@@ -215,9 +229,13 @@ export function createDialogueV2FreeformOpenAiTransport(
       // зачем: PM-231 (A3) — токены оплачены с этого момента, даже если форма
       // ответа дальше не пройдёт. Отчёт не бросает и не роняет ход.
       await reportDialogueV2Usage(onUsage, payload, model, 'v2_freeform');
-      const content = providerContent(payload);
-      if (!content) throw fixedFailure();
-      return content;
+      const reply = providerContent(payload);
+      if (!reply) throw fixedFailure();
+      if (reply.finishReason !== 'length') return reply.content;
+      const trimmed = dialogueV2FreeformTrimToSentence(reply.content);
+      // зачем (координатор 24.10): ответ упёрся в max_tokens — показываем целые предложения; длины без текста реплики
+      console.warn('[FREEFORM-TRUNC]', JSON.stringify({ before: reply.content.length, after: trimmed.length }));
+      return trimmed;
     } catch {
       throw fixedFailure();
     } finally {

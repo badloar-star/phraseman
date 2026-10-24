@@ -5,6 +5,7 @@ import {
   DIALOGUE_V2_FREEFORM_PROVIDER_DEADLINE_MS,
   DIALOGUE_V2_FREEFORM_PROVIDER_MAX_ATTEMPTS,
   createDialogueV2FreeformOpenAiTransport,
+  dialogueV2FreeformTrimToSentence,
 } from './dialogue_v2_freeform_openai_transport';
 import {
   buildDialogueV2FreeformTextProducerRequest,
@@ -59,15 +60,51 @@ function producerRequest() {
   }, NOW_MS);
 }
 
-function successfulResponse(content = 'On peut le dire plus naturellement comme ceci.') {
+function successfulResponse(content = 'On peut le dire plus naturellement comme ceci.', finishReason?: string) {
   return {
     ok: true,
     status: 200,
     json: jest.fn(async () => ({
-      choices: [{ message: { content } }],
+      choices: [{ message: { content }, ...(finishReason ? { finish_reason: finishReason } : {}) }],
     })),
   };
 }
+
+// зачем (координатор 24.10): max_tokens 300 — ответ, упёршийся в лимит, показываем целыми предложениями, с журналом длин
+describe('freeform reply cut by the token limit', () => {
+  test('trim keeps whole sentences, closing quotes and emoji; no sentence end → text as is', () => {
+    expect(dialogueV2FreeformTrimToSentence('Bonjour ! Comment ça va ? Je voulais te dire que')).toBe('Bonjour ! Comment ça va ?');
+    expect(dialogueV2FreeformTrimToSentence('Привет! Я рад «тебя видеть». Расскажи, как прош')).toBe('Привет! Я рад «тебя видеть».');
+    expect(dialogueV2FreeformTrimToSentence('Super 😊 Tu as raison! 🎉 et puis')).toBe('Super 😊 Tu as raison! 🎉');
+    expect(dialogueV2FreeformTrimToSentence('Il coûte 3.5 euros et')).toBe('Il coûte 3.5 euros et');
+    expect(dialogueV2FreeformTrimToSentence('sans aucune fin')).toBe('sans aucune fin');
+  });
+
+  test('finish_reason=length → reply cut to the last sentence and [FREEFORM-TRUNC] logs lengths only', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const fetchImpl = mockFetch(async () => successfulResponse('Bonjour ! On parle de quoi ? Moi, j’aime beaucoup les', 'length'));
+    const transport = createDialogueV2FreeformOpenAiTransport({
+      enabled: true, resolveApiKey: () => SECRET, resolveModel: async () => 'gpt-4o-mini', fetchImpl,
+    });
+    await expect(transport(producerRequest())).resolves.toBe('Bonjour ! On parle de quoi ?');
+    const line = warn.mock.calls.map((c) => c.map(String).join(' ')).find((l) => l.includes('[FREEFORM-TRUNC]'));
+    expect(line).toContain('"before":53');
+    expect(line).toContain('"after":28');
+    expect(line).not.toContain('Bonjour');
+    warn.mockRestore();
+  });
+
+  test('finish_reason=stop → reply untouched, no truncation log', async () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const fetchImpl = mockFetch(async () => successfulResponse('Oui, et toi', 'stop'));
+    const transport = createDialogueV2FreeformOpenAiTransport({
+      enabled: true, resolveApiKey: () => SECRET, resolveModel: async () => 'gpt-4o-mini', fetchImpl,
+    });
+    await expect(transport(producerRequest())).resolves.toBe('Oui, et toi');
+    expect(warn.mock.calls.some((c) => String(c[0]).includes('[FREEFORM-TRUNC]'))).toBe(false);
+    warn.mockRestore();
+  });
+});
 
 describe('Dialogue V2 Plus freeform OpenAI server transport', () => {
   test('is disabled by default and does not resolve secrets, models or network', async () => {
@@ -156,7 +193,7 @@ describe('Dialogue V2 Plus freeform OpenAI server transport', () => {
 
     const body = JSON.parse(String(init.body));
     expect(body.model).toBe('gpt-4o-mini');
-    expect(body).toMatchObject({ max_tokens: 500, temperature: 0.8 });
+    expect(body).toMatchObject({ max_tokens: 300, temperature: 0.8 });
     // зачем (Ревизор 24.10): с a1b97ba76 (01.10, «первая реплика всегда уже на экране») сервер ставит открывающую фразу
     // собеседника первым ходом: 2 системных + приветствие + 8 прошлых ходов × 2 + новая реплика = 20.
     expect(body.messages).toHaveLength(20);

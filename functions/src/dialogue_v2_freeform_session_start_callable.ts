@@ -263,6 +263,9 @@ export const DIALOGUE_V2_FREEFORM_SESSION_START_OPTIONS = Object.freeze({
   memory: '256MiB' as const,
   minInstances: 0,
   maxInstances: 20,
+  // зачем (координатор 24.10, как Пику 17.10): без cpu функция получала глобальное gcf_gen1 — долю ядра, параллельность 1
+  // и холодный старт ~7,6 с почти на каждый ход; целое ядро держит много ожидающих ответа ИИ на одном экземпляре. Без minInstances.
+  cpu: 1,
   secrets: [DIALOGUE_V2_SESSION_HMAC_KEY],
 });
 

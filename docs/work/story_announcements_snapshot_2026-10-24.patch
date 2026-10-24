@@ -1,0 +1,243 @@
+diff --git a/app/dev_state_fixtures.ts b/app/dev_state_fixtures.ts
+index 81523522a..d591090c2 100644
+--- a/app/dev_state_fixtures.ts
++++ b/app/dev_state_fixtures.ts
+@@ -106,11 +106,6 @@ export type DevStateRequest = Readonly<{
+   moments?: 'v3' | 'off' | 'inherit';
+   /** Лёгкий режим (только dev-сборки, координатор 22.10): auto — проверить авто-Lite (в dev он выключен: эмулятор Сверки — с тенями), on / off — принудительно. */
+   lite?: 'auto' | 'on' | 'off';
+-  /** Тень капсулы таб-бара (только dev, координатор 22.10): mask — маска с вырезом вместо elevation, alpha / alphaLight — сила тени
+-   *  тёмных / светлых тем (0..1) для подбора Сверкой парой снимков; elevation — прежняя тень. */
+-  tabbarShadow?: 'mask' | 'elevation';
+-  tabbarShadowAlpha?: number;
+-  tabbarShadowAlphaLight?: number;
+   /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
+   appearance?: 'light' | 'dark' | 'clear';
+   /** Тема Liquid Glass ТОЛЬКО в памяти (id из LIQUID_GLASS_THEME_IDS); clear — снять. Образец макетов — grad_aurora (Сверка chain7, 12.10). */
+@@ -322,7 +317,7 @@ export type DevStateRequest = Readonly<{
+   /** D192: флаг stories_v1 в памяти — on/off/inherit (без пересборки с EXPO_PUBLIC_STORIES_DEV). */
+   stories?: 'on' | 'off' | 'inherit';
+   /** D192: засев историй в памяти — all (4 непросмотренные), seen (4 просмотренные), none (пусто), off. */
+-  storyseed?: 'all' | 'seen' | 'none' | 'off';
++  storyseed?: 'all' | 'seen' | 'none' | 'off' | 'announcements';
+   /** Бета-тест Б16: имитация тапа по пушу этого типа тем же разбором, что настоящий тап (через 1,2 с после шагов). */
+   notif?: (typeof DEV_NOTIF_TAP_TYPES)[number];
+   lv2voice?: number | 'off';
+@@ -398,18 +393,6 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>):
+   request.soundv2 = pick('soundv2', ['on', 'off'] as const);
+   request.moments = pick('moments', ['v3', 'off', 'inherit'] as const);
+   request.lite = pick('lite', ['auto', 'on', 'off'] as const);
+-  // зачем (координатор 22.10, подбор тени капсулы Сверкой): доля 0..1 из ссылки; иное — в отклонённые с причиной
+-  const unitNumber = (key: string): number | undefined => {
+-    const value = one(params[key]);
+-    if (value === undefined) return undefined;
+-    const n = Number(value);
+-    if (Number.isFinite(n) && n >= 0 && n <= 1) return n;
+-    rejected[key] = `ожидалось число 0..1, пришло ${value}`;
+-    return undefined;
+-  };
+-  request.tabbarShadow = pick('tabbarShadow', ['mask', 'elevation'] as const);
+-  request.tabbarShadowAlpha = unitNumber('alpha');
+-  request.tabbarShadowAlphaLight = unitNumber('alphaLight');
+   request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
+   // зачем (Сверка chain7 12.10): тема и оттенок образца (Аврора, полная насыщенность) выставляются ссылкой, а не руками в настройках
+   const themeRaw = one(params.theme);
+@@ -498,7 +481,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>):
+   request.legacybonus = pick('legacybonus', ['demo', 'pearls', 'nothing', 'off'] as const);
+   // зачем (координатор + Макеты 15.10, съёмка D192 stories-s1…s3): кольцо и просмотр сторис без удалённого конфига и настоящих фактов — только память
+   request.stories = pick('stories', ['on', 'off', 'inherit'] as const);
+-  request.storyseed = pick('storyseed', ['all', 'seen', 'none', 'off'] as const);
++  request.storyseed = pick('storyseed', ['all', 'seen', 'none', 'off', 'announcements'] as const);
+   // зачем (бета-тест 15.10, Б16): проверить, что тап по каждому типу пуша открывает нужный экран, без настоящей рассылки
+   request.notif = pick('notif', DEV_NOTIF_TAP_TYPES);
+   // зачем (координатор 15.10, съёмка D194 voice-limit-001…006): остаток голоса на сегодня в курсе — только память
+@@ -844,13 +827,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
+       setLiteModeDevLink(request.lite ?? null);
+     });
+   }
+-  if (request.tabbarShadow) {
+-    // зачем (координатор 22.10): тень капсулы таб-бара — маска или прежний elevation; альфу подбирает Сверка парой снимков
+-    await step('tabbarShadow', request.tabbarShadow, async () => {
+-      const { setTabbarShadowDevLink } = await import('../components/v2/tabbar_shadow_dev');
+-      setTabbarShadowDevLink(request.tabbarShadow ?? null, request.tabbarShadowAlpha ?? null, request.tabbarShadowAlphaLight ?? null);
+-    });
+-  }
+   if (request.soundv2) {
+     await step('soundv2', request.soundv2, async () => {
+       await setSoundV2DevOverride(request.soundv2 === 'on');
+diff --git a/components/stories/StoryAvatarSlot.tsx b/components/stories/StoryAvatarSlot.tsx
+index 7bb3f1a7e..087380a72 100644
+--- a/components/stories/StoryAvatarSlot.tsx
++++ b/components/stories/StoryAvatarSlot.tsx
+@@ -156,7 +156,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
+         </TouchableOpacity>
+       </View>
+       {viewer && Viewer ? (
+-        <Viewer lang={lang} events={viewer.events} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
++        <Viewer lang={lang} events={viewer.events} liveAnnouncementIds={stories.filter(event=>event.type==='announcement').map(event=>event.id)} coinRank={coinRank} origin={viewer.origin} onSeen={markSeen} onClose={closeViewer} />
+       ) : null}
+     </>
+   );
+diff --git a/components/stories/StorySlides.tsx b/components/stories/StorySlides.tsx
+index bfe161617..746a93900 100644
+--- a/components/stories/StorySlides.tsx
++++ b/components/stories/StorySlides.tsx
+@@ -1,3 +1,4 @@
++import AnnouncementSlide from './AnnouncementSlide';
+ // ═══════════════════════════════════════════════════════════════════════════
+ // StorySlides.tsx — четыре вида кадра просмотра сторис (D192): итог недели, рубеж серии, ранг монеты, ачивка.
+ //
+@@ -26,6 +27,9 @@ import StreakMomentFlame from '../streak/moments/StreakMomentFlame';
+ import { isStreakMilestone } from '../streak/moments/streak_milestones';
+ import { streakDayWord, streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from '../streak/moments/streak_moments_strings';
+ import { storyText, storyThousands } from './story_strings';
++import { isPremiumThemeId } from '../../app/premium_theme_catalog';
++import { premiumThemeUnlockCopy } from '../../app/premium_theme_copy';
++import { liquidGlassGradientTheme } from '../../constants/liquidGlassGradientThemes';
+ 
+ export type StorySlideProps = Readonly<{
+   event: StoryEvent;
+@@ -142,12 +146,35 @@ function AchievementSlide({ event, lang }: StorySlideProps) {
+   );
+ }
+ 
++// ─── новая премиальная тема ────────────────────────────────────────────────
++function ThemeUnlockSlide({ event, lang }: StorySlideProps) {
++  const p = useSpirePalette();
++  const themeId = event.payload.themeId;
++  if (!isPremiumThemeId(themeId)) return null;
++  const def = liquidGlassGradientTheme(themeId);
++  const copy = premiumThemeUnlockCopy(themeId, lang);
++  return (
++    <>
++      <View testID="story-theme-unlock-mark" style={[s.themeMark, { borderColor: def?.accent ?? p.accentTextSafe }]}> 
++        <View style={[s.themeOrbitLarge, { borderColor: def?.glowA ?? p.accentTextSafe }]} />
++        <View style={[s.themeOrbitSmall, { borderColor: def?.glowB ?? p.textSecondary }]} />
++        <View style={[s.themeCore, { backgroundColor: def?.accent ?? p.accentTextSafe }]} />
++      </View>
++      <Text style={[s.overline, { color: p.accentTextSafe, marginTop: 18 }]}>{storyText(lang, 'themeOverline')}</Text>
++      <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{copy.title}</Text>
++      <Text style={[s.sub, { color: p.textSecondary }]}>{copy.joke}</Text>
++    </>
++  );
++}
++
+ function StorySlide(props: StorySlideProps) {
+   switch (props.event.type) {
++    case 'announcement': return <AnnouncementSlide event={props.event} />;
+     case 'spire_week': return <WeekSlide {...props} />;
+     case 'streak_milestone': return <StreakSlide {...props} />;
+     case 'coin_rank_up': return <CoinRankSlide {...props} />;
+     case 'achievement': return <AchievementSlide {...props} />;
++    case 'theme_unlock': return <ThemeUnlockSlide {...props} />;
+     default: return null;
+   }
+ }
+@@ -163,6 +190,10 @@ const s = StyleSheet.create({
+   rankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
+   rankFrom: { opacity: 0.5 },
+   achArt: { width: 120, height: 120, alignItems: 'center', justifyContent: 'center' },
++  themeMark: { width: 132, height: 132, borderRadius: 66, borderWidth: 1, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
++  themeOrbitLarge: { position: 'absolute', width: 154, height: 74, borderRadius: 77, borderWidth: 8, transform: [{ rotate: '-22deg' }], opacity: 0.72 },
++  themeOrbitSmall: { position: 'absolute', width: 88, height: 126, borderRadius: 64, borderWidth: 5, transform: [{ rotate: '31deg' }], opacity: 0.56 },
++  themeCore: { width: 30, height: 30, borderRadius: 15 },
+ });
+ 
+ export default memo(StorySlide);
+diff --git a/components/stories/StoryViewer.tsx b/components/stories/StoryViewer.tsx
+index fa6f580d1..3b549db38 100644
+--- a/components/stories/StoryViewer.tsx
++++ b/components/stories/StoryViewer.tsx
+@@ -1,3 +1,4 @@
++import { nextLiveStoryIndex } from '../../modules/story_events/story_events_core';
+ // ═══════════════════════════════════════════════════════════════════════════
+ // StoryViewer.tsx — полноэкранный просмотр сторис по аватару (D192): полосы прогресса, 2,4 с на событие, тапы, пауза, свайп вниз.
+ //
+@@ -52,6 +53,7 @@ export type StoryViewerProps = Readonly<{
+   lang: Lang;
+   /** Очередь просмотра (непросмотренные от старого к новому) — замораживается при открытии. */
+   events: StoryEventList;
++  liveAnnouncementIds?: readonly string[];
+   /** Ранг монеты человека 0…19 (для шапки и маркера на башне); null — базовая. */
+   coinRank: number | null;
+   /** Центр аватара в окне — откуда раскрывается просмотр. */
+@@ -62,7 +64,7 @@ export type StoryViewerProps = Readonly<{
+   testID?: string;
+ }>;
+ 
+-function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer' }: StoryViewerProps) {
++function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer' }: StoryViewerProps) {
+   const p = useSpirePalette();
+   const reduceMotion = useReducedMotion();
+   const insets = useStableSafeAreaInsets();
+@@ -70,6 +72,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
+   const runtimeActive = useRuntimeActive(true);
+   const events = useMemo(() => eventsProp, []); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: очередь замораживается на открытие
+   const count = events.length;
++  const liveIdsRef=useRef(liveAnnouncementIds);liveIdsRef.current=liveAnnouncementIds;
+   const [index, setIndex] = useState(0);
+   const [screenReader, setScreenReader] = useState(false);
+   const indexRef = useRef(0);
+@@ -112,14 +115,18 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
+   const goRef = useRef<(k: number) => void>(() => undefined);
+   const advance = useCallback(() => { goRef.current(indexRef.current + 1); }, []);
+   const runBar = useCallback((from: number) => {
+-    const left = Math.max(0, 1 - from) * STORY_SLIDE_MS;
++    const current=events[indexRef.current];
++    const duration=current?.type==='announcement'?Number(current.payload.durationMs)||8000:STORY_SLIDE_MS;
++    const left = Math.max(0, 1 - from) * duration;
+     progress.value = withTiming(1, { duration: left, easing: EASE_LINEAR }, (finished) => { if (finished) runOnJS(advance)(); });
+-  }, [advance, progress]);
++  }, [advance, progress, events]);
+ 
+   const go = useCallback((target: number) => {
+     if (closingRef.current) return;
+     if (target >= count) { close('finished'); return; }
+-    const k = Math.max(0, target);
++    const k = nextLiveStoryIndex(events,target,indexRef.current,liveIdsRef.current);
++    if(k<0)return;
++    if(k>=count){close('finished');return;}
+     if (k !== indexRef.current) tryPlayV2Event('story', 'story_viewer'); // зачем (координатор 14.10): звук перелистывания сторис V2; флаг выключен — тишина
+     indexRef.current = k;
+     setIndex(k);
+@@ -134,6 +141,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
+     if (!screenReaderRef.current && !pausedRef.current) runBar(0);
+   }, [appear, close, count, events, progress, reduceMotion, runBar]);
+   goRef.current = go;
++  useEffect(()=>{const current=events[indexRef.current];if(current?.type==='announcement'&&liveAnnouncementIds&&!liveAnnouncementIds.includes(current.id))goRef.current(indexRef.current+1);},[events,liveAnnouncementIds]);
+ 
+   // пауза/возобновление: палец, фон приложения, диктор — любое «держит» полосу
+   const syncPause = useCallback(() => {
+@@ -231,16 +239,16 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
+               ))}
+             </View>
+             <View style={s.header}>
+-              <SpireRankCoin rank={coinRank} size={32} />
++              {event?.type!=='announcement' ? <SpireRankCoin rank={coinRank} size={32} /> : null}
+               <View style={s.headerCopy}>
+-                <Text style={[s.name, { color: p.text }]}>{storyText(lang, 'title')}</Text>
+-                <Text testID={`${testID}-when`} style={[s.when, { color: p.textSecondary }]}>{event ? storyWhenLabel(lang, event.atMs, nowMs) : ''}</Text>
++                {event?.type!=='announcement' ? <Text style={[s.name, { color: p.text }]}>{storyText(lang, 'title')}</Text> : null}
++                {event?.type!=='announcement' ? <Text testID={`${testID}-when`} style={[s.when, { color: p.textSecondary }]}>{event ? storyWhenLabel(lang, event.atMs, nowMs) : ''}</Text> : null}
+               </View>
+               <Pressable testID={`${testID}-close`} accessibilityRole="button" accessibilityLabel={storyText(lang, 'close')} hitSlop={6} onPress={() => close('button')} style={s.closeBtn}>
+                 <Ionicons name="close" size={22} color={p.text} />
+               </Pressable>
+             </View>
+-            <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents="none">
++            <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>
+               {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} /> : null}
+             </Animated.View>
+             {screenReader ? (
+diff --git a/components/stories/story_strings.ts b/components/stories/story_strings.ts
+index 1ed1a71af..a639ad006 100644
+--- a/components/stories/story_strings.ts
++++ b/components/stories/story_strings.ts
+@@ -35,6 +35,7 @@ const S = {
+   // ── слайд «ачивка» ──
+   achNext: ['Следующая — {n} {dn}', 'Наступна — {n} {dn}', 'Next — {n} {dn}', 'Siguiente — {n} {dn}', 'Próxima — {n} {dn}', 'Tiếp theo — {n} {dn}', 'Berikutnya — {n} {dn}', 'Sonraki — {n} {dn}', 'Następna — {n} {dn}'],
+   achOverline: ['Ачивка', 'Ачівка', 'Achievement', 'Logro', 'Conquista', 'Thành tích', 'Pencapaian', 'Başarım', 'Osiągnięcie'],
++  themeOverline: ['Новая тема', 'Нова тема', 'New theme', 'Nuevo tema', 'Novo tema', 'Chủ đề mới', 'Tema baru', 'Yeni tema', 'Nowy motyw'],
+ } as const satisfies Readonly<Record<string, Nine>>;
+ 
+ export type StoryStringKey = keyof typeof S;

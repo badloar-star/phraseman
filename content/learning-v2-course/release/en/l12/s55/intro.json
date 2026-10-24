@@ -11,12 +11,12 @@
       "pageId": "en:lesson-12:session-55:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Центр города",
-        "uk": "Центр міста"
+        "ru": "Побывали в центре",
+        "uk": "Побували в центрі"
       },
       "bodyByLocale": {
-        "ru": "Town centre — центр города. I visited the town centre — я побывал в центре города. В visited окончание /ɪd/. Выберите прошлое действие.",
-        "uk": "Town centre — центр міста. I visited the town centre — я побував у центрі міста. У visited закінчення /ɪd/. Виберіть минулу дію."
+        "ru": "Вчера вы гуляли в центре города и теперь рассказываете об этой прогулке. Town centre — центр города. Соберите предложение: I + visited + the town centre. Получится I visited the town centre — Я побывал в центре города. К visit добавили -ed: действие уже произошло. В visited это окончание произносится /ɪd/. Место идёт сразу после visited, без to; the указывает на центр того города, о котором вы говорите.",
+        "uk": "Учора ви гуляли в центрі міста й тепер розповідаєте про цю прогулянку. Town centre — центр міста. Складіть речення: I + visited + the town centre. Вийде I visited the town centre — Я побував у центрі міста. До visit додали -ed: дія вже відбулася. У visited це закінчення вимовляється /ɪd/. Місце йде відразу після visited, без to; the вказує на центр того міста, про яке ви говорите."
       },
       "question": {
         "interactionId": "en:lesson-12:session-55:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-12:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Улица с магазинами",
-        "uk": "Вулиця з крамницями"
+        "ru": "На улице было оживлённо",
+        "uk": "На вулиці було жваво"
       },
       "bodyByLocale": {
-        "ru": "High street — главная торговая улица города, обычное британское выражение. The high street was busy — на главной торговой улице было оживлённо. Выберите описание прошлого.",
-        "uk": "High street — головна торговельна вулиця міста, звичний британський вираз. The high street was busy — на головній торговельній вулиці було жваво. Виберіть опис минулого."
+        "ru": "Вчера на главной торговой улице было много людей. Вы описываете, какой была эта улица: The high street was busy — На главной торговой улице было оживлённо. High street — главная торговая улица. Сначала назовите её: the high street. Затем поставьте was, потому что речь об одной улице в прошлом. После was добавьте busy — оживлённая. Так собирается описание: что + was + каким было.",
+        "uk": "Учора на головній торговій вулиці було багато людей. Ви описуєте, якою була ця вулиця: The high street was busy — На головній торговій вулиці було жваво. High street — головна торгова вулиця. Спочатку назвіть її: the high street. Потім поставте was, бо йдеться про одну вулицю в минулому. Після was додайте busy — жвава. Так складається опис: що + was + яким було."
       },
       "question": {
         "interactionId": "en:lesson-12:session-55:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-12:session-55:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Площадь и рынок",
-        "uk": "Площа й ринок"
+        "ru": "Побывали на рынке",
+        "uk": "Побували на ринку"
       },
       "bodyByLocale": {
-        "ru": "Town square — городская площадь; street market — уличный рынок. I visited the street market — я побывал на уличном рынке. Выберите рынок.",
-        "uk": "Town square — міська площа; street market — вуличний ринок. I visited the street market — я побував на вуличному ринку. Виберіть ринок."
+        "ru": "Вчера вы сходили на уличный рынок за овощами. Расскажите именно об этом посещении. Street market — уличный рынок. Начните с I, затем поставьте visited и назовите место: the street market. Получится I visited the street market — Я побывал на уличном рынке. Visited обозначает прошлое действие; место ставится сразу после него без on или to. The показывает, что речь об определённом рынке.",
+        "uk": "Учора ви сходили на вуличний ринок по овочі. Розкажіть саме про це відвідування. Street market — вуличний ринок. Почніть з I, потім поставте visited і назвіть місце: the street market. Вийде I visited the street market — Я побував на вуличному ринку. Visited позначає минулу дію; місце ставиться відразу після нього без on або to. The показує, що йдеться про певний ринок."
       },
       "question": {
         "interactionId": "en:lesson-12:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "21a6016bb3291063bbcb56d2082688ededdeaaa0eeb4dbe5e1553650816ddcea"
+  "introFingerprint": "e8f3b48cebc1214255b147b89de74b19d74af385f9486177840e6c0dab3827e1"
 }

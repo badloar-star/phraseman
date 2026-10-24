@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-33:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Оценить будущую задачу",
+        "uk": "Оцінити майбутнє завдання"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. manageable — посильный, с которым можно справиться. Вы высказываете мнение о будущей задаче. I think the task will be manageable. — Думаю, задача будет посильной. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. manageable — посильний, з яким можна впоратися. Ви висловлюєте думку про майбутнє завдання. I think the task will be manageable. — Думаю, завдання буде посильним. Передайте думку-прогноз через will."
+        "ru": "Вы обсуждаете завтрашнюю уборку и считаете, что справитесь с работой. I think the task will be manageable. — Думаю, задача будет посильной. Начните с I think — «я думаю», затем назовите предмет оценки: the task. После него поставьте will be и признак manageable — «посильный». После will нужен be без to: the task will be manageable. Здесь выразите мнение-прогноз через will; going to тоже может передавать прогноз, но сейчас отрабатываем will.",
+        "uk": "Ви обговорюєте завтрашнє прибирання й вважаєте, що впораєтеся з роботою. I think the task will be manageable. — Думаю, завдання буде посильним. Почніть з I think — «я думаю», потім назвіть предмет оцінки: the task. Після нього поставте will be й ознаку manageable — «посильний». Після will потрібне be без to: the task will be manageable. Тут висловіть думку-прогноз через will; going to також може передавати прогноз, але зараз відпрацьовуємо will."
       },
       "question": {
         "interactionId": "en:lesson-16:session-33:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Отменить ненужную поездку",
+        "uk": "Скасувати непотрібну поїздку"
       },
       "bodyByLocale": {
-        "ru": "unavoidable — неизбежный, которого нельзя избежать. unnecessary — ненужный, без которого можно обойтись. Вы решили отказаться от ненужной поездки; пока это ваше намерение. I am going to cancel an unnecessary trip. — Я собираюсь отменить ненужную поездку. Передайте заранее принятое намерение через going to.",
-        "uk": "unavoidable — неминучий, якого не можна уникнути. unnecessary — непотрібний, без якого можна обійтися. Ви вирішили відмовитися від непотрібної поїздки; поки це ваш намір. I am going to cancel an unnecessary trip. — Я збираюся скасувати непотрібну поїздку. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Вы решили не ехать за покупкой, которую уже привезли домой. I am going to cancel an unnecessary trip. — Я собираюсь отменить ненужную поездку. Для принятого намерения соберите I + am going to + cancel: после going to ставим глагол cancel без изменений. Затем добавьте, что отменяете: an unnecessary trip. Здесь используйте going to; форма am cancelling возможна, но сейчас тренируем выражение намерения.",
+        "uk": "Ви вирішили не їхати по покупку, яку вже привезли додому. I am going to cancel an unnecessary trip. — Я збираюся скасувати непотрібну поїздку. Для прийнятого наміру складіть I + am going to + cancel: після going to ставимо дієслово cancel без змін. Потім додайте, що скасовуєте: an unnecessary trip. Тут використайте going to; форма am cancelling можлива, але зараз тренуємо вираження наміру."
       },
       "question": {
         "interactionId": "en:lesson-16:session-33:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Рассказать о записи на занятие",
+        "uk": "Розповісти про запис на заняття"
       },
       "bodyByLocale": {
-        "ru": "worthwhile — стоящий затраченных времени или усилий. Вы с другом записались на завтрашнее полезное занятие, время подтверждено. We are joining a worthwhile activity tomorrow. — Мы участвуем в стоящем занятии завтра. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "worthwhile — вартий витрачених часу або зусиль. Ви з другом записалися на завтрашнє корисне заняття, час підтверджено. We are joining a worthwhile activity tomorrow. — Ми беремо участь у вартому зусиль занятті завтра. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с другом записались на завтрашнее занятие по первой помощи; время подтверждено. We are joining a worthwhile activity tomorrow. — Завтра мы участвуем в полезном занятии. Чтобы передать договорённость через Present Continuous, соберите we + are + joining. Joining получается из join добавлением -ing. Затем добавьте a worthwhile activity — «занятие, стоящее потраченного времени» — и tomorrow. Именно tomorrow показывает, что речь о будущем. Going to также возможно, но здесь отрабатываем Present Continuous для договорённости.",
+        "uk": "Ви з другом записалися на завтрашнє заняття з першої допомоги; час підтверджено. We are joining a worthwhile activity tomorrow. — Завтра ми беремо участь у корисному занятті. Щоб передати домовленість через Present Continuous, складіть we + are + joining. Joining утворюється з join додаванням -ing. Потім додайте a worthwhile activity — «заняття, варте витраченого часу» — і tomorrow. Саме tomorrow показує, що йдеться про майбутнє. Going to також можливе, але тут відпрацьовуємо Present Continuous для домовленості."
       },
       "question": {
         "interactionId": "en:lesson-16:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a77e87105cd3a6576028bb2fcb912a64e5a47c336454a9bb134c20a46da30e8e"
+  "introFingerprint": "b3d21c67120b0ba809bfcf846cb0bfd00062f54db6ca79573b31d5d07f01861c"
 }

@@ -12137,7 +12137,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 27,
-    sourceFingerprint: "4776ed6757e9fe52cd8614c8a22184ce206ad00fdfb4700636dcdc358c9e9c17",
+    sourceFingerprint: "6ae73029c1ffd685624831694af9385eea2d7527ed054debe9f16c3eb921bfca",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."]],"uk":[["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."]]}),
@@ -12151,7 +12151,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 28,
-    sourceFingerprint: "8ec5395192d5316d00fd2bcf3e0afba2aa34e59061776655b5e8fa6d730746d2",
+    sourceFingerprint: "845b4936acced4f3b1a123b08aaf32115aac5bf5e22325856089d7bc6cbe3b87",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."]],"uk":[["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."]]}),
@@ -12165,7 +12165,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 29,
-    sourceFingerprint: "15b77d1c37ea982d09cf3648afcb8c79c0b949edb63bb274ec0be8313e431b63",
+    sourceFingerprint: "0869e271a5afa004bd692a00aea2511cdd195c8ba1e2e5b1697aa2acded63036",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."]],"uk":[["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."]]}),
@@ -12179,7 +12179,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 30,
-    sourceFingerprint: "dd8c8a478556fa8d0a591ab854dddeb10a1c3e3a4747fd6c8f81cb2fe9bb7807",
+    sourceFingerprint: "37fb8052eaddd1245a73a44581de52aaec12152dcb039cc13908c830152e97a6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."]],"uk":[["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."]]}),
@@ -12193,7 +12193,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 31,
-    sourceFingerprint: "770aa235418d513a618e03a7d29dae7c0e8717355ced4b37df5385d473f20367",
+    sourceFingerprint: "e863f87e5910bde62469582c6b71a60488e1b067f39fa6845fd6f52a43b2bedc",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."]],"uk":[["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."]]}),
@@ -12207,7 +12207,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 32,
-    sourceFingerprint: "02742da08361c38ee6d7e5a2a7bc0a8cc0189ce3f8d6c9c21fdaea0b0a6d1c3c",
+    sourceFingerprint: "8659efe496a5c08c9b69876ce09c5ea2feb9bde58cc4aa07fd0f166836fbd43e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."],["Перед глаголом здесь не нужно to.","Не добавляйте ещё одно will."]],"uk":[["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."],["Перед дієсловом тут не потрібне to.","Не додавайте ще одне will."]]}),
@@ -12221,7 +12221,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 33,
-    sourceFingerprint: "7237f1479beacb74327bcf9429e9f4c263dbb60d0e8b5ec3d2578ccd0ed0053c",
+    sourceFingerprint: "1d61fe1e97b568b4965f8b2ff2825cc46694fc09dd303902c24752df4f3ef78e",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте мнение-прогноз через will.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте заранее принятое намерение через going to.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.","Нарушено построение формы."]],"uk":[["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте думку-прогноз через will.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте заздалегідь прийнятий намір через going to.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.","Порушено побудову форми."]]}),
@@ -12235,7 +12235,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 34,
-    sourceFingerprint: "7dd8177560b16f0b8d8661f6b5214f00bbf706975a26065f3d2ba814252bedd6",
+    sourceFingerprint: "af1c6b91f5efb84dbdbe8a514fa34d11495ee02da7da97cb0a734771a535a4e9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте мнение-прогноз через will.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте заранее принятое намерение через going to.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.","Нарушено построение формы."]],"uk":[["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте думку-прогноз через will.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте заздалегідь прийнятий намір через going to.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.","Порушено побудову форми."]]}),
@@ -12249,7 +12249,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 35,
-    sourceFingerprint: "9a781abb88d6a9a5c04c2d56ca58bed2a671957f05ac1fc562e9e368048d59a5",
+    sourceFingerprint: "7a1146e850141ec55b97a7a3e20a154fa5fcefa686c56e7a0a628a6105463e1f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте мнение-прогноз через will.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте заранее принятое намерение через going to.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.","Нарушено построение формы."]],"uk":[["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте думку-прогноз через will.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте заздалегідь прийнятий намір через going to.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.","Порушено побудову форми."]]}),
@@ -12263,7 +12263,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 36,
-    sourceFingerprint: "00cf98f89ffc921230789afc3918e211d6c78c1853c2a17c681e2f7408a8b940",
+    sourceFingerprint: "6bbf4b9b98473dac7de4725a975385b55a21205e1e24c23bc416f5a60eeb4938",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте мнение-прогноз через will.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте заранее принятое намерение через going to.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.","Нарушено построение формы."]],"uk":[["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте думку-прогноз через will.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте заздалегідь прийнятий намір через going to.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.","Порушено побудову форми."]]}),
@@ -12277,7 +12277,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 37,
-    sourceFingerprint: "0d7fc4e42f2685ae7b53e70d19d64b6f96e4391f0d87c189f45632325c4264de",
+    sourceFingerprint: "a5282e9eac2c7ab58aaad873650d478f754fe06774f74e0130ab32ec21815658",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте мнение-прогноз через will.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте заранее принятое намерение через going to.","Нарушено построение формы."],["Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.","Нарушено построение формы."]],"uk":[["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте думку-прогноз через will.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте заздалегідь прийнятий намір через going to.","Порушено побудову форми."],["Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.","Порушено побудову форми."]]}),

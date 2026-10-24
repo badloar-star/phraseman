@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Мнение о будущем",
-        "uk": "Думка про майбутнє"
+        "ru": "Ожидание отпуска",
+        "uk": "Очікування відпустки"
       },
       "bodyByLocale": {
-        "ru": "Will подходит для мнения-прогноза, going to подчёркивает намерение, Present Continuous — уже устроенное будущее дело. Формы могут пересекаться; здесь выбираем форму по указанному смыслу, а не объявляем другую всегда неверной. memorable — запоминающийся. Вы делитесь надеждой-прогнозом о предстоящем отпуске. I think the holiday will be memorable. — Думаю, отпуск запомнится. Передайте мнение-прогноз через will.",
-        "uk": "Will підходить для думки-прогнозу, going to підкреслює намір, Present Continuous — уже організовану майбутню справу. Форми можуть перетинатися; тут вибираємо форму за вказаним змістом, а не оголошуємо іншу завжди неправильною. memorable — незабутній, такий, що запам’ятовується. Ви ділитеся надією-прогнозом про майбутню відпустку. I think the holiday will be memorable. — Думаю, відпустка запам’ятається. Передайте думку-прогноз через will."
+        "ru": "Вы обсуждаете предстоящий отпуск с другом и предполагаете, что он надолго запомнится. Memorable — запоминающийся. Передайте мнение: I think the holiday will be memorable. Порядок: I think + the holiday + will be + memorable. После will используем be без to, затем признак memorable. I think показывает ваше предположение. Здесь тренируем will; другие формы могут подходить при другом акценте.",
+        "uk": "Ви обговорюєте майбутню відпустку з другом і припускаєте, що вона надовго запам'ятається. Memorable — той, що запам'ятовується. Передайте думку: I think the holiday will be memorable. Порядок: I think + the holiday + will be + memorable. Після will використовуємо be без to, потім ознаку memorable. I think показує ваше припущення. Тут тренуємо will; інші форми можуть підходити за іншого акценту."
       },
       "question": {
         "interactionId": "en:lesson-16:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Намерение уже принято",
-        "uk": "Намір уже прийнято"
+        "ru": "Решение оплатить неожиданный расход",
+        "uk": "Рішення оплатити несподівану витрату"
       },
       "bodyByLocale": {
-        "ru": "uneventful — прошедший или проходящий без особых событий. unplanned — незапланированный. Появился непредвиденный расход. Вы уже решили оплатить его; сообщаете о намерении. I am going to cover an unplanned expense. — Я собираюсь покрыть незапланированный расход. Передайте заранее принятое намерение через going to.",
-        "uk": "uneventful — такий, що минає без особливих подій. unplanned — незапланований. З’явилася непередбачена витрата. Ви вже вирішили оплатити її; повідомляєте про намір. I am going to cover an unplanned expense. — Я збираюся покрити незаплановану витрату. Передайте заздалегідь прийнятий намір через going to."
+        "ru": "Перед поездкой возник незапланированный расход, и вы уже решили его оплатить. Unplanned — незапланированный. Скажите о намерении: I am going to cover an unplanned expense. Соберите фразу: I + am going to + cover + an unplanned expense. С I ставим am, после going to — cover в исходной форме. Cover an expense означает оплатить расход; an стоит перед unplanned, которое начинается с гласного звука.",
+        "uk": "Перед поїздкою виникла незапланована витрата, і ви вже вирішили її оплатити. Unplanned — незапланований. Скажіть про намір: I am going to cover an unplanned expense. Складіть фразу: I + am going to + cover + an unplanned expense. З I ставимо am, після going to — cover у початковій формі. Cover an expense означає оплатити витрату; an стоїть перед unplanned, яке починається з голосного звука."
       },
       "question": {
         "interactionId": "en:lesson-16:session-36:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Дело согласовано",
-        "uk": "Справу узгоджено"
+        "ru": "Визит согласован в последний момент",
+        "uk": "Візит узгоджено в останній момент"
       },
       "bodyByLocale": {
-        "ru": "last-minute — возникший или сделанный в последний момент. Только сегодня вы с хозяевами окончательно согласовали завтрашний визит. Договорённость подтверждена. We are making a last-minute visit tomorrow. — Мы едем с визитом завтра, договорившись в последний момент. Передайте подтверждённую договорённость через Present Continuous.",
-        "uk": "last-minute — такий, що виник або був зроблений в останню мить. Лише сьогодні ви з господарями остаточно узгодили завтрашній візит. Домовленість підтверджена. We are making a last-minute visit tomorrow. — Ми їдемо з візитом завтра, домовившись в останню мить. Передайте підтверджену домовленість через Present Continuous."
+        "ru": "Вы с семьёй только сегодня окончательно договорились с хозяевами о завтрашнем визите. Last-minute — организованный в последний момент. Передайте договорённость: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. С we используем are; перед -ing убираем e в make: making. Tomorrow и подтверждение хозяев показывают будущее значение Present Continuous.",
+        "uk": "Ви із сім'єю лише сьогодні остаточно домовилися з господарями про завтрашній візит. Last-minute — організований в останній момент. Передайте домовленість: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. З we використовуємо are; перед -ing прибираємо e у make: making. Tomorrow та підтвердження господарів показують майбутнє значення Present Continuous."
       },
       "question": {
         "interactionId": "en:lesson-16:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "439e65d3b707d55462c8cb86b7aa87b84abac658d771838cc1048500de29b792"
+  "introFingerprint": "270dceda8ad429cf08d228f41a1da9162ae208b5905527ca93b548bbf2aed52d"
 }

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Восстановление сохранения</title>
+<style>
+/* ───────── PhraseMan 2.0 · «Восстанавливаем сохранение…» и восстановление прогресса (координатор 22.10: экран без макета из карты screens-vs-mockups) ─────────
+   Опись — restore-inventory.md. Главное из кода: экран с текстом «Восстанавливаем сохранение» один и он про нехватку места на телефоне (PhoneStateRecoveryScreen),
+   а возврат прогресса из облака своего экрана-ожидания не имеет — он идёт в окне входа («Входим…», «Вход занимает больше времени…», карточка сбоя),
+   в окне «Восстановить аккаунт?» и тихо в фоне (спиннер в шапке Главной, тост «Нет интернета…»). Макет показывает ровно эти состояния в стиле 2.0:
+   токены темы как в хабе урока и Диалогах v4, без обводок, кнопки 50/52, «назад» не нужен (окна блокирующие). Тексты — дословно из кода. Классы rs-. */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.rs-page { max-width: 1800px; margin: 0 auto; padding: 32px 24px 96px; }
+.rs-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.rs-page h2 { font-size: 22px; line-height: 28px; margin: 40px 0 8px; letter-spacing: -.3px; }
+.lead { color: #A9A9AE; font-size: 16px; line-height: 24px; max-width: 1080px; margin: 0 0 12px; }
+.lead b { color: #ECECEE; }
+.bar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 12px 0; background: #101113; }
+.seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.seg button { font: 600 16px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.seg button.on { background: #ECECEE; color: #111214; }
+.jump { color: #A9A9AE; font-size: 13px; }
+.jump a { color: #ECECEE; }
+.map-wrap { overflow-x: auto; margin-top: 12px; border-radius: 16px; background: #17181B; }
+.map { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 13px; line-height: 18px; }
+.map th { text-align: left; font-weight: 700; color: #ECECEE; background: #1E1F23; padding: 10px 12px; }
+.map td { padding: 8px 12px; vertical-align: top; color: #C9C9CE; border-top: 1px solid rgba(255, 255, 255, .06); }
+.map td:first-child { color: #ECECEE; font-weight: 700; white-space: nowrap; }
+.map td code { font: 12px/17px ui-monospace, Consolas, monospace; color: #A9C7D3; word-break: break-word; }
+.map tr.grp td { background: #1A1B1F; color: #ECECEE; font-weight: 800; padding-top: 12px; }
+.map .ok { color: #8FD3A8; font-weight: 700; } .map .no { color: #E7B07A; font-weight: 700; } .map .lg { color: #9EA6B8; font-weight: 700; }
+.frames { display: flex; flex-wrap: wrap; gap: 40px 36px; margin-top: 20px; }
+.col { display: flex; flex-direction: column; gap: 10px; width: 390px; flex: none; }
+.cap { font-size: 13px; line-height: 19px; font-weight: 600; color: #A9A9AE; min-height: 96px; }
+.cap b { color: #ECECEE; font-size: 16px; display: block; margin-bottom: 2px; }
+
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 21px; }
+.ph.dk { --bg: #0E171C; --card: #172329; --ctl: #213139; --tx: #FFFFFF; --sec: #9BB0B9; --acc: oklch(.80 .09 205); --sh: 0 8px 20px rgba(0, 0, 0, .28); --scrim: rgba(4, 8, 10, .62);
+  --top: oklch(.30 .06 214); --bot: #0E171C; }
+.ph.lt { --bg: #F2F1F6; --card: #FFFFFF; --ctl: #E6E7F4; --tx: #16141D; --sec: #6A6777; --acc: oklch(.48 .17 285); --sh: 0 8px 20px rgba(40, 30, 80, .10); --scrim: rgba(22, 20, 29, .38);
+  --top: oklch(.90 .04 285); --bot: #F2F1F6; }
+.ph * { min-width: 0; }
+.sb { position: absolute; z-index: 9; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 34px; font-size: 13px; font-weight: 700; }
+.sb .sys { display: inline-flex; gap: 6px; align-items: center; } .sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+.ind { position: absolute; z-index: 9; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+.press { transition: transform 160ms ease-out; cursor: pointer; } .press:active { transform: scale(.97); }
+/* спиннер темы */
+.spin { width: 44px; height: 44px; border-radius: 50%; border: 4px solid color-mix(in oklab, var(--acc) 22%, transparent); border-top-color: var(--acc); animation: rot 900ms linear infinite; }
+.spin.sm { width: 20px; height: 20px; border-width: 2.5px; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation-duration: 2.4s; } .dots i { animation: none !important; opacity: .7 !important; } }
+/* экран «Восстанавливаем сохранение» */
+.full { position: absolute; inset: 0; background: linear-gradient(180deg, var(--top) 0%, var(--bot) 70%); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 40px; text-align: center; }
+.full .glow { position: absolute; left: 50%; top: 34%; width: 260px; height: 260px; margin-left: -130px; border-radius: 50%; background: radial-gradient(circle, color-mix(in oklab, var(--acc) 30%, transparent), transparent 70%); }
+.full h3 { margin: 22px 0 0; font-size: 22px; line-height: 28px; font-weight: 700; position: relative; }
+.full p { margin: 8px 0 0; max-width: 300px; font-size: 16px; line-height: 22px; color: var(--sec); position: relative; }
+/* подложка (приложение под окном) */
+.under { position: absolute; inset: 0; padding: 56px 16px 0; display: flex; flex-direction: column; gap: 12px; }
+.under .hdr { display: flex; align-items: center; gap: 10px; height: 44px; }
+.under .pill { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+.under .pill .io { font-size: 16px; color: var(--acc); }
+.under .sp { flex: 1; }
+.under .av { width: 40px; height: 40px; border-radius: 20px; background: var(--ctl); }
+.under .blk { border-radius: 24px; background: var(--card); box-shadow: var(--sh); }
+.scrim { position: absolute; inset: 0; background: var(--scrim); }
+/* шторка входа */
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 32px 32px 0 0; background: var(--card); padding: 12px 20px 34px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 -12px 40px rgba(0, 0, 0, .3); }
+.sheet .grab { align-self: center; width: 40px; height: 5px; border-radius: 3px; background: var(--ctl); }
+.sheet .hero { align-self: center; width: 72px; height: 72px; border-radius: 36px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--acc); margin-top: 8px; }
+.sheet h3 { margin: 4px 0 0; text-align: center; font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.3px; }
+.sheet .sub { text-align: center; font-size: 16px; line-height: 22px; color: var(--sec); }
+.sheet .days { align-self: center; height: 32px; padding: 0 12px; border-radius: 16px; background: color-mix(in oklab, var(--acc) 16%, var(--card)); display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+.sheet .days .io { font-size: 15px; color: var(--acc); }
+.btn { height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 16px; font-weight: 700; }
+.btn .io { font-size: 20px; }
+.btn.main { background: var(--tx); color: var(--bg); }
+.btn.sec { background: var(--ctl); color: var(--tx); }
+.btn.ghost { background: transparent; color: var(--sec); }
+.btn.busy { opacity: .72; }
+.note { min-height: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; line-height: 17px; color: var(--sec); text-align: center; }
+.dots i { display: inline-block; width: 4px; height: 4px; border-radius: 2px; background: currentColor; margin: 0 1px; animation: blink 1.2s infinite; }
+.dots i:nth-child(2) { animation-delay: .2s; } .dots i:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+.fail { border-radius: 18px; background: color-mix(in oklab, var(--ctl) 70%, var(--card)); padding: 12px 14px; display: flex; gap: 12px; align-items: flex-start; }
+.fail .io { font-size: 20px; color: var(--sec); margin-top: 1px; }
+.fail .t { flex: 1; font-size: 13px; line-height: 18px; color: var(--sec); }
+.fail .t b { display: block; font-size: 16px; line-height: 21px; color: var(--tx); margin-bottom: 2px; }
+/* блокирующее окно */
+.dlg { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); border-radius: 28px; background: var(--card); padding: 24px 20px 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 24px 60px rgba(0, 0, 0, .4); }
+.dlg h3 { margin: 0; font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; text-align: center; }
+.dlg p { margin: 0 0 8px; font-size: 16px; line-height: 22px; color: var(--sec); text-align: center; }
+/* тост */
+.toast { position: absolute; z-index: 8; left: 16px; right: 16px; bottom: 112px; min-height: 52px; border-radius: 18px; background: var(--tx); color: var(--bg); display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 13px; line-height: 17px; font-weight: 700; box-shadow: 0 12px 28px rgba(0, 0, 0, .3); }
+.toast .io { font-size: 18px; }
+.tabs { position: absolute; left: 12px; right: 12px; bottom: 22px; height: 64px; border-radius: 32px; background: var(--card); box-shadow: var(--sh); display: flex; justify-content: space-around; align-items: center; }
+.tabs .io { font-size: 22px; color: var(--sec); } .tabs .on { color: var(--tx); }
+</style>
+</head>
+<body>
+<div class="rs-page">
+  <h1>Восстановление сохранения и прогресса</h1>
+  <p class="lead">Опись по коду — <code>restore-inventory.md</code>. <b>Важно:</b> экран «Восстанавливаем сохранение» в приложении про нехватку места на телефоне, а возврат прогресса из облака своего экрана-ожидания не имеет — он идёт в окне входа, в окне «Восстановить аккаунт?» и тихо в фоне. Макет показывает именно эти состояния, тексты дословно из кода; что предлагается поменять — в колонке «Решение».</p>
+  <div class="bar"><div class="seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div><span class="jump"><a href="#map">Таблица соответствия</a> · <a href="#frames">Кадры</a></span></div>
+  <h2 id="map">Элемент приложения → где он в макете</h2>
+  <p class="lead"><span class="ok" style="color:#8FD3A8">В макете</span> — нарисован (кадр). <span style="color:#9EA6B8">Логика</span> — невидимо. <span style="color:#E7B07A">Решение</span> — предложение, ждёт «да» владельца.</p>
+  <div class="map-wrap"><table class="map"><thead><tr><th>№</th><th>Элемент приложения</th><th>Файл:строка</th><th>Где в макете</th></tr></thead><tbody id="map-body"></tbody></table></div>
+  <h2 id="frames">Кадры</h2>
+  <div class="frames" id="root"></div>
+</div>
+<script>
+window.__ICODE = {"flame":"f313","logo-bitcoin":"f3dd","stats-chart":"f59b","home":"f382","book":"f1a5","play-circle-outline":"f4ce","people":"f49f","settings-outline":"f56c","cloud-offline-outline":"f25b","shield-checkmark-outline":"f579","logo-google":"f3f5","logo-apple":"f3d8"};
+const MAP = [{"g":"A. «Восстанавливаем сохранение» (запись на диск, PhoneStateRecoveryScreen)"},["A1","Полноэкранная модалка, градиент темы, каскадное появление","PhoneStateRecoveryScreen.tsx:86-131","<span class=\"ok\">В макете</span> · кадр 1: градиент от тона темы к фону, мягкое свечение акцентом"],["A2","Большой спиннер","PhoneStateRecoveryScreen.tsx:70-74,149","<span class=\"ok\">В макете</span> · спиннер цвета акцента темы (вместо системного серого). Кадр 1"],["A3","«Восстанавливаем сохранение» 22/28, 700","PhoneStateRecoveryScreen.tsx:47-57,75-79,151","<span class=\"ok\">В макете</span> · кадр 1"],["A4","«Освобождаем место и восстанавливаем сохранение…» 16/22","PhoneStateRecoveryScreen.tsx:58-68,80-84,152","<span class=\"ok\">В макете</span> · кадр 1"],["A5","Кнопок нет; выход только «назад» Android, на iOS выхода нет","PhoneStateRecoveryScreen.tsx:23-34,97","<span class=\"no\">Решение</span> · оставить без кнопок, но после 4-й неудачи (≈ 10 с) показывать строку «Освободите место на телефоне — приложение повторит само» — сейчас человек не знает, что делать"],["A6","Живая зона для диктора","PhoneStateRecoveryScreen.tsx:116-121","<span class=\"lg\">Логика</span> · без изменений"],["A7","Автоповтор записи каждые 5 с","PhoneStateRecoveryScreen.tsx:16,40-45","<span class=\"lg\">Логика</span> · без изменений"],["A8","Потолок показа: 4 неудачи, дальше фоном","app/phone_state_recovery.ts:39,54-107","<span class=\"lg\">Логика</span> · без изменений"],["A9","Единственный вход — «Включить язык» на language_welcome","app/language_welcome.tsx:208-232","<span class=\"lg\">Логика</span> · без изменений"],["A10–A11","Сеть не читается; логи","app/phone_state_recovery.ts","<span class=\"lg\">Логика</span> · 0 чтений"],{"g":"B. Возврат прогресса из облака (фон)"},["B1–B2","Холодный старт обычный и отложенный","app/_layout.tsx:2505-2540,2925-2985; boot_restore_defer.ts","<span class=\"lg\">Логика</span> · экрана ожидания нет — человек на своём экране"],["B3","Переустановка без входа → окно входа","startup_cloud_recovery_presentation.ts:20-33","<span class=\"ok\">В макете</span> · кадр 2"],["B4","Вход Google/Apple (онбординг, Настройки, после урока)","app/auth_provider.ts:684,4150-4282","<span class=\"ok\">В макете</span> · кадры 2–4"],["B5","Смена аккаунта","account_switch_deadline.ts:18","<span class=\"lg\">Логика</span> · см. F1"],["B6","«Восстановить аккаунт?»","RegistrationPromptModal.tsx:1319-1372","<span class=\"ok\">В макете</span> · кадр 5"],["B7","Тихая привязка после входа","_layout.tsx:2531-2537","<span class=\"lg\">Логика</span> · невидимо"],["B8","Тихие повторы старта 5 с / 30 с / 2 мин","app/startup_restore_retry.ts:15,52-119","<span class=\"lg\">Логика</span> · невидимо; кадр 7 — подпись"],["B9","Тост «Нет интернета. Восстановим прогресс, как только он появится.»","startup_restore_retry.ts:33-46,77-91","<span class=\"ok\">В макете</span> · кадр 7, тост над вкладками"],["B10","Маленький спиннер вместо значка статистики в шапке Главной, до 30 с","cloud_profile_refresh_state.ts:13,23-39; HomeV2Header.tsx:34,111","<span class=\"ok\">В макете</span> · кадр 7, спиннер акцентом"],["B11","Главная после восстановления","home.tsx:1591-1600","<span class=\"lg\">Логика</span> · обычная Главная"],["B12–B14","Что читается, логи, причины сбоя","cloud_sync.ts:4981-5120","<span class=\"lg\">Логика</span> · невидимо"],{"g":"C. Окно входа «после переустановки»"},["C1–C2","Вход в окно","_layout.tsx:2688-2692,2836-2853","<span class=\"lg\">Логика</span> · без изменений"],["C3","«Всё в безопасности»","RegistrationPromptModal.tsx:558-570,660-663","<span class=\"ok\">В макете</span> · кадры 2–4, заголовок шторки 24/30"],["C4","«Войди в тот же аккаунт Google или Apple — вернём прогресс из облака.»","RegistrationPromptModal.tsx:573-582","<span class=\"ok\">В макете</span> · кадры 2–4"],["C5","«Был ли вход раньше?» + текст (гость, состояние unknown)","startup_recovery_link_copy.ts:50-58,100-122","<span class=\"ok\">В макете</span> · та же шторка с этими текстами, без строки дней"],["C6","«Прошлый прогресс не сохранился» (not_linked)","startup_recovery_link_copy.ts:71-98","<span class=\"ok\">В макете</span> · та же шторка с этими текстами"],["C7","«N дней твоего пути уже сохранены» (только linked)","startup_recovery_link_copy.ts:129-134","<span class=\"ok\">В макете</span> · плашка с огоньком под текстом. Кадры 2–4"],["C8","Кнопки Google / Apple, индикатор на кнопке","RegistrationPromptModal.tsx","<span class=\"ok\">В макете</span> · Google — главная, Apple — вторая; во время входа на кнопке спиннер. Кадры 2–4"],["C9","«Входим…» через 3 с, три мигающие точки","SignInProgressNote.tsx:25,71-96","<span class=\"ok\">В макете</span> · строка под кнопками (в «меньше движения» точки неподвижны)"],["C10","«Вход занимает больше времени. Можно закрыть это окно — вход продолжится.» через 8 с","SignInProgressNote.tsx:26,76-77,85","<span class=\"ok\">В макете</span> · кадр 3"],["C11","Карточка сбоя «Не получилось войти» + причина + «Попробовать ещё раз»","SignInProgressNote.tsx:101-160; sign_in_progress_copy.ts:35-79","<span class=\"ok\">В макете</span> · кадр 4: мягкая карточка без рамки, значок облака; при «слишком много попыток» кнопки нет"],["C12","«Нужен прежний аккаунт» + текст","RegistrationPromptModal.tsx:1296-1317","<span class=\"ok\">В макете</span> · та же карточка, что в кадре 4, с этим текстом"],["C13–C14","Нет такого аккаунта (онбординг); гость и Google/Apple","CleanOnboarding.tsx:3180-3196","<span class=\"lg\">Логика</span> · тексты из C5/C6"],{"g":"D. «Восстановить аккаунт?»"},["D1","Блокирующее окно через общую очередь, «назад» = «Не восстанавливать»","account_delete_restore_prompt.ts:25-26,191-226","<span class=\"ok\">В макете</span> · кадр 5: окно по центру, тёмная подложка"],["D2","«Этот аккаунт удалится через N дней — весь прогресс ещё на месте и вернётся полностью.»","account_delete_restore_prompt.ts:34-47,187","<span class=\"ok\">В макете</span> · кадр 5, N = 12"],["D3","«Не восстанавливать» (бледная)","account_delete_restore_prompt.ts:204-213","<span class=\"ok\">В макете</span> · кадр 5, текстовая кнопка"],["D4","«Восстановить», тихие повторы 700 / 1800 мс","account_delete_restore_prompt.ts:99,124-134,214-221","<span class=\"ok\">В макете</span> · кадр 5, главная кнопка; на время запроса — спиннер на кнопке"],["D5–D6","Успех в окне входа и онбординге","RegistrationPromptModal.tsx:1327-1346","<span class=\"lg\">Логика</span> · переход дальше"],["D7","«Аккаунт не восстановлен» + «Проверь интернет и попробуй ещё раз.»","account_delete_restore_prompt.ts:141-153","<span class=\"ok\">В макете</span> · карточка как в кадре 4 с «Попробовать ещё раз»"],["D8–D13","Статус не получен, отменено, удалён навсегда, логи","account_delete_restore_prompt.ts:55-80,108-122,172-186","<span class=\"lg\">Логика</span> · без отдельного кадра"],{"g":"E–F. Конфликт и смена аккаунта"},["E1–E2","Автоматическое слияние, не затирать облако пустым","cloud_sync.ts:3953,5231-5250","<span class=\"lg\">Логика</span> · выбора «чей прогресс» нет"],["E3","Шторка «Войти в другой аккаунт?» (гость)","account_switch_copy.ts:145-160; GuestSwitchWarningSheet.tsx","<span class=\"lg\">Логика</span> · уже есть отдельный макет guest-switch-warning.html (в галерее неутверждённых)"],["E4","«Этот аккаунт уже есть в Phraseman» + «Отмена» / «Войти в этот аккаунт»","account_switch_copy.ts:104-141","<span class=\"ok\">В макете</span> · кадр 6"],["E5–E6","Привязанный входит в другой аккаунт; ошибки смены","account_switch_copy.ts:38-98","<span class=\"lg\">Логика</span> · тексты в описи"],["F1–F2","«Смена аккаунта ещё идёт» через 45 с; «Связь медленная…»","account_switch_still_running_copy.ts:15-40","<span class=\"ok\">В макете</span> · та же карточка, что в кадре 4, без кнопки"],{"g":"Не рисуем (в приложении нет)"},["—","Полноэкранного «Восстанавливаем прогресс из облака», процентов, «Продолжить без восстановления», выбора «локальный или облачный»","restore-inventory.md «Чего в приложении НЕТ»","<span class=\"lg\">Логика</span> · отсутствуют"]];
+(() => {
+  const CODE = window.__ICODE;
+  const io = (n) => { const c = CODE[n]; if (!c) throw new Error('[RESTORE-MOCK] нет значка ' + n); return `<i class="io" aria-hidden="true">&#x${c};</i>`; };
+  let AP = 'dk';
+  const sb = `<div class="sb"><span>9:41</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="ind"></div>`;
+  const under = (spin) => `<div class="under"><div class="hdr"><span class="pill">${io('flame')}12</span><span class="pill">${io('logo-bitcoin')}340</span><span class="sp"></span>${spin ? '<span class="spin sm" aria-label="Обновляем"></span>' : `<span class="pill">${io('stats-chart')}</span>`}<span class="av"></span></div>
+    <div class="blk" style="height:300px"></div><div class="blk" style="height:120px"></div><div style="display:flex;gap:8px"><div class="blk" style="flex:1;height:96px"></div><div class="blk" style="flex:1;height:96px"></div><div class="blk" style="flex:1;height:96px"></div></div></div>`;
+  const tabs = `<div class="tabs">${['home', 'book', 'play-circle-outline', 'people', 'settings-outline'].map((n, i) => `<span class="${i === 0 ? 'on' : ''}">${io(n)}</span>`).join('')}</div>`;
+  const signSheet = (state) => {
+    const note = state === 'calm' ? '<div class="note"><span class="dots"><i></i><i></i><i></i></span>Входим…</div>'
+      : state === 'slow' ? '<div class="note">Вход занимает больше времени. Можно закрыть это окно — вход продолжится.</div>'
+      : state === 'fail' ? `<div class="fail">${io('cloud-offline-outline')}<div class="t"><b>Не получилось войти</b>Вход не завершился. Попробуй ещё раз или выбери другой способ.</div></div><div class="btn sec press">Попробовать ещё раз</div>` : '<div class="note"></div>';
+    const busy = state === 'calm' || state === 'slow';
+    return `${under(false)}<div class="scrim"></div><div class="sheet"><span class="grab"></span><span class="hero">${io('shield-checkmark-outline')}</span>
+      <h3>Всё в безопасности</h3><div class="sub">Войди в тот же аккаунт Google или Apple — вернём прогресс из облака.</div>
+      <span class="days">${io('flame')}47 дней твоего пути уже сохранены</span>
+      <div class="btn main press${busy ? ' busy' : ''}">${busy ? '<span class="spin sm" style="border-top-color:var(--bg);border-color:color-mix(in oklab,var(--bg) 30%,transparent);border-top-color:var(--bg)"></span>' : io('logo-google')}Войти через Google</div>
+      <div class="btn sec press">${io('logo-apple')}Войти через Apple</div>${note}</div>`;
+  };
+  const FRAMES = [
+    { t: '1 · Нет места на телефоне', d: '«Восстанавливаем сохранение» — запись на диск не удалась (кончилось место). Спиннер, заголовок, текст; кнопок в коде нет, повтор каждые 5 с, экран уходит после 4 неудач.', h: () => `<div class="full"><div class="glow"></div><span class="spin" style="position:relative"></span><h3>Восстанавливаем сохранение</h3><p>Освобождаем место и восстанавливаем сохранение…</p></div>${sb}` },
+    { t: '2 · После переустановки', d: 'Облако отказало на холодном старте → окно входа «startup_recovery»: «Всё в безопасности», сколько дней пути сохранено (только если привязка достоверна), Google / Apple.', h: () => `${signSheet('idle')}${sb}` },
+    { t: '3 · Входим… / дольше обычного', d: 'Через 3 с под кнопками «Входим…» с мигающими точками, через 8 с — «Вход занимает больше времени…». Кнопка приглушена, повторный тап не принимается.', h: () => `${signSheet('slow')}${sb}` },
+    { t: '4 · Не получилось войти', d: 'Мягкая карточка без рамки, значок облака при сбое сети, причина и «Попробовать ещё раз» (при «слишком много попыток» кнопки нет).', h: () => `${signSheet('fail')}${sb}` },
+    { t: '5 · Восстановить аккаунт?', d: 'Аккаунт на удалении, прошло меньше 14 дней. «Не восстанавливать» — бледная, «Восстановить» — главная. Провал: «Аккаунт не восстановлен · Проверь интернет и попробуй ещё раз.»', h: () => `${under(false)}<div class="scrim"></div><div class="dlg"><h3>Восстановить аккаунт?</h3><p>Этот аккаунт удалится через 12 дней — весь прогресс ещё на месте и вернётся полностью.</p><div class="btn main press">Восстановить</div><div class="btn ghost press">Не восстанавливать</div></div>${sb}` },
+    { t: '6 · Гость входит в существующий аккаунт', d: 'Единственный явный выбор «чей прогресс»: прогресс гостя не переносится. «Отмена» — бледная.', h: () => `${under(false)}<div class="scrim"></div><div class="dlg"><h3>Этот аккаунт уже есть в Phraseman</h3><p>Чтобы войти в него, начатое на этом телефоне без входа придётся оставить — оно не перенесётся.</p><div class="btn main press">Войти в этот аккаунт</div><div class="btn ghost press">Отмена</div></div>${sb}` },
+    { t: '7 · Фон: догружаем и нет сети', d: 'Экран не блокируется: после входа в шапке Главной на месте значка статистики крутится маленький спиннер (до 30 с). Нет сети на старте — тост, приложение само повторит через 5 с, 30 с, 2 мин.', h: () => `${under(true)}${tabs}<div class="toast">${io('cloud-offline-outline')}Нет интернета. Восстановим прогресс, как только он появится.</div>${sb}` },
+  ];
+  document.getElementById('map-body').innerHTML = MAP.map((r) => (r.g ? `<tr class="grp"><td colspan="4">${r.g}</td></tr>` : `<tr><td>${r[0]}</td><td>${r[1]}</td><td><code>${r[2]}</code></td><td>${r[3]}</td></tr>`)).join('');
+  const render = () => { document.getElementById('root').innerHTML = FRAMES.map((f) => `<div class="col"><div class="cap"><b>${f.t}</b>${f.d}</div><div class="ph ${AP}">${f.h()}</div></div>`).join(''); };
+  document.addEventListener('click', (e) => { const t = e.target.closest('[data-ap]'); if (!t) return; AP = t.dataset.ap; t.parentElement.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === t)); render(); });
+  render();
+})();
+</script>
+</body>
+</html>

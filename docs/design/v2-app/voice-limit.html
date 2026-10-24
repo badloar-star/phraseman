@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Голос на сегодня</title>
+<style>
+/* ───────── PhraseMan 2.0 · дневной лимит голоса у Free (координатор 22.10: экран без макета из карты screens-vs-mockups) ─────────
+   Опись — voice-limit-inventory.md. Из кода: 3 попытки в день на всё приложение, счётчик на телефоне, сброс в местную полночь, у Plus лимита нет.
+   Отдельной «стены» при нуле нет: значок на микрофоне меняется «3 → 2 → 1 → PLUS», тап ведёт на экран Plus «Отвечай голосом»;
+   единственная шторка — «Голоса на весь эпизод не хватит» на старте занятия курса. «Не могу говорить» — на каждом голосовом задании.
+   Стиль — как хаб урока и Диалоги v4: токены темы, без обводок, крестик/«назад» на своём месте. Тексты — дословно из кода. Классы vl-. */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #101113; color: #ECECEE; font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.vl-page { max-width: 1800px; margin: 0 auto; padding: 32px 24px 96px; }
+.vl-page h1 { font-size: 30px; line-height: 36px; margin: 0 0 8px; letter-spacing: -.4px; }
+.vl-page h2 { font-size: 22px; line-height: 28px; margin: 40px 0 8px; letter-spacing: -.3px; }
+.lead { color: #A9A9AE; font-size: 16px; line-height: 24px; max-width: 1080px; margin: 0 0 12px; }
+.lead b { color: #ECECEE; }
+.bar { position: sticky; top: 0; z-index: 30; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 12px 0; background: #101113; }
+.seg { display: inline-flex; background: #1C1D21; border-radius: 22px; padding: 4px; }
+.seg button { font: 600 16px/1 Inter, system-ui, sans-serif; color: #D6D6DA; background: transparent; border: 0; border-radius: 18px; padding: 10px 16px; cursor: pointer; }
+.seg button.on { background: #ECECEE; color: #111214; }
+.jump { color: #A9A9AE; font-size: 13px; } .jump a { color: #ECECEE; }
+.map-wrap { overflow-x: auto; margin-top: 12px; border-radius: 16px; background: #17181B; }
+.map { width: 100%; min-width: 980px; border-collapse: collapse; font-size: 13px; line-height: 18px; }
+.map th { text-align: left; font-weight: 700; color: #ECECEE; background: #1E1F23; padding: 10px 12px; }
+.map td { padding: 8px 12px; vertical-align: top; color: #C9C9CE; border-top: 1px solid rgba(255, 255, 255, .06); }
+.map td:first-child { color: #ECECEE; font-weight: 700; white-space: nowrap; }
+.map td code { font: 12px/17px ui-monospace, Consolas, monospace; color: #A9C7D3; word-break: break-word; }
+.map tr.grp td { background: #1A1B1F; color: #ECECEE; font-weight: 800; padding-top: 12px; }
+.map .ok { color: #8FD3A8; font-weight: 700; } .map .no { color: #E7B07A; font-weight: 700; } .map .lg { color: #9EA6B8; font-weight: 700; }
+.frames { display: flex; flex-wrap: wrap; gap: 40px 36px; margin-top: 20px; }
+.col { display: flex; flex-direction: column; gap: 10px; width: 390px; flex: none; }
+.cap { font-size: 13px; line-height: 19px; font-weight: 600; color: #A9A9AE; min-height: 96px; }
+.cap b { color: #ECECEE; font-size: 16px; display: block; margin-bottom: 2px; }
+
+.ph { position: relative; width: 390px; height: 844px; border-radius: 48px; overflow: hidden; flex: none; background: var(--bg); color: var(--tx);
+  box-shadow: 0 0 0 10px #0B0B0D, 0 0 0 11px #2B2C31, 0 30px 70px rgba(0, 0, 0, .55); font-family: Inter, system-ui, sans-serif; font-size: 16px; line-height: 21px; }
+.ph.dk { --bg: #0E171C; --card: #172329; --ctl: #213139; --tx: #FFFFFF; --sec: #9BB0B9; --acc: oklch(.80 .09 205); --sh: 0 8px 20px rgba(0, 0, 0, .28); --scrim: rgba(4, 8, 10, .42); }
+.ph.lt { --bg: #F2F1F6; --card: #FFFFFF; --ctl: #E6E7F4; --tx: #16141D; --sec: #6A6777; --acc: oklch(.48 .17 285); --sh: 0 8px 20px rgba(40, 30, 80, .10); --scrim: rgba(22, 20, 29, .42); }
+.ph * { min-width: 0; }
+.sb { position: absolute; z-index: 9; top: 0; left: 0; right: 0; height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 34px; font-size: 13px; font-weight: 700; }
+.sb .sys { display: inline-flex; gap: 6px; align-items: center; } .sb .sys i { display: block; background: currentColor; border-radius: 2px; }
+.ind { position: absolute; z-index: 9; bottom: 6px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; }
+.press { transition: transform 160ms ease-out; cursor: pointer; } .press:active { transform: scale(.97); }
+/* шапка занятия: ✕ на месте «назад», полоса, сердца */
+.top { position: absolute; z-index: 5; left: 20px; right: 20px; top: 50px; height: 48px; display: flex; align-items: center; gap: 12px; }
+.x { width: 48px; height: 48px; border-radius: 24px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; }
+.prog { flex: 1; height: 8px; border-radius: 4px; background: var(--ctl); overflow: hidden; } .prog i { display: block; height: 100%; background: var(--acc); border-radius: 4px; }
+.hearts { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; } .hearts .io { font-size: 18px; color: #F2788F; }
+/* задание «Скажи вслух» */
+.task { position: absolute; left: 20px; right: 20px; top: 128px; display: flex; flex-direction: column; gap: 14px; }
+.ttl { display: flex; align-items: center; gap: 8px; font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; } .ttl .io { font-size: 22px; color: var(--acc); }
+.phrase { border-radius: 24px; background: var(--card); box-shadow: var(--sh); padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+.phrase b { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.3px; } .phrase span { font-size: 16px; color: var(--sec); }
+.micwrap { position: absolute; left: 0; right: 0; top: 470px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.mic { position: relative; width: 96px; height: 96px; border-radius: 48px; background: var(--acc); color: var(--card); display: flex; align-items: center; justify-content: center; font-size: 40px; box-shadow: 0 14px 30px color-mix(in oklab, var(--acc) 35%, transparent); }
+.mic.off { background: var(--ctl); color: var(--sec); box-shadow: none; }
+.badge { position: absolute; top: -4px; right: -6px; min-width: 30px; height: 30px; padding: 0 8px; border-radius: 15px; background: var(--tx); color: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; box-shadow: 0 0 0 3px var(--bg); }
+.badge.plus { background: var(--acc); color: var(--card); letter-spacing: .4px; }
+.miccap { font-size: 16px; line-height: 21px; font-weight: 700; } .miccap.mute { color: var(--sec); font-weight: 600; }
+.quiet { height: 44px; padding: 0 16px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: var(--sec); }
+/* шторка на старте */
+.scrim { position: absolute; inset: 0; background: var(--scrim); }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 30px 30px 0 0; background: var(--card); padding: 12px 20px 30px; display: flex; flex-direction: column; align-items: stretch; gap: 12px; box-shadow: 0 -12px 40px rgba(0, 0, 0, .3); }
+.grab { align-self: center; width: 38px; height: 5px; border-radius: 3px; background: var(--ctl); }
+.sico { align-self: center; position: relative; width: 64px; height: 64px; border-radius: 20px; background: var(--ctl); color: var(--acc); display: flex; align-items: center; justify-content: center; font-size: 30px; margin-top: 6px; }
+.sico .badge { width: 30px; min-width: 30px; padding: 0; }
+.sheet h3 { margin: 4px 0 0; text-align: center; font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; }
+.sheet p { margin: 0; text-align: center; font-size: 16px; line-height: 22px; color: var(--sec); } .sheet p b { color: var(--tx); }
+.left { align-self: center; height: 34px; padding: 0 14px; border-radius: 17px; background: var(--ctl); display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; }
+.left .d { display: inline-flex; gap: 4px; } .left .d i { width: 8px; height: 8px; border-radius: 4px; background: color-mix(in oklab, var(--sec) 35%, transparent); } .left .d i.on { background: var(--acc); }
+.btn { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
+.btn.main { background: var(--tx); color: var(--bg); } .btn .io { font-size: 18px; }
+.row2 { display: flex; gap: 8px; } .row2 .quiet { flex: 1; }
+/* экран Plus «Отвечай голосом» */
+.pw { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--acc) 26%, var(--bg)) 0%, var(--bg) 58%); }
+.pw .hero { position: absolute; left: 0; right: 0; top: 130px; display: flex; justify-content: center; }
+.pw .hero .mic { width: 112px; height: 112px; border-radius: 56px; font-size: 48px; }
+.pw .txt { position: absolute; left: 24px; right: 24px; top: 278px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.pw h3 { margin: 0; font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.4px; }
+.pw p { margin: 0; font-size: 16px; line-height: 22px; color: var(--sec); max-width: 310px; }
+.pw .chip { height: 32px; padding: 0 12px; border-radius: 16px; background: var(--ctl); display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; } .pw .chip .io { color: var(--acc); font-size: 15px; }
+.pw .feat { position: absolute; left: 20px; right: 20px; top: 470px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px; display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 600; } .pw .feat .io { font-size: 20px; color: var(--acc); }
+.pw .rest { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 10px; }
+.pw .rest .ph-note { text-align: center; font-size: 13px; line-height: 17px; color: var(--sec); }
+.pw .rest .btn.main { opacity: .5; }
+/* Диалог: поле ввода с микрофоном */
+.chat { position: absolute; left: 16px; right: 16px; top: 120px; display: flex; flex-direction: column; gap: 10px; }
+.bub { max-width: 80%; border-radius: 20px; padding: 10px 14px; font-size: 16px; line-height: 21px; background: var(--card); box-shadow: var(--sh); } .bub.me { align-self: flex-end; background: color-mix(in oklab, var(--acc) 22%, var(--card)); }
+.input { position: absolute; left: 12px; right: 12px; bottom: 30px; height: 60px; border-radius: 30px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 10px; padding: 0 8px; }
+.input .m { position: relative; width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--sec); flex: none; }
+.input .m .badge { top: -8px; right: -12px; height: 22px; min-width: 22px; font-size: 11px; padding: 0 6px; box-shadow: 0 0 0 2px var(--card); }
+.input .f { flex: 1; color: var(--sec); font-size: 16px; }
+.input .s { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--sec); }
+.toast { position: absolute; z-index: 8; left: 16px; right: 16px; bottom: 104px; height: 48px; border-radius: 16px; background: var(--tx); color: var(--bg); display: flex; align-items: center; gap: 10px; padding: 0 16px; font-size: 13px; font-weight: 700; box-shadow: 0 12px 28px rgba(0, 0, 0, .3); }
+.spin { width: 18px; height: 18px; border-radius: 50%; border: 2.5px solid color-mix(in oklab, var(--bg) 30%, transparent); border-top-color: var(--bg); animation: rot 900ms linear infinite; }
+@keyframes rot { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spin { animation-duration: 2.4s; } }
+</style>
+</head>
+<body>
+<div class="vl-page">
+  <h1>Голос на сегодня: лимит у Free</h1>
+  <p class="lead">Опись по коду — <code>voice-limit-inventory.md</code>. <b>3 попытки голосом в день на всё приложение</b>, счётчик на телефоне, сброс в полночь, у Plus лимита нет. Отдельной «стены» в коде нет: на микрофоне значок <b>3 → 2 → 1 → PLUS</b>, тап на нуле ведёт на экран Plus «Отвечай голосом»; единственная шторка — «Голоса на весь эпизод не хватит» на старте занятия курса. В главе 1 голосовых заданий 20 — Free проходит её через «Не могу говорить».</p>
+  <div class="bar"><div class="seg" role="group" aria-label="Оформление"><button type="button" data-ap="dk" class="on">Тёмное</button><button type="button" data-ap="lt">Светлое</button></div><span class="jump"><a href="#map">Таблица соответствия</a> · <a href="#frames">Кадры</a></span></div>
+  <h2 id="map">Элемент приложения → где он в макете</h2>
+  <p class="lead"><span style="color:#8FD3A8">В макете</span> — нарисован (кадр). <span style="color:#9EA6B8">Логика</span> — невидимо. <span style="color:#E7B07A">Решение</span> — предложение, ждёт «да» владельца.</p>
+  <div class="map-wrap"><table class="map"><thead><tr><th>№</th><th>Элемент приложения</th><th>Файл:строка</th><th>Где в макете</th></tr></thead><tbody id="map-body"></tbody></table></div>
+  <h2 id="frames">Кадры</h2>
+  <div class="frames" id="root"></div>
+</div>
+<script>
+window.__ICODE = {"close":"f24a","heart":"f36a","mic":"f454","mic-outline":"f45e","diamond":"f2a1","checkmark-circle":"f21e","arrow-up":"f145"};
+const MAP = [{"g":"A. Счётчик"},["A1","Лимит 3 попытки в день на всё приложение","app/dialogue_v2_voice_daily_limit.ts:15","<span class=\"ok\">В макете</span> · «1 из 3», цифры на значке. Кадры 1–3"],["A2–A3","Хранится на телефоне; сброс в местную полночь","dialogue_v2_voice_daily_limit.ts:16-25,50-53","<span class=\"lg\">Логика</span> · 0 чтений Firestore"],["A4–A6","Что считается попыткой; мгновенное списание; решение «можно/нельзя»","app/voice_daily_allowance.ts:7-9,257-287","<span class=\"lg\">Логика</span> · списание мгновенно (оптимистично), цифра «тикает» — кадр 2"],["A7–A9","Три вида остатка; доступ неизвестен; попытки до выяснения","voice_daily_allowance.ts:77-149,198-317","<span class=\"ok\">В макете</span> · кадр 6 — «Проверяем подписку…»"],["A10–A13","Смена аккаунта, контекст Plus ai_voice_input, dev-подмена, журнал","dialogue_v2_voice_daily_limit.ts:36-43; voice_daily_allowance.ts:33,75","<span class=\"lg\">Логика</span> · невидимо"],{"g":"B. Значок и подписи микрофона"},["B1","Пилюля «3» / «2» / «1» в правом верхнем углу микрофона","components/VoiceAllowanceBadge.tsx:35-84","<span class=\"ok\">В макете</span> · кадр 2: цифра в пилюле цвета текста с вырезом под фон"],["B2","Пилюля «PLUS» при нуле","VoiceAllowanceBadge.tsx:45,61,84","<span class=\"ok\">В макете</span> · кадры 3, 5, 6: «PLUS» акцентом"],["B3","«Тик» при списании (1 → 1,25 → 1, 420 мс)","VoiceAllowanceBadge.tsx:31-44","<span class=\"lg\">Логика</span> · анимация, кадр статичный"],["B4","Значок скрыт у Plus и пока остаток неизвестен","components/MicAllowanceBadge.tsx:33","<span class=\"lg\">Логика</span> · у Plus микрофон без значка"],["B5","Подпись «Устно» под микрофоном 76 pt","learning_v2_direct_session_player_v1.tsx:1436-1439,3980-3990","<span class=\"no\">Решение</span> · микрофон 96 pt (как крупные кнопки 2.0) с той же подписью. Кадр 2"],["B6","Подпись «Ещё раз» после неудачи","learning_v2_direct_session_player_v1.tsx:3985-3989","<span class=\"ok\">В макете</span> · то же место подписи"],["B7–B9","Цифра на микрофоне Диалогов (sm), a11y","DialogueV2SessionScreen.tsx:563-574","<span class=\"ok\">В макете</span> · кадр 5"],{"g":"C. Где лимит виден (8 мест)"},["C1","Курс: «Скажи вслух» — микрофон приглушён, «PLUS», «Голос на сегодня закончился»","learning_v2_direct_session_player_v1.tsx","<span class=\"ok\">В макете</span> · кадр 3"],["C2","Курс: шторка на старте занятия","learning_v2_direct_session_player_v1.tsx:2076-2099","<span class=\"ok\">В макете</span> · кадр 1"],["C3","Старый маршрут learning-v2/session/[id]","app/learning-v2/session/[id].tsx:422-436","<span class=\"lg\">Логика</span> · тот же вид, что кадр 3"],["C4","Классический урок: чип «Устно» в панели","app/lesson1.tsx:654,688-700","<span class=\"ok\">В макете</span> · значок «PLUS» на чипе — как в кадре 5"],["C5","«Мои ошибки»: значок 32, «Удерживай, чтобы говорить»","app/mistake_practice_session.tsx:848,1741-1749","<span class=\"ok\">В макете</span> · как в кадре 5"],["C6","Карточки, разговорная тренировка: SpeakMicButton","app/flashcards/SpeakMicButton.tsx:64-170","<span class=\"ok\">В макете</span> · как в кадрах 2–3"],["C7","Диалоги V2: микрофон слева от «Или зажми и говори»","dialogue_v2_session.tsx:317-325,891-909","<span class=\"ok\">В макете</span> · кадр 5"],["C8–C9","Свободный разговор и ИИ-диалог","dialogue_v2_freeform.tsx:446-458; ai_dialog_session.tsx:1035-1038","<span class=\"ok\">В макете</span> · как кадр 5"],["C10–C11","Звонок в Диалогах (тип), хаб «Диалоги» («голосом 3 раза в день»)","voice_daily_allowance.ts:35-43; use_dialogs_scene_hub.ts:163","<span class=\"lg\">Логика</span> · строка лимита в сцене хаба — макет dialogs-hub-v4, кадр 4"],["C12","Тост «Проверяем подписку…», ждём ≤ 10 с","hooks/use_voice_attempt_gate.ts:45-112","<span class=\"ok\">В макете</span> · кадр 6"],{"g":"D. Шторка «Голоса на весь эпизод не хватит»"},["D1","Когда: Free, голосовых заданий в занятии больше остатка","app/learning_v2_voice_headsup_v1.ts:15-22,42-55","<span class=\"ok\">В макете</span> · кадр 1 (в главе 1 — занятие 8)"],["D2","Оболочка: шторка снизу, затемнение 42 %, ручка 38×5, скругление 30","LearningV2VoiceHeadsupSheet.tsx:36-","<span class=\"ok\">В макете</span> · кадр 1"],["D3","Значок: микрофон 64 (скругление 20) с кружком-цифрой","LearningV2VoiceHeadsupSheet.tsx:200-206","<span class=\"ok\">В макете</span> · кадр 1"],["D4","«Голоса на весь эпизод не хватит»","LearningV2VoiceHeadsupSheet.tsx:83-","<span class=\"ok\">В макете</span> · кадр 1"],["D5","«В этом эпизоде есть задания с голосом, а на сегодня у тебя осталось {K попыток} — закончить не получится. С Plus лимита на голос нет.»","LearningV2VoiceHeadsupSheet.tsx:48-","<span class=\"ok\">В макете</span> · кадр 1, «1 попытка» жирным, «осталась» по числу"],["D6","Плашка «Голос на сегодня · K из 3» + 3 точки","LearningV2VoiceHeadsupSheet.tsx:168,213-218","<span class=\"ok\">В макете</span> · кадр 1"],["D7","«Попробовать Plus» (главная, 54) → Plus, source learning_v2_course_voice","LearningV2VoiceHeadsupSheet.tsx:220","<span class=\"ok\">В макете</span> · кадр 1, с ромбом Plus"],["D8","«Начать всё равно» (тихая, 44)","LearningV2VoiceHeadsupSheet.tsx:171","<span class=\"no\">Решение</span> · в один ряд с «Не могу говорить» — две тихие кнопки рядом, шторка ниже. Кадр 1"],["D9–D10","«Не могу говорить» (тихая, 44), 9 языков","LearningV2VoiceHeadsupSheet.tsx:98","<span class=\"ok\">В макете</span> · кадр 1"],{"g":"E. «Не могу говорить» и пропуски"},["E1","«Не могу говорить» на каждом голосовом задании курса","learning_v2_direct_session_player_v1.tsx:3857-3871","<span class=\"ok\">В макете</span> · кадры 2–3, под микрофоном"],["E2–E4","Режим 15 минут; авто-пропуск; сердца не снимаются, в звёзды не идёт","app/learning_v2_cant_speak_v1.ts:13-35","<span class=\"lg\">Логика</span> · без отдельного кадра"],["E5–E6","Отказ в микрофоне / распознавание недоступно","learning_v2_direct_session_player_v1.tsx:3843-3857","<span class=\"lg\">Логика</span> · режим включается сам"],["E7","«Пропустить» в подвале после 2 неудач","learning_v2_direct_session_player_v1.tsx:296,1479-1485","<span class=\"lg\">Логика</span> · подвал задания, не в макете"],["E8–E9","Нет распознавателя; «Не могу говорить» только в курсе","app/flashcards/SpeakHoldButton.tsx:94,142-144","<span class=\"no\">Решение</span> · добавить «Не могу говорить» в Карточки и «Мои ошибки» — там Free на нуле просто упирается в Plus"],{"g":"F. Экран Plus для голоса"},["F1","«Отвечай голосом»","app/paywall_context_texts.ts:282-292","<span class=\"ok\">В макете</span> · кадр 4"],["F2","«Бесплатно — 3 реплики голосом в день. С Plus говори сколько хочешь.»","paywall_context_texts.ts:283,90","<span class=\"ok\">В макете</span> · кадр 4"],["F3","«Микрофон прямо в поле ответа»","paywall_context_texts.ts:283","<span class=\"ok\">В макете</span> · кадр 4"],["F4","Пилюля «3 из 3 реплик»","paywall_context_texts.ts:546-547","<span class=\"ok\">В макете</span> · кадр 4"],["F5–F8","Как экран берёт тексты; кнопки и цены Plus; source-имена","components/paywall/PaywallPlusScreen.tsx","<span class=\"lg\">Логика</span> · общий экран Plus без изменений — в кадре 4 только верх"],{"g":"G–I. Free / Plus, крайние случаи, глава 1"},["G1–G7","У Plus нет лимита, значка, шторки, подписи «закончился»","voice_daily_allowance.ts:274-277; MicAllowanceBadge.tsx:33","<span class=\"lg\">Логика</span> · один вид микрофона без значка"],["H1–H9","Нет сети, отказ разрешения, полночь, двойной тап, смена аккаунта","voice-limit-inventory.md H","<span class=\"lg\">Логика</span> · без отдельных кадров; двойной тап на нуле открывает Plus один раз"],["I1–I5","Глава 1: 20 голосовых заданий на 8 занятий против 3 в день","generated_release/en/l01/s01…s08/learner.json","<span class=\"no\">Решение</span> · это вопрос продукта, не макета: Free проходит главу только «Не могу говорить» — владельцу решить, нормально ли"],{"g":"J. Прежние неутверждённые макеты"},["J1–J5","voice-limit-session-start.html (варианты 1–3), learning-v2-voice-limit.html","docs/design/v2-app","<span class=\"lg\">Логика</span> · этот макет их заменяет: шторка = вариант 1, тексты — из кода"]];
+(() => {
+  const CODE = window.__ICODE;
+  const io = (n) => { const c = CODE[n]; if (!c) throw new Error('[VOICE-MOCK] нет значка ' + n); return `<i class="io" aria-hidden="true">&#x${c};</i>`; };
+  let AP = 'dk';
+  const sb = `<div class="sb"><span>9:41</span><span class="sys"><i style="width:17px;height:11px"></i><i style="width:15px;height:11px"></i><i style="width:25px;height:12px;border-radius:4px"></i></span></div><div class="ind"></div>`;
+  const top = (p) => `<div class="top"><span class="x press" aria-label="Закрыть">${io('close')}</span><span class="prog"><i style="width:${p}%"></i></span><span class="hearts">${io('heart')}5</span></div>`;
+  const task = (left) => {
+    const off = left === 0;
+    return `${top(left === 0 ? 62 : 38)}<div class="task"><div class="ttl">${io('mic-outline')}Скажи вслух</div><div class="phrase"><b>I am ready.</b><span>Я готов / готова.</span></div></div>
+      <div class="micwrap"><span class="mic press${off ? ' off' : ''}">${io('mic')}<span class="badge${off ? ' plus' : ''}">${off ? 'PLUS' : left}</span></span>
+      <span class="miccap${off ? ' mute' : ''}">${off ? 'Голос на сегодня закончился' : 'Устно'}</span><span class="quiet press">Не могу говорить</span></div>`;
+  };
+  const FRAMES = [
+    { t: '1 · Старт занятия: голоса не хватит', d: 'Шторка курса — только у Free и только если голосовых заданий в занятии больше остатка (в главе 1 — занятие 8, 6 заданий). Свайп вниз = «Начать всё равно».', h: () => `${task(1)}<div class="scrim"></div><div class="sheet"><span class="grab"></span><span class="sico">${io('mic')}<span class="badge">1</span></span>
+      <h3>Голоса на весь эпизод не хватит</h3><p>В этом эпизоде есть задания с голосом, а на сегодня у тебя осталась <b>1 попытка</b> — закончить не получится. С Plus лимита на голос нет.</p>
+      <span class="left">Голос на сегодня · 1 из 3<span class="d"><i class="on"></i><i></i><i></i></span></span>
+      <div class="btn main press">${io('diamond')}Попробовать Plus</div><div class="row2"><span class="quiet press">Начать всё равно</span><span class="quiet press">Не могу говорить</span></div></div>${sb}` },
+    { t: '2 · «Скажи вслух», попытки есть', d: 'Цифра остатка в углу микрофона (у Plus её нет); при списании «тикает». Подпись «Устно». «Не могу говорить» — на каждом голосовом задании.', h: () => `${task(2)}${sb}` },
+    { t: '3 · Попытки кончились', d: 'Стены нет: микрофон приглушён, значок «PLUS», подпись «Голос на сегодня закончился». Занятие идёт дальше; «Не могу говорить» пропускает голосовые на 15 минут без штрафа, но и без звёзд за них.', h: () => `${task(0)}${sb}` },
+    { t: '4 · Тап по микрофону → Plus', d: 'Экран Plus с текстами контекста ai_voice_input: «Отвечай голосом», пилюля «3 из 3 реплик», пункт «Микрофон прямо в поле ответа». Кнопки и цены — общие экрана Plus, не меняются.', h: () => `<div class="pw"><div class="hero"><span class="mic">${io('mic')}</span></div><div class="txt"><span class="chip">${io('mic')}3 из 3 реплик</span><h3>Отвечай голосом</h3><p>Бесплатно — 3 реплики голосом в день. С Plus говори сколько хочешь.</p></div>
+      <div class="feat">${io('checkmark-circle')}Микрофон прямо в поле ответа</div><div class="rest"><div class="ph-note">Тарифы, кнопка покупки и «Не сейчас» — как на общем экране Plus</div><div class="btn main">Plus</div></div></div>${top(0).replace(/<span class="prog">.*<\/span>/, '')}${sb}` },
+    { t: '5 · Диалог: тот же микрофон', d: 'В Диалогах, свободном разговоре, Карточках, «Моих ошибках» и классическом уроке — тот же значок «PLUS» на микрофоне и тот же экран Plus; печатать можно дальше.', h: () => `${top(40).replace('<span class="hearts">', '<span class="hearts" style="visibility:hidden">')}<div class="chat"><div class="bub">Hi! Are you ready for the meeting?</div><div class="bub me">Yes, I am ready.</div><div class="bub">Great! What time works for you?</div></div>
+      <div class="input"><span class="m press">${io('mic')}<span class="badge plus">PLUS</span></span><span class="f">Или зажми и говори</span><span class="s">${io('arrow-up')}</span></div>${sb}` },
+    { t: '6 · Подписка ещё проверяется', d: 'Лимит на нуле, а Plus или Free ещё не выяснено: вместо экрана Plus тост «Проверяем подписку…» (не чаще раза в 3 с), ждём до 10 с; Plus — запись стартует сама.', h: () => `${task(0)}<div class="toast"><span class="spin"></span>Проверяем подписку…</div>${sb}` },
+  ];
+  document.getElementById('map-body').innerHTML = MAP.map((r) => (r.g ? `<tr class="grp"><td colspan="4">${r.g}</td></tr>` : `<tr><td>${r[0]}</td><td>${r[1]}</td><td><code>${r[2]}</code></td><td>${r[3]}</td></tr>`)).join('');
+  const render = () => { document.getElementById('root').innerHTML = FRAMES.map((f) => `<div class="col"><div class="cap"><b>${f.t}</b>${f.d}</div><div class="ph ${AP}">${f.h()}</div></div>`).join(''); };
+  document.addEventListener('click', (e) => { const t = e.target.closest('[data-ap]'); if (!t) return; AP = t.dataset.ap; t.parentElement.querySelectorAll('button').forEach((b) => b.classList.toggle('on', b === t)); render(); });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -47,6 +47,45 @@ function keyName(prop) {
   return null;
 }
 
+// зачем (Переводчик 24.10, ложные срабатывания перед билдом): не всякий объект {ru, uk} — словарь переводов. Два признака:
+// (а) все значения — формы числа `{ one, few, many }` (таблица склонений ru/uk/pl; английский идёт своей веткой кода);
+// (б) все значения — один и тот же идентификатор (`{ ru: s, uk: s, … }` — раскладка уже выбранной строки, а не перевод).
+// Настоящий словарь `{ ru: 'а', uk: 'б' }` по-прежнему считается — см. самопроверку ниже.
+function isNotTranslationMap(node) {
+  const values = node.properties.filter((p) => ts.isPropertyAssignment(p)).map((p) => p.initializer);
+  if (!values.length) return false;
+  const pluralForms = values.every((v) => ts.isObjectLiteralExpression(v)
+    && v.properties.some((p) => ts.isPropertyAssignment(p) && keyName(p) === 'one')
+    && v.properties.some((p) => ts.isPropertyAssignment(p) && keyName(p) === 'many'));
+  if (pluralForms) return true;
+  const sameIdentifier = values.every((v) => ts.isIdentifier(v) && v.text === values[0].text);
+  return sameIdentifier && ts.isIdentifier(values[0]);
+}
+
+function selfCheck() {
+  const probe = (code) => {
+    const sf = ts.createSourceFile('probe.ts', code, ts.ScriptTarget.Latest, true);
+    let hit = 0;
+    const visit = (n) => {
+      if (ts.isObjectLiteralExpression(n)) {
+        const names = new Set(n.properties.filter(ts.isPropertyAssignment).map(keyName).filter(Boolean));
+        if (names.has('ru') && names.has('uk') && !names.has('en') && !isNotTranslationMap(n)) hit += 1;
+      }
+      ts.forEachChild(n, visit);
+    };
+    visit(sf);
+    return hit;
+  };
+  const real = probe("const t = { ru: 'Привет', uk: 'Привіт' };");
+  const plural = probe("const f = { ru: { one: 'день', few: 'дня', many: 'дней' }, uk: { one: 'день', few: 'дні', many: 'днів' } };");
+  const spread = probe('const g = (s) => ({ ru: s, uk: s, pl: s });');
+  if (real !== 1 || plural !== 0 || spread !== 0) {
+    console.error(`Самопроверка сканера не прошла: словарь=${real} (нужно 1), склонения=${plural} (0), раскладка=${spread} (0)`);
+    process.exit(2);
+  }
+}
+selfCheck();
+
 function scanFile(rel) {
   const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');
   if (!/\bru\b/.test(src) || !/\buk\b/.test(src)) return 0;
@@ -56,7 +95,7 @@ function scanFile(rel) {
     if (ts.isObjectLiteralExpression(node)) {
       const names = new Set(node.properties.filter((p) => ts.isPropertyAssignment(p) || ts.isShorthandPropertyAssignment(p)).map(keyName).filter(Boolean));
       const hasSpread = node.properties.some((p) => ts.isSpreadAssignment(p));
-      if (names.has('ru') && names.has('uk') && !names.has('en') && !hasSpread) count += 1;
+      if (names.has('ru') && names.has('uk') && !names.has('en') && !hasSpread && !isNotTranslationMap(node)) count += 1;
     }
     ts.forEachChild(node, visit);
   };

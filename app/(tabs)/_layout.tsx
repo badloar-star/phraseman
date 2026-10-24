@@ -38,7 +38,7 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
 import { noteBackStep } from '../back_tap_probe';
-import { DIAG_ENABLED } from '../dev_diag_gate'; // зачем (R137 этап 2): гейт журнала tabs_cause — был забыт, экран падал «Property 'DIAG_ENABLED' doesn't exist»
+import { DIAG_ENABLED } from '../dev_diag_gate'; // зачем (R137 этап 2): гейт журнала tabs_cause — был забыт, экран падал «Property «DIAG_ENABLED» doesn’t exist»
 import { setTabsShellMounted } from '../tabs_shell_state';
 import { whenHomePainted } from '../home_paint_marker';
 // Home stays behind the tab shell until React can commit the first frame. Its

@@ -52,23 +52,46 @@ function offendersIn(rel) {
       while (ts.isAsExpression(init) || ts.isParenthesizedExpression(init) || (ts.isSatisfiesExpression && ts.isSatisfiesExpression(init))) init = init.expression;
       if (ts.isObjectLiteralExpression(init)) {
         const keys = new Set(init.properties.filter(ts.isPropertyAssignment).map(keyName).filter(Boolean));
-        if (keys.has('ru') && keys.has('uk')) dicts.set(n.name.text, { hasEn: keys.has('en') });
+        if (keys.has('ru') && keys.has('uk')) dicts.set(n.name.text, { hasEn: keys.has('en'), keys });
       }
     }
     ts.forEachChild(n, collect);
   };
   collect(sf);
   const hits = [];
-  const guarded = (n) => {
+  // зачем (Переводчик 24.10): `if (lang === 'ru' || lang === 'uk' || lang === 'pl') return …FULL_DAYS[lang]…` — чтение защищено
+  // условием выше, если КАЖДЫЙ язык из условия есть в словаре. Признак, а не исключение по файлу.
+  const langChecks = (cond, langName) => {
+    const out = [];
+    const walk = (c) => {
+      if (ts.isParenthesizedExpression(c)) return walk(c.expression);
+      if (ts.isBinaryExpression(c) && c.operatorToken.kind === ts.SyntaxKind.BarBarToken) return walk(c.left) && walk(c.right);
+      if (ts.isBinaryExpression(c) && c.operatorToken.kind === ts.SyntaxKind.EqualsEqualsEqualsToken
+        && ts.isIdentifier(c.left) && c.left.text === langName && ts.isStringLiteral(c.right)) { out.push(c.right.text); return true; }
+      return false;
+    };
+    return walk(cond) ? out : null;
+  };
+  const narrowedByIf = (n, d) => {
+    for (let child = n, p = n.parent; p; child = p, p = p.parent) {
+      if (ts.isIfStatement(p) && p.thenStatement === child) {
+        const langs = langChecks(p.expression, n.argumentExpression.text);
+        if (langs && langs.length && langs.every((l) => d.keys.has(l))) return true;
+      }
+      if (ts.isFunctionLike(p)) return false;
+    }
+    return false;
+  };
+  const guarded = (n, d) => {
     const p = n.parent;
     if (!p) return false;
     if (ts.isBinaryExpression(p) && p.left === n && (p.operatorToken.kind === ts.SyntaxKind.QuestionQuestionToken || p.operatorToken.kind === ts.SyntaxKind.BarBarToken)) return true;
-    return false;
+    return narrowedByIf(n, d);
   };
   const visit = (n) => {
     if (ts.isElementAccessExpression(n) && ts.isIdentifier(n.expression) && ts.isIdentifier(n.argumentExpression) && LANG_NAMES.has(n.argumentExpression.text)) {
       const d = dicts.get(n.expression.text);
-      if (d && !d.hasEn && !guarded(n) && !n.questionDotToken) hits.push(`${n.expression.text}[${n.argumentExpression.text}]@${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1}`);
+      if (d && !d.hasEn && !guarded(n, d) && !n.questionDotToken) hits.push(`${n.expression.text}[${n.argumentExpression.text}]@${sf.getLineAndCharacterOfPosition(n.getStart()).line + 1}`);
     }
     ts.forEachChild(n, visit);
   };

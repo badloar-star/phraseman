@@ -70,8 +70,10 @@ const LEGAL_FILES = [
   // считается на телефоне, едет с прогрессом; переключатель «Show my week to friends» → сервер не отдаёт (functions/src/friends_profiles.ts:264).
   // 22.10 (координатор, «Фраза дня вдвоём», идея 8): §5 — последний ответ на фразу дня (день, фраза, выбранный вариант, верно ли) едет с
   // прогрессом и виден принятым друзьям; «Show my week to friends» его не скрывает (functions/src/friends_profiles.ts:285-292).
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'e011ec1c36456f18eac7a503a9f0dc95b80e1c583297506599e9509676edf2fd'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '3c54a811fc7116f9fbed66ebab360e9860eedd20891482dc2f3748ff7e167f01'],
+  // 24.10 (координатор, «Урок вместе», идея 2): §5 — маски курса (пройдено / открыто) едут с прогрессом и видны принятым друзьям,
+  // чтобы приглашение показывало «открыт / прошёл / закрыт» (functions/src/friends_profiles.ts friendCourseFromProgress).
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '24687974859fb8e28cced20b444a3024ca57e05f2e2db3cd27b9a7a7cc772417'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', 'dc0a6cb84dad21f7245254735403a0c0b4cffb35451ffcc8f105e78e260e8a0a'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],

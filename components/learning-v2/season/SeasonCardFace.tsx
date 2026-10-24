@@ -59,11 +59,14 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, sta
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «просто пусть вибрирует и замочек трясется!» — тап по закрытому эпизоду: вибрация (в SeasonCourse) + короткая тряска плашки с замком здесь, на UI-треде; модала нет
   const reducedMotion = useReducedMotion();
   const lockX = useSharedValue(0);
+  const lockOpacity = useSharedValue(1);
   useEffect(() => {
-    if (shakeSeq <= 0 || reducedMotion) return;
+    if (shakeSeq <= 0) return;
+    // зачем (координатор 24.10): при системном «Уменьшить движение» замок не сдвигается, а коротко подсвечивается (1→0,6→1, 240 мс) — отклик на тап остаётся
+    if (reducedMotion) { lockOpacity.value = withSequence(withTiming(0.6, { duration: 120 }), withTiming(1, { duration: 120 })); return; }
     lockX.value = withSequence(withTiming(-5, { duration: 50 }), withTiming(5, { duration: 80 }), withTiming(-4, { duration: 80 }), withTiming(3, { duration: 70 }), withTiming(0, { duration: 60 }));
-  }, [lockX, reducedMotion, shakeSeq]);
-  const lockShake = useAnimatedStyle(() => ({ transform: [{ translateX: lockX.value }] }));
+  }, [lockOpacity, lockX, reducedMotion, shakeSeq]);
+  const lockShake = useAnimatedStyle(() => ({ opacity: lockOpacity.value, transform: [{ translateX: lockX.value }] }));
   if (kind === 'exam') {
     const colors = [art.from, art.to] as const; // зачем (закон владельца 22.10): печать экзамена — тёмный оттенок текущей темы, не фиксированный фиолетовый/бирюзовый
     return (

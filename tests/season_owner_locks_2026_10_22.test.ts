@@ -52,6 +52,13 @@ describe('Замки владельца 22.10: хаб урока', () => {
     expect(face).toMatch(/\{state === 'locked' \? \(\s*<Animated\.View style=\{\[styles\.mark, styles\.examMark, lockShake\]\} testID="season-exam-lock"[^>]*>\s*<Ionicons name="lock-closed"/);
     expect(face).toContain("examMark: { position: 'absolute', top: 14, right: 14 },");
     expect(face).toContain('<View style={styles.seal} testID="season-exam-seal">');
+  });
+  // координатор 24.10: «Уменьшить движение» — без сдвига, короткая подсветка замка 1→0,6→1 за 240 мс (у эпизода и у экзамена один и тот же lockShake)
+  it('при «Уменьшить движение» замок не трясётся, а подсвечивается', () => {
+    expect(face).toContain('const reducedMotion = useReducedMotion();');
+    expect(face).toContain("if (reducedMotion) { lockOpacity.value = withSequence(withTiming(0.6, { duration: 120 }), withTiming(1, { duration: 120 })); return; }");
+    expect(face).toContain('const lockShake = useAnimatedStyle(() => ({ opacity: lockOpacity.value, transform: [{ translateX: lockX.value }] }));');
+    expect(face.match(/lockShake\]/g)?.length).toBe(2);
     expect(view).toMatch(/<SeasonCardFace kind="exam"[\s\S]{0,300}shakeSeq=\{props\.lockShake && props\.lockShake\.index === index \? props\.lockShake\.seq : 0\}/);
   });
   it('в модале нет «закрытой» ветки: ни «просмотр», ни «Откроется после эпизода N», ни «К эпизоду N»', () => {

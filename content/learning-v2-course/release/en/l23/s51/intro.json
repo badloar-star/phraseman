@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Уже смотрели гимнастику",
+        "uk": "Уже дивилися гімнастику"
       },
       "bodyByLocale": {
-        "ru": "Judo — дзюдо. She has tried judo — она пробовала заниматься дзюдо. Gymnastics — гимнастика. We have watched gymnastics — мы смотрели гимнастику. Watched означает смотрели, а не участвовали. На диване тоже можно смотреть гимнастику — только гибче от этого не станешь.",
-        "uk": "Judo — дзюдо. She has tried judo — вона пробувала займатися дзюдо. Gymnastics — гімнастика. We have watched gymnastics — ми дивилися гімнастику. Watched означає дивилися, а не брали участь. На дивані теж можна дивитися гімнастику — тільки гнучкішим від цього не станеш."
+        "ru": "Друг предлагает посмотреть гимнастику. Вы с сестрой уже видели такие выступления и отвечаете: We have watched gymnastics — мы смотрели гимнастику. Gymnastics означает «гимнастика». Собираем: we + have + watched + gymnastics. После we ставим have, watched — третья форма watch с окончанием -ed. Have watched сообщает о вашем опыте просмотра без даты.",
+        "uk": "Друг пропонує подивитися гімнастику. Ви із сестрою вже бачили такі виступи й відповідаєте: We have watched gymnastics — ми дивилися гімнастику. Gymnastics означає «гімнастика». Складаємо: we + have + watched + gymnastics. Після we ставимо have, watched — третя форма watch із закінченням -ed. Have watched повідомляє про ваш досвід перегляду без дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-51:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Знаком со спортивной борьбой",
+        "uk": "Знайомий зі спортивною боротьбою"
       },
       "bodyByLocale": {
-        "ru": "Wrestling — борьба как вид спорта. He has watched wrestling — он смотрел борьбу. Перед названием спорта здесь не нужно a. Gymnastics и wrestling запоминаем целиком как названия; окончания у них разные.",
-        "uk": "Wrestling — боротьба як вид спорту. He has watched wrestling — він дивився боротьбу. Перед назвою спорту тут не потрібно a. Gymnastics і wrestling запам’ятовуємо цілком як назви; закінчення в них різні."
+        "ru": "Обсуждая спорт, вы рассказываете о друге, который уже смотрел соревнования по борьбе. He has watched wrestling — он смотрел борьбу. Wrestling здесь — вид спорта. Собираем: he + has + watched + wrestling. С he выбираем has, затем ставим watched — третью форму watch. Has watched сообщает об опыте просмотра; конкретное соревнование и его дату здесь не называем.",
+        "uk": "Обговорюючи спорт, ви розповідаєте про друга, який уже дивився змагання з боротьби. He has watched wrestling — він дивився боротьбу. Wrestling тут — вид спорту. Складаємо: he + has + watched + wrestling. Із he вибираємо has, потім ставимо watched — третю форму watch. Has watched повідомляє про досвід перегляду; конкретне змагання та його дату тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "76c09b1216f80e270355b560c326200f4af1b97c5de359a1875fe07ce5af445b"
+  "introFingerprint": "4fd69058bc0df6bdb12d9f5fefb7a6c3e2bc676085d668977345ed0153559c01"
 }

@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-24:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ладонь и челюсть",
-        "uk": "Долоня й щелепа"
+        "ru": "Порезали ладонь",
+        "uk": "Порізали долоню"
       },
       "bodyByLocale": {
-        "ru": "Palm — ладонь, внутренняя сторона кисти. Jaw — челюсть. I have cut my palm — я порезал ладонь. Третья форма cut совпадает с начальной. He has hurt his jaw — он повредил челюсть. Эти слова помогают назвать место травмы.",
-        "uk": "Palm — долоня, внутрішній бік кисті. Jaw — щелепа. I have cut my palm — я порізав долоню. Третя форма cut збігається з початковою. He has hurt his jaw — він пошкодив щелепу. Ці слова допомагають назвати місце травми."
+        "ru": "Вы порезали ладонь о разбитую чашку и объясняете, что случилось. I have cut my palm — я порезал ладонь. Palm означает «ладонь». Собираем: I + have + cut + my palm. С I ставим have; третья форма cut пишется так же, как начальная. My palm показывает, что повреждена ваша ладонь. Have cut связывает случившееся с результатом сейчас: на ладони порез.",
+        "uk": "Ви порізали долоню об розбиту чашку й пояснюєте, що сталося. I have cut my palm — я порізав долоню. Palm означає «долоня». Складаємо: I + have + cut + my palm. Із I ставимо have; третя форма cut пишеться так само, як початкова. My palm показує, що пошкоджена ваша долоня. Have cut пов’язує те, що сталося, з результатом зараз: на долоні поріз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bd1c5d14d3a08fef047593f91419ba6762b466ea4aea2799e1656e32eb682d3b"
+  "introFingerprint": "8b3693e804b9d5784408b5d95730f8a97f8a5e80edf7f9bd1277255ea78fb8ab"
 }

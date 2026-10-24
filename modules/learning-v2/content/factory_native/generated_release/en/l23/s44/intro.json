@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-44:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Новое место",
-        "uk": "Нове місце"
+        "ru": "Нашли новое кафе",
+        "uk": "Знайшли нове кафе"
       },
       "bodyByLocale": {
-        "ru": "Discover — обнаружить, найти что-то новое для себя. I have discovered a new cafe — я обнаружил новое кафе. Это обычное открытие во время прогулки, не обязательно научное. Discovered — третья форма discover. Invent — придумать или изобрести то, чего раньше не было.",
-        "uk": "Discover — виявити, знайти щось нове для себе. I have discovered a new cafe — я виявив нове кафе. Це звичайне відкриття під час прогулянки, не обов’язково наукове. Discovered — третя форма discover. Invent — вигадати або винайти те, чого раніше не було."
+        "ru": "Во время прогулки вы нашли кафе, о котором раньше не знали, и рассказываете другу: I have discovered a new cafe — я обнаружил новое кафе. Discover здесь означает «найти что-то новое для себя». Собираем: I + have + discovered + a new cafe. После I ставим have, discovered — третья форма discover с окончанием -ed. Have discovered сообщает о результате: теперь вы знаете это место.",
+        "uk": "Під час прогулянки ви знайшли кафе, про яке раніше не знали, й розповідаєте другу: I have discovered a new cafe — я знайшов нове кафе. Discover тут означає «знайти щось нове для себе». Складаємо: I + have + discovered + a new cafe. Після I ставимо have, discovered — третя форма discover із закінченням -ed. Have discovered повідомляє про результат: тепер ви знаєте це місце."
       },
       "question": {
         "interactionId": "en:lesson-23:session-44:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-44:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Новая идея и привычка",
-        "uk": "Нова ідея та звичка"
+        "ru": "Прогулки стали привычкой",
+        "uk": "Прогулянки стали звичкою"
       },
       "bodyByLocale": {
-        "ru": "Develop — развить или выработать. We have developed a good habit — мы выработали хорошую привычку, например гулять каждый день. Привычка покупать пирожное после прогулки выработалась ещё быстрее. Developed — третья форма develop. She has invented a game — она придумала игру. Invented — третья форма invent.",
-        "uk": "Develop — розвинути або виробити. We have developed a good habit — ми виробили добру звичку, наприклад гуляти щодня. Звичка купувати тістечко після прогулянки виробилася ще швидше. Developed — третя форма develop. She has invented a game — вона вигадала гру. Invented — третя форма invent."
+        "ru": "Вы с другом начали гулять каждый вечер, и теперь это стало привычным делом. We have developed a good habit — мы выработали хорошую привычку. Develop здесь означает «выработать». Собираем: we + have + developed + a good habit. С we используем have, к develop добавляем -ed. Have developed показывает достигнутый результат: привычка уже сформировалась.",
+        "uk": "Ви з другом почали гуляти щовечора, і тепер це стало звичною справою. We have developed a good habit — ми виробили добру звичку. Develop тут означає «виробити». Складаємо: we + have + developed + a good habit. Із we використовуємо have, до develop додаємо -ed. Have developed показує досягнутий результат: звичка вже сформувалася."
       },
       "question": {
         "interactionId": "en:lesson-23:session-44:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7257be4c52d1db517eddc92ca3e66f65500ae008fd5907f2669e969307b493a6"
+  "introFingerprint": "5ac8feba69926d788f5b686cea200638e932e0648a06847b9500c61c49586273"
 }

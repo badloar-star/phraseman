@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Во что вы играли",
-        "uk": "У що ви грали"
+        "ru": "Волейбол вам знаком",
+        "uk": "Волейбол вам знайомий"
       },
       "bodyByLocale": {
-        "ru": "Volleyball — волейбол. Badminton — бадминтон. I have played volleyball рассказывает об опыте: я играл в волейбол. После play название спорта идёт без предлога и без the: play volleyball, play badminton.",
-        "uk": "Volleyball — волейбол. Badminton — бадмінтон. I have played volleyball розповідає про досвід: я грав у волейбол. Після play назва спорту йде без прийменника й без the: play volleyball, play badminton."
+        "ru": "Друзья собирают команду и спрашивают, играли ли вы раньше в волейбол. I have played volleyball — я играл в волейбол. Volleyball означает «волейбол». Собираем: I + have + played + volleyball. После I ставим have, played — третья форма play. Название спорта ставим сразу после played, без предлога. Have played сообщает о вашем опыте игры.",
+        "uk": "Друзі збирають команду й запитують, чи грали ви раніше у волейбол. I have played volleyball — я грав у волейбол. Volleyball означає «волейбол». Складаємо: I + have + played + volleyball. Після I ставимо have, played — третя форма play. Назву спорту ставимо одразу після played, без прийменника. Have played повідомляє про ваш досвід гри."
       },
       "question": {
         "interactionId": "en:lesson-23:session-21:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Хоккей",
-        "uk": "Хокей"
+        "ru": "Друг уже играл в хоккей",
+        "uk": "Друг уже грав у хокей"
       },
       "bodyByLocale": {
-        "ru": "Hockey — хоккей. Ice hockey уточняет, что это хоккей на льду; field hockey — на траве. В этом занятии учим общее слово hockey. He has played hockey: у него есть опыт игры. С he используем has.",
-        "uk": "Hockey — хокей. Ice hockey уточнює, що це хокей на льоду; field hockey — на траві. У цьому занятті вчимо загальне слово hockey. He has played hockey: він має досвід гри. Із he використовуємо has."
+        "ru": "Вы собираете игроков для хоккея и вспоминаете друга с таким опытом. He has played hockey — он играл в хоккей. Hockey означает «хоккей». Собираем: he + has + played + hockey. С he ставим has, а played — третья форма play с окончанием -ed. Has played сообщает об опыте; конкретный матч в этой фразе не называем.",
+        "uk": "Ви збираєте гравців для хокею й згадуєте друга з таким досвідом. He has played hockey — він грав у хокей. Hockey означає «хокей». Складаємо: he + has + played + hockey. Із he ставимо has, а played — третя форма play із закінченням -ed. Has played повідомляє про досвід; конкретного матчу в цій фразі не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5dbcec23f7648a07e42c4f47021aec8e6d87683c910229a2f898dc09c26961bb"
+  "introFingerprint": "b733a821fe39892d8aaddfbaf7c38c25430d4cffa465e3908b868cfc174e8fa1"
 }

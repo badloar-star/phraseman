@@ -17527,7 +17527,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 20,
-    sourceFingerprint: "b79db34b5ecee9c8f8a5a44a0237d71f2c3c31e0db282b702294998fa2899bc1",
+    sourceFingerprint: "0b4d8b723214da86e9d74487fe5eea939893309bf57edf9531734fe37b8c7e24",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have; с she и he — has.","Все формы cut одинаковые; cutted неверно."],["С I и we нужно have; с she и he — has.","После have или has нужна третья форма."],["С I и we нужно have; с she и he — has.","После have или has нужна третья форма."]],"uk":[["З I та we потрібно have; із she та he — has.","Усі форми cut однакові; cutted неправильно."],["З I та we потрібно have; із she та he — has.","Після have або has потрібна третя форма."],["З I та we потрібно have; із she та he — has.","Після have або has потрібна третя форма."]]}),
@@ -17541,7 +17541,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 21,
-    sourceFingerprint: "5de83e497874803d4d1afa6f294992043b54695d46ae560e6475238afdc5c89c",
+    sourceFingerprint: "aee0db943d77760cd892ff1f2bc755d612186029f221338d91aa5651eb5d2b51",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужно have.","После have или has нужна третья форма played."],["С we нужно have.","После have или has нужна третья форма played."],["С he нужно has.","После have или has нужна третья форма played."]],"uk":[["З I потрібно have.","Після have або has потрібна третя форма played."],["Із we потрібно have.","Після have або has потрібна третя форма played."],["Із he потрібно has.","Після have або has потрібна третя форма played."]]}),
@@ -17555,7 +17555,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 22,
-    sourceFingerprint: "7c58792fdbe92a8ce64740e9a10c54e79f87f035183225fc399fe2f06af775e5",
+    sourceFingerprint: "6d337d81c51096d4d5f44617f69ead6f027307fe9d34a56c93bbe0d12b34f808",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: heard."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: felt."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: heard."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: felt."]]}),
@@ -17569,7 +17569,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 23,
-    sourceFingerprint: "4a39162ddf664aead8cb3fc7f959d94a0be3d0367c3e2ee3ccbbd46e365002e3",
+    sourceFingerprint: "01f5a3376bd1fc63b30c789f310944257c14fad9d406b4b4f103d8deeff893dd",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: tried."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: cooked."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: bought."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: tried."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: cooked."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: bought."]]}),
@@ -17583,7 +17583,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 24,
-    sourceFingerprint: "dbf869fc21429c407004d7a593ff5c4eeb9ae5b32a692419cd79172b355233f8",
+    sourceFingerprint: "964838bf06ebfba394487e3647efd89a4cfefab00b23f531319751f3c531eb60",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I используем have.","Третья форма — hurt."],["С she нужно has.","После has нужна третья форма burnt."],["С I нужно have.","Третья форма — cut без s."]],"uk":[["З I використовуємо have.","Третя форма — hurt."],["Із she потрібно has.","Після has потрібна третя форма burnt."],["З I потрібно have.","Третя форма — cut без s."]]}),
@@ -17597,7 +17597,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 25,
-    sourceFingerprint: "9c232ded3457f5f0e1ee0d15f09f525f4bf0bd13f0b80e468be039e6f9498f8d",
+    sourceFingerprint: "9284990a50798ebece40fce45b3d95df011c1fec2c042f7f60dfce642dcac309",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После have нужна третья форма visited.","С you используем have."],["Для смысла «никогда» достаточно never, без not.","Нужна третья форма visited."],["С she нужно has.","Нужна третья форма visited."]],"uk":[["Після have потрібна третя форма visited.","Із you використовуємо have."],["Для значення «ніколи» достатньо never, без not.","Потрібна третя форма visited."],["Із she потрібно has.","Потрібна третя форма visited."]]}),
@@ -17611,7 +17611,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 26,
-    sourceFingerprint: "5f7ae9a741afcbe0697a9969b8e79d85392f3a6a4160486b994676313d9fb55f",
+    sourceFingerprint: "ee87ab0ce80cb0bb7d67cf8efb01aca237236c32d1d45ee049a0a504230579d0",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."]]}),
@@ -17625,7 +17625,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 27,
-    sourceFingerprint: "4bfa2ac71fa87089ed17225fafffd7e90426b402637dc5b7b25b15938695aa79",
+    sourceFingerprint: "b71102de9d05c92d31e3f108f20db0705fb41c88a876781b0e771adcc39301ba",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: hurt."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: hurt."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: hurt."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: hurt."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: hurt."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: hurt."]]}),
@@ -17639,7 +17639,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 28,
-    sourceFingerprint: "478bd897437e9d025606c2d6b071a474e87cc7616742b41ef27ee2b7f1bab9cb",
+    sourceFingerprint: "8ce78c42d6183ec28966b145e48870508b0e6adf35e4b27731f57b8594a7d808",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: washed."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: ironed."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: bought."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: washed."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: ironed."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: bought."]]}),
@@ -17653,7 +17653,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 29,
-    sourceFingerprint: "c7902a6950a7455bdb992cdf750f31a8e942ef95cde2ace25dd91abd614a05a0",
+    sourceFingerprint: "e47c106884be54fa7a149e6c19515750473e4bfe3c32941862fd531d00595f53",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: driven."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: driven."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: driven."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: driven."]]}),
@@ -17667,7 +17667,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 30,
-    sourceFingerprint: "7ac7673146a8b2ed665974b4940c8f1e2d1a15b6c5d8837e5b63c54a7490aa25",
+    sourceFingerprint: "1c6e853abc498793ca28fa3b5d2f55f3f5e21639790222455ae6f81ab5b2c618",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: heard."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: found."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: heard."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: found."]]}),
@@ -17681,7 +17681,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 31,
-    sourceFingerprint: "82a9c1773b454d06ee581e4a66226944f4cef42b478639aa4d856aeae2a33f7c",
+    sourceFingerprint: "8fd95ea7708cbc0571533b7245d0948beca0d6e8691fdb778e20a71e0d945ada",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: cleaned."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: cleaned."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: decorated."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: cleaned."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: cleaned."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: decorated."]]}),
@@ -17695,7 +17695,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 32,
-    sourceFingerprint: "a2e6e14d55c3c561c6ec44f3bdd75d85cfc1dbee94dc499ba89753d1ed39d603",
+    sourceFingerprint: "34ba843260b24593976f70da4f7dcd6f057dd84e957d43d8fe7d69d84b6467e1",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."]]}),
@@ -17709,7 +17709,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 33,
-    sourceFingerprint: "4c4931c02ac387fcfd18d83a5a02fb6e6b8ff7a375f76e3270262c1c75c54aff",
+    sourceFingerprint: "bf9572afcadf674d76e8a52efbbdb2b9d4301fc56acafc2328d08eb15c2d4a7a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Нужна третья форма met.","С I нужно have."],["С she нужно has.","После has нужна третья форма met."],["Нужна третья форма met.","С you нужно have."]],"uk":[["Потрібна третя форма met.","З I потрібно have."],["Із she потрібно has.","Після has потрібна третя форма met."],["Потрібна третя форма met.","Із you потрібно have."]]}),
@@ -17723,7 +17723,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 34,
-    sourceFingerprint: "7e922bbfa2eb5df03b3c3517f42c388a195074203522aec52016f969f350788e",
+    sourceFingerprint: "59bb53b519bdca2bf26f506d0e928513026acbd1483816e3e0c41ae557432110",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: visited."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: climbed."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: visited."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: climbed."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."]]}),
@@ -17737,7 +17737,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 35,
-    sourceFingerprint: "404779e8827b6ac54c4ce7aba3c1ba341714ca5c7ad4890539e4b4b482c0ff53",
+    sourceFingerprint: "d3037f52bdffc1ff26f4b8a8d8eb988fd2473c06f6fbde902a3c537f0312ffdf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: met."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: spoken."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: met."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: spoken."]]}),
@@ -17751,7 +17751,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 36,
-    sourceFingerprint: "649fabb48c70d9c0402dcd0e3418dee6f85713688c827040f74b846c64b1976a",
+    sourceFingerprint: "bb41e80fa086a17a59e39384e782a9a3bcc7ab9d5ee3d525ec39d5fede1955de",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: read."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: read."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."]]}),
@@ -17765,7 +17765,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 37,
-    sourceFingerprint: "a0d39970ae302a79e8dd94e57d36ecaeb6d668c3636e5cb3fbda01b8fb3101bc",
+    sourceFingerprint: "4990edf0aa736a134ac419962236bc97901bb1f89a82def093168c5fe9a0c78a",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: seen."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: seen."]]}),
@@ -17779,7 +17779,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 38,
-    sourceFingerprint: "6f42a760f7ba5a5c0b830982cd85af67764c48b172461cb8285f2829bbb9951b",
+    sourceFingerprint: "15f04bb72ea54db60610165e1779218b5b44ecc8c149b4d601fac10a4c895a57",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."]]}),
@@ -17793,7 +17793,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 39,
-    sourceFingerprint: "927acd9b1fd9716d3bb9465df862e1a2db7afb67de81cb0f94b1a1300694cb38",
+    sourceFingerprint: "5b6dacb4c0126ba30ed3dadfa9111caee48a298b00a375493696c5f80015501b",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."]]}),
@@ -17807,7 +17807,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 40,
-    sourceFingerprint: "5a788dbd17919933cdd6c365b5fbc551fe4ade32bdd0a5a54a230e6847c0640e",
+    sourceFingerprint: "839e75fcafd058cc9db92507b298af33b8c466c6c294ed813922d208c892ccc9",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: studied."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: studied."]]}),
@@ -17821,7 +17821,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 41,
-    sourceFingerprint: "1d67d21c04745bb5fa03749c4d8b5e6c10361b740dcc05a25d5667e49b80f996",
+    sourceFingerprint: "c9f83d953ccca064d14c162143cbde7ba69919ab7e713342aab86b7e08665d4d",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: spoken."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: helped."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: found."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: spoken."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: helped."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: found."]]}),
@@ -17835,7 +17835,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 42,
-    sourceFingerprint: "0c17828a5886d3020e542ba1bacbbdd63d0006dc2f47311d43b49c417086c168",
+    sourceFingerprint: "c61a9221c3235a5c05dc9a91e200c39a6e2f0664f189b333558511243e83ead2",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Выберите have или has по подлежащему.","После have или has нужна третья форма: entered."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: spoken."],["Выберите have или has по подлежащему.","После have или has нужна третья форма: helped."]],"uk":[["Виберіть have або has за підметом.","Після have або has потрібна третя форма: entered."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: spoken."],["Виберіть have або has за підметом.","Після have або has потрібна третя форма: helped."]]}),
@@ -17849,7 +17849,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 43,
-    sourceFingerprint: "717b90412fcec3a1c7fd0d1f5ac841751a32b728d8c50eb3486f57d7508ce7b5",
+    sourceFingerprint: "35c05dc85b71b4b33a3f1009b70b24ee7e8c11f0185cc4b097eb090f88c7ee08",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I нужно have.","Нужна третья форма adopted."],["С we нужно have.","Нужна третья форма survived."],["С he нужно has.","Третья форма — quit без s."]],"uk":[["З I потрібно have.","Потрібна третя форма adopted."],["Із we потрібно have.","Потрібна третя форма survived."],["Із he потрібно has.","Третя форма — quit без s."]]}),
@@ -17863,7 +17863,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 44,
-    sourceFingerprint: "0f18c8ee0b1c2916181392e993a7b0d3d2eb13b45c82e9fb5bcde6fdb6aa18cf",
+    sourceFingerprint: "97fd9ce8b8774b68b24b61db4e010431812b8fcc0d6641b0de7029177237aa74",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he — has.","Нужна третья форма: discovered."],["С I и we нужно have, с he — has.","Нужна третья форма: developed."],["С I и we нужно have, с he — has.","Нужна третья форма: created."]],"uk":[["З I та we потрібно have, з he — has.","Потрібна третя форма: discovered."],["З I та we потрібно have, з he — has.","Потрібна третя форма: developed."],["З I та we потрібно have, з he — has.","Потрібна третя форма: created."]]}),
@@ -17877,7 +17877,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 45,
-    sourceFingerprint: "6d55139ecf23d15c4a79d61b7a6b71aaa69db7e1f98f1868394c370819b82779",
+    sourceFingerprint: "cc08a1756d854471d86685aff03a1a092ba243d57ce3c4dbc9aad68b53c83502",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: visited."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: met."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: become."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: visited."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: met."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: become."]]}),
@@ -17891,7 +17891,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 46,
-    sourceFingerprint: "dff1850dd8865c4a5d8c9315412a6c13ca08e86c4c38883baca040584d95a5a8",
+    sourceFingerprint: "33d467662b92860ab95ba2dff0407015edb88a439e42d95a89e961694995e325",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: bought."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: added."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: made."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: bought."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: added."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: made."]]}),
@@ -17905,7 +17905,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 47,
-    sourceFingerprint: "6c8917e2df89ebd37939204aa425f46859715efc8ef90024ea06c4aaaae2c2b1",
+    sourceFingerprint: "d3d122ee4403127108afb38b92108c753b3a82f01b3b05723421fa32333660cb",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: donated."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: learned."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: hurt."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: donated."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: learned."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: hurt."]]}),
@@ -17919,7 +17919,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 48,
-    sourceFingerprint: "9341a9729f19747d0a12c248fd743c4d360a6de08fe79ccfcaf68000feb020a4",
+    sourceFingerprint: "c46f38398d1316a7d4abcb8cf844baabd394e35c29594a2539dd0f33e1db80b5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: walked."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: found."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: taken."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: walked."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: found."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: taken."]]}),
@@ -17933,7 +17933,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 49,
-    sourceFingerprint: "d9f31c237d810b874b2871b576b9ce7c65105009b0ce9251c1d1c66a42cfcfa0",
+    sourceFingerprint: "8ebb7a752dea5aa0daeaa3846c4ab7c557d39bbca39c59fdc22f9dbd891c0de6",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: made."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: heard."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: met."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: made."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: heard."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: met."]]}),
@@ -17947,7 +17947,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 50,
-    sourceFingerprint: "a6c0e60c5c6b81b2f07be5dabaabfc1c981d70efb4734ef7ffcaab441817a8bf",
+    sourceFingerprint: "76c323a80e66685c792b9ccf2fd32fb941601719c85a6f2db69a3624abb0b449",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: reported."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: seen."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: described."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: reported."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: seen."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: described."]]}),
@@ -17961,7 +17961,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 51,
-    sourceFingerprint: "95aa03aa685bb1853916d3f526c69662cc989c85a7be02c832a3433b1d183427",
+    sourceFingerprint: "4aba33b6e0c8cc282ec7e782ad5c0f75c61f24a02629cec9e331e6a4921cb59c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: tried."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: watched."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: watched."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: tried."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: watched."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: watched."]]}),
@@ -17975,7 +17975,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 23, sessionOrdinal: 52,
-    sourceFingerprint: "385d2b29d821ccbed341a1be7c06cef985c1b79804a1d46f6780b3e673189bab",
+    sourceFingerprint: "6e30ab8cf03f1f7219849caae6ea528459be5ba8f6c60b620b3fd5a6e9bf87cf",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: voted."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: read."],["С I и we нужно have, с he и she — has.","После have или has нужна третья форма: seen."]],"uk":[["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: voted."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: read."],["З I та we потрібно have, з he та she — has.","Після have або has потрібна третя форма: seen."]]}),

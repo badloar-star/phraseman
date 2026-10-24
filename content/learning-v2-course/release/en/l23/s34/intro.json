@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Уже поднимались на гору",
+        "uk": "Уже підіймалися на гору"
       },
       "bodyByLocale": {
-        "ru": "Forest — лес. Mountain — гора. We have climbed a mountain — мы поднимались на гору. Climbed — третья форма climb. She has walked through a forest — она гуляла по лесу; through показывает движение через лес.",
-        "uk": "Forest — ліс. Mountain — гора. We have climbed a mountain — ми підіймалися на гору. Climbed — третя форма climb. She has walked through a forest — вона гуляла лісом; through показує рух через ліс."
+        "ru": "Обсуждая походы, вы с другом рассказываете, что у вас есть опыт подъёма на гору. We have climbed a mountain — мы поднимались на гору. Mountain означает «гора». Собираем: we + have + climbed + a mountain. После we ставим have, climbed — третья форма climb с окончанием -ed. Гору называем сразу после climbed, без on. Have climbed сообщает о вашем опыте, без указания конкретной поездки.",
+        "uk": "Обговорюючи походи, ви з другом розповідаєте, що маєте досвід підйому на гору. We have climbed a mountain — ми підіймалися на гору. Mountain означає «гора». Складаємо: we + have + climbed + a mountain. Після we ставимо have, climbed — третя форма climb із закінченням -ed. Гору називаємо одразу після climbed, без on. Have climbed повідомляє про ваш досвід, без зазначення конкретної подорожі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-34:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a7b5662143cfe4ed89eea2f7c90cdd854d8cc8e85dfb2b1f87f9af6e67c15a82"
+  "introFingerprint": "e30dddff6c5e85bc3a23ec61296f58a2f8b3987c5adf3bd5292503687e679957"
 }

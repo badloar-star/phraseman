@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "После занятия о мозге",
+        "uk": "Після заняття про мозок"
       },
       "bodyByLocale": {
-        "ru": "Lung — лёгкое, lungs — лёгкие. The doctor has checked my lungs — врач проверил мои лёгкие. Brain — мозг. We have learned about the brain — мы узнали о работе мозга. Learned — форма learn после have. Мозг изучает сам себя — и ещё должен запомнить новое слово.",
-        "uk": "Lung — легеня, lungs — легені. The doctor has checked my lungs — лікар перевірив мої легені. Brain — мозок. We have learned about the brain — ми дізналися про роботу мозку. Learned — форма learn після have. Мозок вивчає сам себе — і ще має запам’ятати нове слово."
+        "ru": "На занятии вам объяснили, как работает мозг. Вы рассказываете о том, что узнали: We have learned about the brain — мы узнали о работе мозга. Brain означает «мозг». Собираем: we + have + learned + about the brain. После we ставим have, затем learned — третью форму learn. About вводит тему занятия. Have learned показывает результат обучения: теперь вы знаете об этом больше.",
+        "uk": "На занятті вам пояснили, як працює мозок. Ви розповідаєте про те, що дізналися: We have learned about the brain — ми дізналися про роботу мозку. Brain означає «мозок». Складаємо: we + have + learned + about the brain. Після we ставимо have, потім learned — третю форму learn. About вводить тему заняття. Have learned показує результат навчання: тепер ви знаєте про це більше."
       },
       "question": {
         "interactionId": "en:lesson-23:session-47:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8426f455c79c2367b3ab3356e8fde7321bef7755184f83cb8349d8029a9e5789"
+  "introFingerprint": "49583a9314515c193aa12126302cd19515315965e4a5f23902709071306e1088"
 }

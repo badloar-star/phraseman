@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Брюки уже поглажены",
+        "uk": "Штани вже попрасовані"
       },
       "bodyByLocale": {
-        "ru": "Shorts — шорты, trousers — брюки. Оба слова имеют форму множественного числа, даже когда речь об одной вещи. He has ironed his trousers — он погладил свои брюки. Ironed — третья форма iron. Перед trousers не ставим a.",
-        "uk": "Shorts — шорти, trousers — штани. Обидва слова мають форму множини, навіть коли йдеться про одну річ. He has ironed his trousers — він попрасував свої штани. Ironed — третя форма iron. Перед trousers не ставимо a."
+        "ru": "Друг приготовил одежду к встрече: брюки он уже погладил. He has ironed his trousers — он погладил свои брюки. Trousers означает «брюки». Собираем: he + has + ironed + his trousers. Has выбираем по he: действие выполнил один человек, хотя trousers имеет форму множественного числа. Ironed — третья форма iron. Has ironed сообщает о результате: брюки уже готовы.",
+        "uk": "Друг підготував одяг до зустрічі: штани він уже попрасував. He has ironed his trousers — він попрасував свої штани. Trousers означає «штани». Складаємо: he + has + ironed + his trousers. Has вибираємо за he: дію виконала одна людина, хоча trousers має форму множини. Ironed — третя форма iron. Has ironed повідомляє про результат: штани вже готові."
       },
       "question": {
         "interactionId": "en:lesson-23:session-28:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "57dba62664c270168adbc584870db984a77ccfc23e8c4841572fb12e8b214f8c"
+  "introFingerprint": "de7365dbe724e7bc241ff6159be10a14c4f694bd8bb7dbd17ec8c943e4ff3f81"
 }

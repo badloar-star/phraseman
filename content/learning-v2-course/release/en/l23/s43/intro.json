@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-43:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Помощь и опасность",
-        "uk": "Допомога й небезпека"
+        "ru": "Буря позади",
+        "uk": "Буря позаду"
       },
       "bodyByLocale": {
-        "ru": "Rescue — спасти из опасности. She has rescued a dog — она спасла собаку. Survive — пережить опасное событие, выжить. We have survived a storm — мы пережили бурю. Третьи формы — rescued и survived.",
-        "uk": "Rescue — врятувати від небезпеки. She has rescued a dog — вона врятувала собаку. Survive — пережити небезпечну подію, вижити. We have survived a storm — ми пережили бурю. Треті форми — rescued і survived."
+        "ru": "Во время поездки вы с друзьями попали в сильную бурю, но все выжили. We have survived a storm — мы пережили бурю. Survive означает «выжить, пережить опасное событие». Собираем: we + have + survived + a storm. С we используем have, к survive добавляем -d. Событие называем сразу после survived, без предлога. Have survived подчёркивает результат сейчас: буря позади, вы живы.",
+        "uk": "Під час поїздки ви з друзями потрапили в сильну бурю, але всі вижили. We have survived a storm — ми пережили бурю. Survive означає «вижити, пережити небезпечну подію». Складаємо: we + have + survived + a storm. Із we використовуємо have, до survive додаємо -d. Подію називаємо одразу після survived, без прийменника. Have survived підкреслює результат зараз: буря позаду, ви живі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-43:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8fe43440448f3dccd1c02f8d5888c2f5714e69ca04995313d64aee80fa3af28e"
+  "introFingerprint": "5d22464472869c09a298d73fbe06c631a94ee7e9a05bca5f13e4e078978167bf"
 }

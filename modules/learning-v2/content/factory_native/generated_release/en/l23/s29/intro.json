@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-29:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Уже водили фургон",
+        "uk": "Уже водили фургон"
       },
       "bodyByLocale": {
-        "ru": "Van — фургон, например для доставки вещей. Motorbike — мотоцикл. I have driven a van — я водил фургон. Driven — третья форма drive. Для мотоцикла используем ride: She has ridden a motorbike. Ridden — третья форма ride.",
-        "uk": "Van — фургон, наприклад для доставки речей. Motorbike — мотоцикл. I have driven a van — я водив фургон. Driven — третя форма drive. Для мотоцикла використовуємо ride: She has ridden a motorbike. Ridden — третя форма ride."
+        "ru": "Друг собирается перевозить вещи и спрашивает, есть ли у вас опыт вождения фургона. I have driven a van — я водил фургон. Van означает «фургон». Собираем: I + have + driven + a van. С I ставим have, driven — третья форма drive. Have driven сообщает об опыте вождения, а не о том, что вы сейчас за рулём.",
+        "uk": "Друг збирається перевозити речі й запитує, чи маєте ви досвід водіння фургона. I have driven a van — я водив фургон. Van означає «фургон». Складаємо: I + have + driven + a van. Із I ставимо have, driven — третя форма drive. Have driven повідомляє про досвід водіння, а не про те, що ви зараз за кермом."
       },
       "question": {
         "interactionId": "en:lesson-23:session-29:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4bd2140f58c70a0546b8cf2d19a0894306f1c5b52f8d10e1240670bd985d8a9f"
+  "introFingerprint": "f96bbc5afd579ceb1ee10df67b7b64a89328ce316d9ee62c992e2ceed3776920"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Видели медведя",
+        "uk": "Бачили ведмедя"
       },
       "bodyByLocale": {
-        "ru": "Bear — медведь. Camel — верблюд. I have seen a bear — я видел медведя. Seen — третья форма see. She has ridden a camel — она каталась на верблюде. Ridden — третья форма ride. Эти фразы сообщают о разном опыте: увидеть животное и прокатиться на нём.",
-        "uk": "Bear — ведмідь. Camel — верблюд. I have seen a bear — я бачив ведмедя. Seen — третя форма see. She has ridden a camel — вона каталася на верблюді. Ridden — третя форма ride. Ці фрази повідомляють про різний досвід: побачити тварину й покататися на ній."
+        "ru": "Друг спрашивает, доводилось ли вам видеть медведя. Вы видели его в зоопарке и отвечаете: I have seen a bear — я видел медведя. Bear означает «медведь». Собираем: I + have + seen + a bear. С I ставим have, seen — третья форма see. Have seen сообщает о вашем опыте; конкретный день посещения зоопарка здесь не называем.",
+        "uk": "Друг запитує, чи доводилося вам бачити ведмедя. Ви бачили його в зоопарку й відповідаєте: I have seen a bear — я бачив ведмедя. Bear означає «ведмідь». Складаємо: I + have + seen + a bear. Із I ставимо have, seen — третя форма see. Have seen повідомляє про ваш досвід; конкретного дня відвідування зоопарку тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-37:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3a8ce7b9a410c003928a45817f1b1adce7fdddd003627043e237af660f27b886"
+  "introFingerprint": "1d923f9fe9c5ccca6e6f8d501c0fdf36d06d9494f0bacf2b9c8fd00631e48085"
 }

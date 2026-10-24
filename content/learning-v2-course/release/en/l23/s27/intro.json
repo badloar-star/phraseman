@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что случилось",
-        "uk": "Що сталося"
+        "ru": "Болит локоть",
+        "uk": "Болить лікоть"
       },
       "bodyByLocale": {
-        "ru": "Elbow — локоть, место сгиба руки. Knee — колено, место сгиба ноги. I have hurt my elbow — я повредил локоть. Hurt после have — третья форма; она совпадает с начальной формой. My elbow уточняет, что речь о моём локте.",
-        "uk": "Elbow — лікоть, місце згину руки. Knee — коліно, місце згину ноги. I have hurt my elbow — я пошкодив лікоть. Hurt після have — третя форма; вона збігається з початковою формою. My elbow уточнює, що йдеться про мій лікоть."
+        "ru": "Вы ударились локтем, и теперь он болит. Объясняете другу: I have hurt my elbow — я повредил локоть. Elbow означает «локоть». Собираем: I + have + hurt + my elbow. С I ставим have; третья форма hurt пишется так же, как начальная. My показывает, что речь о вашем локте. Have hurt связывает случившееся с состоянием сейчас.",
+        "uk": "Ви вдарилися ліктем, і тепер він болить. Пояснюєте другу: I have hurt my elbow — я пошкодив лікоть. Elbow означає «лікоть». Складаємо: I + have + hurt + my elbow. Із I ставимо have; третя форма hurt пишеться так само, як початкова. My показує, що йдеться про ваш лікоть. Have hurt пов’язує те, що сталося, зі станом зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-27:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-27:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Объясняете боль в шее",
+        "uk": "Пояснюєте біль у шиї"
       },
       "bodyByLocale": {
-        "ru": "Neck — шея. I have hurt my neck — я повредил шею. Present perfect помогает сообщить, что случилось и почему сейчас больно. Мы не называем здесь точное время травмы. She has hurt her knee — она повредила колено.",
-        "uk": "Neck — шия. I have hurt my neck — я пошкодив шию. Present perfect допомагає повідомити, що сталося й чому зараз боляче. Ми не називаємо тут точного часу травми. She has hurt her knee — вона пошкодила коліно."
+        "ru": "После неудачного движения у вас болит шея. Вы объясняете, что случилось: I have hurt my neck — я повредил шею. Neck означает «шея». Собираем: I + have + hurt + my neck. После have нужна третья форма hurt; её написание не меняется. My neck называет вашу шею. Have hurt сообщает о случившемся, последствия которого вы ощущаете сейчас.",
+        "uk": "Після невдалого руху у вас болить шия. Ви пояснюєте, що сталося: I have hurt my neck — я пошкодив шию. Neck означає «шия». Складаємо: I + have + hurt + my neck. Після have потрібна третя форма hurt; її написання не змінюється. My neck називає вашу шию. Have hurt повідомляє про те, що сталося й наслідки чого ви відчуваєте зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "959d2e96fb7433f3124c4222eea8e88c79f600576d982e35a903c62457c5e1da"
+  "introFingerprint": "92ce85cd347406b6aee0b4360e371aea1ddf7b214433999db0521b280eb9e224"
 }

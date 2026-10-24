@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-39:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Знакомый язык",
+        "uk": "Знайома мова"
       },
       "bodyByLocale": {
-        "ru": "French — французский язык, German — немецкий. I have studied French — я изучал французский язык. Названия языков в английском пишутся с большой буквы. В этой фразе перед French не нужен артикль.",
-        "uk": "French — французька мова, German — німецька. I have studied French — я вивчав французьку мову. Назви мов в англійській пишуться з великої літери. У цій фразі перед French не потрібен артикль."
+        "ru": "На языковых занятиях преподаватель спрашивает, изучали ли вы раньше французский. I have studied French — я изучал французский язык. French здесь означает «французский язык». Собираем: I + have + studied + French. После I ставим have, затем studied — третью форму study. Название изученного языка ставим сразу после studied. Have studied сообщает о прежнем опыте, но не обещает свободного владения языком.",
+        "uk": "На мовних заняттях викладач запитує, чи вивчали ви раніше французьку. I have studied French — я вивчав французьку мову. French тут означає «французька мова». Складаємо: I + have + studied + French. Після I ставимо have, потім studied — третю форму study. Назву вивченої мови ставимо одразу після studied. Have studied повідомляє про попередній досвід, але не обіцяє вільного володіння мовою."
       },
       "question": {
         "interactionId": "en:lesson-23:session-39:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "de0b7a0d04128bdbda2bea1c64137ec08815c54ba9db1851b966ca8564df5c0a"
+  "introFingerprint": "c66bd3c21c87252be6a713d8c2c37faef858f97ba8b07e2fc5da4724ab8f5a5e"
 }

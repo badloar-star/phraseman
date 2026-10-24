@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-41:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Помогли донести коробку",
+        "uk": "Допомогли донести коробку"
       },
       "bodyByLocale": {
-        "ru": "Painter может означать маляра или художника: смысл понятен из ситуации. Для покраски комнаты She has called a painter — она позвонила маляру. Worker — работник, общее название человека, который выполняет работу. We have helped a worker — мы помогли работнику.",
-        "uk": "Painter може означати маляра або художника: значення зрозуміле із ситуації. Для фарбування кімнати She has called a painter — вона зателефонувала маляру. Worker — працівник, загальна назва людини, яка виконує роботу. We have helped a worker — ми допомогли працівникові."
+        "ru": "Вы с другом помогли работнику магазина донести тяжёлую коробку. We have helped a worker — мы помогли работнику. Worker означает «работник». Собираем: we + have + helped + a worker. После we используем have, helped — третья форма help с окончанием -ed. Человека называем сразу после helped, без to. Have helped сообщает о помощи, которую вы уже оказали.",
+        "uk": "Ви з другом допомогли працівникові магазину донести важку коробку. We have helped a worker — ми допомогли працівникові. Worker означає «працівник». Складаємо: we + have + helped + a worker. Після we використовуємо have, helped — третя форма help із закінченням -ed. Людину називаємо одразу після helped, без to. Have helped повідомляє про допомогу, яку ви вже надали."
       },
       "question": {
         "interactionId": "en:lesson-23:session-41:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-41:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Покупатель нашёлся",
+        "uk": "Покупець знайшовся"
       },
       "bodyByLocale": {
-        "ru": "Buyer — покупатель. He has found a buyer — он нашёл покупателя, например на свой велосипед. Buyer называют того, кто покупает конкретную вещь; знакомое customer часто означает клиента магазина или сервиса. Found — третья форма find.",
-        "uk": "Buyer — покупець. He has found a buyer — він знайшов покупця, наприклад на свій велосипед. Buyer називають того, хто купує певну річ; знайоме customer часто означає клієнта магазину або сервісу. Found — третя форма find."
+        "ru": "Друг выставил велосипед на продажу и нашёл человека, готового его купить. He has found a buyer — он нашёл покупателя. Buyer означает «покупатель». Собираем: he + has + found + a buyer. С he ставим has; found — третья форма find. Has found сообщает о результате поиска: покупатель уже есть, хотя продажа могла ещё не состояться.",
+        "uk": "Друг виставив велосипед на продаж і знайшов людину, готову його купити. He has found a buyer — він знайшов покупця. Buyer означає «покупець». Складаємо: he + has + found + a buyer. Із he ставимо has; found — третя форма find. Has found повідомляє про результат пошуку: покупець уже є, хоча продаж міг іще не відбутися."
       },
       "question": {
         "interactionId": "en:lesson-23:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "74ffb1649cddb654a6d8f71e048b7d780bb4e20f32f2c6e1396a880ea6e20667"
+  "introFingerprint": "85acc11920515655b56798c6a8afb47a8a1ed8321bd01d808dd11a51e4fbbfc8"
 }

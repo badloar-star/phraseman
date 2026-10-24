@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Знакомство с репортёром",
+        "uk": "Знайомство з репортером"
       },
       "bodyByLocale": {
-        "ru": "Reporter — репортёр: он собирает сведения и сообщает новости. Journalist — журналист, более общее название профессии. Репортёр занимается одним из видов журналистской работы. I have met a reporter — я встречался с репортёром. Met — третья форма meet.",
-        "uk": "Reporter — репортер: він збирає відомості й повідомляє новини. Journalist — журналіст, загальніша назва професії. Репортер займається одним із видів журналістської роботи. I have met a reporter — я зустрічався з репортером. Met — третя форма meet."
+        "ru": "Друг спрашивает, встречались ли вы с человеком, который делает репортажи. I have met a reporter — я встречался с репортёром. Reporter означает «репортёр». Собираем: I + have + met + a reporter. После I ставим have; met — третья форма meet, а не начальная meet. Have met сообщает о вашем опыте, без даты встречи.",
+        "uk": "Друг запитує, чи зустрічалися ви з людиною, яка робить репортажі. I have met a reporter — я зустрічався з репортером. Reporter означає «репортер». Складаємо: I + have + met + a reporter. Після I ставимо have; met — третя форма meet, а не початкова meet. Have met повідомляє про ваш досвід, без дати зустрічі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-35:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Вспоминаете встречу",
+        "uk": "Згадуєте зустріч"
       },
       "bodyByLocale": {
-        "ru": "Soldier — солдат, человек, который служит в армии. We have met a soldier — мы встречались с солдатом. Для разговора с человеком используем spoken to: She has spoken to a journalist — она говорила с журналистом. Spoken — третья форма speak.",
-        "uk": "Soldier — солдат, людина, яка служить в армії. We have met a soldier — ми зустрічалися із солдатом. Для розмови з людиною використовуємо spoken to: She has spoken to a journalist — вона говорила з журналістом. Spoken — третя форма speak."
+        "ru": "Вы с другом вспоминаете, как познакомились с солдатом на семейном празднике. We have met a soldier — мы встречались с солдатом. Soldier означает «солдат». Собираем: we + have + met + a soldier. С we используем have; met — третья форма meet. После met сразу называем человека, без to. Have met сообщает об опыте встречи; её время в этой фразе не указано.",
+        "uk": "Ви з другом згадуєте, як познайомилися із солдатом на родинному святі. We have met a soldier — ми зустрічалися із солдатом. Soldier означає «солдат». Складаємо: we + have + met + a soldier. Із we використовуємо have; met — третя форма meet. Після met одразу називаємо людину, без to. Have met повідомляє про досвід зустрічі; її час у цій фразі не зазначено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-35:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d42e760951fc4e6c35d690446bdf0c1edec59f9a98497fd0e31c55b4e95e63c9"
+  "introFingerprint": "b8a93c38d3eebde213503426c32a4a054b17c8a17cda423d56d4fbfd5e7ee0cc"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Читали о короле",
+        "uk": "Читали про короля"
       },
       "bodyByLocale": {
-        "ru": "King — король, queen — королева. I have read about a king — я читал о короле. После have нужна третья форма read. Она пишется так же, как начальная форма, но произносится «рэд». About здесь означает «о».",
-        "uk": "King — король, queen — королева. I have read about a king — я читав про короля. Після have потрібна третя форма read. Вона пишеться так само, як початкова форма, але вимовляється «ред». About тут означає «про»."
+        "ru": "В разговоре об исторической книге вы сообщаете, что уже читали о короле. I have read about a king — я читал о короле. King означает «король». Собираем: I + have + read + about a king. После have ставим третью форму read: она пишется как начальная, но произносится «рэд». About вводит тему чтения. Have read сообщает об опыте без даты.",
+        "uk": "У розмові про історичну книжку ви повідомляєте, що вже читали про короля. I have read about a king — я читав про короля. King означає «король». Складаємо: I + have + read + about a king. Після have ставимо третю форму read: вона пишеться як початкова, але вимовляється «ред». About вводить тему читання. Have read повідомляє про досвід без дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-36:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Фильм ему знаком",
+        "uk": "Фільм йому знайомий"
       },
       "bodyByLocale": {
-        "ru": "Princess — принцесса. Prince и princess называют титулы членов королевской семьи. He has seen a film about a princess — он смотрел фильм о принцессе. С he используем has. Эти слова встречаются и в сказках, и в новостях.",
-        "uk": "Princess — принцеса. Prince і princess називають титули членів королівської родини. He has seen a film about a princess — він дивився фільм про принцесу. Із he використовуємо has. Ці слова трапляються і в казках, і в новинах."
+        "ru": "Вы предлагаете другу фильм о принцессе, но узнаёте, что он уже смотрел такой фильм. He has seen a film about a princess — он смотрел фильм о принцессе. Princess означает «принцесса». Собираем: he + has + seen + a film + about a princess. С he используем has, seen — третья форма see. About a princess уточняет, о ком фильм. Has seen сообщает об опыте просмотра.",
+        "uk": "Ви пропонуєте другу фільм про принцесу, але дізнаєтеся, що він уже дивився такий фільм. He has seen a film about a princess — він дивився фільм про принцесу. Princess означає «принцеса». Складаємо: he + has + seen + a film + about a princess. Із he використовуємо has, seen — третя форма see. About a princess уточнює, про кого фільм. Has seen повідомляє про досвід перегляду."
       },
       "question": {
         "interactionId": "en:lesson-23:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "362ce74849c8e47dd859a68c01103f24a5a22b254d1ad9f804d143cdeda2ccf1"
+  "introFingerprint": "46aa1244da75fc2d05bd43d4901eb84778cc1859cd60f241de0104f1cd6f71ff"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Уже готовила говядину",
+        "uk": "Уже готувала яловичину"
       },
       "bodyByLocale": {
-        "ru": "Beef — говядина, а pork — свинина. Это названия мяса, которые помогут понять меню. She has cooked beef — она готовила говядину. Cooked — третья форма cook. В этой фразе перед beef нет артикля a.",
-        "uk": "Beef — яловичина, а pork — свинина. Це назви м’яса, які допоможуть зрозуміти меню. She has cooked beef — вона готувала яловичину. Cooked — третя форма cook. У цій фразі перед beef немає артикля a."
+        "ru": "Вы обсуждаете ужин и рассказываете о подруге, которая уже готовила говядину. She has cooked beef — она готовила говядину. Beef означает «говядина». Собираем: she + has + cooked + beef. С she ставим has, cooked — третья форма cook с окончанием -ed. Has cooked сообщает об опыте готовки. Beef здесь называет продукт, а не отдельный предмет, поэтому a не ставим.",
+        "uk": "Ви обговорюєте вечерю й розповідаєте про подругу, яка вже готувала яловичину. She has cooked beef — вона готувала яловичину. Beef означає «яловичина». Складаємо: she + has + cooked + beef. Із she ставимо has, cooked — третя форма cook із закінченням -ed. Has cooked повідомляє про досвід готування. Beef тут називає продукт, а не окремий предмет, тому a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "04cd1bb14aff7c11e7650b4f9701f794507471a4d2dc09b44072bab25e7787f2"
+  "introFingerprint": "7304a27603bda2fedf8bb6d7e133dd118b7989f94ba624a4160b0415ceef1df6"
 }

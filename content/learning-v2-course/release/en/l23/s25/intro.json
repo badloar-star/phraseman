@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-25:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Места в городе",
-        "uk": "Місця в місті"
+        "ru": "Для неё это впервые",
+        "uk": "Для неї це вперше"
       },
       "bodyByLocale": {
-        "ru": "Mosque — мечеть, место молитвы мусульман. Temple — храм; это слово часто используют, например, для буддийских и индуистских храмов. She has never visited a temple — она никогда не посещала храм. С she используем has, затем never и visited.",
-        "uk": "Mosque — мечеть, місце молитви мусульман. Temple — храм; це слово часто використовують, наприклад, для буддійських та індуїстських храмів. She has never visited a temple — вона ніколи не відвідувала храм. Із she використовуємо has, потім never і visited."
+        "ru": "Подруга собирается впервые посетить храм. До сих пор она никогда в храме не была: She has never visited a temple — она никогда не посещала храм. Temple означает «храм». Собираем: she + has + never + visited + a temple. С she используем has, never ставим перед третьей формой visited. Never уже означает «никогда», поэтому not не добавляем. Так говорим об отсутствии такого опыта до настоящего момента.",
+        "uk": "Подруга збирається вперше відвідати храм. Досі вона ніколи в храмі не була: She has never visited a temple — вона ніколи не відвідувала храм. Temple означає «храм». Складаємо: she + has + never + visited + a temple. Із she використовуємо has, never ставимо перед третьою формою visited. Never уже означає «ніколи», тому not не додаємо. Так говоримо про відсутність такого досвіду до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-23:session-25:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "66faf8265b8c414df75e4bda2b81296ea3dfbd3a8335020898e116f2068747e6"
+  "introFingerprint": "660f0d2552c02b7b23c47b3cb204c02665ba4af21afcbaa150b14846073603e4"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-42:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Уже записались на соревнование",
+        "uk": "Уже записалися на змагання"
       },
       "bodyByLocale": {
-        "ru": "Competition — соревнование или конкурс. I have entered a competition — я записался на соревнование, стал его участником. Entered — третья форма enter. Champion — чемпион, обладатель чемпионского титула. She has met a champion — она встречалась с чемпионом.",
-        "uk": "Competition — змагання або конкурс. I have entered a competition — я записався на змагання, став його учасником. Entered — третя форма enter. Champion — чемпіон, володар чемпіонського титулу. She has met a champion — вона зустрічалася з чемпіоном."
+        "ru": "Вы подали заявку на соревнование и сообщаете другу, что теперь участвуете. I have entered a competition — я записался на соревнование. Competition означает «соревнование» или «конкурс». Собираем: I + have + entered + a competition. С I используем have, к enter добавляем -ed. Соревнование называем сразу после entered, без in. Have entered сообщает о сделанном шаге: вы уже стали участником.",
+        "uk": "Ви подали заявку на змагання й повідомляєте другу, що тепер берете участь. I have entered a competition — я записався на змагання. Competition означає «змагання» або «конкурс». Складаємо: I + have + entered + a competition. Із I використовуємо have, до enter додаємо -ed. Змагання називаємо одразу після entered, без in. Have entered повідомляє про зроблений крок: ви вже стали учасником."
       },
       "question": {
         "interactionId": "en:lesson-23:session-42:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c2a4837e085c5e121dfb18e56c16a0a8687faa15a189e9a8c0be29839ebf1868"
+  "introFingerprint": "b25b4b5731692031606a216b866e53c7456d7be8646a31709afa1e87d79a7973"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-30:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Муравей на кухне",
+        "uk": "Мураха на кухні"
       },
       "bodyByLocale": {
-        "ru": "Ant — муравей. Spider — паук. I have seen an ant — я видел муравья. Перед ant нужен an: слово начинается с гласного звука. Seen — третья форма see. She has seen a spider — она видела паука.",
-        "uk": "Ant — мураха. Spider — павук. I have seen an ant — я бачив мураху. Перед ant потрібен an: слово починається з голосного звука. Seen — третя форма see. She has seen a spider — вона бачила павука."
+        "ru": "Вы заметили муравья на кухне и сообщаете домашним: I have seen an ant — я видел муравья. Ant означает «муравей». Собираем: I + have + seen + an ant. С I используем have; seen — третья форма see. Перед ant ставим an, потому что слово начинается с гласного звука. Have seen сообщает о том, что вы уже заметили; муравей не обязательно всё ещё перед вами.",
+        "uk": "Ви помітили мураху на кухні й повідомляєте домашнім: I have seen an ant — я бачив мураху. Ant означає «мураха». Складаємо: I + have + seen + an ant. Із I використовуємо have; seen — третя форма see. Перед ant ставимо an, тому що слово починається з голосного звука. Have seen повідомляє про те, що ви вже помітили; мураха не обов’язково досі перед вами."
       },
       "question": {
         "interactionId": "en:lesson-23:session-30:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cd61208143ceda821c0094e886ee24e1c0ae799de3cafb8d414d933b33d96fb2"
+  "introFingerprint": "534c44024ad6c5fac7e7d4836be8b7d48d71b817d53ec9d7449d3bb4e1bcaefc"
 }

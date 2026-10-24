@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-26:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Встретили сообразительного студента",
+        "uk": "Зустріли кмітливого студента"
       },
       "bodyByLocale": {
-        "ru": "Clever — умный, сообразительный: человек быстро понимает или находит решение. Talkative — разговорчивый: человек много говорит. I have met a clever student — я встречал умного студента. Met — третья форма meet.",
-        "uk": "Clever — розумний, кмітливий: людина швидко розуміє або знаходить рішення. Talkative — балакучий: людина багато говорить. I have met a clever student — я зустрічав розумного студента. Met — третя форма meet."
+        "ru": "На занятии вы познакомились со студентом, который быстро решил трудную задачу. I have met a clever student — я встречал умного студента. Clever здесь означает «сообразительный». Собираем: I + have + met + a clever student. После I ставим have, met — третья форма meet. Clever описывает student и стоит перед ним. Have met сообщает об опыте знакомства.",
+        "uk": "На занятті ви познайомилися зі студентом, який швидко розв’язав складну задачу. I have met a clever student — я зустрічав розумного студента. Clever тут означає «кмітливий». Складаємо: I + have + met + a clever student. Після I ставимо have, met — третя форма meet. Clever описує student і стоїть перед ним. Have met повідомляє про досвід знайомства."
       },
       "question": {
         "interactionId": "en:lesson-23:session-26:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-26:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Рассказывает о неприятной встрече",
+        "uk": "Розповідає про неприємну зустріч"
       },
       "bodyByLocale": {
-        "ru": "Cruel — жестокий: человек намеренно причиняет боль или страдания. Это сильнее, чем unfriendly: просто недружелюбный человек не обязательно жесток. He has met a cruel person — он встречал жестокого человека. С he нужно has.",
-        "uk": "Cruel — жорстокий: людина навмисно завдає болю або страждань. Це сильніше, ніж unfriendly: просто недружня людина не обов’язково жорстока. He has met a cruel person — він зустрічав жорстоку людину. Із he потрібно has."
+        "ru": "Друг рассказывает о человеке, который намеренно обижал других. He has met a cruel person — он встречал жестокого человека. Cruel означает «жестокий». Собираем: he + has + met + a cruel person. С he используем has, met — третья форма meet. Прилагательное cruel стоит перед person. Has met сообщает об опыте встречи; когда она произошла, здесь не уточняем.",
+        "uk": "Друг розповідає про людину, яка навмисно кривдила інших. He has met a cruel person — він зустрічав жорстоку людину. Cruel означає «жорстокий». Складаємо: he + has + met + a cruel person. Із he використовуємо has, met — третя форма meet. Прикметник cruel стоїть перед person. Has met повідомляє про досвід зустрічі; коли вона відбулася, тут не уточнюємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb8b7114a5576aac522e1c59cfab6521afde5477054fe9d5331c79293f4413e3"
+  "introFingerprint": "6c77b4b5181d36e8a15aced2ded705ba3f845b6a07a806108a8a9beb39970ecb"
 }

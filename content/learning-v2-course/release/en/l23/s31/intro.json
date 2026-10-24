@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-31:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Что уже сделано",
-        "uk": "Що вже зроблено"
+        "ru": "Коридор уже чистый",
+        "uk": "Коридор уже чистий"
       },
       "bodyByLocale": {
-        "ru": "Corridor — коридор, проход, который соединяет комнаты. Cabinet — шкафчик для хранения вещей. Это слово близко знакомому cupboard; здесь речь о предмете мебели, а не о комнате. I have cleaned the corridor — я убрал коридор. Cleaned — третья форма clean.",
-        "uk": "Corridor — коридор, прохід, який сполучає кімнати. Cabinet — шафка для зберігання речей. Це слово близьке до знайомого cupboard; тут ідеться про предмет меблів, а не про кімнату. I have cleaned the corridor — я прибрав коридор. Cleaned — третя форма clean."
+        "ru": "Вы закончили уборку коридора и сообщаете об этом соседу по квартире. I have cleaned the corridor — я убрал коридор. Corridor означает «коридор». Собираем: I + have + cleaned + the corridor. После I ставим have, cleaned — третья форма clean с окончанием -ed. Have cleaned показывает результат: уборка закончена. The corridor — конкретный коридор в вашей квартире.",
+        "uk": "Ви закінчили прибирання коридору й повідомляєте про це сусідові по квартирі. I have cleaned the corridor — я прибрав коридор. Corridor означає «коридор». Складаємо: I + have + cleaned + the corridor. Після I ставимо have, cleaned — третя форма clean із закінченням -ed. Have cleaned показує результат: прибирання завершено. The corridor — конкретний коридор у вашій квартирі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-31:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Гостиная готова к празднику",
+        "uk": "Вітальня готова до свята"
       },
       "bodyByLocale": {
-        "ru": "Lounge — гостиная; в британском английском так называют комнату, где сидят и отдыхают дома. Вы уже знаете living room: здесь lounge означает ту же комнату. He has decorated the lounge — он украсил гостиную. Decorated — третья форма decorate.",
-        "uk": "Lounge — вітальня; у британській англійській так називають кімнату, де сидять і відпочивають удома. Ви вже знаєте living room: тут lounge означає ту саму кімнату. He has decorated the lounge — він прикрасив вітальню. Decorated — третя форма decorate."
+        "ru": "Друг украсил гостиную к празднику, и теперь всё готово к приходу гостей. He has decorated the lounge — он украсил гостиную. Lounge здесь означает «гостиная». Собираем: he + has + decorated + the lounge. С he используем has, к decorate добавляем -d и получаем decorated. Has decorated сообщает о результате: украшения уже на месте.",
+        "uk": "Друг прикрасив вітальню до свята, і тепер усе готове до приходу гостей. He has decorated the lounge — він прикрасив вітальню. Lounge тут означає «вітальня». Складаємо: he + has + decorated + the lounge. Із he використовуємо has, до decorate додаємо -d й отримуємо decorated. Has decorated повідомляє про результат: прикраси вже на місці."
       },
       "question": {
         "interactionId": "en:lesson-23:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f2de431e9527569edddb6832c179c9aef9d07870be796c515d34f0f636d4cf2c"
+  "introFingerprint": "f5970b001a2c5e7369ac0e54ead994ecc128a4ceaa2199c47cc0f822bad75707"
 }

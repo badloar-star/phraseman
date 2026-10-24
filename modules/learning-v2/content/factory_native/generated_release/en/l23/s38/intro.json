@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-38:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Предмет вам знаком",
+        "uk": "Предмет вам знайомий"
       },
       "bodyByLocale": {
-        "ru": "Geography — география: предмет о Земле, её местах и людях. Biology — биология: предмет о живых организмах. I have studied geography — я изучал географию. Studied — третья форма study: y меняется на i, затем добавляется ed.",
-        "uk": "Geography — географія: предмет про Землю, її місця й людей. Biology — біологія: предмет про живі організми. I have studied geography — я вивчав географію. Studied — третя форма study: y змінюється на i, потім додається ed."
+        "ru": "Друг спрашивает, знакома ли вам география. Вы изучали её и отвечаете: I have studied geography — я изучал географию. Geography означает «география». Собираем: I + have + studied + geography. После I ставим have. Третья форма study — studied: y меняется на i перед -ed. Have studied сообщает об опыте учёбы без указания времени.",
+        "uk": "Друг запитує, чи знайома вам географія. Ви вивчали її й відповідаєте: I have studied geography — я вивчав географію. Geography означає «географія». Складаємо: I + have + studied + geography. Після I ставимо have. Третя форма study — studied: y змінюється на i перед -ed. Have studied повідомляє про досвід навчання без зазначення часу."
       },
       "question": {
         "interactionId": "en:lesson-23:session-38:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-38:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Он изучал физику",
+        "uk": "Він вивчав фізику"
       },
       "bodyByLocale": {
-        "ru": "Physics — физика: предмет о движении, силах, свете и других явлениях природы. Окончание s — часть этого слова. He has studied physics — он изучал физику. С he нужно has. В обычном предложении о предмете говорим Physics is interesting, а не are.",
-        "uk": "Physics — фізика: предмет про рух, сили, світло та інші явища природи. Закінчення s — частина цього слова. He has studied physics — він вивчав фізику. Із he потрібно has. У звичайному реченні про предмет кажемо Physics is interesting, а не are."
+        "ru": "Вы ищете человека, которому знакома физика, и вспоминаете друга, изучавшего этот предмет. He has studied physics — он изучал физику. Physics означает «физика». Собираем: he + has + studied + physics. Выбираем has, потому что о человеке сказано he. Затем ставим studied — третью форму study, а после неё название предмета. Has studied сообщает об опыте учёбы.",
+        "uk": "Ви шукаєте людину, якій знайома фізика, і згадуєте друга, що вивчав цей предмет. He has studied physics — він вивчав фізику. Physics означає «фізика». Складаємо: he + has + studied + physics. Вибираємо has, тому що про людину сказано he. Потім ставимо studied — третю форму study, а після неї назву предмета. Has studied повідомляє про досвід навчання."
       },
       "question": {
         "interactionId": "en:lesson-23:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "09992cde7fd3cd896caddd30d16c7f9082d7daef8944ad844e3414ff6cfa7e0a"
+  "introFingerprint": "a6ce52cea1f33055257ed305622cff767e1e06ea9e662f1b0eae52e240b63469"
 }

@@ -21,9 +21,9 @@ Relative — родственник: например, дядя или двою�
 
 ## Интро 2
 
-### Различаем слова
+### Новые знакомые старше вас
 
-Ancestor — предок: человек из вашей семьи, живший до вас, например прабабушка. She has found a photo of an ancestor — она нашла фотографию предка. Generation — поколение. We have met people from another generation — мы познакомились с людьми другого поколения. Met — форма meet после have.
+На встрече в библиотеке вы с другом познакомились с людьми намного старше вас. We have met people from another generation — мы познакомились с людьми другого поколения. Generation означает «поколение». Собираем: we + have + met + people + from another generation. С we ставим have, met — третья форма meet. From another generation уточняет, к какому поколению относятся люди. Have met сообщает о состоявшемся знакомстве.
 
 **Выберите фразу для этой ситуации.**
 

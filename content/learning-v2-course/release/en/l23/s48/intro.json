@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-48:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Различаем слова",
-        "uk": "Розрізняємо слова"
+        "ru": "Нашли ветку на тропинке",
+        "uk": "Знайшли гілку на стежці"
       },
       "bodyByLocale": {
-        "ru": "Field — поле. She has crossed a field — она пересекла поле. Branch — ветка дерева. We have found a fallen branch — мы нашли упавшую ветку. Fallen здесь означает упавшая. Для нас это ветка, для собаки — находка размером с неё саму.",
-        "uk": "Field — поле. She has crossed a field — вона перетнула поле. Branch — гілка дерева. We have found a fallen branch — ми знайшли гілку, що впала. Fallen тут означає таку, що впала. Для нас це гілка, для собаки — знахідка, майже така велика, як вона сама."
+        "ru": "На прогулке вы с другом обнаружили на тропинке упавшую ветку. We have found a fallen branch — мы нашли упавшую ветку. Branch означает «ветка». Собираем: we + have + found + a fallen branch. С we ставим have, found — третья форма find. Fallen описывает ветку и стоит перед branch. Have found сообщает о находке: ветка уже обнаружена.",
+        "uk": "На прогулянці ви з другом знайшли на стежці гілку, що впала. We have found a fallen branch — ми знайшли гілку, що впала. Branch означає «гілка». Складаємо: we + have + found + a fallen branch. Із we ставимо have, found — третя форма find. Fallen описує гілку й стоїть перед branch. Have found повідомляє про знахідку: гілку вже виявлено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-48:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-48:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё один пример",
-        "uk": "Ще один приклад"
+        "ru": "Фотография уже готова",
+        "uk": "Фотографія вже готова"
       },
       "bodyByLocale": {
-        "ru": "Meadow — луг, участок с травой и часто полевыми цветами. Field — более общее слово: поле может быть засеяно или использоваться для животных. He has taken a photo of a meadow — он сфотографировал луг. После has нужна форма taken, а не take.",
-        "uk": "Meadow — луг, ділянка з травою й часто польовими квітами. Field — загальніше слово: поле може бути засіяне або використовуватися для тварин. He has taken a photo of a meadow — він сфотографував луг. Після has потрібна форма taken, а не take."
+        "ru": "На прогулке друг сфотографировал луг и теперь показывает снимок. He has taken a photo of a meadow — он сфотографировал луг. Meadow означает «луг». Собираем: he + has + taken + a photo + of a meadow. С he ставим has, taken — третья форма take. Сочетание take a photo означает «сфотографировать», а of a meadow уточняет, что изображено. Has taken сообщает о результате: фотография уже сделана.",
+        "uk": "На прогулянці друг сфотографував луг і тепер показує знімок. He has taken a photo of a meadow — він сфотографував луг. Meadow означає «луг». Складаємо: he + has + taken + a photo + of a meadow. Із he ставимо has, taken — третя форма take. Сполучення take a photo означає «сфотографувати», а of a meadow уточнює, що зображено. Has taken повідомляє про результат: фотографію вже зроблено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9a16e1bcd13df6a86401513bffec6484ca69f120279cf11130f18b9fadc12a16"
+  "introFingerprint": "6f6508442f0926d16ac40b249209025e20901c3b9b1f472649b50b41c2d166a3"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-23:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже",
-        "uk": "Уже"
+        "ru": "Встреча уже состоялась",
+        "uk": "Зустріч уже відбулася"
       },
       "bodyByLocale": {
-        "ru": "Engineer — инженер: например, специалист, который разрабатывает машины или мосты. Architect — архитектор, который проектирует здания. She has already met an engineer — она уже встретилась с инженером. Already означает «уже» и стоит перед met.",
-        "uk": "Engineer — інженер: наприклад, фахівець, який розробляє машини або мости. Architect — архітектор, який проєктує будівлі. She has already met an engineer — вона вже зустрілася з інженером. Already означає «вже» і стоїть перед met."
+        "ru": "Подруга собиралась встретиться с инженером, и теперь вы сообщаете, что встреча состоялась. She has already met an engineer — она уже встретилась с инженером. Engineer означает «инженер». Собираем: she + has + already + met + an engineer. Already означает «уже»: ставим его после has и перед третьей формой met. Так подчёркиваем, что к настоящему моменту встреча уже состоялась.",
+        "uk": "Подруга збиралася зустрітися з інженером, і тепер ви повідомляєте, що зустріч відбулася. She has already met an engineer — вона вже зустрілася з інженером. Engineer означає «інженер». Складаємо: she + has + already + met + an engineer. Already означає «вже»: ставимо його після has і перед третьою формою met. Так підкреслюємо, що на цей момент зустріч уже відбулася."
       },
       "question": {
         "interactionId": "en:lesson-23:session-33:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-33:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Ещё не — или уже?",
-        "uk": "Ще не — чи вже?"
+        "ru": "Встреча со строителем ещё впереди?",
+        "uk": "Зустріч із будівельником ще попереду?"
       },
       "bodyByLocale": {
-        "ru": "Builder — строитель. Have you met a builder yet? — ты уже встретился со строителем? Yet стоит в конце вопроса и здесь означает «уже». В отрицании yet означает «ещё»: We haven’t met an architect yet — мы ещё не встретились с архитектором. Haven’t = have not. Короткие ответы: Yes, I have. / No, I haven’t.",
-        "uk": "Builder — будівельник. Have you met a builder yet? — ти вже зустрівся з будівельником? Yet стоїть у кінці запитання й тут означає «вже». У запереченні yet означає «ще»: We haven’t met an architect yet — ми ще не зустрілися з архітектором. Haven’t = have not. Короткі відповіді: Yes, I have. / No, I haven’t."
+        "ru": "Друг собирался встретиться со строителем. Вы уточняете: Have you met a builder yet? — ты уже встретился со строителем? Builder означает «строитель». Собираем вопрос: have + you + met + a builder + yet. Have переносим перед you, а yet ставим в конце: спрашиваем, состоялась ли ожидаемая встреча к настоящему моменту. Если пока нет: I haven’t met a builder yet — я ещё не встретился со строителем. Yet остаётся в конце, а haven’t означает have not.",
+        "uk": "Друг збирався зустрітися з будівельником. Ви уточнюєте: Have you met a builder yet? — ти вже зустрівся з будівельником? Builder означає «будівельник». Складаємо запитання: have + you + met + a builder + yet. Have переносимо перед you, а yet ставимо наприкінці: запитуємо, чи відбулася очікувана зустріч до цього моменту. Якщо поки ні: I haven’t met a builder yet — я ще не зустрівся з будівельником. Yet залишається наприкінці, а haven’t означає have not."
       },
       "question": {
         "interactionId": "en:lesson-23:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "96c9e3b85d9d88eff66c12b2930b61a8aee934175266003e962a72566348885a"
+  "introFingerprint": "a192203fcc8da985f8f42f767b71f775bbf75994da59050822ae4ab59d32c9ac"
 }

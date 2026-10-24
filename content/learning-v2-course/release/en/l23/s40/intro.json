@@ -11,12 +11,12 @@
       "pageId": "en:lesson-23:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш опыт",
-        "uk": "Ваш досвід"
+        "ru": "Рассказываете об учёбе",
+        "uk": "Розповідаєте про навчання"
       },
       "bodyByLocale": {
-        "ru": "Chinese — китайский язык, Japanese — японский. I have studied Chinese — я изучал китайский язык. Chinese — общее название; здесь не уточняем разновидность языка. Названия языков пишем с большой буквы и в этих фразах используем без артикля.",
-        "uk": "Chinese — китайська мова, Japanese — японська. I have studied Chinese — я вивчав китайську мову. Chinese — загальна назва; тут не уточнюємо різновид мови. Назви мов пишемо з великої літери й у цих фразах використовуємо без артикля."
+        "ru": "На первом занятии преподаватель спрашивает о вашем опыте изучения китайского. I have studied Chinese — я изучал китайский язык. Chinese здесь — название языка. Собираем: I + have + studied + Chinese. С I используем have, studied — третья форма study. Have studied сообщает, что у вас уже был такой опыт; в этой фразе не называем дату начала или длительность учёбы.",
+        "uk": "На першому занятті викладач запитує про ваш досвід вивчення китайської. I have studied Chinese — я вивчав китайську мову. Chinese тут — назва мови. Складаємо: I + have + studied + Chinese. Із I використовуємо have, studied — третя форма study. Have studied повідомляє, що ви вже мали такий досвід; у цій фразі не називаємо дату початку чи тривалість навчання."
       },
       "question": {
         "interactionId": "en:lesson-23:session-40:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bdf344f57e3a00577aa1745b385419fc5a34e495153a281903ce6cbbcec24aa0"
+  "introFingerprint": "3c5f6d78d25c05ba5ab6bfe996ecbd50f40ef2004ef8f89b3a6a62fd5d6a9c97"
 }

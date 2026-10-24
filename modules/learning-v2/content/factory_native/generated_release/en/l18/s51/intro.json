@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-51:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Удачная возможность научиться",
+        "uk": "Добра нагода навчитися"
       },
       "bodyByLocale": {
-        "ru": "opportunity — возможность, благоприятный случай. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "opportunity — можливість, сприятлива нагода. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Сосед предложил бесплатно показать вам, как чинить велосипед. Вы давно хотели научиться. Opportunity — возможность, благоприятный случай. This is such a good opportunity. — Это такая хорошая возможность. После This is ставим such a good opportunity. Such усиливает всю группу с существительным opportunity; a стоит перед good, потому что речь об одной возможности. Порядок: such + a + good + opportunity.",
+        "uk": "Сусід запропонував безкоштовно показати вам, як лагодити велосипед. Ви давно хотіли навчитися. Opportunity — можливість, сприятлива нагода. This is such a good opportunity. — Це така добра нагода. Після This is ставимо such a good opportunity. Such підсилює всю групу з іменником opportunity; a стоїть перед good, тому що йдеться про одну нагоду. Порядок: such + a + good + opportunity."
       },
       "question": {
         "interactionId": "en:lesson-18:session-51:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-51:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Работа требует внимания",
+        "uk": "Робота потребує уваги"
       },
       "bodyByLocale": {
-        "ru": "attention — внимание. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "attention — увага. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы собираете маленькую модель по схеме: детали легко перепутать, поэтому приходится внимательно сверять каждый шаг. Attention — внимание. This needs such careful attention. — Это требует такого пристального внимания. This указывает на сборку, needs — требует, затем such careful attention. Усиливаем сочетание careful с существительным attention, поэтому нужен such. Attention здесь неисчисляемое: a не добавляем.",
+        "uk": "Ви збираєте маленьку модель за схемою: деталі легко переплутати, тому доводиться уважно звіряти кожен крок. Attention — увага. This needs such careful attention. — Це потребує такої пильної уваги. This указує на збирання, needs — потребує, потім such careful attention. Підсилюємо сполучення careful з іменником attention, тому потрібне such. Attention тут незлічуване: a не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-51:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-51:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Мнение помогло выбрать",
+        "uk": "Думка допомогла вибрати"
       },
       "bodyByLocale": {
-        "ru": "interest — интерес. opinion — мнение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "interest — інтерес. opinion — думка. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы выбираете велосипед, а друг объяснил, какой будет удобнее для ваших поездок. Opinion — мнение. Your opinion is so useful. — Твоё мнение так полезно. Your opinion называет мнение друга, затем is и оценка so useful. So усиливает прилагательное useful. Существительное opinion стоит раньше, в начале предложения; после useful существительного нет, поэтому здесь нужен so, а не such.",
+        "uk": "Ви вибираєте велосипед, а друг пояснив, який буде зручнішим для ваших поїздок. Opinion — думка. Your opinion is so useful. — Твоя думка така корисна. Your opinion називає думку друга, потім is та оцінка so useful. So підсилює прикметник useful. Іменник opinion стоїть раніше, на початку речення; після useful іменника немає, тому тут потрібне so, а не such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "56808430858e25cb241d338fd842dd0e3923dcf2ca13c1cbd4530d2b5a91254e"
+  "introFingerprint": "af155ed04ca1398680f93ed9699d1a4bcc58f90a39b7c67c4b8f781a3a8eda27"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-50:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Выслушать друг друга",
+        "uk": "Вислухати одне одного"
       },
       "bodyByLocale": {
-        "ru": "respect — уважение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "respect — повага. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы с соседом по квартире по-разному представляете порядок дома, но спокойно выслушиваете друг друга. Respect — уважение; mutual respect — взаимное уважение. Mutual respect is so important. — Взаимное уважение так важно. Mutual respect называет то, что вы цените, is связывает это с оценкой. So ставим перед important, чтобы усилить прилагательное: is + so + important.",
+        "uk": "Ви із сусідом по квартирі по-різному уявляєте порядок удома, але спокійно вислуховуєте одне одного. Respect — повага; mutual respect — взаємна повага. Mutual respect is so important. — Взаємна повага така важлива. Mutual respect називає те, що ви цінуєте, is пов’язує це з оцінкою. So ставимо перед important, щоб підсилити прикметник: is + so + important."
       },
       "question": {
         "interactionId": "en:lesson-18:session-50:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Самому выбирать планы",
+        "uk": "Самому вибирати плани"
       },
       "bodyByLocale": {
-        "ru": "freedom — свобода. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "freedom — свобода. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг пытается решать за вас, как проводить выходные, а вы объясняете, почему хотите выбирать сами. Freedom — свобода. Freedom is so important. — Свобода так важна. Сначала Freedom — тема высказывания, затем is и оценка so important. После so идёт прилагательное important без существительного, поэтому such здесь не подходит. Freedom как общее понятие употребляем без a.",
+        "uk": "Друг намагається вирішувати за вас, як проводити вихідні, а ви пояснюєте, чому хочете вибирати самі. Freedom — свобода. Freedom is so important. — Свобода така важлива. Спочатку Freedom — тема висловлювання, потім is та оцінка so important. Після so йде прикметник important без іменника, тому such тут не підходить. Freedom як загальне поняття вживаємо без a."
       },
       "question": {
         "interactionId": "en:lesson-18:session-50:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-50:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Отвечать за чужого питомца",
+        "uk": "Відповідати за чужого улюбленця"
       },
       "bodyByLocale": {
-        "ru": "independence — независимость, самостоятельность. responsibility — ответственность, обязанность. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "independence — незалежність, самостійність. responsibility — відповідальність, обов’язок. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Сосед уезжает и просит вас неделю ухаживать за его собакой. Responsibility — ответственность, обязанность. This is such a big responsibility. — Это такая большая ответственность. This указывает на уход за собакой, затем is и группа such a big responsibility. Здесь responsibility означает конкретную обязанность, поэтому нужен a. Порядок: such + a + big + responsibility.",
+        "uk": "Сусід їде й просить вас тиждень доглядати його собаку. Responsibility — відповідальність, обов’язок. This is such a big responsibility. — Це така велика відповідальність. This указує на догляд за собакою, потім is і група such a big responsibility. Тут responsibility означає конкретний обов’язок, тому потрібен a. Порядок: such + a + big + responsibility."
       },
       "question": {
         "interactionId": "en:lesson-18:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "15d5207176bf40a184b4983bcc9d35e456cbda6f4096f906fb164642555b7ca5"
+  "introFingerprint": "70060a9955ec8bb1d9035d38949d763d56a360d280126ecb3f6020bf0ff5e823"
 }

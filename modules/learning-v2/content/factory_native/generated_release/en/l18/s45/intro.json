@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Удачное знакомство",
+        "uk": "Вдале знайомство"
       },
       "bodyByLocale": {
-        "ru": "first impression — первое впечатление. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "first impression — перше враження. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг впервые встретился с вашими соседями, и им понравилось с ним общаться. First impression — первое впечатление. You made such a good first impression. — Ты произвёл такое хорошее первое впечатление. You made означает «ты произвёл», затем идёт such a good first impression. Such усиливает всю группу с существительным impression. Артикль a ставим после such; дальше good first impression — хорошее первое впечатление.",
+        "uk": "Друг уперше зустрівся з вашими сусідами, і їм сподобалося з ним спілкуватися. First impression — перше враження. You made such a good first impression. — Ти справив таке добре перше враження. You made означає «ти справив», потім іде such a good first impression. Such підсилює всю групу з іменником impression. Артикль a ставимо після such; далі good first impression — добре перше враження."
       },
       "question": {
         "interactionId": "en:lesson-18:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Попробовать ещё раз",
+        "uk": "Спробувати ще раз"
       },
       "bodyByLocale": {
-        "ru": "second chance — второй шанс. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "second chance — другий шанс. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы не справились с заданием с первого раза, но преподаватель разрешил повторить попытку. Second chance — второй шанс. A second chance is so helpful. — Второй шанс так помогает. Начинаем с A second chance — что помогает, затем is и характеристика so helpful. So усиливает прилагательное helpful. Существительное chance уже стоит в начале; после helpful существительного нет, поэтому здесь не нужен such.",
+        "uk": "Ви не впоралися із завданням із першого разу, але викладач дозволив повторити спробу. Second chance — другий шанс. A second chance is so helpful. — Другий шанс так допомагає. Починаємо з A second chance — що допомагає, потім is та характеристика so helpful. So підсилює прикметник helpful. Іменник chance уже стоїть на початку; після helpful іменника немає, тому тут не потрібне such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Объяснить отмену встречи",
+        "uk": "Пояснити скасування зустрічі"
       },
       "bodyByLocale": {
-        "ru": "last chance — последний шанс. good reason — веская причина. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "last chance — останній шанс. good reason — вагома причина. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг отменяет встречу, потому что должен встретить близкого человека после долгой поездки. Вы понимаете его решение. Good reason — веская причина. You have such a good reason. — У тебя такая веская причина. После You have ставим such a good reason: усиливаем группу с существительным reason. Порядок — such + a + good + reason; a перед such не ставим.",
+        "uk": "Друг скасовує зустріч, тому що має зустріти близьку людину після довгої поїздки. Ви розумієте його рішення. Good reason — вагома причина. You have such a good reason. — У тебе така вагома причина. Після You have ставимо such a good reason: підсилюємо групу з іменником reason. Порядок — such + a + good + reason; a перед such не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e80dd5c1e05c94d4b70b5460ba9903504203fa9db6335d831e4c9f56fd69345f"
+  "introFingerprint": "802a52ec7ca0733e08098dbb5e256e899a8a3e2ac1b0d81126af5cb53ed1da9e"
 }

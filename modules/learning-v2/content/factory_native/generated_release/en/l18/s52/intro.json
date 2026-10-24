@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-52:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Важный плюс короткой дороги",
+        "uk": "Важливий плюс короткої дороги"
       },
       "bodyByLocale": {
-        "ru": "benefit — польза, полезный результат. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "benefit — користь, корисний результат. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "После переезда вы тратите меньше времени на дорогу и успеваете ужинать с семьёй. Benefit — польза, полезный результат. This benefit is so important. — Эта польза так важна. This benefit указывает на освободившееся время с семьёй. Затем ставим is и оценку so important. So усиливает прилагательное important; существительного после него нет, поэтому such здесь не подходит.",
+        "uk": "Після переїзду ви витрачаєте менше часу на дорогу й устигаєте вечеряти з родиною. Benefit — користь, корисний результат. This benefit is so important. — Ця користь така важлива. This benefit указує на вивільнений час із родиною. Потім ставимо is та оцінку so important. So підсилює прикметник important; іменника після нього немає, тому such тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-18:session-52:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-52:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Магазин рядом с домом",
+        "uk": "Магазин поруч із домом"
       },
       "bodyByLocale": {
-        "ru": "advantage — преимущество. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "advantage — перевага. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы выбираете квартиру и замечаете, что до магазина можно дойти за минуту. Advantage — преимущество. This is such a big advantage. — Это такое большое преимущество. This указывает на близкий магазин, затем is и целая группа such a big advantage. В ней есть существительное advantage в единственном числе, поэтому порядок: such + a + big + advantage.",
+        "uk": "Ви вибираєте квартиру й помічаєте, що до магазину можна дійти за хвилину. Advantage — перевага. This is such a big advantage. — Це така велика перевага. This указує на близький магазин, потім is і ціла група such a big advantage. У ній є іменник advantage в однині, тому порядок: such + a + big + advantage."
       },
       "question": {
         "interactionId": "en:lesson-18:session-52:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-52:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Сравнить две комнаты",
+        "uk": "Порівняти дві кімнати"
       },
       "bodyByLocale": {
-        "ru": "disadvantage — недостаток, невыгодная сторона. difference — разница, отличие. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "disadvantage — недолік, невигідний бік. difference — різниця, відмінність. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы переходите из тесной комнаты в просторную и сразу замечаете, насколько они отличаются. Difference — разница. There is such a big difference. — Такая большая разница. There is сообщает, что разница есть; затем называем её: such a big difference. Such усиливает всю группу с существительным difference. Артикль a стоит после such и перед big, а не перед such.",
+        "uk": "Ви переходите з тісної кімнати до просторої й одразу помічаєте, наскільки вони відрізняються. Difference — різниця. There is such a big difference. — Така велика різниця. There is повідомляє, що різниця є; потім називаємо її: such a big difference. Such підсилює всю групу з іменником difference. Артикль a стоїть після such і перед big, а не перед such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d4c8fc3a0d0237126bad67dffdfe96e3d2753de907bb2d5431dbfeca3ef77fcb"
+  "introFingerprint": "7273188fa4a659ec6313f0b34941db4db366eb3fd0b2668703dfbe4469a219a2"
 }

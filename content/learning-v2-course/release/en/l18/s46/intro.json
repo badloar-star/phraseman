@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-46:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Понятное объявление",
+        "uk": "Зрозуміле оголошення"
       },
       "bodyByLocale": {
-        "ru": "job advert — объявление о работе. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "job advert — оголошення про роботу. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы читаете объявление о работе в кафе: в нём понятно написано, что нужно делать и куда обращаться. Job advert — объявление о работе. This job advert is so clear. — Это объявление о работе такое понятное. This job advert называет объявление, затем is и оценка so clear. So ставим перед прилагательным clear; существительного после него нет, поэтому such здесь не подходит.",
+        "uk": "Ви читаєте оголошення про роботу в кафе: у ньому зрозуміло написано, що потрібно робити й куди звертатися. Job advert — оголошення про роботу. This job advert is so clear. — Це оголошення про роботу таке зрозуміле. This job advert називає оголошення, потім is та оцінка so clear. So ставимо перед прикметником clear; іменника після нього немає, тому such тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-18:session-46:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Интересная вакансия",
+        "uk": "Цікава вакансія"
       },
       "bodyByLocale": {
-        "ru": "job vacancy — свободное рабочее место, вакансия. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "job vacancy — вільне робоче місце, вакансія. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг показывает вам свободное место в книжном магазине, где вы давно хотели работать. Job vacancy — вакансия. This is such an interesting job vacancy. — Это такая интересная вакансия. После This is идёт группа such an interesting job vacancy. Such усиливает всю группу с существительным vacancy. Перед interesting нужен an из-за начального гласного звука; порядок — such + an + interesting + job vacancy.",
+        "uk": "Друг показує вам вільне місце в книгарні, де ви давно хотіли працювати. Job vacancy — вакансія. This is such an interesting job vacancy. — Це така цікава вакансія. Після This is іде група such an interesting job vacancy. Such підсилює всю групу з іменником vacancy. Перед interesting потрібен an через початковий голосний звук; порядок — such + an + interesting + job vacancy."
       },
       "question": {
         "interactionId": "en:lesson-18:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Короткий отпуск",
+        "uk": "Коротка відпустка"
       },
       "bodyByLocale": {
-        "ru": "working hours — рабочие часы. annual leave — ежегодный отпуск. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "working hours — робочі години. annual leave — щорічна відпустка. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы планируете поездку и замечаете, что дней отпуска едва хватит на неё. Annual leave — ежегодный отпуск. My annual leave is so short. — Мой ежегодный отпуск такой короткий. My annual leave называет ваш отпуск, затем is связывает его с характеристикой short. So усиливает short и стоит перед ним. My уже показывает, чей отпуск, поэтому артикль перед annual leave не добавляем.",
+        "uk": "Ви плануєте поїздку й помічаєте, що днів відпустки ледь вистачить на неї. Annual leave — щорічна відпустка. My annual leave is so short. — Моя щорічна відпустка така коротка. My annual leave називає вашу відпустку, потім is пов’язує її з характеристикою short. So підсилює short і стоїть перед ним. My вже показує, чия відпустка, тому артикль перед annual leave не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bef37ffc981767b7476f4b32042f224cc61b78882c7298a30c5c4e8129dee987"
+  "introFingerprint": "4959294e173cfcfa4b5fedfa113714955bf26fb3beba5f18d0921e7a1e4f40ca"
 }

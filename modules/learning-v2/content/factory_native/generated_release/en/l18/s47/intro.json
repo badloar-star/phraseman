@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-47:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Рассказать о перенесённом отравлении",
+        "uk": "Розповісти про перенесене отруєння"
       },
       "bodyByLocale": {
-        "ru": "food poisoning — пищевое отравление. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "food poisoning — харчове отруєння. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг спрашивает, почему вы пропустили встречу. Вы рассказываете о сильном пищевом отравлении на прошлой неделе. Food poisoning — пищевое отравление. The food poisoning was so bad. — Пищевое отравление было таким тяжёлым. Сначала называем состояние The food poisoning, затем was, потому что говорим о прошлом. So перед bad усиливает прилагательное. После bad нет существительного, поэтому выбираем so, а не such.",
+        "uk": "Друг питає, чому ви пропустили зустріч. Ви розповідаєте про сильне харчове отруєння минулого тижня. Food poisoning — харчове отруєння. The food poisoning was so bad. — Харчове отруєння було таким тяжким. Спочатку називаємо стан The food poisoning, потім was, тому що говоримо про минуле. So перед bad підсилює прикметник. Після bad немає іменника, тому вибираємо so, а не such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-47:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-47:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Описать неприятную аллергию",
+        "uk": "Описати неприємну алергію"
       },
       "bodyByLocale": {
-        "ru": "hay fever — сезонная аллергия на пыльцу. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "hay fever — сезонна алергія на пилок. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы разговариваете с другом и жалуетесь, как вам досаждает уже знакомая сезонная аллергия. Hay fever — аллергия на пыльцу. This hay fever is so annoying. — Эта аллергия так досаждает. This hay fever называет состояние, is связывает его с характеристикой annoying. So ставим прямо перед annoying: is + so + annoying. Здесь annoying — прилагательное, описывающее раздражающее состояние.",
+        "uk": "Ви розмовляєте з другом і скаржитеся, як вам дошкуляє вже знайома сезонна алергія. Hay fever — алергія на пилок. This hay fever is so annoying. — Ця алергія так дошкуляє. This hay fever називає стан, is пов’язує його з характеристикою annoying. So ставимо прямо перед annoying: is + so + annoying. Тут annoying — прикметник, що описує надокучливий стан."
       },
       "question": {
         "interactionId": "en:lesson-18:session-47:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-47:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Сообщить о сильной боли",
+        "uk": "Повідомити про сильний біль"
       },
       "bodyByLocale": {
-        "ru": "travel sickness — укачивание в транспорте. chest pain — боль в груди. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "travel sickness — захитування у транспорті. chest pain — біль у грудях. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы обращаетесь за медицинской помощью и объясняете, насколько сильно болит грудь. Chest pain — боль в груди. The chest pain is so bad. — Боль в груди такая сильная. The chest pain называет боль, о которой вы сообщаете; is показывает, что речь о состоянии сейчас. Затем so bad — такая сильная: so усиливает bad. Порядок: The chest pain + is + so + bad.",
+        "uk": "Ви звертаєтеся по медичну допомогу й пояснюєте, наскільки сильно болить у грудях. Chest pain — біль у грудях. The chest pain is so bad. — Біль у грудях такий сильний. The chest pain називає біль, про який ви повідомляєте; is показує, що йдеться про стан зараз. Потім so bad — такий сильний: so підсилює bad. Порядок: The chest pain + is + so + bad."
       },
       "question": {
         "interactionId": "en:lesson-18:session-47:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2561f2e7530566197f27e39d51dc2de48e98c923687d0e38c169559b85238d78"
+  "introFingerprint": "5ddd4ac1a3f1f60c4aaad6dd9d3bc206bbc53417f84851cf8126e4d691f079d9"
 }

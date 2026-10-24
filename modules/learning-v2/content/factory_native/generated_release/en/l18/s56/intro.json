@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Важность разговора",
+        "uk": "Важливість розмови"
       },
       "bodyByLocale": {
-        "ru": "communication — общение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "communication — спілкування. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы с другом спокойно поговорили и поняли, что обижались друг на друга из-за недоразумения. Communication — общение. Good communication is so important. — Хорошее общение так важно. Сначала называем тему Good communication, затем is и оценку so important. So стоит прямо перед прилагательным important и усиливает его; после important здесь нет существительного, поэтому such не подходит.",
+        "uk": "Ви з другом спокійно поговорили й зрозуміли, що ображалися одне на одного через непорозуміння. Communication — спілкування. Good communication is so important. — Добре спілкування таке важливе. Спочатку називаємо тему Good communication, потім is та оцінку so important. So стоїть прямо перед прикметником important і підсилює його; після important тут немає іменника, тому such не підходить."
       },
       "question": {
         "interactionId": "en:lesson-18:session-56:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-56:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Как построить фразу",
-        "uk": "Як побудувати фразу"
+        "ru": "Хорошие отношения",
+        "uk": "Добрі стосунки"
       },
       "bodyByLocale": {
-        "ru": "relationship — отношения, связь между людьми. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "relationship — стосунки, зв’язок між людьми. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы с сестрой всегда можете спокойно обсудить трудности и помочь друг другу. Relationship — отношения между людьми. We have such a good relationship. — У нас такие хорошие отношения. После We have идёт целая группа such a good relationship. В английском relationship здесь в единственном числе: это одна связь между вами. Поэтому порядок такой: such + a + good + relationship; артикль a ставим после such.",
+        "uk": "Ви із сестрою завжди можете спокійно обговорити труднощі й допомогти одне одному. Relationship — стосунки між людьми. We have such a good relationship. — У нас такі добрі стосунки. Після We have йде ціла група such a good relationship. В англійській relationship тут в однині: це один зв’язок між вами. Тому порядок такий: such + a + good + relationship; артикль a ставимо після such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-56:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Серьёзная ссора",
+        "uk": "Серйозна сварка"
       },
       "bodyByLocale": {
-        "ru": "discussion — обсуждение. argument — спор, ссора. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "discussion — обговорення. argument — суперечка, сварка. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Два друга сильно поссорились и теперь не разговаривают. Argument здесь — ссора. This argument is so serious. — Эта ссора такая серьёзная. This argument называет конкретную ссору, is связывает её с оценкой, а so усиливает serious. Собираем: This argument + is + so + serious. После so идёт прилагательное без существительного, поэтому артикль a здесь не нужен.",
+        "uk": "Двоє друзів сильно посварилися й тепер не розмовляють. Argument тут — сварка. This argument is so serious. — Ця сварка така серйозна. This argument називає конкретну сварку, is пов’язує її з оцінкою, а so підсилює serious. Складаємо: This argument + is + so + serious. Після so йде прикметник без іменника, тому артикль a тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-18:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8658c920408e3984c37dd1a913b7a27e1b181ce2390638eba7c2eae529b4b7a7"
+  "introFingerprint": "286a1d7021964146532d812d0562d99b94b446bf75d7af7902e1cd97541afa37"
 }

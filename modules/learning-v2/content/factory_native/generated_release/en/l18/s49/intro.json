@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-49:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Оценить старание друга",
+        "uk": "Оцінити старання друга"
       },
       "bodyByLocale": {
-        "ru": "effort — усилие, старание. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "effort — зусилля, старання. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг весь вечер помогал вам собирать шкаф, и вы благодарите его за старание. Effort — усилие, старание. You made such a great effort. — Ты приложил столько усилий. После You made ставим such a great effort: such усиливает группу с существительным effort. Порядок — such + a + great + effort. Перед одним прилагательным нужен so: Your effort was so great — Твоё старание было таким большим. Это та же ситуация, но другая конструкция. После such ставим a/an с исчисляемым существительным в единственном числе; с множественным числом и неисчисляемыми a/an не нужен.",
+        "uk": "Друг увесь вечір допомагав вам збирати шафу, і ви дякуєте йому за старання. Effort — зусилля, старання. You made such a great effort. — Ти доклав стільки зусиль. Після You made ставимо such a great effort: such підсилює групу з іменником effort. Порядок — such + a + great + effort. Перед одним прикметником потрібне so: Your effort was so great — Твоє старання було таким великим. Це та сама ситуація, але інша конструкція. Після such ставимо a/an зі злічуваним іменником в однині; із множиною та незлічуваними a/an не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-18:session-49:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-49:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Когда называем человека или вещь",
-        "uk": "Коли називаємо людину або річ"
+        "ru": "Порадоваться результату",
+        "uk": "Порадіти результату"
       },
       "bodyByLocale": {
-        "ru": "success — успех. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "success — успіх. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Вы с другом впервые приготовили сложный пирог, и он отлично получился. Success — успех. This is such a great success. — Это такой большой успех. This указывает на удачный результат, затем is и such a great success. Здесь success — отдельный удачный результат, поэтому используем a. Усилитель such ставим перед всей группой: such + a + great + success.",
+        "uk": "Ви з другом уперше приготували складний пиріг, і він чудово вдався. Success — успіх. This is such a great success. — Це такий великий успіх. This указує на вдалий результат, потім is і such a great success. Тут success — окремий вдалий результат, тому використовуємо a. Підсилювач such ставимо перед усією групою: such + a + great + success."
       },
       "question": {
         "interactionId": "en:lesson-18:session-49:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-49:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Заметить улучшение",
+        "uk": "Помітити поліпшення"
       },
       "bodyByLocale": {
-        "ru": "failure — неудача, провал. improvement — улучшение. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "failure — невдача, провал. improvement — поліпшення. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг несколько дней учился рисовать, и новый рисунок заметно лучше предыдущего. Improvement — улучшение. This is such a big improvement. — Это такое большое улучшение. This называет увиденное изменение, is связывает его с оценкой. После such идёт a big improvement: прилагательное big и существительное improvement. Артикль a остаётся внутри этой группы, после such; порядок a such неверен.",
+        "uk": "Друг кілька днів учився малювати, і новий малюнок помітно кращий за попередній. Improvement — поліпшення. This is such a big improvement. — Це таке велике поліпшення. This називає побачену зміну, is пов’язує її з оцінкою. Після such іде a big improvement: прикметник big та іменник improvement. Артикль a залишається всередині цієї групи, після such; порядок a such неправильний."
       },
       "question": {
         "interactionId": "en:lesson-18:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "142e30353e354ad8f8094a74657a9f35daab6d5b40b00ccea4e55657fdfbea36"
+  "introFingerprint": "66f9ce323448fdae36d29550b12b387edcbc93c3f0b362b063785e384cec8acf"
 }

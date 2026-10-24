@@ -11,12 +11,12 @@
       "pageId": "en:lesson-18:session-54:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сильное впечатление",
-        "uk": "Сильне враження"
+        "ru": "Столько сил после прогулки",
+        "uk": "Стільки сил після прогулянки"
       },
       "bodyByLocale": {
-        "ru": "energy — энергия, силы. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "energy — енергія, сили. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "После долгой прогулки друг всё ещё бодр и готов идти дальше. Energy здесь — запас сил. You have such great energy. — У тебя столько энергии. You have сообщает, что у друга есть силы, а such great energy подчёркивает впечатление. После such идёт сочетание great + energy. Здесь говорим о количестве сил, а не об отдельном виде энергии, поэтому energy употребляем без a.",
+        "uk": "Після довгої прогулянки друг усе ще бадьорий і готовий іти далі. Energy тут — запас сил. You have such great energy. — У тебе стільки енергії. You have повідомляє, що в друга є сили, а such great energy підкреслює враження. Після such іде сполучення great + energy. Тут говоримо про кількість сил, а не про окремий вид енергії, тому energy вживаємо без a."
       },
       "question": {
         "interactionId": "en:lesson-18:session-54:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-18:session-54:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Как построить фразу",
-        "uk": "Як побудувати фразу"
+        "ru": "Помощь с тяжёлой сумкой",
+        "uk": "Допомога з важкою сумкою"
       },
       "bodyByLocale": {
-        "ru": "strength — сила. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "strength — сила. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг помог вам донести тяжёлую сумку, и вы говорите, как пригодилась его сила. Strength — сила. Your strength is so useful. — Твоя сила так полезна. Your strength называет то, что оцениваем; is связывает это с характеристикой useful. Перед useful ставим so, потому что усиливаем одно прилагательное. Порядок: Your strength + is + so + useful.",
+        "uk": "Друг допоміг вам донести важку сумку, і ви кажете, як знадобилася його сила. Strength — сила. Your strength is so useful. — Твоя сила така корисна. Your strength називає те, що оцінюємо; is пов’язує це з характеристикою useful. Перед useful ставимо so, тому що підсилюємо один прикметник. Порядок: Your strength + is + so + useful."
       },
       "question": {
         "interactionId": "en:lesson-18:session-54:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-18:session-54:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Подчеркнуть впечатление",
-        "uk": "Підкреслити враження"
+        "ru": "Желание продолжать занятия",
+        "uk": "Бажання продовжувати заняття"
       },
       "bodyByLocale": {
-        "ru": "fitness — физическая форма. motivation — мотивация, желание действовать. So усиливает прилагательное: so kind. Such усиливает группу с существительным: such a kind person. Для одного исчисляемого предмета нужен a или an после such; с множественным числом и неисчисляемыми его нет: such kind people, such good news.",
-        "uk": "fitness — фізична форма. motivation — мотивація, бажання діяти. So підсилює прикметник: so kind. Such підсилює групу з іменником: such a kind person. Для одного злічуваного предмета потрібне a або an після such; із множиною й незлічуваними його немає: such kind people, such good news."
+        "ru": "Друг хочет бросить занятия, а вы обсуждаете, что помогает ему сохранять желание продолжать. Motivation — мотивация, желание действовать. Motivation is so important. — Мотивация так важна. Начинаем с Motivation, затем is и оценка so important. So стоит прямо перед important: после прилагательного здесь нет существительного. Поэтому используем so, а не such.",
+        "uk": "Друг хоче покинути заняття, а ви обговорюєте, що допомагає йому зберігати бажання продовжувати. Motivation — мотивація, бажання діяти. Motivation is so important. — Мотивація така важлива. Починаємо з Motivation, потім is та оцінка so important. So стоїть прямо перед important: після прикметника тут немає іменника. Тому використовуємо so, а не such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4cd7f4df6a5ae6acdf568737965a75fa0b197f0f564b8f3fbde3312fa421e1da"
+  "introFingerprint": "0a296c5867bd41b54e533f0426a8487145d849e45c2985ad2c9be7cc27d7a060"
 }

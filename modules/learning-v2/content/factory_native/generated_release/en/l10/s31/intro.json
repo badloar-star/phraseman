@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Июнь",
-        "uk": "Червень"
+        "ru": "Плавать в июне",
+        "uk": "Плавати в червні"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о привычном летнем отдыхе. June — «июнь»: We swim in June — «Мы плаваем в июне». С we используем swim без s. June и July — разные месяцы: июнь и июль.",
-        "uk": "Ви розповідаєте про звичний літній відпочинок. June — «червень»: We swim in June — «Ми плаваємо в червні». З we вживаємо swim без s. June і July — різні місяці: червень і липень."
+        "ru": "Вы рассказываете другу, когда обычно плаваете во время летнего отдыха: We swim in June — «Мы плаваем в июне». Начинаем с we, затем называем привычное действие swim и время in June. После we глагол swim идёт без -s. Перед названием месяца ставим in, а June — «июнь» — пишем с большой буквы.",
+        "uk": "Ви розповідаєте другу, коли зазвичай плаваєте під час літнього відпочинку: We swim in June — «Ми плаваємо в червні». Починаємо з we, потім називаємо звичну дію swim і час in June. Після we дієслово swim іде без -s. Перед назвою місяця ставимо in, а June — «червень» — пишемо з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-31:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-31:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Октябрь и ноябрь",
-        "uk": "Жовтень і листопад"
+        "ru": "Навещать семью в ноябре",
+        "uk": "Відвідувати родину в листопаді"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает об осени. October — «октябрь»: I usually stay home in October — «В октябре я обычно остаюсь дома». November — «ноябрь»: We visit our family in November — «Мы навещаем семью в ноябре». Это обычные ежегодные дела. Названия месяцев пишем с большой буквы.",
-        "uk": "Друг запитує про осінь. October — «жовтень»: I usually stay home in October — «У жовтні я зазвичай залишаюся вдома». November — «листопад»: We visit our family in November — «Ми відвідуємо родину в листопаді». Це звичні щорічні справи. Назви місяців пишемо з великої літери."
+        "ru": "Друг спрашивает, когда вы обычно навещаете родных. Вы отвечаете за себя и близких: We visit our family in November — «Мы навещаем семью в ноябре». После we ставим visit без -s, затем our family — кого навещаем, и in November — когда. Речь об обычной ежегодной поездке, поэтому используем Present Simple. Перед месяцем нужен in, а November пишем с большой буквы.",
+        "uk": "Друг запитує, коли ви зазвичай відвідуєте рідних. Ви відповідаєте за себе й близьких: We visit our family in November — «Ми відвідуємо родину в листопаді». Після we ставимо visit без -s, потім our family — кого відвідуємо, та in November — коли. Йдеться про звичну щорічну поїздку, тому використовуємо Present Simple. Перед місяцем потрібен in, а November пишемо з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1700099bf97a2c4876f8b34ad40bc9d08d523c5680a7b0b5650ac05a778afa6c"
+  "introFingerprint": "89feff9c16727e8b1f731c0a10870caf038724ec00f1ce0456f83b8be4a9636d"
 }

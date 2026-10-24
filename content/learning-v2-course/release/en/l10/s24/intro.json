@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Для одного или с двуспальной кроватью",
-        "uk": "Для одного або з двоспальним ліжком"
+        "ru": "Попросить одноместный номер",
+        "uk": "Попросити одномісний номер"
       },
       "bodyByLocale": {
-        "ru": "Вы путешествуете один. Single room — «одноместный номер»: I would like a single room — «Я бы хотел одноместный номер». Если вы вдвоём и хотите одну двуспальную кровать, спросите: Do you have a double room? — «У вас есть номер с двуспальной кроватью?» Double room здесь — номер на двоих с одной двуспальной кроватью.",
-        "uk": "Ви подорожуєте самі. Single room — «одномісний номер»: I would like a single room — «Я хотів би одномісний номер». Якщо ви вдвох і хочете одне двоспальне ліжко, запитайте: Do you have a double room? — «У вас є номер із двоспальним ліжком?» Double room тут — номер на двох з одним двоспальним ліжком."
+        "ru": "Вы путешествуете один и просите номер у сотрудника отеля: I would like a single room — «Я бы хотел одноместный номер». Начинаем с I would like — вежливого выражения желания. После would нужна начальная форма like, без -s и без -ing. Затем a single room: a относится к одному номеру, а single перед room уточняет, что номер одноместный.",
+        "uk": "Ви подорожуєте самі й просите номер у працівника готелю: I would like a single room — «Я хотів би одномісний номер». Починаємо з I would like — ввічливого вираження бажання. Після would потрібна початкова форма like, без -s і без -ing. Потім a single room: a стосується одного номера, а single перед room уточнює, що номер одномісний."
       },
       "question": {
         "interactionId": "en:lesson-10:session-24:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ca6d9157056b7aeaabf9e6d8bf21434031a6009090095856e1d3a177d1d04c48"
+  "introFingerprint": "774f41c4982db67126b3f1eba9775c06f19083cedd57faca88d379aca54e55c3"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Основное блюдо и дополнение",
-        "uk": "Основна страва й доповнення"
+        "ru": "Выбрать основное блюдо",
+        "uk": "Вибрати основну страву"
       },
       "bodyByLocale": {
-        "ru": "Вы ещё читаете меню. Main course — «основное блюдо»: I am choosing a main course — «Я выбираю основное блюдо». Вы выбираете сейчас: am choosing; в choose убираем последнюю e. Side dish — «гарнир, отдельное дополнение к основному блюду»: We need a side dish — «Нам нужен гарнир». Например, к рыбе можно заказать отдельную порцию овощей.",
-        "uk": "Ви ще читаєте меню. Main course — «основна страва»: I am choosing a main course — «Я вибираю основну страву». Ви вибираєте зараз: am choosing; у choose прибираємо останню e. Side dish — «гарнір, окреме доповнення до основної страви»: We need a side dish — «Нам потрібен гарнір». Наприклад, до риби можна замовити окрему порцію овочів."
+        "ru": "Официант подошёл, а вы ещё выбираете основное блюдо по меню. Вы объясняете: I am choosing a main course — «Я выбираю основное блюдо». После I ставим am choosing для выбора, который происходит сейчас. У choose перед -ing убираем последнюю e: choosing. Затем называем, что выбираем, — a main course. A относится к одному блюду, а main стоит перед course и уточняет, что оно основное.",
+        "uk": "Офіціант підійшов, а ви ще вибираєте основну страву з меню. Ви пояснюєте: I am choosing a main course — «Я вибираю основну страву». Після I ставимо am choosing для вибору, який відбувається зараз. У choose перед -ing прибираємо останню e: choosing. Потім називаємо, що вибираємо, — a main course. A стосується однієї страви, а main стоїть перед course й уточнює, що вона основна."
       },
       "question": {
         "interactionId": "en:lesson-10:session-26:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "480c6e8426f9dd2cf9152b1dff67321276ac5ebcea338329c2be28911cdbb6e8"
+  "introFingerprint": "120c96e71c06bfd6ddd7485f138a193535ab6c7a2a963601315600d9b0e851f1"
 }

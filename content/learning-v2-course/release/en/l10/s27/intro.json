@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-27:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Вверх и вниз по склону",
-        "uk": "Угору й униз схилом"
+        "ru": "Поднимаемся по склону",
+        "uk": "Піднімаємося схилом"
       },
       "bodyByLocale": {
-        "ru": "Дорога поднимается по склону, и вы идёте вверх. Uphill — «в гору, вверх по склону»: We are walking uphill — «Мы идём в гору». На спуске: We are walking downhill — «Мы идём вниз по склону». Downhill — «под гору, вниз по склону». Вы описываете движение сейчас: are walking.",
-        "uk": "Дорога піднімається схилом, і ви йдете вгору. Uphill — «угору, вгору схилом»: We are walking uphill — «Ми йдемо вгору схилом». На спуску: We are walking downhill — «Ми йдемо вниз схилом». Downhill — «під гору, вниз схилом». Ви описуєте рух зараз: are walking."
+        "ru": "Вы с другом идёте по дороге вверх по склону и сообщаете, где сейчас находитесь: We are walking uphill — «Мы идём в гору». После we ставим are walking для движения в данный момент. Затем добавляем uphill — «в гору, вверх по склону»: это слово указывает направление и не требует предлога. С we нужна are; walking без are не образует здесь полного предложения.",
+        "uk": "Ви з другом ідете дорогою вгору схилом і повідомляєте, де зараз перебуваєте: We are walking uphill — «Ми йдемо вгору схилом». Після we ставимо are walking для руху в цей момент. Потім додаємо uphill — «угору схилом»: це слово вказує напрямок і не потребує прийменника. З we потрібна are; walking без are не утворює тут повного речення."
       },
       "question": {
         "interactionId": "en:lesson-10:session-27:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d08dfcd8ba1e3e91140d441752fb6039c49c2b799e2540dcc9eb914abb9f3d7b"
+  "introFingerprint": "a7d5909b68996ff08f703c2ad49173ac2c0dd7d5733cb8e88d54d093804d0771"
 }

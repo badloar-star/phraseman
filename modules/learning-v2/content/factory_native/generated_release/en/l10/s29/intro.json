@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Дойти и войти",
-        "uk": "Дістатися й увійти"
+        "ru": "Добраться до станции в девять",
+        "uk": "Дістатися станції о дев’ятій"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом обычно доходите до станции в девять: We reach the station at nine. Reach — «достигать, добираться до». Перед the station после reach не ставим to. У входа сотрудник говорит: Please enter — «Входите, пожалуйста». Enter — «входить».",
-        "uk": "Ви з другом зазвичай дістаєтеся станції о дев’ятій: We reach the station at nine. Reach — «досягати, діставатися до». Перед the station після reach не ставимо to. Біля входу працівник каже: Please enter — «Заходьте, будь ласка». Enter — «входити»."
+        "ru": "Друг спрашивает, во сколько вы обычно добираетесь до станции вместе с ним. Вы отвечаете: We reach the station at nine — «Мы добираемся до станции в девять». После we ставим reach без -s, затем место the station и время at nine. Reach уже означает «добираться до», поэтому перед местом не добавляем to. Перед точным временем ставим at. Так сообщаем о вашей обычной поездке.",
+        "uk": "Друг запитує, о котрій ви зазвичай дістаєтеся станції разом із ним. Ви відповідаєте: We reach the station at nine — «Ми дістаємося станції о дев’ятій». Після we ставимо reach без -s, потім місце the station і час at nine. Reach уже означає «діставатися до», тому перед місцем не додаємо to. Перед точним часом ставимо at. Так повідомляємо про вашу звичну поїздку."
       },
       "question": {
         "interactionId": "en:lesson-10:session-29:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e499a007a45e2bc5335e3bee37d53e1de5c1d1ec7321ad4865b7cf94ce7087f6"
+  "introFingerprint": "cd0aa50e1d3992edb3d65492da7efccd930e990885e33ec02115147e8d009d18"
 }

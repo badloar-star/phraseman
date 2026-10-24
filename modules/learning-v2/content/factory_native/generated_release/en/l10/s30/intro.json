@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-30:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Июль и август",
-        "uk": "Липень і серпень"
+        "ru": "Поездки в июле",
+        "uk": "Подорожі в липні"
       },
       "bodyByLocale": {
-        "ru": "Каждое лето вы путешествуете в июле, а в августе навещаете друзей. July — «июль»: I travel in July. August — «август»: We visit our friends in August. Это повторяющиеся дела, поэтому travel и visit. Перед обоими месяцами используем in.",
-        "uk": "Щоліта ви подорожуєте в липні, а в серпні відвідуєте друзів. July — «липень»: I travel in July. August — «серпень»: We visit our friends in August. Це повторювані справи, тому travel і visit. Перед обома місяцями вживаємо in."
+        "ru": "Друг спрашивает, в каком месяце вы обычно путешествуете. Вы отвечаете: I travel in July — «Я путешествую в июле». Сначала I, затем привычное действие travel и время in July. С I используем travel без -s: речь о повторяющейся поездке, поэтому подходит Present Simple. Перед названием месяца ставим in; July — «июль» — пишем с большой буквы.",
+        "uk": "Друг запитує, у якому місяці ви зазвичай подорожуєте. Ви відповідаєте: I travel in July — «Я подорожую в липні». Спочатку I, потім звична дія travel і час in July. З I використовуємо travel без -s: йдеться про повторювану поїздку, тому підходить Present Simple. Перед назвою місяця ставимо in; July — «липень» — пишемо з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4b4c7461cbbe4b907aad00c3c7c0811f1f31dedfdc062ddb7ca87435e7418e1b"
+  "introFingerprint": "49537db7d51d8479c7b3b3e33f6c11984ef6e83b48489c0992c93f48a81c7109"
 }

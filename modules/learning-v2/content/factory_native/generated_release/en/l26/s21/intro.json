@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-21:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Оплатить покупку",
-        "uk": "Оплатити покупку"
+        "ru": "Заплатить у кассы",
+        "uk": "Заплатити біля каси"
       },
       "bodyByLocale": {
-        "ru": "Till — касса, кассовый аппарат в магазине; обычное британское слово. Pay at the till — оплатите на кассе. I will pay when we get to the till — я заплачу, когда мы подойдём к кассе. В главной части will pay, после when в придаточном времени о будущем — get без will. Здесь till — название предмета, а не союз.",
-        "uk": "Till — каса, касовий апарат у магазині; звичайне британське слово. Pay at the till — оплатіть на касі. I will pay when we get to the till — я заплачу, коли ми підійдемо до каси. У головній частині will pay, після when у підрядному часу про майбутнє — get без will. Тут till — назва предмета, а не сполучник."
+        "ru": "Вы с другом выбрали книгу и идёте к кассе. Пообещайте: I will pay when we get to the till — я заплачу, когда мы подойдём к кассе. Собираем: I + will pay + when we get to the till — кто, что сделает, когда. Will pay выражает будущее обещание. После when, задающего время оплаты, используем get без will. Get to the till означает добраться до кассы; с we форма get без -s.",
+        "uk": "Ви з другом вибрали книжку й ідете до каси. Пообіцяйте: I will pay when we get to the till — я заплачу, коли ми підійдемо до каси. Складаємо: I + will pay + when we get to the till — хто, що зробить, коли. Will pay виражає майбутню обіцянку. Після when, яке задає час оплати, використовуємо get без will. Get to the till означає дістатися до каси; з we форма get без -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-21:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рассказ и подсказка",
-        "uk": "Оповідь і підказка"
+        "ru": "Дочитать после еды",
+        "uk": "Дочитати після їжі"
       },
       "bodyByLocale": {
-        "ru": "Tale — рассказ, история, часто выдуманная: a tale about a dragon — история о драконе. Hint — намёк или подсказка, которая помогает догадаться. Give me a hint — дай мне подсказку. Если ребёнок хочет услышать конец истории позже: I will finish the tale after we eat — я закончу историю после того, как мы поедим. После after о будущем — eat, не will eat.",
-        "uk": "Tale — оповідь, історія, часто вигадана: a tale about a dragon — історія про дракона. Hint — натяк або підказка, яка допомагає здогадатися. Give me a hint — дай мені підказку. Якщо дитина хоче почути кінець історії пізніше: I will finish the tale after we eat — я закінчу історію після того, як ми поїмо. Після after про майбутнє — eat, не will eat."
+        "ru": "Вы читаете ребёнку историю, но пора обедать. Пообещайте: I will finish the tale after we eat — я закончу историю после того, как мы поедим. Собираем: I + will finish + the tale + after we eat — кто, что сделает, что закончит, после какого события. Будущее выражает will finish. В части с after, указывающей время, нужна eat без will; после we окончание -s не добавляем.",
+        "uk": "Ви читаєте дитині історію, але час обідати. Пообіцяйте: I will finish the tale after we eat — я закінчу історію після того, як ми поїмо. Складаємо: I + will finish + the tale + after we eat — хто, що зробить, що закінчить, після якої події. Майбутнє виражає will finish. У частині з after, яка вказує час, потрібна eat без will; після we закінчення -s не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-26:session-21:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-21:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Маленькая неправда",
-        "uk": "Маленька неправда"
+        "ru": "Правда уже сказана",
+        "uk": "Правду вже сказано"
       },
       "bodyByLocale": {
-        "ru": "Fib — небольшая ложь, «неправда» в мягкой разговорной формулировке. Tell a fib — сказать неправду. Это не то же самое, что выдуманная история для развлечения: fib выдают за правду. I have already told the truth — я уже сказал правду — сообщает результат сейчас. I had told the truth by the time Dad came home — я уже сказал правду к тому времени, как папа пришёл домой — связывает два прошлых события.",
-        "uk": "Fib — невелика брехня, «неправда» в м’якому розмовному формулюванні. Tell a fib — сказати неправду. Це не те саме, що вигадана історія для розваги: fib видають за правду. I have already told the truth — я вже сказав правду — повідомляє результат зараз. I had told the truth by the time Dad came home — я вже сказав правду на той час, коли тато прийшов додому — пов’язує дві минулі події."
+        "ru": "Вы сначала сказали неправду, а затем признались. Теперь собеседник советует рассказать правду. Ответьте: I have already told the truth — я уже сказал правду. Собираем: I + have + already + told + the truth — кто, have, уже, действие, что сказал. После I нужна have, после неё — третья форма tell: told. Already ставим между have и told. Эта форма сообщает о выполненном действии к настоящему моменту.",
+        "uk": "Ви спочатку сказали неправду, а потім зізналися. Тепер співрозмовник радить розповісти правду. Дайте відповідь: I have already told the truth — я вже сказав правду. Складаємо: I + have + already + told + the truth — хто, have, уже, дія, що сказав. Після I потрібна have, після неї — третя форма tell: told. Already ставимо між have і told. Ця форма повідомляє про виконану дію до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "05f9c051404052e32694b2d72134d980646d9323a3fc208fcec9189f245ba756"
+  "introFingerprint": "3493e78a262738a7a78863c0c5d44978f9a21f2b2dd4076ed51fb53f30d1d967"
 }

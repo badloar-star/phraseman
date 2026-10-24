@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-17:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Когда приедет машина",
-        "uk": "Коли приїде машина"
+        "ru": "Написать, когда приедет такси",
+        "uk": "Написати, коли приїде таксі"
       },
       "bodyByLocale": {
-        "ru": "Cab — такси, обычное разговорное название. I will text you when the cab arrives — я напишу тебе, когда приедет такси. Всё произойдёт в будущем, но после when здесь Present Simple: arrives, без will. В главной части — will text. When означает «когда»: мы ожидаем событие и называем момент следующего действия. If означало бы «если»: действие зависело бы от того, случится ли событие вообще.",
-        "uk": "Cab — таксі, звичайна розмовна назва. I will text you when the cab arrives — я напишу тобі, коли приїде таксі. Усе відбудеться в майбутньому, але після when тут Present Simple: arrives, без will. У головній частині — will text. When означає «коли»: ми очікуємо подію й називаємо момент наступної дії. If означало б «якщо»: дія залежала б від того, чи станеться подія взагалі."
+        "ru": "Вы ждёте такси и обещаете сообщить другу о его приезде: I will text you when the cab arrives — я напишу тебе, когда приедет такси. Собираем: I + will text + you + when the cab arrives — кто, что сделает, кому, когда. Всё относится к будущему, но формы частей различаются: в главной части will text, после when — present simple arrives без will. When называет ожидаемый момент сообщения. The cab — единственное число, поэтому arrive получает -s.",
+        "uk": "Ви чекаєте таксі й обіцяєте повідомити друга про його приїзд: I will text you when the cab arrives — я напишу тобі, коли приїде таксі. Складаємо: I + will text + you + when the cab arrives — хто, що зробить, кому, коли. Усе стосується майбутнього, але форми частин різняться: у головній частині will text, після when — present simple arrives без will. When називає очікуваний момент повідомлення. The cab — однина, тому arrive отримує -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-17:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После отдыха",
-        "uk": "Після відпочинку"
+        "ru": "Позвонить после отпуска",
+        "uk": "Зателефонувати після відпустки"
       },
       "bodyByLocale": {
-        "ru": "Vacation — отпуск, каникулы; обычное американское слово для такого отдыха. I will call you after my vacation ends — я позвоню тебе после окончания отпуска. После after в придаточном времени тоже Present Simple: ends. Можно назвать действие до события: I will pack before I leave — я соберу вещи перед отъездом. После before — leave, не will leave. Это правило относится именно к придаточным времени, которые сообщают, когда произойдёт действие.",
-        "uk": "Vacation — відпустка, канікули; звичайне американське слово для такого відпочинку. I will call you after my vacation ends — я зателефоную тобі після закінчення відпустки. Після after у підрядному часу теж Present Simple: ends. Можна назвати дію до події: I will pack before I leave — я зберу речі перед від’їздом. Після before — leave, не will leave. Це правило стосується саме підрядних часу, які повідомляють, коли відбудеться дія."
+        "ru": "Вы договариваетесь созвониться с другом после отдыха. Скажите: I will call you after my vacation ends — я позвоню тебе после окончания отпуска. Собираем: I + will call + you + after my vacation ends — кто, что сделает, кому, после какого события. Will call выражает будущее обещание. В части с after, указывающей время звонка, используем present simple: ends без will. My vacation — единственное число, поэтому end получает -s.",
+        "uk": "Ви домовляєтеся зателефонувати другові після відпочинку. Скажіть: I will call you after my vacation ends — я зателефоную тобі після закінчення відпустки. Складаємо: I + will call + you + after my vacation ends — хто, що зробить, кому, після якої події. Will call виражає майбутню обіцянку. У частині з after, яка вказує час дзвінка, використовуємо present simple: ends без will. My vacation — однина, тому end отримує -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-17:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-17:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Встреча у воды",
-        "uk": "Зустріч біля води"
+        "ru": "Встретиться на пирсе после приезда",
+        "uk": "Зустрітися на пірсі після приїзду"
       },
       "bodyByLocale": {
-        "ru": "Pier — пирс, помост, который выступает с берега в воду. We will meet at the pier when you arrive — мы встретимся на пирсе, когда ты приедешь. Hassle — хлопоты, морока; разговорное слово. Если ехать с пересадками неудобно, можно сказать It is too much hassle — это слишком хлопотно. Порядок частей можно поменять: When you arrive, we will meet at the pier. Если часть с when стоит первой, после неё ставим запятую.",
-        "uk": "Pier — пірс, поміст, який виступає з берега у воду. We will meet at the pier when you arrive — ми зустрінемося на пірсі, коли ти приїдеш. Hassle — клопіт, морока; розмовне слово. Якщо їхати з пересадками незручно, можна сказати It is too much hassle — це надто клопітно. Порядок частин можна поміняти: When you arrive, we will meet at the pier. Якщо частина з when стоїть першою, після неї ставимо кому."
+        "ru": "Друг приедет к вам на побережье, и вы выбираете место встречи. Скажите: We will meet at the pier when you arrive — мы встретимся на пирсе, когда ты приедешь. Собираем: We + will meet + at the pier + when you arrive — кто, что сделает, где, когда. В главной части используем will meet, а после when, задающего время встречи, — arrive без will. С you к arrive не добавляем -s.",
+        "uk": "Друг приїде до вас на узбережжя, і ви вибираєте місце зустрічі. Скажіть: We will meet at the pier when you arrive — ми зустрінемося на пірсі, коли ти приїдеш. Складаємо: We + will meet + at the pier + when you arrive — хто, що зробить, де, коли. У головній частині використовуємо will meet, а після when, яке задає час зустрічі, — arrive без will. З you до arrive не додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-17:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8848302d9e802189c2d52eaaa9fc6c99e96067ec56470d9a26a800ace20952d7"
+  "introFingerprint": "bdc06d1edbd7fea4a0db51789af8fcfc691a58393dfb2002aa320c10760fb089"
 }

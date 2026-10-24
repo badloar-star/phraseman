@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-22:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Освободить место",
-        "uk": "Звільнити місце"
+        "ru": "Убрать кучу вещей до начала",
+        "uk": "Прибрати купу речей до початку"
       },
       "bodyByLocale": {
-        "ru": "Heap — куча вещей, сложенных вместе, часто беспорядочно: a heap of clothes — куча одежды. I will move this heap before we start — я уберу эту кучу перед тем, как мы начнём. После before о будущем — start, без will. I have already cleared the table — я уже освободил стол — сообщает результат сейчас, с already между have и cleared.",
-        "uk": "Heap — купа речей, складених разом, часто безладно: a heap of clothes — купа одягу. I will move this heap before we start — я приберу цю купу перед тим, як ми почнемо. Після before про майбутнє — start, без will. I have already cleared the table — я вже звільнив стіл — повідомляє результат зараз, з already між have та cleared."
+        "ru": "Вы собираетесь готовить вместе, но на столе лежит куча вещей. Предложите: I will move this heap before we start — я уберу эту кучу, прежде чем мы начнём. Собираем: I + will move + this heap + before we start — кто, что сделает, что уберёт, до какого момента. Will move выражает намерение. После before, указывающего время будущего действия, нужна start без will; с we окончание -s не добавляем.",
+        "uk": "Ви збираєтеся готувати разом, але на столі лежить купа речей. Запропонуйте: I will move this heap before we start — я приберу цю купу, перш ніж ми почнемо. Складаємо: I + will move + this heap + before we start — хто, що зробить, що прибере, до якого моменту. Will move виражає намір. Після before, яке вказує час майбутньої дії, потрібна start без will; з we закінчення -s не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-26:session-22:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Испечь печенье",
-        "uk": "Спекти печиво"
+        "ru": "Добавить крем после остывания",
+        "uk": "Додати крем після охолодження"
       },
       "bodyByLocale": {
-        "ru": "Batch — партия, порция вещей, которые сделаны вместе: a batch of biscuits — партия печенья, испечённая за один раз. Blob — небольшая бесформенная порция густого вещества: a blob of cream — немного крема одной порцией. I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. После when — cool, хотя речь о будущем.",
-        "uk": "Batch — партія, порція речей, які зроблено разом: a batch of biscuits — партія печива, спечена за один раз. Blob — невелика безформна порція густої речовини: a blob of cream — трохи крему однією порцією. I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Після when — cool, хоча йдеться про майбутнє."
+        "ru": "Печенье ещё горячее, и вы ждёте, чтобы добавить крем. Объясните: I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. Собираем: I + will add + the cream + when the biscuits cool — кто, что сделает, что добавит, когда. Будущее выражаем через will add. После when, задающего время, используем cool без will. Biscuits — множественное число, поэтому cool без -s.",
+        "uk": "Печиво ще гаряче, і ви чекаєте, щоб додати крем. Поясніть: I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Складаємо: I + will add + the cream + when the biscuits cool — хто, що зробить, що додасть, коли. Майбутнє виражаємо через will add. Після when, яке задає час, використовуємо cool без will. Biscuits — множина, тому cool без -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-22:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-22:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Серединка яблока",
-        "uk": "Серединка яблука"
+        "ru": "Удалили сердцевину до нагрева духовки",
+        "uk": "Видалили серцевину до нагрівання духовки"
       },
       "bodyByLocale": {
-        "ru": "Core — сердцевина; у яблока это середина с семечками, которая часто остаётся после еды. An apple core — огрызок или сердцевина яблока. I had removed the core by the time the oven was hot — я уже удалил сердцевину к тому времени, как духовка нагрелась. Had removed — более раннее действие. Если описываем обычное действие: If I bake apples, I remove the core — когда я запекаю яблоки, я удаляю сердцевину.",
-        "uk": "Core — серцевина; у яблука це середина з насінням, яка часто залишається після їжі. An apple core — огризок або серцевина яблука. I had removed the core by the time the oven was hot — я вже видалив серцевину на той час, коли духовка нагрілася. Had removed — раніша дія. Якщо описуємо звичайну дію: If I bake apples, I remove the core — коли я запікаю яблука, я видаляю серцевину."
+        "ru": "Вы вспоминаете вчерашнюю подготовку яблока: к нагреву духовки сердцевина уже была удалена. Скажите: I had removed the core by the time the oven was hot — я удалил сердцевину к тому времени, как духовка нагрелась. Собираем: I + had removed + the core + by the time the oven was hot — кто, что сделал раньше, что удалил, к какому моменту в прошлом. Had removed показывает более раннюю подготовку. После had нужна removed: к remove добавляем -d.",
+        "uk": "Ви згадуєте вчорашню підготовку яблука: до нагрівання духовки серцевину вже було видалено. Скажіть: I had removed the core by the time the oven was hot — я видалив серцевину до того часу, як духовка нагрілася. Складаємо: I + had removed + the core + by the time the oven was hot — хто, що зробив раніше, що видалив, до якого моменту в минулому. Had removed показує ранішу підготовку. Після had потрібна removed: до remove додаємо -d."
       },
       "question": {
         "interactionId": "en:lesson-26:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b762304e270efb30eda33c0c3f45a955a9628b142463c74b63414d0c82d8642b"
+  "introFingerprint": "be62b900956e7794390b8b5fbc203829ea1cf1611c81d3aabe7d6b8c279e2b61"
 }

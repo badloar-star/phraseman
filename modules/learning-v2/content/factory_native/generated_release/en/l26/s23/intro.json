@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-23:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Убрать в контейнер",
-        "uk": "Прибрати в контейнер"
+        "ru": "Убрать контейнер после работы",
+        "uk": "Прибрати контейнер після роботи"
       },
       "bodyByLocale": {
-        "ru": "Tub — широкая ёмкость или контейнер, например пластиковая упаковка мороженого: a tub of ice cream. Put it in the tub — положи это в контейнер. I will put it away when we finish — я уберу это, когда мы закончим. В главной части will put away, но после when о будущем — finish без will.",
-        "uk": "Tub — широка посудина або контейнер, наприклад пластикова упаковка морозива: a tub of ice cream. Put it in the tub — поклади це в контейнер. I will put it away when we finish — я приберу це, коли ми закінчимо. У головній частині will put away, але після when про майбутнє — finish без will."
+        "ru": "Вы делаете открытку и держите рядом контейнер с принадлежностями. Пообещайте: I will put it away when we finish — я уберу его, когда мы закончим. Собираем: I + will put + it + away + when we finish. Put it away означает убрать предмет на место; it стоит между put и away. Will выражает намерение. После when, задающего время будущего действия, используем finish без will; с we окончание -es не нужно.",
+        "uk": "Ви робите листівку й тримаєте поруч контейнер із приладдям. Пообіцяйте: I will put it away when we finish — я приберу його, коли ми закінчимо. Складаємо: I + will put + it + away + when we finish. Put it away означає прибрати предмет на місце; it стоїть між put та away. Will виражає намір. Після when, яке задає час майбутньої дії, використовуємо finish без will; з we закінчення -es не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-26:session-23:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Бумага для записки",
-        "uk": "Папір для записки"
+        "ru": "Полоска бумаги уже отрезана",
+        "uk": "Смужку паперу вже відрізано"
       },
       "bodyByLocale": {
-        "ru": "Scrap — небольшой оставшийся кусочек: a scrap of paper — клочок бумаги. Strip — длинная узкая полоска: a strip of paper — полоска бумаги. Это разные признаки: scrap — остаток, strip — форма. I have already cut a strip — я уже отрезал полоску. У cut все три формы одинаковы: cut — cut — cut. Already сообщает, что действие уже выполнено.",
-        "uk": "Scrap — невеликий шматочок, що залишився: a scrap of paper — клаптик паперу. Strip — довга вузька смужка: a strip of paper — смужка паперу. Це різні ознаки: scrap — залишок, strip — форма. I have already cut a strip — я вже відрізав смужку. У cut усі три форми однакові: cut — cut — cut. Already повідомляє, що дію вже виконано."
+        "ru": "Для открытки нужна полоска бумаги, и друг предлагает её отрезать. Ответьте: I have already cut a strip — я уже отрезал полоску. Собираем: I + have + already + cut + a strip — кто, have, уже, действие, что отрезал. Already стоит между have и cut. После I нужна have; после неё — третья форма cut, не cutted. Present perfect сообщает о готовом результате сейчас.",
+        "uk": "Для листівки потрібна смужка паперу, і друг пропонує її відрізати. Дайте відповідь: I have already cut a strip — я вже відрізав смужку. Складаємо: I + have + already + cut + a strip — хто, have, уже, дія, що відрізав. Already стоїть між have і cut. Після I потрібна have; після неї — третя форма cut, не cutted. Present perfect повідомляє про готовий результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-23:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-23:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Скорлупа в миске",
-        "uk": "Шкаралупа в мисці"
+        "ru": "Убрали скорлупу до проверки",
+        "uk": "Прибрали шкаралупу до перевірки"
       },
       "bodyByLocale": {
-        "ru": "Shell — твёрдая наружная оболочка, например скорлупа яйца или раковина. There is a piece of shell in the bowl — в миске кусочек скорлупы. I had removed it by the time Mum looked — я уже убрал его к тому времени, как мама посмотрела. Had removed произошло раньше looked. О привычке можно сказать If I find shell in the bowl, I take it out — если я нахожу скорлупу в миске, я её вынимаю.",
-        "uk": "Shell — тверда зовнішня оболонка, наприклад шкаралупа яйця або мушля. There is a piece of shell in the bowl — у мисці шматочок шкаралупи. I had removed it by the time Mum looked — я вже прибрав його на той час, коли мама подивилася. Had removed сталося раніше looked. Про звичку можна сказати If I find shell in the bowl, I take it out — якщо я знаходжу шкаралупу в мисці, я її виймаю."
+        "ru": "Вы вспоминаете вчерашнюю готовку: мама заглянула в миску, когда кусочка скорлупы там уже не было. Скажите: I had removed it by the time Mum looked — я убрал его к тому времени, как мама посмотрела. Собираем: I + had removed + it + by the time Mum looked — кто, что сделал раньше, что убрал, к какому моменту в прошлом. It заменяет кусочек скорлупы. Had removed показывает действие раньше проверки; после had нужна removed с -d.",
+        "uk": "Ви згадуєте вчорашнє готування: мама зазирнула в миску, коли шматочка шкаралупи там уже не було. Скажіть: I had removed it by the time Mum looked — я прибрав його до того часу, як мама подивилася. Складаємо: I + had removed + it + by the time Mum looked — хто, що зробив раніше, що прибрав, до якого моменту в минулому. It замінює шматочок шкаралупи. Had removed показує дію раніше за перевірку; після had потрібна removed із -d."
       },
       "question": {
         "interactionId": "en:lesson-26:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7c4c3f87e672292aba06dd639d8909a205ac4d264cffcebf6201cdf59f556767"
+  "introFingerprint": "0cf92d1b374b8340920d1f53a73219634e628d84cc923ac73c6a175e9c806903"
 }

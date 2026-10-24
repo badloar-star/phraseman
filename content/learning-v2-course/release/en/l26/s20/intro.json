@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-20:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ещё немного поспать",
-        "uk": "Ще трохи поспати"
+        "ru": "Встать по сигналу будильника",
+        "uk": "Устати за сигналом будильника"
       },
       "bodyByLocale": {
-        "ru": "Snooze — недолго дремать. I will snooze for ten minutes — я подремлю десять минут. Это слово также встречается на кнопке повторного сигнала будильника. I will get up when the alarm rings — я встану, когда зазвонит будильник. В главной части будущее will get up, но после when — настоящее rings, без will.",
-        "uk": "Snooze — недовго дрімати. I will snooze for ten minutes — я подрімаю десять хвилин. Це слово також трапляється на кнопці повторного сигналу будильника. I will get up when the alarm rings — я встану, коли задзвонить будильник. У головній частині майбутнє will get up, але після when — теперішнє rings, без will."
+        "ru": "Вы ещё лежите в кровати и говорите, когда встанете: I will get up when the alarm rings — я встану, когда зазвонит будильник. Собираем: I + will get up + when the alarm rings — кто, что сделает, когда. Will get up выражает намерение. После when, задающего будущий момент подъёма, используем rings без will. The alarm — единственное число, поэтому к ring добавляем -s.",
+        "uk": "Ви ще лежите в ліжку й кажете, коли встанете: I will get up when the alarm rings — я встану, коли задзвонить будильник. Складаємо: I + will get up + when the alarm rings — хто, що зробить, коли. Will get up виражає намір. Після when, яке задає майбутній момент підйому, використовуємо rings без will. The alarm — однина, тому до ring додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-20:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Убрать подарок с глаз",
-        "uk": "Прибрати подарунок з очей"
+        "ru": "Спрятали подарок до прихода",
+        "uk": "Сховали подарунок до приходу"
       },
       "bodyByLocale": {
-        "ru": "Stash — припрятать, убрать в укромное место. I will stash the present in the cupboard — я припрячу подарок в шкафу. Это разговорное слово: вы убираете вещь так, чтобы она не попадалась на глаза. I had stashed it by the time Anna arrived — я уже припрятал его к приходу Анны. Had stashed произошло раньше arrived. Stashed образовано с окончанием -ed.",
-        "uk": "Stash — приховати, прибрати в затишне місце. I will stash the present in the cupboard — я приховаю подарунок у шафі. Це розмовне слово: ви прибираєте річ так, щоб вона не потрапляла на очі. I had stashed it by the time Anna arrived — я вже приховав його до приходу Анни. Had stashed сталося раніше arrived. Stashed утворено із закінченням -ed."
+        "ru": "Вы вспоминаете вчерашний сюрприз: к приходу Анны подарок уже был спрятан. Скажите: I had stashed it by the time Anna arrived — я припрятал его к тому времени, как пришла Анна. Собираем: I + had stashed + it + by the time Anna arrived — кто, что сделал раньше, что спрятал, к какому моменту в прошлом. It заменяет подарок. Had stashed показывает действие до прихода; после had нужна stashed с -ed.",
+        "uk": "Ви згадуєте вчорашній сюрприз: до приходу Анни подарунок уже був схований. Скажіть: I had stashed it by the time Anna arrived — я приховав його до того часу, як прийшла Анна. Складаємо: I + had stashed + it + by the time Anna arrived — хто, що зробив раніше, що сховав, до якого моменту в минулому. It замінює подарунок. Had stashed показує дію до приходу; після had потрібна stashed із -ed."
       },
       "question": {
         "interactionId": "en:lesson-26:session-20:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-20:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Не бросать вещи где попало",
-        "uk": "Не кидати речі де завгодно"
+        "ru": "Освободить пол до прихода друга",
+        "uk": "Звільнити підлогу до приходу друга"
       },
       "bodyByLocale": {
-        "ru": "Dump — бросить или свалить небрежно в одно место: Don’t dump your clothes on the floor — не бросай одежду на пол. Chuck — разговорное «бросить»: Chuck me the cushion — брось мне подушку. Chuck it away — выброси это. В просьбе не оставлять беспорядок важно место, а при chuck — само движение или избавление от вещи. I will clear the floor before you get here — я освобожу пол до твоего прихода. После before о будущем — get, без will.",
-        "uk": "Dump — кинути або звалити недбало в одне місце: Don’t dump your clothes on the floor — не кидай одяг на підлогу. Chuck — розмовне «кинути»: Chuck me the cushion — кинь мені подушку. Chuck it away — викинь це. У проханні не залишати безладу важливе місце, а при chuck — сам рух або позбавлення від речі. I will clear the floor before you get here — я звільню підлогу до твого приходу. Після before про майбутнє — get, без will."
+        "ru": "Друг собирается зайти, а на полу лежат вещи. Пообещайте: I will clear the floor before you get here — я освобожу пол до того, как ты придёшь. Собираем: I + will clear + the floor + before you get here — кто, что сделает, что освободит, до какого момента. Will clear выражает обещание о будущем. После before, задающего время, используем get без will; с you окончание -s не нужно.",
+        "uk": "Друг збирається зайти, а на підлозі лежать речі. Пообіцяйте: I will clear the floor before you get here — я звільню підлогу до того, як ти прийдеш. Складаємо: I + will clear + the floor + before you get here — хто, що зробить, що звільнить, до якого моменту. Will clear виражає обіцянку про майбутнє. Після before, яке задає час, використовуємо get без will; з you закінчення -s не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-26:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6fef4f949c5da5c89143294b1043970cf095654cd663efe73504944c9df8c7f"
+  "introFingerprint": "0ff79c6e0d52d8cd30f2325a8bffe43fdbf3e986dcd4294c2db3d6f3e114f49d"
 }

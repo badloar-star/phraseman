@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Лишний жир и кусочки овощей",
-        "uk": "Зайвий жир і шматочки овочів"
+        "ru": "Как готовите мясо",
+        "uk": "Як готуєте м’ясо"
       },
       "bodyByLocale": {
-        "ru": "Excess здесь значит «лишний»: excess fat — лишний жир. I remove excess fat when I cook meat — я удаляю лишний жир, когда готовлю мясо. Chunk — плотный кусок, chunks — кусочки. I use small chunks of potato when I make soup — я использую небольшие кусочки картофеля, когда готовлю суп. Chunks — не тонкие slices и не крошки crumbs. В обеих фразах рассказываю о своей привычке готовить.",
-        "uk": "Excess тут означає «зайвий»: excess fat — зайвий жир. I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Chunk — щільний шматок, chunks — шматочки. I use small chunks of potato when I make soup — я використовую невеликі шматочки картоплі, коли готую суп. Chunks — не тонкі slices і не крихти crumbs. В обох фразах розповідаю про свою звичку готувати."
+        "ru": "Друг спрашивает, как вы готовите мясо. Опишите обычное действие: I remove excess fat when I cook meat — я удаляю лишний жир, когда готовлю мясо. Собираем: I + remove + excess fat + when I cook meat — кто, что делает, что убирает, когда. В обеих частях present simple: вы рассказываете о привычке. После I используем remove и cook без -s. When связывает действие с ситуацией, в которой вы обычно так поступаете.",
+        "uk": "Друг запитує, як ви готуєте м’ясо. Опишіть звичайну дію: I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Складаємо: I + remove + excess fat + when I cook meat — хто, що робить, що прибирає, коли. В обох частинах present simple: ви розповідаєте про звичку. Після I використовуємо remove і cook без -s. When пов’язує дію із ситуацією, у якій ви зазвичай так робите."
       },
       "question": {
         "interactionId": "en:lesson-26:session-08:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-08:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Если вкуса не хватает",
-        "uk": "Якщо смаку бракує"
+        "ru": "Когда добавляете соль",
+        "uk": "Коли додаєте сіль"
       },
       "bodyByLocale": {
-        "ru": "Lack — не иметь чего-то в нужном количестве. I add salt if the soup lacks flavour — я добавляю соль, если супу не хватает вкуса. После глагола lack сразу называем, чего не хватает: lacks flavour, без of. У существительного shortage другая форма: a shortage of fruit. После I — add без -s; soup — единственное число, поэтому lacks. If обозначает условие, при котором я обычно добавляю соль.",
-        "uk": "Lack — не мати чогось у потрібній кількості. I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Після дієслова lack одразу називаємо, чого бракує: lacks flavour, без of. В іменника shortage інша форма: a shortage of fruit. Після I — add без -s; soup — однина, тому lacks. If позначає умову, за якої я зазвичай додаю сіль."
+        "ru": "Вы пробуете суп и объясняете другу свой обычный способ приправлять его: I add salt if the soup lacks flavour — я добавляю соль, если супу не хватает вкуса. Собираем: I + add + salt + if the soup lacks flavour — кто, что делает, что добавляет, при каком условии. Обе части в present simple: это привычная реакция. После I нужно add без -s; the soup — единственное число, поэтому lacks с -s. После lacks сразу ставим flavour без of.",
+        "uk": "Ви куштуєте суп і пояснюєте другові свій звичайний спосіб приправляти його: I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Складаємо: I + add + salt + if the soup lacks flavour — хто, що робить, що додає, за якої умови. Обидві частини в present simple: це звична реакція. Після I потрібне add без -s; the soup — однина, тому lacks із -s. Після lacks одразу ставимо flavour без of."
       },
       "question": {
         "interactionId": "en:lesson-26:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "99e4d5d67eb419db87541f793bf0782ae8038c597623958b737a8535e7b2e766"
+  "introFingerprint": "a6e63cd0dfe75258025cbab75e54fb7cb3678938a069a61db19dbddb51ea60e2"
 }

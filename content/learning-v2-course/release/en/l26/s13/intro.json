@@ -11,12 +11,12 @@
       "pageId": "en:lesson-26:session-13:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Завтрак на двоих",
-        "uk": "Сніданок на двох"
+        "ru": "Сообщить о готовом завтраке",
+        "uk": "Повідомити про готовий сніданок"
       },
       "bodyByLocale": {
-        "ru": "Oatmeal — овсяная каша, обычно американское название знакомой porridge. I have just made oatmeal — я только что приготовил овсянку. Just стоит между have и made. Raisin — изюминка; обычно нужны raisins — изюм. If I make oatmeal, I add raisins — когда я готовлю овсянку, я добавляю изюм. Это привычка, поэтому обе части в Present Simple.",
-        "uk": "Oatmeal — вівсяна каша, зазвичай американська назва знайомої porridge. I have just made oatmeal — я щойно приготував вівсянку. Just стоїть між have та made. Raisin — родзинка; зазвичай потрібні raisins — родзинки. If I make oatmeal, I add raisins — коли я готую вівсянку, я додаю родзинки. Це звичка, тому обидві частини в Present Simple."
+        "ru": "Друг заходит на кухню и спрашивает про завтрак. Вы только что закончили готовить: I have just made oatmeal — я только что приготовил овсянку. Собираем: I + have + just + made + oatmeal — кто, have, только что, действие, что приготовил. С I ставим have. После have нужна третья форма made, а не make; just помещаем между have и made. Так сообщаем о совсем недавнем действии, важном сейчас.",
+        "uk": "Друг заходить на кухню й запитує про сніданок. Ви щойно закінчили готувати: I have just made oatmeal — я щойно приготував вівсянку. Складаємо: I + have + just + made + oatmeal — хто, have, щойно, дія, що приготував. З I ставимо have. Після have потрібна третя форма made, а не make; just розміщуємо між have і made. Так повідомляємо про зовсім недавню дію, важливу зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-13:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-26:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что намазать на тост",
-        "uk": "Що намастити на тост"
+        "ru": "Купить джем по дороге",
+        "uk": "Купити джем дорогою"
       },
       "bodyByLocale": {
-        "ru": "Marmalade — цитрусовый джем, часто апельсиновый, иногда с кусочками кожуры. Это не обычное английское название конфет «мармелад». We will buy marmalade if the shop is open — мы купим цитрусовый джем, если магазин открыт. Обещание купить — will buy; возможное условие — is open без will. Have you bought bread yet? — ты уже купил хлеб? Yet стоит в конце вопроса.",
-        "uk": "Marmalade — цитрусовий джем, часто апельсиновий, іноді зі шматочками шкірки. Це не звичайна англійська назва цукерок «мармелад». We will buy marmalade if the shop is open — ми купимо цитрусовий джем, якщо магазин відчинений. Обіцянка купити — will buy; можлива умова — is open без will. Have you bought bread yet? — ти вже купив хліб? Yet стоїть у кінці питання."
+        "ru": "Вы с другом идёте мимо магазина и договариваетесь купить цитрусовый джем, если магазин открыт: We will buy marmalade if the shop is open. Собираем: We + will buy + marmalade + if the shop is open — кто, что сделает, что купит, при каком условии. После will используем buy без -s. После if условие выражаем через is open: с единственным числом the shop нужна is, а will в этой части не ставим.",
+        "uk": "Ви з другом ідете повз крамницю й домовляєтеся купити цитрусовий джем, якщо вона відчинена: We will buy marmalade if the shop is open. Складаємо: We + will buy + marmalade + if the shop is open — хто, що зробить, що купить, за якої умови. Після will використовуємо buy без -s. Після if умову виражаємо через is open: з одниною the shop потрібна is, а will у цій частині не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-26:session-13:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-26:session-13:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Обед с собой",
-        "uk": "Обід із собою"
+        "ru": "Подготовить лепёшку к приходу Сэма",
+        "uk": "Підготувати коржик до приходу Сема"
       },
       "bodyByLocale": {
-        "ru": "Tortilla — тонкая круглая лепёшка, в которую можно завернуть начинку. I had filled the tortilla by the time Sam arrived — я уже положил начинку в лепёшку к тому времени, как пришёл Сэм. Had filled показывает действие раньше другого прошлого события arrived. А для готового результата сейчас: I have already packed lunch — я уже упаковал обед. В первом случае есть прошлый ориентир, во втором важен результат сейчас.",
-        "uk": "Tortilla — тонкий круглий коржик, у який можна загорнути начинку. I had filled the tortilla by the time Sam arrived — я вже поклав начинку в коржик на той час, коли прийшов Сем. Had filled показує дію раніше іншої минулої події arrived. А для готового результату зараз: I have already packed lunch — я вже спакував обід. У першому випадку є минулий орієнтир, у другому важливий результат зараз."
+        "ru": "Вы вспоминаете вчерашние сборы на прогулку: начинка уже была в лепёшке, когда пришёл Сэм. Скажите: I had filled the tortilla by the time Sam arrived — я положил начинку в лепёшку к тому времени, как пришёл Сэм. Собираем: I + had filled + the tortilla + by the time Sam arrived — кто, что сделал раньше, что наполнил, к какому моменту в прошлом. После had нужна filled с -ed. Had filled показывает более раннее действие, а arrived — более поздний приход.",
+        "uk": "Ви згадуєте вчорашні збори на прогулянку: начинка вже була в коржику, коли прийшов Сем. Скажіть: I had filled the tortilla by the time Sam arrived — я поклав начинку в коржик до того часу, як прийшов Сем. Складаємо: I + had filled + the tortilla + by the time Sam arrived — хто, що зробив раніше, що наповнив, до якого моменту в минулому. Після had потрібна filled із -ed. Had filled показує ранішу дію, а arrived — пізніший прихід."
       },
       "question": {
         "interactionId": "en:lesson-26:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8d5b9fcd2251a68ebe33af15a62d2c140830c6c1ad2b3970dd9b1cfc43028a73"
+  "introFingerprint": "0646551e996282783eef3543fc48bb53ed1acb4a57546f13a3bb279298f9c0e0"
 }

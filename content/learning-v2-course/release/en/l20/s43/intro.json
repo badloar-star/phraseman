@@ -69,8 +69,8 @@
         "uk": "Позначити лише головне"
       },
       "bodyByLocale": {
-        "ru": "Underline — подчеркнуть слово линией. Учитель просит отметить только главное, поэтому подчёркивать каждое слово не нужно. Quote — цитировать, повторять чужие слова точно. В обсуждении достаточно короткого отрывка, а не всего текста. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
-        "uk": "Underline — підкреслити слово лінією. Учитель просить позначити лише головне, тому підкреслювати кожне слово не потрібно. Quote — цитувати, повторювати чужі слова точно. В обговоренні достатньо короткого уривка, а не всього тексту. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+        "ru": "Учитель попросил ученицу подчеркнуть ключевые слова, поэтому отмечать весь текст не требуется: She doesn't have to underline every word — «ей необязательно подчёркивать каждое слово». После She выбираем doesn't, затем have to underline — действие, которое не требуется выполнять. После doesn't остаётся have, не has; underline после to стоит в начальной форме. Every word в конце уточняет объём работы — каждое слово.",
+        "uk": "Учитель попросив ученицю підкреслити ключові слова, тому позначати весь текст не потрібно: She doesn't have to underline every word — «їй необовʼязково підкреслювати кожне слово». Після She обираємо doesn't, потім have to underline — дію, яку не потрібно виконувати. Після doesn't залишається have, не has; underline після to стоїть у початковій формі. Every word наприкінці уточнює обсяг роботи — кожне слово."
       },
       "question": {
         "interactionId": "en:lesson-20:session-43:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "607c4fc72b23d0e110fe62f296d7e2bdf3b0217ea5c1dd92dcd8fb606544c2d0"
+  "introFingerprint": "8b302728c6abb0ebf6a2146261f361cdaad30716c39ee0f713301790b5fd10cb"
 }

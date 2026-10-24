@@ -119,12 +119,12 @@
       "pageId": "en:lesson-20:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Попробовать и попросить добавки",
-        "uk": "Скуштувати й попросити добавки"
+        "ru": "Попросить добавки",
+        "uk": "Попросити добавки"
       },
       "bodyByLocale": {
-        "ru": "Mouthful — количество еды или питья, которое берут в рот за один раз. Вы хотите лишь попробовать суп: a mouthful of soup. Helping — порция еды, которую подали за столом. Это не helping hand: здесь helping — существительное о еде. Суп понравился, и вы просите добавки: another helping of soup. Could I + начальная форма глагола? — вежливо спрашиваем разрешение или возможность что-то сделать. В этой ситуации could относится к просьбе сейчас, а не к прошлому. После I нужен глагол без to. Can I тоже подходит для разрешения, но Could I обычно звучит мягче.",
-        "uk": "Mouthful — кількість їжі чи питва, яку беруть до рота за один раз. Ви хочете лише скуштувати суп: a mouthful of soup. Helping — порція їжі, яку подали за столом. Це не helping hand: тут helping — іменник про їжу. Суп сподобався, і ви просите добавки: another helping of soup. Could I + початкова форма дієслова? — ввічливо запитуємо дозволу або можливості щось зробити. У цій ситуації could стосується прохання зараз, а не минулого. Після I потрібне дієслово без to. Can I теж підходить для дозволу, але Could I зазвичай звучить м’якше."
+        "ru": "За обедом вам понравился суп, и вы вежливо просите ещё порцию: Could I have another helping of soup? — «можно мне ещё порцию супа?» Вопрос начинаем с Could I, затем ставим have без to. Another helping означает ещё одну порцию, of soup уточняет, чего именно. Порядок Could I + have + another helping of soup? Здесь could делает просьбу мягче и не обозначает прошлое.",
+        "uk": "За обідом вам сподобався суп, і ви ввічливо просите ще порцію: Could I have another helping of soup? — «можна мені ще порцію супу?» Питання починаємо з Could I, потім ставимо have без to. Another helping означає ще одну порцію, of soup уточнює, чого саме. Порядок Could I + have + another helping of soup? Тут could робить прохання мʼякшим і не позначає минулого."
       },
       "question": {
         "interactionId": "en:lesson-20:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "812696b53ce5b68550569758a16878fb0904d0357c995939c4b8b0c67168c6c9"
+  "introFingerprint": "4782557a6e4954bd119b8484f12dc75e2200490d1cb61b0430057a547ea562e8"
 }

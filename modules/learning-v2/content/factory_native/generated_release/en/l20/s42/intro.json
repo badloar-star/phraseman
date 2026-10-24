@@ -69,8 +69,8 @@
         "uk": "Можна піти разом з усіма"
       },
       "bodyByLocale": {
-        "ru": "Stay behind — задержаться, когда остальные уходят. После встречи уборку берёт на себя организатор, и знакомой не нужно оставаться помогать. Stop by — ненадолго зайти: сосед предлагает нам забрать книгу, но уже нашёл способ передать её через друга. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
-        "uk": "Stay behind — залишитися, коли решта йде. Після зустрічі прибирання бере на себе організатор, і знайомій не потрібно залишатися допомагати. Stop by — ненадовго зайти: сусід пропонує нам забрати книжку, але вже знайшов спосіб передати її через друга. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+        "ru": "После встречи организатор сам займётся уборкой, и знакомой можно уйти с остальными: She doesn't have to stay behind — «ей необязательно задерживаться». После She ставим doesn't, затем have to stay behind. Doesn't have to показывает, что необходимости оставаться нет. После doesn't пишем have, не has; после to — stay без окончания. Behind сохраняется как часть выражения stay behind — остаться, когда остальные уходят.",
+        "uk": "Після зустрічі організатор сам займеться прибиранням, і знайома може піти з рештою: She doesn't have to stay behind — «їй необовʼязково залишатися». Після She ставимо doesn't, потім have to stay behind. Doesn't have to показує, що потреби залишатися немає. Після doesn't пишемо have, не has; після to — stay без закінчення. Behind зберігається як частина виразу stay behind — залишитися, коли решта йде."
       },
       "question": {
         "interactionId": "en:lesson-20:session-42:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "55705a1d2f224b9f6361e3f59b6ce8e7a1c9782f4610ca0d8a691791350a9d9f"
+  "introFingerprint": "9a8cd59804ad0be01baf978685e7ae5096fb3ceb291b0434149dabadcf32f193"
 }

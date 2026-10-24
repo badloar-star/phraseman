@@ -69,8 +69,8 @@
         "uk": "Копію зроблять на місці"
       },
       "bodyByLocale": {
-        "ru": "Photocopy — ксерокопия документа. Сотрудник сказал, что сделает копию на месте, поэтому знакомой не нужно приносить свою. Enclose — вложить что-то в конверт вместе с письмом: в вашей заявке на кружок фотография не требуется. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
-        "uk": "Photocopy — ксерокопія документа. Працівник сказав, що зробить копію на місці, тому знайомій не потрібно приносити свою. Enclose — вкласти щось у конверт разом із листом: у вашій заявці на гурток фотографія не потрібна. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+        "ru": "Сотрудник сделает копию документа на месте, поэтому знакомой не нужно приносить свою: She doesn't have to bring a photocopy — «ей не нужно приносить ксерокопию». После She ставим doesn't have to — «не нужно», затем bring — «приносить» и a photocopy — «ксерокопию». После doesn't остаётся have, не has, а после to глагол bring не меняется. Это отсутствие необходимости, а не запрет принести копию.",
+        "uk": "Працівник зробить копію документа на місці, тому знайомій не потрібно приносити свою: She doesn't have to bring a photocopy — «їй не потрібно приносити ксерокопію». Після She ставимо doesn't have to — «не потрібно», потім bring — «приносити» та a photocopy — «ксерокопію». Після doesn't залишається have, не has, а після to дієслово bring не змінюється. Це відсутність потреби, а не заборона принести копію."
       },
       "question": {
         "interactionId": "en:lesson-20:session-41:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fe0198c2ab941179cc62bfdcc3768f5aa05a7762c78ceb88ef4a4f08220ec647"
+  "introFingerprint": "535e7e9d303947919c9cee8ad9b03bbf7d0e3d7af0160194ed9aac92d527293d"
 }

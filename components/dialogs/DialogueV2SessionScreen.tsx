@@ -37,7 +37,8 @@ import { glassTone } from './glass/glassTone';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
-import { dialogListViewportDecision, isDialogListAtEnd } from './dialog_list_viewport';
+import { DIALOG_GOAL_STRIP_GAP, DIALOG_GOAL_STRIP_HEIGHT, DIALOG_GOAL_STRIP_MIN_LIST, dialogGoalStripFits, dialogListViewportDecision, isDialogListAtEnd } from './dialog_list_viewport';
+import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DialogSayHints } from './hints/DialogSayHints';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import DialogWhySheet from './DialogWhySheet';
@@ -303,12 +304,28 @@ export function DialogueV2SessionScreen({
   const openHint = React.useCallback(() => setHintOpen(true), []);
   // зачем (жалоба тестера 24.10 «встречный вопрос появляется на секунду и исчезает»; координатор: логи остаются в релизе): [DIALOG-VANISH] —
   // что в ленте, сколько ей места, у конца ли она и когда её докручиваем. Текст реплик не пишем — только id, автор, длина.
-  const [keyboardOpen, setKeyboardOpen] = React.useState(false);
-  // зачем (скрин тестера: между карточкой цели и строкой ввода ленты не видно): пока открыта клавиатура, карточка цели свёрнута —
+  // зачем (скрин тестера: между карточкой цели и строкой ввода ленты не видно): пока человек печатает, карточка цели свёрнута —
   // на небольшом экране шапка + цель + ввод с подсказками + клавиатура съедали всю высоту ленты. Цель остаётся в «Задания».
-  const goalShown = !!(goal && coachingLabels && bottom === 'input' && !keyboardOpen);
+  // Ревью 2 · ДИЗАЙН 25.10: сворачиваем по фокусу поля (раньше keyboardDidShow на Android — второй скачок), плавно (220 мс);
+  // клавиатура — запасной путь (закрыли «назад», а фокус остался).
+  const [goalFolded, setGoalFolded] = React.useState(false);
+  const goalFoldedRef = React.useRef(false);
+  // зачем (решение координатора 25.10): «свёрнуто» не пусто — если ленте остаётся ≥ 220 dp, тонкая плашка цели в одну строку.
+  const [goalStripFits, setGoalStripFits] = React.useState(false);
+  const goalStripFitsRef = React.useRef(false);
+  const goalShown = !!(goal && coachingLabels && bottom === 'input' && !goalFolded);
+  const goalStripShown = !!(goal && coachingLabels && bottom === 'input' && goalFolded && goalStripFits);
   const vanishPrevRef = React.useRef<{ count: number; lastId: string | null }>({ count: 0, lastId: null });
   const vanishLayoutRef = React.useRef({ header: 0, list: 0, content: 0, keyboard: 0, scrollY: 0 });
+  const setGoalFold = React.useCallback((folded: boolean, trigger: 'focus' | 'blur' | 'keyboard') => {
+    if (goalFoldedRef.current === folded) return; // guard-ok: карточка уже в этом состоянии (фокус и клавиатура приходят парой)
+    goalFoldedRef.current = folded;
+    goalStripFitsRef.current = false; // плашку решает следующая раскладка ленты
+    animateNextLayoutTransition();
+    setGoalStripFits(false);
+    setGoalFolded(folded);
+    console.log('[DIALOG-GOAL] fold', JSON.stringify({ folded, trigger, list: vanishLayoutRef.current.list, strip: false }));
+  }, []);
   const atEndRef = React.useRef(true);
   const scrollToEnd = React.useCallback((_width?: number, height?: number) => {
     if (typeof height === 'number') {
@@ -335,8 +352,8 @@ export function DialogueV2SessionScreen({
     const height = Math.round(event.nativeEvent.layout.height);
     if (height === vanishLayoutRef.current.header) return; // guard-ok: высота шапки прежняя
     vanishLayoutRef.current = { ...vanishLayoutRef.current, header: height };
-    console.log('[DIALOG-VANISH] header', JSON.stringify({ height, goalShown, keyboardOpen, layout: vanishLayoutRef.current }));
-  }, [goalShown, keyboardOpen]);
+    console.log('[DIALOG-VANISH] header', JSON.stringify({ height, goalShown, goalFolded, goalStripShown, layout: vanishLayoutRef.current }));
+  }, [goalFolded, goalShown, goalStripShown]);
   // зачем: окно ленты сжалось или выросло (карточка цели, строка ввода с подсказками, клавиатура) — содержимое не менялось, и
   // onContentSizeChange молчит. Был у конца — докручиваем без анимации; листал историю вверх — не дёргаем.
   const onListLayout = React.useCallback((event: LayoutChangeEvent) => {
@@ -347,6 +364,12 @@ export function DialogueV2SessionScreen({
     vanishLayoutRef.current = { ...vanishLayoutRef.current, list: height };
     console.log('[DIALOG-VANISH] list', JSON.stringify({ height, prevViewport, decision, count: messages.length, layout: vanishLayoutRef.current }));
     if (decision === 'stick_to_end') scrollRef.current?.scrollToEnd({ animated: false });
+    if (!goalFoldedRef.current) return; // guard-ok: карточка развёрнута — плашка не нужна
+    const fits = dialogGoalStripFits({ listHeight: height, stripShown: goalStripFitsRef.current });
+    if (fits === goalStripFitsRef.current) return; // guard-ok: решение о плашке прежнее
+    goalStripFitsRef.current = fits;
+    setGoalStripFits(fits);
+    console.log('[DIALOG-GOAL] strip', JSON.stringify({ shown: fits, list: height, minList: DIALOG_GOAL_STRIP_MIN_LIST }));
   }, [messages.length]);
   const onListScroll = React.useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { contentOffset, layoutMeasurement, contentSize } = event.nativeEvent;
@@ -377,16 +400,16 @@ export function DialogueV2SessionScreen({
       }, settleMs);
       vanishLayoutRef.current = { ...vanishLayoutRef.current, keyboard: Math.round(event.endCoordinates?.height ?? 0) };
       console.log('[DIALOG-VANISH] keyboard:show', JSON.stringify({ layout: vanishLayoutRef.current }));
-      setKeyboardOpen(true);
+      setGoalFold(true, 'keyboard');
     });
     const hide = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide', () => {
       console.log('[DIALOGUE-KEYBOARD] hide', JSON.stringify({ os: Platform.OS }));
       vanishLayoutRef.current = { ...vanishLayoutRef.current, keyboard: 0 };
       console.log('[DIALOG-VANISH] keyboard:hide', JSON.stringify({ layout: vanishLayoutRef.current }));
-      setKeyboardOpen(false);
+      setGoalFold(false, 'keyboard');
     });
     return () => { show.remove(); hide.remove(); };
-  }, []);
+  }, [setGoalFold]);
 
   return (
     <KeyboardAvoidingView
@@ -457,6 +480,20 @@ export function DialogueV2SessionScreen({
               onOpen={openGoals}
               onHint={hintText ? openHint : undefined}
             />
+          ) : null}
+          {goalStripShown && goal ? (
+            <Pressable
+              testID="dialogue-v2-session-goal-strip"
+              onPress={openGoals}
+              accessibilityRole="button"
+              accessibilityLabel={`${goal.kicker}. ${goal.label}`}
+              style={{ marginTop: DIALOG_GOAL_STRIP_GAP, height: DIALOG_GOAL_STRIP_HEIGHT, borderRadius: DIALOG_GOAL_STRIP_HEIGHT / 2, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: glassTone(glass.text, 0.06) }}
+            >
+              <Ionicons name="flag-outline" size={14} color={glass.secondary} />
+              <Text numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.2} style={{ flex: 1, fontSize: 13, lineHeight: 17, color: glass.text }}>
+                {`${goal.kicker} · ${goal.label}`}
+              </Text>
+            </Pressable>
           ) : null}
         </View>
 
@@ -653,7 +690,10 @@ export function DialogueV2SessionScreen({
                 editable={!voiceBusy && !inputLocked}
                 placeholder={labels.placeholder}
                 placeholderTextColor={glass.mutedText}
-                accessibilityLabel={labels.placeholder}
+                // зачем (ревью 2 · ДИЗАЙН 25.10): карточка цели уходит из дерева вместе с фокусом скринридера — цель читается с полем
+                accessibilityLabel={goal ? `${labels.placeholder}. ${goal.kicker}: ${goal.label}` : labels.placeholder}
+                onFocus={() => setGoalFold(true, 'focus')}
+                onBlur={() => setGoalFold(false, 'blur')}
                 testID="dialogue-v2-session-input" // зачем (робот съёмки, 12.10): поле нужно находить не по языковой подписи
                 maxFontSizeMultiplier={1.4}
                 multiline

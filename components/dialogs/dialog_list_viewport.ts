@@ -17,6 +17,18 @@ export function isDialogListAtEnd(state: DialogListScrollState, slack: number = 
 
 export type DialogListViewportDecision = 'stick_to_end' | 'first_layout' | 'same_height' | 'user_scrolled_up';
 
+/** Плашка цели при свёрнутой карточке: высота 28 и зазор над лентой 8. */
+export const DIALOG_GOAL_STRIP_HEIGHT = 28;
+export const DIALOG_GOAL_STRIP_GAP = 8;
+/** Решение координатора 25.10: плашку показываем, только если ленте с ней остаётся не меньше 220 dp. */
+export const DIALOG_GOAL_STRIP_MIN_LIST = 220;
+
+/** Помещается ли плашка цели. Считаем по высоте ленты БЕЗ плашки, иначе показ плашки сам бы её и убирал (дрожание). */
+export function dialogGoalStripFits(input: Readonly<{ listHeight: number; stripShown: boolean }>): boolean {
+  const withoutStrip = input.listHeight + (input.stripShown ? DIALOG_GOAL_STRIP_HEIGHT + DIALOG_GOAL_STRIP_GAP : 0);
+  return withoutStrip - DIALOG_GOAL_STRIP_HEIGHT - DIALOG_GOAL_STRIP_GAP >= DIALOG_GOAL_STRIP_MIN_LIST;
+}
+
 /** Окно ленты поменяло высоту: докрутить к концу, только если человек был у конца. */
 export function dialogListViewportDecision(input: Readonly<{
   prevViewport: number;

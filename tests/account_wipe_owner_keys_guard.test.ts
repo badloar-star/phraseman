@@ -26,6 +26,9 @@ const OWNER_KEY_DECISIONS: Record<string, { decision: 'wiped' | 'kept'; how: str
   // зачем (п.80): ключи «константа + stableId» — их прежний сторож не видел, и после удаления гостя они оставались
   friend_blocked_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, FRIEND_BLOCKED_CACHE_PREFIX)' },
   economy_daily_stats_tail_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, ECONOMY_DAILY_STATS_TAIL_PREFIX)' },
+  // зачем (координатор 24.10): данные аккаунта — на чужом телефоне им не место; стираются при выходе и удалении
+  premium_theme_entitlements_v1: { decision: 'wiped', how: 'шаг appMessages (WIPE_ONLY_ACCOUNT_KEY_PREFIXES, PREMIUM_THEME_ENTITLEMENTS_PREFIX) — права на темы владельца (2713b36e9)' },
+  app_messages_personal_copy_v1: { decision: 'wiped', how: 'шаг appMessages (APP_MESSAGES_ACCOUNT_WIPE_PREFIXES) — личная копия входящих (ca212f7c0)' },
   paid_level_spin_envelope_v1: { decision: 'kept', how: 'деньги: конверт платного спина, владелец-scoped, досылается при возврате владельца' },
   level_spin_star_grant_outbox_v1: { decision: 'kept', how: 'деньги: очередь начислений звёзд спина' },
   level_spin_star_projection_v1: { decision: 'kept', how: 'деньги: проекция начислений' },

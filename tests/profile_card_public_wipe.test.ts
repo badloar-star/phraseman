@@ -47,7 +47,9 @@ describe('выход, смена и удаление аккаунта стира
   it('cloud_sync: ключ копии входит в список ключей «стереть при выходе», а память сбрасывается отдельным шагом без риска для выхода', () => {
     const cloud = read('app/cloud_sync.ts');
     expect(cloud).toMatch(/const PROFILE_CARD_PUBLIC_CACHE_PREFIX = 'profile_card_public_v1';/);
-    expect(cloud).toMatch(/ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,\n\];/);
+    // зачем (координатор 24.10): проверяем членство в списке «стереть при выходе», а не место в нём — новый ключ в конце не роняет тест
+    const wipeList = cloud.slice(cloud.indexOf('const WIPE_ONLY_ACCOUNT_KEY_PREFIXES'), cloud.indexOf('];', cloud.indexOf('const WIPE_ONLY_ACCOUNT_KEY_PREFIXES')));
+    expect(wipeList).toMatch(/\bPROFILE_CARD_PUBLIC_CACHE_PREFIX\b/);
     expect(cloud).toMatch(/await clearPublicProfileCardCache\('account_wipe'\);/);
     // шаг не может уронить выход: бросок импорта/очистки ловится и пишет причину
     expect(cloud).toMatch(/\[ACC-WIPE\] profile_card_public clear_failed code=/);

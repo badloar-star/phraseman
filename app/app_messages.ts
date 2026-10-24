@@ -103,6 +103,9 @@ function appMessagesOwnerStorageKey(prefix: string, ownerUid: string): string {
  */
 export const APP_MESSAGES_SCREEN_MIN_INTERVAL_MS = 6 * 60 * 60_000;
 const APP_MESSAGES_LOGIN_FORCED_KEY_PREFIX = 'app_messages_login_forced_v1';
+// зачем (координатор 24.10): личная копия входящих — данные аккаунта, стирается при выходе и удалении; объявлена здесь,
+// до списка стирания, чтобы список ссылался на уже объявленную константу.
+const APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX = 'app_messages_personal_copy_v1';
 
 /**
  * Ключи сообщений аккаунта, которые стирает `wipeLocalAccountData` при выходе, смене и удалении аккаунта
@@ -121,6 +124,7 @@ export const APP_MESSAGES_ACCOUNT_WIPE_PREFIXES: readonly string[] = [
   APP_MESSAGE_MODAL_ACK_OUTBOX_KEY_PREFIX,
   ANIMATED_MESSAGE_IDS_KEY_PREFIX,
   APP_MESSAGES_LOGIN_FORCED_KEY_PREFIX,
+  APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX,
 ];
 export const APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS: readonly string[] = [
   LEGACY_APP_MESSAGES_CACHE_KEY,
@@ -1682,7 +1686,7 @@ async function readAppMessagesFeedRemoteRev(): Promise<number> {
 // документа users/{uid}, который восстановление и так читает (app/inbox_rev_peek.ts); та же версия, что у копии на
 // телефоне, — 0 чтений. Нет версии (0, сервер ещё не выложен) → прежний путь. Состояния, записанные этим телефоном,
 // и так живут в локальных очередях; с другого устройства придут при росте версии или раз в 7 дней.
-const APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX = 'app_messages_personal_copy_v1';
+// (Префикс копии — APP_MESSAGES_PERSONAL_COPY_KEY_PREFIX — объявлен выше, у списка стирания аккаунта.)
 /** Ждём, пока отложенное восстановление старта прочитает документ (оно идёт после кадра Главной, ≤ 8 с). */
 const INBOX_REV_RESTORE_WAIT_MS = 9_000;
 

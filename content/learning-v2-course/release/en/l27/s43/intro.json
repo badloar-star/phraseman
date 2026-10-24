@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect / past simple; wish + past; if I were; unreal condition",
+    "uk": "present perfect / past simple; wish + past; if I were; unreal condition"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Еда для прогулки",
+        "uk": "Їжа для прогулянки"
+      },
+      "bodyByLocale": {
+        "ru": "Freshness — свежесть. I can smell the freshness of the bread — я чувствую свежесть хлеба по запаху. Вы собираете еду для прогулки. I have already bought the bread — я уже купил хлеб: он готов к поездке. I bought it this morning — я купил его сегодня утром. Если утро уже закончилось, называем законченное время и используем past simple.",
+        "uk": "Freshness — свіжість. I can smell the freshness of the bread — я відчуваю свіжість хліба за запахом. Ви збираєте їжу для прогулянки. I have already bought the bread — я вже купив хліб: він готовий до поїздки. I bought it this morning — я купив його сьогодні вранці. Якщо ранок уже минув, називаємо завершений час і використовуємо past simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-43:intro1:r1",
+              "text": "I have already bought the bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro1:r2",
+              "text": "I have already buy the bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro1:r3",
+              "text": "I have already buying the bread."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-43:intro1:r1",
+              "text": "I have already bought the bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro1:r2",
+              "text": "I have already buy the bread."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro1:r3",
+              "text": "I have already buying the bread."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выбрать место у воды",
+        "uk": "Вибрати місце біля води"
+      },
+      "bodyByLocale": {
+        "ru": "Coolness — прохлада. I like the coolness of the shade — мне нравится прохлада в тени. Quietness — тишина, отсутствие шума. We came here for the quietness — мы пришли сюда ради тишины. Рядом оказалась шумная компания: I wish it were quieter here — хотелось бы, чтобы здесь было тише. После wish форма were относится к желаемому положению сейчас. If I were you, I would sit under that tree — на твоём месте я бы сел под тем деревом: мягкий совет, решение остаётся за собеседником.",
+        "uk": "Coolness — прохолода. I like the coolness of the shade — мені подобається прохолода в затінку. Quietness — тиша, відсутність шуму. We came here for the quietness — ми прийшли сюди заради тиші. Поруч опинилася галаслива компанія: I wish it were quieter here — хотілося б, щоб тут було тихіше. Після wish форма were стосується бажаного становища зараз. If I were you, I would sit under that tree — на твоєму місці я б сів під тим деревом: м’яка порада, рішення залишається за співрозмовником."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-43:intro2:r1",
+              "text": "I wish it were quieter here."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro2:r2",
+              "text": "I wish it is quieter here."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro2:r3",
+              "text": "I wish it be quieter here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-43:intro2:r1",
+              "text": "I wish it were quieter here."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro2:r2",
+              "text": "I wish it is quieter here."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro2:r3",
+              "text": "I wish it be quieter here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оставить место чистым",
+        "uk": "Залишити місце чистим"
+      },
+      "bodyByLocale": {
+        "ru": "Cleanliness — чистота. The cleanliness of this place matters to me — для меня важна чистота этого места. После еды вы убираете за собой: Could you hold the bag open? — можешь подержать пакет открытым? We would stay longer if we had more water — мы бы остались дольше, если бы у нас было больше воды. Would stay — возможный результат, had — условие, которого сейчас нет. Можно поменять порядок: If we had more water, we would stay longer.",
+        "uk": "Cleanliness — чистота. The cleanliness of this place matters to me — для мене важлива чистота цього місця. Після їжі ви прибираєте за собою: Could you hold the bag open? — можеш потримати пакет відкритим? We would stay longer if we had more water — ми б залишилися довше, якби мали більше води. Would stay — можливий результат, had — умова, якої зараз немає. Можна змінити порядок: If we had more water, we would stay longer."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-43:intro3:r1",
+              "text": "We would stay longer if we had more water."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro3:r2",
+              "text": "We would stayed longer if we had more water."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro3:r3",
+              "text": "We would to stay longer if we had more water."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-43:intro3:r1",
+              "text": "We would stay longer if we had more water."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro3:r2",
+              "text": "We would stayed longer if we had more water."
+            },
+            {
+              "responseId": "en:lesson-27:session-43:intro3:r3",
+              "text": "We would to stay longer if we had more water."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3973e67e220ef49ab698e17eb812f9aa7dc0d078afa63fe9199b5336b2f82e12"
+}

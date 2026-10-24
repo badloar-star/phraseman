@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-43:word:freshness",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — freshness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:word:freshness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — freshness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:word:freshness:audio",
+          "transcript": "freshness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:word:freshness:r1",
+            "targetText": "freshness",
+            "meaningByLocale": {
+              "ru": "Свежесть.",
+              "uk": "Свіжість."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "freshness",
+          "definitionByLocale": {
+            "ru": "Свежесть.",
+            "uk": "Свіжість."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i01",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что запах говорит о свежести хлеба.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что запах говорит о свежести хлеба.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I can smell the freshness of the bread.",
+        "localizedMeaning": {
+          "ru": "Объясните, что запах говорит о свежести хлеба.",
+          "uk": "Поясніть, що запах свідчить про свіжість хліба."
+        },
+        "orderedTokens": [
+          "I",
+          "can",
+          "smell",
+          "the",
+          "freshness",
+          "of",
+          "the",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i02",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, сколько воды взять.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Спросите, сколько воды взять.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i02:audio",
+          "transcript": "How much water should we take?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "How much water should we take?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сейчас день. Скажите, что купили хлеб утром.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i03:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i03:r2",
+          "text": "have bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i03:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сейчас день. Скажите, что купили хлеб утром.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сейчас день. Скажите, что купили хлеб утром.",
+          "uk": "Зараз день. Скажіть, що купили хліб уранці."
+        },
+        "gappedTargetPhrase": "I ___ it this morning.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-43:i03:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i03:r2",
+            "text": "have bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i03:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Сейчас день. Скажите, что купили хлеб утром.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Сейчас день. Скажите, что купили хлеб утром.",
+            "feedbackByLocale": {
+              "ru": "Утро закончилось: bought.",
+              "uk": "Ранок минув: bought."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Сейчас день. Скажите, что купили хлеб утром.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма bought.",
+              "uk": "Потрібна форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i04:r1",
+          "text": "I have already packed the cups."
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i04:r2",
+          "text": "I have already washed the cups."
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i04:r3",
+          "text": "We have already packed the cups."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i04:audio",
+          "transcript": "I have already packed the cups."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:i04:r1",
+            "targetText": "I have already packed the cups.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i04:r2",
+            "targetText": "I have already washed the cups.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i04:r3",
+            "targetText": "We have already packed the cups.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already packed the cups.",
+              "uk": "У записі звучить I have already packed the cups."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I have already packed the cups.",
+              "uk": "У записі звучить I have already packed the cups."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:word:coolness",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coolness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:word:coolness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coolness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:word:coolness:audio",
+          "transcript": "coolness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:word:coolness:r1",
+            "targetText": "coolness",
+            "meaningByLocale": {
+              "ru": "Прохлада.",
+              "uk": "Прохолода."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coolness",
+          "definitionByLocale": {
+            "ru": "Прохлада.",
+            "uk": "Прохолода."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i05:r1",
+          "text": "I like the coolness of the shade."
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i05:r2",
+          "text": "I like the warmth of the sun."
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i05:r3",
+          "text": "We like the coolness of the shade."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i05:audio",
+          "transcript": "I like the coolness of the shade."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:i05:r1",
+            "targetText": "I like the coolness of the shade.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i05:r2",
+            "targetText": "I like the warmth of the sun.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i05:r3",
+            "targetText": "We like the coolness of the shade.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the coolness of the shade.",
+              "uk": "У записі звучить I like the coolness of the shade."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i05:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I like the coolness of the shade.",
+              "uk": "У записі звучить I like the coolness of the shade."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение сесть под деревом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение сесть под деревом.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i06:audio",
+          "transcript": "Shall we sit under that tree?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Shall we sit under that tree?",
+        "orderedTokens": [
+          "Shall",
+          "we",
+          "sit",
+          "under",
+          "that",
+          "tree"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите другу немного хлеба.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Предложите другу немного хлеба.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i07:audio",
+          "transcript": "Would you like some bread?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would you like some bread?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i08",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дайте совет: на твоём месте я бы взял шляпу.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i08:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i08:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i08:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дайте совет: на твоём месте я бы взял шляпу.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дайте совет: на твоём месте я бы взял шляпу.",
+          "uk": "Дайте пораду: на твоєму місці я б узяв капелюха."
+        },
+        "gappedTargetPhrase": "If I ___ you, I would take a hat.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-43:i08:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i08:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i08:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Дайте совет: на твоём месте я бы взял шляпу.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Дайте совет: на твоём месте я бы взял шляпу.",
+            "feedbackByLocale": {
+              "ru": "В этой конструкции If I were you.",
+              "uk": "У цій конструкції If I were you."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Дайте совет: на твоём месте я бы взял шляпу.",
+            "feedbackByLocale": {
+              "ru": "Здесь нереальная ситуация: were.",
+              "uk": "Тут нереальна ситуація: were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:word:quietness",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — quietness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:word:quietness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — quietness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:word:quietness:audio",
+          "transcript": "quietness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:word:quietness:r1",
+            "targetText": "quietness",
+            "meaningByLocale": {
+              "ru": "Тишина, отсутствие шума.",
+              "uk": "Тиша, відсутність шуму."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quietness",
+          "definitionByLocale": {
+            "ru": "Тишина, отсутствие шума.",
+            "uk": "Тиша, відсутність шуму."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, зачем выбрали это место.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, зачем выбрали это место.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We came here for the quietness.",
+        "localizedMeaning": {
+          "ru": "Объясните, зачем выбрали это место.",
+          "uk": "Поясніть, навіщо вибрали це місце."
+        },
+        "orderedTokens": [
+          "We",
+          "came",
+          "here",
+          "for",
+          "the",
+          "quietness"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите сделать музыку потише.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Попросите сделать музыку потише.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i10:audio",
+          "transcript": "Could you turn the music down a little?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you turn the music down a little?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы хотите, чтобы здесь было тише сейчас.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i11:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i11:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы хотите, чтобы здесь было тише сейчас.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы хотите, чтобы здесь было тише сейчас.",
+          "uk": "Ви хочете, щоб тут було тихіше зараз."
+        },
+        "gappedTargetPhrase": "I wish it ___ quieter here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-43:i11:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i11:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вы хотите, чтобы здесь было тише сейчас.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Вы хотите, чтобы здесь было тише сейчас.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь were.",
+              "uk": "Після wish тут were."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Вы хотите, чтобы здесь было тише сейчас.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма were.",
+              "uk": "Потрібна форма were."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i12",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с условия: We would stay longer if we had more water.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с условия: We would stay longer if we had more water.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "If we had more water we would stay longer.",
+        "localizedMeaning": {
+          "ru": "Начните с условия: We would stay longer if we had more water.",
+          "uk": "Почніть з умови: We would stay longer if we had more water."
+        },
+        "orderedTokens": [
+          "If",
+          "we",
+          "had",
+          "more",
+          "water",
+          "we",
+          "would",
+          "stay",
+          "longer"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:word:cleanliness",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cleanliness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:word:cleanliness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cleanliness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:word:cleanliness:audio",
+          "transcript": "cleanliness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:word:cleanliness:r1",
+            "targetText": "cleanliness",
+            "meaningByLocale": {
+              "ru": "Чистота.",
+              "uk": "Чистота."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cleanliness",
+          "definitionByLocale": {
+            "ru": "Чистота.",
+            "uk": "Чистота."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i13:r1",
+          "text": "The cleanliness of this place matters to me."
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i13:r2",
+          "text": "The quietness of this place matters to me."
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i13:r3",
+          "text": "The cleanliness of this place matters to us."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i13:audio",
+          "transcript": "The cleanliness of this place matters to me."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-43:i13:r1",
+            "targetText": "The cleanliness of this place matters to me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i13:r2",
+            "targetText": "The quietness of this place matters to me.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i13:r3",
+            "targetText": "The cleanliness of this place matters to us.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cleanliness of this place matters to me.",
+              "uk": "У записі звучить The cleanliness of this place matters to me."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The cleanliness of this place matters to me.",
+              "uk": "У записі звучить The cleanliness of this place matters to me."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу подержать пакет открытым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу подержать пакет открытым.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i14:audio",
+          "transcript": "Could you hold the bag open?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could you hold the bag open?",
+        "orderedTokens": [
+          "Could",
+          "you",
+          "hold",
+          "the",
+          "bag",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i15",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите, что заберёте мусор с собой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите, что заберёте мусор с собой.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i15:audio",
+          "transcript": "I will take the rubbish home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I will take the rubbish home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы бы вернулись сюда, если бы жили ближе.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-43:i16:r1",
+          "text": "come"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i16:r2",
+          "text": "came"
+        },
+        {
+          "responseId": "en:lesson-27:session-43:i16:r3",
+          "text": "to come"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы бы вернулись сюда, если бы жили ближе.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы бы вернулись сюда, если бы жили ближе.",
+          "uk": "Ви б повернулися сюди, якби жили ближче."
+        },
+        "gappedTargetPhrase": "We would ___ back if we lived closer.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-43:i16:r1",
+            "text": "come"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i16:r2",
+            "text": "came"
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i16:r3",
+            "text": "to come"
+          }
+        ],
+        "testedDimension": "Вы бы вернулись сюда, если бы жили ближе.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-43:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы бы вернулись сюда, если бы жили ближе.",
+            "feedbackByLocale": {
+              "ru": "После would нужна come.",
+              "uk": "Після would потрібна come."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-43:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы бы вернулись сюда, если бы жили ближе.",
+            "feedbackByLocale": {
+              "ru": "После would нет to.",
+              "uk": "Після would немає to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Перед уходом спросите, все ли взяли свои вещи.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Перед уходом спросите, все ли взяли свои вещи.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-43:i17:audio",
+          "transcript": "Has everyone got their things?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Has everyone got their things?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9c53bffb202fcb9312fbcecbc4d694ece84a1ba34477a08c4be7c128a4f59014"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-43:word:freshness",
+    "correctText": "freshness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i01",
+    "correctText": "I can smell the freshness of the bread.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i02",
+    "correctText": "How much water should we take?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i03",
+    "correctText": "bought",
+    "correctResponseId": "en:lesson-27:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i04",
+    "correctText": "I have already packed the cups.",
+    "correctResponseId": "en:lesson-27:session-43:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:word:coolness",
+    "correctText": "coolness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i05",
+    "correctText": "I like the coolness of the shade.",
+    "correctResponseId": "en:lesson-27:session-43:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i06",
+    "correctText": "Shall we sit under that tree?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i07",
+    "correctText": "Would you like some bread?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i08",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:word:quietness",
+    "correctText": "quietness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i09",
+    "correctText": "We came here for the quietness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i10",
+    "correctText": "Could you turn the music down a little?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i11",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i12",
+    "correctText": "If we had more water we would stay longer.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:word:cleanliness",
+    "correctText": "cleanliness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i13",
+    "correctText": "The cleanliness of this place matters to me.",
+    "correctResponseId": "en:lesson-27:session-43:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i14",
+    "correctText": "Could you hold the bag open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i15",
+    "correctText": "I will take the rubbish home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i16",
+    "correctText": "come",
+    "correctResponseId": "en:lesson-27:session-43:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-43:i17",
+    "correctText": "Has everyone got their things?",
+    "correctResponseId": null
+  }
+]

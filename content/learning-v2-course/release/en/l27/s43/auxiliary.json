@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-43",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-43:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-43:intro1:r2": {
+          "ru": "После have нужна третья форма bought.",
+          "uk": "Після have потрібна третя форма bought."
+        },
+        "en:lesson-27:session-43:intro1:r3": {
+          "ru": "Здесь have bought.",
+          "uk": "Тут have bought."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-43:intro2:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-27:session-43:intro2:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-43:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-43:intro3:r2": {
+          "ru": "После would нужна stay.",
+          "uk": "Після would потрібна stay."
+        },
+        "en:lesson-27:session-43:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4918dfb8a440bc953a5c0d1a2fa867c582d936a5fe62ceec0b67dab23bf76bc7"
+}

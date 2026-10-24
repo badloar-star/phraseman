@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш прогноз",
-        "uk": "Ваш прогноз"
+        "ru": "Предположить, что с вас возьмут лишнее",
+        "uk": "Припустити, що з вас візьмуть зайве"
       },
       "bodyByLocale": {
-        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. overcharge — взять с покупателя слишком много денег. I think they will overcharge us. — Думаю, они возьмут с нас слишком много денег. Выберите прогноз с will.",
-        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. overcharge — взяти з покупця забагато грошей. I think they will overcharge us. — Думаю, вони візьмуть з нас забагато грошей. Виберіть прогноз із will."
+        "ru": "Вы с другом ждёте счёт в кафе, где уже замечали ошибки в пользу заведения. Вы опасаетесь, что с вас возьмут лишнее. I think they will overcharge us. — Думаю, они возьмут с нас слишком много денег. После I think поставьте they — кто это сделает, затем will и overcharge без to. В конце us показывает, с кого возьмут деньги. Соберите I think + they + will overcharge + us.",
+        "uk": "Ви з другом чекаєте на рахунок у кафе, де вже помічали помилки на користь закладу. Ви побоюєтеся, що з вас візьмуть зайве. I think they will overcharge us. — Думаю, вони візьмуть із нас забагато грошей. Після I think поставте they — хто це зробить, потім will і overcharge без to. Наприкінці us показує, з кого візьмуть гроші. Складіть I think + they + will overcharge + us."
       },
       "question": {
         "interactionId": "en:lesson-16:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После will — начальная форма",
-        "uk": "Після will — початкова форма"
+        "ru": "Предположить повторную ошибку в цене",
+        "uk": "Припустити повторну помилку в ціні"
       },
       "bodyByLocale": {
-        "ru": "undercharge — взять с покупателя меньше положенной суммы. I think he will undercharge us again. — Думаю, он опять возьмёт с нас меньше положенной суммы. Выберите прогноз с will.",
-        "uk": "undercharge — взяти з покупця менше належної суми. I think he will undercharge us again. — Думаю, він знову візьме з нас менше належної суми. Виберіть прогноз із will."
+        "ru": "Продавец в прошлый раз случайно посчитал вам меньшую сумму. Сегодня он снова считает так же, и вы предполагаете повторение ошибки. I think he will undercharge us again. — Думаю, он опять возьмёт с нас меньше положенной суммы. Начните с I think, затем поставьте he и will undercharge. После will глагол undercharge остаётся без -s даже с he. Добавьте us — с нас — и again — снова: I think + he + will undercharge + us + again.",
+        "uk": "Продавець минулого разу випадково нарахував вам меншу суму. Сьогодні він знову рахує так само, і ви припускаєте повторення помилки. I think he will undercharge us again. — Думаю, він знову візьме з нас менше, ніж потрібно. Почніть з I think, потім поставте he і will undercharge. Після will дієслово undercharge залишається без -s навіть із he. Додайте us — з нас — і again — знову: I think + he + will undercharge + us + again."
       },
       "question": {
         "interactionId": "en:lesson-16:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Предположение о будущем",
-        "uk": "Припущення про майбутнє"
+        "ru": "Предположить размер доплаты",
+        "uk": "Припустити розмір доплати"
       },
       "bodyByLocale": {
-        "ru": "instalment — один платёж при оплате частями. surcharge — доплата сверх обычной цены. I think the surcharge will be ten pounds. — Думаю, доплата составит десять фунтов. Выберите прогноз с will.",
-        "uk": "instalment — один платіж під час оплати частинами. surcharge — доплата понад звичайну ціну. I think the surcharge will be ten pounds. — Думаю, доплата становитиме десять фунтів. Виберіть прогноз із will."
+        "ru": "Вы выбираете доставку на выходной. Точную доплату ещё не показали, и вы предполагаете, что она составит десять фунтов. I think the surcharge will be ten pounds. — Думаю, доплата составит десять фунтов. После I think назовите предмет прогноза the surcharge. Затем добавьте will be и сумму ten pounds. Порядок такой: I think + the surcharge + will be + ten pounds. После will нужен be, а не is; to перед be не ставим.",
+        "uk": "Ви вибираєте доставку на вихідний. Точну доплату ще не показали, і ви припускаєте, що вона становитиме десять фунтів. I think the surcharge will be ten pounds. — Думаю, доплата становитиме десять фунтів. Після I think назвіть предмет прогнозу the surcharge. Потім додайте will be і суму ten pounds. Порядок такий: I think + the surcharge + will be + ten pounds. Після will потрібне be, а не is; to перед be не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-16:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c553ad831330e48ee82a8c906d358128950daa7b7364dac604f4d5b8803d2cb4"
+  "introFingerprint": "e59d3c073997674fa8e3e87ea3bce7553f9a4c019fef1692f416e7bed854cc47"
 }

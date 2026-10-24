@@ -11773,7 +11773,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 1,
-    sourceFingerprint: "c17e1114e45efb0c41192c4f11a5544d7a2090eea2dbe0bc9bcba66598a88d7d",
+    sourceFingerprint: "eedb1a6351a699ba9db0e32d7a5d516768f395e8b9732b22e4b2a87d6c7b2b17",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: rise."],["После will не ставим to.","После will нужна начальная форма: improve."],["После will не ставим to.","После will нужна начальная форма: end."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: rise."],["Після will не ставимо to.","Після will потрібна початкова форма: improve."],["Після will не ставимо to.","Після will потрібна початкова форма: end."]]}),
@@ -11787,7 +11787,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 2,
-    sourceFingerprint: "a483ff06ee506a7fc6301dc5b37826012a724d5004275c1fd3ccc083c03cdc5f",
+    sourceFingerprint: "7798797ef3f77a3c020b8f98fda072aed8d77a1fa23b72d38742dd2231ae5fae",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: wake."],["После will не ставим to.","После will нужна начальная форма: get."],["После will не ставим to.","После will нужна начальная форма: have."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: wake."],["Після will не ставимо to.","Після will потрібна початкова форма: get."],["Після will не ставимо to.","Після will потрібна початкова форма: have."]]}),
@@ -11801,7 +11801,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 3,
-    sourceFingerprint: "0de0644435a8de35b345f998e74654e32696e569695ffa02df0b68cd3861f614",
+    sourceFingerprint: "690debc2eeaff8a2e56ee66a8ea0922f4cb96287f8954a21b6073750b11f497c",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: clear."],["После will не ставим to.","После will нужна начальная форма: be."],["После will не ставим to.","После will нужна начальная форма: be."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: clear."],["Після will не ставимо to.","Після will потрібна початкова форма: be."],["Після will не ставимо to.","Після will потрібна початкова форма: be."]]}),
@@ -11815,7 +11815,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 4,
-    sourceFingerprint: "72216096314bf4ab3340aebaf147b6d925eb0d4d83c419a26a3431ff76d5d52b",
+    sourceFingerprint: "d4bdee08b350343bdabef3b363cb3a964ecc7eca2fcbdf2b6451dc1028ba7fb5",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: oversleep."],["После will не ставим to.","После will нужна начальная форма: misplace."],["После will не ставим to.","После will нужна начальная форма: overcook."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: oversleep."],["Після will не ставимо to.","Після will потрібна початкова форма: misplace."],["Після will не ставимо to.","Після will потрібна початкова форма: overcook."]]}),
@@ -11829,7 +11829,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 5,
-    sourceFingerprint: "cd2f1572de3c857b814a5edfbcde956f512253d68c30a28854618e386110a793",
+    sourceFingerprint: "88e5a13a6cfb304d8b284417ed748217024e964f8df3e97063cdff005bea3102",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: undercook."],["После will не ставим to.","После will нужна начальная форма: overfill."],["После will не ставим to.","После will нужна начальная форма: overeat."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: undercook."],["Після will не ставимо to.","Після will потрібна початкова форма: overfill."],["Після will не ставимо to.","Після will потрібна початкова форма: overeat."]]}),
@@ -11843,7 +11843,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 6,
-    sourceFingerprint: "31a011c6077339a2cfe5ee1ae44f6bfe560f9bacd6e7cb95db8127352d7664e6",
+    sourceFingerprint: "b4b7bef8576abd39a4283d3c01b8906a17522e2f10e6c243a5b06b4de27fcf26",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: be."],["После will не ставим to.","После will нужна начальная форма: be."],["После will не ставим to.","После will нужна начальная форма: be."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: be."],["Після will не ставимо to.","Після will потрібна початкова форма: be."],["Після will не ставимо to.","Після will потрібна початкова форма: be."]]}),
@@ -11857,7 +11857,7 @@ export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifes
   }),
   Object.freeze<LearningV2FactoryNativeManifestRowV1>({
     lessonOrdinal: 16, sessionOrdinal: 7,
-    sourceFingerprint: "41ee0052ce6ff682d1b6c64ce17378650363b7ddfe078239cb508302291a2e23",
+    sourceFingerprint: "e750826cce118e6f07481331a6bfc4e17518ff27301d3ee038e069cbab24b20f",
     introCorrectChoiceIndexes: Object.freeze([0,0,0]),
     introPromptByAuthoredLocale: Object.freeze({"ru":["Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации.","Выберите фразу для этой ситуации."],"uk":["Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації.","Виберіть фразу для цієї ситуації."]}),
     introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["После will не ставим to.","После will нужна начальная форма: overcharge."],["После will не ставим to.","После will нужна начальная форма: undercharge."],["После will не ставим to.","После will нужна начальная форма: be."]],"uk":[["Після will не ставимо to.","Після will потрібна початкова форма: overcharge."],["Після will не ставимо to.","Після will потрібна початкова форма: undercharge."],["Після will не ставимо to.","Після will потрібна початкова форма: be."]]}),

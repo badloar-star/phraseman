@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-04:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш прогноз",
-        "uk": "Ваш прогноз"
+        "ru": "Предположить, что проспите",
+        "uk": "Припустити, що проспите"
       },
       "bodyByLocale": {
-        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. oversleep — проспать дольше, чем собирался. I think I will oversleep tomorrow. — Думаю, завтра я просплю. Выберите прогноз с will.",
-        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. oversleep — проспати довше, ніж збирався. I think I will oversleep tomorrow. — Думаю, завтра я просплю. Виберіть прогноз із will."
+        "ru": "Уже поздно, а завтра нужно рано вставать. Вы опасаетесь, что не проснётесь вовремя. I think I will oversleep tomorrow. — Думаю, завтра я просплю. Начните с I think — «думаю». Затем повторите I: первое I относится к think, второе — к будущему действию. Добавьте will oversleep и время tomorrow. Соберите I think + I + will oversleep + tomorrow. После will нужен oversleep без to и без -s.",
+        "uk": "Уже пізно, а завтра потрібно рано вставати. Ви побоюєтеся, що не прокинетеся вчасно. I think I will oversleep tomorrow. — Думаю, завтра я просплю. Почніть з I think — «думаю». Потім повторіть I: перше I стосується think, друге — майбутньої дії. Додайте will oversleep і час tomorrow. Складіть I think + I + will oversleep + tomorrow. Після will потрібне oversleep без to і без -s."
       },
       "question": {
         "interactionId": "en:lesson-16:session-04:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-04:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После will — начальная форма",
-        "uk": "Після will — початкова форма"
+        "ru": "Предположить, что снова потеряете ключи",
+        "uk": "Припустити, що знову загубите ключі"
       },
       "bodyByLocale": {
-        "ru": "misplace — положить не туда и потом не найти. I think I will misplace my keys again. — Думаю, я опять положу ключи не туда и не найду. Выберите прогноз с will.",
-        "uk": "misplace — покласти не туди й потім не знайти. I think I will misplace my keys again. — Думаю, я знову покладу ключі не туди й не знайду. Виберіть прогноз із will."
+        "ru": "Вы часто оставляете ключи в случайных местах. Сейчас вы убираете их в новый ящик и опасаетесь, что снова не вспомните куда. I think I will misplace my keys again. — Думаю, я опять положу ключи не туда и не найду. После I think поставьте I will misplace: это ваше предположение о себе. Затем добавьте my keys — что можете потерять — и again — снова. Порядок такой: I think + I + will misplace + my keys + again. Между will и misplace не нужно to.",
+        "uk": "Ви часто залишаєте ключі у випадкових місцях. Зараз ви кладете їх у нову шухляду й побоюєтеся, що знову не згадаєте куди. I think I will misplace my keys again. — Думаю, я знову покладу ключі не туди й не знайду. Після I think поставте I will misplace: це ваше припущення про себе. Потім додайте my keys — що можете загубити — і again — знову. Порядок такий: I think + I + will misplace + my keys + again. Між will і misplace не потрібне to."
       },
       "question": {
         "interactionId": "en:lesson-16:session-04:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-04:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Предположение о будущем",
-        "uk": "Припущення про майбутнє"
+        "ru": "Предположить, что переварите рис",
+        "uk": "Припустити, що переварите рис"
       },
       "bodyByLocale": {
-        "ru": "overspend — потратить больше, чем собирался. overcook — слишком долго готовить и испортить еду. I think I will overcook the rice. — Думаю, я переварю рис. Выберите прогноз с will.",
-        "uk": "overspend — витратити більше, ніж збирався. overcook — надто довго готувати й зіпсувати їжу. I think I will overcook the rice. — Думаю, я переварю рис. Виберіть прогноз із will."
+        "ru": "Рис уже варится, а вам приходится надолго отвлечься от плиты. Вы опасаетесь, что не снимете его вовремя. I think I will overcook the rice. — Думаю, я переварю рис. Начните с I think, затем поставьте I — кто готовит. Добавьте will overcook и предмет the rice. Получается I think + I + will overcook + the rice. После will используйте overcook без to и без -s. Здесь вы предполагаете нежелательный результат, а не обещаете испортить рис.",
+        "uk": "Рис уже вариться, а вам доводиться надовго відволіктися від плити. Ви побоюєтеся, що не знімете його вчасно. I think I will overcook the rice. — Думаю, я переварю рис. Почніть з I think, потім поставте I — хто готує. Додайте will overcook і предмет the rice. Виходить I think + I + will overcook + the rice. Після will використайте overcook без to і без -s. Тут ви припускаєте небажаний результат, а не обіцяєте зіпсувати рис."
       },
       "question": {
         "interactionId": "en:lesson-16:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6aeecdfaa21478c9555e615c6b2a23e5ec5237c244555bee5342e44337f2929e"
+  "introFingerprint": "2f2af2033776c7b86ab1f19d97fff6ccc568776915106a7412d86ecfbd3825c7"
 }

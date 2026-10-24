@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-03:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш прогноз",
-        "uk": "Ваш прогноз"
+        "ru": "Предположить, что туман рассеется",
+        "uk": "Припустити, що туман розсіється"
       },
       "bodyByLocale": {
-        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. mist — лёгкий туман. I think the mist will clear soon. — Думаю, лёгкий туман скоро рассеется. Выберите прогноз с will.",
-        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. mist — легкий туман. I think the mist will clear soon. — Думаю, легкий туман скоро розсіється. Виберіть прогноз із will."
+        "ru": "Вы с другом ждёте начала прогулки. Сквозь лёгкий туман уже видно солнце, и вы предполагаете, что скоро станет яснее. I think the mist will clear soon. — Думаю, лёгкий туман скоро рассеется. После I think назовите the mist — что изменится. Затем добавьте will clear и время soon. Соберите I think + the mist + will clear + soon. После will используйте clear без -s и без to.",
+        "uk": "Ви з другом чекаєте на початок прогулянки. Крізь легкий туман уже видно сонце, і ви припускаєте, що скоро стане ясніше. I think the mist will clear soon. — Думаю, легкий туман скоро розсіється. Після I think назвіть the mist — що зміниться. Потім додайте will clear і час soon. Складіть I think + the mist + will clear + soon. Після will використайте clear без -s і без to."
       },
       "question": {
         "interactionId": "en:lesson-16:session-03:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После will — начальная форма",
-        "uk": "Після will — початкова форма"
+        "ru": "Предположить пасмурную погоду",
+        "uk": "Припустити похмуру погоду"
       },
       "bodyByLocale": {
-        "ru": "overcast — пасмурный, с полностью затянутым облаками небом. I think it will be overcast tomorrow. — Думаю, завтра будет пасмурно. Выберите прогноз с will.",
-        "uk": "overcast — похмурий, із повністю затягнутим хмарами небом. I think it will be overcast tomorrow. — Думаю, завтра буде похмуро. Виберіть прогноз із will."
+        "ru": "Вы обсуждаете завтрашний пикник. Небо весь день затянуто облаками, и вы предполагаете, что завтра будет так же. I think it will be overcast tomorrow. — Думаю, завтра будет пасмурно. После I think поставьте it: в английской фразе о погоде оно занимает место подлежащего. Добавьте will be overcast и время tomorrow. Порядок такой: I think + it + will be + overcast + tomorrow. После will нужен be, а не is.",
+        "uk": "Ви обговорюєте завтрашній пікнік. Небо весь день затягнуте хмарами, і ви припускаєте, що завтра буде так само. I think it will be overcast tomorrow. — Думаю, завтра буде похмуро. Після I think поставте it: в англійській фразі про погоду воно займає місце підмета. Додайте will be overcast і час tomorrow. Порядок такий: I think + it + will be + overcast + tomorrow. Після will потрібне be, а не is."
       },
       "question": {
         "interactionId": "en:lesson-16:session-03:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-03:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Предположение о будущем",
-        "uk": "Припущення про майбутнє"
+        "ru": "Предположить ветер в воскресенье",
+        "uk": "Припустити вітер у неділю"
       },
       "bodyByLocale": {
-        "ru": "muggy — душный и влажный — о погоде. breezy — с лёгким или умеренным ветром. I think it will be breezy on Sunday. — Думаю, в воскресенье будет небольшой ветер. Выберите прогноз с will.",
-        "uk": "muggy — задушливий і вологий — про погоду. breezy — із легким або помірним вітром. I think it will be breezy on Sunday. — Думаю, у неділю буде невеликий вітер. Виберіть прогноз із will."
+        "ru": "Вы с другом выбираете одежду для воскресной прогулки у моря. Вы предполагаете, что лёгкой куртки будет достаточно из-за небольшого ветра. I think it will be breezy on Sunday. — Думаю, в воскресенье будет небольшой ветер. Начните с I think, затем поставьте погодное it. Добавьте will be breezy и время on Sunday. Получается I think + it + will be + breezy + on Sunday. Между will и be не нужно to.",
+        "uk": "Ви з другом вибираєте одяг для недільної прогулянки біля моря. Ви припускаєте, що легкої куртки буде достатньо через невеликий вітер. I think it will be breezy on Sunday. — Думаю, у неділю буде невеликий вітер. Почніть з I think, потім поставте погодне it. Додайте will be breezy і час on Sunday. Виходить I think + it + will be + breezy + on Sunday. Між will і be не потрібне to."
       },
       "question": {
         "interactionId": "en:lesson-16:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "278795e87e48c51ca666e5bcbf3515415cdfecec648a6d993f7c33ad29ec7da6"
+  "introFingerprint": "354ffd84fc741aae6eea479bd256ad90b4fdb3aa7fdea420bc07d8898ab9df28"
 }

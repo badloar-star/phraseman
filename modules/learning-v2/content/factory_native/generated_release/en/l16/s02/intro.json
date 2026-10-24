@@ -11,12 +11,12 @@
       "pageId": "en:lesson-16:session-02:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Ваш прогноз",
-        "uk": "Ваш прогноз"
+        "ru": "Предположить раннее пробуждение",
+        "uk": "Припустити раннє пробудження"
       },
       "bodyByLocale": {
-        "ru": "Для предположения о будущем используем will + глагол в начальной форме. Will одинаково для всех лиц. I think — «думаю»: это мнение о будущем, а не обещание или решение что-то сделать. dawn — рассвет. I think we will wake up at dawn. — Думаю, мы проснёмся на рассвете. Выберите прогноз с will.",
-        "uk": "Для припущення про майбутнє використовуємо will + дієслово в початковій формі. Will однакове для всіх осіб. I think — «думаю»: це думка про майбутнє, а не обіцянка чи рішення щось зробити. dawn — світанок. I think we will wake up at dawn. — Думаю, ми прокинемося на світанку. Виберіть прогноз із will."
+        "ru": "Вы с другом ночуете в палатке, куда утром попадает свет. Вы предполагаете, что проснётесь с рассветом. I think we will wake up at dawn. — Думаю, мы проснёмся на рассвете. После I think поставьте we — вы вместе с другом. Затем добавьте will wake up и время at dawn. Соберите I think + we + will wake up + at dawn. После will нужен wake без to и без -s; up остаётся частью wake up.",
+        "uk": "Ви з другом ночуєте в наметі, куди вранці потрапляє світло. Ви припускаєте, що прокинетеся на світанку. I think we will wake up at dawn. — Думаю, ми прокинемося на світанку. Після I think поставте we — ви разом із другом. Потім додайте will wake up і час at dawn. Складіть I think + we + will wake up + at dawn. Після will потрібне wake без to і без -s; up залишається частиною wake up."
       },
       "question": {
         "interactionId": "en:lesson-16:session-02:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-16:session-02:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "После will — начальная форма",
-        "uk": "Після will — початкова форма"
+        "ru": "Предположить время возвращения",
+        "uk": "Припустити час повернення"
       },
       "bodyByLocale": {
-        "ru": "dusk — сумерки перед наступлением ночи. I think we will get home at dusk. — Думаю, мы доберёмся домой в сумерках. Выберите прогноз с will.",
-        "uk": "dusk — сутінки перед настанням ночі. I think we will get home at dusk. — Думаю, ми дістанемося додому в сутінках. Виберіть прогноз із will."
+        "ru": "Вы с другом ещё далеко от дома, а солнце уже клонится к закату. Вы предполагаете, что доберётесь в сумерках. I think we will get home at dusk. — Думаю, мы доберёмся домой в сумерках. Начните с I think, затем поставьте we и will get home. В конце добавьте at dusk — когда. Порядок такой: I think + we + will get + home + at dusk. После will используйте get без -s; перед home здесь не нужно to.",
+        "uk": "Ви з другом ще далеко від дому, а сонце вже хилиться до заходу. Ви припускаєте, що дістанетеся додому в сутінках. I think we will get home at dusk. — Думаю, ми дістанемося додому в сутінках. Почніть з I think, потім поставте we і will get home. Наприкінці додайте at dusk — коли. Порядок такий: I think + we + will get + home + at dusk. Після will використайте get без -s; перед home тут не потрібне to."
       },
       "question": {
         "interactionId": "en:lesson-16:session-02:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-16:session-02:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Предположение о будущем",
-        "uk": "Припущення про майбутнє"
+        "ru": "Предположить возможность поплавать",
+        "uk": "Припустити можливість поплавати"
       },
       "bodyByLocale": {
-        "ru": "cold spell — период холодной погоды. chance — шанс, возможность. I think we will have a chance to swim. — Думаю, у нас будет возможность поплавать. Выберите прогноз с will.",
-        "uk": "cold spell — період холодної погоди. chance — шанс, можливість. I think we will have a chance to swim. — Думаю, у нас буде можливість поплавати. Виберіть прогноз із will."
+        "ru": "Вы с другом едете к озеру. Дождь заканчивается, и вы предполагаете, что ещё сможете поплавать. I think we will have a chance to swim. — Думаю, у нас будет возможность поплавать. После I think поставьте we will have — «у нас будет». Затем добавьте a chance to swim — «возможность поплавать». Соберите I think + we + will have + a chance to swim. Перед have после will не нужно to, но в a chance to swim слово to сохраняем.",
+        "uk": "Ви з другом їдете до озера. Дощ закінчується, і ви припускаєте, що ще зможете поплавати. I think we will have a chance to swim. — Думаю, у нас буде можливість поплавати. Після I think поставте we will have — «у нас буде». Потім додайте a chance to swim — «можливість поплавати». Складіть I think + we + will have + a chance to swim. Перед have після will не потрібне to, але в a chance to swim слово to зберігаємо."
       },
       "question": {
         "interactionId": "en:lesson-16:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5a39922d1a703745817c637729a69a3c772736802b2e45a0ed78b075eb9f86e0"
+  "introFingerprint": "7d625f1dec40d3ba5fa13bbda675e24b9ec98988a8289bee267fff7f57357314"
 }

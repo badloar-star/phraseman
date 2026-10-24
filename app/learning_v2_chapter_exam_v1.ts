@@ -200,7 +200,7 @@ export async function prepareLearningV2ChapterExamV1(input: Readonly<{
 }
 
 /**
- * Завершить попытку: результат → запись (сдал / пауза час) → при сдаче засчитать пропущенные эпизоды главы по порядку.
+ * Завершить попытку: результат → запись (сдал / пауза час) → при сдаче ОТКРЫТЬ непройденные эпизоды главы (не засчитывая).
  * Сердечки экзамен не тратит — здесь их нет вовсе.
  */
 export async function finishLearningV2ChapterExamV1(input: Readonly<{
@@ -232,14 +232,17 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
     const done = new Set(progress.completedSessionIds);
     const completedInChapter = chapterSessionOrdinalsV1(input.chapterOrdinal)
       .filter((ordinal) => done.has(learningV2CourseSessionIdV1(input.lessonOrdinal, ordinal)));
-    for (const ordinal of chapterExamSessionsToCreditV1({ chapterOrdinal: input.chapterOrdinal, completedSessionOrdinals: completedInChapter })) {
-      const sessionId = learningV2CourseSessionIdV1(input.lessonOrdinal, ordinal);
-      await store.complete(input.progressAccountScopeHash, sessionId);
-      creditedSessionIds.push(sessionId);
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «открыто ≠ пройдено», прогресс v2 часть d): сдача экзамена НЕ засчитывает эпизоды (без звёзд
+    // и без «пройдено»), а ОТКРЫВАЕТ непройденные эпизоды главы — человек может их пройти или идти дальше. Прежний store.complete
+    // при прогрессе v2 к тому же отказывал на эпизодах не по цепочке, и глава не открывалась. Одной записью, без сети.
+    const toOpen = chapterExamSessionsToCreditV1({ chapterOrdinal: input.chapterOrdinal, completedSessionOrdinals: completedInChapter })
+      .map((ordinal) => learningV2CourseSessionIdV1(input.lessonOrdinal, ordinal));
+    if (toOpen.length > 0) {
+      await store.open(input.progressAccountScopeHash, toOpen, 'chapter_exam');
+      creditedSessionIds.push(...toOpen);
     }
   } catch (error) {
-    // зачем: прогресс — строгая цепочка; если до главы ещё не дошли подряд, зачёт откажет — экзамен всё равно сдан, причина в журнале
-    console.warn(`${LOG} finish:credit_failed`, JSON.stringify({ examKey: input.examKey, credited: creditedSessionIds, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+    console.warn(`${LOG} finish:open_failed`, JSON.stringify({ examKey: input.examKey, opened: creditedSessionIds, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
   }
   console.log(`${LOG} finish:passed`, JSON.stringify({ examKey: input.examKey, correct: result.correct, credited: creditedSessionIds, firstPass })); // guard-ok: итог
   return Object.freeze({ result, record, creditedSessionIds: Object.freeze(creditedSessionIds), firstPass });

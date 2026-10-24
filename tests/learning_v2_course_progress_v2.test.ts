@@ -171,3 +171,14 @@ describe('progress v2: progress is never lost', () => {
     expect(view.openedSessionIds).toEqual([ids[56], ids[57]]);
   });
 });
+
+describe('progress v2: chapter exam opens, never completes (ЗАМОК ВЛАДЕЛЬЦА)', () => {
+  it('a passed exam opens the chapter sessions it skipped — no completion, no stars', () => {
+    const fs = require('node:fs') as typeof import('node:fs');
+    const path = require('node:path') as typeof import('node:path');
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning_v2_chapter_exam_v1.ts'), 'utf8');
+    const finish = source.slice(source.indexOf('export async function finishLearningV2ChapterExamV1'), source.indexOf('export function learningV2PassedChaptersV1'));
+    expect(finish).toContain("store.open(input.progressAccountScopeHash, toOpen, 'chapter_exam')");
+    expect(finish).not.toContain('store.complete(');
+  });
+});

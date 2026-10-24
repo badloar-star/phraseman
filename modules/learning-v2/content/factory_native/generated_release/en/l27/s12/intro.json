@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-12:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Назвать ощущение",
-        "uk": "Назвати відчуття"
+        "ru": "Если бы была запись на сегодня",
+        "uk": "Якби був запис на сьогодні"
       },
       "bodyByLocale": {
-        "ru": "Nausea — тошнота. I have nausea — меня тошнит, я испытываю тошноту. Это название ощущения, а не его причины. Heartburn — изжога. I have heartburn — у меня изжога. В этих фразах перед nausea и heartburn нет a. Вы звоните, чтобы записаться: I would come today if I had an appointment — я бы пришёл сегодня, если бы у меня была запись на приём. Had после if представляет воображаемое условие, would come — результат.",
-        "uk": "Nausea — нудота. I have nausea — мене нудить, я відчуваю нудоту. Це назва відчуття, а не його причини. Heartburn — печія. I have heartburn — у мене печія. У цих фразах перед nausea й heartburn немає a. Ви телефонуєте, щоб записатися: I would come today if I had an appointment — я б прийшов сьогодні, якби мав запис на прийом. Had після if уявляє умову, would come — результат."
+        "ru": "Вы можете прийти в клинику сегодня, но записи пока нет. Объясните: I would come today if I had an appointment — я бы пришёл сегодня, если бы у меня была запись на приём. Would come — воображаемый результат; if I had an appointment — условие сейчас. Собираем предложение: I + would come + today + if I had an appointment — кто, что сделал бы, когда, при каком условии. После would нужна come; в условии had без would.",
+        "uk": "Ви можете прийти до клініки сьогодні, але запису поки немає. Поясніть: I would come today if I had an appointment — я б прийшов сьогодні, якби мав запис на прийом. Would come — уявний результат; if I had an appointment — умова зараз. Складаємо речення: I + would come + today + if I had an appointment — хто, що зробив би, коли, за якої умови. Після would потрібна come; в умові had без would."
       },
       "question": {
         "interactionId": "en:lesson-27:session-12:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-12:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Рассказать, когда это было",
-        "uk": "Розповісти, коли це було"
+        "ru": "Когда записали время",
+        "uk": "Коли записали час"
       },
       "bodyByLocale": {
-        "ru": "Nosebleed — кровотечение из носа. I had a nosebleed yesterday — вчера у меня шла кровь из носа. Это исчисляемое слово: a nosebleed. Insomnia — бессонница. I have insomnia — у меня бессонница; здесь без a. Вы не объясняете лечение, а подбираете слова для разговора. I have written down the times — я записал время: сообщаем о готовом результате. I wrote them down yesterday — я записал их вчера: есть законченное время, поэтому wrote без have.",
-        "uk": "Nosebleed — кровотеча з носа. I had a nosebleed yesterday — учора в мене йшла кров із носа. Це злічуване слово: a nosebleed. Insomnia — безсоння. I have insomnia — у мене безсоння; тут без a. Ви не пояснюєте лікування, а добираєте слова для розмови. I have written down the times — я записав час: повідомляємо про готовий результат. I wrote them down yesterday — я записав їх учора: є завершений час, тому wrote без have."
+        "ru": "Вы записали время нескольких событий, и собеседник спрашивает, когда сделали эти заметки. Ответьте: I wrote them down yesterday — я записал их вчера. Wrote — прошедшая форма write. Them заменяет the times и стоит между wrote и down. Yesterday называет законченное время; have не нужен. Собираем предложение: I + wrote + them + down + yesterday — кто, wrote, что записал, down, когда.",
+        "uk": "Ви записали час кількох подій, і співрозмовник запитує, коли зробили ці нотатки. Дайте відповідь: I wrote them down yesterday — я записав їх учора. Wrote — минула форма write. Them замінює the times і стоїть між wrote та down. Yesterday називає завершений час; have не потрібне. Складаємо речення: I + wrote + them + down + yesterday — хто, wrote, що записав, down, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-12:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Удобное время",
-        "uk": "Зручний час"
+        "ru": "Посоветовать поставить напоминание",
+        "uk": "Порадити поставити нагадування"
       },
       "bodyByLocale": {
-        "ru": "Вам предлагают раннее утро, но в это время вы заняты: If I were free in the morning, I would take that appointment — если бы утром я был свободен, я бы выбрал это время приёма. Were здесь относится к воображаемой ситуации. Could I come in the afternoon? — можно прийти после обеда? Друг предлагает записать время в телефон. If I were you, I would set a reminder — на твоём месте я бы поставил напоминание. Вы уже записали время на бумаге; осталось вспомнить, куда положили бумагу.",
-        "uk": "Вам пропонують ранній ранок, але в цей час ви зайняті: If I were free in the morning, I would take that appointment — якби вранці я був вільний, я б обрав цей час прийому. Were тут стосується уявної ситуації. Could I come in the afternoon? — можна прийти після обіду? Друг пропонує записати час у телефон. If I were you, I would set a reminder — на твоєму місці я б установив нагадування. Ви вже записали час на папері; залишилося згадати, куди поклали папір."
+        "ru": "Друг боится забыть время приёма. Посоветуйте: If I were you, I would set a reminder — на твоём месте я бы поставил напоминание. If I were you вводит совет; set a reminder — поставить напоминание. Собираем предложение: If I were you, + I would + set + a reminder — на твоём месте, я бы, действие, что поставить. После условия ставим запятую. После would нужна set без to и без -ing.",
+        "uk": "Друг боїться забути час прийому. Порадьте: If I were you, I would set a reminder — на твоєму місці я б поставив нагадування. If I were you вводить пораду; set a reminder — поставити нагадування. Складаємо речення: If I were you, + I would + set + a reminder — на твоєму місці, я б, дія, що поставити. Після умови ставимо кому. Після would потрібна set без to й без -ing."
       },
       "question": {
         "interactionId": "en:lesson-27:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ffca8ede42b49ede907bfc641e216a2233fc9d717073847b185d68610fa0c528"
+  "introFingerprint": "0c057ca6219ee2208a2a2425129873b4eecc7e77e1d0e03da5f51f07af7f0213"
 }

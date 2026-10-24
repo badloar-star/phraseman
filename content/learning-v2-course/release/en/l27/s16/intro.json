@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-16:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Заказать завтрак",
-        "uk": "Замовити сніданок"
+        "ru": "Посоветовать меньшую порцию",
+        "uk": "Порадити меншу порцію"
       },
       "bodyByLocale": {
-        "ru": "Granola — гранола, запечённая смесь хлопьев, часто с орехами или сухофруктами. Is there granola in this yogurt? — в этом йогурте есть гранола? Состав бывает разным, поэтому по названию нельзя угадать все ингредиенты. Друг выбирает порцию: If I were you, I would order the smaller one — на твоём месте я бы заказал меньшую. После would — order без to; If I were you вводит совет.",
-        "uk": "Granola — гранола, запечена суміш пластівців, часто з горіхами або сухофруктами. Is there granola in this yogurt? — у цьому йогурті є гранола? Склад буває різним, тому за назвою не можна вгадати всі інгредієнти. Друг обирає порцію: If I were you, I would order the smaller one — на твоєму місці я б замовив меншу. Після would — order без to; If I were you вводить пораду."
+        "ru": "Друг выбирает между двумя порциями завтрака и просит совета. Скажите: If I were you, I would order the smaller one — на твоём месте я бы заказал меньшую. The smaller one — меньшая из двух порций; one заменяет название порции. Собираем предложение: If I were you, + I would + order + the smaller one — на твоём месте, я бы, действие, что заказать. После would нужна order без to и без окончания -ed.",
+        "uk": "Друг вибирає між двома порціями сніданку й просить поради. Скажіть: If I were you, I would order the smaller one — на твоєму місці я б замовив меншу. The smaller one — менша з двох порцій; one замінює назву порції. Складаємо речення: If I were you, + I would + order + the smaller one — на твоєму місці, я б, дія, що замовити. Після would потрібна order без to й без закінчення -ed."
       },
       "question": {
         "interactionId": "en:lesson-27:session-16:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-16:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Выбрать десерт",
-        "uk": "Обрати десерт"
+        "ru": "Когда испекли пирог",
+        "uk": "Коли спекли пиріг"
       },
       "bodyByLocale": {
-        "ru": "Brownie — брауни, шоколадное пирожное. Could I have a brownie? — можно мне брауни? Одно пирожное — a brownie, несколько — brownies. Frosting — сладкое покрытие или крем для торта и другой выпечки; слово часто используют в американском английском. This cake has too much frosting for me — для меня на этом торте слишком много крема. Вы обсуждаете вчерашнюю выпечку: I baked it yesterday — я испёк это вчера. Yesterday — законченное время, поэтому baked без have.",
-        "uk": "Brownie — брауні, шоколадне тістечко. Could I have a brownie? — можна мені брауні? Одне тістечко — a brownie, кілька — brownies. Frosting — солодке покриття або крем для торта та іншої випічки; слово часто використовують в американській англійській. This cake has too much frosting for me — для мене на цьому торті забагато крему. Ви обговорюєте вчорашню випічку: I baked it yesterday — я спік це вчора. Yesterday — завершений час, тому baked без have."
+        "ru": "Друг спрашивает, когда вы испекли пирог к чаю. Ответьте: I baked it yesterday — я испёк его вчера. It заменяет the cake. Bake уже заканчивается на -e, поэтому в прошедшем времени добавляем -d: baked. Yesterday называет законченное время. Собираем предложение: I + baked + it + yesterday — кто, действие в прошлом, что испёк, когда. Have здесь не нужен.",
+        "uk": "Друг запитує, коли ви спекли пиріг до чаю. Дайте відповідь: I baked it yesterday — я спік його вчора. It замінює the cake. Bake вже закінчується на -e, тому в минулому часі додаємо -d: baked. Yesterday називає завершений час. Складаємо речення: I + baked + it + yesterday — хто, дія в минулому, що спік, коли. Have тут не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-27:session-16:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-16:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Разобрать рецепт",
-        "uk": "Розібрати рецепт"
+        "ru": "Если бы кухня была больше",
+        "uk": "Якби кухня була більшою"
       },
       "bodyByLocale": {
-        "ru": "Yolk — яичный желток. The recipe needs one yolk — для рецепта нужен один желток. Не всё яйцо: yolk называет только желток. Вы хотели бы чаще печь: I would bake more often if I had a bigger kitchen — я бы пёк чаще, если бы у меня была кухня побольше. Had здесь воображаемое условие. I have already measured the flour — я уже отмерил муку: результат готов сейчас. Друг предлагает оставить десерт на завтра. Очень разумная мысль, пока перед вами не поставили тарелку с брауни.",
-        "uk": "Yolk — яєчний жовток. The recipe needs one yolk — для рецепта потрібен один жовток. Не все яйце: yolk називає лише жовток. Ви хотіли б частіше пекти: I would bake more often if I had a bigger kitchen — я б пік частіше, якби мав більшу кухню. Had тут — уявна умова. I have already measured the flour — я вже відміряв борошно: результат готовий зараз. Друг пропонує залишити десерт на завтра. Дуже розумна думка, поки перед вами не поставили тарілку з брауні."
+        "ru": "Вы любите печь, но на маленькой кухне трудно разложить всё необходимое. Скажите: I would bake more often if I had a bigger kitchen — я бы пёк чаще, если бы у меня была кухня побольше. Would bake — воображаемый результат; if I had a bigger kitchen — условие сейчас. Собираем предложение: I + would bake + more often + if I had a bigger kitchen — кто, что делал бы, как часто, при каком условии. После would нужна bake; в условии had без would.",
+        "uk": "Ви любите пекти, але на маленькій кухні важко розкласти все необхідне. Скажіть: I would bake more often if I had a bigger kitchen — я б пік частіше, якби мав більшу кухню. Would bake — уявний результат; if I had a bigger kitchen — умова зараз. Складаємо речення: I + would bake + more often + if I had a bigger kitchen — хто, що робив би, як часто, за якої умови. Після would потрібна bake; в умові had без would."
       },
       "question": {
         "interactionId": "en:lesson-27:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1e2045054dc22c1350daa068c74999cb32885eefb7698f2b153f1f8ce159d016"
+  "introFingerprint": "b9d4b226b3aafb5c4db0385c27ec61732a692151e50406b58380b5e7f376f830"
 }

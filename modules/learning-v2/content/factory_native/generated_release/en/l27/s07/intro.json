@@ -11,12 +11,12 @@
       "pageId": "en:lesson-27:session-07:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Узнать человека в кафе",
-        "uk": "Впізнати людину в кафе"
+        "ru": "Как узнать человека в кафе",
+        "uk": "Як упізнати людину в кафе"
       },
       "bodyByLocale": {
-        "ru": "Вы впервые встречаете подругу знакомого. Brunette — женщина с тёмно-коричневыми волосами. She is the brunette by the window — она та темноволосая женщина у окна. Redhead — рыжеволосый человек: My brother is a redhead — мой брат рыжий. Это существительные: a brunette, a redhead. Фотография помогла бы найти нужного человека: I would recognize her if I saw her photo — я бы узнал её, если бы увидел её фотографию. Saw — форма see; здесь речь о воображаемом условии сейчас.",
-        "uk": "Ви вперше зустрічаєте подругу знайомого. Brunette — жінка з темно-каштановим волоссям. She is the brunette by the window — вона та темноволоса жінка біля вікна. Redhead — рудоволоса людина: My brother is a redhead — мій брат рудий. Це іменники: a brunette, a redhead. Фотографія допомогла б знайти потрібну людину: I would recognize her if I saw her photo — я б упізнав її, якби побачив її фотографію. Saw — форма see; тут ідеться про уявну умову зараз."
+        "ru": "Вы должны встретить знакомую друга, но не знаете её в лицо. Попросите фотографию, объяснив: I would recognize her if I saw her photo — я бы узнал её, если бы увидел её фотографию. Собираем: I + would recognize + her + if I saw her photo — кто, что смог бы сделать, кого узнать, при каком условии. После would нужна recognize без окончания. Saw — форма see; после if она описывает воображаемое условие, а не прошлую встречу.",
+        "uk": "Ви маєте зустріти знайому друга, але не знаєте її в обличчя. Попросіть фотографію, пояснивши: I would recognize her if I saw her photo — я б упізнав її, якби побачив її фотографію. Складаємо: I + would recognize + her + if I saw her photo — хто, що міг би зробити, кого впізнати, за якої умови. Після would потрібна recognize без закінчення. Saw — форма see; після if вона описує уявну умову, а не минулу зустріч."
       },
       "question": {
         "interactionId": "en:lesson-27:session-07:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-27:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Разные оттенки описания",
-        "uk": "Різні відтінки опису"
+        "ru": "Когда сделали снимок",
+        "uk": "Коли зробили знімок"
       },
       "bodyByLocale": {
-        "ru": "Slim — стройный. He is tall and slim — он высокий и стройный. Skinny — худой, очень худой; часто звучит менее одобрительно. I was skinny as a child — в детстве я был очень худым. Эти слова близки по теме, но не одинаковы по тону. Вы смотрите старое фото: I took this photo last summer — я сделал эту фотографию прошлым летом. Last summer — законченное время, поэтому took без have. На снимке все смотрят в камеру, кроме фотографа в зеркале: он занят собственным телефоном.",
-        "uk": "Slim — стрункий. He is tall and slim — він високий і стрункий. Skinny — худий, дуже худий; часто звучить менш схвально. I was skinny as a child — у дитинстві я був дуже худим. Ці слова близькі за темою, але не однакові за тоном. Ви дивитеся старе фото: I took this photo last summer — я зробив цю фотографію минулого літа. Last summer — завершений час, тому took без have. На знімку всі дивляться в камеру, крім фотографа в дзеркалі: він зайнятий власним телефоном."
+        "ru": "Вы показываете другу фотографию, и он спрашивает, когда вы её сделали. Ответьте: I took this photo last summer — я сделал эту фотографию прошлым летом. Собираем: I + took + this photo + last summer — кто, действие в прошлом, что сделал, когда. Took — прошедшая форма take, не taked. Last summer указывает законченное время, поэтому здесь took без have.",
+        "uk": "Ви показуєте другові фотографію, і він запитує, коли ви її зробили. Дайте відповідь: I took this photo last summer — я зробив цю фотографію минулого літа. Складаємо: I + took + this photo + last summer — хто, дія в минулому, що зробив, коли. Took — минула форма take, не taked. Last summer указує завершений час, тому тут took без have."
       },
       "question": {
         "interactionId": "en:lesson-27:session-07:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-27:session-07:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Найти друг друга",
-        "uk": "Знайти одне одного"
+        "ru": "Когда нашли столик",
+        "uk": "Коли знайшли столик"
       },
       "bodyByLocale": {
-        "ru": "I have found the table — я нашёл столик: результат важен сейчас. I found it ten minutes ago — я нашёл его десять минут назад: есть законченное время, поэтому found без have. Друг пока не видит вас. I would wave if I saw you — я бы помахал, если бы видел тебя. Saw здесь описывает воображаемое условие. Можно обойтись без угадывания: I will wait by the entrance — я подожду у входа.",
-        "uk": "I have found the table — я знайшов столик: результат важливий зараз. I found it ten minutes ago — я знайшов його десять хвилин тому: є завершений час, тому found без have. Друг поки не бачить вас. I would wave if I saw you — я б помахав, якби бачив тебе. Saw тут описує уявну умову. Можна обійтися без вгадування: I will wait by the entrance — я зачекаю біля входу."
+        "ru": "Друг звонит и спрашивает, давно ли вы нашли свободный столик. Ответьте: I found it ten minutes ago — я нашёл его десять минут назад. Собираем: I + found + it + ten minutes ago — кто, действие в прошлом, что нашёл, когда. Found — прошедшая форма find. Ago ставим после отрезка времени: ten minutes ago. Эта часть указывает прошлый момент, поэтому используем found без have.",
+        "uk": "Друг телефонує й запитує, чи давно ви знайшли вільний столик. Дайте відповідь: I found it ten minutes ago — я знайшов його десять хвилин тому. Складаємо: I + found + it + ten minutes ago — хто, дія в минулому, що знайшов, коли. Found — минула форма find. Ago ставимо після відрізка часу: ten minutes ago. Ця частина вказує минулий момент, тому використовуємо found без have."
       },
       "question": {
         "interactionId": "en:lesson-27:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "12dd4c62975ba29120969509652f466b5cd6a81c4683d3f6c950c1aed366436d"
+  "introFingerprint": "0fafa62d0d7d94f91d762bfc338afec8ae19a585a4abaa9e1f54cf1fda1e6603"
 }

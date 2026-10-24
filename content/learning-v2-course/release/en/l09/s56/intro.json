@@ -11,12 +11,12 @@
       "pageId": "en:lesson-09:session-56:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Обычная работа и действие сейчас",
-        "uk": "Звичайна робота й дія зараз"
+        "ru": "Помощь посетителю сейчас",
+        "uk": "Допомога відвідувачу зараз"
       },
       "bodyByLocale": {
-        "ru": "На городском празднике вы помогаете команде. Steward здесь — сотрудник, который помогает посетителям и следит за порядком. The steward helps visitors — «Сотрудник помогает посетителям»: это его обычная работа. The steward is helping a visitor — «Сотрудник сейчас помогает посетителю»: вы описываете то, что видите. Для действия сейчас нужны is и helping.",
-        "uk": "На міському святі ви допомагаєте команді. Steward тут — працівник, який допомагає відвідувачам і стежить за порядком. The steward helps visitors — «Працівник допомагає відвідувачам»: це його звичайна робота. The steward is helping a visitor — «Працівник зараз допомагає відвідувачу»: ви описуєте те, що бачите. Для дії зараз потрібні is і helping."
+        "ru": "На городском празднике сотрудник показывает посетителю дорогу. The steward is helping a visitor — «Сотрудник сейчас помогает посетителю». Steward здесь — сотрудник, который помогает гостям и следит за порядком. Сначала the steward — о ком говорим, затем is helping — что он делает сейчас, и a visitor — кому помогает. Для одного сотрудника нужна is, а к help добавляем -ing: helping.",
+        "uk": "На міському святі працівник показує відвідувачу дорогу. The steward is helping a visitor — «Працівник зараз допомагає відвідувачу». Steward тут — працівник, який допомагає гостям і стежить за порядком. Спочатку the steward — про кого говоримо, потім is helping — що він робить зараз, і a visitor — кому допомагає. Для одного працівника потрібна is, а до help додаємо -ing: helping."
       },
       "question": {
         "interactionId": "en:lesson-09:session-56:intro1:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-09:session-56:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Уточнить, что делает команда",
-        "uk": "Уточнити, що робить команда"
+        "ru": "Пересчитать группу перед выходом",
+        "uk": "Перерахувати групу перед виходом"
       },
       "bodyByLocale": {
-        "ru": "Перед выходом группы сотрудник считает людей. Headcount — подсчёт присутствующих. Are you doing a headcount? — «Вы сейчас пересчитываете людей?» В вопросе are стоит перед you; выражение — do a headcount. Пока он считает, коллега громко зовёт посетителей. Please don't shout — «Пожалуйста, не кричите». После don't используем shout без -ing.",
-        "uk": "Перед виходом групи працівник рахує людей. Headcount — підрахунок присутніх. Are you doing a headcount? — «Ви зараз перераховуєте людей?» У запитанні are стоїть перед you; вираз — do a headcount. Поки він рахує, колега голосно кличе відвідувачів. Please don't shout — «Будь ласка, не кричіть». Після don't уживаємо shout без -ing."
+        "ru": "Перед выходом группы сотрудник смотрит на людей и считает их. Вы уточняете: Are you doing a headcount? — «Вы сейчас пересчитываете людей?» Headcount означает подсчёт присутствующих. В вопросе о действии сейчас ставим are перед you, затем doing и a headcount. Выражение do a headcount требует a перед headcount; форма doing показывает действие в процессе.",
+        "uk": "Перед виходом групи працівник дивиться на людей і рахує їх. Ви уточнюєте: Are you doing a headcount? — «Ви зараз перераховуєте людей?» Headcount означає підрахунок присутніх. У запитанні про дію зараз ставимо are перед you, потім doing та a headcount. Вислів do a headcount потребує a перед headcount; форма doing показує дію в процесі."
       },
       "question": {
         "interactionId": "en:lesson-09:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "edf3e3a3e96afcfdad1953cbb917755ffddaa9126186f89daade5f53f4bb41e4"
+  "introFingerprint": "597f2a47752cb1a63e668f87a36efc43a4b7c7e0438757ff4ea789277fc4fe82"
 }

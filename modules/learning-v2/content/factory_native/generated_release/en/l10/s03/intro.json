@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-03:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Работа в центре, магазин на окраине",
-        "uk": "Робота в центрі, магазин на околиці"
+        "ru": "Работать в центре",
+        "uk": "Працювати в центрі"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о работе: I work downtown — «Я работаю в центре города». Downtown — «в центре города», особенно в американском английском. Перед downtown здесь не нужна in. За крупными покупками вы ездите на край города. Outskirts — «окраина»: The shop is on the outskirts — «Магазин на окраине». Запомните сочетание on the outskirts; у outskirts всегда окончание s.",
-        "uk": "Ви розповідаєте про роботу: I work downtown — «Я працюю в центрі міста». Downtown — «у центрі міста», особливо в американській англійській. Перед downtown тут не потрібне in. За великими покупками ви їздите на край міста. Outskirts — «околиця»: The shop is on the outskirts — «Магазин на околиці». Запам’ятайте сполучення on the outskirts; outskirts завжди має закінчення s."
+        "ru": "Друг спрашивает, в какой части города находится ваша работа. I work downtown — «Я работаю в центре города». Downtown означает «в центре города»; это слово особенно распространено в американском английском. Собираем фразу: I — кто работает, work — глагол, downtown — где. Вы сообщаете о своей обычной работе, поэтому используем Present Simple: work без am и без -s после I. Downtown уже обозначает место, поэтому in перед ним не ставим.",
+        "uk": "Друг запитує, у якій частині міста розташована ваша робота. I work downtown — «Я працюю в центрі міста». Downtown означає «у центрі міста»; це слово особливо поширене в американській англійській. Складаємо фразу: I — хто працює, work — дієслово, downtown — де. Ви повідомляєте про свою звичайну роботу, тому використовуємо Present Simple: work без am і без -s після I. Downtown вже позначає місце, тому in перед ним не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-10:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "54ed661efe2886e60d9e5cab2dce029f2b5f6fa6d3f80eac908ecec01086bca3"
+  "introFingerprint": "05b3831eebec831c0ef19374ef3e65959733ec4713721234ac01f1d6a9fe426d"
 }

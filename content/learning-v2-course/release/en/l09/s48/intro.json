@@ -11,12 +11,12 @@
       "pageId": "en:lesson-09:session-48:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Птица почти не двигается",
-        "uk": "Птах майже не рухається"
+        "ru": "Цапля стоит в воде",
+        "uk": "Чапля стоїть у воді"
       },
       "bodyByLocale": {
-        "ru": "На прогулке вы замечаете у воды высокую птицу с длинными ногами и шеей. Это цапля — a heron. Сын думает, что она идёт, но она стоит неподвижно. The heron is standing in the water — «Цапля стоит в воде». Standing описывает, что она делает сейчас, даже если при этом не перемещается.",
-        "uk": "На прогулянці ви помічаєте біля води високого птаха з довгими ногами й шиєю. Це чапля — a heron. Син думає, що вона йде, але вона стоїть нерухомо. The heron is standing in the water — «Чапля стоїть у воді». Standing описує, що вона робить зараз, навіть якщо при цьому не переміщується."
+        "ru": "На прогулке вы видите цаплю, которая неподвижно стоит в воде. The heron is standing in the water — «Цапля стоит в воде». Heron означает «цапля». Сначала the heron — птица, которую вы видите, затем is standing — что она делает сейчас, и in the water — где. Для одной птицы нужна is, к stand добавляем -ing: standing. Present Continuous подходит и для положения тела сейчас: птице не обязательно двигаться с места.",
+        "uk": "На прогулянці ви бачите чаплю, яка нерухомо стоїть у воді. The heron is standing in the water — «Чапля стоїть у воді». Heron означає «чапля». Спочатку the heron — птах, якого ви бачите, потім is standing — що він робить зараз, і in the water — де. Для одного птаха потрібна is, до stand додаємо -ing: standing. Present Continuous підходить і для положення тіла зараз: птахові не обов’язково рухатися з місця."
       },
       "question": {
         "interactionId": "en:lesson-09:session-48:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7f8eed61c726c6244089d96aacf00f0f21ec458a59747c61036839f55c6ef0da"
+  "introFingerprint": "3c4bd3ebbd41d971e474f1bc4a0de0b40861bf7ce0ec3702b44c882ff35d49d9"
 }

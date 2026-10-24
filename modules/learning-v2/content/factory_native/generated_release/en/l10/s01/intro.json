@@ -69,8 +69,8 @@
         "uk": "Зараз біля моря"
       },
       "bodyByLocale": {
-        "ru": "На этой неделе вы отдыхаете у моря. Seaside — «морское побережье»: We are staying at the seaside — «Мы отдыхаем у моря». Are staying описывает временное проживание во время этой поездки. Обычно вы предпочитаете деревни и поля: I like the countryside — «Мне нравится сельская местность». Countryside — «сельская местность». Like описывает предпочтение, поэтому без am liking.",
-        "uk": "Цього тижня ви відпочиваєте біля моря. Seaside — «морське узбережжя»: We are staying at the seaside — «Ми відпочиваємо біля моря». Are staying описує тимчасове проживання під час цієї поїздки. Зазвичай ви віддаєте перевагу селам і полям: I like the countryside — «Мені подобається сільська місцевість». Countryside — «сільська місцевість». Like описує вподобання, тому без am liking."
+        "ru": "На этой неделе вы с семьёй живёте у моря во время отпуска. Друг спрашивает, где вы остановились: We are staying at the seaside — «Мы отдыхаем у моря». Seaside означает «морское побережье». Это временное проживание в текущей поездке, поэтому после we ставим are и staying — stay с окончанием -ing. В конце добавляем место: at the seaside. Получается we + are + staying + at the seaside. Буква y в staying сохраняется.",
+        "uk": "Цього тижня ви з родиною живете біля моря під час відпустки. Друг запитує, де ви зупинилися: We are staying at the seaside — «Ми відпочиваємо біля моря». Seaside означає «морське узбережжя». Це тимчасове проживання в поточній поїздці, тому після we ставимо are та staying — stay із закінченням -ing. Наприкінці додаємо місце: at the seaside. Виходить we + are + staying + at the seaside. Літера y у staying зберігається."
       },
       "question": {
         "interactionId": "en:lesson-10:session-01:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c60d9d51c5bf15d6226ede76636a6bd2f3302dce390c241fcdaae5855dd7defe"
+  "introFingerprint": "6f5d108c930b0f6ad1f483f5f722a00c32fe15cd9e1964fbe8bb74a6b485051a"
 }

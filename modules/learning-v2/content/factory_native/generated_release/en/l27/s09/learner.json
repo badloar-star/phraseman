@@ -1,0 +1,1038 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-09:word:hesitant",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hesitant",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:word:hesitant:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hesitant",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:word:hesitant:audio",
+          "transcript": "hesitant"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:word:hesitant:r1",
+            "targetText": "hesitant",
+            "meaningByLocale": {
+              "ru": "Сомневающийся, нерешительный перед действием.",
+              "uk": "Той, хто вагається; нерішучий перед дією."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hesitant",
+          "definitionByLocale": {
+            "ru": "Сомневающийся, нерешительный перед действием.",
+            "uk": "Той, хто вагається; нерішучий перед дією."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i01",
+      "ordinal": 5,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Объясните, что сомневаетесь насчёт покупки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Объясните, что сомневаетесь насчёт покупки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i01:audio",
+          "transcript": "I am hesitant about buying it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am hesitant about buying it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i02:r1",
+          "text": "What are you worried about?"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i02:r2",
+          "text": "What are you looking for?"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i02:r3",
+          "text": "What are you waiting for?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i02:audio",
+          "transcript": "What are you worried about?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:i02:r1",
+            "targetText": "What are you worried about?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i02:r2",
+            "targetText": "What are you looking for?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i02:r3",
+            "targetText": "What are you waiting for?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит What are you worried about?",
+              "uk": "У записі звучить What are you worried about?"
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит What are you worried about?",
+              "uk": "У записі звучить What are you worried about?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:word:costly",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — costly",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:word:costly:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — costly",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:word:costly:audio",
+          "transcript": "costly"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:word:costly:r1",
+            "targetText": "costly",
+            "meaningByLocale": {
+              "ru": "Дорогой, требующий больших затрат.",
+              "uk": "Дорогий, такий, що потребує великих витрат."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "costly",
+          "definitionByLocale": {
+            "ru": "Дорогой, требующий больших затрат.",
+            "uk": "Дорогий, такий, що потребує великих витрат."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Объясните, что ремонт может дорого обойтись.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Объясните, что ремонт может дорого обойтись.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Repairs can be costly.",
+        "localizedMeaning": {
+          "ru": "Объясните, что ремонт может дорого обойтись.",
+          "uk": "Поясніть, що ремонт може дорого обійтися."
+        },
+        "orderedTokens": [
+          "Repairs",
+          "can",
+          "be",
+          "costly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Посоветуйте другу подождать: на твоём месте я бы подождал.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i04:r1",
+          "text": "were"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i04:r2",
+          "text": "am"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i04:r3",
+          "text": "will be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Посоветуйте другу подождать: на твоём месте я бы подождал.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Посоветуйте другу подождать: на твоём месте я бы подождал.",
+          "uk": "Порадьте другові зачекати: на твоєму місці я б зачекав."
+        },
+        "gappedTargetPhrase": "If I ___ you, I would wait.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-09:i04:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i04:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i04:r3",
+            "text": "will be"
+          }
+        ],
+        "testedDimension": "Посоветуйте другу подождать: на твоём месте я бы подождал.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Посоветуйте другу подождать: на твоём месте я бы подождал.",
+            "feedbackByLocale": {
+              "ru": "Устойчивый совет начинается с If I were you.",
+              "uk": "Усталена порада починається з If I were you."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i04:r3",
+            "correct": false,
+            "testedDimension": "Посоветуйте другу подождать: на твоём месте я бы подождал.",
+            "feedbackByLocale": {
+              "ru": "Это воображаемая ситуация, не будущее will be.",
+              "uk": "Це уявна ситуація, не майбутнє will be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i05",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте просьбу объяснить свой совет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Услышьте просьбу объяснить свой совет.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i05:audio",
+          "transcript": "Why do you think so?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Why do you think so?",
+        "orderedTokens": [
+          "Why",
+          "do",
+          "you",
+          "think",
+          "so"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:word:comfy",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — comfy",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:word:comfy:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — comfy",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:word:comfy:audio",
+          "transcript": "comfy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:word:comfy:r1",
+            "targetText": "comfy",
+            "meaningByLocale": {
+              "ru": "Удобный, уютный; разговорное слово.",
+              "uk": "Зручний, затишний; розмовне слово."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "comfy",
+          "definitionByLocale": {
+            "ru": "Удобный, уютный; разговорное слово.",
+            "uk": "Зручний, затишний; розмовне слово."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i06:r1",
+          "text": "This chair is comfy."
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i06:r2",
+          "text": "This bed is comfy."
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i06:r3",
+          "text": "That chair is comfy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i06:audio",
+          "transcript": "This chair is comfy."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:i06:r1",
+            "targetText": "This chair is comfy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i06:r2",
+            "targetText": "This bed is comfy.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i06:r3",
+            "targetText": "That chair is comfy.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chair is comfy.",
+              "uk": "У записі звучить This chair is comfy."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This chair is comfy.",
+              "uk": "У записі звучить This chair is comfy."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите, можно ли попробовать другое кресло.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Спросите, можно ли попробовать другое кресло.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i07:audio",
+          "transcript": "Can I try the other one?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Can I try the other one?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Представьте более низкую цену: вы купили бы кресло.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i08:r1",
+          "text": "buy"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i08:r2",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i08:r3",
+          "text": "to buy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Представьте более низкую цену: вы купили бы кресло.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Представьте более низкую цену: вы купили бы кресло.",
+          "uk": "Уявіть нижчу ціну: ви купили б крісло."
+        },
+        "gappedTargetPhrase": "If it were cheaper, I would ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-09:i08:r1",
+            "text": "buy"
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i08:r2",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i08:r3",
+            "text": "to buy"
+          }
+        ],
+        "testedDimension": "Представьте более низкую цену: вы купили бы кресло.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i08:r2",
+            "correct": false,
+            "testedDimension": "Представьте более низкую цену: вы купили бы кресло.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма buy.",
+              "uk": "Після would потрібна початкова форма buy."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i08:r3",
+            "correct": false,
+            "testedDimension": "Представьте более низкую цену: вы купили бы кресло.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, действует ли скидка сегодня.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, действует ли скидка сегодня.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Is the discount available today?",
+        "localizedMeaning": {
+          "ru": "Уточните, действует ли скидка сегодня.",
+          "uk": "Уточніть, чи діє знижка сьогодні."
+        },
+        "orderedTokens": [
+          "Is",
+          "the",
+          "discount",
+          "available",
+          "today"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:word:worthless",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — worthless",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:word:worthless:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — worthless",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:word:worthless:audio",
+          "transcript": "worthless"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:word:worthless:r1",
+            "targetText": "worthless",
+            "meaningByLocale": {
+              "ru": "Ничего не стоящий, бесполезный — здесь о купоне.",
+              "uk": "Нічого не вартий, марний — тут про купон."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "worthless",
+          "definitionByLocale": {
+            "ru": "Ничего не стоящий, бесполезный — здесь о купоне.",
+            "uk": "Нічого не вартий, марний — тут про купон."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i10",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i10:r1",
+          "text": "This expired coupon is worthless."
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i10:r2",
+          "text": "This expired ticket is worthless."
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i10:r3",
+          "text": "That expired coupon is worthless."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i10:audio",
+          "transcript": "This expired coupon is worthless."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:i10:r1",
+            "targetText": "This expired coupon is worthless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i10:r2",
+            "targetText": "This expired ticket is worthless.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i10:r3",
+            "targetText": "That expired coupon is worthless.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i10:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This expired coupon is worthless.",
+              "uk": "У записі звучить This expired coupon is worthless."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i10:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This expired coupon is worthless.",
+              "uk": "У записі звучить This expired coupon is worthless."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i11",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Спросите продавца о другом предложении.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Спросите продавца о другом предложении.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i11:audio",
+          "transcript": "Do you have any other offers?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Do you have any other offers?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вообразите помощь подруги, которой сейчас здесь нет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вообразите помощь подруги, которой сейчас здесь нет.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "If she were here, she would help.",
+        "localizedMeaning": {
+          "ru": "Вообразите помощь подруги, которой сейчас здесь нет.",
+          "uk": "Уявіть допомогу подруги, якої зараз тут немає."
+        },
+        "orderedTokens": [
+          "If",
+          "she",
+          "were",
+          "here,",
+          "she",
+          "would",
+          "help"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На месте друга вы выбрали бы меньший размер.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i13:r1",
+          "text": "choose"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i13:r2",
+          "text": "chose"
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i13:r3",
+          "text": "choosing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На месте друга вы выбрали бы меньший размер.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На месте друга вы выбрали бы меньший размер.",
+          "uk": "На місці друга ви обрали б менший розмір."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ the smaller one.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-09:i13:r1",
+            "text": "choose"
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i13:r2",
+            "text": "chose"
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i13:r3",
+            "text": "choosing"
+          }
+        ],
+        "testedDimension": "На месте друга вы выбрали бы меньший размер.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i13:r2",
+            "correct": false,
+            "testedDimension": "На месте друга вы выбрали бы меньший размер.",
+            "feedbackByLocale": {
+              "ru": "После would нужна начальная форма choose.",
+              "uk": "Після would потрібна початкова форма choose."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i13:r3",
+            "correct": false,
+            "testedDimension": "На месте друга вы выбрали бы меньший размер.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим -ing.",
+              "uk": "Після would не ставимо -ing."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение позвонить подруге.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение позвонить подруге.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i14:audio",
+          "transcript": "Let us call her."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Let us call her.",
+        "orderedTokens": [
+          "Let",
+          "us",
+          "call",
+          "her"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-09:i15:r1",
+          "text": "She is free after lunch."
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i15:r2",
+          "text": "She is free before lunch."
+        },
+        {
+          "responseId": "en:lesson-27:session-09:i15:r3",
+          "text": "He is free after lunch."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i15:audio",
+          "transcript": "She is free after lunch."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-09:i15:r1",
+            "targetText": "She is free after lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i15:r2",
+            "targetText": "She is free before lunch.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i15:r3",
+            "targetText": "He is free after lunch.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-09:i15:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is free after lunch.",
+              "uk": "У записі звучить She is free after lunch."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-09:i15:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит She is free after lunch.",
+              "uk": "У записі звучить She is free after lunch."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите время подумать.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Попросите время подумать.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-09:i16:audio",
+          "transcript": "I need some time to think."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need some time to think.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Поблагодарите друга за совет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Поблагодарите друга за совет.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Thanks for your advice.",
+        "localizedMeaning": {
+          "ru": "Поблагодарите друга за совет.",
+          "uk": "Подякуйте другові за пораду."
+        },
+        "orderedTokens": [
+          "Thanks",
+          "for",
+          "your",
+          "advice"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0ebda89a017715c00fa1332e2c69a213d953e75233cba55a6b49090c5fb8d331"
+}

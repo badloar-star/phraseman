@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-10",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-10:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-10:intro1:r2": {
+          "ru": "После would нужна начальная форма ask.",
+          "uk": "Після would потрібна початкова форма ask."
+        },
+        "en:lesson-27:session-10:intro1:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-10:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-10:intro2:r2": {
+          "ru": "После would нужно eat.",
+          "uk": "Після would потрібно eat."
+        },
+        "en:lesson-27:session-10:intro2:r3": {
+          "ru": "После would не ставим -ing.",
+          "uk": "Після would не ставимо -ing."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-10:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-10:intro3:r2": {
+          "ru": "С yesterday здесь past simple.",
+          "uk": "Із yesterday тут past simple."
+        },
+        "en:lesson-27:session-10:intro3:r3": {
+          "ru": "Прошедшая форма pay в этом значении — paid.",
+          "uk": "Минула форма pay у цьому значенні — paid."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "71a70597a9efdea7dac61fe32e279ebac2d40b22523cbe9f2a97492447fa8b78"
+}

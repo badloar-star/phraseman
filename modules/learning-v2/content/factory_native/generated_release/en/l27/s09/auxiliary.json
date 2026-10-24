@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-09:intro1:r2": {
+          "ru": "Для этого совета используется If I were you.",
+          "uk": "Для цієї поради вживається If I were you."
+        },
+        "en:lesson-27:session-09:intro1:r3": {
+          "ru": "После would нужна форма wait.",
+          "uk": "Після would потрібна форма wait."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-09:intro2:r2": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        },
+        "en:lesson-27:session-09:intro2:r3": {
+          "ru": "После would нужна начальная форма buy.",
+          "uk": "Після would потрібна початкова форма buy."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-09:intro3:r2": {
+          "ru": "После would форма help без -s.",
+          "uk": "Після would форма help без -s."
+        },
+        "en:lesson-27:session-09:intro3:r3": {
+          "ru": "После would нужна начальная форма help.",
+          "uk": "Після would потрібна початкова форма help."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "33f24bc2e34b82155ba50ec061fbf2e07596471839443079a4196b3f1e92b98c"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "if + subject + were; would + base verb",
+    "uk": "if + subject + were; would + base verb"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "На твоём месте",
+        "uk": "На твоєму місці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг не решается купить кресло. Hesitant — нерешительный, сомневающийся перед действием. I am hesitant about buying it — я сомневаюсь, стоит ли это покупать. Costly — дорогой, требующий больших затрат: Repairs can be costly — ремонт может дорого обойтись. Вы советуете подождать: If I were you, I would wait — на твоём месте я бы подождал. Were здесь относится к воображаемой ситуации, даже после I. После would нужна начальная форма wait. Это совет, а не рассказ о прошлом.",
+        "uk": "Друг не наважується купити крісло. Hesitant — нерішучий, той, хто вагається перед дією. I am hesitant about buying it — я вагаюся, чи варто це купувати. Costly — дорогий, такий, що потребує великих витрат: Repairs can be costly — ремонт може дорого обійтися. Ви радите зачекати: If I were you, I would wait — на твоєму місці я б зачекав. Were тут стосується уявної ситуації, навіть після I. Після would потрібна початкова форма wait. Це порада, а не розповідь про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-09:intro1:r1",
+              "text": "If I were you, I would wait."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro1:r2",
+              "text": "If I am you, I would wait."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro1:r3",
+              "text": "If I were you, I would waited."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-09:intro1:r1",
+              "text": "If I were you, I would wait."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro1:r2",
+              "text": "If I am you, I would wait."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro1:r3",
+              "text": "If I were you, I would waited."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Удобное кресло",
+        "uk": "Зручне крісло"
+      },
+      "bodyByLocale": {
+        "ru": "Comfy — удобный, уютный; обычное разговорное слово. This chair is comfy — это кресло удобное. Оно не означает, что вещь новая или дорогая. Вы представляете более низкую цену: If it were cheaper, I would buy it — если бы оно было дешевле, я бы его купил. В воображаемом условии were можно употреблять и с it, she, he. В разговорной речи в подобных условиях бывает was; не всякое was ошибочно. В этом занятии тренируем were и устойчивый совет If I were you.",
+        "uk": "Comfy — зручний, затишний; звичайне розмовне слово. This chair is comfy — це крісло зручне. Воно не означає, що річ нова або дорога. Ви уявляєте нижчу ціну: If it were cheaper, I would buy it — якби воно було дешевшим, я б його купив. В уявній умові were можна вживати також з it, she, he. У розмовному мовленні в подібних умовах буває was; не кожне was помилкове. У цьому занятті тренуємо were й усталену пораду If I were you."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-09:intro2:r1",
+              "text": "If it were cheaper, I would buy it."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro2:r2",
+              "text": "If it were cheaper, I would to buy it."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro2:r3",
+              "text": "If it were cheaper, I would buying it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-09:intro2:r1",
+              "text": "If it were cheaper, I would buy it."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro2:r2",
+              "text": "If it were cheaper, I would to buy it."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro2:r3",
+              "text": "If it were cheaper, I would buying it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Купон и помощь друга",
+        "uk": "Купон і допомога друга"
+      },
+      "bodyByLocale": {
+        "ru": "Worthless — ничего не стоящий, бесполезный в данной ситуации. This expired coupon is worthless — этот просроченный купон бесполезен. Здесь вы говорите о купоне; так называть человека оскорбительно. Подруга, которая разбирается в мебели, сейчас далеко: If she were here, she would help — если бы она была здесь, она бы помогла. Were here представляет другое настоящее, would help — результат. Вы уже устроились в удобном кресле. Теперь самая трудная часть выбора — встать и посмотреть следующее.",
+        "uk": "Worthless — нічого не вартий, марний у цій ситуації. This expired coupon is worthless — цей прострочений купон марний. Тут ви говорите про купон; так називати людину образливо. Подруга, яка розуміється на меблях, зараз далеко: If she were here, she would help — якби вона була тут, вона б допомогла. Were here уявляє інше теперішнє, would help — результат. Ви вже влаштувалися у зручному кріслі. Тепер найважча частина вибору — встати й подивитися наступне."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-09:intro3:r1",
+              "text": "If she were here, she would help."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro3:r2",
+              "text": "If she were here, she would helps."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro3:r3",
+              "text": "If she were here, she would helped."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-09:intro3:r1",
+              "text": "If she were here, she would help."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro3:r2",
+              "text": "If she were here, she would helps."
+            },
+            {
+              "responseId": "en:lesson-27:session-09:intro3:r3",
+              "text": "If she were here, she would helped."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "419b29dd4424f43d9abab107e909278b6a1e9a848ca5e33bb40a66f68fdbdc91"
+}

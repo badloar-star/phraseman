@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-10:word:unhappy",
+    "correctText": "unhappy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i01",
+    "correctText": "I am unhappy with the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i02",
+    "correctText": "Do you have a quieter room?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i03",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-27:session-10:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i04",
+    "correctText": "We have a room on the third floor.",
+    "correctResponseId": "en:lesson-27:session-10:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:word:unlucky",
+    "correctText": "unlucky",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i05",
+    "correctText": "We were unlucky with the weather.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i06",
+    "correctText": "It rained all morning.",
+    "correctResponseId": "en:lesson-27:session-10:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i07",
+    "correctText": "eat",
+    "correctResponseId": "en:lesson-27:session-10:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i08",
+    "correctText": "Let us stay inside.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:word:unopened",
+    "correctText": "unopened",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i09",
+    "correctText": "This bottle is unopened.",
+    "correctResponseId": "en:lesson-27:session-10:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i10",
+    "correctText": "Could you open it for me?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:word:unlimited",
+    "correctText": "unlimited",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i11",
+    "correctText": "Is the tea unlimited?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i12",
+    "correctText": "What time does breakfast end?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i13",
+    "correctText": "paid",
+    "correctResponseId": "en:lesson-27:session-10:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i14",
+    "correctText": "May I see your receipt?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i15",
+    "correctText": "I have left it in my room.",
+    "correctResponseId": "en:lesson-27:session-10:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i16",
+    "correctText": "I will be back in a minute.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-10:i17",
+    "correctText": "I would keep the receipt if I were you.",
+    "correctResponseId": null
+  }
+]

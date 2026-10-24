@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-09:word:hesitant",
+    "correctText": "hesitant",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i01",
+    "correctText": "I am hesitant about buying it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i02",
+    "correctText": "What are you worried about?",
+    "correctResponseId": "en:lesson-27:session-09:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:word:costly",
+    "correctText": "costly",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i03",
+    "correctText": "Repairs can be costly.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i04",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-09:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i05",
+    "correctText": "Why do you think so?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:word:comfy",
+    "correctText": "comfy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i06",
+    "correctText": "This chair is comfy.",
+    "correctResponseId": "en:lesson-27:session-09:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i07",
+    "correctText": "Can I try the other one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i08",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-27:session-09:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i09",
+    "correctText": "Is the discount available today?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:word:worthless",
+    "correctText": "worthless",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i10",
+    "correctText": "This expired coupon is worthless.",
+    "correctResponseId": "en:lesson-27:session-09:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i11",
+    "correctText": "Do you have any other offers?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i12",
+    "correctText": "If she were here, she would help.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i13",
+    "correctText": "choose",
+    "correctResponseId": "en:lesson-27:session-09:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i14",
+    "correctText": "Let us call her.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i15",
+    "correctText": "She is free after lunch.",
+    "correctResponseId": "en:lesson-27:session-09:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i16",
+    "correctText": "I need some time to think.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-09:i17",
+    "correctText": "Thanks for your advice.",
+    "correctResponseId": null
+  }
+]

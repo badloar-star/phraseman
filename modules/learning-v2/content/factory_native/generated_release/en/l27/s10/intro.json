@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
+    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить другую комнату",
+        "uk": "Попросити іншу кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Unhappy — несчастный или недовольный; значение зависит от ситуации. I am unhappy with the room — я недоволен комнатой. With показывает, чем именно. Друг советует: If I were you, I would ask for another room — на твоём месте я бы попросил другую комнату. Это воображаемое положение и совет: were после I, would ask в результате. Можно спокойно уточнить варианты: Do you have a quieter room? — у вас есть комната потише?",
+        "uk": "Unhappy — нещасний або незадоволений; значення залежить від ситуації. I am unhappy with the room — я незадоволений кімнатою. With показує, чим саме. Друг радить: If I were you, I would ask for another room — на твоєму місці я б попросив іншу кімнату. Це уявне становище й порада: were після I, would ask у результаті. Можна спокійно уточнити варіанти: Do you have a quieter room? — у вас є тихіша кімната?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-10:intro1:r1",
+              "text": "If I were you, I would ask for another room."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro1:r2",
+              "text": "If I were you, I would asked for another room."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro1:r3",
+              "text": "If I were you, I would to ask for another room."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-10:intro1:r1",
+              "text": "If I were you, I would ask for another room."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro1:r2",
+              "text": "If I were you, I would asked for another room."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro1:r3",
+              "text": "If I were you, I would to ask for another room."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Не повезло с погодой",
+        "uk": "Не пощастило з погодою"
+      },
+      "bodyByLocale": {
+        "ru": "Unlucky — невезучий; в конкретной ситуации можно перевести «не повезло». We were unlucky with the weather — нам не повезло с погодой. Were здесь обычное прошедшее время с we. А в If it were sunny, we would eat outside — если бы было солнечно, мы бы поели на улице — were описывает воображаемую погоду сейчас. Сравните факт и воображаемый вариант. It rained yesterday — вчера шёл дождь: yesterday требует здесь past simple.",
+        "uk": "Unlucky — невезучий; у конкретній ситуації можна перекласти «не пощастило». We were unlucky with the weather — нам не пощастило з погодою. Were тут звичайний минулий час із we. А в If it were sunny, we would eat outside — якби було сонячно, ми б поїли надворі — were описує уявну погоду зараз. Порівняйте факт і уявний варіант. It rained yesterday — учора йшов дощ: yesterday потребує тут past simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-10:intro2:r1",
+              "text": "If it were sunny, we would eat outside."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro2:r2",
+              "text": "If it were sunny, we would ate outside."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro2:r3",
+              "text": "If it were sunny, we would eating outside."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-10:intro2:r1",
+              "text": "If it were sunny, we would eat outside."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro2:r2",
+              "text": "If it were sunny, we would ate outside."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro2:r3",
+              "text": "If it were sunny, we would eating outside."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Что входит в цену",
+        "uk": "Що входить у ціну"
+      },
+      "bodyByLocale": {
+        "ru": "Unopened — неоткрытый. This bottle is unopened — эту бутылку ещё не открывали. Это описание состояния, а не обещание качества содержимого. Unlimited — неограниченный: Is the tea unlimited? — чай можно брать без ограничения? Даже если количество не ограничено, стоит уточнить время подачи. I have paid for breakfast — я оплатил завтрак: важен результат сейчас. I paid yesterday — я заплатил вчера: называем законченное время. Завтрак заканчивается через пять минут — ваш «неограниченный чай» оказался ограничен часами.",
+        "uk": "Unopened — невідкритий. This bottle is unopened — цю пляшку ще не відкривали. Це опис стану, а не обіцянка якості вмісту. Unlimited — необмежений: Is the tea unlimited? — чай можна брати без обмеження? Навіть якщо кількість не обмежена, варто уточнити час подачі. I have paid for breakfast — я оплатив сніданок: важливий результат зараз. I paid yesterday — я заплатив учора: називаємо завершений час. Сніданок закінчується за п’ять хвилин — ваш «необмежений чай» виявився обмеженим годинником."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-10:intro3:r1",
+              "text": "I paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro3:r2",
+              "text": "I have paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro3:r3",
+              "text": "I payed yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-10:intro3:r1",
+              "text": "I paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro3:r2",
+              "text": "I have paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-10:intro3:r3",
+              "text": "I payed yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "463ee44274a3580f986a90522c4945d1c714b8bdb71e1c2b1707c9241e0452b6"
+}

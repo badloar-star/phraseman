@@ -21,9 +21,9 @@ Accuse — звинувачувати. They had accused him of lying before he s
 
 ## Інтро 2
 
-### Заборона й прохання
+### Заборона вже діяла
 
-Forbid — забороняти; третя форма — forbidden. My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відчинив шафу. Заборона вже діяла на момент, коли я відчинив шафу. Beg — благати, дуже наполегливо просити. He had begged for another chance before she answered — він благав дати йому ще один шанс до того, як вона відповіла. Beg for another chance — просити ще один шанс. У begged подвоюємо g.
+Ви згадуєте вечір удома: мама заборонила перекуси, а пізніше ви відкрили шафку з їжею. Скажіть: My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відкрив шафку. Складаємо: My mother + had forbidden + snacks + before I opened the cupboard — хто, що зробив раніше, що заборонив, до якої події. Після had потрібна третя форма forbidden, а не forbid чи forbade. Had forbidden позначає ранішу заборону; opened — пізніше відкриття шафки.
 
 **Виберіть фразу для цієї ситуації.**
 

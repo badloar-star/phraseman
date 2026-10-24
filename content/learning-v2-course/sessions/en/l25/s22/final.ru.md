@@ -21,9 +21,9 @@ Accuse — обвинять. They had accused him of lying before he showed the 
 
 ## Интро 2
 
-### Запрет и просьба
+### Запрет уже действовал
 
-Forbid — запрещать; третья форма — forbidden. My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Запрет уже действовал к моменту, когда я открыл шкаф. Beg — умолять, очень настойчиво просить. He had begged for another chance before she answered — он умолял дать ему ещё один шанс до того, как она ответила. Beg for another chance — просить ещё один шанс. В begged удваиваем g.
+Вы вспоминаете вечер дома: мама запретила перекусы, а позже вы открыли шкаф с едой. Скажите: My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Собираем: My mother + had forbidden + snacks + before I opened the cupboard — кто, что сделал раньше, что запретил, до какого события. После had нужна третья форма forbidden, а не forbid или forbade. Had forbidden отмечает более ранний запрет; opened — последующее открытие шкафа.
 
 **Выберите фразу для этой ситуации.**
 

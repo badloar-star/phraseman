@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "План готов, причина найдена",
-        "uk": "План готовий, причину знайдено"
+        "ru": "План розыгрыша уже был готов",
+        "uk": "План розіграшу вже був готовий"
       },
       "bodyByLocale": {
-        "ru": "Prank — розыгрыш, не просто рассказанная шутка. They had planned the prank by the time I arrived — они уже спланировали розыгрыш к моему приходу. План был готов раньше прихода. Fault здесь означает неисправность, например в стиральной машине. We had found the fault by the time she called — мы уже нашли неисправность к тому моменту, когда она позвонила. Found — третья форма знакомого find.",
-        "uk": "Prank — розіграш, не просто розказаний жарт. They had planned the prank by the time I arrived — вони вже спланували розіграш до мого приходу. План був готовий раніше за прихід. Fault тут означає несправність, наприклад у пральній машині. We had found the fault by the time she called — ми вже знайшли несправність до того моменту, коли вона зателефонувала. Found — третя форма знайомого find."
+        "ru": "Вы вспоминаете встречу с друзьями: к вашему приходу они уже придумали, как разыграть знакомого. Скажите: They had planned the prank by the time I arrived — они спланировали розыгрыш к тому времени, как я пришёл. Собираем: They + had planned + the prank + by the time I arrived — кто, что сделал раньше, что спланировал, к какому прошлому моменту. После had нужна planned: у plan удваиваем n перед -ed. Had planned отмечает готовый план, а arrived — ваш более поздний приход.",
+        "uk": "Ви згадуєте зустріч із друзями: до вашого приходу вони вже придумали, як розіграти знайомого. Скажіть: They had planned the prank by the time I arrived — вони спланували розіграш до того часу, як я прийшов. Складаємо: They + had planned + the prank + by the time I arrived — хто, що зробив раніше, що спланував, до якого минулого моменту. Після had потрібна planned: у plan подвоюємо n перед -ed. Had planned позначає готовий план, а arrived — ваш пізніший прихід."
       },
       "question": {
         "interactionId": "en:lesson-25:session-35:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "72c32a0fff003ded073c6b580c7f0a20acca35e9ffa64a49e367adf8f1210c7d"
+  "introFingerprint": "e31b54c0ad2cd0e37214584591e387799cceaf838e0013f0884eff1aa0a5cc4f"
 }

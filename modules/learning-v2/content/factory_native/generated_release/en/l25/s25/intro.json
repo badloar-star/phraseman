@@ -11,12 +11,12 @@
       "pageId": "en:lesson-25:session-25:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Сначала и потом",
-        "uk": "Спочатку й потім"
+        "ru": "Остановиться после движения назад",
+        "uk": "Зупинитися після руху назад"
       },
       "bodyByLocale": {
-        "ru": "Reverse — двигаться задним ходом. After I reversed, I stopped — после того как я сдал назад, я остановился. After означает «после того как»: сначала сдал назад, потом остановился. Before означает «до того как»: I stopped before I left — я остановился до того, как уехал. После before и after можно поставить целую часть предложения с подлежащим и глаголом. В рассказе о законченных событиях здесь используем Past Simple. Если часть с after стоит первой, после неё ставим запятую.",
-        "uk": "Reverse — рухатися заднім ходом. After I reversed, I stopped — після того як я здав назад, я зупинився. After означає «після того як»: спочатку здав назад, потім зупинився. Before означає «до того як»: I stopped before I left — я зупинився до того, як поїхав. Після before та after можна поставити цілу частину речення з підметом і дієсловом. У розповіді про завершені події тут використовуємо Past Simple. Якщо частина з after стоїть першою, після неї ставимо кому."
+        "ru": "Вы рассказываете, как вчера парковались: сначала сдали назад, затем остановились. Скажите: I stopped after I reversed — я остановился после того, как сдал назад. Собираем: I + stopped + after I reversed — кто, что сделал, после какого события. After означает «после того как» и вводит целую часть с I и reversed. Обе части в past simple: stopped и reversed. Событие после after произошло раньше остановки, хотя названо в конце фразы. Можно поставить его первым: After I reversed, I stopped. Тогда после первой части нужна запятая.",
+        "uk": "Ви розповідаєте, як учора паркувалися: спочатку здали назад, потім зупинилися. Скажіть: I stopped after I reversed — я зупинився після того, як здав назад. Складаємо: I + stopped + after I reversed — хто, що зробив, після якої події. After означає «після того як» і вводить цілу частину з I та reversed. Обидві частини в past simple: stopped і reversed. Подія після after відбулася раніше зупинки, хоча названа наприкінці фрази. Можна поставити її першою: After I reversed, I stopped. Тоді після першої частини потрібна кома."
       },
       "question": {
         "interactionId": "en:lesson-25:session-25:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-25:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Before меняет порядок рассказа",
-        "uk": "Before змінює порядок розповіді"
+        "ru": "Посмотреть в зеркало до обгона",
+        "uk": "Подивитися в дзеркало до обгону"
       },
       "bodyByLocale": {
-        "ru": "Overtake — обгонять; прошедшая форма — overtook. Before he overtook the bus, he checked his mirror — прежде чем обогнать автобус, он посмотрел в зеркало. Сначала посмотрел в зеркало, затем обогнал автобус: часть с before называет более позднее событие, хотя стоит первой в предложении. Skid — скользить боком или юзом. After the car skidded, the driver stopped — после того как машина пошла юзом, водитель остановился. Здесь скольжение было раньше остановки. В skidded удваиваем d.",
-        "uk": "Overtake — обганяти; минула форма — overtook. Before he overtook the bus, he checked his mirror — перш ніж обігнати автобус, він подивився в дзеркало. Спочатку подивився в дзеркало, потім обігнав автобус: частина з before називає пізнішу подію, хоча стоїть першою в реченні. Skid — ковзати боком або юзом. After the car skidded, the driver stopped — після того як машина пішла юзом, водій зупинився. Тут ковзання було раніше за зупинку. У skidded подвоюємо d."
+        "ru": "Вы рассказываете о водителе: перед обгоном автобуса он посмотрел в зеркало. Скажите: He checked his mirror before he overtook the bus — он посмотрел в зеркало до того, как обогнал автобус. Собираем: He + checked + his mirror + before he overtook the bus — кто, что сделал, что проверил, до какого события. Before означает «до того как»: проверка зеркала была раньше обгона. В обеих частях past simple: checked с -ed и неправильная форма overtook. Можно начать с более позднего события: Before he overtook the bus, he checked his mirror. Порядок действий тот же, после первой части ставим запятую.",
+        "uk": "Ви розповідаєте про водія: перед обгоном автобуса він подивився в дзеркало. Скажіть: He checked his mirror before he overtook the bus — він подивився в дзеркало до того, як обігнав автобус. Складаємо: He + checked + his mirror + before he overtook the bus — хто, що зробив, що перевірив, до якої події. Before означає «до того як»: перевірка дзеркала була раніше обгону. В обох частинах past simple: checked із -ed і неправильна форма overtook. Можна почати з пізнішої події: Before he overtook the bus, he checked his mirror. Порядок дій той самий, після першої частини ставимо кому."
       },
       "question": {
         "interactionId": "en:lesson-25:session-25:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3b13597160b3473db6baace91b888ef704e572afbb855697358fd22db9222d41"
+  "introFingerprint": "24982233f1cd8a01c8f14a59ae0d42d692be4b1da390712d2e2c697f9460c389"
 }

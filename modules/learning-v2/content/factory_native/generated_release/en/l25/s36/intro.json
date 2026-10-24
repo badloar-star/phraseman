@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Как это на нас подействовало",
-        "uk": "Як це на нас подіяло"
+        "ru": "Рассказ удивил ещё по дороге",
+        "uk": "Розповідь здивувала ще дорогою"
       },
       "bodyByLocale": {
-        "ru": "Amaze — сильно удивить, поразить. Her story had amazed me by the time we got home — её рассказ уже поразил меня к возвращению домой. Рассказ вызвал удивление у меня: amazed me. Irritate — раздражать. The smoke had irritated my eyes by the time I opened the window — дым уже вызвал раздражение глаз к тому моменту, когда я открыл окно. Здесь речь о физическом раздражении глаз, а не о злости.",
-        "uk": "Amaze — сильно здивувати, вразити. Her story had amazed me by the time we got home — її розповідь уже вразила мене до повернення додому. Розповідь викликала здивування в мене: amazed me. Irritate — дратувати або подразнювати. The smoke had irritated my eyes by the time I opened the window — дим уже спричинив подразнення очей до того моменту, коли я відчинив вікно. Тут ідеться про фізичне подразнення очей, а не про злість."
+        "ru": "Подруга рассказывала вам удивительную историю по дороге домой. К возвращению рассказ уже произвёл впечатление. Скажите: Her story had amazed me by the time we got home — её рассказ поразил меня к тому времени, как мы добрались домой. Собираем: Her story + had amazed + me + by the time we got home — что, как подействовало раньше, на кого, к какому моменту. После had нужна amazed: к amaze добавляем -d. Me идёт после amazed и называет того, кого удивили. Got home задаёт более позднее возвращение.",
+        "uk": "Подруга розповідала вам дивовижну історію дорогою додому. До повернення розповідь уже справила враження. Скажіть: Her story had amazed me by the time we got home — її розповідь вразила мене до того часу, як ми дісталися додому. Складаємо: Her story + had amazed + me + by the time we got home — що, як подіяло раніше, на кого, до якого моменту. Після had потрібна amazed: до amaze додаємо -d. Me йде після amazed і називає того, кого здивували. Got home задає пізніше повернення."
       },
       "question": {
         "interactionId": "en:lesson-25:session-36:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e53b4a4fb984aec995539e141125f9a2c6e7f4c5686c874a0735a8d19106827b"
+  "introFingerprint": "1949d0770081e799f0249b2b19a9732eb6ab44c3bd7cb57dbbad2cbdd11b854a"
 }

@@ -12,23 +12,27 @@ function fnv1a32(value: string): number {
 /**
  * Stable for one authored interaction, but independent of source-array order.
  * The learner can retry without jumping buttons; authors cannot accidentally
- * teach “tap the first answer”. A rare identity permutation is rotated once.
+ * teach a fixed answer position. Every position, including first, is allowed.
  */
 export function stableShuffleLearningV2OptionsV1<
   T extends LearningV2ShufflableOptionV1,
 >(seed: string, options: readonly T[]): readonly T[] {
   if (options.length < 2) return Object.freeze([...options]);
-  const shuffled = [...options].sort((left, right) => {
-    const leftScore = fnv1a32(`${seed}\u0000${left.responseId}`);
-    const rightScore = fnv1a32(`${seed}\u0000${right.responseId}`);
-    return leftScore - rightScore || left.responseId.localeCompare(right.responseId);
-  });
-  // Current authored sources deliberately keep the accepted response first so
-  // editors can review them. Runtime must never leak that source convention as
-  // a positional hint. Rotate whenever the first source option would still be
-  // first; the remaining hash order keeps positions varied across tasks.
-  if (shuffled[0] === options[0]) {
-    shuffled.push(shuffled.shift()!);
+  const shuffled = [...options].sort((left, right) =>
+    left.responseId < right.responseId ? -1 : left.responseId > right.responseId ? 1 : 0,
+  );
+  // Seeded Fisher–Yates: stable on retry, without excluding the correct slot.
+  // Mix each draw rather than sorting nearby response IDs by correlated hashes.
+  let state = fnv1a32(seed);
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let value = Math.imul(state ^ (state >>> 15), state | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    const random = ((value ^ (value >>> 14)) >>> 0) / 0x100000000;
+    const otherIndex = Math.floor(random * (index + 1));
+    const other = shuffled[otherIndex]!;
+    shuffled[otherIndex] = shuffled[index]!;
+    shuffled[index] = other;
   }
   return Object.freeze(shuffled);
 }

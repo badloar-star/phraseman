@@ -21,9 +21,9 @@ Brighten — ставати світлішим. The sky had brightened before we
 
 ## Інтро 2
 
-### Ширше й глибше
+### Дорогу розширили до нашого переїзду
 
-Widen — робити ширшим. They had widened the road before we moved here — вони розширили дорогу до того, як ми сюди переїхали. Deepen — робити глибшим. He had deepened the pond before we added the fish — він поглибив ставок до того, як ми запустили рибу. Widen пов’язане з шириною, deepen — з глибиною. В обох прикладах робота завершилася до наступної події, тому had widened і had deepened.
+Ви згадуєте переїзд: на той час дорогу біля будинку вже зробили ширшою. Скажіть: They had widened the road before we moved here — вони розширили дорогу до того, як ми сюди переїхали. Складаємо: They + had widened + the road + before we moved here — хто, що зробив раніше, що змінив, до якої події. Після had потрібна widened із -ed. Had widened показує завершену роботу, а moved here — пізніший переїзд.
 
 **Виберіть фразу для цієї ситуації.**
 

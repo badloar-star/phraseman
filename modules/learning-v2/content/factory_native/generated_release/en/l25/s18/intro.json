@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-18:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "История и прежняя школа",
-        "uk": "Історія та колишня школа"
+        "ru": "Историю пересказали до сна",
+        "uk": "Історію переказали до сну"
       },
       "bodyByLocale": {
-        "ru": "Retell — пересказать, рассказать историю своими словами. He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Retold — третья форма retell. Revisit — снова посетить знакомое место. We had revisited our old school before we moved away — мы снова посетили свою прежнюю школу до того, как переехали. Had retold и had revisited показывают более ранние события, went и moved — более поздние.",
-        "uk": "Retell — переказати, розповісти історію своїми словами. He had retold the story before the children went to bed — він переказав історію до того, як діти лягли спати. Retold — третя форма retell. Revisit — знову відвідати знайоме місце. We had revisited our old school before we moved away — ми знову відвідали свою колишню школу до того, як переїхали. Had retold і had revisited показують раніші події, went і moved — пізніші."
+        "ru": "Вы вспоминаете вчерашний вечер: отец пересказал детям историю, прежде чем они легли спать. Скажите: He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Собираем: He + had retold + the story + before the children went to bed — кто, что сделал раньше, что пересказал, до какого события. После had нужна третья форма retold, а не retell. Had retold показывает законченный пересказ, went to bed — последующий отход ко сну.",
+        "uk": "Ви згадуєте вчорашній вечір: батько переказав дітям історію, перш ніж вони лягли спати. Скажіть: He had retold the story before the children went to bed — він переказав історію до того, як діти лягли спати. Складаємо: He + had retold + the story + before the children went to bed — хто, що зробив раніше, що переказав, до якої події. Після had потрібна третя форма retold, а не retell. Had retold показує завершений переказ, went to bed — пізніший відхід до сну."
       },
       "question": {
         "interactionId": "en:lesson-25:session-18:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8b236cf962498857b6e1b78a304f53eeb3037b6c4878102ce6b709a8d3666b26"
+  "introFingerprint": "39d304f58b0d6921e8f44f660e533a2f8f20e0613ae379c1586e3046632dee9a"
 }

@@ -21,9 +21,9 @@ Rewrite — переписать, написать заново. She had rewritt
 
 ## Интро 2
 
-### История и прежняя школа
+### Историю пересказали до сна
 
-Retell — пересказать, рассказать историю своими словами. He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Retold — третья форма retell. Revisit — снова посетить знакомое место. We had revisited our old school before we moved away — мы снова посетили свою прежнюю школу до того, как переехали. Had retold и had revisited показывают более ранние события, went и moved — более поздние.
+Вы вспоминаете вчерашний вечер: отец пересказал детям историю, прежде чем они легли спать. Скажите: He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Собираем: He + had retold + the story + before the children went to bed — кто, что сделал раньше, что пересказал, до какого события. После had нужна третья форма retold, а не retell. Had retold показывает законченный пересказ, went to bed — последующий отход ко сну.
 
 **Выберите фразу для этой ситуации.**
 

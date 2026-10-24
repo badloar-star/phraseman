@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-26:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Повторять просьбу и ругать",
-        "uk": "Повторювати прохання й сварити"
+        "ru": "Повторные просьбы до уборки",
+        "uk": "Повторні прохання до прибирання"
       },
       "bodyByLocale": {
-        "ru": "Nag — надоедать человеку повторными просьбами или упрёками: разговорное «пилить». She nagged me before I cleaned my room — она пилила меня до того, как я убрал свою комнату. Это не просто одна просьба. Scold — сердито ругать за поступок. He scolded me after I broke the cup — он отругал меня после того, как я разбил чашку. Nag подчёркивает повторение, scold — сердитое замечание. После обоих глаголов человека называем без предлога: nagged me, scolded me.",
-        "uk": "Nag — набридати людині повторними проханнями чи докорами: розмовне «пиляти». She nagged me before I cleaned my room — вона пиляла мене до того, як я прибрав свою кімнату. Це не просто одне прохання. Scold — сердито сварити за вчинок. He scolded me after I broke the cup — він насварив мене після того, як я розбив чашку. Nag підкреслює повторення, scold — сердите зауваження. Після обох дієслів людину називаємо без прийменника: nagged me, scolded me."
+        "ru": "Вы вспоминаете, как мама несколько раз настойчиво просила убрать комнату, прежде чем вы её убрали. Скажите: She nagged me before I cleaned my room — она пилила меня до того, как я убрал свою комнату. Собираем: She + nagged + me + before I cleaned my room — кто, что делал, кому надоедал, до какого события. Nagged — прошедшая форма nag с удвоенной g перед -ed. Me идёт сразу после nagged без предлога. Before связывает повторные просьбы с последующей уборкой; cleaned тоже стоит в past simple.",
+        "uk": "Ви згадуєте, як мама кілька разів наполегливо просила прибрати кімнату, перш ніж ви її прибрали. Скажіть: She nagged me before I cleaned my room — вона надокучала мені до того, як я прибрав свою кімнату. Складаємо: She + nagged + me + before I cleaned my room — хто, що робив, кому надокучав, до якої події. Nagged — минула форма nag із подвоєною g перед -ed. Me йде одразу після nagged без прийменника. Before пов’язує повторні прохання з пізнішим прибиранням; cleaned теж стоїть у past simple."
       },
       "question": {
         "interactionId": "en:lesson-25:session-26:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "08b2efdbb9d524049b76514df96c3fe1b286001856d8ba26bfe194806ea07bc6"
+  "introFingerprint": "6ff9dae90581ed79b58c7e1349b191d5a40fbf01745b9b5c2545043a9a89ad4b"
 }

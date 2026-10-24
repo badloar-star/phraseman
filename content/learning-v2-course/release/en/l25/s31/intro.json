@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-31:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Зола и поленья",
-        "uk": "Попіл і поліна"
+        "ru": "Зола была холодной перед уборкой",
+        "uk": "Попіл був холодним перед прибиранням"
       },
       "bodyByLocale": {
-        "ru": "Ash — зола, порошок после горения. The ash was cold before I cleaned the room — зола была холодной до того, как я убрал комнату. В этом значении ash не считаем по штукам: здесь нет a. Log — полено. We added another log after the fire got low — мы добавили ещё одно полено после того, как огонь стал слабее. Поленья можно считать, поэтому another log — ещё одно полено.",
-        "uk": "Ash — попіл, порошок після горіння. The ash was cold before I cleaned the room — попіл був холодним до того, як я прибрав кімнату. У цьому значенні ash не рахуємо поштучно: тут немає a. Log — поліно. We added another log after the fire got low — ми додали ще одне поліно після того, як вогонь став слабшим. Поліна можна рахувати, тому another log — ще одне поліно."
+        "ru": "Вы вспоминаете вчерашнюю уборку комнаты с камином: The ash was cold before I cleaned the room — зола была холодной до того, как я убрал комнату. Собираем: The ash + was + cold + before I cleaned the room — что, было, каким, перед каким событием. Ash согласуется как it, поэтому для прошлого состояния нужна was. Cold стоит после was и описывает золу. Before I cleaned the room задаёт более позднюю уборку; cleaned — прошедшая форма clean с -ed.",
+        "uk": "Ви згадуєте вчорашнє прибирання кімнати з каміном: The ash was cold before I cleaned the room — попіл був холодним до того, як я прибрав кімнату. Складаємо: The ash + was + cold + before I cleaned the room — що, було, яким, перед якою подією. Ash узгоджується як it, тому для минулого стану потрібна was. Cold стоїть після was і описує попіл. Before I cleaned the room задає пізніше прибирання; cleaned — минула форма clean із -ed."
       },
       "question": {
         "interactionId": "en:lesson-25:session-31:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4ca877419ba416b8a99dd90a217c1eed3f5d9c4ab908deb753b54bdfe927dd18"
+  "introFingerprint": "801889bb09985d2d3baeb1489841fbc4073defc12c8cf84f529a952d16095802"
 }

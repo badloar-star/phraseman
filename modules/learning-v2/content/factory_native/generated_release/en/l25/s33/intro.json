@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-33:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что успели сделать",
-        "uk": "Що встигли зробити"
+        "ru": "Пуговицы расстегнули до ремонта",
+        "uk": "Ґудзики розстебнули до ремонту"
       },
       "bodyByLocale": {
-        "ru": "Undo здесь значит расстегнуть; третья форма — undone. She had undone the buttons by the time I found the needle — она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу. Pile — складывать в кучу. We had piled the clothes on the bed by the time she arrived — мы уже сложили одежду в кучу на кровати к её приезду. Had undone и had piled показывают готовый результат к указанному моменту.",
-        "uk": "Undo тут означає розстебнути; третя форма — undone. She had undone the buttons by the time I found the needle — вона вже розстебнула ґудзики до того моменту, коли я знайшов голку. Pile — складати в купу. We had piled the clothes on the bed by the time she arrived — ми вже склали одяг у купу на ліжку до її приїзду. Had undone і had piled показують готовий результат до вказаного моменту."
+        "ru": "Вы вспоминаете, как помогали подруге починить рубашку: пока вы искали иглу, она уже расстегнула пуговицы. Скажите: She had undone the buttons by the time I found the needle — она расстегнула пуговицы к тому времени, как я нашёл иглу. Собираем: She + had undone + the buttons + by the time I found the needle — кто, что сделал раньше, что расстегнул, к какому моменту. После had нужна третья форма undone, а не undo. Found обозначает более поздний момент, когда игла нашлась.",
+        "uk": "Ви згадуєте, як допомагали подрузі полагодити сорочку: поки ви шукали голку, вона вже розстебнула ґудзики. Скажіть: She had undone the buttons by the time I found the needle — вона розстебнула ґудзики до того часу, як я знайшов голку. Складаємо: She + had undone + the buttons + by the time I found the needle — хто, що зробив раніше, що розстебнув, до якого моменту. Після had потрібна третя форма undone, а не undo. Found позначає пізніший момент, коли голка знайшлася."
       },
       "question": {
         "interactionId": "en:lesson-25:session-33:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "17a3dd0b5af3e01200e2a162a7f9cdc3c5c6d95c4a6a482939f211997d86174f"
+  "introFingerprint": "fc6af21187c88ba3bf8ee6bc3ba3c09530ba0b02eb2cc0fa73c9de3dde7f7103"
 }

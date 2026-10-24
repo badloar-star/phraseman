@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-29:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Поведение до и после",
-        "uk": "Поведінка до й після"
+        "ru": "Невежливость перед извинением",
+        "uk": "Неввічливість перед вибаченням"
       },
       "bodyByLocale": {
-        "ru": "Impolite — невежливый, противоположность знакомого polite. I was impolite before I apologised — я был невежливым до того, как извинился. Сначала повёл себя невежливо, затем извинился. Humble — скромный, не считающий себя лучше других. He stayed humble after he won — он остался скромным после победы. Stayed humble значит, что победа не изменила эту черту.",
-        "uk": "Impolite — неввічливий, протилежність знайомого polite. I was impolite before I apologised — я був неввічливим до того, як вибачився. Спочатку повівся неввічливо, потім вибачився. Humble — скромний, той, хто не вважає себе кращим за інших. He stayed humble after he won — він залишився скромним після перемоги. Stayed humble означає, що перемога не змінила цю рису."
+        "ru": "Вы вспоминаете вчерашний разговор: сначала повели себя невежливо, а затем извинились. Скажите: I was impolite before I apologised — я был невежливым до того, как извинился. Собираем: I + was + impolite + before I apologised — кто, был, каким, до какого события. Для состояния в прошлом с I используем was. Impolite стоит после was и описывает поведение. Before показывает, что извинение последовало позже; apologised — прошедшая форма apologise с -d.",
+        "uk": "Ви згадуєте вчорашню розмову: спочатку повелися неввічливо, а потім вибачилися. Скажіть: I was impolite before I apologised — я був неввічливим до того, як вибачився. Складаємо: I + was + impolite + before I apologised — хто, був, яким, до якої події. Для стану в минулому з I використовуємо was. Impolite стоїть після was і описує поведінку. Before показує, що вибачення відбулося пізніше; apologised — минула форма apologise із -d."
       },
       "question": {
         "interactionId": "en:lesson-25:session-29:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4009b5101fb17905416e3eadcde2a61f9f207ea7a5cc6484adb3ca548b3e168d"
+  "introFingerprint": "aea6c1c24653091639f4836fc3ab6cac29db5ad47a71ef1ea62296a5e9be208e"
 }

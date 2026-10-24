@@ -21,9 +21,9 @@ Insert — вставить внутрь. I had inserted the key by the time she
 
 ## Интро 2
 
-### Что успели сделать
+### Пуговицы расстегнули до ремонта
 
-Undo здесь значит расстегнуть; третья форма — undone. She had undone the buttons by the time I found the needle — она уже расстегнула пуговицы к тому моменту, когда я нашёл иглу. Pile — складывать в кучу. We had piled the clothes on the bed by the time she arrived — мы уже сложили одежду в кучу на кровати к её приезду. Had undone и had piled показывают готовый результат к указанному моменту.
+Вы вспоминаете, как помогали подруге починить рубашку: пока вы искали иглу, она уже расстегнула пуговицы. Скажите: She had undone the buttons by the time I found the needle — она расстегнула пуговицы к тому времени, как я нашёл иглу. Собираем: She + had undone + the buttons + by the time I found the needle — кто, что сделал раньше, что расстегнул, к какому моменту. После had нужна третья форма undone, а не undo. Found обозначает более поздний момент, когда игла нашлась.
 
 **Выберите фразу для этой ситуации.**
 

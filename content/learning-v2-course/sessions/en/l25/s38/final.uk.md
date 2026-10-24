@@ -21,9 +21,9 @@ Listener — слухач. The listener had heard the news by the time I called 
 
 ## Інтро 2
 
-### Дивиться чи навчається
+### Перемкнув канал до початку фільму
 
-Viewer — глядач, наприклад людина перед телевізором. The viewer had changed the channel by the time the film started — глядач уже перемкнув канал до початку фільму. Learner — учень, людина, яка чогось навчається, незалежно від віку. The learner had finished the exercise by the time I arrived — учень уже закінчив вправу до мого приходу. Не плутайте listener із viewer: перший слухає, другий дивиться.
+Ви розповідаєте, як глядач підготувався дивитися фільм: він заздалегідь перемкнув канал. Скажіть: The viewer had changed the channel by the time the film started — глядач перемкнув канал до того часу, як почався фільм. Складаємо: The viewer + had changed + the channel + by the time the film started — хто, що зробив раніше, що перемкнув, до якого моменту. Після had потрібна changed: до change додаємо -d. Had changed показує завершене перемикання, started — пізніший початок фільму.
 
 **Виберіть фразу для цієї ситуації.**
 

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-32:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кто пришёл к ужину",
-        "uk": "Хто прийшов на вечерю"
+        "ru": "Невеста приехала после готовки",
+        "uk": "Наречена приїхала після приготування вечері"
       },
       "bodyByLocale": {
-        "ru": "Fiancée — невеста, женщина, с которой человек помолвлен. My fiancée arrived after I cooked dinner — моя невеста приехала после того, как я приготовил ужин. Fiancé и fiancée обычно звучат одинаково, но пишутся по-разному: в fiancée в конце дополнительная e. Stepson — пасынок. My stepson washed his hands before he ate — мой пасынок помыл руки перед едой. Stepson — сын супруга или супруги от других отношений.",
-        "uk": "Fiancée — наречена, жінка, з якою людина заручена. My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Fiancé і fiancée зазвичай звучать однаково, але пишуться по-різному: у fiancée в кінці додаткова e. Stepson — пасинок. My stepson washed his hands before he ate — мій пасинок помив руки перед їжею. Stepson — син чоловіка чи дружини від інших стосунків."
+        "ru": "Вы рассказываете о вчерашнем ужине: сначала вы приготовили еду, а потом приехала невеста. Скажите: My fiancée arrived after I cooked dinner — моя невеста приехала после того, как я приготовил ужин. Собираем: My fiancée + arrived + after I cooked dinner — кто, что сделал, после какого события. After показывает, что приготовление ужина было раньше приезда. В обеих частях past simple: к arrive добавляем -d, к cook — -ed.",
+        "uk": "Ви розповідаєте про вчорашню вечерю: спочатку ви приготували їжу, а потім приїхала наречена. Скажіть: My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Складаємо: My fiancée + arrived + after I cooked dinner — хто, що зробив, після якої події. After показує, що приготування вечері було раніше приїзду. В обох частинах past simple: до arrive додаємо -d, до cook — -ed."
       },
       "question": {
         "interactionId": "en:lesson-25:session-32:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "754a327abd171e7dc62a48727b7009100895c48fe4f95f774a5717ade0d78cc1"
+  "introFingerprint": "f413e979faf5341261c9a32a0d16e8cad2248c111180b204c3ac0e19215a4e4d"
 }

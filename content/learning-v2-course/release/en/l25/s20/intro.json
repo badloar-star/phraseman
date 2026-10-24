@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-20:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сахар растворился, соус загустел",
-        "uk": "Цукор розчинився, соус загус"
+        "ru": "Сахар растворился до пробы чая",
+        "uk": "Цукор розчинився до куштування чаю"
       },
       "bodyByLocale": {
-        "ru": "Dissolve — растворять: твёрдое вещество смешивается с жидкостью и больше не видно отдельных крупинок. I had dissolved the sugar before she tasted the tea — я растворил сахар до того, как она попробовала чай. Thicken — густеть. The sauce had thickened before I turned off the heat — соус загустел до того, как я выключил нагрев. Сначала соус стал густым, затем я выключил плиту. В обоих примерах более раннее событие выражено через had + третью форму.",
-        "uk": "Dissolve — розчиняти: тверда речовина змішується з рідиною й окремих крупинок більше не видно. I had dissolved the sugar before she tasted the tea — я розчинив цукор до того, як вона скуштувала чай. Thicken — густішати. The sauce had thickened before I turned off the heat — соус загус до того, як я вимкнув нагрівання. Спочатку соус став густим, потім я вимкнув плиту. В обох прикладах ранішу подію виражено через had + третю форму."
+        "ru": "Вы вспоминаете, как готовили чай подруге: размешали сахар до полного растворения, и только потом она попробовала чай. Скажите: I had dissolved the sugar before she tasted the tea — я растворил сахар до того, как она попробовала чай. Собираем: I + had dissolved + the sugar + before she tasted the tea — кто, что сделал раньше, что растворил, до какого события. После had нужна dissolved: к dissolve добавляем -d. Had dissolved обозначает завершённое растворение, tasted — последующую пробу чая.",
+        "uk": "Ви згадуєте, як готували чай подрузі: розмішали цукор до повного розчинення, і лише потім вона скуштувала чай. Скажіть: I had dissolved the sugar before she tasted the tea — я розчинив цукор до того, як вона скуштувала чай. Складаємо: I + had dissolved + the sugar + before she tasted the tea — хто, що зробив раніше, що розчинив, до якої події. Після had потрібна dissolved: до dissolve додаємо -d. Had dissolved позначає завершене розчинення, tasted — пізніше куштування чаю."
       },
       "question": {
         "interactionId": "en:lesson-25:session-20:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a7344a3f9d1dc8e759531b24e99a776cdcba0df09d05d119433e0206a0a43868"
+  "introFingerprint": "a01d6bc0b4293922d0758ad4d1a968449be7ac1658598a6fb531e626dc9d5f8d"
 }

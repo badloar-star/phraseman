@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Кого мы встретили",
-        "uk": "Кого ми зустріли"
+        "ru": "Покупатель уже заплатил",
+        "uk": "Покупець уже заплатив"
       },
       "bodyByLocale": {
-        "ru": "Shopper — покупатель, человек за покупками. The shopper had paid by the time I reached the till — покупатель уже заплатил к тому моменту, когда я подошёл к кассе. Reader — читатель. The reader had finished the book by the time we met — читатель уже закончил книгу к нашей встрече. Оба слова называют человека. Had paid и had finished показывают действия, законченные до указанного момента.",
-        "uk": "Shopper — покупець, людина за покупками. The shopper had paid by the time I reached the till — покупець уже заплатив до того моменту, коли я підійшов до каси. Reader — читач. The reader had finished the book by the time we met — читач уже закінчив книжку до нашої зустрічі. Обидва слова називають людину. Had paid і had finished показують дії, завершені до вказаного моменту."
+        "ru": "Вы вспоминаете очередь в магазине: когда вы дошли до кассы, покупатель перед вами уже расплатился. Скажите: The shopper had paid by the time I reached the till — покупатель заплатил к тому времени, как я подошёл к кассе. Собираем: The shopper + had paid + by the time I reached the till — кто, что сделал раньше, к какому моменту в прошлом. После had нужна третья форма paid, а не pay. Had paid отмечает завершённую оплату; reached обозначает ваш последующий подход к кассе.",
+        "uk": "Ви згадуєте чергу в магазині: коли ви дійшли до каси, покупець перед вами вже розрахувався. Скажіть: The shopper had paid by the time I reached the till — покупець заплатив до того часу, як я підійшов до каси. Складаємо: The shopper + had paid + by the time I reached the till — хто, що зробив раніше, до якого моменту в минулому. Після had потрібна третя форма paid, а не pay. Had paid позначає завершену оплату; reached позначає ваш пізніший підхід до каси."
       },
       "question": {
         "interactionId": "en:lesson-25:session-37:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "13a8ebcf9544fb7457243987d4b05fcb9c60b03351c62e17be2e58963477f194"
+  "introFingerprint": "26a4a5696682f8c7377ecf4a5566b3b16a7f343e93021fa4a75ce4091edddbc1"
 }

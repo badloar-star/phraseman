@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-23:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Мышь и кошка",
-        "uk": "Миша й кішка"
+        "ru": "Мышь убежала до появления кошки",
+        "uk": "Миша втекла до появи кішки"
       },
       "bodyByLocale": {
-        "ru": "Flee — убегать от опасности; третья форма — fled. The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Hunt — охотиться. The cat had hunted mice before we brought it home — кошка охотилась на мышей до того, как мы принесли её домой. Mice — множественное число mouse. Had fled и had hunted относят действия к моменту раньше следующего события в прошлом.",
-        "uk": "Flee — тікати від небезпеки; третя форма — fled. The mouse had fled before the cat entered the room — миша втекла до того, як кішка увійшла до кімнати. Hunt — полювати. The cat had hunted mice before we brought it home — кішка полювала на мишей до того, як ми принесли її додому. Mice — множина mouse. Had fled і had hunted відносять дії до моменту раніше за наступну подію в минулому."
+        "ru": "Вы рассказываете, что заметили дома: мышь успела убежать до того, как в комнату вошла кошка. Скажите: The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Собираем: The mouse + had fled + before the cat entered the room — кто, что сделал раньше, до какого события. После had нужна третья форма fled, а не flee. Had fled показывает завершённый побег, entered — более поздний вход кошки в комнату.",
+        "uk": "Ви розповідаєте, що помітили вдома: миша встигла втекти до того, як до кімнати зайшла кішка. Скажіть: The mouse had fled before the cat entered the room — миша втекла до того, як кішка зайшла до кімнати. Складаємо: The mouse + had fled + before the cat entered the room — хто, що зробив раніше, до якої події. Після had потрібна третя форма fled, а не flee. Had fled показує завершену втечу, entered — пізніший вхід кішки до кімнати."
       },
       "question": {
         "interactionId": "en:lesson-25:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2ee700a153ad442ceb2dbe25b0aad23058be6966ddf8ec7172a97e6cae398a25"
+  "introFingerprint": "2466720dbbb3add7705e84414b47a0268cd68d60517f27cdc26cfd2f0e91c954"
 }

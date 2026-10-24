@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-21:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Одежда изменилась",
-        "uk": "Одяг змінився"
+        "ru": "Рубашка помялась по дороге",
+        "uk": "Сорочка пом’ялася дорогою"
       },
       "bodyByLocale": {
-        "ru": "Wrinkle — мяться, покрываться складками. My shirt had wrinkled before I reached the station — моя рубашка помялась до того, как я добрался до станции. Shorten — укорачивать. He had shortened the trousers before I tried them on — он укоротил брюки до того, как я их примерил. Them заменяет trousers. В первом примере рубашка сама помялась, во втором человек изменил длину брюк. Had + третья форма ставит оба события раньше следующего действия.",
-        "uk": "Wrinkle — м’ятися, вкриватися складками. My shirt had wrinkled before I reached the station — моя сорочка пом’ялася до того, як я дістався станції. Shorten — укорочувати. He had shortened the trousers before I tried them on — він укоротив штани до того, як я їх приміряв. Them замінює trousers. У першому прикладі сорочка сама пом’ялася, у другому людина змінила довжину штанів. Had + третя форма ставить обидві події раніше за наступну дію."
+        "ru": "Вы вспоминаете поездку: рубашка успела помяться ещё до вашего прихода на станцию. Скажите: My shirt had wrinkled before I reached the station — моя рубашка помялась до того, как я добрался до станции. Собираем: My shirt + had wrinkled + before I reached the station — что, какое изменение произошло раньше, до какого события. После had нужна wrinkled: к wrinkle добавляем -d. Had wrinkled подчёркивает произошедшее изменение, а reached — ваш более поздний приход на станцию.",
+        "uk": "Ви згадуєте поїздку: сорочка встигла пом’ятися ще до вашого приходу на станцію. Скажіть: My shirt had wrinkled before I reached the station — моя сорочка пом’ялася до того, як я дістався станції. Складаємо: My shirt + had wrinkled + before I reached the station — що, яка зміна відбулася раніше, до якої події. Після had потрібна wrinkled: до wrinkle додаємо -d. Had wrinkled підкреслює зміну, що відбулася, а reached — ваш пізніший прихід на станцію."
       },
       "question": {
         "interactionId": "en:lesson-25:session-21:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9ef9cd53c4448f77ea9344ca49e13bff42b8dd088a641d6a7d2a7c909e7b7c73"
+  "introFingerprint": "58dae7e4a8ba648ae629e033f0bf46bcc36f3c6f418ac745c1d3ae7f8b66e018"
 }

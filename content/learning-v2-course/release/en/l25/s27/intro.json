@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-27:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что мы обнаружили дома",
-        "uk": "Що ми виявили вдома"
+        "ru": "Плесень появилась до открытия пакета",
+        "uk": "Пліснява з’явилася до відкриття пакета"
       },
       "bodyByLocale": {
-        "ru": "Mouldy — заплесневелый. The bread was mouldy before I opened the bag — хлеб был заплесневелым ещё до того, как я открыл пакет. Плесень появилась раньше: открытие пакета не было её причиной. Spoil — портиться. The milk spoiled after we left it outside — молоко испортилось после того, как мы оставили его снаружи. Was mouldy описывает состояние; spoiled называет произошедшее изменение.",
-        "uk": "Mouldy — запліснявілий. The bread was mouldy before I opened the bag — хліб був запліснявілим ще до того, як я відкрив пакет. Пліснява з’явилася раніше: відкриття пакета не було її причиною. Spoil — псуватися. The milk spoiled after we left it outside — молоко зіпсувалося після того, як ми залишили його надворі. Was mouldy описує стан; spoiled називає зміну, що відбулася."
+        "ru": "Вы вспоминаете, как вчера открыли пакет с хлебом и обнаружили плесень: The bread was mouldy before I opened the bag — хлеб был заплесневелым ещё до того, как я открыл пакет. Собираем: The bread + was + mouldy + before I opened the bag — что, было, каким, до какого события. Bread согласуется как it, поэтому для прошлого состояния нужна was. Mouldy описывает хлеб после was. Before показывает, что это состояние существовало до открытия; opened — прошедшая форма open с -ed.",
+        "uk": "Ви згадуєте, як учора відкрили пакет із хлібом і виявили плісняву: The bread was mouldy before I opened the bag — хліб був запліснявілим ще до того, як я відкрив пакет. Складаємо: The bread + was + mouldy + before I opened the bag — що, було, яким, до якої події. Bread узгоджується як it, тому для минулого стану потрібна was. Mouldy описує хліб після was. Before показує, що цей стан існував до відкриття; opened — минула форма open із -ed."
       },
       "question": {
         "interactionId": "en:lesson-25:session-27:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "500bfa9229784b95cab547f2e3353ccd4acb45d770102ebf33e00d3c4bc912bf"
+  "introFingerprint": "8fd07dc46d30db6e226e532936b732d13ba365f8d7828b31f21ce60f2b0de872"
 }

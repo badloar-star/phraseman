@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-22:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Запрет и просьба",
-        "uk": "Заборона й прохання"
+        "ru": "Запрет уже действовал",
+        "uk": "Заборона вже діяла"
       },
       "bodyByLocale": {
-        "ru": "Forbid — запрещать; третья форма — forbidden. My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Запрет уже действовал к моменту, когда я открыл шкаф. Beg — умолять, очень настойчиво просить. He had begged for another chance before she answered — он умолял дать ему ещё один шанс до того, как она ответила. Beg for another chance — просить ещё один шанс. В begged удваиваем g.",
-        "uk": "Forbid — забороняти; третя форма — forbidden. My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відчинив шафу. Заборона вже діяла на момент, коли я відчинив шафу. Beg — благати, дуже наполегливо просити. He had begged for another chance before she answered — він благав дати йому ще один шанс до того, як вона відповіла. Beg for another chance — просити ще один шанс. У begged подвоюємо g."
+        "ru": "Вы вспоминаете вечер дома: мама запретила перекусы, а позже вы открыли шкаф с едой. Скажите: My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Собираем: My mother + had forbidden + snacks + before I opened the cupboard — кто, что сделал раньше, что запретил, до какого события. После had нужна третья форма forbidden, а не forbid или forbade. Had forbidden отмечает более ранний запрет; opened — последующее открытие шкафа.",
+        "uk": "Ви згадуєте вечір удома: мама заборонила перекуси, а пізніше ви відкрили шафку з їжею. Скажіть: My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відкрив шафку. Складаємо: My mother + had forbidden + snacks + before I opened the cupboard — хто, що зробив раніше, що заборонив, до якої події. Після had потрібна третя форма forbidden, а не forbid чи forbade. Had forbidden позначає ранішу заборону; opened — пізніше відкриття шафки."
       },
       "question": {
         "interactionId": "en:lesson-25:session-22:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fcdac7ba89904886fd90e4eee04e73992ca17b73a06a348893df8e9193828e9a"
+  "introFingerprint": "c051c1e0e5512d1ac5078d773135ab5808b812c83452054c46a8e755fa92e9f1"
 }

@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-15:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Маленькие кусочки и хруст",
-        "uk": "Маленькі шматочки та хрускіт"
+        "ru": "Печенье перед ужином",
+        "uk": "Печиво перед вечерею"
       },
       "bodyByLocale": {
-        "ru": "Nibble — есть понемногу, откусывая маленькие кусочки. As a child I would nibble a biscuit before dinner — в детстве я часто понемногу ел печенье перед ужином. Munch — жевать с хрустом. At school we would munch carrots during lunch — в школе мы часто хрустели морковкой во время обеда. Nibble подчёркивает маленькие кусочки, munch — жевание, часто со звуком. После would нужны nibble и munch.",
-        "uk": "Nibble — їсти потроху, відкушуючи маленькі шматочки. As a child I would nibble a biscuit before dinner — у дитинстві я часто потроху їв печиво перед вечерею. Munch — жувати з хрускотом. At school we would munch carrots during lunch — у школі ми часто хрумтіли морквою під час обіду. Nibble підкреслює маленькі шматочки, munch — жування, часто зі звуком. Після would потрібні nibble і munch."
+        "ru": "Вы вспоминаете детскую привычку: перед ужином вы понемногу ели печенье. As a child I would nibble a biscuit before dinner — в детстве я часто понемногу ел печенье перед ужином. Сначала задаём период: as a child. Затем называем человека I и ставим would + nibble: эта связка описывает повторявшееся действие в прошлом. После would глагол остаётся в начальной форме, без -ed и -ing. В конце добавляем что ели — a biscuit — и когда — before dinner.",
+        "uk": "Ви згадуєте дитячу звичку: перед вечерею ви потроху їли печиво. As a child I would nibble a biscuit before dinner — у дитинстві я часто потроху їв печиво перед вечерею. Спочатку задаємо період: as a child. Потім називаємо людину I та ставимо would + nibble: ця сполука описує повторювану дію в минулому. Після would дієслово залишається в початковій формі, без -ed та -ing. Наприкінці додаємо що їли — a biscuit — і коли — before dinner."
       },
       "question": {
         "interactionId": "en:lesson-25:session-15:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cf9c746d962b917895e198ce018705e26bde101a5a425583bc9c11f2a10b5060"
+  "introFingerprint": "22e8b9f78e8e788e892bb8170d7b35e91a400b39e5cf29d5151ba3922a46abc8"
 }

@@ -21,9 +21,9 @@ Insert — вставити всередину. I had inserted the key by the ti
 
 ## Інтро 2
 
-### Що встигли зробити
+### Ґудзики розстебнули до ремонту
 
-Undo тут означає розстебнути; третя форма — undone. She had undone the buttons by the time I found the needle — вона вже розстебнула ґудзики до того моменту, коли я знайшов голку. Pile — складати в купу. We had piled the clothes on the bed by the time she arrived — ми вже склали одяг у купу на ліжку до її приїзду. Had undone і had piled показують готовий результат до вказаного моменту.
+Ви згадуєте, як допомагали подрузі полагодити сорочку: поки ви шукали голку, вона вже розстебнула ґудзики. Скажіть: She had undone the buttons by the time I found the needle — вона розстебнула ґудзики до того часу, як я знайшов голку. Складаємо: She + had undone + the buttons + by the time I found the needle — хто, що зробив раніше, що розстебнув, до якого моменту. Після had потрібна третя форма undone, а не undo. Found позначає пізніший момент, коли голка знайшлася.
 
 **Виберіть фразу для цієї ситуації.**
 

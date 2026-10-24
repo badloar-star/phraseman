@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-17:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "До нашего приезда",
-        "uk": "До нашого приїзду"
+        "ru": "Стена к нашему приезду",
+        "uk": "Стіна до нашого приїзду"
       },
       "bodyByLocale": {
-        "ru": "Rebuild — построить заново; третья форма — rebuilt. They had rebuilt the wall before we arrived — они построили стену заново до нашего приезда. Когда мы приехали, работа уже была закончена. Rewash — постирать заново; третья форма — rewashed. I had rewashed the shirt before I packed my bag — я постирал рубашку заново до того, как собрал сумку. Сначала стирка, потом сборы. Had rebuilt и had rewashed отмечают более ранние действия.",
-        "uk": "Rebuild — збудувати наново; третя форма — rebuilt. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Коли ми приїхали, робота вже була завершена. Rewash — випрати заново; третя форма — rewashed. I had rewashed the shirt before I packed my bag — я виправ сорочку заново до того, як зібрав сумку. Спочатку прання, потім збори. Had rebuilt і had rewashed позначають раніші дії."
+        "ru": "Вы приехали к знакомым и увидели уже восстановленную стену. They had rebuilt the wall before we arrived — они построили стену заново до нашего приезда. Сначала называем исполнителей they, затем ставим had + rebuilt: had и третья форма rebuild показывают, что работа закончилась раньше другого события в прошлом. The wall называет, что восстановили. После before добавляем we + arrived — кто приехал и что произошло позже. Так порядок had rebuilt … before … arrived передаёт последовательность событий в этой ситуации.",
+        "uk": "Ви приїхали до знайомих і побачили вже відновлену стіну. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Спочатку називаємо виконавців they, потім ставимо had + rebuilt: had і третя форма rebuild показують, що робота закінчилася раніше за іншу подію в минулому. The wall називає, що відновили. Після before додаємо we + arrived — хто приїхав і що сталося пізніше. Так порядок had rebuilt … before … arrived передає послідовність подій у цій ситуації."
       },
       "question": {
         "interactionId": "en:lesson-25:session-17:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1ae8e35534ae718fb801d2c8350040e8bda7d6b4ad85e43e77746e1fa06b57d9"
+  "introFingerprint": "1e17248d9e4aaa61b043130bf9d8e73c26ce187db33054fa940d073ea3dbde21"
 }

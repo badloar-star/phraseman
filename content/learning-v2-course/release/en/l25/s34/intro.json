@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Что изменилось к возвращению",
-        "uk": "Що змінилося до повернення"
+        "ru": "Палец опух до возвращения домой",
+        "uk": "Палець набряк до повернення додому"
       },
       "bodyByLocale": {
-        "ru": "Knuckle — костяшка пальца, сустав, который виден на сжатом кулаке. My knuckle had swollen by the time we got home — костяшка моего пальца уже опухла к тому моменту, когда мы добрались домой. Swollen — третья форма знакомого swell. Fingernails — ногти на руках. I had cut my fingernails by the time she found the file — я уже подстриг ногти на руках к тому моменту, когда она нашла пилочку. Cut в третьей форме пишется так же, как начальная форма.",
-        "uk": "Knuckle — кісточка пальця, суглоб, який видно на стиснутому кулаці. My knuckle had swollen by the time we got home — кісточка мого пальця вже набрякла до того моменту, коли ми дісталися додому. Swollen — третя форма знайомого swell. Fingernails — нігті на руках. I had cut my fingernails by the time she found the file — я вже підстриг нігті на руках до того моменту, коли вона знайшла пилочку. Cut у третій формі пишеться так само, як початкова форма."
+        "ru": "Вы рассказываете, как ударили палец на прогулке: ещё до возвращения домой костяшка уже опухла. Скажите: My knuckle had swollen by the time we got home — костяшка моего пальца опухла к тому времени, как мы добрались домой. Собираем: My knuckle + had swollen + by the time we got home — что, какое изменение произошло раньше, к какому моменту в прошлом. После had нужна третья форма swollen, а не swell. Had swollen подчёркивает уже произошедшее изменение; got home задаёт последующее возвращение.",
+        "uk": "Ви розповідаєте, як ударили палець на прогулянці: ще до повернення додому кісточка вже набрякла. Скажіть: My knuckle had swollen by the time we got home — кісточка мого пальця набрякла до того часу, як ми дісталися додому. Складаємо: My knuckle + had swollen + by the time we got home — що, яка зміна відбулася раніше, до якого моменту в минулому. Після had потрібна третя форма swollen, а не swell. Had swollen підкреслює зміну, що вже відбулася; got home задає пізніше повернення."
       },
       "question": {
         "interactionId": "en:lesson-25:session-34:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "582bbf53956e9a0226a708c6e4487e4e562b69efb2282eeff13a97266ce30682"
+  "introFingerprint": "812017c50aa3baf38a20357db052d5cc4c49d5e9ad0d9ef9860c1ea00961eec6"
 }

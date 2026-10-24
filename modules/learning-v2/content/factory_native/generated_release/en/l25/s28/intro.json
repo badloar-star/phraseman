@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-28:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Теперь и в общей сложности",
-        "uk": "Тепер і загалом"
+        "ru": "Как теперь добираетесь на работу",
+        "uk": "Як тепер дістаєтеся на роботу"
       },
       "bodyByLocale": {
-        "ru": "Nowadays — в наши дни, теперь по сравнению с прошлым. I used to drive. I walk to work nowadays — раньше я ездил на машине. Теперь хожу на работу пешком. Used to относится к прежней привычке, walk — к нынешней. Altogether — всего, если складываем расходы. We paid twenty pounds altogether after we ate — после еды мы заплатили всего двадцать фунтов. Это общая сумма, а не цена для каждого.",
-        "uk": "Nowadays — нині, тепер порівняно з минулим. I used to drive. I walk to work nowadays — раніше я їздив машиною. Тепер ходжу на роботу пішки. Used to стосується колишньої звички, walk — теперішньої. Altogether — загалом, якщо складаємо витрати. We paid twenty pounds altogether after we ate — після їжі ми заплатили загалом двадцять фунтів. Це загальна сума, а не ціна для кожного."
+        "ru": "Раньше вы ездили на работу на машине, а теперь ходите пешком. Друг спрашивает о нынешней привычке. Ответьте: I walk to work nowadays — теперь я хожу на работу пешком. Собираем: I + walk + to work + nowadays — кто, что делает, куда, в какое время жизни. Nowadays относит привычку к настоящему, поэтому нужна walk в present simple. После I не добавляем -s. To work показывает направление, а nowadays в конце подчёркивает, что так вы поступаете теперь.",
+        "uk": "Раніше ви їздили на роботу машиною, а тепер ходите пішки. Друг запитує про теперішню звичку. Дайте відповідь: I walk to work nowadays — тепер я ходжу на роботу пішки. Складаємо: I + walk + to work + nowadays — хто, що робить, куди, у який період життя. Nowadays відносить звичку до теперішнього, тому потрібна walk у present simple. Після I не додаємо -s. To work показує напрямок, а nowadays наприкінці підкреслює, що так ви робите тепер."
       },
       "question": {
         "interactionId": "en:lesson-25:session-28:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c846c66fac18dc2875cf9eddbd00803bf32613903ee7f4fb31d23505d7d8931d"
+  "introFingerprint": "c682602d178a17078af145a7d604cb21ca330ecc175d7c6a03d4c0cd48913db7"
 }

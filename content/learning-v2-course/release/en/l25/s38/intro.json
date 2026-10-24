@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-38:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Смотрит или учится",
-        "uk": "Дивиться чи навчається"
+        "ru": "Переключил канал до начала фильма",
+        "uk": "Перемкнув канал до початку фільму"
       },
       "bodyByLocale": {
-        "ru": "Viewer — зритель, например человек перед телевизором. The viewer had changed the channel by the time the film started — зритель уже переключил канал к началу фильма. Learner — учащийся, человек, который чему-то учится, независимо от возраста. The learner had finished the exercise by the time I arrived — учащийся уже закончил упражнение к моему приходу. Не путайте listener со viewer: первый слушает, второй смотрит.",
-        "uk": "Viewer — глядач, наприклад людина перед телевізором. The viewer had changed the channel by the time the film started — глядач уже перемкнув канал до початку фільму. Learner — учень, людина, яка чогось навчається, незалежно від віку. The learner had finished the exercise by the time I arrived — учень уже закінчив вправу до мого приходу. Не плутайте listener із viewer: перший слухає, другий дивиться."
+        "ru": "Вы рассказываете, как зритель подготовился смотреть фильм: он заранее переключил канал. Скажите: The viewer had changed the channel by the time the film started — зритель переключил канал к тому времени, как начался фильм. Собираем: The viewer + had changed + the channel + by the time the film started — кто, что сделал раньше, что переключил, к какому моменту. После had нужна changed: к change добавляем -d. Had changed показывает завершённое переключение, started — более позднее начало фильма.",
+        "uk": "Ви розповідаєте, як глядач підготувався дивитися фільм: він заздалегідь перемкнув канал. Скажіть: The viewer had changed the channel by the time the film started — глядач перемкнув канал до того часу, як почався фільм. Складаємо: The viewer + had changed + the channel + by the time the film started — хто, що зробив раніше, що перемкнув, до якого моменту. Після had потрібна changed: до change додаємо -d. Had changed показує завершене перемикання, started — пізніший початок фільму."
       },
       "question": {
         "interactionId": "en:lesson-25:session-38:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e4b9f16dcb156354593c7758385fc1c3c36cf1b8d6f0de471c2950bce7eea788"
+  "introFingerprint": "acef97156c9b72e2829940d22f8b00535a3d8b8db23704520e98c9cbde3ade9c"
 }

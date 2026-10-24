@@ -65,12 +65,12 @@
       "pageId": "en:lesson-25:session-24:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Шире и глубже",
-        "uk": "Ширше й глибше"
+        "ru": "Дорогу расширили до нашего переезда",
+        "uk": "Дорогу розширили до нашого переїзду"
       },
       "bodyByLocale": {
-        "ru": "Widen — делать шире. They had widened the road before we moved here — они расширили дорогу до того, как мы сюда переехали. Deepen — делать глубже. He had deepened the pond before we added the fish — он углубил пруд до того, как мы запустили рыбу. Widen связано с шириной, deepen — с глубиной. В обоих примерах работа завершилась до следующего события, поэтому had widened и had deepened.",
-        "uk": "Widen — робити ширшим. They had widened the road before we moved here — вони розширили дорогу до того, як ми сюди переїхали. Deepen — робити глибшим. He had deepened the pond before we added the fish — він поглибив ставок до того, як ми запустили рибу. Widen пов’язане з шириною, deepen — з глибиною. В обох прикладах робота завершилася до наступної події, тому had widened і had deepened."
+        "ru": "Вы вспоминаете переезд: к тому времени дорогу возле дома уже сделали шире. Скажите: They had widened the road before we moved here — они расширили дорогу до того, как мы сюда переехали. Собираем: They + had widened + the road + before we moved here — кто, что сделал раньше, что изменил, до какого события. После had нужна widened с -ed. Had widened показывает завершённую работу, а moved here — более поздний переезд.",
+        "uk": "Ви згадуєте переїзд: на той час дорогу біля будинку вже зробили ширшою. Скажіть: They had widened the road before we moved here — вони розширили дорогу до того, як ми сюди переїхали. Складаємо: They + had widened + the road + before we moved here — хто, що зробив раніше, що змінив, до якої події. Після had потрібна widened із -ed. Had widened показує завершену роботу, а moved here — пізніший переїзд."
       },
       "question": {
         "interactionId": "en:lesson-25:session-24:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e0453937a13c635faa8819417ceeeca7143cc826494b66722a2018443c3ff9c8"
+  "introFingerprint": "501d3941c9a14e5f1ff0a1935eaa67ac8e73227c95d2a72f37b5fd7a586b7d37"
 }

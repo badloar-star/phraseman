@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-36:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Попробовать новый фрукт",
+        "uk": "Спробувати новий фрукт"
       },
       "bodyByLocale": {
-        "ru": "guava — гуава, тропический фрукт. Повторим going to для намерения. Вы решили попробовать гуаву, но ещё не купили её. I am going to try a guava. — Я собираюсь попробовать гуаву. Передайте намерение через going to.",
-        "uk": "guava — гуава, тропічний фрукт. Повторімо going to для наміру. Ви вирішили спробувати гуаву, але ще не купили її. I am going to try a guava. — Я збираюся спробувати гуаву. Передайте намір через going to."
+        "ru": "На рынке вы увидели гуаву и решили её попробовать, но пока не купили. Guava — гуава. I am going to try a guava. — Я собираюсь попробовать гуаву. Начните с I am going to, затем поставьте действие try без изменений. Добавьте a guava: речь об одном фрукте. Так вы сообщаете о своём намерении. В задании используйте going to.",
+        "uk": "На ринку ви побачили гуаву й вирішили її спробувати, але поки не купили. Guava — гуава. I am going to try a guava. — Я збираюся спробувати гуаву. Почніть з I am going to, потім поставте дію try без змін. Додайте a guava: йдеться про один фрукт. Так ви повідомляєте про свій намір. У завданні використайте going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-36:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-36:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Забрать отложенную айву",
+        "uk": "Забрати відкладену айву"
       },
       "bodyByLocale": {
-        "ru": "quince — айва. persimmon — хурма. Если время уже согласовано, потренируем Present Continuous. Продавец отложил для вас айву; вы договорились забрать её завтра. We are collecting the quince tomorrow. — Мы забираем айву завтра. Передайте договорённость через Present Continuous.",
-        "uk": "quince — айва. persimmon — хурма. Якщо час уже узгоджено, потренуймо Present Continuous. Продавець відклав для вас айву; ви домовилися забрати її завтра. We are collecting the quince tomorrow. — Ми забираємо айву завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с партнёром договорились завтра забрать айву, которую продавец отложил для вас. Quince — айва. We are collecting the quince tomorrow. — Завтра мы забираем айву. О договорённости скажите We are collecting. Затем добавьте the quince: это уже выбранная и отложенная для вас айва. Время tomorrow поставьте в конце. Здесь тренируем are collecting; going to тоже может описывать такую договорённость.",
+        "uk": "Ви з партнером домовилися завтра забрати айву, яку продавець відклав для вас. Quince — айва. We are collecting the quince tomorrow. — Завтра ми забираємо айву. Про домовленість скажіть We are collecting. Потім додайте the quince: це вже обрана й відкладена для вас айва. Час tomorrow поставте наприкінці. Тут тренуємо are collecting; going to теж може описувати таку домовленість."
       },
       "question": {
         "interactionId": "en:lesson-15:session-36:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-36:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Ревень для пирога",
+        "uk": "Ревінь для пирога"
       },
       "bodyByLocale": {
-        "ru": "rhubarb — ревень, растение с кислыми съедобными стеблями. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители заказали ревень для пирога и согласовали получение на пятницу. They are collecting the rhubarb on Friday. — Они забирают ревень в пятницу. Передайте договорённость через Present Continuous.",
-        "uk": "rhubarb — ревінь, рослина з кислими їстівними стеблами. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. They are collecting the rhubarb on Friday. — Вони забирають ревінь у п’ятницю. Передайте домовленість через Present Continuous."
+        "ru": "Родители заказали ревень для пирога и договорились забрать его в пятницу. Rhubarb — ревень. They are collecting the rhubarb on Friday. — В пятницу они забирают ревень. Сначала They are collecting, затем конкретный заказ — the rhubarb. День добавьте через on: on Friday. Are перед collecting нужно и тогда, когда речь идёт о будущем. Здесь используйте are collecting; вариант с going to также возможен.",
+        "uk": "Батьки замовили ревінь для пирога й домовилися забрати його в п'ятницю. Rhubarb — ревінь. They are collecting the rhubarb on Friday. — У п'ятницю вони забирають ревінь. Спочатку They are collecting, потім конкретне замовлення — the rhubarb. День додайте через on: on Friday. Are перед collecting потрібне й тоді, коли йдеться про майбутнє. Тут використайте are collecting; варіант із going to також можливий."
       },
       "question": {
         "interactionId": "en:lesson-15:session-36:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "362cd7a1104797dd098f2720421814d197064cab7ff078eadd64d6eb901e2c8f"
+  "introFingerprint": "22a5f8d18c704d7151b1acc4ea2598252833718415bd923d60543762b645cced"
 }

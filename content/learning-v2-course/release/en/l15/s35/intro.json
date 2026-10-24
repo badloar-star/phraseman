@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-35:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Пора подстричься",
+        "uk": "Час підстригтися"
       },
       "bodyByLocale": {
-        "ru": "haircut — стрижка волос. Повторим going to для намерения. Вы решили подстричься, но ещё не записались к мастеру. I am going to get a haircut. — Я собираюсь подстричься. Передайте намерение через going to.",
-        "uk": "haircut — стрижка волосся. Повторімо going to для наміру. Ви вирішили підстригтися, але ще не записалися до майстра. I am going to get a haircut. — Я збираюся підстригтися. Передайте намір через going to."
+        "ru": "Вы решили подстричься, но пока не записались к мастеру. Haircut — стрижка. I am going to get a haircut. — Я собираюсь подстричься. Намерение начинаем с I am going to, затем добавляем get a haircut — подстричься у мастера. После going to слово get остаётся без изменений. Не теряйте a перед haircut. В этом задании используйте going to.",
+        "uk": "Ви вирішили підстригтися, але поки не записалися до майстра. Haircut — стрижка. I am going to get a haircut. — Я збираюся підстригтися. Намір починаємо з I am going to, потім додаємо get a haircut — підстригтися в майстра. Після going to слово get залишається без змін. Не губіть a перед haircut. У цьому завданні використайте going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-35:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-35:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Запись на субботу",
+        "uk": "Запис на суботу"
       },
       "bodyByLocale": {
-        "ru": "pedicure — уход за ногтями ног, педикюр. manicure — уход за ногтями рук, маникюр. Если время уже согласовано, потренируем Present Continuous. Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. We are having a pedicure on Saturday. — Мы идём на педикюр в субботу. Передайте договорённость через Present Continuous.",
-        "uk": "pedicure — догляд за нігтями ніг, педикюр. manicure — догляд за нігтями рук, манікюр. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. We are having a pedicure on Saturday. — Ми йдемо на педикюр у суботу. Передайте домовленість через Present Continuous."
+        "ru": "Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Pedicure — педикюр. We are having a pedicure on Saturday. — В субботу мы идём на педикюр. О договорённой процедуре скажите We are having a pedicure. При добавлении -ing к have убираем конечную e: having. Затем добавьте день — on Saturday. Здесь тренируем are having; вариант с going to тоже может описывать такой план.",
+        "uk": "Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Pedicure — педикюр. We are having a pedicure on Saturday. — У суботу ми йдемо на педикюр. Про домовлену процедуру скажіть We are having a pedicure. Додаючи -ing до have, прибираємо кінцеву e: having. Потім додайте день — on Saturday. Тут тренуємо are having; варіант із going to теж може описувати такий план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-35:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-35:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Оплатить окрашивание",
+        "uk": "Оплатити фарбування"
       },
       "bodyByLocale": {
-        "ru": "hair colouring — окрашивание волос. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. They are paying for hair colouring tomorrow. — Они оплачивают окрашивание волос завтра. Передайте договорённость через Present Continuous.",
-        "uk": "hair colouring — фарбування волосся. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. They are paying for hair colouring tomorrow. — Вони оплачують фарбування волосся завтра. Передайте домовленість через Present Continuous."
+        "ru": "Ваши друзья записались на окрашивание волос завтра и договорились оплатить его в день визита. Hair colouring — окрашивание волос. They are paying for hair colouring tomorrow. — Завтра они оплачивают окрашивание волос. Начните с They are paying, затем назовите, за что платят, через for: for hair colouring. Завершите временем tomorrow. Здесь используйте are paying для согласованного плана; going to также возможно в обычной речи.",
+        "uk": "Ваші друзі записалися на фарбування волосся завтра й домовилися оплатити його в день візиту. Hair colouring — фарбування волосся. They are paying for hair colouring tomorrow. — Завтра вони оплачують фарбування волосся. Почніть з They are paying, потім назвіть, за що платять, через for: for hair colouring. Завершіть часом tomorrow. Тут використайте are paying для узгодженого плану; going to також можливе у звичайному мовленні."
       },
       "question": {
         "interactionId": "en:lesson-15:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d04891717d41764a1aab129ac81eb0025bc41e78c0dabc069d4543542abc6262"
+  "introFingerprint": "be0f812341e3a917cf2faa20d05d2f8e88749907b87f76690ad6d63cb1a500a8"
 }

@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-34:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Научиться первой помощи",
+        "uk": "Навчитися першої допомоги"
       },
       "bodyByLocale": {
-        "ru": "first aid — первая помощь при травме или внезапном недомогании. Повторим going to для намерения. Вы решили пройти курс первой помощи, но ещё не выбрали группу. I am going to learn first aid. — Я собираюсь научиться оказывать первую помощь. Передайте намерение через going to.",
-        "uk": "first aid — перша допомога при травмі або раптовому нездужанні. Повторімо going to для наміру. Ви вирішили пройти курс першої допомоги, але ще не вибрали групу. I am going to learn first aid. — Я збираюся навчитися надавати першу допомогу. Передайте намір через going to."
+        "ru": "Вы решили пройти курс первой помощи, но пока не выбрали группу. First aid — первая помощь. I am going to learn first aid. — Я собираюсь научиться оказывать первую помощь. Начните с I am going to, затем действие learn и то, чему хотите научиться, — first aid. Между learn и first aid ничего не добавляем. Так сообщаем о намерении; в задании используйте going to.",
+        "uk": "Ви вирішили пройти курс першої допомоги, але поки не обрали групу. First aid — перша допомога. I am going to learn first aid. — Я збираюся навчитися надавати першу допомогу. Почніть з I am going to, потім дія learn і те, чого хочете навчитися, — first aid. Між learn і first aid нічого не додаємо. Так повідомляємо про намір; у завданні використайте going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-34:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-34:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Завтра в бассейн",
+        "uk": "Завтра до басейну"
       },
       "bodyByLocale": {
-        "ru": "swimming lesson — занятие по обучению плаванию. driving lesson — занятие по вождению автомобиля. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. We are having a swimming lesson tomorrow. — У нас занятие по плаванию завтра. Передайте договорённость через Present Continuous.",
-        "uk": "swimming lesson — заняття з навчання плавання. driving lesson — заняття з водіння автомобіля. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. We are having a swimming lesson tomorrow. — У нас заняття з плавання завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с другом записались на завтрашнее занятие по плаванию, и инструктор подтвердил время. Swimming lesson — занятие по плаванию. We are having a swimming lesson tomorrow. — Завтра у нас занятие по плаванию. Соберите договорённость: We are having, затем a swimming lesson, затем tomorrow. В having конечная e из have исчезает перед -ing. Здесь тренируем are having; вариант с going to тоже может описывать этот план.",
+        "uk": "Ви з другом записалися на завтрашнє заняття з плавання, й інструктор підтвердив час. Swimming lesson — заняття з плавання. We are having a swimming lesson tomorrow. — Завтра в нас заняття з плавання. Складіть домовленість: We are having, потім a swimming lesson, потім tomorrow. У having кінцева e з have зникає перед -ing. Тут тренуємо are having; варіант із going to теж може описувати цей план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-34:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-34:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Танцы в пятницу",
+        "uk": "Танці в п'ятницю"
       },
       "bodyByLocale": {
-        "ru": "dance class — занятие танцами. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители подтвердили участие в пятничном занятии танцами. They are attending a dance class on Friday. — Они идут на занятие танцами в пятницу. Передайте договорённость через Present Continuous.",
-        "uk": "dance class — заняття танцями. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки підтвердили участь у п’ятничному занятті танцями. They are attending a dance class on Friday. — Вони йдуть на заняття танцями в п’ятницю. Передайте домовленість через Present Continuous."
+        "ru": "Родители записались на занятие танцами в пятницу и подтвердили участие. Dance class — занятие танцами. They are attending a dance class on Friday. — В пятницу они идут на занятие танцами. Начните с They are attending, затем сразу назовите занятие — a dance class. После attend предлог to не нужен. День добавьте через on: on Friday. Здесь используйте are attending для договорённости; going to также возможно.",
+        "uk": "Батьки записалися на заняття танцями в п'ятницю й підтвердили участь. Dance class — заняття танцями. They are attending a dance class on Friday. — У п'ятницю вони йдуть на заняття танцями. Почніть з They are attending, потім відразу назвіть заняття — a dance class. Після attend прийменник to не потрібен. День додайте через on: on Friday. Тут використайте are attending для домовленості; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "176e1deca5d79c80753a8fac7d635862c0e7a9c6a0c347f659f9ea96096f86b8"
+  "introFingerprint": "571331c0006b8aead273d48dfd5e5cbd97b885827a90002fa76895074f2459ff"
 }

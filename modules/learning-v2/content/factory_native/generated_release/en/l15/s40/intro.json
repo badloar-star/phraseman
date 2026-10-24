@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-40:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Попробовать делать свечи",
+        "uk": "Спробувати робити свічки"
       },
       "bodyByLocale": {
-        "ru": "candle making — изготовление свечей. Повторим going to для намерения. Вы решили попробовать изготовление свечей, но ещё не выбрали занятие. I am going to try candle making. — Я собираюсь попробовать делать свечи. Передайте намерение через going to.",
-        "uk": "candle making — виготовлення свічок. Повторімо going to для наміру. Ви вирішили спробувати виготовлення свічок, але ще не вибрали заняття. I am going to try candle making. — Я збираюся спробувати робити свічки. Передайте намір через going to."
+        "ru": "Вы решили попробовать делать свечи, но ещё не выбрали занятие. Candle making — изготовление свечей. I am going to try candle making. — Я собираюсь попробовать делать свечи. Начните с I am going to try: после going to действие try не меняется. Затем назовите занятие — candle making. Здесь making входит в название занятия, а намерение выражает am going to try. В задании используйте going to.",
+        "uk": "Ви вирішили спробувати робити свічки, але ще не обрали заняття. Candle making — виготовлення свічок. I am going to try candle making. — Я збираюся спробувати робити свічки. Почніть з I am going to try: після going to дія try не змінюється. Потім назвіть заняття — candle making. Тут making входить до назви заняття, а намір виражає am going to try. У завданні використайте going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-40:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-40:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Занятие в субботу",
+        "uk": "Заняття в суботу"
       },
       "bodyByLocale": {
-        "ru": "model making — изготовление уменьшенных моделей предметов. soap making — изготовление мыла. Если время уже согласовано, потренируем Present Continuous. Вы с другом записались на субботнее занятие по изготовлению моделей. We are trying model making on Saturday. — Мы пробуем изготовление моделей в субботу. Передайте договорённость через Present Continuous.",
-        "uk": "model making — виготовлення зменшених моделей предметів. soap making — виготовлення мила. Якщо час уже узгоджено, потренуймо Present Continuous. Ви з другом записалися на суботнє заняття з виготовлення моделей. We are trying model making on Saturday. — Ми пробуємо виготовлення моделей у суботу. Передайте домовленість через Present Continuous."
+        "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Model making — изготовление уменьшенных моделей предметов. We are trying model making on Saturday. — В субботу мы попробуем делать модели. Расскажите о договорённости: We are trying, затем занятие model making, затем день on Saturday. В trying буква y сохраняется. В этом задании тренируем are trying; going to тоже подходит для такого будущего плана.",
+        "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Model making — виготовлення зменшених моделей предметів. We are trying model making on Saturday. — У суботу ми спробуємо робити моделі. Розкажіть про домовленість: We are trying, потім заняття model making, потім день on Saturday. У trying літера y зберігається. У цьому завданні тренуємо are trying; going to теж підходить для такого майбутнього плану."
       },
       "question": {
         "interactionId": "en:lesson-15:session-40:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-40:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Родители идут на занятие",
+        "uk": "Батьки йдуть на заняття"
       },
       "bodyByLocale": {
-        "ru": "weaving — ткачество, создание полотна переплетением нитей. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители записались на завтрашнее вводное занятие по ткачеству. They are trying weaving tomorrow. — Они пробуют ткачество завтра. Передайте договорённость через Present Continuous.",
-        "uk": "weaving — ткацтво, створення полотна переплетенням ниток. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. They are trying weaving tomorrow. — Вони пробують ткацтво завтра. Передайте домовленість через Present Continuous."
+        "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Weaving — ткачество. They are trying weaving tomorrow. — Завтра они попробуют ткать. Начните с They are trying: родители — они, поэтому are. Добавьте weaving — какое занятие попробуют — и tomorrow — когда. Не пропускайте are перед trying. Здесь тренируем are trying для договорённости; going to в этой ситуации тоже возможно.",
+        "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Weaving — ткацтво. They are trying weaving tomorrow. — Завтра вони спробують ткати. Почніть з They are trying: батьки — вони, тому are. Додайте weaving — яке заняття спробують — і tomorrow — коли. Не пропускайте are перед trying. Тут тренуємо are trying для домовленості; going to в цій ситуації теж можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bf7fea41eeaf005ffbc0db69924610b842fa5ed3cbddcee10b29d967a4e5129a"
+  "introFingerprint": "993014cdad3db213bf982b2c0fac9e5c2b6b4403eb38837297b20fd46394a4ce"
 }

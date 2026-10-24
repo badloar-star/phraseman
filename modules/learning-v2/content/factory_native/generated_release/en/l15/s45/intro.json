@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-45:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Поездка с другом",
+        "uk": "Подорож із другом"
       },
       "bodyByLocale": {
-        "ru": "adventurous — любящий приключения и новые впечатления. Повторим going to для намерения. Вы решили отправиться в новую поездку с другом, любящим приключения; даты ещё нет. I am going to travel with my adventurous friend. — Я собираюсь поехать с другом, который любит приключения. Передайте намерение через going to.",
-        "uk": "adventurous — який любить пригоди й нові враження. Повторімо going to для наміру. Ви вирішили вирушити в нову поїздку з другом, який любить пригоди; дати ще немає. I am going to travel with my adventurous friend. — Я збираюся поїхати з другом, який любить пригоди. Передайте намір через going to."
+        "ru": "Вы решили отправиться в путешествие с другом, который любит приключения; дату ещё не выбрали. Adventurous — любящий приключения. I am going to travel with my adventurous friend. — Я собираюсь путешествовать со своим другом, который любит приключения. Начните с I am going to travel: после going to действие travel не меняется. Добавьте спутника через with — with my adventurous friend. В этом задании выразите намерение через going to.",
+        "uk": "Ви вирішили вирушити в подорож із другом, який любить пригоди; дату ще не обрали. Adventurous — той, хто любить пригоди. I am going to travel with my adventurous friend. — Я збираюся подорожувати зі своїм другом, який любить пригоди. Почніть з I am going to travel: після going to дія travel не змінюється. Додайте супутника через with — with my adventurous friend. У цьому завданні висловіть намір через going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-45:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-45:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Работа в саду",
+        "uk": "Робота в саду"
       },
       "bodyByLocale": {
-        "ru": "cooperative — готовый сотрудничать и делать дело вместе. resourceful — находчивый, умеющий найти выход и использовать доступные средства. Если время уже согласовано, потренируем Present Continuous. Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. We are working with our cooperative neighbour tomorrow. — Мы работаем с нашим готовым сотрудничать соседом завтра. Передайте договорённость через Present Continuous.",
-        "uk": "cooperative — готовий співпрацювати й робити справу разом. resourceful — винахідливий, який уміє знайти вихід і використати доступні засоби. Якщо час уже узгоджено, потренуймо Present Continuous. Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. We are working with our cooperative neighbour tomorrow. — Ми працюємо з нашим готовим співпрацювати сусідом завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с партнёром договорились завтра поработать в саду вместе с вашим соседом. Он охотно берётся за общее дело. Cooperative — готовый сотрудничать. We are working with our cooperative neighbour tomorrow. — Завтра мы работаем вместе с нашим соседом, который охотно помогает в общем деле. Соберите договорённость: We are working, затем с кем — with our cooperative neighbour, затем когда — tomorrow. Здесь тренируем are working; going to тоже может употребляться для такого плана.",
+        "uk": "Ви з партнером домовилися завтра попрацювати в саду разом із вашим сусідом. Він охоче береться за спільну справу. Cooperative — готовий співпрацювати. We are working with our cooperative neighbour tomorrow. — Завтра ми працюємо разом із нашим сусідом, який охоче допомагає у спільній справі. Складіть домовленість: We are working, потім із ким — with our cooperative neighbour, потім коли — tomorrow. Тут тренуємо are working; going to теж може вживатися для такого плану."
       },
       "question": {
         "interactionId": "en:lesson-15:session-45:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-45:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Учитель поддержит",
+        "uk": "Учитель підтримає"
       },
       "bodyByLocale": {
-        "ru": "supportive — оказывающий поддержку и ободряющий. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. They are meeting their supportive teacher on Friday. — Они встречаются с учителем, который их поддерживает, в пятницу. Передайте договорённость через Present Continuous.",
-        "uk": "supportive — який надає підтримку й підбадьорює. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. They are meeting their supportive teacher on Friday. — Вони зустрічаються з учителем, який їх підтримує, у п’ятницю. Передайте домовленість через Present Continuous."
+        "ru": "Ваши друзья договорились встретиться в пятницу с учителем, который всегда их поддерживает. Supportive — поддерживающий. They are meeting their supportive teacher on Friday. — В пятницу они встречаются со своим учителем, который их поддерживает. После They нужны are и meeting. Кого встречают, называем сразу: their supportive teacher. Время добавляем через on: on Friday. Здесь передайте договорённость через are meeting; going to также возможно в обычной речи.",
+        "uk": "Ваші друзі домовилися зустрітися в п'ятницю з учителем, який завжди їх підтримує. Supportive — той, хто підтримує. They are meeting their supportive teacher on Friday. — У п'ятницю вони зустрічаються зі своїм учителем, який їх підтримує. Після They потрібні are і meeting. Кого зустрічають, називаємо відразу: their supportive teacher. Час додаємо через on: on Friday. Тут передайте домовленість через are meeting; going to також можливе у звичайному мовленні."
       },
       "question": {
         "interactionId": "en:lesson-15:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e24ba300636b807b03c16160d78ae0a8fed96868b00b749a7d30157d0cb171cc"
+  "introFingerprint": "b5dbca7442a9ea0e3ee0447480ae198005bc03025cd1646bafcc39a042caac4f"
 }

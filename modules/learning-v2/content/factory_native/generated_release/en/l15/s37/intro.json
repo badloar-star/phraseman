@@ -11,12 +11,12 @@
       "pageId": "en:lesson-15:session-37:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Пока намерение",
-        "uk": "Поки намір"
+        "ru": "Приправа для домашней пиццы",
+        "uk": "Приправа для домашньої піци"
       },
       "bodyByLocale": {
-        "ru": "oregano — орегано, душистая трава для приправы. Повторим going to для намерения. Вы решили купить орегано для домашней пиццы. I am going to buy oregano. — Я собираюсь купить орегано. Передайте намерение через going to.",
-        "uk": "oregano — орегано, духмяна трава для приправи. Повторімо going to для наміру. Ви вирішили купити орегано для домашньої піци. I am going to buy oregano. — Я збираюся купити орегано. Передайте намір через going to."
+        "ru": "Вы решили купить орегано для домашней пиццы. Oregano — орегано, душистая трава для приправы. I am going to buy oregano. — Я собираюсь купить орегано. Сначала назовите себя и намерение: I am going to. Затем добавьте действие buy и то, что купите, — oregano. Buy после going to остаётся без окончания. В этом задании используйте going to.",
+        "uk": "Ви вирішили купити орегано для домашньої піци. Oregano — орегано, запашна трава для приправи. I am going to buy oregano. — Я збираюся купити орегано. Спочатку назвіть себе й намір: I am going to. Потім додайте дію buy і те, що купите, — oregano. Buy після going to залишається без закінчення. У цьому завданні використайте going to."
       },
       "question": {
         "interactionId": "en:lesson-15:session-37:intro1:q",
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-15:session-37:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Уже договорились",
-        "uk": "Уже домовилися"
+        "ru": "Завтра забираем приправу",
+        "uk": "Завтра забираємо приправу"
       },
       "bodyByLocale": {
-        "ru": "coriander — кориандр, растение, листья и семена которого используют как приправу. sage — шалфей, ароматная трава, используемая в кулинарии. Если время уже согласовано, потренируем Present Continuous. Продавец подтвердил заказ кориандра и время получения на завтра. We are collecting the coriander tomorrow. — Мы забираем кориандр завтра. Передайте договорённость через Present Continuous.",
-        "uk": "coriander — коріандр, рослина, листя й насіння якої використовують як приправу. sage — шавлія, ароматна трава, яку використовують у кулінарії. Якщо час уже узгоджено, потренуймо Present Continuous. Продавець підтвердив замовлення коріандру й час отримання на завтра. We are collecting the coriander tomorrow. — Ми забираємо коріандр завтра. Передайте домовленість через Present Continuous."
+        "ru": "Вы с партнёром заказали кориандр, и продавец подтвердил, что заказ будет готов к выдаче завтра. Coriander — кориандр. We are collecting the coriander tomorrow. — Завтра мы забираем кориандр. Сообщите согласованный план через We are collecting. Затем назовите конкретный заказ — the coriander — и время tomorrow. Не пропускайте are перед collecting. Здесь тренируем are collecting; вариант с going to тоже может передавать этот план.",
+        "uk": "Ви з партнером замовили коріандр, і продавець підтвердив, що замовлення буде готове до видачі завтра. Coriander — коріандр. We are collecting the coriander tomorrow. — Завтра ми забираємо коріандр. Повідомте узгоджений план через We are collecting. Потім назвіть конкретне замовлення — the coriander — і час tomorrow. Не пропускайте are перед collecting. Тут тренуємо are collecting; варіант із going to теж може передавати цей план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-37:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-15:session-37:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Известен день",
-        "uk": "Відомий день"
+        "ru": "Родители заберут заказ",
+        "uk": "Батьки заберуть замовлення"
       },
       "bodyByLocale": {
-        "ru": "cumin — кумин, зира, пряность из семян. Участники заранее согласовали день. Выбираем форму по указанию задания. Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. They are collecting the cumin on Saturday. — Они забирают кумин в субботу. Передайте договорённость через Present Continuous.",
-        "uk": "cumin — кумин, зіра, пряність із насіння. День і учасників узгодили заздалегідь. Вибираємо форму за вказівкою завдання. Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. They are collecting the cumin on Saturday. — Вони забирають кумин у суботу. Передайте домовленість через Present Continuous."
+        "ru": "Родители договорились в субботу забрать заказанный кумин из магазина приправ. Cumin — кумин, или зира. They are collecting the cumin on Saturday. — В субботу они забирают кумин. Начните с They are collecting: родители — они, поэтому are. Затем добавьте the cumin и день через on — on Saturday. Здесь тренируем are collecting для договорённости; going to в этой ситуации тоже возможно.",
+        "uk": "Батьки домовилися в суботу забрати замовлений кумин із магазину приправ. Cumin — кумин, або зіра. They are collecting the cumin on Saturday. — У суботу вони забирають кумин. Почніть з They are collecting: батьки — вони, тому are. Потім додайте the cumin і день через on — on Saturday. Тут тренуємо are collecting для домовленості; going to в цій ситуації теж можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b3c97692aad9ece745507db529fa04dae81399ec13223caba2f883d5b0ed9093"
+  "introFingerprint": "af856e93ffe945993a77d529215e7f8703d83ce2871094442f12f94631011988"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-23",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-23:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-23:intro1:r2": {
+          "ru": "После could нужна форма show.",
+          "uk": "Після could потрібна форма show."
+        },
+        "en:lesson-27:session-23:intro1:r3": {
+          "ru": "После could не ставим to.",
+          "uk": "Після could не ставимо to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-23:intro2:r2": {
+          "ru": "После would нужна форма buy.",
+          "uk": "Після would потрібна форма buy."
+        },
+        "en:lesson-27:session-23:intro2:r3": {
+          "ru": "В условии нужно had без would.",
+          "uk": "В умові потрібне had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-23:intro3:r2": {
+          "ru": "После would нужна форма measure.",
+          "uk": "Після would потрібна форма measure."
+        },
+        "en:lesson-27:session-23:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "603feb9a9f09fb32192bc1658225a3e8d09531f76fb78ca37b6678431e2c8206"
+}

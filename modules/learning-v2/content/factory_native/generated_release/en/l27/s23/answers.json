@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-23:i01",
+    "correctText": "May I sit here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:word:backrest",
+    "correctText": "backrest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i02",
+    "correctText": "The backrest is too low.",
+    "correctResponseId": "en:lesson-27:session-23:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:word:footrest",
+    "correctText": "footrest",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i03",
+    "correctText": "This chair has a footrest.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i04",
+    "correctText": "Try the one by the window.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i05",
+    "correctText": "Could you show me a smaller one?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:word:inexpensive",
+    "correctText": "inexpensive",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i06",
+    "correctText": "This one is inexpensive.",
+    "correctResponseId": "en:lesson-27:session-23:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i07",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-23:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i08",
+    "correctText": "Will it fit through the door?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i09",
+    "correctText": "It is eighty centimetres wide.",
+    "correctResponseId": "en:lesson-27:session-23:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i10",
+    "correctText": "I have already measured the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i11",
+    "correctText": "measured",
+    "correctResponseId": "en:lesson-27:session-23:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:word:returnable",
+    "correctText": "returnable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i12",
+    "correctText": "Is this item returnable?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i13",
+    "correctText": "Can I return it if it does not fit?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i14",
+    "correctText": "measure",
+    "correctResponseId": "en:lesson-27:session-23:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i15",
+    "correctText": "Please keep your receipt.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i16",
+    "correctText": "I need to think about it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-23:i17",
+    "correctText": "We would take it if it were smaller.",
+    "correctResponseId": null
+  }
+]

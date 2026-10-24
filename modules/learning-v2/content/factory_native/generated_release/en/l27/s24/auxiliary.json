@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-24",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-24:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-24:intro1:r2": {
+          "ru": "После would нужна форма call.",
+          "uk": "Після would потрібна форма call."
+        },
+        "en:lesson-27:session-24:intro1:r3": {
+          "ru": "В условии здесь had без would.",
+          "uk": "В умові тут had без would."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-24:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-24:intro2:r2": {
+          "ru": "Здесь одно время для записи: is there.",
+          "uk": "Тут один час для запису: is there."
+        },
+        "en:lesson-27:session-24:intro2:r3": {
+          "ru": "Перед appointment нужен an.",
+          "uk": "Перед appointment потрібен an."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-24:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-24:intro3:r2": {
+          "ru": "С yesterday здесь called без have.",
+          "uk": "Із yesterday тут called без have."
+        },
+        "en:lesson-27:session-24:intro3:r3": {
+          "ru": "Здесь действие в прошлом: called.",
+          "uk": "Тут дія в минулому: called."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "987e67329080a6d2eca345d685876e211f8f631150665ae8fa302164fd3188a9"
+}

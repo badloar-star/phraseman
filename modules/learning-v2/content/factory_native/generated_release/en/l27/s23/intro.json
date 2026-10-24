@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if I were you; present perfect / past simple",
+    "uk": "if + past simple, would + base verb; if I were you; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобно ли сидеть",
+        "uk": "Чи зручно сидіти"
+      },
+      "bodyByLocale": {
+        "ru": "Backrest — спинка сиденья. The backrest is too low — спинка слишком низкая. Footrest — подставка или опора для ног. This chair has a footrest — у этого кресла есть подставка для ног. Она может быть частью кресла; это не обязательно отдельная скамеечка. Вы проверяете, удобно ли сидеть, и просите другой вариант: Could you show me a smaller one? — можете показать поменьше? Вопрос о размере не означает, что вы уже решили купить вещь.",
+        "uk": "Backrest — спинка сидіння. The backrest is too low — спинка занадто низька. Footrest — підставка або опора для ніг. This chair has a footrest — у цього крісла є підставка для ніг. Вона може бути частиною крісла; це не обов’язково окрема лавочка. Ви перевіряєте, чи зручно сидіти, й просите інший варіант: Could you show me a smaller one? — можете показати менший? Запитання про розмір не означає, що ви вже вирішили купити річ."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-23:intro1:r1",
+              "text": "Could you show me a smaller one?"
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro1:r2",
+              "text": "Could you showed me a smaller one?"
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro1:r3",
+              "text": "Could you to show me a smaller one?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-23:intro1:r1",
+              "text": "Could you show me a smaller one?"
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro1:r2",
+              "text": "Could you showed me a smaller one?"
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro1:r3",
+              "text": "Could you to show me a smaller one?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Цена и место дома",
+        "uk": "Ціна й місце вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Inexpensive — недорогой. This one is inexpensive — этот вариант недорогой. Слово говорит о цене и само по себе не означает плохое качество. Но в комнате мало места: I would buy it if I had more space — я бы купил это, если бы у меня было больше места. Would buy описывает воображаемый результат, had — условие сейчас. Вы уже измерили комнату: I have already measured the room. Если называете время, скажите I measured it yesterday — я измерил её вчера.",
+        "uk": "Inexpensive — недорогий. This one is inexpensive — цей варіант недорогий. Слово говорить про ціну й саме по собі не означає поганої якості. Але в кімнаті мало місця: I would buy it if I had more space — я б купив це, якби мав більше місця. Would buy описує уявний результат, had — умову зараз. Ви вже виміряли кімнату: I have already measured the room. Якщо називаєте час, скажіть I measured it yesterday — я виміряв її вчора."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-23:intro2:r1",
+              "text": "I would buy it if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro2:r2",
+              "text": "I would bought it if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro2:r3",
+              "text": "I would buy it if I would had more space."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-23:intro2:r1",
+              "text": "I would buy it if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro2:r2",
+              "text": "I would bought it if I had more space."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro2:r3",
+              "text": "I would buy it if I would had more space."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить до покупки",
+        "uk": "Запитати до покупки"
+      },
+      "bodyByLocale": {
+        "ru": "Returnable — такой, который можно вернуть. Is this item returnable? — этот товар можно вернуть? Это вопрос об условиях конкретной покупки, а не обещание, что любой магазин примет любой товар. Уточните условие: Can I return it if it does not fit? — можно вернуть его, если он не подойдёт по размеру? Здесь if it does not fit относится к реальной будущей возможности. Друг советует сначала проверить дверь: If I were you, I would measure the doorway — на твоём месте я бы измерил дверной проём.",
+        "uk": "Returnable — такий, який можна повернути. Is this item returnable? — цей товар можна повернути? Це запитання про умови конкретної покупки, а не обіцянка, що будь-який магазин прийме будь-який товар. Уточніть умову: Can I return it if it does not fit? — можна повернути його, якщо він не підійде за розміром? Тут if it does not fit стосується реальної майбутньої можливості. Друг радить спочатку перевірити двері: If I were you, I would measure the doorway — на твоєму місці я б виміряв дверний отвір."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-23:intro3:r1",
+              "text": "If I were you, I would measure the doorway."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro3:r2",
+              "text": "If I were you, I would measured the doorway."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro3:r3",
+              "text": "If I were you, I would to measure the doorway."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-23:intro3:r1",
+              "text": "If I were you, I would measure the doorway."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro3:r2",
+              "text": "If I were you, I would measured the doorway."
+            },
+            {
+              "responseId": "en:lesson-27:session-23:intro3:r3",
+              "text": "If I were you, I would to measure the doorway."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cfca8a0360c0dc7d50ec6f257251964816c770be8fc0e8ad9468eac27ad91fbc"
+}

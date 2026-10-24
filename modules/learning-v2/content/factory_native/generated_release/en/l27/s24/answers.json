@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-24:word:groggy",
+    "correctText": "groggy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i01",
+    "correctText": "I still feel groggy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:word:dizziness",
+    "correctText": "dizziness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i02",
+    "correctText": "The dizziness started this morning.",
+    "correctResponseId": "en:lesson-27:session-24:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i03",
+    "correctText": "Do you have the number for the clinic?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i04",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-24:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:word:stiffness",
+    "correctText": "stiffness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i05",
+    "correctText": "There is some stiffness in my neck.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:word:numbness",
+    "correctText": "numbness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i06",
+    "correctText": "I have some numbness in my hand.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i07",
+    "correctText": "When did it start?",
+    "correctResponseId": "en:lesson-27:session-24:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i08",
+    "correctText": "Is there an appointment today?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i09",
+    "correctText": "What time can you come?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i10",
+    "correctText": "I can come after lunch.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i11",
+    "correctText": "Please arrive ten minutes early.",
+    "correctResponseId": "en:lesson-27:session-24:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i12",
+    "correctText": "I have already written it down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i13",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-27:session-24:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i14",
+    "correctText": "Can we meet tomorrow instead?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i15",
+    "correctText": "meet",
+    "correctResponseId": "en:lesson-27:session-24:i15:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i16",
+    "correctText": "If I were free, I would go with you.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-24:i17",
+    "correctText": "Thank you for understanding.",
+    "correctResponseId": null
+  }
+]

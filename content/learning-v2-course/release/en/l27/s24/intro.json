@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "if + past simple, would + base verb; if + subject + were; present perfect / past simple",
+    "uk": "if + past simple, would + base verb; if + subject + were; present perfect / past simple"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Описать своё состояние",
+        "uk": "Описати свій стан"
+      },
+      "bodyByLocale": {
+        "ru": "Groggy — вялый, с затуманенной головой, например после пробуждения. I still feel groggy — я всё ещё чувствую себя разбитым. Dizziness — головокружение. The dizziness started this morning — головокружение началось сегодня утром. Эти слова помогают назвать ощущение, но не объясняют его причину. Сейчас уже день, и вы сообщаете, когда всё началось: started без have. Вы хотите позвонить в клинику, но не знаете номера: I would call the clinic if I had the number — я бы позвонил в клинику, если бы у меня был номер.",
+        "uk": "Groggy — млявий, із затуманеною головою, наприклад після пробудження. I still feel groggy — я все ще почуваюся розбитим. Dizziness — запаморочення. The dizziness started this morning — запаморочення почалося сьогодні вранці. Ці слова допомагають назвати відчуття, але не пояснюють його причини. Зараз уже день, і ви повідомляєте, коли все почалося: started без have. Ви хочете зателефонувати до клініки, але не знаєте номера: I would call the clinic if I had the number — я б зателефонував до клініки, якби мав номер."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-24:intro1:r1",
+              "text": "I would call the clinic if I had the number."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro1:r2",
+              "text": "I would called the clinic if I had the number."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro1:r3",
+              "text": "I would call the clinic if I would had the number."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-24:intro1:r1",
+              "text": "I would call the clinic if I had the number."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro1:r2",
+              "text": "I would called the clinic if I had the number."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro1:r3",
+              "text": "I would call the clinic if I would had the number."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать ощущение точнее",
+        "uk": "Назвати відчуття точніше"
+      },
+      "bodyByLocale": {
+        "ru": "Stiffness — скованность, затруднение движения из-за ощущения жёсткости. There is some stiffness in my neck — я чувствую скованность в шее. Numbness — онемение, снижение чувствительности. I have some numbness in my hand — у меня немного немеет кисть. Это разные ощущения: не нужно заменять каждое из них общим pain — боль. По телефону вы просите время: Is there an appointment today? — есть запись на сегодня? Собеседник уточняет: What time can you come? — во сколько вы можете прийти?",
+        "uk": "Stiffness — скутість, утруднення руху через відчуття жорсткості. There is some stiffness in my neck — я відчуваю скутість у шиї. Numbness — оніміння, зниження чутливості. I have some numbness in my hand — у мене трохи німіє кисть. Це різні відчуття: не потрібно замінювати кожне з них загальним pain — біль. Телефоном ви просите час: Is there an appointment today? — є запис на сьогодні? Співрозмовник уточнює: What time can you come? — о котрій ви можете прийти?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-24:intro2:r1",
+              "text": "Is there an appointment today?"
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro2:r2",
+              "text": "Are there an appointment today?"
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro2:r3",
+              "text": "Is there a appointment today?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-24:intro2:r1",
+              "text": "Is there an appointment today?"
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro2:r2",
+              "text": "Are there an appointment today?"
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro2:r3",
+              "text": "Is there a appointment today?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Договориться о времени",
+        "uk": "Домовитися про час"
+      },
+      "bodyByLocale": {
+        "ru": "Вам предложили время, и вы записали его: I have already written it down — я уже это записал. Если называете вчерашнее действие, скажите I called yesterday — я звонил вчера. Yesterday указывает на законченное время, поэтому called без have. Друг обсуждает вашу встречу: We would meet later if you were busy — мы бы встретились позже, если бы ты был занят. Можно начать с условия: If you were busy, we would meet later. Would остаётся с результатом meet, а were — с условием.",
+        "uk": "Вам запропонували час, і ви записали його: I have already written it down — я вже це записав. Якщо називаєте вчорашню дію, скажіть I called yesterday — я телефонував учора. Yesterday вказує на завершений час, тому called без have. Друг обговорює вашу зустріч: We would meet later if you were busy — ми б зустрілися пізніше, якби ти був зайнятий. Можна почати з умови: If you were busy, we would meet later. Would залишається з результатом meet, а were — з умовою."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-24:intro3:r1",
+              "text": "I called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro3:r2",
+              "text": "I have called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro3:r3",
+              "text": "I call yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-24:intro3:r1",
+              "text": "I called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro3:r2",
+              "text": "I have called yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-24:intro3:r3",
+              "text": "I call yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1242c85c3b58dfd7569ccb0f97844c1c306b6785b507bc7f10e877416ed25202"
+}

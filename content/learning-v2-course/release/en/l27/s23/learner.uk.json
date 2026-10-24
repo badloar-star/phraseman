@@ -1,0 +1,1006 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-23",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-23:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть дозволу сісти.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Попросіть дозволу сісти.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i01:audio",
+          "transcript": "May I sit here?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "May I sit here?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:word:backrest",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — backrest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:word:backrest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — backrest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:word:backrest:audio",
+          "transcript": "backrest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:word:backrest:r1",
+            "targetText": "backrest",
+            "meaningByLocale": {
+              "ru": "Спинка сиденья.",
+              "uk": "Спинка сидіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "backrest",
+          "definitionByLocale": {
+            "ru": "Спинка сиденья.",
+            "uk": "Спинка сидіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-23:i02:r1",
+          "text": "The backrest is too low."
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i02:r2",
+          "text": "The backrest is too high."
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i02:r3",
+          "text": "The seat is too low."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i02:audio",
+          "transcript": "The backrest is too low."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:i02:r1",
+            "targetText": "The backrest is too low.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i02:r2",
+            "targetText": "The backrest is too high.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i02:r3",
+            "targetText": "The seat is too low.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The backrest is too low.",
+              "uk": "У записі звучить The backrest is too low."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The backrest is too low.",
+              "uk": "У записі звучить The backrest is too low."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:word:footrest",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — footrest",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:word:footrest:audio"
+      ],
+      "accessibilityLabel": "Картка слова — footrest",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:word:footrest:audio",
+          "transcript": "footrest"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:word:footrest:r1",
+            "targetText": "footrest",
+            "meaningByLocale": {
+              "ru": "Подставка или опора для ног.",
+              "uk": "Підставка або опора для ніг."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "footrest",
+          "definitionByLocale": {
+            "ru": "Подставка или опора для ног.",
+            "uk": "Підставка або опора для ніг."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i03",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зазначте, що у крісла є підставка для ніг.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зазначте, що у крісла є підставка для ніг.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This chair has a footrest.",
+        "localizedMeaning": {
+          "ru": "Отметьте, что у кресла есть подставка для ног.",
+          "uk": "Зазначте, що у крісла є підставка для ніг."
+        },
+        "orderedTokens": [
+          "This",
+          "chair",
+          "has",
+          "a",
+          "footrest"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i04",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте пропозицію спробувати інше крісло.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Почуйте пропозицію спробувати інше крісло.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i04:audio",
+          "transcript": "Try the one by the window."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Try the one by the window.",
+        "orderedTokens": [
+          "Try",
+          "the",
+          "one",
+          "by",
+          "the",
+          "window"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i05",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросіть показати менший варіант.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Попросіть показати менший варіант.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i05:audio",
+          "transcript": "Could you show me a smaller one?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you show me a smaller one?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:word:inexpensive",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — inexpensive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:word:inexpensive:audio"
+      ],
+      "accessibilityLabel": "Картка слова — inexpensive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:word:inexpensive:audio",
+          "transcript": "inexpensive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:word:inexpensive:r1",
+            "targetText": "inexpensive",
+            "meaningByLocale": {
+              "ru": "Недорогой.",
+              "uk": "Недорогий."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "inexpensive",
+          "definitionByLocale": {
+            "ru": "Недорогой.",
+            "uk": "Недорогий."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i06",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-23:i06:r1",
+          "text": "This one is inexpensive."
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i06:r2",
+          "text": "That one is inexpensive."
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i06:r3",
+          "text": "This one is expensive."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i06:audio",
+          "transcript": "This one is inexpensive."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:i06:r1",
+            "targetText": "This one is inexpensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i06:r2",
+            "targetText": "That one is inexpensive.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i06:r3",
+            "targetText": "This one is expensive.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-23:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This one is inexpensive.",
+              "uk": "У записі звучить This one is inexpensive."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит This one is inexpensive.",
+              "uk": "У записі звучить This one is inexpensive."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i07",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви купили б крісло, якби вдома було більше місця.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-23:i07:r1",
+          "text": "had"
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i07:r2",
+          "text": "would had"
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i07:r3",
+          "text": "having"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви купили б крісло, якби вдома було більше місця.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы купили бы кресло, если бы дома было больше места.",
+          "uk": "Ви купили б крісло, якби вдома було більше місця."
+        },
+        "gappedTargetPhrase": "I would buy it if I ___ more space.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-23:i07:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i07:r2",
+            "text": "would had"
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i07:r3",
+            "text": "having"
+          }
+        ],
+        "testedDimension": "Ви купили б крісло, якби вдома було більше місця.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Ви купили б крісло, якби вдома було більше місця.",
+            "feedbackByLocale": {
+              "ru": "В условии здесь had.",
+              "uk": "В умові тут had."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i07:r3",
+            "correct": false,
+            "testedDimension": "Ви купили б крісло, якби вдома було більше місця.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма had.",
+              "uk": "Потрібна форма had."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте, чи пройде крісло у двері.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи пройде крісло у двері.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Will it fit through the door?",
+        "localizedMeaning": {
+          "ru": "Спросите, пройдёт ли кресло в дверь.",
+          "uk": "Запитайте, чи пройде крісло у двері."
+        },
+        "orderedTokens": [
+          "Will",
+          "it",
+          "fit",
+          "through",
+          "the",
+          "door"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-23:i09:r1",
+          "text": "It is eighty centimetres wide."
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i09:r2",
+          "text": "It is eighteen centimetres wide."
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i09:r3",
+          "text": "It is eighty centimetres high."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i09:audio",
+          "transcript": "It is eighty centimetres wide."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:i09:r1",
+            "targetText": "It is eighty centimetres wide.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i09:r2",
+            "targetText": "It is eighteen centimetres wide.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i09:r3",
+            "targetText": "It is eighty centimetres high.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-23:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is eighty centimetres wide.",
+              "uk": "У записі звучить It is eighty centimetres wide."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит It is eighty centimetres wide.",
+              "uk": "У записі звучить It is eighty centimetres wide."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Повідомте, що вже виміряли кімнату.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Повідомте, що вже виміряли кімнату.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already measured the room.",
+        "localizedMeaning": {
+          "ru": "Сообщите, что уже измерили комнату.",
+          "uk": "Повідомте, що вже виміряли кімнату."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "measured",
+          "the",
+          "room"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i11",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточніть: ви виміряли її вчора.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-23:i11:r1",
+          "text": "measured"
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i11:r2",
+          "text": "have measured"
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i11:r3",
+          "text": "measure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть: ви виміряли її вчора.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните: вы измерили её вчера.",
+          "uk": "Уточніть: ви виміряли її вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-23:i11:r1",
+            "text": "measured"
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i11:r2",
+            "text": "have measured"
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i11:r3",
+            "text": "measure"
+          }
+        ],
+        "testedDimension": "Уточніть: ви виміряли її вчора.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-23:i11:r2",
+            "correct": false,
+            "testedDimension": "Уточніть: ви виміряли її вчора.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь measured без have.",
+              "uk": "Із yesterday тут measured без have."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i11:r3",
+            "correct": false,
+            "testedDimension": "Уточніть: ви виміряли її вчора.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма measured.",
+              "uk": "Потрібна минула форма measured."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:word:returnable",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — returnable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:word:returnable:audio"
+      ],
+      "accessibilityLabel": "Картка слова — returnable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:word:returnable:audio",
+          "transcript": "returnable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-23:word:returnable:r1",
+            "targetText": "returnable",
+            "meaningByLocale": {
+              "ru": "Такой, который можно вернуть.",
+              "uk": "Такий, який можна повернути."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "returnable",
+          "definitionByLocale": {
+            "ru": "Такой, который можно вернуть.",
+            "uk": "Такий, який можна повернути."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i12",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Запитайте, чи можна повернути цей товар.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Запитайте, чи можна повернути цей товар.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i12:audio",
+          "transcript": "Is this item returnable?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Is this item returnable?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточніть повернення на випадок невідповідного розміру.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточніть повернення на випадок невідповідного розміру.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Can I return it if it does not fit?",
+        "localizedMeaning": {
+          "ru": "Уточните возврат на случай неподходящего размера.",
+          "uk": "Уточніть повернення на випадок невідповідного розміру."
+        },
+        "orderedTokens": [
+          "Can",
+          "I",
+          "return",
+          "it",
+          "if",
+          "it",
+          "does",
+          "not",
+          "fit"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i14",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На місці друга ви виміряли б дверний отвір.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-23:i14:r1",
+          "text": "measure"
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i14:r2",
+          "text": "measured"
+        },
+        {
+          "responseId": "en:lesson-27:session-23:i14:r3",
+          "text": "to measure"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На місці друга ви виміряли б дверний отвір.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На месте друга вы измерили бы дверной проём.",
+          "uk": "На місці друга ви виміряли б дверний отвір."
+        },
+        "gappedTargetPhrase": "If I were you, I would ___ the doorway.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-23:i14:r1",
+            "text": "measure"
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i14:r2",
+            "text": "measured"
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i14:r3",
+            "text": "to measure"
+          }
+        ],
+        "testedDimension": "На місці друга ви виміряли б дверний отвір.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-23:i14:r2",
+            "correct": false,
+            "testedDimension": "На місці друга ви виміряли б дверний отвір.",
+            "feedbackByLocale": {
+              "ru": "После would нужна форма measure.",
+              "uk": "Після would потрібна форма measure."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-23:i14:r3",
+            "correct": false,
+            "testedDimension": "На місці друга ви виміряли б дверний отвір.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Почуйте прохання зберегти чек.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i15:audio"
+      ],
+      "accessibilityLabel": "Почуйте прохання зберегти чек.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i15:audio",
+          "transcript": "Please keep your receipt."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Please keep your receipt.",
+        "orderedTokens": [
+          "Please",
+          "keep",
+          "your",
+          "receipt"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i16",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поясніть, що вам потрібно подумати.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-23:i16:audio"
+      ],
+      "accessibilityLabel": "Поясніть, що вам потрібно подумати.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-23:i16:audio",
+          "transcript": "I need to think about it."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I need to think about it.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-23:i17",
+      "ordinal": 24,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перемістіть умову в кінець: If it were smaller, we would take it.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перемістіть умову в кінець: If it were smaller, we would take it.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would take it if it were smaller.",
+        "localizedMeaning": {
+          "ru": "Передвиньте условие в конец: If it were smaller, we would take it.",
+          "uk": "Перемістіть умову в кінець: If it were smaller, we would take it."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "take",
+          "it",
+          "if",
+          "it",
+          "were",
+          "smaller"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "24ffa3f71b5edfadddc4d379885f669270c0155b74fc4a118a380f68e0067583"
+}

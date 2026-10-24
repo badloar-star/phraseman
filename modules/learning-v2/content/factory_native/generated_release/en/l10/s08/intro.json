@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-08:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Согласиться или возразить",
-        "uk": "Погодитися або заперечити"
+        "ru": "Согласиться с другом",
+        "uk": "Погодитися з другом"
       },
       "bodyByLocale": {
-        "ru": "Друг говорит, что здесь слишком шумно. Вы думаете так же: I agree with you — «Я с тобой согласен». Agree — «соглашаться». После agree перед человеком нужен with. Если ваше мнение другое: I disagree — «Я не согласен». Disagree — «не соглашаться». Это мнение, а не действие в процессе: I agree, без am.",
-        "uk": "Друг каже, що тут надто шумно. Ви думаєте так само: I agree with you — «Я з тобою згоден». Agree — «погоджуватися». Після agree перед людиною потрібне with. Якщо ваша думка інша: I disagree — «Я не згоден». Disagree — «не погоджуватися». Це думка, а не дія в процесі: I agree, без am."
+        "ru": "Друг говорит, что в кафе слишком шумно. Вы думаете так же: I agree with you — «Я с тобой согласен». Agree означает «соглашаться». Собираем предложение: I — кто согласен, agree — «согласен», with you — с кем. В английском agree уже является глаголом, поэтому am перед ним не ставим. Чтобы назвать человека, с которым согласны, после agree добавляем with, затем you.",
+        "uk": "Друг каже, що в кафе надто шумно. Ви думаєте так само: I agree with you — «Я з тобою згоден». Agree означає «погоджуватися». Складаємо речення: I — хто згоден, agree — «згоден», with you — з ким. В англійській agree вже є дієсловом, тому am перед ним не ставимо. Щоб назвати людину, з якою згодні, після agree додаємо with, потім you."
       },
       "question": {
         "interactionId": "en:lesson-10:session-08:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e16851d21cd1dc2a6e3661c220edbda16e45f1238ea1a52d61dde5f1cdb64697"
+  "introFingerprint": "993b539c82b8f0527629d376af04827edb4a4dee45a01edfdeeb76eb7116b186"
 }

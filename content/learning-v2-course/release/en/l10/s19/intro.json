@@ -11,12 +11,12 @@
       "pageId": "en:lesson-10:session-19:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "Извинение и благодарность",
-        "uk": "Вибачення й подяка"
+        "ru": "Извиниться за опоздание",
+        "uk": "Вибачитися за запізнення"
       },
       "bodyByLocale": {
-        "ru": "Вы опоздали и хотите начать с извинения. Apologise — «извиняться»: I want to apologise — «Я хочу извиниться». После want перед действием нужен to. Позже друг помог вам с сумкой: Thank you for your help — «Спасибо за помощь». Thank — «благодарить»; thank you — готовое выражение благодарности. В apologise используем британское написание с s.",
-        "uk": "Ви запізнилися й хочете почати з вибачення. Apologise — «вибачатися»: I want to apologise — «Я хочу вибачитися». Після want перед дією потрібне to. Пізніше друг допоміг вам із сумкою: Thank you for your help — «Дякую за допомогу». Thank — «дякувати»; thank you — готовий вислів подяки. В apologise використовуємо британське написання із s."
+        "ru": "Вы опоздали на встречу и хотите извиниться: I want to apologise — «Я хочу извиниться». Сначала I — кто говорит о своём желании, затем want — «хочу», и to apologise — «извиниться». Когда после want называем действие, перед ним ставим to. После to глагол остаётся в начальной форме: apologise, без окончания -s. Буква s внутри apologise — часть британского написания слова.",
+        "uk": "Ви запізнилися на зустріч і хочете вибачитися: I want to apologise — «Я хочу вибачитися». Спочатку I — хто говорить про своє бажання, потім want — «хочу», і to apologise — «вибачитися». Коли після want називаємо дію, перед нею ставимо to. Після to дієслово залишається в початковій формі: apologise, без закінчення -s. Літера s усередині apologise — частина британського написання слова."
       },
       "question": {
         "interactionId": "en:lesson-10:session-19:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "53164288356a331f0ef8f9c4c475a41dfcb624150773b8385bc1787502316916"
+  "introFingerprint": "fe02e35171aa505926e4db634495bc3c19ff4f2d4802b7f07ff532949cf5ded8"
 }

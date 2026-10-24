@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-12:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Колготки и халат",
-        "uk": "Колготки й халат"
+        "ru": "Нужны колготки для поездки",
+        "uk": "Потрібні колготки для подорожі"
       },
       "bodyByLocale": {
-        "ru": "Для поездки нужны колготки. Tights — «колготки»: I need some tights — «Мне нужны колготки». Слово употребляется во множественном числе: some tights, без a. Дома после душа вы в халате. Dressing gown — «домашний халат»: I am wearing a dressing gown — «Я сейчас в халате». Wear здесь описывает одежду на вас сейчас: am wearing.",
-        "uk": "Для подорожі потрібні колготки. Tights — «колготки»: I need some tights — «Мені потрібні колготки». Слово вживається у множині: some tights, без a. Удома після душу ви в халаті. Dressing gown — «домашній халат»: I am wearing a dressing gown — «Я зараз у халаті». Wear тут описує одяг на вас зараз: am wearing."
+        "ru": "Вы собираете одежду для поездки и замечаете, что нужны колготки. I need some tights — «Мне нужны колготки». Tights означает «колготки» и употребляется во множественном числе. Начинаем с I, затем need без -s, после него some tights — что нужно. Перед tights не ставим a: этот артикль подходит к исчисляемому существительному в единственном числе. Здесь some позволяет назвать колготки без точного количества.",
+        "uk": "Ви збираєте одяг для подорожі й помічаєте, що потрібні колготки. I need some tights — «Мені потрібні колготки». Tights означає «колготки» і вживається у множині. Починаємо з I, потім need без -s, після нього some tights — що потрібно. Перед tights не ставимо a: цей артикль підходить до злічуваного іменника в однині. Тут some дозволяє назвати колготки без точної кількості."
       },
       "question": {
         "interactionId": "en:lesson-10:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dc93b60fa6110e38c10fe9d150f6666bca94e2213b0ffc9833359ee791778c25"
+  "introFingerprint": "e69dcc0a33af01d0e246a5a02ea1b4a0ff35542d853dc11cea91c9f2d0769ae1"
 }

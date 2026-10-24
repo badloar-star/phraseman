@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-11:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Сообщение и пропущенный звонок",
-        "uk": "Повідомлення й пропущений дзвінок"
+        "ru": "Отправить адрес сообщением",
+        "uk": "Надіслати адресу повідомленням"
       },
       "bodyByLocale": {
-        "ru": "Вы сейчас отправляете другу короткое сообщение с адресом. Text message — «текстовое сообщение, СМС»: I am sending a text message — «Я отправляю сообщение». А missed call — «пропущенный звонок»: I have a missed call — «У меня пропущенный звонок». Sending описывает действие сейчас; have здесь сообщает, что у вас есть уведомление о звонке.",
-        "uk": "Ви зараз надсилаєте другу коротке повідомлення з адресою. Text message — «текстове повідомлення, СМС»: I am sending a text message — «Я надсилаю повідомлення». А missed call — «пропущений дзвінок»: I have a missed call — «У мене пропущений дзвінок». Sending описує дію зараз; have тут повідомляє, що у вас є сповіщення про дзвінок."
+        "ru": "Вы сейчас отправляете другу сообщение с адресом встречи. I am sending a text message — «Я отправляю текстовое сообщение». Text message означает «текстовое сообщение, СМС». Для действия сейчас после I ставим am, затем sending — send с окончанием -ing. Получается I + am + sending, после чего называем то, что отправляем: a text message. Сообщение одно, поэтому a стоит перед всем названием.",
+        "uk": "Ви зараз надсилаєте другу повідомлення з адресою зустрічі. I am sending a text message — «Я надсилаю текстове повідомлення». Text message означає «текстове повідомлення, СМС». Для дії зараз після I ставимо am, потім sending — send із закінченням -ing. Виходить I + am + sending, після чого називаємо те, що надсилаємо: a text message. Повідомлення одне, тому a стоїть перед усією назвою."
       },
       "question": {
         "interactionId": "en:lesson-10:session-11:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3c701dc59c522a581c6c50bd62213311e037b076fb2c726e8e571b8488de3804"
+  "introFingerprint": "e7a9b2eb30e0305388c110ca5b6105da9312ce52343766585d60ebf74f21cdfc"
 }

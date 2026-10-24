@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-09:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Надписи на упаковке",
-        "uk": "Написи на упаковці"
+        "ru": "Напиток без сахара",
+        "uk": "Напій без цукру"
       },
       "bodyByLocale": {
-        "ru": "Вы читаете надписи на напитке и пироге. Sugar-free — «без сахара»: This drink is sugar-free — «Этот напиток без сахара». Dairy-free — «без молочных ингредиентов»: This cake is dairy-free — «Этот пирог без молочных ингредиентов». Это описание продукта, поэтому нужна связка is. Free здесь не значит «бесплатный»: sugar-free и dairy-free учим целиком.",
-        "uk": "Ви читаєте написи на напої й пирозі. Sugar-free — «без цукру»: This drink is sugar-free — «Цей напій без цукру». Dairy-free — «без молочних інгредієнтів»: This cake is dairy-free — «Цей пиріг без молочних інгредієнтів». Це опис продукту, тому потрібна зв’язка is. Free тут не означає «безкоштовний»: sugar-free і dairy-free вчимо цілком."
+        "ru": "Друг ищет напиток без сахара. Вы читаете этикетку бутылки и сообщаете: This drink is sugar-free — «Этот напиток без сахара». Sugar-free означает «без сахара»; free здесь не значит «бесплатный». Сначала this drink — какой предмет описываем, затем is и его свойство sugar-free. Drink в единственном числе, поэтому нужна is. В русском переводе глагол можно не произносить, но в этой английской фразе is обязателен.",
+        "uk": "Друг шукає напій без цукру. Ви читаєте етикетку пляшки й повідомляєте: This drink is sugar-free — «Цей напій без цукру». Sugar-free означає «без цукру»; free тут не означає «безкоштовний». Спочатку this drink — який предмет описуємо, потім is і його властивість sugar-free. Drink в однині, тому потрібна is. В українському перекладі дієслово можна не вимовляти, але в цій англійській фразі is обов’язкове."
       },
       "question": {
         "interactionId": "en:lesson-10:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3ec8c9c6f76fd0ee2c288a3f2c1c3030aa84489c7365b3c1f3b3a1ae53ba6926"
+  "introFingerprint": "ceec06364abea3a1f78aacb1b8adf2b058e939993add4395d3f5be1e74d57229"
 }

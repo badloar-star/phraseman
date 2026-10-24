@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-13:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Болит ухо или зуб",
-        "uk": "Болить вухо або зуб"
+        "ru": "У подруги болит ухо",
+        "uk": "У подруги болить вухо"
       },
       "bodyByLocale": {
-        "ru": "Подруга говорит, что у неё болит ухо. Earache — «боль в ухе»: She has earache — «У неё болит ухо». А toothache — «зубная боль»: I have toothache — «У меня болит зуб». С she нужна has, с I — have. Здесь учим британские варианты без артикля: have earache, have toothache.",
-        "uk": "Подруга каже, що в неї болить вухо. Earache — «біль у вусі»: She has earache — «У неї болить вухо». А toothache — «зубний біль»: I have toothache — «У мене болить зуб». З she потрібна has, з I — have. Тут учимо британські варіанти без артикля: have earache, have toothache."
+        "ru": "Подруга сообщает, что у неё болит ухо. Вы объясняете её самочувствие другу: She has earache — «У неё болит ухо». Earache означает «боль в ухе». Сначала she — о ком говорим, затем has — форма have для she, и earache — что болит. Has уже является глаголом, поэтому is перед ним не добавляем. Здесь используем британский вариант earache без артикля.",
+        "uk": "Подруга повідомляє, що в неї болить вухо. Ви пояснюєте її самопочуття другу: She has earache — «У неї болить вухо». Earache означає «біль у вусі». Спочатку she — про кого говоримо, потім has — форма have для she, і earache — що болить. Has вже є дієсловом, тому is перед ним не додаємо. Тут використовуємо британський варіант earache без артикля."
       },
       "question": {
         "interactionId": "en:lesson-10:session-13:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b9c87785da2a4fd235c27e5cfa7fb9f6d665d531c62c00ad9e332963cf288cf3"
+  "introFingerprint": "88679afd8a697f2913fb184b3f5fe33f082a77ac3446aac93b30681b532fedfd"
 }

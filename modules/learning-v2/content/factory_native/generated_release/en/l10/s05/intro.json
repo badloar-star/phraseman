@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-05:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вещи наверху и внизу",
-        "uk": "Речі нагорі й унизу"
+        "ru": "Найти коробки на чердаке",
+        "uk": "Знайти коробки на горищі"
       },
       "bodyByLocale": {
-        "ru": "После переезда вы объясняете, где лежат вещи. Attic — «чердак»: The boxes are in the attic — «Коробки на чердаке». Cellar — «подвал, погреб»: The bottles are in the cellar — «Бутылки в подвале». Attic находится под крышей, cellar — под первым этажом. Вы описываете расположение вещей, поэтому are без действия с ing.",
-        "uk": "Після переїзду ви пояснюєте, де лежать речі. Attic — «горище»: The boxes are in the attic — «Коробки на горищі». Cellar — «підвал, льох»: The bottles are in the cellar — «Пляшки в підвалі». Attic розташований під дахом, cellar — під першим поверхом. Ви описуєте розташування речей, тому are без дії з ing."
+        "ru": "После переезда друг ищет коробки. Вы объясняете: The boxes are in the attic — «Коробки на чердаке». Attic означает «чердак», помещение под крышей. Сначала the boxes — известные вам коробки, затем are и место in the attic. Boxes во множественном числе, поэтому нужна are. Предлог in показывает, что коробки внутри помещения. Здесь сообщаем, где они находятся; отдельного глагола действия не нужно.",
+        "uk": "Після переїзду друг шукає коробки. Ви пояснюєте: The boxes are in the attic — «Коробки на горищі». Attic означає «горище», приміщення під дахом. Спочатку the boxes — відомі вам коробки, потім are і місце in the attic. Boxes у множині, тому потрібна are. Прийменник in показує, що коробки всередині приміщення. Тут повідомляємо, де вони розташовані; окремого дієслова дії не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-10:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a4477cddf225608b96aca101a40b9f7d208d61725711a3fbe4557f88f2828d17"
+  "introFingerprint": "1abcec80160141cc3cbec73df0670a087c49e3e45540b4744316c31a15f9b757"
 }

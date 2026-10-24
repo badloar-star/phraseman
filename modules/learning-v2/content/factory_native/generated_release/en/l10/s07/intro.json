@@ -65,12 +65,12 @@
       "pageId": "en:lesson-10:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Цена и значение",
-        "uk": "Ціна й значення"
+        "ru": "Узнать цену вещи",
+        "uk": "Дізнатися ціну речі"
       },
       "bodyByLocale": {
-        "ru": "В магазине на вещи нет ценника. Cost — «стоить»: How much does it cost? — «Сколько это стоит?» Вы также не понимаете слово на упаковке. Mean — «означать»: What does this word mean? — «Что означает это слово?» После does глаголы cost и mean остаются без s.",
-        "uk": "У магазині на речі немає цінника. Cost — «коштувати»: How much does it cost? — «Скільки це коштує?» Ви також не розумієте слово на упаковці. Mean — «означати»: What does this word mean? — «Що означає це слово?» Після does дієслова cost і mean залишаються без s."
+        "ru": "Вы выбрали вещь в магазине, но на ней нет ценника. Спрашиваете продавца: How much does it cost? — «Сколько это стоит?» Cost означает «стоить». В начале How much — вопрос о цене, затем does, it — выбранная вещь, и cost. С it нужен помощник does; после него cost остаётся без -s. Так собираем вопрос о цене одного предмета.",
+        "uk": "Ви вибрали річ у магазині, але на ній немає цінника. Запитуєте продавця: How much does it cost? — «Скільки це коштує?» Cost означає «коштувати». На початку How much — запитання про ціну, потім does, it — вибрана річ, і cost. З it потрібне допоміжне дієслово does; після нього cost залишається без -s. Так складаємо запитання про ціну одного предмета."
       },
       "question": {
         "interactionId": "en:lesson-10:session-07:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4c82b9e6725e5fa8b3f556fb6eb3fcf94dc790e127f5d8a54c56b5bea430bd7d"
+  "introFingerprint": "0783d9efd3cfd676b375e95a79cd0c4b853c48e02a3ba8f13be651a82ed6d508"
 }

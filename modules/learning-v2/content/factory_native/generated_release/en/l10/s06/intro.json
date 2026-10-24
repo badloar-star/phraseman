@@ -119,12 +119,12 @@
       "pageId": "en:lesson-10:session-06:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Вода и ложка",
-        "uk": "Вода й ложка"
+        "ru": "Попросить газированную воду",
+        "uk": "Попросити газовану воду"
       },
       "bodyByLocale": {
-        "ru": "В гостях вам предлагают воду. Sparkling — «газированный»: sparkling water — «газированная вода». Вежливо попросите: I would like some sparkling water — «Я бы хотел немного газированной воды». К десерту вам нужна ложка. Teaspoon — «чайная ложка»: I need a teaspoon — «Мне нужна чайная ложка». Перед одной ложкой ставим a, перед неисчисляемой водой здесь some.",
-        "uk": "У гостях вам пропонують воду. Sparkling — «газований»: sparkling water — «газована вода». Ввічливо попросіть: I would like some sparkling water — «Я хотів би трохи газованої води». До десерту вам потрібна ложка. Teaspoon — «чайна ложка»: I need a teaspoon — «Мені потрібна чайна ложка». Перед однією ложкою ставимо a, перед незлічуваною водою тут some."
+        "ru": "В гостях вас спрашивают, какую воду налить. Вы вежливо просите газированную: I would like some sparkling water — «Я бы хотел немного газированной воды». Sparkling water — «газированная вода». Начинаем с I would like, после would ставим like без -s и без -ing. Затем называем напиток: some sparkling water. Water здесь неисчисляемое; some обозначает некоторое количество воды, поэтому артикль a не нужен. Sparkling стоит перед water и уточняет вид воды.",
+        "uk": "У гостях вас запитують, яку воду налити. Ви ввічливо просите газовану: I would like some sparkling water — «Я хотів би трохи газованої води». Sparkling water — «газована вода». Починаємо з I would like, після would ставимо like без -s і без -ing. Потім називаємо напій: some sparkling water. Water тут незлічуване; some позначає певну кількість води, тому артикль a не потрібний. Sparkling стоїть перед water й уточнює вид води."
       },
       "question": {
         "interactionId": "en:lesson-10:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2c50668bbc3d7b02d966160c77bb3dea3b5d8d31c4f5060372b389e003ebdc4b"
+  "introFingerprint": "a54be0e7479f14a93ea1876575023b0c0af4a39aba1cc665bfc2c2423f1be5b6"
 }

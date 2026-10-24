@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "present perfect / past simple; wish + past; if I were; unreal condition",
+    "uk": "present perfect / past simple; wish + past; if I were; unreal condition"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Остановиться на ночь",
+        "uk": "Зупинитися на ніч"
+      },
+      "bodyByLocale": {
+        "ru": "Guesthouse — гостевой дом: небольшое место, где можно снять комнату. We stayed at a guesthouse — мы остановились в гостевом доме. Вы приехали раньше, и комната ещё не готова. Could I leave my bag here? — можно оставить здесь сумку? I have already paid for the room — я уже заплатил за комнату: важен результат сейчас. I paid yesterday — я заплатил вчера: называем законченное время, поэтому past simple.",
+        "uk": "Guesthouse — гостьовий будинок: невелике місце, де можна винайняти кімнату. We stayed at a guesthouse — ми зупинилися в гостьовому будинку. Ви приїхали раніше, і кімната ще не готова. Could I leave my bag here? — можна залишити тут сумку? I have already paid for the room — я вже заплатив за кімнату: важливий результат зараз. I paid yesterday — я заплатив учора: називаємо завершений час, тому past simple."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-44:intro1:r1",
+              "text": "I paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro1:r2",
+              "text": "I have paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro1:r3",
+              "text": "I pay yesterday."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-44:intro1:r1",
+              "text": "I paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro1:r2",
+              "text": "I have paid yesterday."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro1:r3",
+              "text": "I pay yesterday."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доброе отношение",
+        "uk": "Доброзичливе ставлення"
+      },
+      "bodyByLocale": {
+        "ru": "Cheerfully — весело, бодро. She greeted us cheerfully — она весело нас поприветствовала. Это описание того, как человек что-то делает. Hospitality — гостеприимство, доброжелательный приём гостей. Thank you for your hospitality — спасибо за гостеприимство. Хозяева предложили чай и место для отдыха. I wish we had more time here — хотелось бы, чтобы у нас здесь было больше времени. Had после wish выражает желание сейчас, не рассказ о прошлом.",
+        "uk": "Cheerfully — весело, бадьоро. She greeted us cheerfully — вона весело нас привітала. Це опис того, як людина щось робить. Hospitality — гостинність, доброзичливий прийом гостей. Thank you for your hospitality — дякую за гостинність. Господарі запропонували чай і місце для відпочинку. I wish we had more time here — хотілося б, щоб ми мали тут більше часу. Had після wish виражає бажання зараз, а не розповідь про минуле."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-44:intro2:r1",
+              "text": "I wish we had more time here."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro2:r2",
+              "text": "I wish we have more time here."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro2:r3",
+              "text": "I wish we having more time here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-44:intro2:r1",
+              "text": "I wish we had more time here."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro2:r2",
+              "text": "I wish we have more time here."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro2:r3",
+              "text": "I wish we having more time here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Принять помощь",
+        "uk": "Прийняти допомогу"
+      },
+      "bodyByLocale": {
+        "ru": "Gratefully — с благодарностью. He accepted the tea gratefully — он с благодарностью принял чай. Gratefully описывает благодарность, cheerfully — бодрое, весёлое настроение. Вы хотите ещё одну ночь, но свободной комнаты нет. We would stay another night if a room were available — мы бы остались ещё на ночь, если бы была свободная комната. Would stay — результат, were available — условие. If I were you, I would ask again tomorrow — на твоём месте я бы спросил ещё раз завтра. Это совет, а не приказ.",
+        "uk": "Gratefully — із вдячністю. He accepted the tea gratefully — він із вдячністю прийняв чай. Gratefully описує вдячність, cheerfully — бадьорий, веселий настрій. Ви хочете ще одну ніч, але вільної кімнати немає. We would stay another night if a room were available — ми б залишилися ще на ніч, якби була вільна кімната. Would stay — результат, were available — умова. If I were you, I would ask again tomorrow — на твоєму місці я б запитав ще раз завтра. Це порада, а не наказ."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-44:intro3:r1",
+              "text": "We would stay another night if a room were available."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro3:r2",
+              "text": "We would stayed another night if a room were available."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro3:r3",
+              "text": "We would to stay another night if a room were available."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-44:intro3:r1",
+              "text": "We would stay another night if a room were available."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro3:r2",
+              "text": "We would stayed another night if a room were available."
+            },
+            {
+              "responseId": "en:lesson-27:session-44:intro3:r3",
+              "text": "We would to stay another night if a room were available."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0ce47f645eea1bceedc0346c6c6fce69614780ba56002f9ccac4b5d8395e237d"
+}

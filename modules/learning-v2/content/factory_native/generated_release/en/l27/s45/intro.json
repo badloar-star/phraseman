@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-27:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "wish + past; if I were; present perfect / past simple; unreal condition",
+    "uk": "wish + past; if I were; present perfect / past simple; unreal condition"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-27:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не додумывать за друга",
+        "uk": "Не додумувати за друга"
+      },
+      "bodyByLocale": {
+        "ru": "Overthink — слишком долго обдумывать, чрезмерно усложнять мыслями. I tend to overthink things — я склонен слишком много всё обдумывать. Друг не ответил сразу, и вы уже решили, что он сердится. Лучше уточнить: Are we still meeting at six? — мы всё ещё встречаемся в шесть? Understandable — понятный, объяснимый. Your mistake is understandable — твою ошибку можно понять. Вы имеете в виду неверно прочитанное время, а не оцениваете человека.",
+        "uk": "Overthink — надто довго обмірковувати, надмірно ускладнювати думками. I tend to overthink things — я схильний надто багато все обмірковувати. Друг не відповів одразу, і ви вже вирішили, що він сердиться. Краще уточнити: Are we still meeting at six? — ми все ще зустрічаємося о шостій? Understandable — зрозумілий, поясненний. Your mistake is understandable — твою помилку можна зрозуміти. Ви маєте на увазі неправильно прочитаний час, а не оцінюєте людину."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-45:intro1:r1",
+              "text": "Your mistake is understandable."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro1:r2",
+              "text": "Your mistake are understandable."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro1:r3",
+              "text": "Your mistake understandable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-45:intro1:r1",
+              "text": "Your mistake is understandable."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro1:r2",
+              "text": "Your mistake are understandable."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro1:r3",
+              "text": "Your mistake understandable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-27:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти правильный вход",
+        "uk": "Знайти правильний вхід"
+      },
+      "bodyByLocale": {
+        "ru": "Incorrect — неверный, неправильный. The sign is incorrect — указатель неверный. Стрелка ведёт к закрытому входу. Это описание указателя, не обвинение друга во лжи. I wish the sign were clearer — хотелось бы, чтобы указатель был понятнее. После wish используем were для желаемого положения сейчас. If I were you, I would call the café — на твоём месте я бы позвонил в кафе. Можно спросить: Which entrance should I use? — через какой вход мне войти?",
+        "uk": "Incorrect — неправильний, хибний. The sign is incorrect — вказівник неправильний. Стрілка веде до зачиненого входу. Це опис вказівника, а не звинувачення друга у брехні. I wish the sign were clearer — хотілося б, щоб вказівник був зрозумілішим. Після wish використовуємо were для бажаного становища зараз. If I were you, I would call the café — на твоєму місці я б зателефонував до кафе. Можна запитати: Which entrance should I use? — через який вхід мені ввійти?"
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-45:intro2:r1",
+              "text": "I wish the sign were clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro2:r2",
+              "text": "I wish the sign is clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro2:r3",
+              "text": "I wish the sign be clearer."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-45:intro2:r1",
+              "text": "I wish the sign were clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro2:r2",
+              "text": "I wish the sign is clearer."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro2:r3",
+              "text": "I wish the sign be clearer."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-27:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Объяснить, что случилось",
+        "uk": "Пояснити, що сталося"
+      },
+      "bodyByLocale": {
+        "ru": "Unnecessarily — без необходимости, напрасно. We waited unnecessarily — мы ждали напрасно. Оказалось, друг уже сидел внутри. I have already spoken to him — я уже поговорил с ним: важен результат сейчас. I called him ten minutes ago — я позвонил ему десять минут назад: ago требует здесь past simple. We would find each other more easily if we chose one entrance — нам было бы легче найти друг друга, если бы мы выбрали один вход. Условие помогает договориться на будущее.",
+        "uk": "Unnecessarily — без потреби, даремно. We waited unnecessarily — ми чекали даремно. Виявилося, друг уже сидів усередині. I have already spoken to him — я вже поговорив із ним: важливий результат зараз. I called him ten minutes ago — я зателефонував йому десять хвилин тому: ago потребує тут past simple. We would find each other more easily if we chose one entrance — нам було б легше знайти одне одного, якби ми вибрали один вхід. Умова допомагає домовитися на майбутнє."
+      },
+      "question": {
+        "interactionId": "en:lesson-27:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-27:session-45:intro3:r1",
+              "text": "I called him ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro3:r2",
+              "text": "I have called him ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro3:r3",
+              "text": "I calling him ten minutes ago."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-27:session-45:intro3:r1",
+              "text": "I called him ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro3:r2",
+              "text": "I have called him ten minutes ago."
+            },
+            {
+              "responseId": "en:lesson-27:session-45:intro3:r3",
+              "text": "I calling him ten minutes ago."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "85d7828fb5dc26d931ba554ea9a71d16691cd856ff5bdf4c4a97e30fc26ea8f6"
+}

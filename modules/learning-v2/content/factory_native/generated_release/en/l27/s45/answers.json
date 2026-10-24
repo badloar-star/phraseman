@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-45:word:overthink",
+    "correctText": "overthink",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i01",
+    "correctText": "I tend to overthink things.",
+    "correctResponseId": "en:lesson-27:session-45:i01:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i02",
+    "correctText": "Are we still meeting at six?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i03",
+    "correctText": "I was on the bus.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:word:understandable",
+    "correctText": "understandable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i04",
+    "correctText": "Your mistake is understandable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i05",
+    "correctText": "spoken",
+    "correctResponseId": "en:lesson-27:session-45:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i06",
+    "correctText": "Where are you now?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i07",
+    "correctText": "I am waiting by the side entrance.",
+    "correctResponseId": "en:lesson-27:session-45:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:word:incorrect",
+    "correctText": "incorrect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i08",
+    "correctText": "The sign is incorrect.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i09",
+    "correctText": "Which entrance should I use?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i10",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-45:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i11",
+    "correctText": "If I were you, I would call the café.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:word:unnecessarily",
+    "correctText": "unnecessarily",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i12",
+    "correctText": "We waited unnecessarily.",
+    "correctResponseId": "en:lesson-27:session-45:i12:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i13",
+    "correctText": "called",
+    "correctResponseId": "en:lesson-27:session-45:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i14",
+    "correctText": "Shall we go inside?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i15",
+    "correctText": "Can I get you a coffee?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i16",
+    "correctText": "If we chose one entrance, we would find each other more easily.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-45:i17",
+    "correctText": "Shall we meet inside next time?",
+    "correctResponseId": null
+  }
+]

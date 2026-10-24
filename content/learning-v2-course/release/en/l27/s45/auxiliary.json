@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-45",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-45:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-45:intro1:r2": {
+          "ru": "Mistake в единственном числе: is.",
+          "uk": "Mistake в однині: is."
+        },
+        "en:lesson-27:session-45:intro1:r3": {
+          "ru": "Перед прилагательным нужна is.",
+          "uk": "Перед прикметником потрібна is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-45:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-45:intro2:r2": {
+          "ru": "После wish здесь were.",
+          "uk": "Після wish тут were."
+        },
+        "en:lesson-27:session-45:intro2:r3": {
+          "ru": "Нужна форма were.",
+          "uk": "Потрібна форма were."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-45:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-45:intro3:r2": {
+          "ru": "С ago здесь called без have.",
+          "uk": "Із ago тут called без have."
+        },
+        "en:lesson-27:session-45:intro3:r3": {
+          "ru": "Нужна форма called.",
+          "uk": "Потрібна форма called."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "10612ee27dbefe33f2cefb47be4507876e4f168eac5fa5b685fed691daadcff9"
+}

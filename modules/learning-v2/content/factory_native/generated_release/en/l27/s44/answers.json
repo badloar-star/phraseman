@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-44:word:guesthouse",
+    "correctText": "guesthouse",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i01",
+    "correctText": "We stayed at a guesthouse.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i02",
+    "correctText": "Could I leave my bag here?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i03",
+    "correctText": "Your room will be ready soon.",
+    "correctResponseId": "en:lesson-27:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i04",
+    "correctText": "paid",
+    "correctResponseId": "en:lesson-27:session-44:i04:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:word:cheerfully",
+    "correctText": "cheerfully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i05",
+    "correctText": "She greeted us cheerfully.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i06",
+    "correctText": "I would love some tea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i07",
+    "correctText": "I have already paid for the room.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i08",
+    "correctText": "Could you say that again, please?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:word:hospitality",
+    "correctText": "hospitality",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i09",
+    "correctText": "Thank you for your hospitality.",
+    "correctResponseId": "en:lesson-27:session-44:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i10",
+    "correctText": "had",
+    "correctResponseId": "en:lesson-27:session-44:i10:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i11",
+    "correctText": "What time will you be back?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:word:gratefully",
+    "correctText": "gratefully",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i12",
+    "correctText": "He accepted the tea gratefully.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i13",
+    "correctText": "Is there a room for tomorrow night?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i14",
+    "correctText": "were",
+    "correctResponseId": "en:lesson-27:session-44:i14:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i15",
+    "correctText": "If a room were available, we would stay another night.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i16",
+    "correctText": "I left the key on the table.",
+    "correctResponseId": "en:lesson-27:session-44:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-44:i17",
+    "correctText": "Have a lovely day!",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,2095 @@
+{
+  "schemaVersion": "learning_v2_atomic_practice_source_v1",
+  "courseSessionId": "en:lesson-27:session-44",
+  "interactionsByLocale": {
+    "ru": [
+      {
+        "interactionId": "en:lesson-27:session-44:word:guesthouse",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — guesthouse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:guesthouse:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — guesthouse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:guesthouse:audio",
+            "transcript": "guesthouse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:guesthouse:r1",
+              "targetText": "guesthouse",
+              "meaningByLocale": {
+                "ru": "Гостевой дом.",
+                "uk": "Гостьовий будинок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guesthouse",
+            "definitionByLocale": {
+              "ru": "Гостевой дом.",
+              "uk": "Гостьовий будинок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте, где вы остановились.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i01:audio"
+        ],
+        "accessibilityLabel": "Услышьте, где вы остановились.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i01:audio",
+            "transcript": "We stayed at a guesthouse."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We stayed at a guesthouse.",
+          "orderedTokens": [
+            "We",
+            "stayed",
+            "at",
+            "a",
+            "guesthouse"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросите разрешения оставить сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Попросите разрешения оставить сумку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i02:audio",
+            "transcript": "Could I leave my bag here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I leave my bag here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i03:r1",
+            "text": "Your room will be ready soon."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i03:r2",
+            "text": "Your room was ready yesterday."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i03:r3",
+            "text": "Our room will be ready soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i03:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i03:audio",
+            "transcript": "Your room will be ready soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:i03:r1",
+              "targetText": "Your room will be ready soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i03:r2",
+              "targetText": "Your room was ready yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i03:r3",
+              "targetText": "Our room will be ready soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your room will be ready soon.",
+                "uk": "У записі звучить Your room will be ready soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your room will be ready soon.",
+                "uk": "У записі звучить Your room will be ready soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вы заплатили вчера.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i04:r1",
+            "text": "paid"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i04:r2",
+            "text": "have paid"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i04:r3",
+            "text": "pay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вы заплатили вчера.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заплатили вчера.",
+            "uk": "Ви заплатили вчора."
+          },
+          "gappedTargetPhrase": "I ___ yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-44:i04:r1",
+              "text": "paid"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i04:r2",
+              "text": "have paid"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i04:r3",
+              "text": "pay"
+            }
+          ],
+          "testedDimension": "Вы заплатили вчера.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i04:r2",
+              "correct": false,
+              "testedDimension": "Вы заплатили вчера.",
+              "feedbackByLocale": {
+                "ru": "Законченное время: paid.",
+                "uk": "Завершений час: paid."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i04:r3",
+              "correct": false,
+              "testedDimension": "Вы заплатили вчера.",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна paid.",
+                "uk": "Для минулого потрібна paid."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:word:cheerfully",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — cheerfully",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:cheerfully:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — cheerfully",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:cheerfully:audio",
+            "transcript": "cheerfully"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:cheerfully:r1",
+              "targetText": "cheerfully",
+              "meaningByLocale": {
+                "ru": "Весело, бодро.",
+                "uk": "Весело, бадьоро."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheerfully",
+            "definitionByLocale": {
+              "ru": "Весело, бодро.",
+              "uk": "Весело, бадьоро."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Расскажите о весёлом приветствии хозяйки.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Расскажите о весёлом приветствии хозяйки.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She greeted us cheerfully.",
+          "localizedMeaning": {
+            "ru": "Расскажите о весёлом приветствии хозяйки.",
+            "uk": "Розкажіть про веселе привітання господині."
+          },
+          "orderedTokens": [
+            "She",
+            "greeted",
+            "us",
+            "cheerfully"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Примите предложение выпить чай.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i06:audio"
+        ],
+        "accessibilityLabel": "Примите предложение выпить чай.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i06:audio",
+            "transcript": "I would love some tea."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I would love some tea.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Объясните, что за комнату уже заплатили.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Объясните, что за комнату уже заплатили.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already paid for the room.",
+          "localizedMeaning": {
+            "ru": "Объясните, что за комнату уже заплатили.",
+            "uk": "Поясніть, що за кімнату вже заплатили."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "paid",
+            "for",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Вы не расслышали время завтрака. Попросите повторить.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i08:audio"
+        ],
+        "accessibilityLabel": "Вы не расслышали время завтрака. Попросите повторить.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i08:audio",
+            "transcript": "Could you say that again, please?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you say that again, please?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:word:hospitality",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — hospitality",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:hospitality:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — hospitality",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:hospitality:audio",
+            "transcript": "hospitality"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:hospitality:r1",
+              "targetText": "hospitality",
+              "meaningByLocale": {
+                "ru": "Гостеприимство.",
+                "uk": "Гостинність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hospitality",
+            "definitionByLocale": {
+              "ru": "Гостеприимство.",
+              "uk": "Гостинність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i09:r1",
+            "text": "Thank you for your hospitality."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i09:r2",
+            "text": "Thank you for your patience."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i09:r3",
+            "text": "Thank you for their hospitality."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i09:audio",
+            "transcript": "Thank you for your hospitality."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:i09:r1",
+              "targetText": "Thank you for your hospitality.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i09:r2",
+              "targetText": "Thank you for your patience.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i09:r3",
+              "targetText": "Thank you for their hospitality.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thank you for your hospitality.",
+                "uk": "У записі звучить Thank you for your hospitality."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thank you for your hospitality.",
+                "uk": "У записі звучить Thank you for your hospitality."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хотелось бы провести здесь больше времени.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i10:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i10:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хотелось бы провести здесь больше времени.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хотелось бы провести здесь больше времени.",
+            "uk": "Хотілося б провести тут більше часу."
+          },
+          "gappedTargetPhrase": "I wish we ___ more time here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-44:i10:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i10:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i10:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Хотелось бы провести здесь больше времени.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i10:r2",
+              "correct": false,
+              "testedDimension": "Хотелось бы провести здесь больше времени.",
+              "feedbackByLocale": {
+                "ru": "Желание сейчас: wish we had.",
+                "uk": "Бажання зараз: wish we had."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i10:r3",
+              "correct": false,
+              "testedDimension": "Хотелось бы провести здесь больше времени.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма had.",
+                "uk": "Потрібна форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Услышьте вопрос о времени возвращения.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Услышьте вопрос о времени возвращения.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i11:audio",
+            "transcript": "What time will you be back?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "What time will you be back?",
+          "orderedTokens": [
+            "What",
+            "time",
+            "will",
+            "you",
+            "be",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:word:gratefully",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — gratefully",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:gratefully:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — gratefully",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:gratefully:audio",
+            "transcript": "gratefully"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:gratefully:r1",
+              "targetText": "gratefully",
+              "meaningByLocale": {
+                "ru": "С благодарностью.",
+                "uk": "Із вдячністю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gratefully",
+            "definitionByLocale": {
+              "ru": "С благодарностью.",
+              "uk": "Із вдячністю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажите, как он принял предложенный чай.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажите, как он принял предложенный чай.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He accepted the tea gratefully.",
+          "localizedMeaning": {
+            "ru": "Скажите, как он принял предложенный чай.",
+            "uk": "Скажіть, як він прийняв запропонований чай."
+          },
+          "orderedTokens": [
+            "He",
+            "accepted",
+            "the",
+            "tea",
+            "gratefully"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточните, можно ли остаться ещё на ночь.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Уточните, можно ли остаться ещё на ночь.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i13:audio",
+            "transcript": "Is there a room for tomorrow night?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a room for tomorrow night?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Посоветуйте спросить ещё раз завтра.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i14:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i14:r3",
+            "text": "will be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Посоветуйте спросить ещё раз завтра.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Посоветуйте спросить ещё раз завтра.",
+            "uk": "Порадьте запитати ще раз завтра."
+          },
+          "gappedTargetPhrase": "If I ___ you, I would ask again tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-44:i14:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i14:r3",
+              "text": "will be"
+            }
+          ],
+          "testedDimension": "Посоветуйте спросить ещё раз завтра.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Посоветуйте спросить ещё раз завтра.",
+              "feedbackByLocale": {
+                "ru": "Совет: If I were you.",
+                "uk": "Порада: If I were you."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Посоветуйте спросить ещё раз завтра.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна were.",
+                "uk": "Тут потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Начните с условия: We would stay another night if a room were available.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Начните с условия: We would stay another night if a room were available.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If a room were available, we would stay another night.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: We would stay another night if a room were available.",
+            "uk": "Почніть з умови: We would stay another night if a room were available."
+          },
+          "orderedTokens": [
+            "If",
+            "a",
+            "room",
+            "were",
+            "available,",
+            "we",
+            "would",
+            "stay",
+            "another",
+            "night"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i16:r1",
+            "text": "I left the key on the table."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i16:r2",
+            "text": "I left the bag on the table."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i16:r3",
+            "text": "I left the key by the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i16:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i16:audio",
+            "transcript": "I left the key on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:i16:r1",
+              "targetText": "I left the key on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i16:r2",
+              "targetText": "I left the bag on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i16:r3",
+              "targetText": "I left the key by the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i16:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I left the key on the table.",
+                "uk": "У записі звучить I left the key on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i16:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I left the key on the table.",
+                "uk": "У записі звучить I left the key on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На прощание пожелайте хорошего дня.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "На прощание пожелайте хорошего дня.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i17:audio",
+            "transcript": "Have a lovely day!"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Have a lovely day!",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ],
+    "uk": [
+      {
+        "interactionId": "en:lesson-27:session-44:word:guesthouse",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — guesthouse",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:guesthouse:audio"
+        ],
+        "accessibilityLabel": "Картка слова — guesthouse",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:guesthouse:audio",
+            "transcript": "guesthouse"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:guesthouse:r1",
+              "targetText": "guesthouse",
+              "meaningByLocale": {
+                "ru": "Гостевой дом.",
+                "uk": "Гостьовий будинок."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "guesthouse",
+            "definitionByLocale": {
+              "ru": "Гостевой дом.",
+              "uk": "Гостьовий будинок."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i01",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте, де ви зупинилися.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i01:audio"
+        ],
+        "accessibilityLabel": "Почуйте, де ви зупинилися.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i01:audio",
+            "transcript": "We stayed at a guesthouse."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "We stayed at a guesthouse.",
+          "orderedTokens": [
+            "We",
+            "stayed",
+            "at",
+            "a",
+            "guesthouse"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i02",
+        "ordinal": 6,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Попросіть дозволу залишити сумку.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i02:audio"
+        ],
+        "accessibilityLabel": "Попросіть дозволу залишити сумку.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i02:audio",
+            "transcript": "Could I leave my bag here?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could I leave my bag here?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i03",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i03:r1",
+            "text": "Your room will be ready soon."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i03:r2",
+            "text": "Your room was ready yesterday."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i03:r3",
+            "text": "Our room will be ready soon."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i03:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i03:audio",
+            "transcript": "Your room will be ready soon."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:i03:r1",
+              "targetText": "Your room will be ready soon.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i03:r2",
+              "targetText": "Your room was ready yesterday.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i03:r3",
+              "targetText": "Our room will be ready soon.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i03:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your room will be ready soon.",
+                "uk": "У записі звучить Your room will be ready soon."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i03:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Your room will be ready soon.",
+                "uk": "У записі звучить Your room will be ready soon."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i04",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Ви заплатили вчора.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i04:r1",
+            "text": "paid"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i04:r2",
+            "text": "have paid"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i04:r3",
+            "text": "pay"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Ви заплатили вчора.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вы заплатили вчера.",
+            "uk": "Ви заплатили вчора."
+          },
+          "gappedTargetPhrase": "I ___ yesterday.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-44:i04:r1",
+              "text": "paid"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i04:r2",
+              "text": "have paid"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i04:r3",
+              "text": "pay"
+            }
+          ],
+          "testedDimension": "Ви заплатили вчора.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i04:r2",
+              "correct": false,
+              "testedDimension": "Ви заплатили вчора.",
+              "feedbackByLocale": {
+                "ru": "Законченное время: paid.",
+                "uk": "Завершений час: paid."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i04:r3",
+              "correct": false,
+              "testedDimension": "Ви заплатили вчора.",
+              "feedbackByLocale": {
+                "ru": "Для прошлого нужна paid.",
+                "uk": "Для минулого потрібна paid."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:word:cheerfully",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — cheerfully",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:cheerfully:audio"
+        ],
+        "accessibilityLabel": "Картка слова — cheerfully",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:cheerfully:audio",
+            "transcript": "cheerfully"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:cheerfully:r1",
+              "targetText": "cheerfully",
+              "meaningByLocale": {
+                "ru": "Весело, бодро.",
+                "uk": "Весело, бадьоро."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cheerfully",
+            "definitionByLocale": {
+              "ru": "Весело, бодро.",
+              "uk": "Весело, бадьоро."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i05",
+        "ordinal": 10,
+        "purpose": "supported_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Розкажіть про веселе привітання господині.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Розкажіть про веселе привітання господині.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "She greeted us cheerfully.",
+          "localizedMeaning": {
+            "ru": "Расскажите о весёлом приветствии хозяйки.",
+            "uk": "Розкажіть про веселе привітання господині."
+          },
+          "orderedTokens": [
+            "She",
+            "greeted",
+            "us",
+            "cheerfully"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i06",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Прийміть пропозицію випити чай.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i06:audio"
+        ],
+        "accessibilityLabel": "Прийміть пропозицію випити чай.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i06:audio",
+            "transcript": "I would love some tea."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "I would love some tea.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i07",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Поясніть, що за кімнату вже заплатили.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Поясніть, що за кімнату вже заплатили.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "I have already paid for the room.",
+          "localizedMeaning": {
+            "ru": "Объясните, что за комнату уже заплатили.",
+            "uk": "Поясніть, що за кімнату вже заплатили."
+          },
+          "orderedTokens": [
+            "I",
+            "have",
+            "already",
+            "paid",
+            "for",
+            "the",
+            "room"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i08",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Ви не розчули час сніданку. Попросіть повторити.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i08:audio"
+        ],
+        "accessibilityLabel": "Ви не розчули час сніданку. Попросіть повторити.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i08:audio",
+            "transcript": "Could you say that again, please?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Could you say that again, please?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:word:hospitality",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — hospitality",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:hospitality:audio"
+        ],
+        "accessibilityLabel": "Картка слова — hospitality",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:hospitality:audio",
+            "transcript": "hospitality"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:hospitality:r1",
+              "targetText": "hospitality",
+              "meaningByLocale": {
+                "ru": "Гостеприимство.",
+                "uk": "Гостинність."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "hospitality",
+            "definitionByLocale": {
+              "ru": "Гостеприимство.",
+              "uk": "Гостинність."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i09",
+        "ordinal": 15,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i09:r1",
+            "text": "Thank you for your hospitality."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i09:r2",
+            "text": "Thank you for your patience."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i09:r3",
+            "text": "Thank you for their hospitality."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i09:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i09:audio",
+            "transcript": "Thank you for your hospitality."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:i09:r1",
+              "targetText": "Thank you for your hospitality.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i09:r2",
+              "targetText": "Thank you for your patience.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i09:r3",
+              "targetText": "Thank you for their hospitality.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i09:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thank you for your hospitality.",
+                "uk": "У записі звучить Thank you for your hospitality."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i09:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит Thank you for your hospitality.",
+                "uk": "У записі звучить Thank you for your hospitality."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i10",
+        "ordinal": 16,
+        "purpose": "guided_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Хотілося б провести тут більше часу.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i10:r1",
+            "text": "had"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i10:r2",
+            "text": "have"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i10:r3",
+            "text": "having"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Хотілося б провести тут більше часу.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Хотелось бы провести здесь больше времени.",
+            "uk": "Хотілося б провести тут більше часу."
+          },
+          "gappedTargetPhrase": "I wish we ___ more time here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-44:i10:r1",
+              "text": "had"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i10:r2",
+              "text": "have"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i10:r3",
+              "text": "having"
+            }
+          ],
+          "testedDimension": "Хотілося б провести тут більше часу.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i10:r2",
+              "correct": false,
+              "testedDimension": "Хотілося б провести тут більше часу.",
+              "feedbackByLocale": {
+                "ru": "Желание сейчас: wish we had.",
+                "uk": "Бажання зараз: wish we had."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i10:r3",
+              "correct": false,
+              "testedDimension": "Хотілося б провести тут більше часу.",
+              "feedbackByLocale": {
+                "ru": "Нужна форма had.",
+                "uk": "Потрібна форма had."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i11",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почуйте запитання про час повернення.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i11:audio"
+        ],
+        "accessibilityLabel": "Почуйте запитання про час повернення.",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i11:audio",
+            "transcript": "What time will you be back?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "What time will you be back?",
+          "orderedTokens": [
+            "What",
+            "time",
+            "will",
+            "you",
+            "be",
+            "back"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:word:gratefully",
+        "ordinal": 18,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — gratefully",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:word:gratefully:audio"
+        ],
+        "accessibilityLabel": "Картка слова — gratefully",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:word:gratefully:audio",
+            "transcript": "gratefully"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:word:gratefully:r1",
+              "targetText": "gratefully",
+              "meaningByLocale": {
+                "ru": "С благодарностью.",
+                "uk": "Із вдячністю."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "gratefully",
+            "definitionByLocale": {
+              "ru": "С благодарностью.",
+              "uk": "Із вдячністю."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i12",
+        "ordinal": 19,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Скажіть, як він прийняв запропонований чай.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Скажіть, як він прийняв запропонований чай.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "He accepted the tea gratefully.",
+          "localizedMeaning": {
+            "ru": "Скажите, как он принял предложенный чай.",
+            "uk": "Скажіть, як він прийняв запропонований чай."
+          },
+          "orderedTokens": [
+            "He",
+            "accepted",
+            "the",
+            "tea",
+            "gratefully"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i13",
+        "ordinal": 20,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Уточніть, чи можна залишитися ще на ніч.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i13:audio"
+        ],
+        "accessibilityLabel": "Уточніть, чи можна залишитися ще на ніч.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i13:audio",
+            "transcript": "Is there a room for tomorrow night?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is there a room for tomorrow night?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i14",
+        "ordinal": 21,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Порадьте запитати ще раз завтра.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i14:r1",
+            "text": "were"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i14:r2",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i14:r3",
+            "text": "will be"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Порадьте запитати ще раз завтра.",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Посоветуйте спросить ещё раз завтра.",
+            "uk": "Порадьте запитати ще раз завтра."
+          },
+          "gappedTargetPhrase": "If I ___ you, I would ask again tomorrow.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-27:session-44:i14:r1",
+              "text": "were"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i14:r2",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i14:r3",
+              "text": "will be"
+            }
+          ],
+          "testedDimension": "Порадьте запитати ще раз завтра.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i14:r2",
+              "correct": false,
+              "testedDimension": "Порадьте запитати ще раз завтра.",
+              "feedbackByLocale": {
+                "ru": "Совет: If I were you.",
+                "uk": "Порада: If I were you."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i14:r3",
+              "correct": false,
+              "testedDimension": "Порадьте запитати ще раз завтра.",
+              "feedbackByLocale": {
+                "ru": "Здесь нужна were.",
+                "uk": "Тут потрібна were."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i15",
+        "ordinal": 22,
+        "purpose": "independent_check",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Почніть з умови: We would stay another night if a room were available.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Почніть з умови: We would stay another night if a room were available.",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "If a room were available, we would stay another night.",
+          "localizedMeaning": {
+            "ru": "Начните с условия: We would stay another night if a room were available.",
+            "uk": "Почніть з умови: We would stay another night if a room were available."
+          },
+          "orderedTokens": [
+            "If",
+            "a",
+            "room",
+            "were",
+            "available,",
+            "we",
+            "would",
+            "stay",
+            "another",
+            "night"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "",
+            "uk": ""
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i16",
+        "ordinal": 23,
+        "purpose": "independent_check",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте й виберіть",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-27:session-44:i16:r1",
+            "text": "I left the key on the table."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i16:r2",
+            "text": "I left the bag on the table."
+          },
+          {
+            "responseId": "en:lesson-27:session-44:i16:r3",
+            "text": "I left the key by the door."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i16:audio"
+        ],
+        "accessibilityLabel": "Послухайте й виберіть",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i16:audio",
+            "transcript": "I left the key on the table."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-27:session-44:i16:r1",
+              "targetText": "I left the key on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i16:r2",
+              "targetText": "I left the bag on the table.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i16:r3",
+              "targetText": "I left the key by the door.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-27:session-44:i16:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I left the key on the table.",
+                "uk": "У записі звучить I left the key on the table."
+              }
+            },
+            {
+              "responseId": "en:lesson-27:session-44:i16:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи звучит I left the key on the table.",
+                "uk": "У записі звучить I left the key on the table."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-27:session-44:i17",
+        "ordinal": 24,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "На прощання побажайте гарного дня.",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-27:session-44:i17:audio"
+        ],
+        "accessibilityLabel": "На прощання побажайте гарного дня.",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-27:session-44:i17:audio",
+            "transcript": "Have a lovely day!"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Have a lovely day!",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      }
+    ]
+  },
+  "answers": [
+    {
+      "interactionId": "en:lesson-27:session-44:word:guesthouse",
+      "correctText": "guesthouse",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i01",
+      "correctText": "We stayed at a guesthouse.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i02",
+      "correctText": "Could I leave my bag here?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i03",
+      "correctText": "Your room will be ready soon.",
+      "correctResponseId": "en:lesson-27:session-44:i03:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i04",
+      "correctText": "paid",
+      "correctResponseId": "en:lesson-27:session-44:i04:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:word:cheerfully",
+      "correctText": "cheerfully",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i05",
+      "correctText": "She greeted us cheerfully.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i06",
+      "correctText": "I would love some tea.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i07",
+      "correctText": "I have already paid for the room.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i08",
+      "correctText": "Could you say that again, please?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:word:hospitality",
+      "correctText": "hospitality",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i09",
+      "correctText": "Thank you for your hospitality.",
+      "correctResponseId": "en:lesson-27:session-44:i09:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i10",
+      "correctText": "had",
+      "correctResponseId": "en:lesson-27:session-44:i10:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i11",
+      "correctText": "What time will you be back?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:word:gratefully",
+      "correctText": "gratefully",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i12",
+      "correctText": "He accepted the tea gratefully.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i13",
+      "correctText": "Is there a room for tomorrow night?",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i14",
+      "correctText": "were",
+      "correctResponseId": "en:lesson-27:session-44:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i15",
+      "correctText": "If a room were available, we would stay another night.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i16",
+      "correctText": "I left the key on the table.",
+      "correctResponseId": "en:lesson-27:session-44:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:i17",
+      "correctText": "Have a lovely day!",
+      "correctResponseId": null
+    }
+  ]
+}

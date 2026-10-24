@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-44:intro1:r2": {
+          "ru": "С yesterday здесь paid без have.",
+          "uk": "Із yesterday тут paid без have."
+        },
+        "en:lesson-27:session-44:intro1:r3": {
+          "ru": "Нужно прошедшее paid.",
+          "uk": "Потрібне минуле paid."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-44:intro2:r2": {
+          "ru": "После wish здесь had.",
+          "uk": "Після wish тут had."
+        },
+        "en:lesson-27:session-44:intro2:r3": {
+          "ru": "Нужна форма had.",
+          "uk": "Потрібна форма had."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-44:intro3:r2": {
+          "ru": "После would нужна stay.",
+          "uk": "Після would потрібна stay."
+        },
+        "en:lesson-27:session-44:intro3:r3": {
+          "ru": "После would не ставим to.",
+          "uk": "Після would не ставимо to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cc374a28872b43f041b93e40b6b085e65c1858c60161e880d6343d99df851f0c"
+}

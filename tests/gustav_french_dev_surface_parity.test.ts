@@ -74,7 +74,8 @@ describe('Gustav French dev surface parity', () => {
     expect(targetGate).toContain('french_ai_dialog_prompt_contract');
 
     // зачем: 73aac3377 (30.09) добавил пилюлю остатка (quotaInHeader) — главная по-прежнему рисует общий хаб со слотом шапки.
-    expect(home).toMatch(/<DialogsTabContent headerSlot=\{header\}[^>]*\/>/);
+    // зачем: с c6f517af4 (22.10) в хаб передаётся headerSlot — «Сцена» за флагом либо прежняя шапка (fallback); общий хаб всё так же один, шлюз французского в нём.
+    expect(home).toMatch(/<DialogsTabContent headerSlot=\{headerSlot\}[^>]*\/>/);
     expect(home).not.toContain('aiDialogGateOpen ?');
     expect(home).not.toContain('frenchGateCopy.body');
 

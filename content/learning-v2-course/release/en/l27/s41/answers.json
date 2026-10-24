@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-27:session-41:i01",
+    "correctText": "Please let me explain.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:word:forgiveness",
+    "correctText": "forgiveness",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i02",
+    "correctText": "I am asking for forgiveness.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i03",
+    "correctText": "When did you send the message?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i04",
+    "correctText": "I have already sent you a message.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i05",
+    "correctText": "sent",
+    "correctResponseId": "en:lesson-27:session-41:i05:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:word:disrespect",
+    "correctText": "disrespect",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i06",
+    "correctText": "I meant no disrespect.",
+    "correctResponseId": "en:lesson-27:session-41:i06:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i07",
+    "correctText": "Please tell me what happened.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:word:impatience",
+    "correctText": "impatience",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i08",
+    "correctText": "My impatience made things worse.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i09",
+    "correctText": "understood",
+    "correctResponseId": "en:lesson-27:session-41:i09:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i10",
+    "correctText": "Could we talk for five minutes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:word:tolerance",
+    "correctText": "tolerance",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i11",
+    "correctText": "We need a little tolerance.",
+    "correctResponseId": "en:lesson-27:session-41:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i12",
+    "correctText": "Could we meet a little later?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i13",
+    "correctText": "feel",
+    "correctResponseId": "en:lesson-27:session-41:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i14",
+    "correctText": "Would half past six suit you?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i15",
+    "correctText": "We would arrive on time if we left now.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i16",
+    "correctText": "I can wait outside the café.",
+    "correctResponseId": "en:lesson-27:session-41:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-27:session-41:i17",
+    "correctText": "Thank you for listening.",
+    "correctResponseId": null
+  }
+]

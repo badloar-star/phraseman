@@ -1,0 +1,1004 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-27:session-41",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-27:session-41:i01",
+      "ordinal": 4,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите дать вам объяснить случившееся.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Попросите дать вам объяснить случившееся.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i01:audio",
+          "transcript": "Please let me explain."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please let me explain.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:word:forgiveness",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — forgiveness",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:word:forgiveness:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — forgiveness",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:word:forgiveness:audio",
+          "transcript": "forgiveness"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:word:forgiveness:r1",
+            "targetText": "forgiveness",
+            "meaningByLocale": {
+              "ru": "Прощение.",
+              "uk": "Прощення."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "forgiveness",
+          "definitionByLocale": {
+            "ru": "Прощение.",
+            "uk": "Прощення."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i02",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Серьёзно попросите прощения.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Серьёзно попросите прощения.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am asking for forgiveness.",
+        "localizedMeaning": {
+          "ru": "Серьёзно попросите прощения.",
+          "uk": "Серйозно попросіть прощення."
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "asking",
+          "for",
+          "forgiveness"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i03",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте вопрос о сообщении.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i03:audio"
+      ],
+      "accessibilityLabel": "Услышьте вопрос о сообщении.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i03:audio",
+          "transcript": "When did you send the message?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "When did you send the message?",
+        "orderedTokens": [
+          "When",
+          "did",
+          "you",
+          "send",
+          "the",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i04",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Подтвердите, что сообщение уже отправлено.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Подтвердите, что сообщение уже отправлено.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I have already sent you a message.",
+        "localizedMeaning": {
+          "ru": "Подтвердите, что сообщение уже отправлено.",
+          "uk": "Підтвердьте, що повідомлення вже надіслано."
+        },
+        "orderedTokens": [
+          "I",
+          "have",
+          "already",
+          "sent",
+          "you",
+          "a",
+          "message"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i05",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните, что отправили его вчера.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-41:i05:r1",
+          "text": "sent"
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i05:r2",
+          "text": "have sent"
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i05:r3",
+          "text": "sended"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что отправили его вчера.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните, что отправили его вчера.",
+          "uk": "Уточніть, що надіслали його вчора."
+        },
+        "gappedTargetPhrase": "I ___ it yesterday.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-41:i05:r1",
+            "text": "sent"
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i05:r2",
+            "text": "have sent"
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i05:r3",
+            "text": "sended"
+          }
+        ],
+        "testedDimension": "Уточните, что отправили его вчера.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Уточните, что отправили его вчера.",
+            "feedbackByLocale": {
+              "ru": "С yesterday здесь sent.",
+              "uk": "Із yesterday тут sent."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Уточните, что отправили его вчера.",
+            "feedbackByLocale": {
+              "ru": "Прошедшая форма send — sent.",
+              "uk": "Минула форма send — sent."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:word:disrespect",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — disrespect",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:word:disrespect:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — disrespect",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:word:disrespect:audio",
+          "transcript": "disrespect"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:word:disrespect:r1",
+            "targetText": "disrespect",
+            "meaningByLocale": {
+              "ru": "Неуважение.",
+              "uk": "Неповага."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "disrespect",
+          "definitionByLocale": {
+            "ru": "Неуважение.",
+            "uk": "Неповага."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i06",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-41:i06:r1",
+          "text": "I meant no disrespect."
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i06:r2",
+          "text": "I showed no disrespect."
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i06:r3",
+          "text": "We meant no disrespect."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i06:audio",
+          "transcript": "I meant no disrespect."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:i06:r1",
+            "targetText": "I meant no disrespect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i06:r2",
+            "targetText": "I showed no disrespect.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i06:r3",
+            "targetText": "We meant no disrespect.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I meant no disrespect.",
+              "uk": "У записі звучить I meant no disrespect."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I meant no disrespect.",
+              "uk": "У записі звучить I meant no disrespect."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i07",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Предложите другу рассказать свою сторону истории.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i07:audio"
+      ],
+      "accessibilityLabel": "Предложите другу рассказать свою сторону истории.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i07:audio",
+          "transcript": "Please tell me what happened."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Please tell me what happened.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:word:impatience",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — impatience",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:word:impatience:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — impatience",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:word:impatience:audio",
+          "transcript": "impatience"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:word:impatience:r1",
+            "targetText": "impatience",
+            "meaningByLocale": {
+              "ru": "Нетерпение.",
+              "uk": "Нетерпіння."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "impatience",
+          "definitionByLocale": {
+            "ru": "Нетерпение.",
+            "uk": "Нетерпіння."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i08",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Признайте, что ваше нетерпение ухудшило ситуацию.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Признайте, что ваше нетерпение ухудшило ситуацию.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "My impatience made things worse.",
+        "localizedMeaning": {
+          "ru": "Признайте, что ваше нетерпение ухудшило ситуацию.",
+          "uk": "Визнайте, що ваше нетерпіння погіршило ситуацію."
+        },
+        "orderedTokens": [
+          "My",
+          "impatience",
+          "made",
+          "things",
+          "worse"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i09",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам хотелось бы лучше понимать друг друга.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-41:i09:r1",
+          "text": "understood"
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i09:r2",
+          "text": "understand"
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i09:r3",
+          "text": "understanding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам хотелось бы лучше понимать друг друга.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам хотелось бы лучше понимать друг друга.",
+          "uk": "Вам хотілося б краще розуміти одне одного."
+        },
+        "gappedTargetPhrase": "I wish we ___ each other better.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-41:i09:r1",
+            "text": "understood"
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i09:r2",
+            "text": "understand"
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i09:r3",
+            "text": "understanding"
+          }
+        ],
+        "testedDimension": "Вам хотелось бы лучше понимать друг друга.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы лучше понимать друг друга.",
+            "feedbackByLocale": {
+              "ru": "После wish здесь understood.",
+              "uk": "Після wish тут understood."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Вам хотелось бы лучше понимать друг друга.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма understood.",
+              "uk": "Потрібна форма understood."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i10",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Попросите пять минут на спокойный разговор.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Попросите пять минут на спокойный разговор.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i10:audio",
+          "transcript": "Could we talk for five minutes?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could we talk for five minutes?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:word:tolerance",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — tolerance",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:word:tolerance:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — tolerance",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:word:tolerance:audio",
+          "transcript": "tolerance"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:word:tolerance:r1",
+            "targetText": "tolerance",
+            "meaningByLocale": {
+              "ru": "Терпимость к различиям и чужим привычкам.",
+              "uk": "Терпимість до відмінностей і чужих звичок."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "tolerance",
+          "definitionByLocale": {
+            "ru": "Терпимость к различиям и чужим привычкам.",
+            "uk": "Терпимість до відмінностей і чужих звичок."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i11",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-41:i11:r1",
+          "text": "We need a little tolerance."
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i11:r2",
+          "text": "We need a little patience."
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i11:r3",
+          "text": "They need a little tolerance."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i11:audio",
+          "transcript": "We need a little tolerance."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:i11:r1",
+            "targetText": "We need a little tolerance.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i11:r2",
+            "targetText": "We need a little patience.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i11:r3",
+            "targetText": "They need a little tolerance.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-41:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need a little tolerance.",
+              "uk": "У записі звучить We need a little tolerance."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит We need a little tolerance.",
+              "uk": "У записі звучить We need a little tolerance."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i12",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Услышьте предложение встретиться позже.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Услышьте предложение встретиться позже.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i12:audio",
+          "transcript": "Could we meet a little later?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Could we meet a little later?",
+        "orderedTokens": [
+          "Could",
+          "we",
+          "meet",
+          "a",
+          "little",
+          "later"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i13",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вам было бы спокойнее при согласованном времени встречи.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-41:i13:r1",
+          "text": "feel"
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i13:r2",
+          "text": "felt"
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i13:r3",
+          "text": "to feel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вам было бы спокойнее при согласованном времени встречи.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вам было бы спокойнее при согласованном времени встречи.",
+          "uk": "Вам було б спокійніше за узгодженого часу зустрічі."
+        },
+        "gappedTargetPhrase": "I would ___ better if we agreed on a time.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-27:session-41:i13:r1",
+            "text": "feel"
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i13:r2",
+            "text": "felt"
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i13:r3",
+            "text": "to feel"
+          }
+        ],
+        "testedDimension": "Вам было бы спокойнее при согласованном времени встречи.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-41:i13:r2",
+            "correct": false,
+            "testedDimension": "Вам было бы спокойнее при согласованном времени встречи.",
+            "feedbackByLocale": {
+              "ru": "После would нужна feel.",
+              "uk": "Після would потрібна feel."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i13:r3",
+            "correct": false,
+            "testedDimension": "Вам было бы спокойнее при согласованном времени встречи.",
+            "feedbackByLocale": {
+              "ru": "После would не ставим to.",
+              "uk": "Після would не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i14",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните, подходит ли половина седьмого.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Уточните, подходит ли половина седьмого.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i14:audio",
+          "transcript": "Would half past six suit you?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Would half past six suit you?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i15",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Начните с результата: If we left now, we would arrive on time.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Начните с результата: If we left now, we would arrive on time.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We would arrive on time if we left now.",
+        "localizedMeaning": {
+          "ru": "Начните с результата: If we left now, we would arrive on time.",
+          "uk": "Почніть із результату: If we left now, we would arrive on time."
+        },
+        "orderedTokens": [
+          "We",
+          "would",
+          "arrive",
+          "on",
+          "time",
+          "if",
+          "we",
+          "left",
+          "now"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i16",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-27:session-41:i16:r1",
+          "text": "I can wait outside the café."
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i16:r2",
+          "text": "I can wait inside the café."
+        },
+        {
+          "responseId": "en:lesson-27:session-41:i16:r3",
+          "text": "I can wait outside the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i16:audio",
+          "transcript": "I can wait outside the café."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-27:session-41:i16:r1",
+            "targetText": "I can wait outside the café.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i16:r2",
+            "targetText": "I can wait inside the café.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i16:r3",
+            "targetText": "I can wait outside the shop.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-27:session-41:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can wait outside the café.",
+              "uk": "У записі звучить I can wait outside the café."
+            }
+          },
+          {
+            "responseId": "en:lesson-27:session-41:i16:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I can wait outside the café.",
+              "uk": "У записі звучить I can wait outside the café."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:i17",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Поблагодарите за то, что вас выслушали.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-27:session-41:i17:audio"
+      ],
+      "accessibilityLabel": "Поблагодарите за то, что вас выслушали.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-27:session-41:i17:audio",
+          "transcript": "Thank you for listening."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Thank you for listening.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4228ef043e017fe58c00b1b2c6f1e4a4d910a06088048fe12034e6cf11cab9e3"
+}

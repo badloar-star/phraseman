@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-27:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-27:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-41:intro1:r2": {
+          "ru": "С yesterday здесь sent без have.",
+          "uk": "Із yesterday тут sent без have."
+        },
+        "en:lesson-27:session-41:intro1:r3": {
+          "ru": "Прошедшая форма send — sent.",
+          "uk": "Минула форма send — sent."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-41:intro2:r2": {
+          "ru": "После wish здесь understood.",
+          "uk": "Після wish тут understood."
+        },
+        "en:lesson-27:session-41:intro2:r3": {
+          "ru": "Нужна форма understood.",
+          "uk": "Потрібна форма understood."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-27:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-27:session-41:intro3:r2": {
+          "ru": "После would нужна feel.",
+          "uk": "Після would потрібна feel."
+        },
+        "en:lesson-27:session-41:intro3:r3": {
+          "ru": "После would нет to.",
+          "uk": "Після would немає to."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3678793ba62ed9e12edb9e9e803265aca49f997789c5db3c82dd3cad028343e3"
+}

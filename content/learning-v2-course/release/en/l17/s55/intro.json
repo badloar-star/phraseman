@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-55:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подчеркнуть малое количество",
-        "uk": "Підкреслити малу кількість"
+        "ru": "Спокойствия почти нет",
+        "uk": "Спокою майже немає"
       },
       "bodyByLocale": {
-        "ru": "peace of mind — душевное спокойствие, отсутствие тревог. quality time — время, проведённое вместе с вниманием друг к другу. Вас многое тревожит. Подчеркните, что спокойствия мало. С неисчисляемыми a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.",
-        "uk": "peace of mind — душевний спокій, відсутність тривог. quality time — час, проведений разом з увагою одне до одного. Вас багато що тривожить. Підкресліть, що спокою мало. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо."
+        "ru": "Вы ждёте важного звонка и постоянно беспокоитесь. Хотите подчеркнуть, что душевного спокойствия почти нет: I have little peace of mind. Соберите фразу: I have + little + peace of mind. Peace of mind здесь неисчисляемое, поэтому используем little, не few. Little без a подчёркивает нехватку; a little в той же фразе означало бы, что некоторое спокойствие всё же есть.",
+        "uk": "Ви чекаєте на важливий дзвінок і постійно хвилюєтеся. Хочете підкреслити, що душевного спокою майже немає: I have little peace of mind. Складіть фразу: I have + little + peace of mind. Peace of mind тут незлічуване, тому використовуємо little, не few. Little без a підкреслює брак; a little в тій самій фразі означало б, що певний спокій усе ж є."
       },
       "question": {
         "interactionId": "en:lesson-17:session-55:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d572e1880d1551b0867acc95a67e930870a22acdc6cd17ab085fca2d17ae89a8"
+  "introFingerprint": "6cd599f5ca1971785ca688063b9dfc3dbe6b29faa3cd47064c0ca75aa090e043"
 }

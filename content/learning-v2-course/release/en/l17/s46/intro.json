@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-46:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Полностью отрицать наличие",
-        "uk": "Повністю заперечити наявність"
+        "ru": "В папке нет свидетельств",
+        "uk": "У папці немає свідоцтв"
       },
       "bodyByLocale": {
-        "ru": "marriage certificate — свидетельство о браке. В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates. identity card — удостоверение личности, идентификационная карта. Some используется с множественным числом исчисляемых и с неисчисляемыми. В отрицании со значением «никакого» обычно выбираем any.",
-        "uk": "marriage certificate — свідоцтво про шлюб. В обговорюваній папці немає жодного такого свідоцтва. Marriage certificate → marriage certificates. identity card — посвідчення особи, ідентифікаційна картка. Some використовується з множиною злічуваних та з незлічуваними. У запереченні зі значенням «жодного» зазвичай вибираємо any."
+        "ru": "Вы с родственником разбираете семейную папку и не находите ни одного свидетельства о браке. We don't have any marriage certificates — у нас нет свидетельств о браке. Сначала We don't have, затем any marriage certificates. Certificates — множественное число certificate. Any после don't have подчёркивает, что таких документов нет совсем; some ограничило бы отрицание лишь частью документов.",
+        "uk": "Ви з родичем розбираєте сімейну папку й не знаходите жодного свідоцтва про шлюб. We don't have any marriage certificates — у нас немає свідоцтв про шлюб. Спочатку We don't have, потім any marriage certificates. Certificates — множина certificate. Any після don't have підкреслює, що таких документів немає зовсім; some обмежило б заперечення лише частиною документів."
       },
       "question": {
         "interactionId": "en:lesson-17:session-46:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-17:session-46:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Спросить без предположения",
-        "uk": "Запитати без припущення"
+        "ru": "Попросить сведения о бланках",
+        "uk": "Дізнатися про бланки"
       },
       "bodyByLocale": {
-        "ru": "registration form — регистрационная форма, бланк регистрации. Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms. В нейтральном вопросе обычно any. Some тоже встречается в вопросах: например, в предложении Would you like some tea? или когда ожидают «да». Поэтому учитывайте ситуацию, а не только вопросительный знак.",
-        "uk": "registration form — реєстраційна форма, бланк реєстрації. Ви не знаєте, чи є бланки. Запитайте нейтрально, без очікування відповіді «так». Registration form → registration forms. У нейтральному запитанні зазвичай any. Some теж трапляється в запитаннях: наприклад, у пропозиції Would you like some tea? або коли очікують «так». Тому враховуйте ситуацію, а не лише знак питання."
+        "ru": "Вы подошли к стойке записи на курсы и не знаете, есть ли у сотрудника бланки регистрации. Do you have any registration forms? — у вас есть бланки регистрации? Постройте вопрос: Do + you + have + any registration forms. После do используем have без изменений. Forms — множественное число form. Здесь any выражает нейтральный вопрос без предположения о наличии бланков; some могло бы передавать ожидание ответа «да».",
+        "uk": "Ви підійшли до стійки запису на курси й не знаєте, чи є у працівника бланки реєстрації. Do you have any registration forms? — у вас є бланки реєстрації? Побудуйте запитання: Do + you + have + any registration forms. Після do використовуємо have без змін. Forms — множина form. Тут any виражає нейтральне запитання без припущення про наявність бланків; some могло б передавати очікування відповіді «так»."
       },
       "question": {
         "interactionId": "en:lesson-17:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07df26aa3a7c681000e94d25fa6dad338109b73e2fd08a9585f5ece5daf7c6a0"
+  "introFingerprint": "8ba4c78e58d160904b94d1f1b51c9d2e77f2ca1dcd932bfa215aab26540721bb"
 }

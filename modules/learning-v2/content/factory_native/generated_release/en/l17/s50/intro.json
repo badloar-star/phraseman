@@ -65,12 +65,12 @@
       "pageId": "en:lesson-17:session-50:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Подчеркнуть нехватку",
-        "uk": "Підкреслити брак"
+        "ru": "Осталось мало номеров",
+        "uk": "Залишилося мало номерів"
       },
       "bodyByLocale": {
-        "ru": "contact number — телефон для связи. emergency contact — контакт человека, с которым связываются в экстренной ситуации. После потери записной книжки у вас осталось мало номеров. Подчеркните нехватку. Contact number → contact numbers. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.",
-        "uk": "contact number — телефон для зв’язку. emergency contact — контакт людини, з якою зв’язуються в екстреній ситуації. Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо."
+        "ru": "Вы потеряли записную книжку и смогли восстановить только два номера знакомых. Хотите подчеркнуть, что контактов не хватает: I have few contact numbers — у меня мало телефонов для связи. Соберите предложение: I have + few + contact numbers. Number — исчисляемое слово; для нескольких номеров используем numbers и few, не little. Few без a подчёркивает, что номеров мало. A few в этой же фразе выделило бы наличие нескольких.",
+        "uk": "Ви загубили записник і змогли відновити лише два номери знайомих. Хочете підкреслити, що контактів бракує: I have few contact numbers — у мене мало телефонів для зв'язку. Складіть речення: I have + few + contact numbers. Number — злічуване слово; для кількох номерів використовуємо numbers і few, не little. Few без a підкреслює, що номерів мало. A few у цій самій фразі виділило б наявність кількох."
       },
       "question": {
         "interactionId": "en:lesson-17:session-50:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a4f28370249ccb16f36ac2c66142801decd7d90bf3ea1352ef6771d95d2366c3"
+  "introFingerprint": "34d7a9fb58f86e3851576bf92d15d31e83ba1592e1450ac9cfbf5c77a744cb14"
 }

@@ -69,8 +69,8 @@
         "uk": "Порівняти з минулим"
       },
       "bodyByLocale": {
-        "ru": "Shared bathroom — общая ванная комната, которой пользуются разные гости. Private bathroom — отдельная ванная для вашего пользования. Общую ванную убрали: теперь она чище. Than before — «чем раньше». Сравниваем два варианта. В этих коротких прилагательных добавляем -er: cheap → cheaper, clean → cleaner, bright → brighter. После сравнительной формы than вводит то, с чем сравниваем.",
-        "uk": "Shared bathroom — спільна ванна кімната, якою користуються різні гості. Private bathroom — окрема ванна для вашого користування. Спільну ванну прибрали: тепер вона чистіша. Than before — «ніж раніше». Порівнюємо два варіанти. У цих коротких прикметниках додаємо -er: cheap → cheaper, clean → cleaner, bright → brighter. Після порівняльної форми than вводить те, з чим порівнюємо."
+        "ru": "Общую ванную в гостинице убрали, и вы замечаете, что теперь она чище. The shared bathroom is cleaner than before — общая ванная чище, чем раньше. Назовите помещение: The shared bathroom is. Затем добавьте cleaner — «чище», форму clean с окончанием -er. Завершите than before — «чем раньше». Сравниваем состояние одной ванной до уборки и после неё.",
+        "uk": "Спільну ванну кімнату в готелі прибрали, і ви помічаєте, що тепер вона чистіша. The shared bathroom is cleaner than before — спільна ванна чистіша, ніж раніше. Назвіть приміщення: The shared bathroom is. Потім додайте cleaner — «чистіша», форму clean із закінченням -er. Завершіть than before — «ніж раніше». Порівнюємо стан однієї ванної до прибирання й після нього."
       },
       "question": {
         "interactionId": "en:lesson-18:session-01:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Якщо вже є e"
       },
       "bodyByLocale": {
-        "ru": "Living space — жилое пространство. Для large добавляем только -r: larger. Не largeer. Отдельная ванная больше нашей: larger than ours. Для bright форма brighter: светлее.",
-        "uk": "Living space — житловий простір. До large додаємо лише -r: larger. Не largeer. Окрема ванна більша за нашу: larger than ours. Для bright форма brighter: світліший."
+        "ru": "Вы с другом осматриваете номер: его отдельная ванная просторнее той, которой пользуетесь вы. The private bathroom is larger than ours — отдельная ванная больше нашей. После The private bathroom is поставьте larger. Large уже заканчивается на e, поэтому добавляем только -r, а не ещё одно e: larger. После than используем ours вместо our bathroom, чтобы не повторять слово bathroom.",
+        "uk": "Ви з другом оглядаєте номер: його окрема ванна просторіша за ту, якою користуєтеся ви. The private bathroom is larger than ours — окрема ванна більша за нашу. Після The private bathroom is поставте larger. Large уже закінчується на e, тому додаємо лише -r, а не ще одне e: larger. Після than використовуємо ours замість our bathroom, щоб не повторювати слово bathroom."
       },
       "question": {
         "interactionId": "en:lesson-18:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a7070913c607f09d20a96727ef2e69174638b20acdf5da0b98b2a542bf31cff5"
+  "introFingerprint": "62ca5bfd8ae1241648dff7e58134488d65334bb3d9aba3d3a42cca75e9718081"
 }

@@ -863,9 +863,12 @@ function SessionContent() {
     ? messages.find((message) => message.id === coaching.whyMessageId && message.author === 'persona')
     : undefined;
   const failureReason = turnFailure?.reason ?? null;
+  // зачем (координатор 24.10, макет u31): нет сети — C18 «Нет связи…», сбой сервиса — C19 с причиной
   const turnErrorMessage = failureReason === 'service'
     ? coachingLabels.serviceError
-    : failureReason === 'rate_limited'
+    : failureReason === 'network'
+      ? coachingLabels.networkError
+      : failureReason === 'rate_limited'
       ? coachingLabels.rateLimited
       : failureReason === 'plus_daily_cap' ? labels.plusDailyCap : labels.turnError;
   const bottom: DialogueV2SessionBottom = coaching.ended

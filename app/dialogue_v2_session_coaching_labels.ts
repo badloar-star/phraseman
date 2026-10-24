@@ -21,6 +21,8 @@ export type DialogueV2SessionCoachingLabels = Readonly<{
   summary: string;
   serviceError: string;
   rateLimited: string;
+  /** Нет сети (макет u31, C18). */
+  networkError: string;
   pausedTitle: string;
   pausedMessage: string;
   voiceNotHeard: string;
@@ -74,19 +76,10 @@ export function dialogueV2SessionCoachingLabels(lang: Lang): DialogueV2SessionCo
     summary: triLang(lang, { ru: 'Итоги', uk: 'Підсумки', en: 'Summary', es: 'Resumen', 'pt-BR': 'Resumo', vi: 'Tổng kết', id: 'Ringkasan', tr: 'Özet', pl: 'Podsumowanie', fr: 'Bilan', de: 'Auswertung' }),
     // зачем (Ядро, dialogs-035): пузырь, упёршийся в лимит, остаётся на экране, но сервер его не принял — честная отметка под ним.
     unsent: triLang(lang, { ru: 'Не отправлено', uk: 'Не надіслано', en: 'Not sent', es: 'No enviado', 'pt-BR': 'Não enviada', vi: 'Chưa gửi', id: 'Belum terkirim', tr: 'Gönderilmedi', pl: 'Nie wysłano', fr: 'Non envoyé', de: 'Nicht gesendet' }),
-    serviceError: triLang(lang, {
-      ru: 'Сообщение не отправилось. Попробуй ещё раз.',
-      uk: 'Повідомлення не надіслалося. Спробуй ще раз.',
-      en: 'Your message didn’t send. Try again.',
-      es: 'El mensaje no se envió. Inténtalo de nuevo.',
-      'pt-BR': 'A mensagem não foi enviada. Tente de novo.',
-      vi: 'Tin nhắn chưa gửi được. Thử lại nhé.',
-      id: 'Pesan belum terkirim. Coba lagi.',
-      tr: 'Mesaj gönderilemedi. Tekrar dene.',
-      pl: 'Wiadomość się nie wysłała. Spróbuj ponownie.',
-      fr: 'Message non envoyé. Réessaie.',
-      de: 'Die Nachricht wurde nicht gesendet. Versuch es erneut.',
-    }),
+    // зачем (координатор 24.10, макет u31 C19, Переводчик cbe0a3f59): сбой сервиса называет причину; fr/de — прежние до перевода
+    serviceError: triLang(lang, { ru: 'Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.', uk: 'Сервіс діалогів тимчасово недоступний. Повідомлення не надіслано. Спробуй ще раз.', en: 'The dialogue service is temporarily unavailable. Your message wasn’t sent. Try again.', es: 'El servicio de diálogos no está disponible por ahora. El mensaje no se envió. Inténtalo de nuevo.', 'pt-BR': 'O serviço de diálogos está indisponível no momento. A mensagem não foi enviada. Tente de novo.', vi: 'Dịch vụ hội thoại tạm thời không khả dụng. Tin nhắn chưa được gửi. Thử lại nhé.', id: 'Layanan dialog sedang tidak tersedia. Pesan tidak terkirim. Coba lagi.', tr: 'Diyalog hizmeti geçici olarak kullanılamıyor. Mesaj gönderilmedi. Tekrar dene.', pl: 'Usługa dialogów jest chwilowo niedostępna. Wiadomość nie została wysłana. Spróbuj ponownie.', fr: 'Message non envoyé. Réessaie.', de: 'Die Nachricht wurde nicht gesendet. Versuch es erneut.' }),
+    // зачем (макет u31 C18): нет сети — свой текст, а не общий «ответ не пришёл»; fr/de — английский запасной до перевода
+    networkError: triLang(lang, { ru: 'Нет связи. Проверь интернет и попробуй ещё раз.', uk: 'Немає зв’язку. Перевір інтернет і спробуй ще раз.', en: 'No connection. Check your internet and try again.', es: 'Sin conexión. Revisa internet e inténtalo de nuevo.', 'pt-BR': 'Sem conexão. Verifique a internet e tente de novo.', vi: 'Mất kết nối. Hãy kiểm tra mạng rồi thử lại.', id: 'Tidak ada koneksi. Periksa internet lalu coba lagi.', tr: 'Bağlantı yok. İnterneti kontrol edip tekrar dene.', pl: 'Brak połączenia. Sprawdź internet i spróbuj ponownie.' }),
     rateLimited: triLang(lang, {
       ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
       uk: 'Забагато повідомлень поспіль. Зачекай трохи й спробуй ще раз.',
@@ -115,7 +108,8 @@ export function dialogueV2SessionCoachingLabels(lang: Lang): DialogueV2SessionCo
     }),
     voiceNotHeard: triLang(lang, { ru: 'Не удалось расслышать. Попробуй ещё раз', uk: 'Не вдалося розчути. Спробуй ще раз', en: "Couldn't catch that. Try again", es: 'No te he oído bien. Inténtalo de nuevo', 'pt-BR': 'Não deu para ouvir. Tente de novo', vi: 'Chưa nghe rõ. Thử lại nhé', id: 'Tidak terdengar jelas. Coba lagi', tr: 'Anlaşılamadı. Tekrar dene', pl: 'Nie udało się usłyszeć. Spróbuj ponownie', fr: 'Je n’ai pas bien entendu. Réessaie', de: 'Nicht verstanden. Versuch es noch einmal' }),
     voiceDenied: triLang(lang, { ru: 'Нужен доступ к микрофону', uk: 'Потрібен доступ до мікрофона', en: 'Microphone access needed', es: 'Se necesita acceso al micrófono', 'pt-BR': 'É preciso acesso ao microfone', vi: 'Cần quyền dùng micro', id: 'Perlu akses mikrofon', tr: 'Mikrofon izni gerekli', pl: 'Potrzebny dostęp do mikrofonu', fr: 'Accès au micro nécessaire', de: 'Mikrofonzugriff erforderlich' }),
-    voiceUnavailable: triLang(lang, { ru: 'Голосовой ввод недоступен на этом устройстве', uk: 'Голосове введення недоступне на цьому пристрої', en: 'Voice input is not available on this device', es: 'La entrada de voz no está disponible en este dispositivo', 'pt-BR': 'A entrada por voz não está disponível neste aparelho', vi: 'Thiết bị này không hỗ trợ nhập giọng nói', id: 'Input suara tidak tersedia di perangkat ini', tr: 'Bu cihazda sesli giriş kullanılamıyor', pl: 'Wprowadzanie głosowe jest niedostępne na tym urządzeniu', fr: 'La saisie vocale n’est pas disponible sur cet appareil', de: 'Spracheingabe ist auf diesem Gerät nicht verfügbar' }),
+    // зачем (макет u31 C15, Переводчик cbe0a3f59): устройство не распознаёт речь; fr/de — прежние до перевода
+    voiceUnavailable: triLang(lang, { ru: 'Распознавание речи не работает на этом устройстве', uk: 'Розпізнавання мовлення не працює на цьому пристрої', en: 'Speech recognition doesn’t work on this device', es: 'El reconocimiento de voz no funciona en este dispositivo', 'pt-BR': 'O reconhecimento de voz não funciona neste aparelho', vi: 'Nhận dạng giọng nói không hoạt động trên thiết bị này', id: 'Pengenalan suara tidak berfungsi di perangkat ini', tr: 'Konuşma tanıma bu cihazda çalışmıyor', pl: 'Rozpoznawanie mowy nie działa na tym urządzeniu', fr: 'La saisie vocale n’est pas disponible sur cet appareil', de: 'Spracheingabe ist auf diesem Gerät nicht verfügbar' }),
     openSettings: triLang(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', en: 'Open settings', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia', fr: 'Ouvrir les réglages', de: 'Einstellungen öffnen' }),
     whyExhausted: triLang(lang, {
       ru: 'Бесплатные разборы на сегодня закончились. У бесплатного — 3 разбора в день, завтра снова.',

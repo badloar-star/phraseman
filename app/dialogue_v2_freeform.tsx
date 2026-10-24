@@ -15,6 +15,7 @@ import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_messag
 import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { triLang } from '../constants/i18n';
 import AiDialogConsentGate, { useAiDialogConsentAskAgain } from './ai_dialog_consent_gate';
+import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import {
   requestDialogueV2FreeformPreparedBotVoice,
   sendDialogueV2FreeformTurn,
@@ -31,6 +32,10 @@ const FREEFORM_DOTS_WATCHDOG_SAFE_MS = Number.isFinite(FREEFORM_DOTS_WATCHDOG_MS
 /** Отказ «на сегодня всё» (DialogueV2FreeformUnavailableError.reason) — по полю, без instanceof: модуль клиента подменяют в тестах. */
 function isFreeformDailyCap(error: unknown): boolean {
   return (error as { reason?: unknown } | null)?.reason === 'daily_cap';
+}
+/** Нет связи (DialogueV2FreeformUnavailableError.reason) — макет u31 C18, иначе C19 «сервис недоступен». */
+function isFreeformNetworkFailure(error: unknown): boolean {
+  return (error as { reason?: unknown } | null)?.reason === 'network';
 }
 /** Отказ «нет согласия на ИИ» (DialogueV2FreeformUnavailableError.reason) — шлюз снова показывает окно согласия. */
 function isFreeformConsentRequired(error: unknown): boolean {
@@ -131,6 +136,9 @@ function DialogueV2FreeformContent() {
   const { lang } = useLang();
   const glass = useDialogueGlass();
   const labels = useMemo(() => labelsFor(lang), [lang]);
+  // зачем (координатор 24.10, макет u31): тексты сбоя хода — общие со сценарным диалогом (C18 нет сети, C19 сервис недоступен)
+  const coachingLabels = useMemo(() => dialogueV2SessionCoachingLabels(lang), [lang]);
+  const [turnFailureKind, setTurnFailureKind] = useState<'network' | 'service'>('service');
   const [session, setSession] = useState<ServerSession | null>(null);
   const [messages, setMessages] = useState<readonly DialogueV2FreeformMessage[]>(() => freeformOpeningMessages(studyTarget));
   // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд.
@@ -355,6 +363,7 @@ function DialogueV2FreeformContent() {
       }
       // зачем (координатор 24.10, «вечные •••»): что увидел человек после сбоя хода — плашка с «Повторить» (или «на сегодня всё»).
       console.warn('[FREEFORM-HANG] turn:shown', JSON.stringify({ turnId: pending.turnId, current, shown: current ? (isFreeformDailyCap(error) ? 'daily_cap' : 'retry_bar') : 'nothing_contour_changed' }));
+      if (current) setTurnFailureKind(isFreeformNetworkFailure(error) ? 'network' : 'service');
       if (current) setTurnFailed(true); // R52: плашка под лентой, лента и черновик на месте
     } finally {
       if (isCurrentPending(pending)) {
@@ -566,5 +575,5 @@ function DialogueV2FreeformContent() {
     );
   }
 
-  return <DialogueV2FreeformScreen title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: labels.unavailable, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
+  return <DialogueV2FreeformScreen title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

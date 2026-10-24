@@ -49,7 +49,8 @@ export type DialogueV2FreeformPreparedBotVoiceTextOnlyResponse = Readonly<{
 /** Callable failures may include internal provider details; UI gets one neutral state. */
 /** 'daily_cap' — сервер сказал «на сегодня всё» (общий дневной потолок ИИ или дневное окно); повтор бессмыслен до завтра. */
 // 'ai_consent_required' — сервер не нашёл согласия на ИИ: экран снова показывает окно согласия (шлюз), а не «недоступно».
-export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap' | 'ai_consent_required';
+// 'network' — нет связи или вызов не дождался ответа (коды unavailable / deadline-exceeded): макет u31 C18, а не «сервис недоступен».
+export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap' | 'ai_consent_required' | 'network';
 
 export class DialogueV2FreeformUnavailableError extends Error {
   constructor(readonly reason: DialogueV2FreeformFailureReason = 'unavailable') {
@@ -61,7 +62,14 @@ export class DialogueV2FreeformUnavailableError extends Error {
 /** Ошибка старта/хода свободного разговора → наружу: причина «на сегодня всё» или обычное «недоступно». */
 function freeformFailure(error: unknown): DialogueV2FreeformUnavailableError {
   if (isAiConsentRequiredError(error)) return new DialogueV2FreeformUnavailableError('ai_consent_required');
-  return new DialogueV2FreeformUnavailableError(isAiDailyCapError(error) ? 'daily_cap' : 'unavailable');
+  if (isAiDailyCapError(error)) return new DialogueV2FreeformUnavailableError('daily_cap');
+  return new DialogueV2FreeformUnavailableError(isFreeformNetworkError(error) ? 'network' : 'unavailable');
+}
+
+/** Нет связи / ответ не дождались: коды вызова Firebase unavailable и deadline-exceeded (в том числе с префиксом functions/). */
+function isFreeformNetworkError(error: unknown): boolean {
+  const code = typeof (error as { code?: unknown })?.code === 'string' ? (error as { code: string }).code : '';
+  return /(^|\/)(unavailable|deadline-exceeded)$/.test(code);
 }
 
 /** Отказ сервера «нет согласия на ИИ» — по коду/сообщению ошибки вызова (failed-precondition 'ai_consent_required'). */

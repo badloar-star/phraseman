@@ -105,6 +105,7 @@ import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/toda
 // зачем (владелец 21.10 ~23:40, Главная A «Сцена»): шапка и «Продолжить» сведены в сцену — components/home/v2/scene
 import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
 import { SEASON_COUNT_LOG, homeSceneLessonCount } from '../../components/home/v2/scene/home_scene_count';
+import { homeSceneContinueTarget } from '../../components/home/v2/scene/home_scene_continue_target';
 import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
@@ -551,6 +552,14 @@ function logHomeFirstRenderTiming(): void {
 // зачем (Сверка 24.10, [SEASON-COUNT]): одна строка на смену числа «N из M» на «Сцене» — какое число и откуда; рендер Главной
 // частый, поэтому пишем только при смене
 let lastHomeSceneCountKey = '';
+// зачем (координатор 24.10, Р3): ветка «Продолжить» на «Сцене» — одна строка на смену (рендер Главной частый)
+let lastHomeSceneTargetKey = '';
+function logHomeSceneTarget(reason: string, choice: string, studyTarget: unknown): void {
+  const key = `${reason}:${choice}:${String(studyTarget)}`;
+  if (key === lastHomeSceneTargetKey) return;
+  lastHomeSceneTargetKey = key;
+  console.log('[HOME-CONTINUE] scene_target', JSON.stringify({ reason, choice, studyTarget: String(studyTarget) })); // guard-ok: одна строка на смену ветки
+}
 function logHomeSceneCount(lessonNo: number | null, count: ReturnType<typeof homeSceneLessonCount>): void {
   const key = `${lessonNo}:${count.done}:${count.total}:${count.source}`;
   if (key === lastHomeSceneCountKey) return;
@@ -2724,7 +2733,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               </HomeBellStateContext.Provider>
         );
         // зачем (владелец 21.10 ~23:40, эталон home-new-concepts.html раздел A): «Сцена» — те же данные, что у шапки и «Продолжить»; новых чтений нет
-        const homeSceneOnPlace = continuePlace !== null || continueStart;
+        // зачем (координатор 24.10, Р3: «„Продолжить" никогда не мёртвая»): продолжать нечего, а «Уроков» для языка нет — «Сцена» становится
+        // местом первого доступного раздела («Диалоги», иначе «Карточки»): герой «newbie», название раздела, кнопка — как плитка раздела
+        const homeSceneTarget = homeSceneContinueTarget({
+          nothingToContinue: continueChoice.kind === 'none',
+          resolved: continueResolved,
+          learnVisible: homeLearnVisible,
+          dialogsVisible: homeDialoguesVisible,
+          cardsVisible: homeFlashcardsVisible,
+        });
+        const homeSceneSection = homeSceneTarget.section;
+        const homeSceneSectionItem = homeSceneSection === 'dialogs' ? quickItems[1]! : homeSceneSection === 'cards' ? quickItems[2]! : null;
+        if (HOME_SCENE_V2_ENABLED) logHomeSceneTarget(homeSceneTarget.reason, continueChoice.kind, studyTarget);
+        const openHomeSceneSection = () => {
+          console.log('[HOME-CONTINUE] scene_target', JSON.stringify({ tap: true, section: homeSceneSection, reason: homeSceneTarget.reason, studyTarget: String(studyTarget) })); // guard-ok: одна строка на тап
+          homeSceneSectionItem?.onPress();
+        };
+        const homeSceneOnPlace = continuePlace !== null || continueStart || homeSceneSection !== null;
         const homeSceneLessonNo = continueV2 ? continueV2.lessonOrdinal : lastLesson ? lastLesson.id : continueStart ? 1 : null;
         // зачем (Сверка 24.10: «0 из 50» до входа в эпизод и «0 из 56» после): одно правило числа — урок V2 считает эпизоды урока
         // (локальный прогресс курса), пока он читается — числа нет; 50 фраз — только у урока старого курса
@@ -2745,12 +2770,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             streakToday={streakToday}
             plus={hasPremiumAccess}
             energy={energyPeekNow ? energyPeekNow.energy : null}
-            hasProgress={continueStart ? false : continueResolved ? true : null}
+            hasProgress={continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}
             place={{
               badge: continuePlace ? homeContinuePlaceBadge(lang, continueChoice.kind === 'dialog' ? 'dialog' : 'cards')
                 : homeSceneLessonNo !== null ? triLang(lang, { ru: `Урок ${homeSceneLessonNo}`, uk: `Урок ${homeSceneLessonNo}`, en: `Lesson ${homeSceneLessonNo}`, es: `Lección ${homeSceneLessonNo}`, 'pt-BR': `Lição ${homeSceneLessonNo}`, vi: `Bài ${homeSceneLessonNo}`, id: `Pelajaran ${homeSceneLessonNo}`, tr: `Ders ${homeSceneLessonNo}`, pl: `Lekcja ${homeSceneLessonNo}` }) : null,
               episode: continueV2 && !homeSceneOnPlace ? continueV2.sessionOrdinal : null,
-              title: homeSceneOnPlace ? continuePlaceTitle : priorityCardTitle,
+              title: homeSceneSectionItem ? homeSceneSectionItem.label : homeSceneOnPlace ? continuePlaceTitle : priorityCardTitle,
               done: homeSceneCount.done,
               total: homeSceneCount.total,
               theoryLessonId: continueV2 && !homeSceneOnPlace ? continueV2.lessonOrdinal : null,
@@ -2759,7 +2784,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             pending={!homeSceneOnPlace && !priorityCardVisible && continueCardPending}
             busy={continueV2 !== null && continueV2Launching}
             active={homeRuntimeActive}
-            onContinue={homeSceneOnPlace ? openHomeContinuePlace : openHomeContinuePriority}
+            onContinue={homeSceneSection ? openHomeSceneSection : homeSceneOnPlace ? openHomeContinuePlace : openHomeContinuePriority}
             onChip={(kind) => {
               if (kind === 'words') { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'dictionary_not_connected' })); return; } // guard-ok: ранний выход называет причину
               if (kind === 'theory') {

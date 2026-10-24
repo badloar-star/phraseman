@@ -21,14 +21,20 @@ export const FOLLOW_SYSTEM_MARKER_KEY = 'theme_default_follow_system_v1';
 
 export type SystemDefaultTheme = Readonly<{ themeId: string; appearance: 'light' | 'dark'; intensity: number }>;
 
-/** Тема новичка по системному режиму; неизвестный/пустой режим → тёмный («Океан»). */
+/**
+ * ЗАМОК ВЛАДЕЛЬЦА 24.10: «из онбординга убрать тёмную тему, и стандартная тема только одна — светлая».
+ * зачем: выбора темы в онбординге нет — новичок получал пару по системе, и на тёмном телефоне онбординг шёл в тёмном «Океане».
+ * Теперь стандартная тема одна — светлая «Сумерки» (ink) при ЛЮБОМ системном режиме. Тёмную тему человек выбирает сам в
+ * настройках тем; его выбор и старые пользователи не трогаются (decideFirstRunTheme). `scheme` оставлен в подписи — журнал
+ * и вызовы ThemeContext его передают; на результат он больше не влияет. NEW_USER_SYSTEM_PAIR.dark больше не используется.
+ */
 export function pickSystemDefaultTheme(scheme: string | null | undefined): SystemDefaultTheme {
-  const light = scheme === 'light';
-  return { themeId: light ? NEW_USER_SYSTEM_PAIR.light : NEW_USER_SYSTEM_PAIR.dark, appearance: light ? 'light' : 'dark', intensity: NEW_USER_SYSTEM_PAIR.intensity };
+  void scheme;
+  return { themeId: NEW_USER_SYSTEM_PAIR.light, appearance: 'light', intensity: NEW_USER_SYSTEM_PAIR.intensity };
 }
 
-/** Тема для новых пользователей (тёмное зерно; реальную пару по системному режиму даёт pickSystemDefaultTheme). */
-export const NEW_USER_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: NEW_USER_SYSTEM_PAIR.dark, intensity: NEW_USER_SYSTEM_PAIR.intensity });
+/** Тема для новых пользователей — одна светлая «Сумерки» (замок владельца 24.10). */
+export const NEW_USER_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: NEW_USER_SYSTEM_PAIR.light, intensity: NEW_USER_SYSTEM_PAIR.intensity });
 
 /** Встроенный дефолт приложения (resolveLiquidGlassTheme(null) / migrateStoredLiquidGlassIntensity без ключей). */
 export const BUILTIN_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: 'graphite', intensity: 0 });

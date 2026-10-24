@@ -15,17 +15,18 @@ const AURORA_MAX = { themeId: 'grad_aurora', intensity: 1 };
 const empty = { storedThemeId: null, storedIntensity: null, storedLevel: null };
 
 describe('тема по умолчанию для новых (метка первого запуска)', () => {
-  it('пара по умолчанию: светлый → ink, тёмный → marine, насыщенность 1; неизвестный режим → тёмный', () => {
-    expect(NEW_USER_SYSTEM_PAIR).toEqual({ light: 'ink', dark: 'marine', intensity: 1 });
-    expect(pickSystemDefaultTheme('light')).toEqual({ themeId: 'ink', appearance: 'light', intensity: 1 });
-    expect(pickSystemDefaultTheme('dark')).toEqual({ themeId: 'marine', appearance: 'dark', intensity: 1 });
-    expect(pickSystemDefaultTheme(null)).toMatchObject({ themeId: 'marine', appearance: 'dark' });
-    expect(pickSystemDefaultTheme(undefined)).toMatchObject({ themeId: 'marine', appearance: 'dark' });
+  // 24.10 (замок владельца «стандартная тема только одна — светлая»): при любом системном режиме — «Сумерки» (ink), светлая.
+  it('стандартная тема одна — светлая «Сумерки» при любом системном режиме', () => {
+    expect(NEW_USER_SYSTEM_PAIR.light).toBe('ink');
+    expect(NEW_USER_SYSTEM_PAIR.intensity).toBe(1);
+    for (const scheme of ['light', 'dark', null, undefined, 'unspecified']) {
+      expect(pickSystemDefaultTheme(scheme)).toEqual({ themeId: 'ink', appearance: 'light', intensity: 1 });
+    }
   });
 
-  it('новичок без метки и онбординга → применяется пара; конфиг-зерно = Океан@1', () => {
-    expect(NEW_USER_DEFAULT_THEME).toEqual({ themeId: 'marine', intensity: 1 });
-    expect(decideFirstRunTheme({ ...empty, onboardingDone: null })).toMatchObject({ kind: 'new_user', apply: true, themeId: 'marine', intensity: 1 });
+  it('новичок без метки и онбординга → применяется стандартная тема; зерно = Сумерки@1', () => {
+    expect(NEW_USER_DEFAULT_THEME).toEqual({ themeId: 'ink', intensity: 1 });
+    expect(decideFirstRunTheme({ ...empty, onboardingDone: null })).toMatchObject({ kind: 'new_user', apply: true, themeId: 'ink', intensity: 1 });
   });
 
   it('метка «следует за системой» держит новичка новичком и после онбординга; выбор человека (ключи) сильнее метки', () => {

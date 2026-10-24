@@ -1,4 +1,6 @@
-// зачем (координатор 18.10, первый запуск): симметрия светлому сценарию — новичок при системной ТЁМНОЙ теме получает тёмную системную пару с первого готового кадра.
+// зачем (координатор 18.10, первый запуск): новичок при системной ТЁМНОЙ теме — с первого готового кадра без чужой темы.
+// ЗАМОК ВЛАДЕЛЬЦА 24.10: «из онбординга убрать тёмную тему, стандартная тема только одна — светлая» — на тёмном телефоне новичок
+// получает светлые «Сумерки», тёмного кадра нет вовсе.
 // Отдельный файл: модульные флаги провайдера живут на процесс (см. theme_boot_new_user_light.test.tsx).
 import React from 'react';
 import { renderHook, waitFor } from '@testing-library/react-native';
@@ -32,7 +34,7 @@ type Frame = Readonly<{ themeId: string; appearance: string; ready: boolean }>;
 const wrapper = ({ children }: { children: React.ReactNode }) => <ThemeProvider>{children}</ThemeProvider>;
 
 describe('первый запуск: новичок, тёмная система', () => {
-  it('первый кадр с готовым выбором — системная тёмная пара; готового кадра с чужой темой нет', async () => {
+  it('первый кадр с готовым выбором — светлые «Сумерки»; готового кадра с тёмной или чужой темой нет', async () => {
     const frames: Frame[] = [];
     const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
     const { result } = await renderHook(() => {
@@ -44,9 +46,10 @@ describe('первый запуск: новичок, тёмная система
     const system = pickSystemDefaultTheme(mockScheme);
     const firstReady = frames.find((f) => f.ready);
     expect(firstReady).toBeDefined();
-    expect(firstReady!.appearance).toBe('dark');
-    expect(firstReady!.themeId).toBe(system.themeId);
-    expect(frames.filter((f) => f.ready && (f.appearance !== 'dark' || f.themeId !== system.themeId))).toEqual([]);
+    expect(system).toEqual({ themeId: 'ink', appearance: 'light', intensity: 1 });
+    expect(firstReady!.appearance).toBe('light');
+    expect(firstReady!.themeId).toBe('ink');
+    expect(frames.filter((f) => f.ready && (f.appearance !== 'light' || f.themeId !== 'ink'))).toEqual([]);
     const lines = log.mock.calls.map((c) => String(c[0]));
     expect(lines.some((l) => l.startsWith('[THEME-BOOT] hydrate') && l.includes('new_user'))).toBe(true);
     log.mockRestore();

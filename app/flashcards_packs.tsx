@@ -81,6 +81,7 @@ import {
 } from './flashcards/pack_languages';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { useCatalogOffline } from './flashcards/useCatalogOffline';
+import { awaitSetsLoadWithCeiling } from './flashcards/sets_load_ceiling';
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type FlashcardsPacksScreenProps = {
@@ -275,6 +276,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
   const loadHubMarket = useCallback(async (opts?: { force?: boolean }) => {
     const now = Date.now();
+    console.log('[SETS-LOAD] load:enter', JSON.stringify({ studyTarget, force: !!opts?.force, cloud: cloudCommunityEnabled, sinceLastMs: lastHubLoadAtRef.current ? now - lastHubLoadAtRef.current : null })); // guard-ok: вход в загрузку каталога
 
     /** Локально доступные наборы перечитываем всегда — добавление пишет AsyncStorage до перезахода. */
     const owned = await loadAccessiblePackIds(studyTarget);
@@ -312,13 +314,22 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
     }
 
     /** 30s throttle только для Firestore/каталога — блокировки снимаются без ожидания окна. */
-    if (!opts?.force && now - lastHubLoadAtRef.current < 30_000) return;
+    if (!opts?.force && now - lastHubLoadAtRef.current < 30_000) {
+      console.log(`[SETS-LOAD] load:throttled ${now - lastHubLoadAtRef.current}ms < 30000 — каталог из памяти, сеть не трогаем`); // guard-ok: ранний выход
+      return;
+    }
     lastHubLoadAtRef.current = now;
 
+    const netStartedAt = Date.now();
     const [packsRes, commPubRes] = await Promise.allSettled([
       loadMarketplacePacks(studyTarget),
       cloudCommunityEnabled ? loadPublishedCommunityMarketPacks(studyTarget, { forceRemote: opts?.force }) : Promise.resolve([] as FlashcardMarketPack[]),
     ]);
+    console.log('[SETS-LOAD] load:network', JSON.stringify({ // guard-ok: что ответила сеть и сколько ждали
+      ms: Date.now() - netStartedAt,
+      official: packsRes.status === 'fulfilled' ? packsRes.value.length : `rejected:${packsRes.reason instanceof Error ? packsRes.reason.name : String(packsRes.reason)}`,
+      community: commPubRes.status === 'fulfilled' ? commPubRes.value.length : `rejected:${commPubRes.reason instanceof Error ? commPubRes.reason.name : String(commPubRes.reason)}`,
+    }));
     const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : fallbackBundledMarketPacks();
     const packs = packsRaw.length > 0 ? packsRaw : fallbackBundledMarketPacks();
 
@@ -387,18 +398,18 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   }, [loadHubMarket]);
 
   /** «Повторить» в состоянии «Нет сети»: скелетон на время запроса и один принудительный запрос каталога по тапу. */
+  // зачем (Сверка 24.10, [SETS-LOAD]): заглушки снимаются и тогда, когда каталог не ответил (потолок SETS_LOAD_CEILING_MS),
+  // иначе без сети экран навсегда оставался серыми плашками. Поздний ответ всё равно обновит список.
   const retryCatalog = useCallback(() => {
     console.log('[CATALOG-OFFLINE] retry → force reload');
     setCommunityLoaded(false);
-    void loadHubMarket({ force: true })
-      .catch((error: unknown) => console.warn(`[CATALOG-OFFLINE] retry failed reason=${error instanceof Error ? error.name : typeof error}`))
-      .finally(() => setCommunityLoaded(true));
+    void awaitSetsLoadWithCeiling(() => loadHubMarket({ force: true }), () => setCommunityLoaded(true), { reason: 'retry' });
   }, [loadHubMarket]);
 
   useFocusEffect(
     useCallback(() => {
       primeFlashcardsCollectionCache(studyTarget);
-      void loadHubMarket().finally(() => setCommunityLoaded(true));
+      void awaitSetsLoadWithCeiling(() => loadHubMarket(), () => setCommunityLoaded(true), { reason: 'focus' });
     }, [loadHubMarket, studyTarget]),
   );
 

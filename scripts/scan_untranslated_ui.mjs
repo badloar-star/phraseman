@@ -135,7 +135,9 @@ const INLINE_LOCALE_MAP = /(^\s*|[{,]\s*)['"]?ru['"]?\s*:\s*['"][^'"]*['"]\s*,\s
 // зачем (координатор 12.10, после ужесточения fe1bc0d65): logSpireLayout/logSpireDock (components/spire/spire_layout_log.ts —
 // только console.log в dev) и bootMark (app/_layout.tsx — только console.warn трассировки старта) — журналы, не экран.
 // зачем (12.10, английский в R1): traceNick (components/account/NicknameEditModal.tsx — только console.log под __DEV__) — журнал шторки имени.
-const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\b(traceThumbMissing|logSpireLayout|logSpireDock|bootMark|traceNick)\s*\(/;
+// зачем (Переводчик 24.10): useLightStatusBar(tag, on, why) (hooks/use_scene_status_bar.ts — why только в console.log) и applyHold(why)
+// (components/stories/StoryViewer.tsx — только DebugLogger.info) — причины в журнале, не экран.
+const DIAGNOSTIC_LOG_CALL = /\b(DebugLogger|console)\s*\.\s*(log|info|warn|error|debug)\s*\(|\b(traceThumbMissing|logSpireLayout|logSpireDock|bootMark|traceNick|useLightStatusBar|applyHold)\s*\(/;
 
 /**
  * Файл — сам словарь переводов: русский в нём и есть перевод.

@@ -204,9 +204,21 @@ const graphCacheOf = (storage: MistakePracticeStorage): Map<string, JournalGraph
   return cache;
 };
 
-/** Только для тестов. */
+/** Журналы, у которых в этом запуске уже прошла полная чистка хранилища (сироты после сбоя). */
+const fullSweeps = new WeakMap<object, Set<string>>();
+const fullSweepDone = (storage: MistakePracticeStorage): Set<string> => {
+  let done = fullSweeps.get(storage);
+  if (!done) {
+    done = new Set();
+    fullSweeps.set(storage, done);
+  }
+  return done;
+};
+
+/** Только для тестов: «перезапуск» — сбросить кэш графа и отметки полной чистки. */
 export function resetMistakeJournalGraphCacheForTests(storage: MistakePracticeStorage): void {
   graphCaches.delete(storage);
+  fullSweeps.delete(storage);
 }
 
 async function persistMistakeEventJournal(input: Readonly<{
@@ -283,7 +295,12 @@ async function persistMistakeEventJournal(input: Readonly<{
   input.assertCurrentOwner();
   await input.storage.setItem(input.key, rootRaw);
   input.assertCurrentOwner();
-  if (previousState) {
+  // зачем (сторож «crash orphans», 24.10): кэш графа наполняется уже при ЧТЕНИИ журнала, поэтому после перезапуска полная
+  // чистка не запускалась никогда — куски, недописанные при сбое, лежали вечно. Полная чистка — один раз за запуск на журнал,
+  // дальше точечная (getAllKeys по всему хранилищу на каждый ответ остаётся убранным).
+  const fullSweepKey = `${input.key}`;
+  const needsFullSweep = previousState !== undefined && !fullSweepDone(input.storage).has(fullSweepKey);
+  if (previousState && !needsFullSweep) {
     // точечная чистка: удаляем только ключи, что были достижимы раньше и перестали быть (без getAllKeys по всему хранилищу)
     for (const oldKey of previousState.reachable) {
       if (reachableGraphKeys.has(oldKey)) continue;
@@ -302,10 +319,11 @@ async function persistMistakeEventJournal(input: Readonly<{
       reachable: reachableGraphKeys,
       assertCurrentOwner: input.assertCurrentOwner,
     });
+    fullSweepDone(input.storage).add(fullSweepKey);
   }
   console.log('[MISTAKE-JOURNAL] persisted', JSON.stringify({
     studyTarget: input.studyTarget, events: input.journal.events.length, chunks: plannedChunks.length,
-    written, incremental: Boolean(previousState),
+    written, incremental: Boolean(previousState), fullSweep: !previousState || needsFullSweep,
   }));
   if (useCache) {
     cache.set(input.key, { rootRaw, base: input.journal, reachable: reachableGraphKeys, chunks: plannedChunks });

@@ -3,6 +3,7 @@ import {
   appendMistakeEvent,
   loadMistakeEventJournal,
   mergeMistakeEvents,
+  resetMistakeJournalGraphCacheForTests,
   type MistakePracticeStorage,
 } from '../app/mistake_practice_store';
 import {
@@ -200,6 +201,10 @@ describe('mistake practice event store', () => {
     storage.data.set(orphanChunk, 'crash-orphan');
     storage.data.set(orphanPage, 'crash-orphan');
 
+    // зачем (11906059b, журнал дописывает только новое): внутри живого процесса чистка точечная — уходит лишь то, что было
+    // достижимо и перестало быть. Сироты появляются только от сбоя посреди записи, а после перезапуска кэш графа пуст и первая
+    // запись чистит хранилище полностью. Перезапуск = сброс кэша графа.
+    resetMistakeJournalGraphCacheForTests(storage);
     await appendMistakeEvent({
       accountScope: 'account-a', studyTarget: 'en', event: event('two', 2), storage,
     });
@@ -212,5 +217,18 @@ describe('mistake practice event store', () => {
     await expect(loadMistakeEventJournal({
       accountScope: 'account-a', studyTarget: 'en', storage,
     })).resolves.toMatchObject({ events: [event('one', 1), event('two', 2)] });
+  });
+
+  test('in the same process the targeted sweep drops the previous graph and keeps the current one', async () => {
+    const storage = createStorage();
+    await appendMistakeEvent({ accountScope: 'account-a', studyTarget: 'en', event: event('one', 1), storage });
+    const firstGraphKeys = new Set(storage.data.keys());
+    await appendMistakeEvent({ accountScope: 'account-a', studyTarget: 'en', event: event('two', 2), storage });
+    for (const oldKey of firstGraphKeys) {
+      if (oldKey === mistakePracticeEventsKey('account-a', 'en')) continue;
+      expect(storage.data.has(oldKey)).toBe(false);
+    }
+    await expect(loadMistakeEventJournal({ accountScope: 'account-a', studyTarget: 'en', storage }))
+      .resolves.toMatchObject({ events: [event('one', 1), event('two', 2)] });
   });
 });

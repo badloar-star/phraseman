@@ -61,6 +61,25 @@ describe('«Шпиль → Пик»: старых имён нет в польз�
     expect(bad).toEqual([]);
   });
 
+  // зачем (владелец 25.10 через координатора): задание find_oddity называется «Найди ошибку» — оно проверяет ошибку, а «Найди лишнее»
+  // звало искать по смыслу (Сверка 24.10, city/village). Старое название на 9 языках ловится так же, как «Шпиль».
+  it('клиент: старое название задания «Найди лишнее» не возвращается ни на одном из 9 языков, promptOdd — «Найди ошибку»', () => {
+    const OLD_ODDITY = /Найди лишнее|Знайди зайве|Find the odd one out|Encuentra la intrusa|Encontre o intruso|Tìm từ khác loại|Temukan yang berbeda|Farklı olanı bul|Znajdź niepasujące/i;
+    const bad: string[] = [];
+    for (const d of CLIENT_DIRS) {
+      for (const file of listSources(path.join(root, d))) {
+        const src = fs.readFileSync(file, 'utf8');
+        if (!OLD_ODDITY.test(src)) continue;
+        for (const s of userFacingStrings(file)) {
+          if (OLD_ODDITY.test(s.text)) bad.push(`${path.relative(root, file).replace(/\\/g, '/')}:${s.line}: ${s.text.replace(/\s+/g, ' ').slice(0, 80)}`);
+        }
+      }
+    }
+    expect(bad).toEqual([]);
+    const strings = fs.readFileSync(path.join(root, 'components/spire/spire_game_strings.ts'), 'utf8');
+    expect(strings).toContain("promptOdd: ['Найди ошибку', 'Знайди помилку', 'Find the mistake', 'Encuentra el error', 'Encontre o erro', 'Tìm lỗi sai', 'Temukan kesalahan', 'Hatayı bul', 'Znajdź błąd'],");
+  });
+
   it('юридические тексты (политика и условия, 4 файла) называют раздел «Peak», а не «Spire»', () => {
     for (const f of ['privacy_policy_en', 'privacy_policy_en_ios', 'terms_of_use_en', 'terms_of_use_en_ios']) {
       for (const dir of ['legal', 'app/legal']) {

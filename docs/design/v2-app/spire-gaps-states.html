@@ -328,7 +328,7 @@ const betaMain = () => homePhone({ beta: true, tower: { mySteps: 25, sel: 4 } })
 document.getElementById('root').innerHTML = [
   block('tasks', '1. Задания ступени — шесть видов', 'Шапка, кольцо и «k / 10» — как в кадре «Выбери перевод» (spire.html). Вид задания задаёт серая подпись над карточкой. Справа под заданием — красный флажок жалобы. Примеры фраз условные, формат — из пакета недели.', [
     col('Вставь слово · fill_gap', tFillGap()),
-    col('Найди лишнее · find_oddity', tOdd()),
+    col('Найди ошибку · find_oddity', tOdd()),
     col('Собери перевод · translate_build (2 слова из 4 набрано)', tBuild()),
     col('Послушай и выбери · listen_choose (фраза скрыта до ответа)', tListenChoose()),
     col('Послушай и собери · listen_build (2 слова из 4 набрано)', tListenBuild()),

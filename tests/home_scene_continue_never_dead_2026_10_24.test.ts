@@ -20,7 +20,11 @@ describe('«Сцена» Главной: «Продолжить» никогда
     expect(home).toContain('const homeSceneTarget = homeSceneContinueTarget({');
     expect(home).toContain('const homeSceneOnPlace = continuePlace !== null || continueStart || homeSceneSection !== null;');
     expect(home).toContain("hasProgress={continueChoice.kind === 'none' && continueResolved ? false : continueResolved ? true : null}");
-    expect(home).toContain('onContinue={homeSceneSection ? openHomeSceneSection : homeSceneOnPlace ? openHomeContinuePlace : openHomeContinuePriority}');
+    // зачем (жалоба владельца 25.10): обработчик выбирается по той же цели, что и надпись (homeSceneCtaTarget) — порядок прежний:
+    // раздел → место/«начать» → продолжение курса; таблицу цель → надпись → обработчик держит home_scene_cta_target_table
+    expect(home).toContain("const homeSceneOnContinue = homeSceneCta === 'section' ? openHomeSceneSection");
+    expect(home).toContain("homeSceneCta === 'place' || homeSceneCta === 'start' ? openHomeContinuePlace");
+    expect(home).toContain('onContinue={homeSceneOnContinue}');
     expect(home).toContain("console.log('[HOME-CONTINUE] scene_target'");
   });
 });

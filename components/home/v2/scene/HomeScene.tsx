@@ -23,7 +23,7 @@ import { useTheme } from '../../../ThemeContext';
 import type { ThemedArtBrightness } from '../../../theme/themed_art_registry';
 import HomeSceneStage, { HOME_SCENE_PANEL_OVERLAP, type HomeSceneChip } from './HomeSceneStage';
 import { resolveHomeSceneArt } from './home_scene_art';
-import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput } from './home_scene_copy';
+import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type HomeSceneChipKind, type HomeSceneCopyInput, type HomeSceneCtaTarget } from './home_scene_copy';
 import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
@@ -74,6 +74,10 @@ export type HomeScenePlace = Readonly<{
   total: number | null;
   /** Номер урока для чипов «Слова» и «Теория»; null — чипов урока нет. */
   theoryLessonId: number | null;
+  /** Куда ведёт кнопка — та же цель, по которой Главная выбрала обработчик тапа (надпись и переход не расходятся). */
+  ctaTarget?: HomeSceneCtaTarget;
+  /** Номер урока цели (для «Продолжить урок N»). */
+  lessonNo?: number | null;
 }>;
 
 type Props = Readonly<{
@@ -245,9 +249,9 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     progress: p.place.done !== null && p.place.total !== null ? { done: p.place.done, total: p.place.total } : null,
     streakDays: p.streakDays, minutesToMidnight: toMidnight, daysAway: p.daysAway, energyMinutes: null,
     theoryAvailable: p.place.theoryLessonId !== null, wordsAvailable: HOME_SCENE_WORDS_CHIP_ENABLED && p.place.theoryLessonId !== null,
-    lostStreakDays: p.lostStreakDays,
+    lostStreakDays: p.lostStreakDays, ctaTarget: p.place.ctaTarget, lessonNo: p.place.lessonNo ?? null,
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: minuteTick и toMidnight меняют только вечерний текст раз в минуту
-  }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, p.place.title, p.place.done, p.place.total, p.place.theoryLessonId, p.streakDays, p.daysAway, p.lostStreakDays, evening ? toMidnight : 0, minuteTick]);
+  }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, p.place.title, p.place.done, p.place.total, p.place.theoryLessonId, p.place.ctaTarget, p.place.lessonNo, p.streakDays, p.daysAway, p.lostStreakDays, evening ? toMidnight : 0, minuteTick]);
   const copy = useMemo(() => buildHomeSceneCopy(copyInput), [copyInput]);
   const liveEnergy = decision.state === 'no_energy' ? 'title' : evening && decision.zeroEnergyNote ? 'warm' : null;
   const fixedEnergyMinutes = p.energyMinutes;
@@ -257,6 +261,16 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   }, [copyInput, liveEnergy, fixedEnergyMinutes]);
   const chips = useMemo<readonly HomeSceneChip[]>(() => copy.chips.map((kind) => ({ kind, label: homeSceneChipLabel(p.lang, kind), icon: CHIP_ICON[kind] })), [copy.chips, p.lang]);
   const offlineLine = useMemo(() => (decision.offlineLine ? homeSceneOfflineLine(p.lang) : null), [decision.offlineLine, p.lang]);
+  // зачем (жалоба владельца 25.10 «Ещё эпизод → классическое меню»): в момент тапа — состояние, цель и надпись, которую видел человек;
+  // маршрут пишет обработчик Главной ([HOME-CONTINUE] open). Цель и обработчик Главная считает в одном рендере (homeSceneCtaTarget).
+  const { onContinue } = p;
+  const ctaTarget = p.place.ctaTarget;
+  const ctaLessonNo = p.place.lessonNo ?? null;
+  const ctaEpisode = p.place.episode;
+  const onCta = useCallback(() => {
+    console.log('[HOME-CONTINUE] tap', JSON.stringify({ state: decision.state, target: ctaTarget ?? 'v2_default', cta: copy.cta, lessonNo: ctaLessonNo, episode: ctaEpisode })); // guard-ok: одна строка на тап
+    onContinue();
+  }, [copy.cta, ctaEpisode, ctaLessonNo, ctaTarget, decision.state, onContinue]);
   // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне»): факт — где по экрану начинается сцена и какой у неё верхний цвет;
   // сравнивается с [SAFE-TOP] status_strip (высота зоны часов и цвет полосы над ней).
   const rootRef = useRef<View>(null);
@@ -281,7 +295,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
         artDim={decision.state === 'no_energy' && art.origin.startsWith('placeholder')}
         pending={p.pending}
         busy={p.busy}
-        onCta={p.onContinue}
+        onCta={onCta}
         onChip={p.onChip}
         topInset={topInset}
       />

@@ -34,7 +34,38 @@ export type HomeSceneCopyInput = Readonly<{
   wordsAvailable: boolean;
   /** Сколько дней была серия до разрыва (для «серия прервалась»); null — не показываем число. */
   lostStreakDays: number | null;
+  /** Куда ведёт кнопка (homeSceneCtaTarget). Нет — прежнее поведение (надпись V2). */
+  ctaTarget?: HomeSceneCtaTarget;
+  /** Номер урока цели (для «Продолжить урок N» старого курса); null — не знаем. */
+  lessonNo?: number | null;
 }>;
+
+/**
+ * Куда ведёт кнопка «Сцены». Главная выбирает по ЭТОЙ цели и обработчик тапа, и надпись — в одном рендере.
+ * зачем (жалоба владельца 25.10 «Ещё эпизод → открывается классическое меню»; Сверка [HOME-CONTINUE]: на холодном старте
+ * выбор none → v2 → legacy, а надпись «день засчитан» всегда была «Ещё эпизод»): надпись и переход больше не расходятся.
+ */
+export type HomeSceneCtaTarget = 'section' | 'place' | 'start' | 'v2' | 'legacy' | 'unknown';
+
+export function homeSceneCtaTarget(i: Readonly<{
+  /** Сцена — место первого доступного раздела (продолжать нечего, «Уроков» для языка нет). */
+  section: boolean;
+  /** Продолжаем диалог или карточки. */
+  place: boolean;
+  /** Меток нет — «Начать урок 1». */
+  start: boolean;
+  /** Продолжаем занятие курса V2. */
+  v2: boolean;
+  /** Есть последний урок старого курса. */
+  legacy: boolean;
+}>): HomeSceneCtaTarget {
+  if (i.section) return 'section';
+  if (i.place) return 'place';
+  if (i.start) return 'start';
+  if (i.v2) return 'v2';
+  if (i.legacy) return 'legacy';
+  return 'unknown';
+}
 
 export type HomeSceneCopy = Readonly<{
   kicker: string;
@@ -63,6 +94,8 @@ const T = {
   start: (lang: Lang) => triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
   cont: (lang: Lang) => triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
   contEp: (lang: Lang, n: number) => triLang(lang, { ru: `Продолжить эпизод ${n}`, uk: `Продовжити епізод ${n}`, en: `Continue episode ${n}`, es: `Continuar episodio ${n}`, 'pt-BR': `Continuar episódio ${n}`, vi: `Tiếp tục tập ${n}`, id: `Lanjutkan episode ${n}`, tr: `${n}. bölüme devam et`, pl: `Kontynuuj odcinek ${n}` }),
+  // зачем (жалоба владельца 25.10): кнопка ведёт в урок старого курса — надпись про урок, а не «Ещё эпизод»; переводы — черновик для 10 · ПЕРЕВОДЧИКА
+  contLesson: (lang: Lang, n: number) => triLang(lang, { ru: `Продолжить урок ${n}`, uk: `Продовжити урок ${n}`, en: `Continue lesson ${n}`, es: `Continuar la lección ${n}`, 'pt-BR': `Continuar a lição ${n}`, vi: `Tiếp tục bài ${n}`, id: `Lanjutkan pelajaran ${n}`, tr: `${n}. derse devam et`, pl: `Kontynuuj lekcję ${n}` }),
   moreEp: (lang: Lang) => triLang(lang, { ru: 'Ещё эпизод', uk: 'Ще епізод', en: 'One more episode', es: 'Otro episodio', 'pt-BR': 'Mais um episódio', vi: 'Thêm một tập', id: 'Satu episode lagi', tr: 'Bir bölüm daha', pl: 'Jeszcze jeden odcinek' }),
   of: (lang: Lang, d: number, t: number) => triLang(lang, { ru: `${d} из ${t}`, uk: `${d} з ${t}`, en: `${d} of ${t}`, es: `${d} de ${t}`, 'pt-BR': `${d} de ${t}`, vi: `${d}/${t}`, id: `${d} dari ${t}`, tr: `${d}/${t}`, pl: `${d} z ${t}` }),
   streak: (lang: Lang, n: number) => triLang(lang, { ru: `Серия ${n} ${ruDays(n)}`, uk: `Серія ${n} ${ukDays(n)}`, en: `${n}-day streak`, es: `Racha de ${n} ${en1(n, 'día', 'días')}`, 'pt-BR': `Sequência de ${n} ${en1(n, 'dia', 'dias')}`, vi: `Chuỗi ${n} ngày`, id: `Runtunan ${n} hari`, tr: `${n} günlük seri`, pl: `Seria ${n} ${plDays(n)}` }),
@@ -129,6 +162,19 @@ export function homeSceneOfflineLine(lang: Lang): Readonly<{ bold: string; rest:
   };
 }
 
+/** «День засчитан»: «Ещё эпизод» — только когда кнопка ведёт в курс V2; старый урок — «Продолжить урок N»; прочее — по цели. */
+function dayDoneCta(i: HomeSceneCopyInput): string {
+  switch (i.ctaTarget ?? 'v2') {
+    case 'v2': return T.moreEp(i.lang);
+    case 'legacy': return i.lessonNo != null ? T.contLesson(i.lang, i.lessonNo) : T.cont(i.lang);
+    case 'start': return T.start(i.lang);
+    case 'section':
+    case 'place':
+    case 'unknown':
+    default: return T.cont(i.lang);
+  }
+}
+
 export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
   const { lang } = i;
   const place = i.badge ? (i.episode !== null ? `${i.badge} · ${T.episode(lang)} ${i.episode}` : i.badge) : '';
@@ -148,7 +194,7 @@ export function buildHomeSceneCopy(i: HomeSceneCopyInput): HomeSceneCopy {
         warm: i.zeroEnergyNote && i.energyMinutes !== null ? T.energyBeforeMidnight(lang, i.energyMinutes) : T.keeps(lang),
         cta: i.episode !== null ? T.contEp(lang, i.episode) : T.cont(lang) };
     case 'day_done':
-      return { ...base, kicker: T.streak(lang, i.streakDays), title: T.dayCounted(lang), line: i.title ? T.next(lang, i.title) : null, bar: null, cta: T.moreEp(lang) };
+      return { ...base, kicker: T.streak(lang, i.streakDays), title: T.dayCounted(lang), line: i.title ? T.next(lang, i.title) : null, bar: null, cta: dayDoneCta(i) };
     case 'no_energy':
       return { ...base, kicker: place, title: T.energyIn(lang, i.energyMinutes), line: T.noEnergyLine(lang), bar: null, cta: null, note: T.plusNoEnergy(lang) };
     case 'welcome_back':

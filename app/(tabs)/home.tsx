@@ -109,6 +109,7 @@ import { ofLine as todayOfLine } from '../../components/home/v2/today_scene/toda
 import HomeScene, { HOME_SCENE_V2_ENABLED } from '../../components/home/v2/scene/HomeScene';
 import { SEASON_COUNT_LOG, homeSceneLessonCount } from '../../components/home/v2/scene/home_scene_count';
 import { homeSceneContinueTarget } from '../../components/home/v2/scene/home_scene_continue_target';
+import { homeSceneCtaTarget } from '../../components/home/v2/scene/home_scene_copy';
 import HomeSceneEnergy from '../../components/home/v2/scene/HomeSceneEnergy';
 import { resolveThemedArt } from '../../components/theme/themed_art_registry';
 import { useTodayTasks } from '../../hooks/use_today_tasks';
@@ -2765,6 +2766,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           homeSceneSectionItem?.onPress();
         };
         const homeSceneOnPlace = continuePlace !== null || continueStart || homeSceneSection !== null;
+        // зачем (жалоба владельца 25.10 «Ещё эпизод → открывается классическое меню»; Сверка [HOME-CONTINUE]: на холодном старте
+        // выбор none → v2 → legacy): одна цель в этом рендере — по ней и обработчик тапа, и надпись сцены; разойтись они не могут.
+        const homeSceneCta = homeSceneCtaTarget({
+          section: homeSceneSection !== null,
+          place: continuePlace !== null,
+          start: continueStart,
+          v2: continueV2 !== null,
+          legacy: lastLesson !== null && lastLesson !== undefined,
+        });
+        const homeSceneOnContinue = homeSceneCta === 'section' ? openHomeSceneSection
+          : homeSceneCta === 'place' || homeSceneCta === 'start' ? openHomeContinuePlace
+            : openHomeContinuePriority;
         const homeSceneLessonNo = continueV2 ? continueV2.lessonOrdinal : lastLesson ? lastLesson.id : continueStart ? 1 : null;
         // зачем (Сверка 24.10: «0 из 50» до входа в эпизод и «0 из 56» после): одно правило числа — урок V2 считает эпизоды урока
         // (локальный прогресс курса), пока он читается — числа нет; 50 фраз — только у урока старого курса
@@ -2794,12 +2807,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               done: homeSceneCount.done,
               total: homeSceneCount.total,
               theoryLessonId: continueV2 && !homeSceneOnPlace ? continueV2.lessonOrdinal : null,
+              ctaTarget: homeSceneCta,
+              lessonNo: homeSceneCta === 'legacy' && lastLesson ? lastLesson.id : homeSceneCta === 'v2' && continueV2 ? continueV2.lessonOrdinal : null,
             }}
             courseProgress={continueV2Progress}
             pending={!homeSceneOnPlace && !priorityCardVisible && continueCardPending}
             busy={continueV2 !== null && continueV2Launching}
             active={homeRuntimeActive}
-            onContinue={homeSceneSection ? openHomeSceneSection : homeSceneOnPlace ? openHomeContinuePlace : openHomeContinuePriority}
+            onContinue={homeSceneOnContinue}
             onChip={(kind) => {
               if (kind === 'words') { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'dictionary_not_connected' })); return; } // guard-ok: ранний выход называет причину
               if (kind === 'theory') {

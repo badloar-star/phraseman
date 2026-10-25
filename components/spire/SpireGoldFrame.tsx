@@ -65,7 +65,8 @@ function SpireGoldFrame({ active, hit, children }: Readonly<{ active: boolean; h
   if (!active) return <>{children}</>;
   return (
     <View onLayout={onLayout} testID="spire-gold-frame">
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, s.plate, { borderColor: lv2Alpha(p.accentGraphic, 0.3), shadowColor: p.accentGraphic }, fillStyle]}> {/* guard-ok: hairline 30 % — исключение 2.0 */}
+      {/* guard-ok: hairline 30 % — исключение 2.0 (кромка плиты ниже); комментарий на своей строке — пробел перед ним был бы голым текстом (крэш «Text strings», Ревизор 25.10) */}
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, s.plate, { borderColor: lv2Alpha(p.accentGraphic, 0.3), shadowColor: p.accentGraphic }, fillStyle]}>
         <LinearGradient colors={[lv2Alpha(p.accentGraphic, 0.22), lv2Alpha(p.accentGraphic, 0)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, s.round]} />
         <View style={[StyleSheet.absoluteFill, s.round, s.clip]}>
           <Animated.View style={[s.shine, shineStyle]}>

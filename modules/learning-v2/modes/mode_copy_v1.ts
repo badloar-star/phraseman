@@ -71,13 +71,13 @@ export function learningV2ModeSpeedMatchCopyV1(locale: LearningV2InterfaceLocale
 const NEW_WORD_FLIP_HINT: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
   ru: "Нажми на карточку — она перевернётся",
   uk: "Натисни на картку — вона перевернеться",
-  es: "Toca la tarjeta para voltearla",
+  es: "Toca la tarjeta para darle la vuelta",
   "pt-BR": "Toque no cartão para virar",
   vi: "Chạm vào thẻ để lật",
-  id: "Ketuk kartu untuk membalik",
-  tr: "Çevirmek için karta dokun",
-  pl: "Dotknij karty, aby ją odwrócić",
-  en: "Tap the card to flip",
+  id: "Ketuk kartu untuk membaliknya",
+  tr: "Kartı çevirmek için dokun",
+  pl: "Dotknij karty, żeby ją odwrócić",
+  en: "Tap the card to flip it",
 });
 
 export function learningV2NewWordFlipHintV1(locale: LearningV2InterfaceLocale): string {

@@ -285,5 +285,5 @@ const baseStyles = StyleSheet.create({
 });
 
 // зачем (ратчет цветовых литералов, Ревизор 25.10): тёмный текст на белой кнопке сцены задан ОДИН раз — в ctaText; значок и мягкая заливка хода «Готовим занятие…» берут тот же цвет оттуда, а не новыми литералами
-const CTA_INK = String(StyleSheet.flatten(s.ctaText).color);
+const CTA_INK = String(StyleSheet.flatten(baseStyles.ctaText).color); // baseStyles — модульный; `s` живёт только внутри компонента (падение сцены 25.10)
 const CTA_PREP_FILL = colorWithAlpha(CTA_INK, 0.09);

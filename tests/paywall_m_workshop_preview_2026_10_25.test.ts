@@ -12,9 +12,9 @@ describe('пейвол М: содержимое Мастерской закры�
     phrase('We are here.', 'Мы здесь.', ['We', 'are', 'here']),
   ];
 
-  it('фраза, слова (первые два выбраны), два примера и «+N» от общего числа фраз', () => {
+  it('фраза, слова (первые два выбраны), три примера и «+N» от общего числа фраз', () => {
     const p = paywallMWorkshopPreview(bank, 'ru', 49);
-    expect(p).toEqual({ meaning: 'Я готов.', tokens: ['I', 'am', 'ready'], selected: 2, samples: ['I am ready.', 'You are early.'], more: 47 });
+    expect(p).toEqual({ meaning: 'Я готов.', tokens: ['I', 'am', 'ready'], selected: 2, samples: ['I am ready.', 'You are early.', 'We are here.'], more: 46 });
   });
 
   it('нет банка, пустой банк или нет перевода на язык интерфейса — блока нет', () => {

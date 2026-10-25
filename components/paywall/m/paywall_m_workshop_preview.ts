@@ -12,14 +12,14 @@ export type PaywallMWorkshopPreview = Readonly<{
   /** Слова ответа по порядку; первые `selected` показываются как уже выбранные. */
   tokens: readonly string[];
   selected: number;
-  /** Две-три фразы урока целиком для строки примеров. */
+  /** Три фразы урока целиком — плашки примеров. */
   samples: readonly string[];
   /** Сколько фраз банка не поместилось в строку примеров («+47»). */
   more: number;
 }>;
 
 const MAX_TOKENS = 6;
-const MAX_SAMPLES = 2;
+const MAX_SAMPLES = 3; // зачем (Макеты 25.10 (в)): в макете три фразы и «+N»
 
 export function paywallMWorkshopPreview(
   bank: readonly LearningV2LessonBankPhraseV1[] | null,

@@ -29,7 +29,8 @@ test('невыпущенное не влияет, выпущенное с зам
 test('потолок не прочитан — строго, весь курс', () => {
   const issues = [{ code: 'CONTENT_MISMATCH', path: 'l01/s40/learner.json' }];
   assert.equal(splitByReleasedScope(issues, null).blocking.length, 1);
-  assert.equal(releasedSessionScope(null).length, releasedSessionScope(1000).length);
+  // зачем (25.10): объём = каталог приложения (1509 и растёт) — «потолок выше курса» берём заведомо большим
+  assert.equal(releasedSessionScope(null).length, releasedSessionScope(100000).length);
   assert.deepEqual(releasedSessionScope(2), ['en/l01/s01', 'en/l01/s02']);
 });
 

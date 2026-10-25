@@ -63,19 +63,44 @@ const DEFAULT_AUDIO_MANIFEST = path.join(
 );
 const REQUIRED_AUDIO_VOICES = Object.freeze(["ash", "onyx", "nova", "coral"]);
 const SHA256_RE = /^[a-f0-9]{64}$/u;
-// зачем (координатор 17.10, слово владельца «все восемь уроков… доступны… в релизе»): объём выпуска Codex — уроки 1–7
-// по 56 занятий и урок 8 до s49 (закоммиченный content/learning-v2-course/release). Прежние 186 (l04 до s18) объявляли
-// всё остальное «лишним» и блокировали выпуск даже за потолком. Число меняется вместе с выпуском Codex.
-const EXPECTED_ENGLISH_SESSIONS_BY_LESSON = Object.freeze({
-  l01: 56,
-  l02: 56,
-  l03: 56,
-  l04: 56,
-  l05: 56,
-  l06: 56,
-  l07: 56,
-  l08: 49,
-});
+// зачем (координатор 25.10, release:precheck перед 2.0.2): объём выпуска — это каталог, который приложение реально везёт
+// (factory_native_manifest_v1.generated.ts), а не таблица руками. Таблица 17.10 (l01–l07 ×56, l08 ×49 = 441) не
+// переписывалась при росте выпуска Codex (18.10 → 450, 24.10 → 1509, l01–l27) и с 18.10 держала гейт красным при
+// source = canonical = app-copy = 1509. Сверка «исходник = канон = копия = каталог» остаётся строгой.
+const FACTORY_NATIVE_MANIFEST_PATH = path.join(
+  PROJECT_ROOT,
+  "modules",
+  "learning-v2",
+  "content",
+  "factory_native",
+  "factory_native_manifest_v1.generated.ts",
+);
+
+function readShippedEnglishSessionsByLesson() {
+  let source;
+  try {
+    source = fs.readFileSync(FACTORY_NATIVE_MANIFEST_PATH, "utf8");
+  } catch (error) {
+    console.error(`[V2-RELEASE-PARITY] каталог выпуска не прочитан (${error instanceof Error ? error.message : String(error)}) — ожидаемый объём пуст, гейт красный`);
+    return Object.freeze({});
+  }
+  const byLesson = new Map();
+  for (const [, lesson, session] of source.matchAll(/en\/(l\d{2})\/(s\d{2})\//gu)) {
+    const sessions = byLesson.get(lesson) ?? new Set();
+    sessions.add(session);
+    byLesson.set(lesson, sessions);
+  }
+  const counts = {};
+  for (const lesson of [...byLesson.keys()].sort()) {
+    const sessions = [...byLesson.get(lesson)].sort();
+    // Каталог обязан быть сплошным (s01..sN): дыра — это не «объём», а поломка, её ловит сверка как MISSING.
+    const max = Number(sessions[sessions.length - 1].slice(1));
+    counts[lesson] = max;
+  }
+  return Object.freeze(counts);
+}
+
+const EXPECTED_ENGLISH_SESSIONS_BY_LESSON = readShippedEnglishSessionsByLesson();
 
 function sha256(file) {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
@@ -103,10 +128,12 @@ function inventory(root) {
   return files;
 }
 
+const EXPECTED_ENGLISH_SESSION_IDENTITIES = Object.freeze(Object.entries(EXPECTED_ENGLISH_SESSIONS_BY_LESSON).flatMap(([lesson, count]) => (
+  Array.from({ length: count }, (_, index) => `en/${lesson}/s${String(index + 1).padStart(2, "0")}`)
+)));
+
 export function expectedEnglishSessionIdentities() {
-  return Object.entries(EXPECTED_ENGLISH_SESSIONS_BY_LESSON).flatMap(([lesson, count]) => (
-    Array.from({ length: count }, (_, index) => `en/${lesson}/s${String(index + 1).padStart(2, "0")}`)
-  ));
+  return [...EXPECTED_ENGLISH_SESSION_IDENTITIES];
 }
 
 /**
@@ -223,6 +250,10 @@ export function sourceSessionScope(sourceRoot, language = "en") {
 function identityDiffIssues(actual, expected, missingCode, extraCode) {
   const actualSet = new Set(actual);
   const expectedSet = new Set(expected);
+  // зачем: каталог не прочитан (архив EAS без modules/, битый файл) — пустой объём не «совпадает» с пустыми папками, а блок
+  if (expected.length === 0) {
+    return [{ code: "EXPECTED_SCOPE_UNREADABLE", identity: path.relative(PROJECT_ROOT, FACTORY_NATIVE_MANIFEST_PATH) }];
+  }
   return [
     ...expected.filter((identity) => !actualSet.has(identity)).map((identity) => ({ code: missingCode, identity })),
     ...actual.filter((identity) => !expectedSet.has(identity)).map((identity) => ({ code: extraCode, identity })),
@@ -660,6 +691,17 @@ export function isReleasedSemanticDriftAdvisory(result, ceiling) {
     && !output.includes("factory_intro_practice_course_hold");
 }
 
+/**
+ * Нет квитанции записанного mp3 — справка, а не блок, если это ЕДИНСТВЕННЫЙ вид замечаний качества.
+ * зачем (владелец 22.10, 74b488a48): уроки говорят только голосом телефона (TTS), записанная озвучка уроков удалена из
+ * приложения — квитанции в manifest.json factory-production-v1 больше не описывают то, что слышит ученик. Любое другое
+ * замечание качества (битый файл, нет ответа и т. п.) по-прежнему блок.
+ */
+export function isRecordedAudioEvidenceObsoleteAdvisory(result) {
+  if (result.ready || !Array.isArray(result.issues) || result.issues.length === 0) return false;
+  return result.issues.every((issue) => issue?.code === "AUDIO_EVIDENCE_UNVERIFIED");
+}
+
 function printSemanticResult(result) {
   if (result.stdout) process.stdout.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
@@ -773,9 +815,13 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       console.log(`Learning V2 source/release semantic parity: ADVISORY (${drift} расхождений исходники ↔ выпуск в выпущенных ${ceiling}; выпуск принят владельцем 15.10, исходники — WIP Codex)`);
     }
     printQualityResult(qualityResult);
+    const audioAdvisory = isRecordedAudioEvidenceObsoleteAdvisory(qualityResult);
+    if (audioAdvisory) {
+      console.log(`Learning V2 release quality evidence: ADVISORY (${qualityResult.unverifiedAudioTargets} целей без квитанции записанного mp3 — уроки озвучивает TTS телефона с 22.10, записанная озвучка удалена; других замечаний качества нет)`);
+    }
     printResult(copyResult);
     const cardResult = await validateWordCardPlacementInAppCopy(ceiling);
-    process.exitCode = scopeResult.ready && (semanticResult.ready || semanticAdvisory) && qualityResult.ready && copyResult.ready && cardResult.ready ? 0 : 1;
+    process.exitCode = scopeResult.ready && (semanticResult.ready || semanticAdvisory) && (qualityResult.ready || audioAdvisory) && copyResult.ready && cardResult.ready ? 0 : 1;
     }
   }
 }

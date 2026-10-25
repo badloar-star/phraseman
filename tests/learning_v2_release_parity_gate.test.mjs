@@ -163,21 +163,31 @@ test("fails closed when either release root is missing", (t) => {
   assert.deepEqual(missingAppCopy.issues.map(({ code }) => code), ["APP_COPY_ROOT_MISSING"]);
 });
 
-test("derives the exact 56×7 + 49 English scope from the authoritative source registry", (t) => {
+// зачем (координатор 25.10): ожидаемый объём = каталог, который везёт приложение (factory_native_manifest), а не таблица
+// руками — таблица 441 с 18.10 держала precheck красным при source = canonical = app-copy = 1509.
+test("derives the English scope from the shipped factory-native catalog", (t) => {
   const { sourceRoot } = makeFullScopeFixture(t);
   fs.mkdirSync(path.join(sourceRoot, "l01", "notes"), { recursive: true });
   fs.mkdirSync(path.join(path.dirname(sourceRoot), "fr", "l01", "s01"), { recursive: true });
 
+  const manifest = fs.readFileSync(
+    path.resolve(HERE, "../modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts"),
+    "utf8",
+  );
+  const shipped = [...new Set([...manifest.matchAll(/en\/(l\d{2})\/(s\d{2})\//gu)].map(([, l, s]) => `en/${l}/${s}`))].sort();
+
   const scope = sourceSessionScope(sourceRoot, "en");
   assert.deepEqual(scope, expectedEnglishSessionIdentities());
-  assert.equal(scope.length, 441);
-  assert.deepEqual(
-    Object.fromEntries(["l01", "l02", "l03", "l04", "l05", "l06", "l07", "l08"].map((lesson) => [
-      lesson,
-      scope.filter((identity) => identity.includes(`/${lesson}/`)).length,
-    ])),
-    { l01: 56, l02: 56, l03: 56, l04: 56, l05: 56, l06: 56, l07: 56, l08: 49 },
-  );
+  assert.ok(scope.length >= 441, `каталог не может быть меньше выпуска 17.10: ${scope.length}`);
+  assert.deepEqual([...scope].sort(), shipped);
+});
+
+test("recorded-mp3 receipts are advisory only when they are the only quality issues (TTS only since 22.10)", () => {
+  const advisory = releaseParityGate.isRecordedAudioEvidenceObsoleteAdvisory;
+  assert.equal(advisory({ ready: false, issues: [{ code: "AUDIO_EVIDENCE_UNVERIFIED" }, { code: "AUDIO_EVIDENCE_UNVERIFIED" }] }), true);
+  assert.equal(advisory({ ready: false, issues: [{ code: "AUDIO_EVIDENCE_UNVERIFIED" }, { code: "RELEASE_QUALITY_FILE_INVALID" }] }), false);
+  assert.equal(advisory({ ready: false, issues: [] }), false);
+  assert.equal(advisory({ ready: true, issues: [] }), false);
 });
 
 test("rejects byte-identical one-session trees instead of treating a shrunken course as complete", (t) => {

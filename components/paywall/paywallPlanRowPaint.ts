@@ -4,8 +4,9 @@ import { paywallPlateBg } from './paywall_surfaces';
 
 const alpha = (hex: string, value: number): string => `${hex.slice(0, 7)}${Math.round(value * 255).toString(16).padStart(2, '0')}`;
 
-export function planRowSelectedPaint(g: GlassTokens) {
-  const plate = paywallPlateBg(g);
+// зачем (4 · ТЕМЫ 25.10, замер М): подложка, поверх которой ложится градиент, у шапки пейвола М — opaqueCard, а не плашка плана; доводка цвета идёт по ней. По умолчанию — плашка, прежние планы не меняются.
+export function planRowSelectedPaint(g: GlassTokens, base?: string) {
+  const plate = base ?? paywallPlateBg(g);
   const gradient: readonly [string, string] = [alpha(g.accent, 0.3), alpha(plate, 0.9)];
   const backgrounds = [plate, ...gradient.map((stop) => flattenOver(stop, plate))];
   // зачем (Ревизор 25.10, paywall_plan_rows_contrast): у «Оливковой» в тёмном текст коллекции #FFF9F6 на оливковой подложке выбранного плана — 4,4;

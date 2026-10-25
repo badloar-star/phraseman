@@ -24,6 +24,7 @@ export const PaywallMPlans = memo(function PaywallMPlans({ g, selected, onSelect
 }) {
   const paint = useMemo(() => planRowSelectedPaint(g), [g]);
   const plate = paywallPlateBg(g);
+  // зачем (4 · ТЕМЫ 25.10): плашка есть и у выбранного плана — градиент ложится на неё (как в PaywallPlanRows), иначе «≈ в месяц» в светлых grad_full_* не дотягивает
   const yearOn = selected === 'yearly';
   const monthOn = selected === 'monthly';
   return (
@@ -32,8 +33,8 @@ export const PaywallMPlans = memo(function PaywallMPlans({ g, selected, onSelect
       <View style={S.row}>
         <V2Pressable testID="paywall-m-plan-yearly" accessibilityRole="radio" accessibilityState={{ selected: yearOn, disabled }} disabled={disabled}
           onPress={() => onSelect('yearly')} scaleTo={0.98} outerStyle={S.cell}
-          style={[S.plan, { backgroundColor: yearOn ? undefined : plate, borderColor: yearOn ? paint.edge : 'transparent' }]}>
-          {yearOn ? <LinearGradient pointerEvents="none" colors={paint.gradient} style={StyleSheet.absoluteFill} /> : null}
+          style={[S.plan, { backgroundColor: plate, borderColor: yearOn ? paint.edge : 'transparent' }]}>
+          {yearOn ? <LinearGradient pointerEvents="none" colors={paint.gradient} style={[StyleSheet.absoluteFill, S.fill]} /> : null}
           <Text style={[S.name, { color: yearOn ? paint.ink : g.text }]}>{texts.year}</Text>
           <Text style={[S.price, { color: yearOn ? paint.ink : g.text }]}>{yearlyPrice}</Text>
           {texts.yearPerMonth ? <Text style={[S.sub, { color: yearOn ? paint.mutedInk : g.secondary }]}>{texts.yearPerMonth}</Text> : null}
@@ -41,8 +42,8 @@ export const PaywallMPlans = memo(function PaywallMPlans({ g, selected, onSelect
         </V2Pressable>
         <V2Pressable testID="paywall-m-plan-monthly" accessibilityRole="radio" accessibilityState={{ selected: monthOn, disabled }} disabled={disabled}
           onPress={() => onSelect('monthly')} scaleTo={0.98} outerStyle={S.cell}
-          style={[S.plan, { backgroundColor: monthOn ? undefined : plate, borderColor: monthOn ? paint.edge : 'transparent' }]}>
-          {monthOn ? <LinearGradient pointerEvents="none" colors={paint.gradient} style={StyleSheet.absoluteFill} /> : null}
+          style={[S.plan, { backgroundColor: plate, borderColor: monthOn ? paint.edge : 'transparent' }]}>
+          {monthOn ? <LinearGradient pointerEvents="none" colors={paint.gradient} style={[StyleSheet.absoluteFill, S.fill]} /> : null}
           <Text style={[S.name, { color: monthOn ? paint.ink : g.text }]}>{texts.month}</Text>
           <Text style={[S.price, { color: monthOn ? paint.ink : g.text }]}>{monthlyPrice}</Text>
           {texts.monthNote ? <Text style={[S.sub, { color: monthOn ? paint.mutedInk : g.secondary }]}>{texts.monthNote}</Text> : null}
@@ -55,6 +56,8 @@ export const PaywallMPlans = memo(function PaywallMPlans({ g, selected, onSelect
 const S = StyleSheet.create({
   h2: { fontSize: 20, lineHeight: 26, fontWeight: '800', letterSpacing: -0.2, marginBottom: 12 },
   row: { flexDirection: 'row', gap: 10 },
+  // зачем: у плана overflow visible (бейдж скидки выступает за край), поэтому градиент сам скруглён под плашку
+  fill: { borderRadius: 19 },
   cell: { flex: 1 },
   // guard-ok: рамка выбранного плана 1 px — по макету и карте Тем Y3/Y4 (accentGraphic), исключение PhraseMan 2.0 (владелец 24.09); у невыбранного рамка прозрачная, размер не прыгает
   plan: { minHeight: 96, borderRadius: 20, borderWidth: 1, paddingVertical: 14, paddingHorizontal: 14, overflow: 'visible' }, // guard-ok: рамка 1 px выбранного плана (карта Тем Y3/Y4, исключение 2.0)

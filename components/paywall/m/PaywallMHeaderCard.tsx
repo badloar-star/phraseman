@@ -17,7 +17,8 @@ export type PaywallMStat = Readonly<{ value: string; total?: string; label: stri
 export const PaywallMHeaderCard = memo(function PaywallMHeaderCard({ g, kicker, title, stats }: {
   g: GlassTokens; kicker: string; title: string; stats: readonly PaywallMStat[];
 }) {
-  const paint = useMemo(() => planRowSelectedPaint(g), [g]);
+  // зачем (4 · ТЕМЫ 25.10): градиент шапки лежит на opaqueCard — доводка надписи считается по ней, иначе в светлых grad_full_* не хватает до 4,55
+  const paint = useMemo(() => planRowSelectedPaint(g, g.opaqueCard), [g]);
   return (
     <View testID="paywall-m-header" style={[S.card, { backgroundColor: g.opaqueCard }]}>
       <LinearGradient pointerEvents="none" colors={paint.gradient} style={StyleSheet.absoluteFill} />

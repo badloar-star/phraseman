@@ -33,6 +33,18 @@ describe('splitLearningV2TaskPromptV1', () => {
     expect(parts.goal).toEqual({ label: null, text: 'Ответьте, что вы уже здесь.' });
   });
 
+  // аудит Дизайна 0936a7510: «**«I wrong.»**» показывалось сырыми звёздочками в карточке ситуации и в разборе экзамена
+  it('situation never shows raw bold markup', () => {
+    const parts = splitLearningV2TaskPromptV1({
+      family: 'context_gap_grammar',
+      prompt: 'Вставьте слово — начальница пишет **«Where are you?»** и ждёт ответа; ответьте, что вы уже здесь',
+      interfaceLocale: 'ru',
+    });
+    // ни в одной части задания нет сырых звёздочек
+    expect(JSON.stringify(parts)).not.toContain('**');
+    expect(parts.goal?.text).toBe('Where are you?');
+  });
+
   it('speed match: one heading, no duplicated instruction line', () => {
     expect(splitLearningV2TaskPromptV1({ family: 'speed_match', prompt: 'Соедините пары', interfaceLocale: 'pl' }))
       .toMatchObject({ instruction: 'Połącz pary', icon: 'swap', situation: null, goal: null });

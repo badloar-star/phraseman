@@ -56,15 +56,20 @@ function notifyJournalChanged(): void {
 type ToastLangKey = 'ru' | 'uk' | 'en' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
 const LANGS: readonly ToastLangKey[] = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 
-const pick = (field: 'done' | 'doneOne' | 'failed' | 'undoFailed' | 'undo'): Readonly<Record<ToastLangKey, string>> =>
+const pick = (field: 'done' | 'doneOne' | 'failed' | 'failedOne' | 'busy' | 'undoFailed' | 'undo'): Readonly<Record<ToastLangKey, string>> =>
   Object.fromEntries(LANGS.map((key) => [key, MISTAKE_CLEAR_ALL_COPY[key][field]])) as Record<ToastLangKey, string>;
 
-const toastTexts = (field: 'done' | 'doneOne' | 'failed' | 'undoFailed') => {
+const toastTexts = (field: 'done' | 'doneOne' | 'failed' | 'failedOne' | 'busy' | 'undoFailed') => {
   const m = pick(field);
   return { ru: m.ru, uk: m.uk, en: m.en, es: m.es, 'pt-BR': m['pt-BR'], vi: m.vi, id: m.id, tr: m.tr, pl: m.pl };
 };
 
-const failureToast = (field: 'failed' | 'undoFailed') => actionToastTri('error', toastTexts(field));
+const failureToast = (field: 'failed' | 'failedOne' | 'undoFailed') => actionToastTri('error', toastTexts(field));
+
+/** Нажатие во время записи прошлого удаления: короткий тост вместо тишины (экран списка зовёт его и сам). */
+export function emitMistakeDeleteBusyToast(): void {
+  emitAppEvent('action_toast', actionToastTri('info', toastTexts('busy')));
+}
 
 const doneToast = (onUndo: () => void, field: 'done' | 'doneOne' = 'done') => {
   const label = pick('undo');
@@ -82,6 +87,8 @@ export async function clearAllMistakesWithUndo(input: ClearAllMistakesInput): Pr
   const { studyTarget, visibleMistakeIds, onOptimistic, onRevertOptimistic } = input;
   if (inFlight) {
     console.warn(`${LOG} busy`, JSON.stringify({ reason: 'already_running', studyTarget }));
+    // зачем (аудит Дизайна 0936a7510): раньше нажатие во время записи молча ничего не делало — человек жал снова
+    emitMistakeDeleteBusyToast();
     return 'busy';
   }
   inFlight = true;
@@ -99,7 +106,7 @@ export async function clearAllMistakesWithUndo(input: ClearAllMistakesInput): Pr
       onRevertOptimistic();
       notifyJournalChanged();
       console.warn(`${LOG} result`, JSON.stringify({ ok: false, reason: result.reason, ms: Date.now() - startedAt }));
-      if (result.reason === 'write_failed') emitAppEvent('action_toast', failureToast('failed'));
+      if (result.reason === 'write_failed') emitAppEvent('action_toast', failureToast(input.onlyMistakeIds?.length === 1 ? 'failedOne' : 'failed'));
       return result.reason === 'nothing_to_clear' ? 'nothing' : 'failed';
     }
     // зачем: журнал теперь источник правды. Пометка в памяти больше не нужна — иначе та же ошибка, сделанная снова после очистки,
@@ -116,7 +123,7 @@ export async function clearAllMistakesWithUndo(input: ClearAllMistakesInput): Pr
     unmarkMistakesHiddenLocally(visibleMistakeIds);
     onRevertOptimistic();
     notifyJournalChanged();
-    emitAppEvent('action_toast', failureToast('failed'));
+    emitAppEvent('action_toast', failureToast(input.onlyMistakeIds?.length === 1 ? 'failedOne' : 'failed'));
     return 'failed';
   } finally {
     inFlight = false;

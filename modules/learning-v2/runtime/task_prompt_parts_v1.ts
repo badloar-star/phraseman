@@ -110,7 +110,9 @@ export function splitLearningV2TaskPromptV1(input: Readonly<{
   const family = (input.family in INSTRUCTION ? input.family : "listen_choose") as LearningV2TaskFamilyV1;
   const head = INSTRUCTION[family];
   const instruction = pick(head.copy, input.interfaceLocale);
-  const prompt = (input.prompt ?? "").replace(/\s+/gu, " ").trim();
+  // зачем (аудит Дизайна 0936a7510, Сверка 25.10): авторская разметка жирного «**«I wrong.»**» доходила до экрана сырыми звёздочками —
+  // в ситуации, в подписи цели и в разборе экзамена. Все части рисуются простым текстом, поэтому разметку вычищаем на входе.
+  const prompt = (input.prompt ?? "").replace(/\*\*(.+?)\*\*/gu, "$1").replace(/\*\*/gu, "").replace(/\s+/gu, " ").trim();
   const meaning = phraseMeaning(input.modePayload, input.interfaceLocale);
   const sayGoal = (family === "phrase_builder" || family === "scripted_repeat_compare") && meaning
     ? { label: family === "phrase_builder" ? pick(GOAL_SAY, input.interfaceLocale) : null, text: meaning }

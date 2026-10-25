@@ -2,7 +2,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
-import { clearAllMistakesWithUndo, subscribeMistakeClearAllChanged } from './mistake_clear_all_flow';
+import { clearAllMistakesWithUndo, emitMistakeDeleteBusyToast, subscribeMistakeClearAllChanged } from './mistake_clear_all_flow';
+import { reinsertMistakeAt } from './mistake_list_reinsert';
 import { mistakeClearAllConfirmTitle, mistakeClearAllCopy } from './mistake_clear_all_copy';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
@@ -53,6 +54,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 
 const PAGE = 40;
 
+
 // зачем (аудит скорости Авторизации 13.10, п.3): PanelRow уже в memo, но onPress и right создавались заново в каждом рендере экрана — каждый ввод в поиске
 // перерисовывал все строки. Строка-обёртка в memo получает item и стабильный onOpen, остальное собирает внутри.
 const MistakeListRow = memo(function MistakeListRow({ g, item, first, onOpen, onAskDelete }: Readonly<{ g: Lv2Glass; item: MistakePracticeListItem; first: boolean; onOpen: (item: MistakePracticeListItem) => void; onAskDelete?: (item: MistakePracticeListItem) => void }>) {
@@ -101,6 +103,8 @@ export default function MistakesListScreen() {
   useFocusEffect(useCallback(() => {
     let cancelled = false;
     openingRef.current = false;
+    // зачем (аудит Дизайна 0936a7510): удалённая в карточке ошибка не мелькает в списке, пока перечитывается журнал
+    setItems((prev) => (prev ? withoutLocallyHiddenMistakes(prev) : prev));
     void loadMistakePracticeHubSnapshot(target)
       .then((snapshot) => { if (!cancelled) setItems(withoutLocallyHiddenMistakes(snapshot.items)); })
       .catch((error: unknown) => {
@@ -203,7 +207,7 @@ export default function MistakesListScreen() {
   // кадр, журнал пишет 'hidden' фоном (синк уносит на другие устройства, полная чистка не воскресит), тост «Ошибка удалена · Вернуть».
   const [deleteTarget, setDeleteTarget] = useState<MistakePracticeListItem | null>(null);
   const askDeleteOne = useCallback((item: MistakePracticeListItem) => {
-    hapticTap();
+    // зачем (правило владельца: хаптик на управляющих кнопках, не на строках): виброотклик только на «Удалить»
     console.log('[MISTAKES-DELETE] ask', JSON.stringify({ mistakeId: item.mistakeId.slice(-8), status: item.status })); // guard-ok: вход удаления
     setDeleteTarget(item);
   }, []);
@@ -214,6 +218,7 @@ export default function MistakesListScreen() {
     if (!item) return;
     if (clearingRef.current) {
       console.warn('[MISTAKES-DELETE] ignored', JSON.stringify({ reason: 'another_delete_running' })); // guard-ok: ранний выход с причиной
+      emitMistakeDeleteBusyToast();
       return;
     }
     const before = itemsRef.current;
@@ -232,7 +237,9 @@ export default function MistakesListScreen() {
       onRevertOptimistic: () => {
         dropMistakesHubPeek();
         console.log('[MISTAKES-DELETE] revert', JSON.stringify({ mistakeId: item.mistakeId.slice(-8) })); // guard-ok: откат (Вернуть или сбой)
-        if (mountedRef.current && before) setItems(before);
+        // зачем (аудит Дизайна 0936a7510): «Вернуть» ставит строку на её прежнее место, не откатывая весь список к снимку
+        // (за эти секунды могли удалить другие строки — снимок вернул бы и их)
+        if (mountedRef.current) setItems((prev) => reinsertMistakeAt(prev, before, item));
       },
     }).then((outcome) => {
       console.log('[MISTAKES-DELETE] outcome', JSON.stringify({ outcome })); // guard-ok: итог
@@ -243,7 +250,7 @@ export default function MistakesListScreen() {
   const openOne = useCallback((item: MistakePracticeListItem) => {
     if (openingRef.current) return;
     openingRef.current = true;
-    hapticTap();
+    // зачем (правило владельца): тап по строке без виброотклика — хаптик только на управляющих кнопках
     // зачем (аудит Optimistic UI п.3): деталь рисует шапку из этой строки на первом кадре.
     rememberMistakeDetailDraft({ mistakeId: item.mistakeId, phrase: item.phrase, meaning: item.meaning, captureCount: item.captureCount, qualifyingDays: item.qualifyingDays, status: item.status });
     router.push({ pathname: '/mistake_detail', params: { mistakeId: item.mistakeId } } as never);

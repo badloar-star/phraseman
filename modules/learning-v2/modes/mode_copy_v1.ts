@@ -29,8 +29,8 @@ type AudioCopy = Readonly<{
 }>;
 
 const AUDIO_COPY: Readonly<Record<LearningV2InterfaceLocale, AudioCopy>> = Object.freeze({
-  ru: { slow: "Прослушать медленнее", unavailable: "Аудио пока недоступно", loading: "Звучит…", playing: "Звучит…", replay: "Прослушать ещё раз", play: "Нажми, чтобы послушать" },
-  uk: { slow: "Прослухати повільніше", unavailable: "Аудіо поки недоступне", loading: "Відтворюється…", playing: "Відтворюється…", replay: "Прослухати ще раз", play: "Натисни, щоб прослухати" },
+  ru: { slow: "Прослушать медленнее", unavailable: "Звук пока не загрузился", loading: "Загружаем звук…", playing: "Звучит…", replay: "Прослушать ещё раз", play: "Нажми, чтобы послушать" },
+  uk: { slow: "Прослухати повільніше", unavailable: "Звук поки не завантажився", loading: "Завантажуємо звук…", playing: "Відтворюється…", replay: "Прослухати ще раз", play: "Натисни, щоб прослухати" },
   es: { slow: "Escuchar más despacio", unavailable: "El audio no está disponible", loading: "Reproduciendo…", playing: "Reproduciendo…", replay: "Escuchar de nuevo", play: "Pulsa para escuchar" },
   "pt-BR": { slow: "Ouvir mais devagar", unavailable: "O áudio está indisponível", loading: "Reproduzindo…", playing: "Reproduzindo…", replay: "Ouvir novamente", play: "Toque para ouvir" },
   vi: { slow: "Nghe chậm hơn", unavailable: "Âm thanh chưa khả dụng", loading: "Đang phát…", playing: "Đang phát…", replay: "Nghe lại", play: "Chạm để nghe" },
@@ -53,8 +53,8 @@ type SpeedMatchCopy = Readonly<{
 }>;
 
 const SPEED_MATCH_COPY: Readonly<Record<LearningV2InterfaceLocale, SpeedMatchCopy>> = Object.freeze({
-  ru: { title: "Найди пару быстро", timeout: "Время вышло", again: "Ещё раунд", withoutTimer: "Продолжить без таймера", secondsSuffix: "с" },
-  uk: { title: "Швидко знайди пару", timeout: "Час вийшов", again: "Ще раунд", withoutTimer: "Продовжити без таймера", secondsSuffix: "с" },
+  ru: { title: "Найди пару быстро", timeout: "Время вышло!", again: "Ещё раунд", withoutTimer: "Продолжить без таймера", secondsSuffix: "с" },
+  uk: { title: "Швидко знайди пару", timeout: "Час вийшов!", again: "Ще раунд", withoutTimer: "Продовжити без таймера", secondsSuffix: "с" },
   es: { title: "Encuentra la pareja", timeout: "Se acabó el tiempo", again: "Otra ronda", withoutTimer: "Continuar sin tiempo", secondsSuffix: "s" },
   "pt-BR": { title: "Encontre o par", timeout: "O tempo acabou", again: "Outra rodada", withoutTimer: "Continuar sem cronômetro", secondsSuffix: "s" },
   vi: { title: "Tìm cặp thật nhanh", timeout: "Hết giờ", again: "Chơi lại", withoutTimer: "Tiếp tục không tính giờ", secondsSuffix: "giây" },
@@ -69,8 +69,8 @@ export function learningV2ModeSpeedMatchCopyV1(locale: LearningV2InterfaceLocale
 }
 
 const NEW_WORD_FLIP_HINT: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
-  ru: "Нажмите на карточку, чтобы перевернуть",
-  uk: "Натисніть на картку, щоб перевернути",
+  ru: "Нажми на карточку — она перевернётся",
+  uk: "Натисни на картку — вона перевернеться",
   es: "Toca la tarjeta para voltearla",
   "pt-BR": "Toque no cartão para virar",
   vi: "Chạm vào thẻ để lật",
@@ -109,8 +109,8 @@ type RepeatCompareCopy = Readonly<{
   success: string;
 }>;
 const REPEAT_COMPARE_COPY: Readonly<Record<LearningV2InterfaceLocale, RepeatCompareCopy>> = Object.freeze({
-  ru: { recording: "Идёт запись", listening: "Слушаю", listenReference: "Прослушать эталон", preparingMicrophone: "Готовим микрофон…", success: "Отлично сказано!" },
-  uk: { recording: "Триває запис", listening: "Слухаю", listenReference: "Прослухати зразок", preparingMicrophone: "Готуємо мікрофон…", success: "Чудово сказано!" },
+  ru: { recording: "Идёт запись", listening: "Слушаю", listenReference: "Послушать, как надо", preparingMicrophone: "Готовим микрофон…", success: "Отлично сказано!" },
+  uk: { recording: "Триває запис", listening: "Слухаю", listenReference: "Послухати, як треба", preparingMicrophone: "Готуємо мікрофон…", success: "Чудово сказано!" },
   es: { recording: "Grabando", listening: "Escuchando", listenReference: "Escuchar el modelo", preparingMicrophone: "Preparando el micrófono…", success: "¡Muy bien dicho!" },
   "pt-BR": { recording: "Gravando", listening: "Ouvindo", listenReference: "Ouvir o modelo", preparingMicrophone: "Preparando o microfone…", success: "Muito bem falado!" },
   vi: { recording: "Đang ghi âm", listening: "Đang nghe", listenReference: "Nghe câu mẫu", preparingMicrophone: "Đang chuẩn bị micrô…", success: "Nói rất tốt!" },

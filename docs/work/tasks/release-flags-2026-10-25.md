@@ -2,6 +2,21 @@
 
 Governance-ID: TG-3C2081A7D511
 Governance-ID: TG-48B4AAD20461
+Governance-ID: TG-C547790A8976
+Governance-ID: TG-0919686A71C7
+Governance-ID: TG-16056C8CDB33
+Governance-ID: TG-6DDBA7124977
+Governance-ID: TG-59E75DCABF65
+Governance-ID: TG-FA4A436E0724
+
+В тот же коммит — устаревшие сторожа «флаг только в dev» (season_wire_contract ×2, season_pure, today_scene_wiring_contract): по решению владельца флаги в выпуске включены.
+
+Координатор 25.10 ~06:55: в коммит флагов — номера 2.0.2 / 144 / "144" / runtimeVersion 2.0.2 (в HEAD 2.0.1/143, 143 уже в сторе) и обновление устаревшего tests/android_aab_size_report (ждёт 2.0.0 / 138). V4 Learning V2 из утреннего пакета убрана (выложат после релиза отдельно).
+
+Решения владельца 25.10 (через координатора):
+- экзамен главы выпускаем без кнопки «Разбор ошибок»: `SEASON_CHAPTER_EXAM_ENABLED = true` только при 🟢 Сверки на экзамене главы 2, иначе остаётся выключенным;
+- «Не могу говорить» по умолчанию выключено — флаг в remote_config, клиент делает Learning V2, переключатель в Пульте — 9 · САЙТ (не этот коммит);
+- Главная + «Сегодня» — вкл: Р2 🟢 (ced216d64, «по Р2 условие Сверки выполнено»).
 Status: Таблица (24.10, 20:10). Один коммит «release 2.0.2 (144) + flags 25.10» — ТОЛЬКО в 08:00 25.10.
 Owner: Ядро (сессия 1). Слово владельца: «Включить всё новое» — каждый экран при зелёной Сверке.
 Источники: вердикт Сверки `docs/work/tasks/sverka-flags-verdict-2026-10-24.md`, чек-лист Макетов
@@ -42,7 +57,7 @@ Owner: Ядро (сессия 1). Слово владельца: «Включи�
 | Экзамен главы (карта) | `SEASON_CHAPTER_EXAM_ENABLED` | components/learning-v2/season/season_flags.ts | dev → выкл | **выкл** (как сейчас) | Сверка: не включать; Р1 |
 | Старт экзамена главы | `SEASON_CHAPTER_EXAM_START_ENABLED` | там же | **`true` в коде с 51a731aed** (в сторе закрыт родительским `SEASON_CHAPTER_EXAM_ENABLED`) | в коде остаётся `true`; экзамен включается только целиком (оба флага) при 🟢 Сверки, иначе выключается только родительский | решение координатора 24.10: при false в dev пропадут кнопка «Начать экзамен» и строка 6a9e44e16 — Сверке нечего проверять |
 | «Вместе» / друзья | `FRIENDS_TOGETHER_UI_ENABLED` | app/friends_together/together_config.ts | `false` | **`false`** | слово владельца |
-| Тест «Не хочу с начала» | `LEARNING_V2_PLACEMENT_UI_ENABLED` | components/learning-v2/placement/placement_flags.ts | `false` | **`false`** | слово владельца |
+| Тест «Не хочу с начала» | `LEARNING_V2_PLACEMENT_UI_ENABLED` | components/learning-v2/placement/placement_flags.ts | `false` | **`true`** | слово владельца 25.10 (через координатора): входит в релиз, края Q59 — как у Дизайна, Сверка до 08:00 |
 | Кнопка «Теория» | `LEARNING_V2_THEORY_BUTTON_ENABLED` | modules/learning-v2/theory/learning_v2_theory_v1.ts | `false` | `false` | нет в списке Сверки |
 | Learning V2 виден | `LEARNING_V2_HIDDEN` | app/learning_v2_visibility_switch.ts | `false` | без изменений | — |
 | Продолжить урок V2 на Главной | `HOME_CONTINUE_V2_ENABLED` | app/learning_v2_home_continue_route.ts | вкл | без изменений | — |

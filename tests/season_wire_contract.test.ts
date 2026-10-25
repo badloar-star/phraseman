@@ -9,8 +9,9 @@ const flags = readSource('components/learning-v2/season/season_flags.ts');
 const lessons = readSource('app/(tabs)/lessons.tsx');
 
 describe('Сезон во вкладке «Уроки»', () => {
-  it('флаг: в разработке включён, в выпуске выключен', () => {
-    expect(flags).toMatch(/SEASON_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE/);
+  // зачем (релиз 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): Сезон включён и в выпуске
+  it('флаг: Сезон включён (релиз 25.10)', () => {
+    expect(flags).toMatch(/SEASON_SCENE_V2_ENABLED: boolean = true;/);
   });
   it('вкладка подставляет Сезон под флагом, старая карта остаётся запасной', () => {
     expect(lessons).toContain('SEASON_SCENE_V2_ENABLED ? (SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse) : LearningV2ChaptersCourse');
@@ -44,8 +45,9 @@ describe('Сезон во вкладке «Уроки»', () => {
 });
 
 describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
-  it('флаг экзамена: в разработке вкл, в выпуске выкл', () => {
-    expect(flags).toMatch(/SEASON_CHAPTER_EXAM_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE/);
+  // зачем (релиз 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): экзамен главы включён и в выпуске — Сверка 🟢 на всём пути, включая «Разбор ошибок»
+  it('флаг экзамена: включён (релиз 25.10)', () => {
+    expect(flags).toMatch(/SEASON_CHAPTER_EXAM_ENABLED: boolean = true;/);
   });
   it('колода получает опции экзамена, результаты — из локального хранилища без сети', () => {
     expect(wire).toContain('includeExam: SEASON_CHAPTER_EXAM_ENABLED, examAvailableWhenReached: true, examPassedChapters');

@@ -7,4 +7,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
 
-export const SPIRE_SCENE_V2_ENABLED: boolean = IS_DEV;
+// зачем (release 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): башня Пика в сторе — Сверка 🟢
+export const SPIRE_SCENE_V2_ENABLED: boolean = true;

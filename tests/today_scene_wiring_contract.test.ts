@@ -3,10 +3,10 @@
 import { readSource } from './helpers/read_source';
 
 describe('«Сегодня» в стиле «Сцена»: подключение', () => {
-  it('флаг: включён только в dev-сборке', () => {
+  // зачем (релиз 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): «Сегодня» включено вместе со «Сценой» Главной (Р4), Р2 🟢
+  it('флаг: включён (релиз 25.10)', () => {
     const flag = readSource('components/home/v2/today_scene/today_scene_flag.ts');
-    expect(flag).toContain("typeof __DEV__ !== 'undefined' && __DEV__ === true");
-    expect(flag).toContain('export const TODAY_SCENE_V2_ENABLED: boolean = IS_DEV;');
+    expect(flag).toContain('export const TODAY_SCENE_V2_ENABLED: boolean = true;');
   });
 
   it('экран /today_tasks: ветка сцены стоит ПОСЛЕ всех хуков и перед прежним видом, дальше прежний код целиком', () => {

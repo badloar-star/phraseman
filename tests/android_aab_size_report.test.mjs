@@ -119,12 +119,15 @@ test('package exposes only an informational AAB size report', () => {
   assert.doesNotMatch(easIgnore, /android_aab_size_gate|eas_build_on_success/);
 });
 
-test('production build metadata is 138 while the app version remains 2.0.0', () => {
+// зачем (координатор 25.10): релиз 2.0.2 (144); runtimeVersion обязан совпадать с версией — на 2.0.0 канал production отдал бы
+// новой сборке старые OTA-заплатки и откатил её JS
+test('production build metadata is 144 with app and runtime version 2.0.2', () => {
   const root = path.resolve(import.meta.dirname, '..');
   const app = JSON.parse(readFileSync(path.join(root, 'app.json'), 'utf8')).expo;
-  assert.equal(app.version, '2.0.0');
-  assert.equal(app.android.versionCode, 138);
-  assert.equal(app.ios.buildNumber, '138');
+  assert.equal(app.version, '2.0.2');
+  assert.equal(app.runtimeVersion, '2.0.2');
+  assert.equal(app.android.versionCode, 144);
+  assert.equal(app.ios.buildNumber, '144');
 });
 
 test('production version gate accepts build 135 with app version 2.0.0 unchanged', () => {

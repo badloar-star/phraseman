@@ -1,4 +1,5 @@
 // зачем (координатор 22.10): «Сегодня» в стиле «Сцена» (вариант A) — в dev-сборке да, в релизе нет, пока владелец не посмотрит на устройстве.
 // В релиз — заменить на true; совсем выключить — false (экран рисуется прежним: кольца, строки, история).
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
-export const TODAY_SCENE_V2_ENABLED: boolean = IS_DEV;
+// зачем (release 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): «Сегодня» в сторе — вместе со «Сценой» Главной (Р4), Р2 🟢
+export const TODAY_SCENE_V2_ENABLED: boolean = true;

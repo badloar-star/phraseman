@@ -17,11 +17,13 @@ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from '../../../app/config';
 // карты экзамена всё равно нет, пока SEASON_CHAPTER_EXAM_ENABLED не включат после вердикта Сверки.
 export const SEASON_CHAPTER_EXAM_START_ENABLED = true as boolean;
 
-export const SEASON_CHAPTER_EXAM_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;
+// зачем (release 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): экзамен главы в сторе — Сверка 🟢 на экзамене главы 2, без кнопки «Разбор ошибок» (владелец 25.10)
+export const SEASON_CHAPTER_EXAM_ENABLED: boolean = true;
 
 // зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»; координатор): экран «Обучение — способ 2» (SeasonCourseConnected) во вкладке «Уроки» вместо старой карты глав —
 // в разработке включён, в выпуске выключен (как у сцен Главной/Диалогов/«Сегодня»). Выключатель одной строкой; в патч «включить сцены» входит эта же строка.
-export const SEASON_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;
+// зачем (release 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): Сезоны «Обучения» (и «Слова» плиткой) в сторе — Сверка 🟢
+export const SEASON_SCENE_V2_ENABLED: boolean = true;
 
 // зачем (владелец 22.10: «НАЗВАНИЯ МНЕ НЕ НРАВИТСЯ, КАК РАСПОЛОЖЕНЫ!»; выбор по макету lesson-hub-final.html: «ВОТ ТАК И ТРИ ЗВЁЗДОЧКИ ВЕРНЕЕ ПРОСТО ЗВЁЗДОЧКИ ПО ЦЕНТРУ КАРТОЧКИ ПОД ЦИФРОЙ»):
 // расположение названия на карточке эпизода выбрано — вариант 3: на карточке крупный номер и под ним звёзды, название и «Эпизод N» — под каруселью. Единственная константа; варианты 1 и 2 из кода убраны.

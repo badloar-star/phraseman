@@ -7,4 +7,5 @@
 // ═══════════════════════════════════════════════════════════════════════════
 const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
 
-export const HOME_SCENE_V2_ENABLED: boolean = IS_DEV;
+// зачем (release 25.10, вердикт Сверки, docs/work/tasks/release-flags-2026-10-25.md): «Сцена» Главной в сторе — вместе с «Сегодня» (Р4), Р2 🟢
+export const HOME_SCENE_V2_ENABLED: boolean = true;

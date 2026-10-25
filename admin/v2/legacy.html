@@ -11925,6 +11925,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <span class="cp-switch-ico" aria-hidden="true">🏷</span><span style="flex:1"><b>Ввести промокод</b><span class="cp-muted" style="display:block;margin-top:2px">Кнопка появится только когда общий рубильник промокодов тоже включён.</span></span>
         <input id="cp-paywall-control-paywall_promo_code_visible" type="checkbox" class="cp-toggle" disabled />
       </label>
+      <label class="cp-switch-row" title="Включить новый общий экран Plus «Вариант М» — про человека: его урок, серия, фразы, график и честное сравнение">
+        <span class="cp-switch-ico" aria-hidden="true">✨</span><span style="flex:1"><b>Пейвол «Вариант М»</b><span class="cp-muted" style="display:block;margin-top:2px">Новый экран Plus про человека. Выключен — прежнее окно. Включать только после склейки «экран = макет» от Сверки.</span></span>
+        <input id="cp-paywall-control-paywall_m_enabled" type="checkbox" class="cp-toggle" disabled />
+      </label>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
       <button id="cp-paywall-controls-save" type="button" class="cp-btn" onclick="saveControlPanelPaywallControls()" title="Сохранить настройки пейвола" disabled>Сохранить видимость</button>
@@ -34452,6 +34456,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const CP_PAYWALL_CONTROL_KEYS = [
     'paywall_promo_code_visible',
+    'paywall_m_enabled',
   ];
   let cpPaywallControlsHydrated = false;
   function cpPaywallControlsSetReady(ready) {
@@ -34468,7 +34473,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     CP_PAYWALL_CONTROL_KEYS.forEach((key) => {
       const input = document.getElementById('cp-paywall-control-' + key);
       if (!input) return;
-      input.checked = bools[key] !== false;
+      input.checked = key === 'paywall_m_enabled' ? bools[key] === true : bools[key] !== false;
     });
     cpPaywallControlsHydrated = true;
     cpPaywallControlsSetReady(true);

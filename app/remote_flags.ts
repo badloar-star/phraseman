@@ -97,6 +97,8 @@ export type RemoteBoolKey =
   // ключей paywall_close_visible / paywall_restore_visible больше нет, getPaywallControlVisibility отдаёт для них жёсткое true.
   // Промокод доступен, только когда отдельный серверный sell-switch promo_codes_enabled разрешает активацию.
   | 'paywall_promo_code_visible'
+  // Пейвол «Вариант М» (владелец «Да, так», координатор 25.10): общий экран Plus про человека. Дефолт FALSE — прежнее окно, пока Сверка не снимет склейку «экран = макет»; включает координатор в «Пульте».
+  | 'paywall_m_enabled'
   // Кнопка «Видео PHRASEMAN» на главной (иконка-плей в шапке) + сам экран видео.
   // Дефолт TRUE = kill-switch: кнопка показывается как сейчас. Админ ставит false
   // в «Пульте» → кнопка прячется у всех живьём (onSnapshot), без релиза. Экран
@@ -351,6 +353,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Промокоды: дефолт FALSE = скрыто в настройках и заблокировано на callable.
   promo_codes_enabled: false,
   paywall_promo_code_visible: true,
+  paywall_m_enabled: false,
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,
@@ -526,7 +529,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'energy_mistake_charge', 'speaking_strict_check_enabled',
     'plus_server_recheck_enabled', 'apple_signin_revoke_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
-    'paywall_promo_code_visible',
+    'paywall_promo_code_visible', 'paywall_m_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',

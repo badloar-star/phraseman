@@ -41,6 +41,10 @@ import { paywallContextHeadline, paywallEntryFactsFromParams, type PaywallContex
 import { PaywallContextIcon } from './PaywallContextIcons';
 import { onAppEvent } from '../../app/events';
 import { getPaywallControlVisibility } from '../../app/paywall_control_visibility';
+import { PaywallMSheet } from './m/PaywallMSheet';
+import { isPaywallMEnabled } from './m/paywall_m_flag';
+import { paywallMChartKindFor, paywallMHeadFor, paywallMHeadKindForContext } from './m/paywall_m_head';
+import { usePaywallMPerson } from './m/use_paywall_m_person';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -67,9 +71,14 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // зачем (координатор 25.10, Ядро c161d894a): вход «Не видим твой Plus» — свой низ окна: «Восстановить покупки» первой, «Оформить Plus» второй
   const serverRefused = ctx === SERVER_REFUSED_CONTEXT;
   const [controlVisibility, setControlVisibility] = useState(getPaywallControlVisibility);
+  // зачем (владелец «Да, так», координатор 25.10): пейвол «Вариант М» — за флагом «Пульта» paywall_m_enabled, по умолчанию выключен; вход «Не видим твой Plus» остаётся на своём доке
+  const [mFlag, setMFlag] = useState(isPaywallMEnabled);
+  const showM = mFlag && !serverRefused;
+  const mPerson = usePaywallMPerson(showM);
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
       setControlVisibility(getPaywallControlVisibility());
+      setMFlag(isPaywallMEnabled());
     });
     return () => subscription.remove();
   }, []);
@@ -252,6 +261,20 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
           {/* зачем (решение владельца 11.10, вариант 1 «Шторка»): окно выезжает поверх того экрана, где человек был, — за ним затемнённый
               прежний экран, тап по затемнению закрывает (кроме времени оплаты). */}
           <PaywallScrim onPress={closeWindow} />
+          {showM ? (
+            <PaywallMSheet
+              g={g} lang={lang} maxHeight={windowHeight - insets.top - 8} windowHeight={windowHeight} swipeEnabled={swipeEnabled} onSwipeClose={onSwipeClose}
+              onLater={() => p.handleClose('close', 'x')} laterDisabled={checkoutInFlight} bottomInset={insets.bottom}
+              person={mPerson} head={paywallMHeadFor(paywallMHeadKindForContext(ctx), lang, mPerson)} chartKind={paywallMChartKindFor(paywallMHeadKindForContext(ctx))}
+              plansReady={plansShown === 'ready'} selected={p.selected} onSelect={selectPlan}
+              yearlyPrice={p.yearlyPrice || null} monthlyPrice={p.monthlyPrice || null} yearlyPerMonth={p.yearlyPerMonth || null} savingsPct={p.savingsPct ?? null}
+              yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
+              purchasing={p.purchasing} ctaBusy={ctaBusy} restoring={p.restoring} onPurchase={() => { void p.handlePurchase(); }} onRestore={() => { void p.handleRestore(); }}
+              promoVisible={controlVisibility.promoVisible}
+              onPromo={() => { if (ctaBusy) return; router.push({ pathname: '/promo_code_entry', params: { source: 'paywall' } }); }}
+              tapNotice={p.tapNotice ? pick(lang, COPY.tryInMinute) : null}
+            />
+          ) : (
           <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}
             enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
             header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeVisible={controlVisibility.closeVisible} closeDisabled={checkoutInFlight}
@@ -301,6 +324,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 router.push({ pathname: '/promo_code_entry', params: { source: 'paywall' } });
               }} />
           </PaywallSwipeSheet>
+          )}
         </>
       )}
     </View>

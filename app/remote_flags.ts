@@ -93,11 +93,9 @@ export type RemoteBoolKey =
   // Дефолт FALSE = sell-switch: промокоды видны и активируются только когда
   // админ включил их в «Пульте».
   | 'promo_codes_enabled'
-  // Видимость вторичных действий единственного Plus-пейвола. Дефолты true
-  // сохраняют текущий крестик/restore и делают промокод доступным, только когда
-  // отдельный серверный sell-switch promo_codes_enabled разрешает активацию.
-  | 'paywall_close_visible'
-  | 'paywall_restore_visible'
+  // Видимость промокода в окне Plus. «Закрыть» и «Восстановить покупки» из Пульта скрыть НЕЛЬЗЯ — замок владельца 25.10 («Всегда видна»):
+  // ключей paywall_close_visible / paywall_restore_visible больше нет, getPaywallControlVisibility отдаёт для них жёсткое true.
+  // Промокод доступен, только когда отдельный серверный sell-switch promo_codes_enabled разрешает активацию.
   | 'paywall_promo_code_visible'
   // Кнопка «Видео PHRASEMAN» на главной (иконка-плей в шапке) + сам экран видео.
   // Дефолт TRUE = kill-switch: кнопка показывается как сейчас. Админ ставит false
@@ -352,8 +350,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   promo_banner_enabled: false,
   // Промокоды: дефолт FALSE = скрыто в настройках и заблокировано на callable.
   promo_codes_enabled: false,
-  paywall_close_visible: true,
-  paywall_restore_visible: true,
   paywall_promo_code_visible: true,
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
@@ -530,7 +526,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'energy_mistake_charge', 'speaking_strict_check_enabled',
     'plus_server_recheck_enabled', 'apple_signin_revoke_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
-    'paywall_close_visible', 'paywall_restore_visible', 'paywall_promo_code_visible',
+    'paywall_promo_code_visible',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',

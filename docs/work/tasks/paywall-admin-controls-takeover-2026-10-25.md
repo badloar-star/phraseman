@@ -35,3 +35,7 @@ Out of scope: карточка в админке (уже в HEAD), сервер�
 Откат одного коммита: окно возвращается к прежнему низу со ссылкой «Восстановить» и крестиком.
 
 Governance-ID: TG-C6AB6B6FA9B7
+
+Governance-ID: TG-09BDF119CAC4
+
+Governance-ID: TG-2738DF2C39F3

@@ -45,17 +45,36 @@ describe('paywall admin control visibility', () => {
     warn.mockRestore();
   });
 
-  it('can hide only the X and restore actions without changing other exit paths', () => {
-    applyRemoteConfigSnapshot({
-      bools: {
-        paywall_close_visible: false,
-        paywall_restore_visible: false,
-      },
-    });
+  // ЗАМОК ВЛАДЕЛЬЦА 25.10 («Всегда видна», через координатора; ревью Ревизора 39d9916b3): «закрыть» и «восстановить покупки» нельзя спрятать из «Пульта»
+  it.each([
+    [{}],
+    [{ paywall_close_visible: false, paywall_restore_visible: false }],
+    [{ paywall_close_visible: false }],
+    [{ paywall_restore_visible: false, paywall_promo_code_visible: false, promo_codes_enabled: true }],
+  ])('закрыть и восстановить видны при любом снимке, в том числе со старыми ключами false: %o', (bools) => {
+    applyRemoteConfigSnapshot({ bools } as never);
+    expect(getPaywallControlVisibility()).toMatchObject({ closeVisible: true, restoreVisible: true });
+  });
 
-    expect(getPaywallControlVisibility()).toMatchObject({ closeVisible: false, restoreVisible: false });
+  it('ключей для закрытия и восстановления в конфиге больше нет — сервер не может их переключить', () => {
+    const flags = read('app/remote_flags.ts');
+    expect(flags).not.toContain("'paywall_close_visible'");
+    expect(flags).not.toContain("'paywall_restore_visible'");
+    expect(flags).not.toMatch(/paywall_(close|restore)_visible\s*:/);
+    const visibility = read('app/paywall_control_visibility.ts');
+    expect(visibility).toContain('closeVisible: true,');
+    expect(visibility).toContain('restoreVisible: true,');
+    expect(visibility).not.toMatch(/getRemoteBool\('paywall_(close|restore)/);
+  });
 
+  it('окно берёт видимость только из getPaywallControlVisibility, остальные пути закрытия не тронуты', () => {
     const screen = read('components/paywall/PaywallPlusScreen.tsx');
+    expect(screen).toContain("from '../../app/paywall_control_visibility'");
+    expect(screen).toContain('closeVisible={controlVisibility.closeVisible}');
+    expect(screen).toContain('restoreVisible={controlVisibility.restoreVisible}');
+    for (const file of ['PaywallPlus.tsx', 'PaywallPlusScreen.tsx', 'PaywallServerRefusedDock.tsx']) {
+      expect(read(`components/paywall/${file}`)).not.toMatch(/getRemoteBool\(/);
+    }
     expect(screen).toContain('const swipeEnabled = !checkoutInFlight && !prompt;');
     expect(screen).toContain("handleClose('close', 'back')");
     expect(screen).toContain("handleClose('close', 'scrim')");
@@ -83,10 +102,13 @@ describe('paywall admin control visibility', () => {
 describe('admin paywall controls card', () => {
   const admin = read('admin/v2/legacy.html');
 
-  it('places the three labeled switches in Control Panel → Monetization', () => {
+  it('places the promo switch (and the М switch) in Control Panel → Monetization', () => {
     expect(admin).toContain('id="cp-paywall-controls-card"');
-    expect(admin).toContain('id="cp-paywall-control-paywall_close_visible"');
-    expect(admin).toContain('id="cp-paywall-control-paywall_restore_visible"');
+    // замок 25.10: переключателей для закрытия и восстановления в «Пульте» нет
+    expect(admin).not.toContain('cp-paywall-control-paywall_close_visible');
+    expect(admin).not.toContain('cp-paywall-control-paywall_restore_visible');
+    expect(admin).not.toContain("'paywall_close_visible'");
+    expect(admin).not.toContain("'paywall_restore_visible'");
     expect(admin).toContain('id="cp-paywall-control-paywall_promo_code_visible"');
     expect(admin).toContain('id="cp-paywall-controls-reload"');
     expect(admin).toContain("el.id === 'cp-paywall-controls-card'");
@@ -107,7 +129,7 @@ describe('admin paywall controls card', () => {
     expect(admin).toContain("publishAdminRemoteConfigPatch({ bools }, 'Пульт → Монетизация: видимость элементов пейвола')");
   });
 
-  it('fails closed until a successful snapshot has hydrated all three switches', () => {
+  it('fails closed until a successful snapshot has hydrated the switches', () => {
     const cardStart = admin.indexOf('id="cp-paywall-controls-card"');
     const cardEnd = admin.indexOf('<!-- 🎟 ПРОМОКОДЫ-НАГРАДЫ', cardStart);
     const card = admin.slice(cardStart, cardEnd);

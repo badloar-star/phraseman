@@ -11918,24 +11918,16 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="cp-group-label">🎉 Промо и монетизация</div>
   <div class="cp-card" id="cp-paywall-controls-card" aria-labelledby="cp-paywall-controls-title">
     <div class="cp-card-title" id="cp-paywall-controls-title" style="color:#a78bfa">💳 Элементы пейвола</div>
-    <div class="cp-card-sub">Показывает или скрывает вторичные действия в окне Plus. Скрытие крестика не отключает системную кнопку «Назад», свайп вниз и закрытие по фону.</div>
+    <div class="cp-card-sub">Показывает или скрывает вторичные действия в окне Plus. «Закрыть» и «Восстановить покупки» всегда видны и отсюда не выключаются (замок владельца 25.10).</div>
     <div style="margin-top:8px"><span id="cp-paywall-controls-status" class="cp-status-chip" role="status" aria-live="polite">Данные не загружены.</span></div>
     <div style="margin-top:10px;display:flex;flex-direction:column;gap:2px">
-      <label class="cp-switch-row" title="Показать или скрыть крестик в левом верхнем углу пейвола">
-        <span class="cp-switch-ico" aria-hidden="true">✕</span><span style="flex:1"><b>Крестик закрытия</b><span class="cp-muted" style="display:block;margin-top:2px">Скрывается только кнопка X; остальные способы выхода остаются.</span></span>
-        <input id="cp-paywall-control-paywall_close_visible" type="checkbox" class="cp-toggle" disabled />
-      </label>
-      <label class="cp-switch-row" title="Показать или скрыть кнопку восстановления покупок под основной кнопкой">
-        <span class="cp-switch-ico" aria-hidden="true">↻</span><span style="flex:1"><b>Восстановить покупки</b><span class="cp-muted" style="display:block;margin-top:2px">Использует существующее восстановление магазина.</span></span>
-        <input id="cp-paywall-control-paywall_restore_visible" type="checkbox" class="cp-toggle" disabled />
-      </label>
       <label class="cp-switch-row" title="Показать или скрыть кнопку ввода промокода под основной кнопкой">
         <span class="cp-switch-ico" aria-hidden="true">🏷</span><span style="flex:1"><b>Ввести промокод</b><span class="cp-muted" style="display:block;margin-top:2px">Кнопка появится только когда общий рубильник промокодов тоже включён.</span></span>
         <input id="cp-paywall-control-paywall_promo_code_visible" type="checkbox" class="cp-toggle" disabled />
       </label>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-      <button id="cp-paywall-controls-save" type="button" class="cp-btn" onclick="saveControlPanelPaywallControls()" title="Сохранить видимость трёх элементов пейвола" disabled>Сохранить видимость</button>
+      <button id="cp-paywall-controls-save" type="button" class="cp-btn" onclick="saveControlPanelPaywallControls()" title="Сохранить настройки пейвола" disabled>Сохранить видимость</button>
       <button id="cp-paywall-controls-reload" type="button" class="cp-btn" onclick="loadControlPanelPaywallControls()" title="Отменить черновик и перечитать сохранённые значения">Перечитать</button>
     </div>
   </div>
@@ -34459,8 +34451,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   };
 
   const CP_PAYWALL_CONTROL_KEYS = [
-    'paywall_close_visible',
-    'paywall_restore_visible',
     'paywall_promo_code_visible',
   ];
   let cpPaywallControlsHydrated = false;

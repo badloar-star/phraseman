@@ -24,7 +24,6 @@
     "components/LessonReviewSheet.tsx",
     "components/NotificationCenterButton.tsx",
     "components/VipSurveyModal.tsx",
-    "components/dialogs/glass/DialogueGlassKit.tsx",
     "components/home/v2/today_scene/TodaySceneView.tsx",
     "components/learning-v2/LearningV2ChapterExamResult.tsx",
     "components/learning-v2/LearningV2ChaptersCourse.tsx",

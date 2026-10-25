@@ -12,7 +12,7 @@ import SkeletonBlock from '../../SkeletonShimmer';
 import { glassTone } from './glassTone';
 import { dialogueCtaPaint } from './dialogue_cta_paint';
 import { useLineScale } from '../../../hooks/useLineScale';
-import { NavIcon } from '../../v2/BackGlyph';
+import { ScreenBackSlot, SafeTopBackButton } from '../../v2/ScreenBackButton';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
 // dialogs.html (Liquid Glass). Здесь один раз собраны презентационные части макета из
@@ -49,26 +49,6 @@ function controlFill(glass: DialogueGlass): ViewStyle {
     backgroundColor: glass.opaqueControl,
     boxShadow: nestedBoxShadow(glass),
   };
-}
-
-/** Круглая «‹» (`.rb.l`) — 44 dp, плоский тон темы. */
-export function DialogueGlassBackButton({
-  glass, onPress, accessibilityLabel, testID, icon = 'chevron-back',
-}: Readonly<{ glass: DialogueGlass; onPress: () => void; accessibilityLabel: string; testID?: string; icon?: IconName }>) {
-  return (
-    <PressableHybrid
-      testID={testID}
-      accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel}
-      onPress={onPress}
-      withSound={false}
-      variant="icon"
-      style={styles.hit44}
-      contentStyle={[styles.round44, controlFill(glass)]}
-    >
-      <NavIcon name={icon} size={20} color={glass.text} />
-    </PressableHybrid>
-  );
 }
 
 /** Квадратная кнопка шапки (`.rb.sq`, «⋯») — 44 dp, радиус 13. */
@@ -239,8 +219,11 @@ export function DialogueGlassGate({
   return (
     <View testID={testID} style={[styles.fill, { backgroundColor: glass.bg }]}>
       <SafeAreaView edges={['top', 'bottom']} style={styles.fill}>
+        {/* зачем (координатор 26.10 по эталону: kit.css `.rb.l` 48, dialogs.html меняет только flex; закон владельца «назад в одном месте везде»):
+            гейт диалогов был со своей стеклянной «‹» 44 — теперь общая кнопка 48 на общем месте (безопасный верх, слева 20), в шапке — её место */}
+        <SafeTopBackButton screen={`dialogue_gate_${testID}`} accessibilityLabel={backLabel} onPress={onBack} />
         <View style={styles.gateTop}>
-          <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={backLabel} />
+          <ScreenBackSlot />
         </View>
         {loading ? (
           // зачем (E2, координатор 12.10; правило владельца «никаких спиннеров на весь экран»): загрузка — скелет экрана на месте будущего содержимого (заголовок, цель, пузыри, поле ввода),
@@ -271,7 +254,6 @@ export function DialogueGlassGate({
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   hit44: { width: 44, height: 44 },
-  round44: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   square44: { width: 44, height: 44, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   ctaHit: { alignSelf: 'stretch' },
   cta: {

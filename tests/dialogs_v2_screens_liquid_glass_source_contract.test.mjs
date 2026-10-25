@@ -32,8 +32,9 @@ test('glass kit: presentational parts live in components/dialogs/glass and take 
   }
   assert.match(kit, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(kit, /export function useDialogueGlass\(/);
-  // Кнопка «назад» и CTA — не меньше 44 dp (область нажатия).
-  assert.match(kit, /width: 44, height: 44, borderRadius: 22/);
+  // Кнопки шапки — не меньше 44 dp (область нажатия): «⋯» 44; «назад» гейта — общая кнопка 48 (координатор 26.10, эталон kit.css `.rb.l` 48).
+  assert.match(kit, /square44: \{ width: 44, height: 44, borderRadius: 13/);
+  assert.match(kit, /<SafeTopBackButton screen=\{`dialogue_gate_/);
   assert.match(menu, /material="liquid-glass-opaque"/);
 });
 

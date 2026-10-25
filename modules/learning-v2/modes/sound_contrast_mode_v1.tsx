@@ -26,7 +26,7 @@ import Animated, {
 
 import { useTheme } from "../../../components/ThemeContext";
 import { V2Chip } from "../../../components/ui/v2_ui";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import { useTournamentPalette } from "../../../components/ui/v2_theme"; // theme-exempt: режим sound_contrast удалён («не назначать», mode_router_v1 его не подключает) — компонент людям не виден, только тесты; палитру турниров не переводить, а удалить вместе с режимом (сторож tests/sound_contrast_retired_2026_10_26.test.ts)
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { SOUND_CONTRAST_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";

@@ -127,6 +127,13 @@ export const PAYWALL_SOURCE_VALUES = [
   'dialogue_v2_hub_scene',
   'dev_dialogs_scene_preview',
   'learning_v2_dictionary',
+  // зачем (координатор 25.10, инвентарь Макетов): три живых входа без записи — в стор-сборке rejectUnknown молча закрывал окно:
+  // — 'ai_explain_limit_card': «Посмотреть Plus» на карточке «разбор на сегодня закончился» (AiMistakeCard → AiLimitUpsellCard) — в бою;
+  // — 'dialogue_v2_freeform_server': свободный разговор, сервер отказал «нужен Plus» (36eba41a0);
+  // — 'phrase_workshop': «Мастерская фраз» за Plus (список «Все уроки» и вход урока), за флагом.
+  'ai_explain_limit_card',
+  'dialogue_v2_freeform_server',
+  'phrase_workshop',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];
@@ -172,6 +179,9 @@ export type PremiumModalEntryResolution =
   | { readonly decision: 'show'; readonly entry: PaywallEntry };
 
 const PAYWALL_SOURCE_SET: ReadonlySet<string> = new Set(PAYWALL_SOURCE_VALUES);
+/** Отказ сервера «нужен Plus» при локальном Plus (свободный диалог) — единственный source, где окно не закрывается по Plus. */
+export const SERVER_REFUSED_SOURCE = 'dialogue_v2_freeform_server' as const satisfies PaywallSource;
+export const SERVER_REFUSED_CONTEXT = 'plus_server_refused' as const satisfies PremiumContext;
 const LEGACY_CONTEXT_ALIASES: Readonly<Record<string, PremiumContext>> = Object.freeze({
   ai_dialog: 'dialog_limit',
   hall_of_fame: 'generic',
@@ -282,6 +292,22 @@ export function resolvePremiumModalEntry(input: Readonly<{
   cachedEntitlement?: CachedPaywallEntitlement;
 }>): PremiumModalEntryResolution {
   if (!input.accessResolved && input.cachedEntitlement !== 'free') return { decision: 'wait' };
+  // зачем (координатор 25.10, случай владельца): сервер отказал «нужен Plus», а телефон считает Plus включённым. Прежнее правило
+  // «есть Plus → dismiss» закрывало окно, и человек не видел ни покупки, ни объяснения. Для ЭТОГО source — вариант «Не видим твой
+  // Plus» (контекст plus_server_refused: «Восстановить покупки» / «Оформить Plus»). Для всех остальных source — как было.
+  if (input.hasPremiumAccess && first(input.params.source) === SERVER_REFUSED_SOURCE) {
+    console.warn(`[PAYWALL-ENTRY] show reason=local_plus_server_refused source=${SERVER_REFUSED_SOURCE} requestedContext=${first(input.params.context) || 'generic'} → context=${SERVER_REFUSED_CONTEXT}`);
+    return {
+      decision: 'show',
+      entry: createPaywallEntry({
+        context: SERVER_REFUSED_CONTEXT,
+        source: SERVER_REFUSED_SOURCE,
+        entitlementState: 'plus',
+        impressionId: input.impressionId,
+        attribution: parseAttribution(input.params),
+      }),
+    };
+  }
   if (input.hasPremiumAccess) return { decision: 'dismiss' };
 
   const context = parseContext(input.params.context);

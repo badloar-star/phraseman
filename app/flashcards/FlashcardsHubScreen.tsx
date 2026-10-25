@@ -1,6 +1,7 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { consumePendingTrainIntent } from './train_intent';
 import { trainNavMark } from '../train_nav_trace';
+import type { PaywallSource } from '../paywall_entry_contract';
 import { noteHubSubscription, useHubLifecycle } from '../hub_lifecycle_probe';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -595,7 +596,8 @@ export default function FlashcardsHubScreen() {
   // двойной тап не должен открыть окно дважды — защёлка снимается, когда хаб снова в фокусе.
   const paywallOpeningRef = useRef(false);
   useFocusEffect(useCallback(() => { paywallOpeningRef.current = false; }, []));
-  const openTrainingPaywall = useCallback((context: 'flashcard_training', source: string) => {
+  // зачем (координатор 25.10): source — тип контракта, а не string: неизвестный литерал ловит сборка, а не rejectUnknown в бою
+  const openTrainingPaywall = useCallback((context: 'flashcard_training', source: PaywallSource) => {
     if (paywallOpeningRef.current) {
       console.log('[FC-TRAIN-ENTRY] paywall: повторный тап проглочен — окно уже открывается', JSON.stringify({ source }));
       return;

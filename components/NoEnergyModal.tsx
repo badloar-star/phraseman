@@ -42,6 +42,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow, plateBoxShadow } from './v2/ShadowSurface';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
+import type { PremiumContext } from '../app/premium_context';
 
 
 /**
@@ -73,8 +74,8 @@ interface Props {
   minRequired?: number;
   /** Canonical activity determines the exact price shown in this sheet. */
   activity?: EnergyActivityKey;
-  /** `premium_modal` context: аналитика и тексты. По умолчанию `no_energy`. */
-  paywallContext?: string;
+  /** `premium_modal` context: аналитика и тексты. По умолчанию `no_energy`. Тип контракта (координатор 25.10): неизвестный литерал ловит сборка. */
+  paywallContext?: PremiumContext;
   onBeforeOpenPremium?: () => void;
   /**
    * Устарело (жемчуг выведен из интерфейса 2026-09-30): кнопки «за жемчужины» больше нет,

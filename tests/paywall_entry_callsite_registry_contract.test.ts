@@ -129,6 +129,14 @@ function inspectDimension(
   dimension: 'context' | 'source',
 ): void {
   if (!expression) return; // Explicitly quarantined legacy defaults: generic/direct.
+  // зачем (Ядро 25.10, combo_lesson_gate: workshop ? 'phrase_workshop' : 'combined_lesson'): условие с литералами в обеих
+  // ветках — не «динамика», а два известных значения; проверяем каждую ветку по контракту, а не прячем в список одобренных.
+  const unwrapped = unwrap(expression);
+  if (ts.isConditionalExpression(unwrapped)) {
+    inspectDimension(findings, file, sourceFile, call, unwrapped.whenTrue, dimension);
+    inspectDimension(findings, file, sourceFile, call, unwrapped.whenFalse, dimension);
+    return;
+  }
   const literal = literalValue(expression);
   const valid = dimension === 'context' ? PREMIUM_CONTEXT_SET : SOURCE_SET;
   const { line } = sourceFile.getLineAndCharacterOfPosition(call.getStart(sourceFile));
@@ -189,6 +197,42 @@ function inspectCall(
   inspectDimension(findings, file, sourceFile, call, objectProperty(params, 'source'), 'source');
 }
 
+// зачем (координатор 25.10, инвентарь Макетов): source 'ai_explain_limit_card' жил литералом в ПРОПЕ компонента
+// (<AiLimitUpsellCard paywallSource="…">), а сам компонент пробрасывает его динамически (одобрено выше) — сторож видел только
+// вызовы и пропускал литерал у места использования; в стор-сборке кнопка «Посмотреть Plus» молча закрывала окно.
+// Теперь литералы JSX-атрибутов paywallSource / paywallContext у ЛЮБОГО компонента тоже сверяются с контрактом.
+const PAYWALL_PROP_DIMENSIONS: Readonly<Record<string, 'context' | 'source'>> = {
+  paywallSource: 'source',
+  paywallContext: 'context',
+};
+
+function inspectJsxAttribute(findings: Finding[], file: string, sourceFile: ts.SourceFile, attribute: ts.JsxAttribute): void {
+  const name = ts.isIdentifier(attribute.name) ? attribute.name.text : null;
+  const dimension = name ? PAYWALL_PROP_DIMENSIONS[name] : undefined;
+  if (!dimension || !attribute.initializer) return;
+  const init = attribute.initializer;
+  const literal = ts.isStringLiteral(init)
+    ? init.text
+    : ts.isJsxExpression(init) && init.expression ? literalValue(init.expression) : null;
+  if (literal === null) return; // выражение — тип пропа замкнут контрактом у компонента (PaywallSource / PremiumContext)
+  const valid = dimension === 'context' ? PREMIUM_CONTEXT_SET : SOURCE_SET;
+  if (valid.has(literal as never) || (dimension === 'context' && LEGACY_CONTEXT_ALIASES.has(literal))) return;
+  const { line } = sourceFile.getLineAndCharacterOfPosition(attribute.getStart(sourceFile));
+  findings.push({ file, line: line + 1, kind: `unknown_${dimension}`, value: literal });
+}
+
+// зачем (координатор и Ревизор 25.10, «параметры помощников»): корень ai_explain_limit_card — проброс объявлен `string`, и проверка
+// типов не видела неизвестный литерал у места вызова. Поле/параметр с именем paywallSource / paywallContext обязаны иметь тип
+// контракта (PaywallSource / PremiumContext), а не голый string.
+function inspectStringTypedDimension(findings: Finding[], file: string, sourceFile: ts.SourceFile, node: ts.Node): void {
+  if (!(ts.isPropertySignature(node) || ts.isParameter(node) || ts.isPropertyDeclaration(node))) return;
+  const name = node.name && ts.isIdentifier(node.name) ? node.name.text : null;
+  const dimension = name ? PAYWALL_PROP_DIMENSIONS[name] : undefined;
+  if (!dimension || !node.type || node.type.kind !== ts.SyntaxKind.StringKeyword) return;
+  const { line } = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
+  findings.push({ file, line: line + 1, kind: `dynamic_${dimension}`, value: `${name}: string` });
+}
+
 test('every active Plus acquisition caller uses bounded context and source dimensions', () => {
   const findings: Finding[] = [];
   for (const sourceRoot of SOURCE_ROOTS) {
@@ -205,6 +249,8 @@ test('every active Plus acquisition caller uses bounded context and source dimen
       );
       const visit = (node: ts.Node): void => {
         if (ts.isCallExpression(node)) inspectCall(findings, file, sourceFile, node);
+        if (ts.isJsxAttribute(node)) inspectJsxAttribute(findings, file, sourceFile, node);
+        inspectStringTypedDimension(findings, file, sourceFile, node);
         ts.forEachChild(node, visit);
       };
       visit(sourceFile);
@@ -212,4 +258,36 @@ test('every active Plus acquisition caller uses bounded context and source dimen
   }
 
   expect(findings).toEqual([]);
+});
+
+test('the JSX prop check itself catches an unknown literal source/context (self-test)', () => {
+  const code = 'const a = <AiLimitUpsellCard paywallSource="definitely_not_a_source" paywallContext={"nope_ctx"} />;\n'
+    + 'const b = <AiLimitUpsellCard paywallSource="ai_explain_limit_card" paywallContext="ai_explain" />;\n';
+  const sf = ts.createSourceFile('x.tsx', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const findings: Finding[] = [];
+  const visit = (node: ts.Node): void => {
+    if (ts.isJsxAttribute(node)) inspectJsxAttribute(findings, 'x.tsx', sf, node);
+    ts.forEachChild(node, visit);
+  };
+  visit(sf);
+  expect(findings.map((f) => `${f.kind}:${f.value}`)).toEqual([
+    'unknown_source:definitely_not_a_source',
+    'unknown_context:nope_ctx',
+  ]);
+});
+
+test('a forwarder typed as plain string is caught (self-test)', () => {
+  const code = 'type P = { paywallSource: string; paywallContext: PremiumContext };\n'
+    + 'function f(paywallContext: string, paywallSource: PaywallSource) {}\n';
+  const sf = ts.createSourceFile('y.tsx', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const findings: Finding[] = [];
+  const visit = (node: ts.Node): void => {
+    inspectStringTypedDimension(findings, 'y.tsx', sf, node);
+    ts.forEachChild(node, visit);
+  };
+  visit(sf);
+  expect(findings.map((f) => `${f.kind}:${f.value}`)).toEqual([
+    'dynamic_source:paywallSource: string',
+    'dynamic_context:paywallContext: string',
+  ]);
 });

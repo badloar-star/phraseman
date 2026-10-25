@@ -45,6 +45,8 @@ const LABELS: Record<PremiumContext, string> = {
   referral_ended: 'Реферальный доступ завершён',
   arena_limit: 'Арена: матч на сегодня сыгран',
   combined_lesson: 'Комбинированный урок',
+  phrase_workshop: 'Мастерская фраз',
+  plus_server_refused: 'Не видим твой Plus (сервер отказал)',
   home_discount_badge: 'Бейдж скидки',
   generic: 'Общий',
 };

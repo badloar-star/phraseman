@@ -85,6 +85,13 @@ export type PremiumContext =
    * путала его с упущенной функцией.
    */
   | 'home_discount_badge'
+  /** зачем (координатор 25.10): «Мастерская фраз» — Plus; своего контекста не было, окно в стор-сборке молча закрывалось. */
+  | 'phrase_workshop'
+  /**
+   * зачем (координатор 25.10): сервер отказал «нужен Plus», а телефон считает Plus включённым — окно «Не видим твой Plus»
+   * (восстановить покупки / оформить). Ставит только resolvePremiumModalEntry для source dialogue_v2_freeform_server.
+   */
+  | 'plus_server_refused'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
@@ -125,6 +132,8 @@ export const PREMIUM_CONTEXT_VALUES = [
   'arena_limit',
   'combined_lesson',
   'home_discount_badge',
+  'phrase_workshop',
+  'plus_server_refused',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

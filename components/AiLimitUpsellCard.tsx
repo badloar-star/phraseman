@@ -17,13 +17,17 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
+import type { PaywallSource } from '../app/paywall_entry_contract';
+import type { PremiumContext } from '../app/premium_context';
 
 type AiLimitUpsellCardProps = {
   lang: Lang;
   title: string;
-  paywallContext: string;
+  // зачем (координатор 25.10): были `string` — неизвестный литерал у места вызова (ai_explain_limit_card) проходил проверку типов,
+  // а в стор-сборке rejectUnknown молча закрывал окно Plus. Типы контракта ловят такое при сборке.
+  paywallContext: PremiumContext;
   /** зачем (2026-09-13): без source вызов падал в legacy-дефолт 'direct'. */
-  paywallSource: string;
+  paywallSource: PaywallSource;
   testID: string;
 };
 

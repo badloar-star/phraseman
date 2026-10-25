@@ -17,6 +17,7 @@ import { isDevEnergyStopPlusGranted } from '../../app/dev_energy_stop_flag';
 import { useLang } from '../LangContext';
 import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
+import type { PremiumContext } from '../../app/premium_context';
 
 const TAG = '[ENERGY-STOP]';
 
@@ -27,8 +28,8 @@ type Props = Readonly<{
   onExit: () => void;
   /** Plus оформлен, пока карточка открыта: хозяин вызывает `attempts.resumeAfterPlus()` — занятие идёт с того же вопроса. */
   onResume: () => void;
-  /** Контекст пейвола Plus; по умолчанию общий `no_energy`. */
-  paywallContext?: string;
+  /** Контекст пейвола Plus; по умолчанию общий `no_energy`. Тип контракта (координатор 25.10): неизвестный литерал ловит сборка. */
+  paywallContext?: PremiumContext;
 }>;
 
 /**

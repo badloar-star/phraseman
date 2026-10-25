@@ -89,6 +89,10 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   // механик (pack_create) — это про сборку из нескольких частей, а не про
   // следующий урок по порядку.
   combined_lesson: { accent: '#63E6BE', accent2: '#A78BFA', shardAmount: 180 },
+  // «Мастерская фраз» (координатор 25.10): по образцу комбинированного урока — тоже сборка из частей; свой цвет нарисуют Макеты.
+  phrase_workshop: { accent: '#63E6BE', accent2: '#A78BFA', shardAmount: 180 },
+  // «Не видим твой Plus» (координатор 25.10): спокойный синий, без «наградных» тонов — это проверка доступа, а не продажа функции.
+  plus_server_refused: { accent: '#74C0FC', accent2: '#A78BFA', shardAmount: 0 },
   // Бейдж скидки — единственный контекст, где ведёт цена, а не упущенная
   // функция. Золото + фуксия, как у возвратных предложений (referral_ended);
   // shardAmount 0, как у generic/onboarding: предложение цены не иллюстрируется
@@ -1496,6 +1500,90 @@ CONTEXT_BENEFITS.combined_lesson = [
 CONTEXT_BENEFITS_PLANNED.combined_lesson = [
   { 'pt-BR': 'Temas à escolha: a lição se monta para você', vi: 'Tự chọn chủ đề — bài học hợp với bạn', id: 'Topik pilihanmu — pelajaran disusun untukmu', tr: 'Konuları sen seç — ders sana göre kurulur', pl: 'Tematy do wyboru — lekcja składa się pod ciebie' },
   { 'pt-BR': 'Você não esquece o anterior: os temas voltam misturados', vi: 'Không quên bài cũ — các chủ đề quay lại xen kẽ', id: 'Yang lama tak terlupa — topik kembali berselang', tr: 'Eskisi unutulmaz — konular karışık geri döner', pl: 'Stare nie ucieka — tematy wracają na przemian' },
+  { 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
+];
+
+/**
+ * «Не видим твой Plus»: сервер отказал «нужен Plus», а телефон считает Plus включённым (свободный диалог).
+ *
+ * зачем (координатор 25.10): человек уверен, что Plus есть, — говорим прямо, что сервер его не видит, и даём два пути: восстановить
+ * покупки (если куплен) или оформить. Без упрёков и без «ошибки». ⚠ Черновик Ядра, ru по решению координатора; остальные языки —
+ * на утверждение Переводчику (10).
+ */
+PAYWALL_COPY.plus_server_refused = {
+  titleRu: 'Не видим твой Plus',
+  titleUk: 'Не бачимо твій Plus',
+  titleEs: 'No vemos tu Plus',
+  subtitleRu: 'Если подписка уже оформлена, восстанови покупку. Это бесплатно.', // дословно макет (paywalls-context-real.html, раздел 4)
+  subtitleUk: 'Якщо Plus уже куплено — натисни «Відновити покупки», і доступ повернеться. Якщо ні — його можна оформити тут.',
+  subtitleEs: 'Si ya compraste Plus, toca «Restaurar compras» y el acceso volverá. Si no, puedes obtenerlo aquí.',
+};
+PAYWALL_PLANNED_COPY.plus_server_refused = {
+  title: {
+    en: 'We can’t see your Plus',
+    'pt-BR': 'Não encontramos seu Plus', vi: 'Chưa thấy Plus của bạn',
+    id: 'Plus-mu tidak terlihat', tr: 'Plus’ını göremiyoruz',
+    pl: 'Nie widzimy twojego Plus',
+  },
+  subtitle: {
+    en: 'If you already bought Plus, tap “Restore purchases” and your access comes back. If not, you can get it here.',
+    'pt-BR': 'Se você já comprou o Plus, toque em “Restaurar compras” e o acesso volta. Se não, dá para assinar aqui.',
+    vi: 'Nếu bạn đã mua Plus, chạm “Khôi phục giao dịch” để lấy lại quyền truy cập. Nếu chưa, bạn có thể đăng ký tại đây.',
+    id: 'Kalau Plus sudah dibeli, ketuk “Pulihkan pembelian” dan aksesmu kembali. Kalau belum, kamu bisa berlangganan di sini.',
+    tr: 'Plus’ı zaten aldıysan “Satın alımları geri yükle”ye dokun, erişimin geri gelsin. Almadıysan buradan alabilirsin.',
+    pl: 'Jeśli Plus jest już kupiony, dotknij „Przywróć zakupy”, a dostęp wróci. Jeśli nie, możesz go wykupić tutaj.',
+  },
+};
+CONTEXT_BENEFITS.plus_server_refused = [
+  { ru: 'Восстановить покупки — одна кнопка', uk: 'Відновити покупки — одна кнопка', es: 'Restaurar compras con un toque', en: 'Restore purchases in one tap', 'pt-BR': 'Restaurar compras com um toque', vi: 'Khôi phục giao dịch chỉ một chạm', id: 'Pulihkan pembelian sekali ketuk', tr: 'Tek dokunuşla satın alımları geri yükle', pl: 'Przywróć zakupy jednym dotknięciem' },
+  { ru: 'Свободный разговор и разбор ошибок', uk: 'Вільна розмова й розбір помилок', es: 'Conversación libre y análisis de errores', en: 'Free conversation and mistake review', 'pt-BR': 'Conversa livre e análise de erros', vi: 'Trò chuyện tự do và phân tích lỗi', id: 'Obrolan bebas dan ulasan kesalahan', tr: 'Serbest sohbet ve hata analizi', pl: 'Swobodna rozmowa i omówienie błędów' },
+  { ru: 'Занятия и тренировки — без дневных стопов', uk: 'Заняття й тренування — без денних стопів', es: 'Lecciones y entrenamientos, sin bloqueos diarios', en: 'Lessons and training with no daily stops', 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
+];
+CONTEXT_BENEFITS_PLANNED.plus_server_refused = [
+  { 'pt-BR': 'Restaurar compras com um toque', vi: 'Khôi phục giao dịch chỉ một chạm', id: 'Pulihkan pembelian sekali ketuk', tr: 'Tek dokunuşla satın alımları geri yükle', pl: 'Przywróć zakupy jednym dotknięciem' },
+  { 'pt-BR': 'Conversa livre e análise de erros', vi: 'Trò chuyện tự do và phân tích lỗi', id: 'Obrolan bebas dan ulasan kesalahan', tr: 'Serbest sohbet ve hata analizi', pl: 'Swobodna rozmowa i omówienie błędów' },
+  { 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
+];
+
+/**
+ * «Мастерская фраз»: фразы из пройденных уроков собираются заново — раздел Plus.
+ *
+ * зачем (координатор 25.10): своего контекста не было, окно в стор-сборке молча закрывалось. Тон как у комбинированного урока:
+ * человек сам нажал на раздел, лимита не было — говорим о самой возможности. Черновик Ядра по утверждённому названию
+ * (phrase_workshop_copy.ts); ⚠ ЖДЁТ УТВЕРЖДЕНИЯ ПЕРЕВОДЧИКА (10) — все языки.
+ */
+PAYWALL_COPY.phrase_workshop = {
+  titleRu: 'Мастерская фраз в Plus',
+  titleUk: 'Майстерня фраз у Plus',
+  titleEs: 'Taller de frases con Plus',
+  subtitleRu: 'Фразы из пройденных уроков собираются заново, пока не станут твоими. Вместе с этим открывается весь курс, разговоры вслух и тренировки.',
+  subtitleUk: 'Фрази з пройдених уроків складаються знову, доки не стануть твоїми. Разом із цим відкривається увесь курс, розмови вголос і тренування.',
+  subtitleEs: 'Las frases de las lecciones que hiciste se arman de nuevo hasta que sean tuyas. Junto con esto se abre el curso completo, la práctica oral y los entrenamientos.',
+};
+PAYWALL_PLANNED_COPY.phrase_workshop = {
+  title: {
+    en: 'Phrase workshop with Plus',
+    'pt-BR': 'Oficina de frases no Plus', vi: 'Xưởng ghép câu trong Plus',
+    id: 'Bengkel frasa di Plus', tr: 'Plus ile cümle atölyesi',
+    pl: 'Warsztat fraz w Plus',
+  },
+  subtitle: {
+    en: 'Phrases from the lessons you’ve done are built again until they’re yours. The whole course, speaking practice and training open up with it.',
+    'pt-BR': 'As frases das lições que você fez são montadas de novo até ficarem suas. Junto com isso abrem o curso inteiro, a prática de fala e os treinos.',
+    vi: 'Các câu từ bài đã học được ghép lại cho đến khi bạn thuộc. Cùng lúc đó mở ra trọn khóa học, luyện nói và luyện tập.',
+    id: 'Frasa dari pelajaran yang sudah kamu lewati disusun lagi sampai kamu kuasai. Bersamaan dengan itu terbuka seluruh kursus, latihan bicara, dan latihan kartu.',
+    tr: 'Bitirdiğin derslerdeki cümleler senin olana kadar yeniden kurulur. Bununla birlikte kursun tamamı, konuşma pratiği ve antrenmanlar açılır.',
+    pl: 'Zwroty z przerobionych lekcji składasz od nowa, aż staną się twoje. Razem z tym otwiera się cały kurs, mówienie na głos i treningi.',
+  },
+};
+CONTEXT_BENEFITS.phrase_workshop = [
+  { ru: 'Мастерская фраз к каждому уроку', uk: 'Майстерня фраз до кожного уроку', es: 'Un taller de frases para cada lección', en: 'A phrase workshop for every lesson', 'pt-BR': 'Uma oficina de frases para cada lição', vi: 'Xưởng ghép câu cho mọi bài học', id: 'Bengkel frasa untuk setiap pelajaran', tr: 'Her ders için cümle atölyesi', pl: 'Warsztat fraz do każdej lekcji' },
+  { ru: 'Фразы закрепляются — пройденное не забывается', uk: 'Фрази закріплюються — пройдене не забувається', es: 'Las frases se afianzan: no olvidas lo aprendido', en: 'Phrases stick: what you learned stays', 'pt-BR': 'As frases se fixam: você não esquece o que aprendeu', vi: 'Câu được ghi nhớ — bài đã học không bị quên', id: 'Frasa makin melekat — yang sudah dipelajari tak terlupa', tr: 'Cümleler pekişir — öğrendiğin unutulmaz', pl: 'Zwroty się utrwalają — przerobione nie ucieka' },
+  { ru: 'Занятия и тренировки — без дневных стопов', uk: 'Заняття й тренування — без денних стопів', es: 'Lecciones y entrenamientos, sin bloqueos diarios', en: 'Lessons and training with no daily stops', 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
+];
+CONTEXT_BENEFITS_PLANNED.phrase_workshop = [
+  { 'pt-BR': 'Uma oficina de frases para cada lição', vi: 'Xưởng ghép câu cho mọi bài học', id: 'Bengkel frasa untuk setiap pelajaran', tr: 'Her ders için cümle atölyesi', pl: 'Warsztat fraz do każdej lekcji' },
+  { 'pt-BR': 'As frases se fixam: você não esquece o que aprendeu', vi: 'Câu được ghi nhớ — bài đã học không bị quên', id: 'Frasa makin melekat — yang sudah dipelajari tak terlupa', tr: 'Cümleler pekişir — öğrendiğin unutulmaz', pl: 'Zwroty się utrwalają — przerobione nie ucieka' },
   { 'pt-BR': 'Lições e treinos, sem travas diárias', vi: 'Bài học và luyện tập, không bị chặn mỗi ngày', id: 'Pelajaran dan latihan, tanpa hambatan harian', tr: 'Dersler ve antrenmanlar, günlük duraksız', pl: 'Lekcje i treningi — bez dziennych blokad' },
 ];
 

@@ -314,15 +314,16 @@ function NoEnergyModal({
     pl: 'kilka minut',
   });
   const defaultSubtitle = triLang(lang, {
-    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. В Plus энергия безлимитная.`,
-    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. У Plus енергія безлімітна.`,
-    en: `+1 ⚡ comes back in ${recoveryTimeText}. Energy is unlimited with Plus.`,
-    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. La energía es ilimitada con Plus.`,
-    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. A energia é ilimitada no Plus.`,
-    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Plus có năng lượng không giới hạn.`,
-    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Energi tanpa batas tersedia di Plus.`,
-    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Plus'ta enerji sınırsızdır.`,
-    pl: `+1 ⚡ wróci za ${recoveryTimeText}. W Plus energia jest bez limitu.`,
+    // зачем (голос PhraseMan, VOICE.md, владелец 25.10): «подожди или играй дальше с Plus» живым голосом
+    ru: `Передохни ${recoveryTimeText} — или жми дальше с Plus.`,
+    uk: `Перепочинь ${recoveryTimeText} — або тисни далі з Plus.`,
+    en: `Rest for ${recoveryTimeText} — or keep going with Plus.`,
+    es: `Descansa ${recoveryTimeText} o sigue ya con Plus.`,
+    'pt-BR': `Descansa ${recoveryTimeText} — ou segue com o Plus.`,
+    vi: `Nghỉ ${recoveryTimeText} — hoặc học tiếp ngay với Plus.`,
+    id: `Istirahat ${recoveryTimeText} — atau lanjut dengan Plus.`,
+    tr: `${recoveryTimeText} mola ver — ya da Plus ile devam et.`,
+    pl: `Odpocznij ${recoveryTimeText} — albo leć dalej z Plus.`,
   });
   // Запасная строка раньше брала ВСЕГДА нулевой вариант — то есть тот самый
   // экзаменный. Теперь она строится тем же способом, что и основная.

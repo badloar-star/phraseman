@@ -72,15 +72,16 @@ export default function StreakStagesModal({
   });
   // зачем (PM-044, 04.10): огонь не растёт в размере — он заполняется по дням (StreakFlameFill); «крупнее» было неправдой.
   const sub = triLang(lang, {
-    ru: 'С каждым днём серии огонь заполняется — к 10 дням он полный',
-    uk: 'З кожним днем серії вогонь заповнюється — до 10 днів він повний',
-    en: 'The flame fills up with each day of your streak — it’s full by day 10',
-    es: 'La llama se llena con cada día de racha: a los 10 días está completa',
-    'pt-BR': 'A chama se enche a cada dia da sequência — com 10 dias ela fica completa',
-    vi: 'Mỗi ngày trong chuỗi, ngọn lửa đầy thêm — đến ngày thứ 10 là đầy',
-    id: 'Api terisi setiap hari rangkaian — penuh di hari ke-10',
-    tr: 'Serinin her gününde alev dolar — 10. günde tamamen dolu olur',
-    pl: 'Z każdym dniem serii płomień się wypełnia — po 10 dniach jest pełny',
+    // зачем (VOICE.md): огонёк — это сам значок на экране; тепло и с цифрой
+    ru: 'Каждый день серии огонёк растёт. На 10-й день он во всю силу',
+    uk: 'Щодня серії вогник росте. На 10-й день він на повну силу',
+    en: 'Each streak day the flame grows. By day 10 it’s blazing',
+    es: 'Cada día de racha la llama crece. Al día 10 arde a tope',
+    'pt-BR': 'A cada dia de sequência a chama cresce. No dia 10 ela está com tudo',
+    vi: 'Mỗi ngày trong chuỗi, ngọn lửa lớn thêm. Đến ngày 10 là cháy rực',
+    id: 'Tiap hari rangkaian, apinya membesar. Hari ke-10 menyala penuh',
+    tr: 'Serinin her gününde alev büyür. 10. günde tam gaz yanar',
+    pl: 'Z każdym dniem serii płomyk rośnie. Dziesiątego dnia płonie na całego',
   });
   const { height: viewportHeight } = useWindowDimensions();
   const reduceMotion = useReduceMotion();

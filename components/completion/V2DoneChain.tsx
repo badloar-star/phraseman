@@ -16,8 +16,7 @@ import Reanimated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue,
 
 import type { Lang } from '../../constants/i18n';
 import { runeWord } from '../../constants/runes';
-import { peekRunes } from '../../app/runes_system';
-import { subscribeAppSnapshot } from '../../app/app_snapshot_store';
+import { peekDisplayedRunes, subscribeDisplayedRunes } from '../../app/runes_system';
 import { peekStreakDayState, subscribeStreakDayState, type StreakDayState } from '../../app/streak_day_signal';
 import { peekTodayTasks, subscribeTodayTasks } from '../../modules/today-tasks/today_tasks_store';
 import { todayTasksToView } from '../../modules/today-tasks/today_tasks_view';
@@ -254,8 +253,9 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
   const c = useStreakColors();
   const on = revealed > DONE_CHAIN_BEAT.coins;
   const animate = on && !instant;
-  const [liveBalance, setBalance] = useState(() => Math.max(0, Math.round(Number(peekRunes()) || 0))); // guard-ok: только показ баланса, ничего не пишет
-  useEffect(() => subscribeAppSnapshot(() => setBalance(Math.max(0, Math.round(Number(peekRunes()) || 0)))), []); // guard-ok: только показ баланса, ничего не пишет
+  // зачем (координатор 25.10, «одно число монет»): тот же показ, что Главная и «Обучение» (кошелёк + ожидающие)
+  const [liveBalance, setBalance] = useState(() => Math.max(0, Math.round(Number(peekDisplayedRunes()) || 0))); // guard-ok: только показ баланса, ничего не пишет
+  useEffect(() => subscribeDisplayedRunes((v) => setBalance(Math.max(0, Math.round(Number(v) || 0)))), []); // guard-ok: только показ баланса, ничего не пишет
   // зачем (Сверка 15.10): превью показывало настоящий кошелёк эмулятора (53 при +150) — баланс не бежал. Моки задают баланс «после урока».
   const balance = previewBalance ?? liveBalance;
   // зачем: баланс уже включает монеты урока — «бежит» от (баланс − N) к балансу; если ещё не включает (баланс < N), не выдумываем и показываем как есть

@@ -70,8 +70,8 @@ import {
   subscribeAccountGeneration,
   withAccountTransitionLock,
 } from "../account_generation";
-import { subscribeAppSnapshot, useAppSnapshotSelector } from "../app_snapshot_store";
-import { getRunesBalanceRead, peekRunes } from "../runes_system";
+import { useAppSnapshotSelector } from "../app_snapshot_store";
+import { getRunesBalanceRead, noteCoinDisplay, peekDisplayedRunes, peekRunes, subscribeDisplayedRunes } from "../runes_system";
 import { getStableId, peekStableId } from "../stable_id";
 import { projectDevLessonAccess } from "../dev_plus_controls";
 import { useTabFocusTick, useTabNav } from "../TabContext";
@@ -2360,7 +2360,12 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
 
     let alive = true;
     let durableReadValidated = false;
-    setBinding((prev) => (prev && prev.ownerStableId === ownerStableId && prev.accountGeneration === token.generation ? prev : cachedLegacyCoinBinding(token)));
+    // зачем (координатор 25.10): возврат на вкладку показывал закэшированное число прошлого показа (могло отстать от Главной);
+    // тот же владелец и поколение → сразу текущий единый показ, иначе — кэш как раньше.
+    setBinding((prev) => {
+      const base = prev && prev.ownerStableId === ownerStableId && prev.accountGeneration === token.generation ? prev : cachedLegacyCoinBinding(token);
+      return base ? Object.freeze({ ...base, balance: peekDisplayedRunes() }) : base;
+    });
 
     void getRunesBalanceRead().then((read) => {
       if (!alive) return;
@@ -2373,24 +2378,28 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
         return;
       }
       durableReadValidated = true;
-      console.log('[COIN-PILL]', JSON.stringify({ screen: 'lessons', source: 'wallet_cache', value: read.wallet.balance, quality: read.quality, hasAccount: ownerStableId.length > 0, generation: token.generation })); // guard-ok: временная трассировка (координатор 15.10)
+      // зачем (координатор 25.10, «одно число монет»: Главная 690 / «Обучение» 1000 / Главная+Пик 1110): чтение с диска здесь только
+      // подтверждает владельца и будит восстановление; на плашку идёт единый показ runes_system — снимок + ожидающие Пика.
+      const shownCoins = peekDisplayedRunes();
+      console.log('[COIN-PILL]', JSON.stringify({ screen: 'lessons', source: 'durable_read→displayed', durable: read.wallet.balance, value: shownCoins, quality: read.quality, hasAccount: ownerStableId.length > 0, generation: token.generation })); // guard-ok: временная трассировка (координатор 15.10)
       const durable = Object.freeze({
         ownerStableId,
         accountGeneration: token.generation,
-        balance: read.wallet.balance,
+        balance: shownCoins,
       });
       lastDurableLegacyCoinBinding = durable;
       setBinding(durable);
     }).catch(noteSwallowedHandler('lessons:useEffect.getRunesBalanceRead'));
 
-    const unsubscribeSnapshot = subscribeAppSnapshot(() => {
+    // зачем (координатор 25.10): подписка на единый показ — кошелёк И ожидающие Пика; прежняя подписка на снимок ожидающих не видела.
+    const unsubscribeSnapshot = subscribeDisplayedRunes((shownCoins) => {
       if (!alive
         || !durableReadValidated
         || !isCurrentAccountGeneration(token, ownerStableId)) return;
       const refreshed = Object.freeze({
         ownerStableId,
         accountGeneration: token.generation,
-        balance: peekRunes(),
+        balance: shownCoins,
       });
       lastDurableLegacyCoinBinding = refreshed; // уже проверенная привязка того же владельца — повторный вход покажет свежее число
       setBinding(refreshed);
@@ -2636,6 +2645,7 @@ export default function LessonsTab({
       shown: legacyCoinBalance ?? '—',
       value: legacyCoinBalanceBinding?.balance ?? null,
       snapshotValue: peekRunes(),
+      displayedValue: peekDisplayedRunes(),
       trusted: legacyCoinProjectionTrusted,
       hydrated: legacyCoinBalanceBinding !== null,
       // зачем (координатор 15.10): без идентификатора аккаунта в журнале — только поколение и совпадение владельца баланса и ранга
@@ -2643,6 +2653,7 @@ export default function LessonsTab({
       rankSameOwner: legacyCoinRankBinding && legacyCoinBalanceBinding ? legacyCoinRankBinding.ownerStableId === legacyCoinBalanceBinding.ownerStableId : null,
       balanceGeneration: legacyCoinBalanceBinding?.accountGeneration ?? null,
     })); // guard-ok: временная трассировка
+    if (legacyCoinBalance !== null) noteCoinDisplay('lessons', legacyCoinBalance);
   }, [legacyCoinBalance, legacyCoinBalanceBinding, legacyCoinProjectionTrusted, legacyCoinRankBinding]);
   // зачем (Ревизор 3.120): монета 20 dp в шапке — копия 96² вместо исходника 768².
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)

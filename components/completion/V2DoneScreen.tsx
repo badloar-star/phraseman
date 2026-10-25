@@ -16,8 +16,7 @@ import { useLang } from '../LangContext';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
-import { peekRunes } from '../../app/runes_system';
-import { subscribeAppSnapshot } from '../../app/app_snapshot_store';
+import { noteCoinDisplay, peekDisplayedRunes, subscribeDisplayedRunes } from '../../app/runes_system';
 import { triLang, type Lang } from '../../constants/i18n';
 import { runeWord } from '../../constants/runes';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -137,8 +136,10 @@ export const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: {
 // Первый кадр синхронно из снапшота (Performance Bible), дальше — подписка на снапшот.
 // зачем (итог Карточек, cards-section 05.10): та же плашка баланса нужна экрану итога раздела — не дублируем.
 export const BalancePill = memo(function BalancePill({ g, lang }: { g: Lv2Glass; lang: Lang }) {
-  const [balance, setBalance] = useState(() => peekRunes());
-  useEffect(() => subscribeAppSnapshot(() => setBalance(peekRunes())), []);
+  // зачем (координатор 25.10, «одно число монет»): плашка итога — тот же показ, что Главная и «Обучение» (кошелёк + ожидающие)
+  const [balance, setBalance] = useState(() => peekDisplayedRunes());
+  useEffect(() => subscribeDisplayedRunes(setBalance), []);
+  useEffect(() => { noteCoinDisplay('v2_done', balance); }, [balance]);
   const value = Math.max(0, Math.round(Number(balance) || 0));
   // Hermes не всегда группирует toLocaleString — делим на тройки сами (неразрывный пробел).
   const text = String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');

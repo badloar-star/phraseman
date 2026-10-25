@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 
 import { useLang } from './LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { getRunesBalance, peekDisplayedRunes, peekRunes, subscribeDisplayedRunes } from '../app/runes_system';
+import { getRunesBalance, noteCoinDisplay, peekDisplayedRunes, peekRunes, subscribeDisplayedRunes } from '../app/runes_system';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -97,7 +97,12 @@ export const RuneBalanceChip = memo(function RuneBalanceChip({
       // Поздний ответ не затирает свежее значение: ни после размонтирования,
       // ни после очередной смены аккаунта.
       if (cancelledRef.current || !isCurrentAccountGeneration(token, stableId)) return;
-      setBalance(value.balance + (peekDisplayedRunes() - peekRunes()));
+      // зачем (координатор 25.10, «одно число монет»): чтение с диска — только толчок восстановления; на чип идёт единый показ
+      // (снимок + ожидающие), а не «диск + ожидающие» — иначе чип расходился с Главной, пока снимок не догнал диск.
+      const shown = peekDisplayedRunes();
+      if (value.balance !== peekRunes()) console.log('[COIN-PILL]', JSON.stringify({ screen: 'chip', source: 'durable_read→displayed', durable: value.balance, value: shown })); // guard-ok: трассировка расхождения
+      setBalance(shown);
+      noteCoinDisplay('chip', shown);
     });
   }, []);
 

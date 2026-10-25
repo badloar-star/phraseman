@@ -57,6 +57,10 @@ function normalize(value: unknown): number {
  * кадр рисуется сразу правильным числом — без «0 и прыжок» (правило стабильности
  * вёрстки из Performance Bible).
  */
+// Для журнала «одно число монет» ([COIN-DIVERGENCE] display): последнее чтение с диска и последняя записанная строка каждой плашки.
+let lastDurableRunesRead: { balance: number; atMs: number } | null = null;
+const lastNotedCoinDisplay = new Map<string, string>(); // guard-ok: память процесса, не документ
+
 function readFromSnapshot(): RunesBalance {
   const progress = getAppSnapshot().progress;
   if (!progress) return EMPTY;
@@ -105,6 +109,13 @@ export async function getRunesBalanceRead(): Promise<RunesBalanceRead> {
       balance: result.balance,
       earnedTotal: result.earnedTotal,
     }));
+    // зачем (координатор 25.10, «одно число монет»): чтение с диска не рисуется на экране напрямую — только снимок + ожидающие.
+    // Если после восстановления снимок всё равно другой, это и есть расхождение плашек: пишем обе стороны.
+    lastDurableRunesRead = { balance: result.balance, atMs: Date.now() };
+    const snapshotStars = readFromSnapshot().balance;
+    if (snapshotStars !== result.balance) {
+      console.warn('[COIN-DIVERGENCE] durable_vs_snapshot', JSON.stringify({ durable: result.balance, snapshotStars, diff: result.balance - snapshotStars })); // guard-ok: трассировка расхождения
+    }
     return Object.freeze({ wallet: result, quality: 'durable' });
   } catch (error) {
     console.warn('[RUNES] balance_read:projection_failed →снапшот', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
@@ -260,10 +271,79 @@ export function peekDisplayedRunes(): number {
   return readFromSnapshot().balance + pendingCoins().spirePendingCoinsTotal(owner);
 }
 
+/**
+ * Журнал «что показывает плашка монет и из чего это число» — по строке на смену (экран, показано).
+ * зачем (координатор 25.10, Сверка: Главная 690 / «Обучение» 1000 / Главная+Пик 1110): закон «одно число монет» — у каждой плашки
+ * видно снимок, ожидающие Пика, последнее чтение с диска и совпадает ли показанное с единым источником (agree=false — расхождение).
+ */
+export function noteCoinDisplay(screen: string, shown: number | null): void {
+  const owner = captureAccountGeneration().stableId?.trim();
+  const snapshotStars = readFromSnapshot().balance;
+  const spirePending = pendingCoins().spirePendingCoinsTotal(owner);
+  const displayed = snapshotStars + spirePending;
+  const key = `${shown}|${displayed}`;
+  if (lastNotedCoinDisplay.get(screen) === key) return;
+  lastNotedCoinDisplay.set(screen, key);
+  console.log('[COIN-DIVERGENCE] display', JSON.stringify({
+    screen,
+    shown,
+    source: 'snapshot+spirePending',
+    snapshotStars,
+    spirePending,
+    displayed,
+    lastDurable: lastDurableRunesRead?.balance ?? null,
+    lastDurableAgeMs: lastDurableRunesRead ? Date.now() - lastDurableRunesRead.atMs : null,
+    agree: shown === null || shown === displayed,
+  })); // guard-ok: трассировка «одно число монет»
+}
+
+// ─── пакет показа: подтверждение сервера переносит сумму из «ожидающих» в кошелёк одним шагом ─────────────────────────────
+// зачем (координатор 25.10, защита от двойного счёта): вливание баланса публикует снимок сразу, а гашение ожидающих по вердикту
+// идёт после await — между ними показ на миг содержал сумму дважды (или без неё). Пока пакет открыт, подписчики показа молчат;
+// по закрытию получают одно итоговое число. Предохранитель: пакет не держит показ дольше 3 с, даже если слияние зависло.
+const DISPLAY_BATCH_MAX_MS = 3_000;
+let displayBatchDepth = 0;
+let displayBatchDirty = false;
+const displayEmitters = new Set<() => void>();
+
+function flushDisplayBatch(reason: string): void {
+  if (!displayBatchDirty) return;
+  displayBatchDirty = false;
+  console.log('[COIN-DIVERGENCE] display_batch_flush', JSON.stringify({ reason, displayed: peekDisplayedRunes(), listeners: displayEmitters.size })); // guard-ok: итог пакета показа
+  for (const emit of [...displayEmitters]) emit();
+}
+
+/** Выполнить шаги, меняющие и кошелёк, и ожидающие, так, чтобы показ сменился один раз — уже итоговым числом. */
+export async function runDisplayedRunesBatch<T>(label: string, work: () => Promise<T>): Promise<T> {
+  displayBatchDepth += 1;
+  let released = false;
+  const release = (reason: string): void => {
+    if (released) return;
+    released = true;
+    displayBatchDepth = Math.max(0, displayBatchDepth - 1);
+    if (displayBatchDepth === 0) flushDisplayBatch(reason);
+  };
+  const guard = setTimeout(() => {
+    console.warn('[COIN-DIVERGENCE] display_batch_timeout', JSON.stringify({ label, ms: DISPLAY_BATCH_MAX_MS })); // guard-ok: пакет не держит показ вечно
+    release(`timeout:${label}`);
+  }, DISPLAY_BATCH_MAX_MS);
+  try {
+    return await work();
+  } finally {
+    clearTimeout(guard);
+    release(`done:${label}`);
+  }
+}
+
 /** Подписка на показ монет: меняется и кошелёк, и ожидающие. Рост кошелька гасит ожидающие, которые в нём уже есть. */
 export function subscribeDisplayedRunes(listener: (value: number) => void): () => void {
   const pending = pendingCoins();
-  const emit = (): void => listener(peekDisplayedRunes());
+  const deliver = (): void => listener(peekDisplayedRunes());
+  const emit = (): void => {
+    if (displayBatchDepth > 0) { displayBatchDirty = true; return; }
+    deliver();
+  };
+  displayEmitters.add(deliver);
   const owner = captureAccountGeneration().stableId?.trim();
   if (owner) void pending.hydrateSpirePendingCoins(owner).then(emit);
   const offWallet = subscribeRunesSnapshot((next) => {
@@ -271,5 +351,5 @@ export function subscribeDisplayedRunes(listener: (value: number) => void): () =
     emit();
   });
   const offPending = pending.subscribeSpirePendingCoins(emit);
-  return () => { offWallet(); offPending(); };
+  return () => { displayEmitters.delete(deliver); offWallet(); offPending(); };
 }

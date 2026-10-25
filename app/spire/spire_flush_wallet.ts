@@ -13,6 +13,8 @@ export type SpireFlushWalletDeps = Readonly<{
   merge: (token: AccountGenerationToken, observation: Readonly<{ stars: number; starsSeq: number; serverCreditedDelta?: number }>) => Promise<Readonly<{ balance: number }>>;
   readLocalSeq: (stableId: string) => Promise<number>;
   peekBalance: () => number;
+  /** Пакет показа монет (runes_system.runDisplayedRunesBatch): вливание баланса и гашение ожидающих — одной сменой числа. Нет — без пакета. */
+  batch?: <T>(label: string, work: () => Promise<T>) => Promise<T>;
 }>;
 
 // зачем (координатор 18.10, сторож spire_game_source_contract: префикс [SPIRE] во всех файлах app/spire): журнал ответа — с общим префиксом Пика, метка [MOMENT-REWARD] для поиска награды остаётся
@@ -21,9 +23,10 @@ const isCount = (v: unknown): v is number => typeof v === 'number' && Number.isS
 
 async function defaultDeps(): Promise<SpireFlushWalletDeps> {
   const grants = await import('../level_spin_star_grants');
-  const { peekRunes } = await import('../runes_system');
+  const { peekRunes, runDisplayedRunesBatch } = await import('../runes_system');
   const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
   return {
+    batch: runDisplayedRunesBatch,
     merge: (token, observation) => grants.mergeLevelSpinServerStars(token, observation),
     readLocalSeq: async (stableId) => {
       const raw = await AsyncStorage.getItem(grants.levelSpinStarProjectionKey(stableId));
@@ -53,20 +56,36 @@ export async function mergeSpireFlushWallet(token: AccountGenerationToken, data:
   } catch (error) {
     return log({ merged: false, reason: `deps_failed:${error instanceof Error ? error.message : String(error)}`, balanceBefore: null, balanceAfter: null }, extra);
   }
+  // зачем (координатор 25.10, защита от двойного счёта): кошелёк вливается и ожидающие гаснут внутри одного пакета показа —
+  // сумма переходит из «ожидающих» в кошелёк одним шагом, без прыжка числа на Главной.
+  // [SPIRE] пакет показа — runes_system.runDisplayedRunesBatch
+  const server = { stars: d.stars, starsSeq: d.starsSeq };
+  const work = (): Promise<SpireFlushWalletResult> => mergeInsideBatch(token, d, server, extra, stableId, deps);
+  return deps.batch ? deps.batch('spire_flush', work) : work();
+}
+
+async function mergeInsideBatch(
+  token: AccountGenerationToken,
+  d: Readonly<Record<string, unknown>>,
+  server: Readonly<{ stars: number; starsSeq: number }>,
+  extra: Readonly<Record<string, unknown>>,
+  stableId: string,
+  deps: SpireFlushWalletDeps,
+): Promise<SpireFlushWalletResult> {
   const balanceBefore = deps.peekBalance();
   try {
     const localSeq = await deps.readLocalSeq(stableId);
     // зачем ([PEAK-COINS], контракт Ядра 24.10): «ожидающие» монеты ступеней гасим в том же шаге, где вливаем баланс — цифра не прыгает;
     // older_seq — баланс телефона уже новее и включает их, тоже гасим
     const verdicts = Array.isArray(d.results) ? (d.results as Readonly<{ reportId: string; verdict: string; reason?: string }>[]).filter((r) => r && typeof r.reportId === 'string') : [];
-    if (d.starsSeq <= localSeq) {
+    if (server.starsSeq <= localSeq) {
       settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, balanceBefore);
-      return log({ merged: false, reason: `older_seq:${d.starsSeq}<=${localSeq}`, balanceBefore, balanceAfter: balanceBefore }, extra);
+      return log({ merged: false, reason: `older_seq:${server.starsSeq}<=${localSeq}`, balanceBefore, balanceAfter: balanceBefore }, extra);
     }
     const granted = isCount(d.coinsGranted) ? d.coinsGranted : undefined;
-    const visible = await deps.merge(token, { stars: d.stars, starsSeq: d.starsSeq, ...(granted !== undefined ? { serverCreditedDelta: granted } : {}) });
+    const visible = await deps.merge(token, { stars: server.stars, starsSeq: server.starsSeq, ...(granted !== undefined ? { serverCreditedDelta: granted } : {}) });
     settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, visible.balance);
-    return log({ merged: true, reason: `newer_seq:${d.starsSeq}>${localSeq}`, balanceBefore, balanceAfter: visible.balance }, extra);
+    return log({ merged: true, reason: `newer_seq:${server.starsSeq}>${localSeq}`, balanceBefore, balanceAfter: visible.balance }, extra);
   } catch (error) {
     return log({ merged: false, reason: `merge_failed:${error instanceof Error ? error.message : String(error)}`, balanceBefore, balanceAfter: null }, extra);
   }

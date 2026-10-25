@@ -82,7 +82,7 @@ import {
   readSavedCardsFirstRun,
 } from '../saved_cards_first_run';
 import { getRunesBalance, peekRunes } from '../runes_system';
-import { subscribeDisplayedRunes } from '../runes_system';
+import { noteCoinDisplay, peekDisplayedRunes, subscribeDisplayedRunes } from '../runes_system';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
 // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
@@ -1424,11 +1424,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         }
         void getRunesBalance().then(({ balance }) => {
             const current = mountedRef.current && isCurrentAccountGeneration(token, stableId);
+            // зачем (координатор 25.10, «одно число монет»): чтение с диска — только толчок восстановления (оно публикует проекцию
+            // в снимок); на экран идёт снимок, как у всех плашек. Расхождение диска и снимка пишет runes_system (durable_vs_snapshot).
+            const snapshotStars = peekRunes();
             if (current) {
-                setRunesBalance(balance);
+                setRunesBalance(snapshotStars);
                 setRunesKnown(true);
             }
-            console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'wallet_cache', value: balance, applied: current, hasAccount: stableId.length > 0, generation: token.generation })); // guard-ok: временная трассировка расхождения плашек (координатор 15.10)
+            console.log('[COIN-PILL]', JSON.stringify({ screen: 'home', source: 'durable_read→snapshot', durable: balance, value: snapshotStars, applied: current, hasAccount: stableId.length > 0, generation: token.generation })); // guard-ok: временная трассировка расхождения плашек (координатор 15.10)
         }).catch((error: unknown) => {
             // Первый кадр уже взят из snapshot; durable-сверка может безопасно повториться на focus.
             console.warn('[HOME-COINS] reconcile:failed', error instanceof Error ? error.message : String(error));
@@ -1467,19 +1470,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, [focusTick, homeRuntimeActive, reconcileHomeRunes]);
     // зачем ([PEAK-COINS], координатор 24.10): монеты ступени Пика — на плашке сразу («ожидающие», сервер сверит при досылке очереди);
     // только показ: кошелёк и покупки их не видят. Свой владелец — чужие ожидающие не показываем.
-    const [spirePendingCoins, setSpirePendingCoins] = useState(() => spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim()));
+    // зачем (координатор 25.10, «одно число монет» + без двойного счёта): показ Главной — ОДНО число из одной подписки
+    // (runes_system.peekDisplayedRunes = кошелёк + ожидающие), а не кошелёк и ожидающие двумя подписками: иначе при подтверждении
+    // сервером сумма на миг была и в кошельке, и в ожидающих.
+    const [homeDisplayedCoins, setHomeDisplayedCoins] = useState(() => peekDisplayedRunes());
     // зачем (замер Сверки 24.10: кадр 1,5 с при закрытии ступени; Ревизор: одно число монет): ожидающие идут через общий показ кошелька
     // (runes_system.subscribeDisplayedRunes — он же гасит их по росту баланса), а Главная перерисовывается только когда она на экране:
     // скрытая под Пиком 3000-строчная Главная не должна пересобираться на каждом начислении ступени
     useEffect(() => {
-        const read = () => setSpirePendingCoins(spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim()));
+        const read = () => setHomeDisplayedCoins(peekDisplayedRunes());
         if (!homeRuntimeActive) return undefined;
         read();
         return subscribeDisplayedRunes(read);
     }, [homeRuntimeActive]);
+    // Одно число для обеих плашек Главной (шапка и сцена) — runes_system.peekDisplayedRunes(): кошелёк + ожидающие Пика.
+    const homeShownCoins = homeDisplayedCoins;
     useEffect(() => {
-        if (spirePendingCoins > 0) console.log('[PEAK-COINS]', JSON.stringify({ screen: 'home', pending: spirePendingCoins, shown: runesBalance + spirePendingCoins, wallet: runesBalance })); // guard-ok: что увидел пользователь
-    }, [runesBalance, spirePendingCoins]);
+        const pending = spirePendingCoinsTotal(captureAccountGeneration().stableId?.trim());
+        if (pending > 0) console.log('[PEAK-COINS]', JSON.stringify({ screen: 'home', pending, shown: homeShownCoins, wallet: runesBalance })); // guard-ok: что увидел пользователь
+        if (runesKnown) noteCoinDisplay('home', homeShownCoins);
+    }, [homeShownCoins, runesBalance, runesKnown]);
     // зачем (Ревизор 3.120): аватар 48 dp и значок 20 dp — копия 192² вместо исходника 768² (холодный старт Главной).
     const homeCoinRankSource = isValidCoinRank(myCoinRank) ? coinRankDisplaySource(myCoinRank, STORY_RING_SLOT) : null;
 
@@ -2720,9 +2730,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ) : (
                       <View style={{ width: 20, height: 20, borderRadius: 10, backgroundColor: t.bgSurface2 }} />
                     ),
-                    value: runesKnown ? String(runesBalance) : '—',
+                    // зачем (координатор 25.10, «одно число монет»): плашка шапки показывала кошелёк БЕЗ ожидающих Пика (690), а сцена — с ними (1110)
+                    value: runesKnown ? String(homeShownCoins) : '—',
                     label: homeV2CoinsLabel,
-                    accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? runesBalance : '—'}`,
+                    accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? homeShownCoins : '—'}`,
                     onPress: () => { nav.push('/coin_rank'); },
                     // зачем (эталон «Сцены»: «монеты | ⚡ энергия» в одной плашке): энергия — свой крошечный подписчик, шапку не перерисовывает
                     trailing: tone === 'scene' ? <HomeSceneEnergy /> : undefined,
@@ -2962,7 +2973,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         cardsTileCenter, cardArrivals, dailyPhraseCardVisible, homeOnboardingDone, userName, streak, displayStreak, homeStatsReady, weekDone, weekDotAnimationToken, weekMarkers, weekPoints,
         lastLesson, continueResolved, mistakeAccountGeneration, mistakeReadySnapshot, homeV2Videos, homeV2VideoStatus, homeV2VideoNoChannel, homeFeatureTipsReplayCount, homeFeatureTipIndex,
         homeFeatureTipsDone, homeFeatureTipsHydrated, homeRailRetryTick, userAvatar, userFrame, homeProfilePlayer, profileIntroRequested, titleModalVisible, selectedTitleKey, specialTitleStats,
-        celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance: runesBalance + spirePendingCoins, runesKnown, belowFoldReady,
+        celebrationVisible, celebrationMarker, celebrationVariant, vipCelebrationVisible, vipCelebrationMarker, lessonsCompleted, pageScrollEnabled, runesBalance: homeShownCoins, runesKnown, belowFoldReady,
         overlayActiveKey, rankEnoughVisible: rankEnough.visible, rankEnoughOffer: rankEnough.offer, rankEnoughClose: rankEnough.close,
         goToTab, activeIdx, runtimeOwnerId, focusTick, spireTabEnabled, homePollV2Phase: homePollV2.phase, homePollV2Open, homeSurveyOffered: homeSurvey.row !== null, homeSurveyLaunch: homeSurvey.launch, weekMomentVisible: weekMoment.visible, weekMomentDecision: weekMoment.decision, welcomeBackVisible: welcomeBack.visible, welcomeBackDecision: welcomeBack.decision, appSnapshot, isPremium, isVip, isPro, hasPremiumAccess,
         celebrationOverlayVisible, vipCelebrationOverlayVisible, shadowGlass, topFadeScroll, homeFeatureTips,

@@ -21,7 +21,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { FlowText } from '../components/text-integrity/FlowText';
-import { peekDisplayedRunes, peekRunesBalance, subscribeDisplayedRunes, subscribeRunesBalance } from './runes_system';
+import { noteCoinDisplay, peekDisplayedRunes, peekRunesBalance, subscribeDisplayedRunes, subscribeRunesBalance } from './runes_system';
 import RuneGlyph from '../components/RuneGlyph';
 import SheetSwipeClose from '../components/modal_fx/SheetSwipeClose';
 import {
@@ -241,6 +241,7 @@ function ShopScreenImpl() {
   // хватает ли на покупку — по тратимому балансу `runes`, ожидающие потратить нельзя
   const [shownRunes, setShownRunes] = useState(() => peekDisplayedRunes());
   useEffect(() => subscribeDisplayedRunes(setShownRunes), []);
+  useEffect(() => { noteCoinDisplay('shop', shownRunes); }, [shownRunes]);
   useEffect(() => () => {
     if (noticeTimer.current) clearTimeout(noticeTimer.current);
   }, []);

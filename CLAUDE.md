@@ -530,3 +530,14 @@ accessors (the seam for the planned server-side content delivery). Guarded by
 `tests/perf_freeze_contract.test.ts` and `tests/layout_stability_contract.test.ts`
 (+ baseline `config/layout-stability-baseline.json`, may only shrink) — never weaken
 the guards to make a feature pass; extend allowlists only consciously.
+
+## Ответы поддержки: покупка Plus — только через Telegram-бот (ЗАМОК ВЛАДЕЛЬЦА 25.10)
+
+Если человек пишет, что не знает, как купить / оплатить / оформить Plus (Premium), или спрашивает
+про Plus из России, — ответ ВСЕГДА: воспользоваться нашим Telegram-ботом **@PhrasemanPremiumBot**
+(https://t.me/PhrasemanPremiumBot), он покажет способы оплаты, в том числе из России.
+Не писать «оформляется в приложении через App Store / Google Play» — такой черновик владелец отклонил.
+Возврат денег, двойное списание и «оплатил, а доступа нет» — НЕ сюда, это разбор покупки.
+Правило в коде: `functions/src/support_auto_reply_policy.ts` → `isPremiumAlternativePaymentQuestion`
++ `buildPremiumAlternativePaymentReply` (сторож `support_auto_reply_policy.test.ts`). Любая сессия,
+пишущая черновики ответов поддержки (в том числе вручную, в docs/work/support), следует этому правилу.

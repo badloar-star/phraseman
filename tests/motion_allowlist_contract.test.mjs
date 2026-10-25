@@ -38,6 +38,9 @@ const ALLOWED = {
   'components/LearningV2MapNode.tsx': [1, 'хвост PM-032: ореол узла карты'],
   // зачем (владелец 15.10, m16 «звонок» — эталон v3 одобрен 14.10): идёт входящий звонок — кольца и пульс «Ответить», пока звонок на экране; гейт фокуса и AppState (useRuntimeActive), при «уменьшить движение» статично
   'components/dialogs/DialogueIncomingCall.tsx': [2, 'идёт входящий звонок (m16): кольца и пульс «Ответить», гейт useRuntimeActive'],
+  // зачем (Ревизор 25.10, e9fa41f24 «объявления в историях»): медленное дыхание фона объявления, пока история на экране;
+  // стоит при удержании (владелец 24.10 «удержание = пауза»), при reduceMotion и вне экрана (useRuntimeActive)
+  'components/stories/AnnouncementSlide.tsx': [1, 'фон объявления в открытой истории: пауза при удержании, reduceMotion, гейт useRuntimeActive'],
 };
 
 function walk(dir, out) {

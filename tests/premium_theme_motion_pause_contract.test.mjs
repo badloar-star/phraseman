@@ -36,7 +36,11 @@ test('ворота: Главная на виду + фокус + приложен
 test('WebGL — только по удалённому флагу, по умолчанию выключен и принимается из облака', () => {
   assert.match(flags, /\| 'premium_theme_webgl_motion_enabled'/);
   assert.match(flags, /premium_theme_webgl_motion_enabled: false,/);
-  assert.match(flags, /'learning_cant_speak_enabled', 'premium_theme_webgl_motion_enabled',/);
+  // зачем (Ревизор 25.10 по 85a2c512e): проверяем, что флаг в списке принимаемых из облака, а не соседство ключей — новые флаги
+  // вставляются в тот же список и порядок не важен
+  const allowedBools = flags.match(/const allowedBools = new Set<RemoteBoolKey>\(\[([\s\S]*?)\]\);/);
+  assert.ok(allowedBools, 'allowedBools list found');
+  assert.ok(allowedBools[1].includes("'premium_theme_webgl_motion_enabled'"), 'webgl flag accepted from cloud');
   assert.match(source, /const shader = webglAllowed \? WEBGL_THEMES\.get\(themeId\) : undefined;/);
   assert.match(source, /onAppEvent\('remote_config_changed'/);
 });

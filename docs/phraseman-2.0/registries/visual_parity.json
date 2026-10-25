@@ -48930,6 +48930,777 @@
       "status": "pending",
       "release": "r1",
       "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "exam-season-001",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 1,
+        "label": "Экзамен доступен",
+        "mapping": "label_match"
+      },
+      "screen": "Сезон · карточка экзамена",
+      "state": "Сезон · карточка экзамена · Экзамен доступен",
+      "code": [
+        "components/learning-v2/season/SeasonExpandedCard.tsx",
+        "components/learning-v2/season/SeasonCardFace.tsx",
+        "components/learning-v2/season/season_exam_caption.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-002",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 2,
+        "label": "Не сдал: пауза на час",
+        "mapping": "label_match"
+      },
+      "screen": "Сезон · карточка экзамена",
+      "state": "Сезон · карточка экзамена · Не сдал: пауза на час",
+      "code": [
+        "components/learning-v2/season/SeasonExpandedCard.tsx",
+        "components/learning-v2/season/SeasonCardFace.tsx",
+        "components/learning-v2/season/season_exam_caption.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-003",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 3,
+        "label": "Сдал: глава 3 открыта",
+        "mapping": "label_match"
+      },
+      "screen": "Сезон · карточка экзамена",
+      "state": "Сезон · карточка экзамена · Сдал: глава 3 открыта",
+      "code": [
+        "components/learning-v2/season/SeasonExpandedCard.tsx",
+        "components/learning-v2/season/SeasonCardFace.tsx",
+        "components/learning-v2/season/season_exam_caption.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-004",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 4,
+        "label": "Free",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · окно перед стартом",
+      "state": "Экзамен главы · окно перед стартом · Free",
+      "code": [
+        "components/learning-v2/LearningV2ChapterExamSheet.tsx",
+        "components/learning-v2/season/SeasonCourseConnected.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-005",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 5,
+        "label": "Plus",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · окно перед стартом",
+      "state": "Экзамен главы · окно перед стартом · Plus",
+      "code": [
+        "components/learning-v2/LearningV2ChapterExamSheet.tsx",
+        "components/learning-v2/season/SeasonCourseConnected.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-006",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 6,
+        "label": "Сдан",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · окно на карточке",
+      "state": "Экзамен главы · окно на карточке · Сдан",
+      "code": [
+        "components/learning-v2/season/SeasonCourse.tsx",
+        "components/learning-v2/season/SeasonExpandedCard.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Окно «сдан / пауза» владелец утвердил позже на настоящих снимках — exam-window-real.html (7fa5a5786); при сверке смотреть его, номера телефонов там без .col."
+    },
+    {
+      "id": "exam-season-007",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 7,
+        "label": "Пауза · пересдача через час",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · окно на карточке",
+      "state": "Экзамен главы · окно на карточке · Пауза · пересдача через час",
+      "code": [
+        "components/learning-v2/season/SeasonCourse.tsx",
+        "components/learning-v2/season/SeasonExpandedCard.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Окно «сдан / пауза» владелец утвердил позже на настоящих снимках — exam-window-real.html (7fa5a5786); при сверке смотреть его, номера телефонов там без .col."
+    },
+    {
+      "id": "exam-season-008",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 8,
+        "label": "Вопрос 1 · Собери фразу",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · вопросы",
+      "state": "Экзамен главы · вопросы · Вопрос 1 · Собери фразу",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/LearningV2ChapterExamResult.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прежний экзамен — для глав без банка v2 (isChapterExamV2EnabledFor: банки v2 только у урока 1, главы 1–3; у них эталон — chapter-exam-v2-prototype.html, строк пока нет)."
+    },
+    {
+      "id": "exam-season-009",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 9,
+        "label": "Вопрос 4 · верно",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · вопросы",
+      "state": "Экзамен главы · вопросы · Вопрос 4 · верно",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/LearningV2ChapterExamResult.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прежний экзамен — для глав без банка v2 (isChapterExamV2EnabledFor: банки v2 только у урока 1, главы 1–3; у них эталон — chapter-exam-v2-prototype.html, строк пока нет)."
+    },
+    {
+      "id": "exam-season-010",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 10,
+        "label": "Вопрос 7 · неверно",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · вопросы",
+      "state": "Экзамен главы · вопросы · Вопрос 7 · неверно",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/LearningV2ChapterExamResult.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прежний экзамен — для глав без банка v2 (isChapterExamV2EnabledFor: банки v2 только у урока 1, главы 1–3; у них эталон — chapter-exam-v2-prototype.html, строк пока нет)."
+    },
+    {
+      "id": "exam-season-011",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 11,
+        "label": "Сдал",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · итог",
+      "state": "Экзамен главы · итог · Сдал",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/LearningV2ChapterExamResult.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прежний экзамен — для глав без банка v2 (isChapterExamV2EnabledFor: банки v2 только у урока 1, главы 1–3; у них эталон — chapter-exam-v2-prototype.html, строк пока нет)."
+    },
+    {
+      "id": "exam-season-012",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 12,
+        "label": "Не сдал",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · итог",
+      "state": "Экзамен главы · итог · Не сдал",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/LearningV2ChapterExamResult.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прежний экзамен — для глав без банка v2 (isChapterExamV2EnabledFor: банки v2 только у урока 1, главы 1–3; у них эталон — chapter-exam-v2-prototype.html, строк пока нет)."
+    },
+    {
+      "id": "exam-season-013",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 13,
+        "label": "Разбор",
+        "mapping": "label_match"
+      },
+      "screen": "Экзамен главы · разбор ошибок",
+      "state": "Экзамен главы · разбор ошибок · Разбор",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/LearningV2ChapterExamResult.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прежний экзамен — для глав без банка v2 (isChapterExamV2EnabledFor: банки v2 только у урока 1, главы 1–3; у них эталон — chapter-exam-v2-prototype.html, строк пока нет)."
+    },
+    {
+      "id": "exam-season-014",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 14,
+        "label": "Обложка: вход в тест",
+        "mapping": "label_match"
+      },
+      "screen": "Тест-распределение «Не хочу с начала»",
+      "state": "Тест-распределение «Не хочу с начала» · Обложка: вход в тест",
+      "code": [
+        "app/learning_v2_placement.tsx",
+        "components/learning-v2/placement/PlacementChrome.tsx",
+        "components/learning-v2/placement/PlacementStartView.tsx",
+        "components/learning-v2/placement/PlacementResultView.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-015",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 15,
+        "label": "Старт теста",
+        "mapping": "label_match"
+      },
+      "screen": "Тест-распределение «Не хочу с начала»",
+      "state": "Тест-распределение «Не хочу с начала» · Старт теста",
+      "code": [
+        "app/learning_v2_placement.tsx",
+        "components/learning-v2/placement/PlacementChrome.tsx",
+        "components/learning-v2/placement/PlacementStartView.tsx",
+        "components/learning-v2/placement/PlacementResultView.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-016",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 16,
+        "label": "Вопрос по теме урока",
+        "mapping": "label_match"
+      },
+      "screen": "Тест-распределение «Не хочу с начала»",
+      "state": "Тест-распределение «Не хочу с начала» · Вопрос по теме урока",
+      "code": [
+        "app/learning_v2_placement.tsx",
+        "components/learning-v2/placement/PlacementChrome.tsx",
+        "components/learning-v2/placement/PlacementStartView.tsx",
+        "components/learning-v2/placement/PlacementResultView.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "exam-season-017",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-season.html",
+        "phone": 17,
+        "label": "Итог",
+        "mapping": "label_match"
+      },
+      "screen": "Тест-распределение «Не хочу с начала»",
+      "state": "Тест-распределение «Не хочу с начала» · Итог",
+      "code": [
+        "app/learning_v2_placement.tsx",
+        "components/learning-v2/placement/PlacementChrome.tsx",
+        "components/learning-v2/placement/PlacementStartView.tsx",
+        "components/learning-v2/placement/PlacementResultView.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "friends-duel-001",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/friends-full.html",
+        "phone": 31,
+        "label": "Фраза 2 из 5",
+        "mapping": "label_match"
+      },
+      "screen": "Друзья · дуэль на 5 фраз",
+      "state": "Дуэль · Фраза 2 из 5",
+      "code": [
+        "app/friends_duel.tsx",
+        "components/friends_together/DuelPlayTopBar.tsx",
+        "components/friends_together/DuelPhraseBoard.tsx",
+        "components/friends_together/FriendDuelResultView.tsx",
+        "components/friends_together/DuelVersus.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "friends-duel-002",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/friends-full.html",
+        "phone": 32,
+        "label": "Верно",
+        "mapping": "label_match"
+      },
+      "screen": "Друзья · дуэль на 5 фраз",
+      "state": "Дуэль · Верно",
+      "code": [
+        "app/friends_duel.tsx",
+        "components/friends_together/DuelPlayTopBar.tsx",
+        "components/friends_together/DuelPhraseBoard.tsx",
+        "components/friends_together/FriendDuelResultView.tsx",
+        "components/friends_together/DuelVersus.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "friends-duel-003",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/friends-full.html",
+        "phone": 33,
+        "label": "Ход отправлен",
+        "mapping": "label_match"
+      },
+      "screen": "Друзья · дуэль на 5 фраз",
+      "state": "Дуэль · Ход отправлен",
+      "code": [
+        "app/friends_duel.tsx",
+        "components/friends_together/DuelPlayTopBar.tsx",
+        "components/friends_together/DuelPhraseBoard.tsx",
+        "components/friends_together/FriendDuelResultView.tsx",
+        "components/friends_together/DuelVersus.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "friends-duel-004",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/friends-full.html",
+        "phone": 35,
+        "label": "Победа",
+        "mapping": "label_match"
+      },
+      "screen": "Друзья · дуэль на 5 фраз",
+      "state": "Дуэль · Победа",
+      "code": [
+        "app/friends_duel.tsx",
+        "components/friends_together/DuelPlayTopBar.tsx",
+        "components/friends_together/DuelPhraseBoard.tsx",
+        "components/friends_together/FriendDuelResultView.tsx",
+        "components/friends_together/DuelVersus.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "friends-duel-005",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/friends-full.html",
+        "phone": 36,
+        "label": "Поражение",
+        "mapping": "label_match"
+      },
+      "screen": "Друзья · дуэль на 5 фраз",
+      "state": "Дуэль · Поражение",
+      "code": [
+        "app/friends_duel.tsx",
+        "components/friends_together/DuelPlayTopBar.tsx",
+        "components/friends_together/DuelPhraseBoard.tsx",
+        "components/friends_together/FriendDuelResultView.tsx",
+        "components/friends_together/DuelVersus.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1"
+    },
+    {
+      "id": "dialogs-hub-v4-006",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs-hub-v4.html",
+        "phone": 6,
+        "label": "6 · Раскрытый мир",
+        "mapping": "ph_index"
+      },
+      "screen": "Диалоги · тема (мир)",
+      "state": "Тема «Поездки» — раскрытый мир",
+      "code": [
+        "app/dialogue_v2_theme.tsx",
+        "components/dialogs/hub/DialogueV2ThemeScreen.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "В dialogs-hub-v4.html нет .col — телефон = 6-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
     }
   ]
 }

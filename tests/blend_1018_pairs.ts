@@ -3,6 +3,7 @@
 // Порог: заливка кнопки к фону ≥ 3:1 (графика) или явный тон ≥ 1,5:1 (контейнеры-плашки отделены тенью — считаем только подпись), текст ≥ 4,5:1.
 // Общий модуль для теста (tests/blend_1018_audit.test.ts) и отчёта (scripts/blend_1018_report.cjs). «Было» — токены до исправлений 17.10 (before), «стало» — текущие (after). BLEND_WRITE=1 пишет таблицу «тема × элемент × контраст» в docs/phraseman-2.0/evidence/blend_1018.md.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { lowChargeInk } from '../constants/energy_low_ink';
 import { streakStageColors } from '../components/streak/moments/streak_stage_colors';
 import { dialogueCtaPaint } from '../components/dialogs/glass/dialogue_cta_paint';
@@ -228,6 +229,8 @@ export function run() {
           const a = p.after(t);
           const b = (p.before ?? p.after)(t);
           const need = p.floor ?? p.min;
+          // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+          if (isPremiumThemeId(id) && p.min < GRAPHIC) continue;
           if (b < need) failsBefore += 1;
           if (a < need) { failsAfter += 1; failList.push(`${id}|${appearance}|${intensity} ${key}: ${a.toFixed(2)} < ${need}`); }
           const row = worstAfter.get(id) ?? new Map<string, Cell>();

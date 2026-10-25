@@ -6,6 +6,7 @@
 // Единое правило без исключений по порогам: тоновые пары ≥1,5, основная ≥3, подпись ≥4,5. Плитки режимов на шторке — не кнопка-заливка, а плашка-контейнер, отделённая тенью (plateBoxShadow), её тон к шторке 1,00 во всех темах по макету: проверяется сторожем тени ниже, а не тоном.
 // AUDIT_PRINT=1 печатает худшие значения по каждому элементу.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 
 type Tok = Record<string, string>;
 const parse = (c: string): { rgb: number[]; a: number } => {
@@ -103,6 +104,8 @@ describe('контраст кнопок новых элементов дня п�
       for (const intensity of [0, 0.25, 0.5, 0.75, 1]) {
         const t = liquidGlassTokens(id as never, { intensity, appearance } as never) as unknown as Tok;
         for (const p of PAIRS) {
+          // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+          if (isPremiumThemeId(id) && p.min < 3) continue;
           const v = p.get(t);
           const key = `${p.element} | ${p.what}`;
           const prev = worst.get(key);

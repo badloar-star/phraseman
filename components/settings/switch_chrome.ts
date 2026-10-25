@@ -5,9 +5,24 @@ const SWITCH_KNOB_LIGHT = '#FFFFFF'; // theme-exempt: бегунок перек�
 // (контраст 1.1–1.3:1), а кромка glassEdge в светлой — 12 % чёрного, то есть тоже невидима. В светлой кромка дорожки берётся из
 // secondary (6.6:1) с прозрачностью 65 % — около 3:1 к карточке, как требует контраст границы элемента управления; в тёмной —
 // прежняя glassEdge (кит .switch: border 1 px var(--line-2)). Ручка и включённая дорожка не менялись.
-export function switchTrackBorder(glass: Readonly<{ isLight?: boolean; glassEdge: string; secondary: string }>): string {
-  return glass.isLight ? `${glass.secondary.slice(0, 7)}A6` : glass.glassEdge;
+// зачем (Ревизор 25.10, OWNER_DECISIONS 25.10 ~07:20 «рамку переключателя у титана чинить тоном»): у премиум-титана в светлом secondary 65 % давал 2,85 к карточке —
+// если 65 % не держит ≥ 3, прозрачность снижается до той, что держит (тот же тон, пигменты коллекции не меняются)
+export function switchTrackBorder(glass: Readonly<{ isLight?: boolean; glassEdge: string; secondary: string; opaqueCard?: string }>): string {
+  if (!glass.isLight) return glass.glassEdge;
+  const base = glass.secondary.slice(0, 7);
+  const card = glass.opaqueCard?.slice(0, 7);
+  if (!card) return `${base}A6`;
+  for (let alpha = 0xA6; alpha < 0xFF; alpha += 0x08) {
+    const hex = alpha.toString(16).toUpperCase().padStart(2, '0');
+    if (colorContrast(blendOver(base, card, alpha / 255), card) >= 3) return `${base}${hex}`;
+  }
+  return base;
 }
+
+const blendOver = (fg: string, bg: string, a: number): string => {
+  const ch = (h: string, i: number): number => Number.parseInt(h.slice(1 + i * 2, 3 + i * 2), 16);
+  return `#${[0, 1, 2].map((i) => Math.round(ch(fg, i) * a + ch(bg, i) * (1 - a)).toString(16).padStart(2, '0')).join('')}`;
+};
 
 // зачем (координатор 12.10, стиль «Тень»: контейнеры без обводок): в «Настройках обучения» дорожка выключенного переключателя отделяется
 // ТОНОМ, а не кромкой. В светлой теме заливка — secondary 65 % (≈3:1 к карточке, как у прежней кромки), ручка белая, чтобы читалась на тёмной

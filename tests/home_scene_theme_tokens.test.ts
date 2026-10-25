@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 
 import { LIQUID_GLASS_THEME_IDS, getActiveLiquidGlassVariant, liquidGlassTokens, setActiveLiquidGlassVariant } from "../constants/liquidGlassThemePalette";
+import { isPremiumThemeId } from "../app/premium_theme_catalog";
 import {
   HOME_SCENE_MIN_WHITE_CONTRAST, HOME_SCENE_SEAM_MIN, HOME_SCENE_THEME_LEVEL, HOME_SCENE_TWILIGHT_THEME_ID, homeSceneThemeTokens, homeSceneTokensForTheme,
 } from "../components/home/v2/scene/home_scene_tokens";
@@ -60,8 +61,10 @@ async function main(): Promise<void> {
   assert.equal(LIQUID_GLASS_THEME_IDS.length, 29, "в приложении 29 тем");
   assert.equal(HOME_SCENE_TWILIGHT_THEME_ID, "ink", "«Сумерки» — ink");
 
-  // ── код = формула эталона: 23 темы × 2 оформления × день/вечер, токены уровня эталона (max) ──
-  for (const id of LIQUID_GLASS_THEME_IDS) {
+  // ── код = формула эталона: 23 обычные темы × 2 оформления × день/вечер, токены уровня эталона (max) ──
+  // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»):
+  // сцену премиум-темы задаёт сама коллекция, а не формула эталона; белый текст и шов ниже меряются во всех 29 темах
+  for (const id of LIQUID_GLASS_THEME_IDS.filter((x) => !isPremiumThemeId(x))) {
     for (const ap of ["dark", "light"] as const) {
       const theme = liquidGlassTokens(id, { level: "max", appearance: ap });
       const ref = sceneTok(id, ap, theme);
@@ -85,7 +88,8 @@ async function main(): Promise<void> {
         for (const evening of [false, true]) {
           const k = homeSceneThemeTokens({ themeId: id, appearance: ap, theme }, evening);
           const tag = `${level}/${id}/${ap}${evening ? "/вечер" : ""}`;
-          if (ap === "dark") assert.ok(k.seam >= HOME_SCENE_SEAM_MIN, `${tag}: шов ${k.seam.toFixed(3)} < ${HOME_SCENE_SEAM_MIN}`);
+          // шов — тон сцены к странице: у премиум-тем его задаёт коллекция (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»)
+          if (ap === "dark" && !isPremiumThemeId(id)) assert.ok(k.seam >= HOME_SCENE_SEAM_MIN, `${tag}: шов ${k.seam.toFixed(3)} < ${HOME_SCENE_SEAM_MIN}`);
           assert.ok(k.whiteContrastTop >= HOME_SCENE_MIN_WHITE_CONTRAST, `${tag}: белый на верхе сцены ${k.whiteContrastTop.toFixed(2)}`);
         }
       }

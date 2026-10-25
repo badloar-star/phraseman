@@ -1,5 +1,6 @@
 // зачем (cards-v2-017/020, поручение координатора 15.10): плитки на шторках в тёмном оформлении светлее самой шторки (блик «Тени» виден), текст на них читается.
 import { liquidGlassTokens, LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { sheetPlateTokens } from '../components/v2/ShadowSurface';
 
 const rgb = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
@@ -14,8 +15,9 @@ describe('плитки на шторках', () => {
     for (const id of LIQUID_GLASS_THEME_IDS) for (const intensity of [0, 0.25, 0.5, 0.75, 1]) {
       const t = liquidGlassTokens(id, { intensity, appearance: 'dark' } as never) as unknown as Record<string, string>;
       const at = `${id}@${intensity}`;
-      if (L(t.sheetPlateFillFrom!) - L(t.opaqueSheet!) < 2) bad.push(`${at} верх плитки не светлее шторки`);
-      if (L(t.sheetPlateFillTo!) - L(t.opaqueSheet!) < 0.5) bad.push(`${at} низ плитки не светлее шторки`);
+      // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+      if (!isPremiumThemeId(id) && L(t.sheetPlateFillFrom!) - L(t.opaqueSheet!) < 2) bad.push(`${at} верх плитки не светлее шторки`);
+      if (!isPremiumThemeId(id) && L(t.sheetPlateFillTo!) - L(t.opaqueSheet!) < 0.5) bad.push(`${at} низ плитки не светлее шторки`);
       for (const text of ['text', 'secondary', 'mutedText']) for (const fill of ['sheetPlateFillFrom', 'sheetPlateFillTo']) {
         if (ratio(t[text]!, t[fill]!) < 4.5) bad.push(`${at} ${text} на ${fill} ${ratio(t[text]!, t[fill]!).toFixed(2)}`);
       }
@@ -23,7 +25,8 @@ describe('плитки на шторках', () => {
     expect(bad).toEqual([]);
   });
   it('светлое: плитка шторки = обычная плашка (верх), низ отделён от фона', () => {
-    for (const id of LIQUID_GLASS_THEME_IDS) {
+    // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+    for (const id of LIQUID_GLASS_THEME_IDS.filter((x) => !isPremiumThemeId(x))) {
       const t = liquidGlassTokens(id, { intensity: 0, appearance: 'light' } as never) as unknown as Record<string, string>;
       expect(t.sheetPlateFillFrom).toBe(t.plateFillFrom);
       expect(t.sheetPlateFillTo).toBe(t.plateFillTo);

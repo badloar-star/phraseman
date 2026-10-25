@@ -2,6 +2,7 @@
 // (23 темы × тёмная/светлая × насыщенность 0/0,5/1). Пороги правила владельца: текст ≥ 4,5, значок/графика/заливка кнопки ≥ 3, тон плашки ≥ 1,5.
 // Поверхности и токены — как в коде (пути в подписях). Печатает таблицу худших значений; проверка — без провалов.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { lowChargeInk } from '../constants/energy_low_ink';
 
 type Rgb = [number, number, number];
@@ -69,6 +70,8 @@ describe('[BLEND-1018B] новые элементы 18.10 — все 138 соч�
     let worst = 99; let where = '';
     for (const appearance of ['dark', 'light'] as const) for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) for (const intensity of [0, 0.5, 1]) {
       const t = liquidGlassTokens(id as never, { appearance, intensity } as never) as unknown as T;
+      // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+      if (isPremiumThemeId(id) && pair.min < GRAPHIC) continue;
       const v = pair.v(t);
       if (v < worst) { worst = v; where = `${id}@${intensity} ${appearance}`; }
       if (v < pair.min) fails.push(`${pair.el} · ${pair.what}: ${v.toFixed(2)} (${id}@${intensity} ${appearance})`);

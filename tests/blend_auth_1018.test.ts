@@ -2,6 +2,7 @@
 // тем (23 × тёмная/светлая × насыщенность 0/0,5/1). Пороги правила владельца: текст ≥ 4,5, значок/заливка кнопки ≥ 3, тон панели/вторичной кнопки ≥ 1,5.
 // Поверхности: окно входа, удаление, выход — opaqueSheet; «Аккаунт» — фон экрана и плашка plateFillFrom; онбординг (вход/согласия) — bgTop/bg/bgBottom.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens, makeLiquidGlassTheme } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { DARK } from '../constants/theme';
 import { googleButtonPaintForSurface } from '../components/auth_google_button_style';
 import { deleteButtonPaint } from '../components/account/delete_button_paint';
@@ -73,6 +74,8 @@ describe('[BLEND-AUTH] экраны входа и аккаунта — все 13
       const variant = { appearance, intensity } as never;
       const g = liquidGlassTokens(id as never, variant) as unknown as T;
       const t = makeLiquidGlassTheme(id as never, DARK as never, variant) as unknown as T;
+      // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+      if (isPremiumThemeId(id) && pair.min < GRAPHIC) continue;
       const v = pair.v({ g, t });
       if (v < worst) { worst = v; where = `${id}@${intensity} ${appearance}`; }
       if (v < pair.min && !pair.el.startsWith('ℹ')) fails.push(`${pair.el} · ${pair.what}`);

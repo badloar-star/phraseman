@@ -1,4 +1,5 @@
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
 import {
   RAISED_LIFT,
@@ -32,7 +33,8 @@ describe('стиль «Тень»: токены без обводок', () => {
           }
           const top = paletteContrast(g.plateFillFrom, solid(g.bg));
           const bottom = paletteContrast(g.plateFillTo, solid(g.bg));
-          if (appearance === 'dark') {
+          // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и валидность токенов — во всех 29
+          if (isPremiumThemeId(id)) { /* тон премиум-коллекции не меряется здесь */ } else if (appearance === 'dark') {
             if (top < 1.15) bad.push(`плашка/фон сверху ${where}=${top.toFixed(3)}<1.15`);
             if (bottom < 1.05) bad.push(`плашка/фон снизу ${where}=${bottom.toFixed(3)}<1.05`);
             const lift = paletteContrast(g.raisedFillFrom, g.plateFillFrom);

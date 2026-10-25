@@ -6,7 +6,8 @@ import { deriveLiquidGlassSurfaceRoles, mixSurfaceHex } from '../constants/liqui
 // и тексты на карточках темы читаются (≥ 4.5 основной, ≥ 3 приглушённый) — на экранах Карточек, Ошибок, Видео, Монет, Результатов.
 const ROLE_KEYS = ['deepBase', 'deepBaseAlt', 'mediaScrim', 'mediaInk', 'mediaInkSoft', 'bevelHi', 'bevelLo', 'dropShadow', 'hairlineSoft'] as const;
 const STEPS = Array.from({ length: 21 }, (_, i) => i / 20);
-const COLOR = /^(#[0-9A-F]{6}([0-9A-F]{2})?|rgba?\([0-9., ]+\))$/;
+// зачем (Ревизор 25.10): пигменты премиум-коллекции Codex записаны hex строчными (#333d20) и сверяются пакетом буква в букву — регистр цвет не меняет
+const COLOR = /^(#[0-9A-F]{6}([0-9A-F]{2})?|rgba?\([0-9., ]+\))$/i;
 const solid = (hex: string) => hex.slice(0, 7);
 
 describe('theme surface role tokens', () => {

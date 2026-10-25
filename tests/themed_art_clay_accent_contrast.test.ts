@@ -1,6 +1,7 @@
 // зачем ([R1-PAGE] координатор 15.10, стиль S2 «Глина»): слой .accent красится в accent (с 15.10; раньше accentBright) поверх глины — графитовой (dark ≈ #34343A) и светлой (light ≈ #ECE9E3).
 // Деталь не должна сливаться с глиной ни в одной из 23 тем на трёх уровнях насыщенности. Замер 15.10: минимум 6,71 (dark) и 3,89 (light); порог — 1,8 координатора, держим 3,0 с запасом.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { artAccentTint } from '../components/theme/art_tint';
 
 const CLAY = { dark: '#34343A', light: '#ECE9E3' } as const;
@@ -48,7 +49,8 @@ describe('насыщенность цветной детали: accent вмес�
   it('уровень 0 «Спокойно» нейтрален: у всех тем в тёмном и светлом chroma accent ≤ 0,07', () => {
     const loud: string[] = [];
     for (const appearance of ['dark', 'light'] as const) {
-      for (const id of LIQUID_GLASS_THEME_IDS) {
+      // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+      for (const id of LIQUID_GLASS_THEME_IDS.filter((x) => !isPremiumThemeId(x))) {
         const accent = liquidGlassTokens(id, { level: 'calm', appearance, intensity: 0 }).accent;
         const chroma = toChroma(accent.slice(0, 7));
         if (chroma > 0.07) loud.push(`${id} ${appearance}: ${accent} C${chroma.toFixed(3)}`);

@@ -239,7 +239,8 @@ const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, 
             </FlowText>
           </View>
           <View style={[styles.progressTrack, { backgroundColor: glass.glassEdge }]}>
-            <View style={[styles.progressFill, { backgroundColor: glass.accentBorder, width: `${percent}%` as `${number}%` }]} />
+            {/* зачем (Ревизор 25.10, light_accent_graphics deep): полоса прогресса условия — графика темы, accentGraphic (в тёмном = accent, в светлом видна ≥ 3,2) */}
+            <View style={[styles.progressFill, { backgroundColor: glass.accentGraphic, width: `${percent}%` as `${number}%` }]} />
           </View>
         </View>
       ) : null}

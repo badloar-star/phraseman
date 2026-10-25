@@ -1,6 +1,7 @@
 // зачем (владелец 13.10, №35: «НИКАКИЕ КНОПКИ ВООБЩЕ ЧТОБЫ НЕ СЛИВАЛИСЬ»): токены кнопок читаются на любой поверхности в каждой из 23 тем,
 // светлом и тёмном оформлении и на всех пяти шагах ползунка: вторичная заливка отличима от фона/карточки/шторки, подписи читаются, отключённая отличима от вторичной.
 import fs from 'node:fs';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import path from 'node:path';
 
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
@@ -79,7 +80,8 @@ describe('токены кнопок × все темы', () => {
   });
   it('в светлых цветных градиентных темах (акцент/максимум) вторичная кнопка несёт тон темы (цветность ≥ 0,035) и заметно отличается от отключённой (≥ 1,25)', () => {
     const wrong: string[] = [];
-    for (const id of (LIQUID_GLASS_THEME_IDS as readonly string[]).filter((x) => x.startsWith('grad_'))) {
+    // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»: пигменты коллекции Codex — замок 24.10 + слово владельца 25.10 «как у Кодекса»): тон меряется на 23 обычных темах, премиум-темы — контрактом tests/premium_themes_contrast.test.ts; текст и графика — во всех 29
+    for (const id of (LIQUID_GLASS_THEME_IDS as readonly string[]).filter((x) => x.startsWith('grad_') && !isPremiumThemeId(x))) {
       for (const appearance of ['light'] as const) { // светлое оформление: там поверхность кнопки была нейтрально-серой; тёмные градиенты уже несут тон
         for (const intensity of [0.5, 0.75, 1]) {
           const t = liquidGlassTokens(id, { intensity, appearance } as never) as unknown as Tok;

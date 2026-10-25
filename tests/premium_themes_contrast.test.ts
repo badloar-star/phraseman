@@ -34,7 +34,15 @@ describe('премиум-темы: контраст как у всех тем', 
           }
           check('«верно» на своей плитке', g.good, flattenOver(g.goodSoft, g.opaqueCard), 4.5);
           check('значок Plus / галочка на акценте', g.accentInk, g.accent, 4.5);
-          if (g.bg !== pig.bg || g.opaqueCard !== pig.opaqueCard) misses.push(`${tag} · пигменты коллекции изменены`);
+          // регистр hex не меняет цвет: токены тем — заглавными (theme_surface_roles)
+          if (g.bg.toLowerCase() !== pig.bg.toLowerCase() || g.opaqueCard.toLowerCase() !== pig.opaqueCard.toLowerCase()) misses.push(`${tag} · пигменты коллекции изменены`);
+          // зачем (OWNER_DECISIONS 25.10 «тон поверхностей — вариант 2»): тон-сторожа меряют 23 обычные темы, а премиум-темы — этим контрактом;
+          // читаемость строгая: текст, вторичный и приглушённый ≥ 4,5 на КАЖДОЙ поверхности коллекции
+          for (const surf of ['bg', 'bgTop', 'bgBottom', 'opaqueSheet', 'plateFillFrom', 'plateFillTo', 'sheetPlateFillFrom', 'sheetPlateFillTo', 'raisedFillFrom', 'raisedFillTo'] as const) {
+            const s = (g as unknown as Record<string, string>)[surf];
+            if (!s || !/^#[0-9a-f]{6}/i.test(s)) continue;
+            for (const ink of ['text', 'secondary', 'mutedText'] as const) check(`${ink} на ${surf}`, g[ink], s.slice(0, 7), 4.5);
+          }
         }
       }
     }

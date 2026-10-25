@@ -329,12 +329,12 @@ tsc app + functions → node --test → jest 11 частей по 300 файло
 a46ffc324 · fafa387da · 1a853b34c · eb3dddbe7 · 02962b8f1 · 9f1cb43e2 · d4d0f6818 · 071cedeb0 · e3a3372c8 (отпечаток SpeakingPanel) ·
 4c72a6923 · aab6e3eaa · db333a336 · ee7e44404 · d9b873759 · 12a9bc15d · 8e9e5ec8b · 7bd1f38b4 · ca23ba3d7 · 183095cc4 · ea00f1f08 ·
 dc9e1d07d · 55a191e66 · bdd4ece38 + 9ff900abd (назад итога диалога в useFocusEffect) · 99bc0fa02 (петля «К урокам» → dismissToTabRoute) ·
-323f0905a · f11cb167b · 2a154cf1e · b3e60af43.
+323f0905a · f11cb167b · 2a154cf1e · b3e60af43 · 803113a0e.
 
 **🟡 открыто по ревью:**
 | Пункт | Владелец зоны | Что сделать |
 |---|---|---|
-| 360e0c457: моки эталона Главной уезжают в стор-бандл (статический require в HomeScene) | 1 · Ядро | require → app/dev_home_scene_facts.ts (правка в работе) |
+| ~~360e0c457: моки эталона Главной в стор-бандле~~ | 1 · Ядро | ✅ закрыто 803113a0e (require в dev-модуле, в HomeScene только import type) |
 | flashcards_my_packs_liquid_source_contract красный с 18.10 (49630f40e убрал 'unavailable' по правилу «экранов-ошибок нигде») — старый, не блокер | 2 · Дизайн | ожидание в тесте → 'quiet' |
 | 12a9bc15d: 11 ключей плеера V2 поменяли смысл в ru/uk, на 7 языках старый (курс V2 открыт только ru/uk — людям не видно) | 10 · Переводчик | ff948e123 взял в работу (docs) |
 | admin_staff_*.ts — 6 файлов `??`, не в git, не экспортируются из index.ts → в выкладку из чистого HEAD не попадают | владелец (утром) | решить судьбу чужих файлов |

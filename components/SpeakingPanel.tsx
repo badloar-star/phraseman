@@ -1582,6 +1582,10 @@ export function SpeakingPanel({
   // чтобы кнопка честно показывала «идёт подготовка», а не молча падала в фолбэк.
   const [holdModelReady, setHoldModelReady] = useState(false);
   const holdRecRef = useRef<HoldRecording | null>(null);
+  // зачем (жалоба №4 25.10 «говорю — не слышат всё предложение»): журнал hold:end показывает, сколько держали кнопку и когда
+  // пришёл первый звук — отличить «отпустили раньше конца фразы» от «микрофон молчал».
+  const holdStartedAtRef = useRef(0);
+  const holdFirstAudioMsRef = useRef<number | null>(null);
   const holdFinishingRef = useRef(false);
   // PCM-рекордер hold-пути НЕ запрашивает разрешение микрофона сам: без гранта
   // init/start «пишут» тишину, и каждая попытка кончается «не расслышал» —
@@ -1614,6 +1618,8 @@ export function SpeakingPanel({
     if (holdRecRef.current) return; // уже держим
     holdFinishingRef.current = false;
     holdPressActiveRef.current = true;
+    holdStartedAtRef.current = Date.now();
+    holdFirstAudioMsRef.current = null;
     const captureGeneration = ++captureGenerationRef.current;
     // Глушим эталон/реплей, чтобы микрофон не поймал хвост воспроизведения.
     stopReplayPlayback();
@@ -1634,6 +1640,7 @@ export function SpeakingPanel({
     setStatus('requesting');
     hapticTap();
     const onHoldFirstAudio = () => {
+      if (holdFirstAudioMsRef.current == null) holdFirstAudioMsRef.current = Date.now() - holdStartedAtRef.current;
       if (!holdPressActiveRef.current || holdRecRef.current == null) return;
       setStatus('listening');
       playRecordStart();
@@ -1672,7 +1679,10 @@ export function SpeakingPanel({
     const captureGeneration = captureGenerationRef.current;
     holdPressActiveRef.current = false;
     const rec = holdRecRef.current;
-    micTrace('hold:end', { route: 'pcm', status: statusRef.current, hasRecording: !!rec, finishing: holdFinishingRef.current, captureGeneration });
+    micTrace('hold:end', {
+      route: 'pcm', status: statusRef.current, hasRecording: !!rec, finishing: holdFinishingRef.current, captureGeneration,
+      holdMs: holdStartedAtRef.current ? Date.now() - holdStartedAtRef.current : null, firstAudioMs: holdFirstAudioMsRef.current,
+    });
     if (!rec) {
       // Отпустили, пока ждали диалог разрешения — вернуть панель в исходное.
       setStatus((s) => (s === 'listening' || s === 'requesting' ? 'idle' : s));
@@ -1709,7 +1719,11 @@ export function SpeakingPanel({
       targetText,
       locale: recognitionLocale,
     });
-    micTrace('hold:judged', { hasVerdict: !!verdict, transcript: verdict?.transcript ?? '', controlScore: verdict?.controlScore ?? null, judgeMs: Date.now() - judgeAt });
+    micTrace('hold:judged', {
+      hasVerdict: !!verdict, transcript: verdict?.transcript ?? '', controlScore: verdict?.controlScore ?? null, judgeMs: Date.now() - judgeAt,
+      targetWords: targetText.trim().split(/\s+/u).filter(Boolean).length,
+      heardWords: (verdict?.transcript ?? '').trim().split(/\s+/u).filter(Boolean).length,
+    });
     // Файл записи больше не нужен — реплей на hold-пути не используется.
     if (!mountedRef.current || !runtimeActiveRef.current || captureGeneration !== captureGenerationRef.current) {
       micTrace('hold:abandoned', { stage: 'after_judge', captureGeneration, current: captureGenerationRef.current });

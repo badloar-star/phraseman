@@ -2413,6 +2413,12 @@ function LessonScreen() {
     }
   }, [settings.autoCheck, settings.hardMode]);
 
+  // зачем (жалоба №4 25.10 «урок 11: теперь надо писать, а не выбирать слова»): письмо вместо плиток включает только
+  // настройка «Ввод с клавиатуры» (hardMode) — журнал показывает режим урока и значение, которое его решило.
+  useEffect(() => {
+    console.log('[LESSON-INPUT]', JSON.stringify({ lessonId, mode: settings.hardMode ? 'keyboard' : 'tiles', hardMode: settings.hardMode, autoCheck: settings.autoCheck })); // guard-ok: одна строка на смену режима, не в кадре
+  }, [lessonId, settings.hardMode, settings.autoCheck]);
+
   // Перечитываем настройки при возврате на экран (например из settings_edu)
   useFocusEffect(
     React.useCallback(() => {

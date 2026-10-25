@@ -127,6 +127,9 @@ export type RemoteBoolKey =
   // Б2 (координатор 25.10, случай владельца): сервер отказал «нужен Plus», а телефон считал Plus включённым — фоновая перепроверка
   // доступа из облака и журнал [PLUS-RECHECK] (app/plus_server_recheck.ts). Дефолт FALSE: включают в «Пульте» для сбора фактов.
   | 'plus_server_recheck_enabled'
+  // Отзыв токена Sign in with Apple при удалении аккаунта (Apple 5.1.1(v), координатор 25.10; app/apple_signin_revoke.ts). Дефолт
+  // FALSE: включают в «Пульте» ПОСЛЕ того, как владелец задал ключ Apple у провайдера Apple в консоли Firebase.
+  | 'apple_signin_revoke_enabled'
   // Скидочная акция (-50% через offer в сторах, см. document 2026-09-17). Дефолт
   // FALSE. true → в хедере Главной (между колокольчиком и профилем) появляется
   // бейдж со скидкой, текст берётся из discount_offer_badge_percent (ниже, в
@@ -359,6 +362,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_extra_languages_premium: true,
   premium_theme_webgl_motion_enabled: false,
   plus_server_recheck_enabled: false,
+  apple_signin_revoke_enabled: false,
   // Бейдж скидки в хедере Главной: дефолт FALSE — виден только когда владелец
   // явно включит его в «Пульте» на время акции.
   discount_offer_banner_enabled: false,
@@ -511,7 +515,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',
-    'plus_server_recheck_enabled',
+    'plus_server_recheck_enabled', 'apple_signin_revoke_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',

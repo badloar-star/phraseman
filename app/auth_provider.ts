@@ -5124,6 +5124,11 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
     console.log('[DEV-STATE] account: удаление подменено отказом pending_guard_persist_failed (ничего не удаляется)'); // guard-ok: dev-ветка
     return { ok: false, reason: 'pending_guard_persist_failed' };
   }
+  // зачем (координатор 25.10, Apple 5.1.1(v)): отзыв Sign in with Apple — ДО замков и выхода, пока вход Apple жив и человек на экране
+  // (окно Apple = «подтверди удаление»). За флагом apple_signin_revoke_enabled (выкл); никогда не бросает и не блокирует удаление.
+  await import('./apple_signin_revoke')
+    .then((m) => m.revokeAppleSignInForDeletion('begin_account_deletion'))
+    .catch((e: unknown) => console.warn(`[APPLE-REVOKE] import failed ${e instanceof Error ? e.message : String(e)}`));
   // зачем (ревью L-1): удаление аккаунта отменяет любой отложенный вход после смены.
   discardAccountSwitchResumeCredential('account_delete');
   beginLocalAccountDeletionAttempt();

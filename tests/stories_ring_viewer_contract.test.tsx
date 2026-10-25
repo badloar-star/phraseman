@@ -204,7 +204,7 @@ describe('кадры четырёх видов событий', () => {
   it('рубеж серии: «Серия · 30 дн.» и название рубежа', async () => {
     await render(<StorySlide event={STREAK} lang="ru" coinRank={5} />);
     expect(screen.getByText('Серия · 30 дней')).toBeTruthy();
-    expect(screen.getByText(/До сотни — 70/)).toBeTruthy(); // ЗАМОК ВЛАДЕЛЬЦА 25.10: без «стадии огня»
+    expect(screen.getByText(/Ещё 70 дней — и сотня!/)).toBeTruthy(); // ЗАМОК ВЛАДЕЛЬЦА 25.10: без «стадии огня»
   });
 
   it('ранг монеты: «Ранг 6», цена ранга из таблицы', async () => {

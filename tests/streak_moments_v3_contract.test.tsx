@@ -290,12 +290,12 @@ describe('рубежи серии — флаг, подключение, исхо
     expect([1, 2, 5].map((n) => streakDayWord('pl', n))).toEqual(['dzień', 'dni', 'dni']);
     expect([1, 2].map((n) => streakDayWord('en', n))).toEqual(['day', 'days']);
     expect(streakMilestoneTitle('ru', 3)).toBe(glueNumbers('3 дня подряд'));
-    expect(streakMilestoneSubline('ru', 3)).toBe(glueNumbers('До недели — 4 дня'));
-    expect(streakMilestoneSubline('ru', 7)).toBe(glueNumbers('До месяца — 23 дня'));
-    expect(streakMilestoneSubline('ru', 30)).toBe(glueNumbers('До сотни — 70 дней'));
-    expect(streakMilestoneSubline('ru', 100)).toBe(glueNumbers('До года — 265 дней'));
-    expect(streakMilestoneSubline('ru', 730)).toBe(glueNumbers('До Легенды — 270 дней'));
-    expect(streakMilestoneSubline('ru', 365)).toBe(glueNumbers('До двух лет — 365 дней'));
+    expect(streakMilestoneSubline('ru', 3)).toBe(glueNumbers('Ещё 4 дня — и неделя твоя!'));
+    expect(streakMilestoneSubline('ru', 7)).toBe(glueNumbers('Ещё 23 дня — и целый месяц!'));
+    expect(streakMilestoneSubline('ru', 30)).toBe(glueNumbers('Ещё 70 дней — и сотня!'));
+    expect(streakMilestoneSubline('ru', 100)).toBe(glueNumbers('Ещё 265 дней — и целый год!'));
+    expect(streakMilestoneSubline('ru', 730)).toBe(glueNumbers('Ещё 270 дней — и ты Легенда!'));
+    expect(streakMilestoneSubline('ru', 365)).toBe(glueNumbers('Ещё 365 дней — и два года подряд!'));
     expect(streakMomentText('ru', 'overline', { n: 7 })).toBe(glueNumbers('Серия · 7 дней'));
   });
 

@@ -79,3 +79,8 @@ Outcome: после коммитов Моментов e3b3c313e, 3a42a7e8f, a796
 Governance-ID: TG-F335B7E04B05
 
 Outcome: подтвердить замером по закоммиченному коду: (1) Пик — свет размером Главной, своя строка 6 %, ник белый, затемнение до шапка+140; особо строка «Комнаты недели» и ник; (2) экраны занятия Learning V2 — «Правильно», чипы верно/неверно, пояснение; (3) экран экзамена v2 — мелкий текст 13 на порог 4,5. Во всех 174 сочетаниях. Scope: scripts/spire_contrast_measure.ts, scripts/learning_v2_session_contrast_measure.ts, scripts/exam_workshop/theme_contrast_measure.ts и дописанные разделы в существующих отчётах docs/work/; код приложения не меняется. Architecture: без изменений, модели сверяются с исходниками. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скриптов через tsx. Rollback: git revert коммита.
+
+## Продолжение: тосты и всплывашки во всех темах (координатор 25.10)
+Governance-ID: TG-F335B7E04B05
+
+Outcome: контраст всех тостов и всплывашек во всех 174 сочетаниях — общий ActionToast (энергия, награды, ошибки сети, «сохранено», подсказки урока, карточка и строка сверху), тост медали (medalToastStyleFromTokens), снекбар удаления Карточек (UndoDeleteSnackbar); отдельно — держит ли подложка контраст при тексте в две строки. Scope: scripts/toast_contrast_measure.ts и отчёт docs/work/toast-contrast-2026-10-25.md; код приложения не меняется. Architecture: формулы подложек копируются со сторожем исходника. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert коммита.

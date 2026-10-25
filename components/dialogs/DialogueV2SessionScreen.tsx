@@ -40,6 +40,7 @@ import DialogHintModal from './DialogHintModal';
 import { DIALOG_GOAL_STRIP_GAP, DIALOG_GOAL_STRIP_HEIGHT, DIALOG_GOAL_STRIP_MIN_LIST, dialogGoalStripFits, dialogListViewportDecision, isDialogListAtEnd } from './dialog_list_viewport';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DialogSayHints } from './hints/DialogSayHints';
+import { useDialogSayHintInput } from './hints/use_dialog_say_hint_input';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import DialogWhySheet from './DialogWhySheet';
 import { useDialogInputLayoutTrace } from './glass/useDialogInputLayoutTrace';
@@ -300,6 +301,8 @@ export function DialogueV2SessionScreen({
     return () => sub.remove();
   }, [bottom, hasConversation, messages.length]);
 
+  // зачем (аудит Optimistic UI, координатор 25.10): тап по подсказке — фраза в поле, фокус в поле, курсор в конце (общий хук с экраном свободного разговора)
+  const hintInput = useDialogSayHintInput(onChangeDraft);
   const openGoals = React.useCallback(() => setGoalsOpen(true), []);
   const openHint = React.useCallback(() => setHintOpen(true), []);
   // зачем (жалоба тестера 24.10 «встречный вопрос появляется на секунду и исчезает»; координатор: логи остаются в релизе): [DIALOG-VANISH] —
@@ -662,7 +665,7 @@ export function DialogueV2SessionScreen({
         {bottom === 'input' ? (
           <View ref={inputTrace.barRef} collapsable={false} onLayout={inputTrace.onBarLayout} style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
             {/* зачем (владелец 24.10 через координатора): «Можно сказать…» всегда над полем; тап кладёт фразу в черновик, отправляет человек сам */}
-            <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy || inputLocked} compact={goalFolded} testID="dialogue-v2-session-say-hints" />
+            <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={hintInput.onUse} disabled={voiceBusy || inputLocked} compact={goalFolded} testID="dialogue-v2-session-say-hints" />
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <Pressable
                 onPressIn={onStartVoice}
@@ -683,8 +686,10 @@ export function DialogueV2SessionScreen({
                 <MicAllowanceBadge size="sm" testID="dialogue-v2-voice-allowance" />
               </Pressable>
               <TextInput
+                ref={hintInput.inputRef}
+                selection={hintInput.selection}
                 value={draft}
-                onChangeText={onChangeDraft}
+                onChangeText={hintInput.onChangeText}
                 // зачем (координатор 18.10, К1): пока ждём ответ (до 13 с), следующую реплику можно набирать — блокируются только «отправить»,
                 // микрофон и «Завершить». Набранное не трогается ни ответом, ни ошибкой; двойную отправку держит send() (sending / turnStartingRef).
                 editable={!voiceBusy && !inputLocked}
@@ -694,6 +699,8 @@ export function DialogueV2SessionScreen({
                 accessibilityLabel={goal ? `${labels.placeholder}. ${goal.kicker}: ${goal.label}` : labels.placeholder}
                 onFocus={() => setGoalFold(true, 'focus')}
                 onBlur={() => setGoalFold(false, 'blur')}
+                // зачем: уход фокуса снимает управляемое выделение подсказки (onBlur выше занят сворачиванием карточки цели — его строка закреплена тестом)
+                onEndEditing={hintInput.onBlur}
                 testID="dialogue-v2-session-input" // зачем (робот съёмки, 12.10): поле нужно находить не по языковой подписи
                 maxFontSizeMultiplier={1.4}
                 multiline

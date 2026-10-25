@@ -13,6 +13,7 @@ import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import { hapticTap } from '../../hooks/use-haptics';
 import { glassTone } from './glass/glassTone';
 import { DialogSayHints } from './hints/DialogSayHints';
+import { useDialogSayHintInput } from './hints/use_dialog_say_hint_input';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import {
   DialogueGlassBubble,
@@ -104,6 +105,8 @@ export function DialogueV2FreeformScreen({
   const voiceBusy = voiceStatus !== 'idle';
   const canSend = draft.trim().length > 0 && !voiceBusy;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
+  // зачем (аудит Optimistic UI, координатор 25.10): тап по подсказке — фраза в поле, фокус в поле, курсор в конце
+  const hintInput = useDialogSayHintInput(onChangeDraft);
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -185,7 +188,7 @@ export function DialogueV2FreeformScreen({
               </PressableScale>
             </View>
           ) : null}
-          <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy} testID="dialogue-v2-freeform-say-hints" />
+          <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={hintInput.onUse} disabled={voiceBusy} testID="dialogue-v2-freeform-say-hints" />
           <View style={styles.composerRow}>
             <Pressable
               onPressIn={onStartVoice}
@@ -208,8 +211,11 @@ export function DialogueV2FreeformScreen({
             <TextInput
               // зачем (съёмка R1 dialogs-046/gap-011): поле и отправка свободного разговора были без testID — робот не мог написать реплику.
               testID="dialogue-v2-freeform-input"
+              ref={hintInput.inputRef}
+              selection={hintInput.selection}
+              onBlur={hintInput.onBlur}
               value={draft}
-              onChangeText={onChangeDraft}
+              onChangeText={hintInput.onChangeText}
               editable={!sending && !voiceBusy}
               placeholder={labels.placeholder}
               placeholderTextColor={glass.mutedText}

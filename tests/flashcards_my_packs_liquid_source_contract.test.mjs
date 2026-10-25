@@ -29,11 +29,12 @@ test('My Packs uses exact live liquid tokens, glass materials and approved typog
   assert.ok(view.includes('minHeight: 46'));
 });
 
+// зачем (Ревизор + координатор 26.10): 18.10 (49630f40e, правило владельца «экранов-ошибок нигде») состояние «недоступно» заменено тихим 'quiet' — ожидание в тесте устарело, смысл прежний: честные загрузка / тихо / пусто.
 test('My Packs has honest pending/error/search/true-empty states', () => {
   for (const token of ["useState<'loading' | 'ready' | 'stale' | 'error'>", "loadStatus !== 'ready'", 'packCount > 0', "'empty'"]) {
     assert.ok(source.includes(token), `missing live state: ${token}`);
   }
-  assert.ok(view.includes("status === 'loading'") && view.includes("status === 'unavailable'") && view.includes("status === 'empty'"));
+  assert.ok(view.includes("status === 'loading'") && view.includes("status === 'quiet'") && view.includes("status === 'empty'"));
   assert.ok(!source.includes('flagGlyph'), 'pack rows use no emoji glyphs');
   assert.ok(!view.includes('numberOfLines'), 'long user-authored pack titles remain readable');
 });

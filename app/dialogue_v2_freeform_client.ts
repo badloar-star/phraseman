@@ -34,6 +34,8 @@ export type DialogueV2FreeformTurnResponse = Readonly<{
   assistantMessage: string;
   sessionId: string;
   expiresAtMs: number;
+  /** Перевод ответа на язык интерфейса (решение координатора 25.10: та же генерация, без второго вызова); старый сервер — нет поля. */
+  assistantTranslation?: string;
 }>;
 
 export type DialogueV2FreeformPreparedBotVoiceRequest = Readonly<{
@@ -134,15 +136,25 @@ function validTurnResponse(
   request: DialogueV2FreeformSessionTurn,
 ): DialogueV2FreeformTurnResponse | null {
   const response = exactPlainRecord(value);
-  if (!response || !hasExactKeys(response, ['ok', 'assistantMessage', 'sessionId', 'expiresAtMs'])
+  // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; решение координатора): необязательное поле перевода — новый сервер его шлёт,
+  // старый нет; битый перевод не роняет ход, а просто не показывается (кнопки нет, [DIALOG-BUBBLE] reason=no_translation).
+  const withTranslation = response !== null && 'assistantTranslation' in response;
+  if (!response || !hasExactKeys(response, withTranslation
+    ? ['ok', 'assistantMessage', 'sessionId', 'expiresAtMs', 'assistantTranslation']
+    : ['ok', 'assistantMessage', 'sessionId', 'expiresAtMs'])
     || response.ok !== true || response.sessionId !== request.sessionId
     || !validAssistantMessage(response.assistantMessage)
     || !Number.isSafeInteger(response.expiresAtMs) || Number(response.expiresAtMs) <= 0) return null;
+  const translation = withTranslation && validAssistantMessage(response.assistantTranslation) ? response.assistantTranslation : null;
+  if (withTranslation && translation === null) {
+    console.warn('[DIALOG-BUBBLE] freeform: перевод ответа отброшен — не прошёл проверку текста', JSON.stringify({ type: typeof response.assistantTranslation }));
+  }
   return Object.freeze({
     ok: true,
     assistantMessage: response.assistantMessage,
     sessionId: request.sessionId,
     expiresAtMs: Number(response.expiresAtMs),
+    ...(translation ? { assistantTranslation: translation } : {}),
   });
 }
 

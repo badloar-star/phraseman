@@ -299,6 +299,8 @@ function SessionContent() {
       console.log('[DIALOGUE-V2] session:opening → shown', { scenarioId, personaId: opening.personaId });
       return Object.freeze([Object.freeze({
         id: 'persona_0', author: 'persona' as const, authorLabel: author?.displayName ?? '', text: opening.text,
+        // зачем (решение координатора 25.10): перевод первой реплики — из пакета; нет — кнопки «Перевод» нет
+        ...(opening.translation ? { translation: opening.translation } : {}),
       })]);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps

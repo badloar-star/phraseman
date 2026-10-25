@@ -332,14 +332,15 @@ export function DialogueV2SessionScreen({
         message.explanation && onOpenWhy ? 'why' : null,
       ].filter(Boolean);
       const previous = index > 0 ? messages[index - 1] : null;
-      const reason = message.translation ? 'has_translation'
-        : message.id === 'persona_0' ? 'opening_from_packet_has_no_translation'
-          : previous?.author === 'learner' && previous.offLanguage ? 'soft_nudge_has_no_translation'
-            : 'server_coaching_gave_no_translation';
-      const signature = `${actions.join(',')}|${reason}|${coachingLabels ? 'labels' : 'no_labels'}`;
+      // зачем (решение координатора 25.10): перевода нет — кнопки нет, reason=no_translation; source — откуда перевод должен был прийти
+      const reason = message.translation ? 'has_translation' : 'no_translation';
+      const source = message.id === 'persona_0' ? 'packet_opening'
+        : previous?.author === 'learner' && previous.offLanguage ? 'soft_nudge_local'
+          : 'turn_coaching';
+      const signature = `${actions.join(',')}|${reason}|${source}|${coachingLabels ? 'labels' : 'no_labels'}`;
       if (bubbleLogRef.current.get(message.id) === signature) return; // guard-ok: уже записано
       bubbleLogRef.current.set(message.id, signature);
-      console.log('[DIALOG-BUBBLE]', JSON.stringify({ screen: 'scenario', index, id: message.id, role: message.author, actions, reason, labels: !!coachingLabels })); // guard-ok: одна строка на реплику
+      console.log('[DIALOG-BUBBLE]', JSON.stringify({ screen: 'scenario', index, id: message.id, role: message.author, actions, reason, source, labels: !!coachingLabels })); // guard-ok: одна строка на реплику
     });
   }, [coachingLabels, messages, onOpenWhy, onToggleTranslation]);
   const vanishPrevRef = React.useRef<{ count: number; lastId: string | null }>({ count: 0, lastId: null });
@@ -647,17 +648,19 @@ export function DialogueV2SessionScreen({
                       </View>
                       <DialogueGlassBubbleText glass={glass} author={author}>{voiceCopy.label}</DialogueGlassBubbleText>
                     </PressableScale>
-                  ) : translated ? (
-                    <Text
-                      testID={`dialogue-v2-translation-${message.id}`}
-                      maxFontSizeMultiplier={1.5}
-                      style={{ fontSize: 16, lineHeight: 22, fontStyle: 'italic', fontWeight: '400', color: glass.secondary }}
-                    >
-                      {message.translation}
-                    </Text>
                   ) : (
                     <DialogueGlassBubbleText glass={glass} author={author}>{message.text}</DialogueGlassBubbleText>
                   )}
+                  {/* зачем (решение координатора 25.10): перевод — ПОД репликой, оригинал остаётся (раньше перевод подменял текст) */}
+                  {translated ? (
+                    <Text
+                      testID={`dialogue-v2-translation-${message.id}`}
+                      maxFontSizeMultiplier={1.5}
+                      style={{ marginTop: 6, fontSize: 16, lineHeight: 22, fontStyle: 'italic', fontWeight: '400', color: glass.secondary }}
+                    >
+                      {message.translation}
+                    </Text>
+                  ) : null}
                 </DialogueGlassBubble>
               );
             })}

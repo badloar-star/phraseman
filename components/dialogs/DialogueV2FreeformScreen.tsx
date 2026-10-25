@@ -14,6 +14,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { glassTone } from './glass/glassTone';
 import { DialogSayHints } from './hints/DialogSayHints';
 import { useDialogKeyboardLog } from './use_dialog_keyboard_log';
+import { DialogueGlassReplyAction } from './glass/DialogueGlassSessionParts';
 import { useDialogSayHintInput } from './hints/use_dialog_say_hint_input';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import {
@@ -34,6 +35,8 @@ export type DialogueV2FreeformMessage = Readonly<{
   id: string;
   author: 'learner' | 'assistant';
   text: string;
+  /** Перевод ответа на язык интерфейса (из ответа хода; старый сервер — нет). */
+  translation?: string;
   /** Replay-only local learner attachment. Its transcript never leaves the route. */
   voice?: Readonly<{ uri: string }>;
 }>;
@@ -72,6 +75,8 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   turnError?: Readonly<{ message: string; retryLabel?: string; onRetry?: () => void }> | null;
   /** Нет связи / старт не прошёл (координатор 25.10): тихая плашка над полем с «Повторить»; экран и черновик на месте. */
   connectionNotice?: Readonly<{ message: string; retryLabel: string; onRetry: () => void }> | null;
+  /** Подписи кнопки «Перевод» / «Скрыть перевод» (общие со сценарным диалогом). */
+  translateLabels?: Readonly<{ show: string; hide: string }>;
   /** «Можно сказать…» над полем ввода: 1–3 фразы на изучаемом языке со смыслом (владелец 24.10 «постоянно должны быть подсказки»). */
   sayHints?: readonly DialogSayHint[];
 }>;
@@ -101,7 +106,17 @@ export function DialogueV2FreeformScreen({
   turnError = null,
   sayHints = NO_SAY_HINTS,
   connectionNotice = null,
+  translateLabels,
 }: DialogueV2FreeformScreenProps) {
+  // зачем (жалоба владельца 25.10 «нет кнопки Перевести»): перевод — под репликой по тапу, повторный тап скрывает; состояние — на экране
+  const [shownTranslations, setShownTranslations] = React.useState<ReadonlySet<string>>(() => new Set());
+  const toggleTranslation = React.useCallback((id: string) => {
+    setShownTranslations((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  }, []);
   const glass = useDialogueGlass();
   const markKeyboardCause = useDialogKeyboardLog('freeform');
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; координатор: сперва логи [DIALOG-BUBBLE]): у ответов свободного разговора
@@ -111,9 +126,14 @@ export function DialogueV2FreeformScreen({
     messages.forEach((message, index) => {
       if (message.author !== 'assistant' || bubbleLoggedRef.current.has(message.id)) return; // guard-ok: только новые реплики собеседника
       bubbleLoggedRef.current.add(message.id);
-      console.log('[DIALOG-BUBBLE]', JSON.stringify({ screen: 'freeform', index, id: message.id, role: message.author, actions: [], reason: 'freeform_turn_has_no_translation_field' })); // guard-ok: одна строка на реплику
+      const hasTranslation = !!message.translation && !!translateLabels;
+      console.log('[DIALOG-BUBBLE]', JSON.stringify({
+        screen: 'freeform', index, id: message.id, role: message.author, actions: hasTranslation ? ['translate'] : [],
+        reason: hasTranslation ? 'has_translation' : 'no_translation',
+        source: message.translation ? 'turn_response' : message.id === 'assistant_opening' ? 'local_opening_has_no_translation' : 'turn_response_without_field',
+      })); // guard-ok: одна строка на реплику
     });
-  }, [messages]);
+  }, [messages, translateLabels]);
   const voiceBusy = voiceStatus !== 'idle';
   const canSend = draft.trim().length > 0 && !voiceBusy;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
@@ -160,8 +180,24 @@ export function DialogueV2FreeformScreen({
           ) : null}
           {messages.map((message) => {
             const author = message.author === 'learner' ? 'learner' : 'assistant';
+            const canTranslate = author === 'assistant' && !!message.translation && !!translateLabels;
+            const translationShown = canTranslate && shownTranslations.has(message.id);
             return (
-              <DialogueGlassBubble key={message.id} glass={glass} author={author}>
+              <DialogueGlassBubble
+                key={message.id}
+                glass={glass}
+                author={author}
+                actions={canTranslate && translateLabels ? (
+                  <DialogueGlassReplyAction
+                    glass={glass}
+                    testID={`dialogue-v2-freeform-translate-${message.id}`}
+                    icon="language-outline"
+                    label={translationShown ? translateLabels.hide : translateLabels.show}
+                    active={translationShown}
+                    onPress={() => toggleTranslation(message.id)}
+                  />
+                ) : undefined}
+              >
                 {message.voice ? (
                   <PressableScale
                     onPress={() => onPlayVoice(message.voice!.uri)}
@@ -177,6 +213,11 @@ export function DialogueV2FreeformScreen({
                 ) : (
                   <DialogueGlassBubbleText glass={glass} author={author}>{message.text}</DialogueGlassBubbleText>
                 )}
+                {translationShown ? (
+                  <Text testID={`dialogue-v2-freeform-translation-${message.id}`} maxFontSizeMultiplier={1.5} style={[styles.translation, { color: glass.secondary }]}>
+                    {message.translation}
+                  </Text>
+                ) : null}
               </DialogueGlassBubble>
             );
           })}
@@ -295,6 +336,8 @@ const styles = StyleSheet.create({
   voiceRow: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 },
   composer: { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8 },
   composerRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  // перевод под репликой — как в сценарном диалоге: кегль 16, курсив, второстепенный цвет
+  translation: { marginTop: 6, fontSize: 16, lineHeight: 22, fontStyle: 'italic', fontWeight: '400' },
   // плашка «Нет связи»: тон темы, без обводки, кегли 13 (D145)
   connection: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 44, paddingLeft: 12, paddingRight: 6, paddingVertical: 6, borderRadius: 14, marginBottom: 10 },
   connectionText: { flex: 1, fontSize: 13, lineHeight: 17 },

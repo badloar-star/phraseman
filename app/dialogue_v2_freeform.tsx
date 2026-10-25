@@ -379,6 +379,8 @@ function DialogueV2FreeformContent() {
         id: `assistant_${current.length + 1}`,
         author: 'assistant' as const,
         text: result.assistantMessage,
+        // зачем (решение координатора 25.10): перевод — из того же ответа хода; нет поля (старый сервер) — кнопки «Перевод» нет
+        ...(result.assistantTranslation ? { translation: result.assistantTranslation } : {}),
       })]));
       // поздний настоящий ответ после стража «•••» — плашку сбоя убираем, ответ уже в ленте
       setTurnFailed(false);
@@ -639,5 +641,5 @@ function DialogueV2FreeformContent() {
       retryFreeform();
     },
   } : null;
-  return <DialogueV2FreeformScreen connectionNotice={connectionNotice} sayHints={sayHints} title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
+  return <DialogueV2FreeformScreen translateLabels={{ show: coachingLabels.translate, hide: coachingLabels.hideTranslation }} connectionNotice={connectionNotice} sayHints={sayHints}title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

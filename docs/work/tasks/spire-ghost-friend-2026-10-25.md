@@ -33,3 +33,5 @@ Declension имени («Обогнал Аню») невозможна для н
 ## Rollback
 
 Флаг `SPIRE_GHOST_ENABLED=false` (по умолчанию) — функция невидима; откат — revert коммитов, данные не затрагиваются.
+
+Governance-ID: TG-452D21A6F255

@@ -54,9 +54,9 @@ function SpireGhostLayer({ lang, view, clock, paused, done }: Props) {
     if (passed) return;
     const elapsed = clock.get();
     if (!spireGhostAhead({ done, elapsedMs: elapsed, avgMs: ghost.avgMs })) return;
-    console.log('[SPIRE]', '[SPIRE-GHOST]', `обогнал: сделано=${done}/${SPIRE_GHOST_TASKS_PER_STEP} время=${elapsed}мс среднее друга=${ghost.avgMs}мс кандидат=${ghost.uid.slice(0, 6)}`); // guard-ok: единичный лог перехода
+    console.log('[SPIRE]', '[SPIRE-GHOST]', `обогнал: сделано=${done}/${SPIRE_GHOST_TASKS_PER_STEP} время=${elapsed}мс среднее друга=${ghost.avgMs}мс друг #${ghost.ordinal}`); // guard-ok: единичный лог перехода
     setPassed(true);
-  }, [done, passed, clock, ghost.avgMs, ghost.uid]);
+  }, [done, passed, clock, ghost.avgMs, ghost.ordinal]);
 
   // свой бегунок: к done/10 за 260 мс
   useEffect(() => {

@@ -18,7 +18,7 @@ export function rememberSpireGhost(ghost: SpireGhost | null, ctx: Readonly<{ wee
   const hadOne = last !== null;
   last = ghost ? { ghost, weekKey: ctx.weekKey, floor: ctx.floor } : null;
   if (!ghost && !hadOne) return; // зачем: флаг выключен/призрака не было и нечего забывать — молчим, ступень 2.0.2 без лишних строк журнала
-  console.log(LOG, '[SPIRE-GHOST]', ghost ? `запомнен для итога: кандидат=${ghost.uid.slice(0, 6)} неделя=${ctx.weekKey} этаж=${ctx.floor}` : `забыт (призрака нет) неделя=${ctx.weekKey} этаж=${ctx.floor}`); // guard-ok: одна строка на старт ступени
+  console.log(LOG, '[SPIRE-GHOST]', ghost ? `запомнен для итога: друг #${ghost.ordinal} неделя=${ctx.weekKey} этаж=${ctx.floor}` : `забыт (призрака нет) неделя=${ctx.weekKey} этаж=${ctx.floor}`); // guard-ok: одна строка на старт ступени
 }
 
 /** Призрак последней ступени, если итог относится к той же неделе и этажу; иначе null. */

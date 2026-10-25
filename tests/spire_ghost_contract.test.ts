@@ -58,17 +58,18 @@ describe('сборка призрака для ступени (кэш комна
     mockPeekRoom.mockReturnValue(snapshot());
     mockPeekFriends.mockReturnValue({ canonicalUid: 'me', friends: [{ uid: 'anya-uid' }], requests: [], profiles: {} });
     const view = spireBuildGhostView({ uid: 'me', ctx: CTX, budgetMs: 240_000 });
-    expect(view?.ghost).toMatchObject({ uid: 'anya-uid', letter: 'А', avgMs: 130_000, why: 'friend' });
+    expect(view?.ghost).toMatchObject({ uid: 'anya-uid', ordinal: 1, letter: 'А', avgMs: 130_000 });
     expect(view?.markFrac).toBeCloseTo(110 / 240, 5);
     expect(peekSpireGhostFor('2026-W44', 1)?.uid).toBe('anya-uid');
     expect(peekSpireGhostFor('2026-W44', 2)).toBeNull(); // другой этаж — не наш итог
     expect(mockPeekRoom).toHaveBeenCalledWith('me', 'en');
   });
 
-  it('снимок друзей чужого аккаунта не используется — участник идёт как соперник', () => {
+  it('снимок друзей чужого аккаунта не используется — друзей нет, чужой участник призраком не становится (приватность)', () => {
     mockPeekRoom.mockReturnValue(snapshot());
     mockPeekFriends.mockReturnValue({ canonicalUid: 'someone-else', friends: [{ uid: 'anya-uid' }], requests: [], profiles: {} });
-    expect(spireBuildGhostView({ uid: 'me', ctx: CTX, budgetMs: 240_000 })?.ghost.why).toBe('rival');
+    expect(spireBuildGhostView({ uid: 'me', ctx: CTX, budgetMs: 240_000 })).toBeNull();
+    expect(peekSpireGhostFor('2026-W44', 1)).toBeNull();
   });
 
   it('комнаты нет в кэше или она из другой недели — призрака нет, пусто и без прыжков (null)', () => {
@@ -95,8 +96,9 @@ describe('сборка призрака для ступени (кэш комна
     spireBuildGhostView({ uid: 'me', ctx: CTX, budgetMs: 240_000 });
     expect(log.mock.calls.some((c) => c[0] === '[SPIRE]' && c[1] === '[SPIRE-GHOST]' && String(c[2]).includes('нет призрака: причина=no_room'))).toBe(true);
     mockPeekRoom.mockReturnValue(snapshot());
+    mockPeekFriends.mockReturnValue({ canonicalUid: 'me', friends: [{ uid: 'anya-uid' }], requests: [], profiles: {} });
     spireBuildGhostView({ uid: 'me', ctx: CTX, budgetMs: 240_000 });
-    expect(log.mock.calls.some((c) => c[0] === '[SPIRE]' && c[1] === '[SPIRE-GHOST]' && String(c[2]).includes('кандидат=anya-u'))).toBe(true);
+    expect(log.mock.calls.some((c) => c[0] === '[SPIRE]' && c[1] === '[SPIRE-GHOST]' && String(c[2]).includes('друг #1') && !String(c[2]).includes('anya'))).toBe(true);
   });
 });
 

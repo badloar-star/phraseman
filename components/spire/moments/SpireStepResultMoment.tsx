@@ -84,7 +84,7 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, onLater, busy, test
     const ghost = peekSpireGhostFor(outcome.report.weekKey, outcome.floorBefore);
     if (!ghost) { console.log('[SPIRE]', '[SPIRE-GHOST]', 'итог: призрака на этой ступени не было'); return null; } // guard-ok: ранний выход с причиной
     const margin = spireGhostMarginMs(ghost.avgMs, outcome.usedMs);
-    console.log('[SPIRE]', '[SPIRE-GHOST]', `итог: кандидат=${ghost.uid.slice(0, 6)} среднее друга=${ghost.avgMs}мс моё=${outcome.usedMs}мс разрыв=${margin}мс показано=${margin > 0 ? 'да' : 'нет'}`); // guard-ok: единичный лог итога
+    console.log('[SPIRE]', '[SPIRE-GHOST]', `итог: друг #${ghost.ordinal} среднее друга=${ghost.avgMs}мс моё=${outcome.usedMs}мс разрыв=${margin}мс показано=${margin > 0 ? 'да' : 'нет'}`); // guard-ok: единичный лог итога
     return margin > 0 ? spireGhostText(lang, 'faster', { t: spireClock(margin), name: spireGhostShortName(ghost.name), avg: spireClock(ghost.avgMs) }) : null;
   });
 

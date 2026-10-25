@@ -31,7 +31,7 @@ describe('spirePickGhost', () => {
 
   it('друг дошёл до моей ступени — берём его, почему=friend, среднее = totalMs / steps', () => {
     const pick = spirePickGhost({ room: room([member('me', 2, 100_000), member('anya', 5, 130_000, 'Аня')]), friendUids: new Set(['anya']), myUid: 'me', stepNumber: 3 });
-    expect(pick.ghost).toMatchObject({ uid: 'anya', name: 'Аня', letter: 'А', avgMs: 130_000, steps: 5, why: 'friend' });
+    expect(pick.ghost).toMatchObject({ uid: 'anya', ordinal: 1, name: 'Аня', letter: 'А', avgMs: 130_000, steps: 5 });
   });
 
   it('друг ещё не дошёл (steps < номер моей ступени) — not_reached, берём следующего друга', () => {
@@ -49,20 +49,21 @@ describe('spirePickGhost', () => {
     expect(pick.ghost?.uid).toBe('near');
   });
 
-  it('друзей в комнате нет — ближайший участник выше меня, почему=rival', () => {
+  it('друзей в комнате нет — призрака нет, чужого (не друга) не берём даже если он рядом (приватность, координатор 25.10)', () => {
     const pick = spirePickGhost({ room: room([member('p1', 9, 80_000), member('p2', 4, 120_000), member('p3', 1, 70_000)]), friendUids: new Set(['stranger']), myUid: 'me', stepNumber: 3 });
-    expect(pick.ghost).toMatchObject({ uid: 'p2', why: 'rival', avgMs: 120_000 });
+    expect(pick).toEqual({ ghost: null, reason: 'no_friend' });
+    expect(spirePickGhost({ room: room([member('p2', 4, 120_000)]), friendUids: NO_FRIENDS, myUid: 'me', stepNumber: 3 })).toEqual({ ghost: null, reason: 'no_friend' });
   });
 
-  it('друг приоритетнее соперника, даже если соперник ближе', () => {
-    const pick = spirePickGhost({ room: room([member('rival', 3, 100_000), member('friend', 12, 100_000)]), friendUids: new Set(['friend']), myUid: 'me', stepNumber: 3 });
-    expect(pick.ghost).toMatchObject({ uid: 'friend', why: 'friend' });
+  it('друг, а не ближайший чужой: берём друга, даже если не-друг ближе по ступеням', () => {
+    const pick = spirePickGhost({ room: room([member('stranger', 3, 100_000), member('friend', 12, 100_000)]), friendUids: new Set(['x', 'friend']), myUid: 'me', stepNumber: 3 });
+    expect(pick.ghost).toMatchObject({ uid: 'friend', ordinal: 2 }); // второй в снимке друзей
   });
 
-  it('у друга нет времени (totalMs = 0 при steps > 0) — no_time, переходим к сопернику', () => {
+  it('у друга нет времени (totalMs = 0 при steps > 0) — no_time, берём следующего друга; других нет — призрака нет', () => {
     const noTime: SpireRoomMember = { uid: 'f', name: 'Фёдор', steps: 8, reachedAtMs: 1, totalMs: 0 };
-    const pick = spirePickGhost({ room: room([noTime, member('rival', 9, 100_000)]), friendUids: new Set(['f']), myUid: 'me', stepNumber: 3 });
-    expect(pick.ghost).toMatchObject({ uid: 'rival', why: 'rival' });
+    const pick = spirePickGhost({ room: room([noTime, member('g', 9, 100_000)]), friendUids: new Set(['f', 'g']), myUid: 'me', stepNumber: 3 });
+    expect(pick.ghost).toMatchObject({ uid: 'g' });
     expect(spirePickGhost({ room: room([noTime]), friendUids: new Set(['f']), myUid: 'me', stepNumber: 3 })).toEqual({ ghost: null, reason: 'no_time' });
   });
 
@@ -80,7 +81,7 @@ describe('spirePickGhost', () => {
   });
 
   it('если подозрительных и не дошедших вперемешку — причина самая содержательная (suspicious раньше not_reached)', () => {
-    const pick = spirePickGhost({ room: room([member('slow', 8, 2_000_000), member('late', 1, 90_000)]), friendUids: NO_FRIENDS, myUid: 'me', stepNumber: 3 });
+    const pick = spirePickGhost({ room: room([member('slow', 8, 2_000_000), member('late', 1, 90_000)]), friendUids: new Set(['slow', 'late']), myUid: 'me', stepNumber: 3 });
     expect(pick).toEqual({ ghost: null, reason: 'suspicious' });
   });
 
@@ -137,9 +138,9 @@ describe('метка, бегунок, обгон, разрыв', () => {
 });
 
 describe('журнал [SPIRE-GHOST]', () => {
-  it('кандидат с шестью символами uid и причиной; без призрака — причина', () => {
+  it('«друг #N» вместо uid; без призрака — причина', () => {
     const pick = spirePickGhost({ room: room([member('abcdefgh', 5, 130_000)]), friendUids: new Set(['abcdefgh']), myUid: 'me', stepNumber: 3 });
-    expect(spireGhostLogLine(pick, 3)).toBe('кандидат=abcdef почему=friend steps=5 avgMs=130000 ступень=3');
+    expect(spireGhostLogLine(pick, 3)).toBe('друг #1 steps=5 avgMs=130000 ступень=3'); // без uid и имени
     expect(spireGhostLogLine({ ghost: null, reason: 'not_reached' }, 3)).toBe('нет призрака: причина=not_reached ступень=3');
   });
 });

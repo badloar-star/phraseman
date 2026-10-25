@@ -3422,22 +3422,28 @@ export default function LessonsTab({
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
     // зачем (макет lesson-preparing-live.html, владелец 25.10): занятая кнопка ничего не запускает — повторный тап, пока занятие готовится, игнорируется (журнал [PREP-CTA])
-    if (!beginLessonPrep('lessons')) return;
+    if (!beginLessonPrep('lessons', Date.now(), `lesson-${selected.lessonOrdinal}:session:${selected.sessionOrdinal}`)) return;
     const launchRequest = ++learningV2ModalRequestRef.current;
     const v2StartTapAtMs = Date.now(); // зачем (координатор 15.10, #18): замер тап «Начать» → переход на экран урока; после R08 подготовка бывала до 13 с
     console.log(`[V2-START] tap ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, skipIntro, prepared: learningV2PreparedLaunchesRef.current.has(selectedLearningV2PreparationKey) })}`); // guard-ok: начало замера
-    const sessionId = learningV2CourseSessionIdV1(
-      selected.lessonOrdinal,
-      selected.sessionOrdinal,
-    );
-    const prepared =
-      learningV2PreparedLaunchesRef.current.get(
-        selectedLearningV2PreparationKey,
-      ) ??
-      prepareLearningV2SessionLaunch(
-        selected.lessonOrdinal,
-        selected.sessionOrdinal,
-      );
+    // зачем (Ревизор 25.10): синхронный бросок здесь оставлял «готовится» навсегда — закрываем подготовку сразу и пишем причину
+    const launchStart = (() => {
+      try {
+        return {
+          sessionId: learningV2CourseSessionIdV1(selected.lessonOrdinal, selected.sessionOrdinal),
+          prepared:
+            learningV2PreparedLaunchesRef.current.get(selectedLearningV2PreparationKey) ??
+            prepareLearningV2SessionLaunch(selected.lessonOrdinal, selected.sessionOrdinal),
+        };
+      } catch (syncError) {
+        const reason = syncError instanceof Error ? syncError.message : String(syncError);
+        console.warn(`[V2-PREPARE] prep_sync_throw ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, reason: reason.slice(0, 160) })}`); // guard-ok: catch пишет причину
+        endLessonPrep({ ok: false, reason: `sync_throw:${reason}`.slice(0, 160) });
+        return null;
+      }
+    })();
+    if (!launchStart) return;
+    const { sessionId, prepared } = launchStart;
     // зачем (макет «Готовим занятие…»): шторка не закрывается на тапе — на кнопке виден ход, если занятие собирается дольше 0,35 с; выход (180 мс) стартует,
     // когда всё готово. Обычно заготовка уже есть и закрытие начинается сразу, как раньше.
     const exitSheet = () => new Promise<void>((resolve) => {

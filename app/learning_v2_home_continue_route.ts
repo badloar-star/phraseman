@@ -99,11 +99,12 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
   }
   setLaunchInFlight(true);
   const startedAt = Date.now();
-  if (ctx.homeCta === true) beginLessonPrep('home', startedAt);
   const environment = parseLearningV2ReleaseEnvironmentV1(route.releaseEnvironment);
   const seasonId = route.releaseSeasonId || 'learning-v2';
   console.log(`${LOG} launch start session=${sessionId} target=${ctx.studyTarget} lang=${ctx.lang} env=${environment}`);
   try {
+    // зачем (Ревизор 25.10): начало подготовки внутри try — любой бросок дальше закрывает «готовится» в catch, а не оставляет его висеть
+    if (ctx.homeCta === true) beginLessonPrep('home', startedAt, sessionId);
     const ready = await prepareLearningV2SessionRunV1(
       { environment, seasonId, studyTarget: ctx.studyTarget, learnerSourceLocale: ctx.lang, lessonOrdinal, sessionOrdinal },
       { devUnlockedDrafts: false },

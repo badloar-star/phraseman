@@ -20,7 +20,7 @@ const mockEmit = jest.fn();
 jest.mock('../app/events', () => ({ emitAppEvent: (...a: unknown[]) => mockEmit(...a) }));
 
 import { launchHomeContinueV2, resetHomeContinueV2LaunchForTests } from '../app/learning_v2_home_continue_route';
-import { beginLessonPrep, endLessonPrep, isLessonPrepActive, markLessonPrepFinishing, peekLessonPrep, resetLessonPrepForTests } from '../app/lesson_prep_store';
+import { LESSON_PREP_STUCK_RESET_MS, beginLessonPrep, endLessonPrep, isLessonPrepActive, markLessonPrepFinishing, peekLessonPrep, resetLessonPrepForTests } from '../app/lesson_prep_store';
 
 const route = {
   id: 'lesson-01:session:04', runtimeMode: 'direct_v1', previewOrigin: 'course', lessonOrdinal: '1', sessionOrdinal: '4',
@@ -48,6 +48,25 @@ describe('хранилище подготовки', () => {
     expect(endLessonPrep({ ok: true }, 1200)).toBe('instant');
     expect(isLessonPrepActive()).toBe(false);
     expect(endLessonPrep({ ok: true })).toBeNull();
+  });
+  // Ревизор 25.10: бросок между beginLessonPrep и try больше не оставляет «готовится» навсегда
+  it('зависшая подготовка сбрасывается сторожем через 20 с с журналом; законченная — не трогается', () => {
+    jest.useFakeTimers();
+    try {
+      beginLessonPrep('lessons', Date.now(), 'lesson-1:session:9');
+      jest.advanceTimersByTime(LESSON_PREP_STUCK_RESET_MS - 1);
+      expect(isLessonPrepActive()).toBe(true);
+      jest.advanceTimersByTime(2);
+      expect(isLessonPrepActive()).toBe(false);
+      expect((console.warn as jest.Mock).mock.calls.some((c) => String(c[0]).includes('prep_state_stuck_reset') && String(c[1]).includes('lesson-1:session:9'))).toBe(true);
+      beginLessonPrep('home', Date.now());
+      endLessonPrep({ ok: true });
+      beginLessonPrep('home', Date.now());
+      jest.advanceTimersByTime(LESSON_PREP_STUCK_RESET_MS - 100);
+      expect(isLessonPrepActive()).toBe(true);
+    } finally {
+      jest.useRealTimers();
+    }
   });
   it('итог по времени и сроку', () => {
     beginLessonPrep('home', 0);

@@ -25,7 +25,9 @@ describe('шторка «Начать»: ход подготовки', () => {
   it('экран «Уроки»: занятая кнопка не запускает второй раз; конец подготовки пишется на успехе и на отказе; шторка закрывается по готовности', () => {
     const start = lessons.indexOf('const launchSelectedLearningV2Session');
     const handler = lessons.slice(start, lessons.indexOf('// Витрина звёзд', start));
-    expect(handler).toContain("if (!beginLessonPrep('lessons')) return;");
+    // Ревизор 25.10: вызов несёт метку занятия для журнала сторожа «готовится»
+    expect(handler).toContain("if (!beginLessonPrep('lessons', Date.now(), `lesson-");
+    expect(handler).toContain('prep_sync_throw');
     expect(handler).toContain('markLessonPrepFinishing();');
     expect((handler.match(/endLessonPrep\(/g) ?? []).length).toBeGreaterThanOrEqual(4); // успех, устарел ×2, отказ
     expect(handler).toContain('exitSheet');

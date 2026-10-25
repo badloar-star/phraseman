@@ -16,11 +16,17 @@ export type LessonPrepSource = 'home' | 'lessons';
 export type LessonPrepState = Readonly<{
   source: LessonPrepSource;
   startedAt: number;
+  /** Какое занятие готовится (для журнала сторожа); может не быть. */
+  sessionTag?: string;
   /** Подготовка готова, идёт «дотягивание» заливки до перехода. */
   finishing: boolean;
 }>;
 
 let state: LessonPrepState | null = null;
+// зачем (Ревизор 25.10, 🟡): синхронный бросок между beginLessonPrep и try оставлял «готовится» навсегда — «Продолжить» и «Начать» молчали
+// до перезапуска. Сторож сбрасывает подготовку, которая висит дольше срока подготовки (12 с) с запасом на выход шторки.
+export const LESSON_PREP_STUCK_RESET_MS = 20_000;
+let stuckTimer: ReturnType<typeof setTimeout> | null = null;
 const listeners = new Set<() => void>();
 const emit = (): void => listeners.forEach((l) => l());
 const subscribe = (l: () => void): (() => void) => { listeners.add(l); return () => { listeners.delete(l); }; };
@@ -35,15 +41,28 @@ export function peekLessonPrep(): LessonPrepState | null {
 }
 
 /** Тап по кнопке запустил подготовку. Повторный вызов при идущей подготовке игнорируется (занятая кнопка ничего не запускает). */
-export function beginLessonPrep(source: LessonPrepSource, now: number = Date.now()): boolean {
+export function beginLessonPrep(source: LessonPrepSource, now: number = Date.now(), sessionTag?: string): boolean {
   if (state) {
     console.log(LOG, 'begin:ignored', JSON.stringify({ reason: 'already_preparing', source: state.source, sinceStartMs: now - state.startedAt, askedBy: source })); // guard-ok: ранний выход с причиной
     return false;
   }
-  state = { source, startedAt: now, finishing: false };
-  console.log(LOG, 'begin', JSON.stringify({ source })); // guard-ok: одна строка на запуск
+  state = { source, startedAt: now, finishing: false, ...(sessionTag ? { sessionTag } : {}) };
+  console.log(LOG, 'begin', JSON.stringify({ source, sessionTag: sessionTag ?? null })); // guard-ok: одна строка на запуск
+  armStuckReset(now);
   emit();
   return true;
+}
+
+function armStuckReset(startedAt: number): void {
+  if (stuckTimer) clearTimeout(stuckTimer);
+  stuckTimer = setTimeout(() => {
+    stuckTimer = null;
+    if (!state || state.startedAt !== startedAt) return;
+    const stuck = state;
+    state = null;
+    console.warn('[V2-PREPARE] prep_state_stuck_reset', JSON.stringify({ reason: 'no_end_within_limit', source: stuck.source, sessionTag: stuck.sessionTag ?? null, finishing: stuck.finishing, stuckMs: Date.now() - stuck.startedAt })); // guard-ok: сброс зависшего состояния с причиной
+    emit();
+  }, LESSON_PREP_STUCK_RESET_MS);
 }
 
 /** Подготовка готова: заливка дотягивается, затем переход. */
@@ -63,6 +82,7 @@ export function endLessonPrep(result: Readonly<{ ok: boolean; timedOut?: boolean
   const outcome = prepOutcomeOf({ elapsedMs, ok: result.ok, timedOut: result.timedOut === true });
   const source = state.source;
   state = null;
+  if (stuckTimer) { clearTimeout(stuckTimer); stuckTimer = null; }
   console.log(LOG, 'end', JSON.stringify({ source, outcome, elapsedMs, ok: result.ok, timedOut: result.timedOut === true, reason: result.reason ?? null, shown: outcome === 'instant' ? 'кнопка не менялась' : outcome === 'timeout' || outcome === 'failed' ? 'кнопка вернулась, подсказка снизу, экран на месте' : 'ход дотянулся, переход' })); // guard-ok: итог для человека
   emit();
   return outcome;
@@ -76,6 +96,7 @@ export function useLessonPrep(source: LessonPrepSource): LessonPrepState | null 
 
 export function resetLessonPrepForTests(): void {
   state = null;
+  if (stuckTimer) { clearTimeout(stuckTimer); stuckTimer = null; }
   listeners.forEach((l) => l());
 }
 

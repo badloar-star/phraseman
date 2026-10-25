@@ -65,7 +65,9 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
   });
   it('окно экзамена: факты из данных Learning V2, цена ⚡1 для Free, строка для Plus', () => {
     expect(wire).toContain('CHAPTER_EXAM_QUESTION_COUNT_V1');
-    expect(wire).toContain('LEARNING_V2_CHAPTER_EXAM_MINUTES_V1');
+    // зачем (владелец 25.10 через координатора, «черновик разраба»): на фишках только «N вопросов» — минут и порога сдачи нет
+    expect(wire).not.toContain('LEARNING_V2_CHAPTER_EXAM_MINUTES_V1');
+    expect(wire).not.toContain('learningV2ChapterExamPassFrom');
     expect(wire).toContain("energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null");
     const card = readSource('components/learning-v2/season/SeasonExpandedCard.tsx');
     expect(card).toContain('testID="season-exam-facts"');

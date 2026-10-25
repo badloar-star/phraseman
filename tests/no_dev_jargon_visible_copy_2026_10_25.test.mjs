@@ -14,8 +14,13 @@ const FILES = [
   'app/learning_v2_session_intro_check.tsx',
   'app/learning_v2_session_intro.tsx',
   'app/pos_workout_engine.ts',
+  // часть 2 (владелец 25.10 кнопками): практика ошибок, итог диалога, экзамен главы, заголовок Пика
+  'app/mistake_practice_session.tsx',
+  'components/DialogVerdictScreen.tsx',
+  'components/learning-v2/learning_v2_chapter_exam_copy.ts',
+  'components/spire/SpireHomeTitle.tsx',
 ];
-const BANNED = /минут|попытк|сесси|интро|дрилл|ноль звёзд/i;
+const BANNED = /минут|попытк|сесси|интро|дрилл|ноль звёзд|ориентир|вручную|чтобы сдать|^бета$/i;
 const DEV_ONLY = new Set(['Разблокировать все сессии для тестирования']);
 
 function ruStrings(src) {
@@ -47,6 +52,15 @@ test('шторка занятия не передаёт «≈ 5 минут» и 
   const sheet = fs.readFileSync(path.join(ROOT, 'components/LearningV2SessionOutcomeSheet.tsx'), 'utf8');
   assert.match(sheet, /\.filter\(\(stat\) => typeof stat\.value === "string" && stat\.value\.trim\(\)\.length > 0\)/);
   assert.match(sheet, /locked \|\| stats\.length === 0 \? null/);
+});
+
+test('экзамен главы: на фишках только «N вопросов»; Пик без плашки «бета»', () => {
+  const sheet = fs.readFileSync(path.join(ROOT, 'components/learning-v2/LearningV2ChapterExamSheet.tsx'), 'utf8');
+  assert.doesNotMatch(sheet, /learningV2ChapterExamCopy\(lang, '(minutes|toPass)'\)/);
+  const wire = fs.readFileSync(path.join(ROOT, 'components/learning-v2/season/SeasonCourseConnected.tsx'), 'utf8');
+  assert.doesNotMatch(wire, /LEARNING_V2_CHAPTER_EXAM_MINUTES_V1|learningV2ChapterExamPassFrom/);
+  const title = fs.readFileSync(path.join(ROOT, 'components/spire/SpireHomeTitle.tsx'), 'utf8');
+  assert.doesNotMatch(title, /spire-beta-pill|SPIRE_BETA_LANGS/);
 });
 
 test('проверка интро: нет строки «3 вопроса · до 9 звёзд», «Попытка N» и подсказки «ноль звёзд»', () => {

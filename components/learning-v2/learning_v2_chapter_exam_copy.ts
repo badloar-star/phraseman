@@ -9,8 +9,7 @@ type Row = Readonly<Record<Lang9, string>>;
 const COPY = {
   title: { ru: "Экзамен главы {n}", uk: "Іспит розділу {n}", en: "Chapter {n} exam", es: "Examen del capítulo {n}", "pt-BR": "Exame do capítulo {n}", vi: "Bài thi chương {n}", id: "Ujian bab {n}", tr: "{n}. ünite sınavı", pl: "Egzamin rozdziału {n}" },
   questions: { ru: "вопросов", uk: "питань", en: "questions", es: "preguntas", "pt-BR": "perguntas", vi: "câu hỏi", id: "soal", tr: "soru", pl: "pytań" },
-  toPass: { ru: "чтобы сдать", uk: "щоб скласти", en: "to pass", es: "para aprobar", "pt-BR": "para passar", vi: "để đạt", id: "untuk lulus", tr: "geçmek için", pl: "by zdać" },
-  minutes: { ru: "минут", uk: "хвилин", en: "minutes", es: "minutos", "pt-BR": "minutos", vi: "phút", id: "menit", tr: "dakika", pl: "minut" },
+  // зачем (владелец 25.10 через координатора): «K чтобы сдать» и «M минут» с фишек экзамена убраны — ключи больше не нужны
   scope: { ru: "По эпизодам {a}–{b}.", uk: "За епізодами {a}–{b}.", en: "Episodes {a}–{b}.", es: "Episodios {a}–{b}.", "pt-BR": "Episódios {a}–{b}.", vi: "Tập {a}–{b}.", id: "Episode {a}–{b}.", tr: "{a}–{b}. bölümler.", pl: "Odcinki {a}–{b}." },
   unlocks: { ru: "Сдашь — сразу откроется глава {n}.", uk: "Складеш — одразу відкриється розділ {n}.", en: "Pass it and chapter {n} opens right away.", es: "Si apruebas, se abre el capítulo {n} al instante.", "pt-BR": "Passou, o capítulo {n} abre na hora.", vi: "Đạt là mở ngay chương {n}.", id: "Lulus, bab {n} langsung terbuka.", tr: "Geçersen {n}. ünite hemen açılır.", pl: "Zdasz — od razu otworzy się rozdział {n}." },
   start: { ru: "Начать экзамен", uk: "Почати іспит", en: "Start the exam", es: "Empezar el examen", "pt-BR": "Começar o exame", vi: "Bắt đầu bài thi", id: "Mulai ujian", tr: "Sınava başla", pl: "Zacznij egzamin" },

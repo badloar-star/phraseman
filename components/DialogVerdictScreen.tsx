@@ -145,15 +145,16 @@ export default function DialogVerdictScreen({
 
   const neutralSubtitle = neutralClosing
     ? triLang(lang, {
-        ru: `Твоих реплик: ${neutralClosing.userExchanges}. Ориентир: около ${neutralClosing.recommendedExchanges}, но завершать можно вручную.`,
-        uk: `Твоїх реплік: ${neutralClosing.userExchanges}. Орієнтир: близько ${neutralClosing.recommendedExchanges}, але завершити можна вручну.`,
-        en: `Your replies: ${neutralClosing.userExchanges}. Target: about ${neutralClosing.recommendedExchanges}, but you can end it manually.`,
-        es: `Tus respuestas: ${neutralClosing.userExchanges}. Guía: unas ${neutralClosing.recommendedExchanges}, pero puedes terminar manualmente.`,
-        'pt-BR': `Suas respostas: ${neutralClosing.userExchanges}. Referência: cerca de ${neutralClosing.recommendedExchanges}, mas você pode encerrar manualmente.`,
-        vi: `Lượt trả lời của bạn: ${neutralClosing.userExchanges}. Gợi ý: khoảng ${neutralClosing.recommendedExchanges}, nhưng bạn có thể tự kết thúc.`,
-        id: `Jawabanmu: ${neutralClosing.userExchanges}. Patokan: sekitar ${neutralClosing.recommendedExchanges}, tetapi kamu bisa mengakhiri sendiri.`,
-        tr: `${neutralClosing.userExchanges} yanıt verdin. Hedef yaklaşık ${neutralClosing.recommendedExchanges}; yine de elle bitirebilirsin.`,
-        pl: `Twoje odpowiedzi: ${neutralClosing.userExchanges}. Wskazówka: około ${neutralClosing.recommendedExchanges}, ale możesz zakończyć ręcznie.`,
+        // зачем (владелец 25.10 через координатора, «черновик разраба»): только число реплик — без «ориентира» и «завершать вручную»
+        ru: `Твоих реплик: ${neutralClosing.userExchanges}`,
+        uk: `Твоїх реплік: ${neutralClosing.userExchanges}`,
+        en: `Your replies: ${neutralClosing.userExchanges}`,
+        es: `Tus respuestas: ${neutralClosing.userExchanges}`,
+        'pt-BR': `Suas respostas: ${neutralClosing.userExchanges}`,
+        vi: `Lượt trả lời của bạn: ${neutralClosing.userExchanges}`,
+        id: `Jawabanmu: ${neutralClosing.userExchanges}`,
+        tr: `${neutralClosing.userExchanges} yanıt verdin`,
+        pl: `Twoje odpowiedzi: ${neutralClosing.userExchanges}`,
       })
     : '';
 

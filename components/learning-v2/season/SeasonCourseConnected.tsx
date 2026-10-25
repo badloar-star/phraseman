@@ -29,7 +29,7 @@ import { factoryNativeLearningV2TaskCountV1 } from '../../../modules/learning-v2
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../../modules/learning-v2/progress/progress_account_scope';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2CourseAccordionRowV1 } from '../../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionForSessionV1 } from '../../../modules/learning-v2/theory/learning_v2_theory_v1';
-import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1, chapterExamAvailabilityV1, chapterExamKeyV1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
+import { CHAPTER_EXAM_QUESTION_COUNT_V1, chapterExamAvailabilityV1, chapterExamKeyV1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import type { SeasonExamStatus } from './season_exam_caption';
 import { useEnergy } from '../../EnergyContext';
 import NoEnergyModal from '../../NoEnergyModal';
@@ -39,8 +39,8 @@ import { useIsTabPage, useTabTopBleedInset } from '../../tab_top_bleed';
 import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLessonsList';
 import type LearningV2ChaptersCourse from '../LearningV2ChaptersCourse';
-import { LEARNING_V2_CHAPTER_EXAM_MINUTES_V1, learningV2ChapterExamEpisodeRangeV1 } from '../LearningV2ChapterExamSheet';
-import { learningV2ChapterExamCopy, learningV2ChapterExamPassFrom } from '../learning_v2_chapter_exam_copy';
+import { learningV2ChapterExamEpisodeRangeV1 } from '../LearningV2ChapterExamSheet';
+import { learningV2ChapterExamCopy } from '../learning_v2_chapter_exam_copy';
 import LearningV2TheorySheet from '../LearningV2TheorySheet';
 import type { SeasonExamPanel } from './SeasonExpandedCard';
 import SeasonCourse from './SeasonCourse';
@@ -239,10 +239,9 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
       learningV2ChapterExamCopy(lang, 'scope', { a: range.first, b: range.last }),
       next ? learningV2ChapterExamCopy(lang, 'unlocks', { n: next }) : null,
     ].filter(Boolean).join(' ');
+    // зачем (владелец 25.10 через координатора, «черновик разраба»): на фишках только «N вопросов» — без «от N верных» и «~M минут»
     const facts = [
       `${CHAPTER_EXAM_QUESTION_COUNT_V1} ${learningV2ChapterExamCopy(lang, 'questions')}`,
-      learningV2ChapterExamPassFrom(lang, CHAPTER_EXAM_PASS_CORRECT_V1), // «от N верных» (Переводчик, ba8a5ebd4)
-      `~${LEARNING_V2_CHAPTER_EXAM_MINUTES_V1} ${learningV2ChapterExamCopy(lang, 'minutes')}`,
     ];
     return { description, panel: { facts, energyBadge: !examFree, plusLine: examFree ? learningV2ChapterExamCopy(lang, 'plusFree') : null } };
   }, [chapterCount, examFree, lang]);

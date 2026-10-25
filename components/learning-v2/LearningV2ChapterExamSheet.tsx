@@ -19,7 +19,6 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { KIT_MOTION, LUM } from '../../constants/motionHybrid';
 import {
-  CHAPTER_EXAM_PASS_CORRECT_V1,
   CHAPTER_EXAM_QUESTION_COUNT_V1,
   CHAPTER_EXAM_SESSIONS_PER_CHAPTER_V1,
 } from '../../modules/learning-v2/exam/chapter_exam_v1';
@@ -120,10 +119,9 @@ export default function LearningV2ChapterExamSheet({ visible, lessonOrdinal, cha
     learningV2ChapterExamCopy(lang, 'scope', { a: range.first, b: range.last }),
     next ? learningV2ChapterExamCopy(lang, 'unlocks', { n: next }) : null,
   ].filter(Boolean).join(' ');
+  // зачем (владелец 25.10 через координатора, «черновик разраба»): на фишках только «N вопросов» — без минут и порога сдачи
   const facts: readonly [string, string][] = [
     [String(CHAPTER_EXAM_QUESTION_COUNT_V1), learningV2ChapterExamCopy(lang, 'questions')],
-    [String(CHAPTER_EXAM_PASS_CORRECT_V1), learningV2ChapterExamCopy(lang, 'toPass')],
-    [`~${LEARNING_V2_CHAPTER_EXAM_MINUTES_V1}`, learningV2ChapterExamCopy(lang, 'minutes')],
   ];
   const later = learningV2ChapterExamCopy(lang, 'later');
 

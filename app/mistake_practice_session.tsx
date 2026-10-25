@@ -1606,7 +1606,7 @@ function MistakePracticeSessionScreen() {
               <PanelCta g={g} testID="mistake-practice-next" label={pcopy.next} onPress={continueAfterFeedback} />
             </View>
           )}
-          {feedback.stopForToday ? <Text style={[styles.trayStop, { color: g.secondary }]}>{triLang(lang, { ru: 'Повторим эту фразу завтра: три попытки подряд утомляют, а не учат.', uk: 'Повторимо цей вислів завтра: три спроби поспіль втомлюють, а не вчать.', en: "We'll come back to this phrase tomorrow: three tries in a row tire you out rather than teach.", es: 'Volveremos a esta frase mañana: tres intentos seguidos cansan, no enseñan.', 'pt-BR': 'Voltamos a esta frase amanhã: três tentativas seguidas cansam, não ensinam.', vi: 'Ta sẽ quay lại câu này vào ngày mai: ba lần liên tiếp làm mệt chứ không giúp học.', id: 'Kita ulang frasa ini besok: tiga kali berturut-turut melelahkan, bukan mengajarkan.', tr: 'Bu ifadeye yarın döneriz: üst üste üç deneme öğretmez, yorar.', pl: 'Wrócimy do tej frazy jutro: trzy próby pod rząd męczą, a nie uczą.' })}</Text> : null}
+          {feedback.stopForToday ? <Text style={[styles.trayStop, { color: g.secondary }]}>{triLang(lang, { ru: 'Вернёмся к этой фразе завтра.', uk: 'Повернемося до цього вислову завтра.', en: "We'll come back to this phrase tomorrow.", es: 'Volveremos a esta frase mañana.', 'pt-BR': 'Voltamos a esta frase amanhã.', vi: 'Ta sẽ quay lại câu này vào ngày mai.', id: 'Kita kembali ke frasa ini besok.', tr: 'Bu ifadeye yarın döneriz.', pl: 'Wrócimy do tej frazy jutro.' })}</Text> : null}
         </Tray>
       );
     }

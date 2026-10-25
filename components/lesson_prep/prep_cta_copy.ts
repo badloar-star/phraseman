@@ -13,7 +13,7 @@ const S = {
   /** Подпись на занятой кнопке (с 0,35 с до 6 с). */
   preparing: ['Готовим занятие…', 'Готуємо заняття…', 'Getting your session ready…', 'Preparando tu sesión…', 'Preparando sua sessão…', 'Đang chuẩn bị buổi học…', 'Menyiapkan sesi…', 'Oturum hazırlanıyor…', 'Przygotowujemy zajęcia…'],
   /** Подпись с 6 с до срока. */
-  still: ['Ещё готовится…', 'Ще готується…', 'Still getting ready…', 'Aún preparándose…', 'Ainda preparando…', 'Vẫn đang chuẩn bị…', 'Masih disiapkan…', 'Hâlâ hazırlanıyor…', 'Jeszcze się przygotowuje…'],
+  still: ['Ещё секунду…', 'Ще секунду…', 'Still getting ready…', 'Aún preparándose…', 'Ainda preparando…', 'Vẫn đang chuẩn bị…', 'Masih disiapkan…', 'Hâlâ hazırlanıyor…', 'Jeszcze się przygotowuje…'],
   /** Подсказка снизу, когда за 12 с не успело: Главная остаётся на месте. */
   hintContinue: ['Занятие ещё готовится. Нажми «Продолжить» через пару секунд', 'Заняття ще готується. Натисни «Продовжити» за кілька секунд', 'The session is still getting ready. Tap Continue again in a few seconds', 'La sesión aún se está preparando. Toca Continuar en unos segundos', 'A sessão ainda está sendo preparada. Toque em Continuar em alguns segundos', 'Buổi học vẫn đang chuẩn bị. Nhấn Tiếp tục sau vài giây', 'Sesi masih disiapkan. Ketuk Lanjutkan lagi dalam beberapa detik', 'Oturum hâlâ hazırlanıyor. Birkaç saniye sonra Devam et\'e dokun', 'Zajęcia jeszcze się przygotowują. Stuknij „Kontynuuj” za kilka sekund'],
   /** Подсказка, когда подготовка отказала не по сроку (материала нет): те же слова, что у вкладки «Уроки». */

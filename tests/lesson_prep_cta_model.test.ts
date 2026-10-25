@@ -9,7 +9,7 @@ describe('подпись на кнопке по времени от тапа', (
     expect(prepStageAt(0)).toBe('idle');
     expect(prepStageAt(PREP_BUSY_SHOW_MS - 1)).toBe('idle');
   });
-  it('с 0,35 с — «Готовим занятие…», с 6 с — «Ещё готовится…»', () => {
+  it('с 0,35 с — «Готовим занятие…», с 6 с — «Ещё секунду…»', () => {
     expect(prepStageAt(PREP_BUSY_SHOW_MS)).toBe('preparing');
     expect(prepStageAt(PREP_STILL_AT_MS - 1)).toBe('preparing');
     expect(prepStageAt(PREP_STILL_AT_MS)).toBe('still');
@@ -63,7 +63,7 @@ describe('тексты на 9 языках', () => {
       expect(prepCtaText(lang, 'hintContinue').length).toBeGreaterThan(20);
     }
     expect(prepCtaText('ru', 'preparing')).toBe('Готовим занятие…');
-    expect(prepCtaText('ru', 'still')).toBe('Ещё готовится…');
+    expect(prepCtaText('ru', 'still')).toBe('Ещё секунду…');
   });
   it('подсказка для тоста: все девять полей заполнены, английская без кириллицы', () => {
     for (const kind of ['timeout', 'unavailable'] as const) {

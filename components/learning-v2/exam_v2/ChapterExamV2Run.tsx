@@ -2,9 +2,9 @@
 // зачем (владелец утвердил прототип 25.10, координатор): глава с банком v2 сдаётся здесь; данные и запись — app/learning_v2_chapter_exam_v2.ts
 // (без сети). Энергия — как у прежнего экзамена: 1 при показе первого вопроса, Plus бесплатно, повторный вход ту же попытку не списывает.
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { BackHandler, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useFocusEffect, useRouter } from 'expo-router';
+import { useFocusEffect, useNavigation, useRouter } from 'expo-router';
 
 import V2Pressable from '../../v2/V2Pressable';
 import NoEnergyModal from '../../NoEnergyModal';
@@ -71,8 +71,10 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
   const chargedKeyRef = useRef<string | null>(null);
   const finishingRef = useRef(false);
 
+  const closingRef = useRef(false);
   const close = useCallback((reason: string) => {
     console.log(`${LOG} screen:close`, JSON.stringify({ reason, index, answered: answers.length, phase })); // guard-ok: выход и причина
+    closingRef.current = true;
     safeRouterBack(router, '/learning-v2/course' as never);
   }, [answers.length, index, phase, router]);
 
@@ -169,6 +171,36 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
     console.log(`${LOG} review:open_episode`, JSON.stringify({ lessonOrdinal, episode })); // guard-ok: куда ведёт нажатие
     void launchLearningV2SessionByOrdinalsV1({ lessonOrdinal, sessionOrdinal: episode, from: 'chapter_exam_review', repeat: true }, { lang, studyTarget, push: (href) => router.push(href as never) });
   }, [lang, lessonOrdinal, router, studyTarget]);
+
+  // зачем (аудит «назад» 26.10, требование владельца): системное «назад» Android и свайп iOS ведут туда же, куда кнопка на экране.
+  // «Разбор ошибок» и «Повтори темы», открытые с итога, возвращают к итогу (как «К итогу»); иначе — закрыть экзамен (как крестик).
+  // Явное закрытие (крестик, «К главе», нет энергии) жест не перехватывает — флаг closingRef.
+  const navigation = useNavigation();
+  const backToResult = phase === 'mistakes' || (phase === 'review' && attempt !== null && outcome !== null);
+  const backToResultRef = useRef(backToResult);
+  backToResultRef.current = backToResult;
+  // Android-«назад» слушаем только пока экран в фокусе: из эпизода повтора (открыт поверх) оно не должно закрывать экзамен.
+  useFocusEffect(useCallback(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (backToResultRef.current) {
+        console.log(`${LOG} back:to_result`, JSON.stringify({ via: 'hardware' })); // guard-ok: куда увело системное «назад»
+        setPhase('result');
+        return true;
+      }
+      close('hardware_back');
+      return true;
+    });
+    return () => sub.remove();
+  }, [close]));
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('beforeRemove', (event) => {
+      if (closingRef.current || !backToResultRef.current) return;
+      event.preventDefault();
+      console.log(`${LOG} back:to_result`, JSON.stringify({ via: 'gesture' })); // guard-ok: куда увёл жест
+      setPhase('result');
+    });
+    return unsubscribe;
+  }, [navigation]);
 
   const bank = attempt?.bank ?? cooldownBank;
   const showProgress = phase === 'question' && attempt !== null;

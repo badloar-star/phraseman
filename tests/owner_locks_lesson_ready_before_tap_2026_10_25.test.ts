@@ -26,6 +26,7 @@ import {
   prepareLearningV2SessionRunV1,
   prewarmLearningV2SessionRunV1,
   scheduleLearningV2SessionPrewarmV1,
+  stageLearningV2ReadyHandoffV1,
 } from '../app/learning_v2_session_launch_v1';
 
 const at = (lessonOrdinal: number, sessionOrdinal: number) => ({
@@ -113,5 +114,19 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: урок готов до тапа
   it('the prewarm stays off the first frame: after interactions, with a pause', () => {
     const launch = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_session_launch_v1.ts'), 'utf8');
     expect(launch).toMatch(/InteractionManager\.runAfterInteractions/);
+  });
+
+  // перемер Сверки 25.10: вход через Сезон не писал [V2-START] — замер «тап → готово» в общей передаче, на любом входе
+  it('handoff after a tap logs the tap kind and tap-to-ready time; without a tap — no_tap', async () => {
+    await prewarmLearningV2SessionRunV1(at(1, 5), 'home');
+    const ready = await prepareLearningV2SessionRunV1(at(1, 5), tap);
+    stageLearningV2ReadyHandoffV1(ready.handle as never);
+    const lines = (console.log as jest.Mock).mock.calls.map((c) => String(c[0])).filter((l) => l.startsWith('[V2-START] handoff '));
+    expect(lines).toHaveLength(1);
+    expect(lines[0]).toContain('"session":"lesson-1:session:5"');
+    expect(lines[0]).toContain('"kind":"take_ready"');
+    expect(lines[0]).toMatch(/"tapToReadyMs":\d+/);
+    stageLearningV2ReadyHandoffV1(ready.handle as never);
+    expect(String((console.log as jest.Mock).mock.calls.at(-1)?.[0])).toContain('"kind":"no_tap"');
   });
 });

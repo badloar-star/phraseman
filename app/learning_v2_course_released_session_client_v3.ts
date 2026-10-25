@@ -288,6 +288,8 @@ const publicationAdmissions = new WeakMap<
   LearningV2CourseReleasedSessionMaterialV3
 >();
 const readyHandoffs = new Map<string, LearningV2CourseSessionReadyHandleV3>();
+// зачем (перемер Сверки 25.10): когда готовое занятие передано и когда экран его забрал — [V2-START] open, один раз на запуск.
+const readyHandoffStagedAt = new Map<string, number>();
 const readyInFlight = new Map<
   string,
   Promise<LearningV2CourseSessionReadyHandleV3>
@@ -1391,6 +1393,7 @@ export function stageLearningV2CourseSessionReadyHandoffV3(
 ): void {
   const summary = getLearningV2CourseSessionReadySummaryV3(handle);
   readyHandoffs.set(summary.sessionRunId, handle);
+  readyHandoffStagedAt.set(summary.sessionRunId, Date.now());
   // зачем (владелец 21.09): парный лог к [V2-HANDOFF] consume. Печатаем ключ,
   // под которым карта положила готовую сессию — расхождение с ключом маршрута
   // видно одним grep, гадать не нужно.
@@ -1408,6 +1411,7 @@ export function stageLearningV2CourseSessionReadyHandoffV3(
     const oldest = readyHandoffs.keys().next().value as string | undefined;
     if (!oldest) break;
     readyHandoffs.delete(oldest);
+    readyHandoffStagedAt.delete(oldest);
   }
 }
 
@@ -1465,6 +1469,11 @@ export function consumeLearningV2CourseSessionReadyHandoffV3(input: {
   }
   // Запись НЕ удаляется: повторный монтаж того же маршрута обязан получить
   // тот же handle, иначе возвращается тупик «Сессия недоступна».
+  const stagedAt = readyHandoffStagedAt.get(input.sessionRunId);
+  if (stagedAt !== undefined) {
+    readyHandoffStagedAt.delete(input.sessionRunId); // строка open — один раз на запуск, ремаунт её не повторяет
+    console.log(`[V2-START] open ${JSON.stringify({ courseSessionId: input.courseSessionId, stageToOpenMs: Date.now() - stagedAt })}`); // guard-ok: замер готово → экран занятия
+  }
   return handle;
 }
 
@@ -1473,6 +1482,7 @@ export async function clearLearningV2CourseReleasedSessionCacheV3(): Promise<voi
   currentPreloads.clear();
   readyInFlight.clear();
   readyHandoffs.clear();
+  readyHandoffStagedAt.clear();
   writeChain = writeChain
     .then(async () => {
       await AsyncStorage.removeItem(STORAGE_KEY);

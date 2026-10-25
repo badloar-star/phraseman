@@ -90,6 +90,7 @@ export function prepareLearningV2SessionRunV1(
   if (preparedSlot && preparedSlot.key === inflightKey) {
     const taken = preparedSlot;
     preparedSlot = null;
+    lastTap = { sessionTag, kind: 'take_ready', atMs: Date.now() };
     console.log(`[V2-PREPARE] take_ready ${sessionTag} reason=${taken.reason} age_ms=${Date.now() - taken.readyAt}`); // guard-ok: одна строка на тап
     return Promise.resolve(taken.ready);
   }
@@ -101,6 +102,7 @@ export function prepareLearningV2SessionRunV1(
   const operation = running ?? startTrackedPreparation(locator, sessionTag, inflightKey);
   // Тап забрал результат этой подготовки — в запас (preparedSlot) он уже не попадёт.
   claimedByTap.add(operation);
+  lastTap = { sessionTag, kind: running ? 'tap_joins_running' : 'tap_cold', atMs: Date.now() };
   if (running) {
     console.warn(`${LOG} [R08-PREP] reuse_inflight ${sessionTag}`); // guard-ok: повторный тап ждёт идущую подготовку
     console.log(`[V2-PREPARE] tap_joins_running ${sessionTag}`); // guard-ok: тап раньше конца заготовки
@@ -122,6 +124,8 @@ export function prepareLearningV2SessionRunV1(
 const inflightPreparations = new Map<string, Promise<LearningV2PreparedSessionRunV1>>();
 /** Подготовки, результат которых уже ждёт тап: в запас их не кладём (иначе один sessionRunId выдали бы дважды). */
 const claimedByTap = new WeakSet<Promise<LearningV2PreparedSessionRunV1>>();
+// зачем (перемер Сверки 25.10): вход через Сезон не писал [V2-START] — время «тап → готово» берём в общем месте, на любом входе.
+let lastTap: Readonly<{ sessionTag: string; kind: 'take_ready' | 'tap_joins_running' | 'tap_cold'; atMs: number }> | null = null;
 
 function preparationKeyOf(locator: LearningV2SessionLocatorV1): string {
   return JSON.stringify([locator.environment, locator.seasonId, locator.studyTarget, locator.learnerSourceLocale, locator.lessonOrdinal, locator.sessionOrdinal]);
@@ -325,7 +329,10 @@ function startPreparation(locator: LearningV2SessionLocatorV1, sessionTag: strin
 
 /** Передать плееру «готово». Модуль уже загружен (handle выдал он) — синхронно; иначе догружаем и пишем причину. */
 export function stageLearningV2ReadyHandoffV1(handle: LearningV2CourseSessionReadyHandleV3 | null): void {
-  if (!handle) return;
+  if (!handle) { console.log('[V2-START] handoff_skip reason=no_handle'); return; } // guard-ok: ранний выход с причиной
+  const tap = lastTap;
+  lastTap = null;
+  console.log(`[V2-START] handoff ${JSON.stringify({ session: tap?.sessionTag ?? 'unknown', kind: tap?.kind ?? 'no_tap', tapToReadyMs: tap ? Date.now() - tap.atMs : null })}`); // guard-ok: замер тап → готово, дальше переход
   const client = clientLoaded;
   if (client) {
     client.stageLearningV2CourseSessionReadyHandoffV3(handle);

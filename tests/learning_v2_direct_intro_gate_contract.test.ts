@@ -20,7 +20,8 @@ assert.match(lessons, /prepareLearningV2SessionRunV1\(/);
 assert.match(lessons, /stageLearningV2ReadyHandoffV1\(ready\.handle\)/);
 assert.match(
   lessons,
-  /Promise\.all\(\[prepared, modalExit\]\)[\s\S]{0,1800}sessionRunId:\s*ready\.sessionRunId/,
+  // зачем (макет «Готовим занятие…», владелец 25.10): шторка закрывается ПОСЛЕ готовности (exitSheet внутри then), а не параллельно
+  /Promise\.all\(\[prepared\]\)[\s\S]{0,3200}exitSheet\(\)[\s\S]{0,3200}sessionRunId:\s*ready\.sessionRunId/,
 );
 assert.match(player, /consumeLearningV2CourseSessionReadyHandoffV3/);
 assert.match(player, /sessionRunId\?: string \| string\[\]/);

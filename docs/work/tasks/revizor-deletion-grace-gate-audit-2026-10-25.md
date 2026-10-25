@@ -20,7 +20,13 @@
    0 вызовов шлюза; `assertAuthStableLink` в referral.ts:561 — только сверка связи, не шлюз; friends_duel / premium_themes /
    friends_lesson_together / home_poll_v2_vote — каждый обработчик зовёт шлюз сам или через свой помощник).
 
-## Открыты в grace — нужен шлюз
+## ✅ Закрыто 0750164ff (Ядро, 25.10, без выкладки)
+
+referralSpin, referralClaimSpin, communitySyncPackRuneSale, dailyPhraseSetSaved — `assertAuthAccountUsableForCallable` первой строкой
+(до сверки связи / транзакции); accountsV2SyncApply — после ворот флага, до применения пачки. Журнал `[ACCOUNT-GATE] reject` с причиной.
+Тест functions/src/account_gate_grace_callables.test.ts. Проверено Ревизором по коду.
+
+## Были открыты в grace (до 0750164ff)
 
 | Функция | Файл | Что делает для человека | Риск |
 |---|---|---|---|

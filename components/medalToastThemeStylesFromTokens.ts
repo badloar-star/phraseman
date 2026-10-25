@@ -1,4 +1,5 @@
 import { glassTone } from './dialogs/glass/glassTone';
+import { flattenOver, legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import type { GlassTokens } from '../constants/liquidGlassThemePalette';
 import type { MedalToastThemeStyle } from './medalToastThemeStyles';
 
@@ -17,26 +18,37 @@ const TIER = {
   },
 } as const;
 
+const TEXTURE_ALPHA = 0.05;
+
 export function medalToastStyleFromTokens(t: GlassTokens): MedalToastThemeStyle {
   const tier = t.isLight ? TIER.light : TIER.dark;
   const clear = (c: string) => glassTone(c, 0);
+  const textureOpacity = t.isLight ? 0.4 : 0.52;
+  // зачем (4 · ТЕМЫ 25.10, docs/work/toast-contrast-2026-10-25.md: подпись ступени цветом бронзы/серебра/золота не читалась в 77 из 174
+  // сочетаний — светлые 4,0, olive тёмная 3,57; accentText без повышения — 4,42 в marine): текст тоста доводим legibleOn к `text` по обоим
+  // краям карточки с текстурой (MedalToast: градиент cardBgColors + texture на всю карточку) до 4,55. Оттенок ступени сохраняется — меняется
+  // только светлота. Сами цвета ступеней (TIER, theme-exempt Дизайна) не трогаем: они остаются в tierAccents для значка и свечения.
+  const textureOver = glassTone(t.accent, TEXTURE_ALPHA * textureOpacity);
+  const textSurfaces = [t.opaqueControl, t.opaqueCard].map((c) => flattenOver(textureOver, c));
+  const readable = (c: string): string => legibleOn(c, t.text, textSurfaces, 4.55);
   return {
     signature: `glass-${t.isLight ? 'light' : 'dark'}`,
     cardBgColors: [t.opaqueControl, t.opaqueCard],
     borderColor: glassTone(t.accent, t.isLight ? 0.3 : 0.28),
     titleColor: t.text,
-    subtitleColor: t.secondary,
+    subtitleColor: readable(t.secondary),
     surfaceAccent: t.accent,
-    badgeDownColor: t.accentText,
+    badgeDownColor: readable(t.accentText),
     topShineColors: [clear(t.accentBright), glassTone(t.accentBright, t.isLight ? 0.5 : 0.56), clear(t.accentBright)],
     topShineOpacity: t.isLight ? 0.64 : 0.72,
     haloOpacity: t.isLight ? 0.18 : 0.24,
     auraColor: glassTone(t.accent, t.isLight ? 0.1 : 0.14),
     medalPlateBg: glassTone(t.accent, 0.07),
     medalPlateBorder: glassTone(t.accent, 0.22),
-    textureColor: glassTone(t.accent, 0.05),
-    textureOpacity: t.isLight ? 0.4 : 0.52,
+    textureColor: glassTone(t.accent, TEXTURE_ALPHA),
+    textureOpacity,
     tierAccents: { ...tier.accents },
+    tierLabelColors: { bronze: readable(tier.accents.bronze), silver: readable(tier.accents.silver), gold: readable(tier.accents.gold) },
     tierGlows: { ...tier.glows },
   };
 }

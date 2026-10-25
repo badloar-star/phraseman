@@ -335,7 +335,8 @@ function MedalToast({
 
   // Цвета фона/текста под тему
   const visualTheme = themeMode ? getMedalToastThemeStyle(themeMode) : medalToastStyleFromTokens(glassTokens);
-  const tierAccent = visualTheme.tierAccents[tier] ?? palette.primary;
+  // зачем (4 · ТЕМЫ 25.10, toast-contrast): подпись ступени — текст, ей нужен доведённый цвет tierLabelColors; tierAccents — исходные цвета ступеней
+  const tierAccent = visualTheme.tierLabelColors?.[tier] ?? visualTheme.tierAccents[tier] ?? palette.primary;
   const accent = promoted ? tierAccent : visualTheme.badgeDownColor;
 
   // зачем: гибрид рендерит через Reanimated.View (LUM.settle, без отскока

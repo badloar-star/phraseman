@@ -20,6 +20,8 @@ export interface MedalToastThemeStyle {
   textureColor: string;
   textureOpacity: number;
   tierAccents: Record<EarnedMedalTier, string>;
+  /** Цвет подписи ступени (текст) — цвет ступени, доведённый до ≥ 4,55 на карточке; нет — подпись берёт tierAccents (прежние таблицы). */
+  tierLabelColors?: Record<EarnedMedalTier, string>;
   tierGlows: Record<EarnedMedalTier, string>;
 }
 

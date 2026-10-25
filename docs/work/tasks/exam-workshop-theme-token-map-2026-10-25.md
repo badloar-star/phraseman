@@ -84,3 +84,8 @@ Outcome: подтвердить замером по закоммиченному
 Governance-ID: TG-F335B7E04B05
 
 Outcome: контраст всех тостов и всплывашек во всех 174 сочетаниях — общий ActionToast (энергия, награды, ошибки сети, «сохранено», подсказки урока, карточка и строка сверху), тост медали (medalToastStyleFromTokens), снекбар удаления Карточек (UndoDeleteSnackbar); отдельно — держит ли подложка контраст при тексте в две строки. Scope: scripts/toast_contrast_measure.ts и отчёт docs/work/toast-contrast-2026-10-25.md; код приложения не меняется. Architecture: формулы подложек копируются со сторожем исходника. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert коммита.
+
+## Продолжение: правка подписей тоста медали (координатор 25.10, «делай сам»)
+Governance-ID: TG-F335B7E04B05
+
+Outcome: три подписи тоста медали (подпись под названием, подпись ступени без повышения и с повышением) ≥ 4,5 во всех 174 сочетаниях. Scope: components/medalToastThemeStylesFromTokens.ts (доводка legibleOn к text по обоим краям карточки с текстурой), components/medalToastThemeStyles.ts (необязательное поле tierLabelColors), components/MedalToast.tsx (одна строка: подпись ступени из tierLabelColors), tests/medal_toast_text_contrast.test.ts, поправка скрипта и отчёта тостов. Architecture: цвета ступеней Дизайна (theme-exempt) остаются в tierAccents для значка; текст получает отдельное поле. Security and privacy: данных не касается. Technical debt: прежние таблицы по ThemeMode (витрина) остаются без tierLabelColors. Verification: сторож на 174 × 2 края × 6 подписей, соседние тесты медали. Rollback: git revert коммита (OTA).

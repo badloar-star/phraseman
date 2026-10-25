@@ -31,24 +31,26 @@ for (const [file, line] of [
 const MEDAL = SRC('components/MedalToast.tsx');
 // зачем: подложки медали — карточка-градиент + аура и текстура акцента; где они лежат, читаем из MedalToast, чтобы не придумывать
 if (!MEDAL.includes('medalToastStyleFromTokens(glassTokens)')) throw new Error('MedalToast больше не строит стиль из токенов — обнови модель медали');
+if (!MEDAL.includes('visualTheme.tierLabelColors?.[tier]')) throw new Error('MedalToast больше не берёт подпись ступени из tierLabelColors — обнови модель медали');
 
 const alpha = (c: string, a: number): string => `${c.slice(0, 7)}${Math.round(a * 255).toString(16).padStart(2, '0')}`;
+// rgba(r,g,b,a) × k — прозрачность вида (opacity) поверх альфы цвета
+const scaleRgba = (c: string, k: number): string => { const m = c.match(/^rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)$/); if (!m) throw new Error(`ждали rgba(…): ${c}`); return `rgba(${m[1]},${m[2]},${m[3]},${Number(m[4]) * k})`; };
 const screen = (g: G): string => flattenOver(g.bg, '#000000');
 const edges = (g: G): string[] => [flattenOver(g.opaqueCard, screen(g)), flattenOver(g.opaqueControl, screen(g))];
 // награда: светлая подложка selected с прозрачностью до 0,5 поверх карточки (bloom) — меряем и без неё, и на пике
 const rewardEdges = (g: G): string[] => edges(g).flatMap((e) => [e, flattenOver(alpha(g.selected, Math.min(1, (parseInt(g.selected.slice(7, 9) || 'ff', 16) / 255) * 0.5)), e)]);
 const closeBtn = (g: G): string[] => edges(g).map((e) => flattenOver(g.selected, e));
-// медаль: карточка opaqueControl → opaqueCard, аура accent 10/14 %, текстура accent 5 % × 0,4/0,52 — всё поверх
+// медаль: карточка opaqueControl → opaqueCard и текстура accent 5 % × 0,4/0,52 на всю карточку (MedalToast styles.texture); аура auraColor
+// в токенах есть, но MedalToast её не рисует (ореол убран) — в подложку не входит; topShine — полоска 1 dp у верхнего края, под текстом её нет
 const medalEdges = (g: G): string[] => {
   const m = medalToastStyleFromTokens(g);
   return m.cardBgColors.map((c) => {
     let b = flattenOver(c, screen(g));
-    b = flattenOver(m.auraColor, b);
-    b = flattenOver(alpha(m.textureColor, (parseInt(m.textureColor.slice(7, 9) || 'ff', 16) / 255) * m.textureOpacity), b);
+    b = flattenOver(scaleRgba(m.textureColor, m.textureOpacity), b); // textureColor — rgba(…) из glassTone, opacity вида поверх
     return b;
   });
 };
-const tierAccents = (g: G): string[] => Object.values(medalToastStyleFromTokens(g).tierAccents);
 
 type Role = { id: string; area: string; what: string; pair: string; min: number; fn: (g: G) => [string[], string[]] };
 const ROLES: Role[] = [
@@ -61,14 +63,10 @@ const ROLES: Role[] = [
   { id: 'L1', area: 'Строка сверху', what: '«Последняя энергия», «Энергия восстановилась» (13 жирный)', pair: '`text` на opaqueControl', min: 4.5, fn: (g) => [[g.text], [flattenOver(g.opaqueControl, screen(g))]] },
   { id: 'L2', area: 'Строка сверху', what: 'Значок на плитке', pair: '`text` на opaqueCard', min: 3, fn: (g) => [[g.text], [flattenOver(g.opaqueCard, screen(g))]] },
   // ── тост медали ──
-  { id: 'M1', area: 'Тост медали', what: 'Название медали', pair: '`text` на карточке + аура + текстура', min: 4.5, fn: (g) => [[g.text], medalEdges(g)] },
-  { id: 'M2', area: 'Тост медали', what: 'Подпись («Ступень 2», описание)', pair: '`secondary` на той же подложке', min: 4.5, fn: (g) => [[g.secondary], medalEdges(g)] },
-  { id: 'M3', area: 'Тост медали', what: 'Подпись ступени без повышения (badgeDownColor, текст)', pair: '`accentText` на той же подложке', min: 4.5, fn: (g) => [[g.accentText], medalEdges(g)] },
-  { id: 'M4', area: 'Тост медали', what: 'Подпись ступени при повышении — текст цветом бронзы / серебра / золота', pair: 'tierAccents на той же подложке', min: 4.5, fn: (g) => [tierAccents(g), medalEdges(g)] },
-  // зачем: замены только из токенов — тот же цвет, доведённый legibleOn к `text` по обоим краям подложки медали (как paywallPlanRowPaint)
-  { id: 'M2*', area: 'Тост медали', what: 'подпись после доводки (замена)', pair: 'legibleOn(secondary → text, края медали, 4.55)', min: 4.5, fn: (g) => [[legibleOn(g.secondary, g.text, medalEdges(g), 4.55)], medalEdges(g)] },
-  { id: 'M3*', area: 'Тост медали', what: 'подпись ступени без повышения после доводки (замена)', pair: 'legibleOn(accentText → text, края медали, 4.55)', min: 4.5, fn: (g) => [[legibleOn(g.accentText, g.text, medalEdges(g), 4.55)], medalEdges(g)] },
-  { id: 'M4*', area: 'Тост медали', what: 'подпись ступени при повышении после доводки (замена)', pair: 'legibleOn(tierAccent → text, края медали, 4.55)', min: 4.5, fn: (g) => [tierAccents(g).map((c) => legibleOn(c, g.text, medalEdges(g), 4.55)), medalEdges(g)] },
+  { id: 'M1', area: 'Тост медали', what: 'Название медали', pair: '`text` на карточке + текстура', min: 4.5, fn: (g) => [[g.text], medalEdges(g)] },
+  { id: 'M2', area: 'Тост медали', what: 'Подпись («Ступень 2», описание)', pair: 'subtitleColor (secondary, доведённый)', min: 4.5, fn: (g) => [[medalToastStyleFromTokens(g).subtitleColor], medalEdges(g)] },
+  { id: 'M3', area: 'Тост медали', what: 'Подпись ступени без повышения', pair: 'badgeDownColor (accentText, доведённый)', min: 4.5, fn: (g) => [[medalToastStyleFromTokens(g).badgeDownColor], medalEdges(g)] },
+  { id: 'M4', area: 'Тост медали', what: 'Подпись ступени при повышении — текст цветом бронзы / серебра / золота', pair: 'tierLabelColors (цвет ступени, доведённый)', min: 4.5, fn: (g) => [Object.values(medalToastStyleFromTokens(g).tierLabelColors ?? {}), medalEdges(g)] },
   // ── снекбар удаления Карточек ──
   { id: 'C1', area: 'Снекбар Карточек', what: '«Удалено» (16) и значок корзины', pair: '`text` на opaqueControl', min: 4.5, fn: (g) => [[g.text], [flattenOver(g.opaqueControl, screen(g))]] },
   { id: 'C2', area: 'Снекбар Карточек', what: 'Кнопка «Вернуть»: подпись', pair: '`ctaFillInk` на ctaFill', min: 4.5, fn: (g) => [[g.ctaFillInk], [g.ctaFill]] },

@@ -45,6 +45,6 @@ const S = StyleSheet.create({
   stats: { marginTop: 14, flexDirection: 'row', gap: 8 },
   tile: { flex: 1, minHeight: 64, borderRadius: 16, paddingVertical: 10, paddingHorizontal: 12, justifyContent: 'center' },
   value: { fontSize: 22, lineHeight: 26, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  total: { fontSize: 14, fontWeight: '600' },
-  label: { marginTop: 2, fontSize: 12, lineHeight: 15 },
+  total: { fontSize: 13, fontWeight: '600' },
+  label: { marginTop: 2, fontSize: 13, lineHeight: 17 },
 });

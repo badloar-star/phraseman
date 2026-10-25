@@ -64,8 +64,8 @@ export const PaywallMDock = memo(function PaywallMDock({ g, texts, purchasing, d
 const S = StyleSheet.create({
   dock: { paddingHorizontal: 16, paddingTop: 10 },
   cta: { height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
-  ctaText: { fontSize: 17, lineHeight: 22, fontWeight: '800', letterSpacing: -0.2 },
-  fine: { marginTop: 8, minHeight: 34, fontSize: 12, lineHeight: 17, textAlign: 'center' },
+  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '800', letterSpacing: -0.2 },
+  fine: { marginTop: 8, minHeight: 34, fontSize: 13, lineHeight: 17, textAlign: 'center' },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' },
   linkHit: { minHeight: 44, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
   link: { fontSize: 13, lineHeight: 18, fontWeight: '600' },

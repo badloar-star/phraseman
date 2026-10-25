@@ -42,7 +42,7 @@ const S = StyleSheet.create({
   dot: { width: 12, height: 12, borderRadius: 6 },
   line: { width: 2, flex: 1, marginTop: 2, opacity: 0.45 },
   card: { flex: 1, borderRadius: 18, paddingVertical: 12, paddingHorizontal: 14, marginBottom: 12 },
-  meta: { fontSize: 12, lineHeight: 16, fontWeight: '700' },
-  english: { marginTop: 2, fontSize: 18, lineHeight: 24, fontWeight: '800', letterSpacing: -0.2 },
+  meta: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  english: { marginTop: 2, fontSize: 19, lineHeight: 24, fontWeight: '800', letterSpacing: -0.2 },
   tr: { marginTop: 2, fontSize: 13, lineHeight: 18 },
 });

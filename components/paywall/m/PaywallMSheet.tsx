@@ -165,10 +165,10 @@ const S = StyleSheet.create({
   handle: { alignSelf: 'center', width: 40, height: 4, borderRadius: 2, marginTop: 8 },
   topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, minHeight: 52 },
   later: { minHeight: 44, justifyContent: 'center', paddingRight: 12 },
-  laterText: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  laterText: { fontSize: 16, lineHeight: 21, fontWeight: '600' },
   pill: { minHeight: 32, borderRadius: 16, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 4 },
   pillText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   scroll: { flexShrink: 1 },
   scrollContent: { paddingHorizontal: 16, paddingTop: 4, paddingBottom: 20, gap: 22 },
-  sub: { fontSize: 15, lineHeight: 22 },
+  sub: { fontSize: 16, lineHeight: 21 },
 });

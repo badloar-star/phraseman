@@ -81,12 +81,12 @@ export const PaywallMChart = memo(function PaywallMChart({ g, model, texts }: { 
 
 const S = StyleSheet.create({
   card: { borderRadius: 22, paddingVertical: 14, paddingHorizontal: 16 },
-  title: { fontSize: 15, lineHeight: 20, fontWeight: '800' },
-  endLabel: { position: 'absolute', fontSize: 15, lineHeight: 20, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '800' },
+  endLabel: { position: 'absolute', fontSize: 16, lineHeight: 21, fontWeight: '800', fontVariant: ['tabular-nums'] },
   endLabelSm: { position: 'absolute', fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] },
   axis: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 2 },
-  axisText: { fontSize: 12, lineHeight: 16 },
+  axisText: { fontSize: 13, lineHeight: 17 },
   legend: { marginTop: 8, flexDirection: 'row', flexWrap: 'wrap', gap: 14 },
   legendItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  note: { marginTop: 8, fontSize: 12, lineHeight: 16 },
+  note: { marginTop: 8, fontSize: 13, lineHeight: 17 },
 });

@@ -45,11 +45,11 @@ const S = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', minHeight: 40 },
   rowLine: { minHeight: 48, borderTopWidth: StyleSheet.hairlineWidth },
   label: { flex: 1 },
-  labelText: { fontSize: 15, lineHeight: 20, paddingVertical: 8, paddingRight: 8 },
+  labelText: { fontSize: 16, lineHeight: 21, paddingVertical: 8, paddingRight: 8 },
   head: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   freeCol: { width: 92, textAlign: 'center' },
   plusCol: { width: 112, paddingLeft: 10 },
   value: { fontSize: 13, lineHeight: 17 },
   plusCell: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  plusText: { flexShrink: 1, fontSize: 14, lineHeight: 18, fontWeight: '800' },
+  plusText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '800' },
 });

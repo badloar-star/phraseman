@@ -58,9 +58,9 @@ const S = StyleSheet.create({
   cell: { flex: 1 },
   // guard-ok: рамка выбранного плана 1 px — по макету и карте Тем Y3/Y4 (accentGraphic), исключение PhraseMan 2.0 (владелец 24.09); у невыбранного рамка прозрачная, размер не прыгает
   plan: { minHeight: 96, borderRadius: 20, borderWidth: 1, paddingVertical: 14, paddingHorizontal: 14, overflow: 'visible' }, // guard-ok: рамка 1 px выбранного плана (карта Тем Y3/Y4, исключение 2.0)
-  name: { fontSize: 14, lineHeight: 18, fontWeight: '700' },
+  name: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
   price: { marginTop: 2, fontSize: 28, lineHeight: 34, fontWeight: '800', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },
-  sub: { marginTop: 2, fontSize: 12, lineHeight: 16 },
+  sub: { marginTop: 2, fontSize: 13, lineHeight: 17 },
   badge: { position: 'absolute', top: -10, right: 12, borderRadius: 10, paddingVertical: 3, paddingHorizontal: 8 },
-  badgeText: { fontSize: 12, lineHeight: 15, fontWeight: '800' },
+  badgeText: { fontSize: 13, lineHeight: 17, fontWeight: '800' },
 });

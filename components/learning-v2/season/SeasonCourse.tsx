@@ -6,11 +6,12 @@
 // Экзамен главы: карта и раскрытая карта рисуются, а действия «Сдать экзамен» и «Открыть экзаменом главы» — только при SEASON_CHAPTER_EXAM_ENABLED (по умолчанию выключен,
 // логики экзамена в коде ещё нет, её сделает Learning V2).
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { BackHandler, StyleSheet, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { BackHandler, StyleSheet, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useIsTabPage } from '../../tab_top_bleed';
+import { episodeModalLog, seasonLayoutLog } from './season_modal_log';
 
 import { SeasonChapterEpisodesScreen, SeasonChaptersScreen } from './SeasonPickScreens';
 import SeasonCourseView, { type SeasonCourseViewProps } from './SeasonCourseView';
@@ -67,6 +68,25 @@ function SeasonCourse(props: SeasonCourseProps) {
   // (topBleed > 0). Если страница по какой-то причине осталась под отступом оболочки (topBleed = 0, но это страница вкладки), зона часов закрашивается цветом верха обложки, а не фоном страницы; причину пишет журнал [SEASON-TOP].
   const insetsTop = useStableSafeAreaInsets().top;
   const isTabPage = useIsTabPage();
+  // зачем (Ревизор по поручению координатора, сдвиг вправо на снимках владельца; СПЕРВА ЛОГИ): [SEASON-LAYOUT] — корень «Обучения» в окне. Окно эпизода (SeasonExpandedCard) — absoluteFill от этого корня:
+  // если корень шире окна (diffW) или сдвинут (winX), карточка уедет вместе с ним. Одна строка на смену значений; при сдвиге — warn (виден в logcat сразу)
+  const rootRef = useRef<View>(null);
+  const win = useWindowDimensions();
+  const rootLogKey = useRef('');
+  const measureRoot = useCallback((x: number, y: number, width: number, height: number) => {
+    rootRef.current?.measureInWindow((winX, winY) => {
+      const diffW = Math.round(width - win.width);
+      const key = [x, y, width, height, winX, winY, win.width].map((n) => Math.round(n)).join('|');
+      if (key === rootLogKey.current) return;
+      rootLogKey.current = key;
+      const bad = Math.round(winX) !== 0 || diffW !== 0;
+      seasonLayoutLog(bad ? 'warn' : 'info', JSON.stringify({ at: 'season_root', x: Math.round(x), y: Math.round(y), width: Math.round(width), height: Math.round(height), winX: Math.round(winX), winY: Math.round(winY), windowW: Math.round(win.width), diffW, offsetX: Math.round(winX), isTabPage, route: isTabPage ? 'tab' : 'push_course_screen', verdict: bad ? 'ROOT_SHIFTED_OR_WIDER_THAN_WINDOW' : 'root_matches_window' })); // guard-ok: числа раскладки корня
+    });
+  }, [isTabPage, win.width]);
+  const onRootLayout = useCallback((e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    measureRoot(x, y, width, height);
+  }, [measureRoot]);
   const topBand = isTabPage && !(props.topBleed !== undefined && props.topBleed > 0) && insetsTop > 0 ? insetsTop : 0;
   const topBandColor = useMemo(() => seasonThemedArt(themeHue, deck.cards[deck.currentIndex]?.chapterOrdinal ?? 1, 0, theme).from, [deck.cards, deck.currentIndex, theme, themeHue]);
   useEffect(() => {
@@ -80,8 +100,9 @@ function SeasonCourse(props: SeasonCourseProps) {
     const card = deck.cards[expanded];
     if (!card) return null;
     const chapter = props.chapterInfo(card.chapterOrdinal);
-    const close = () => setExpanded(null);
-    const common = { dark, glyph: chapter.icon, closeLabel: seasonCardText(lang, 'closeCard'), onClose: close, reducedMotion: props.reducedMotion, art: artFor(card.chapterOrdinal, card.sessionOrdinal, card.kind === 'exam') } as const;
+    // зачем (журнал [EPISODE-MODAL]): каждое закрытие окна называет причину; onClose Pressable получает событие — причину передаём явно, а не аргументом
+    const close = (reason?: unknown) => { episodeModalLog('info', 'closed', JSON.stringify({ reason: typeof reason === 'string' ? reason : 'button', card: card.id, kind: card.kind }), true); setExpanded(null); };
+    const common = { dark, glyph: chapter.icon, closeLabel: seasonCardText(lang, 'closeCard'), onClose: () => close('backdrop_or_x'), reducedMotion: props.reducedMotion, art: artFor(card.chapterOrdinal, card.sessionOrdinal, card.kind === 'exam'), logMeta: { lesson: lessonOrdinal, session: card.sessionOrdinal } } as const;
     const examActions = SEASON_CHAPTER_EXAM_ENABLED;
     if (card.kind === 'exam') {
       const examInfo = props.examInfo ? props.examInfo(card.chapterOrdinal) : null;
@@ -93,6 +114,8 @@ function SeasonCourse(props: SeasonCourseProps) {
         : null;
       let secondary: SeasonExpandedAction | null = null;
       if (primary) secondary = { label: learningV2ChapterExamCopy(lang, 'later'), onPress: close };
+      // зачем (Сверка: окно экзамена в состоянии «сдан/пауза» — нижняя половина пустая, закрыть можно только по подложке; в эталоне такого окна нет — заказано у Макетов): пока — одна стеклянная «Закрыть», без выдумок
+      else secondary = { label: seasonCardText(lang, 'closeCard'), onPress: () => close('exam_close_button') };
       return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], primary, secondary };
     }
     const info = props.episodeInfo(card);
@@ -127,18 +150,25 @@ function SeasonCourse(props: SeasonCourseProps) {
     void hapticWarning();
     setLockShake((cur) => ({ index, seq: (cur ? cur.seq : 0) + 1 }));
   }, [deck.cards]);
+  // зачем (жалоба владельца, iPhone 2.0.2: окно эпизода «иногда» съезжает вправо; СПЕРВА ЛОГИ): условие «иногда» — тап сразу после броска карусели, повторный тап, открытие не той карты, что в центре
+  const lastSettleAt = useRef(0);
+  const lastOpenAt = useRef(0);
+  const onSettled = useCallback((index: number) => { lastSettleAt.current = Date.now(); setSelected(index); }, []);
   const openCard = useCallback((index: number) => {
     const card = deck.cards[index];
+    const now = Date.now();
+    episodeModalLog('info', 'tap_on_card', JSON.stringify({ index, card: card ? card.id : null, kind: card ? card.kind : null, state: card ? card.state : null, selected, alreadyOpen: expanded, sinceSettleMs: lastSettleAt.current === 0 ? null : now - lastSettleAt.current, sinceLastOpenMs: lastOpenAt.current === 0 ? null : now - lastOpenAt.current, branch: card && card.state === 'locked' ? 'locked_card_shake_no_window' : expanded === index ? 'repeat_tap_window_already_open' : 'open_window' }), true); // guard-ok: ветка и значения, которые её решили
+    lastOpenAt.current = now;
     if (card && card.state === 'locked') { shakeLocked(index, 'carousel'); return; }
     setExpanded(index);
-  }, [deck.cards, shakeLocked]);
+  }, [deck.cards, expanded, selected, shakeLocked]);
 
   // зачем (Сверка, Android: «Назад» при открытом окне эпизода уводило в classic lessons_list; координатор 25.10): открыто окно — «Назад» закрывает окно и больше ничего.
   // Подписка живёт только пока окно открыто (после подписки Сезона на «Назад» — вызывается первой) и возвращает true.
   useEffect(() => {
     if (expanded === null) return undefined;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      console.log('[EPISODE-MODAL]', 'closed', JSON.stringify({ reason: 'hardware_back', index: expanded })); // guard-ok: причина закрытия окна
+      episodeModalLog('info', 'closed', JSON.stringify({ reason: 'hardware_back', index: expanded }), true);
       setExpanded(null);
       return true;
     });
@@ -255,12 +285,12 @@ function SeasonCourse(props: SeasonCourseProps) {
   } : undefined;
 
   return (
-    <View style={styles.root}>
+    <View ref={rootRef} onLayout={onRootLayout} style={styles.root}>
       {topBand > 0 ? <View pointerEvents="none" testID="season-top-cover" style={[styles.topCover, { top: -topBand, height: topBand, backgroundColor: topBandColor }]} /> : null}
       <SeasonCourseView
         {...props}
         focus={focus}
-        onSelectedChange={setSelected}
+        onSelectedChange={onSettled}
         onCardOpen={openCard}
         lockShake={lockShake}
         onAllChapters={openChapters}

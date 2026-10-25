@@ -6,13 +6,20 @@
 // Действие экзамена («Открыть экзаменом главы», «Сдать экзамен») показывается ТОЛЬКО при включённом флаге SEASON_CHAPTER_EXAM_ENABLED: логики экзамена в коде
 // ещё нет (её сделает Learning V2), а карта не должна вести в пустоту. Закрытие мгновенное (тап по затемнению, крестик); вход — один спокойный ease-out 220 мс.
 // ════════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useRef } from 'react';
-import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { Animated, Dimensions, Easing, Platform, Pressable, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import V2Pressable from '../../v2/V2Pressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../../SafeLinearGradient';
 import type { SeasonArt } from './season_art';
+import { SEASON_MODAL_MARGIN, seasonModalInside, seasonModalMaxWidth, seasonModalShift } from './season_modal_bounds';
+import { episodeModalLog, seasonLayoutLog } from './season_modal_log';
+
+/** Вход обязан закончиться: если за это время колбэк анимации не пришёл, карта принудительно полностью видна (зачем: полупрозрачное окно, сквозь которое видна карусель). */
+const ENTER_WATCHDOG_MS = 600;
+/** Когда после входа сверять положение карты с окном (мс от конца входа): сразу, после возможного движения пейджера и с запасом. */
+const RECHECK_MS = [0, 250, 700, 1500] as const;
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -52,20 +59,85 @@ export type SeasonExpandedCardProps = Readonly<{
   closeLabel: string;
   onClose: () => void;
   reducedMotion: boolean;
+  /** Для журнала [SEASON-LAYOUT]: урок и занятие/глава окна (в вёрстку не влияет). */
+  logMeta?: Readonly<{ lesson: number; session: number }>;
 }>;
 
 function SeasonExpandedCard(p: SeasonExpandedCardProps) {
   const enter = useRef(new Animated.Value(p.reducedMotion ? 1 : 0)).current;
+  const win = useWindowDimensions();
+  const rootRef = useRef<View>(null);
+  const cardRef = useRef<View>(null);
+  const openedAt = useRef(Date.now());
+  const settledRef = useRef(false);
+  // зачем (жалоба владельца, iPhone 2.0.2: окно эпизода съехало вправо, правый край и кнопка обрезаны, низ просвечивал): сдвиг, возвращающий карту в окно
+  const [shiftX, setShiftX] = useState(0);
+  const shiftRef = useRef(0);
+
+  // СПЕРВА ЛОГИ: положение корня и карты В ОКНЕ (измеряем только когда вход закончен — во время входа масштаб 0,94 искажает рамку)
+  const checkFit = useCallback((why: string) => {
+    const root = rootRef.current; const card = cardRef.current;
+    if (!root || !card) { episodeModalLog('info', 'measure_skipped: ' + why, JSON.stringify({ root: !!root, card: !!card })); return; } // guard-ok: ранний выход с причиной
+    root.measureInWindow((rx, ry, rw, rh) => {
+      card.measureInWindow((cx, cy, cw, ch) => {
+        const inside = seasonModalInside({ x: cx, width: cw }, win.width);
+        const dx = seasonModalShift({ x: cx, width: cw }, win.width);
+        episodeModalLog('info', 'measure: ' + why, JSON.stringify({ sinceOpenMs: Date.now() - openedAt.current, window: { w: Math.round(win.width), h: Math.round(win.height), scale: win.scale, fontScale: win.fontScale }, root: { x: Math.round(rx), y: Math.round(ry), w: Math.round(rw), h: Math.round(rh) }, card: { x: Math.round(cx), y: Math.round(cy), w: Math.round(cw), h: Math.round(ch) }, inside, shiftNow: shiftRef.current, needShift: Math.round(dx), reducedMotion: p.reducedMotion }), why.endsWith('+0ms') || why.endsWith('+700ms')); // guard-ok: все числа раскладки окна эпизода (в журнал устройства — на входе и через 0,7 с)
+        if (why.endsWith('+0ms')) {
+          // [SEASON-LAYOUT] открытие окна: где карточка и корень (Ревизор по поручению координатора)
+          const rootBad = Math.round(rx) !== 0 || Math.round(rw - win.width) !== 0;
+          seasonLayoutLog(rootBad || !inside ? 'warn' : 'info', JSON.stringify({ at: 'expanded_open', kind: p.kind, lesson: p.logMeta?.lesson ?? null, session: p.logMeta?.session ?? null, cardX: Math.round(cx), cardWidth: Math.round(cw), windowW: Math.round(win.width), rootWinX: Math.round(rx), rootWidth: Math.round(rw), diffW: Math.round(rw - win.width), inside })); // guard-ok: числа раскладки окна эпизода
+        }
+        if (dx !== 0) {
+          shiftRef.current += dx;
+          episodeModalLog('warn', 'outside_screen_restoring', JSON.stringify({ why, dx: Math.round(dx), shiftTotal: Math.round(shiftRef.current), cardX: Math.round(cx), cardW: Math.round(cw), windowW: Math.round(win.width) }), true); // guard-ok: ветка и значения, которые её решили
+          setShiftX(shiftRef.current);
+        }
+      });
+    });
+  }, [p.reducedMotion, win.fontScale, win.height, win.scale, win.width]);
+
+  const onRootLayout = (e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    episodeModalLog('info', 'root_layout', JSON.stringify({ x: Math.round(x), y: Math.round(y), w: Math.round(width), h: Math.round(height), windowW: Math.round(win.width), diffW: Math.round(width - win.width) })); // guard-ok: ширина корня против ширины окна — главное подозрение
+  };
+  const onCardLayout = (e: LayoutChangeEvent) => {
+    const { x, y, width, height } = e.nativeEvent.layout;
+    episodeModalLog('info', 'card_layout', JSON.stringify({ x: Math.round(x), y: Math.round(y), w: Math.round(width), h: Math.round(height), maxW: seasonModalMaxWidth(win.width), kind: p.kind })); // guard-ok: числа раскладки карты
+  };
+
   useEffect(() => {
-    if (p.reducedMotion) { enter.setValue(1); return; }
-    Animated.timing(enter, { toValue: 1, duration: 220, easing: Easing.bezier(0.23, 1, 0.32, 1), useNativeDriver: true }).start();
+    episodeModalLog('info', 'open', JSON.stringify({ platform: Platform.OS, osVersion: String(Platform.Version), screenW: Math.round(Dimensions.get('screen').width), maxWidth: seasonModalMaxWidth(win.width), margin: SEASON_MODAL_MARGIN, clip: { overflow: 'hidden', borderRadius: 32, layer: 'inner_static' }, enterTransform: { scaleFrom: 0.94, scaleTo: 1, translateX: 0 }, kind: p.kind, chip: p.chipLabel, reducedMotion: p.reducedMotion, from: { opacity: 0, scale: 0.94 }, to: { opacity: 1, scale: 1 }, durationMs: 220, windowW: Math.round(win.width), windowH: Math.round(win.height) }), true); // guard-ok: вход и начальная точка анимации
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал открытия — один раз на показ карты
+  }, []);
+
+  useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    settledRef.current = false;
+    let alive = true; // зачем: после закрытия карты (и повторного запуска эффекта в dev) поздний колбэк анимации ничего не делает
+    const finish = (how: string, finished: boolean) => {
+      if (!alive || settledRef.current) return;
+      settledRef.current = true;
+      enter.setValue(1); // зачем: колбэк не пришёл (заморозка страницы, обрыв) или анимацию прервали — карта всё равно полностью видна и в масштабе 1
+      episodeModalLog('info', 'enter_done', JSON.stringify({ how, finished, sinceOpenMs: Date.now() - openedAt.current, finalValue: { opacity: 1, scale: 1, translateX: 0 } }), true); // guard-ok: итог анимации
+      RECHECK_MS.forEach((ms) => timers.push(setTimeout(() => checkFit(`after_enter +${ms}ms`), ms)));
+    };
+    if (p.reducedMotion) { enter.setValue(1); finish('reduced_motion', true); return () => { alive = false; timers.forEach(clearTimeout); }; }
+    Animated.timing(enter, { toValue: 1, duration: 220, easing: Easing.bezier(0.23, 1, 0.32, 1), useNativeDriver: true }).start(({ finished }) => finish('animation_callback', finished));
+    timers.push(setTimeout(() => { if (!settledRef.current) episodeModalLog('warn', 'watchdog', 'enter did not finish in ' + ENTER_WATCHDOG_MS + ' ms, forcing opacity and scale to 1', true); finish('watchdog', false); }, ENTER_WATCHDOG_MS)); // guard-ok: причина принудительного завершения
+    return () => { alive = false; timers.forEach(clearTimeout); enter.stopAnimation(); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: окно win.width нужно только внутри замера; пересоздание таймеров на повороте не нужно
   }, [enter, p.reducedMotion]);
 
   const cardStyle = { opacity: enter, transform: [{ scale: enter.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] }) }] };
   return (
-    <View style={styles.root} testID="season-expanded">
+    <View ref={rootRef} onLayout={onRootLayout} style={styles.root} testID="season-expanded">
       <Pressable style={[styles.dim, { backgroundColor: p.dark ? DIM_DARK : DIM_LIGHT }]} onPress={p.onClose} accessibilityRole="button" accessibilityLabel={p.closeLabel} />
-      <Animated.View style={[styles.card, cardStyle]}>
+      {/* зачем (iOS, жалоба владельца: окно уже, чем нужно, правая часть срезана, правое поле больше левого): ширина окна — ОТ ОКНА (window − 2×24), а не от родителя (left/right) и не из onLayout во время входа;
+          внешний слой (положение, тень, масштаб/прозрачность входа на нативном драйвере) БЕЗ overflow:hidden, обрезка по радиусу 32 — на внутреннем слое без анимации: на iOS clip по слою, который масштабировался при входе, мог остаться по старой рамке.
+          shiftX — возврат в экран, если родитель на миг смещён (left, а не transform: он занят входом) */}
+      <Animated.View ref={cardRef as React.Ref<never>} onLayout={onCardLayout} style={[styles.card, { width: seasonModalMaxWidth(win.width), left: SEASON_MODAL_MARGIN + shiftX }, cardStyle]}>
+        <View style={styles.cardClip}>
         {p.kind === 'exam' ? (
           <LinearGradient colors={[p.art.from, p.art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         ) : (
@@ -82,6 +154,12 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
           )}
           <View style={styles.flex} />
           {p.rightLabel ? <Text style={styles.right}>{p.rightLabel}</Text> : null}
+          {/* зачем (эталон chapter-exam-season.html, zoomX: стеклянный круг 34 со значком ✕ в правом верхнем углу; в коде его не было — закрыть можно было только по подложке) */}
+          {p.kind === 'exam' ? (
+            <V2Pressable onPress={p.onClose} hitSlop={8} accessibilityRole="button" accessibilityLabel={p.closeLabel} style={styles.closeBtn} testID="season-expanded-close">
+              <Ionicons name="close" size={16} color={WHITE} />
+            </V2Pressable>
+          ) : null}
         </View>
         <Text style={styles.big} numberOfLines={4}>{p.phrase}</Text>
         {p.translation ? <Text style={styles.sub}>{p.translation}</Text> : null}
@@ -108,6 +186,7 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
             <Text style={styles.secondaryText}>{p.secondary.label}</Text>
           </V2Pressable>
         ) : null}
+        </View>
       </Animated.View>
     </View>
   );
@@ -117,7 +196,9 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   root: { ...StyleSheet.absoluteFillObject, zIndex: 40 },
   dim: { ...StyleSheet.absoluteFillObject },
-  card: { position: 'absolute', left: 24, right: 24, top: 128, maxHeight: 560, minHeight: 440, borderRadius: 32, overflow: 'hidden', padding: 18, boxShadow: SHADOW },
+  card: { position: 'absolute', left: 24, top: 128, borderRadius: 32, boxShadow: SHADOW },
+  cardClip: { maxHeight: 560, minHeight: 440, borderRadius: 32, overflow: 'hidden', padding: 18 },
+  closeBtn: { width: 34, height: 34, borderRadius: 17, backgroundColor: GLASS, alignItems: 'center', justifyContent: 'center' },
   top: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 34, paddingHorizontal: 12, borderRadius: 17, backgroundColor: GLASS },
   chipText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },

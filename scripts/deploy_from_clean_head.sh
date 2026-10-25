@@ -12,7 +12,7 @@
 #   bash scripts/deploy_from_clean_head.sh --only "firestore:rules"
 #   bash scripts/deploy_from_clean_head.sh --only "<…>" --execute          ← только по слову владельца
 #
-# Цели --only: firestore:rules | firestore:indexes | functions:default | functions:default:<имя> | hosting:admin | hosting:knowlywww.
+# Цели --only: firestore:rules | firestore:indexes | storage | functions:default | functions:default:<имя> | functions:content:<имя> | hosting:admin | hosting:knowlywww.
 # Голое «functions» (все кодовые базы, включая content Codex) отклоняется.
 set -u
 PROJECT=phraseman-ea0b3
@@ -29,7 +29,9 @@ done
 [ -n "$ONLY" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: нужен --only \"<цели через запятую>\""; exit 2; }
 IFS=',' read -r -a TARGETS <<< "$ONLY"
 for t in "${TARGETS[@]}"; do
-  if ! [[ "$t" =~ ^(firestore:rules|firestore:indexes|functions:default|functions:default:[A-Za-z0-9_]+|hosting:admin|hosting:knowlywww)$ ]]; then
+  # зачем (координатор 25.10): утренний пакет одной кнопкой — плюс адресная функция кодовой базы content (V4 Learning V2) и storage:rules;
+  # кодовая база content только ПО ИМЕНИ (вся content — это контент Codex), голое «functions» по-прежнему запрещено.
+  if ! [[ "$t" =~ ^(firestore:rules|firestore:indexes|storage|functions:default|functions:default:[A-Za-z0-9_]+|functions:content:[A-Za-z0-9_]+|hosting:admin|hosting:knowlywww)$ ]]; then
     echo "[DEPLOY-CLEAN] ОТКАЗ: цель «$t» не из разрешённого списка (см. шапку скрипта)"; exit 2
   fi
 done
@@ -38,6 +40,11 @@ cd "$ROOT" || exit 1
 SHA=$(git rev-parse HEAD); SHORT=${SHA:0:9}
 X=${DEPLOY_CLEAN_DIR:-/c/Temp/claude/deploy_clean_$SHORT}
 echo "[DEPLOY-CLEAN] HEAD=$SHORT цели=$ONLY режим=$([ $EXECUTE -eq 1 ] && echo ВЫКЛАДКА || echo 'сухой прогон') папка=$X"
+# зачем (координатор 25.10): каждое имя пакета обязано экспортироваться в HEAD своей кодовой базы, цель без имени — стоп;
+# печатает «на бою, но не в HEAD» и что будет создано (только чтение: git show HEAD + firebase functions:list)
+if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
+  node scripts/check_live_functions_vs_head.mjs --only "$ONLY" || { echo "[DEPLOY-CLEAN] ОТКАЗ: сверка «бой vs HEAD» не прошла (см. [LIVE-VS-HEAD] выше)"; exit 1; }
+fi
 DIRTY=$(git status --porcelain -- functions/ firestore.rules firestore.indexes.json admin/v2 knowly-www | wc -l)
 echo "[DEPLOY-CLEAN] грязных путей в рабочем дереве (в выкладку НЕ попадут): $DIRTY"
 
@@ -83,6 +90,10 @@ fi
 cmd //c "mklink /J $(cygpath -w "$X/node_modules") $(cygpath -w "$ROOT/node_modules")" > /dev/null
 cmd //c "mklink /J $(cygpath -w "$X/functions/node_modules") $(cygpath -w "$ROOT/functions/node_modules")" > /dev/null
 [ -f "$X/functions/node_modules/typescript/package.json" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: functions/node_modules"; exit 1; }
+if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions:content:'; then
+  cmd //c "mklink /J $(cygpath -w "$X/functions-content/node_modules") $(cygpath -w "$ROOT/functions-content/node_modules")" > /dev/null
+  [ -f "$X/functions-content/node_modules/typescript/package.json" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: functions-content/node_modules"; exit 1; }
+fi
 
 # 3) сборка functions, как predeploy (контекст поддержки — режим архива: .git нет, коммит задан явно)
 export PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1 PHRASEMAN_SUPPORT_RELEASE_COMMIT="$SHA"
@@ -91,6 +102,10 @@ if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
   npm --prefix functions run build > "$X.build.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL сборка functions — $X.build.log"; tail -15 "$X.build.log"; exit 1; }
   node scripts/functions_runtime_parity_gate.mjs > "$X.parity.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL паритет рантайма — $X.parity.log"; tail -10 "$X.parity.log"; exit 1; }
   echo "[DEPLOY-CLEAN] сборка functions и паритет рантайма — OK"
+  if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions:content:'; then
+    npm --prefix functions-content run build > "$X.build-content.log" 2>&1 || { echo "[DEPLOY-CLEAN] FAIL сборка functions-content — $X.build-content.log"; tail -15 "$X.build-content.log"; exit 1; }
+    echo "[DEPLOY-CLEAN] сборка functions-content — OK"
+  fi
 fi
 
 # 4) сайт (выкладка сайта и политики, координатор 17.10): каркас сайта + политика в страницах = канон legal/*.json
@@ -130,7 +145,7 @@ echo "[DEPLOY-CLEAN] firebase deploy exit=$rc"
 # зачем (координатор 22.10, 🔴 согласие на ИИ): упавшее ПЕРВОЕ создание функции оставляет её без allUsers/run.invoker навсегда
 # (firebase CLI ставит право только при успешном создании) — приложение молча получает 401. Проверяем выложенные функции сразу.
 if [[ "$ONLY" == *functions:* ]]; then
-  FN_NAMES=$(echo "$ONLY" | tr ',' '\n' | sed -n 's/^functions:default:\([A-Za-z0-9_]*\)$/\1/p' | paste -sd, -)
+  FN_NAMES=$(echo "$ONLY" | tr ',' '\n' | sed -n 's/^functions:\(default\|content\):\([A-Za-z0-9_]*\)$/\2/p' | paste -sd, -)
   if [ -n "$FN_NAMES" ]; then node "$ROOT/scripts/check_callable_invoker.mjs" --only "$FN_NAMES"; else node "$ROOT/scripts/check_callable_invoker.mjs"; fi
   irc=$?
   [ $irc -eq 0 ] || echo "[DEPLOY-CLEAN] 🔴 ПРОВЕРКА ПРАВА ВЫЗОВА: exit=$irc — см. строки [INVOKER-CHECK] выше (выкладка уже прошла, починка — по «да» владельца)"

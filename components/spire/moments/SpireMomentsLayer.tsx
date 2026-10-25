@@ -13,6 +13,7 @@ import SpireOutcomeMomentHost from './SpireOutcomeMomentHost';
 import SpirePositionMomentsHost from './SpirePositionMomentsHost';
 import { useTabNav } from '../../../app/TabContext';
 import { useIsScreenFocused } from '../../../hooks/use_is_screen_focused';
+import { prewarmMomentCoin } from '../../moments/moment_coin_prewarm';
 
 export type SpireMomentsLayerProps = Readonly<{
   lang: Lang;
@@ -31,6 +32,17 @@ export type SpireMomentsLayerProps = Readonly<{
 
 function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = false, climbClosed = false, onClimb, onLater }: SpireMomentsLayerProps) {
   const positions = useSpirePositionMoments();
+  // зачем (координатор 26.10, аудит скорости Моментов №3 и №9): человек вошёл в Пик — окна итога ступени/этажа, недели и позиции стали вероятны.
+  // Заранее греем арт своей монеты (герой каждого окна) и модули ленивых окон итога, чтобы первый кадр окна не ждал декода и загрузки кода.
+  React.useEffect(() => {
+    prewarmMomentCoin(coinRank, 'spire_layer_mount');
+  }, [coinRank]);
+  React.useEffect(() => {
+    const t0 = Date.now();
+    Promise.all([import('./SpireStepResultMoment'), import('./SpireFloorMoment')])
+      .then(() => console.log(`[SPIRE-MOMENTS-PREWARM] модули окон итога готовы через ${Date.now() - t0} мс (раньше — грузились при открытии окна)`)) // guard-ok: единичный замер
+      .catch((error: unknown) => console.warn(`[SPIRE-MOMENTS-PREWARM] модули окон итога не прогрелись: ${error instanceof Error ? error.message : String(error)} — окно загрузит их само`)); // guard-ok: сбой с причиной
+  }, []);
   // зачем (Ревизор P17, 15.10): окна m05 ждали только закрытия итога ступени — после «Ещё раз» итог гас, и «Позиция выросла» всплывала поверх
   // «Готовим ступень…» при идущем таймере ступени. Теперь окно ждёт, пока закрыт итог И нет идущей/готовящейся ступени.
   // зачем (Ревизор C2, 15.10): раздел Пика остаётся смонтированным, когда вкладка скрыта, — окна m05 (lastChance/overtake) всплывали бы поверх Главной.

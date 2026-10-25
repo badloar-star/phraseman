@@ -68,8 +68,8 @@ function SpireGoldFrame({ active, hit, onLaunch, children }: Readonly<{ active: 
   if (!active) return <>{children}</>;
   return (
     <View onLayout={onLayout} testID="spire-gold-frame">
-      {/* guard-ok: hairline 30 % — исключение 2.0 (кромка плиты ниже); комментарий на своей строке — пробел перед ним был бы голым текстом (крэш «Text strings», Ревизор 25.10) */}
-      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, s.plate, { borderColor: lv2Alpha(p.accentGraphic, 0.3), shadowColor: p.accentGraphic }, fillStyle]}>
+      {/* зачем (Ревизор 25.10 + слово владельца того же дня «убери обводки… монеток на башне»): у рамки золотого задания обводки нет — плиту выделяют заливка и цветная тень; комментарий на своей строке (крэш «Text strings») */}
+      <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, s.plate, { shadowColor: p.accentGraphic }, fillStyle]}>
         <LinearGradient colors={[lv2Alpha(p.accentGraphic, 0.22), lv2Alpha(p.accentGraphic, 0)]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[StyleSheet.absoluteFill, s.round]} />
         <View style={[StyleSheet.absoluteFill, s.round, s.clip]}>
           <Animated.View style={[s.shine, shineStyle]}>
@@ -89,7 +89,7 @@ function SpireGoldFrame({ active, hit, onLaunch, children }: Readonly<{ active: 
 const s = StyleSheet.create({
   round: { borderRadius: 20 },
   clip: { overflow: 'hidden' },
-  plate: { margin: -6, borderRadius: 22, borderWidth: StyleSheet.hairlineWidth, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 } }, // guard-ok: hairline полупрозрачная кромка — исключение PhraseMan 2.0 (владелец 24.09), как --goldEdge макета
+  plate: { margin: -6, borderRadius: 22, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 } },
   shine: { position: 'absolute', top: 0, bottom: 0, width: '45%' },
   badge: { position: 'absolute', top: -14, right: 8, height: 30, minWidth: 46, paddingHorizontal: 10, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
   ring: { borderRadius: 17 },

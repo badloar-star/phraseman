@@ -16,6 +16,7 @@ import MomentFirework from '../../spire/moments/moments_effects';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useSpireShadow } from '../../spire/useSpireShadow';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
+import { PlateFill, sheetPlateTokens, useShadowGlass } from '../../v2/ShadowSurface';
 import { STREAK_MOMENT_DURATION_MS, streakFlameStage, type StreakMilestone } from './streak_milestones';
 import { playStreakSceneSound, playStreakTapSound } from './streak_moments_sound';
 import { streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from './streak_moments_strings';
@@ -41,6 +42,9 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   const insets = useStableSafeAreaInsets();
   const p = useSpirePalette();
   const sh = useSpireShadow();
+  // зачем (разбор Макетов 25.10, d0003/d0014 «тост темнее и зеленее»; эталон streak-milestones.html `.mtoast`): заливка тоста — градиент
+  // плашки шторки темы (sheetplate1 → sheetplate2), как у эталона, а не сплошной cardRaised
+  const sheetGlass = sheetPlateTokens(useShadowGlass());
   const reduceMotion = useReducedMotion();
   const [burstKey, setBurstKey] = useState(0);
   const [sparks, setSparks] = useState(false);
@@ -68,8 +72,9 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   const sub = streakMilestoneSubline(lang, milestone);
   return (
     <Animated.View testID={testID} accessibilityRole="alert" style={[s.toast, { top: insets.top + TOAST_GAP_BELOW_STATUS, backgroundColor: p.cardRaised }, sh.plate, style]}>
-      <StreakMomentFlame days={milestone} size={40} stage={streakFlameStage(milestone)} burstKey={burstKey || undefined} accessibilityLabel={streakMomentText(lang, 'flameA11y', { n: milestone })} />
-      <View style={[s.dot, { backgroundColor: p.textSecondary }]} />
+      <PlateFill g={sheetGlass} radius={TOAST_RADIUS} />
+      {/* зачем (разбор Макетов 25.10, d0003/d0014 «неподвижная искра»): у эталона рядом с огнём нет точки — искры только вспышкой MomentFirework; огонь 44, как `flame(…, 44)` */}
+      <StreakMomentFlame days={milestone} size={44} stage={streakFlameStage(milestone)} burstKey={burstKey || undefined} accessibilityLabel={streakMomentText(lang, 'flameA11y', { n: milestone })} />
       <View style={s.text}>
         {/* зачем (координатор 18.10, длинные языки при шрифте 1,3 и 360 dp): «Até uma semana — 3 dias» в ~230 dp обрезалось многоточием — до двух строк */}
         <Text style={[s.title, { color: p.text }]} numberOfLines={2}>{streakMilestoneTitle(lang, milestone)}</Text>
@@ -81,9 +86,10 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   );
 }
 
+const TOAST_RADIUS = 18;
+
 const s = StyleSheet.create({
-  toast: { position: 'absolute', left: 20, right: 20, zIndex: 70, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: 18 },
-  dot: { width: 4, height: 4, borderRadius: 2, marginLeft: -4 },
+  toast: { position: 'absolute', left: 20, right: 20, zIndex: 70, flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, paddingHorizontal: 14, borderRadius: TOAST_RADIUS },
   text: { flex: 1, minWidth: 0 },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   sub: { fontSize: 13, lineHeight: 20, fontWeight: '400' },

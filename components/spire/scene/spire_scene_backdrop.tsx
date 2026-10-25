@@ -12,7 +12,8 @@ import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 export type { SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
-import { spireTopShadeAlpha, type SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
+import { SPIRE_SCENE_INK } from './spire_scene_palette';
+import { SPIRE_LIGHT_RY_FACTOR, SPIRE_LIGHT_STAGE_H, SPIRE_SHADE_TAIL, spireTopShadeAlpha, type SpireSceneBackdropSpec } from './spire_scene_backdrop_math';
 
 let spec: SpireSceneBackdropSpec | null = null;
 const listeners = new Set<() => void>();
@@ -43,16 +44,19 @@ function SpireSceneBackdrop({ spec: b, offsetTop }: Readonly<{ spec: SpireSceneB
   const height = b.bleed + b.sceneH;
   const { width } = useWindowDimensions();
   const shade = useMemo(() => spireTopShadeAlpha(b, width), [b, width]);
+  // зачем (Темы 25.10, docs/work/spire-contrast-2026-10-25.md: 354 нарушения контраста сцены Пика): свет — того же размера, что на Главной (радиус по вертикали 0,5 × (шапка + 392)), а не 50 % всего фона,
+  // который у Пика в 2,5 раза выше; затемнение под вкладками затухает к шапка + 140 (было + 48). Цвета темы не меняются.
+  const lightRy = `${Math.min(100, (SPIRE_LIGHT_RY_FACTOR * (b.bleed + SPIRE_LIGHT_STAGE_H) / Math.max(1, height)) * 100).toFixed(2)}%`;
   useEffect(() => {
     // зачем (Сверка 25.10, шов под вкладками): чем и на какой высоте закрыт верх — сдвиг фона, его высота, сила и низ затемнения
-    console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_backdrop_draw', offsetTop, height, bleed: b.bleed, sceneH: b.sceneH, shade, shadeEndsAt: b.bleed + 48 - offsetTop, top: b.top })); // guard-ok: одна строка на смену фона
-  }, [offsetTop, height, b, shade]);
+    console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_backdrop_draw', offsetTop, height, bleed: b.bleed, sceneH: b.sceneH, shade, shadeEndsAt: b.bleed + SPIRE_SHADE_TAIL - offsetTop, lightRy, top: b.top })); // guard-ok: одна строка на смену фона
+  }, [offsetTop, height, b, shade, lightRy]);
   return (
     <View pointerEvents="none" style={[s.fill, { top: -offsetTop, height }]}>
       <LinearGradient colors={[b.top, b.bottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
       <Svg style={StyleSheet.absoluteFill} width="100%" height="100%">
         <Defs>
-          <RadialGradient id="spireBackdropLight" cx={b.evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={b.evening ? '82%' : '18%'} fy="0%">
+          <RadialGradient id="spireBackdropLight" cx={b.evening ? '82%' : '18%'} cy="0%" rx="70%" ry={lightRy} fx={b.evening ? '82%' : '18%'} fy="0%">
             <Stop offset="0" stopColor={b.glow} stopOpacity="1" />
             <Stop offset="1" stopColor={b.glow} stopOpacity="0" />
           </RadialGradient>
@@ -61,9 +65,9 @@ function SpireSceneBackdrop({ spec: b, offsetTop }: Readonly<{ spec: SpireSceneB
       </Svg>
       {shade > 0 ? (
         <LinearGradient
-          colors={[`rgba(0,0,0,${shade})`, `rgba(0,0,0,${shade})`, 'rgba(0,0,0,0)']} // theme-exempt: затемнение — только альфа над фоном темы
-          locations={[0, Math.min(0.99, b.bleed / (b.bleed + 48)), 1]}
-          style={[s.shade, { height: b.bleed + 48 }]}
+          colors={[`rgba(0,0,0,${shade})`, `rgba(0,0,0,${shade})`, SPIRE_SCENE_INK.clear]} // theme-exempt: затемнение — только альфа над фоном темы; конец — токен сцены clear (храповик цветовых литералов 2.0)
+          locations={[0, Math.min(0.99, b.bleed / (b.bleed + SPIRE_SHADE_TAIL)), 1]}
+          style={[s.shade, { height: b.bleed + SPIRE_SHADE_TAIL }]}
         />
       ) : null}
     </View>

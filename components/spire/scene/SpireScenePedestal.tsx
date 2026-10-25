@@ -40,7 +40,8 @@ const TOP_N = 3;
 export const SPIRE_SCENE_PEDESTAL_INSET = 4;
 /** Свет сцены нужной силы — от белого сцены, без новых литералов (макет: линия 14 %, своя строка 26 % и блик 30 %, ссылка 90 %). */
 const DIVIDER = colorWithAlpha(SPIRE_SCENE_INK.text, 0.14);
-const ME_GLASS = colorWithAlpha(SPIRE_SCENE_INK.text, 0.26);
+// зачем (Темы 25.10, docs/work/spire-contrast-2026-10-25.md: 354 нарушения контраста сцены Пика): своя строка на 26 % белого стекла давала имя 2,85 и ник 2,47 — подсветка 6 %, ник белый 100 % (мин 4,54)
+const ME_GLASS = colorWithAlpha(SPIRE_SCENE_INK.text, 0.06);
 const ME_HIGHLIGHT = colorWithAlpha(SPIRE_SCENE_INK.text, 0.3);
 const LINK = colorWithAlpha(SPIRE_SCENE_INK.text, 0.9);
 
@@ -167,7 +168,7 @@ const s = StyleSheet.create({
   nameEmpty: { flex: 1, height: 12, borderRadius: 6, backgroundColor: SPIRE_SCENE_INK.skeleton },
   // макет `.pp-me`: стекло 26 %, скругление 18, поля 10 / 12, блик 30 %
   me: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10, borderRadius: 18, paddingVertical: 10, paddingHorizontal: 12, backgroundColor: ME_GLASS, boxShadow: `inset 0 1px 0 ${ME_HIGHLIGHT}` },
-  sub: { color: SPIRE_SCENE_INK.label, fontSize: 13, lineHeight: 17, fontWeight: '600' }, // guard-ok: ник под своим местом (макет .pp-me .pp-sub) — данные, не подпись-расшифровка
+  sub: { color: SPIRE_SCENE_INK.text, fontSize: 13, lineHeight: 17, fontWeight: '600' }, // guard-ok: ник под своим местом (макет .pp-me .pp-sub) — данные, не подпись-расшифровка
   allOuter: { alignSelf: 'flex-start', marginTop: 10, marginHorizontal: SPIRE_SCENE_PEDESTAL_INSET },
   all: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   allText: { color: LINK, fontSize: 13, lineHeight: 17, fontWeight: '700' },

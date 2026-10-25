@@ -201,14 +201,28 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const myPlace = rows ? spireMyPlace(rows) : null;
   // зачем (13.10, «сперва логи»): что реально пришло в комнату — откуда, живые/боты, соперники по этажам (console: кадры Сверки снимают logcat).
   // + m05 (координатор 15.10): позиция для окон Пика — в spire_position_feed (память, 0 чтений), её читает useSpirePositionMoments.
+  // зачем (координатор 25.10, тот же класс, что ложный рубеж Главной): на холодном старте своя неделя ещё не прочитана — свои ступени 0,
+  // место «последнее», и окна «поднялся/обогнали» видели ложный скачок, когда неделя дочитывалась. Позицию отдаём только после чтения недели.
+  const [weekCheckedLang, setWeekCheckedLang] = useState<string | null>(week ? lang : null);
+  useEffect(() => {
+    if (!lang || weekCheckedLang === lang) return undefined;
+    if (week) { setWeekCheckedLang(lang); return undefined; }
+    let alive = true;
+    void import('../../components/spire/spire_home_week').then((m) => m.readCurrentLocalWeek(lang as Parameters<typeof m.readCurrentLocalWeek>[0]))
+      .then(() => { if (alive) setWeekCheckedLang(lang); })
+      .catch((error: unknown) => { console.warn('[SPIRE-POSITION] неделя не прочиталась — позицию всё равно отдаём', String(error)); if (alive) setWeekCheckedLang(lang); }); // guard-ok: сбой с причиной
+    return () => { alive = false; };
+  }, [lang, week, weekCheckedLang]);
+  const positionReady = lang !== null && weekCheckedLang === lang;
   useEffect(() => {
     const floors: Record<number, number> = {};
     for (const r of rows ?? []) if (!r.isMe) floors[spireFloorOfSteps(r.steps)] = (floors[spireFloorOfSteps(r.steps)] ?? 0) + 1;
     const me = rows?.find((r) => r.isMe);
     console.log('[SPIRE-RIVALS]', JSON.stringify({ source: roomLoad ? `${roomLoad.status}/${roomLoad.reason}` : 'нет загрузки', roomId: room?.groupId ?? null, live: room?.members?.length ?? null, // guard-ok: одна строка на смену строк комнаты, только счётчики
       botFaces: room?.roster?.length ?? null, rows: rows?.length ?? null, rivalsByFloor: floors, myFloor: me ? spireFloorOfSteps(me.steps) : null, why: rows ? 'ok' : !room ? 'комнаты нет' : !ids ? 'нет личности' : 'нет конфига' }));
-    publishSpirePositionFeed(rows && room && ids && lang ? { uid: ids.uid, lang, weekId: room.weekId, roomFetchedAtMs: room.fetchedAtMs, rows, rankBy } : null);
-  }, [rows, roomLoad, room, ids, lang, rankBy]);
+    if (rows && !positionReady) console.log('[SPIRE-POSITION] позиция ждёт чтения своей недели — окна мест не считаем'); // guard-ok: ранний выход с причиной
+    publishSpirePositionFeed(rows && room && ids && lang && positionReady ? { uid: ids.uid, lang, weekId: room.weekId, roomFetchedAtMs: room.fetchedAtMs, rows, rankBy } : null);
+  }, [rows, roomLoad, room, ids, lang, rankBy, positionReady]);
   const tier = room?.tier ?? week?.tier ?? null;
 
   // ── Старт ступени (защита от двойного тапа: один старт за раз) ──

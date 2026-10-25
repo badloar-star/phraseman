@@ -230,6 +230,8 @@ export async function finishLearningV2ChapterExamWithResultV1(input: Readonly<{
   chapterOrdinal: number;
   result: ChapterExamResultV1;
   finishedAtMs: number;
+  /** Какой экзамен сдавали — для журнала [EXAM-V2-CREDIT]; правило зачёта одно. */
+  engine?: 'v1' | 'v2';
 }>): Promise<ChapterExamFinishV1> {
   const result = input.result;
   const records = await loadLearningV2ChapterExamRecordsV1(input.accountScopeHash);
@@ -273,7 +275,11 @@ export async function finishLearningV2ChapterExamWithResultV1(input: Readonly<{
     } catch (startError) {
       console.warn(`${LOG} finish:start_outside_course`, JSON.stringify({ examKey: input.examKey, reason: startError instanceof Error ? startError.message : String(startError) })); // guard-ok: последняя глава курса — без точки старта
     }
-    await store.placeStart(input.progressAccountScopeHash, { openIds: toOpen, startId, source: 'chapter_exam' });
+    const view = await store.placeStart(input.progressAccountScopeHash, { openIds: toOpen, startId, source: 'chapter_exam' });
+    // зачем (жалоба №17 «главу прошла, дальше не пустили», координатор 25.10): после записи — что реально стало доступно. Если первый
+    // эпизод следующей главы не текущий и не открыт — это и есть «не пустили», с причиной прямо в журнале
+    const nextReachable = startId === null || view.currentSessionId === startId || view.openedSessionIds.includes(startId) || view.completedSessionIds.includes(startId);
+    console[nextReachable ? 'log' : 'warn']('[EXAM-V2-CREDIT] after_place', JSON.stringify({ engine: input.engine ?? 'v1', examKey: input.examKey, startId, opened: toOpen, current: view.currentSessionId, openedCount: view.openedSessionIds.length, completedCount: view.completedSessionIds.length, nextReachable })); // guard-ok: что стало доступно после сдачи
     creditedSessionIds.push(...toOpen);
     startSessionId = startId;
     console.log(`${LOG} finish:open_rule`, JSON.stringify({ examKey: input.examKey, opened: toOpen, startId, notDoneInChapter: notDone.length })); // guard-ok: какое правило и что открыто

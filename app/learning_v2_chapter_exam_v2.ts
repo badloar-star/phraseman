@@ -172,6 +172,7 @@ export async function finishChapterExamV2(input: Readonly<{
     chapterOrdinal: input.bank.chapterOrdinal,
     result: { correct: result.correct, total: result.total, passed: result.passed, mistakes: input.answers.filter((a) => !a.correct).map((a) => a.itemId) },
     finishedAtMs: input.finishedAtMs,
+    engine: 'v2',
   });
   const review = await loadReview(input.scope);
   if (result.passed) {

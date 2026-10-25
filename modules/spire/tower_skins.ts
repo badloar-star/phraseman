@@ -1,4 +1,5 @@
 /**
+ * зачем (координатор 25.10, перепись цветов Тем b5a22eebb): цвета скинов башни — коллекционный арт лиг, не оттенок темы; строки помечены theme-exempt, не перекрашиваем.
  * «Наряды» башни Шпиля: одна башня Оникса, 12 лиг = 12 премиальных материалов (решение владельца 13.10, в сборку 16.10).
  *
  * зачем: форма башни у всех лиг одна (components/spire/SpireTowerSvg.tsx), меняется материал: цвет камня, зеркальный блик, подсветка
@@ -93,56 +94,56 @@ export function mixHex(a: string, b: string, t: number): string {
   const B = hex2rgb(b);
   return rgb2hex(A.map((v, i) => v + (B[i] - v) * t));
 }
-const lighten = (c: string, t: number) => mixHex(c, '#ffffff', t);
-const darken = (c: string, t: number) => mixHex(c, '#000000', t);
+const lighten = (c: string, t: number) => mixHex(c, '#ffffff', t); // theme-exempt: арт скина башни
+const darken = (c: string, t: number) => mixHex(c, '#000000', t); // theme-exempt: арт скина башни
 
 // ───────────────────────── наряд по умолчанию ─────────────────────────
 /** Оникс без деталей — ровно прежний вид башни (значения перенесены из SpireTowerSvg без изменений). */
 export const SPIRE_DEFAULT_SKIN: SpireTowerSkin = Object.freeze<SpireTowerSkin>({
   id: 'default',
   premium: false,
-  cyl: ['#1F1F23', '#3D3D44', '#5A5A62', '#46464D', '#2C2C31', '#18181B'],
-  cylG: ['#232328', '#46464D', '#67676F', '#505058', '#303035', '#1A1A1D'],
-  corn: ['#2A2A2F', '#77777F', '#55555C', '#222226'],
-  cone: ['#1E1E22', '#55555D', '#3A3A41', '#151518'],
-  lit: '#EEF0F6',
-  winPast: '#3A3A40',
-  winDark: '#0B0B0D',
-  winSill: '#6B6B72',
-  sky: ['#101013', '#17171A', '#0E0E10'],
-  ground: ['#26262A', '#0E0E10'],
-  glow: '#FFFFFF',
+  cyl: ['#1F1F23', '#3D3D44', '#5A5A62', '#46464D', '#2C2C31', '#18181B'], // theme-exempt: арт скина башни
+  cylG: ['#232328', '#46464D', '#67676F', '#505058', '#303035', '#1A1A1D'], // theme-exempt: арт скина башни
+  corn: ['#2A2A2F', '#77777F', '#55555C', '#222226'], // theme-exempt: арт скина башни
+  cone: ['#1E1E22', '#55555D', '#3A3A41', '#151518'], // theme-exempt: арт скина башни
+  lit: '#EEF0F6', // theme-exempt: арт скина башни
+  winPast: '#3A3A40', // theme-exempt: арт скина башни
+  winDark: '#0B0B0D', // theme-exempt: арт скина башни
+  winSill: '#6B6B72', // theme-exempt: арт скина башни
+  sky: ['#101013', '#17171A', '#0E0E10'], // theme-exempt: арт скина башни
+  ground: ['#26262A', '#0E0E10'], // theme-exempt: арт скина башни
+  glow: '#FFFFFF', // theme-exempt: арт скина башни
   glowR: 34,
   spec: 0,
-  edge: '#FFFFFF',
+  edge: '#FFFFFF', // theme-exempt: арт скина башни
   tex: null,
-  metal: '#D6D6D8',
+  metal: '#D6D6D8', // theme-exempt: арт скина башни
   rim: 'none',
   finial: 'plain',
-  gem: '#FFFFFF',
+  gem: '#FFFFFF', // theme-exempt: арт скина башни
   pennant: null,
   light: false,
   seam: 0.34,
   seamLight: 0.045,
   underTop: 0.42,
-  merlonLo: '#424247',
-  merlonHi: '#6E6E73',
+  merlonLo: '#424247', // theme-exempt: арт скина башни
+  merlonHi: '#6E6E73', // theme-exempt: арт скина башни
 });
 
 // ───────────────────────── 12 лиг (спека 13.10) ─────────────────────────
 export const SPIRE_LEAGUE_SPECS: readonly SpireLeagueSpec[] = Object.freeze([
-  { id: 'granite', stone: '#55575E', spec: 0.22, edge: '#A9B6C6', tex: 'speckle', metal: '#8C9098', rim: 'ring', finial: 'ball', lit: '#F2EEE6', sky: '#111215', glow: 34 },
-  { id: 'basalt', stone: '#384352', spec: 0.14, edge: '#8FA6C2', tex: 'columns', metal: '#7D8796', rim: 'full', finial: 'ball', pennant: '#36597E', lit: '#E2EEF8', sky: '#0E1217', glow: 35 },
-  { id: 'marble', stone: '#D4CEC4', spec: 0.5, edge: '#FFF4DE', tex: 'marble', metal: '#D9B566', rim: 'full', finial: 'ball', lit: '#FFF2D6', sky: '#15141A', glow: 36 },
-  { id: 'jade', stone: '#23664F', spec: 0.55, edge: '#9FF0C8', tex: 'jade', metal: '#D9B566', rim: 'full', finial: 'gem', gem: '#4FD69C', lit: '#FFE6B0', sky: '#0C1411', glow: 37 },
-  { id: 'quartz', stone: '#B38494', spec: 0.6, edge: '#FFE0EC', tex: 'quartz', metal: '#E6B8A2', rim: 'full', finial: 'crystal', gem: '#F7C2D6', lit: '#FFEFF4', sky: '#161116', glow: 38 },
-  { id: 'agate', stone: '#80502E', spec: 0.45, edge: '#FFC98A', tex: 'agate', metal: '#C8894A', rim: 'full', finial: 'cabochon', gem: '#D9894A', pennant: '#8E3A2A', lit: '#FFE1B0', sky: '#15100D', glow: 39 },
-  { id: 'onyx', stone: '#2C2C33', spec: 0.75, edge: '#C9D2E2', tex: 'onyx', metal: '#C9CCD6', rim: 'full', finial: 'gem', gem: '#1A1A20', lit: '#EEF0F6', sky: '#111114', glow: 40 },
-  { id: 'amethyst', stone: '#4A2D72', spec: 0.6, edge: '#D6B4FF', tex: 'amethyst', metal: '#C9CCD6', rim: 'full', finial: 'cluster', gem: '#B58CFF', pennant: '#6A3FB0', lit: '#F0E2FF', sky: '#110D17', glow: 42 },
-  { id: 'opal', stone: '#C4BED0', spec: 0.65, edge: '#DDF4FF', tex: 'opal', metal: '#E8E6EE', rim: 'full', finial: 'orb', pennant: '#BFE3FA', lit: '#FFF4EA', sky: '#14131A', glow: 44 },
-  { id: 'topaz', stone: '#8E6522', spec: 0.75, edge: '#FFE7A0', tex: 'topaz', metal: '#F2D08A', rim: 'full', finial: 'crown', gem: '#FFB43C', lit: '#FFF0C0', sky: '#15120B', glow: 46 },
-  { id: 'obsidian', stone: '#1C1A20', spec: 0.9, edge: '#E0503A', tex: 'obsidian', metal: '#5E5A66', rim: 'full', finial: 'shard', gem: '#E0503A', pennant: '#9E2A22', lit: '#FFC08A', sky: '#130C0C', glow: 48 },
-  { id: 'diamond', stone: '#5C7698', spec: 0.95, edge: '#E6FAFF', tex: 'diamond', metal: '#EEF2F8', rim: 'full', finial: 'brilliant', gem: '#E8F8FF', pennant: '#BFE6FF', lit: '#EAF8FF', sky: '#0C1220', glow: 52 },
+  { id: 'granite', stone: '#55575E', spec: 0.22, edge: '#A9B6C6', tex: 'speckle', metal: '#8C9098', rim: 'ring', finial: 'ball', lit: '#F2EEE6', sky: '#111215', glow: 34 }, // theme-exempt: арт скина башни
+  { id: 'basalt', stone: '#384352', spec: 0.14, edge: '#8FA6C2', tex: 'columns', metal: '#7D8796', rim: 'full', finial: 'ball', pennant: '#36597E', lit: '#E2EEF8', sky: '#0E1217', glow: 35 }, // theme-exempt: арт скина башни
+  { id: 'marble', stone: '#D4CEC4', spec: 0.5, edge: '#FFF4DE', tex: 'marble', metal: '#D9B566', rim: 'full', finial: 'ball', lit: '#FFF2D6', sky: '#15141A', glow: 36 }, // theme-exempt: арт скина башни
+  { id: 'jade', stone: '#23664F', spec: 0.55, edge: '#9FF0C8', tex: 'jade', metal: '#D9B566', rim: 'full', finial: 'gem', gem: '#4FD69C', lit: '#FFE6B0', sky: '#0C1411', glow: 37 }, // theme-exempt: арт скина башни
+  { id: 'quartz', stone: '#B38494', spec: 0.6, edge: '#FFE0EC', tex: 'quartz', metal: '#E6B8A2', rim: 'full', finial: 'crystal', gem: '#F7C2D6', lit: '#FFEFF4', sky: '#161116', glow: 38 }, // theme-exempt: арт скина башни
+  { id: 'agate', stone: '#80502E', spec: 0.45, edge: '#FFC98A', tex: 'agate', metal: '#C8894A', rim: 'full', finial: 'cabochon', gem: '#D9894A', pennant: '#8E3A2A', lit: '#FFE1B0', sky: '#15100D', glow: 39 }, // theme-exempt: арт скина башни
+  { id: 'onyx', stone: '#2C2C33', spec: 0.75, edge: '#C9D2E2', tex: 'onyx', metal: '#C9CCD6', rim: 'full', finial: 'gem', gem: '#1A1A20', lit: '#EEF0F6', sky: '#111114', glow: 40 }, // theme-exempt: арт скина башни
+  { id: 'amethyst', stone: '#4A2D72', spec: 0.6, edge: '#D6B4FF', tex: 'amethyst', metal: '#C9CCD6', rim: 'full', finial: 'cluster', gem: '#B58CFF', pennant: '#6A3FB0', lit: '#F0E2FF', sky: '#110D17', glow: 42 }, // theme-exempt: арт скина башни
+  { id: 'opal', stone: '#C4BED0', spec: 0.65, edge: '#DDF4FF', tex: 'opal', metal: '#E8E6EE', rim: 'full', finial: 'orb', pennant: '#BFE3FA', lit: '#FFF4EA', sky: '#14131A', glow: 44 }, // theme-exempt: арт скина башни
+  { id: 'topaz', stone: '#8E6522', spec: 0.75, edge: '#FFE7A0', tex: 'topaz', metal: '#F2D08A', rim: 'full', finial: 'crown', gem: '#FFB43C', lit: '#FFF0C0', sky: '#15120B', glow: 46 }, // theme-exempt: арт скина башни
+  { id: 'obsidian', stone: '#1C1A20', spec: 0.9, edge: '#E0503A', tex: 'obsidian', metal: '#5E5A66', rim: 'full', finial: 'shard', gem: '#E0503A', pennant: '#9E2A22', lit: '#FFC08A', sky: '#130C0C', glow: 48 }, // theme-exempt: арт скина башни
+  { id: 'diamond', stone: '#5C7698', spec: 0.95, edge: '#E6FAFF', tex: 'diamond', metal: '#EEF2F8', rim: 'full', finial: 'brilliant', gem: '#E8F8FF', pennant: '#BFE6FF', lit: '#EAF8FF', sky: '#0C1220', glow: 52 }, // theme-exempt: арт скина башни
 ] as const);
 
 /** paletteOf образца: цилиндр, карнизы, конус и окна выводятся из цвета камня. */
@@ -171,7 +172,7 @@ export function skinFromLeague(L: SpireLeagueSpec): SpireTowerSkin {
     metal: L.metal,
     rim: L.rim,
     finial: L.finial,
-    gem: L.gem ?? '#FFFFFF',
+    gem: L.gem ?? '#FFFFFF', // theme-exempt: арт скина башни
     pennant: L.pennant ?? null,
     light,
     seam: light ? 0.2 : 0.34,

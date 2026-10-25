@@ -40,6 +40,8 @@ export function usePeakPerfProbe(area: string, where: string): void {
   whereRef.current = where;
 
   useEffect(() => {
+    // зачем (Ревизор 25.10, прогон 05:00: spire_step_result_moment_contract — «requestAnimationFrame is not defined» в jest): без часов кадров замер молчит, экран рисуется как обычно
+    if (typeof requestAnimationFrame !== 'function') { DebugLogger.info(SPIRE, `${PEAK_PERF} ${area}: замер выключен — нет requestAnimationFrame (среда без кадров)`); return undefined; }
     let raf: number | null = null;
     let last = 0;
     let gaps: number[] = [];

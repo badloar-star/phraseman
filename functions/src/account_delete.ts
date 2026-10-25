@@ -9,6 +9,7 @@ import {
   accountDeleteCredentialReceiptId,
   accountDeletePermanentDenialId,
   accountDeleteProfileHasLinkedSignIn,
+  ACCOUNT_DELETE_USER_NOW_REASON,
   enqueueAccountDeletionJob,
   fenceAccountDeletionCredential,
   fenceAccountDeletionRoots,
@@ -2414,6 +2415,10 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     /** D189: токен вызова для решения «гость — сразу»; нет токена — обычные 14 дней. */
     guestToken?: AccountDeleteGuestToken;
     decideGuest?: typeof decideAccountDeleteGuestImmediate;
+    /** «Удалить навсегда сейчас» (поле запроса deleteNow): удаление без 14 дней, как у гостя. */
+    deleteNow?: boolean;
+    /** Вариант Б: снятие всех сессий вместо удаления пользователя Auth (подмена в тестах). */
+    revokeSessions?: (uid: string) => Promise<unknown>;
   } = {},
 ) {
   const proof = cleanCredentialProof(rawProof);
@@ -2444,7 +2449,13 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     db, authUid, identityClosure, token: deps.guestToken, stableUid,
   });
   console.log(JSON.stringify({ event: 'account_delete_guest_decision', tag: '[ACCOUNT-DELETE]', guest_immediate: guest.immediate, reason: guest.reason }));
-  deps.trace?.mark('guest_decided', { guestImmediate: guest.immediate });
+  // зачем (владелец 25.10, вариант Б): «Удалить навсегда сейчас» — та же немедленная ветка, что у гостя, но своей причиной
+  // (воркер её не перепроверяет). Без просьбы — решение о госте как раньше.
+  const decision: AccountDeleteGuestDecision = deps.deleteNow === true
+    ? { immediate: true, reason: ACCOUNT_DELETE_USER_NOW_REASON }
+    : guest;
+  console.log(JSON.stringify({ event: 'account_delete_immediacy', tag: '[ACCOUNT-DELETE]', immediate: decision.immediate, reason: decision.reason, deleteNow: deps.deleteNow === true }));
+  deps.trace?.mark('guest_decided', { guestImmediate: decision.immediate });
   const result = await enqueue(
     db,
     authUid,
@@ -2452,7 +2463,7 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     Date.now(),
     receipt,
     identityClosure,
-    guest,
+    decision,
   );
   deps.trace?.mark('enqueued', { status: result.status, created: (result as { created?: unknown }).created ?? null });
   // зачем (Пакет 6A): ключ V2 сохраняется в задаче лишь ЗАГОТОВКОЙ квитанции —
@@ -2467,16 +2478,12 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     console.log(JSON.stringify({ event: 'account_delete_accounts_v2_enqueue', outcome }));
     deps.trace?.mark('accounts_v2_prepared');
   }
-  try {
-    await (deps.deleteUser ?? ((uid: string) => admin.auth().deleteUser(uid)))(authUid);
-  } catch (error: any) {
-    if (error?.code !== 'auth/user-not-found') {
-      throw new HttpsError('unavailable', 'account_delete_auth_release_failed');
-    }
-    // зачем: ранний выход сбоя тоже виден — пользователь Auth уже снят раньше, это норма повтора.
-    console.log(JSON.stringify({ event: 'account_delete_enqueue_stage', tag: '[ACCOUNT-DELETE-ENQUEUE]', stage: 'auth_release_already_gone' }));
-  }
-  deps.trace?.mark('auth_released');
+  await releaseAuthForDeletion(authUid, decision.immediate, {
+    deleteUser: deps.deleteUser,
+    revokeSessions: deps.revokeSessions,
+    failureCode: 'account_delete_auth_release_failed',
+  });
+  deps.trace?.mark('auth_released', { authDeleted: decision.immediate });
   await (deps.publishCredentialSafe
     ?? ((operationId: string) => publishCredentialSafeReceipt(db, operationId)))(proof.operationId);
   deps.trace?.mark('credential_safe');
@@ -2484,8 +2491,43 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     ok: true as const,
     ...result,
     authReleased: true as const,
+    // зачем (вариант Б): true — пользователь Auth удалён сразу (гость / «сейчас»); false — сессии сняты, вход живёт 14 дней.
+    authDeleted: decision.immediate,
     credentialSafe: true as const,
   };
+}
+
+/**
+ * Снятие входа при удалении (владелец 25.10, вариант Б Ядра).
+ * Сразу (гость / «Удалить навсегда сейчас») — удаляем пользователя Auth, как раньше.
+ * Через 14 дней — пользователя Auth НЕ удаляем: только снимаем все сессии (revokeRefreshTokens — выход со всех устройств,
+ * ID-токен живёт ≤ 1 ч; доступ к данным уже закрыт метками удаления и tombstone). Тогда повторный вход тем же Google/Apple
+ * вернёт ТОГО ЖЕ пользователя Firebase, и «Восстановить аккаунт?» найдёт задачу по его uid. Пользователя Auth удалит воркер
+ * в конце 14 дней. Пользователя уже нет — это норма повтора, не ошибка.
+ */
+async function releaseAuthForDeletion(
+  authUid: string,
+  immediate: boolean,
+  deps: {
+    deleteUser?: (uid: string) => Promise<unknown>;
+    revokeSessions?: (uid: string) => Promise<unknown>;
+    failureCode: 'account_delete_auth_release_failed' | 'account_delete_credential_pending';
+  },
+): Promise<void> {
+  const release = immediate
+    ? (deps.deleteUser ?? ((uid: string) => admin.auth().deleteUser(uid)))
+    : (deps.revokeSessions ?? ((uid: string) => admin.auth().revokeRefreshTokens(uid)));
+  try {
+    await release(authUid);
+    console.log(JSON.stringify({ event: 'account_delete_enqueue_stage', tag: '[ACCOUNT-DELETE-ENQUEUE]', stage: immediate ? 'auth_user_deleted' : 'auth_sessions_revoked' }));
+  } catch (error: any) {
+    if (error?.code !== 'auth/user-not-found') {
+      console.warn(JSON.stringify({ event: 'account_delete_enqueue_stage', tag: '[ACCOUNT-DELETE-ENQUEUE]', stage: 'auth_release_failed', immediate, code: String(error?.code ?? 'unknown').slice(0, 60) }));
+      throw new HttpsError('unavailable', deps.failureCode);
+    }
+    // зачем: ранний выход сбоя тоже виден — пользователь Auth уже снят раньше, это норма повтора.
+    console.log(JSON.stringify({ event: 'account_delete_enqueue_stage', tag: '[ACCOUNT-DELETE-ENQUEUE]', stage: 'auth_release_already_gone', immediate }));
+  }
 }
 
 async function readCredentialReceiptForRepair(
@@ -2542,6 +2584,8 @@ export async function repairAccountDeleteCredentialSafety(
     resolveClosure?: typeof resolveAccountDeleteIdentityClosure;
     enqueue?: typeof enqueueAccountDeletionJob;
     publishCredentialSafe?: (operationId: string) => Promise<void>;
+    /** Вариант Б: снятие сессий вместо удаления пользователя Auth (подмена в тестах). */
+    revokeSessions?: (uid: string) => Promise<unknown>;
   } = {},
 ): Promise<{ status: 'credential_safe' }> {
   const proof = cleanCredentialProof(rawProof);
@@ -2549,6 +2593,8 @@ export async function repairAccountDeleteCredentialSafety(
   if (receipt.stage === 'credential_safe') return { status: 'credential_safe' };
 
   let authUid: string;
+  // зачем (вариант Б): починка снимает вход так же, как постановка — сразу только для задачи «гость / сейчас».
+  let immediate = false;
   if (receipt.stage === 'closure_fenced') {
     authUid = receipt.authUid;
     const identityClosure = await (deps.resolveClosure ?? resolveAccountDeleteIdentityClosure)(
@@ -2571,18 +2617,17 @@ export async function repairAccountDeleteCredentialSafety(
     const jobSnapshot = await db.collection('account_deletion_jobs').doc(receipt.jobId).get();
     const job = jobSnapshot.exists ? jobSnapshot.data() ?? {} : {};
     authUid = typeof job.authUid === 'string' ? job.authUid : '';
+    immediate = job.guestImmediate === true;
     if (job.status !== 'completed' && !authUid) {
       throw new HttpsError('failed-precondition', 'account_delete_credential_pending');
     }
   }
   if (authUid) {
-    try {
-      await deleteUser(authUid);
-    } catch (error: any) {
-      if (error?.code !== 'auth/user-not-found') {
-        throw new HttpsError('unavailable', 'account_delete_credential_pending');
-      }
-    }
+    await releaseAuthForDeletion(authUid, immediate, {
+      deleteUser,
+      revokeSessions: deps.revokeSessions,
+      failureCode: 'account_delete_credential_pending',
+    });
   }
   await (deps.publishCredentialSafe
     ?? ((operationId: string) => publishCredentialSafeReceipt(db, operationId)))(proof.operationId);
@@ -2625,6 +2670,8 @@ export const accountDeleteEnqueue = onCall({
           signInProvider: (request.auth.token as { firebase?: { sign_in_provider?: unknown } }).firebase?.sign_in_provider,
           identities: (request.auth.token as { firebase?: { identities?: unknown } }).firebase?.identities,
         },
+        // зачем (владелец 25.10): «Удалить навсегда сейчас» — только явное true; старый клиент поле не шлёт → 14 дней.
+        deleteNow: request.data?.deleteNow === true,
       },
     );
     trace.mark('done', { status: result.status });

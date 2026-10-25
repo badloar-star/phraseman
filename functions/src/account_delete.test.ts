@@ -133,7 +133,9 @@ describe('accountDelete query plan', () => {
       calls.push('closure_committed');
       return { jobId: 'adel_hash', status: 'queued' as const, created: true };
     });
+    // зачем (владелец 25.10, вариант Б Ядра): не-гость — пользователь Auth живёт до конца 14 дней, снимаются только сессии.
     const deleteUser = jest.fn(async () => { calls.push('auth_deleted'); });
+    const revokeSessions = jest.fn(async () => { calls.push('auth_sessions_revoked'); });
     const publishCredentialSafe = jest.fn(async () => { calls.push('credential_safe'); });
 
     const result = await enqueueAndReleaseAuthenticatedAccount(
@@ -141,16 +143,18 @@ describe('accountDelete query plan', () => {
       'auth-456',
       'stable-123',
       { operationId: 'op-1'.padEnd(32, 'x'), capability: 'c'.repeat(64) },
-      { enqueue, deleteUser, publishCredentialSafe, fence, resolveClosure },
+      { enqueue, deleteUser, revokeSessions, publishCredentialSafe, fence, resolveClosure },
     );
 
     expect(calls).toEqual([
       'closure_fenced',
       'closure_discovered',
       'closure_committed',
-      'auth_deleted',
+      'auth_sessions_revoked',
       'credential_safe',
     ]);
+    expect(deleteUser).not.toHaveBeenCalled();
+    expect(revokeSessions).toHaveBeenCalledWith('auth-456');
     expect(enqueue).toHaveBeenCalledWith(
       db,
       'auth-456',
@@ -161,7 +165,45 @@ describe('accountDelete query plan', () => {
       // D189: без токена вызова решение «гость — сразу» не принимается — обычные 14 дней.
       { immediate: false, reason: 'no_token' },
     );
-    expect(result).toMatchObject({ ok: true, authReleased: true, credentialSafe: true });
+    expect(result).toMatchObject({ ok: true, authReleased: true, authDeleted: false, credentialSafe: true });
+  });
+
+  // зачем (владелец 25.10): «Удалить навсегда сейчас» и гость — пользователь Auth удаляется сразу, задача без 14 дней.
+  it('deleteNow and guests delete the Auth user at once; deleteNow carries its own reason', async () => {
+    const db = makeDbStub({
+      users: { 'stable-123': { linkedAuth: { providerUid: 'auth-456' } } },
+      authLinks: { 'auth-456': { stable_id: 'stable-123' } },
+    });
+    const enqueue = jest.fn(async () => ({ jobId: 'adel_hash', status: 'queued' as const, created: true }));
+    const common = () => ({
+      enqueue,
+      fence: jest.fn(async () => ({ stage: 'closure_fenced' as const, jobId: 'adel_hash' })),
+      resolveClosure: jest.fn(async () => ['stable-123', 'auth-456']),
+      publishCredentialSafe: jest.fn(async () => {}),
+    });
+    const deleteUser = jest.fn(async () => {});
+    const revokeSessions = jest.fn(async () => {});
+    await expect(enqueueAndReleaseAuthenticatedAccount(
+      db as unknown as FirebaseFirestore.Firestore, 'auth-456', 'stable-123',
+      { operationId: 'op-n'.padEnd(32, 'n'), capability: 'n'.repeat(64) },
+      { ...common(), deleteUser, revokeSessions, deleteNow: true },
+    )).resolves.toMatchObject({ authDeleted: true });
+    expect(deleteUser).toHaveBeenCalledWith('auth-456');
+    expect(revokeSessions).not.toHaveBeenCalled();
+    expect(enqueue).toHaveBeenLastCalledWith(
+      expect.anything(), 'auth-456', 'stable-123', expect.any(Number), expect.anything(), ['stable-123', 'auth-456'],
+      { immediate: true, reason: 'user_delete_now' },
+    );
+
+    const guestDelete = jest.fn(async () => {});
+    const guestRevoke = jest.fn(async () => {});
+    await expect(enqueueAndReleaseAuthenticatedAccount(
+      db as unknown as FirebaseFirestore.Firestore, 'auth-456', 'stable-123',
+      { operationId: 'op-g'.padEnd(32, 'g'), capability: 'g'.repeat(64) },
+      { ...common(), deleteUser: guestDelete, revokeSessions: guestRevoke, decideGuest: jest.fn(async () => ({ immediate: true, reason: 'anonymous_no_links' })) },
+    )).resolves.toMatchObject({ authDeleted: true });
+    expect(guestDelete).toHaveBeenCalledWith('auth-456');
+    expect(guestRevoke).not.toHaveBeenCalled();
   });
 
   it('treats user-not-found as idempotent credential-safe success but fails closed on other Auth errors', async () => {
@@ -185,7 +227,7 @@ describe('accountDelete query plan', () => {
         enqueue,
         fence: jest.fn(async () => ({ stage: 'closure_fenced' as const, jobId: 'adel_hash' })),
         resolveClosure: jest.fn(async () => ['auth-456', 'stable-123']),
-        deleteUser: jest.fn(async () => {
+        revokeSessions: jest.fn(async () => {
           const error: any = new Error('gone');
           error.code = 'auth/user-not-found';
           throw error;
@@ -203,7 +245,7 @@ describe('accountDelete query plan', () => {
         enqueue,
         fence: jest.fn(async () => ({ stage: 'closure_fenced' as const, jobId: 'adel_hash' })),
         resolveClosure: jest.fn(async () => ['auth-456', 'stable-123']),
-        deleteUser: jest.fn(async () => { throw new Error('firebase unavailable'); }),
+        revokeSessions: jest.fn(async () => { throw new Error('firebase unavailable'); }),
         publishCredentialSafe,
       },
     )).rejects.toThrow('account_delete_auth_release_failed');
@@ -298,6 +340,7 @@ describe('accountDelete query plan', () => {
         resolveClosure,
         enqueue,
         publishCredentialSafe,
+        revokeSessions: deleteUser,
       },
     )).resolves.toEqual({ status: 'credential_safe' });
 
@@ -1251,6 +1294,7 @@ describe('Account V2 (Пакет 6A): встраивание в конвейер
       resolveClosure: jest.fn(async () => ['stable-123', 'auth-456']),
       enqueue: jest.fn(async () => { calls.push('closure_committed'); return { jobId: 'adel_hash', status, created: true }; }),
       deleteUser: jest.fn(async () => { calls.push('auth_deleted'); }),
+      revokeSessions: jest.fn(async () => { calls.push('auth_deleted'); }),
       publishCredentialSafe: jest.fn(async () => { calls.push('credential_safe'); }),
       ...extra,
     };

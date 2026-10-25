@@ -232,6 +232,18 @@ describe('D189: перепроверка при обработке задачи'
     expect(get('account_deletion_jobs/job-1')).toMatchObject({ status: 'queued', guestDecisionReason: 'recheck_read_failed' });
   });
 
+  // зачем (владелец 25.10, вариант Б): «Удалить навсегда сейчас» — просьба человека, её не возвращают в 14 дней даже при привязке.
+  it('«удалить сейчас» по просьбе не перепроверяется и удаляется сразу', async () => {
+    const base = job(true);
+    const { db, get } = makeDbStub({ 'account_deletion_jobs/job-1': { ...base['account_deletion_jobs/job-1'], guestDecisionReason: 'user_delete_now' } });
+    const profilesLinked = jest.fn(async () => 'linked' as const);
+    const execute = jest.fn(stats);
+    await processAccountDeletionJob(db, 'job-1', execute, 2_000, { profilesLinked });
+    expect(profilesLinked).not.toHaveBeenCalled();
+    expect(execute).toHaveBeenCalledTimes(1);
+    expect(get('account_deletion_jobs/job-1')).toMatchObject({ status: 'completed' });
+  });
+
   it('обычная задача (не гость) перепроверку не делает', async () => {
     const { db } = makeDbStub(job(false));
     const profilesLinked = jest.fn(clean);

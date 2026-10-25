@@ -12,6 +12,13 @@ export const ACCOUNT_DELETE_CREDENTIAL_RECEIPT_TTL_MS = 7 * 24 * 60 * 60_000;
 
 export type AccountDeleteJobStatus = 'queued' | 'running' | 'completed' | 'failed';
 
+/**
+ * Причина «удалить сразу» по ПРОСЬБЕ человека («Удалить навсегда сейчас»), а не потому что он гость.
+ * зачем (владелец 25.10, вариант Б Ядра): воркер перепроверяет «гостя» и при привязке Google/Apple возвращает задачу в 14 дней —
+ * просьбу человека перепроверять нельзя, иначе кнопка «сейчас» молча превратилась бы в «через 14 дней».
+ */
+export const ACCOUNT_DELETE_USER_NOW_REASON = 'user_delete_now';
+
 export type AccountDeleteJobDocument = {
   jobId: string;
   authUid: string;
@@ -579,6 +586,7 @@ export async function processAccountDeletionJob(
     return {
       authUid, stableUid, attempts, leaseToken, closureCutoffMs, identityClosure,
       guestImmediate: data.guestImmediate === true,
+      guestDecisionReason: typeof data.guestDecisionReason === 'string' ? data.guestDecisionReason : '',
       createdAtMs: Number(data.createdAtMs ?? nowMs),
     };
   });
@@ -591,7 +599,10 @@ export async function processAccountDeletionJob(
 
   // зачем (D189, координатор: «перепроверка при обработке задачи — тоже»): пользователь Auth к этому моменту уже снят,
   // поэтому перепроверяем то, что осталось, — профили всего identityClosure. Привязка или ошибка чтения → назад в 14 дней.
-  if (claimed.guestImmediate) {
+  // зачем (вариант Б): «удалить сейчас» по просьбе человека не перепроверяется как гость — просьба окончательна.
+  if (claimed.guestImmediate && claimed.guestDecisionReason === ACCOUNT_DELETE_USER_NOW_REASON) {
+    console.log(JSON.stringify({ event: 'account_delete_guest_recheck', tag: '[ACCOUNT-DELETE]', guest_immediate: true, reason: 'user_delete_now_no_recheck' }));
+  } else if (claimed.guestImmediate) {
     let recheck: 'linked' | 'clean' | 'read_failed';
     try {
       recheck = await (options.profilesLinked ?? accountDeleteProfilesLinked)(db, claimed.identityClosure);

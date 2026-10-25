@@ -86,3 +86,9 @@ HEAD e67046de6, 13:03 (C:/Temp/claude/headota_1025_1303):
 - Флаги в Пульте `spire_gold`, `spire_streak_heart`, призрак — не включать до выкладки функций Пика и вида Сверки.
 - ~~🟡 `app/lesson_prep_store.ts`: нет сторожа~~ → e140e9947 (авто-сброс 20 с с журналом `[V2-PREPARE] prep_state_stuck_reset`).
 - Публиковать из чистого HEAD (git archive), а не из рабочего дерева — в нём чужие незакоммиченные правки.
+- Скрипты Ядра `scripts/ota_from_head.sh`, `scripts/ota_merge_dist.cjs` (25.10 ~14:20 ещё не в git — закоммитить до боевого прогона):
+  runtimeVersion 2.0.2 — стоп иначе; precheck пропускает только «1 красный = PARITY-GATE»; env стора; dev-строки по карте на каждой
+  платформе; карты из dist-ota удаляются; скрипт не публикует. Репетиция (снимок 8f4ef4f55): гейт dev-строк OK на ios и android,
+  .hbc в dist-ota = проверенным байт в байт. 🟡 удалить `.env.ota.pulled` из снимка после публикации.
+- PARITY-GATE (свидетельства «экран = макет») для OTA не блокирует — гейты сборки зелёные: V2-AUDIO (1509 выпущенных занятий собираются
+  из бандла), V2-CEILING, STORE-STUBS 29, EASIGNORE-IMPORTS, release-keys.

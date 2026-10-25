@@ -150,7 +150,9 @@ export default function LanguageWelcomeScreen() {
   const [entryResolved, setEntryResolved] = useState(!resolveStarted);
 
   const goBackSafely = useCallback(() => {
-    safeRouterBack(router, '/settings_language' as any);
+    // зачем (аудит «назад» 26.10): выбор языка изучения открывает этот экран из «Настроек», «Языка» и видео Lingman — запасной путь
+    // (только когда истории нет) — корень раздела, как в реестре ролей; обычная «назад» и так ведёт к открывшему экрану.
+    safeRouterBack(router, '/(tabs)/settings' as never);
   }, [router]);
 
   // Готов ли корневой навигатор. Экран достижим deep-link'ом (см. шапку) — на холодном

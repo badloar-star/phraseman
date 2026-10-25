@@ -44,7 +44,7 @@ export function seasonExamCaption(i: SeasonExamCaptionInput): SeasonExamCaption 
     };
   }
   if (i.status.state === 'passed') {
-    // эталон capX('pass'): «Экзамен сдан, 11 из 12» / «Глава 3 открыта» / «К главе 3» / «Эпизоды 13–16 открыты, их можно пройти позже»
+    // эталон capX('pass'): «Экзамен сдан, 11 из 12» / «Глава 3 открыта» / «К главе 3» / «Начнём с эпизода 13»
     const kicker = seasonCardText(i.lang, 'examPassed', { c: i.status.correct, q: i.questions });
     if (next === null) return { kicker, title: examTitle, action: null, note: null };
     return {
@@ -54,14 +54,14 @@ export function seasonExamCaption(i: SeasonExamCaptionInput): SeasonExamCaption 
       note: i.nextRange ? seasonCardText(i.lang, 'examPassedNote', { a: i.nextRange.a, b: i.nextRange.b }) : null,
     };
   }
-  // эталон capX('avail'): «Финал главы 2, можно сдать заранее» / «Экзамен главы» / «Сдать экзамен» / «Сдашь — откроется глава 3 · 12 вопросов, сдать от 10»
+  // эталон capX('avail'): «Финал главы 2, можно сдать заранее» / «Экзамен главы» / «Сдать экзамен» / «Сдашь — откроется глава 3»
   const kicker = seasonCardText(i.lang, 'examKickerEarly', { n: i.chapterOrdinal });
   if (!i.canStart) return { kicker, title: examTitle, action: null, note: null };
-  const facts = seasonCardText(i.lang, 'examFacts', { q: i.questions, p: i.passFrom });
   return {
     kicker,
     title: examTitle,
     action: { kind: 'open', label: seasonCardText(i.lang, 'startExam'), icon: 'trophy', chapter: null },
-    note: next !== null ? `${seasonCardText(i.lang, 'examOpens', { n: next })} · ${facts}` : facts,
+    // зачем (координатор 25.10, макет): «· 12 вопросов, сдать от 10» — служебная кухня, в подписи только «Сдашь — откроется глава N»
+    note: next !== null ? seasonCardText(i.lang, 'examOpens', { n: next }) : null,
   };
 }

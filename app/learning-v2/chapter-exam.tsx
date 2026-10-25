@@ -172,7 +172,7 @@ function ChapterExamRun() {
       console.log(`${LOG} screen:finished`, JSON.stringify({ examKey: prepared.examKey, correct: outcome.result.correct, passed: outcome.result.passed, credited: outcome.creditedSessionIds.length })); // guard-ok: итог
       // зачем (владелец 22.10): правильный ответ — только после конца экзамена и только по ошибкам, из вердикта проверки
       answersRef.current = answersRef.current.map((a) => (a.correct ? a : { ...a, correctAnswer: learningV2ChapterExamCorrectAnswerV1({ lessonOrdinal, sessionOrdinal: a.sessionOrdinal, interactionId: a.interactionId, locale }) }));
-      setOutcome({ correct: outcome.result.correct, passed: outcome.result.passed, openedRange: openedRangeOf(outcome.creditedSessionIds) });
+      setOutcome({ correct: outcome.result.correct, passed: outcome.result.passed, openedRange: openedRangeOf(outcome.startSessionId ? [outcome.startSessionId] : []) }); // зачем (25.10): «Начнём с эпизода {a}» — точка старта, не открытый эпизод
       // зачем (закон владельца 22.10: монеты выдаёт телефон, сервер только сохраняет): 40 монет за ПЕРВУЮ сдачу главы —
       // плашка сразу вместе с итогом; если локальная запись не удалась — плашку убираем (откат), причина в журнале
       if (outcome.firstPass) {

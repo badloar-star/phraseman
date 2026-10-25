@@ -11,10 +11,11 @@ describe('Сезон: подпись экзамена по эталону', () =
       kicker: 'Финал главы 2, можно сдать заранее',
       title: 'Экзамен главы',
       action: { kind: 'open', label: 'Сдать экзамен', icon: 'trophy', chapter: null },
-      note: 'Сдашь — откроется глава 3 · 12 вопросов, сдать от 10',
+      // координатор 25.10: «· 12 вопросов, сдать от 10» — кухня, убрано
+      note: 'Сдашь — откроется глава 3',
     });
     expect(seasonExamCaption({ ...base, canStart: false }).action).toBeNull();
-    expect(seasonExamCaption({ ...base, chapterOrdinal: 7 }).note).toBe('12 вопросов, сдать от 10');
+    expect(seasonExamCaption({ ...base, chapterOrdinal: 7 }).note).toBeNull();
   });
 
   it('пауза (pause) — дословно, минуты из отсчёта, кнопки нет', () => {
@@ -31,7 +32,8 @@ describe('Сезон: подпись экзамена по эталону', () =
       kicker: 'Экзамен сдан, 11 из 12',
       title: 'Глава 3 открыта',
       action: { kind: 'toChapter', label: 'К главе 3', icon: 'play', chapter: 3 },
-      note: 'Эпизоды 13–16 открыты, их можно пройти позже',
+      // ЗАМОК ВЛАДЕЛЬЦА 25.10 (открыт только первый эпизод): подпись говорит, с какого эпизода начнём
+      note: 'Начнём с эпизода 13',
     });
     expect(seasonExamCaption({ ...base, chapterOrdinal: 7, status: { state: 'passed', correct: 12 } })).toEqual({ kicker: 'Экзамен сдан, 12 из 12', title: 'Экзамен главы', action: null, note: null });
   });

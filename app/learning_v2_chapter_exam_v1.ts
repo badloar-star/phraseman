@@ -212,7 +212,7 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
   chapterOrdinal: number;
   answers: readonly Readonly<{ interactionId: string; correct: boolean }>[];
   finishedAtMs: number;
-}>): Promise<Readonly<{ result: ChapterExamResultV1; record: ChapterExamRecordV1; creditedSessionIds: readonly string[]; firstPass: boolean }>> {
+}>): Promise<Readonly<{ result: ChapterExamResultV1; record: ChapterExamRecordV1; creditedSessionIds: readonly string[]; startSessionId: string | null; firstPass: boolean }>> {
   const result = scoreChapterExamV1(input.answers);
   const records = await loadLearningV2ChapterExamRecordsV1(input.accountScopeHash);
   const prior = records[input.examKey] ?? null;
@@ -222,9 +222,11 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
   await saveLearningV2ChapterExamRecordV1(input.accountScopeHash, record);
   if (!result.passed) {
     console.log(`${LOG} finish:failed`, JSON.stringify({ examKey: input.examKey, correct: result.correct, retryAtMs: record.retryAtMs })); // guard-ok: ветка и значение
-    return Object.freeze({ result, record, creditedSessionIds: Object.freeze([]), firstPass });
+    return Object.freeze({ result, record, creditedSessionIds: Object.freeze([]), startSessionId: null, firstPass });
   }
   const creditedSessionIds: string[] = [];
+  // зачем (координатор 25.10): итог экзамена говорит «Начнём с эпизода {a}» — это точка старта (первый эпизод главы C+1)
+  let startSessionId: string | null = null;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { createLearningV2CourseLocalProgressStoreV1 } = require('../modules/learning-v2/progress/course_local_progress_v1') as typeof import('../modules/learning-v2/progress/course_local_progress_v1');
@@ -255,12 +257,13 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
     }
     await store.placeStart(input.progressAccountScopeHash, { openIds: toOpen, startId, source: 'chapter_exam' });
     creditedSessionIds.push(...toOpen);
+    startSessionId = startId;
     console.log(`${LOG} finish:open_rule`, JSON.stringify({ examKey: input.examKey, opened: toOpen, startId, notDoneInChapter: notDone.length })); // guard-ok: какое правило и что открыто
   } catch (error) {
     console.warn(`${LOG} finish:open_failed`, JSON.stringify({ examKey: input.examKey, opened: creditedSessionIds, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
   }
   console.log(`${LOG} finish:passed`, JSON.stringify({ examKey: input.examKey, correct: result.correct, credited: creditedSessionIds, firstPass })); // guard-ok: итог
-  return Object.freeze({ result, record, creditedSessionIds: Object.freeze(creditedSessionIds), firstPass });
+  return Object.freeze({ result, record, creditedSessionIds: Object.freeze(creditedSessionIds), startSessionId, firstPass });
 }
 
 /** Сданные главы урока — для карты «пройдена» и строки «Экзамен сдан · X из 12». */

@@ -221,6 +221,7 @@ import BackGlyph from '../../components/v2/BackGlyph';
 
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
+import { learningV2OutcomeDisplayV1, learningV2OutcomeHeadingKindV1 } from "../learning_v2_outcome_display_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
 import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
@@ -5929,11 +5930,13 @@ export default function LessonsTab({
         onMounted={handleLearningV2SessionModalMounted}
         stayOpenWhilePreparing
         exitSignal={learningV2SheetExit}
+        // зачем (владелец 25.10, вариант A): заголовок всегда «Чему научишься»; служебную цель фабрики (латиница, «+», формула)
+        // не показываем — вместо неё название сцены занятия (learning_v2_outcome_display_v1.ts)
         title={learningV2SessionOutcomeTitle(
-          selectedLearningV2OutcomeKind,
+          learningV2OutcomeHeadingKindV1(selectedLearningV2OutcomeKind),
           lang,
         )}
-        message={selectedLearningV2Outcome}
+        message={learningV2OutcomeDisplayV1({ lessonOrdinal: selectedLearningV2Session?.lessonOrdinal ?? 1, sessionOrdinal: selectedLearningV2Session?.sessionOrdinal ?? 1, outcome: selectedLearningV2Outcome, lang })}
         primaryLabel={
           // зачем (learning-v2.html 2.3, координатор 05.10): у проверки главы (каждое 8-е занятие) кнопка
           // «Начать проверку» — отдельная строка, общий «Начать» других экранов не трогаем.

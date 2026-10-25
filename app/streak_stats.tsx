@@ -994,7 +994,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
     const lifetimeRows: LifetimeRow[] = [
         { kind: 'words_learned', numValue: data.wordsLearned, label: triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas', en: 'Words learned', 'pt-BR': 'Palavras aprendidas', vi: 'Từ đã học', id: 'Kata dipelajari', tr: 'Öğrenilen kelimeler', pl: 'Nauczone słowa' }) },
         { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Висловів вивчено', es: 'Frases aprendidas', en: 'Phrases learned', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
-        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Flashcards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane karty' }) },
+        { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', en: 'Cards saved', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane karty' }) },
         // зачем (D70/D78, координатор 01.10): «Монет заработано/потрачено» считали ЖЕМЧУГ (shards) —
         // жемчуг удалён владельцем; строки сняты с экрана, данные уберёт ядро вместе с кодом (PM-289).
     ];
@@ -2724,7 +2724,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     </Text>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center', lineHeight: f.sub * 1.35 }}>
                       {triLang(lang, {
-                            ru: 'Случайные значения за 7 дней: все строки и графики под ними; цифры слева = сумма за эти 7 дней (дни цепочки/уровень — как в профиле).',
+                            ru: 'Случайные значения за 7 дней: все строки и графики под ними; цифры слева = сумма за эти 7 дней (дни серии/уровень — как в профиле).',
                             uk: 'Випадкові значення за 7 днів: усі рядки й графіки під ними; числа зліва = сума за ці 7 днів.',
                             en: 'Random 7-day values: all rows and charts below; the left number = the sum for those 7 days.',
                             es: 'Valores aleatorios 7 días: todas las filas y gráficos debajo; la columna izquierda = suma de esos 7 días.',
@@ -2741,8 +2741,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
 
                 <View style={{ alignItems: 'center', paddingVertical: 12 }}>
                   <ReportErrorButton screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {
-                    ru: 'Цепочки и результаты',
-                    uk: 'Стріки та результати',
+                    ru: 'Серия и результаты',
+                    uk: 'Серія та результати',
                     en: 'Streaks and stats',
                     es: 'Rachas y estadísticas',
                     'pt-BR': "Sequências e estatísticas",

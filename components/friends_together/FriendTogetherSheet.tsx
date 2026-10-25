@@ -45,7 +45,7 @@ export interface FriendTogetherSheetProps {
 const FRIENDSHIP_LEVELS: readonly Record<Lang, string>[] = [
   { ru: 'Знакомые', uk: 'Знайомі', en: 'Acquaintances', es: 'Conocidos', 'pt-BR': 'Conhecidos', vi: 'Người quen', id: 'Kenalan', tr: 'Tanışıklar', pl: 'Znajomi' },
   { ru: 'Приятели', uk: 'Товариші', en: 'Pals', es: 'Compañeros', 'pt-BR': 'Companheiros', vi: 'Bạn đồng hành', id: 'Rekan', tr: 'Yoldaşlar', pl: 'Kumple' },
-  { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Przyjaciele' },
+  { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' },
   { ru: 'Близкие', uk: 'Близькі', en: 'Close friends', es: 'Cercanos', 'pt-BR': 'Próximos', vi: 'Thân thiết', id: 'Teman dekat', tr: 'Yakınlar', pl: 'Bliscy' },
   { ru: 'Лучшие', uk: 'Найкращі', en: 'Best friends', es: 'Mejores amigos', 'pt-BR': 'Melhores amigos', vi: 'Bạn thân', id: 'Sahabat', tr: 'En iyi arkadaşlar', pl: 'Najlepsi przyjaciele' },
 ];

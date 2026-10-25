@@ -150,7 +150,7 @@ export function homeSceneChipLabel(lang: Lang, kind: HomeSceneChipKind): string 
   switch (kind) {
     case 'words': return triLang(lang, { ru: 'Слова', uk: 'Слова', en: 'Words', es: 'Palabras', 'pt-BR': 'Palavras', vi: 'Từ vựng', id: 'Kata', tr: 'Kelimeler', pl: 'Słowa' });
     case 'theory': return triLang(lang, { ru: 'Теория', uk: 'Теорія', en: 'Theory', es: 'Teoría', 'pt-BR': 'Teoria', vi: 'Lý thuyết', id: 'Teori', tr: 'Teori', pl: 'Teoria' });
-    case 'cards': return triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' });
+    case 'cards': return triLang(lang, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' });
     case 'phrase': return triLang(lang, { ru: 'Фраза дня', uk: 'Вислів дня', en: 'Phrase of the day', es: 'Frase del día', 'pt-BR': 'Frase do dia', vi: 'Cụm từ hôm nay', id: 'Frasa hari ini', tr: 'Günün ifadesi', pl: 'Fraza dnia' });
     case 'video': return triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Video', es: 'Vídeo', 'pt-BR': 'Vídeo', vi: 'Video', id: 'Video', tr: 'Video', pl: 'Wideo' });
     case 'review': return triLang(lang, { ru: 'Повторить карточки', uk: 'Повторити картки', en: 'Review cards', es: 'Repasa tarjetas', 'pt-BR': 'Revise cartões', vi: 'Ôn thẻ', id: 'Ulas kartu', tr: 'Kartları tekrar et', pl: 'Powtórz fiszki' });

@@ -96,7 +96,7 @@ const T = {
   beatIt: (l: Lang) => triLang(l, { ru: 'Побьёшь сегодня?', uk: 'Поб’єш сьогодні?', en: 'Beat it today?', es: '¿Lo superas hoy?', 'pt-BR': 'Vai bater hoje?', vi: 'Hôm nay phá kỷ lục chứ?', id: 'Pecahkan hari ini?', tr: 'Bugün geçer misin?', pl: 'Pobijesz dziś?' }),
   of: (l: Lang, d: number, t: number) => triLang(l, { ru: `${d} из ${t}`, uk: `${d} з ${t}`, en: `${d} of ${t}`, es: `${d} de ${t}`, 'pt-BR': `${d} de ${t}`, vi: `${d}/${t}`, id: `${d} dari ${t}`, tr: `${d}/${t}`, pl: `${d} z ${t}` }),
   cont: (l: Lang) => triLang(l, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
-  cards: (l: Lang) => triLang(l, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' }),
+  cards: (l: Lang) => triLang(l, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' }),
   wordsDue: (l: Lang, n: number) => triLang(l, {
     ru: `${n} ${ruPl(n, 'слово вот-вот сбежит', 'слова вот-вот сбегут', 'слов вот-вот сбегут')} из памяти`, uk: `${n} ${ruPl(n, 'слово ось-ось втече', 'слова ось-ось втечуть', 'слів ось-ось втечуть')} з пам’яті`,
     en: `${n} ${en(n, 'word is', 'words are')} about to slip away`, es: `${n} palabras están a punto de escaparse`, 'pt-BR': `${n} palavras estão quase fugindo da memória`, vi: `${n} từ sắp bay khỏi trí nhớ`, id: `${n} kata hampir kabur dari ingatan`, tr: `${n} kelime aklından kaçmak üzere`, pl: `${n} ${plPl(n, 'słowo zaraz ucieknie', 'słowa zaraz uciekną', 'słów zaraz ucieknie')} z pamięci`,

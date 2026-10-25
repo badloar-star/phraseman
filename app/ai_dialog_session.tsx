@@ -3105,15 +3105,16 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   maxFontSizeMultiplier={1.2}
                 >
                   {triLang(lang, {
-                    ru: 'Ответы месяца закончились',
-                    uk: 'Відповіді місяця закінчилися',
+                    // зачем (голос PhraseMan, VOICE.md 25.10): как на сцене Диалогов — «на этот месяц кончились»
+                    ru: 'Ответы на этот месяц кончились',
+                    uk: 'Відповіді на цей місяць скінчилися',
                     en: "This month's replies are used up",
                     es: 'Se acabaron las respuestas del mes',
                     'pt-BR': 'As respostas do mês acabaram',
                     vi: 'Đã hết lượt trả lời tháng này',
                     id: 'Balasan bulan ini habis',
                     tr: 'Bu ayın yanıtları bitti',
-                    pl: 'Odpowiedzi w tym miesiącu się skończyły',
+                    pl: 'Odpowiedzi na ten miesiąc się skończyły',
                   })}
                 </Text>
                 <Text

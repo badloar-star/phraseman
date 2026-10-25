@@ -43,7 +43,7 @@ export function deleteAccountVariantBCopy(lang: Lang): DeleteVariantBCopy {
       ru: 'Не получилось. Проверь интернет и нажми ещё раз.',
       uk: 'Не вийшло. Перевір інтернет і натисни ще раз.',
       en: "That didn't work. Check your connection and tap again.",
-      es: 'No salió. Revisa tu conexión y vuelve a tocar.',
+      es: 'No funcionó. Revisa tu conexión y vuelve a tocar.', // вычитка Переводчика 25.10: «No salió» — разговорно для окна удаления
       'pt-BR': 'Não deu certo. Verifique a conexão e toque de novo.',
       vi: 'Chưa được. Hãy kiểm tra kết nối rồi nhấn lại.',
       id: 'Belum berhasil. Periksa koneksi lalu ketuk lagi.',

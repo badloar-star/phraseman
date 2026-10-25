@@ -108,7 +108,7 @@ export function addSpirePendingCoins(owner: string, reportId: string, coins: num
  * повтором. зачем (координатор 25.10, вариант A; контракт Ядра 25.10): монеты показываются до записи — сбой записи их снимает,
  * подписчики (единый показ subscribeDisplayedRunes) обновляют число сами.
  */
-export function removeSpirePendingCoins(owner: string | null | undefined, reportId: string, reason: string): void {
+export function removeSpirePendingCoins(owner: string | null | undefined, reportId: string, reason: string, late = false): void {
   if (!owner || !reportId) {
     DebugLogger.warn(SPIRE, `${PEAK_COINS} remove skip reason=bad_input owner=${owner ? 'yes' : 'no'} report=${reportId || '-'} why=${reason}`);
     return;
@@ -120,7 +120,7 @@ export function removeSpirePendingCoins(owner: string | null | undefined, report
     return;
   }
   const next = list.filter((e) => e.reportId !== reportId);
-  DebugLogger.warn(SPIRE, `${PEAK_COINS} settle reason=${reason} report=${reportId} coins=${hit.coins} Σ=${next.reduce((s, e) => s + e.coins, 0)}`);
+  DebugLogger.warn(SPIRE, `${PEAK_COINS} settle reason=${reason} late=${String(late)} report=${reportId} coins=${hit.coins} Σ=${next.reduce((s, e) => s + e.coins, 0)}`);
   publish(owner, next);
 }
 

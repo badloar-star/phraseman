@@ -72,6 +72,6 @@ export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined
 }
 
 /** Запись не удалась или на диске повтор — снять показанные монеты (причина в журнал [PEAK-COINS] settle reason=…). */
-export function spireStepCoinsUndo(owner: string | null | undefined, reportId: string, reason: 'save_failed' | 'save_threw' | 'duplicate_on_disk'): void {
-  removeSpirePendingCoins(owner, reportId, reason);
+export function spireStepCoinsUndo(owner: string | null | undefined, reportId: string, reason: 'save_failed' | 'save_threw' | 'duplicate_on_disk', late = false): void {
+  removeSpirePendingCoins(owner, reportId, reason, late);
 }

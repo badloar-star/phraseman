@@ -344,12 +344,14 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       tryPlayV2Event(kind === 'summit' ? 'summit' : kind === 'floor' ? 'floor' : 'step', 'spire_step_finish');
     }
     void spireRecordStepResult(ids.uid, lang, finish.report).then((res) => { // зачем ([PEAK-COINS]): монеты ступени на Главной сразу
-      if (lastReportRef.current !== finish.report.reportId) {
+      const late = lastReportRef.current !== finish.report.reportId; // зачем (Ревизор 25.10): монеты снимаем ВСЕГДА — поздний сбой иначе висел бы на плашке до 48 ч
+      if (coinsNow && (!res.persisted || res.effect === 'duplicate_ignored')) spireStepCoinsUndo(ids.stableId, finish.report.reportId, res.persisted ? 'duplicate_on_disk' : 'save_failed', late);
+      if (late) {
         DebugLogger.info(LOG, `game: запись ${finish.report.reportId} пришла поздно — экран уже новее, не трогаем`);
         return;
       }
       if (!res.persisted) {
-        DebugLogger.warn(LOG, `game: ступень ${finish.report.reportId} не записалась на диск — откат маркера`); if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_failed');
+        DebugLogger.warn(LOG, `game: ступень ${finish.report.reportId} не записалась на диск — откат маркера`);
         setWeek(base);
         setOutcome({ ...view, kind: 'save_failed', local: base });
         return;
@@ -357,10 +359,10 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       spireCloseMark(finish.report.reportId, closeT0, `записано на диск effect=${res.effect}`);
       // зачем ([PEAK-CLOSE], Сверка 24.10): та же неделя повторным setWeek давала второй полный проход экрана Пика в кадре закрытия
       if (!spireSameWeek(weekRef.current, res.local)) setWeek(res.local); else spireCloseMark(finish.report.reportId, closeT0, 'неделя с диска та же — без второго прохода');
-      const passedNew = finish.report.outcome === 'passed' && res.effect !== 'duplicate_ignored'; if (coinsNow && res.effect === 'duplicate_ignored') spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'duplicate_on_disk');
+      const passedNew = finish.report.outcome === 'passed' && res.effect !== 'duplicate_ignored';
       spireRunStepCloseTail({ reportId: finish.report.reportId, t0: closeT0, uid: ids.uid, lang: lang as SpireLang, local: res.local, flush, flushTrigger: kind === 'floor' || kind === 'summit' ? 'floor_closed' : spireNearWeekEnd(Date.now()) ? 'week_end' : null, countToday: passedNew, skipWhy: `outcome=${finish.report.outcome} effect=${res.effect}` }); // 💸 облако — только на закрытии этажа и в конце недели, как раньше
     }).catch((error: unknown) => {
-      DebugLogger.warn(LOG, `game: запись ступени упала (${String(error)}) — откат маркера`); if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_threw');
+      DebugLogger.warn(LOG, `game: запись ступени упала (${String(error)}) — откат маркера`); if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_threw', lastReportRef.current !== finish.report.reportId);
       if (lastReportRef.current !== finish.report.reportId) return;
       setWeek(base);
       setOutcome({ ...view, kind: 'save_failed', local: base });

@@ -85,9 +85,12 @@ describe('исходники: где кладём, где гасим, что п�
     const game = read('app', 'spire', 'use_spire_game.ts');
     expect(game).toContain("const coinsNow = spireStepCoinsNow({ owner: ids.stableId, reportId: finish.report.reportId, t0: closeT0, coins: config.coins, passedNew: finish.report.outcome === 'passed' && applied.effect !== 'duplicate_ignored'");
     expect(game.indexOf('spireStepCoinsNow({')).toBeLessThan(game.indexOf('spireRecordStepResult(ids.uid'));
-    expect(game).toContain("if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_failed');");
-    expect(game).toContain("if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_threw');");
-    expect(game).toContain("if (coinsNow && res.effect === 'duplicate_ignored') spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'duplicate_on_disk');");
+    // Ревизор 25.10: снятие — до проверки «ответ пришёл поздно», иначе поздний сбой оставлял монеты на плашке до 48 ч
+    const undo = game.indexOf("if (coinsNow && (!res.persisted || res.effect === 'duplicate_ignored')) spireStepCoinsUndo(ids.stableId, finish.report.reportId, res.persisted ? 'duplicate_on_disk' : 'save_failed', late);");
+    expect(undo).toBeGreaterThan(-1);
+    expect(undo).toBeLessThan(game.indexOf('if (late) {'));
+    expect(game).toContain("if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_threw', lastReportRef.current !== finish.report.reportId);");
+    expect(game.indexOf("'save_threw', lastReportRef")).toBeLessThan(game.indexOf('if (lastReportRef.current !== finish.report.reportId) return;'));
     expect(read('app', 'spire_report_client.ts')).not.toContain('addSpirePendingCoins(');
     const flush = read('app', 'spire', 'spire_flush_wallet.ts');
     expect(flush.match(/settleSpirePendingCoins\(stableId, verdicts, true/g)?.length).toBe(2);
@@ -148,5 +151,19 @@ describe('вариант A (координатор 25.10): монеты сраз
     expect(spirePendingCoinsTotal('me', NOW)).toBe(10);
     expect(seen).toHaveBeenCalledTimes(1);
     off();
+  });
+});
+
+describe('Ревизор 25.10: поздний сбой записи тоже снимает монеты', () => {
+  beforeEach(() => __resetSpirePendingCoinsForTests());
+  it('экран уже на следующей ступени (late) — строка снята, в журнале late=true', () => {
+    const { removeSpirePendingCoins } = require('../app/spire/spire_pending_coins') as typeof import('../app/spire/spire_pending_coins');
+    const { DebugLogger } = require('../app/debug-logger') as { DebugLogger: { warn: jest.Mock } };
+    addSpirePendingCoins('me', 'old', 10, NOW);
+    addSpirePendingCoins('me', 'next', 10, NOW + 1);
+    DebugLogger.warn.mockClear();
+    removeSpirePendingCoins('me', 'old', 'save_failed', true);
+    expect(spirePendingCoinsTotal('me', NOW + 2)).toBe(10);
+    expect(DebugLogger.warn.mock.calls.some((c) => String(c[1]).includes('settle reason=save_failed late=true report=old'))).toBe(true);
   });
 });

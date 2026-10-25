@@ -80,6 +80,8 @@ describe('[PEAK-COINS] вариант A: монеты в момент итога
   });
   it('сбой записи снимает показанные монеты с причиной', () => {
     spireStepCoinsUndo('me', 'r1', 'save_failed');
-    expect(removePending).toHaveBeenCalledWith('me', 'r1', 'save_failed');
+    expect(removePending).toHaveBeenCalledWith('me', 'r1', 'save_failed', false);
+    spireStepCoinsUndo('me', 'r2', 'save_failed', true);
+    expect(removePending).toHaveBeenLastCalledWith('me', 'r2', 'save_failed', true);
   });
 });

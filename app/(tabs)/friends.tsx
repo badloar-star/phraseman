@@ -1982,7 +1982,7 @@ export default function FriendsTabScreen() {
       });
       setSearchError(isTransient
         ? L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia')+'\n'+L('Проверь интернет и попробуй ещё раз.', 'Перевір інтернет і спробуй ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.')
-        : L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'));
+        : L('Не вышло с первого раза. Попробуй ещё', 'Не вийшло з першого разу. Спробуй ще', "Didn’t work the first time. Try again", 'No salió a la primera. Inténtalo otra vez', 'Não deu de primeira. Tente de novo', 'Lần đầu chưa được. Thử lại nhé', 'Belum berhasil di percobaan pertama. Coba lagi', 'İlk seferde olmadı. Tekrar dene', 'Nie wyszło za pierwszym razem. Spróbuj jeszcze'));
     } finally {
       setIsSearching(false);
     }
@@ -2064,7 +2064,7 @@ export default function FriendsTabScreen() {
       } else {
         setFoundUser(targetUser);
         setCodeInput(previousCodeInput);
-        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');
+        showFeedback(L('Не вышло с первого раза. Попробуй ещё', 'Не вийшло з першого разу. Спробуй ще', "Didn’t work the first time. Try again", 'No salió a la primera. Inténtalo otra vez', 'Não deu de primeira. Tente de novo', 'Lần đầu chưa được. Thử lại nhé', 'Belum berhasil di percobaan pertama. Coba lagi', 'İlk seferde olmadı. Tekrar dene', 'Nie wyszło za pierwszym razem. Spróbuj jeszcze'), 'error');
       }
     } catch (e) {
       void import('../app_health')
@@ -2085,7 +2085,7 @@ export default function FriendsTabScreen() {
       });
       setFoundUser(targetUser);
       setCodeInput(previousCodeInput);
-      showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');
+      showFeedback(L('Не вышло с первого раза. Попробуй ещё', 'Не вийшло з першого разу. Спробуй ще', "Didn’t work the first time. Try again", 'No salió a la primera. Inténtalo otra vez', 'Não deu de primeira. Tente de novo', 'Lần đầu chưa được. Thử lại nhé', 'Belum berhasil di percobaan pertama. Coba lagi', 'İlk seferde olmadı. Tekrar dene', 'Nie wyszło za pierwszym razem. Spróbuj jeszcze'), 'error');
     } finally {
       addRequestInFlightRef.current = false;
       setIsAdding(false);
@@ -2160,7 +2160,7 @@ export default function FriendsTabScreen() {
         pendingFriendOpsRef.current.settle(request.fromUid, false, Date.now());
         console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: не удалось — откат`, error);
         setRequests(prev => prev.some(item => item.fromUid === request.fromUid) ? prev : [request, ...prev]);
-        showFeedback(L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'), 'error');
+        showFeedback(L('Не вышло с первого раза. Попробуй ещё', 'Не вийшло з першого разу. Спробуй ще', "Didn’t work the first time. Try again", 'No salió a la primera. Inténtalo otra vez', 'Não deu de primeira. Tente de novo', 'Lần đầu chưa được. Thử lại nhé', 'Belum berhasil di percobaan pertama. Coba lagi', 'İlk seferde olmadı. Tekrar dene', 'Nie wyszło za pierwszym razem. Spróbuj jeszcze'), 'error');
       })
       .finally(() => { requestOpsInFlightRef.current.delete(request.fromUid); });
   }, [L, showFeedback]);
@@ -2317,16 +2317,16 @@ export default function FriendsTabScreen() {
         });
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: 'Сейчас не получилось. Попробуй ещё раз',
-          messageUk: 'Зараз не вийшло. Спробуй ще раз',
+          messageRu: 'Не вышло с первого раза. Попробуй ещё',
+          messageUk: 'Не вийшло з першого разу. Спробуй ще',
           // зачем (координатор 12.10, EN_READINESS): у тостов друзей не было messageEn — английский интерфейс видел запасной язык.
-          messageEn: "Didn't work this time. Try again",
-          messageEs: 'Ahora no ha funcionado. Inténtalo de nuevo',
-          messagePtBr: 'Não deu certo agora. Tente de novo',
-          messageVi: 'Lúc này chưa được. Hãy thử lại',
-          messageId: 'Belum berhasil. Coba lagi',
-          messageTr: 'Şu an olmadı. Tekrar dene',
-          messagePl: 'Teraz się nie udało. Spróbuj ponownie',
+          messageEn: "Didn’t work the first time. Try again",
+          messageEs: 'No salió a la primera. Inténtalo otra vez',
+          messagePtBr: 'Não deu de primeira. Tente de novo',
+          messageVi: 'Lần đầu chưa được. Thử lại nhé',
+          messageId: 'Belum berhasil di percobaan pertama. Coba lagi',
+          messageTr: 'İlk seferde olmadı. Tekrar dene',
+          messagePl: 'Nie wyszło za pierwszym razem. Spróbuj jeszcze',
         });
       })
       .finally(() => {

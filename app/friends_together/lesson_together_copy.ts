@@ -105,7 +105,7 @@ export function lessonInviteLessonLine(lang: Lang, lesson: number, session: numb
 export function lessonInviteFailToast(limit: boolean): Readonly<{ ru: string; uk: string; en: string; es: string; ptBr: string; vi: string; id: string; tr: string; pl: string }> {
   return limit
     ? { ru: 'На это занятие сегодня уже позвали троих', uk: 'На це заняття сьогодні вже покликали трьох', en: 'You’ve already invited three friends to this session today', es: 'Hoy ya invitaste a tres amigos a esta sesión', ptBr: 'Você já convidou três amigos para esta sessão hoje', vi: 'Hôm nay bạn đã rủ ba người học buổi này', id: 'Hari ini kamu sudah mengajak tiga teman ke sesi ini', tr: 'Bu oturuma bugün zaten üç kişiyi çağırdın', pl: 'Na te zajęcia zaproszono dziś już trzy osoby' }
-    : { ru: 'Сейчас не получилось. Попробуй ещё раз', uk: 'Зараз не вийшло. Спробуй ще раз', en: 'Didn’t work this time. Try again', es: 'No funcionó esta vez. Inténtalo de nuevo', ptBr: 'Não deu certo agora. Tente de novo', vi: 'Lúc này chưa được. Hãy thử lại', id: 'Belum berhasil. Coba lagi', tr: 'Şu an olmadı. Tekrar dene', pl: 'Teraz się nie udało. Spróbuj ponownie' };
+    : { ru: 'Не вышло с первого раза. Попробуй ещё', uk: 'Не вийшло з першого разу. Спробуй ще', en: 'Didn’t work the first time. Try again', es: 'No salió a la primera. Inténtalo otra vez', ptBr: 'Não deu de primeira. Tente de novo', vi: 'Lần đầu chưa được. Thử lại nhé', id: 'Belum berhasil di percobaan pertama. Coba lagi', tr: 'İlk seferde olmadı. Tekrar dene', pl: 'Nie wyszło za pierwszym razem. Spróbuj jeszcze' };
 }
 
 /* expo-router route shim */

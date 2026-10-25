@@ -14,15 +14,16 @@ const S = {
   title: ['Мастерская фраз', 'Майстерня висловів', 'Phrase workshop', 'Taller de frases', 'Oficina de frases', 'Xưởng ghép câu', 'Bengkel frasa', 'İfade atölyesi', 'Warsztat fraz'],
   /** Тост на тап по приглушённой кнопке: банк ещё накапливается. Без чисел и порогов. */
   accumulating: [
-    'Откроется чуть позже — повтори пару занятий урока',
-    'Відкриється трохи пізніше — повтори кілька занять уроку',
-    'Opens a bit later — repeat a couple of the lesson’s sessions',
-    'Se abrirá un poco más tarde: repite un par de sesiones de la lección',
-    'Abre um pouco mais tarde — repita algumas sessões da lição',
-    'Sẽ mở sau một chút — hãy ôn lại vài buổi của bài học',
-    'Akan terbuka sebentar lagi — ulangi beberapa sesi pelajaran',
-    'Biraz sonra açılacak — dersin birkaç oturumunu tekrar et',
-    'Otworzy się nieco później — powtórz kilka sesji lekcji',
+    // зачем (голос PhraseMan, VOICE.md 25.10): живой образ вместо «откроется позже»; «session» → слово урока, как во всём приложении
+    'Мастерская ещё разогревается — повтори пару занятий урока',
+    'Майстерня ще розігрівається — повтори кілька занять уроку',
+    'The workshop is still warming up — redo a couple of practice rounds',
+    'El taller aún se está calentando: repite un par de prácticas de la lección',
+    'A oficina ainda está esquentando — refaça algumas práticas da lição',
+    'Xưởng vẫn đang khởi động — ôn lại vài phần của bài học nhé',
+    'Bengkelnya masih pemanasan — ulangi beberapa latihan pelajaran',
+    'Atölye hâlâ ısınıyor — dersin birkaç alıştırmasını tekrar et',
+    'Warsztat jeszcze się rozgrzewa — powtórz kilka ćwiczeń z lekcji',
   ],
 } as const satisfies Record<string, Nine>;
 

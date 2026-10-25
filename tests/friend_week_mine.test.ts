@@ -42,7 +42,7 @@ describe('«Моя неделя»: кто дал пять', () => {
     // переключатель «Показывать друзьям мою неделю» есть и ведёт в setMyFriendWeekHidden; двойной тап, пока пишем, — мимо
     expect(screen).toMatch(/<CustomSwitch testID="my-week-show-switch"[^>]*onValueChange=\{onToggle\}/);
     expect(screen).toMatch(/if \(savingRef\.current\) \{[\s\S]{0,200}return;/);
-    expect(screen).toContain("messageEn: \"Didn't work this time. Try again\"");
+    expect(screen).toContain("messageEn: \"Didn’t work the first time. Try again\"");
     const settings = fs.readFileSync(path.join(root, 'app', '(tabs)', 'settings.tsx'), 'utf8');
     expect(settings).toMatch(/FRIENDS_TOGETHER_UI_ENABLED \? \([\s\S]{0,400}settings-my-week-row[\s\S]{0,300}friends_week_mine/);
   });

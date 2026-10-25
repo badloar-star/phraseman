@@ -131,15 +131,15 @@ export default function FriendsWeekMine() {
         setShown(before);
         emitAppEvent('action_toast', {
           type: 'error',
-          messageRu: 'Сейчас не получилось. Попробуй ещё раз',
-          messageUk: 'Зараз не вийшло. Спробуй ще раз',
-          messageEn: "Didn't work this time. Try again",
-          messageEs: 'Ahora no ha funcionado. Inténtalo de nuevo',
-          messagePtBr: 'Não deu certo agora. Tente de novo',
-          messageVi: 'Lúc này chưa được. Hãy thử lại',
-          messageId: 'Belum berhasil. Coba lagi',
-          messageTr: 'Şu an olmadı. Tekrar dene',
-          messagePl: 'Teraz się nie udało. Spróbuj ponownie',
+          messageRu: 'Не вышло с первого раза. Попробуй ещё',
+          messageUk: 'Не вийшло з першого разу. Спробуй ще',
+          messageEn: "Didn’t work the first time. Try again",
+          messageEs: 'No salió a la primera. Inténtalo otra vez',
+          messagePtBr: 'Não deu de primeira. Tente de novo',
+          messageVi: 'Lần đầu chưa được. Thử lại nhé',
+          messageId: 'Belum berhasil di percobaan pertama. Coba lagi',
+          messageTr: 'İlk seferde olmadı. Tekrar dene',
+          messagePl: 'Nie wyszło za pierwszym razem. Spróbuj jeszcze',
         });
       })
       .finally(() => { savingRef.current = false; });

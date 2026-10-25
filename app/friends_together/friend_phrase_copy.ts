@@ -19,7 +19,7 @@ const PHRASE_COPY = {
   right: L('Верно', 'Правильно', 'Correct', 'Correcto', 'Correto', 'Đúng', 'Benar', 'Doğru', 'Poprawnie'),
   wrong: L('Не совсем', 'Не зовсім', 'Not quite', 'No exactamente', 'Não exatamente', 'Chưa đúng', 'Belum tepat', 'Tam değil', 'Niezupełnie'),
   // те же слова, что у тостов друзей (friends.tsx, «Пять») — ответ не сохранился на телефоне, сети тут нет
-  saveFailed: L('Сейчас не получилось. Попробуй ещё раз', 'Зараз не вийшло. Спробуй ще раз', "Didn't work this time. Try again", 'Ahora no ha funcionado. Inténtalo de nuevo', 'Não deu certo agora. Tente de novo', 'Lúc này chưa được. Hãy thử lại', 'Belum berhasil. Coba lagi', 'Şu an olmadı. Tekrar dene', 'Teraz się nie udało. Spróbuj ponownie'),
+  saveFailed: L('Не вышло с первого раза. Попробуй ещё', 'Не вийшло з першого разу. Спробуй ще', "Didn’t work the first time. Try again", 'No salió a la primera. Inténtalo otra vez', 'Não deu de primeira. Tente de novo', 'Lần đầu chưa được. Thử lại nhé', 'Belum berhasil di percobaan pertama. Coba lagi', 'İlk seferde olmadı. Tekrar dene', 'Nie wyszło za pierwszym razem. Spróbuj jeszcze'),
 } as const;
 
 export type FriendPhraseCopyKey = keyof typeof PHRASE_COPY;

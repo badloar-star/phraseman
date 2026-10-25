@@ -91,7 +91,7 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
 function StreakSlide({ event, lang }: StorySlideProps) {
   const p = useSpirePalette();
   const days = num(event.payload.days);
-  // зачем: подпись под рубежом — тот же источник, что у самого момента рубежа (серия, образец streak-milestones.html): «Новая стадия огня — до 100 дней», «До недели — 4 дня»…
+  // зачем: подпись под рубежом — тот же источник, что у самого момента рубежа (серия, образец streak-milestones.html): «Новая стадия пламени — до 100 дней», «До недели — 4 дня»…
   const sub = isStreakMilestone(days) ? streakMilestoneSubline(lang, days) : null;
   return (
     <>

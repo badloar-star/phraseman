@@ -150,7 +150,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const finalAct = act === 3;
   const morphed = has('morph');
   const before = milestone - 1; // guard-ok: цифра огня ДО морфа (n−1, как в образце), вид — не баланс
-  const prevStage = Math.max(0, baseStage - 1) as StreakFlameStage; // guard-ok: стадия огня ДО морфа (вид), не баланс
+  const prevStage = Math.max(0, baseStage - 1) as StreakFlameStage; // guard-ok: стадия пламени ДО морфа (вид), не баланс
   const flameA11y = streakMomentText(lang, 'flameA11y', { n: milestone });
   // зачем (Темы 8117615b3): secondary на ореоле местами < 4,5 — тогда подзаголовок основным текстом (образец feedbackInkSoftForLight)
   const subInk = streakSublineInk({ text: p.text, secondary: p.textSecondary, bg: p.bg, bgTop: p.bgTop, accentSoft: glass.accentSoft, isLight: glass.isLight });
@@ -249,7 +249,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     ) : (
       <>
         <StreakMomentFlame days={milestoneFlameDays(milestone)} label={milestone} size={act === 2 ? 180 : 150} stage={st} morphKey={morphKey || undefined} accessibilityLabel={flameA11y} />
-        {act === 2 ? T(streakMomentText(lang, 'stageNew', { next: 1000 }), 'ov') : null}
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, без «стадии огня»): над заголовком — путь до Легенды */}
+        {act === 2 ? T(streakMomentText(lang, 'untilLegend', { left: 1000 - milestone }), 'ov') : null}
         {T(title, 'xl')}
         {act === 3 ? T(sub, 'p') : null}
         <MomentFirework x={width / 2} y={220} r={120} fire={has('morph')} />
@@ -275,7 +276,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     ) : (
       <>
         <StreakMomentFlame days={1000} label={1000} size={170} stage={5} accessibilityLabel={flameA11y} />
-        {T(streakMomentText(lang, 'finalStage'), 'ov')}{T(title, 'xl')}
+        {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, без «стадии огня»): над заголовком — сама серия */}
+        {T(overline, 'ov')}{T(title, 'xl')}
       </>
     );
   }

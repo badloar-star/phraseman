@@ -291,8 +291,9 @@ describe('рубежи серии — флаг, подключение, исхо
     expect([1, 2].map((n) => streakDayWord('en', n))).toEqual(['day', 'days']);
     expect(streakMilestoneTitle('ru', 3)).toBe(glueNumbers('3 дня подряд'));
     expect(streakMilestoneSubline('ru', 3)).toBe(glueNumbers('До недели — 4 дня'));
-    expect(streakMilestoneSubline('ru', 7)).toBe(glueNumbers('Новая стадия огня — до 30 дней'));
-    expect(streakMilestoneSubline('ru', 100)).toBe('Новая стадия огня — до года');
+    expect(streakMilestoneSubline('ru', 7)).toBe(glueNumbers('До месяца — 23 дня'));
+    expect(streakMilestoneSubline('ru', 30)).toBe(glueNumbers('До сотни — 70 дней'));
+    expect(streakMilestoneSubline('ru', 100)).toBe(glueNumbers('До года — 265 дней'));
     expect(streakMilestoneSubline('ru', 730)).toBe(glueNumbers('До Легенды — 270 дней'));
     expect(streakMilestoneSubline('ru', 365)).toBe(glueNumbers('До двух лет — 365 дней'));
     expect(streakMomentText('ru', 'overline', { n: 7 })).toBe(glueNumbers('Серия · 7 дней'));

@@ -273,7 +273,7 @@ describe('спуск из лиги: критерий — ступени на в�
   it('downBody: «по ступеням» на 9 языках, монеты как критерий не упоминаются', () => {
     const expected: Readonly<Record<string, string>> = {
       ru: 'последних по ступеням', uk: 'останніх за сходинками', en: 'bottom five by steps', es: 'últimos por escalones',
-      'pt-BR': 'últimos em degraus', vi: 'cuối theo số bậc', id: 'terbawah menurut anak tangga', tr: 'basamaklara göre son', pl: 'piątce według stopni',
+      'pt-BR': 'últimos em degraus', vi: 'cuối theo số bậc', id: 'terbawah menurut anak tangga', tr: 'basamaklarda son beş', pl: 'piątce według stopni',
     };
     for (const [lang, part] of Object.entries(expected)) {
       const text = momentText(lang as Parameters<typeof momentText>[0], 'downBody', { league: 'X' });

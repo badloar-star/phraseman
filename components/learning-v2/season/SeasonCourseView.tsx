@@ -12,6 +12,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import { ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useIsTabPage } from '../../tab_top_bleed';
+import { useTabContentBottomPad } from '../../../hooks/use-tab-content-bottom-pad';
 import V2Pressable from '../../v2/V2Pressable';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -202,13 +203,20 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   // зачем (координатор 24.10, Р2): обложка тёмная — оболочка вкладок держит светлые значки строки состояния, пока обложка под часами;
   // вкладку видит оболочка, прокрутку — здесь (меняется только на пересечении порога)
   const [coverAtTop, onCoverScroll] = useScrollAtTop();
+  // зачем (координатор 25.10: на 411 dp «Сдать экзамен» под таб-баром): на странице вкладки низ контента не выше плавающего таб-бара —
+  // отступ не меньше useTabContentBottomPad (высота капсулы + зазор)
+  const tabBottomPad = useTabContentBottomPad();
+  const contentBottomPad = isTabPage ? Math.max(props.bottomPadding, tabBottomPad) : props.bottomPadding;
+  useEffect(() => {
+    console.log('[SEASON-BOTTOM] отступ низа', JSON.stringify({ isTabPage, given: props.bottomPadding, tab: tabBottomPad, used: contentBottomPad })); // guard-ok: одна строка на смену отступа
+  }, [contentBottomPad, isTabPage, props.bottomPadding, tabBottomPad]);
   useEffect(() => {
     reportSeasonCoverTop({ mounted: true, atTop: coverAtTop });
   }, [coverAtTop]);
   useEffect(() => () => reportSeasonCoverTop({ mounted: false, atTop: true }), []);
 
   return (
-    <ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onCoverScroll} scrollEventThrottle={32}>
+    <ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onCoverScroll} scrollEventThrottle={32}>
       <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />

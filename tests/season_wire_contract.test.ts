@@ -279,7 +279,8 @@ describe('Сезон: обложка рисуется от верхнего кр
     }
     expect(top).toContain("<LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />");
     expect(top).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
-    expect(top).toContain('<ScrollView contentContainerStyle={{ paddingBottom: props.bottomPadding }}');
+    // зачем (координатор 25.10): низ контента — не меньше отступа таб-бара (contentBottomPad); сверху по-прежнему ни отступа, ни сдвига
+    expect(top).toContain('<ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }}');
   });
   it('страница «Уроки» с Сезоном полноэкранная (зона часов = часть обложки), подключение передаёт bleed; журнал [SEASON-TOP] пишет положение обложки в окне и вердикт', () => {
     expect(layout2).toContain('SEASON_SCENE_V2_ENABLED ? [logicalTabToPhysicalPage(1, pageLayout)] : []');

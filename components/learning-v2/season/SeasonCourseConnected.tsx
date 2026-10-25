@@ -32,6 +32,7 @@ import { hasLearningV2TheoryV1, loadLearningV2TheoryV1, learningV2TheorySectionF
 import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1, chapterExamAvailabilityV1, chapterExamKeyV1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import type { SeasonExamStatus } from './season_exam_caption';
 import { useEnergy } from '../../EnergyContext';
+import NoEnergyModal from '../../NoEnergyModal';
 import { usePremium } from '../../PremiumContext';
 import { useTheme } from '../../ThemeContext';
 import { useTabTopBleedInset } from '../../tab_top_bleed';
@@ -192,6 +193,9 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   // зачем (проверка Optimistic UI 22.10): двойной тап по «Продолжить» (хаб, список, раскрытая карта — все идут сюда) не открывает окно запуска дважды
   const primaryTapRef = useRef(0);
   const classicTapRef = useRef(0);
+  // зачем (координатор 25.10): «Начать экзамен» и «Открыть экзаменом главы» — один общий защитник, второй экран экзамена не открывается
+  const examTapRef = useRef(0);
+  const [examNoEnergy, setExamNoEnergy] = useState(false);
   const onPrimary = useCallback((card: SeasonEpisodeCard) => {
     if (seasonTapTooSoon(primaryTapRef, 'primary')) return;
     console.log(`${LOG} нажатие → занятие`, JSON.stringify({ lesson: card.lessonOrdinal, session: card.sessionOrdinal, chapter: card.chapterOrdinal, state: card.sourceState, to: 'onSessionPress(окно запуска/замок/Plus решает вкладка)' })); // guard-ok: куда ведёт нажатие
@@ -214,7 +218,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   // зачем (координатор 22.10, эталон chapter-exam-season.html `zoomX`): окно перед стартом — факты «12 вопросов · 10 чтобы сдать · ~N минут», цена ⚡1 для Free, «С Plus экзамен бесплатный» для Plus;
   // числа и минуты — из данных Learning V2 (движок экзамена и темп курса), тексты на 9 языках — их словарь. Free/Plus — как в их шторке: Premium или безлимитная энергия.
   const { hasPremiumAccess } = usePremium();
-  const { isUnlimited } = useEnergy();
+  const { isUnlimited, predictStartRefusal } = useEnergy();
   const examFree = hasPremiumAccess || isUnlimited;
   const examInfo = useCallback((chapterOrdinal: number): Readonly<{ description: string | null; panel: SeasonExamPanel }> => {
     const range = learningV2ChapterExamEpisodeRangeV1(chapterOrdinal);
@@ -239,17 +243,29 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     if (availability.state === 'cooldown') return { state: 'cooldown', lastCorrect: record?.lastCorrect ?? 0, minutesLeft: availability.minutesLeft };
     return { state: 'available' };
   }, [examRecords, lesson]);
+  // зачем (координатор 25.10): энергии нет и экзамен не бесплатный — окно «Нужна энергия» без перехода (та же проверка, что у шторки экзамена)
+  const examEnergyBlocked = useCallback((from: 'exam_card' | 'open_by_exam'): boolean => {
+    const verdict = examFree ? 'free' : predictStartRefusal('level_exam');
+    console.log(`${LOG} экзамен: энергия`, JSON.stringify({ from, verdict })); // guard-ok: ветка и значение, которое её решило
+    if (verdict !== 'insufficient') return false;
+    setExamNoEnergy(true);
+    return true;
+  }, [examFree, predictStartRefusal]);
   const onStartExam = useCallback((chapterOrdinal: number) => {
+    if (seasonTapTooSoon(examTapRef, 'exam')) return;
+    if (examEnergyBlocked('exam_card')) return;
     const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' });
     console.log(`${LOG} нажатие → «Начать экзамен»`, JSON.stringify({ href, free: examFree })); // guard-ok: куда ведёт нажатие
     router.push(href as never);
-  }, [examFree, lesson, router]);
+  }, [examEnergyBlocked, examFree, lesson, router]);
   const onOpenByExam = useCallback((chapterOrdinal: number) => {
+    if (seasonTapTooSoon(examTapRef, 'exam')) return;
+    if (examEnergyBlocked('open_by_exam')) return;
     // закрытый эпизод следующей главы открывается экзаменом ПРЕДЫДУЩЕЙ главы (контракт Learning V2)
     const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal: chapterOrdinal - 1, source: 'open_by_exam' });
     console.log(`${LOG} нажатие → «Открыть экзаменом главы»`, JSON.stringify({ href })); // guard-ok: куда ведёт нажатие
     router.push(href as never);
-  }, [lesson, router]);
+  }, [examEnergyBlocked, lesson, router]);
   const { onLegacyLessons } = props;
   // зачем (владелец 22.10): «Классический курс» — отдельная плитка под обложкой, а не карточка «Ваши прошлые уроки»; ведёт туда же (onLegacyLessons)
   const onClassic = useCallback(() => {
@@ -343,6 +359,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}
       />
       <LearningV2TheorySheet visible={theoryOpen} theory={theory} lang={lang} initialSection={theorySection} onClose={() => setTheoryOpen(false)} />
+      {SEASON_CHAPTER_EXAM_ENABLED ? <NoEnergyModal variant="course" activity="level_exam" visible={examNoEnergy} onClose={() => setExamNoEnergy(false)} /> : null}
     </View>
   );
 }

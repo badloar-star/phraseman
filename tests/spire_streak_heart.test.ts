@@ -72,19 +72,26 @@ describe('правило сердечка за серию', () => {
 });
 
 describe('флаг и проводка', () => {
-  it('флаг spire_streak_heart: только явное true включает (нет ключа / false / строка — выключено)', () => {
+  it('флаг spire_streak_heart в реестре «Пульта»: по умолчанию ВЫКЛ, пропускается снимком конфига', () => {
     jest.isolateModules(() => {
-      jest.doMock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn() } }));
-      jest.doMock('../app/remote_config_client', () => ({ readRemoteConfigCacheRaw: jest.fn(async () => null) }));
-      jest.doMock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2Event: jest.fn() }));
-      jest.doMock('../hooks/use-haptics', () => ({ hapticSuccess: jest.fn(async () => undefined) }));
-      const { isSpireStreakHeartEnabled } = require('../app/spire/use_spire_streak_heart') as typeof import('../app/spire/use_spire_streak_heart');
-      expect(isSpireStreakHeartEnabled(null)).toBe(false);
-      expect(isSpireStreakHeartEnabled({})).toBe(false);
-      expect(isSpireStreakHeartEnabled({ spire_streak_heart: false })).toBe(false);
-      expect(isSpireStreakHeartEnabled({ spire_streak_heart: 'true' })).toBe(false);
-      expect(isSpireStreakHeartEnabled({ spire_streak_heart: true })).toBe(true);
+      const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
+      expect(flags.getRemoteBool('spire_streak_heart')).toBe(false);
+      flags.applyRemoteConfigSnapshot({ bools: { spire_streak_heart: true } });
+      expect(flags.getRemoteBool('spire_streak_heart')).toBe(true);
+      flags.applyRemoteConfigSnapshot({ bools: { spire_streak_heart: 'true' } });
+      expect(flags.getRemoteBool('spire_streak_heart')).toBe(false);
     });
+    const hook = read('app/spire/use_spire_streak_heart.ts');
+    expect(hook).toContain("getRemoteBool(SPIRE_STREAK_HEART_FLAG_KEY) === true");
+    expect(hook).toContain('useState(() => readSpireStreakHeartFlag(runId))');
+  });
+
+  it('«Пульт» админки: переключатель spire_streak_heart, общий писатель, по умолчанию выкл', () => {
+    const html = fs.readFileSync(path.resolve(__dirname, '..', 'admin/v2/legacy.html'), 'utf8');
+    expect(html).toContain('id="cp-bool-spire_streak_heart"');
+    expect(html).toContain("onchange=\"saveControlPanelBool('spire_streak_heart', this.checked)\"");
+    const list = html.slice(html.indexOf('const CP_FEATURE_TOGGLES = ['), html.indexOf('];', html.indexOf('const CP_FEATURE_TOGGLES = [')));
+    expect(list).toMatch(/key: 'spire_streak_heart',[^\n]*def: false/);
   });
 
   it('раннер пропускает КАЖДЫЙ ответ через apply до commit; выключенный флаг возвращает состояние без изменений', () => {
@@ -101,7 +108,7 @@ describe('флаг и проводка', () => {
     const hook = read('app/spire/use_spire_streak_heart.ts');
     const rule = read('modules/spire/streak_heart.ts');
     for (const src of [hook, rule]) {
-      expect(src).not.toMatch(/@react-native-firebase|httpsCallable\(|addSpirePendingCoins\(|spireReportSteps\(/);
+      expect(src).not.toMatch(/firestore|httpsCallable|addSpirePendingCoins|spireReportSteps/i);
     }
   });
 

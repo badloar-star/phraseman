@@ -11676,6 +11676,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Кнопка «Не могу говорить» в голосовых заданиях</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — кнопки нет. Вкл → в голосовых заданиях появляется «Не могу говорить», и задание можно пройти без микрофона.</div></div>
         <label title="Включить или выключить кнопку «Не могу говорить»" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-learning_cant_speak_enabled" class="cp-toggle" onchange="saveControlPanelBool('learning_cant_speak_enabled', this.checked)" disabled/><span id="cp-bool-label-learning_cant_speak_enabled" class="cp-bool-chip">…</span></label>
       </div>
+      <!-- зачем (владелец 25.10): «сердечко за серию» в ступени Пика — живой выключатель, по умолчанию ВЫКЛ; тот же общий писатель remote_config/app.bools (ревизия + причина в журнале Remote Config). Ключ читает клиент Пика (8 · МОМЕНТЫ). -->
+      <div class="cp-switch-row">
+        <div class="cp-switch-ico">❤</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Пик: сердечко за серию</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию. Вкл → в ступени Пика 5 верных подряд возвращают одно потерянное сердце, раз за ступень. Только телефон, монет нет.</div></div>
+        <label title="Включить или выключить сердечко за серию в Пике" style="display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none"><input type="checkbox" id="cp-bool-spire_streak_heart" class="cp-toggle" onchange="saveControlPanelBool('spire_streak_heart', this.checked)" disabled/><span id="cp-bool-label-spire_streak_heart" class="cp-bool-chip">…</span></label>
+      </div>
       <div class="cp-switch-row">
         <div class="cp-switch-ico">🎁</div>
         <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#e5e7eb">Подарок «3 дня полного доступа» новым</div><div style="font-size:11.5px;color:#6b7280;margin-top:2px">Выкл по умолчанию — новые пользователи не получают автоматический подарок. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки НЕ отбираются — активные докатывают свои часы.</div></div>
@@ -33666,6 +33672,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     { key: 'video_phrases_enabled',    label: 'Фразы из видео',                  def: true,  hint: 'Вкл по умолчанию → опубликованные фразы показываются под открытым видео на главной и в каталоге. Выкл → блок фраз скрыт, видео продолжает работать.' },
     { key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false, hint: 'Выкл по умолчанию. Включение выдаёт будущим новичкам 72ч полного доступа и приветственный модал. Уже выданные подарки не отбираются — активные докатывают свои часы.' },
     { key: 'learning_cant_speak_enabled', label: 'Кнопка «Не могу говорить»',   def: false, hint: 'Выкл по умолчанию (владелец 25.10). Вкл → в голосовых заданиях появляется «Не могу говорить».' },
+    { key: 'spire_streak_heart',      label: 'Пик: сердечко за серию',          def: false, hint: 'Выкл по умолчанию (владелец 25.10). Вкл → 5 верных подряд в ступени Пика возвращают одно сердце, раз за ступень.' },
     { key: 'accounts_v2_client_enabled', label: 'Аккаунты V2: клиент',           def: false, hint: 'Выкл по умолчанию (sell-switch, Пакет 6C). Вкл → Android-клиент ведёт зашифрованную копию и шлёт изменения, если сервер (config/accounts_v2.syncEnabled) тоже включён.' },
     { key: 'accounts_v2_legacy_sync_disabled', label: 'Аккаунты V2: без старой синхронизации', def: false, hint: 'Выкл по умолчанию (Пакет 7A, OD19). Вкл → старая синхронизация карточек, памяти свайпов и библиотеки наборов не работает там, где клиент V2 включён и область открыта. Остальное — как прежде. Включать после проверки на 3 аккаунтах.' },
   ];

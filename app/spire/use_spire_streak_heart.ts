@@ -3,39 +3,29 @@
  *
  * зачем (владелец 25.10 выбрал идею, координатор 25.10 — задача на 2.0.3; ТЗ docs/work/tasks/spire-engagement-2026-10-25.md §2,
  * живой макет docs/design/v2-app/spire-step-live.html): 5 верных подряд возвращают одно потерянное сердце, раз за ступень.
- * Только телефон — монет нет, сервер и Firestore не трогаем. Под удалённым флагом `spire_streak_heart` в remote_config/app.bools,
- * по умолчанию ВЫКЛ (только явное true). Флаг читается из уже лежащего кэша конфига, без сети.
+ * Только телефон — монет нет, сервер и облачная база не трогаются. Флаг `spire_streak_heart` — реестр app/remote_flags.ts
+ * (переключатель «Пульта», координатор 25.10; по умолчанию ВЫКЛ). Значение читается на старте каждой ступени — включение
+ * в «Пульте» доходит живым снимком конфига без новой сборки и без отдельных запросов.
  */
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { SpireStepState } from '../../modules/spire/step_machine';
 import { SPIRE_STEP_MAX_HEARTS } from '../../modules/spire/step_machine';
 import { SPIRE_STREAK_HEART_START, spireStreakHeartStep, type SpireStreakHeartState } from '../../modules/spire/streak_heart';
 import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import { hapticSuccess } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
-import { readRemoteConfigCacheRaw } from '../remote_config_client';
+import { getRemoteBool, hasRemoteBoolOverride } from '../remote_flags';
 
 // зачем (сторож spire_game_source_contract: префикс [SPIRE] во всех файлах app/spire): контекст [SPIRE], метка задачи в строке
 const SPIRE = '[SPIRE]';
 const TAG = '[SPIRE-STREAK-HEART]';
 export const SPIRE_STREAK_HEART_FLAG_KEY = 'spire_streak_heart';
 
-/** Флаг: только явное true в remote_config/app.bools (нет ключа, битый кэш — выключено). */
-export function isSpireStreakHeartEnabled(bools: Readonly<Record<string, unknown>> | null | undefined): boolean {
-  return bools?.[SPIRE_STREAK_HEART_FLAG_KEY] === true;
-}
-
-async function readFlag(): Promise<boolean> {
-  try {
-    const raw = await readRemoteConfigCacheRaw();
-    const bools = raw ? (JSON.parse(raw) as { bools?: Record<string, unknown> }).bools ?? null : null;
-    const on = isSpireStreakHeartEnabled(bools);
-    DebugLogger.info(SPIRE, `${TAG} флаг ${SPIRE_STREAK_HEART_FLAG_KEY}=${String(bools?.[SPIRE_STREAK_HEART_FLAG_KEY] ?? 'нет ключа')} кэш=${raw ? 'есть' : 'нет'} → ${on ? 'ВКЛ' : 'ВЫКЛ'}`);
-    return on;
-  } catch (error) {
-    DebugLogger.warn(SPIRE, `${TAG} кэш конфига не прочитался → ВЫКЛ (${error instanceof Error ? error.message : String(error)})`);
-    return false;
-  }
+/** Флаг из реестра «Пульта»: снимок есть — его значение, нет — по умолчанию false. Одна строка журнала на ступень. */
+export function readSpireStreakHeartFlag(runId: string): boolean {
+  const on = getRemoteBool(SPIRE_STREAK_HEART_FLAG_KEY) === true;
+  DebugLogger.info(SPIRE, `${TAG} ступень ${runId}: флаг ${SPIRE_STREAK_HEART_FLAG_KEY}=${on ? 'ВКЛ' : 'ВЫКЛ'} источник=${hasRemoteBoolOverride(SPIRE_STREAK_HEART_FLAG_KEY) ? 'пульт' : 'по умолчанию'}`);
+  return on;
 }
 
 export type SpireStreakHeartView = Readonly<{
@@ -47,19 +37,11 @@ export type SpireStreakHeartView = Readonly<{
 }>;
 
 export function useSpireStreakHeart(runId: string): Readonly<{ view: SpireStreakHeartView; apply: (next: SpireStepState, ok: boolean, taskNo: number) => SpireStepState }> {
-  const enabledRef = useRef(false);
+  // зачем: флаг берём один раз на ступень — переключение «Пульта» посреди ступени не меняет её правила
+  const [enabled] = useState(() => readSpireStreakHeartFlag(runId));
+  const enabledRef = useRef(enabled);
   const stateRef = useRef<SpireStreakHeartState>(SPIRE_STREAK_HEART_START);
-  const [view, setView] = useState<SpireStreakHeartView>({ enabled: false, streak: 0, given: false, refillSeq: 0 });
-
-  useEffect(() => {
-    let alive = true;
-    void readFlag().then((on) => {
-      if (!alive) { DebugLogger.info(SPIRE, `${TAG} флаг пришёл после ухода со ступени ${runId} — пропуск`); return; }
-      enabledRef.current = on;
-      setView((v) => ({ ...v, enabled: on }));
-    });
-    return () => { alive = false; };
-  }, [runId]);
+  const [view, setView] = useState<SpireStreakHeartView>({ enabled, streak: 0, given: false, refillSeq: 0 });
 
   const apply = useCallback((next: SpireStepState, ok: boolean, taskNo: number): SpireStepState => {
     if (!enabledRef.current) return next;

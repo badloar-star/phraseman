@@ -45,6 +45,7 @@ import { PaywallMSheet } from './m/PaywallMSheet';
 import { isPaywallMEnabled } from './m/paywall_m_flag';
 import { paywallMChartKindFor, paywallMHeadFor, paywallMHeadKindForContext } from './m/paywall_m_head';
 import { usePaywallMPerson } from './m/use_paywall_m_person';
+import { openPromoCodeFromPaywall } from '../../app/paywall_promo_navigation';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -292,7 +293,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
               purchasing={p.purchasing} ctaBusy={ctaBusy} restoring={p.restoring} onPurchase={() => { void p.handlePurchase(); }} onRestore={() => { void p.handleRestore(); }}
               promoVisible={controlVisibility.promoVisible}
-              onPromo={() => { if (ctaBusy) return; router.push({ pathname: '/promo_code_entry', params: { source: 'paywall' } }); }}
+              onPromo={() => { if (ctaBusy) return; openPromoCodeFromPaywall(router); }}
               tapNotice={p.tapNotice ? pick(lang, COPY.tryInMinute) : null}
             />
           ) : (
@@ -341,8 +342,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               promoVisible={controlVisibility.promoVisible} promoDisabled={ctaBusy}
               onPromo={() => {
                 if (ctaBusy) return;
-                // зачем (координатор 25.10): маршрут типизирован (typedRoutes), приведение типа не нужно
-                router.push({ pathname: '/promo_code_entry', params: { source: 'paywall' } });
+                // зачем (26.10, «нет окна внутри окна»): промокод заменяет пейвол, а не открывается поверх него — см. openPromoCodeFromPaywall
+                openPromoCodeFromPaywall(router);
               }} />
           </PaywallSwipeSheet>
           )}

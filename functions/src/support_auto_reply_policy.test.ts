@@ -64,6 +64,12 @@ describe('support auto-reply policy', () => {
     'Не могу купить Premium в России — оплата недоступна',
     'Какие ещё есть способы оплаты?',
     'I need another way to pay for Plus',
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10: «не знают, как купить Plus» и «Plus из России» → только Telegram-бот
+    'Как можно оплатить премиум https://knowlyapps.com',
+    'Не знаю, как купить Plus',
+    'Как оформить плюс?',
+    'Можно ли оформить Plus из России?',
+    'How do I buy Plus?',
   ])('routes alternative Premium payment question to Telegram: %s', (issue) => {
     expect(isPremiumAlternativePaymentQuestion(issue)).toBe(true);
     const reply = buildPremiumAlternativePaymentReply(issue);

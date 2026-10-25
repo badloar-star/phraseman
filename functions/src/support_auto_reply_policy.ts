@@ -142,6 +142,11 @@ export function isPremiumAlternativePaymentQuestion(input: unknown): boolean {
   const payment = /(?:pay|payment|purchase|buy|оплат|плат[её]ж|купит|покуп|pago|comprar)/iu.test(text);
   const russia = /(?:росси|\bрф\b|russia|russian)/iu.test(text);
   const unavailable = /(?:не могу|невозмож|не получ|недоступ|cannot|can.?t|unable|unavailable|no puedo|imposible)/iu.test(text);
+  // зачем (владелец 25.10, письмо «Как можно оплатить премиум»: черновик ушёл в «оформляется в магазине приложений» и был отклонён):
+  // «если пишут, что не знают, как купить Plus, или про Plus из России — писать, что нужно воспользоваться нашим Telegram-ботом».
+  // Поэтому любой вопрос «как купить/оплатить/оформить Plus» и любой «Plus + Россия» ведём в бота, не только «не могу в России».
+  const howToBuy = /(?:как|где|каким образом|how|where|c[oó]mo|d[oó]nde).{0,40}(?:купит|покуп|оплат|оформ|подключ|приобрест|buy|pay|purchase|get|subscribe|comprar|pagar)/iu.test(text);
+  if (premium && (howToBuy || russia)) return true;
   const alternative = /(?:друг(?:ой|ие).{0,24}способ|ещ[её].{0,24}способ|альтернативн.{0,20}оплат|как ещ[её].{0,20}оплат|other ways?.{0,20}(?:pay|payment)|alternative payment|how else.{0,20}pay|otra.{0,20}forma.{0,20}pago)/iu.test(text);
   return (premium && payment && russia && unavailable) || (payment && alternative);
 }
@@ -149,7 +154,8 @@ export function isPremiumAlternativePaymentQuestion(input: unknown): boolean {
 export function buildPremiumAlternativePaymentReply(input: unknown): string {
   const lang = detectSupportLanguage(input);
   if (lang === 'ru') {
-    return 'Здравствуйте! Если купить Premium через магазин приложений в России не получается или нужен другой способ оплаты, оформите Premium через Telegram-бота @PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot. Бот покажет доступные способы оплаты и проведёт дальше. Не отправляйте в письме данные карты, пароль или код входа.';
+    // зачем (владелец 25.10): ответ о покупке Plus — всегда через наш Telegram-бот, в том числе из России
+    return 'Здравствуйте! Оформить Plus можно через наш Telegram-бот @PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot. Бот покажет доступные способы оплаты, в том числе из России, и проведёт дальше. Не отправляйте в письме данные карты, пароль или код входа.';
   }
   if (lang === 'es') {
     return '¡Hola! Si no puedes comprar Premium en la tienda de aplicaciones o necesitas otra forma de pago, usa el bot de Telegram @PhrasemanPremiumBot: https://t.me/PhrasemanPremiumBot. El bot te mostrará las opciones disponibles. No envíes datos de tarjeta, contraseñas ni códigos de acceso por correo.';

@@ -1,66 +1,155 @@
-<title>Тёмные сцены PhraseMan</title>
+<meta charset="utf-8">
+<title>Редизайн сцены Главной</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
-/* Раскладка: тема и экран сверху → четыре настоящих кадра рядом: «сейчас» и три двухоттеночных градиента сцены. */
+/* Раскладка: заголовок страницы → ряд телефонов «Сейчас» и пять направлений. В каждом телефоне верх нарисован с нуля
+   (CSS/SVG), герой, аватар, монета и нижние карточки — настоящие, со снимка приложения. Тема — Аметист, тёмная. */
 :root{
-  --page:#0b0c0f; --panel:#15171c; --panel-2:#1d2027; --ink:#f2f3f7; --ink-2:#a9adb8; --ink-3:#7c818d; --good:#6fd08c; --warn:#f2c46b; --on-ink:#0b0c0f;
+  --page:#0a0a0d; --ink:#f4f2f7; --ink-2:#aaa6b4; --ink-3:#77738a; --panel:#141219;
   --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  /* Аметист: основа и цвет-компаньон (золото — сплит-комплементарный к фиолетовому) */
+  --violet-deep:oklch(0.13 0.035 305); --violet:oklch(0.30 0.12 305); --violet-lit:oklch(0.52 0.16 305);
+  --gold:oklch(0.82 0.12 82); --gold-deep:oklch(0.62 0.13 70); --app-bg:#040709;
+  --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-io:cubic-bezier(0.77,0,0.175,1);
   color-scheme:dark;
 }
+/* иконки — шрифт Ionicons, тот же, что в приложении (@expo/vector-icons) */
+@font-face{font-family:Ionicons;src:url(dark-themes-scene/redesign/Ionicons.ttf) format("truetype");font-display:block}
+.ion{font-family:Ionicons;font-style:normal;font-weight:normal;line-height:1;display:inline-block}
 *{box-sizing:border-box}
-body{margin:0;background:var(--page);color:var(--ink);font:400 14px/1.45 var(--font);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
-h1{font-size:22px;line-height:1.2;font-weight:800;margin:0 0 4px;text-wrap:balance;letter-spacing:-.01em}
-.lead{color:var(--ink-2);max-width:70ch;margin:0 0 16px}
-.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px}
-.bar label{color:var(--ink-3);font-size:12px;letter-spacing:.04em;margin-right:4px}
-.chip{appearance:none;border:0;background:var(--panel-2);color:var(--ink-2);font:600 13px/1 var(--font);padding:9px 12px;border-radius:999px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
-.chip .dot{width:10px;height:10px;border-radius:50%}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--on-ink)}
-.chip:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
-.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:8px}
-.col{display:flex;flex-direction:column;gap:8px;min-width:0}
-.col h2{font-size:14px;margin:0;font-weight:700}
-.col p{margin:0;color:var(--ink-2);font-size:12.5px}
-.shot{width:100%;max-width:300px;aspect-ratio:540/1200;border-radius:28px;overflow:hidden;background:var(--panel);box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
-.shot img{width:100%;height:100%;display:block;object-fit:cover}
-.badge{font:600 11.5px var(--font);color:var(--ink-2)}
-.badge b{color:var(--good)}
-.badge.bad b{color:var(--warn)}
-.sw{display:flex;gap:6px;align-items:center;font:600 11.5px var(--font);color:var(--ink-3)}
-.sw i{width:22px;height:14px;border-radius:4px;display:inline-block}
-.rule{color:var(--ink-3);font-size:12px;margin-top:20px;max-width:80ch}
+body{margin:0;background:var(--page);color:var(--ink);font:400 14px/1.45 var(--font);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+h1{font-size:24px;line-height:1.2;font-weight:800;margin:0 0 6px;letter-spacing:-.015em;text-wrap:balance}
+.lead{color:var(--ink-2);max-width:68ch;margin:0 0 22px;text-wrap:pretty}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:34px 22px;justify-items:center}
+figure{margin:0;display:flex;flex-direction:column;gap:10px;width:330px}
+figcaption b{display:block;font-size:15px;font-weight:700}
+figcaption span{color:var(--ink-2);font-size:13px}
+
+/* ── телефон: 390×866 (как 1080×2400), уменьшен до 330 ── */
+.phone{width:390px;height:866px;zoom:.846;border-radius:46px;overflow:hidden;position:relative;background:var(--app-bg);box-shadow:0 30px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.06);isolation:isolate}
+.phone img.now{width:100%;height:100%;display:block}
+.scene{position:absolute;inset:0 0 auto 0;height:400px;overflow:hidden}
+.bottom{position:absolute;left:0;top:382px;width:390px;display:block}
+.fade{position:absolute;left:0;right:0;top:330px;height:70px;background:linear-gradient(to bottom,rgba(4,7,9,0),var(--app-bg) 78%);pointer-events:none}
+
+/* общий слой UI поверх сцены — настоящие элементы Главной */
+.ui{position:absolute;inset:0 0 auto 0;height:382px;z-index:2;color:#fff}
+.status{position:absolute;top:13px;left:28px;right:24px;display:flex;justify-content:space-between;font:600 15px/1 var(--font);letter-spacing:.01em}
+.status i{font-size:15px;margin-left:5px}
+.chip{position:absolute;top:65px;height:36px;border-radius:999px;background:rgba(255,255,255,.13);display:flex;align-items:center;gap:7px;padding:0 13px 0 10px;font:700 14px/1 var(--font)}
+.chip small{display:block;font:500 11.5px/1.1 var(--font);opacity:.82}
+.chip.streak{left:19px;white-space:nowrap}
+.chip.streak i{color:#c79bff;font-size:19px}
+.chip.coins{left:117px;white-space:nowrap}
+.chip.coins img{width:21px;height:21px;border-radius:50%}
+.chip.coins .sep{width:1px;height:18px;background:rgba(255,255,255,.28);margin:0 2px}
+.bell{position:absolute;top:62px;left:277px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:19px}
+.avatar{position:absolute;top:57px;left:320px;width:56px;height:56px}
+.copy{position:absolute;left:19px;top:222px;right:19px}
+.copy .kicker{font:500 13px/1 var(--font);opacity:.86}
+.copy h2{margin:9px 0 9px;font:800 30px/1.05 var(--font);letter-spacing:-.02em}
+.copy p{margin:0;font:500 13px/1.2 var(--font);opacity:.86}
+.cta{position:absolute;left:19px;right:19px;top:314px;height:47px;border-radius:999px;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;gap:9px;font:700 16px/1 var(--font);border:0;cursor:pointer;transition:transform 160ms var(--ease-out);box-shadow:0 10px 30px -12px rgba(0,0,0,.6)}
+.cta:active{transform:scale(.97)}
+.hero{position:absolute;pointer-events:none}
+
+/* ── A · Объект: пламя на золотом диске в луче студийного света ── */
+.a .scene{background:radial-gradient(110% 80% at 78% 30%,oklch(0.25 0.09 305) 0%,oklch(0.15 0.05 303) 45%,var(--app-bg) 92%)}
+.a .beam{position:absolute;inset:0;background:linear-gradient(205deg,oklch(0.90 0.09 88 / .30) 0%,oklch(0.86 0.10 85 / .10) 30%,transparent 52%);clip-path:polygon(60% 0,94% 0,96% 58%,56% 58%)}
+.a .disc{position:absolute;left:191px;top:50px;width:214px;height:214px;border-radius:50%;background:radial-gradient(circle at 50% 50%,oklch(0.86 0.12 84 / .62) 0%,oklch(0.78 0.13 76 / .34) 38%,oklch(0.55 0.14 305 / .10) 62%,transparent 71%)}
+.a .plinth{position:absolute;left:236px;top:212px;width:124px;height:30px;border-radius:50%;background:linear-gradient(to bottom,oklch(0.90 0.10 88),oklch(0.66 0.13 70) 55%,oklch(0.40 0.09 60));box-shadow:0 14px 26px -6px rgba(0,0,0,.7),0 0 30px 0 oklch(0.80 0.13 78 / .35)}
+.a .plinth::after{content:"";position:absolute;left:14%;right:14%;top:3px;height:9px;border-radius:50%;background:linear-gradient(to bottom,rgba(255,255,255,.55),rgba(255,255,255,0))}
+.a .hero{left:238px;top:96px;width:120px;filter:drop-shadow(0 0 18px oklch(0.88 0.11 85 / .45)) drop-shadow(-4px 8px 14px rgba(0,0,0,.5))}
+
+/* ── B · Горизонт: слои холмов одного тона, золотой свет на гребнях ── */
+.b .scene{background:linear-gradient(to bottom,oklch(0.14 0.045 300) 0%,oklch(0.21 0.08 306) 40%,oklch(0.33 0.11 318) 60%,oklch(0.20 0.07 305) 74%,var(--app-bg) 100%)}
+.b .sun{position:absolute;left:268px;top:160px;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 50% 42%,oklch(0.95 0.07 92),oklch(0.84 0.12 80) 60%,oklch(0.74 0.13 68));box-shadow:0 0 50px 16px oklch(0.82 0.12 78 / .32),0 0 120px 40px oklch(0.70 0.13 60 / .16)}
+.b svg{position:absolute;left:0;top:0;width:390px;height:400px}
+.b .shade{position:absolute;left:0;right:0;top:200px;height:120px;background:linear-gradient(to bottom,rgba(6,4,12,0),rgba(6,4,12,.35) 40%,rgba(6,4,12,.15))}
+
+/* ── C · Аврора: одна золотая лента света на почти чёрном небе ── */
+.c .scene{background:radial-gradient(140% 100% at 20% 0%,oklch(0.16 0.045 303),var(--violet-deep) 50%,var(--app-bg) 92%)}
+.c svg{position:absolute;inset:0;width:390px;height:400px}
+.c .ribbon{animation:drift 14s var(--ease-io) infinite alternate;transform-origin:50% 40%}
+@keyframes drift{from{transform:translate3d(-6px,0,0) rotate(-1deg)}to{transform:translate3d(8px,4px,0) rotate(1.2deg)}}
+.c .hero{left:258px;top:110px;width:112px;filter:drop-shadow(0 0 16px oklch(0.85 0.12 82 / .30))}
+
+/* ── D · Матовое стекло: крупный заголовок на стеклянной панели над золотым шаром ── */
+.d .scene{background:var(--violet-deep)}
+.d .orb1{position:absolute;left:176px;top:20px;width:290px;height:290px;border-radius:50%;background:radial-gradient(circle at 42% 40%,oklch(0.86 0.10 88),oklch(0.74 0.13 78) 44%,oklch(0.50 0.12 60 / 0) 70%)}
+.d .orb2{position:absolute;left:-100px;top:140px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,oklch(0.48 0.18 305),oklch(0.30 0.12 305 / 0) 70%)}
+.d .top{position:absolute;inset:0 0 auto 0;height:140px;background:linear-gradient(to bottom,oklch(0.13 0.035 305 / .92) 0%,oklch(0.13 0.035 305 / .55) 55%,transparent)}
+.d .hero{left:246px;top:98px;width:112px;filter:drop-shadow(0 12px 24px rgba(0,0,0,.45))}
+.d .glass{position:absolute;left:12px;right:12px;top:150px;height:228px;border-radius:30px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03)),rgba(26,12,38,.56);-webkit-backdrop-filter:blur(26px) saturate(150%);backdrop-filter:blur(26px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 30px 60px -30px rgba(0,0,0,.8);outline:1px solid rgba(255,255,255,.09);outline-offset:-1px}
+.d .glass::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(to bottom,rgba(20,10,30,0) 30%,rgba(20,10,30,.28))}
+.d .ui .copy{top:172px;left:32px}
+.d .ui .copy h2{font-size:40px;line-height:.98;margin:10px 0 10px}
+.d .ui .cta{left:28px;right:28px;top:318px}
+
+/* ── E · Корона: тёмная фиолетовая сфера заслоняет золотой свет, по краю сияет корона ── */
+.e .scene{background:radial-gradient(90% 70% at 70% 10%,oklch(0.17 0.05 300),var(--app-bg) 75%)}
+.e .corona{position:absolute;left:196px;top:-150px;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,transparent 57%,oklch(0.92 0.09 90 / .95) 61%,oklch(0.82 0.12 80 / .55) 64%,oklch(0.70 0.13 66 / .18) 72%,transparent 80%);filter:blur(2px)}
+.e .sphere{position:absolute;left:232px;top:-114px;width:258px;height:258px;border-radius:50%;background:radial-gradient(circle at 34% 78%,oklch(0.34 0.12 305),oklch(0.16 0.06 303) 52%,oklch(0.09 0.03 300) 80%);box-shadow:inset 0 -6px 14px oklch(0.85 0.12 82 / .45)}
+.e .stars{position:absolute;inset:0}
+.e .stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff}
+.e .hero{left:272px;top:120px;width:96px;filter:drop-shadow(0 0 16px oklch(0.85 0.12 82 / .45))}
+
+@media (prefers-reduced-motion: reduce){.c .ribbon{animation:none}.cta{transition:none}}
+@media (max-width:380px){figure{width:100%}.phone{zoom:.76}}
 </style>
 
-<h1>Тёмные темы: сильный контраст оттенков</h1>
-<p class="lead">Настоящие снимки Главной в тёмных темах. Слева кадр как есть, правее тот же кадр, где перекрашен только фон сцены: верх — заметно другой цвет, не просто светлее того же. Кнопки, тексты, карточки и таббар настоящие. Под кадром — контраст белого текста в самом светлом месте фона (норма 4,5).</p>
+<h1>Главная, Аметист: пять направлений нового верха</h1>
+<p class="lead">Верх нарисован заново, а не перекрашен. Цвет темы остаётся фиолетовым, к нему добавлен один цвет-компаньон: тёплое золото, как жёлтый к фиолетовому. Хрустальное пламя, аватар, монета и карточки «Сегодня» — настоящие, со снимка приложения.</p>
 
-<div class="bar" id="themes" role="group" aria-label="Тема"><label>ТЕМА</label></div>
-<div class="bar" id="screens" role="group" aria-label="Экран"><label>ЭКРАН</label></div>
-<div class="row" id="row"></div>
-<p class="rule">Без пятен и зерна, только градиент. Низ сцены чуть светлее прошлого макета, иначе он сливается с карточками. Сезон и Пик не меняются — только Главная.</p>
+<div class="grid" id="grid"></div>
+
+<template id="ui">
+  <div class="ui">
+    <div class="status"><span>1:02</span><span><i class="ion">&#63025;</i><i class="ion">&#61960;</i><i class="ion">&#61831;</i></span></div>
+    <div class="chip streak"><i class="ion">&#63022;</i><span>5 дней<small>Серия</small></span></div>
+    <div class="chip coins"><img src="dark-themes-scene/redesign/coin.webp" alt="">690<span class="sep"></span><i class="ion">&#62230;</i>∞</div>
+    <div class="bell"><i class="ion">&#62591;</i></div>
+    <img class="avatar" src="dark-themes-scene/redesign/avatar.webp" alt="Аватар">
+    <div class="copy"><div class="kicker">Серия 5 дней</div><h2>День засчитан</h2><p>Дальше: Местоимения и глагол To Be</p></div>
+    <button class="cta" type="button"><i class="ion">&#62662;</i>Ещё эпизод</button>
+  </div>
+</template>
 
 <script>
-const THEMES = [{"key":"graphite","name":"Затмение","accent":"#ABC0D7"},{"key":"marine","name":"Океан","accent":"#5CCFEB"},{"key":"ink","name":"Сумерки","accent":"#C1C4FF"},{"key":"amethyst","name":"Аметист","accent":"#d697ff"},{"key":"jade","name":"Нефрит","accent":"#7FE6D2"},{"key":"magma","name":"Магма","accent":"#FFB27A"}];
-const REPORT = {"graphite|home|c60":{"top":"#036c68","bottom":"#002f57","white":6.27},"graphite|home|c90":{"top":"#06764e","bottom":"#002f57","white":5.67},"graphite|home|duo":{"top":"#01726f","bottom":"#3c1e4e","white":5.74},"marine|home|c60":{"top":"#057042","bottom":"#05343e","white":6.18},"marine|home|c90":{"top":"#516f05","bottom":"#05343e","white":5.78},"marine|home|duo":{"top":"#087646","bottom":"#23275a","white":5.66},"ink|home|c60":{"top":"#8d3b72","bottom":"#282559","white":7.03},"ink|home|c90":{"top":"#9f3d4f","bottom":"#282559","white":6.44},"ink|home|duo":{"top":"#934077","bottom":"#023441","white":6.45},"amethyst|home|c60":{"top":"#98374b","bottom":"#3c1e4e","white":7.02},"amethyst|home|c90":{"top":"#9e441f","bottom":"#3c1e4e","white":6.35},"amethyst|home|duo":{"top":"#9f3d51","bottom":"#012f57","white":6.44},"jade|home|c60":{"top":"#566608","bottom":"#01362f","white":6.37},"jade|home|c90":{"top":"#7a6000","bottom":"#01362f","white":6.03},"jade|home|duo":{"top":"#5c6c01","bottom":"#03314b","white":5.83},"magma|home|c60":{"top":"#5b6500","bottom":"#472303","white":6.39},"magma|home|c90":{"top":"#237632","bottom":"#472303","white":5.67},"magma|home|duo":{"top":"#606b02","bottom":"#4f152f","white":5.86}};
-const SCREENS = [['home','Главная']];
-const VARIANTS = [['now','Сейчас','Как сейчас в приложении.'],['c60','Сдвиг 60°','Верх другого цвета: синий → бирюзовый, фиолетовый → малиновый.'],['c90','Сдвиг 90°','Самый сильный: верх почти соседний цвет радуги — синий → зелёный, фиолетовый → красный.'],['duo','Дуэт','Верх и низ расходятся в разные стороны круга: два явно разных цвета.']];
-let state = { theme: 'marine', screen: 'home' };
-try { const s = JSON.parse(localStorage.getItem('dark-contrast-state') || 'null'); if (s && THEMES.some(t => t.key === s.theme)) state = s; } catch (e) { /* хранилище недоступно */ }
-function render(){
-  try { localStorage.setItem('dark-contrast-state', JSON.stringify(state)); } catch (e) { /* хранилище недоступно */ }
-  const tb = document.getElementById('themes'); tb.querySelectorAll('button').forEach(b => b.remove());
-  for (const t of THEMES){ const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.innerHTML = `<span class="dot" style="background:${t.accent}"></span>${t.name}`; b.setAttribute('aria-pressed', String(state.theme === t.key)); b.onclick = () => { state.theme = t.key; render(); }; tb.appendChild(b); }
-  const sb = document.getElementById('screens'); sb.querySelectorAll('button').forEach(b => b.remove());
-  for (const [id, label] of SCREENS){ const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.textContent = label; b.setAttribute('aria-pressed', String(state.screen === id)); b.onclick = () => { state.screen = id; render(); }; sb.appendChild(b); }
-  const row = document.getElementById('row'); row.innerHTML = '';
-  for (const [v, title, about] of VARIANTS){
-    const r = REPORT[`${state.theme}|${state.screen}|${v}`];
-    const col = document.createElement('div'); col.className = 'col';
-    const badge = r ? `<span class="badge${r.white < 4.5 ? ' bad' : ''}">белый текст на самом светлом месте <b>${r.white.toFixed(2).replace('.', ',')}:1</b></span><span class="sw">верх <i style="background:${r.top}"></i> низ <i style="background:${r.bottom}"></i></span>` : '<span class="badge">снимок без перекраски</span>';
-    col.innerHTML = `<h2>${title}</h2><div class="shot"><img alt="${title}: ${state.screen}" loading="lazy" src="dark-themes-scene/${state.theme}_${state.screen}_${v}.webp"></div>${badge}<p>${about}</p>`;
-    row.appendChild(col);
-  }
-}
-render();
+const HERO = 'dark-themes-scene/redesign/hero_flame.webp';
+const BOTTOM = '<img class="bottom" src="dark-themes-scene/redesign/amethyst_home_bottom.webp" alt="Карточки «Сегодня» — настоящий снимок">';
+const RIBBON = `<svg viewBox="0 0 390 400" aria-hidden="true"><defs>
+  <linearGradient id="rb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="oklch(0.80 0.12 80)" stop-opacity="0"/><stop offset=".3" stop-color="oklch(0.86 0.11 86)" stop-opacity=".9"/><stop offset=".7" stop-color="oklch(0.80 0.12 76)" stop-opacity=".6"/><stop offset="1" stop-color="oklch(0.70 0.12 330)" stop-opacity="0"/></linearGradient>
+  <filter id="soft" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="18"/></filter>
+  <filter id="core" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="2.5"/></filter></defs>
+  <g class="ribbon"><path d="M-40 206 C 60 146, 160 126, 240 154 S 360 206, 440 128" fill="none" stroke="url(#rb)" stroke-width="64" filter="url(#soft)"/>
+  <path d="M-40 206 C 60 146, 160 126, 240 154 S 360 206, 440 128" fill="none" stroke="url(#rb)" stroke-width="3" opacity=".9" filter="url(#core)"/></g>
+  <g fill="#fff">${[[40,40,.45],[120,120,.3],[318,52,.4],[200,60,.3],[352,150,.3],[80,170,.25]].map(([x,y,o])=>`<circle cx="${x}" cy="${y}" r="1" opacity="${o}"/>`).join('')}</g></svg>`;
+const HILLS = `<svg viewBox="0 0 390 400" aria-hidden="true"><defs>
+  <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="oklch(0.82 0.11 80)" stop-opacity="0"/><stop offset=".5" stop-color="oklch(0.82 0.11 80)" stop-opacity=".16"/><stop offset="1" stop-color="oklch(0.82 0.11 80)" stop-opacity="0"/></linearGradient>
+  <filter id="rim" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
+  <path d="M0 236 C 70 214, 130 226, 200 212 S 320 200, 390 222 L390 400 L0 400Z" fill="oklch(0.36 0.10 318)"/>
+  <path d="M0 236 C 70 214, 130 226, 200 212 S 320 200, 390 222" fill="none" stroke="oklch(0.88 0.11 84)" stroke-width="2" opacity=".55" filter="url(#rim)"/>
+  <rect y="214" width="390" height="40" fill="url(#mist)"/>
+  <path d="M0 262 C 90 238, 150 252, 230 236 S 340 236, 390 248 L390 400 L0 400Z" fill="oklch(0.27 0.085 312)"/>
+  <path d="M0 262 C 90 238, 150 252, 230 236 S 340 236, 390 248" fill="none" stroke="oklch(0.86 0.11 82)" stroke-width="1.6" opacity=".35" filter="url(#rim)"/>
+  <rect y="240" width="390" height="40" fill="url(#mist)" opacity=".7"/>
+  <path d="M0 290 C 80 270, 170 282, 250 266 S 350 272, 390 280 L390 400 L0 400Z" fill="oklch(0.19 0.06 306)"/>
+  <path d="M0 322 C 100 304, 180 314, 270 300 S 360 306, 390 312 L390 400 L0 400Z" fill="oklch(0.12 0.035 302)"/></svg>`;
+const STARS = '<div class="stars">' + [[30,150,.5],[70,40,.6],[150,30,.35],[120,200,.3],[60,110,.4],[20,60,.3]].map(([x,y,o]) => `<i style="left:${x}px;top:${y}px;opacity:${o}"></i>`).join('') + '</div>';
+const CONCEPTS = [
+  ['now', 'Сейчас', 'Как в приложении сегодня: чёрный фон и фиолетовое свечение в углу.', null],
+  ['a', 'A · Объект', 'Хрустальное пламя стоит на золотом диске в луче студийного света, как продукт на промо Apple.', `<div class="beam"></div><div class="disc"></div><div class="plinth"></div><img class="hero" src="${HERO}" alt="">`],
+  ['b', 'B · Горизонт', 'Слои фиолетовых холмов с дымкой, золотое солнце садится за дальний гребень, свет ложится на кромки. Рифмуется с Пиком и Сезоном.', `<div class="sun"></div>${HILLS}<div class="shade"></div>`],
+  ['c', 'C · Аврора', 'Почти чёрное небо и одна медленная золотая лента света. Много воздуха, ничего лишнего.', `${RIBBON}<img class="hero" src="${HERO}" alt="">`],
+  ['d', 'D · Матовое стекло', 'Крупный заголовок на панели из матового стекла; за ней светится золотой шар и выглядывает пламя.', `<div class="orb1"></div><div class="orb2"></div><div class="top"></div><img class="hero" src="${HERO}" alt=""><div class="glass"></div>`],
+  ['e', 'E · Корона', 'Свой вариант: тёмная фиолетовая сфера заслоняет золотой свет, по краю сияет корона, под ней горит пламя.', `${STARS}<div class="corona"></div><div class="sphere"></div><img class="hero" src="${HERO}" alt="">`],
+];
+const ui = document.getElementById('ui').innerHTML;
+document.getElementById('grid').innerHTML = CONCEPTS.map(([k, name, idea, scene]) => `<figure>
+  <div class="phone ${k}">${scene === null ? '<img class="now" src="dark-themes-scene/redesign/amethyst_home_now.webp" alt="Главная сейчас">' : `<div class="scene">${scene}</div><div class="fade"></div>${BOTTOM}${ui}`}</div>
+  <figcaption><b>${name}</b><span>${idea}</span></figcaption></figure>`).join('');
+// одиночный телефон для проверки: #a … #e
+const only = location.hash.slice(1); if (only) { document.querySelectorAll('figure').forEach(f => { if (!f.querySelector('.phone.' + only)) f.remove(); }); document.querySelector('.phone').style.zoom = 1; document.querySelector('figure').style.width = '390px'; }
 </script>

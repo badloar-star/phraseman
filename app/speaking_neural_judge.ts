@@ -226,7 +226,9 @@ async function getContext(locale?: string): Promise<WhisperContext | null> {
       const filePath: string | undefined = file?.uri ?? undefined;
       if (!filePath) return null;
       return await whisper.initWhisper({ filePath });
-    } catch {
+    } catch (initError) {
+      // зачем (жалоба №4 25.10): немой catch прятал отказ инициализации модели — теперь причина в журнале
+      console.warn('[SPEAK-MIC] judge:init_failed', JSON.stringify({ model: spec.fileName, reason: initError instanceof Error ? initError.message.slice(0, 160) : String(initError) })); // guard-ok: catch пишет причину
       return null;
     }
   })();
@@ -268,14 +270,31 @@ export type NeuralJudgeVerdict = {
  * (англ-only / мультиязык) и язык транскрипции. По умолчанию 'en' — текущая
  * гарантированная цель.
  */
+// зачем (жалоба №4 25.10 «говорю — не слышат, просит громче»): пустой вердикт судьи на пути удержания превращается в «Не расслышал.
+// Скажи чуть громче», хотя причина бывает не в громкости (модель не готова, не уложились в 6 с, пустой транскрипт). Причину
+// последнего пустого вердикта видно журналу панели и прод-журналу сбоев.
+export type NeuralJudgeNullReasonV1 = 'ctx_unavailable' | 'timeout' | 'empty_transcript' | 'score_null' | 'threw';
+let lastNullReason: Readonly<{ reason: NeuralJudgeNullReasonV1; ms: number }> | null = null;
+export function lastNeuralJudgeNullReasonV1(): Readonly<{ reason: NeuralJudgeNullReasonV1; ms: number }> | null {
+  return lastNullReason;
+}
+function judgeNull(reason: NeuralJudgeNullReasonV1, startedAt: number, extra: Record<string, unknown> = {}): null {
+  lastNullReason = { reason, ms: Date.now() - startedAt };
+  console.warn('[SPEAK-MIC] judge:null', JSON.stringify({ reason, ms: lastNullReason.ms, platform: Platform.OS, ...extra })); // guard-ok: каждый пустой вердикт судьи с причиной
+  return null;
+}
+
 export async function judgeWithNeuralEngine(input: {
   wavUri: string;
   targetText: string;
   locale?: string;
 }): Promise<NeuralJudgeVerdict | null> {
+  const startedAt = Date.now();
+  lastNullReason = null;
+  let timedOut = false;
   try {
     const ctx = await getContext(input.locale);
-    if (!ctx) return null;
+    if (!ctx) return judgeNull('ctx_unavailable', startedAt, { locale: input.locale ?? 'en' });
     const job = ctx.transcribe(input.wavUri, {
       language: whisperLanguageFor(input.locale),
       translate: false,
@@ -289,17 +308,18 @@ export async function judgeWithNeuralEngine(input: {
       // no-op
       DebugLogger.error('speaking_neural_judge:timeout', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
+        timedOut = true;
         resolve(null);
       }, NEURAL_JUDGE_TIMEOUT_MS),
     );
     const outcome = await Promise.race([job.promise, timeout]);
     const transcript = String(outcome?.result ?? '').trim();
-    if (!transcript) return null;
+    if (!transcript) return judgeNull(timedOut ? 'timeout' : 'empty_transcript', startedAt, { timeoutMs: NEURAL_JUDGE_TIMEOUT_MS, targetWords: input.targetText.trim().split(/\s+/u).filter(Boolean).length });
     const controlScore = neuralControlScore(input.targetText, transcript);
-    if (controlScore == null) return null;
+    if (controlScore == null) return judgeNull('score_null', startedAt);
     return { transcript, controlScore };
-  } catch {
-    return null;
+  } catch (judgeError) {
+    return judgeNull('threw', startedAt, { error: judgeError instanceof Error ? judgeError.message.slice(0, 160) : String(judgeError) });
   }
 }
 

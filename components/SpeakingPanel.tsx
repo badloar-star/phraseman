@@ -69,6 +69,7 @@ import {
   isNeuralJudgeSupported,
   isNeuralModelReady,
   judgeWithNeuralEngine,
+  lastNeuralJudgeNullReasonV1,
 } from '../app/speaking_neural_judge';
 import {
   deleteHoldRecording,
@@ -125,6 +126,16 @@ function speakFocusTrace(step: string, data?: Record<string, unknown>): void {
 }
 function micTrace(step: string, data?: Record<string, unknown>): void {
   console.log('[SPEAK-MIC]', step, data ? JSON.stringify(data) : ''); // guard-ok: трасса владельца; ~10 строк на попытку, не в кадре
+}
+// зачем (жалоба №4 25.10 «говорю — не слышат, просит громче»): консольная трасса [SPEAK-MIC] с телефона человека до владельца не
+// доходит. Исход «не расслышал» на пути удержания уходит в прод-журнал сбоев — один раз на причину за процесс (Firebase-экономия),
+// с числами: сколько держали, когда пришёл первый звук, сколько думал судья, слов в фразе и услышано. Текста речи нет.
+const reportedNoSpeechReasons = new Set<string>();
+function reportHoldNoSpeech(reason: string, data: Record<string, unknown>): void {
+  micTrace('hold:no_speech', { reason, ...data });
+  if (reportedNoSpeechReasons.has(reason)) return;
+  reportedNoSpeechReasons.add(reason);
+  DebugLogger.error(`speak_mic:no_speech_${reason}`, new Error(`${reason} ${JSON.stringify(data).slice(0, 300)}`), 'critical');
 }
 function errorText(e: unknown): string {
   return e instanceof Error ? `${e.name}: ${e.message}` : String(e);
@@ -1706,9 +1717,10 @@ export function SpeakingPanel({
       deleteHoldRecording(wavUri);
       return;
     }
+    const holdMs = holdStartedAtRef.current ? stopAt - holdStartedAtRef.current : null;
     if (!wavUri) {
       // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
-      micTrace('hold:no_speech', { reason: 'no_wav' });
+      reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs: holdFirstAudioMsRef.current, platform: Platform.OS });
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
@@ -1733,7 +1745,8 @@ export function SpeakingPanel({
     setRecordingUri(wavUri);
     const text = (verdict?.transcript ?? '').trim();
     if (!text) {
-      micTrace('hold:no_speech', { reason: verdict ? 'empty_transcript' : 'no_verdict' });
+      const judgeReason = verdict ? 'empty_transcript' : lastNeuralJudgeNullReasonV1()?.reason ?? 'no_verdict';
+      reportHoldNoSpeech(judgeReason, { holdMs, firstAudioMs: holdFirstAudioMsRef.current, judgeMs: Date.now() - judgeAt, targetWords: targetText.trim().split(/\s+/u).filter(Boolean).length, platform: Platform.OS });
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;

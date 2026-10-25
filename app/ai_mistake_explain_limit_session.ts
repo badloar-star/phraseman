@@ -34,14 +34,14 @@ export const MISTAKE_EXPLAIN_PRICE_RUNES = 120;
 
 export type MistakeExplainPurchaseResult =
   | { ok: true; balance: number }
-  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' };
+  | { ok: false; reason: 'insufficient_runes' | 'coins_saving' | 'identity_changed' };
 
 /**
  * Купить разбор за руны. Как и вся экономика рун: решает ТЕЛЕФОН и мгновенно —
  * списали и показываем. Сети в самой покупке нет; за разбором экран ходит той
  * же дорогой, что и раньше.
  */
-export async function buyMistakeExplainLocally(
+async function buyMistakeExplainLocallyOnce(
   token: AccountGenerationToken,
 ): Promise<MistakeExplainPurchaseResult> {
   const ownerStableId = token.stableId?.trim();
@@ -175,4 +175,18 @@ export async function markAiMistakeLimitNoticeShownToday(): Promise<void> {
 
 export function __resetAiMistakeLimitNoticeMemoryForTests(): void {
   limitNoticeShownDayMemory = null;
+}
+
+// зачем (координатор 25.10, [COIN-SPEND-GAP]): на экране кошелёк + ожидающие монеты Пика, тратить можно только влитый кошелёк.
+// Цена в этом разрыве → досылаем очередь Пика ВНЕ замков покупки и повторяем один раз; не вышло → coins_saving («монеты ещё сохраняются»).
+export async function buyMistakeExplainLocally(
+  token: AccountGenerationToken,
+): Promise<MistakeExplainPurchaseResult> {
+  const { purchaseWithSpendGap } = await import('./coin_spend_gap');
+  return purchaseWithSpendGap<MistakeExplainPurchaseResult>(
+    'mistake_explain',
+    () => buyMistakeExplainLocallyOnce(token),
+    (r) => (!r.ok && r.reason === 'insufficient_runes' ? MISTAKE_EXPLAIN_PRICE_RUNES : null),
+    (r) => (r.ok ? r : { ...r, reason: 'coins_saving' as const }),
+  );
 }

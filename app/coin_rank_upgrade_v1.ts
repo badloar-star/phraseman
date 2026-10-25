@@ -54,7 +54,7 @@ export type CoinRankUpgradeResult =
   | Readonly<{ ok: true; status: 'already_applied'; fromRank: number; toRank: number }>
   | Readonly<{
       ok: false;
-      reason: 'identity_changed' | 'invalid_rank' | 'stale_rank' | 'max_rank' | 'insufficient_coins' | 'state_corrupt' | 'failed';
+      reason: 'identity_changed' | 'invalid_rank' | 'stale_rank' | 'max_rank' | 'insufficient_coins' | 'coins_saving' | 'state_corrupt' | 'failed';
       currentRank?: number;
       price?: number;
     }>;
@@ -64,7 +64,7 @@ export function coinRankUpgradeOperationId(toRank: number): string {
   return `coin_rank:to_${toRank}`;
 }
 
-export async function upgradeCoinRank(
+async function upgradeCoinRankOnce(
   input: Readonly<{ token: AccountGenerationToken; expectedFromRank: number; nowMs?: number }>,
 ): Promise<CoinRankUpgradeResult> {
   const { token, expectedFromRank } = input;
@@ -185,4 +185,18 @@ export async function upgradeCoinRank(
     DebugLogger.warn(LOG, `сбой повышения, ничего не опубликовано ${JSON.stringify({ owner, expectedFromRank, error: message })}`);
     return { ok: false, reason: 'failed' };
   }
+}
+
+// зачем (координатор 25.10, [COIN-SPEND-GAP]): на экране кошелёк + ожидающие монеты Пика, тратить можно только влитый кошелёк.
+// Цена в этом разрыве → досылаем очередь Пика ВНЕ замков покупки и повторяем один раз; не вышло → coins_saving («монеты ещё сохраняются»).
+export async function upgradeCoinRank(
+  input: Readonly<{ token: AccountGenerationToken; expectedFromRank: number; nowMs?: number }>,
+): Promise<CoinRankUpgradeResult> {
+  const { purchaseWithSpendGap } = await import('./coin_spend_gap');
+  return purchaseWithSpendGap<CoinRankUpgradeResult>(
+    'coin_rank',
+    () => upgradeCoinRankOnce(input),
+    (r) => (!r.ok && r.reason === 'insufficient_coins' && typeof r.price === 'number' ? r.price : null),
+    (r) => (r.ok ? r : { ...r, reason: 'coins_saving' as const }),
+  );
 }

@@ -282,6 +282,12 @@ export default function CoinRankScreen() {
       return;
     }
     switch (result.reason) {
+      case 'coins_saving': {
+        // зачем (координатор 25.10, [COIN-SPEND-GAP]): цена между кошельком и показанным числом, досылка не удалась — «монеты ещё сохраняются», а не «не хватает»
+        const { coinsSavingToast } = await import('./coin_spend_gap');
+        emitAppEvent('action_toast', coinsSavingToast());
+        return;
+      }
       case 'insufficient_coins': {
         reconciliationBlockedRef.current = true;
         setBalanceReconciling(true);

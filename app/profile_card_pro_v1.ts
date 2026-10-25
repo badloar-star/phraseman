@@ -46,7 +46,7 @@ export type ProfileCardProPurchaseResult =
   | Readonly<{ ok: true; status: 'already_owned'; style: ProfileCardProStyle }>
   | Readonly<{
       ok: false;
-      reason: 'identity_changed' | 'invalid_style' | 'insufficient_coins' | 'state_corrupt' | 'failed';
+      reason: 'identity_changed' | 'invalid_style' | 'insufficient_coins' | 'coins_saving' | 'state_corrupt' | 'failed';
       price?: number;
     }>;
 
@@ -62,7 +62,7 @@ function syncPublicProfile(token: AccountGenerationToken, owner: string): void {
   }
 }
 
-export async function purchaseProfileCardPro(
+async function purchaseProfileCardProOnce(
   input: Readonly<{ token: AccountGenerationToken; style: ProfileCardProStyle; nowMs?: number }>,
 ): Promise<ProfileCardProPurchaseResult> {
   const { token, style } = input;
@@ -195,4 +195,18 @@ export async function setProfileCardProStyle(
     DebugLogger.warn(LOG, `стиль: сбой ${JSON.stringify({ owner, error: String(error) })}`);
     return { ok: false, reason: 'failed' };
   }
+}
+
+// зачем (координатор 25.10, [COIN-SPEND-GAP]): на экране кошелёк + ожидающие монеты Пика, тратить можно только влитый кошелёк.
+// Цена в этом разрыве → досылаем очередь Пика ВНЕ замков покупки и повторяем один раз; не вышло → coins_saving («монеты ещё сохраняются»).
+export async function purchaseProfileCardPro(
+  input: Readonly<{ token: AccountGenerationToken; style: ProfileCardProStyle; nowMs?: number }>,
+): Promise<ProfileCardProPurchaseResult> {
+  const { purchaseWithSpendGap } = await import('./coin_spend_gap');
+  return purchaseWithSpendGap<ProfileCardProPurchaseResult>(
+    'profile_card_pro',
+    () => purchaseProfileCardProOnce(input),
+    (r) => (!r.ok && r.reason === 'insufficient_coins' ? r.price ?? PROFILE_CARD_PRO_PRICE_COINS : null),
+    (r) => (r.ok ? r : { ...r, reason: 'coins_saving' as const }),
+  );
 }

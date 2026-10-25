@@ -2015,6 +2015,8 @@ export default function FlashcardsScreen() {
                 console.log(`[PACK-BUY] denied pack=${purchasePack.id} reason=${res.reason}`); // guard-ok: otkaz obyazan logirovat'sya i v relize
                 // зачем (R1_PAYWALL_UX, координатор 12.10): раньше при отказе крутилка просто пропадала и окно оставалось без слова. Нехватка рун сама
                 // переключает окно на «Пополнить» (mode считается по балансу), поэтому тост — для остальных причин (смена аккаунта, неверная цена).
+                // зачем (координатор 25.10, [COIN-SPEND-GAP]): цена между кошельком и показанным числом, досылка не удалась — «монеты ещё сохраняются», а не «не хватает»
+                if (res.reason === 'coins_saving') { const { coinsSavingToast } = await import('./coin_spend_gap'); emitAppEvent('action_toast', coinsSavingToast()); return; }
                 if (res.reason !== 'insufficient_runes') emitAppEvent('action_toast', res.reason === 'invalid_price' ? packBuyUnavailableToast() : packBuyFailedToast()); // неверная цена повтором не лечится
                 return;
               }

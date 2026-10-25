@@ -759,6 +759,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         // зачем видимая причина (владелец 2026-09-17 про покупку диалога:
         // «нажимаю, но ничего не списывается, только звук»): молчаливый отказ
         // читается как поломка. Показываем причину прямо в модалке.
+        // зачем (координатор 25.10, [COIN-SPEND-GAP]): цена между кошельком и показанным числом, досылка не удалась — «монеты ещё сохраняются», а не «не хватает»
+        if (result.reason === 'coins_saving') void Promise.all([import('./coin_spend_gap'), import('./events')]).then(([{ coinsSavingToast }, { emitAppEvent }]) => emitAppEvent('action_toast', coinsSavingToast()));
         setHintDenied(result.reason === 'insufficient_runes' ? 'no_runes' : 'error');
         console.log(`[HINT-BUY] denied index=${index} reason=${result.reason}`); // guard-ok: отказ обязан логироваться и в релизе
         return;

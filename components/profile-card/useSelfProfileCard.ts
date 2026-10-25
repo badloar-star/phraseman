@@ -94,7 +94,11 @@ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
         toast(t4(lang, result.status === 'purchased' ? PC.bought : PC.alreadyPro), 'info');
         return;
       }
-      if (result.reason === 'insufficient_coins') {
+      if (result.reason === 'coins_saving') {
+        // зачем (координатор 25.10, [COIN-SPEND-GAP]): цена между кошельком и показанным числом, досылка не удалась — «монеты ещё сохраняются», а не «не хватает»
+        const [{ coinsSavingToast }, { emitAppEvent }] = await Promise.all([import('../../app/coin_spend_gap'), import('../../app/events')]);
+        emitAppEvent('action_toast', coinsSavingToast());
+      } else if (result.reason === 'insufficient_coins') {
         const quality = await forceBalanceReconcile();
         toast(t4(lang, quality === 'durable' ? PC.notEnough : PC.balanceUnknown), 'error');
       } else if (result.reason === 'identity_changed') {

@@ -70,13 +70,13 @@ export async function getPaidPackIds(stableId: string): Promise<Set<string>> {
 
 export type PackPurchaseResult =
   | { ok: true; alreadyOwned: boolean; balance: number }
-  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'invalid_price' };
+  | { ok: false; reason: 'insufficient_runes' | 'coins_saving' | 'identity_changed' | 'invalid_price' };
 
 /**
  * Купить набор за руны. Всё решается локально и мгновенно — вызывающий экран
  * добавляет набор сразу после `ok`, не дожидаясь сети.
  */
-export async function buyCommunityPackLocally(
+async function buyCommunityPackLocallyOnce(
   token: AccountGenerationToken,
   packId: string,
   priceRunes: number,
@@ -140,4 +140,18 @@ export async function buyCommunityPackLocally(
     DebugLogger.info('[PACK-BUY] ok', `pack=${packId} price=${priceRunes} balance ${balance}→${balanceAfter}`);
     return { ok: true, alreadyOwned: false, balance: balanceAfter } as const;
   }));
+}
+
+// зачем (координатор 25.10, [COIN-SPEND-GAP]): на экране кошелёк + ожидающие монеты Пика, тратить можно только влитый кошелёк.
+// Цена в этом разрыве → досылаем очередь Пика ВНЕ замков покупки и повторяем один раз; не вышло → coins_saving («монеты ещё сохраняются»).
+export async function buyCommunityPackLocally(token: AccountGenerationToken,
+  packId: string,
+  priceRunes: number): Promise<PackPurchaseResult> {
+  const { purchaseWithSpendGap } = await import('../coin_spend_gap');
+  return purchaseWithSpendGap<PackPurchaseResult>(
+    'community_pack',
+    () => buyCommunityPackLocallyOnce(token, packId, priceRunes),
+    (r) => (!r.ok && r.reason === 'insufficient_runes' ? priceRunes : null),
+    (r) => (r.ok ? r : { ...r, reason: 'coins_saving' as const }),
+  );
 }

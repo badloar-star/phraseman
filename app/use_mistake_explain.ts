@@ -886,6 +886,8 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       explainBuyingRef.current = false;
       if (!result.ok) {
         console.log(`[MISTAKE-BUY] denied reason=${result.reason} phrase=${phraseKey}`); // guard-ok: отказ обязан логироваться и в релизе
+        // зачем (координатор 25.10, [COIN-SPEND-GAP]): цена между кошельком и показанным числом, досылка не удалась — «монеты ещё сохраняются», а не «не хватает»
+        if (result.reason === 'coins_saving') void Promise.all([import('./coin_spend_gap'), import('./events')]).then(([{ coinsSavingToast }, { emitAppEvent }]) => emitAppEvent('action_toast', coinsSavingToast()));
         return;
       }
       setExplainRuneBalance(result.balance);

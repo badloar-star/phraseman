@@ -111,7 +111,7 @@ export async function markDialogHintUsed(studyTarget: unknown): Promise<void> {
 
 export type HintPurchaseResult =
   | { ok: true; balance: number }
-  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'invalid_target' };
+  | { ok: false; reason: 'insufficient_runes' | 'coins_saving' | 'identity_changed' | 'invalid_target' };
 
 /**
  * Купить показ готовых ответов за руны.
@@ -121,7 +121,7 @@ export type HintPurchaseResult =
  * общей синхронизацией баланса, отдельного вызова тут нет: подсказка не
  * открывает контент навсегда, это разовый показ уже загруженного текста.
  */
-export async function buyDialogHintLocally(
+async function buyDialogHintLocallyOnce(
   studyTarget: unknown,
   token: AccountGenerationToken,
 ): Promise<HintPurchaseResult> {
@@ -173,4 +173,19 @@ export async function buyDialogHintLocally(
     console.log(`[HINT-BUY] ok balance ${balance}→${balanceAfter}`); // guard-ok: финальный результат обязан логироваться и в релизе
     return { ok: true, balance: balanceAfter } as const;
   }));
+}
+
+// зачем (координатор 25.10, [COIN-SPEND-GAP]): на экране кошелёк + ожидающие монеты Пика, тратить можно только влитый кошелёк.
+// Цена в этом разрыве → досылаем очередь Пика ВНЕ замков покупки и повторяем один раз; не вышло → coins_saving («монеты ещё сохраняются»).
+export async function buyDialogHintLocally(
+  studyTarget: unknown,
+  token: AccountGenerationToken,
+): Promise<HintPurchaseResult> {
+  const { purchaseWithSpendGap } = await import('./coin_spend_gap');
+  return purchaseWithSpendGap<HintPurchaseResult>(
+    'dialog_hint',
+    () => buyDialogHintLocallyOnce(studyTarget, token),
+    (r) => (!r.ok && r.reason === 'insufficient_runes' ? DIALOG_HINT_PRICE_RUNES : null),
+    (r) => (r.ok ? r : { ...r, reason: 'coins_saving' as const }),
+  );
 }

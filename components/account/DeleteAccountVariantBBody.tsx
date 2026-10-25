@@ -146,5 +146,6 @@ const styles = StyleSheet.create({
   pillRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   pillLabel: { fontSize: 16, fontWeight: '700', textAlign: 'center' },
   link: { alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 12 },
-  linkLabel: { fontSize: 15, fontWeight: '600', textAlign: 'center' },
+  // зачем (D145, координатор 25.10): ссылка — обычный текст, размер из шкалы 16/13; 16 как у кнопок окна.
+  linkLabel: { fontSize: 16, fontWeight: '600', textAlign: 'center' },
 });

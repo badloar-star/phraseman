@@ -4,6 +4,8 @@ Governance-ID: TG-7C419DE9587B
 Governance-ID: TG-44D3642D741E
 Governance-ID: TG-25D1BFC854C2
 Governance-ID: TG-5D2B47C6E09D
+Governance-ID: TG-E5994B79314A
+Governance-ID: TG-B4DCA5F1EA81
 Status: In progress
 Owner: 5 · ВХОД И АККАУНТ (владелец «Да, так» на макет docs/design/v2-app/account-delete-variant-b.html; строки — Переводчик 8cd112000)
 
@@ -44,3 +46,9 @@ Owner: 5 · ВХОД И АККАУНТ (владелец «Да, так» на �
 ## Rollback
 
 git revert; флаг выключен.
+
+## Дополнение 25.10 — шкала текста D145 (храповик typography_two_sizes_ratchet)
+
+Координатор: DeleteAccountVariantBBody красный в храповике — ссылка «Удалить навсегда сейчас» была 15 (вне шкалы 16/13).
+Правка: 15 → 16, как кнопки окна; исключение не нужно (это обычный текст ссылки, не микроцифра/бейдж). Проверка: храповик зелёный,
+тест окон 5/5. Откат: вернуть 15 (храповик снова покраснеет).

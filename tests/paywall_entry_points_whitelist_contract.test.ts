@@ -39,6 +39,18 @@ function objectAfter(source: string, from: number): string {
   return '';
 }
 
+/**
+ * зачем (координатор и Дизайн 26.10, faf515267): входы dialog_limit строят params помощником dialogLimitPaywallParams('<source>').
+ * Литерал-аргумент → те же параметры, что раньше стояли объектом ({ context: 'dialog_limit', source: '<source>' }), и дальше
+ * обычные проверки (source из списка). Не литерал / пустой вызов → '' (нет context) → красный. context помощника — литерал
+ * 'dialog_limit' (проверка исходника ниже). null — это не вызов помощника.
+ */
+function dialogLimitHelperParams(text: string): string | null {
+  if (!/^dialogLimitPaywallParams\(/.test(text)) return null;
+  const literal = /^dialogLimitPaywallParams\(\s*(['"])([a-z0-9_]+)\1\s*\)/.exec(text);
+  return literal ? `{ context: 'dialog_limit', source: '${literal[2]}' }` : '';
+}
+
 type EntryPoint = { file: string; line: number; params: string };
 
 function collectEntryPoints(): EntryPoint[] {
@@ -55,9 +67,14 @@ function collectEntryPoints(): EntryPoint[] {
     for (const pattern of patterns) {
       for (const match of source.matchAll(pattern)) {
         const index = match.index ?? 0;
-        const params = pattern.source.startsWith('pathname')
-          ? objectAfter(source, source.indexOf('params', index))
-          : objectAfter(source, index);
+        const paramsAt = source.indexOf('params', index);
+        const afterParams = /^params:\s*/.exec(source.slice(paramsAt, paramsAt + 40));
+        const helper = pattern.source.startsWith('pathname')
+          ? (afterParams ? dialogLimitHelperParams(source.slice(paramsAt + afterParams[0].length, paramsAt + 200)) : null)
+          : dialogLimitHelperParams(source.slice(index + match[0].length).trimStart());
+        const params = helper ?? (pattern.source.startsWith('pathname')
+          ? objectAfter(source, paramsAt)
+          : objectAfter(source, index));
         entries.push({ file: rel, line: source.slice(0, index).split('\n').length, params });
       }
     }
@@ -91,5 +108,23 @@ describe('пейвол: каждая точка входа передаёт ко
       .filter((value) => !SOURCES.has(value))
       .map((value) => `${entry.file}:${entry.line} source=${value}`));
     expect(bad).toEqual([]);
+  });
+});
+
+describe('пейвол: помощник dialogLimitPaywallParams', () => {
+  it('литерал → те же context/source; не литерал или пустой вызов → без context (красный); не помощник → null', () => {
+    expect(dialogLimitHelperParams("dialogLimitPaywallParams('dialogue_v2_hub') }")).toBe("{ context: 'dialog_limit', source: 'dialogue_v2_hub' }");
+    expect(dialogLimitHelperParams('dialogLimitPaywallParams(someSource) }')).toBe('');
+    expect(dialogLimitHelperParams("dialogLimitPaywallParams('dialogue_' + x) }")).toBe('');
+    expect(dialogLimitHelperParams('dialogLimitPaywallParams() }')).toBe('');
+    expect(dialogLimitHelperParams("{ context: 'dialog_limit' }")).toBeNull();
+  });
+
+  it('context внутри помощника — только литерал dialog_limit', () => {
+    const helper = readFileSync(join(ROOT, 'app/dialog_first_free_summary.ts'), 'utf8');
+    const contexts = [...helper.matchAll(/context: '([a-z0-9_]+)'/g)].map((m) => m[1]);
+    expect(contexts.length).toBeGreaterThan(0);
+    expect(contexts.filter((c) => c !== 'dialog_limit')).toEqual([]);
+    expect(PREMIUM_CONTEXT_SET.has('dialog_limit' as never)).toBe(true);
   });
 });

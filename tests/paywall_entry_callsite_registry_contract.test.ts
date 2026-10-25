@@ -59,6 +59,13 @@ const REVIEWED_DYNAMIC_SOURCES = new Set([
   'hooks/useMistakePracticeStartGate.ts:source',
 ]);
 
+// зачем (координатор и Дизайн 26.10, faf515267): входы dialog_limit строят params помощником dialogLimitPaywallParams('<source>')
+// (те же context/source + итог первого разговора). Помощник — не «динамика»: context внутри него литерал 'dialog_limit'
+// (проверка исходника ниже), а source — ЕДИНСТВЕННЫЙ аргумент, обязан быть литералом из PAYWALL_SOURCE_VALUES.
+// Переменная/выражение в аргументе, пустой вызов или неизвестный литерал — красный, как у обычного вызова.
+const DIALOG_LIMIT_PARAMS_HELPER = 'dialogLimitPaywallParams';
+const DIALOG_LIMIT_HELPER_CONTEXT = 'dialog_limit';
+
 type FindingKind = 'unknown_context' | 'unknown_source' | 'dynamic_context' | 'dynamic_source';
 type Finding = Readonly<{
   file: string;
@@ -152,6 +159,32 @@ function inspectDimension(
   findings.push({ file, line: line + 1, kind: `dynamic_${dimension}`, value: describe(expression) });
 }
 
+function dialogLimitHelperCall(expression: ts.Expression | undefined): ts.CallExpression | undefined {
+  if (!expression) return undefined;
+  const value = unwrap(expression);
+  return ts.isCallExpression(value) && ts.isIdentifier(value.expression) && value.expression.text === DIALOG_LIMIT_PARAMS_HELPER
+    ? value
+    : undefined;
+}
+
+function inspectDialogLimitHelper(
+  findings: Finding[],
+  file: string,
+  sourceFile: ts.SourceFile,
+  call: ts.CallExpression,
+  helper: ts.CallExpression,
+): void {
+  const { line } = sourceFile.getLineAndCharacterOfPosition(call.getStart(sourceFile));
+  if (!PREMIUM_CONTEXT_SET.has(DIALOG_LIMIT_HELPER_CONTEXT as never)) {
+    findings.push({ file, line: line + 1, kind: 'unknown_context', value: DIALOG_LIMIT_HELPER_CONTEXT });
+  }
+  if (helper.arguments.length !== 1) {
+    findings.push({ file, line: line + 1, kind: 'dynamic_source', value: describe(helper) });
+    return;
+  }
+  inspectDimension(findings, file, sourceFile, call, helper.arguments[0], 'source');
+}
+
 function inspectCall(
   findings: Finding[],
   file: string,
@@ -170,6 +203,8 @@ function inspectCall(
   }
   let params: ts.ObjectLiteralExpression | undefined;
   if (ts.isIdentifier(call.expression) && call.expression.text === 'openPremiumPaywall') {
+    const helper = dialogLimitHelperCall(call.arguments[1]);
+    if (helper) { inspectDialogLimitHelper(findings, file, sourceFile, call, helper); return; }
     params = objectLiteral(call.arguments[1]);
     if (call.arguments[1] && !params) {
       const { line } = sourceFile.getLineAndCharacterOfPosition(call.getStart(sourceFile));
@@ -182,6 +217,8 @@ function inspectCall(
     if (!href) return;
     const route = literalValue(objectProperty(href, 'pathname'));
     if (!route || !PREMIUM_ROUTES.has(route)) return;
+    const helper = dialogLimitHelperCall(objectProperty(href, 'params'));
+    if (helper) { inspectDialogLimitHelper(findings, file, sourceFile, call, helper); return; }
     params = objectLiteral(objectProperty(href, 'params'));
     if (objectProperty(href, 'params') && !params) {
       const { line } = sourceFile.getLineAndCharacterOfPosition(call.getStart(sourceFile));
@@ -289,5 +326,34 @@ test('a forwarder typed as plain string is caught (self-test)', () => {
   expect(findings.map((f) => `${f.kind}:${f.value}`)).toEqual([
     'dynamic_source:paywallSource: string',
     'dynamic_context:paywallContext: string',
+  ]);
+});
+
+test('dialogLimitPaywallParams: context внутри помощника — литерал dialog_limit (без него помощник не доверяется)', () => {
+  const helper = fs.readFileSync(path.join(ROOT, 'app/dialog_first_free_summary.ts'), 'utf8').replace(/\r\n/g, '\n');
+  expect(helper).toContain("return { context: 'dialog_limit', source };");
+  expect(helper).toContain("context: 'dialog_limit',\n    source,");
+  // любой другой context в помощнике — красный
+  expect([...helper.matchAll(/context: '([a-z0-9_]+)'/g)].map((m) => m[1]).filter((v) => v !== 'dialog_limit')).toEqual([]);
+});
+
+test('dialogLimitPaywallParams: не литерал или неизвестный source — красный (self-test)', () => {
+  const code = "router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogue_v2_hub') });\n"
+    + "router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('definitely_not_a_source') });\n"
+    + "router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams(someSource) });\n"
+    + "openPremiumPaywall(router, dialogLimitPaywallParams('dialogue_' + suffix));\n"
+    + "openPremiumPaywall(router, dialogLimitPaywallParams());\n";
+  const sf = ts.createSourceFile('z.tsx', code, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const findings: Finding[] = [];
+  const visit = (node: ts.Node): void => {
+    if (ts.isCallExpression(node)) inspectCall(findings, 'z.tsx', sf, node);
+    ts.forEachChild(node, visit);
+  };
+  visit(sf);
+  expect(findings.map((f) => `${f.kind}:${f.value}`)).toEqual([
+    'unknown_source:definitely_not_a_source',
+    'dynamic_source:someSource',
+    "dynamic_source:'dialogue_' + suffix",
+    'dynamic_source:dialogLimitPaywallParams()',
   ]);
 });

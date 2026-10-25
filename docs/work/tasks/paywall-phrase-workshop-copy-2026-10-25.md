@@ -1,7 +1,7 @@
 # Task packet: пейвол phrase_workshop — вычитка 9 языков (Переводчик → 1 · ЯДРО, координатор 25.10)
 
 Governance-ID: TG-C2AB42310B8E
-Status: Готово к вставке — файл `app/paywall_context_texts.ts` у Ядра в незакоммиченной работе, Переводчик его не трогает
+Status: Done — Переводчик внёс сам после коммита Ядра c161d894a (uk, tr; pl оставлен), см. paywall-workshop-server-refused-review-2026-10-25.md
 Owner: «10 · ПЕРЕВОДЧИК»
 
 ## Outcome

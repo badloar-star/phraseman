@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -404,6 +404,20 @@ export default function DialogueV2CompletionRoute() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение пишется один раз, при входе
   }, []);
   const close = () => safeRouterBack(router, '/ai_dialog_home' as never);
+  // зачем (аудит «назад» 26.10, B1: правило владельца «назад» = кнопка экрана): ✕ ведёт к Диалогам, а общий обработчик Android уводил на
+  // Главную (экран вне реестра разделов → история сброшена). Экран сам владеет «назад» (navigation_back SCREEN_OWNED_ANDROID_BACK_PATHS);
+  // открытое окно энергии закрывает «назад» само (Modal onRequestClose) и сюда не доходит. Повтор нажатия во время перехода — пропуск.
+  const backLeavingRef = useRef(false);
+  useEffect(() => {
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (backLeavingRef.current) { console.log('[DIALOG-BACK] hardware back skip reason=already_leaving'); return true; } // guard-ok: ранний выход — повтор
+      backLeavingRef.current = true;
+      console.log('[DIALOG-BACK] hardware back → как ✕: к Диалогам'); // guard-ok: одна строка на выход
+      safeRouterBack(router, '/ai_dialog_home' as never);
+      return true;
+    });
+    return () => sub.remove();
+  }, [router]);
   const again = () => {
     // зачем ([DIALOG-REPEAT], Сверка 15.10): «Ещё раз» молча ничего не делал без сцены и на двойной тап — каждый выход с причиной.
     // Энергия и месячная квота Free проверяются на брифинге при «Начать» (там же пейвол dialog_limit), здесь только переход.

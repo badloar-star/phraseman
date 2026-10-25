@@ -150,6 +150,8 @@ function isOneShotRoutePath(path: string): boolean {
 // закрытие внутренней панели, сохранение сессии). Глобальный guard их не перебивает.
 const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
   '/arena_match',
+  // зачем (аудит «назад» 26.10, B1): итог диалога сам ведёт «назад» к Диалогам, как его ✕ (иначе общий обработчик уводил на Главную)
+  '/dialogue_v2_completion',
   '/exam',
   '/flashcards_collection',
   '/flashcards_my_packs',

@@ -11,7 +11,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import React, { createContext, memo, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 
 import type { Lang } from '../../constants/i18n';
@@ -152,19 +152,30 @@ export const DoneChainProvider = memo(function DoneChainProvider({ before, lang,
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: сценарий играет один раз на показ
   }, []);
 
+  // зачем (координатор 26.10, аудит скорости Моментов №2): skip зависел от `revealed` (только ради строки журнала) и менялся на каждом ударе,
+  // а тело экрана `children(skip)` пересобиралось при каждом setRevealed — весь экран итога урока перерисовывался 7+ раз. Теперь skip
+  // стабилен (удар читаем из ref), тело строится один раз и меняется только вместе с самим экраном; удары доходят до блоков через контекст.
+  const revealedRef = useRef(revealed);
+  revealedRef.current = revealed;
   const skip = useCallback(() => {
     if (finishedRef.current) return;
-    console.log(`${DONE_CHAIN_LOG} тап — досмотр до финала с удара ${revealed}`); // guard-ok: единичный журнал досмотра
+    console.log(`${DONE_CHAIN_LOG} тап — досмотр до финала с удара ${revealedRef.current}`); // guard-ok: единичный журнал досмотра
     timers.current.forEach(clearTimeout);
     timers.current = [];
     setSkipped(true);
     setRevealed(T.beats);
     finish('skipped');
-  }, [finish, revealed]);
+  }, [finish]);
+  const bodyBuildsRef = useRef(0);
+  const body = useMemo(() => { bodyBuildsRef.current += 1; return children(skip); }, [children, skip]);
+  useEffect(() => {
+    if (revealed < T.beats) return;
+    console.log(`${DONE_CHAIN_LOG} замер: тело экрана построено ${bodyBuildsRef.current} раз(а) за ${T.beats} ударов (раньше — на каждом ударе)`); // guard-ok: единичный замер в конце цепочки
+  }, [revealed]);
 
   const previewBalance = previewAfter?.balance ?? null;
   const value = useMemo<ChainState>(() => ({ revealed, instant: reduced || skipped, streak, today, previewBalance }), [previewBalance, reduced, revealed, skipped, streak, today]);
-  return <ChainCtx.Provider value={value}>{children(skip)}</ChainCtx.Provider>;
+  return <ChainCtx.Provider value={value}>{body}</ChainCtx.Provider>;
 });
 
 /** Блок `[data-b]`: всплывает (opacity 0 → 1, сдвиг 18 → 0) на своём ударе. */
@@ -219,22 +230,49 @@ export const ChainStars = memo(function ChainStars({ stars, g, accessibilityLabe
 
 type CountPhase = 'hold' | 'run' | 'final';
 
-/** hold — стоит на from (блок ещё не всплыл), run — бежит from → to через delay, final — сразу to (reduced-motion / досмотр). */
-function useCountUp(from: number, to: number, phase: CountPhase, delay: number, duration: number): number {
+/**
+ * Общий тик счётчиков строки: один интервал на строку вместо одного на каждое число.
+ * зачем (координатор 26.10, аудит скорости Моментов №5): строка «+N монет» крутила два интервала по 40 мс и перерисовывала себя целиком
+ * (три картинки и массив летящих монет) на каждом тике. Теперь тик один, а перерисовывается только текст числа (лист CountUpText).
+ */
+type Ticker = Readonly<{ subscribe: (fn: () => void) => () => void }>;
+function useRowTicker(running: boolean, untilMs: number): Ticker {
+  const subs = useRef(new Set<() => void>());
+  const ticker = useMemo<Ticker>(() => ({ subscribe: (fn) => { subs.current.add(fn); return () => { subs.current.delete(fn); }; } }), []);
+  useEffect(() => {
+    if (!running) return undefined;
+    const endAt = Date.now() + untilMs;
+    const timer = setInterval(() => {
+      subs.current.forEach((fn) => fn());
+      if (Date.now() >= endAt) clearInterval(timer);
+    }, 40);
+    return () => clearInterval(timer);
+  }, [running, untilMs]);
+  return ticker;
+}
+
+/** hold — стоит на from (блок ещё не всплыл), run — бежит from → to через delay, final — сразу to (reduced-motion / досмотр). Формула прежняя. */
+function useCountUp(from: number, to: number, phase: CountPhase, delay: number, duration: number, ticker: Ticker): number {
   const [shown, setShown] = useState(phase === 'final' ? to : from);
   useEffect(() => {
     if (phase !== 'run') { setShown(phase === 'final' ? to : from); return undefined; }
     const startedAt = Date.now() + delay;
-    const timer = setInterval(() => {
+    return ticker.subscribe(() => {
       const k = Math.min(1, Math.max(0, (Date.now() - startedAt) / duration));
       const next = Math.round(from + (to - from) * (1 - (1 - k) ** 3));
       setShown((prev) => (prev === next ? prev : next)); // зачем (аудит моментов 18.10): то же число — без перерисовки
-      if (k >= 1) clearInterval(timer);
-    }, 40);
-    return () => clearInterval(timer);
-  }, [delay, duration, from, phase, to]);
+    });
+  }, [delay, duration, from, phase, to, ticker]);
   return shown;
 }
+
+/** Лист: только текст числа перерисовывается на тике. */
+const CountUpText = memo(function CountUpText({ from, to, phase, delay, duration, ticker, format, style }: {
+  from: number; to: number; phase: CountPhase; delay: number; duration: number; ticker: Ticker; format: (n: number) => string; style: StyleProp<TextStyle>;
+}) {
+  const shown = useCountUp(from, to, phase, delay, duration, ticker);
+  return <Text style={style}>{format(shown)}</Text>;
+});
 
 const FlyCoin = memo(function FlyCoin({ k, dx, color }: { k: number; dx: number; color: string }) {
   const t = useSharedValue(0);
@@ -246,6 +284,8 @@ const FlyCoin = memo(function FlyCoin({ k, dx, color }: { k: number; dx: number;
   const st = useAnimatedStyle(() => ({ opacity: t.value <= 0 ? 0 : 1 - t.value, transform: [{ translateX: dx * t.value }, { scale: 1 - 0.5 * t.value }] }));
   return <Reanimated.View pointerEvents="none" style={[s.fly, { backgroundColor: color }, st]} />;
 });
+
+const groupThousands = (n: number): string => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
 /** Строка «+N монет» с плашкой баланса справа: монеты летят в баланс, счёт 0 → N, баланс бежит. */
 export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { amount: number; g: Lv2Glass; lang: Lang }) {
@@ -261,12 +301,19 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
   // зачем: баланс уже включает монеты урока — «бежит» от (баланс − N) к балансу; если ещё не включает (баланс < N), не выдумываем и показываем как есть
   const credited = balance >= amount;
   const phase: CountPhase = !on ? 'hold' : animate ? 'run' : 'final';
-  const shownCoins = useCountUp(0, amount, phase, 0, T.coinCount);
-  const shownBalance = useCountUp(credited ? balance - amount : balance, balance, credited ? phase : 'final', T.balanceAt, T.balanceCount);
+  const ticker = useRowTicker(animate, Math.max(T.coinCount, T.balanceAt + T.balanceCount) + 80);
+  const word = runeWord(lang, amount);
+  const coinsFormat = useCallback((n: number) => `+${n} ${word}`, [word]);
+  const rowRendersRef = useRef(0);
+  rowRendersRef.current += 1;
+  useEffect(() => {
+    if (!animate) return undefined;
+    const id = setTimeout(() => console.log(`${DONE_CHAIN_LOG} замер: строка монет перерисована ${rowRendersRef.current} раз(а) за счёт (раньше — на каждом тике 40 мс, ~25+)`), T.balanceAt + T.balanceCount + 200); // guard-ok: единичный замер
+    return () => clearTimeout(id);
+  }, [animate]);
   const [rowW, setRowW] = useState(0);
   const [pillW, setPillW] = useState(0);
   const dx = Math.max(0, rowW - 16 - pillW / 2 - (16 + 15));
-  const balanceText = String(shownBalance).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   return (
     <View
       onLayout={(e: LayoutChangeEvent) => setRowW(e.nativeEvent.layout.width)}
@@ -275,10 +322,10 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
       style={[s.plateRow, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}
     >
       <Image source={HOME_RUNE_ICON_SOURCE} style={s.rowCoin} contentFit="contain" accessible={false} />
-      <Text style={[s.rowTitle, s.grow, { color: g.text }]}>+{shownCoins} {runeWord(lang, amount)}</Text>
+      <CountUpText from={0} to={amount} phase={phase} delay={0} duration={T.coinCount} ticker={ticker} format={coinsFormat} style={[s.rowTitle, s.grow, { color: g.text }]} />
       <View testID="v2-done-chain-balance" onLayout={(e: LayoutChangeEvent) => setPillW(e.nativeEvent.layout.width)} style={[s.pill, { backgroundColor: g.opaqueControl }]}>
         <Image source={HOME_RUNE_ICON_SOURCE} style={s.pillCoin} contentFit="contain" accessible={false} />
-        <Text style={[s.pillText, { color: g.text }]}>{balanceText}</Text>
+        <CountUpText from={credited ? balance - amount : balance} to={balance} phase={credited ? phase : 'final'} delay={T.balanceAt} duration={T.balanceCount} ticker={ticker} format={groupThousands} style={[s.pillText, { color: g.text }]} />
       </View>
       {animate && dx > 0 ? Array.from({ length: T.flyCount }, (_, k) => <FlyCoin key={k} k={k} dx={dx} color={c.accentGraphic} />) : null /* guard-ok: шесть монет фиксированного числа */}
     </View>

@@ -20,7 +20,19 @@ const TIER = {
 
 const TEXTURE_ALPHA = 0.05;
 
+// зачем (Ревизор 25.10, 31b17106b): MedalToast зовёт эту функцию на каждом рендере, а в ней 6 вызовов legibleOn — кэш по объекту
+// токенов (токены темы кэшируются и неизменны, как у semanticInk); новый объект токенов при смене темы даёт новый стиль
+const cache = new WeakMap<GlassTokens, MedalToastThemeStyle>();
+
 export function medalToastStyleFromTokens(t: GlassTokens): MedalToastThemeStyle {
+  const hit = cache.get(t);
+  if (hit) return hit;
+  const style = buildMedalToastStyle(t);
+  cache.set(t, style);
+  return style;
+}
+
+function buildMedalToastStyle(t: GlassTokens): MedalToastThemeStyle {
   const tier = t.isLight ? TIER.light : TIER.dark;
   const clear = (c: string) => glassTone(c, 0);
   const textureOpacity = t.isLight ? 0.4 : 0.52;

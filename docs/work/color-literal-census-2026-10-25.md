@@ -25,14 +25,17 @@
   (`rgba(202,138,4,…)`, `rgba(252,211,77,…)`, `rgba(246,227,161,…)` для золотой темы). Заменить на `g.warnSoft`, для золотой темы — `g.accentSoft`.
 - `components/home/HomeMistakesLockedSheet.tsx:64` — затемнение под шторкой `rgba(0,0,0,0.5)` → `g.scrim`.
 
-**2 · Занятие — 222.**
-- `app/learning-v2/session/[id].tsx` (106) — `MODE_META`: у каждого режима свой яркий цвет (`#6FD6FF`, `#A78BFA`, `#F8C65C`, `#8EE65A`…),
-  плюс постоянный `#5872FF` в градиенте значка режима (строки 1360–1396). На экране это плашка и значок режима в шапке занятия —
-  **самое заметное в этой зоне**, и от темы оно не зависит. Заменить: подложка `g.accentSoft`, значок `g.accentGraphic`, градиент
-  `[g.accent, g.accentBright]`. Различать режимы — значком, а не цветом.
+**2 · Занятие — 222, из них видно человеку немного.**
 - `app/theory_topic_accents.ts` (76) — цвета тем теории; `components/learning-v2/horizons/model.ts` (70) — палитра иллюстраций
   «Горизонтов» (арт: theme-exempt с причиной, если владелец оставит); `app/learning_v2_session_intro_check.tsx` (43) — маршрут
   проверки вступления.
+
+
+**Невидимо, кандидат на удаление после OTA (поправка координатора 25.10).** `app/learning-v2/session/[id].tsx` (106) — `MODE_META` со своим
+цветом у каждого режима (`#6FD6FF`, `#A78BFA`, `#F8C65C`, `#8EE65A`…) и постоянный `#5872FF` в градиенте значка режима (строки 1360–1396). Всё это живёт
+только в старом экране занятия `LearningV2LegacySessionScreen`. Люди его не видят: английский идёт через
+`app/learning_v2_direct_session_player_v1.tsx` (там 0 литералов), другие языки скрыты. Перекрашивать не нужно — удалить вместе со старым
+экраном после выхода OTA.
 
 **3 · Пик — 112, все в `modules/spire/tower_skins.ts`.** Это скины башни, покупаемый арт. Правильнее пометить theme-exempt с
 причиной («скин башни — коллекционный арт»), чем перекрашивать. Решение за владельцем Пика.
@@ -1580,3 +1583,16 @@
 | components/DailyPhraseCard.tsx:1294 | `#22C55E` | текст или значок | home · 1da903c7a · 2026-10-23 | `semanticInk(g).goodText` (текст) / `g.good` (значок) |
 | components/GlobalBroadcastModal.tsx:83 | `rgba(0,0,0,0.62)` | значение цвета | i18n · 31fa965f7 · 2026-10-17 | `g.scrim` / `g.scrimStrong` (или theme-exempt: затемнение) |
 | components/onboarding_aha/aha_ui.tsx:183 | `rgba(255,255,255,0.28)` | обводка | checkpoint: preserve current mobile work · 2fba54828 · 2026-07-15 | `g.bevelHi` |
+
+## Уточнение после проверки (25.10, по раздаче координатора)
+
+- **`app/daily_phrase_chrome.ts` (126) — мёртвый код, а не живой долг.** Единственный показ «Фразы дня» — `app/(tabs)/home.tsx:2943`, в варианте
+  `homeV2`, а он рисуется палитрой 2.0 (`useV2Palette`), не таблицей. Ветки с `dailyPhraseChromeFor` в `DailyPhraseCard` (плашка и
+  `homeAdditional`) не вызываются. Таблицу держат только тесты `daily_phrase_chrome`, `daily_phrase_quest_card_contract` и
+  `sage_porcelain_surface_chrome_contract`. Это в уборку вместе со старыми вариантами карточки, перекрашивать нечего.
+- **Окно званий в `app/(tabs)/home.tsx` (2955, 3102, 3107, 3128) — не открывается:** `setTitleModalVisible(true)` нигде не вызывается.
+  В уборку.
+- **`components/home/HomeMistakesLockedSheet.tsx` — не импортируется с 21.09** (см. комментарий в `home.tsx:137`). В уборку.
+- **Сцена Главной:** цвета вынесены в `components/home/v2/scene/home_scene_ink.ts` (`HOME_SCENE_INK`, по образцу `SPIRE_SCENE_INK`), подключают
+  Моменты. Попутно: в `today_scene/TodaySceneView.tsx:240` надзаголовок ещё белый 86 % — с модулем он станет белым 100 %, как у обычной и
+  особых сцен.

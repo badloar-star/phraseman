@@ -1,4 +1,4 @@
-// Запуск: node scripts/color_literal_census.mjs [выход.md]
+// Запуск: node scripts/color_literal_census.mjs [выход.md] — по умолчанию .codex-tmp/color-literal-census.raw.md (отчёт с ручной сводкой не трогает)
 // зачем (координатор 25.10, правило владельца «каждый цвет — оттенок текущей темы»): перепись цветовых литералов в стилях app/, components/,
 // modules/, которые НЕ из токенов темы и НЕ помечены theme-exempt с причиной. В отличие от сторожа tests/theme_hardcoded_colors_ratchet
 // (он пропускает Главную и Learning V2 по прежним запретам), здесь смотрим ВСЁ, что видит человек, и сортируем по заметности:
@@ -10,7 +10,9 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const OUT = process.argv[2] ?? 'docs/work/color-literal-census-2026-10-25.md';
+// зачем (Моменты 25.10: прогон для сверки перезаписал отчёт с ручными разделами): по умолчанию пишем сырую таблицу в отдельный файл,
+// а docs/work/color-literal-census-2026-10-25.md с ручной сводкой правится только руками
+const OUT = process.argv[2] ?? '.codex-tmp/color-literal-census.raw.md';
 const DIRS = ['app', 'components', 'modules'];
 
 // не экран: токены и палитры тем (источник цветов), dev-витрины, тесты, админка, контент-данные

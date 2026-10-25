@@ -94,3 +94,18 @@ Outcome: три подписи тоста медали (подпись под н
 Governance-ID: TG-D89032655D7A
 
 Outcome: по правилу владельца «каждый цвет — оттенок текущей темы» найти в app/, components/, modules/ цветовые литералы в стилях, которые не из токенов темы и не помечены theme-exempt с причиной; отчёт: файл · строка · цвет · что на экране · чей модуль (по свежести коммита) · как заменить токеном; сортировка по заметности (Главная, занятие, Пик, Plus первыми). Scope: скрипт поиска scripts/color_literal_census.mjs и отчёт docs/work/color-literal-census-2026-10-25.md; чужие файлы не правлю. Architecture: без изменений. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта, выборочная проверка строк глазами. Rollback: удалить скрипт и отчёт.
+
+## Продолжение: кэш стиля тоста медали (Ревизор 25.10 к 31b17106b)
+Governance-ID: TG-D89032655D7A
+
+Outcome: medalToastStyleFromTokens не пересчитывает 6 вызовов legibleOn на каждом рендере MedalToast. Scope: components/medalToastThemeStylesFromTokens.ts — WeakMap по объекту токенов, как у semanticInk. Architecture: токены темы неизменны и кэшируются, новый объект при смене темы даёт новый стиль. Security and privacy: нет. Technical debt: нет. Verification: medal_toast_text_contrast, lessons_level_tokens_medal_toast_contract, theme_chrome_from_tokens, sage_porcelain_surface_chrome_contract — 38/38. Rollback: git revert коммита (OTA).
+
+## Продолжение: модуль чернил сцены Главной; «Фраза дня» и окно званий (координатор 25.10)
+Governance-ID: TG-D89032655D7A
+
+Outcome: (а) модуль HOME_SCENE_INK — постоянные цвета надписей, стекла и кнопки сцены Главной в одном месте по образцу SPIRE_SCENE_INK; замер контраста сцены читает цвета из модуля; подключение в HomeSceneStage / TodaySceneView / HomeScene / HomeV2Header — Моменты. (б) daily_phrase_chrome.ts и (в) окно званий в home.tsx и HomeMistakesLockedSheet — проверены: в приложении не показываются (мёртвый код), правок нет, переданы в уборку. Scope: components/home/v2/scene/home_scene_ink.ts (новый, пока не импортирован), scripts/home_scene_special_contrast_measure.ts, docs/work/color-literal-census-2026-10-25.md. Architecture: цвета сцены не цвета темы — свет сцены, как у Пика. Security and privacy: нет. Technical debt: литералы в компонентах сцены остаются до подключения модуля Моментами. Verification: замер сцены через модуль — 0 нарушений на 58 сценах. Rollback: git revert коммита.
+
+## Продолжение: поправка переписи — старый экран занятия невидим (координатор 25.10)
+Governance-ID: TG-35E90C158110
+
+Outcome: в docs/work/color-literal-census-2026-10-25.md пометить MODE_META и #5872FF из app/learning-v2/session/[id].tsx как «невидимо, кандидат на удаление после OTA» (живёт только в LearningV2LegacySessionScreen; английский идёт через learning_v2_direct_session_player_v1.tsx, 0 литералов) и сдвинуть вниз по заметности. Scope: только этот документ. Architecture/Security/Debt: нет. Verification: перечитать раздел. Rollback: git revert.

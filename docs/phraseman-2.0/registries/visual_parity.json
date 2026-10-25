@@ -49701,6 +49701,740 @@
       "release_note": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
       "added_reason": "координатор 26.10 (таблица «назад» 988d643cd): эталон был без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
       "code_note": "В dialogs-hub-v4.html нет .col — телефон = 6-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
+    },
+    {
+      "id": "exam-v2-001",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Старт экзамена",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Старт экзамена",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «start» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=start&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-002",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Ситуация · выбор ответа",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Ситуация · выбор ответа",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «situation» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=situation&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-003",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Ситуация · ответ письменно",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Ситуация · ответ письменно",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «situation_write» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=situation_write&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-004",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Диалог",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Диалог",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «dialogue» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=dialogue&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-005",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Исправь ошибку",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Исправь ошибку",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «fix» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=fix&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-006",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Ответ верный",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Ответ верный",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «answer_correct» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=answer_correct&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-007",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Опечатка",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Опечатка",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «answer_typo» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=answer_typo&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-008",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Ответ неверный",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Ответ неверный",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «answer_wrong» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=answer_wrong&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-009",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Итог · сдал",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Итог · сдал",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «result_pass» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=result_pass&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-010",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Итог · не сдал",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Итог · не сдал",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «result_fail» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=result_fail&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-011",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Где споткнулся (разбор)",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Где споткнулся (разбор)",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «mistakes» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=mistakes&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-012",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Повтори эти темы",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Повтори эти темы",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «review» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=review&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-v2-013",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/chapter-exam-v2-prototype.html",
+        "phone": 1,
+        "label": "Пауза пересдачи",
+        "mapping": "proto_state"
+      },
+      "screen": "Экзамен главы v2 (урок 1, главы 1–3)",
+      "state": "Экзамен v2 · Пауза пересдачи",
+      "code": [
+        "app/learning-v2/chapter-exam.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Run.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Question.tsx",
+        "components/learning-v2/exam_v2/ChapterExamV2Result.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Прототип проходимый, телефон один (1-й .ph, .col нет): состояние «cooldown» достигается прохождением. Кадр приложения: /dev_chapter_exam_v2_preview?state=cooldown&chapter=1|2|3. v2 включается, когда у главы есть банк (isChapterExamV2EnabledFor) и флаг learning_chapter_exam_v2_enabled не выключен."
+    },
+    {
+      "id": "exam-window-real-002",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/exam-window-real.html",
+        "phone": 2,
+        "label": "Сдан",
+        "mapping": "img_index"
+      },
+      "screen": "Сезон · экзамен главы (утверждено владельцем 25.10, 7fa5a5786)",
+      "state": "Окно экзамена · сдан: результат, что открылось, «К главе 2» и «Закрыть»",
+      "code": [
+        "components/learning-v2/season/SeasonCourse.tsx",
+        "components/learning-v2/season/SeasonExpandedCard.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Эталон — настоящие снимки (<img>), .col и .ph нет: номер = 2-я картинка на странице. Картинки 1 и 4 — «Сейчас» (до правки), не эталон."
+    },
+    {
+      "id": "exam-window-real-003",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/exam-window-real.html",
+        "phone": 3,
+        "label": "Пауза",
+        "mapping": "img_index"
+      },
+      "screen": "Сезон · экзамен главы (утверждено владельцем 25.10, 7fa5a5786)",
+      "state": "Окно экзамена · пауза: сколько осталось до пересдачи и «Закрыть»; подпись без «нужно 10»",
+      "code": [
+        "components/learning-v2/season/SeasonCourse.tsx",
+        "components/learning-v2/season/SeasonExpandedCard.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Эталон — настоящие снимки (<img>), .col и .ph нет: номер = 3-я картинка на странице. Картинки 1 и 4 — «Сейчас» (до правки), не эталон."
+    },
+    {
+      "id": "exam-window-real-005",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/exam-window-real.html",
+        "phone": 5,
+        "label": "Как будет",
+        "mapping": "img_index"
+      },
+      "screen": "Сезон · экзамен главы (утверждено владельцем 25.10, 7fa5a5786)",
+      "state": "Подпись под каруселью · сданный экзамен: «Начнём с эпизода 9»",
+      "code": [
+        "components/learning-v2/season/SeasonCourse.tsx",
+        "components/learning-v2/season/season_exam_caption.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "Эталон — настоящие снимки (<img>), .col и .ph нет: номер = 5-я картинка на странице. Картинки 1 и 4 — «Сейчас» (до правки), не эталон."
+    },
+    {
+      "id": "dialogs-hub-v4-001",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs-hub-v4.html",
+        "phone": 1,
+        "label": "1 · Free",
+        "mapping": "ph_index"
+      },
+      "screen": "Диалоги · хаб v4 (DIALOGS_SCENE_V2_ENABLED = true)",
+      "state": "Хаб Диалогов · Free",
+      "code": [
+        "components/DialogsTabContent.tsx",
+        "components/dialogs/scene/DialogsScene.tsx",
+        "components/dialogs/scene/DialogsSceneHub.tsx",
+        "components/dialogs/hub/DialogsHubThemes.tsx",
+        "components/dialogs/hub/DialogsHubWorldSwitch.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "В dialogs-hub-v4.html нет .col — телефон = 1-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
+    },
+    {
+      "id": "dialogs-hub-v4-002",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs-hub-v4.html",
+        "phone": 2,
+        "label": "2 · Plus",
+        "mapping": "ph_index"
+      },
+      "screen": "Диалоги · хаб v4 (DIALOGS_SCENE_V2_ENABLED = true)",
+      "state": "Хаб Диалогов · Plus",
+      "code": [
+        "components/DialogsTabContent.tsx",
+        "components/dialogs/scene/DialogsScene.tsx",
+        "components/dialogs/scene/DialogsSceneHub.tsx",
+        "components/dialogs/hub/DialogsHubThemes.tsx",
+        "components/dialogs/hub/DialogsHubWorldSwitch.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "В dialogs-hub-v4.html нет .col — телефон = 2-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
+    },
+    {
+      "id": "dialogs-hub-v4-003",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs-hub-v4.html",
+        "phone": 3,
+        "label": "3 · Закрыто по рангу",
+        "mapping": "ph_index"
+      },
+      "screen": "Диалоги · хаб v4 (DIALOGS_SCENE_V2_ENABLED = true)",
+      "state": "Хаб Диалогов · Закрыто по рангу",
+      "code": [
+        "components/DialogsTabContent.tsx",
+        "components/dialogs/scene/DialogsScene.tsx",
+        "components/dialogs/scene/DialogsSceneHub.tsx",
+        "components/dialogs/hub/DialogsHubThemes.tsx",
+        "components/dialogs/hub/DialogsHubWorldSwitch.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "В dialogs-hub-v4.html нет .col — телефон = 3-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
+    },
+    {
+      "id": "dialogs-hub-v4-004",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs-hub-v4.html",
+        "phone": 4,
+        "label": "4 · Лимит исчерпан",
+        "mapping": "ph_index"
+      },
+      "screen": "Диалоги · хаб v4 (DIALOGS_SCENE_V2_ENABLED = true)",
+      "state": "Хаб Диалогов · Лимит исчерпан",
+      "code": [
+        "components/DialogsTabContent.tsx",
+        "components/dialogs/scene/DialogsScene.tsx",
+        "components/dialogs/scene/DialogsSceneHub.tsx",
+        "components/dialogs/hub/DialogsHubThemes.tsx",
+        "components/dialogs/hub/DialogsHubWorldSwitch.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "В dialogs-hub-v4.html нет .col — телефон = 4-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
+    },
+    {
+      "id": "dialogs-hub-v4-005",
+      "source": "coordinator-2026-10-26",
+      "mockup": {
+        "file": "docs/design/v2-app/dialogs-hub-v4.html",
+        "phone": 5,
+        "label": "5 · Пройденный диалог",
+        "mapping": "ph_index"
+      },
+      "screen": "Диалоги · хаб v4 (DIALOGS_SCENE_V2_ENABLED = true)",
+      "state": "Хаб Диалогов · Пройденный диалог",
+      "code": [
+        "components/DialogsTabContent.tsx",
+        "components/dialogs/scene/DialogsScene.tsx",
+        "components/dialogs/scene/DialogsSceneHub.tsx",
+        "components/dialogs/hub/DialogsHubThemes.tsx",
+        "components/dialogs/hub/DialogsHubWorldSwitch.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "не размечено — проверить при сверке"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "added_reason": "координатор 26.10 (решения по d360a6ee4): эталон без строки реестра — заведено Макетами; маршрут в стор-сборке не вырезан (router.ctx.js) → r1",
+      "code_note": "В dialogs-hub-v4.html нет .col — телефон = 5-й .ph на странице; parity_shot по номеру .col его не найдёт, склейку собирать по .ph."
     }
   ]
 }

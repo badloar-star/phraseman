@@ -305,8 +305,10 @@ set_param('profile-008', 'appearance', 'dark')
 set_param('profile-008', 'level', '0.5')
 
 # ── Разбор среза паритета «Авторизация» по коду (13.10 ~15:10, PARITY_R1_SLICES).
-# overlays-campaigns-014: promo=off снимал подмену → «код не найден»; образец — «Промокоды сейчас временно выключены» (promo_code_entry.tsx: case 'disabled').
-set_param('overlays-campaigns-014', 'promo', 'disabled')
+# overlays-campaigns-014: образец — «Промокоды сейчас временно выключены». Это promo=off → promo_disabled (promo_code_entry.tsx: case
+# 'promo_disabled'); promo=disabled — «этот код выключен» → «код не найден». Ядро 25.10: прежняя правка сюда ставила disabled — кадр
+# снимался не тот (разбор R1 d8eab23c4, строка 20). Кадр 12.10 05:54Z снят до подмены off (7a79d3519, 12.10 18:31).
+set_param('overlays-campaigns-014', 'promo', 'off')
 # settings-gap-023: «Test» короче ERROR_REPORT_COMMENT_MIN_LEN (10) — «Отправить» неактивна, итог «отправлено» недостижим. Ответ подменяет support=sent.
 set_steps('settings-gap-023', ['tap:#support-report-input', 'type:Cards_audio_does_not_play', 'hidekb', 'wait:300', 'tap:#support-report-submit', 'wait:800'])
 

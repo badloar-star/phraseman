@@ -315,6 +315,8 @@ const storeReleaseDevStateStubs = new Map(
     'dev_today_tasks',
     'dev_year_activity',
     'dev_youtube_demo',
+    // зачем (координатор 25.10): homefacts — факты «Сцены» на боевой Главной для съёмки; в стор-сборке заглушка (HomeScene импортирует модуль)
+    'dev_home_scene_facts',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

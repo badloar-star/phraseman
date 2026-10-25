@@ -37,6 +37,8 @@ import { useMyCoinRank } from '../../../../hooks/use_my_coin_rank';
 import { useSpireHomePlace } from '../../../../app/spire/spire_home_place';
 import { useTabTopBleedInset } from '../../../tab_top_bleed';
 import { noteHomeRender } from '../../../../app/home_scroll_probe';
+import { getDevHomeSceneFacts, subscribeDevHomeSceneFacts } from '../../../../app/dev_home_scene_facts';
+import type { HomeScenePreviewSetup } from './home_scene_preview_fixtures';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
 import { HOME_SCENE_INK } from './home_scene_ink';
 
@@ -128,7 +130,17 @@ export default function HomeScene(p: Props) {
   const offline = useHomeSceneOffline(p.active);
   const personal = usePersonalProgressSnapshot();
   const now = new Date();
-  const hour = now.getHours();
+  // зачем (координатор 25.10, «приложение = макет» на настоящем экране): dev_state?homefacts=<герой> — факты эталона (часы, разрыв
+  // заходов, история дней, прогресс урока) вместо телефона; героя выбирает та же pickHomeSceneState. В стор-сборке — заглушка (null).
+  const devFactsState = useSyncExternalStore(subscribeDevHomeSceneFacts, getDevHomeSceneFacts, getDevHomeSceneFacts);
+  const devSetup = useMemo((): HomeScenePreviewSetup | null => {
+    if (!devFactsState) return null;
+    // лениво: моки эталона нужны только при подмене, обычный старт Главной за модуль не платит
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { homeScenePreviewSetup } = require('./home_scene_preview_fixtures') as typeof import('./home_scene_preview_fixtures');
+    return homeScenePreviewSetup(devFactsState, p.plus);
+  }, [devFactsState, p.plus]);
+  const hour = devSetup ? devSetup.input.hour : now.getHours();
   const todayKey = dayKeyOf(now);
   const dayCounted = p.streakToday === 'unknown' ? null : p.streakToday === 'counted';
   const lastDay = homeSceneLastActivityDay(personal.activityDates);
@@ -153,10 +165,22 @@ export default function HomeScene(p: Props) {
   const streakLostToday = lostCandidate && firstEntryToday.current;
   useEffect(() => { if (streakLostToday) streakLostShownDay = todayKey; }, [streakLostToday, todayKey]);
   const allReleasedDone = useMemo(() => homeSceneAllReleasedDone(p.courseProgress, isSessionReleased), [p.courseProgress]);
-  const decision = useMemo(() => pickHomeSceneState({
-    hasProgress: p.hasProgress, hour, streakDays: p.streakDays, dayCounted, plus: p.plus, energy: p.energy, daysAway,
-    streakLostToday, chapterExamReady: false, allReleasedDone, offline,
-  }), [p.hasProgress, hour, p.streakDays, dayCounted, p.plus, p.energy, daysAway, streakLostToday, allReleasedDone, offline]);
+  const decision = useMemo(() => pickHomeSceneState(devSetup
+    // dev-подмена: факты сцены — из эталона; энергия, Plus и сеть — настоящие (у них свои честные ручки)
+    ? { ...devSetup.input, plus: p.plus, energy: p.energy, offline }
+    : {
+      hasProgress: p.hasProgress, hour, streakDays: p.streakDays, dayCounted, plus: p.plus, energy: p.energy, daysAway,
+      streakLostToday, chapterExamReady: false, allReleasedDone, offline,
+    }), [devSetup, p.hasProgress, hour, p.streakDays, dayCounted, p.plus, p.energy, daysAway, streakLostToday, allReleasedDone, offline]);
+  const devLogRef = useRef('');
+  useEffect(() => {
+    const key = devSetup ? `${devFactsState}|${decision.state}|${decision.reason}` : 'off';
+    if (devLogRef.current === key) return;
+    const wasOn = devLogRef.current !== '' && devLogRef.current !== 'off';
+    devLogRef.current = key;
+    if (!devSetup) { if (wasOn) console.log('[DEV-HOME-FACTS] off — факты сцены снова с телефона'); return; } // guard-ok: смена режима
+    console.log('[DEV-HOME-FACTS] applied', JSON.stringify({ requested: devFactsState, decided: decision.state, match: decision.state === devFactsState, reason: decision.reason, input: { ...devSetup.input, plus: p.plus, energy: p.energy, offline }, daysAway: devSetup.daysAway, lostStreakDays: devSetup.lostStreakDays, minutesToMidnight: devSetup.minutesToMidnight })); // guard-ok: одна строка на смену подмены
+  }, [devSetup, devFactsState, decision, p.plus, p.energy, offline]);
   const logKeyRef = useRef('');
   useEffect(() => {
     const key = `${decision.state}|${decision.reason}|${String(decision.offlineLine)}|${String(decision.zeroEnergyNote)}`;
@@ -173,7 +197,9 @@ export default function HomeScene(p: Props) {
   const moreFacts = useHomeSceneMoreFacts({ enabled: Boolean(p.onSpecial), ready: personal.hydrated, studyTarget: p.studyTarget, lang: p.lang, streakDays: p.streakDays,
     lessons: personal.completedLessons.length, phrasesLearned: localFacts.phrasesLearned, coinRank: myCoinRank, peakPlace });
   const specialFacts = useMemo(() => ({ mistakesOpen: p.mistakesOpen ?? null, wordsDue, activityDates: personal.activityDates, local: localFacts, more: moreFacts }), [p.mistakesOpen, wordsDue, personal.activityDates, localFacts, moreFacts]);
-  const special = useHomeSceneSpecial({ lang: p.lang, decision, facts: specialFacts, place: null, active: p.active && !p.pending && Boolean(p.onSpecial) });
+  const specialLive = useHomeSceneSpecial({ lang: p.lang, decision, facts: specialFacts, place: null, active: p.active && !p.pending && Boolean(p.onSpecial) });
+  // зачем (dev-подмена homefacts): на кадре Сверки — ровно заказанный герой, особая сцена поверх него не встаёт
+  const special = devSetup ? null : specialLive;
   return (
     <HomeSceneView
       lang={p.lang}
@@ -182,9 +208,10 @@ export default function HomeScene(p: Props) {
       decision={decision}
       special={p.onSpecial && !p.pending ? special : null}
       onSpecial={p.onSpecial}
-      streakDays={p.streakDays}
-      daysAway={daysAway}
-      lostStreakDays={streakLostToday ? personal.streakCount : null}
+      streakDays={devSetup ? devSetup.streakDays : p.streakDays}
+      daysAway={devSetup ? devSetup.daysAway : daysAway}
+      lostStreakDays={devSetup ? devSetup.lostStreakDays : streakLostToday ? personal.streakCount : null}
+      minutesToMidnight={devSetup?.minutesToMidnight}
       place={p.place}
       pending={p.pending}
       busy={p.busy}

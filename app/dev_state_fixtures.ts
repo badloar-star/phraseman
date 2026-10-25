@@ -22,6 +22,7 @@ import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
 import { DEV_UI_LANGS, setDevUiLang, type DevUiLangRequest } from './dev_ui_lang';
+import { DEV_HOME_SCENE_FACT_STATES, type DevHomeSceneFactState } from './dev_home_scene_facts';
 import { setDevMistakesDemo, setDevMistakesFinale } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
@@ -313,6 +314,8 @@ export type DevStateRequest = Readonly<{
   authFetch?: 'on' | 'off';
   /** «Сегодня» на Главной с заданием Пика (координатор 13.10, «Шпиль → Пик»): только показ, хранилище не трогается. */
   todaytask?: 'spire' | 'off';
+  /** Факты «Сцены» на боевой Главной — числа эталона для героя (координатор 25.10): только память, сброс off. */
+  homefacts?: DevHomeSceneFactState | 'off';
   lv2progress?: number | 'off';
   lv2save?: 'fail' | 'off';
   legacybonus?: 'demo' | 'pearls' | 'nothing' | 'off';
@@ -476,6 +479,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.uiLang = pick('uiLang', [...DEV_UI_LANGS, 'off'] as const);
   request.authFetch = pick('authFetch', ['on', 'off'] as const);
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
+  request.homefacts = pick('homefacts', [...DEV_HOME_SCENE_FACT_STATES, 'off'] as const);
   // зачем (Макеты 15.10, съёмка курса V2): «пройдено N первых занятий» — только память
   request.lv2progress = intOrWord('lv2progress', ['off'] as const, 56);
   request.lv2save = pick('lv2save', ['fail', 'off'] as const);
@@ -1095,6 +1099,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('todaytask', request.todaytask, async () => {
       const { setDevTodayTaskSpire } = await import('./dev_today_tasks');
       return setDevTodayTaskSpire(request.todaytask === 'spire');
+    });
+  }
+  if (request.homefacts !== undefined) {
+    // зачем (координатор 25.10, «приложение = макет» на настоящем экране): факты «Сцены» для героя — только память, Firestore не трогаем
+    await step('homefacts', request.homefacts, async () => {
+      const { setDevHomeSceneFacts } = await import('./dev_home_scene_facts');
+      return setDevHomeSceneFacts(request.homefacts === 'off' || request.homefacts === undefined ? null : request.homefacts);
     });
   }
   if (request.winbackaway !== undefined) {

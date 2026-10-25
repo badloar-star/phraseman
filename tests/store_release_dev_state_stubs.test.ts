@@ -20,7 +20,9 @@ const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev
   'dev_short_lesson',
   // зачем (PM-216 пункт В, координатор 13.10): dev-модули, найденные в первом стор-экспорте
   'dev_ai_consent', 'dev_as_free_flag', 'dev_dialog_send', 'dev_fc_lang_state', 'dev_hub_bus', 'dev_overlays_off',
-  'dev_practice_runes_seed', 'dev_robot_display', 'dev_today_tasks', 'dev_year_activity', 'dev_youtube_demo'] as const;
+  'dev_practice_runes_seed', 'dev_robot_display', 'dev_today_tasks', 'dev_year_activity', 'dev_youtube_demo',
+  // зачем (координатор 25.10): факты «Сцены» на боевой Главной для съёмки — в стор-бандле заглушка, подмены нет
+  'dev_home_scene_facts'] as const;
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const runtimeExports = (source: string): string[] => {
@@ -96,6 +98,10 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     expect([shortLesson.getDevShortLessonCells(), shortLesson.setDevShortLessonCells(3), shortLesson.getDevShortLessonCells()]).toEqual([null, false, null]); // урок не укорачивается
     const send = require('../store_release_stubs/dev_state/dev_dialog_send_stub');
     expect(send.devDialogNextMonthStartMs(Date.UTC(2026, 9, 13))).toBe(Date.UTC(2026, 10, 1));
+    const homeFacts = require('../store_release_stubs/dev_state/dev_home_scene_facts_stub');
+    expect([homeFacts.getDevHomeSceneFacts(), homeFacts.setDevHomeSceneFacts('streak_risk'), homeFacts.getDevHomeSceneFacts(), homeFacts.isDevHomeSceneFactState('streak_risk')])
+      .toEqual([null, false, null, false]); // факты «Сцены» не подменяются
+    expect(typeof homeFacts.subscribeDevHomeSceneFacts(() => undefined)).toBe('function');
     /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
   });
 

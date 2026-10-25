@@ -83,6 +83,30 @@ test('телефоны эталона идут в порядке состоян�
   assert.deepEqual(todayOrder, TODAY_STATES);
 });
 
+// зачем (координатор 25.10): 6 героев, которых тестовый аккаунт честно не даёт, — вторые строки на БОЕВОЙ Главной (homefacts)
+test('у 6 героев есть вторая строка «боевая Главная»: homefacts=<герой>, next на вкладку Главной, телефон как у основной строки', () => {
+  const LIVE = { '003': 'streak_risk', '004': 'day_done', '007': 'exam_ready', '008': 'streak_lost', '009': 'welcome_back', '010': 'all_done' };
+  const liveRows = doc.split(/\r?\n/).filter((line) => /^\| home-scene-live-\d{3} \|/.test(line));
+  assert.equal(liveRows.length, Object.keys(LIVE).length);
+  const problems = [];
+  for (const [n, state] of Object.entries(LIVE)) {
+    const line = liveRows.find((l) => l.startsWith(`| home-scene-live-${n} |`));
+    if (!line) { problems.push(`home-scene-live-${n}: нет`); continue; }
+    const cells = line.split('|');
+    if (cells.length !== 10) problems.push(`home-scene-live-${n}: колонок ${cells.length - 2}`);
+    if (cells[7].trim() !== 'да') problems.push(`home-scene-live-${n}: не «уникальна: да»`);
+    const link = (cells[3].match(/`([^`]+)`/) ?? [])[1] ?? '';
+    if (!link.startsWith('phraseman://dev_state?onboarding=done&intros=seen')) problems.push(`home-scene-live-${n}: не через dev_state`);
+    if (!link.includes(`&homefacts=${state}&`)) problems.push(`home-scene-live-${n}: нет homefacts=${state}`);
+    if (!link.endsWith('&next=/(tabs)/home')) problems.push(`home-scene-live-${n}: next не на боевую Главную`);
+    if (!HOME_STATES.includes(state)) problems.push(`home-scene-live-${n}: «${state}» не из функции выбора`);
+    const main = regRows.find((r) => r.id === `home-scene-${n}`);
+    if (Number((cells[8].match(/#(\d+)/) ?? [])[1]) !== Number(main?.mockup?.phone)) problems.push(`home-scene-live-${n}: телефон не как у home-scene-${n}`);
+  }
+  assert.deepEqual(problems, []);
+  assert.match(read('app/dev_state_fixtures.ts'), /request\.homefacts = pick\('homefacts', \[\.\.\.DEV_HOME_SCENE_FACT_STATES, 'off'\] as const\);/);
+});
+
 test('оба dev-входа закрыты в стор-сборке', () => {
   for (const rel of ['app/dev_home_scene_preview.tsx', 'app/dev_today_scene_preview.tsx']) {
     assert.match(read(rel), /if \(!ENABLE_DEV_TOOLS \|\| IS_STORE_RELEASE\) return <Redirect/, rel);

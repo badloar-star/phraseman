@@ -89,3 +89,8 @@ Outcome: контраст всех тостов и всплывашек во в�
 Governance-ID: TG-F335B7E04B05
 
 Outcome: три подписи тоста медали (подпись под названием, подпись ступени без повышения и с повышением) ≥ 4,5 во всех 174 сочетаниях. Scope: components/medalToastThemeStylesFromTokens.ts (доводка legibleOn к text по обоим краям карточки с текстурой), components/medalToastThemeStyles.ts (необязательное поле tierLabelColors), components/MedalToast.tsx (одна строка: подпись ступени из tierLabelColors), tests/medal_toast_text_contrast.test.ts, поправка скрипта и отчёта тостов. Architecture: цвета ступеней Дизайна (theme-exempt) остаются в tierAccents для значка; текст получает отдельное поле. Security and privacy: данных не касается. Technical debt: прежние таблицы по ThemeMode (витрина) остаются без tierLabelColors. Verification: сторож на 174 × 2 края × 6 подписей, соседние тесты медали. Rollback: git revert коммита (OTA).
+
+## Продолжение: перепись цветовых литералов вне токенов (координатор 25.10, только изучение)
+Governance-ID: TG-D89032655D7A
+
+Outcome: по правилу владельца «каждый цвет — оттенок текущей темы» найти в app/, components/, modules/ цветовые литералы в стилях, которые не из токенов темы и не помечены theme-exempt с причиной; отчёт: файл · строка · цвет · что на экране · чей модуль (по свежести коммита) · как заменить токеном; сортировка по заметности (Главная, занятие, Пик, Plus первыми). Scope: скрипт поиска scripts/color_literal_census.mjs и отчёт docs/work/color-literal-census-2026-10-25.md; чужие файлы не правлю. Architecture: без изменений. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта, выборочная проверка строк глазами. Rollback: удалить скрипт и отчёт.

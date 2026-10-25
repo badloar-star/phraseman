@@ -29,9 +29,13 @@ const TAG = '[SPIRE-ROOM]';
 export const SPIRE_ROOM_RETRY_MS: readonly number[] = [2_000, 5_000, 15_000, 30_000];
 type Ids = Readonly<{ uid: string; stableId: string }>;
 
-/** Новый ответ поверх показанного: пустой ответ не стирает уже показанную комнату (кэш или прошлый ответ). */
-export function spireMergeRoomLoad(cur: SpireRoomLoad | null, next: SpireRoomLoad): SpireRoomLoad {
-  if (!next.room && cur?.room) return { ...next, room: cur.room };
+/**
+ * Новый ответ поверх показанного: пустой ответ не стирает уже показанную комнату (кэш или прошлый ответ).
+ * зачем (замок R39/F02 «B не видит Пик A», Ревизор 25.10): держим только комнату ТОГО ЖЕ владельца и языка — чужую не оставляем.
+ */
+export function spireMergeRoomLoad(cur: SpireRoomLoad | null, next: SpireRoomLoad, owner?: Readonly<{ uid: string; lang: string }>): SpireRoomLoad {
+  const keep = cur?.room && (!owner || (cur.room.uid === owner.uid && cur.room.lang === owner.lang)) ? cur.room : null;
+  if (!next.room && keep) return { ...next, room: keep };
   return next;
 }
 
@@ -51,6 +55,9 @@ export function useSpireRoomSync(input: Readonly<{
   const retryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const runRef = useRef<(why: string) => void>(() => undefined);
   const aliveRef = useRef(true);
+  // зачем (замок R39/F02, Ревизор 25.10 по 7dd91767f): поколение запуска — смена аккаунта/языка начинает новое; ответ и повтор
+  // прошлого поколения (запрос A ещё в полёте) в комнату B не попадают
+  const genRef = useRef(0);
 
   const clearRetry = (): void => { if (retryTimerRef.current) { clearTimeout(retryTimerRef.current); retryTimerRef.current = null; } };
 
@@ -62,23 +69,30 @@ export function useSpireRoomSync(input: Readonly<{
     clearRetry();
     attemptRef.current += 1;
     const attempt = attemptRef.current;
+    const gen = genRef.current;
+    const stale = (what: string): boolean => {
+      if (gen === genRef.current) return false;
+      DebugLogger.info(SPIRE, `${TAG} ${what} попытки ${attempt} прошлого поколения (${gen}, сейчас ${genRef.current}) — не трогаем`);
+      return true;
+    };
     const startedAt = Date.now();
     DebugLogger.info(SPIRE, `${TAG} попытка ${attempt} (${why}) lang=${lang} комната на экране=${hasRoomRef.current ? 'есть' : 'нет'}`);
     void spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang }).then((load) => { // тайм-аут — внутри spireSyncRoom (SPIRE_ROOM_SYNC_TIMEOUT_MS)
       const ms = Date.now() - startedAt;
       spireLoadMark('room:sync', { status: load.status, reason: load.reason, members: load.room?.members.length ?? null, ms, alive: aliveRef.current, attempt });
+      if (stale('ответ')) return;
       if (!aliveRef.current) { DebugLogger.info(SPIRE, `${TAG} ответ попытки ${attempt} после ухода с экрана — не трогаем`); return; }
       DebugLogger.info(SPIRE, `${TAG} ответ попытки ${attempt}: status=${load.status} reason=${load.reason} group=${load.room?.groupId ?? '—'} людей=${load.room?.members.length ?? '—'} за ${ms}мс`);
       // зачем (аудит Optimistic UI Шпиля, 13.10): плашка «нет сети» вставляется над башней — без перехода башня прыгала бы
       if (load.status === 'offline') animateNextLayoutTransition();
-      setRoomLoad((cur) => spireMergeRoomLoad(cur, load));
+      setRoomLoad((cur) => spireMergeRoomLoad(cur, load, { uid: ids.uid, lang }));
       if (load.room) {
         hasRoomRef.current = true;
         attemptRef.current = 0;
         // Прогрев пакета недели: «Подняться» стартует без ожидания сети. После анимаций входа — разбор файла (~1 МБ JSON).
         const room = load.room;
         InteractionManager.runAfterInteractions(() => {
-          if (!aliveRef.current) return;
+          if (!aliveRef.current || stale('прогрев пакета')) return;
           void spireEnsureWeekPack(gate, { lang, tier: room.tier, weekId: room.weekId })
             .then((p) => DebugLogger.info(SPIRE, `game: прогрев пакета status=${p.status} source=${p.source}`));
         });
@@ -88,20 +102,23 @@ export function useSpireRoomSync(input: Readonly<{
       const delay = SPIRE_ROOM_RETRY_MS[attempt - 1];
       if (delay === undefined) { DebugLogger.warn(SPIRE, `${TAG} комнаты нет после ${attempt} попыток — дальше повтор только при возврате в Пик/приложение`); return; }
       DebugLogger.warn(SPIRE, `${TAG} комнаты нет (${load.reason}) — повтор №${attempt + 1} через ${delay}мс`);
-      retryTimerRef.current = setTimeout(() => runRef.current(`автоповтор ${attempt + 1}`), delay);
+      retryTimerRef.current = setTimeout(() => { if (!stale('автоповтор')) runRef.current(`автоповтор ${attempt + 1}`); }, delay);
     }).catch((error: unknown) => {
       const code = String((error as { code?: unknown } | null)?.code ?? (error instanceof Error ? error.name : 'unknown')).slice(0, 60);
       spireLoadMark('room:sync_failed', { code, ms: Date.now() - startedAt, alive: aliveRef.current, attempt });
       DebugLogger.warn(SPIRE, `${TAG} [PIK-LOAD] sync_failed попытка ${attempt} code=${code} ms=${Date.now() - startedAt}`);
-      if (!aliveRef.current || hasRoomRef.current) return;
+      if (stale('сбой')) return;
+      if (!aliveRef.current || hasRoomRef.current) { DebugLogger.info(SPIRE, `${TAG} после сбоя повтор не нужен: на экране=${String(aliveRef.current)} комната=${String(hasRoomRef.current)}`); return; }
       const delay = SPIRE_ROOM_RETRY_MS[attempt - 1];
-      if (delay !== undefined) retryTimerRef.current = setTimeout(() => runRef.current(`автоповтор ${attempt + 1} после сбоя`), delay);
+      if (delay === undefined) { DebugLogger.warn(SPIRE, `${TAG} сбой после ${attempt} попыток — дальше повтор только при возврате`); return; }
+      retryTimerRef.current = setTimeout(() => { if (!stale('автоповтор после сбоя')) runRef.current(`автоповтор ${attempt + 1} после сбоя`); }, delay);
     });
   }, [gate, ids, lang, setRoomLoad]);
   runRef.current = run;
 
   // Вход на экран (и смена языка / аккаунта): первая попытка; кэш к этому моменту уже показан первым кадром.
   useEffect(() => {
+    genRef.current += 1;
     aliveRef.current = true;
     hasRoomRef.current = false;
     attemptRef.current = 0;

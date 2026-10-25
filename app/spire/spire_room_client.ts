@@ -66,11 +66,16 @@ type JoinResponse = Readonly<{ ok?: boolean; groupId?: unknown; weekId?: unknown
 
 const memory = new Map<string, SpireRoomSnapshot>();
 const inFlight = new Map<string, Promise<SpireRoomLoad>>();
+// зачем (Ревизор 25.10 по 7dd91767f, двойной join): после тайм-аута первый runSync ещё идёт, а повтор начинает второй — без этой
+// карты два spireJoinRoom нового игрока могли бы гонкой занять две комнаты. Вход в комнату — один на uid|lang|week, пока не
+// ответит (у вызова функции свой потолок), повтор присоединяется к нему; чтение документа комнаты — дешёвое, его не делим.
+const joinInFlight = new Map<string, Promise<RoomIdentity>>();
 // зачем (R39): комната прошлого владельца не нужна в памяти после выхода/смены аккаунта (ключи по uid, но держать чужое незачем)
 onAccountOwnerChanged('spire_room_client', () => {
   DebugLogger.info('[SPIRE]', `owner_changed: комнат в памяти сброшено=${memory.size}, запросов в полёте=${inFlight.size}`);
   memory.clear();
   inFlight.clear();
+  joinInFlight.clear();
 });
 
 const cacheKey = (uid: string, lang: SpireLang) => `${CACHE_PREFIX}:${uid}:${lang}`;
@@ -161,6 +166,18 @@ async function joinRoom(gate: SpireLiveGate, input: Readonly<{ stableId: string;
   return { groupId: res.groupId, tier: Math.max(0, Math.trunc(Number(res.tier)) || 0), cohortDay: Math.trunc(Number(res.cohortDay)) || 0 };
 }
 
+function joinRoomOnce(gate: SpireLiveGate, input: Readonly<{ uid: string; stableId: string; lang: SpireLang; weekId: string }>): Promise<RoomIdentity> {
+  const key = `${input.uid}|${input.lang}|${input.weekId}`;
+  const running = joinInFlight.get(key);
+  if (running) {
+    DebugLogger.info(LOG, `room: вход в комнату ${input.lang} уже идёт (прошлая попытка после тайм-аута) — присоединяемся, второго join нет`);
+    return running;
+  }
+  const task = joinRoom(gate, input).finally(() => { joinInFlight.delete(key); });
+  joinInFlight.set(key, task);
+  return task;
+}
+
 async function readRoomDoc(gate: SpireLiveGate, groupId: string): Promise<Record<string, unknown> | null> {
   const db = spireFirestore(gate, 'room:get');
   if (!db) return null;
@@ -221,7 +238,7 @@ async function runSync(gate: SpireLiveGate, input: SpireSyncRoomInput): Promise<
   try {
     // зачем (💸 аудит 17.10): комната — ОДИН документ на всех (лидерборд агрегатом), чтение раз в SPIRE_ROOM_REFRESH_MS; join — только без копии недели
     console.log('[SPIRE-COST]', JSON.stringify({ call: 'room', result: 'request', why: cached ? `cache_stale ageMs=${age}` : 'no_cache_this_week', join: identity === null, force: input.force === true })); // guard-ok: 💸 причина запроса
-    if (!identity) identity = await joinRoom(gate, { stableId: input.stableId, lang: input.lang, weekId });
+    if (!identity) identity = await joinRoomOnce(gate, { uid: input.uid, stableId: input.stableId, lang: input.lang, weekId });
     const data = await readRoomDoc(gate, identity.groupId);
     if (!data) {
       DebugLogger.warn(LOG, `room: документ ${identity.groupId} не прочитан (нет/облако выкл) — кэш ${cached ? 'есть' : 'нет'}`);

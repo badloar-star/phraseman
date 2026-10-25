@@ -15,7 +15,8 @@ describe('unified team notification center', () => {
     expect(source).toContain('onDetailOpenChange={setTeamDetailOpen}');
     expect(source).toContain('<FlatList');
     expect(source).toContain('data={teamDetailOpen ? [] : visibleItems}');
-    expect(source).toContain('ListHeaderComponent={teamInboxSection}');
+    // 25.10 (Ревизор, прогон 05:00): рядом с командным блоком в шапке списка теперь строка «Приглашение на урок истекло» (BellLessonInviteExpired, «Вместе») — владелец прокрутки по-прежнему один FlatList
+    expect(source).toContain('ListHeaderComponent={<>{teamInboxSection}');
     expect(source).not.toContain('visibleItems.map((row)');
   });
 

@@ -20,8 +20,11 @@ describe('редактор набора: шапка вторичных экра�
     expect(header).toContain('<Ionicons name="close" size={20} color={g.text} />');
   });
 
-  it('замок экрана «недоступно для правки» — контурный', () => {
-    expect(create).toContain('icon="lock-closed-outline"');
-    expect(create).not.toMatch(/icon="lock-closed"/);
+  // 25.10 (Ревизор, прогон 05:00): экран «недоступно для правки» с замком убран правилом владельца «экранов-ошибок нигде» (49630f40e, 18.10) — вместо него спокойный выход QuietLeave.
+  // Смысл прежнего пункта («замок не жирный») сохранён строже: ни контурного, ни сплошного замка на вторичных экранах редактора больше нет.
+  it('вместо экрана-ошибки с замком — спокойный выход, замка нет вовсе', () => {
+    expect(create).toContain("import { QuietLeave } from '../components/cards-grid/QuietEmptyState';");
+    expect(create).toContain('reason={communityPacksTargetEnabled ? \'create_unavailable\' : \'target_closed\'}');
+    expect(create).not.toMatch(/icon="lock-closed(-outline)?"/);
   });
 });

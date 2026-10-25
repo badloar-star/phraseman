@@ -43,7 +43,9 @@ describe('«не засчитано»: проводка блока', () => {
     expect(block).not.toMatch(/borderWidth|borderColor/);
     expect(block).not.toMatch(/#[0-9a-fA-F]{6}\b/);
     expect(block).toContain('glass.badSoft');
-    expect(block).toContain('glass.bad,');
+    // 25.10 (Ревизор, прогон 05:00): текст пропущенного слова берёт контрастный badText (semanticInk, ≥ 4,55:1) — коммит Тем 0ace9f5c7 (24.10) вместо сырого glass.bad; токен темы по-прежнему, hex нет
+    expect(block).toContain('semanticInk(glass).badText');
+    expect(block).not.toMatch(/color: glass\.bad\b(?!Soft)/);
   });
 });
 

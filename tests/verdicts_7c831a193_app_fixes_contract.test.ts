@@ -9,7 +9,8 @@ describe('«Устно · верно» (cards-section-046, cards-v2-037)', () =>
   it('у карточки нет зелёной рамки состояния, слово в плашке «Верно» — осветлённый токен good (образец #A6E8B9), в светлых темах прежний', () => {
     expect(src).toMatch(/outcome=\{null\}/);
     expect(src).not.toMatch(/outcome=\{phase === 'scored' && attempt \? \(attempt\.passed \? 'ok' : null\) : null\}/);
-    expect(src).toMatch(/speakingGlass\.isLight \? speakingGlass\.good : mixHex\(speakingGlass\.good, '#FFFFFF'/);
+    // 25.10 (Ревизор, прогон 05:00): в светлых темах слово «Верно» берёт контрастный goodText (semanticInk, ≥ 4,55:1) — коммит Тем 0ace9f5c7 (24.10) вместо сырого good; тёмные темы — прежнее осветление good к образцу.
+    expect(src).toMatch(/speakingGlass\.isLight \? semanticInk\(speakingGlass\)\.goodText : mixHex\(speakingGlass\.good, '#FFFFFF'/);
     expect(src).toContain("import { mixHex } from '../constants/v2Style';");
   });
 });

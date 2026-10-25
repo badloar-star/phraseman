@@ -64,11 +64,14 @@ describe('«Из видео»: экран подключён к веткам', (
   const screen = read('app/flashcards_video_packs.tsx');
 
   it('рисует четыре ветки по результату чистой функции; «Пока пусто» без кнопки, тексты на 9 языках', () => {
-    expect(screen).toContain("{branch === 'error' ? (");
-    expect(screen).toContain(") : branch === 'loading' ? (");
-    expect(screen).toContain(") : branch === 'empty' ? (");
+    // 25.10 (Ревизор, прогон 05:00): правило владельца «экранов-ошибок нигде» (01.10 и 18.10, 49630f40e) — ветка 'error' больше не отдельный экран, она рисуется тем же спокойным «Пока пусто»,
+    // а причина уходит в журнал [NO-ERROR-SCREEN]. Проверка строже прежней: отдельного экрана ошибки в разметке быть не должно.
+    expect(screen).toContain("{branch === 'loading' ? (");
+    expect(screen).toContain(") : branch === 'empty' || branch === 'error' ? (");
     expect(screen).toContain(") : branch === 'not_found' ? (");
-    const start = screen.indexOf("branch === 'empty' ? (");
+    expect(screen).not.toContain("{branch === 'error' ? (");
+    expect(screen).toContain("logNoErrorScreen('flashcards_video_packs', branchReason, 'quiet_empty'");
+    const start = screen.indexOf("branch === 'empty' || branch === 'error' ? (");
     const block = screen.slice(start, screen.indexOf("branch === 'not_found'", start));
     expect(block).toContain('title={copy.emptyTitle}');
     expect(block).toContain('detail={copy.emptyBody}');

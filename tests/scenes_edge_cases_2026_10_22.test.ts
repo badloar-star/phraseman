@@ -35,7 +35,8 @@ describe('сцены Главной и Диалогов: шрифт 1,3 и дл�
     expect(src).toContain('const HERO_BOUND_FONT_SCALE = 1.15;');
     expect(src).toContain('const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;');
     expect(src).toContain('heroSpace: { flex: 1 }');
-    expect(src).toMatch(/heroBounded: \{[^}]*bottom: 4, width: HERO, maxHeight: HERO,/);
+    // 25.10 (Ревизор, прогон 05:00): стиль закрыт без запятой после maxHeight (правка формата в a50cfbf18) — геометрия та же; проверяем значения, а не хвост строки
+    expect(src).toMatch(/heroBounded: \{[^}]*bottom: 4, width: HERO, maxHeight: HERO\b/);
     expect(src).toContain("contentPosition={heroBounded ? 'right' : 'center'}");
   });
 

@@ -50,11 +50,8 @@ SEARCH = ['tap:#fc-collection-search', 'tap:#fc-search-input']
 DEMO = 'cards=demo&plus=on'
 
 # зачем (12.10): после увеличения плиток список оказывался прокрученным (заголовок «Сохранённые 64» уходил за экран) — возвращаем наверх перед снимком.
-add(['cards-005', 'cards-section-005'], ['tap:#fc-zoom-larger', 'wait:500', 'scroll:up'], DEMO, SAVED, note='1 колонка (привязка образца: «Сохранённые — 1 колонка»)')
+# снято 25.10 (Ревизор, прогон 05:00; решение владельца 22.10 «только нормальный вид», 3bb32f502): кнопок масштаба в приложении больше нет — кадры cards-005, cards-section-005, cards-v2-005, cards-v2-007 (3 колонки), cards-v2-008 (5 колонок) недостижимы, их шаги убраны
 add('cards-v2-006', [], DEMO, SAVED, note='2 колонки')
-add('cards-v2-005', ['tap:#fc-zoom-larger'], DEMO, SAVED, note='1 колонка')
-add('cards-v2-007', ['tap:#fc-zoom-smaller'], DEMO, SAVED, note='3 колонки: шаг «мельче» ×1 от двух (по коду GALLERY_STEPS)')
-add('cards-v2-008', ['tap:#fc-zoom-smaller', 'tap:#fc-zoom-smaller'], DEMO, SAVED, note='5 колонок: «мельче» ×2')
 add('cards-007', [MENU, SELECT], DEMO, SAVED, note='режим выделения')
 add('cards-008', [MENU, DECK], DEMO, SAVED, note='стопка')
 add(['cards-032', 'cards-v2-048'], [MENU], DEMO, SAVED, note='меню «⋯» открыто')
@@ -64,7 +61,7 @@ add('cards-038', SEARCH + ['type:zzzqq'], DEMO, SAVED, note='поиск без �
 add('cards-034', ['long:#fc-gallery-tile-*'], DEMO, SAVED, note='долгое нажатие — шторка действий «Править / Удалить»')
 add('cards-035', [MENU, SELECT, TILE, TILE2, TILE3, 'tap:#fc-delete-selected'], DEMO, SAVED, note='3 выбранных → окно подтверждения удаления')
 add('cards-036', [MENU, SELECT, TILE, TILE2, TILE3], DEMO, SAVED, note='3 выбранных — «выбери ещё» (мало для набора)')
-add('cards-006', ['tap:#fc-zoom-larger', 'swipe-left:#fc-saved-row-word-*'], DEMO, SAVED, unique=False, note='список (1 колонка, как в образце): свайп влево по строке — плашка «Удалено · Вернуть»; подсказка «Зажми карточку…» при плашке скрыта (привязка образца cards-v2 №10 «Удалено — вернуть»)')
+add('cards-006', ['swipe-left:#fc-saved-row-word-*'], DEMO, SAVED, unique=False, note='список (1 колонка, как в образце): свайп влево по строке — плашка «Удалено · Вернуть»; подсказка «Зажми карточку…» при плашке скрыта (привязка образца cards-v2 №10 «Удалено — вернуть»)')
 add('cards-v2-020', [TILE], DEMO, SAVED, note='карточка открыта, лицевая сторона')
 add(['cards-v2-021', 'cards-section-017'], [TILE, 'tap:#fc-expanded-card-flip'], DEMO, SAVED, note='оборот карточки')
 add(['cards-section-015', 'cards-v2-010'], [TILE, 'tap:#fc-expanded-delete'], DEMO, SAVED, note='карточка удалена — плашка «Вернуть»')

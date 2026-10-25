@@ -16,7 +16,8 @@ describe('ScreenGradient: bleedTop совмещает полотно стран�
 
   it('«Обучение» во вкладке: свой фон страницы + bleedTop = верхний inset; отдельным маршрутом bleedTop = 0', () => {
     const lessons = read('app/(tabs)/lessons.tsx');
-    expect(lessons).toContain('<ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>');
+    // 25.10 (Ревизор, прогон 05:00): сцена «Сезон» рисует свой верхний вылет (seasonBleed) — тогда полотно страницы свой bleedTop не добавляет, иначе верх считался бы дважды; без неё прежнее правило.
+    expect(lessons).toContain('<ScreenGradient forceFullBleed bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}>');
     expect(lessons).not.toContain('<ScreenGradient>\n        {page === "lessons" ? (');
   });
 

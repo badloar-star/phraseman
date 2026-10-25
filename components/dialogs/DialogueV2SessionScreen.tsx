@@ -662,7 +662,7 @@ export function DialogueV2SessionScreen({
         {bottom === 'input' ? (
           <View ref={inputTrace.barRef} collapsable={false} onLayout={inputTrace.onBarLayout} style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
             {/* зачем (владелец 24.10 через координатора): «Можно сказать…» всегда над полем; тап кладёт фразу в черновик, отправляет человек сам */}
-            <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy || inputLocked} testID="dialogue-v2-session-say-hints" />
+            <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy || inputLocked} compact={goalFolded} testID="dialogue-v2-session-say-hints" />
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <Pressable
                 onPressIn={onStartVoice}

@@ -74,6 +74,7 @@ describe('экран сценарного диалога: реплика ИИ в
     expect(src).toContain('testID="dialogue-v2-session-goal-strip"');
     expect(src).toContain('height: DIALOG_GOAL_STRIP_HEIGHT');
     expect(src).toContain('[DIALOG-GOAL] strip');
+    expect(src).toContain('compact={goalFolded}');
     expect(src).toContain('accessibilityLabel={goal ? `${labels.placeholder}. ${goal.kicker}: ${goal.label}` : labels.placeholder}');
   });
   it('сжатие окна ленты докручивает к концу без анимации, и это пишется в журнал', () => {

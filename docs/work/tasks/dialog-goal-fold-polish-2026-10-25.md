@@ -1,7 +1,8 @@
 # Task packet: свёрнутая при клавиатуре карточка цели — плавность, момент, плашка, доступность (5 · ВХОД)
 
 Governance-ID: TG-E4B70AA9EB1B
-Status: In progress
+Governance-ID: TG-3D4BE5028435
+Status: Done — 386d13703; compact={goalFolded} — отдельным коммитом после 3e434dc42 (compact у DialogSayHints от 2 · ДИЗАЙН)
 Owner: 5 · ВХОД И АККАУНТ (ревью 2 · ДИЗАЙН к 295b29e2f через координатора 25.10; решение координатора по плашке)
 
 ## Outcome

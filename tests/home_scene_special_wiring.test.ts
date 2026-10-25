@@ -26,10 +26,10 @@ describe('[HOME-SCENE] особые сцены — тексты', () => {
   it('русские формы чисел и тексты макета', () => {
     expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'mistakes_pile', n: 23 }).title).toBe('Накопилось 23 ошибки');
     expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'mistakes_pile', n: 15 }).title).toBe('Накопилось 15 ошибок');
-    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'words_due', n: 12 }).title).toBe('12 слов просятся на повтор');
-    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'words_due', n: 22 }).title).toBe('22 слова просятся на повтор');
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'words_due', n: 12 }).title).toBe('12 слов вот-вот сбегут из памяти');
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'words_due', n: 22 }).title).toBe('22 слова вот-вот сбегут из памяти');
     expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'holiday', holiday: 'halloween' }).title).toBe('Страшно полезный урок');
-    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'weekly_recap', weekDays: 5 })).toMatchObject({ title: '5 дней из 7', line: 'Почти без пропусков' });
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'weekly_recap', weekDays: 5 })).toMatchObject({ title: '5 дней из 7', line: 'Почти идеальная неделя!' });
     expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'weekly_recap', weekDays: 2 }).line).toBeNull();
   });
 

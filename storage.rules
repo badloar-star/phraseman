@@ -81,6 +81,21 @@ service firebase.storage {
       allow write: if false;
     }
 
+    // Премиальные темы не входят в бинарь: приложение получает точный manifest,
+    // проверяет размер + SHA-256 каждого файла и кеширует pack на устройстве.
+    // Право включить тему хранится отдельно в server-only users.progress;
+    // публичное чтение этих картинок само по себе права не выдаёт.
+    match /premium-theme-packs/v1/{allPaths=**} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+    match /premium-theme-packs/v2/{allPaths=**} {
+      allow get: if true;
+      allow list: if false;
+      allow write: if false;
+    }
+
     // Шпиль: пакет недели (PM-272, TOWER_CONTRACT.md §7). Читает только вошедший
     // по точному пути spire_packs/{lang}/{tier}/{weekId}.json; листинг и запись
     // клиентам запрещены — пишет только крон/админ-callable через Admin SDK.

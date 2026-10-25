@@ -36,7 +36,7 @@ import { studySpeechLocale } from '../study_speech_locale';
 import { useAudio } from '../../hooks/use-audio';
 import { hapticError, hapticSuccess } from '../../hooks/use-haptics';
 import { createEnergySessionIntent } from '../energy_session_operation_ledger';
-import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from '../learning_v2_visibility_switch';
+import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, isLearningV2OpenForUiLangV1, logLearningV2Hidden } from '../learning_v2_visibility_switch';
 import { deriveLocalOfflineProgressAccountScopeHash } from '../../modules/learning-v2/progress/progress_account_scope';
 import { CHAPTER_EXAM_QUESTION_COUNT_V1, type ChapterExamQuestionV1 } from '../../modules/learning-v2/exam/chapter_exam_v1';
 import LearningV2ModeRouterV1 from '../../modules/learning-v2/modes/mode_router_v1';
@@ -87,6 +87,13 @@ function ChapterExamSwitch() {
   const params = useLocalSearchParams<{ lessonOrdinal?: string; chapterOrdinal?: string; source?: string }>();
   const lessonOrdinal = Number(params.lessonOrdinal) || 1;
   const chapterOrdinal = Number(params.chapterOrdinal) || 1;
+  const { lang } = useLang();
+  // зачем (координатор 25.10, 🔴): тексты курса и экзамена есть только на ru/uk — на другом языке интерфейса экзамен не открываем
+  // (ни v2, ни прежний), как весь курс V2. Общий выключатель пропускает вход, пока язык ещё не определён; здесь язык известен всегда
+  if (!isLearningV2OpenForUiLangV1(lang, 'chapter_exam_route')) {
+    logLearningV2Hidden('route_learning_v2_chapter_exam_ui_lang', LEARNING_V2_HIDDEN_REDIRECT, String(lang));
+    return <Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />;
+  }
   if (isChapterExamV2EnabledFor(lessonOrdinal, chapterOrdinal)) {
     return <ChapterExamV2Run lessonOrdinal={lessonOrdinal} chapterOrdinal={chapterOrdinal} source={params.source ?? null} />;
   }

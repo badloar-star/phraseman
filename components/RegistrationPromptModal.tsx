@@ -1552,15 +1552,25 @@ function RegistrationPromptModal({
   // Анимированное закрытие (крестик/фон/«Позже»): лист уезжает вниз + подложка тает,
   // затем общий путь handleLater (те же правила, включая signInSlow).
   const dismissSheet = useCallback(() => {
-    if (cleanRecoveryCancellingRef.current) return;
-    if (loadingProvider !== null && !signInSlow) return;
-    if (!recoveryDismissAllowed) return;
+    // зачем (аудит «назад» и Optimistic UI 26.10, правило «каждый ранний выход пишет причину»): отбитая «назад»/«Позже» была немой.
+    if (cleanRecoveryCancellingRef.current) {
+      console.log('[AUTH-MODAL] dismiss ignored reason=clean_recovery_cancelling'); // guard-ok: ранний выход с причиной
+      return;
+    }
+    if (loadingProvider !== null && !signInSlow) {
+      console.log(`[AUTH-MODAL] dismiss ignored reason=sign_in_in_flight provider=${loadingProvider}`); // guard-ok: ранний выход с причиной
+      return;
+    }
+    if (!recoveryDismissAllowed) {
+      console.log(`[AUTH-MODAL] dismiss ignored reason=recovery_not_dismissible stage=${String(recoveryStage)}`); // guard-ok: ранний выход с причиной
+      return;
+    }
     backdropO.value = withTiming(0, { duration: 200 });
     sheetOpacity.value = withTiming(0, { duration: 180 });
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
       if (finished) runOnJS(invokeHandleLater)();
     });
-  }, [invokeHandleLater, backdropO, sheetOpacity, sheetY, loadingProvider, recoveryDismissAllowed, signInSlow]);
+  }, [invokeHandleLater, backdropO, sheetOpacity, sheetY, loadingProvider, recoveryDismissAllowed, recoveryStage, signInSlow]);
 
   const closeAfterSwipe = useCallback(() => {
     void handleLaterRef.current();

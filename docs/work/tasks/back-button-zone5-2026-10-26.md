@@ -42,3 +42,9 @@ Owner: «5 · ВХОД»
 (docs/work/back-button-mockup-truth-2026-10-26.md). Перевод кнопки language_welcome на общую откатан до эталона.
 Сделано только независимое от эталона: запасной путь `/settings_language` → `/(tabs)/settings` (корень раздела, как в реестре):
 выбор языка изучения открывает экран из «Настроек», «Языка» и видео Lingman. Тест `tests/language_welcome_fallback.test.ts`.
+
+## Дополнение: немые ранние выходы окна входа (Governance-ID: TG-26965C69F6FE)
+
+Проверка Optimistic UI зоны (координатор 26.10): окно входа верно отбивает «закрыть»/«назад», пока идёт вход или
+восстановление, но молча. `dismissSheet` в components/RegistrationPromptModal.tsx пишет причину каждого раннего выхода
+(`[AUTH-MODAL] dismiss ignored reason=…`). Тест tests/auth_modal_dismiss_logs.test.ts; сторожа входа 83/83.

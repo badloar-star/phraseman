@@ -174,7 +174,7 @@ export function DialogueV2FreeformScreen({
           {connectionNotice ? (
             <View testID="dialogue-v2-freeform-connection" accessibilityRole="alert" style={[styles.connection, { backgroundColor: glassTone(glass.text, 0.06) }]}>
               <Ionicons name="cloud-offline-outline" size={18} color={glass.secondary} />
-              <Text maxFontSizeMultiplier={1.3} numberOfLines={2} style={[styles.connectionText, { color: glass.secondary }]}>{connectionNotice.message}</Text>
+              <Text maxFontSizeMultiplier={1.3} numberOfLines={2} style={[styles.connectionText, { color: glass.text /* зачем (контраст Тем 25.10): на secondary поверх фона 6 % текста было 4,25 в light/grad_jade|grad_aurora/max при норме 4,5; glass.text — 12,07. Значок остаётся secondary (для значка 4,25 допустимо), токен secondary не трогаем */ }]}>{connectionNotice.message}</Text>
               <PressableScale
                 onPress={() => { void hapticTap(); connectionNotice.onRetry(); }}
                 variant="flat"

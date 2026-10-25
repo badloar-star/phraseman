@@ -177,6 +177,8 @@ const IC = {
 
 // ── банк главы 2 в формате движка (ChapterExamV2Bank). зачем: файл Learning V2 подставляется сюда как есть ──
 const BANK = {"lessonOrdinal":1,"chapterOrdinal":2,"grammarPoints":[{"id":"l01c2_am_are","label":{"ru":"я / ты — am, are"},"episodeOrdinals":[12,13,15]},{"id":"l01c2_is","label":{"ru":"он / она / оно — is"},"episodeOrdinals":[9,16]},{"id":"l01c2_we_they","label":{"ru":"мы / они — are"},"episodeOrdinals":[]},{"id":"l01c2_not","label":{"ru":"не — isn’t, aren’t, I’m not"},"episodeOrdinals":[11,15]},{"id":"l01c2_question","label":{"ru":"вопрос и короткий ответ"},"episodeOrdinals":[]}],"items":[{"id":"m01","type":"situation","grammarPoint":"l01c2_not","situation":{"ru":"Коллега спрашивает, готов ли отчёт. Скажи, что он ещё не готов."},"accepted":["It isn't ready yet.","It's not ready yet.","The report isn't ready yet.","The report is not ready yet."]},{"id":"m02","type":"dialogue","grammarPoint":"l01c2_question","partnerLine":"Are you new here?","situation":{"ru":"Ответь, что да — ты здесь новенький."},"accepted":["Yes, I am.","Yes, I'm new here.","Yes, I'm new."]},{"id":"m03","type":"fix","grammarPoint":"l01c2_is","wrong":"She are in a meeting.","accepted":["She is in a meeting."]},{"id":"m04","type":"situation","grammarPoint":"l01c2_is","situation":{"ru":"Ты взял кофе в автомате, а он холодный. Скажи об этом коллеге."},"accepted":["The coffee is cold.","My coffee is cold.","It's cold.","This coffee is cold."]},{"id":"m05","type":"dialogue","grammarPoint":"l01c2_question","partnerLine":"Is Tom at work today?","situation":{"ru":"Ответь: нет, Том дома."},"accepted":["No, he isn't. He's at home.","No, he's at home.","No, he is at home."]},{"id":"m06","type":"fix","grammarPoint":"l01c2_we_they","wrong":"We is late for the bus.","accepted":["We are late for the bus."]},{"id":"m07","type":"situation","grammarPoint":"l01c2_not","situation":{"ru":"Сосед зовёт тебя обедать, а ты только что поел. Скажи, что не голоден."},"accepted":["I'm not hungry.","Thanks, I'm not hungry.","Thank you, I'm not hungry.","Sorry, I'm not hungry."]},{"id":"m08","type":"dialogue","grammarPoint":"l01c2_we_they","partnerLine":"Where are my keys?","situation":{"ru":"Ответь: они на столе."},"accepted":["They're on the table.","On the table."]},{"id":"m09","type":"fix","grammarPoint":"l01c2_am_are","wrong":"I is ready for the call.","accepted":["I am ready for the call."]},{"id":"m10","type":"situation","grammarPoint":"l01c2_we_they","situation":{"ru":"Новый знакомый спрашивает, откуда вы с другом. Скажи, что вы из Казани."},"accepted":["We're from Kazan.","We are both from Kazan."]}]};
+// зачем: следующая глава (номер, название, первый эпизод) — из данных Learning V2, а не строка в разметке
+const NEXT = {"ordinal":3,"title":"Знакомство с командой","firstEpisode":17};
 
 // ── копия чистых функций движка modules/learning-v2/exam/chapter_exam_v2.ts (a9b9d3d18) ──
 const PASS_CORRECT = 8; const COUNT = 10;
@@ -318,8 +320,8 @@ function result() {
   if (passed) {
     body = `<div class="trophy enter">${IC.trophy}</div><div class="big enter" style="margin-top:16px">${correct} из ${total}</div><div class="rtitle enter">Экзамен сдан</div>${dots}
       <div class="rew enter">${COIN ? `<img src="${COIN}" alt="">` : ''}+40</div>
-      <div class="unl enter"><span class="mini">${IC.people2}</span><div><div class="t">Глава 3 открыта</div><div class="s">Знакомство с командой. Начнём с эпизода 17</div></div></div>`;
-    foot = `<button class="cta" id="toCh">${IC.play}К главе 3</button>${wrong ? `<button class="second" id="mist">Разбор ${wrong === 1 ? 'ошибки' : 'ошибок'} · ${wrong}</button>` : ''}`;
+      <div class="unl enter"><span class="mini">${IC.people2}</span><div><div class="t">Глава ${NEXT.ordinal} открыта</div><div class="s">${esc(NEXT.title)}. Начнём с эпизода ${NEXT.firstEpisode}</div></div></div>`;
+    foot = `<button class="cta" id="toCh">${IC.play}К главе ${NEXT.ordinal}</button>${wrong ? `<button class="second" id="mist">Разбор ${wrong === 1 ? 'ошибки' : 'ошибок'} · ${wrong}</button>` : ''}`;
   } else {
     const rows = weak.map((w) => `<div class="tp"><div><div>${esc(label(w.grammarPoint))}</div>${w.episodeOrdinals.length ? `<div class="ep">${epWord(w.episodeOrdinals)}</div>` : ''}</div><span class="r no">${errWord(w.errors)}</span></div>`).join('');
     body = `<div class="big enter" style="margin-top:20px">${correct} из ${total}</div><div class="rtitle enter">${correct <= 5 ? 'Пока не вышло' : 'Почти получилось'}</div>${dots}
@@ -329,7 +331,7 @@ function result() {
   ph.innerHTML = `${head(false)}<div class="res">${body}</div><div class="rfoot">${foot}</div><div class="home"></div>`;
   ph.querySelector('#close').onclick = () => start(0);
   const r = ph.querySelector('#review'); if (r) r.onclick = () => review();
-  const toCh = ph.querySelector('#toCh'); if (toCh) toCh.onclick = () => { toCh.innerHTML = `${IC.check}Глава 3 открыта`; log('to_chapter', { chapter: 3 }); };
+  const toCh = ph.querySelector('#toCh'); if (toCh) toCh.onclick = () => { toCh.innerHTML = `${IC.check}Глава ${NEXT.ordinal} открыта`; log('to_chapter', { chapter: NEXT.ordinal }); };
   const mi = ph.querySelector('#mist'); if (mi) mi.onclick = () => mistakes();
 }
 function mistakes() {

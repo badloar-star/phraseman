@@ -53,6 +53,8 @@ describe('банк главы 2: только пройденная грамма�
         expect(a).not.toMatch(/(we|they|we're|they're)/iu);
         expect(a.trim().endsWith('?')).toBe(false);
       }
+      // вопросы в главе 2 не проходили — реплика собеседника тоже без вопроса (замок 25.10: и формы речи из эпизодов)
+      expect(i.partnerLine ?? '').not.toContain('?');
     }
     for (const point of bank.grammarPoints) {
       expect(bank.items.filter((i) => i.grammarPoint === point.id).length).toBeGreaterThanOrEqual(3);

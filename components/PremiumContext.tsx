@@ -906,6 +906,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     });
     return () => sub.remove();
   }, [reload]);
+  // зачем (координатор 25.10, Б2): сервер отказал «нужен Plus», телефон перечитал доступ из облака — один пересчёт, чтобы плитки
+  // и бейджи пошли за свежим ответом (журнал [PLUS-RECHECK] в app/plus_server_recheck.ts).
+  useEffect(() => {
+    const sub = onAppEvent('premium_server_recheck_done', ({ surface, accessAfter }) => {
+      console.log(`[PLUS-RECHECK] PremiumContext: пересчёт доступа surface=${surface} accessAfter=${String(accessAfter)}`);
+      invalidatePremiumCache();
+      void reload();
+    });
+    return () => sub.remove();
+  }, [reload]);
 
   // После локального удаления аккаунта сбрасываем entitlement сразу, не ждём remount.
   useEffect(() => {

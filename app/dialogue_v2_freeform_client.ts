@@ -223,7 +223,14 @@ export async function startDialogueV2FreeformSession(
     return validStartResponse((await callable(request)).data);
   } catch (error) {
     logFreeformFailure('start', startedAt, error);
-    throw freeformFailure(error);
+    const failure = freeformFailure(error);
+    if (failure.reason === 'plus_required') {
+      // зачем (координатор 25.10, Б2): сервер не видит Plus — фоном перечитать доступ и записать, совпало ли (за флагом, без ожидания)
+      void import('./plus_server_recheck')
+        .then((m) => m.recheckPlusAfterServerRefusal('dialogue_v2_freeform_start'))
+        .catch((e: unknown) => console.warn(`[PLUS-RECHECK] import failed reason=${e instanceof Error ? e.message : String(e)}`));
+    }
+    throw failure;
   }
 }
 

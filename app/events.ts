@@ -50,6 +50,8 @@ export type AppEventMap = {
   welcome_closed: undefined;
   /** Подарок лояльности (72ч для существующих free-юзеров) активирован/откатан — пересчитать доступ. */
   loyalty_gift_changed: undefined;
+  /** Сервер отказал «нужен Plus», телефон перечитал доступ из облака (plus_server_recheck) — пересчитать доступ. */
+  premium_server_recheck_done: { surface: string; accessAfter: boolean };
   gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;

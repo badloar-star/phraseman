@@ -11,6 +11,8 @@ jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: jest.fn(() => ({ region: 'us-central1' })),
   httpsCallable: jest.fn(() => mockCallableRun),
 }));
+const mockRecheck = jest.fn(async () => undefined);
+jest.mock('../app/plus_server_recheck', () => ({ recheckPlusAfterServerRefusal: (surface: string) => mockRecheck(surface) }));
 
 import {
   isFreeformPlusRequiredError,
@@ -37,8 +39,14 @@ describe('freeform start: server says Plus is required', () => {
   it('start rejects with reason plus_required instead of the generic unavailable', async () => {
     mockCallableRun.mockRejectedValueOnce(callableError('functions/permission-denied', 'dialogue_v2_freeform_plus_required'));
     await expect(startDialogueV2FreeformSession({ studyTarget: 'en' })).rejects.toMatchObject({ reason: 'plus_required' });
+    // Б2: отказ «нужен Plus» запускает фоновую перепроверку доступа (ленивый импорт, без ожидания)
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockRecheck).toHaveBeenCalledWith('dialogue_v2_freeform_start');
+    mockRecheck.mockClear();
     mockCallableRun.mockRejectedValueOnce(callableError('functions/permission-denied', 'model detail'));
     await expect(startDialogueV2FreeformSession({ studyTarget: 'en' })).rejects.toMatchObject({ reason: 'unavailable' });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(mockRecheck).not.toHaveBeenCalled();
   });
 
   it('screen: plus_required clears the retry timer and opens Plus via replace, never the silent retry', () => {

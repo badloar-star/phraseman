@@ -4,6 +4,7 @@
 // засчитываем пропущенные эпизоды главы в локальном прогрессе курса по порядку, без звёзд. Firebase не трогаем.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  CHAPTER_EXAM_SESSIONS_PER_CHAPTER_V1,
   chapterExamAvailabilityV1,
   chapterExamKeyV1,
   chapterExamSessionsToCreditV1,
@@ -16,7 +17,7 @@ import {
   type ChapterExamRecordV1,
   type ChapterExamResultV1,
 } from '../modules/learning-v2/exam/chapter_exam_v1';
-import { learningV2CourseSessionIdV1 } from '../modules/learning-v2/content/course_topology_v1';
+import { learningV2CourseSessionIdV1, LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../modules/learning-v2/content/course_topology_v1';
 import type { LearningV2CourseSessionPracticeInteractionV1 } from '../modules/learning-v2/runtime/course_session_client_children_v1';
 import {
   evaluateLearningV2CourseSessionInteractionV1,
@@ -235,12 +236,26 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
     // зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «открыто ≠ пройдено», прогресс v2 часть d): сдача экзамена НЕ засчитывает эпизоды (без звёзд
     // и без «пройдено»), а ОТКРЫВАЕТ непройденные эпизоды главы — человек может их пройти или идти дальше. Прежний store.complete
     // при прогрессе v2 к тому же отказывал на эпизодах не по цепочке, и глава не открывалась. Одной записью, без сети.
-    const toOpen = chapterExamSessionsToCreditV1({ chapterOrdinal: input.chapterOrdinal, completedSessionOrdinals: completedInChapter })
-      .map((ordinal) => learningV2CourseSessionIdV1(input.lessonOrdinal, ordinal));
-    if (toOpen.length > 0) {
-      await store.open(input.progressAccountScopeHash, toOpen, 'chapter_exam');
-      creditedSessionIds.push(...toOpen);
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, «одно правило» с входным тестом, вариант A координатора): сдача главы C открывает ТОЛЬКО
+    // первый эпизод главы C (остальные открываются прохождением), «начнём здесь» — первый эпизод главы C+1 (после 7-й главы —
+    // первый эпизод следующего урока). Ничего не засчитывается.
+    const notDone = chapterExamSessionsToCreditV1({ chapterOrdinal: input.chapterOrdinal, completedSessionOrdinals: completedInChapter });
+    const firstOfChapter = chapterSessionOrdinalsV1(input.chapterOrdinal)[0];
+    const toOpen = notDone.includes(firstOfChapter) ? [learningV2CourseSessionIdV1(input.lessonOrdinal, firstOfChapter)] : [];
+    const nextChapterFirst = chapterSessionOrdinalsV1(input.chapterOrdinal + 1)[0];
+    let startId: string | null = null;
+    try {
+      // зачем (Ревизор 25.10): число глав урока — из топологии курса, не магическое 7
+      const chaptersPerLesson = LEARNING_V2_LESSON_SESSION_COUNT_V1 / CHAPTER_EXAM_SESSIONS_PER_CHAPTER_V1;
+      startId = input.chapterOrdinal < chaptersPerLesson
+        ? learningV2CourseSessionIdV1(input.lessonOrdinal, nextChapterFirst)
+        : learningV2CourseSessionIdV1(input.lessonOrdinal + 1, 1);
+    } catch (startError) {
+      console.warn(`${LOG} finish:start_outside_course`, JSON.stringify({ examKey: input.examKey, reason: startError instanceof Error ? startError.message : String(startError) })); // guard-ok: последняя глава курса — без точки старта
     }
+    await store.placeStart(input.progressAccountScopeHash, { openIds: toOpen, startId, source: 'chapter_exam' });
+    creditedSessionIds.push(...toOpen);
+    console.log(`${LOG} finish:open_rule`, JSON.stringify({ examKey: input.examKey, opened: toOpen, startId, notDoneInChapter: notDone.length })); // guard-ok: какое правило и что открыто
   } catch (error) {
     console.warn(`${LOG} finish:open_failed`, JSON.stringify({ examKey: input.examKey, opened: creditedSessionIds, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
   }

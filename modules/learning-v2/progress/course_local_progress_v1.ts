@@ -9,8 +9,11 @@ import {
 import { peekLearningV2DevProgressOverrideV1 } from "./dev_progress_override_v1";
 import {
   LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1,
+  LEARNING_V2_COURSE_MASK_LAYOUT_V1,
   contiguousCompletedLengthV1,
   courseCurrentIndexV1,
+  courseEffectiveStartV1,
+  courseStartMissingSuspectV1,
   packCourseMasksV1,
   parseCourseMasksV1,
   unionCourseMasksV1,
@@ -180,7 +183,7 @@ function viewOf(chainRecord: LearningV2CourseLocalProgressV1, masks: CourseProgr
   const completed = new Set<number>(masks.completed);
   chainRecord.completedSessionIds.forEach((_id, index) => completed.add(index));
   const opened = new Set<number>([...masks.opened].filter((index) => !completed.has(index)));
-  const current = courseCurrentIndexV1({ completed, opened }, LEARNING_V2_COURSE_SESSION_COUNT_V1);
+  const current = courseCurrentIndexV1({ completed, opened, starts: masks.starts }, LEARNING_V2_COURSE_SESSION_COUNT_V1);
   const byOrder = (set: ReadonlySet<number>) => Object.freeze([...set].sort((a, b) => a - b).map((index) => ids[index]));
   return Object.freeze({
     ...chainRecord,
@@ -190,6 +193,9 @@ function viewOf(chainRecord: LearningV2CourseLocalProgressV1, masks: CourseProgr
     chainCompletedCount: chainRecord.completedSessionIds.length,
   });
 }
+
+/** Подозрение «точка старта потерялась» уходит в app_errors один раз на процесс (Firebase-экономия). */
+let startMissingSuspectReported = false;
 
 export function createLearningV2CourseLocalProgressStoreV1(
   storage: LearningV2CourseLocalProgressStorageV1,
@@ -287,6 +293,21 @@ export function createLearningV2CourseLocalProgressStoreV1(
         }
         const masks = await readMasks(accountScopeHash);
         parsed = await absorb(accountScopeHash, parsed, masks);
+        // зачем (Ревизор 25.10): точка старта могла потеряться (старая сборка затёрла «s» в облаке) — не угадываем, пишем журнал
+        const lone = courseStartMissingSuspectV1(masks, parsed.completedSessionIds.length);
+        if (lone > 0) {
+          const facts = { loneFirstEpisodesOpened: lone, chain: parsed.completedSessionIds.length, opened: masks.opened.size };
+          console.warn("[LV2-PROGRESS] start_missing_suspect", JSON.stringify(facts)); // guard-ok: подозрение с цифрами
+          // зачем (Ревизор 25.10): журнал телефона до нас не доходит — одна запись в app_errors на процесс, только числа, без uid
+          if (!startMissingSuspectReported) {
+            startMissingSuspectReported = true;
+            void import("../../../app/debug-logger").then(({ DebugLogger }) => {
+              DebugLogger.error("learning_v2:start_missing_suspect", new Error(`[LV2-PROGRESS] start_missing_suspect ${JSON.stringify(facts)}`), "critical");
+            }).catch((error: unknown) => {
+              console.warn("[LV2-PROGRESS] start_missing_suspect:report_failed", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
+            });
+          }
+        }
         return viewOf(parsed, masks);
       });
     },
@@ -314,11 +335,51 @@ export function createLearningV2CourseLocalProgressStoreV1(
           await writeMasks(accountScopeHash, masks);
           console.log("[LV2-PROGRESS] complete:out_of_chain", JSON.stringify({ courseSessionId, index, chain: current.completedSessionIds.length, wasOpened: before.openedSessionIds.includes(courseSessionId) })); // guard-ok: куда легло прохождение
         }
+        // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, вариант A): в уроках до точки старта открыт только первый эпизод, остальные «открываются
+        // обычным прохождением» — пройден эпизод K, открывается K+1 того же урока (после точки старта этим занимается «текущее»)
+        const nextInLesson = index + 1;
+        const start = courseEffectiveStartV1(masks);
+        if (nextInLesson % LEARNING_V2_COURSE_MASK_LAYOUT_V1.sessionsPerLesson !== 0 && nextInLesson < start
+          && !masks.completed.has(nextInLesson) && !masks.opened.has(nextInLesson) && nextInLesson >= current.completedSessionIds.length) {
+          masks = unionCourseMasksV1(masks, { completed: new Set<number>(), opened: new Set([nextInLesson]) });
+          await writeMasks(accountScopeHash, masks);
+          console.log("[LV2-PROGRESS] complete:opened_next_in_lesson", JSON.stringify({ courseSessionId, opened: orderedSessionIds()[nextInLesson], start })); // guard-ok: что открыло прохождение
+        }
         current = await absorb(accountScopeHash, current, masks);
         const view = viewOf(current, masks);
         void import('../../../app/premium_theme_progress').then(({ notePremiumThemeProgress }) => {
           notePremiumThemeProgress('learning_v2_complete', view.completedSessionIds.length);
         });
+        return view;
+      });
+    },
+    /**
+     * Точка старта (вариант A, ЗАМОК ВЛАДЕЛЬЦА 25.10): открыть занятия (не засчитывая) и поставить «начнём здесь».
+     * Прежнее текущее, если оно раньше новой точки и не пройдено, тоже открывается — место человека не закрывается.
+     * Одной записью, без сети.
+     */
+    placeStart(accountScopeHash: string, input: Readonly<{ openIds: readonly string[]; startId: string | null; source: string }>) {
+      return serialize(async (): Promise<LearningV2CourseProgressViewV2> => {
+        const current = await readChain(accountScopeHash);
+        let masks = await readMasks(accountScopeHash);
+        const before = viewOf(current, masks);
+        const done = new Set(before.completedSessionIds);
+        const startIndex = input.startId === null ? null : sessionIndex().get(input.startId) ?? null;
+        const oldStart = courseEffectiveStartV1(masks);
+        const toOpen = new Set<number>();
+        for (const id of input.openIds) {
+          const index = sessionIndex().get(id);
+          if (index !== undefined && !done.has(id) && !masks.opened.has(index)) toOpen.add(index);
+        }
+        const oldCurrent = before.currentSessionId === null ? null : sessionIndex().get(before.currentSessionId) ?? null;
+        if (startIndex !== null && oldCurrent !== null && oldCurrent < startIndex && !masks.opened.has(oldCurrent)) toOpen.add(oldCurrent);
+        const starts = startIndex !== null && startIndex > oldStart ? new Set([startIndex]) : new Set<number>();
+        console.log("[LV2-PROGRESS] start", JSON.stringify({ source: input.source, startId: input.startId, startIndex, oldStart, open: toOpen.size, keptOldCurrent: oldCurrent !== null && toOpen.has(oldCurrent) ? before.currentSessionId : null, startApplied: starts.size > 0 })); // guard-ok: вход и решение
+        if (toOpen.size === 0 && starts.size === 0) return before;
+        masks = unionCourseMasksV1(masks, { completed: new Set<number>(), opened: toOpen, starts });
+        await writeMasks(accountScopeHash, masks);
+        const view = viewOf(current, masks);
+        console.log("[LV2-PROGRESS] start:done", JSON.stringify({ source: input.source, current: view.currentSessionId, opened: view.openedSessionIds.length })); // guard-ok: итог
         return view;
       });
     },

@@ -178,7 +178,54 @@ describe('progress v2: chapter exam opens, never completes (ЗАМОК ВЛАД�
     const path = require('node:path') as typeof import('node:path');
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'learning_v2_chapter_exam_v1.ts'), 'utf8');
     const finish = source.slice(source.indexOf('export async function finishLearningV2ChapterExamV1'), source.indexOf('export function learningV2PassedChaptersV1'));
-    expect(finish).toContain("store.open(input.progressAccountScopeHash, toOpen, 'chapter_exam')");
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10 «одно правило» с тестом: первый эпизод главы открыт, точка старта — глава C+1
+    expect(finish).toContain("store.placeStart(input.progressAccountScopeHash, { openIds: toOpen, startId, source: 'chapter_exam' })");
     expect(finish).not.toContain('store.complete(');
+  });
+});
+
+// ЗАМОК ВЛАДЕЛЬЦА 25.10: «они должны быть закрыты, открывается после теста только 1 урок каждого урока, а не все уроки сразу»;
+// вариант A координатора: точка старта «начнём здесь», текущее — не раньше неё; уроки до неё открываются прохождением.
+// Точка только растёт (Ревизор 25.10, так задумано): тест проходят один раз на аккаунт, «Начну с начала» — до теста, не после;
+// более ранний экзамен или повтор точку не опускают.
+describe('progress v2: start point after the placement test and the chapter exam (ЗАМОК ВЛАДЕЛЬЦА 25.10)', () => {
+  it('placement: only episode 1 of lessons 1…N−1 is open, nothing completed; current is lesson N episode 1', async () => {
+    const { storage } = memory();
+    const store = createLearningV2CourseLocalProgressStoreV1(storage);
+    const view = await store.placeStart(scope, { openIds: [sid(1, 1), sid(2, 1), sid(3, 1)], startId: sid(4, 1), source: 'placement_test' });
+    expect(view.completedSessionIds).toEqual([]);
+    expect(view.openedSessionIds).toEqual([sid(1, 1), sid(2, 1), sid(3, 1)]);
+    expect(view.currentSessionId).toBe(sid(4, 1));
+  });
+
+  it('inside a skipped lesson, passing episode K opens episode K+1 of that lesson only', async () => {
+    const { storage } = memory();
+    const store = createLearningV2CourseLocalProgressStoreV1(storage);
+    await store.placeStart(scope, { openIds: [sid(1, 1), sid(2, 1)], startId: sid(3, 1), source: 'placement_test' });
+    const view = await store.complete(scope, sid(2, 1));
+    expect(view.completedSessionIds).toEqual([sid(2, 1)]);
+    expect(view.openedSessionIds).toEqual([sid(1, 1), sid(2, 2)]);
+    expect(view.currentSessionId).toBe(sid(3, 1));
+  });
+
+  it('exam of chapter C: first episode of chapter C open, current jumps to chapter C+1; the place you were at stays open', async () => {
+    const { storage } = memory();
+    const store = createLearningV2CourseLocalProgressStoreV1(storage);
+    await store.complete(scope, sid(1, 1));
+    await store.complete(scope, sid(1, 2));
+    const view = await store.placeStart(scope, { openIds: [sid(1, 9)], startId: sid(1, 17), source: 'chapter_exam' });
+    expect(view.completedSessionIds).toEqual([sid(1, 1), sid(1, 2)]);
+    expect(view.openedSessionIds).toEqual([sid(1, 3), sid(1, 9)]);
+    expect(view.currentSessionId).toBe(sid(1, 17));
+  });
+
+  it('the start point survives cloud merges (bitwise OR) and the farthest one wins; old records without it read as before', () => {
+    const near = JSON.stringify({ v: 1, c: '', o: '1', s: encodeCourseMaskV1([56]) });
+    const far = JSON.stringify({ v: 1, c: '', o: '', s: encodeCourseMaskV1([168]) });
+    const merged = parseCourseMasksV1(mergeCourseMasksRestoreValueV1(near, far, TOTAL), TOTAL);
+    expect([...(merged.starts ?? [])].sort((a, b) => a - b)).toEqual([56, 168]);
+    const old = parseCourseMasksV1(JSON.stringify({ v: 1, c: '3', o: '' }), TOTAL);
+    expect(old.starts?.size ?? 0).toBe(0);
+    expect(mergeCourseMasksRestoreValueV1(JSON.stringify({ v: 1, c: '3', o: '' }), JSON.stringify({ v: 1, c: '', o: '' }), TOTAL)).toBe(JSON.stringify({ v: 1, c: '3', o: '' }));
   });
 });

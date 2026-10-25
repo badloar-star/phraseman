@@ -8,7 +8,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { LEARNING_V2_OWNER_EN_TITLES_RU } from '../components/learning-v2/learningV2OwnerLayout';
-import { learningV2CourseSessionIdV1, LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../modules/learning-v2/content/course_topology_v1';
+import { learningV2CourseSessionIdV1, LEARNING_V2_COURSE_LESSON_COUNT_V1, LEARNING_V2_LESSON_SESSION_COUNT_V1 } from '../modules/learning-v2/content/course_topology_v1';
 import type { ChapterExamQuestionV1 } from '../modules/learning-v2/exam/chapter_exam_v1';
 import type { PlacementTestResultV1 } from '../modules/learning-v2/exam/placement_test_v1';
 import { createLearningV2CourseLocalProgressStoreV1, type LearningV2CourseProgressViewV2 } from '../modules/learning-v2/progress/course_local_progress_v1';
@@ -139,7 +139,8 @@ function build(lessonOrdinal: number, sessionOrdinal: number, interaction: Inter
 }
 
 /**
- * Итог теста: уроки до N открываются (прогресс v2 «open» — не засчитаны, без звёзд), флаг «Не хочу с начала» ставится —
+ * Итог теста: в уроках до N открыт только первый эпизод (прогресс v2 «open» — не засчитан, без звёзд), урок N эпизод 1 —
+ * точка старта «начнём здесь» (замок владельца 25.10, вариант A). Флаг «Не хочу с начала» ставится —
  * ТОЛЬКО здесь, на итоге (замок владельца 21.10/22.10). Всё на телефоне, сразу; облако подхватит обычным синком.
  */
 export async function applyLearningV2PlacementResultV1(result: PlacementTestResultV1): Promise<LearningV2CourseProgressViewV2 | null> {
@@ -152,10 +153,20 @@ export async function applyLearningV2PlacementResultV1(result: PlacementTestResu
   try {
     // зачем: тот же ключ прогресса, что у экзамена главы (app/learning-v2/chapter-exam.tsx)
     const scope = deriveLocalOfflineProgressAccountScopeHash(await getStableId());
-    const ids = result.openedLessonOrdinals.flatMap((lesson) =>
-      Array.from({ length: LEARNING_V2_LESSON_SESSION_COUNT_V1 }, (_x, i) => learningV2CourseSessionIdV1(lesson, i + 1)));
-    const view = await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).open(scope, ids, 'placement_test');
-    console.log(LOG, 'apply:opened', JSON.stringify({ lessons: result.openedLessonOrdinals, sessions: ids.length, current: view.currentSessionId })); // guard-ok: итог
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «они должны быть закрыты, открывается после теста только 1 урок каждого урока, а не все уроки
+    // сразу»; вариант A координатора): в уроках 1…N−1 открыт ТОЛЬКО первый эпизод, ничего не засчитано; урок N, эпизод 1 —
+    // точка старта «начнём здесь» (туда ведёт «Продолжить»). Все темы знакомы — точка старта на уроке после последнего.
+    const ids = result.openedLessonOrdinals.map((lesson) => learningV2CourseSessionIdV1(lesson, 1));
+    const lastOpened = result.openedLessonOrdinals.length > 0 ? Math.max(...result.openedLessonOrdinals) : null;
+    const startLesson = result.startLessonOrdinal ?? (lastOpened !== null && lastOpened < LEARNING_V2_COURSE_LESSON_COUNT_V1 ? lastOpened + 1 : null);
+    let startId: string | null = null;
+    try {
+      startId = startLesson === null ? null : learningV2CourseSessionIdV1(startLesson, 1);
+    } catch (error) {
+      console.warn(LOG, 'apply:start_outside_course', JSON.stringify({ startLesson, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: урок за пределом курса — без точки старта
+    }
+    const view = await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).placeStart(scope, { openIds: ids, startId, source: 'placement_test' });
+    console.log(LOG, 'apply:opened', JSON.stringify({ lessons: result.openedLessonOrdinals, firstEpisodesOpened: ids.length, startId, current: view.currentSessionId })); // guard-ok: итог
     return view;
   } catch (error) {
     console.warn(LOG, 'apply:failed', JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину

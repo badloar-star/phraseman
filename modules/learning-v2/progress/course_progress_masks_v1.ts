@@ -31,6 +31,11 @@ export function courseMaskBitForSessionIdV1(sessionId: string): number | null {
 export type CourseProgressMasksV1 = Readonly<{
   completed: ReadonlySet<number>;
   opened: ReadonlySet<number>;
+  /**
+   * Точки старта (ЗАМОК ВЛАДЕЛЬЦА 25.10, вариант A координатора): «начнём здесь» после входного теста или экзамена главы.
+   * Действует самая дальняя; текущее занятие ищется не раньше неё. Поле «s» в упаковке; старые сборки его не читают и не ломаются.
+   */
+  starts?: ReadonlySet<number>;
   /** true — значение записано другой (будущей) раскладкой: читать нельзя, перезаписывать нельзя. */
   foreignLayout?: boolean;
 }>;
@@ -66,13 +71,15 @@ export function decodeCourseMaskV1(raw: string | null | undefined, total: number
 }
 
 export function packCourseMasksV1(masks: CourseProgressMasksV1): string {
-  return JSON.stringify({ v: LEARNING_V2_COURSE_MASK_LAYOUT_V1.version, c: encodeCourseMaskV1(masks.completed), o: encodeCourseMaskV1(masks.opened) });
+  const base = { v: LEARNING_V2_COURSE_MASK_LAYOUT_V1.version, c: encodeCourseMaskV1(masks.completed), o: encodeCourseMaskV1(masks.opened) };
+  // зачем: без точек старта упаковка байт в байт прежняя — старые записи, сторожа и облако не меняются
+  return JSON.stringify(masks.starts && masks.starts.size > 0 ? { ...base, s: encodeCourseMaskV1(masks.starts) } : base);
 }
 
 export function parseCourseMasksV1(raw: string | null | undefined, total: number): CourseProgressMasksV1 {
   if (!raw) return Object.freeze({ completed: new Set<number>(), opened: new Set<number>() });
   try {
-    const value = JSON.parse(raw) as { v?: unknown; c?: unknown; o?: unknown };
+    const value = JSON.parse(raw) as { v?: unknown; c?: unknown; o?: unknown; s?: unknown };
     // без поля v — первые записи части (а) той же раскладки v1; иная версия — чужая раскладка, данные не трогаем
     if (value?.v !== undefined && value.v !== LEARNING_V2_COURSE_MASK_LAYOUT_V1.version) {
       console.warn("[LV2-PROGRESS] masks:foreign_layout", JSON.stringify({ v: value.v, expected: LEARNING_V2_COURSE_MASK_LAYOUT_V1.version })); // guard-ok: ранний выход с причиной
@@ -81,6 +88,7 @@ export function parseCourseMasksV1(raw: string | null | undefined, total: number
     return Object.freeze({
       completed: decodeCourseMaskV1(typeof value?.c === "string" ? value.c : "", total),
       opened: decodeCourseMaskV1(typeof value?.o === "string" ? value.o : "", total),
+      starts: decodeCourseMaskV1(typeof value?.s === "string" ? value.s : "", total),
     });
   } catch (error) {
     console.warn("[LV2-PROGRESS] masks:unparseable", JSON.stringify({ len: raw.length, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину; битая маска = пусто, другая сторона слияния не теряется
@@ -91,11 +99,14 @@ export function parseCourseMasksV1(raw: string | null | undefined, total: number
 export function unionCourseMasksV1(...all: readonly CourseProgressMasksV1[]): CourseProgressMasksV1 {
   const completed = new Set<number>();
   const opened = new Set<number>();
+  const starts = new Set<number>();
   for (const m of all) {
     m.completed.forEach((i) => completed.add(i));
     m.opened.forEach((i) => opened.add(i));
+    m.starts?.forEach((i) => starts.add(i));
   }
-  return Object.freeze({ completed, opened });
+  // зачем: точки старта сливаются тем же ИЛИ — дальняя точка с любого устройства не теряется
+  return Object.freeze({ completed, opened, starts });
 }
 
 /** Старое облачное число «пройдено подряд» → маска пройденного без потерь. */
@@ -113,9 +124,39 @@ export function contiguousCompletedLengthV1(completed: ReadonlySet<number>): num
   return n;
 }
 
-/** Текущее занятие: первое по порядку, которое не пройдено и не открыто; null — таких нет. */
+/**
+ * Подозрение «точка старта потерялась». зачем (Ревизор 25.10): старая сборка 2.0.2 на втором устройстве пакует маски без «s»
+ * и затирает его в облаке; после чистой установки человек после теста оказался бы в начале курса. Вывести точку из открытого
+ * однозначно нельзя (первый эпизод урока без второго — и тест, и экзамен первой главы), поэтому ничего не угадываем, а пишем
+ * журнал, чтобы увидеть, случается ли это у людей: «s» пусто, а открыты первые эпизоды уроков дальше пройденной цепочки
+ * без их вторых эпизодов (рисунок нового теста).
+ */
+export function courseStartMissingSuspectV1(masks: CourseProgressMasksV1, chainLength: number): number {
+  if ((masks.starts?.size ?? 0) > 0) return 0;
+  const { sessionsPerLesson } = LEARNING_V2_COURSE_MASK_LAYOUT_V1;
+  let lone = 0;
+  masks.opened.forEach((i) => {
+    if (i >= chainLength && i % sessionsPerLesson === 0 && !masks.opened.has(i + 1) && !masks.completed.has(i + 1)) lone += 1;
+  });
+  return lone;
+}
+
+/** Действующая точка старта — самая дальняя записанная; 0 — точек нет (курс с начала). */
+export function courseEffectiveStartV1(masks: CourseProgressMasksV1): number {
+  let start = 0;
+  masks.starts?.forEach((i) => { if (i > start) start = i; });
+  return start;
+}
+
+/**
+ * Текущее занятие: первое по порядку, которое не пройдено и не открыто, НЕ РАНЬШЕ точки старта (вариант A, 25.10:
+ * после теста «начнём здесь» — урок N, после экзамена главы C — первый эпизод главы C+1). Дальше точки всё пройдено —
+ * ищем с начала курса; null — таких нет.
+ */
 export function courseCurrentIndexV1(masks: CourseProgressMasksV1, total: number): number | null {
-  for (let i = 0; i < total; i += 1) if (!masks.completed.has(i) && !masks.opened.has(i)) return i;
+  const start = Math.min(courseEffectiveStartV1(masks), total);
+  for (let i = start; i < total; i += 1) if (!masks.completed.has(i) && !masks.opened.has(i)) return i;
+  for (let i = 0; i < start; i += 1) if (!masks.completed.has(i) && !masks.opened.has(i)) return i;
   return null;
 }
 

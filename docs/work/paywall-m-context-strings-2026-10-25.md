@@ -59,7 +59,7 @@
 | Ключ | ru |
 |---|---|
 | m.head.general.kicker | Ты на {lesson}-м уроке из {total} |
-| m.head.general.title | Через месяц — свой день по-английски, без шпаргалки |
+| m.head.general.title | Через месяц — свой день по-английски |
 | m.head.general.sub | Курс ты уже знаешь. Plus добавляет главное: говори вслух и болтай с ИИ сколько хочешь |
 | m.head.energy.pill | Энергия 0 |
 | m.head.energy.kicker | {n} занятий подряд сегодня |
@@ -67,7 +67,7 @@
 | m.head.energy.sub | С Plus энергия не кончается: занимайся, пока не надоест. И говори вслух без лимита |
 | m.head.dialog.pill | Разговор с ИИ |
 | m.head.dialog.kicker | Первый разговор: {min} минут, {n} фраз |
-| m.head.dialog.title | Кафе, работа, рассказ о себе — всё это в курсе на месяц вперёд |
+| m.head.dialog.title | Кафе, работа, о себе — всё это в курсе |
 | m.head.dialog.sub | Бесплатно — {limit} реплик в месяц, их хватит на пару разговоров. С Plus разговаривай каждый день. |
 | m.head.streak.pill | Серия {n} дней |
 | m.head.streak.kicker | {n} дней подряд |
@@ -75,7 +75,7 @@
 | m.head.streak.sub | С Plus пропуск в один день закроется сам — до 3 раз в месяц. И говори вслух без лимита. |
 | m.head.workshop.pill | Мастерская фраз |
 | m.head.workshop.kicker | Урок {lesson} пройден · {n} фраз |
-| m.head.workshop.title | Фразы урока — в конструктор. Собирай, пока не отскакивают от зубов |
+| m.head.workshop.title | Фразы урока — в конструктор |
 | m.head.workshop.sub | Мастерская к каждому пройденному уроку: собирай, слушай, говори вслух. |
 | m.head.lock.pill | Урок {lesson} |
 | m.head.lock.sub | Впереди ещё {n} уроков. Plus открывает весь курс и разговоры вслух без лимита. |
@@ -88,7 +88,7 @@
 | mc.fine.noTrial | {price} в год · ≈ {monthly} в месяц |
 | mc.later | Позже |
 | mc.energy.kicker | {n} занятий подряд сегодня |
-| mc.energy.title | Ты в ударе. Энергия кончилась раньше тебя |
+| mc.energy.title | Ты в ударе, а энергия — всё |
 | mc.energy.wait | Подождать |
 | mc.energy.waitSub | и продолжишь бесплатно |
 | mc.energy.plusBig | дальше |
@@ -101,13 +101,13 @@
 | mc.dialog.body | Бесплатно — {limit} реплик в месяц. С Plus разговаривай каждый день и получай разбор каждой фразы. |
 | mc.dialog.cta | Продолжить разговор с Plus |
 | mc.streak.kicker | Серия · {n} дней |
-| mc.streak.title | {n} дней подряд! Пропустишь день — Plus прикроет |
+| mc.streak.title | {n} дней подряд! Пропуск Plus прикроет |
 | mc.streak.missed | пропуск |
 | mc.streak.body | С Plus пропущенный день закроется сам — до 3 раз в месяц. Серия останется на месте. |
 | mc.streak.cta | Защитить серию с Plus |
 | mc.workshop.kicker | Урок {lesson} пройден · {n} фраз |
-| mc.workshop.title | Собери фразы урока заново — уже без подсказок |
-| mc.workshop.body | Мастерская фраз: сборка с подсказками, теорией и голосом к каждому пройденному уроку. |
+| mc.workshop.title | Собери фразы урока — с подсказками |
+| mc.workshop.body | Подсказки, теория и озвучка — к каждому пройденному уроку. Собирай, пока не отскакивает от зубов |
 | mc.workshop.cta | Открыть Мастерскую с Plus |
 | mc.lock.kicker | Пройдено {done} урока из {total} |
 | mc.lock.title | Следующий шаг — урок {lesson} |

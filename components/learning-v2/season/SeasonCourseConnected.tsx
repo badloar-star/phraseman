@@ -155,19 +155,25 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     console.log(`${LOG} экзамены: первый кадр`, JSON.stringify({ enabled: SEASON_CHAPTER_EXAM_ENABLED, hasId: id !== null, source: peeked ? 'память' : 'нет (диск фоном)', count: peeked ? Object.keys(peeked).length : 0 })); // guard-ok: откуда данные
     return peeked;
   });
+  // зачем (жалоба №17, координатор 25.10): записи читались только при смене урока — после сдачи экзамена и возврата карточка до
+  // перезапуска звала «Сдать экзамен», и человек думал, что экзамен не засчитан. Теперь и при возврате фокуса: итог экзамена уже
+  // положил запись в память хранилища, чтение мгновенное и локальное (сеть не читается)
+  const examScreenFocused = useIsScreenFocused();
   useEffect(() => {
     if (!SEASON_CHAPTER_EXAM_ENABLED) return undefined;
+    if (!examScreenFocused) return undefined;
     let cancelled = false;
     void getStableId()
       .then((id) => loadLearningV2ChapterExamRecordsV1(deriveLocalOfflineProgressAccountScopeHash(id)))
       .then((records) => {
         if (cancelled) return;
-        console.log(`${LOG} экзамены: диск`, JSON.stringify({ count: Object.keys(records).length })); // guard-ok: откуда данные
+        const passed = learningV2PassedChaptersV1(records, 'en', lesson);
+        console.log(`${LOG} экзамены: диск`, JSON.stringify({ count: Object.keys(records).length, lesson, passedChapters: [...passed.keys()], trigger: 'focus_or_lesson' })); // guard-ok: откуда данные и что сдано
         setExamRecords(records);
       })
       .catch((error: unknown) => { console.warn(`${LOG} экзамены: чтение не удалось`, JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); }); // guard-ok: catch пишет причину
     return () => { cancelled = true; };
-  }, [lesson]);
+  }, [examScreenFocused, lesson]);
   const examPassedChapters = useMemo<ReadonlySet<number>>(() => new Set(examRecords ? learningV2PassedChaptersV1(examRecords, 'en', lesson).keys() : []), [examRecords, lesson]);
   const deck = useMemo(
     () => buildSeasonDeck(sessionRows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED, examAvailableWhenReached: true, examPassedChapters }),

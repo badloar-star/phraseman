@@ -237,7 +237,10 @@ export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => 
       integrity: config.config.integrity,
       expectedPackHashByTier,
       expectedTier,
+      goldStableId: stableUid,
     });
+    // [SPIRE-GOLD] что засчитано и что нет — одна строка на пачку с золотом
+    if (evaluation.goldenSteps.length > 0 || evaluation.goldSkipped.length > 0) log('gold', { stableUid, lang, goldenSteps: evaluation.goldenSteps, skipped: evaluation.goldSkipped, day: evaluation.record.goldDay, dayCount: evaluation.record.goldCount });
     // ── Монеты за новые ступени (PM-280, T35) ───────────────────────────────
     // зачем: платим в ТОЙ ЖЕ транзакции, что поднимает счётчик ступеней, —
     // ступень не может быть засчитана без монет или оплачена без засчёта.
@@ -257,6 +260,7 @@ export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => 
         toSteps,
         coins: config.config.coins,
         earnedAtMs: nowMs,
+        goldenSteps: evaluation.goldenSteps,
       });
       coinsPlanned = plan.total;
       if (plan.truncatedSteps > 0) {

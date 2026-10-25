@@ -72,6 +72,10 @@ describe('[PEAK-COINS] вариант A: монеты в момент итога
     spireStepCoinsNow({ owner: 'me', reportId: 'r2', t0: 0, coins, passedNew: true, floorBefore: 4, floorCleared: true });
     expect(addPending).toHaveBeenLastCalledWith('me', 'r2', 50, expect.any(Number), 600);
   });
+  it('[SPIRE-GOLD] золото решено → ещё одна ставка ступени; этаж не удваивается', () => {
+    spireStepCoinsNow({ owner: 'me', reportId: 'g1', t0: 0, coins, passedNew: true, floorBefore: 4, floorCleared: true, golden: true });
+    expect(addPending).toHaveBeenLastCalledWith('me', 'g1', 50 + 10, expect.any(Number), 600);
+  });
   it('провал, повтор, нет владельца или конфига — монет нет', () => {
     for (const bad of [{ passedNew: false, owner: 'me', coins }, { passedNew: true, owner: null, coins }, { passedNew: true, owner: 'me', coins: null }]) {
       expect(spireStepCoinsNow({ reportId: 'x', t0: 0, floorBefore: 1, floorCleared: false, ...bad })).toBe(false);

@@ -245,14 +245,14 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     const weekKey = spireCurrentWeekKey(Date.now());
     const cur = weekRef.current && weekRef.current.weekKey === weekKey ? weekRef.current : null;
     const floor = cur?.floor ?? 1;
-    const stepInFloor = cur?.stepInFloor ?? 0;
+    const stepInFloor = cur?.stepInFloor ?? 0; const stepNumber = (cur?.stepsCleared ?? 0) + 1; // [SPIRE-GOLD] номер ступени недели — как у сервера
     // зачем (обзор R1 п.1, координатор 12.10): первый тап в Шпиле. Раньше при непрогретом пакете кнопка тускнела
     // до ответа сети без отклика. Теперь экран ступени открывается сразу («Готовим ступень…»), пакет догружается
     // внутри. Энергия по-прежнему списывается только на первом задании (раннер).
     const prepId = `${weekKey}:${floor}:${stepInFloor + 1}:${Date.now()}`;
     prepIdRef.current = prepId;
     const startedAt = Date.now();
-    setPending({ prepId, ctx: { lang, weekKey, tier, floor, stepInFloor }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor, tier) });
+    setPending({ prepId, ctx: { lang, weekKey, tier, floor, stepInFloor, stepNumber }, budgetMs: spireEstimateStepBudgetMs(config.timer, floor, tier) });
     DebugLogger.info(LOG, `game: ступень открыта сразу (Готовим…) prep=${prepId} — пакет догружаем`);
     const stillMine = (where: string): boolean => {
       if (prepIdRef.current === prepId) return true;
@@ -284,7 +284,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       spireRememberStepBudget(floor, pick.plan.budgetMs, { tier, tasks: pick.tasks }); // [SPIRE-TIME]
       const runId = `${weekKey}:${floor}:${stepInFloor + 1}:${attempt}:${Date.now()}`;
       DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source} за ${Date.now() - startedAt} мс (бюджет ${pick.plan.budgetMs} мс)`);
-      setSession({ pick, ctx: { lang, weekKey, tier, floor, stepInFloor }, attempt, runId });
+      setSession({ pick, ctx: { lang, weekKey, tier, floor, stepInFloor, stepNumber }, attempt, runId });
       setPending(null);
     } catch (error) {
       if (!stillMine('error')) return;
@@ -336,7 +336,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       budgetMs: finish.state.budgetMs, floorBefore: base.floor, local: applied.local, failReason: finish.state.failReason,
     };
     setOutcome(view); spireCloseMark(finish.report.reportId, closeT0, `окно итога ${kind} и маркер поставлены`);
-    const coinsNow = spireStepCoinsNow({ owner: ids.stableId, reportId: finish.report.reportId, t0: closeT0, coins: config.coins, passedNew: finish.report.outcome === 'passed' && applied.effect !== 'duplicate_ignored', floorBefore: base.floor, floorCleared: applied.effect === 'floor_cleared' }); // [PEAK-COINS] вариант A
+    const coinsNow = spireStepCoinsNow({ owner: ids.stableId, reportId: finish.report.reportId, t0: closeT0, coins: config.coins, passedNew: finish.report.outcome === 'passed' && applied.effect !== 'duplicate_ignored', floorBefore: base.floor, floorCleared: applied.effect === 'floor_cleared', golden: finish.report.goldenHit === true }); // [PEAK-COINS] вариант A
     // зачем (координатор 14.10): звуки Пика V2 — ступень / этаж / вершина в момент итога; провал без звука; флаг sound_v2 выключен — тишина
     // зачем (координатор 14.10): отклик игры — СРАЗУ, без задержки; мост отмечает «событие сыграно». Момент Пика при показе играет своё событие через playUnlessRecentlyPlayed и молчит,
     // если такое же только что прозвучало отсюда (двойного звука нет, а без момента звук как был).

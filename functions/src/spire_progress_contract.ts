@@ -34,6 +34,8 @@
 
 import type { SpireIntegrityConfig } from './spire_config_contract';
 
+import { SPIRE_GOLD_DAILY_CAP, spireGoldDayKey, spireGoldenTaskIndex } from './spire_golden';
+
 export const SPIRE_PROGRESS_FIELD = 'spire_week_v1' as const;
 export const SPIRE_REPORT_SCHEMA_VERSION = 'spire-step-report.v1' as const;
 export const SPIRE_WEEK_RECORD_SCHEMA_VERSION = 'spire-week-record.v1' as const;
@@ -73,6 +75,8 @@ export type SpireStepReportWire = Readonly<{
   /** Часы устройства в момент вердикта ступени. */
   completedAtMs: number;
   packHash: string;
+  /** [SPIRE-GOLD] клиент: золотое задание этой ступени решено верно с первой попытки (нет поля — false). */
+  goldenHit: boolean;
 }>;
 
 export type SpireLangWeekRecord = Readonly<{
@@ -94,6 +98,9 @@ export type SpireLangWeekRecord = Readonly<{
   /** Время пройденных ступеней за последний час — окно для maxStepsPerHour. */
   recentPassedAtMs: readonly number[];
   updatedAtMs: number;
+  /** [SPIRE-GOLD] день UTC последнего засчитанного золота и сколько их в этот день (потолок SPIRE_GOLD_DAILY_CAP). */
+  goldDay: string;
+  goldCount: number;
 }>;
 
 export type SpireWeekProgress = Readonly<Partial<Record<SpireLang, SpireLangWeekRecord>>>;
@@ -121,6 +128,10 @@ export type SpireBatchEvaluation = Readonly<{
   results: readonly SpireReportVerdict[];
   acceptedPassed: number;
   acceptedFailed: number;
+  /** [SPIRE-GOLD] номера ступеней недели, за которые засчитано золото (×2 ставки ступени). */
+  goldenSteps: readonly number[];
+  /** [SPIRE-GOLD] заявки золота, которые не засчитаны, с причиной — в журнал. */
+  goldSkipped: readonly Readonly<{ reportId: string; step: number; reason: 'not_golden' | 'daily_cap' | 'gold_off' }>[];
   /** false → писать в Firestore нечего (экономия записи на пустой/дублирующей пачке). */
   changed: boolean;
 }>;
@@ -156,7 +167,7 @@ export function spireNormalizeReport(raw: unknown): SpireStepReportWire | null {
   if (!Number.isInteger(tier) || tier < 0 || tier > 11) return null;
   if (!Number.isFinite(durationMs) || durationMs < 0 || durationMs > SPIRE_STEP_MAX_DURATION_MS) return null;
   if (!Number.isSafeInteger(completedAtMs) || completedAtMs <= 0) return null;
-  return { reportId, weekKey, packHash, outcome, tier, durationMs: Math.trunc(durationMs), completedAtMs };
+  return { reportId, weekKey, packHash, outcome, tier, durationMs: Math.trunc(durationMs), completedAtMs, goldenHit: raw.goldenHit === true };
 }
 
 export function spireEmptyWeekRecord(lang: SpireLang, weekKey: string, tier: number): SpireLangWeekRecord {
@@ -173,6 +184,8 @@ export function spireEmptyWeekRecord(lang: SpireLang, weekKey: string, tier: num
     lastCompletedAtMs: 0,
     recentPassedAtMs: [],
     updatedAtMs: 0,
+    goldDay: '',
+    goldCount: 0,
   };
 }
 
@@ -211,6 +224,8 @@ export function spireParseWeekProgress(raw: unknown): SpireWeekProgress {
         ? row.recentPassedAtMs.map((v) => nonNegInt(v)).filter((v) => v > 0)
         : [],
       updatedAtMs: nonNegInt(row.updatedAtMs),
+      goldDay: typeof row.goldDay === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(row.goldDay) ? row.goldDay : '',
+      goldCount: nonNegInt(row.goldCount),
     };
   }
   return out;
@@ -242,6 +257,12 @@ export type SpireEvaluateInput = Readonly<{
    * (сервер шпиль не знает; очки всё равно никуда, кроме progress, не идут).
    */
   expectedTier?: number | null;
+  /**
+   * [SPIRE-GOLD] stableUid игрока для правила золотого задания (functions/src/spire_golden.ts). null/нет — золото не
+   * засчитывается (gold_off). Сервер не судит «верно ли ответил» (телефон решает) — только «было ли золото в этой ступени»
+   * по хешу и дневной потолок.
+   */
+  goldStableId?: string | null;
 }>;
 
 /**
@@ -274,6 +295,8 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
     ?? spireEmptyWeekRecord(input.lang, input.serverWeekKey, input.expectedTier ?? parsed[0]?.tier ?? input.existing?.tier ?? 0);
   let acceptedPassed = 0;
   let acceptedFailed = 0;
+  const goldenSteps: number[] = [];
+  const goldSkipped: { reportId: string; step: number; reason: 'not_golden' | 'daily_cap' | 'gold_off' }[] = [];
 
   for (const report of parsed) {
     const reject = (reason: SpireReportRejectReason) => {
@@ -357,6 +380,19 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
     };
     acceptedPassed += 1;
     results.push({ reportId: report.reportId, verdict: 'accepted', outcome: 'passed' });
+    if (report.goldenHit) {
+      // [SPIRE-GOLD] золото: было ли оно в этой ступени (хеш), и не выбран ли дневной потолок (UTC-день прохождения)
+      const step = record.steps;
+      const day = spireGoldDayKey(report.completedAtMs);
+      const used = record.goldDay === day ? record.goldCount : 0;
+      if (!input.goldStableId) goldSkipped.push({ reportId: report.reportId, step, reason: 'gold_off' });
+      else if (spireGoldenTaskIndex(input.goldStableId, input.serverWeekKey, step) === null) goldSkipped.push({ reportId: report.reportId, step, reason: 'not_golden' });
+      else if (used >= SPIRE_GOLD_DAILY_CAP) goldSkipped.push({ reportId: report.reportId, step, reason: 'daily_cap' });
+      else {
+        goldenSteps.push(step);
+        record = { ...record, goldDay: day, goldCount: used + 1 };
+      }
+    }
   }
 
   // зачем: пустая/дублирующая пачка не стоит записи в Firestore (экономия).
@@ -366,6 +402,8 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
     results,
     acceptedPassed,
     acceptedFailed,
+    goldenSteps,
+    goldSkipped,
     changed,
   };
 }

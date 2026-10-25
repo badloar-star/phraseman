@@ -37,11 +37,12 @@ import { useSpireCountdown } from './use_spire_countdown';
 import { PEAK_PERF } from './peak_perf_probe';
 import { revealTokensAfterPaint } from './spire_reveal_deferred';
 import { useSpireStreakHeart } from './use_spire_streak_heart';
+import { useSpireGold } from './use_spire_gold';
 const LOG = '[SPIRE]';
 const TICK_MS = 250;
 const CORRECT_FLASH_MS = 280;
 
-export type SpireStepContext = Readonly<{ lang: SpireLang; weekKey: string; tier: number; floor: number; stepInFloor: number }>;
+export type SpireStepContext = Readonly<{ lang: SpireLang; weekKey: string; tier: number; floor: number; stepInFloor: number; stepNumber?: number }>; // stepNumber — номер ступени недели ([SPIRE-GOLD])
 export type SpireStepFinish = Readonly<{ state: SpireStepState; report: SpireStepReport }>;
 
 export type SpireFeedback = Readonly<{
@@ -65,7 +66,7 @@ export type SpireRunnerPhase = 'countdown' | 'charging' | 'playing' | 'finished'
 export type SpireStepRunnerInput = Readonly<{
   pick: SpireStepPick;
   ctx: SpireStepContext;
-  uid: string;
+  uid: string; stableId?: string;
   studyTarget: string;
   attempt: number;
   runId: string;
@@ -111,9 +112,9 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const chargedRef = useRef<'none' | 'spent' | 'acked'>('none');
   const finishedRef = useRef(false);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const inputRef = useRef(input);
+  const inputRef = useRef(input); inputRef.current = input;
   const streakHeart = useSpireStreakHeart(input.runId); // [SPIRE-STREAK-HEART] сердце за серию, флаг spire_streak_heart
-  inputRef.current = input;
+  const gold = useSpireGold({ runId: input.runId, stableId: input.stableId, weekKey: input.ctx.weekKey, stepNumber: input.ctx.stepNumber }); // [SPIRE-GOLD] ×2, флаг spire_gold
   const exitOpenRef = useRef(false); exitOpenRef.current = exitOpen;
   const phaseRef = useRef<SpireRunnerPhase>(phase);
   phaseRef.current = phase;
@@ -184,9 +185,8 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   }, []);
   // ── 3. Финал ступени → отчёт наверх (один раз) ──
   const finish = useCallback((final: SpireStepState) => {
-    if (finishedRef.current) return;
-    finishedRef.current = true;
-    const report = spireReportFromStepState(final, { ...ctx, completedAtMs: Date.now() });
+    if (finishedRef.current) return; finishedRef.current = true;
+    const report = gold.stamp(spireReportFromStepState(final, { ...ctx, completedAtMs: Date.now() }));
     if (!report) {
       DebugLogger.warn(LOG, `step: финал без отчёта phase=${final.phase} — не должно случаться`);
       return;
@@ -194,7 +194,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     DebugLogger.info(LOG, `step: финал outcome=${report.outcome} причина=${final.failReason ?? '-'} сердца=${final.hearts} потрачено=${final.elapsedBudgetMs}мс`);
     setPhase('finished');
     inputRef.current.onFinish({ state: final, report });
-  }, [ctx]);
+  }, [ctx, gold.stamp]);
   // ── 4. Тик таймера: только в активной фазе (при показе ошибки таймер стоит, макет §5) ──
   useEffect(() => {
     if (phase !== 'playing') return undefined;
@@ -262,7 +262,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
 
   // ── 6. Ответ ──
   const afterAnswer = useCallback((raw: SpireStepState, fb: SpireFeedback, given: string, correctOrLater: string | readonly string[] | null | Promise<readonly string[] | null>) => {
-    const next = streakHeart.apply(raw, fb.ok, fb.taskIndex + 1); commit(next); // зачем (владелец 25.10, ТЗ §2): 5 верных подряд — сердце назад, под флагом
+    const next = streakHeart.apply(raw, fb.ok, fb.taskIndex + 1); commit(next); gold.onAnswer(fb.taskIndex, fb.ok); // зачем (владелец 25.10, ТЗ §2): 5 верных подряд — сердце назад, под флагом
     setFeedback(fb);
     if (fb.ok) {
       later(() => setFeedback((cur) => (cur === fb ? null : cur)), CORRECT_FLASH_MS);
@@ -282,7 +282,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
         setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, mistakeSaved } : cur));
       });
     // Правильный ответ висит до «Дальше» (continueAfterReveal), автоперехода нет.
-  }, [commit, finish, later, pick.tasks, streakHeart.apply]);
+  }, [commit, finish, later, pick.tasks, streakHeart.apply, gold.onAnswer]);
 
   const canAnswer = (): boolean => {
     const ok = phaseRef.current === 'playing' && stateRef.current.phase === 'active' && feedbackRef.current === null && !exitOpenRef.current;
@@ -390,7 +390,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const displayTaskIndex = feedback ? feedback.taskIndex : Math.min(state.taskIndex, pick.tasks.length - 1);
 
   return {
-    phase, state, clock, feedback, exitOpen, displayTaskIndex, countdownDigit, streakHeart: streakHeart.view,
+    phase, state, clock, feedback, exitOpen, displayTaskIndex, countdownDigit, streakHeart: streakHeart.view, gold: gold.view,
     submitChoice, submitTokens, submitItems, reportCurrentTask, requestExit, cancelExit, confirmExit, continueAfterReveal,
   };
 }

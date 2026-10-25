@@ -27,6 +27,8 @@ import SpireExitSheet from './SpireExitSheet';
 import SpireTaskView from './SpireTaskView';
 import SpireTimerRing from './SpireTimerRing';
 import SpireHeartsRow from './SpireHeartsRow';
+import SpireGoldFrame from './SpireGoldFrame';
+import type { SpireGoldView } from '../../app/spire/use_spire_gold';
 import type { SpireStreakHeartView } from '../../app/spire/use_spire_streak_heart';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
@@ -54,6 +56,8 @@ export type SpireStepLayoutProps = Readonly<{
   hearts: number;
   /** «Сердечко за серию» (флаг spire_streak_heart); нет — прежние три сердца. */
   streakHeart?: SpireStreakHeartView | null;
+  /** [SPIRE-GOLD] золотое задание ×2 (флаг spire_gold); нет — ступень как в 2.0. */
+  gold?: SpireGoldView | null;
   clock: SpireClock;
   paused: boolean;
   preparing: boolean;
@@ -116,6 +120,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           // зачем (18.10): под цифрами отсчёта «Готовим ступень…» не показываем — цифры занимают экран
           props.countdownDigit != null ? null : <Text style={[s.preparing, { color: p.textSecondary }]}>{spireGameText(lang, 'preparing')}</Text>
         ) : (
+          <SpireGoldFrame active={props.gold?.goldIndex === taskIndex} hit={props.gold?.hit === true}>
           <SpireTaskView
             key={`${task.taskId}:${taskIndex}`}
             lang={lang}
@@ -128,6 +133,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
             pairAnswers={props.pairAnswers}
             studyTarget={studyTarget}
           />
+          </SpireGoldFrame>
         )}
         {props.reportSlot}
         {fb ? (
@@ -166,7 +172,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
 
 function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFinish, onAbort, exitRef }: Props & Readonly<{ exitRef: MutableRefObject<(() => void) | null> }>) {
   const runner = useSpireStepRunner({
-    pick: session.pick, ctx: session.ctx, uid, studyTarget, attempt: session.attempt, runId: session.runId, onFinish, onAbort,
+    pick: session.pick, ctx: session.ctx, uid, stableId, studyTarget, attempt: session.attempt, runId: session.runId, onFinish, onAbort,
   });
   // зачем: кнопка «назад» Android внутри Modal приходит в onRequestClose — ведём её в шторку выхода.
   exitRef.current = runner.requestExit;
@@ -225,6 +231,7 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
       budgetMs={pick.plan.budgetMs}
       hearts={runner.state.hearts}
       streakHeart={runner.streakHeart}
+      gold={runner.gold}
       clock={runner.clock}
       paused={paused}
       preparing={runner.phase === 'charging' || runner.phase === 'countdown'}

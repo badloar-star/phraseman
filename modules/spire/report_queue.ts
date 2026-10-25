@@ -57,6 +57,8 @@ export type SpireStepReport = Readonly<{
   floor: number;
   stepInFloor: number;
   failReason: SpireStepFailReason | null;
+  /** [SPIRE-GOLD] золотое задание решено верно с первой попытки (нет поля — нет золота). Сервер сверяет по хешу и потолку. */
+  goldenHit?: boolean;
 }>;
 
 export type SpireServerAck = Readonly<{

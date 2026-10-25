@@ -80,6 +80,8 @@ export type SpireStepCoinsInput = Readonly<{
   coins: SpireCoinsConfig;
   /** Время сервера — одно на транзакцию, чтобы ретрай давал ту же расписку. */
   earnedAtMs: number;
+  /** [SPIRE-GOLD] ступени недели с засчитанным золотом — каждая получает ещё одну ставку ступени (×2), этаж и вершина нет. */
+  goldenSteps?: readonly number[];
 }>;
 
 export type SpireStepCoinsPlan = Readonly<{
@@ -116,6 +118,20 @@ export function spireStepCoinOps(input: SpireStepCoinsInput): SpireStepCoinsPlan
       meta: { lang: input.lang, weekKey: input.weekKey, step: n },
     });
     total += stepCoins;
+    if (input.goldenSteps?.includes(n)) {
+      // зачем (владелец 25.10, золотое задание ×2): та же ставка ступени ещё раз, свой ключ — повтор пачки не удвоит
+      ops.push({
+        opId: `spire_gold:${scope}_s${n}`,
+        delta: stepCoins,
+        reason: 'spire_step',
+        sourceKind: 'spire_gold',
+        sourceId: `${scope}_s${n}`,
+        ruleVersion: SPIRE_COINS_RULE_VERSION,
+        earnedAtMs: input.earnedAtMs,
+        meta: { lang: input.lang, weekKey: input.weekKey, step: n, gold: true },
+      });
+      total += stepCoins;
+    }
 
     const { floor, isFloorEnd } = spireFloorOfStep(n);
     if (!isFloorEnd || floor > SPIRE_SUMMIT_FLOOR) continue;

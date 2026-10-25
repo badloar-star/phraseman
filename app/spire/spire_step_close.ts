@@ -60,14 +60,16 @@ export function spireRunStepCloseTail(tail: SpireStepCloseTail): void {
  * Только новая пройденная ступень; повтор reportId отсекает addSpirePendingCoins. base — кошелёк сейчас (гашение по росту баланса).
  * Число на экранах — единый показ Ядра (peekDisplayedRunes / subscribeDisplayedRunes), своего счётчика здесь нет.
  */
-export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined; reportId: string; t0: number; coins: SpirePendingCoinsConfig | null | undefined; passedNew: boolean; floorBefore: number; floorCleared: boolean }>): boolean {
+export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined; reportId: string; t0: number; coins: SpirePendingCoinsConfig | null | undefined; passedNew: boolean; floorBefore: number; floorCleared: boolean; golden?: boolean }>): boolean {
   if (!i.passedNew || !i.owner || !i.coins) {
     spireCloseMark(i.reportId, i.t0, `монеты сразу: нет (новая пройденная=${String(i.passedNew)} владелец=${i.owner ? 'есть' : 'нет'} конфиг=${i.coins ? 'есть' : 'нет'})`);
     return false;
   }
-  const amount = spireStepPendingCoins(i.coins, i.floorBefore, i.floorCleared);
+  // [SPIRE-GOLD] золото решено: ещё одна ставка ступени (perStep), этаж и вершина не удваиваются — как functions/src/spire_coins.ts
+  const gold = i.golden ? spireStepPendingCoins(i.coins, i.floorBefore, false) : 0;
+  const amount = spireStepPendingCoins(i.coins, i.floorBefore, i.floorCleared) + gold;
   addSpirePendingCoins(i.owner, i.reportId, amount, Date.now(), peekRunes());
-  spireCloseMark(i.reportId, i.t0, `монеты сразу: +${amount} (этаж до=${i.floorBefore} этаж закрыт=${String(i.floorCleared)}) до записи на диск`);
+  spireCloseMark(i.reportId, i.t0, `монеты сразу: +${amount} (этаж до=${i.floorBefore} этаж закрыт=${String(i.floorCleared)} золото=${gold > 0 ? `+${gold}` : 'нет'}) до записи на диск`);
   return true;
 }
 

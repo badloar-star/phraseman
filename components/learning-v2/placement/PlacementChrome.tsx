@@ -1,5 +1,5 @@
 // PlacementChrome.tsx — общая обвязка экранов теста «Не хочу с начала» (макет chapter-exam-season.html, раздел 6): шапка, карточка темы, плашка «ещё 2», подвал.
-// зачем (координатор 24.10, «1 в 1 по макету»): размеры — из CSS макета (.extop, .tvx, .tvtrk, .tvn, .topic, .tries, .extra, .exfoot, .tcta).
+// зачем (координатор 24.10, «1 в 1 по макету»): размеры — из CSS макета (.extop, .tvx, .tvtrk, .tvn, .topic, .tries, .exfoot, .tcta).
 // Обводок нет — плита темы + тень «Тень»; заливки — токены темы (useLv2Glass / lv2TaskTokens). Тап по кнопкам — хаптик только у управляющих (V2Pressable).
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -8,7 +8,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { useLv2Glass } from '../LearningV2Glass';
 import { learningV2LessonIonIcon } from '../icons/learningV2IonIcons';
-import { lv2TaskAmber, lv2TaskPlateStyle } from '../learning_v2_task_layout_tokens';
+import { lv2TaskPlateStyle } from '../learning_v2_task_layout_tokens';
 import { lv2TaskTokens } from '../learning_v2_task_theme_tokens';
 import { seasonText } from '../season/season_copy';
 import { placementCopy } from './placement_copy';
@@ -19,7 +19,6 @@ export const PLACEMENT_LAYOUT = {
   top: { gap: 12, minHeight: 54, marginTop: 2, close: 44, closeIcon: 22 },
   progress: { height: 6, radius: 3, labelSize: 13, labelLine: 17, labelGap: 5 },
   topic: { marginTop: 10, radius: 18, padV: 10, padH: 12, gap: 12, tile: 46, tileRadius: 12, tileIcon: 22, kickerSize: 13, kickerLine: 17, titleSize: 16, titleLine: 21, dot: 10, dotGap: 5 },
-  extra: { marginTop: 12, radius: 16, padV: 10, padH: 14, size: 15, line: 21, gap: 8, icon: 16 },
   foot: { padTop: 12, padH: 20, padBottom: 34, cta: 52, ghost: 50, ghostGap: 10 },
 } as const;
 
@@ -92,17 +91,6 @@ export const PlacementTopicCard = memo(function PlacementTopicCard({ lang, lesso
   );
 });
 
-/** Плашка `.extra`: «Ещё 2 вопроса по этой теме» на тёплом амбере экзамена. */
-export const PlacementExtraBanner = memo(function PlacementExtraBanner({ lang }: Readonly<{ lang: string }>) {
-  const g = useLv2Glass();
-  return (
-    <View testID="placement-extra" style={[styles.extra, { backgroundColor: lv2TaskAmber(g).fill }]}>
-      <Ionicons name="refresh" size={PLACEMENT_LAYOUT.extra.icon} color={g.text} />
-      <Text style={[styles.extraText, { color: g.text }]}>{placementCopy(lang, 'extra')}</Text>
-    </View>
-  );
-});
-
 type FooterProps = Readonly<{ primaryLabel: string; onPrimary: () => void; ghostLabel?: string; onGhost?: () => void; bottomInset: number; primaryDisabled?: boolean }>;
 
 /** `.exfoot`: подвал с главной кнопкой `.tcta` (52, радиус 26) и, на старте, вторичной кнопкой (50, радиус 25, `--ctl`). */
@@ -138,8 +126,6 @@ const styles = StyleSheet.create({
   topicTitle: { marginTop: 2, fontSize: L.topic.titleSize, lineHeight: L.topic.titleLine, fontWeight: '700' },
   tries: { flexDirection: 'row', gap: L.topic.dotGap, marginLeft: 'auto' },
   dot: { width: L.topic.dot, height: L.topic.dot, borderRadius: L.topic.dot / 2 },
-  extra: { marginTop: L.extra.marginTop, borderRadius: L.extra.radius, paddingVertical: L.extra.padV, paddingHorizontal: L.extra.padH, flexDirection: 'row', alignItems: 'center', gap: L.extra.gap },
-  extraText: { flexShrink: 1, fontSize: L.extra.size, lineHeight: L.extra.line, fontWeight: '600' },
   foot: { paddingTop: L.foot.padTop, paddingHorizontal: L.foot.padH },
   cta: { height: L.foot.cta, borderRadius: L.foot.cta / 2, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },

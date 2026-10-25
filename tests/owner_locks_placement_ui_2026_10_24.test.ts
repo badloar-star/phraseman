@@ -14,12 +14,14 @@ describe('Замки: тест «Не хочу с начала» — интер�
   const flags = read('components/learning-v2/placement/placement_flags.ts');
   const entry = code(read('components/learning-v2/season/SeasonCourseConnected.tsx'));
 
-  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1, ничего не толкуем» — размеры шапки, карточки темы, точек, плашки и подвала из CSS макета (.extop .topic .tries .extra .exfoot)
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1, ничего не толкуем» — размеры шапки, карточки темы, точек, плашки и подвала из CSS макета (.extop .topic .tries .exfoot)
   it('размеры обвязки — из CSS макета', () => {
     expect(chrome).toContain('top: { gap: 12, minHeight: 54, marginTop: 2, close: 44, closeIcon: 22 }');
     expect(chrome).toContain('topic: { marginTop: 10, radius: 18, padV: 10, padH: 12, gap: 12, tile: 46, tileRadius: 12, tileIcon: 22');
     expect(chrome).toContain('dot: 10, dotGap: 5');
-    expect(chrome).toContain('extra: { marginTop: 12, radius: 16, padV: 10, padH: 14, size: 15, line: 21, gap: 8, icon: 16 }');
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10: «не надо плашку» — плашки «ещё N вопросов по теме» нет ни в обвязке, ни на экране
+    expect(chrome).not.toMatch(/PlacementExtraBanner|placement-extra/u);
+    expect(screen).not.toMatch(/PlacementExtraBanner/u);
     expect(chrome).toContain('foot: { padTop: 12, padH: 20, padBottom: 34, cta: 52, ghost: 50, ghostGap: 10 }');
   });
 
@@ -34,7 +36,7 @@ describe('Замки: тест «Не хочу с начала» — интер�
     expect(start).not.toMatch(/RULE_KEYS|rule[123]|styles\.rules/u);
     const copy = read('components/learning-v2/placement/placement_copy.ts');
     expect(copy).not.toMatch(/^\s*rule[123]:/mu);
-    expect(copy).not.toMatch(/около 5 минут|Засчитаем при двух|бесплатн/iu);
+    expect(copy).not.toMatch(/около 5 минут|Засчитаем при двух|бесплатн|Ещё 2 вопроса/iu);
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1» — итог: «Открыто до урока N» 34/40, строки уроков с «открыт» зелёным и «начнём здесь», кнопка «Начать урок N»

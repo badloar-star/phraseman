@@ -10,7 +10,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { learningV2ChapterExamCopy } from '../components/learning-v2/learning_v2_chapter_exam_copy';
-import { PlacementExtraBanner, PlacementTopBar, PlacementTopicCard } from '../components/learning-v2/placement/PlacementChrome';
+import { PlacementTopBar, PlacementTopicCard } from '../components/learning-v2/placement/PlacementChrome';
 import { PlacementResultView } from '../components/learning-v2/placement/PlacementResultView';
 import { PlacementStartView } from '../components/learning-v2/placement/PlacementStartView';
 import { LEARNING_V2_PLACEMENT_UI_ENABLED } from '../components/learning-v2/placement/placement_flags';
@@ -154,7 +154,7 @@ function PlacementRun({ bridge }: Readonly<{ bridge: PlacementBridgeV1 }>) {
               header={(
                 <View>
                   <PlacementTopicCard lang={lang} lessonOrdinal={view.lessonOrdinal} title={lessonTitle(view.lessonOrdinal)} dots={view.dots} />
-                  {view.extraBanner ? <PlacementExtraBanner lang={lang} /> : null}
+                  {/* зачем (владелец 25.10 «не надо плашку»): «ещё N вопросов по теме» не показываем — повтор по теме идёт молча, точки попыток остаются */}
                 </View>
               )}
             />

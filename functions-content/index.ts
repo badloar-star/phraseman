@@ -20,6 +20,7 @@ export { learningV2ActivityAuxiliarySessionGetV1 } from '../functions/src/conten
 export { learningV2ActivityReleasedSessionGetV1 } from '../functions/src/content_factory/v2_activity_released_session_callable_v1';
 export { learningV2CourseReleasedSessionGetV2 } from '../functions/src/content_factory/v2_course_released_session_callable_v2';
 export { learningV2CourseReleasedSessionGetV3 } from '../functions/src/content_factory/v2_course_released_session_callable_v3';
+export { learningV2CourseReleasedSessionGetV4 } from '../functions/src/content_factory/v2_course_released_session_callable_v4';
 export { learningV2CourseActiveCatalogGetV1 } from '../functions/src/content_factory/v2_course_active_catalog_callable_v1';
 export { adminPublishAuthoredLearningV2Course } from '../functions/src/content_factory/learning_v2_publish_authored_course_v1';
 export { adminImportV2OwnerEpisodeStage } from '../functions/src/content_factory/v2_owner_episode_stage_repository_v1';

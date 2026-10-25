@@ -148,7 +148,7 @@ export async function resolveV2CourseReleasedSessionFromAuthenticatedRepositoryV
   });
 }
 
-function exactResolved(
+export function exactV2CourseReleasedSessionResolvedV3(
   input: V2CourseReleasedSessionRequestV2,
   resolved: V2CourseReleasedSessionResolvedV3,
 ) {
@@ -283,7 +283,7 @@ export function createV2CourseReleasedSessionHandlerV3(
         `course_session_unavailable: ${message}${where ? ` @ ${where}` : ""}`,
       );
     }
-    const checked = exactResolved(input, resolved);
+    const checked = exactV2CourseReleasedSessionResolvedV3(input, resolved);
     return Object.freeze({
       schemaVersion: V2_COURSE_RELEASED_SESSION_RESPONSE_SCHEMA_V3,
       releaseId: checked.summary.releaseId,

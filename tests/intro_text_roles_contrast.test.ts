@@ -4,6 +4,7 @@
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { introTextRoles } from '../constants/liquidGlassIntroTextRoles';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
+import { flattenOver } from '../constants/liquidGlassSurfaceRoles';
 
 const lin = (v: number): number => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
 const oklab = (h: string): [number, number, number] => {
@@ -25,11 +26,16 @@ describe('цвета текста вступления: английский / �
           const g = liquidGlassTokens(id as never, { level, appearance } as never);
           const r = introTextRoles(id as never, { level, appearance });
           const at = `${appearance}/${id}/${level}`;
-          for (const [name, c] of Object.entries(r)) {
+          for (const [name, c] of Object.entries(r).filter(([k]) => k !== 'particleSoft')) {
             for (const s of [g.plateFillFrom, g.plateFillTo]) {
               const k = paletteContrast(c.slice(0, 7), s.slice(0, 7));
               if (k < 4.5) bad.push(`${at} ${name} ${c} на ${s}: ${k.toFixed(2)}`);
             }
+          }
+          // частица на своей подложке (particleSoft, сведённой с обоими концами карточки) — тоже ≥ 4,5
+          for (const s of [g.plateFillFrom, g.plateFillTo]) {
+            const k = paletteContrast(r.particle.slice(0, 7), flattenOver(r.particleSoft, s.slice(0, 7)));
+            if (k < 4.5) bad.push(`${at} particle на particleSoft: ${k.toFixed(2)}`);
           }
           for (const [a, b] of [['langText', 'particle'], ['langText', 'gloss'], ['particle', 'gloss']] as const) {
             if (dE(r[a], r[b]) < 0.06) bad.push(`${at} ${a}≈${b} ΔE ${dE(r[a], r[b]).toFixed(3)}`);

@@ -204,6 +204,8 @@ export async function prepareLearningV2ChapterExamV1(input: Readonly<{
  * Завершить попытку: результат → запись (сдал / пауза час) → при сдаче ОТКРЫТЬ непройденные эпизоды главы (не засчитывая).
  * Сердечки экзамен не тратит — здесь их нет вовсе.
  */
+export type ChapterExamFinishV1 = Readonly<{ result: ChapterExamResultV1; record: ChapterExamRecordV1; creditedSessionIds: readonly string[]; startSessionId: string | null; firstPass: boolean }>;
+
 export async function finishLearningV2ChapterExamV1(input: Readonly<{
   accountScopeHash: string;
   progressAccountScopeHash: string;
@@ -212,8 +214,24 @@ export async function finishLearningV2ChapterExamV1(input: Readonly<{
   chapterOrdinal: number;
   answers: readonly Readonly<{ interactionId: string; correct: boolean }>[];
   finishedAtMs: number;
-}>): Promise<Readonly<{ result: ChapterExamResultV1; record: ChapterExamRecordV1; creditedSessionIds: readonly string[]; startSessionId: string | null; firstPass: boolean }>> {
-  const result = scoreChapterExamV1(input.answers);
+}>): Promise<ChapterExamFinishV1> {
+  return finishLearningV2ChapterExamWithResultV1({ ...input, result: scoreChapterExamV1(input.answers) });
+}
+
+/**
+ * Итог с готовым результатом: запись попытки, пауза после провала, открытие главы и «первая сдача» — одно правило для обоих экзаменов.
+ * зачем (экзамен v2, владелец 25.10): v2 считает «сдал» по-своему (8 из 10), но запись, монеты и открытие главы — те же, что у прежнего.
+ */
+export async function finishLearningV2ChapterExamWithResultV1(input: Readonly<{
+  accountScopeHash: string;
+  progressAccountScopeHash: string;
+  examKey: string;
+  lessonOrdinal: number;
+  chapterOrdinal: number;
+  result: ChapterExamResultV1;
+  finishedAtMs: number;
+}>): Promise<ChapterExamFinishV1> {
+  const result = input.result;
   const records = await loadLearningV2ChapterExamRecordsV1(input.accountScopeHash);
   const prior = records[input.examKey] ?? null;
   // зачем (владелец 22.10): 40 монет — только за ПЕРВУЮ сдачу главы; пересдача уже сданной главы награды не даёт

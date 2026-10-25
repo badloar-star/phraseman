@@ -27,6 +27,8 @@ import {
   LEARNING_V2_SESSION_TARGET_MINUTES_V1,
 } from '../../modules/learning-v2/content/course_topology_v1';
 
+import { isChapterExamV2EnabledFor } from '../../app/learning_v2_chapter_exam_v2';
+import { CHAPTER_EXAM_V2_QUESTION_COUNT } from '../../modules/learning-v2/exam/chapter_exam_v2';
 const LOG = '[CHAPTER-EXAM]';
 const SHEET_EASE = REasing.bezier(...KIT_MOTION.sheetEase);
 const CHAPTERS_PER_LESSON = 7;
@@ -121,7 +123,8 @@ export default function LearningV2ChapterExamSheet({ visible, lessonOrdinal, cha
   ].filter(Boolean).join(' ');
   // зачем (владелец 25.10 через координатора, «черновик разраба»): на фишках только «N вопросов» — без минут и порога сдачи
   const facts: readonly [string, string][] = [
-    [String(CHAPTER_EXAM_QUESTION_COUNT_V1), learningV2ChapterExamCopy(lang, 'questions')],
+    // зачем (экзамен v2, владелец 25.10): у главы с банком v2 — 10 заданий, у остальных — 12, как раньше
+    [String(isChapterExamV2EnabledFor(lessonOrdinal, chapterOrdinal) ? CHAPTER_EXAM_V2_QUESTION_COUNT : CHAPTER_EXAM_QUESTION_COUNT_V1), learningV2ChapterExamCopy(lang, 'questions')],
   ];
   const later = learningV2ChapterExamCopy(lang, 'later');
 

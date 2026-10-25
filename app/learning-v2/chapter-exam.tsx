@@ -12,6 +12,8 @@ import Animated, { SlideInRight, SlideOutLeft, useReducedMotion } from 'react-na
 import V2Pressable from '../../components/v2/V2Pressable';
 import NoEnergyModal from '../../components/NoEnergyModal';
 import LearningV2PracticeViewport from '../../components/learning-v2/LearningV2PracticeViewport';
+import ChapterExamV2Run from '../../components/learning-v2/exam_v2/ChapterExamV2Run';
+import { isChapterExamV2EnabledFor } from '../learning_v2_chapter_exam_v2';
 import { useLang } from '../../components/LangContext';
 import { useEnergy } from '../../components/EnergyContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
@@ -75,6 +77,18 @@ export default function LearningV2ChapterExamScreen() {
   if (isLearningV2Hidden()) {
     logLearningV2Hidden('route_learning_v2_chapter_exam', LEARNING_V2_HIDDEN_REDIRECT);
     return <Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />;
+  }
+  return <ChapterExamSwitch />;
+}
+
+// зачем (владелец утвердил прототип экзамена v2 25.10, координатор): глава с банком v2 и включённым переключателем «Пульта» —
+// новый экзамен; остальные главы — прежний, без изменений.
+function ChapterExamSwitch() {
+  const params = useLocalSearchParams<{ lessonOrdinal?: string; chapterOrdinal?: string; source?: string }>();
+  const lessonOrdinal = Number(params.lessonOrdinal) || 1;
+  const chapterOrdinal = Number(params.chapterOrdinal) || 1;
+  if (isChapterExamV2EnabledFor(lessonOrdinal, chapterOrdinal)) {
+    return <ChapterExamV2Run lessonOrdinal={lessonOrdinal} chapterOrdinal={chapterOrdinal} source={params.source ?? null} />;
   }
   return <ChapterExamRun />;
 }

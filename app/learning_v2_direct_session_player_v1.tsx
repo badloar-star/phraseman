@@ -2296,6 +2296,10 @@ export default function LearningV2DirectSessionPlayerV1() {
         };
         try {
           await commitLocalProgress();
+          // зачем (экзамен v2, владелец 25.10): пройден эпизод слабой темы проваленного экзамена — отметка «повторил»; все пройдены → пересдать сразу
+          void import('./learning_v2_chapter_exam_v2')
+            .then(({ noteChapterExamV2EpisodeFinishedV1 }) => noteChapterExamV2EpisodeFinishedV1(accountScopeHash, runSummary.courseSessionId))
+            .catch((reviewError: unknown) => console.warn('[CHAPTER-EXAM-V2] review:note_failed', JSON.stringify({ courseSessionId: runSummary.courseSessionId, reason: reviewError instanceof Error ? reviewError.message : String(reviewError) }))); // guard-ok: catch пишет причину
           // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «урок готов до тапа»): следующее занятие собирается, пока человек смотрит итог —
           // после анимаций финала и паузы; сеть не нужна (бандл), Firestore не читается.
           if (locator) {

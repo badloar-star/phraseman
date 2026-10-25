@@ -38,6 +38,9 @@ export type RemoteBoolKey =
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «Не могу говорить выключи… это удар по монетизации»): кнопка «Не могу говорить» в занятиях — только по
   // переключателю «Пульта» (9 · САЙТ). По умолчанию выключено: кнопки нет, голосовые задания не обходятся, лимит голоса работает.
   | 'learning_cant_speak_enabled'
+  // зачем (владелец утвердил прототип экзамена v2 25.10, координатор): новый экзамен главы — переключатель «Пульта». По умолчанию ВКЛ,
+  // но работает только там, где у главы есть банк заданий v2; остальные главы — на прежнем экзамене. Выкл → везде прежний экзамен.
+  | 'learning_chapter_exam_v2_enabled'
   // зачем (владелец 25.10, координатор 25.10): «сердечко за серию» в ступени Пика — переключатель «Пульта», по умолчанию ВЫКЛ
   | 'spire_streak_heart'
   // зачем (владелец 25.10, координатор 25.10): «золотое задание» Пика ×2 монеты ступени — переключатель «Пульта», по умолчанию ВЫКЛ
@@ -244,6 +247,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   learning_cant_speak_enabled: false,
+  learning_chapter_exam_v2_enabled: true,
   spire_streak_heart: false,
   spire_gold: false,
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
@@ -495,7 +499,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
-    'learning_cant_speak_enabled', 'spire_streak_heart', 'spire_gold', 'premium_theme_webgl_motion_enabled',
+    'learning_cant_speak_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'spire_gold', 'premium_theme_webgl_motion_enabled',
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',

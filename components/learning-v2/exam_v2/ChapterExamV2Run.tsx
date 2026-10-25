@@ -33,6 +33,7 @@ import ChapterExamV2Question, { type ChapterExamV2AnswerRecord } from './Chapter
 import { ChapterExamV2MistakesView, ChapterExamV2ResultView, ChapterExamV2ReviewView } from './ChapterExamV2Result';
 import { chapterExamV2Copy } from './chapter_exam_v2_copy';
 import { useChapterExamV2Colors } from './chapter_exam_v2_colors';
+import type { ChapterExamV2DevPreset } from './chapter_exam_v2_dev_presets';
 
 const LOG = '[CHAPTER-EXAM-V2]';
 
@@ -45,7 +46,9 @@ const episodeOf = (sessionId: string | null): number | null => {
   return Number.isFinite(n) && n > 0 ? n : null;
 };
 
-export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source }: Readonly<{ lessonOrdinal: number; chapterOrdinal: number; source: string | null }>) {
+// зачем (координатор 25.10, склейка Сверки): devPreset — только dev-ссылка /dev_chapter_exam_v2_preview. Экран тот же, но состояние берётся из
+// снимка: без подготовки, энергии и записи. Боевой вход (app/learning-v2/chapter-exam.tsx) его не передаёт.
+export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source, devPreset = null }: Readonly<{ lessonOrdinal: number; chapterOrdinal: number; source: string | null; devPreset?: ChapterExamV2DevPreset | null }>) {
   const router = useRouter();
   const g = useLv2Glass();
   const t = lv2TaskTokens(g);
@@ -55,15 +58,15 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
   const { studyTarget } = useStudyTarget();
   const { isUnlimited, confirmActivityStart } = useEnergy();
   const [scope, setScope] = useState<string | null>(null);
-  const [attempt, setAttempt] = useState<Attempt | null>(null);
-  const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<readonly ChapterExamV2AnswerRecord[]>([]);
-  const [writeMode, setWriteMode] = useState(false);
-  const [phase, setPhase] = useState<Phase>('question');
-  const [outcome, setOutcome] = useState<Outcome | null>(null);
-  const [reward, setReward] = useState<number | null>(null);
-  const [review, setReview] = useState<ChapterExamV2ReviewState | null>(null);
-  const [cooldownBank, setCooldownBank] = useState<ChapterExamV2Bank | null>(null);
+  const [attempt, setAttempt] = useState<Attempt | null>(() => (devPreset?.attempt ? { ...devPreset.attempt, bank: devPreset.bank } : null));
+  const [index, setIndex] = useState(devPreset?.index ?? 0);
+  const [answers, setAnswers] = useState<readonly ChapterExamV2AnswerRecord[]>(devPreset?.answers ?? []);
+  const [writeMode, setWriteMode] = useState(devPreset?.writeMode ?? false);
+  const [phase, setPhase] = useState<Phase>(devPreset?.phase ?? 'question');
+  const [outcome, setOutcome] = useState<Outcome | null>(devPreset?.outcome ?? null);
+  const [reward, setReward] = useState<number | null>(devPreset?.reward ?? null);
+  const [review, setReview] = useState<ChapterExamV2ReviewState | null>(devPreset?.review ?? null);
+  const [cooldownBank, setCooldownBank] = useState<ChapterExamV2Bank | null>(devPreset && !devPreset.attempt ? devPreset.bank : null);
   const [noEnergy, setNoEnergy] = useState(false);
   const chargedKeyRef = useRef<string | null>(null);
   const finishingRef = useRef(false);
@@ -99,13 +102,17 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
   }, [chapterOrdinal, close, lessonOrdinal, source]);
 
   useEffect(() => {
+    if (devPreset) {
+      console.log(`${LOG} screen:dev_preset`, JSON.stringify({ state: devPreset.state, chapterOrdinal, phase: devPreset.phase, index: devPreset.index, answered: devPreset.answers.length })); // guard-ok: dev-снимок вместо подготовки
+      return;
+    }
     void start('open');
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: экзамен готовится один раз на вход
   }, []);
 
   // Энергия — при показе первого вопроса попытки, один раз (номер операции = ключ экзамена + попытка).
   useEffect(() => {
-    if (!attempt || phase !== 'question') return;
+    if (!attempt || phase !== 'question' || devPreset) return; // dev-снимок энергию не списывает
     const key = `${attempt.examKey}:attempt-${attempt.attempt}`;
     if (chargedKeyRef.current === key) return;
     chargedKeyRef.current = key;
@@ -114,7 +121,7 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
       console.log(`${LOG} energy:charge`, JSON.stringify({ key, result })); // guard-ok: ответ списания
       if (result === 'insufficient' || result === 'cancelled') setNoEnergy(true);
     });
-  }, [attempt, confirmActivityStart, isUnlimited, phase]);
+  }, [attempt, confirmActivityStart, devPreset, isUnlimited, phase]);
 
   // Вернулся из эпизода повтора — отметки плеера уже на диске: обновить список (пересдать, когда пройдены все).
   useFocusEffect(useCallback(() => {
@@ -185,7 +192,8 @@ export default function ChapterExamV2Run({ lessonOrdinal, chapterOrdinal, source
       </View>
       {phase === 'question' && item ? (
         <ChapterExamV2Question key={`${attempt?.attempt}:${item.id}`} lang={lang} item={item} ordinal={index + 1} writeMode={writeMode} bottomInset={insets.bottom}
-          onWriteMode={() => setWriteMode(true)} onAnswered={onAnswered} onNext={onNext} />
+          onWriteMode={() => setWriteMode(true)} onAnswered={onAnswered} onNext={onNext}
+          initialAnswerText={devPreset && index === devPreset.index ? devPreset.initialAnswerText : null} />
       ) : null}
       {phase === 'result' && outcome && bank ? (
         <ChapterExamV2ResultView lang={lang} bank={bank} result={outcome.result} answers={answers} startEpisode={outcome.startEpisode} reward={reward} retryMinutes={outcome.retryMinutes}

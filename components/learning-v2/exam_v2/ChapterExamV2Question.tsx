@@ -38,9 +38,11 @@ type Props = Readonly<{
   onWriteMode: () => void;
   onAnswered: (answer: ChapterExamV2AnswerRecord) => void;
   onNext: () => void;
+  /** Только dev-ссылка /dev_chapter_exam_v2_preview: вопрос открывается уже проверенным с этим ответом. В бою не передаётся. */
+  initialAnswerText?: string | null;
 }>;
 
-export default function ChapterExamV2Question({ lang, item, ordinal, writeMode, bottomInset, onWriteMode, onAnswered, onNext }: Props) {
+export default function ChapterExamV2Question({ lang, item, ordinal, writeMode, bottomInset, onWriteMode, onAnswered, onNext, initialAnswerText = null }: Props) {
   const g = useLv2Glass();
   const t = lv2TaskTokens(g);
   const c = useChapterExamV2Colors();
@@ -71,6 +73,12 @@ export default function ChapterExamV2Question({ lang, item, ordinal, writeMode, 
     onAnswered(record);
     void (verdict.correct ? hapticSuccess() : hapticError());
   }, [item, onAnswered, ordinal]);
+
+  // зачем (координатор 25.10, склейка Сверки): состояния «верно / опечатка / неверно» снимаются по ссылке — ответ проверяется тем же submit
+  useEffect(() => {
+    if (initialAnswerText) submit(initialAnswerText, 'text');
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: один раз на вход вопроса
+  }, []);
 
   // Голос: распознали фразу после отпускания — сразу проверка («отпусти — проверю»).
   useEffect(() => {

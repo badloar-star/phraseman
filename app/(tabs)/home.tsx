@@ -2830,6 +2830,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               if (phraseTop <= 0) { console.warn('[HOME-SCENE] chip:ignored', JSON.stringify({ kind, reason: 'phrase_card_not_laid_out' })); return; } // guard-ok
               homeScrollRef.current?.scrollTo({ y: Math.max(0, phraseTop - 12), animated: true });
             }}
+            // зачем (владелец 25.10, 12 новых состояний сцены): особые сцены — из данных телефона; ошибки — тот же счётчик, что у кнопки «Ошибки»
+            mistakesOpen={mistakeSnapshotCurrent || (ENABLE_DEV_TOOLS && devMistakesCardOverride === 'mistakes') ? mistakeActiveCount : null}
+            studyTarget={studyTarget}
+            onSpecial={(route) => {
+              if (route === 'mistakes') { openHomeMistakesHub('home_scene_special'); return; }
+              if (route === 'cards') { quickItems[2]!.onPress(); return; }
+              if (route === 'stats') { go('/streak_stats'); return; }
+              homeSceneOnContinue();
+            }}
           />
         );
         const renderHomeV2 = () => (

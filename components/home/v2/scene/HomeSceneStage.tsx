@@ -14,7 +14,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
 import React, { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
-import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
+import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { renderWindowEpoch, useRenderCause } from '../../../../app/render_cause_probe';
@@ -57,6 +57,11 @@ const TOP_SPACE = 52;
 const HERO_BOUND_FONT_SCALE = 1.15;
 const HERO_PAD = 10;
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
+/**
+ * Особая сцена (владелец 25.10): текст входит один раз — 300 мс, снизу на 10, ease-out, на UI-потоке; «Уменьшить движение» — сразу.
+ * зачем: особая сцена приходит, когда телефон дочитал свои данные, — смена текста видна как событие, а не как скачок.
+ */
+const SPECIAL_ENTER = FadeInDown.duration(300).easing(EASE_OUT).withInitialValues({ opacity: 0, transform: [{ translateY: 10 }] });
 
 export type HomeSceneChip = Readonly<{ kind: HomeSceneChipKind; label: string; icon: React.ComponentProps<typeof Ionicons>['name'] }>;
 
@@ -82,6 +87,8 @@ type Props = {
   onChip: (kind: HomeSceneChipKind) => void;
   /** Высота зоны часов, если сцена рисуется от верха экрана: фон заходит под часы, раскладка отступает (0 — как раньше). */
   topInset?: number;
+  /** Особая сцена (`состояние:ключ`); смена ключа — текст входит заново один раз. null — обычный герой. */
+  specialKey?: string | null;
 };
 
 const HOME_STAGE_MODULE_AT = Date.now(); // [TOP-BAND]: отсчёт времени до первой раскладки сцены
@@ -95,7 +102,7 @@ export default function HomeSceneStage(props: Props) {
   return <HomeSceneStageView {...props} onCta={cta} onChip={chip} buildLiveText={live} />;
 }
 
-const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0 }: Props) {
+const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0, specialKey = null }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const { lang } = useLang();
@@ -181,7 +188,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             <View style={[s.skel, { width: 120, height: 12, marginTop: 14 }]} />
           </>
         ) : (
-          <>
+          <Animated.View key={specialKey ?? 'base'} entering={specialKey && !reduceMotion ? SPECIAL_ENTER : undefined}>
             {copy.kicker ? <Text testID="home-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
             {liveEnergy === 'title'
               ? <LiveEnergyText testID="home-scene-title" header build={buildLiveText} style={titleStyle} />
@@ -198,7 +205,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
                 <Text style={s.line}>{copy.line}</Text>
               </View>
             ) : null}
-          </>
+          </Animated.View>
         )}
         {copy.cta ? (
           <V2Pressable

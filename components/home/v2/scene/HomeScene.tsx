@@ -30,6 +30,7 @@ import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from
 import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene_tokens';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
+import { useHomeSceneSpecial, useHomeSceneWordsDue, type HomeSceneSpecialRoute, type HomeSceneSpecialView } from './use_home_scene_special';
 import { useTabTopBleedInset } from '../../../tab_top_bleed';
 import { noteHomeRender } from '../../../../app/home_scroll_probe';
 
@@ -106,6 +107,12 @@ type Props = Readonly<{
   active: boolean;
   onContinue: () => void;
   onChip: (kind: HomeSceneChipKind) => void;
+  /** Особые сцены (владелец 25.10): неразобранные ошибки — счётчик Главной; null — ещё не прочитан. Не задано — особых сцен с ошибками нет. */
+  mistakesOpen?: number | null;
+  /** Цель обучения — для карточек «пора повторить». */
+  studyTarget?: unknown;
+  /** Переход кнопки особой сцены; делает Главная. Не задано — особые сцены не показываются. */
+  onSpecial?: (route: HomeSceneSpecialRoute) => void;
 }>;
 
 export default function HomeScene(p: Props) {
@@ -151,12 +158,18 @@ export default function HomeScene(p: Props) {
     logKeyRef.current = key;
     console.log(LOG, 'decision', JSON.stringify({ state: decision.state, reason: decision.reason, offlineLine: decision.offlineLine, zeroEnergyNote: decision.zeroEnergyNote, offline, streakToday: p.streakToday, energy: p.energy, plus: p.plus, lastDay, daysAway, daysSinceLesson, prevVisitDay: visitGap?.previousVisitDay ?? null, streakCount: personal.streakCount, streakLostToday, allReleasedDone, course: p.courseProgress, examReady: 'off:no_exam_yet' })); // guard-ok: одна строка на смену решения
   }, [decision, offline, p.energy, p.plus, p.streakToday, lastDay, daysAway, daysSinceLesson, visitGap, personal.streakCount, streakLostToday, allReleasedDone, p.courseProgress]);
+  // зачем (владелец 25.10, 12 новых состояний сцены): особая сцена поверх героя — только из данных телефона; срочные герои главнее
+  const wordsDue = useHomeSceneWordsDue(p.onSpecial ? p.studyTarget : undefined);
+  const specialFacts = useMemo(() => ({ mistakesOpen: p.mistakesOpen ?? null, wordsDue, activityDates: personal.activityDates }), [p.mistakesOpen, wordsDue, personal.activityDates]);
+  const special = useHomeSceneSpecial({ lang: p.lang, decision, facts: specialFacts, place: null, active: p.active && !p.pending && Boolean(p.onSpecial) });
   return (
     <HomeSceneView
       lang={p.lang}
       header={p.header}
       artTone={p.artTone}
       decision={decision}
+      special={p.onSpecial && !p.pending ? special : null}
+      onSpecial={p.onSpecial}
       streakDays={p.streakDays}
       daysAway={daysAway}
       lostStreakDays={streakLostToday ? personal.streakCount : null}
@@ -200,6 +213,9 @@ export type HomeSceneViewProps = Readonly<{
   topInset?: number;
   onContinue: () => void;
   onChip: (kind: HomeSceneChipKind) => void;
+  /** Особая сцена (тексты и куда ведёт кнопка); null — обычный герой. */
+  special?: HomeSceneSpecialView | null;
+  onSpecial?: (route: HomeSceneSpecialRoute) => void;
 }>;
 
 /**
@@ -252,7 +268,13 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     lostStreakDays: p.lostStreakDays, ctaTarget: p.place.ctaTarget, lessonNo: p.place.lessonNo ?? null,
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: minuteTick и toMidnight меняют только вечерний текст раз в минуту
   }), [p.lang, decision.state, decision.zeroEnergyNote, p.place.badge, p.place.episode, p.place.title, p.place.done, p.place.total, p.place.theoryLessonId, p.place.ctaTarget, p.place.lessonNo, p.streakDays, p.daysAway, p.lostStreakDays, evening ? toMidnight : 0, minuteTick]);
-  const copy = useMemo(() => buildHomeSceneCopy(copyInput), [copyInput]);
+  const specialView = p.special ?? null;
+  const copy = useMemo(() => {
+    const own = buildHomeSceneCopy(copyInput);
+    if (!specialView) return own;
+    // зачем (макет «Праздник»: строка — место продолжения «Урок 1 · Эпизод 2»): у праздника строка — подпись места обычного героя
+    return specialView.special === 'holiday' && !specialView.copy.line ? { ...specialView.copy, line: own.kicker || null } : specialView.copy;
+  }, [copyInput, specialView]);
   const liveEnergy = decision.state === 'no_energy' ? 'title' : evening && decision.zeroEnergyNote ? 'warm' : null;
   const fixedEnergyMinutes = p.energyMinutes;
   const buildLiveText = useCallback((minutes: number | null) => {
@@ -267,10 +289,17 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   const ctaTarget = p.place.ctaTarget;
   const ctaLessonNo = p.place.lessonNo ?? null;
   const ctaEpisode = p.place.episode;
+  const { onSpecial } = p;
   const onCta = useCallback(() => {
-    console.log('[HOME-CONTINUE] tap', JSON.stringify({ state: decision.state, target: ctaTarget ?? 'v2_default', cta: copy.cta, lessonNo: ctaLessonNo, episode: ctaEpisode })); // guard-ok: одна строка на тап
+    // зачем (особые сцены 25.10): кнопка особой сцены ведёт туда, о чём сцена говорит; «Продолжить» — прежний обработчик Главной
+    if (specialView && onSpecial && specialView.route !== 'continue') {
+      console.log(LOG, 'special:tap', JSON.stringify({ special: specialView.special, key: specialView.key, route: specialView.route, cta: copy.cta })); // guard-ok: одна строка на тап
+      onSpecial(specialView.route);
+      return;
+    }
+    console.log('[HOME-CONTINUE] tap', JSON.stringify({ state: decision.state, target: ctaTarget ?? 'v2_default', cta: copy.cta, lessonNo: ctaLessonNo, episode: ctaEpisode, special: specialView?.special ?? null })); // guard-ok: одна строка на тап
     onContinue();
-  }, [copy.cta, ctaEpisode, ctaLessonNo, ctaTarget, decision.state, onContinue]);
+  }, [copy.cta, ctaEpisode, ctaLessonNo, ctaTarget, decision.state, onContinue, onSpecial, specialView]);
   // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне»): факт — где по экрану начинается сцена и какой у неё верхний цвет;
   // сравнивается с [SAFE-TOP] status_strip (высота зоны часов и цвет полосы над ней).
   const rootRef = useRef<View>(null);
@@ -280,9 +309,10 @@ export function HomeSceneView(p: HomeSceneViewProps) {
     });
   }, [decision.state, tokens.sceneTop, p.statusTint, topInset]);
   return (
-    <View ref={rootRef} onLayout={handleRootLayout} testID={`home-scene-${decision.state}`} style={s.root}>
+    <View ref={rootRef} onLayout={handleRootLayout} testID={`home-scene-${specialView?.special ?? decision.state}`} style={s.root}>
       <HomeSceneStage
         state={decision.state}
+        specialKey={specialView ? `${specialView.special}:${specialView.key ?? ''}` : null}
         evening={evening}
         tokens={tokens}
         copy={copy}

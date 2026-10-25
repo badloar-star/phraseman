@@ -40,7 +40,8 @@ describe('свободный разговор: перевод из ответа 
 describe('проводка: кнопка у каждой реплики собеседника, перевод под репликой', () => {
   it('сценарий: перевод первой реплики — из пакета по языку интерфейса', () => {
     const model = readSource('app/dialogue_v2_briefing_model.ts');
-    expect(model).toContain('opening: openingOf(packet, input.uiLang),');
+    expect(model).toContain('opening: openingOf(packet, input.uiLang, input.studyTarget, item.id),');
+    expect(model).toContain('?? dialogueV2OpeningTranslation({ uiLang, studyTarget, scenarioId, openingText: text.trim() });');
     expect(model).toContain('const value = (translations as Record<string, unknown>)[uiLang];');
     const route = readSource('app/dialogue_v2_session.tsx');
     expect(route).toContain('...(opening.translation ? { translation: opening.translation } : {}),');

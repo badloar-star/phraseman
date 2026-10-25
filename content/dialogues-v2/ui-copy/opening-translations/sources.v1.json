@@ -1,0 +1,1222 @@
+{
+  "schemaVersion": "dialogue-v2-opening-sources.v1",
+  "note": "Переводить text на язык интерфейса; файл перевода <uiLang>.v1.json = { \"<key>\": \"<перевод>\" }",
+  "entries": {
+    "de:everyday_01": {
+      "studyTarget": "de",
+      "text": "Hallo! Schön, von dir zu hören. Wie geht's dir?"
+    },
+    "de:everyday_02": {
+      "studyTarget": "de",
+      "text": "Hey! Was gibt's? Wolltest du mir etwas sagen?"
+    },
+    "de:everyday_03": {
+      "studyTarget": "de",
+      "text": "Hallo! Große Neuigkeit: Ich habe heute die neue Stelle bekommen!"
+    },
+    "de:everyday_04": {
+      "studyTarget": "de",
+      "text": "Hallo! Was gibt's Neues heute?"
+    },
+    "de:everyday_05": {
+      "studyTarget": "de",
+      "text": "Hallo. Gestern habe ich lange vor dem Café gewartet. Was ist passiert?"
+    },
+    "de:everyday_06": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe ein paar Minuten Zeit. Was gibt's?"
+    },
+    "de:everyday_07": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe gehört, du suchst jemanden für dein Haustier. Für wann denn?"
+    },
+    "de:everyday_08": {
+      "studyTarget": "de",
+      "text": "Hallo zusammen! Wir müssen ein Geschenk kaufen. Hat jemand eine Idee?"
+    },
+    "de:everyday_09": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich bin vom Shop. Ich kann Ihnen bei Ihrer Bestellung helfen."
+    },
+    "de:everyday_10": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe mich gefragt, wie es gelaufen ist. Hat mein Rat geholfen?"
+    },
+    "de:everyday_11": {
+      "studyTarget": "de",
+      "text": "Hey! Das Wochenende steht vor der Tür, und ich habe noch nichts vor. Was macht ihr beiden?"
+    },
+    "de:everyday_12": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich muss etwas Wichtiges entscheiden und schwanke ständig hin und her. Kannst du mir beim Nachdenken helfen?"
+    },
+    "de:everyday_13": {
+      "studyTarget": "de",
+      "text": "Hallo! Wolltest du mit mir über etwas sprechen? Ich habe deinen Zettel an der Tür gesehen."
+    },
+    "de:everyday_14": {
+      "studyTarget": "de",
+      "text": "Hey, du wolltest über etwas reden? Ich habe gerade etwas Zeit, also schieß los."
+    },
+    "de:everyday_15": {
+      "studyTarget": "de",
+      "text": "Hallo! Du hast gesagt, dass dich etwas stört. Ich höre zu, aber ich hoffe, wir können ruhig darüber sprechen."
+    },
+    "de:everyday_16": {
+      "studyTarget": "de",
+      "text": "Ehrlich gesagt, buchen wir einfach die billigste Wohnung für die Reise und fertig. Warum so viel überlegen?"
+    },
+    "de:everyday_17": {
+      "studyTarget": "de",
+      "text": "Hey! Alles okay? Du wirkst in letzter Zeit anders, und ich wusste nicht, ob ich es ansprechen soll."
+    },
+    "de:everyday_18": {
+      "studyTarget": "de",
+      "text": "Hast du das mit der Feier gehört? Manche sagen, sie ist abgesagt, andere, sie wurde verschoben. Ich bin total verwirrt."
+    },
+    "de:everyday_19": {
+      "studyTarget": "de",
+      "text": "Also, dieser Chat ist zu einem Chaos geworden. Alle sind verletzt, und niemand hört zu. Kannst du uns helfen, neu anzufangen?"
+    },
+    "de:social_01": {
+      "studyTarget": "de",
+      "text": "Hallo! Schön, dich kennenzulernen. Ich bin Mila. Wie geht es dir?"
+    },
+    "de:social_02": {
+      "studyTarget": "de",
+      "text": "Hallo! Unser Treffen ist morgen um 10. Passt das noch?"
+    },
+    "de:social_03": {
+      "studyTarget": "de",
+      "text": "Hallo! Kann ich dir helfen? Suchst du etwas?"
+    },
+    "de:social_04": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich hoffe, meine Hilfe war nützlich. Ist jetzt alles gut?"
+    },
+    "de:social_05": {
+      "studyTarget": "de",
+      "text": "Hallo! Stell dir vor: Ich habe heute meine Führerscheinprüfung bestanden!"
+    },
+    "de:social_06": {
+      "studyTarget": "de",
+      "text": "Willkommen in der Gruppe! Sag uns bitte, wie du heißt und was du gern machst."
+    },
+    "de:social_07": {
+      "studyTarget": "de",
+      "text": "Hallo! Wir haben uns ewig nicht gesehen. Was hast du diese Woche vor?"
+    },
+    "de:social_08": {
+      "studyTarget": "de",
+      "text": "Hey! Wie läuft deine Woche? Hast du schon Pläne fürs Wochenende?"
+    },
+    "de:social_09": {
+      "studyTarget": "de",
+      "text": "Hallo! Treffen wir uns heute Abend noch? Ich freue mich schon sehr."
+    },
+    "de:social_10": {
+      "studyTarget": "de",
+      "text": "Hallo! Es war schön, dich gestern zu sehen. Bist du gut nach Hause gekommen?"
+    },
+    "de:social_11": {
+      "studyTarget": "de",
+      "text": "Hallo zusammen! Wir reden seit Tagen über Samstag, aber noch ist nichts geplant. Hat jemand eine Idee?"
+    },
+    "de:social_12": {
+      "studyTarget": "de",
+      "text": "Hey. Tut mir leid, dass ich so still war. Die Arbeit ist gerade ziemlich viel."
+    },
+    "de:social_13": {
+      "studyTarget": "de",
+      "text": "Hallo. Ich habe deine Nachricht von heute Morgen gesehen und bin nicht sicher, was du meinst. Können wir reden?"
+    },
+    "de:social_14": {
+      "studyTarget": "de",
+      "text": "Hallo! Am Freitag gibt es bei mir eine kleine Feier, und ich würde mich freuen, wenn du kommst. Hast du Zeit?"
+    },
+    "de:social_15": {
+      "studyTarget": "de",
+      "text": "Hey, ich habe darüber nachgedacht, wie wir unsere Pläne zuletzt organisiert haben. Können wir darüber reden, was jeder erwartet?"
+    },
+    "de:social_16": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe gesehen, dass du etwas besprechen wolltest. Ich bin heute etwas im Stress, aber erzähl mal."
+    },
+    "de:social_17": {
+      "studyTarget": "de",
+      "text": "Hey! Ich zähle am Samstag wieder auf dich beim ganzen Umzug, okay? Du bist immer so zuverlässig, ich wusste, dass du Ja sagst."
+    },
+    "de:social_18": {
+      "studyTarget": "de",
+      "text": "Ich bin ehrlich: Ich bin wegen der Sache noch verletzt. Aber ich höre dir zu. Was wolltest du mir sagen?"
+    },
+    "de:social_19": {
+      "studyTarget": "de",
+      "text": "Ehrlich gesagt ist dieser Verlauf angespannt geworden. Die einen fühlen sich übergangen, die anderen beschuldigt. Kann uns jemand helfen, das zu klären?"
+    },
+    "de:travel_01": {
+      "studyTarget": "de",
+      "text": "Hallo! Bist du schon in der Stadt? Wie war die Reise?"
+    },
+    "de:travel_02": {
+      "studyTarget": "de",
+      "text": "Guten Abend! Brauchst du Hilfe mit der Wohnung?"
+    },
+    "de:travel_03": {
+      "studyTarget": "de",
+      "text": "Hallo! Danke für Ihre Buchung. Wie kann ich Ihnen helfen?"
+    },
+    "de:travel_04": {
+      "studyTarget": "de",
+      "text": "Hallo! Brauchst du einen Transfer vom Flughafen?"
+    },
+    "de:travel_05": {
+      "studyTarget": "de",
+      "text": "Hallo! Probier das kleine Café am Bahnhof. Der Kaffee dort ist super!"
+    },
+    "de:travel_06": {
+      "studyTarget": "de",
+      "text": "Hallo! Wohin möchtest du? Lea und ich können dir den Weg erklären."
+    },
+    "de:travel_07": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich prüfe gerade deine Buchung. Kannst du mir die Buchungsnummer schicken?"
+    },
+    "de:travel_08": {
+      "studyTarget": "de",
+      "text": "Hallo! Es ist schon sieben Uhr. Kommst du bald? Ich warte in der Wohnung."
+    },
+    "de:travel_09": {
+      "studyTarget": "de",
+      "text": "Hallo! Willkommen bei uns. Mit wem schreibe ich, und wie können wir helfen?"
+    },
+    "de:travel_10": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich möchte dir morgen die Altstadt zeigen. Wo treffen wir uns?"
+    },
+    "de:travel_11": {
+      "studyTarget": "de",
+      "text": "Guten Tag, hier ist Niko vom Gästeservice. Clara ist auch dabei. Was können wir für Sie tun?"
+    },
+    "de:travel_12": {
+      "studyTarget": "de",
+      "text": "Hallo! Jeder scheint eine andere Idee für die Reise zu haben. Kannst du uns helfen, einen Plan zu machen?"
+    },
+    "de:travel_13": {
+      "studyTarget": "de",
+      "text": "Hallo! Hier ist Lea von der Reservierung. Sie möchten etwas ändern, richtig? Um welche Buchung geht es?"
+    },
+    "de:travel_14": {
+      "studyTarget": "de",
+      "text": "Guten Tag, hier ist Niko vom Kundenservice. Wie ich höre, möchten Sie ein Anliegen vorbringen. Wie kann ich Ihnen helfen?"
+    },
+    "de:travel_15": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe gehört, dass es ein Problem mit unserer Verbindung morgen gibt. Was ist genau passiert?"
+    },
+    "de:travel_16": {
+      "studyTarget": "de",
+      "text": "Hallo. Ich habe unser System geprüft, und unter diesem Namen ist keine Buchung zu finden. Was liegt Ihnen vor?"
+    },
+    "de:travel_17": {
+      "studyTarget": "de",
+      "text": "Danke für Ihre Nachricht. Wir haben Ihre Meldung zum stornierten Aufenthalt gesehen. Könnten Sie uns schildern, was aus Ihrer Sicht passiert ist?"
+    },
+    "de:travel_18": {
+      "studyTarget": "de",
+      "text": "Danke, dass du vermittelst. Gast und Gastgeber sind beide verärgert, und der Service steckt dazwischen. Wo möchtest du anfangen?"
+    },
+    "de:travel_19": {
+      "studyTarget": "de",
+      "text": "Alle fragen, was los ist, und die Nachrichten häufen sich. Kannst du uns ein klares Bild davon geben, wo wir stehen?"
+    },
+    "de:work_01": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich bin Marina aus dem Team. Wie heißt du?"
+    },
+    "de:work_02": {
+      "studyTarget": "de",
+      "text": "Hallo! Wobei kann ich dir heute helfen?"
+    },
+    "de:work_03": {
+      "studyTarget": "de",
+      "text": "Hallo! Unser Anruf ist morgen. Passt die Uhrzeit noch für dich?"
+    },
+    "de:work_04": {
+      "studyTarget": "de",
+      "text": "Guten Morgen! Die Besprechung beginnt in zehn Minuten. Kommst du?"
+    },
+    "de:work_05": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe dir die Anleitung geschickt. Ist alles klar?"
+    },
+    "de:work_06": {
+      "studyTarget": "de",
+      "text": "Hallo! Bitte bereite den kurzen Bericht bis Freitag vor. Marina und ich beantworten Fragen."
+    },
+    "de:work_07": {
+      "studyTarget": "de",
+      "text": "Hallo! Kurze Nachfrage: Das Projekt ist bis Donnerstag fällig. Wie läuft es?"
+    },
+    "de:work_08": {
+      "studyTarget": "de",
+      "text": "Hallo! Kurze Frage: Wie weit sind wir mit der Kundenaufgabe?"
+    },
+    "de:work_09": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich bin Sam von der IT. Marina sagt, du brauchst Hilfe. Was ist los?"
+    },
+    "de:work_10": {
+      "studyTarget": "de",
+      "text": "Hallo! Wie war dein erster Tag bei uns? Ich hoffe, es ging gut."
+    },
+    "de:work_11": {
+      "studyTarget": "de",
+      "text": "Wir reden seit zwei Tagen über den Launch, aber ich sehe immer noch nicht, wer was macht. Was meinst du?"
+    },
+    "de:work_12": {
+      "studyTarget": "de",
+      "text": "Hallo! Du hast erwähnt, dass etwas nicht funktioniert. Kannst du mir erklären, was los ist, damit ich nachsehen kann?"
+    },
+    "de:work_13": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe gehört, dass nächste Woche eine Besprechung geplant ist. Worum geht es dabei?"
+    },
+    "de:work_14": {
+      "studyTarget": "de",
+      "text": "Der Kunde hat gerade angerufen und braucht die Lieferung am Mittwoch statt am Freitag. Kannst du das möglich machen?"
+    },
+    "de:work_15": {
+      "studyTarget": "de",
+      "text": "Hallo! Ich habe gerade meinen Angebotsentwurf mit dir geteilt. Ich hätte gern deine ehrliche Meinung, bevor ich ihn abschicke."
+    },
+    "de:work_16": {
+      "studyTarget": "de",
+      "text": "Wir haben drei dringende Projekte, aber diesen Monat nur zwei verfügbare Leute. Wir müssen entscheiden, was zuerst kommt. Wo fangen wir an?"
+    },
+    "de:work_17": {
+      "studyTarget": "de",
+      "text": "Zu deiner Information: Wir haben beschlossen, das ganze Team bis Monatsende auf das neue Tool umzustellen. Sag Bescheid, falls etwas unklar ist."
+    },
+    "de:work_18": {
+      "studyTarget": "de",
+      "text": "Hallo. Die Integration verzögert sich, und mein Team und das Plattform-Team schieben sich gegenseitig die Schuld zu. Kannst du uns helfen, das zu klären?"
+    },
+    "de:work_19": {
+      "studyTarget": "de",
+      "text": "Danke, dass du dir Zeit genommen hast. Bevor wir über die Konditionen sprechen, würde ich gern hören, wie du das Projekt siehst und wo die größten Lücken sind."
+    },
+    "en:everyday_01": {
+      "studyTarget": "en",
+      "text": "Hi! It's nice to hear from you. How are you?"
+    },
+    "en:everyday_02": {
+      "studyTarget": "en",
+      "text": "Hey! What's up? Did you want to tell me something?"
+    },
+    "en:everyday_03": {
+      "studyTarget": "en",
+      "text": "Hi! Big news: I got the new job today!"
+    },
+    "en:everyday_04": {
+      "studyTarget": "en",
+      "text": "Hi! What's new with you today?"
+    },
+    "en:everyday_05": {
+      "studyTarget": "en",
+      "text": "Hi. Yesterday I waited a long time outside the café. What happened?"
+    },
+    "en:everyday_06": {
+      "studyTarget": "en",
+      "text": "Hi! I have a few free minutes. What's up?"
+    },
+    "en:everyday_07": {
+      "studyTarget": "en",
+      "text": "Hi! I heard you need someone for your pet. When is it?"
+    },
+    "en:everyday_08": {
+      "studyTarget": "en",
+      "text": "Hi everyone! We need to buy a gift. Any ideas?"
+    },
+    "en:everyday_09": {
+      "studyTarget": "en",
+      "text": "Hello! I'm from the shop. I can help you with your order."
+    },
+    "en:everyday_10": {
+      "studyTarget": "en",
+      "text": "Hi! I've been wondering how it went. Did my advice help?"
+    },
+    "en:everyday_11": {
+      "studyTarget": "en",
+      "text": "Hey! The weekend is coming and I have no plans yet. What are you two doing?"
+    },
+    "en:everyday_12": {
+      "studyTarget": "en",
+      "text": "Hi! I have to decide something big and I keep going back and forth. Can you help me think it through?"
+    },
+    "en:everyday_13": {
+      "studyTarget": "en",
+      "text": "Hello! Did you want to talk about something? I saw your note on the door."
+    },
+    "en:everyday_14": {
+      "studyTarget": "en",
+      "text": "Hey, you wanted to talk about something? I'm free for a bit, so go ahead."
+    },
+    "en:everyday_15": {
+      "studyTarget": "en",
+      "text": "Hi! You said something has been bothering you. I'm listening, but I hope we can talk calmly."
+    },
+    "en:everyday_16": {
+      "studyTarget": "en",
+      "text": "Honestly, let's just book the cheapest flat for the trip and be done. Why overthink it?"
+    },
+    "en:everyday_17": {
+      "studyTarget": "en",
+      "text": "Hey! Is everything okay? You've seemed different lately, and I wasn't sure whether to bring it up."
+    },
+    "en:everyday_18": {
+      "studyTarget": "en",
+      "text": "Have you heard about the party? Some say it's cancelled, others say it's moved. I'm so confused."
+    },
+    "en:everyday_19": {
+      "studyTarget": "en",
+      "text": "Okay, this chat has turned into a mess. Everyone is hurt and nobody is listening. Could you help us start over?"
+    },
+    "en:social_01": {
+      "studyTarget": "en",
+      "text": "Hi! Nice to meet you. I'm Mila. How are you today?"
+    },
+    "en:social_02": {
+      "studyTarget": "en",
+      "text": "Hi! Our meeting is tomorrow at 10. Still okay for you?"
+    },
+    "en:social_03": {
+      "studyTarget": "en",
+      "text": "Hello! Can I help you? Are you looking for something?"
+    },
+    "en:social_04": {
+      "studyTarget": "en",
+      "text": "Hi! I hope my help was useful. Is everything okay now?"
+    },
+    "en:social_05": {
+      "studyTarget": "en",
+      "text": "Hi! Guess what? I passed my driving test today!"
+    },
+    "en:social_06": {
+      "studyTarget": "en",
+      "text": "Welcome to the group! Please tell us your name and what you enjoy."
+    },
+    "en:social_07": {
+      "studyTarget": "en",
+      "text": "Hey! I haven't seen you for ages. What are you up to this week?"
+    },
+    "en:social_08": {
+      "studyTarget": "en",
+      "text": "Hey! How's your week going? Any plans for the weekend?"
+    },
+    "en:social_09": {
+      "studyTarget": "en",
+      "text": "Hi! Are we still meeting tonight? I'm really looking forward to it."
+    },
+    "en:social_10": {
+      "studyTarget": "en",
+      "text": "Hi! It was nice to see you yesterday. Did you get home okay?"
+    },
+    "en:social_11": {
+      "studyTarget": "en",
+      "text": "Hey everyone! We keep talking about Saturday, but nothing is decided yet. Any ideas?"
+    },
+    "en:social_12": {
+      "studyTarget": "en",
+      "text": "Hey. Sorry I've been so quiet. Work has been a lot lately."
+    },
+    "en:social_13": {
+      "studyTarget": "en",
+      "text": "Hi. I saw your message this morning, and I'm not sure what you meant. Can we talk?"
+    },
+    "en:social_14": {
+      "studyTarget": "en",
+      "text": "Hi! We're having a small party at my place on Friday, and I'd love for you to come. Can you make it?"
+    },
+    "en:social_15": {
+      "studyTarget": "en",
+      "text": "Hey, I've been thinking about how we plan things together lately. Can we talk about what each of us expects?"
+    },
+    "en:social_16": {
+      "studyTarget": "en",
+      "text": "Hi! I saw you wanted to talk about something. I'm a bit busy today, but tell me what's up."
+    },
+    "en:social_17": {
+      "studyTarget": "en",
+      "text": "Hey! I'm counting on you for the whole move this Saturday again, okay? You're always so reliable, I knew you'd say yes."
+    },
+    "en:social_18": {
+      "studyTarget": "en",
+      "text": "I'll be honest, I'm still a bit hurt about what happened. I'm willing to hear you out, though. What did you want to say?"
+    },
+    "en:social_19": {
+      "studyTarget": "en",
+      "text": "Honestly, this thread has gotten tense. Half of us feel ignored and the other half feel blamed. Could someone help us sort it out?"
+    },
+    "en:travel_01": {
+      "studyTarget": "en",
+      "text": "Hello! Are you here yet? How was your trip?"
+    },
+    "en:travel_02": {
+      "studyTarget": "en",
+      "text": "Hello! Do you need help with the apartment?"
+    },
+    "en:travel_03": {
+      "studyTarget": "en",
+      "text": "Hello! Thank you for your booking. How can I help you?"
+    },
+    "en:travel_04": {
+      "studyTarget": "en",
+      "text": "Hello! Do you need a ride from the airport?"
+    },
+    "en:travel_05": {
+      "studyTarget": "en",
+      "text": "Hi! Try the small café near the station. The coffee is great!"
+    },
+    "en:travel_06": {
+      "studyTarget": "en",
+      "text": "Hi! Where do you want to go? Lea and I can show you the way."
+    },
+    "en:travel_07": {
+      "studyTarget": "en",
+      "text": "Hello! I'm checking your booking. Can you send me the booking number, please?"
+    },
+    "en:travel_08": {
+      "studyTarget": "en",
+      "text": "Hi! It's already seven o'clock. Are you coming soon? I'm waiting at the apartment."
+    },
+    "en:travel_09": {
+      "studyTarget": "en",
+      "text": "Hello! Welcome to our guesthouse. Who am I writing to, and how can we help?"
+    },
+    "en:travel_10": {
+      "studyTarget": "en",
+      "text": "Hi! I'd like to show you the old town tomorrow. Where shall we meet?"
+    },
+    "en:travel_11": {
+      "studyTarget": "en",
+      "text": "Hello, this is Niko from guest support. Clara is also here. What can we do for you?"
+    },
+    "en:travel_12": {
+      "studyTarget": "en",
+      "text": "Hey! Everyone seems to have a different idea for the trip. Can you help us figure out a plan?"
+    },
+    "en:travel_13": {
+      "studyTarget": "en",
+      "text": "Hello! Lea from reservations here. I understand you'd like to change something. Which booking is it about?"
+    },
+    "en:travel_14": {
+      "studyTarget": "en",
+      "text": "Good afternoon, this is Niko from customer service. I understand you wanted to raise a concern. How can I help?"
+    },
+    "en:travel_15": {
+      "studyTarget": "en",
+      "text": "Hi! I heard there's a problem with our connection tomorrow. What exactly happened?"
+    },
+    "en:travel_16": {
+      "studyTarget": "en",
+      "text": "Hello. I've checked our system, and it shows no booking under that name. Can you tell me what you have on your side?"
+    },
+    "en:travel_17": {
+      "studyTarget": "en",
+      "text": "Thank you for contacting us. We've seen your report about the cancelled stay. Could you walk us through what happened from your side?"
+    },
+    "en:travel_18": {
+      "studyTarget": "en",
+      "text": "Thanks for stepping in. The guest and the host are both upset, and the service team is caught in the middle. Where would you like to begin?"
+    },
+    "en:travel_19": {
+      "studyTarget": "en",
+      "text": "Everyone is asking what's going on, and the messages are piling up. Could you give us a clear picture of where we stand?"
+    },
+    "en:work_01": {
+      "studyTarget": "en",
+      "text": "Hi! I'm Marina from the team. What's your name?"
+    },
+    "en:work_02": {
+      "studyTarget": "en",
+      "text": "Hello! How can I help you today?"
+    },
+    "en:work_03": {
+      "studyTarget": "en",
+      "text": "Hi! Our call is tomorrow. Is the time still okay for you?"
+    },
+    "en:work_04": {
+      "studyTarget": "en",
+      "text": "Good morning! The meeting starts in ten minutes. Are you coming?"
+    },
+    "en:work_05": {
+      "studyTarget": "en",
+      "text": "Hi! I sent you the instructions. Is everything clear?"
+    },
+    "en:work_06": {
+      "studyTarget": "en",
+      "text": "Hi! Please prepare the short report by Friday. Marina and I can answer questions."
+    },
+    "en:work_07": {
+      "studyTarget": "en",
+      "text": "Hi! Just checking: the project is due on Thursday. How is it going?"
+    },
+    "en:work_08": {
+      "studyTarget": "en",
+      "text": "Hi! Quick question: where are we with the client task?"
+    },
+    "en:work_09": {
+      "studyTarget": "en",
+      "text": "Hi! I'm Sam from IT. Marina says you need help. What's the problem?"
+    },
+    "en:work_10": {
+      "studyTarget": "en",
+      "text": "Hi! How was your first day with us? I hope it went well."
+    },
+    "en:work_11": {
+      "studyTarget": "en",
+      "text": "We've talked about the launch for two days, but I still don't see who does what. Thoughts?"
+    },
+    "en:work_12": {
+      "studyTarget": "en",
+      "text": "Hi! You mentioned something wasn't working. Can you tell me what's going on, so I can look into it?"
+    },
+    "en:work_13": {
+      "studyTarget": "en",
+      "text": "Hi! I heard we're setting up a meeting next week. What is it about?"
+    },
+    "en:work_14": {
+      "studyTarget": "en",
+      "text": "The client just called, and they need the delivery on Wednesday instead of Friday. Can you make that work?"
+    },
+    "en:work_15": {
+      "studyTarget": "en",
+      "text": "Hey! I just shared my draft proposal with you. I'd really like your honest opinion before I send it on."
+    },
+    "en:work_16": {
+      "studyTarget": "en",
+      "text": "We have three urgent projects and only two people available this month. We need to decide what comes first. Where do we start?"
+    },
+    "en:work_17": {
+      "studyTarget": "en",
+      "text": "Just so you know, we've decided to move the whole team to the new tool by the end of the month. Let me know if anything's unclear."
+    },
+    "en:work_18": {
+      "studyTarget": "en",
+      "text": "Hi. The integration is slipping, and my team and the platform team are each pointing at the other. Can you help us clear it up?"
+    },
+    "en:work_19": {
+      "studyTarget": "en",
+      "text": "Thanks for making time. Before we discuss terms, I'd like to hear how you see the project and where you think the biggest gaps are."
+    },
+    "es:everyday_01": {
+      "studyTarget": "es",
+      "text": "¡Hola! Qué bueno saber de ti. ¿Cómo estás?"
+    },
+    "es:everyday_02": {
+      "studyTarget": "es",
+      "text": "¡Ey! ¿Qué pasa? ¿Querías decirme algo?"
+    },
+    "es:everyday_03": {
+      "studyTarget": "es",
+      "text": "¡Hola! Gran noticia: ¡hoy me dieron el nuevo trabajo!"
+    },
+    "es:everyday_04": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Qué hay de nuevo hoy?"
+    },
+    "es:everyday_05": {
+      "studyTarget": "es",
+      "text": "Hola. Ayer esperé mucho rato delante del café. ¿Qué pasó?"
+    },
+    "es:everyday_06": {
+      "studyTarget": "es",
+      "text": "¡Hola! Tengo unos minutos libres. ¿Qué pasa?"
+    },
+    "es:everyday_07": {
+      "studyTarget": "es",
+      "text": "¡Hola! Me dijeron que buscas a alguien para tu mascota. ¿Para cuándo?"
+    },
+    "es:everyday_08": {
+      "studyTarget": "es",
+      "text": "¡Hola a todos! Tenemos que comprar un regalo. ¿Alguna idea?"
+    },
+    "es:everyday_09": {
+      "studyTarget": "es",
+      "text": "¡Hola! Soy de la tienda. Puedo ayudarle con su pedido."
+    },
+    "es:everyday_10": {
+      "studyTarget": "es",
+      "text": "¡Hola! Me preguntaba cómo te fue. ¿Te sirvió mi consejo?"
+    },
+    "es:everyday_11": {
+      "studyTarget": "es",
+      "text": "¡Ey! Ya llega el fin de semana y no tengo planes. ¿Qué vais a hacer vosotros?"
+    },
+    "es:everyday_12": {
+      "studyTarget": "es",
+      "text": "¡Hola! Tengo que decidir algo importante y no paro de dudar. ¿Me ayudas a pensarlo?"
+    },
+    "es:everyday_13": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Querías hablar de algo? Vi tu nota en la puerta."
+    },
+    "es:everyday_14": {
+      "studyTarget": "es",
+      "text": "Oye, ¿querías hablar de algo? Tengo un rato libre, así que dime."
+    },
+    "es:everyday_15": {
+      "studyTarget": "es",
+      "text": "¡Hola! Dijiste que algo te estaba molestando. Te escucho, pero ojalá podamos hablarlo con calma."
+    },
+    "es:everyday_16": {
+      "studyTarget": "es",
+      "text": "Sinceramente, reservemos el piso más barato para el viaje y listo. ¿Para qué darle tantas vueltas?"
+    },
+    "es:everyday_17": {
+      "studyTarget": "es",
+      "text": "¡Ey! ¿Todo bien? Últimamente te noto distinto y no sabía si sacar el tema."
+    },
+    "es:everyday_18": {
+      "studyTarget": "es",
+      "text": "¿Te enteraste de lo de la fiesta? Unos dicen que se cancela y otros que se cambia de día. Estoy muy confundida."
+    },
+    "es:everyday_19": {
+      "studyTarget": "es",
+      "text": "Vale, este chat se ha convertido en un lío. Todos estamos heridos y nadie escucha. ¿Puedes ayudarnos a empezar de nuevo?"
+    },
+    "es:social_01": {
+      "studyTarget": "es",
+      "text": "¡Hola! Encantada de conocerte. Soy Mila. ¿Cómo estás hoy?"
+    },
+    "es:social_02": {
+      "studyTarget": "es",
+      "text": "¡Hola! Tenemos la reunión mañana a las 10. ¿Sigue bien para ti?"
+    },
+    "es:social_03": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Te puedo ayudar? ¿Buscas algo?"
+    },
+    "es:social_04": {
+      "studyTarget": "es",
+      "text": "¡Hola! Espero que mi ayuda te haya servido. ¿Todo bien ahora?"
+    },
+    "es:social_05": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Sabes qué? ¡Hoy aprobé el examen de conducir!"
+    },
+    "es:social_06": {
+      "studyTarget": "es",
+      "text": "¡Te damos la bienvenida al grupo! Cuéntanos cómo te llamas y qué te gusta hacer."
+    },
+    "es:social_07": {
+      "studyTarget": "es",
+      "text": "¡Hola! Hace siglos que no nos vemos. ¿Qué planes tienes esta semana?"
+    },
+    "es:social_08": {
+      "studyTarget": "es",
+      "text": "¡Ey! ¿Qué tal tu semana? ¿Tienes planes para el fin de semana?"
+    },
+    "es:social_09": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Seguimos quedando esta noche? Tengo muchas ganas de verte."
+    },
+    "es:social_10": {
+      "studyTarget": "es",
+      "text": "¡Hola! Qué bueno verte ayer. ¿Llegaste bien a casa?"
+    },
+    "es:social_11": {
+      "studyTarget": "es",
+      "text": "¡Hola a todos! Llevamos días hablando del sábado, pero todavía no hay plan. ¿Alguna idea?"
+    },
+    "es:social_12": {
+      "studyTarget": "es",
+      "text": "Hola. Perdona que haya estado tan callado. El trabajo me está agobiando últimamente."
+    },
+    "es:social_13": {
+      "studyTarget": "es",
+      "text": "Hola. Vi tu mensaje de esta mañana y no estoy segura de qué quisiste decir. ¿Podemos hablar?"
+    },
+    "es:social_14": {
+      "studyTarget": "es",
+      "text": "¡Hola! Vamos a hacer una fiestecita en mi casa el viernes y me encantaría que vinieras. ¿Puedes venir?"
+    },
+    "es:social_15": {
+      "studyTarget": "es",
+      "text": "Oye, he estado pensando en cómo organizamos nuestros planes últimamente. ¿Podemos hablar de lo que cada uno espera?"
+    },
+    "es:social_16": {
+      "studyTarget": "es",
+      "text": "¡Hola! Vi que querías hablar de algo. Hoy ando algo liada, pero cuéntame qué pasa."
+    },
+    "es:social_17": {
+      "studyTarget": "es",
+      "text": "¡Ey! Cuento contigo para toda la mudanza este sábado otra vez, ¿vale? Siempre eres tan fiable que sabía que dirías que sí."
+    },
+    "es:social_18": {
+      "studyTarget": "es",
+      "text": "Voy a ser sincero: todavía estoy dolido por lo que pasó. Pero estoy dispuesto a escucharte. ¿Qué querías decirme?"
+    },
+    "es:social_19": {
+      "studyTarget": "es",
+      "text": "Sinceramente, este hilo se ha puesto tenso. Unos nos sentimos ignorados y otros se sienten culpados. ¿Alguien puede ayudarnos a aclararlo?"
+    },
+    "es:travel_01": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Ya estás en la ciudad? ¿Qué tal el viaje?"
+    },
+    "es:travel_02": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Necesitas ayuda con el apartamento?"
+    },
+    "es:travel_03": {
+      "studyTarget": "es",
+      "text": "¡Hola! Gracias por tu reserva. ¿En qué puedo ayudarte?"
+    },
+    "es:travel_04": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Necesitas transporte desde el aeropuerto?"
+    },
+    "es:travel_05": {
+      "studyTarget": "es",
+      "text": "¡Hola! Prueba el café pequeño de la estación. ¡Es genial!"
+    },
+    "es:travel_06": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿A dónde quieres ir? Lea y yo podemos explicarte el camino."
+    },
+    "es:travel_07": {
+      "studyTarget": "es",
+      "text": "¡Hola! Estoy revisando tu reserva. ¿Me puedes mandar el número de reserva?"
+    },
+    "es:travel_08": {
+      "studyTarget": "es",
+      "text": "¡Hola! Ya son las siete. ¿Llegas pronto? Te espero en el apartamento."
+    },
+    "es:travel_09": {
+      "studyTarget": "es",
+      "text": "¡Hola! Te damos la bienvenida. ¿Con quién hablo y en qué podemos ayudarte?"
+    },
+    "es:travel_10": {
+      "studyTarget": "es",
+      "text": "¡Hola! Me gustaría enseñarte el casco antiguo mañana. ¿Dónde quedamos?"
+    },
+    "es:travel_11": {
+      "studyTarget": "es",
+      "text": "Hola, soy Niko, del servicio de atención al huésped. Clara también está aquí. ¿En qué podemos ayudarle?"
+    },
+    "es:travel_12": {
+      "studyTarget": "es",
+      "text": "¡Hola! Cada uno parece tener una idea distinta para el viaje. ¿Nos ayudas a hacer un plan?"
+    },
+    "es:travel_13": {
+      "studyTarget": "es",
+      "text": "¡Hola! Soy Lea, de reservas. Entiendo que quiere cambiar algo. ¿De qué reserva se trata?"
+    },
+    "es:travel_14": {
+      "studyTarget": "es",
+      "text": "Buenas tardes, soy Niko, de atención al cliente. Entiendo que desea plantear un problema. ¿En qué puedo ayudarle?"
+    },
+    "es:travel_15": {
+      "studyTarget": "es",
+      "text": "¡Hola! He oído que hay algún problema con nuestra conexión de mañana. ¿Qué ha pasado exactamente?"
+    },
+    "es:travel_16": {
+      "studyTarget": "es",
+      "text": "Hola. He revisado nuestro sistema y no aparece ninguna reserva con ese nombre. ¿Qué datos tiene usted?"
+    },
+    "es:travel_17": {
+      "studyTarget": "es",
+      "text": "Gracias por contactarnos. Hemos visto su informe sobre la estancia cancelada. ¿Podría explicarnos qué ocurrió desde su punto de vista?"
+    },
+    "es:travel_18": {
+      "studyTarget": "es",
+      "text": "Gracias por intervenir. El huésped y el anfitrión están molestos y el servicio está en medio. ¿Por dónde quieres empezar?"
+    },
+    "es:travel_19": {
+      "studyTarget": "es",
+      "text": "Todos preguntan qué está pasando y los mensajes no paran de acumularse. ¿Puedes darnos una imagen clara de cómo estamos?"
+    },
+    "es:work_01": {
+      "studyTarget": "es",
+      "text": "¡Hola! Soy Marina, del equipo. ¿Cómo te llamas?"
+    },
+    "es:work_02": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿En qué te puedo ayudar hoy?"
+    },
+    "es:work_03": {
+      "studyTarget": "es",
+      "text": "¡Hola! Nuestra llamada es mañana. ¿Te sigue bien la hora?"
+    },
+    "es:work_04": {
+      "studyTarget": "es",
+      "text": "¡Buenos días! La reunión empieza en diez minutos. ¿Vienes?"
+    },
+    "es:work_05": {
+      "studyTarget": "es",
+      "text": "¡Hola! Te mandé las instrucciones. ¿Está todo claro?"
+    },
+    "es:work_06": {
+      "studyTarget": "es",
+      "text": "¡Hola! Por favor, prepara el informe corto para el viernes. Marina y yo resolvemos dudas."
+    },
+    "es:work_07": {
+      "studyTarget": "es",
+      "text": "¡Hola! Solo para confirmar: el proyecto es para el jueves. ¿Cómo va?"
+    },
+    "es:work_08": {
+      "studyTarget": "es",
+      "text": "¡Hola! Una pregunta rápida: ¿cómo vamos con la tarea del cliente?"
+    },
+    "es:work_09": {
+      "studyTarget": "es",
+      "text": "¡Hola! Soy Sam, de informática. Marina dice que necesitas ayuda. ¿Qué pasa?"
+    },
+    "es:work_10": {
+      "studyTarget": "es",
+      "text": "¡Hola! ¿Cómo fue tu primer día con nosotros? Espero que bien."
+    },
+    "es:work_11": {
+      "studyTarget": "es",
+      "text": "Llevamos dos días hablando del lanzamiento, pero sigo sin ver quién hace qué. ¿Qué opinas?"
+    },
+    "es:work_12": {
+      "studyTarget": "es",
+      "text": "¡Hola! Comentaste que algo no funcionaba. ¿Me cuentas qué pasa para que pueda revisarlo?"
+    },
+    "es:work_13": {
+      "studyTarget": "es",
+      "text": "¡Hola! Me enteré de que organizamos una reunión la semana que viene. ¿De qué va?"
+    },
+    "es:work_14": {
+      "studyTarget": "es",
+      "text": "El cliente acaba de llamar y necesita la entrega el miércoles en lugar del viernes. ¿Puedes hacerlo posible?"
+    },
+    "es:work_15": {
+      "studyTarget": "es",
+      "text": "¡Hola! Acabo de compartir contigo mi borrador de la propuesta. Me gustaría tu opinión sincera antes de enviarla."
+    },
+    "es:work_16": {
+      "studyTarget": "es",
+      "text": "Tenemos tres proyectos urgentes y solo dos personas disponibles este mes. Hay que decidir qué va primero. ¿Por dónde empezamos?"
+    },
+    "es:work_17": {
+      "studyTarget": "es",
+      "text": "Para que lo sepas: hemos decidido pasar a todo el equipo a la nueva herramienta antes de fin de mes. Dime si algo no está claro."
+    },
+    "es:work_18": {
+      "studyTarget": "es",
+      "text": "Hola. La integración se está retrasando y mi equipo y el de plataforma se señalan mutuamente. ¿Puedes ayudarnos a aclararlo?"
+    },
+    "es:work_19": {
+      "studyTarget": "es",
+      "text": "Gracias por hacer un hueco. Antes de hablar de condiciones, me gustaría saber cómo ves el proyecto y dónde crees que están las mayores brechas."
+    },
+    "fr:everyday_01": {
+      "studyTarget": "fr",
+      "text": "Salut ! Ça fait plaisir de te lire. Comment vas-tu ?"
+    },
+    "fr:everyday_02": {
+      "studyTarget": "fr",
+      "text": "Coucou ! Quoi de neuf ? Tu voulais me dire quelque chose ?"
+    },
+    "fr:everyday_03": {
+      "studyTarget": "fr",
+      "text": "Salut ! Grande nouvelle : j'ai eu le nouveau travail aujourd'hui !"
+    },
+    "fr:everyday_04": {
+      "studyTarget": "fr",
+      "text": "Salut ! Quoi de neuf aujourd'hui ?"
+    },
+    "fr:everyday_05": {
+      "studyTarget": "fr",
+      "text": "Salut. Hier, j'ai attendu longtemps devant le café. Que s'est-il passé ?"
+    },
+    "fr:everyday_06": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'ai quelques minutes. Qu'est-ce qu'il y a ?"
+    },
+    "fr:everyday_07": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'ai entendu dire que tu cherches quelqu'un pour ton animal. C'est pour quand ?"
+    },
+    "fr:everyday_08": {
+      "studyTarget": "fr",
+      "text": "Salut tout le monde ! Il faut acheter un cadeau. Des idées ?"
+    },
+    "fr:everyday_09": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Je suis de la boutique. Je peux vous aider avec votre commande."
+    },
+    "fr:everyday_10": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je me demandais comment ça s'était passé. Mon conseil t'a servi ?"
+    },
+    "fr:everyday_11": {
+      "studyTarget": "fr",
+      "text": "Hé ! Le week-end arrive et je n'ai encore rien prévu. Vous faites quoi, vous deux ?"
+    },
+    "fr:everyday_12": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je dois prendre une décision importante et j'hésite sans arrêt. Tu peux m'aider à y réfléchir ?"
+    },
+    "fr:everyday_13": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Tu voulais me parler de quelque chose ? J'ai vu ton mot sur la porte."
+    },
+    "fr:everyday_14": {
+      "studyTarget": "fr",
+      "text": "Dis, tu voulais me parler de quelque chose ? J'ai un moment, alors vas-y."
+    },
+    "fr:everyday_15": {
+      "studyTarget": "fr",
+      "text": "Salut ! Tu as dit que quelque chose te dérangeait. Je t'écoute, mais j'espère qu'on pourra en parler calmement."
+    },
+    "fr:everyday_16": {
+      "studyTarget": "fr",
+      "text": "Franchement, réservons l'appart le moins cher pour le voyage et c'est réglé. Pourquoi se compliquer ?"
+    },
+    "fr:everyday_17": {
+      "studyTarget": "fr",
+      "text": "Hé ! Tout va bien ? Tu as l'air ailleurs ces derniers temps, et je ne savais pas si je devais en parler."
+    },
+    "fr:everyday_18": {
+      "studyTarget": "fr",
+      "text": "Tu as entendu pour la fête ? Certains disent qu'elle est annulée, d'autres qu'elle est déplacée. Je suis complètement perdue."
+    },
+    "fr:everyday_19": {
+      "studyTarget": "fr",
+      "text": "Bon, ce groupe est devenu un vrai chantier. Tout le monde est blessé et personne n'écoute. Tu peux nous aider à repartir de zéro ?"
+    },
+    "fr:social_01": {
+      "studyTarget": "fr",
+      "text": "Salut ! Enchantée de te rencontrer. Je suis Mila. Comment ça va ?"
+    },
+    "fr:social_02": {
+      "studyTarget": "fr",
+      "text": "Salut ! Notre rendez-vous est demain à 10 h. Ça te va toujours ?"
+    },
+    "fr:social_03": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Je peux t'aider ? Tu cherches quelque chose ?"
+    },
+    "fr:social_04": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'espère que mon aide t'a servi. Tout va bien maintenant ?"
+    },
+    "fr:social_05": {
+      "studyTarget": "fr",
+      "text": "Salut ! Devine quoi ? J'ai eu mon permis de conduire aujourd'hui !"
+    },
+    "fr:social_06": {
+      "studyTarget": "fr",
+      "text": "Bienvenue dans le groupe ! Dis-nous comment tu t'appelles et ce que tu aimes."
+    },
+    "fr:social_07": {
+      "studyTarget": "fr",
+      "text": "Salut ! Ça fait une éternité qu'on ne s'est pas vus. Tu fais quoi cette semaine ?"
+    },
+    "fr:social_08": {
+      "studyTarget": "fr",
+      "text": "Coucou ! Ta semaine se passe bien ? Tu as des projets pour le week-end ?"
+    },
+    "fr:social_09": {
+      "studyTarget": "fr",
+      "text": "Salut ! On se voit toujours ce soir ? J'ai vraiment hâte."
+    },
+    "fr:social_10": {
+      "studyTarget": "fr",
+      "text": "Salut ! C'était sympa de te voir hier. Le retour s'est bien passé ?"
+    },
+    "fr:social_11": {
+      "studyTarget": "fr",
+      "text": "Salut tout le monde ! On parle de samedi depuis des jours, mais rien n'est décidé. Des idées ?"
+    },
+    "fr:social_12": {
+      "studyTarget": "fr",
+      "text": "Salut. Désolé d'avoir été si silencieux. Le boulot me pèse beaucoup en ce moment."
+    },
+    "fr:social_13": {
+      "studyTarget": "fr",
+      "text": "Salut. J'ai vu ton message de ce matin, et je ne comprends pas bien. On peut en parler ?"
+    },
+    "fr:social_14": {
+      "studyTarget": "fr",
+      "text": "Salut ! On organise une petite fête chez moi vendredi et j'aimerais beaucoup que tu viennes. Tu peux ?"
+    },
+    "fr:social_15": {
+      "studyTarget": "fr",
+      "text": "Dis, j'ai réfléchi à la façon dont on organise nos plans en ce moment. On pourrait parler de ce que chacun attend ?"
+    },
+    "fr:social_16": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'ai vu que tu voulais me parler de quelque chose. Je suis un peu occupée aujourd'hui, mais dis-moi."
+    },
+    "fr:social_17": {
+      "studyTarget": "fr",
+      "text": "Hé ! Je compte sur toi pour tout le déménagement samedi, encore une fois, d'accord ? Tu es toujours si fiable, je savais que tu dirais oui."
+    },
+    "fr:social_18": {
+      "studyTarget": "fr",
+      "text": "Je vais être franc : je suis encore blessé par ce qui s'est passé. Mais je suis prêt à t'écouter. Que voulais-tu me dire ?"
+    },
+    "fr:social_19": {
+      "studyTarget": "fr",
+      "text": "Franchement, ce fil est devenu tendu. Les uns se sentent ignorés, les autres se sentent accusés. Quelqu'un peut nous aider à y voir clair ?"
+    },
+    "fr:travel_01": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Tu es déjà en ville ? Le voyage s'est bien passé ?"
+    },
+    "fr:travel_02": {
+      "studyTarget": "fr",
+      "text": "Bonsoir ! Tu as besoin d'aide pour l'appartement ?"
+    },
+    "fr:travel_03": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Merci pour votre réservation. Comment puis-je vous aider ?"
+    },
+    "fr:travel_04": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Tu as besoin d'un transfert depuis l'aéroport ?"
+    },
+    "fr:travel_05": {
+      "studyTarget": "fr",
+      "text": "Salut ! Essaie le petit café de la gare. Il est super !"
+    },
+    "fr:travel_06": {
+      "studyTarget": "fr",
+      "text": "Salut ! Où veux-tu aller ? Lea et moi, on peut t'expliquer le chemin."
+    },
+    "fr:travel_07": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Je vérifie ta réservation. Tu peux m'envoyer le numéro de réservation ?"
+    },
+    "fr:travel_08": {
+      "studyTarget": "fr",
+      "text": "Salut ! Il est déjà sept heures. Tu arrives bientôt ? Je t'attends à l'appartement."
+    },
+    "fr:travel_09": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Bienvenue chez nous. Avec qui je parle, et comment peut-on t'aider ?"
+    },
+    "fr:travel_10": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'aimerais te montrer la vieille ville demain. On se retrouve où ?"
+    },
+    "fr:travel_11": {
+      "studyTarget": "fr",
+      "text": "Bonjour, ici Niko du service clients. Clara est là aussi. Que pouvons-nous faire pour vous ?"
+    },
+    "fr:travel_12": {
+      "studyTarget": "fr",
+      "text": "Salut ! Chacun semble avoir une idée différente pour le voyage. Tu peux nous aider à faire un plan ?"
+    },
+    "fr:travel_13": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! Lea, du service réservations. Je crois que vous souhaitez modifier quelque chose. De quelle réservation s'agit-il ?"
+    },
+    "fr:travel_14": {
+      "studyTarget": "fr",
+      "text": "Bonjour, ici Niko du service clientèle. Je crois que vous souhaitez nous signaler un problème. Comment puis-je vous aider ?"
+    },
+    "fr:travel_15": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'ai entendu dire qu'il y a un problème avec notre correspondance de demain. Que s'est-il passé exactement ?"
+    },
+    "fr:travel_16": {
+      "studyTarget": "fr",
+      "text": "Bonjour. J'ai vérifié notre système et aucune réservation n'apparaît à ce nom. Qu'avez-vous de votre côté ?"
+    },
+    "fr:travel_17": {
+      "studyTarget": "fr",
+      "text": "Merci de nous avoir contactés. Nous avons lu votre signalement sur le séjour annulé. Pourriez-vous nous expliquer ce qui s'est passé de votre côté ?"
+    },
+    "fr:travel_18": {
+      "studyTarget": "fr",
+      "text": "Merci d'intervenir. L'invité et l'hôte sont tous les deux contrariés, et le service est pris entre les deux. Par où voulez-vous commencer ?"
+    },
+    "fr:travel_19": {
+      "studyTarget": "fr",
+      "text": "Tout le monde demande ce qui se passe et les messages s'accumulent. Peux-tu nous donner une vue claire de la situation ?"
+    },
+    "fr:work_01": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je suis Marina, de l'équipe. Comment tu t'appelles ?"
+    },
+    "fr:work_02": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je peux t'aider avec quelque chose ?"
+    },
+    "fr:work_03": {
+      "studyTarget": "fr",
+      "text": "Salut ! Notre appel est demain. L'heure te convient toujours ?"
+    },
+    "fr:work_04": {
+      "studyTarget": "fr",
+      "text": "Bonjour ! La réunion commence dans dix minutes. Tu arrives ?"
+    },
+    "fr:work_05": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je t'ai envoyé les instructions. Tout est clair ?"
+    },
+    "fr:work_06": {
+      "studyTarget": "fr",
+      "text": "Salut ! Peux-tu préparer le court rapport pour vendredi ? Marina et moi répondons à tes questions."
+    },
+    "fr:work_07": {
+      "studyTarget": "fr",
+      "text": "Salut ! Petit point : le projet est à rendre jeudi. Comment ça avance ?"
+    },
+    "fr:work_08": {
+      "studyTarget": "fr",
+      "text": "Salut ! Petite question : où en est-on avec la tâche du client ?"
+    },
+    "fr:work_09": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je suis Sam, de l'informatique. Marina dit que tu as besoin d'aide. Qu'y a-t-il ?"
+    },
+    "fr:work_10": {
+      "studyTarget": "fr",
+      "text": "Salut ! Comment s'est passé ton premier jour chez nous ? J'espère que c'était bien."
+    },
+    "fr:work_11": {
+      "studyTarget": "fr",
+      "text": "On parle du lancement depuis deux jours, mais je ne vois toujours pas qui fait quoi. Qu'en penses-tu ?"
+    },
+    "fr:work_12": {
+      "studyTarget": "fr",
+      "text": "Salut ! Tu as dit que quelque chose ne marchait pas. Tu peux m'expliquer ce qui se passe pour que je regarde ?"
+    },
+    "fr:work_13": {
+      "studyTarget": "fr",
+      "text": "Salut ! J'ai entendu dire qu'on organise une réunion la semaine prochaine. Elle porte sur quoi ?"
+    },
+    "fr:work_14": {
+      "studyTarget": "fr",
+      "text": "Le client vient d'appeler : il veut la livraison mercredi au lieu de vendredi. Tu peux tenir ce délai ?"
+    },
+    "fr:work_15": {
+      "studyTarget": "fr",
+      "text": "Salut ! Je viens de partager mon brouillon de proposition avec toi. J'aimerais avoir ton avis sincère avant de l'envoyer."
+    },
+    "fr:work_16": {
+      "studyTarget": "fr",
+      "text": "On a trois projets urgents et seulement deux personnes disponibles ce mois-ci. Il faut décider de l'ordre. On commence par où ?"
+    },
+    "fr:work_17": {
+      "studyTarget": "fr",
+      "text": "Pour information : nous avons décidé de faire passer toute l'équipe au nouvel outil d'ici la fin du mois. Dis-moi si quelque chose n'est pas clair."
+    },
+    "fr:work_18": {
+      "studyTarget": "fr",
+      "text": "Bonjour. L'intégration prend du retard, et mon équipe et celle de la plateforme se renvoient la responsabilité. Peux-tu nous aider à clarifier ?"
+    },
+    "fr:work_19": {
+      "studyTarget": "fr",
+      "text": "Merci d'avoir pris le temps. Avant de discuter des conditions, j'aimerais savoir comment tu vois le projet et où tu situes les plus gros écarts."
+    }
+  }
+}

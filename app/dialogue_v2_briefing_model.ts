@@ -2,6 +2,7 @@ import { getDialogueV2CatalogueEntry } from '../shared/dialogue_v2_catalogue_ind
 import { projectAuthorizedDialogueV2Catalogue } from './dialogue_v2_authorized_catalogue_projection';
 
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
+import { dialogueV2OpeningTranslation } from './dialogue_v2_opening_translations';
 
 export type DialogueV2BriefingModel = Readonly<{
   title: string;
@@ -86,19 +87,27 @@ export function buildDialogueV2BriefingModel(
       displayName: ui?.personas[participant.id]?.displayName ?? participant.displayName,
       styleNote: ui?.personas[participant.id]?.styleNote ?? participant.styleNote,
     }))),
-    opening: openingOf(packet, input.uiLang),
+    opening: openingOf(packet, input.uiLang, input.studyTarget, item.id),
   });
 }
 
 // зачем (владелец 01.10: «первая реплика всегда уже должна быть на экране»): поле content.opening
 // добавляет Ядро; пока его нет или оно битое — null, экран открывается без падения.
-function openingOf(packet: VerifiedPacket, uiLang: unknown): Readonly<{ personaId: string; text: string; translation: string | null }> | null {
+function openingOf(
+  packet: VerifiedPacket,
+  uiLang: unknown,
+  studyTarget: unknown,
+  scenarioId: string,
+): Readonly<{ personaId: string; text: string; translation: string | null }> | null {
   const raw = packet.content.opening;
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
   const { personaId, text, translations } = raw as { personaId?: unknown; text?: unknown; translations?: unknown };
   if (typeof personaId !== 'string' || typeof text !== 'string' || text.trim().length === 0 || text.length > 600) return null;
   if (!packet.scenario.personas.some((persona) => persona.id === personaId)) return null;
-  return Object.freeze({ personaId, text: text.trim(), translation: openingTranslationOf(translations, uiLang) });
+  // зачем (координатор 25.10): в пакетах перевода нет и без выкладки сервера не будет — берём таблицу бандла по исходнику
+  const translation = openingTranslationOf(translations, uiLang)
+    ?? dialogueV2OpeningTranslation({ uiLang, studyTarget, scenarioId, openingText: text.trim() });
+  return Object.freeze({ personaId, text: text.trim(), translation });
 }
 
 /**

@@ -64,3 +64,16 @@
 - Кадр есть, вердикта нет (84): `cards-008`, `cards-011`, `cards-013`, `cards-026`, `cards-033`, `cards-035`, `cards-040`, `cards-043`, `cards-044`, `cards-047`, `cards-050`, `cards-052`, `cards-054`, `cards-056`, `cards-061`, `cards-069`, `cards-072`, `cards-073`, `cards-074`, `cards-082`, `dialogs-009`, `dialogs-021`, `dialogs-024`, `dialogs-033`, `dialogs-037`, `dialogs-043`, `dialogs-046`, `community-011`, `community-018`, `community-019`, `profile-018`, `profile-019`, `paywalls-015`, `paywalls-020`, `paywalls-021`, `overlays-campaigns-004`, `overlays-campaigns-013`, `cards-section-018`, `cards-section-019`, `cards-section-031`, `cards-section-046`, `cards-section-056`, `energy-modes-013`, `energy-modes-014`, `energy-modes-016`, `onboarding-003`, `onboarding-004`, `onboarding-005`, `onboarding-018`, `cards-v2-028`, `cards-v2-037`, `cards-v2-047`, `auth-gap-001`, `auth-gap-003`, `auth-gap-004`, `auth-gap-005`, `auth-gap-006`, `auth-gap-007`, `auth-gap-008`, `auth-gap-009`, `auth-gap-010`, `auth-gap-012`, `auth-gap-016`, `dialogs-gap-001`, `dialogs-gap-004`, `dialogs-gap-005`, `dialogs-gap-006`, `dialogs-gap-007`, `dialogs-gap-008`, `dialogs-gap-009`, `dialogs-gap-011`, `dialogs-gap-014`, `dialogs-gap-016`, `spire-gap-021`, `cards-gap-012`, `cards-gap-027`, `cards-gap-028`, `settings-gap-010`, `settings-gap-017`, `settings-gap-027`, `settings-gap-034`, `cards-v2-053`, `whats-new-001`, `whats-new-002`
 - Служебное (7): cards-027 (shot_time_unknown), dialogs-028 (status_blocked), profile-002 (status_blocked), cards-gap-014 (shot_time_unknown), cards-gap-015 (shot_time_unknown), cards-gap-017 (shot_time_unknown), streak-milestone-d0007 (shot_time_unknown+anim_evidence_missing)
 - Настоящие (11): `cards-section-014`, `cards-v2-016`, `cards-v2-025`, `spire-gap-016`, `settings-gap-012`, `settings-gap-013`, `moments-v3-m18-a`, `streak-milestone-d0030`, `streak-milestone-d0100`, `streak-milestone-d0365`, `streak-milestone-d1000`
+
+## Обновление 25.10 вечер — разбор Дизайна по 10 правкам (координатор)
+
+| № | Строка | Итог |
+|---|---|---|
+| 1–4 | streak-milestone-d1000 / d0365 / d0100 / d0030 | код починен после кадров — **переснять** (Сверка) |
+| 5 | moments-v3-m18-a | частично починено (плашка «+30» после кадра) — **переснять**, остаток решить по свежему кадру |
+| 6а | spire-gap-016, значок лиги | решение владельца 15.10 (14755a9af, SpireWeekSubtitle) — **образец устарел**, обновлён: значок ранга 25 px перед подписью недели в spire-gaps-states.html |
+| 6б | spire-gap-016, молния | Дизайн: залитая молния (solidBolt) |
+| 7, 9, 10 | settings-gap-012, cards-section-014 / cards-v2-016, cards-v2-025 | код исправлен после кадров — **переснять** |
+| 8 | settings-gap-013 | кадр был с dev-подменой мастера — **переснять без dev-параметра** |
+
+Итого из 11 «настоящих» в коде остаётся одна правка (молния, Дизайн); остальное — пересъёмка. Кадры заказаны у Сверки.

@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-05:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-18:intro2:r2": {
-          "ru": "После is одно her не ставят: без названия вещи нужно hers.",
-          "uk": "Після is саме her не ставлять: без назви речі потрібно hers."
+          "ru": "Здесь называем владелицу духов словом hers. Her без названия вещи не выражает принадлежность.",
+          "uk": "Тут називаємо власницю парфумів словом hers. Her без назви речі не виражає належність."
         },
         "en:lesson-05:session-18:intro2:r3": {
-          "ru": "perfume — одно слово, поэтому is, а не are.",
-          "uk": "perfume — одне слово, тому is, а не are."
+          "ru": "Perfume здесь неисчисляемое существительное, поэтому is, а не are.",
+          "uk": "Perfume тут незлічуваний іменник, тому is, а не are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f2a232a107bb03bc3e3d69779766cdbcc57f4664aadb5a6a96424b8bf770cde7"
+  "auxiliaryFingerprint": "595a8aaeb600e5facf62e09fc30c1ea2090b6a56fd720d4261525bc85d303db9"
 }

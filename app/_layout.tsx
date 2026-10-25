@@ -4030,21 +4030,22 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       </View>
     )}
 
+    {/* зачем (перепись цветов 25.10): экран блокировки красился постоянными тёмными цветами мимо темы — теперь фон, карточка, текст и кнопка из токенов темы */}
     {ready && isBanned && (
-      <View style={[styles.appFullScreenOverlay, { backgroundColor: '#06141B', justifyContent: 'center', padding: 24 }]}>
-        <View style={{ backgroundColor: '#121826', borderRadius: 18, borderWidth: 0, borderColor: '#7f1d1d', padding: 20 }}>
-          <Text style={{ color: '#f87171', fontSize: 28, textAlign: 'center', marginBottom: 10 }}>🚫</Text>
-          <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
+      <View style={[styles.appFullScreenOverlay, { backgroundColor: liquidGlassTokens(liquidGlassThemeId).bg, justifyContent: 'center', padding: 24 }]}>
+        <View style={{ backgroundColor: liquidGlassTokens(liquidGlassThemeId).opaqueCard, borderRadius: 18, padding: 20 }}>
+          <Text style={{ fontSize: 28, textAlign: 'center', marginBottom: 10 }}>🚫</Text>
+          <Text style={{ color: liquidGlassTokens(liquidGlassThemeId).text, fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
             {triLang(lang, { ru: 'Аккаунт заблокирован', uk: 'Обліковий запис заблоковано', en: 'Account blocked', es: 'Cuenta bloqueada', 'pt-BR': 'Conta bloqueada', vi: 'Tài khoản đã bị khóa', id: 'Akun diblokir', tr: 'Hesap engellendi', pl: 'Konto zablokowane' })}
           </Text>
-          <Text style={{ color: '#9ca3af', fontSize: 13, textAlign: 'center', lineHeight: 18, marginBottom: 16 }}>
+          <Text style={{ color: liquidGlassTokens(liquidGlassThemeId).secondary, fontSize: 13, textAlign: 'center', lineHeight: 18, marginBottom: 16 }}>
             {triLang(lang, { ru: 'Доступ к приложению ограничен. Если считаешь блокировку ошибочной — напиши в поддержку.', uk: 'Доступ до застосунку обмежено. Якщо вважаєш блокування помилковим — напиши в підтримку.', en: "Access to the app is restricted. If you think this block is a mistake, contact support.", es: 'El acceso a la aplicación está restringido. Si crees que el bloqueo es un error, contacta con soporte.', 'pt-BR': 'O acesso ao aplicativo está restrito. Se achar que o bloqueio foi um erro, entre em contato com o suporte.', vi: 'Quyền truy cập ứng dụng bị hạn chế. Nếu bạn cho rằng tài khoản bị khóa nhầm, hãy liên hệ hỗ trợ.', id: 'Akses ke aplikasi dibatasi. Jika menurutmu pemblokiran ini keliru, hubungi dukungan.', tr: 'Uygulamaya erişim kısıtlandı. Engellemenin hatalı olduğunu düşünüyorsanız destek ekibiyle iletişime geçin.', pl: 'Dostęp do aplikacji jest ograniczony. Jeśli uważasz, że blokada jest błędna, skontaktuj się z pomocą techniczną.' })}
           </Text>
           <TouchableOpacity
             onPress={() => checkBanStatus(true)}
-            style={{ backgroundColor: '#1f2937', borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
+            style={{ backgroundColor: liquidGlassTokens(liquidGlassThemeId).opaqueControl, borderRadius: 12, paddingVertical: 12, alignItems: 'center' }}
           >
-            <Text style={{ color: '#fff', fontWeight: '700' }}>{triLang(lang, { ru: 'Проверить снова', uk: 'Перевірити ще раз', en: 'Check again', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' })}</Text>
+            <Text style={{ color: liquidGlassTokens(liquidGlassThemeId).text, fontWeight: '700' }}>{triLang(lang, { ru: 'Проверить снова', uk: 'Перевірити ще раз', en: 'Check again', es: 'Comprobar de nuevo', 'pt-BR': 'Verificar novamente', vi: 'Kiểm tra lại', id: 'Periksa lagi', tr: 'Tekrar kontrol et', pl: 'Sprawdź ponownie' })}</Text>
           </TouchableOpacity>
         </View>
       </View>

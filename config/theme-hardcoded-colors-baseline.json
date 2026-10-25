@@ -1,5 +1,5 @@
 {
-  "total": 214,
+  "total": 207,
   "files": {
     "app/combined_lesson_pick.tsx": 2,
     "app/flashcards_my_packs.tsx": 1,
@@ -14,8 +14,6 @@
     "components/dialogs/DialogueV2BriefingScreen.tsx": 2,
     "components/dialogs/DialogueV2CatalogueSection.tsx": 3,
     "components/dialogs/glass/DialogueGlassSessionParts.tsx": 2,
-    "components/ForceUpdateGate.tsx": 3,
-    "components/GlobalBroadcastModal.tsx": 1,
     "components/lesson_help_theory_data.tsx": 2,
     "components/lessons/LessonsListGlassCard.tsx": 1,
     "components/NotificationPermissionModalHybrid.tsx": 1,
@@ -23,7 +21,7 @@
     "components/spire/SpireFriendsRow.tsx": 1,
     "components/spire/SpireTowerSvg.tsx": 4,
     "components/ui/V2Backdrop.tsx": 3,
-    "components/UpdateModal.tsx": 5,
+    "components/UpdateModal.tsx": 2,
     "modules/learning-v2/modes/listen_choose_mode_v1.tsx": 1
   }
 }

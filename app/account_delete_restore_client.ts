@@ -16,12 +16,52 @@ import { DebugLogger } from './debug-logger';
 
 const FUNCTIONS_REGION = 'us-central1';
 
+/**
+ * Сводка для окна «Восстановить аккаунт?» (координатор 25.10, макет account-delete-variant-b §3): серия, фразы, урок N из 32.
+ * Приходит только от нового сервера; старый сервер её не шлёт — окно без цифр.
+ */
+export type AccountRestoreSummary = Readonly<{
+  streakDays: number;
+  phrasesLearned: number;
+  currentLesson: number;
+  lessonTotal: number;
+}>;
+
 export type AccountDeleteStatus = Readonly<{
   pending: boolean;
   restorable?: boolean;
   daysLeft?: number;
   deadlineMs?: number;
+  summary?: AccountRestoreSummary;
 }>;
+
+function wholeNumber(value: unknown, min: number, max: number): number | null {
+  return typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max ? value : null;
+}
+
+/**
+ * Проверка сводки с сервера: любое поле не того вида — сводки нет (окно без цифр), причина в журнале.
+ * зачем: ответ сервера — внешние данные; кривая цифра в окне восстановления хуже, чем её отсутствие.
+ */
+export function parseAccountRestoreSummary(raw: unknown): AccountRestoreSummary | null {
+  if (raw == null) {
+    console.log('[ACCOUNT-RESTORE] summary absent (old server or read failed)'); // guard-ok: ветка и причина
+    return null;
+  }
+  const row = (typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const lessonTotal = wholeNumber(row.lessonTotal, 1, 999);
+  const summary = {
+    streakDays: wholeNumber(row.streakDays, 0, 100_000),
+    phrasesLearned: wholeNumber(row.phrasesLearned, 0, 10_000_000),
+    currentLesson: lessonTotal === null ? null : wholeNumber(row.currentLesson, 1, lessonTotal),
+    lessonTotal,
+  };
+  if (Object.values(summary).some((v) => v === null)) {
+    console.warn('[ACCOUNT-RESTORE] summary invalid', JSON.stringify(row).slice(0, 200)); // guard-ok: ранний выход с причиной
+    return null;
+  }
+  return summary as AccountRestoreSummary;
+}
 
 async function callable<TReq extends object, TRes>(name: string) {
   const { getApp } = await import('@react-native-firebase/app');

@@ -11,6 +11,7 @@ import {
 } from './account_delete_job';
 import { accountDeleteGraceDaysLeft, accountDeleteRestorable } from './account_delete_grace';
 import { REVENUECAT_RECONCILE_RESERVATIONS, revenueCatPremiumReconcileReservationId } from './revenuecat_reconcile';
+import { buildAccountRestoreSummary, type AccountRestoreSummary } from './account_delete_restore_summary';
 
 /*
  * Восстановление аккаунта в течение grace-периода (владелец, 2026-08-31).
@@ -67,13 +68,38 @@ export const accountDeleteStatusMine = onCall(OPTIONS, async (request) => {
     startedAtMs: num(job.startedAtMs),
     nowMs,
   });
+  // зачем (координатор 25.10, макет account-delete-variant-b §3): сводка «серия / фразы / урок» для окна восстановления.
+  // Одно точечное чтение users/{stableUid} и только когда вернуть ещё можно; сбой — без сводки (окно без цифр), причина в журнале.
+  const summary = restorable ? await readAccountRestoreSummary(db, String(job.stableUid ?? '').trim()) : null;
   return {
     pending: true as const,
     restorable,
     deadlineMs,
     daysLeft: accountDeleteGraceDaysLeft(deadlineMs, nowMs),
+    ...(summary ? { summary } : {}),
   };
 });
+
+async function readAccountRestoreSummary(db: admin.firestore.Firestore, stableUid: string): Promise<AccountRestoreSummary | null> {
+  if (!stableUid) {
+    console.warn('[ACCOUNT-RESTORE-SUMMARY] skipped reason=stable_uid_missing');
+    return null;
+  }
+  try {
+    const userSnap = await db.collection('users').doc(stableUid).get();
+    if (!userSnap.exists) {
+      console.warn('[ACCOUNT-RESTORE-SUMMARY] skipped reason=user_doc_missing');
+      return null;
+    }
+    const progress = (userSnap.data() ?? {}).progress;
+    const summary = buildAccountRestoreSummary(progress && typeof progress === 'object' ? progress as Row : null);
+    console.log('[ACCOUNT-RESTORE-SUMMARY] built', JSON.stringify(summary));
+    return summary;
+  } catch (error) {
+    console.warn('[ACCOUNT-RESTORE-SUMMARY] skipped reason=read_failed', String((error as Error)?.message ?? error).slice(0, 160));
+    return null;
+  }
+}
 
 /**
  * Отмена удаления: аккаунт возвращается человеку.

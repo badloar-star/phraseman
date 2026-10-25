@@ -20,11 +20,21 @@ export const THEMED_ALERT_DISMISSED = 'dismiss' as const;
  */
 export type ThemedBlockingAlertSlotWait = Readonly<{ logPrefix: string; warnAfterMs: number; forceAfterMs: number }>;
 
+/**
+ * зачем (координатор 25.10, макет account-delete-variant-b §3): окно «Восстановить аккаунт?» в новом виде — текст слева,
+ * плашка из ячеек «значение · подпись», главная кнопка сверху. cells: null — плашки нет (цифр не пришло). Без summary —
+ * прежнее центрированное окно.
+ */
+export type ThemedBlockingAlertSummary = Readonly<{
+  cells: readonly Readonly<{ value: string; label: string }>[] | null;
+}>;
+
 type Queued = {
   title: string;
   message: string;
   actions: readonly ThemedBlockingAlertAction[];
   icon?: ThemedBlockingAlertIcon;
+  summary?: ThemedBlockingAlertSummary;
   resolve: (value: string) => void;
   /** Показать без слота арбитра (выставляется по потолку slotWait). */
   forceVisible?: boolean;
@@ -136,7 +146,7 @@ export function enqueueThemedBlockingChoiceAlert<V extends string>(
   title: string,
   message: string,
   actions: readonly ThemedBlockingAlertAction<V>[],
-  opts?: { icon?: ThemedBlockingAlertIcon; slotWait?: ThemedBlockingAlertSlotWait },
+  opts?: { icon?: ThemedBlockingAlertIcon; slotWait?: ThemedBlockingAlertSlotWait; summary?: ThemedBlockingAlertSummary },
 ): Promise<V | typeof THEMED_ALERT_DISMISSED> {
   if (actions.length === 0) {
     console.warn('[THEMED-ALERT] choice без кнопок — окно не показано', JSON.stringify({ title })); // guard-ok: ранний выход логируется
@@ -148,6 +158,7 @@ export function enqueueThemedBlockingChoiceAlert<V extends string>(
       message,
       actions,
       icon: opts?.icon,
+      ...(opts?.summary ? { summary: opts.summary } : {}),
       enqueuedAt: Date.now(),
       resolve: (value) => resolve(value as V | typeof THEMED_ALERT_DISMISSED),
     };

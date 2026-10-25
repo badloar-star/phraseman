@@ -24,7 +24,8 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
-import { beginAccountDeletion, beginAccountDeletionNow, peekLinkedAuthFromCurrentUser } from '../app/auth_provider';
+import { beginAccountDeletion, beginAccountDeletionNow, peekLinkedAuthFromCurrentUser, type DeleteAccountHandoff } from '../app/auth_provider';
+import { retryAccountDeleteHandoffQuietly } from '../app/account_delete_handoff_retry';
 import { enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { emitAppEvent } from '../app/events';
 import {
@@ -287,11 +288,20 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       // секунд — ровно то «зависает намертво», которое чиним.
       console.log('[ACCOUNT-DELETE-UI] confirm', JSON.stringify({ mode, retry: retryApproved })); // guard-ok: одна строка на подтверждение
       // «Навсегда» — та же цепочка с полем deleteNow (beginAccountDeletionNow); иначе прежний вызов.
-      const res = mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion();
+      const attemptHandoff = async (): Promise<DeleteAccountHandoff> => (mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion());
+      // зачем (правило владельца 22.09 «удаление не имеет права не пройти», координатор 25.10): в новых окнах отказ быстрой
+      // фазы (до точки невозврата) повторяем сами, тихо; окон «Не получилось» нет. Прежнее окно — как было.
+      const res = variantB ? await retryAccountDeleteHandoffQuietly(attemptHandoff, mode) : await attemptHandoff();
       if (!res.ok) {
         traceAccountDeleteUi(`local_delete_rejected:${res.reason}`);
         reportAccountDeleteHandoffFailed(res.reason);
         finishAccountDeleteUiTrace('handoff_failed');
+        if (variantB) {
+          // Аккаунт не тронут, окно удаления остаётся открытым — человек видит, что он по-прежнему в своём аккаунте.
+          console.warn('[ACCOUNT-DELETE-UI] handoff_failed_silent', JSON.stringify({ mode, reason: res.reason })); // guard-ok: ранний выход с причиной
+          deleteInFlightRef.current = false;
+          return;
+        }
         showInfoAlert(
           L({
             ru: 'Не получилось',
@@ -371,6 +381,12 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         code: (error as { code?: unknown } | null)?.code ?? null,
       })); // guard-ok: catch логирует причину
       finishAccountDeleteUiTrace('handoff_failed');
+      if (variantB) {
+        // зачем (правило владельца 22.09): в новых окнах окна об отказе нет; повторы уже были внутри retryAccountDeleteHandoffQuietly.
+        console.warn('[ACCOUNT-DELETE-UI] handoff_threw_silent', JSON.stringify({ mode })); // guard-ok: catch с причиной выше
+        deleteInFlightRef.current = false;
+        return;
+      }
       showInfoAlert(
         L({
           ru: 'Не получилось',
@@ -397,7 +413,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     } finally {
       setDeleting(false);
     }
-  }, [L, deleteConfirmMatches, deleting, isHybrid, onRequestClose, runDangerShake, showInfoAlert]);
+  }, [L, deleteConfirmMatches, deleting, isHybrid, onRequestClose, runDangerShake, showInfoAlert, variantB]);
   confirmDeleteRef.current = handleConfirmDelete;
 
   const handleCancel = useCallback(() => {

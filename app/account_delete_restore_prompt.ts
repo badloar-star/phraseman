@@ -12,13 +12,16 @@
  */
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
-import { fetchAccountDeleteStatus, restoreDeletedAccount } from './account_delete_restore_client';
+import { fetchAccountDeleteStatus, parseAccountRestoreSummary, restoreDeletedAccount, type AccountDeleteStatus } from './account_delete_restore_client';
+import { accountRestoreSummaryCells, accountRestoreSummaryMessage } from './account_restore_summary_copy';
+import { getRemoteBool } from './remote_flags';
 import { getDevAccountRestoreMode } from './dev_account_state';
 import {
   THEMED_ALERT_DISMISSED,
   enqueueThemedBlockingChoiceAlert,
   enqueueThemedBlockingInfoAlert,
   type ThemedBlockingAlertSlotWait,
+  type ThemedBlockingAlertSummary,
 } from './themed_blocking_alert_queue';
 import { releaseReason } from './release_reason';
 
@@ -44,6 +47,29 @@ export function accountRestorePromptMessage(lang: Lang, rawDays: number): string
     tr: `Bu hesap ${n} gün sonra silinecek — tüm ilerlemen duruyor ve eksiksiz geri gelir.`,
     pl: `To konto zostanie usunięte za ${n} ${pluralWord('pl', n, { one: 'dzień', few: 'dni', many: 'dni' })} — cały postęp jest nienaruszony i wróci w całości.`,
   });
+}
+
+/**
+ * Вид окна «Восстановить аккаунт?»: прежний или новый со сводкой (флаг «Пульта» account_delete_variant_b_ui_enabled).
+ * зачем (координатор 25.10, макет account-delete-variant-b §3): новый вид — текст макета и плашка «серия · фразы · уроки»;
+ * цифр нет (старый сервер, сбой, кривые данные) — окно без плашки, причина в журнале. Флаг выкл — опции окна прежние.
+ * Один источник для окна входа и онбординга.
+ */
+export function accountRestoreChoiceView(
+  lang: Lang,
+  days: number,
+  status: AccountDeleteStatus,
+  legacyMessage: string,
+): { message: string; opts: { slotWait: ThemedBlockingAlertSlotWait; summary?: ThemedBlockingAlertSummary } } {
+  if (getRemoteBool('account_delete_variant_b_ui_enabled') !== true) {
+    return { message: legacyMessage, opts: { slotWait: ACCOUNT_RESTORE_SLOT_WAIT } };
+  }
+  const summary = parseAccountRestoreSummary(status.summary);
+  console.log('[ACCOUNT-RESTORE] view=summary', JSON.stringify({ cells: summary ? 'shown' : 'hidden', daysLeft: days }));
+  return {
+    message: accountRestoreSummaryMessage(lang, days),
+    opts: { slotWait: ACCOUNT_RESTORE_SLOT_WAIT, summary: { cells: summary ? accountRestoreSummaryCells(lang, summary) : null } },
+  };
 }
 
 /**
@@ -185,6 +211,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
     return 'not_restorable';
   }
   const days = Math.max(1, Number(status.daysLeft ?? 1));
+  const view = accountRestoreChoiceView(lang, days, status, accountRestorePromptMessage(lang, days));
   // зачем (координатор 13.10, auth-gap-007): в образце тёмная карточка, а нативный Alert Android рисовал светлое
   // системное окно поверх тёмного приложения. Та же очередь, что у подтверждения смены аккаунта
   // (onboarding_account_switch_confirm.ts); тексты, кнопки и исходы прежние. Системная «назад» = «Не восстанавливать».
@@ -200,7 +227,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
       tr: 'Hesap geri yüklensin mi?',
       pl: 'Przywrócić konto?',
     }),
-    accountRestorePromptMessage(lang, days),
+    view.message,
     [
       {
         label: triLang(lang, {
@@ -222,7 +249,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
     ],
     // зачем (ревью Ядра 2dba22af6, координатор 13.10): окно ждёт слот арбитра; держит его чужая модалка — вход ждал молча.
     // 2 с — лог «кто держит слот», 8 с — окно поверх. Кнопки и «назад» прежние.
-    { slotWait: ACCOUNT_RESTORE_SLOT_WAIT },
+    view.opts,
   );
   console.log(`[ACCOUNT-RESTORE] choice=${String(choice)} daysLeft=${days}`);
   if (choice !== 'restore') {

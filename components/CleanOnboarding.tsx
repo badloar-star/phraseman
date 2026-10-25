@@ -123,7 +123,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
-import { ACCOUNT_RESTORE_SLOT_WAIT, accountRestoreFailedCopy, accountRestorePromptMessage, noticeAccountDeletedForever, type AccountRestorePromptOutcome } from '../app/account_delete_restore_prompt';
+import { accountRestoreChoiceView, accountRestoreFailedCopy, accountRestorePromptMessage, noticeAccountDeletedForever, type AccountRestorePromptOutcome } from '../app/account_delete_restore_prompt';
 import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { confirmAndSwitchAccountInOnboarding, onboardingAccountSwitchFailureText } from '../app/onboarding_account_switch_confirm';
 import { reportSwallowed, swallowError } from '../app/debug-logger';
@@ -404,6 +404,8 @@ async function offerAccountRestore(
     return 'not_restorable';
   }
   const days = Math.max(1, Number(status.daysLeft ?? 1));
+  // зачем (координатор 25.10, макет account-delete-variant-b §3): вид окна (прежний / со сводкой) — общий с окном входа.
+  const view = accountRestoreChoiceView(lang, days, status, accountRestorePromptMessage(lang, days));
   // зачем (координатор 13.10, auth-gap-007, вариант а): нативный Alert Android рисовал светлое системное окно с кнопками-текстом
   // поверх тёмного онбординга; в образце — тёмная карточка с пилюлями. Та же очередь и окно GlassAlertDialog, что у окна входа
   // (account_delete_restore_prompt.ts) и подтверждения смены аккаунта в онбординге; двойной тап гасит settledRef окна.
@@ -421,7 +423,7 @@ async function offerAccountRestore(
       tr: 'Hesap geri yüklensin mi?',
       pl: 'Przywrócić konto?',
     }),
-    accountRestorePromptMessage(lang, days),
+    view.message,
     [
       {
         label: triLang(lang, {
@@ -441,7 +443,7 @@ async function offerAccountRestore(
         value: 'restore',
       },
     ],
-    { slotWait: ACCOUNT_RESTORE_SLOT_WAIT },
+    view.opts,
   );
   decisionHooks?.onDecisionMade(String(choice));
   console.log(`[ACCOUNT-RESTORE] onboarding choice=${String(choice)} via=${choice === THEMED_ALERT_DISMISSED ? 'back' : 'button'} daysLeft=${days}`);

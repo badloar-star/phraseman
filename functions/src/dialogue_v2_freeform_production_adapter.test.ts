@@ -566,6 +566,38 @@ describe('Dialogue V2 freeform atomic production authorization adapter', () => {
     },
   );
 
+  // зачем (бэклог 241, «сперва логи»): отказ «нужен Plus» называет, чей он и какая ветка решила, — без нового чтения базы.
+  test('logs who was refused Plus and which branch decided, without an extra Firestore read', async () => {
+    const harness = makeHarness(activeStore({
+      auth_links: { 'auth-user': { stable_id: 'stable-user' } },
+      users: {
+        'stable-user': {
+          firebaseAuthUid: 'auth-user',
+          progress: { premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: String(2_000_000_000_000 - 100 * 3_600_000) },
+        },
+      },
+    }));
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      await expect(runDialogueV2FreeformProductionAuthorizationTransaction(
+        { db: harness.db as never, nowMs: () => 2_000_000_000_000 },
+        'auth-user',
+        jest.fn(async () => ({ ok: true })),
+      )).rejects.toMatchObject({ code: 'permission-denied' });
+      const line = warn.mock.calls.find((call) => call[0] === '[FREEFORM-PLUS]' && call[1] === 'refused');
+      expect(line).toBeDefined();
+      const payload = JSON.parse(String(line?.[2]));
+      expect(payload).toMatchObject({
+        auth: 'auth-u', stable: 'stable', stableIsAuth: false, docExists: true, plan: 'monthly',
+        expiryRaw0: true, rcExpiry: '-100h', branches: { store: false, admin: false, vip: false, gift: false },
+      });
+      expect(harness.reads.filter((read) => read === 'users/stable-user')).toHaveLength(1);
+      expect(harness.writes).toEqual([]);
+    } finally {
+      warn.mockRestore();
+    }
+  });
+
   test('does not call the turn producer when Plus is revoked between actor lookup and claim', async () => {
     let transactionBoundary = 0;
     const session = authorizedRecord();

@@ -10,7 +10,14 @@ import {
   readAuthAccountStateInTx,
   readStableAccountStateInTx,
 } from './account_gate';
-import { resolvePremiumAccess } from './premium_status';
+import {
+  isAdminGrantActive,
+  isGiftAccessActive,
+  isStorePremiumActive,
+  isVipActive,
+  parseProgressMs,
+  resolvePremiumAccess,
+} from './premium_status';
 import {
   createDialogueV2FreeformAuthorizedStartRepository,
   createDialogueV2FreeformAuthorizedTurnRepository,
@@ -110,6 +117,63 @@ function documentReadKey(value: unknown): string | null {
     : null;
 }
 
+const PLUS_LOG = '[FREEFORM-PLUS]';
+const shortId = (id: string): string => id.slice(0, 6);
+const errorReason = (error: unknown): string => String(
+  (error as { code?: unknown })?.code ?? (error as { message?: unknown })?.message ?? error,
+).slice(0, 160);
+
+/** Срок относительно «сейчас» в часах: 'none' | '+12h' | '-30h' — без дат и uid в журнале. */
+function relHours(value: unknown, nowMs: number): string {
+  const ms = parseProgressMs(value);
+  if (!(ms > 0)) return 'none';
+  const hours = Math.round((ms - nowMs) / 3_600_000);
+  return hours >= 0 ? `+${hours}h` : `${hours}h`;
+}
+
+/**
+ * зачем (бэклог 241, «сперва логи»): 48 отказов «нужен Plus» за 3 дня очередями по 13–18 попыток, а журнал знал только код.
+ * Печатаем, чей отказ (префиксы uid) и какое поле какой ветки решило. Документ уже прочитан в этой транзакции
+ * (memoizeDocumentReads) — новых чтений нет. Никогда не бросает: отказ и так уйдёт клиенту.
+ */
+async function logPlusRefusal(
+  db: FirebaseFirestore.Firestore,
+  transaction: FirebaseFirestore.Transaction,
+  authUid: string,
+  stableAccountId: string,
+  nowMs: number,
+): Promise<void> {
+  try {
+    const snap = await transaction.get(db.collection('users').doc(stableAccountId));
+    const data = (snap.exists ? snap.data() : undefined) ?? {};
+    const progress = (data.progress ?? {}) as Record<string, unknown>;
+    console.warn(PLUS_LOG, 'refused', JSON.stringify({
+      auth: shortId(authUid),
+      stable: shortId(stableAccountId),
+      stableIsAuth: stableAccountId === authUid,
+      docExists: snap.exists,
+      identityHidden: data.identityHidden === true,
+      plan: String(progress.premium_plan ?? 'none').slice(0, 40),
+      expiry: relHours(progress.premium_expiry, nowMs),
+      expiryRaw0: String(progress.premium_expiry ?? '') === '0',
+      rcExpiry: relHours(progress.premium_rc_expiry_ms, nowMs),
+      adminOverride: String(progress.admin_premium_override ?? 'none').slice(0, 10),
+      vipActive: String(progress.vip_active ?? 'none').slice(0, 10),
+      vipUntil: relHours(progress.vip_until ?? progress.vip_expiry, nowMs),
+      branches: {
+        store: isStorePremiumActive(progress, nowMs),
+        admin: isAdminGrantActive(progress, nowMs),
+        vip: isVipActive(progress, nowMs),
+        gift: isGiftAccessActive(progress, nowMs),
+      },
+    }));
+  } catch (error: unknown) {
+    console.warn(PLUS_LOG, 'refused_snapshot_failed', JSON.stringify({
+      auth: shortId(authUid), stable: shortId(stableAccountId), reason: errorReason(error),
+    }));
+  }
+}
+
 function memoizeDocumentReads(
   transaction: FirebaseFirestore.Transaction,
 ): FirebaseFirestore.Transaction {
@@ -160,7 +224,8 @@ export async function runDialogueV2FreeformProductionAuthorizationTransaction<T>
         transaction,
         authUid,
       );
-    } catch {
+    } catch (error: unknown) {
+      console.warn(PLUS_LOG, 'identity_unavailable', JSON.stringify({ auth: shortId(authUid), reason: errorReason(error) }));
       throw new HttpsError(
         'failed-precondition',
         'dialogue_v2_freeform_identity_unavailable',
@@ -174,7 +239,8 @@ export async function runDialogueV2FreeformProductionAuthorizationTransaction<T>
       ]);
       assertAccountUsable(authState);
       assertAccountUsable(stableState);
-    } catch {
+    } catch (error: unknown) {
+      console.warn(PLUS_LOG, 'account_unavailable', JSON.stringify({ auth: shortId(authUid), stable: shortId(stableAccountId), reason: errorReason(error) }));
       throw new HttpsError(
         'failed-precondition',
         'dialogue_v2_freeform_account_unavailable',
@@ -190,13 +256,15 @@ export async function runDialogueV2FreeformProductionAuthorizationTransaction<T>
         authUid,
         transaction,
       );
-    } catch {
+    } catch (error: unknown) {
+      console.warn(PLUS_LOG, 'entitlement_unavailable', JSON.stringify({ auth: shortId(authUid), stable: shortId(stableAccountId), reason: errorReason(error) }));
       throw new HttpsError(
         'failed-precondition',
         'dialogue_v2_freeform_entitlement_unavailable',
       );
     }
     if (isPremium !== true) {
+      await logPlusRefusal(runtime.db, transaction, authUid, stableAccountId, nowMs);
       throw new HttpsError('permission-denied', 'dialogue_v2_freeform_plus_required');
     }
     const actor = Object.freeze({ authUid, stableAccountId });

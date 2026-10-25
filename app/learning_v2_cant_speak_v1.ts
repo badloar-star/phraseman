@@ -7,6 +7,7 @@
 // Состояние в памяти процесса + копия на телефоне (переживает перезапуск в пределах 15 минут). Сети нет.
 // Журнал [V2-VOICE-SKIP] с причиной: button / headsup_button / permission_denied / timer.
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getRemoteBool, hasRemoteBoolOverride } from "./remote_flags";
 
 const LOG = "[V2-VOICE-SKIP]";
 const KEY = "learning_v2_cant_speak_until_v1";
@@ -16,16 +17,36 @@ export type LearningV2CantSpeakReasonV1 = "button" | "headsup_button" | "permiss
 
 let untilMs = 0;
 let hydrated = false;
+let gateLogged: boolean | null = null;
+
+/**
+ * Можно ли вообще режим «Не могу говорить».
+ * зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, дословно «Не могу говорить выключи это! … в админке в пульте управления добавь возможность
+ * добавить эту кнопку… но сейчас убери… это удар по монетизации»): только по флагу «Пульта» learning_cant_speak_enabled, по
+ * умолчанию нет. Флаг читается из уже загруженного снимка (кэш приходит при входе) — новых чтений Firestore нет.
+ */
+export function isLearningV2CantSpeakEnabledV1(): boolean {
+  const flag = getRemoteBool("learning_cant_speak_enabled") === true;
+  if (gateLogged !== flag) {
+    gateLogged = flag;
+    console.log("[CANT-SPEAK-GATE]", JSON.stringify({ flag, source: hasRemoteBoolOverride("learning_cant_speak_enabled") ? "cache" : "default" })); // guard-ok: одна строка на смену значения
+  }
+  return flag;
+}
 
 export function learningV2CantSpeakUntilV1(): number {
-  return untilMs;
+  return isLearningV2CantSpeakEnabledV1() ? untilMs : 0;
 }
 
 export function isLearningV2CantSpeakActiveV1(nowMs: number = Date.now()): boolean {
-  return untilMs > nowMs;
+  return isLearningV2CantSpeakEnabledV1() && untilMs > nowMs;
 }
 
 export function activateLearningV2CantSpeakV1(reason: LearningV2CantSpeakReasonV1, nowMs: number = Date.now()): number {
+  if (!isLearningV2CantSpeakEnabledV1()) {
+    console.warn(`${LOG} activate:blocked_by_flag`, JSON.stringify({ reason })); // guard-ok: ранний выход с причиной
+    return 0;
+  }
   untilMs = nowMs + LEARNING_V2_CANT_SPEAK_WINDOW_MS;
   console.log(`${LOG} activated`, JSON.stringify({ reason, untilMs, windowMs: LEARNING_V2_CANT_SPEAK_WINDOW_MS })); // guard-ok: одна строка на включение
   void AsyncStorage.setItem(KEY, String(untilMs)).catch((error: unknown) => {
@@ -36,6 +57,7 @@ export function activateLearningV2CantSpeakV1(reason: LearningV2CantSpeakReasonV
 
 /** Подтянуть сохранённый срок после перезапуска приложения (один раз). */
 export async function hydrateLearningV2CantSpeakV1(nowMs: number = Date.now()): Promise<number> {
+  if (!isLearningV2CantSpeakEnabledV1()) return 0;
   if (hydrated) return untilMs;
   hydrated = true;
   try {
@@ -53,6 +75,7 @@ export async function hydrateLearningV2CantSpeakV1(nowMs: number = Date.now()): 
 export function __resetLearningV2CantSpeakForTests(): void {
   untilMs = 0;
   hydrated = false;
+  gateLogged = null;
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

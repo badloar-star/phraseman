@@ -20,6 +20,7 @@ import {
   hydrateLearningV2CantSpeakV1,
   isLearningV2CantSpeakActiveV1,
 } from "../app/learning_v2_cant_speak_v1";
+import { applyRemoteConfigSnapshot } from "../app/remote_flags";
 /* eslint-enable import/first */
 
 const player = readFileSync(join(__dirname, "..", "app", "learning_v2_direct_session_player_v1.tsx"), "utf8");
@@ -28,6 +29,9 @@ const sheet = readFileSync(join(__dirname, "..", "components", "learning-v2", "L
 beforeEach(() => {
   store.clear();
   __resetLearningV2CantSpeakForTests();
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): режим теперь только по флагу «Пульта»; этот тест описывает поведение при включённом флаге,
+  // «по умолчанию нет» сторожит tests/owner_locks_cant_speak_2026_10_25.test.ts
+  applyRemoteConfigSnapshot({ bools: { learning_cant_speak_enabled: true } });
   jest.spyOn(console, "log").mockImplementation(() => undefined);
   jest.spyOn(console, "warn").mockImplementation(() => undefined);
 });

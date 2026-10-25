@@ -35,6 +35,9 @@ export type RemoteNumberKey =
   ;
 
 export type RemoteBoolKey =
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «Не могу говорить выключи… это удар по монетизации»): кнопка «Не могу говорить» в занятиях — только по
+  // переключателю «Пульта» (9 · САЙТ). По умолчанию выключено: кнопки нет, голосовые задания не обходятся, лимит голоса работает.
+  | 'learning_cant_speak_enabled'
   // Онбординг: kill-switch кнопки «Пропустить» (владелец может выключить без
   // релиза, если увидит просадку показов пейвола) и приветственной шторки.
   | 'onboarding_skip_enabled'
@@ -232,6 +235,7 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
+  learning_cant_speak_enabled: false,
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
   // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
   onboarding_skip_enabled: true,
@@ -446,6 +450,11 @@ export function getRemoteBool(key: RemoteBoolKey): boolean {
   return DEFAULT_FLAGS[key];
 }
 
+/** Пришло ли значение флага из снимка «Пульта» (иначе — значение по умолчанию). Для журналов источника значения. */
+export function hasRemoteBoolOverride(key: RemoteBoolKey): boolean {
+  return typeof _boolOverrides[key] === 'boolean';
+}
+
 /** Resolve a text value (override → default ''). */
 export function getRemoteText(key: RemoteTextKey): string {
   const override = _textOverrides[key];
@@ -475,6 +484,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
+    'learning_cant_speak_enabled',
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',

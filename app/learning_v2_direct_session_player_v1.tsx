@@ -106,6 +106,7 @@ import { lessonExitText } from "../components/lesson_exit/lesson_exit_strings";
 import {
   activateLearningV2CantSpeakV1,
   hydrateLearningV2CantSpeakV1,
+  isLearningV2CantSpeakEnabledV1,
   learningV2CantSpeakUntilV1,
   type LearningV2CantSpeakReasonV1,
 } from "./learning_v2_cant_speak_v1";
@@ -2858,6 +2859,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   // ── «Не могу говорить» (решение владельца 21.10 ~22:45): 15 минут голосовые задания засчитываются пропущенными ──
   // Без потери сердец, в звёзды не идут (тот же набор, что пропуск на устройстве без распознавания), эпизод засчитывается.
   const [cantSpeakUntilMs, setCantSpeakUntilMs] = useState(() => learningV2CantSpeakUntilV1());
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): кнопка и обход голосовых — только по флагу «Пульта»; по умолчанию их нет
+  const cantSpeakEnabled = useMemo(() => isLearningV2CantSpeakEnabledV1(), []);
   useEffect(() => {
     let alive = true;
     void hydrateLearningV2CantSpeakV1().then((until) => { if (alive) setCantSpeakUntilMs(until); });
@@ -2880,9 +2883,13 @@ export default function LearningV2DirectSessionPlayerV1() {
     showPracticeIndex(practiceIndex + 1);
   }, [finish, finishing, practice, practiceIndex, result, runSummary, showPracticeIndex]);
   const activateCantSpeak = useCallback((reason: LearningV2CantSpeakReasonV1) => {
+    if (!cantSpeakEnabled) {
+      console.warn("[CANT-SPEAK-GATE] skip_blocked", JSON.stringify({ reason })); // guard-ok: обход голосового запрещён флагом
+      return;
+    }
     setCantSpeakUntilMs(activateLearningV2CantSpeakV1(reason));
     skipVoiceCantSpeak(reason);
-  }, [skipVoiceCantSpeak]);
+  }, [cantSpeakEnabled, skipVoiceCantSpeak]);
   // Пока режим включён — каждое следующее голосовое задание пропускается само.
   useEffect(() => {
     if (!cantSpeakActive || !practice || !practiceActivated || finishing || result === "correct") return;
@@ -3344,10 +3351,10 @@ export default function LearningV2DirectSessionPlayerV1() {
           limit={voiceAllowance.limit}
           onTryPlus={voiceHeadsupTryPlus}
           onStartAnyway={voiceHeadsupStartAnyway}
-          onCantSpeak={() => {
+          onCantSpeak={cantSpeakEnabled ? () => {
             setCantSpeakUntilMs(activateLearningV2CantSpeakV1("headsup_button"));
             voiceHeadsupStartAnyway();
-          }}
+          } : undefined}
         />
       </View>
     );
@@ -3859,7 +3866,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             </Lv2Explain>
           )}
           {/* зачем (решение владельца 21.10 ~22:45): «Не могу говорить» на каждом голосовом задании — нет микрофона, отказ, шумно. */}
-          {showVoiceFooter && result !== "correct" ? (
+          {cantSpeakEnabled && showVoiceFooter && result !== "correct" ? (
             <Pressable
               testID="learning-v2-cant-speak"
               accessibilityRole="button"

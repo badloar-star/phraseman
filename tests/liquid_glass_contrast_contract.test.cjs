@@ -1,5 +1,5 @@
 // зачем (PM-033, 01.10): «премиальность» не оправдывает серый нечитаемый текст (PM-033-A2).
-// Считает WCAG-контраст ключевых пар для ВСЕХ 23 тем (13 тонированных + 10 градиентных) × 3 уровня × 2 оформления (1242 проверки: 23 × 6 × 9).
+// Считает WCAG-контраст ключевых пар для ВСЕХ 29 тем (13 тонированных + 10 градиентных + 6 премиум) × 3 уровня × 2 оформления (1566 проверок: 29 × 6 × 9).
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('fs');
@@ -54,6 +54,7 @@ for (const id of P.LIQUID_GLASS_THEME_IDS) {
 }
 test('Liquid Glass: text pairs meet WCAG contrast in every theme, level and appearance', () => {
   const fails = rows.filter((x) => !x.ok).map((x) => `${x.id}/${x.level}/${x.appearance} ${x.name}=${x.r} < ${x.min}`);
-  assert.equal(rows.length, 1242, 'матрица проверок изменилась — обнови ожидание осознанно');
+  // зачем (координатор 25.10): премиум-темы видимые (выбор тем, награды за достижения) — в реестре 23 + 6 = 29
+  assert.equal(rows.length, 1566, 'матрица проверок изменилась — обнови ожидание осознанно');
   assert.deepEqual(fails, []);
 });

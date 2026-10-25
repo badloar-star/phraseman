@@ -448,10 +448,11 @@ const styles = StyleSheet.create({
   rowName: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
   lockCluster: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   rewardDetails: { marginHorizontal: 12, marginBottom: 10, paddingHorizontal: 14, paddingVertical: 12, borderRadius: 14 },
-  detailLabel: { fontSize: 11, lineHeight: 15, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.55 },
-  detailValue: { marginTop: 3, fontSize: 14, lineHeight: 19, fontWeight: '600' },
+  // зачем (D145 владельца: обычный текст — только 16 и 13; Ревизор 25.10, храповики шрифтов): строки условия премиум-темы из пакета Codex были 11/14/12
+  detailLabel: { fontSize: 13, lineHeight: 17, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.55 },
+  detailValue: { marginTop: 3, fontSize: 16, lineHeight: 22, fontWeight: '600' },
   progressHead: { marginTop: 11, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 10 },
-  progressValue: { flexShrink: 1, textAlign: 'right', fontSize: 12, lineHeight: 16, fontWeight: '700' },
+  progressValue: { flexShrink: 1, textAlign: 'right', fontSize: 13, lineHeight: 17, fontWeight: '700' },
   progressTrack: { height: 6, marginTop: 7, borderRadius: 3, overflow: 'hidden' },
   progressFill: { height: 6, borderRadius: 3 },
   radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.6, alignItems: 'center', justifyContent: 'center' }, // shadow-ok: кольцо радио — индикатор выбора, не контейнер; guard-ok: кольцо радио

@@ -32,7 +32,8 @@ test('approved registry has graphite plus twelve distinct dark tints', () => {
     'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine',
   ]);
   assert.equal(new Set(TINT_IDS).size, 13);
-  assert.equal(LIQUID_GLASS_THEME_IDS.length, 23);
+  // зачем (координатор 25.10): премиум-темы видимые (выбор тем, награды за достижения) — в реестре 23 + 6 = 29
+  assert.equal(LIQUID_GLASS_THEME_IDS.length, 29);
   assert.equal(liquidGlassTokens('graphite').bg, '#0C0D10');
   assert.equal(liquidGlassTokens('unknown').bg, '#0C0D10');
   for (const id of TINT_IDS) {

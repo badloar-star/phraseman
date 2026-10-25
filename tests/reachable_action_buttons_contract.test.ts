@@ -61,6 +61,9 @@ const FALSE_POSITIVES: Readonly<Record<string, string>> = {
   'components/practice/PracticeStates.tsx': 'панель состояния ~250px: значок, заголовок, текст, одна кнопка',
   'components/spire/SpireTour.tsx': 'вёрстка сверху вниз со spacer, без центрирования (зона Codex; риск переполнения отмечен)',
   'components/v2/V2Kit.tsx': 'набор мелких примитивов без полноэкранного контейнера',
+  // 25.10 (Ревизор, прогон 05:00; разбор 2 · ДИЗАЙН, файлы прочитаны): экзамен главы — эвристика не знает LearningV2PracticeViewport и слово onDone в колбэке озвучки
+  'app/learning-v2/chapter-exam.tsx': 'вопрос внутри LearningV2PracticeViewport (прокрутка на низком экране), подвал с кнопкой «Проверить/Дальше» вне вьюпорта; центрирование только у паузы после провала, там кнопок нет; onDone — колбэк озвучки',
+  'components/learning-v2/LearningV2ChapterExamSheet.tsx': 'нижняя шторка flex-end: кнопки внизу, на низком экране обрезается верх (значок/заголовок), а не кнопки; слово «Начать» — подпись кнопки',
 };
 
 function walk(dir: string, out: string[] = []): string[] {

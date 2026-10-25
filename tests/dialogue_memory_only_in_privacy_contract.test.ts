@@ -13,7 +13,9 @@ describe('«Память диалогов» — только в Настройк
     const tools = read('components/dialogs/DialogueV2PlusTools.tsx');
     expect(tools).not.toMatch(/id:\s*'memory'/);
     expect(tools).not.toContain('onOpenMemory');
-    expect(tools).toMatch(/id:\s*'freeform'/);
+    // 25.10 (Ревизор, прогон 05:00): хаб v4 (6765d7bc5, 22.10) заменил список инструментов `id: 'freeform'` одной плиткой «Свободный разговор» — смысл прежний, меняется только метка
+    expect(tools).toContain('testID="dialogue-v2-plus-tool-freeform"');
+    expect(tools).toContain('onPress={onOpenFreeform}');
     const container = read('components/dialogs/DialogueV2CatalogueContainer.tsx');
     expect(container).not.toContain('/dialogue_v2_memory');
     expect(container).not.toContain('onOpenMemory');

@@ -60,7 +60,15 @@ describe('скидка стора доезжает до пейвола чест�
     expect(screen).toContain('p.storePromo.yearly');
     expect(screen).toContain('p.storePromo.monthly');
     // зачем (D158, 11.10): промо-цена стора всегда первая; обычная цена получает «≈ », если она справочная, — поэтому в запасной ветке шаблон, а не голая переменная
-    expect(plus).toContain('yearlyPromo?.promoPriceString || `${yearApprox}${yearlyPrice}`');
+    // 25.10 (Ревизор, прогон 05:00): строки тарифов переехали в PaywallPlanRows (коммит 1359f5244 «утверждённые строки Plus», 18.10, макет варианта A) — смысл тот же:
+    // в строке крупно промо-цена стора (иначе обычная, с «≈ » для справочной), над ней зачёркнута обычная. Строгость прежняя, поменялось только место проверки.
+    const rows = read('components', 'paywall', 'PaywallPlanRows.tsx');
+    expect(rows).toContain("const shown = promo?.promoPriceString || `${approx ? '≈ ' : ''}${price}`;");
+    expect(rows).toContain('{promo ? <Text style={[S.strike, { color: paint.mutedInk }]}>{promo.standardPriceString}</Text> : null}');
+    expect(rows).toMatch(/strike: \{[^}]*textDecorationLine: 'line-through'/u);
+    expect(rows).toContain('promo={yearlyPromo}');
+    expect(rows).toContain('promo={monthlyPromo}');
+    // плашка «Скидка действует сейчас» в PaywallPlus: промо-цена, зачёркнутая обычная и «далее {обычная}»
     expect(plus).toContain('standardPriceString');
     expect(plus).toContain("textDecorationLine: 'line-through'");
     // CTA называет первую реальную платную фазу, подпись — обычную цену после неё.

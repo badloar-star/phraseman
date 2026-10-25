@@ -73,6 +73,27 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
   // окно башни: центр на следующем этаже (образец `focus: 5`)
   // зачем (координатор 15.10, условие 3; закон владельца 14.10 «пик башни не обрезается, свет тоже»): в окне 280×240 вся башня целиком (острие и ореол — основание), вписанная масштабом, без прокрутки и затухания; следующий этаж горит в ней же.
   const { k, towerW, shift } = useMemo(() => floorMomentFrame(skin, TOWER_W, TOWER_H), [skin]);
+  // зачем (координатор 26.10, аудит скорости Моментов №1): полная башня-SVG (12 этажей с ClipPath, окнами, швами и градиентами) строилась в
+  // том же кадре, что открывается окно, — окно этажа (каждый пройденный этаж) появлялось с рывком. Сначала лёгкий кадр окна (рамка того же
+  // размера — без сдвига раскладки), башня — следующим кадром. Журнал [FLOOR-MOMENT] пишет время первого кадра и момент появления башни.
+  const [towerReady, setTowerReady] = useState(false);
+  useEffect(() => {
+    const t0 = Date.now();
+    // зачем: где нет requestAnimationFrame (тестовая среда), кадр ≈ 16 мс таймером — поведение то же
+    const nextFrame = (cb: () => void): (() => void) => {
+      if (typeof requestAnimationFrame === 'function') { const id = requestAnimationFrame(cb); return () => cancelAnimationFrame(id); }
+      const id = setTimeout(cb, 16); return () => clearTimeout(id);
+    };
+    let cancel2: (() => void) | null = null;
+    const cancel1 = nextFrame(() => {
+      const firstFrameMs = Date.now() - t0;
+      cancel2 = nextFrame(() => {
+        setTowerReady(true);
+        console.log(`[FLOOR-MOMENT] первый кадр окна через ${firstFrameMs} мс, башня смонтирована через ${Date.now() - t0} мс (раньше — в первом кадре)`); // guard-ok: единичный замер показа
+      });
+    });
+    return () => { cancel1(); cancel2?.(); };
+  }, []);
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] этаж ${outcome.floorBefore} пройден → ${next}, монеты=${reward} страж=${String(guardNext)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
@@ -100,7 +121,7 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
         <Animated.Text entering={reduceMotion ? undefined : FadeIn} style={[s.ov, { color: p.textSecondary }]}>{spireGameText(lang, 'floorCleared', { n: outcome.floorBefore }).toUpperCase()}</Animated.Text>
         <View style={[s.window, { width: TOWER_W, height: TOWER_H }]} testID={`${testID}-tower`}>
           <View style={{ width: towerW, height: Math.round(SPIRE_TOWER_GEOM.height * k), alignSelf: 'center', transform: [{ translateY: shift }] }}>
-            <SpireTowerSvg lang={lang} myFloor={litFloor} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} illustration />
+            {towerReady ? <SpireTowerSvg lang={lang} myFloor={litFloor} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} illustration /> : null}
           </View>
         </View>
         <View style={s.rewardRow}>

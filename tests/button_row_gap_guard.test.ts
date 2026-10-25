@@ -8,8 +8,8 @@ const root = path.join(__dirname, '..');
 const SKIP = /node_modules|[\\/]\.|\.test\.|__tests__|dev_|[\\/]dev[\\/]|\.d\.ts|learning-v2-lab/;
 const EXEMPT = /components\/VerbLetterBank\.tsx|components\/ActivityHeatmap365\.tsx/;
 const BTN = /^(Pressable|TouchableOpacity|TouchableHighlight|DuoPressable|V2Pressable|PressableHybrid|AnimatedPressable|V2Button|DialogueGlassCta|FriendsButton|PackGhostCta|Reanimated\.Pressable)$/;
-/** Ждут коммита чужих правок (пейвол, окно регистрации) — после их коммита потолок станет 0. */
-const CEILING = 1;
+/** зачем (Ревизор 25.10, прогон 05:00): чужие правки пейвола и окна регистрации закоммичены — нарушений 0, потолок 0. */
+const CEILING = 0;
 
 function listTsx(dir: string, out: string[] = []): string[] {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

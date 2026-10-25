@@ -188,7 +188,7 @@ function pickPremiumPigments(overrides: Readonly<Record<string, string>> | null)
  */
 function premiumLegibleRoles(
   overrides: Readonly<Record<string, string>> | null,
-  built: Readonly<{ text: string; accent: string; accentInk: string; opaqueCard: string; opaqueControl: string; accentGradient?: readonly string[] }>,
+  built: Readonly<{ text: string; accent: string; accentInk: string; opaqueCard: string; opaqueControl: string; accentGradient?: readonly string[]; accentBright?: string; accentCap?: string; bg?: string }>,
   roles: Readonly<{ good: string; bad: string; goodSoft: string; badSoft: string }>,
 ): Record<string, string> {
   if (!overrides) return {};
@@ -217,7 +217,17 @@ function premiumLegibleRoles(
   const score = (c: string): number => Math.min(contrastHex(c, cta) / 4.5, onSemantic(c) / 4.5);
   const ctaInk = inkCandidates.reduce((best, c) => (score(c) > score(best) ? c : best), inkCandidates[0]!);
   const inkFills = [accent, ...(built.accentGradient ?? [])].filter((c) => /^#[0-9a-f]{6}/i.test(c)).map((c) => c.slice(0, 7));
-  return { good, bad, accentInk: pickInk(inkFills), ctaInk };
+  // зачем (Ревизор 25.10, theme_tab_bar_contrast): активный значок таб-бара (accentBright) лежит на плашке accentCap поверх стекла (opaqueControl 90 % на bg) —
+  // у премиум-коллекции сырой accentBright давал там 1,99–2,98 в тёмном «Спокойно/Акценте». Доводим до ≥ 3,2 к плашке и стеклу (тон тот же, меняется глубина).
+  const a2 = (hex: string, alpha: number): string => `${hex.slice(0, 7)}${Math.round(Math.max(0, Math.min(1, alpha)) * 255).toString(16).padStart(2, '0')}`;
+  const bgSolid = (overrides.bg ?? built.bg ?? card).slice(0, 7);
+  const glass = flattenOver(a2(control, 0.9), bgSolid);
+  const cap = overrides.accentCap ?? built.accentCap;
+  const capAlpha = cap && cap.length === 9 ? Number.parseInt(cap.slice(7, 9), 16) / 255 : 1;
+  const pill = cap ? flattenOver(a2(cap, 0.32 * capAlpha), glass) : glass;
+  const brightRaw = overrides.accentBright ?? built.accentBright;
+  const accentBright = brightRaw ? legibleOn(brightRaw, text, [pill, glass], 3.2) : undefined;
+  return { good, bad, accentInk: pickInk(inkFills), ctaInk, ...(accentBright ? { accentBright } : {}) };
 }
 const contrastHex = (a: string, b: string): number => {
   const l = (h: string): number => { const n = Number.parseInt(h.slice(1, 7), 16); const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }); return 0.2126 * c[0]! + 0.7152 * c[1]! + 0.0722 * c[2]!; };

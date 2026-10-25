@@ -15,6 +15,8 @@ jest.mock('react-native', () => ({
   // зачем (владелец 13.10, тема новичка по системному режиму): ThemeContext читает useColorScheme и Appearance.getColorScheme
   useColorScheme: () => 'dark',
   Appearance: { getColorScheme: () => 'dark' },
+  // зачем (слово владельца 25.10, пакет Codex): ThemeContext слушает premium_activated (условие «Оливковой» — покупка Plus) через DeviceEventEmitter
+  DeviceEventEmitter: { addListener: () => ({ remove: () => undefined }), emit: () => undefined },
 }));
 
 jest.mock('@react-native-async-storage/async-storage', () => ({

@@ -49,7 +49,7 @@ function rgbLinear(hex: string): readonly [number, number, number] {
 }
 
 function shaderHtml(input: Readonly<{ family: string; fragment: string; accent: string; reducedMotion: boolean; plateDataUri: string | null; aspect: number }>): string {
-  const pigment = rgbLinear(input.accent);
+  const pigment = rgbLinear(input.accent); // light-accent-ok: пигмент шейдера фона премиум-темы (замысел коллекции Codex), не графика на светлом
   const plate = input.plateDataUri ?? '';
   return `<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv="Content-Security-Policy" content="${csp()}"><style>html,body,canvas{margin:0;width:100%;height:100%;overflow:hidden;background:${PREMIUM_MOTION_PIGMENTS.canvasBackdrop}}canvas{display:block}</style></head><body><canvas id="scene" aria-hidden="true"></canvas><script>
 (()=>{'use strict';const canvas=document.getElementById('scene');const gl=canvas.getContext('webgl',{alpha:false,antialias:false,depth:false,powerPreference:'low-power'});if(!gl)return;
@@ -95,7 +95,7 @@ export const PremiumThemeMotion = memo(function PremiumThemeMotion({ themeId, wi
     const shader = WEBGL_THEMES.get(themeId);
     const spec = premiumThemeVisualSpec(themeId);
     if (!shader || !spec) return null;
-    return shaderHtml({ ...shader, accent: spec.accent, reducedMotion, plateDataUri, aspect: width / Math.max(height, 1) });
+    return shaderHtml({ ...shader, accent: spec.accent, reducedMotion, plateDataUri, aspect: width / Math.max(height, 1) }); // light-accent-ok: пигмент шейдера фона
   }, [height, plateDataUri, reducedMotion, themeId, width]);
   if (!html) return null;
   const kind = themeId === 'grad_full_olive' ? 'olive'

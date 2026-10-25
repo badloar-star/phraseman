@@ -56,7 +56,8 @@ const round = (c: number[]) => c.map((v) => Math.round(Math.max(0, Math.min(255,
 const rgbaNums = (s: string) => { const m = /^rgba\((\d+),(\d+),(\d+),([\d.e-]+)\)$/.exec(s); return m ? [Number(m[1]), Number(m[2]), Number(m[3]), Math.round(Number(m[4]) * 1e6)] : s; };
 
 async function main(): Promise<void> {
-  assert.equal(LIQUID_GLASS_THEME_IDS.length, 23, "в приложении 23 темы");
+  // зачем (координатор 25.10): премиум-темы видимые (выбор тем, награды за достижения) — в реестре 23 + 6 = 29
+  assert.equal(LIQUID_GLASS_THEME_IDS.length, 29, "в приложении 29 тем");
   assert.equal(HOME_SCENE_TWILIGHT_THEME_ID, "ink", "«Сумерки» — ink");
 
   // ── код = формула эталона: 23 темы × 2 оформления × день/вечер, токены уровня эталона (max) ──

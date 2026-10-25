@@ -19,7 +19,8 @@ const ratio = (a: string, b: string) => {
 describe('текст на заливке accent в темах Liquid Glass', () => {
   it('accentInk темы читается на accent (≥ 4.5) на всех 23 темах, видах, уровнях и значениях ползунка', () => {
     const ids = [...new Set([...(LIQUID_GLASS_THEME_IDS as readonly string[]), ...(LIQUID_GLASS_GRADIENT_THEME_IDS as readonly string[])])];
-    expect(ids.length).toBe(23);
+    // зачем (координатор 25.10): премиум-темы видимые (выбор тем, награды за достижения) — в реестре 23 + 6 = 29
+    expect(ids.length).toBe(29);
     const bad: string[] = [];
     for (const id of ids) {
       for (const appearance of ['dark', 'light'] as const) {

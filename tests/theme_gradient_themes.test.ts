@@ -39,9 +39,10 @@ function contrast(a: string, b: string): number {
 }
 
 describe('gradient themes registry', () => {
-  it('10 gradient themes are ADDED to the 13 tinted ones, from one config list', () => {
-    expect(LIQUID_GLASS_GRADIENT_THEME_IDS).toHaveLength(10);
-    expect(LIQUID_GLASS_THEME_IDS).toHaveLength(23);
+  it('16 gradient themes (10 + 6 premium) are ADDED to the 13 tinted ones, from one config list', () => {
+    // зачем (координатор 25.10): премиум-темы видимые (выбор тем, награды за достижения) — в реестре 23 + 6 = 29
+    expect(LIQUID_GLASS_GRADIENT_THEME_IDS).toHaveLength(16);
+    expect(LIQUID_GLASS_THEME_IDS).toHaveLength(29);
     expect(LIQUID_GLASS_THEME_IDS.slice(0, 13)).toContain('graphite');
     for (const id of LIQUID_GLASS_GRADIENT_THEME_IDS) {
       expect(LIQUID_GLASS_THEME_IDS).toContain(id);

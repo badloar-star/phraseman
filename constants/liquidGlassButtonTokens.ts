@@ -164,18 +164,32 @@ function primaryRoles(t: Surfaces, secondary: string): Readonly<{ fill: string; 
   return { fill: first.fill, ink };
 }
 
+// зачем (Ревизор 25.10, button_tokens_contrast): у премиум-тем шторка тёплая (олива, лайм) — bad, растворённый в ней, уходил в коричневый (оттенок 28–40°),
+// и «Удалить» переставала выглядеть опасной. Заливка обязана остаться красной: оттенок ≤ 20° или ≥ 340°, цветность ≥ 0,08 (у нейтральных шторок проходит с первого шага).
+const redHue = (hex: string): boolean => {
+  const [r, g, b] = rgb(hex);
+  const mx = Math.max(r, g, b); const d = mx - Math.min(r, g, b);
+  if (d === 0) return false;
+  const h = ((mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4) * 60 + 360) % 360;
+  return (h <= 20 || h >= 340) && chroma(hex) >= 0.08;
+};
+
 /** Опасная кнопка: заливка — bad, растворённый в шторке (от слабого к сильному), подпись — bad, сдвинутый к тексту темы, пока не станет читаемой. */
 function dangerRoles(t: Surfaces): Readonly<{ dangerFill: string; dangerInk: string }> {
   const under = underSurfaces(t);
   let fallback = { dangerFill: mix(t.opaqueSheet, t.bad, 0.4), dangerInk: hex6(t.text) };
-  for (let k = 0.1; k <= 0.7001; k += 0.02) {
-    const fill = mix(t.opaqueSheet, t.bad, k);
-    if (minOver(fill, under) < DANGER_SURFACE_MIN) continue;
-    for (let m = 0.2; m <= 1.0001; m += 0.05) {
-      const ink = mix(t.bad, t.text, Math.min(m, 1));
-      if (ratio(ink, fill) >= DANGER_INK_MIN) return { dangerFill: fill, dangerInk: ink };
+  // второй проход — только если на тонированной шторке красного не нашлось: тот же bad растворяется в нейтральном сером той же яркости, что шторка
+  const level = Math.round(Math.max(0, Math.min(1, lum(t.opaqueSheet) ** (1 / 2.2))) * 255).toString(16).padStart(2, '0');
+  for (const base of [t.opaqueSheet, `#${level}${level}${level}`]) {
+    for (let k = 0.1; k <= 0.7001; k += 0.02) {
+      const fill = mix(base, t.bad, k);
+      if (minOver(fill, under) < DANGER_SURFACE_MIN || !redHue(fill)) continue;
+      for (let m = 0.2; m <= 1.0001; m += 0.05) {
+        const ink = mix(t.bad, t.text, Math.min(m, 1));
+        if (ratio(ink, fill) >= DANGER_INK_MIN) return { dangerFill: fill, dangerInk: ink };
+      }
+      fallback = { dangerFill: fill, dangerInk: hex6(t.text) };
     }
-    fallback = { dangerFill: fill, dangerInk: hex6(t.text) };
   }
   return fallback;
 }

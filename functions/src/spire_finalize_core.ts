@@ -62,6 +62,8 @@ export type SpireWeekLadderRow = Readonly<{
   name: string;
   coinRank: number | null;
   coins: number;
+  /** Ступени недели — те же, по которым считается место (владелец 25.10: места в комнате недели по ступеням). */
+  steps: number;
   isMe: boolean;
   /** Ключ участника для обезличивания при удалении аккаунта (spireLadderMemberKey) — не uid, в каждой комнате свой. */
   memberKey: string;
@@ -284,7 +286,9 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
   const ladderFor = (me: SpireStanding): SpireWeekLadderRow[] => {
     const top = roomSorted.slice(0, SPIRE_WEEK_LADDER_ROWS);
     const rows = top.some((s) => s.uid === me.uid) ? top : [...roomSorted.slice(0, SPIRE_WEEK_LADDER_ROWS - 1), me];
-    return rows.map((s) => ({ place: roomPlace(s), name: s.name ?? '', coinRank: s.coinRank ?? null, coins: s.weekCoins ?? 0, isMe: s.uid === me.uid, memberKey: spireLadderMemberKey(input.groupId, s.uid) }));
+    // зачем (координатор 25.10): «Моменты» показывают ступени строки, только если они пришли; берём те же members[uid].steps,
+    // по которым считается место — документ комнаты уже прочитан, новых чтений нет. Старые клиенты лишнее поле игнорируют.
+    return rows.map((s) => ({ place: roomPlace(s), name: s.name ?? '', coinRank: s.coinRank ?? null, coins: s.weekCoins ?? 0, steps: s.steps, isMe: s.uid === me.uid, memberKey: spireLadderMemberKey(input.groupId, s.uid) }));
   };
 
   const results: Record<string, SpireMemberWeekResult> = {};

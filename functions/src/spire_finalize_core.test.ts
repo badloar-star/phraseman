@@ -133,7 +133,10 @@ describe('spire finalize: лестница итога недели (D191)', () =
     expect(JSON.stringify(low.ladder)).not.toMatch(/"uid"|u\d+"/);
     const top = out.results.u0;
     expect(top.ladder[0]).toMatchObject({ place: 1, isMe: true, name: 'Игрок 0' });
-    for (const row of top.ladder) expect(Object.keys(row).sort()).toEqual(['coinRank', 'coins', 'isMe', 'memberKey', 'name', 'place']);
+    for (const row of top.ladder) expect(Object.keys(row).sort()).toEqual(['coinRank', 'coins', 'isMe', 'memberKey', 'name', 'place', 'steps']);
+    // зачем (координатор 25.10): ступени строки — те же members[uid].steps, по которым считается место (u{i} = 20 − i ступеней)
+    expect(top.ladder.map((r) => r.steps)).toEqual([20, 19, 18, 17, 16, 15]);
+    expect(low.ladder[low.ladder.length - 1].steps).toBe(6);
     // зачем (координатор 15.10, политика §5): ключ участника — 16 hex, свой у каждого, без uid; удаление аккаунта находит по нему строки.
     for (const row of top.ladder) expect(row.memberKey).toMatch(/^[0-9a-f]{16}$/);
     expect(new Set(top.ladder.map((r) => r.memberKey)).size).toBe(top.ladder.length);
@@ -141,6 +144,13 @@ describe('spire finalize: лестница итога недели (D191)', () =
     // пустой ранг монеты — базовая монета (null), а не «ранг 0»
     const noRank = runCoins({ a: { ...member(5), name: 'А', coinRank: null }, b: member(3) }, { a: 10, b: 5 });
     expect(noRank.results.a.ladder.find((r) => r.isMe)?.coinRank).toBeNull();
+  });
+
+  it('режим ступеней: место и ступени строки согласованы, у не игравшего 0 ступеней', () => {
+    const out = run({ a: member(9), b: member(6), c: member(0) });
+    expect(out.results.c.ladder.map((r) => ({ place: r.place, steps: r.steps }))).toEqual([
+      { place: 1, steps: 9 }, { place: 2, steps: 6 }, { place: 3, steps: 0 },
+    ]);
   });
 
   it('порог повышения в режиме монет — монеты последнего живого в зоне «вверх»; в режиме ступеней — null', () => {

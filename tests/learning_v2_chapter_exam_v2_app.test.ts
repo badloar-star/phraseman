@@ -46,8 +46,11 @@ afterEach(() => jest.restoreAllMocks());
 
 describe('выбор экзамена', () => {
   it('глава с банком и переключатель по умолчанию — v2; без банка или выключено — прежний', () => {
+    // главы 1–3 урока 1 подключены (владелец 25.10); глава 4 — без банка, прежний экзамен
+    expect(isChapterExamV2EnabledFor(1, 1)).toBe(true);
     expect(isChapterExamV2EnabledFor(1, 2)).toBe(true);
-    expect(isChapterExamV2EnabledFor(1, 3)).toBe(false);
+    expect(isChapterExamV2EnabledFor(1, 3)).toBe(true);
+    expect(isChapterExamV2EnabledFor(1, 4)).toBe(false);
     mockFlag = false;
     expect(isChapterExamV2EnabledFor(1, 2)).toBe(false);
   });

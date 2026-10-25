@@ -1,7 +1,7 @@
 // Правила банков экзамена v2 для каждого файла в modules/learning-v2/exam/banks (координатор 25.10): больше 10 заданий (запас на
 // пересдачу), на каждую тему ≥ 3 задания и есть эпизоды для повторения, id уникальны, в уроке 1 вопросов нет (знака «?» нет ни в
 // репликах, ни в ответах), у каждого задания есть что показать (ситуация / реплика / фраза с ошибкой). Слова эпизодов проверяет
-// отдельный сторож owner_locks_exam_episode_words. Подключение банков к приложению — только по слову координатора.
+// отдельный сторож owner_locks_exam_episode_words. Подключение банков к приложению — по слову владельца (25.10: главы 1–3 урока 1).
 import fs from 'node:fs';
 import path from 'node:path';
 import type { ChapterExamV2Bank } from '../modules/learning-v2/exam/chapter_exam_v2';
@@ -44,10 +44,12 @@ describe('банки экзамена v2: правила', () => {
     expect(new Set(picked?.map((i) => i.grammarPoint))).toEqual(new Set(bank.grammarPoints.map((p) => p.id)));
   });
 
-  it('в приложении подключена только глава 2 (главы 1 и 3 — на чтение владельцу, до слова координатора)', () => {
+  // владелец 25.10 прочитал банки и ответил «Да, включать и делать дальше» — подключены главы 1–3 урока 1; новые — только по его слову
+  it('в приложении подключены главы 1–3 урока 1, и у каждой подключённой главы есть файл банка', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app/learning_v2_chapter_exam_v2.ts'), 'utf8');
     const map = src.match(/const BANKS: ReadonlyMap<string, ChapterExamV2Bank> = new Map\(\[([\s\S]*?)\]\);/)?.[1] ?? '';
-    expect(map.match(/`\d+:\d+`/g)).toEqual(['`1:2`']);
-    expect(src).not.toMatch(/chapter_exam_v2_l01_c1|chapter_exam_v2_l01_c3/);
+    expect(map.match(/`\d+:\d+`/g)).toEqual(['`1:1`', '`1:2`', '`1:3`']);
+    const files = new Set(banks.map(([, b]) => `${b.lessonOrdinal}:${b.chapterOrdinal}`));
+    for (const key of ['1:1', '1:2', '1:3']) expect(files.has(key)).toBe(true);
   });
 });

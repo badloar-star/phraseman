@@ -18,13 +18,16 @@ import {
   type ChapterExamV2Result,
   type ChapterExamV2WeakPoint,
 } from '../modules/learning-v2/exam/chapter_exam_v2';
+import { CHAPTER_EXAM_V2_BANK_L01_C1 } from '../modules/learning-v2/exam/banks/chapter_exam_v2_l01_c1';
 import { CHAPTER_EXAM_V2_BANK_L01_C2 } from '../modules/learning-v2/exam/banks/chapter_exam_v2_l01_c2';
+import { CHAPTER_EXAM_V2_BANK_L01_C3 } from '../modules/learning-v2/exam/banks/chapter_exam_v2_l01_c3';
 
 const LOG = '[CHAPTER-EXAM-V2]';
 const TARGET_LANGUAGE = 'en';
 
 // Банки глав v2. Нет банка — у главы прежний экзамен. Новые банки пишет фабрика курса (сторож слов эпизодов — owner_locks_exam_episode_words).
-const BANKS: ReadonlyMap<string, ChapterExamV2Bank> = new Map([[`1:2`, CHAPTER_EXAM_V2_BANK_L01_C2]]);
+// зачем (владелец 25.10, «Да, включать и делать дальше» после чтения docs/work/exam-banks-for-owner-2026-10-25.md): главы 1–3 урока 1.
+const BANKS: ReadonlyMap<string, ChapterExamV2Bank> = new Map([[`1:1`, CHAPTER_EXAM_V2_BANK_L01_C1], [`1:2`, CHAPTER_EXAM_V2_BANK_L01_C2], [`1:3`, CHAPTER_EXAM_V2_BANK_L01_C3]]);
 
 export function chapterExamV2BankFor(lessonOrdinal: number, chapterOrdinal: number): ChapterExamV2Bank | null {
   return BANKS.get(`${lessonOrdinal}:${chapterOrdinal}`) ?? null;

@@ -22,6 +22,7 @@ import {
   settleSpirePendingByBalance,
   spirePendingCoinsTotal,
   spireStepPendingCoins,
+  subscribeSpirePendingCoins,
 } from '../app/spire/spire_pending_coins';
 
 const COINS = { perStep: 10, perFloorPerLevel: 10, guardianMultiplier: 2, summitBonus: 200 };
@@ -80,12 +81,17 @@ describe('ожидающие и сверка с ответом сервера', 
 describe('исходники: где кладём, где гасим, что показываем', () => {
   const read = (...p: string[]) => normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', ...p), 'utf8'));
   it('ступень записана на диск и пройдена впервые → ожидающее; ответ сервера гасит в обеих ветках; Главная — баланс + ожидающие', () => {
-    expect(read('app', 'spire', 'use_spire_game.ts')).toContain('spireRecordStepResult(ids.uid, lang, finish.report, { owner: ids.stableId, coins: config.coins })');
-    const record = read('app', 'spire_report_client.ts');
-    expect(record).toMatch(/applied\.effect !== 'duplicate_ignored'\) \{[\s\S]{0,400}if \(applied\.persisted && coins\)[\s\S]{0,300}addSpirePendingCoins\(coins\.owner, report\.reportId/);
+    // вариант A (координатор 25.10): монеты — сразу в момент итога, до записи на диск; после диска их больше не кладут
+    const game = read('app', 'spire', 'use_spire_game.ts');
+    expect(game).toContain("const coinsNow = spireStepCoinsNow({ owner: ids.stableId, reportId: finish.report.reportId, t0: closeT0, coins: config.coins, passedNew: finish.report.outcome === 'passed' && applied.effect !== 'duplicate_ignored'");
+    expect(game.indexOf('spireStepCoinsNow({')).toBeLessThan(game.indexOf('spireRecordStepResult(ids.uid'));
+    expect(game).toContain("if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_failed');");
+    expect(game).toContain("if (coinsNow) spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'save_threw');");
+    expect(game).toContain("if (coinsNow && res.effect === 'duplicate_ignored') spireStepCoinsUndo(ids.stableId, finish.report.reportId, 'duplicate_on_disk');");
+    expect(read('app', 'spire_report_client.ts')).not.toContain('addSpirePendingCoins(');
     const flush = read('app', 'spire', 'spire_flush_wallet.ts');
     expect(flush.match(/settleSpirePendingCoins\(stableId, verdicts, true/g)?.length).toBe(2);
-    expect(read('app', '(tabs)', 'home.tsx')).toContain('runesBalance: runesBalance + spirePendingCoins,');
+    // Главная — зона Ядра (25.10: переводит все пилюли на единый показ, свой сторож [COIN-DIVERGENCE]); здесь её не проверяем
   });
 });
 
@@ -122,6 +128,25 @@ describe('Ревизор 24.10: три сценария гашения и одн
     const home = read('app', '(tabs)', 'home.tsx');
     expect(home).toContain('if (!homeRuntimeActive) return undefined;');
     expect(home).toContain('return subscribeDisplayedRunes(read);');
-    expect(read('app', 'spire_report_client.ts')).toContain('Date.now(), peekRunes());');
+    expect(read('app', 'spire', 'spire_step_close.ts')).toContain('addSpirePendingCoins(i.owner, i.reportId, amount, Date.now(), peekRunes());');
+  });
+});
+
+describe('вариант A (координатор 25.10): монеты сразу, сбой записи снимает', () => {
+  beforeEach(() => __resetSpirePendingCoinsForTests());
+  it('removeSpirePendingCoins снимает только свою строку и будит подписчиков; чужой/неизвестный — без изменений', () => {
+    const { removeSpirePendingCoins } = require('../app/spire/spire_pending_coins') as typeof import('../app/spire/spire_pending_coins');
+    addSpirePendingCoins('me', 'ok', 10, NOW);
+    addSpirePendingCoins('me', 'bad', 50, NOW);
+    const seen = jest.fn();
+    const off = subscribeSpirePendingCoins(seen);
+    removeSpirePendingCoins('me', 'bad', 'save_failed');
+    expect(spirePendingCoinsTotal('me', NOW)).toBe(10);
+    expect(seen).toHaveBeenCalledTimes(1);
+    removeSpirePendingCoins('me', 'nope', 'save_failed');
+    removeSpirePendingCoins('other', 'ok', 'save_failed');
+    expect(spirePendingCoinsTotal('me', NOW)).toBe(10);
+    expect(seen).toHaveBeenCalledTimes(1);
+    off();
   });
 });

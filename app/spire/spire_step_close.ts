@@ -10,6 +10,8 @@ import { InteractionManager } from 'react-native';
 import { DebugLogger } from '../debug-logger';
 import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
 import type { SpireFlushTrigger, SpireLang, SpireWeekLocal } from '../../modules/spire/report_queue';
+import { addSpirePendingCoins, removeSpirePendingCoins, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire_pending_coins';
+import { peekRunes } from '../runes_system';
 
 export const PEAK_CLOSE = '[PEAK-CLOSE]';
 const LOG = '[SPIRE]';
@@ -51,4 +53,25 @@ export function spireRunStepCloseTail(tail: SpireStepCloseTail): void {
     if (tail.countToday) void recordTodayTaskActivity({ kind: 'spire_steps', unitKey: `spire:${tail.reportId}`, source: 'spire_step_passed' });
     else DebugLogger.info('[TODAY-TASKS]', `spire:skip ${tail.skipWhy} report=${tail.reportId}`);
   });
+}
+
+/**
+ * [PEAK-COINS] Монеты ступени — сразу в момент итога, до записи на диск (координатор 25.10, вариант A; закон «телефон решает»).
+ * Только новая пройденная ступень; повтор reportId отсекает addSpirePendingCoins. base — кошелёк сейчас (гашение по росту баланса).
+ * Число на экранах — единый показ Ядра (peekDisplayedRunes / subscribeDisplayedRunes), своего счётчика здесь нет.
+ */
+export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined; reportId: string; t0: number; coins: SpirePendingCoinsConfig | null | undefined; passedNew: boolean; floorBefore: number; floorCleared: boolean }>): boolean {
+  if (!i.passedNew || !i.owner || !i.coins) {
+    spireCloseMark(i.reportId, i.t0, `монеты сразу: нет (новая пройденная=${String(i.passedNew)} владелец=${i.owner ? 'есть' : 'нет'} конфиг=${i.coins ? 'есть' : 'нет'})`);
+    return false;
+  }
+  const amount = spireStepPendingCoins(i.coins, i.floorBefore, i.floorCleared);
+  addSpirePendingCoins(i.owner, i.reportId, amount, Date.now(), peekRunes());
+  spireCloseMark(i.reportId, i.t0, `монеты сразу: +${amount} (этаж до=${i.floorBefore} этаж закрыт=${String(i.floorCleared)}) до записи на диск`);
+  return true;
+}
+
+/** Запись не удалась или на диске повтор — снять показанные монеты (причина в журнал [PEAK-COINS] settle reason=…). */
+export function spireStepCoinsUndo(owner: string | null | undefined, reportId: string, reason: 'save_failed' | 'save_threw' | 'duplicate_on_disk'): void {
+  removeSpirePendingCoins(owner, reportId, reason);
 }

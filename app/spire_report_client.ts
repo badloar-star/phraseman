@@ -29,8 +29,6 @@ import { getLocalDayKey } from './local_date';
 import { peekStableId } from './stable_id';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { spireCurrentWeekKey } from '../components/spire/spire_tower_model';
-import { addSpirePendingCoins, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire/spire_pending_coins';
-import { peekRunes } from './runes_system';
 import {
   type SpireFlushResponse,
   type SpireFlushTrigger,
@@ -169,7 +167,6 @@ export async function spireRecordStepResult(
   uid: string,
   lang: SpireLang,
   report: SpireStepReport,
-  coins?: Readonly<{ owner: string; coins: SpirePendingCoinsConfig }>,
 ) {
   const recordStartedAt = Date.now();
   const applied = await spireRecordStep(store, { uid, lang, report, logger });
@@ -187,13 +184,7 @@ export async function spireRecordStepResult(
   // Серия — только за ПРОЙДЕННУЮ и новую ступень (провал и повтор дня не дают).
   if (report.outcome === 'passed' && applied.effect !== 'duplicate_ignored') {
     void markSpireStreakDay(report);
-    // зачем ([PEAK-COINS], координатор 24.10; контракт Ядра): ступень записана и пройдена впервые → её монеты на Главной сразу
-    // («ожидающие», гасит ответ spireReportSteps). Этаж ДО ступени: закрыт этаж — маркер уже на следующем.
-    if (applied.persisted && coins) {
-      const floorBefore = applied.effect === 'floor_cleared' ? applied.local.floor - 1 : applied.local.floor;
-      // base — кошелёк в момент засчёта: облако дорастило его до base + монет → гасим без вердикта (Ревизор 24.10)
-      addSpirePendingCoins(coins.owner, report.reportId, spireStepPendingCoins(coins.coins, floorBefore, applied.effect === 'floor_cleared'), Date.now(), peekRunes());
-    }
+    // [PEAK-COINS] монеты ступени кладутся сразу в момент итога (spireStepCoinsNow, вариант A 25.10), не здесь после диска
   }
   return applied;
 }

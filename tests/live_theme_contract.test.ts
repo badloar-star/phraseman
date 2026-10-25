@@ -11,7 +11,7 @@ import { getV2Palette } from "../constants/v2Style";
 import { SELECTABLE_THEME_MODES } from "../app/theme_access_policy";
 
 // зачем (координатор 12.10 07:25): прежняя версия закрепляла модель «9 тем-режимов с выбором и ценами» (indigo по умолчанию, список
-// в политике доступа). В 2.0 видимые темы — реестр Liquid Glass (23 темы), а `ThemeMode` остался только как совместимый
+// в политике доступа). В 2.0 видимые темы — реестр Liquid Glass (29 тем: 23 + 6 премиум), а `ThemeMode` остался только как совместимый
 // «графитовый» алиас. Тест приведён к этой модели; он по-прежнему сторожит: старые названия не возвращаются, уцелевшие карты
 // тем чисты от удалённых ключей, а токен accentText доходит до экранов по ВСЕМ путям (с токенами темы и без них).
 const root = path.resolve(__dirname, "..");
@@ -47,8 +47,9 @@ describe("live interface theme contract (Liquid Glass 2.0)", () => {
   test("visible themes are the Liquid Glass registry; ThemeMode is only the compatibility alias", () => {
     const union = themeSource.match(/export type ThemeMode\s*=\s*[^;]+;/)?.[0];
     expect(union).toBe(LEGACY_COMPAT_UNION);
-    expect(LIQUID_GLASS_THEME_IDS).toHaveLength(23);
-    expect(new Set(LIQUID_GLASS_THEME_IDS).size).toBe(23);
+    // зачем (координатор 25.10): премиум-темы видимые — их показывают в выборе тем и выдают за достижения, поэтому они в реестре: 23 + 6 = 29
+    expect(LIQUID_GLASS_THEME_IDS).toHaveLength(29);
+    expect(new Set(LIQUID_GLASS_THEME_IDS).size).toBe(29);
     // совместимый режим один — графитовый алиас; продаваемых «режимов» нет
     expect([...SELECTABLE_THEME_MODES]).toEqual(["dark"]);
   });

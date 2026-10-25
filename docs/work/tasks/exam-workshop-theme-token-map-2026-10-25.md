@@ -74,3 +74,8 @@ Outcome: перемерить шапку «Ты на 3-м уроке» пейв�
 Governance-ID: TG-F0D751ADFED9
 
 Outcome: после коммитов Моментов e3b3c313e, 3a42a7e8f, a796ac60e, fdd62974d и d6dec448b перемерить во всех 174 сочетаниях надзаголовок (белый), заголовок, подпись, кнопку сцены и иконку на арте сцены — по самой светлой зоне под текстом. Scope: scripts/home_scene_special_contrast_measure.ts и отчёт docs/work/home-scene-special-contrast-2026-10-25.md; код сцены не меняется. Architecture: без изменений, модель фона в скрипте сверяется с HomeSceneStage. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert коммита.
+
+## Продолжение: перемер Пика (30dfcf973), занятия (0c3b0c244) и экзамена v2 (759b1b0b6) (координатор 25.10)
+Governance-ID: TG-F335B7E04B05
+
+Outcome: подтвердить замером по закоммиченному коду: (1) Пик — свет размером Главной, своя строка 6 %, ник белый, затемнение до шапка+140; особо строка «Комнаты недели» и ник; (2) экраны занятия Learning V2 — «Правильно», чипы верно/неверно, пояснение; (3) экран экзамена v2 — мелкий текст 13 на порог 4,5. Во всех 174 сочетаниях. Scope: scripts/spire_contrast_measure.ts, scripts/learning_v2_session_contrast_measure.ts, scripts/exam_workshop/theme_contrast_measure.ts и дописанные разделы в существующих отчётах docs/work/; код приложения не меняется. Architecture: без изменений, модели сверяются с исходниками. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скриптов через tsx. Rollback: git revert коммита.

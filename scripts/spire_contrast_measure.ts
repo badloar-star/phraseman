@@ -13,7 +13,7 @@ import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGl
 import { flattenOver, legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
-import { spireTopShadeAlpha } from '../components/spire/scene/spire_scene_backdrop_math';
+import { SPIRE_LIGHT_RY_FACTOR, SPIRE_LIGHT_STAGE_H, SPIRE_SHADE_TAIL, spireTopShadeAlpha } from '../components/spire/scene/spire_scene_backdrop_math';
 import { SPIRE_SCENE_INK } from '../components/spire/scene/spire_scene_palette';
 
 type Rgba = [number, number, number, number];
@@ -36,7 +36,15 @@ const ap = (a: string): string => (a === 'light' ? 'светлая' : 'тёмн�
 // строка: текст fg на (стекле glass поверх) фоне сцены; y — от верха сцены, dp
 type SceneEl = { id: string; what: string; fg: string; glass: string[]; y0: number; y1: number; x0: number; x1: number; min: 4.5 | 3; trackUnder?: string };
 const I = SPIRE_SCENE_INK;
-const ME_GLASS = 'rgba(255,255,255,0.26)'; // SpireScenePedestal: colorWithAlpha(text, 0.26)
+// зачем (перемер 25.10 после 30dfcf973, Моменты): своя строка — подсветка 6 %, ник белый; свет размером Главной; затемнение до шапка + 140.
+// Подсветку и цвет ника читаем из исходника, чтобы замер не разошёлся с кодом молча.
+const PEDESTAL = fs.readFileSync(path.join(__dirname, '..', 'components/spire/scene/SpireScenePedestal.tsx'), 'utf8');
+const meGlassAlpha = PEDESTAL.match(/const ME_GLASS = colorWithAlpha\(SPIRE_SCENE_INK\.text, ([\d.]+)\);/);
+if (!meGlassAlpha) throw new Error('SpireScenePedestal изменился: нет ME_GLASS = colorWithAlpha(SPIRE_SCENE_INK.text, …) — обнови модель своей строки');
+const subInk = PEDESTAL.match(/sub: \{ color: SPIRE_SCENE_INK\.(\w+),/);
+if (!subInk) throw new Error('SpireScenePedestal изменился: нет sub: { color: SPIRE_SCENE_INK.… — обнови цвет ника');
+const ME_GLASS = `rgba(255,255,255,${meGlassAlpha[1]})`;
+const NICK = (SPIRE_SCENE_INK as Record<string, string>)[subInk[1]!]!;
 const LINK = 'rgba(255,255,255,0.9)'; // SpireScenePedestal: colorWithAlpha(text, 0.9)
 const SCENE: SceneEl[] = [
   { id: 'A1', what: 'Надзаголовок над «Этаж N» (белый 86 %)', fg: I.kicker, glass: [], y0: 12, y1: 29, x0: 20, x1: 200, min: 4.5 },
@@ -46,8 +54,8 @@ const SCENE: SceneEl[] = [
   { id: 'A5', what: '«Комната недели», заголовок (белый)', fg: I.text, glass: [], y0: 140, y1: 161, x0: 20, x1: 170, min: 4.5 },
   { id: 'A6', what: 'Число людей справа от заголовка (белый 78 %)', fg: I.muted, glass: [], y0: 140, y1: 161, x0: 150, x1: 190, min: 4.5 },
   { id: 'A7', what: 'Строки комнаты: место и имя на стекле 16 %', fg: I.text, glass: [I.glass], y0: 170, y1: 340, x0: 20, x1: 180, min: 4.5 },
-  { id: 'A8', what: 'Своя строка: имя на стекле 16 % + 26 %', fg: I.text, glass: [I.glass, ME_GLASS], y0: 350, y1: 400, x0: 20, x1: 180, min: 4.5 },
-  { id: 'A9', what: 'Своя строка: ник под местом (белый 80 %)', fg: I.label, glass: [I.glass, ME_GLASS], y0: 380, y1: 400, x0: 20, x1: 180, min: 4.5 },
+  { id: 'A8', what: 'Своя строка: имя на стекле 16 % + подсветка своей строки', fg: I.text, glass: [I.glass, ME_GLASS], y0: 350, y1: 400, x0: 20, x1: 180, min: 4.5 },
+  { id: 'A9', what: 'Своя строка: ник под местом', fg: NICK, glass: [I.glass, ME_GLASS], y0: 380, y1: 400, x0: 20, x1: 180, min: 4.5 },
   { id: 'A10', what: 'Ссылка «Все участники» (белый 90 %)', fg: LINK, glass: [], y0: 412, y1: 430, x0: 20, x1: 140, min: 4.5 },
 ];
 type SceneHit = { el: SceneEl; theme: string; app: string; ratio: number; where: string };
@@ -66,8 +74,8 @@ for (const app of ['light', 'dark'] as const) for (const id of LIQUID_GLASS_THEM
       const tt = Math.max(0, Math.min(1, ((x - gx0) * dx + y * dy) / (dx * dx + dy * dy)));
       let bg: Rgb = [0, 1, 2].map((i) => top[i]! * (1 - tt) + bot[i]! * tt) as Rgb;
       const cx = (evening ? 0.82 : 0.18) * W;
-      bg = over(glow, Math.max(0, 1 - Math.hypot((x - cx) / (0.7 * W), y / (0.5 * H))), bg);
-      if (shade > 0) { const k = y <= bleed ? 1 : Math.max(0, 1 - (y - bleed) / 48); bg = over([0, 0, 0, 1], shade * k, bg); }
+      bg = over(glow, Math.max(0, 1 - Math.hypot((x - cx) / (0.7 * W), y / Math.min(H, SPIRE_LIGHT_RY_FACTOR * (bleed + SPIRE_LIGHT_STAGE_H)))), bg);
+      if (shade > 0) { const k = y <= bleed ? 1 : Math.max(0, 1 - (y - bleed) / SPIRE_SHADE_TAIL); bg = over([0, 0, 0, 1], shade * k, bg); }
       if (t.scrim) { const s = (y - (H - 300)) / 300; if (s > 0) bg = over([0, 0, 0, 1], 0.4 * s, bg); }
       for (const gl of el.glass) bg = over(parse(gl), 1, bg);
       const r = ratio(over(parse(el.fg), 1, bg), bg);

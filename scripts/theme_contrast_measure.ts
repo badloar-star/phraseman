@@ -41,6 +41,10 @@ const ROLES: Role[] = [
   { id: 'E29', screen: 'Итог', what: 'Кнопка с часами «Пересдать через 59 мин»', fg: 'secondary', bg: 'opaqueControl', min: 4.5, kind: 'текст' },
   { id: 'E30', screen: 'Итог', what: 'Вторая кнопка «К итогу»', fg: 'text', bg: 'opaqueControl', min: 4.5, kind: 'текст' },
   { id: 'E31', screen: 'Итог', what: 'Ссылка «Разбор ошибок · 3»', fg: 'accentText', bg: 'bg', min: 4.5, kind: 'текст' },
+  // зачем (перемер 25.10 после 759b1b0b6, шкала D145: мелкие подписи экзамена стали 13): мелкий текст держит только 4,5 — проверяем каждую 13-ю
+  { id: 'E40', screen: 'Экзамен', what: 'Подсказка микрофона в поле ответа (13, link)', fg: 'accentText', bg: 'opaqueCard', min: 4.5, kind: 'текст' },
+  { id: 'E41', screen: 'Экзамен', what: '«или напиши» под микрофоном (13, link)', fg: 'accentText', bg: 'bg', min: 4.5, kind: 'текст' },
+  { id: 'E42', screen: 'Итог', what: 'Слабая тема: «2 ошибки» (13, topicErrors)', fg: 'bad', bg: 'opaqueCard', min: 4.5, kind: 'текст' },
   { id: 'E32', screen: 'Итог', what: 'Глава открыта: значок на градиенте', fg: 'accentInk', bg: 'accent', min: 3, kind: 'графика' },
   { id: 'W1', screen: 'Мастерская', what: 'Вход у пройденного урока (Plus)', fg: 'accentText', bg: 'accentSoft', on: 'opaqueCard', min: 4.5, kind: 'текст' },
   { id: 'W2', screen: 'Мастерская', what: 'Вход без Plus: подпись', fg: 'accentText', bg: 'accentSoft', on: 'opaqueCard', min: 4.5, kind: 'текст' },

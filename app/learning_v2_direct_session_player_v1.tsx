@@ -3686,7 +3686,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                     },
                   ]}
                 >
-                  <Ionicons name="volume-high" size={21} color={g.cta} />
+                  {/* зачем (контраст-гейт Тем 26.10): g.cta на buttonFill до 1,31 — цвет графики темы, ≥ 3:1 во всех темах */}
+                  <Ionicons name="volume-high" size={21} color={g.accentGraphic} />
                 </Pressable>
               )}
             </View>
@@ -3875,7 +3876,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                 { backgroundColor: g.opaqueControl },
               ]}
             >
-              <Ionicons name="mic" size={18} color={g.cta} />
+              {/* зачем (контраст-гейт Тем 26.10): g.cta на opaqueControl до 1,01 — в светлых темах значка не было видно */}
+              <Ionicons name="mic" size={18} color={g.accentGraphic} />
               <Text
                 style={[styles.voiceTranscriptText, { color: g.text }]}
               >

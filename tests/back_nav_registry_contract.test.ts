@@ -20,8 +20,8 @@ const INTENTIONALLY_UNREGISTERED: Readonly<Record<string, string>> = {
   // с разделом 'dialogs' ✕ вернул бы в только что законченную сессию
   'app/dialogue_v2_completion.tsx': 'B1: ✕ и «назад» в хаб Диалогов, не в законченную сессию',
   // сессию открывает брифинг push-ем — с разделом 'dialogs' «назад» из идущей сессии вернул бы на брифинг (повторный старт, трата
-  // энергии) вместо хаба; менять — решение владельца Диалогов
-  'app/dialogue_v2_session.tsx': 'выход из сессии — в хаб, не на брифинг (решает владелец Диалогов)',
+  // энергии) вместо хаба. Решение координатора 26.10 (владелец может вернуть): «назад» из сессии — в хаб, как сейчас
+  'app/dialogue_v2_session.tsx': 'координатор 26.10: «назад» из идущей сессии — в хаб (fallback /ai_dialog_home), не на брифинг: брифинг = повторная трата энергии',
 };
 
 function routeFiles(dir: string, out: string[] = []): string[] {
@@ -58,6 +58,16 @@ describe('экраны с «назад» — в реестре ролей нав
     const listed = [...baseline, ...Object.keys(INTENTIONALLY_UNREGISTERED)];
     const stale = listed.filter((rel) => !fs.existsSync(path.join(ROOT, rel)) || navigationRoutePolicyForAudit(routeOf(rel)).role !== 'unknown');
     expect(stale).toEqual([]);
+  });
+
+  // зачем (координатор 26.10): сессию диалога нельзя «просто добавить в раздел dialogs» — тогда «назад» вернёт на брифинг
+  // и человек потратит энергию второй раз. Краснеет, если роль появилась или выход перестал вести в хаб.
+  it('сессия диалога вне реестра: «назад» из идущей сессии ведёт в хаб, а не на брифинг', () => {
+    expect(navigationRoutePolicyForAudit('/dialogue_v2_session').role).toBe('unknown');
+    const session = fs.readFileSync(path.join(ROOT, 'app/dialogue_v2_session.tsx'), 'utf8');
+    const backs = session.match(/safeRouterBack\(router, '([^']+)'/g) ?? [];
+    expect(backs.length).toBeGreaterThan(0);
+    expect(backs.every((call) => call.endsWith("'/ai_dialog_home'"))).toBe(true);
   });
 
   it('пункт А аудита: тема, свободный диалог, друзья, «Сегодня» — в разделах; память — портал; «Сообщество» — корень', () => {

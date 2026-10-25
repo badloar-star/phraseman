@@ -17,7 +17,8 @@ function SpireEnergyPill({ ownerActive }: Readonly<{ ownerActive: boolean }>) {
       onLayout={(e) => logSpireDock('energy-pill.layout', { w: roundLayout(e.nativeEvent.layout.width), h: roundLayout(e.nativeEvent.layout.height), x: roundLayout(e.nativeEvent.layout.x) })}
     >
       {/* зачем (приказ владельца 01.10, координатор 13.10): капсулу стеклянной шапки (7b252fa06) в Шпиле не рисуем — только значок и число. */}
-      <EnergyBar ownerActive={ownerActive} glass noCapsule />
+      {/* зачем (разбор 311, spire-gap-016; образец spire-gaps-states.html: energy() рисует ЗАЛИВНУЮ молнию boltF): в шапке Пика молния залитая, а не контурная — флаг solidBolt есть у EnergyBar со времён Диалогов */}
+      <EnergyBar ownerActive={ownerActive} glass noCapsule solidBolt />
     </View>
   );
 }

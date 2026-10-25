@@ -597,7 +597,8 @@ test("audio evidence rejects a matching target hidden in a runtime-unsupported n
 
   assert.equal(result?.verifiedAudioTargets, 0);
   assert.equal(result?.unverifiedAudioTargets, 1);
-  assert.equal(result?.issues[0]?.code, "AUDIO_EVIDENCE_UNVERIFIED");
+  // зачем (25.10): спрятанный текст TTS тоже не прочтёт — рядом с квитанцией теперь блок TTS_TEXT_MISSING
+  assert.deepEqual(result?.issues.map(({ code }) => code).sort(), ["AUDIO_EVIDENCE_UNVERIFIED", "TTS_TEXT_MISSING"]);
 });
 
 test("audio evidence uses the runtime's exact transcript index and rejects manifest whitespace drift", (t) => {
@@ -630,4 +631,57 @@ test("audio evidence uses the runtime's exact transcript index and rejects manif
   assert.equal(result?.verifiedAudioTargets, 0);
   assert.equal(result?.unverifiedAudioTargets, 1);
   assert.equal(result?.issues[0]?.code, "AUDIO_EVIDENCE_UNVERIFIED");
+});
+
+// зачем (вердикт Ревизора по d924fb4c8, координатор 25.10): объём из каталога не должен молча усыхать
+test("scope floor blocks a catalog below 1509 sessions or missing any lesson up to l27", () => {
+  const { englishScopeFloorIssues, ENGLISH_RELEASE_SCOPE_FLOOR } = releaseParityGate;
+  assert.deepEqual(ENGLISH_RELEASE_SCOPE_FLOOR, { sessions: 1509, lastLesson: 27 });
+  assert.deepEqual(englishScopeFloorIssues(), [], "текущий каталог выпуска обязан стоять на храповике");
+
+  const full = Object.fromEntries(Array.from({ length: 27 }, (_, i) => [`l${String(i + 1).padStart(2, "0")}`, 56]));
+  assert.deepEqual(englishScopeFloorIssues(full), []);
+
+  const { l14: _dropped, ...withoutL14 } = full;
+  const codes = englishScopeFloorIssues(withoutL14).map(({ code, identity }) => `${code}:${identity}`);
+  assert.ok(codes.includes("EXPECTED_SCOPE_LESSON_MISSING:en/l14"), codes.join(","));
+  assert.ok(codes.some((code) => code.startsWith("EXPECTED_SCOPE_BELOW_FLOOR")), codes.join(","));
+
+  assert.deepEqual(
+    englishScopeFloorIssues({ ...full, l27: 1 }).map(({ code }) => code),
+    ["EXPECTED_SCOPE_BELOW_FLOOR"],
+  );
+});
+
+// зачем (вердикт Ревизора, координатор 25.10): уроки озвучивает TTS (владелец 22.10) — цель без текста = немое задание
+test("TTS completeness blocks an audio target without a unique non-empty text, and that block is never audio-advisory", (t) => {
+  const interactionId = "en:lesson-01:session-01:i01";
+  const audioTargetId = `${interactionId}:audio`;
+  const releaseRoot = makeReleaseQualityFixture(t, {
+    interactions: [{
+      interactionId,
+      inputMode: "single_choice",
+      responseOptions: [],
+      audioTargetIds: [audioTargetId],
+      modePayload: {
+        family: "listen_choose",
+        referenceAudio: { audioTargetId, transcript: "   " },
+        choiceFeedback: [],
+      },
+    }],
+    answers: [{ interactionId, correctText: "ready", correctResponseId: null }],
+  });
+
+  const result = releaseParityGate.validateReleaseQuality(releaseRoot, {
+    audioManifestPath: path.join(releaseRoot, "missing-audio-manifest.json"),
+    audioAssetRoot: releaseRoot,
+  });
+
+  assert.equal(result.ttsTextMissing, 1);
+  assert.ok(result.issues.some((issue) => issue.code === "TTS_TEXT_MISSING" && issue.audioTargetId === audioTargetId));
+  assert.equal(releaseParityGate.isRecordedAudioEvidenceObsoleteAdvisory(result), false);
+  assert.equal(
+    releaseParityGate.ttsTextForAudioTarget({ modePayload: { family: "listen_choose", referenceAudio: { audioTargetId, transcript: "ready" } } }, audioTargetId),
+    "ready",
+  );
 });

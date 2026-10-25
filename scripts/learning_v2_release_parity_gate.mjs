@@ -102,6 +102,24 @@ function readShippedEnglishSessionsByLesson() {
 
 const EXPECTED_ENGLISH_SESSIONS_BY_LESSON = readShippedEnglishSessionsByLesson();
 
+// зачем (вердикт Ревизора по d924fb4c8, координатор 25.10): объём из каталога не должен молча усыхать — урок, пропавший
+// сразу из каталога, исходника и обеих копий, прошёл бы сверку «всё совпадает». Храповик: не меньше выпуска 2.0.2
+// (1509 занятий, уроки l01–l27). Поднимать при росте выпуска, опускать — только решением владельца.
+export const ENGLISH_RELEASE_SCOPE_FLOOR = Object.freeze({ sessions: 1509, lastLesson: 27 });
+
+export function englishScopeFloorIssues(byLesson = EXPECTED_ENGLISH_SESSIONS_BY_LESSON, floor = ENGLISH_RELEASE_SCOPE_FLOOR) {
+  const issues = [];
+  const total = Object.values(byLesson).reduce((sum, count) => sum + count, 0);
+  if (total < floor.sessions) {
+    issues.push({ code: "EXPECTED_SCOPE_BELOW_FLOOR", identity: `sessions=${total} < ${floor.sessions}` });
+  }
+  for (let lesson = 1; lesson <= floor.lastLesson; lesson += 1) {
+    const key = `l${String(lesson).padStart(2, "0")}`;
+    if (!(byLesson[key] > 0)) issues.push({ code: "EXPECTED_SCOPE_LESSON_MISSING", identity: `en/${key}` });
+  }
+  return issues;
+}
+
 function sha256(file) {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 }
@@ -280,6 +298,7 @@ export function validateEnglishReleaseScope({
   if (!fs.existsSync(appCopyRoot) || !fs.statSync(appCopyRoot).isDirectory()) {
     issues.push({ code: "APP_COPY_ROOT_MISSING", path: appCopyRoot });
   }
+  issues.push(...englishScopeFloorIssues());
   issues.push(...identityDiffIssues(source, expected, "SOURCE_SESSION_MISSING", "SOURCE_SESSION_EXTRA"));
   issues.push(...identityDiffIssues(canonical, expected, "CANONICAL_SESSION_MISSING", "CANONICAL_SESSION_EXTRA"));
   issues.push(...identityDiffIssues(appCopy, expected, "APP_COPY_SESSION_MISSING", "APP_COPY_SESSION_EXTRA"));
@@ -304,12 +323,12 @@ export function runSourceReleaseSemanticParity({
 } = {}) {
   const fullScope = sourceSessionScope(sourceRoot, language);
   const expected = expectedEnglishSessionIdentities();
-  const sourceScopeIssues = identityDiffIssues(
+  const sourceScopeIssues = [...englishScopeFloorIssues(), ...identityDiffIssues(
     fullScope,
     expected,
     "SOURCE_SESSION_MISSING",
     "SOURCE_SESSION_EXTRA",
-  );
+  )];
   const scope = releasedScope ? fullScope.filter((identity) => releasedScope.includes(identity)) : fullScope;
   if (sourceScopeIssues.length > 0) {
     const detail = sourceScopeIssues.slice(0, 20)
@@ -439,6 +458,22 @@ function runtimeAudioReferences(interaction) {
   return [];
 }
 
+/** Текст, который TTS произнесёт для цели: единственный непустой transcript среди ссылок задания, иначе null. */
+export function ttsTextForAudioTarget(interaction, audioTargetId) {
+  const texts = new Set(
+    runtimeAudioReferences(interaction)
+      .filter((reference) => (
+        reference &&
+        typeof reference === "object" &&
+        reference.audioTargetId === audioTargetId &&
+        typeof reference.transcript === "string" &&
+        reference.transcript.trim().length > 0
+      ))
+      .map((reference) => reference.transcript),
+  );
+  return texts.size === 1 ? [...texts][0] : null;
+}
+
 function audioEvidenceResolver(audioManifestPath, audioAssetRoot) {
   let manifest;
   try {
@@ -548,6 +583,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
       audioTargets: 0,
       verifiedAudioTargets: 0,
       unverifiedAudioTargets: 0,
+      ttsTextMissing: 0,
     };
   }
 
@@ -562,6 +598,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
   let audioTargets = 0;
   let verifiedAudioTargets = 0;
   let unverifiedAudioTargets = 0;
+  let ttsTextMissing = 0;
 
   for (const identity of scope) {
     const [, lesson, session] = identity.split("/");
@@ -594,6 +631,12 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
         : [];
       for (const audioTargetId of declaredAudioTargets) {
         audioTargets += 1;
+        // зачем (вердикт Ревизора, координатор 25.10): уроки озвучивает TTS телефона (владелец 22.10) — произносится ровно
+        // текст цели. Цель без единственного непустого текста = немое задание; это блок, в отличие от квитанций mp3.
+        if (ttsTextForAudioTarget(interaction, audioTargetId) === null) {
+          ttsTextMissing += 1;
+          issues.push({ code: "TTS_TEXT_MISSING", path: relativePath, interactionId: interaction.interactionId, audioTargetId });
+        }
         const evidence = resolveAudioEvidence(interaction, audioTargetId);
         if (evidence.verified) {
           verifiedAudioTargets += 1;
@@ -640,6 +683,7 @@ export function validateReleaseQuality(canonicalRoot = DEFAULT_CANONICAL_ROOT, {
     audioTargets,
     verifiedAudioTargets,
     unverifiedAudioTargets,
+    ttsTextMissing,
   };
 }
 
@@ -717,6 +761,9 @@ function printSemanticResult(result) {
 
 function printQualityResult(result) {
   const prefix = "Learning V2 release quality evidence";
+  const ttsMissing = result.ttsTextMissing ?? 0;
+  const ttsLine = `Learning V2 TTS text completeness: ${ttsMissing === 0 ? "PASS" : "BLOCKED"} (${result.audioTargets - ttsMissing}/${result.audioTargets} audio targets have text)`;
+  if (ttsMissing === 0) console.log(ttsLine); else console.error(ttsLine);
   if (result.missingCorrectFeedback > 0) {
     console.log(
       `${prefix}: ADVISORY (${result.missingCorrectFeedback} scored single-choice interactions without dedicated correct-response feedback — not shown by the player, does not block release)`,

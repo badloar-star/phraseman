@@ -1,6 +1,7 @@
 # Task packet: Learning V2 release gate — stale 441 scope and recorded-audio receipts
 
 Governance-ID: TG-E5B82329BC44
+Governance-ID: TG-FDE157FA279D (follow-up: memory note on dirty-tree precheck attribution)
 Status: In progress
 Owner: Learning V2 session (by coordinator request 25.10 ~07:30)
 Related epic/enabler: release:precheck before build 2.0.2
@@ -49,3 +50,11 @@ V2 gate passed.
 ## Rollback
 
 Revert the commit; the gate returns to the 441 table and recorded-audio receipts.
+
+## Follow-up 25.10 (Ревизор по d924fb4c8, координатор после выпуска 2.0.2)
+
+- Храповик-пол объёма: `ENGLISH_RELEASE_SCOPE_FLOOR = { sessions: 1509, lastLesson: 27 }` — каталог меньше 1509 или без
+  любого урока l01–l27 даёт EXPECTED_SCOPE_BELOW_FLOOR / EXPECTED_SCOPE_LESSON_MISSING (в составе и в смысловой сверке).
+- Полнота TTS: у каждой аудио-цели единственный непустой текст, иначе TTS_TEXT_MISSING — блок, не справка. Замер выпуска:
+  18311/18311 целей с текстом.
+- Проверка: гейт exit 0; node --test 5 файлов гейта 43/43.

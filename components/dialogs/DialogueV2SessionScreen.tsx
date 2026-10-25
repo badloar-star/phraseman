@@ -776,7 +776,8 @@ export function DialogueV2SessionScreen({
               <Text
                 testID="dialogue-v2-session-voice-hint"
                 maxFontSizeMultiplier={1.3}
-                style={{ textAlign: 'center', fontSize: 16, lineHeight: 21, fontWeight: '700', color: voiceBusy ? glass.text : glass.secondary, flexShrink: 1 }}
+                // зачем (координатор 25.10, energy-modes-013; образец 14/700 вне шкалы D145): подсказка под строкой ввода — 13, ближе к образцу и это подсказка, а не заголовок
+                style={{ textAlign: 'center', fontSize: 13, lineHeight: 17, fontWeight: '700', color: voiceBusy ? glass.text : glass.secondary, flexShrink: 1 }} // guard-ok: подсказка «Или зажми и говори» по образцу energy-modes-states (14/700), не расшифровка названия
               >
                 {voiceHint}
               </Text>

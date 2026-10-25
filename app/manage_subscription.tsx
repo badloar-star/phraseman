@@ -837,8 +837,9 @@ export default function ManageSubscription() {
               <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={S.cardSheen} />
               <View pointerEvents="none" style={[S.cardRim, { backgroundColor: glass.glassEdge }]} />
               <View style={S.statusRow}>
-                <Ionicons name="checkmark-circle" size={18} color={glass.lightTint} />
-                <Text style={[S.statusText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
+                {/* зачем (разбор Макетов 49c24a872, paywalls-020/021; образец manage-subscription-states.html .mst): значок 20 и подпись 16 жирным (шкала D145), было 18 и 15 */}
+                <Ionicons name="checkmark-circle" size={20} color={glass.lightTint} />
+                <Text style={[S.statusText, { color: glass.secondary, fontSize: scaled(16), lineHeight: scaled(20) }]}>
                   {LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
                 </Text>
               </View>

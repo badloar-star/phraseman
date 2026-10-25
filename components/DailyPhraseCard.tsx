@@ -1351,11 +1351,10 @@ const styles = StyleSheet.create({
     borderRadius: 16, // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и тень (блок деталей: тон subtle)
     padding: 14,
   },
+  // зачем (разбор Макетов 49c24a872, energy-modes-014; образец energy-modes-states.html det()): подпись блока — обычный 13-й кегль приглушённым цветом, без капса и разрядки; капсом остаётся только «ФРАЗА ДНЯ» над фразой
   detailLabel: {
-    fontWeight: '700',
-    letterSpacing: 1.6,
-    marginBottom: 5,
-    textTransform: 'uppercase',
+    fontWeight: '400',
+    marginBottom: 4,
   },
   detailText: {
     fontWeight: '600',

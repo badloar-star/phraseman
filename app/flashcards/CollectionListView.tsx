@@ -770,9 +770,11 @@ export default function CollectionListView({
             accessibilityState={{ disabled: !canCreatePack }}
             disabled={!canCreatePack}
             onPress={onCreatePack}
-            style={{ flex: 1, minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? g.cta : g.buttonFill, alignItems: 'center', justifyContent: 'center' }}
+            // зачем (Темы 25.10, docs/work/zones-contrast-2026-10-25.md): неактивная «Создать набор» — secondary на buttonFill давала до 2,67;
+            // у темы для неактивной кнопки есть своя пара buttonFillDisabled / buttonInkDisabled (≥ 4,61 во всех темах)
+            style={{ flex: 1, minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? g.cta : g.buttonFillDisabled, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ color: canCreatePack ? g.ctaInk : g.secondary, fontSize: f.body, fontWeight: '700' }}>
+            <Text style={{ color: canCreatePack ? g.ctaInk : g.buttonInkDisabled, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur', pl: 'Utwórz zestaw',
               })}

@@ -23,6 +23,7 @@ import { spireText } from './spire_strings';
 import { spireStepsCount } from './spire_plurals';
 import { spireClock, spireGameText } from './spire_game_strings';
 import { useAfterRoundChoice } from './use_after_round_choice';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 import { SPIRE_FLOOR_COUNT, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from './spire_tower_model';
 
 type Props = Readonly<{
@@ -104,7 +105,8 @@ function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onH
   return (
     <View style={[s.panel, { boxShadow: plateBoxShadow(g) }]} accessibilityLiveRegion="polite" testID={`spire-result-${outcome.kind}`}>
       <PlateFill g={g} radius={24} />
-      {v.over ? <Text style={[s.over, { color: v.overBad ? p.wrong : p.textSecondary }]}>{v.over.toUpperCase()}</Text> : null}
+      {/* зачем (Темы 25.10, zones-contrast): «перебор» цветом p.wrong — до 4,49; badText доведён по подложкам темы (на PlateFill ≥ 5,05) */}
+      {v.over ? <Text style={[s.over, { color: v.overBad ? semanticInk(g).badText : p.textSecondary }]}>{v.over.toUpperCase()}</Text> : null}
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{v.title}</Text>
       {v.sub ? <Text style={[s.sub, { color: p.textSecondary }]}>{v.sub}</Text> : null}
       {v.pills.length > 0 ? (

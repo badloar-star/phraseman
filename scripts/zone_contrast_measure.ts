@@ -11,9 +11,14 @@ import { flattenOver } from '../constants/liquidGlassSurfaceRoles';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
 import { semanticInk } from '../constants/liquidGlassSemanticInk';
 import { mpColors } from '../components/mistakes-panel/panelPaint';
+import { getV2Palette } from '../constants/v2Style';
 
 const ROOT = path.join(__dirname, '..');
 // зона — аргументами: файлы и папки (папки рекурсивно, только .tsx, без тестов, превью и dev); первый аргумент вида --name=… — имя зоны
+const SPIRE_PAL = fs.readFileSync(path.join(ROOT, 'components/spire/useSpirePalette.ts'), 'utf8');
+for (const line of ['card: g.opaqueCard,', 'textSecondary: g.secondary,', 'textMuted: g.mutedText,', 'cta: g.ctaFill,', 'ctaText: g.ctaFillInk,', "accentTextSafe: g.level === 'calm' ? g.text : g.accentTextSafe,"]) {
+  if (!SPIRE_PAL.includes(line)) throw new Error(`useSpirePalette изменился: нет «${line}» — обнови копию палитры Пика`);
+}
 const args = process.argv.slice(2);
 const ZONE = (args.find((x) => x.startsWith('--name=')) ?? '--name=зона').slice(7);
 const FILES: string[] = [];
@@ -25,7 +30,7 @@ const walk = (rel: string): void => {
 };
 for (const x of args) if (!x.startsWith('--')) walk(x.replace(/\\/g, '/').replace(/\/$/, ''));
 if (!FILES.length) throw new Error('[ZONE-CONTRAST] нет файлов: передайте файлы или папки зоны');
-type Src = 'glass' | 'theme' | 'lit' | 'ink' | 'mp';
+type Src = 'glass' | 'theme' | 'lit' | 'ink' | 'mp' | 'spire';
 type Ref = { src: Src; key: string };
 const GLASS = /^(glass|g|tokens|lg|pg|gl|mTheme_never)$/;
 const THEME = /^(t|theme|mTheme|th|appTheme)$/;
@@ -41,6 +46,7 @@ function refOf(expr: string): Ref | null {
   if (!m) return null;
   if (GLASS.test(m[1]!)) return { src: 'glass', key: m[2]! };
   if (THEME.test(m[1]!)) return { src: 'theme', key: m[2]! };
+  if (/^(p|pal|sp)$/.test(m[1]!)) return { src: 'spire', key: m[2]! };
   return null;
 }
 type Pair = { file: string; line: number; fg: Ref; bg: Ref | null; icon: boolean; code: string };
@@ -79,7 +85,7 @@ for (const file of FILES) {
     for (const f of fgs.flatMap((x) => branches(x.replace(/^\{/, '')))) {
       const ref = refOf(f);
       if (!ref) { if (/['"`#]|\.\w+/.test(f)) unresolved.push({ file, line: i + 1, code: l.trim().slice(0, 110) }); continue; }
-      if (!bg && /^(accentInk|ctaInk|ctaFillInk|textOnGold|correctText|onAccent|mediaInk|mediaInkSoft|buttonInkDisabled|accentOn)$/.test(ref.key)) { inkNoBg.push({ file, line: i + 1, code: l.trim().slice(0, 110) }); continue; }
+      if (!bg && /^(accentInk|ctaInk|ctaFillInk|textOnGold|correctText|onAccent|mediaInk|mediaInkSoft|buttonInkDisabled|accentOn|ctaText|onCta|ctaFg)$/.test(ref.key)) { inkNoBg.push({ file, line: i + 1, code: l.trim().slice(0, 110) }); continue; }
       pairs.push({ file, line: i + 1, fg: ref, bg, icon, code: l.trim().slice(0, 110) });
     }
   });
@@ -89,6 +95,14 @@ type G = ReturnType<typeof liquidGlassTokens>;
 type T = ReturnType<typeof makeLiquidGlassTheme>;
 const pick = (r: Ref, g: G, t: T): string | null => {
   if (r.src === 'lit') return r.key;
+  if (r.src === 'spire') {
+    let base: Record<string, unknown> = {};
+    try { base = getV2Palette(t as never, (g.isLight ? 'sagePorcelain' : 'dark') as never) as unknown as Record<string, unknown>; } catch (e) { console.error('[ZONE-CONTRAST] getV2Palette:', e instanceof Error ? e.message : e); }
+    const sp: Record<string, unknown> = { ...base, bg: g.bg, bgTop: g.bgTop, card: g.opaqueCard, cardRaised: g.opaqueControl, control: g.opaqueControl, hairline: g.line, divider: g.line,
+      text: g.text, textSecondary: g.secondary, textMuted: g.mutedText, cta: g.ctaFill, ctaText: g.ctaFillInk, accentText: g.level === 'calm' ? g.text : g.accentText,
+      accentTextSafe: g.level === 'calm' ? g.text : g.accentTextSafe, accentGraphic: g.accentGraphic };
+    const v = sp[r.key]; return typeof v === 'string' && /^(#|rgb)/.test(v) ? v : null;
+  }
   if (r.src === 'ink') return (semanticInk(g) as Record<string, string>)[r.key] ?? null;
   if (r.src === 'mp') { const v = (mpColors(g) as unknown as Record<string, unknown>)[r.key]; return typeof v === 'string' ? v : null; }
   const v = (r.src === 'glass' ? (g as unknown as Record<string, unknown>)[r.key] : (t as unknown as Record<string, unknown>)[r.key]);
@@ -126,7 +140,7 @@ const ownerOf = (f: string): string => {
   owner.set(f, v); return v;
 };
 const f2 = (n: number): string => n.toFixed(2).replace('.', ',');
-const name = (r: Ref): string => (r.src === 'lit' ? `\`${r.key}\`` : r.src === 'ink' ? `semanticInk.${r.key}` : r.src === 'mp' ? `mpColors.${r.key}` : `${r.src === 'glass' ? 'glass' : 'theme'}.${r.key}`);
+const name = (r: Ref): string => (r.src === 'lit' ? `\`${r.key}\`` : r.src === 'ink' ? `semanticInk.${r.key}` : r.src === 'mp' ? `mpColors.${r.key}` : r.src === 'spire' ? `spire.${r.key}` : `${r.src === 'glass' ? 'glass' : 'theme'}.${r.key}`);
 const failing = res.filter((r) => r.bad > 0).sort((a, b) => Number(a.assumed) - Number(b.assumed) || a.min - b.min);
 console.log(`Зона: ${ZONE}`);
 console.log(`Файлов: ${FILES.filter((f) => fs.existsSync(path.join(ROOT, f))).length}, пар цвет/подложка: ${res.length} (подложка рядом: ${res.filter((r) => !r.assumed).length}), не разобрано выражений: ${unresolved.length}`);

@@ -19,6 +19,7 @@ import { StickySearchBar } from '../../components/cards-grid/StickySearchBar';
 import { strengthDotCount, type WordStrength } from './word_strength';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
+import { flattenOver, legibleOn } from '../../constants/liquidGlassSurfaceRoles';
 import { PanelCta, PanelDock, SheetRow } from '../../components/mistakes-panel/PanelKit';
 import { actionBoxShadow } from '../../components/v2/ShadowSurface';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -107,6 +108,12 @@ export default function CollectionGalleryView({
   selectionRemaining, onCreatePack, onDeleteSelected, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
 }: Props) {
   const g = useLv2Glass();
+  // зачем (Темы 25.10, docs/work/zones-contrast-2026-10-25.md): подпись плашки «скрыто лимитом» secondary на hairlineSoft давала до 3,88 —
+  // тот же тон, доведённый к тексту темы до 4,55 по плашке поверх фона экрана и карточки
+  const limitSubInk = useMemo(() => {
+    const screen = g.bg; // фон экрана темы непрозрачный
+    return legibleOn(g.secondary, g.text, [flattenOver(g.hairlineSoft, screen), flattenOver(g.hairlineSoft, flattenOver(g.opaqueCard, screen))], 4.55);
+  }, [g]);
   // зачем (EN-проход Сверки 12.10, cards-007/010 «Тренировать» по-русски при uiLang=en): подписи экрана — это ЯЗЫК ИНТЕРФЕЙСА, а `lang` приходит КОНТЕНТНЫЙ (flashcardContentLang: у en/pt-BR/vi… он ru/uk/es) —
   // поэтому все подписи (кнопки, подсказка, лимит) шли на языке перевода карточек, а не интерфейса. Контентный `lang` остаётся только для перевода на плитке.
   const { lang: uiLang } = useLang();
@@ -252,7 +259,7 @@ export default function CollectionGalleryView({
             <Pressable testID="flashcards-free-limit-section" accessibilityRole="button" onPress={onOpenPremiumLimit} style={[styles.limit, { backgroundColor: g.hairlineSoft }]}>
               <Ionicons name="lock-closed" size={24} color={g.text} />
               <Text style={[styles.limitTitle, { color: g.text }]}>{copy.hidden(hiddenByLimitCount)}</Text>
-              <Text style={[styles.limitSub, { color: g.secondary }]}>{copy.free}</Text>
+              <Text style={[styles.limitSub, { color: limitSubInk }]}>{copy.free}</Text>
               <View style={[styles.limitCta, { backgroundColor: g.ctaFill }]}><Text style={[styles.limitCtaText, { color: g.ctaFillInk }]}>{copy.plus}</Text></View>
             </Pressable>
           ) : null}

@@ -18,7 +18,9 @@
  * без вечных циклов (withRepeat -1 запрещён перф-контрактом), только timing на
  * смену состояния.
  */
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { colorContrast } from '../../constants/color_contrast';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
@@ -81,7 +83,14 @@ export default function SpeakHoldButton({
   allowance,
   testID = 'fc-speak-hold',
 }: SpeakHoldButtonProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  // зачем (Темы 25.10, docs/work/zones-contrast-2026-10-25.md): значок микрофона был постоянным тёмным #07110A на заливке accent — в светлых
+  // градиентных темах до 1,13 (не видно). Заливку задаёт вызывающий код (плеер урока — g.cta), поэтому берём из пар темы ту подпись,
+  // что контрастнее на этой заливке: ctaInk (пара cta) или accentInk (пара accent). t — в зависимостях, чтобы смена уровня/оформления пересчитала.
+  const iconInk = useMemo(() => {
+    const g = liquidGlassTokens(liquidGlassThemeId);
+    return colorContrast(g.ctaInk, accent) >= colorContrast(g.accentInk, accent) ? g.ctaInk : g.accentInk;
+  }, [liquidGlassThemeId, accent, t]);
   // зачем (владелец 15.10, D196): один общий дневной счётчик на все микрофоны — гейт и цифра остатка приходят от хозяина кнопки через `allowance` (плеер курса),
   // а прежний собственный гейт (серверная квота «speaking») и точки остатка убраны: две разные цифры на одном микрофоне недопустимы.
   const holdStartedRef = useRef(false);
@@ -194,7 +203,7 @@ export default function SpeakHoldButton({
               btnStyle,
             ]}
           >
-            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : spent && allowance ? allowance.colors.spentInk : '#07110A'} />{/* theme-exempt: тёмный значок на кнопке цвета-акцента — цвет акцента задаёт вызывающий код */}
+            <Ionicons name={speechNa ? 'mic-off-outline' : listening ? 'mic' : 'mic-outline'} size={34} color={disabled ? t.textMuted : spent && allowance ? allowance.colors.spentInk : iconInk} />
           </Reanimated.View>
         </Pressable>
         {allowance && !speechNa ? (

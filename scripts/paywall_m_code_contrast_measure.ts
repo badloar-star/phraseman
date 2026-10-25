@@ -17,6 +17,8 @@ for (const [file, line] of [
   ['paywall/paywall_surfaces.ts', 'export function paywallSheetBg(g: GlassTokens): string { return g.opaqueSheet; }'],
   ['paywall/paywall_surfaces.ts', 'export function paywallPlateBg(g: GlassTokens): string { return g.isLight ? g.opaqueControl : shadowSheetPlateTokens(g).plateFillFrom; }'],
   ['v2/ShadowSurface.tsx', 'const next = { ...g, plateFillFrom: g.sheetPlateFillFrom, plateFillTo: g.sheetPlateFillTo };'],
+  ['paywall/paywallPlanRowPaint.ts', 'export function planRowSelectedPaint(g: GlassTokens, base?: string) {'],
+  ['paywall/paywallPlanRowPaint.ts', 'const plate = base ?? paywallPlateBg(g);'],
   ['paywall/paywallPlanRowPaint.ts', 'const gradient: readonly [string, string] = [alpha(g.accent, 0.3), alpha(plate, 0.9)];'],
   ['paywall/paywallPlanRowPaint.ts', 'const backgrounds = [plate, ...gradient.map((stop) => flattenOver(stop, plate))];'],
   ['paywall/paywallPlanRowPaint.ts', "const toward = g.isLight ? g.text : '#FFFFFF';"],
@@ -28,8 +30,8 @@ type GT = ReturnType<typeof liquidGlassTokens>;
 const a8 = (hex: string, v: number): string => `${hex.slice(0, 7)}${Math.round(v * 255).toString(16).padStart(2, '0')}`;
 const paywallSheetBg = (g: GT): string => g.opaqueSheet;
 const paywallPlateBg = (g: GT): string => (g.isLight ? g.opaqueControl : g.sheetPlateFillFrom);
-function planRowSelectedPaint(g: GT) {
-  const plate = paywallPlateBg(g);
+function planRowSelectedPaint(g: GT, base?: string) {
+  const plate = base ?? paywallPlateBg(g);
   const gradient: readonly [string, string] = [a8(g.accent, 0.3), a8(plate, 0.9)];
   const backgrounds = [plate, ...gradient.map((stop) => flattenOver(stop, plate))];
   const toward = g.isLight ? g.text : '#FFFFFF'; // theme-exempt: копия paywallPlanRowPaint
@@ -46,7 +48,8 @@ for (const [file, line] of [
   ['PaywallMSheet.tsx', 'style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: props.maxHeight }]}'],
   ['PaywallMSheet.tsx', "<View testID=\"paywall-m-pill\" style={[S.pill, { backgroundColor: plate }]}>"],
   ['PaywallMChart.tsx', "const PLUS_FILL_ALPHA = '1F';"],
-  ['PaywallMPlans.tsx', "style={[S.plan, { backgroundColor: yearOn ? undefined : plate, borderColor: yearOn ? paint.edge : 'transparent' }]}>"],
+  ['PaywallMPlans.tsx', "style={[S.plan, { backgroundColor: plate, borderColor: yearOn ? paint.edge : 'transparent' }]}>"],
+  ['PaywallMHeaderCard.tsx', 'const paint = useMemo(() => planRowSelectedPaint(g, g.opaqueCard), [g]);'],
   ['PaywallMDock.tsx', 'style={[S.dock, { paddingBottom: Math.max(bottomInset, 14), backgroundColor: g.opaqueSheet }]}>'],
   ['PaywallMDock.tsx', '<LinearGradient pointerEvents="none" colors={[...ctaFillGradient(g)]} style={StyleSheet.absoluteFill} />'],
 ] as const) if (!SRC(file).includes(line)) throw new Error(`пейвол М изменился: в ${file} нет «${line}» — обнови модель в этом скрипте`);
@@ -56,17 +59,19 @@ const sheet = (g: G): string => flattenOver(paywallSheetBg(g), screen(g));
 const card = (g: G): string => flattenOver(g.opaqueCard, sheet(g));
 const plate = (g: G): string => flattenOver(paywallPlateBg(g), sheet(g));
 // шапка: градиент выбранного плана поверх КАРТОЧКИ (PaywallMHeaderCard), а не поверх плашки — края градиента считаем на карточке
-const headerEdges = (g: G): string[] => { const c = card(g); return [c, ...planRowSelectedPaint(g).gradient.map((s) => flattenOver(s, c))]; };
+const headerPaint = (g: G) => planRowSelectedPaint(g, g.opaqueCard); // как PaywallMHeaderCard после 1e3514044
+const headerEdges = (g: G): string[] => { const c = card(g); return [c, ...headerPaint(g).gradient.map((s) => flattenOver(s, c))]; };
 // выбранный план: фон не задан (undefined) — градиент лежит прямо на листе
-const planOnEdges = (g: G): string[] => { const s = sheet(g); return [...planRowSelectedPaint(g).gradient.map((x) => flattenOver(x, s))]; };
+// выбранный план после 1e3514044: фон плашки есть, градиент лежит на ней
+const planOnEdges = (g: G): string[] => { const pl = plate(g); return [pl, ...planRowSelectedPaint(g).gradient.map((x) => flattenOver(x, pl))]; };
 const ctaEdges = (g: G): string[] => ctaFillGradient(g).map((c) => flattenOver(c, sheet(g)));
 const plusFill = (g: G): string => flattenOver(`${g.accentGraphic.slice(0, 7)}1F`, card(g));
 
 type Role = { id: string; area: string; what: string; min: number; fn: (g: G) => [string[], string[]] };
 const P = planRowSelectedPaint;
 const ROLES: Role[] = [
-  { id: 'H1', area: 'Шапка', what: 'Надпись «Ты на 3-м уроке из 32» (13) — trialInk на градиенте поверх карточки', min: 4.5, fn: (g) => [[P(g).trialInk], headerEdges(g)] },
-  { id: 'H2', area: 'Шапка', what: 'Заголовок (длинный, ≥ 19) — ink на градиенте поверх карточки', min: 4.5, fn: (g) => [[P(g).ink], headerEdges(g)] },
+  { id: 'H1', area: 'Шапка', what: 'Надпись «Ты на 3-м уроке из 32» (13) — trialInk краски с подложкой карточки', min: 4.5, fn: (g) => [[headerPaint(g).trialInk], headerEdges(g)] },
+  { id: 'H2', area: 'Шапка', what: 'Заголовок (длинный, ≥ 19) — ink краски с подложкой карточки', min: 4.5, fn: (g) => [[headerPaint(g).ink], headerEdges(g)] },
   { id: 'H3', area: 'Шапка', what: 'Плитки цифр: число и «из 32» / подпись (13)', min: 4.5, fn: (g) => [[g.text, g.secondary], [card(g)]] },
   { id: 'S1', area: 'Лист', what: '«Не сейчас», абзац под шапкой (13/16)', min: 4.5, fn: (g) => [[g.secondary], [sheet(g)]] },
   { id: 'S2', area: 'Лист', what: 'Плашка «Plus» вверху: текст и плюс', min: 4.5, fn: (g) => [[g.text], [plate(g)]] },
@@ -80,16 +85,10 @@ const ROLES: Role[] = [
   { id: 'T1', area: 'Сравнение', what: 'Шапки «Бесплатно» / «Plus» (13)', min: 4.5, fn: (g) => [[g.secondary, g.accentTextSafe], [card(g)]] },
   { id: 'T2', area: 'Сравнение', what: 'Строка, значения (13/16)', min: 4.5, fn: (g) => [[g.text, g.secondary], [card(g)]] },
   { id: 'T3', area: 'Сравнение', what: 'Галочка Plus', min: 3, fn: (g) => [[g.accentGraphic], [card(g)]] },
-  { id: 'Y1', area: 'Планы', what: 'Выбранный план: название и цена — ink на градиенте поверх листа', min: 4.5, fn: (g) => [[P(g).ink], planOnEdges(g)] },
+  { id: 'Y1', area: 'Планы', what: 'Выбранный план: название и цена — ink на градиенте поверх плашки', min: 4.5, fn: (g) => [[P(g).ink], planOnEdges(g)] },
   { id: 'Y2', area: 'Планы', what: 'Выбранный план: «≈ €3,33 в месяц» (13) — mutedInk', min: 4.5, fn: (g) => [[P(g).mutedInk], planOnEdges(g)] },
   { id: 'Y3', area: 'Планы', what: 'Рамка выбранного к листу и к соседней плашке', min: 3, fn: (g) => [[P(g).edge], [sheet(g), plate(g)]] },
   { id: 'Y4', area: 'Планы', what: 'Невыбранный план: текст и подпись на плашке', min: 4.5, fn: (g) => [[g.text, g.secondary], [plate(g)]] },
-  // зачем: две замены, только токены. Шапка — доводка по ТЕМ подложкам, где она стоит (карточка); выбранный план — фон плашки, как у
-  // прежних PaywallPlanRows (тогда паинт доведён ровно под свою подложку)
-  { id: 'H1*', area: 'Шапка', what: 'замена: legibleOn(accentTextSafe → text/белый) по краям градиента на КАРТОЧКЕ', min: 4.5, fn: (g) => [[legibleOn(g.accentTextSafe, g.isLight ? g.text : '#FFFFFF', headerEdges(g), 4.55)], headerEdges(g)] },
-  { id: 'H2*', area: 'Шапка', what: 'замена: legibleOn(text → text/белый) по краям на карточке', min: 4.5, fn: (g) => [[legibleOn(g.text, g.isLight ? g.text : '#FFFFFF', headerEdges(g), 4.55)], headerEdges(g)] },
-  { id: 'Y2*', area: 'Планы', what: 'замена: выбранному плану фон плашки (backgroundColor: plate) — mutedInk на градиенте поверх плашки', min: 4.5, fn: (g) => { const pl = plate(g); return [[P(g).mutedInk], [pl, ...P(g).gradient.map((x) => flattenOver(x, pl))]]; } },
-  { id: 'Y1*', area: 'Планы', what: 'то же: ink на градиенте поверх плашки', min: 4.5, fn: (g) => { const pl = plate(g); return [[P(g).ink], [pl, ...P(g).gradient.map((x) => flattenOver(x, pl))]]; } },
   { id: 'D1', area: 'Нижняя панель', what: 'Кнопка покупки — ctaFillInk на обоих концах градиента', min: 4.5, fn: (g) => [[g.ctaFillInk], ctaEdges(g)] },
   { id: 'D2', area: 'Нижняя панель', what: 'Условия списания и ссылки (13)', min: 4.5, fn: (g) => [[g.secondary], [flattenOver(g.opaqueSheet, screen(g))]] },
 ];

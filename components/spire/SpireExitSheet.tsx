@@ -13,12 +13,14 @@ import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
+import { useShadowGlass } from '../v2/ShadowSurface';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 import { spireGameText } from './spire_game_strings';
 
 type Props = Readonly<{ lang: Lang; visible: boolean; floor: number; onContinue: () => void; onExit: () => void }>;
 
 function SpireExitSheet({ lang, visible, floor, onContinue, onExit }: Props) {
-  const p = useSpirePalette(); const sh = useSpireShadow();
+  const p = useSpirePalette(); const sh = useSpireShadow(); const g = useShadowGlass();
   return (
     <HybridSheetShell
       visible={visible}
@@ -35,7 +37,8 @@ function SpireExitSheet({ lang, visible, floor, onContinue, onExit }: Props) {
         </V2Pressable>
         {/* зачем (R1_DIFF_ONE_FIX, spire-009; образец kit.css `.cta.gh`): «Выйти» — тёмная таблетка с малой тенью, а не голый текст */}
         <V2Pressable onPress={onExit} accessibilityRole="button" style={[s.ghost, { backgroundColor: p.control }, sh.nested]} testID="spire-exit-confirm">
-          <Text style={[s.ctaText, { color: p.wrong }]}>{spireGameText(lang, 'exit')}</Text>
+          {/* зачем (Темы 25.10, docs/work/zones-contrast-2026-10-25.md): «Выйти» цветом p.wrong на control — до 3,58 в 9 из 174; badText — тот же красный, доведённый до ≥ 4,55 */}
+          <Text style={[s.ctaText, { color: semanticInk(g).badText }]}>{spireGameText(lang, 'exit')}</Text>
         </V2Pressable>
       </View>
     </HybridSheetShell>

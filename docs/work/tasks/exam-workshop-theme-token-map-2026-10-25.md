@@ -134,3 +134,18 @@ Outcome: app/lesson1.tsx и его компоненты (плитки слов, 
 Governance-ID: TG-67BC591EB11D
 
 Outcome: (1) в scripts/speaking_panel_contrast_measure.ts раскрытая шторка мерится через подмену mTheme (card = opaqueSheet, textSecond/textMuted = secondary, accent = cta, onAccent = ctaInk), как в коде с HEAD; отчёт speaking-panel поправлен; (2) тем же статическим разбором — Настройки целиком (уведомления, язык, тема, аккаунт), Карточки и наборы (список, просмотр, Сообщество), Друзья и приглашения; отчёт по местам с заменами и владельцем. Scope: скрипты в scripts/, отчёты в docs/work/; код приложения не меняется. Architecture/Security/Debt: нет. Verification: прогон скриптов через tsx. Rollback: git revert.
+
+## Продолжение: правка четырёх мест Карточек и Друзей (координатор 25.10, «чини сам»)
+Governance-ID: TG-67BC591EB11D
+
+Outcome: значок микрофона SpeakHoldButton — подпись из пар темы (ctaInk / accentInk, что контрастнее на заливке) вместо #07110A; подпись плашки лимита CollectionGalleryView — legibleOn(secondary → text) по плашке; неактивная «Создать набор» CollectionListView — пара buttonFillDisabled / buttonInkDisabled; молния FriendEventMarker — accentInk на accent. Все файлы перед правкой чистые. Scope: эти 4 файла и сторож tests/zones_contrast_fixes_2026_10_25.test.ts. Architecture: только токены темы, вид прежний. Security/Debt: нет. Verification: сторож на 174 сочетания + соседние тесты Карточек и Друзей, babel-разбор файлов. Rollback: git revert (OTA).
+
+## Продолжение: перемер пейвола М после правки Дизайна 1e3514044
+Governance-ID: TG-E44935CA003E
+
+Outcome: обновить scripts/paywall_m_code_contrast_measure.ts под planRowSelectedPaint(g, base?) и фон плашки у выбранного плана, перемерить во всех 174 сочетаниях, дописать раздел в docs/work/paywall-m-theme-token-map-2026-10-25.md. Scope: скрипт и отчёт; код пейвола не меняется. Architecture/Security/Debt: нет. Verification: прогон скрипта. Rollback: git revert.
+
+## Продолжение: Диалоги и Пик тем же разбором (координатор 25.10)
+Governance-ID: TG-EF6AFAB94792
+
+Outcome: zone_contrast_measure по Диалогам (список сценариев, диалог, свободный диалог, итог, «Память диалогов») и Пику (экран, комната недели, моменты) во всех 174 сочетаниях; каждого кандидата проверить по коду; живые места при чистых файлах чинить на парах темы со сторожем на 174. Scope: отчёт docs/work/zones-contrast-2026-10-25.md (новый раздел), при правках — затронутые файлы зон и сторож. Architecture/Security/Debt: нет. Verification: скрипт + сторож + соседние тесты. Rollback: git revert.

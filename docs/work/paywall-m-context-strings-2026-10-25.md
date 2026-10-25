@@ -1,4 +1,4 @@
-# Пейвол «Вариант М» — строки для Переводчика (ru, 25.10)
+# Пейвол «Вариант М» — строки для Переводчика (ru, 25.10; голос PhraseMan — copy-sweep 2a82671f2, раздел 6)
 
 Источник: макеты docs/design/v2-app/paywall-variant-m.html и docs/design/v2-app/paywall-m-context.html
 (владелец выбрал «М», журнал 5b9fb6182). Языки: uk, en, es, pt-BR, vi, id, tr, pl.
@@ -37,7 +37,7 @@
 | m.cmp.energyFree | {n}, потом ждать |
 | m.cmp.unlimited | без лимита |
 | m.cmp.every | каждая |
-| m.cmp.asMuch | сколько тянет |
+| m.cmp.asMuch | сколько влезет |
 | m.plans.title | Выбери план |
 | m.plans.year | Год |
 | m.plans.month | Месяц |
@@ -59,23 +59,23 @@
 | Ключ | ru |
 |---|---|
 | m.head.general.kicker | Ты на {lesson}-м уроке из {total} |
-| m.head.general.title | Через месяц ты расскажешь о своём дне по-английски |
-| m.head.general.sub | Курс уже ведёт тебя. Plus добавляет главное: говорить вслух и разговаривать с ИИ сколько хочешь. |
+| m.head.general.title | Через месяц — свой день по-английски, без шпаргалки |
+| m.head.general.sub | Курс ты уже знаешь. Plus добавляет главное: говори вслух и болтай с ИИ сколько хочешь |
 | m.head.energy.pill | Энергия 0 |
 | m.head.energy.kicker | {n} занятий подряд сегодня |
-| m.head.energy.title | Не останавливайся на самом интересном |
-| m.head.energy.sub | С Plus энергия не кончается: занимайся, сколько тянет. И говори вслух без лимита. |
+| m.head.energy.title | Самое интересное — дальше. Не тормози |
+| m.head.energy.sub | С Plus энергия не кончается: занимайся, пока не надоест. И говори вслух без лимита |
 | m.head.dialog.pill | Разговор с ИИ |
 | m.head.dialog.kicker | Первый разговор: {min} минут, {n} фраз |
-| m.head.dialog.title | Через месяц ты поговоришь в кафе, на работе и о себе |
+| m.head.dialog.title | Кафе, работа, рассказ о себе — всё это в курсе на месяц вперёд |
 | m.head.dialog.sub | Бесплатно — {limit} реплик в месяц, их хватит на пару разговоров. С Plus разговаривай каждый день. |
 | m.head.streak.pill | Серия {n} дней |
 | m.head.streak.kicker | {n} дней подряд |
-| m.head.streak.title | Пусть серия переживёт и занятой день |
+| m.head.streak.title | Пропустишь день — серия не сгорит |
 | m.head.streak.sub | С Plus пропуск в один день закроется сам — до 3 раз в месяц. И говори вслух без лимита. |
 | m.head.workshop.pill | Мастерская фраз |
 | m.head.workshop.kicker | Урок {lesson} пройден · {n} фраз |
-| m.head.workshop.title | Через месяц фразы курса будут складываться сами |
+| m.head.workshop.title | Фразы урока — в конструктор. Собирай, пока не отскакивают от зубов |
 | m.head.workshop.sub | Мастерская к каждому пройденному уроку: собирай, слушай, говори вслух. |
 | m.head.lock.pill | Урок {lesson} |
 | m.head.lock.sub | Впереди ещё {n} уроков. Plus открывает весь курс и разговоры вслух без лимита. |
@@ -101,12 +101,12 @@
 | mc.dialog.body | Бесплатно — {limit} реплик в месяц. С Plus разговаривай каждый день и получай разбор каждой фразы. |
 | mc.dialog.cta | Продолжить разговор с Plus |
 | mc.streak.kicker | Серия · {n} дней |
-| mc.streak.title | Месяц подряд. Пусть серия переживёт и занятой день |
+| mc.streak.title | {n} дней подряд! Пропустишь день — Plus прикроет |
 | mc.streak.missed | пропуск |
 | mc.streak.body | С Plus пропущенный день закроется сам — до 3 раз в месяц. Серия останется на месте. |
 | mc.streak.cta | Защитить серию с Plus |
 | mc.workshop.kicker | Урок {lesson} пройден · {n} фраз |
-| mc.workshop.title | Собери фразы урока ещё раз |
+| mc.workshop.title | Собери фразы урока заново — уже без подсказок |
 | mc.workshop.body | Мастерская фраз: сборка с подсказками, теорией и голосом к каждому пройденному уроку. |
 | mc.workshop.cta | Открыть Мастерскую с Plus |
 | mc.lock.kicker | Пройдено {done} урока из {total} |

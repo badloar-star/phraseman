@@ -162,5 +162,12 @@ export function pickDialogueNotUnderstoodReply(
 
 export const DIALOGUE_NOT_UNDERSTOOD_POOL_SIZE = 12;
 
+const SOFT_NUDGE_TEXTS: ReadonlySet<string> = new Set(Object.values(NOT_UNDERSTOOD).flat());
+
+/** Это мягкий ответ «скажи то же на изучаемом языке»? — подсказки отвечают не на него, а на вопрос собеседника перед ним. */
+export function isDialogueSoftNudgeReply(text: string): boolean {
+  return SOFT_NUDGE_TEXTS.has(text);
+}
+
 /* expo-router route shim: служебный модуль в app/ не должен считаться экраном */
 export default function __DialogueV2OffLanguageRouteShim() { return null; }

@@ -17,7 +17,7 @@ import { speechUnavailableOnDeviceText } from './speech_device_availability';
 import { triLang } from '../constants/i18n';
 import AiDialogConsentGate, { useAiDialogConsentAskAgain } from './ai_dialog_consent_gate';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
-import { dialogueV2FreeformSayHints } from './dialogue_v2_say_hints_pick';
+import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints } from './dialogue_v2_say_hints_pick';
 import {
   requestDialogueV2FreeformPreparedBotVoice,
   sendDialogueV2FreeformTurn,
@@ -624,11 +624,11 @@ function DialogueV2FreeformContent() {
     );
   }
 
-  // зачем (владелец 24.10): фразы «Можно сказать…» по числу своих реплик — привет → о себе → поддержать разговор
-  const sayHints = dialogueV2FreeformSayHints({
-    studyTarget: String(studyTarget),
-    learnerTurnsSent: messages.reduce((count, message) => (message.author === 'learner' ? count + 1 : count), 0),
-    interfaceLang: lang,
+  // зачем (жалоба владельца 25.10 «подсказки не относятся к реплике собеседника»): фразы «Можно сказать…» — ответы на последнюю
+  // реплику собеседника; не распознали — подсказок нет. Журнал [DIALOG-HINTS] — в модуле подбора.
+  const hintsReply = lastPartnerReplyForHints(messages, (message) => message.author === 'assistant');
+  const sayHints = dialogueV2SayHintsForPartnerReply({
+    screen: 'freeform', studyTarget: String(studyTarget), interfaceLang: lang, reply: hintsReply.reply, skippedNudge: hintsReply.skippedNudge,
   });
   // зачем (координатор 25.10): нет сети (NetInfo) — «Нет связи» (u31 C18), сеть есть, а старт не прошёл — «Сервис временно недоступен» (C19)
   const connectionNotice = startOffline && !session ? {

@@ -13,6 +13,7 @@ import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import { hapticTap } from '../../hooks/use-haptics';
 import { glassTone } from './glass/glassTone';
 import { DialogSayHints } from './hints/DialogSayHints';
+import { useDialogKeyboardLog } from './use_dialog_keyboard_log';
 import { useDialogSayHintInput } from './hints/use_dialog_say_hint_input';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import {
@@ -102,6 +103,7 @@ export function DialogueV2FreeformScreen({
   connectionNotice = null,
 }: DialogueV2FreeformScreenProps) {
   const glass = useDialogueGlass();
+  const markKeyboardCause = useDialogKeyboardLog('freeform');
   const voiceBusy = voiceStatus !== 'idle';
   const canSend = draft.trim().length > 0 && !voiceBusy;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
@@ -127,7 +129,12 @@ export function DialogueV2FreeformScreen({
         <ScrollView
           style={styles.fill}
           contentContainerStyle={styles.scroll}
+          // зачем (жалоба владельца 25.10 «нельзя смахнуть клавиатуру вниз»): смахивание ленты прячет клавиатуру (iOS — вслед за пальцем);
+          // тап мимо поля прячет её сам (keyboardShouldPersistTaps="handled", перехватывающего слоя здесь нет)
           keyboardShouldPersistTaps="handled"
+          keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+          onScrollBeginDrag={() => markKeyboardCause('drag')}
+          onTouchStart={() => markKeyboardCause('tap')}
           showsVerticalScrollIndicator={false} decelerationRate="fast"
         >
           {messages.length === 0 && !sending ? (

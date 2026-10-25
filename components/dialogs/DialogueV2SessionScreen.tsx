@@ -37,6 +37,7 @@ import { glassTone } from './glass/glassTone';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
+import { useDialogKeyboardLog } from './use_dialog_keyboard_log';
 import { DIALOG_GOAL_STRIP_GAP, DIALOG_GOAL_STRIP_HEIGHT, DIALOG_GOAL_STRIP_MIN_LIST, dialogGoalStripFits, dialogListViewportDecision, isDialogListAtEnd } from './dialog_list_viewport';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { DialogSayHints } from './hints/DialogSayHints';
@@ -264,6 +265,7 @@ export function DialogueV2SessionScreen({
   const [hintOpen, setHintOpen] = React.useState(false);
   const [exitOpen, setExitOpen] = React.useState(false);
   const scrollRef = React.useRef<ScrollView>(null);
+  const markKeyboardCause = useDialogKeyboardLog('scenario');
   const voiceBusy = voiceStatus !== 'idle';
   // зачем: пока висит плашка ошибки, путь один — «Повторить» (раньше экран целиком
   // заменялся плашкой, и новое сообщение отправить было нельзя; поведение то же).
@@ -505,6 +507,9 @@ export function DialogueV2SessionScreen({
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24 }}
           keyboardShouldPersistTaps="handled"
+          // зачем (жалоба владельца 25.10 «нельзя смахнуть клавиатуру вниз»): смахивание ленты прячет клавиатуру (iOS — вслед за пальцем)
+          keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+          onScrollBeginDrag={() => markKeyboardCause('drag')}
           showsVerticalScrollIndicator={false}
           onContentSizeChange={scrollToEnd} decelerationRate="fast"
           onLayout={onListLayout}
@@ -512,10 +517,14 @@ export function DialogueV2SessionScreen({
           scrollEventThrottle={64}
         >
           {/* зачем (C24): после финальной реплики тап по ленте ведёт к итогу. */}
+          {/* зачем (жалоба владельца 25.10): до конца диалога этот слой забирал тапы, и тап мимо поля клавиатуру не прятал — теперь прячет */}
           {/* guard-ok: лента ограничена потолком хода сессии на сервере (≤ 64 хода), виртуализация не нужна. */}
           <Pressable
-            disabled={bottom !== 'ended' || !onOpenSummary}
-            onPress={onOpenSummary}
+            onPress={() => {
+              if (bottom === 'ended' && onOpenSummary) { onOpenSummary(); return; }
+              markKeyboardCause('tap');
+              Keyboard.dismiss();
+            }}
             accessible={false} // guard-ok: слой-тап без своей роли; доступный путь — надпись вуали ниже
             accessibilityState={{ disabled: bottom !== 'ended' }}
           >

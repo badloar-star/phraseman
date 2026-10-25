@@ -174,7 +174,8 @@ async function main(): Promise<void> {
   assert.ok(layout.includes('<HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === communityLogicalIdx} source="spire" />'), "полоса под часами на «Сообществе» — та же HomeSceneStatusStrip");
   assert.ok(!layout.includes("SpireSceneStatusStrip") && !existsSync("components/spire/scene/SpireSceneStatusStrip.tsx"), "второй копии полосы нет");
   const strip = read("components/home/v2/scene/HomeSceneStatusStrip.tsx");
-  assert.ok(strip.includes("source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint"), "цвет Пика — только при флаге");
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, верх цельный): на Пике плоской полосы под часами нет — зону часов закрывает слой шапки общим фоном сцены; флаг по-прежнему решает
+  assert.ok(strip.includes("source === 'spire' ? (SPIRE_SCENE_V2_ENABLED && !SPIRE_WHOLE_TOP ? spireTint : null) : homeTint"), "цвет Пика — только при флаге, и плоской полосы нет");
   // ── сетка без пересечений на 360–430 dp (координатор 22.10 после съёмки Сверки; расчёт — tests/spire_scene_layout.test.ts) ──
   assert.ok(scene.includes("const frame = useMemo(() => spireSceneFrame({ width, visibleH, fontScale, guardChars, headroom }), [width, visibleH, fontScale, guardChars, headroom]);"), "высокая сцена: башня целиком над «Играть» (видимая высота), запас короны своей лиги");
   assert.ok(scene.includes("const visibleH = spireSceneVisibleH(windowH, insets.top, p.dockClear ?? DEFAULT_DOCK_CLEAR);"), "видимая высота — экран минус шапка и зона «Играть»");

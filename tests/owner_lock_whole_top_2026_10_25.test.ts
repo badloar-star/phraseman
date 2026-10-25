@@ -26,6 +26,21 @@ describe('верх экрана цельный (замок владельца 25
     expect(read('components/home/v2/scene/HomeSceneStatusStrip.tsx')).toMatch(/scrollY && source !== 'spire'/);
   });
 
+  it('Пик: слой шапки рисует ТОТ ЖЕ фон, что сцена (не плоский цвет токена) — цвет на стыке совпадает', () => {
+    // опись Сверки 25.10 по ec963892d: плоский слой #514CA6 (81,76,166) над сценой 140,114,202 — скачок 133. Плоский цвет токена ≠ сцена на стыке.
+    const header = read('components/spire/scene/spire_scene_header.tsx');
+    const scene = read('components/spire/scene/SpireScene.tsx');
+    expect(header).toContain('const backdrop = useSpireSceneBackdrop();');
+    expect(header).toContain("backgroundColor: backdrop ? 'transparent' : tone.tint");
+    expect(header).toContain('<SpireSceneBackdrop spec={backdrop} offsetTop={0} />');
+    // сцена рисует тот же спек, что публикует для шапки, сдвинутым на своё расстояние до верха экрана
+    expect(scene).toContain('setSpireSceneBackdrop(backdrop);');
+    expect(scene).toContain('<SpireSceneBackdrop spec={backdrop} offsetTop={bleed} />');
+    expect(scene).not.toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
+    // и плоской полосы под часами на Пике больше нет
+    expect(read('components/home/v2/scene/HomeSceneStatusStrip.tsx')).toContain('const SPIRE_WHOLE_TOP = true;');
+  });
+
   it('у корневых экранов нет отдельной верхней полосы со своим фоном высотой в зону часов', () => {
     const bands: string[] = [];
     for (const file of ROOTS) {

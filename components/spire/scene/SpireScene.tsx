@@ -34,6 +34,7 @@ import SpirePlayerCard from './SpirePlayerCard';
 import SpireScenePedestal, { SPIRE_SCENE_PEDESTAL_INSET } from './SpireScenePedestal';
 import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire_scene_model';
 import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
+import SpireSceneBackdrop, { setSpireSceneBackdrop, type SpireSceneBackdropSpec } from './spire_scene_backdrop';
 import { spireSceneFrame, spireScenePedestalCompact, spireSceneVisibleH } from './spire_scene_layout';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 
@@ -134,6 +135,14 @@ function SpireScene(p: Props) {
     setSpireSceneHeaderTint(tokens.sceneTop);
     return () => setSpireSceneHeaderTint(null);
   }, [p.headerTint, tokens.sceneTop]);
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, верх цельный): фон сцены — от верха экрана; bleed = где верх сцены на экране (под шапкой «Сообщества»)
+  const [bleed, setBleed] = useState(0);
+  const backdrop = useMemo<SpireSceneBackdropSpec>(() => ({ top: tokens.sceneTop, bottom: tokens.sceneBottom, glow, evening, bleed, sceneH: frame.sceneH }), [tokens.sceneTop, tokens.sceneBottom, glow, evening, bleed, frame.sceneH]);
+  useEffect(() => {
+    if (!p.headerTint) return undefined;
+    setSpireSceneBackdrop(backdrop);
+    return () => setSpireSceneBackdrop(null);
+  }, [p.headerTint, backdrop]);
   // зачем (координатор 22.10: «логи [SPIRE-LAYOUT] — высота башни и видимые этажи»): один раз на смену сетки — масштаб, размер, окно, что видно
   useEffect(() => {
     const topUnit = SPIRE_TOWER_GEOM.height - frame.windowH / frame.scale;
@@ -172,14 +181,19 @@ function SpireScene(p: Props) {
   }, [pedestalCompact, visibleH, fontScale, off, shape]);
   return (
     <View>
-      <View testID={`spire-scene-${p.decision.state}`} style={[s.stage, { height: frame.sceneH }]}>
-        <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+      <View
+        testID={`spire-scene-${p.decision.state}`}
+        style={[s.stage, { height: frame.sceneH }]}
+        onLayout={(e) => {
+          const target = e.currentTarget as unknown as { measureInWindow?: (cb: (x: number, y: number) => void) => void };
+          // зачем: верх сцены на экране — до него тянется общий фон; не померилось — фон от своего верха, как раньше (журнал [TOP-BAND])
+          if (typeof target?.measureInWindow !== 'function') { console.warn('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_bleed', decision: 'no_measure' })); return; } // guard-ok: ранний выход с причиной
+          target.measureInWindow((_x, y) => { const next = Math.max(0, Math.round(y)); setBleed((prev) => (prev === next ? prev : next)); });
+        }}
+      >
+        <SpireSceneBackdrop spec={backdrop} offsetTop={bleed} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
           <Defs>
-            <RadialGradient id="spireSceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
-              <Stop offset="0" stopColor={glow} stopOpacity="1" />
-              <Stop offset="1" stopColor={glow} stopOpacity="0" />
-            </RadialGradient>
             {evening ? (
               <RadialGradient id="spireSceneEmber" cx="50%" cy="50%" r="50%">
                 <Stop offset="0" stopColor={tokens.sceneEmber} stopOpacity="1" />
@@ -187,7 +201,6 @@ function SpireScene(p: Props) {
               </RadialGradient>
             ) : null}
           </Defs>
-          <Rect x="0" y="0" width="100%" height="100%" fill="url(#spireSceneLight)" />
           {/* зачем (владелец 22.10: «фон за башней — чтобы не отличался»; «звёздочки по всей плоскости до краёв»): ореола за башней нет — фон
               единый; звёзды — по всей сцене, светлый оттенок свечения темы */}
           {SCENE_STARS.map(([x, y, r, o], i) => <Circle key={`st${i}` /* guard-ok: постоянный список звёзд */} cx={x * width} cy={y * frame.sceneH} r={r} fill={starColor} opacity={o} />)}

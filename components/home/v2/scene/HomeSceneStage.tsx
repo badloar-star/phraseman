@@ -81,6 +81,8 @@ type Props = {
   topInset?: number;
 };
 
+const HOME_STAGE_MODULE_AT = Date.now(); // [TOP-BAND]: отсчёт времени до первой раскладки сцены
+
 export default function HomeSceneStage(props: Props) {
   const latestRef = useRef<Props>(props);
   latestRef.current = props;
@@ -121,6 +123,9 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       onLayout={(e) => {
         // зачем (Сверка home5, «Фраза дня» срезана на 390): цифры вместо догадки — расчётная и фактическая высота сцены, окно, верх капсулы; временно, [HOME-FIT]
         console.log('[HOME-FIT]', JSON.stringify({ planned: stageH, actual: Math.round(e.nativeEvent.layout.height), windowH, windowW, pillTop, fontScale, title: copy.title })); // guard-ok: одна строка на смену высоты
+        // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, «верх цельный»; координатор: полоса у владельца на Главной в 7:56 — первый кадр или возврат на вкладку?): когда сцена встала,
+        // от какой высоты экрана она красит верх, каким цветом и готова ли (pending — скелет). Мс — от загрузки модуля сцены.
+        console.log('[TOP-BAND]', JSON.stringify({ at: 'home_scene_stage_layout', msSinceModule: Math.round(Date.now() - HOME_STAGE_MODULE_AT), sceneReady: !pending, state, topInset: Math.round(topInset), y: Math.round(e.nativeEvent.layout.y), sceneTop: tokens.sceneTop })); // guard-ok: одна строка на смену раскладки
       }}
     >
       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />

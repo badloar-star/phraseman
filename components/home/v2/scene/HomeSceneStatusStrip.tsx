@@ -15,6 +15,7 @@ import { useSpireSceneHeaderTint } from '../../../spire/scene/spire_scene_header
 import { useHomeSceneStatusTint } from './home_scene_status_tint';
 
 const FADE_DISTANCE = 120;
+const SPIRE_WHOLE_TOP = true;
 
 type Props = Readonly<{
   height: number;
@@ -28,7 +29,8 @@ function HomeSceneStatusStrip({ height, scrollY, visible, source = 'home' }: Pro
   const homeTint = useHomeSceneStatusTint();
   const spireTint = useSpireSceneHeaderTint();
   // зачем (Пик v2, координатор 22.10: «тем же механизмом, что HomeSceneStatusStrip, без второй копии»): одна полоса на Главной и на «Пике»
-  const tint = source === 'spire' ? (SPIRE_SCENE_V2_ENABLED ? spireTint : null) : homeTint;
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, верх цельный): на Пике плоской полосы под часами нет — зону часов закрывает слой шапки общим фоном сцены (spire_scene_backdrop)
+  const tint = source === 'spire' ? (SPIRE_SCENE_V2_ENABLED && !SPIRE_WHOLE_TOP ? spireTint : null) : homeTint;
   // зачем (владелец 22.10 «полоса другого цвета в сейф-зоне — запрещаю»): сперва факты — рисуется ли полоса над часами, каким цветом и почему нет.
   const decision = !visible ? 'skip_not_active_tab' : tint === null ? 'skip_no_scene_tint' : height <= 0 ? 'skip_zero_inset' : 'draw';
   useEffect(() => {

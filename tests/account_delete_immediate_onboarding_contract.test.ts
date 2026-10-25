@@ -13,7 +13,8 @@ describe('Settings account deletion immediate clean-onboarding handoff', () => {
     const success = modal.slice(successStart, successEnd);
 
     expect(successStart).toBeGreaterThan(-1);
-    expect(modal).toContain('const res = await beginAccountDeletion();');
+    // зачем (вариант Б, 25.10): «Удалить навсегда сейчас» — та же быстрая фаза через beginAccountDeletionNow; ждём только её.
+    expect(modal).toContain("const res = mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion();");
     expect(modal).not.toContain('await res.completion');
     expect(modal).not.toContain('await handoff.completion');
     expect(success).toContain('setDeleting(false);');

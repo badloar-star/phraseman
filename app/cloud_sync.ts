@@ -10,6 +10,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { clearAllDialogueV2MemoryDiskCache } from './dialogue_v2_memory_disk_cache';
+import { resolveAccountDeleteNow, takeArmedAccountDeleteNow } from './account_delete_now';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   RETIRED_2_0_ECONOMY_ACCOUNT_LOCAL_KEYS,
@@ -6948,6 +6949,8 @@ export function startCloudDeletionEnqueue(
       enqueueLabel,
     );
   }
+  // зачем (владелец 25.10, «Удалить навсегда сейчас»): признак забираем синхронно в момент постановки, на диск — по операции.
+  const deleteNowArmed = takeArmedAccountDeleteNow();
   return startAccountDeleteEnqueueWithDeadline(
     async () => undefined,
     async () => {
@@ -6959,13 +6962,17 @@ export function startCloudDeletionEnqueue(
         operationId: string;
         capability: string;
         accountsV2Deletion?: AccountDeleteCredentialProof;
+        deleteNow?: true;
       }, AccountDeleteEnqueueAck>(
         'accountDeleteEnqueue',
         { timeout: enqueueTimeoutMs },
       );
-      const res = await fn(accountsV2Deletion
+      // Без «сейчас» запрос байт-в-байт прежний; старый сервер поле deleteNow игнорирует (14 дней).
+      const deleteNow = await resolveAccountDeleteNow(proof.operationId, deleteNowArmed);
+      const base = accountsV2Deletion
         ? { stableId, ...proof, accountsV2Deletion: { operationId: accountsV2Deletion.operationId, capability: accountsV2Deletion.capability } }
-        : { stableId, ...proof });
+        : { stableId, ...proof };
+      const res = await fn(deleteNow ? { ...base, deleteNow: true as const } : base);
       if (
         !res.data?.ok
         || !res.data.jobId

@@ -1,0 +1,119 @@
+// зачем (владелец 25.10, макет account-delete-variant-b «Да, так»; сервер 713677ddd): окно 1 — «Удалить через 14 дней» без ввода
+// слова, «Отмена», тихая ссылка «Удалить навсегда сейчас»; окно 2 — «Удалить навсегда» только после слова «УДАЛИТЬ», «Назад».
+// «Навсегда» идёт той же цепочкой удаления с полем deleteNow; всё — за флагом «Пульта», гость и флаг выкл — окно прежнее.
+import React from 'react';
+import { fireEvent, render, screen } from '@testing-library/react-native';
+import { readSource } from './helpers/read_source';
+
+jest.mock('react-native', () => ({
+  View: 'View',
+  Text: 'Text',
+  TextInput: 'TextInput',
+  Pressable: ({ children, onPress, disabled, testID, accessibilityState }: { children: unknown; onPress?: () => void; disabled?: boolean; testID?: string; accessibilityState?: unknown }) => {
+    const React = jest.requireActual('react');
+    return React.createElement('Pressable', { onPress: disabled ? undefined : onPress, testID, accessibilityState }, typeof children === 'function' ? (children as (s: { pressed: boolean }) => unknown)({ pressed: false }) : children);
+  },
+  ActivityIndicator: 'ActivityIndicator',
+  Platform: { OS: 'ios', select: (o: Record<string, unknown>) => o.ios ?? o.default },
+  StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s },
+}));
+
+/* eslint-disable import/first */
+import { DeleteAccountVariantBBody, type DeleteAccountVariantBBodyProps } from '../components/account/DeleteAccountVariantBBody';
+import { deleteAccountVariantBCopy } from '../components/account/delete_account_variant_b_copy';
+
+const glass = { text: '#111', secondary: '#555', mutedText: '#999', buttonFill: '#ddd', opaqueControl: '#eee' };
+
+function props(overrides: Partial<DeleteAccountVariantBBodyProps> = {}): DeleteAccountVariantBBodyProps {
+  return {
+    step: 'grace',
+    glass,
+    fontSizes: { h2: 22, body: 16, caption: 13 },
+    copy: deleteAccountVariantBCopy('ru'),
+    title: 'Удалить аккаунт?',
+    cancelLabel: 'Отмена',
+    confirmLabel: 'Введи «УДАЛИТЬ» для подтверждения:',
+    confirmWord: 'УДАЛИТЬ',
+    confirmInput: '',
+    confirmMatches: false,
+    deleting: false,
+    gracePaint: { fill: '#b33', ink: '#fff' },
+    linkColor: '#a22',
+    nowPaint: { fill: '#ccc', ink: '#888' },
+    inputShadow: [],
+    onChangeInput: jest.fn(),
+    onSubmitInput: jest.fn(),
+    onConfirmGrace: jest.fn(),
+    onOpenNow: jest.fn(),
+    onConfirmNow: jest.fn(),
+    onBack: jest.fn(),
+    onCancel: jest.fn(),
+    ...overrides,
+  };
+}
+
+describe('окно 1: «Удалить через 14 дней»', () => {
+  it('тексты макета; кнопка без ввода слова; ссылка открывает окно 2; отмена', async () => {
+    const p = props();
+    await render(<DeleteAccountVariantBBody {...p} />);
+    expect(screen.getByText('Удалить через 14 дней')).toBeTruthy();
+    expect(screen.getByText('через 14 дней')).toBeTruthy();
+    expect(screen.getByText('Подписка в App Store или Google Play сама не отменится.')).toBeTruthy();
+    expect(screen.queryByTestId('delete-account-confirm-input')).toBeNull();
+    await fireEvent.press(screen.getByTestId('delete-account-grace-confirm'));
+    expect(p.onConfirmGrace).toHaveBeenCalledTimes(1);
+    await fireEvent.press(screen.getByTestId('delete-account-delete-now-link'));
+    expect(p.onOpenNow).toHaveBeenCalledTimes(1);
+    await fireEvent.press(screen.getByTestId('delete-account-cancel'));
+    expect(p.onCancel).toHaveBeenCalledTimes(1);
+  });
+
+  it('во время удаления кнопки не нажимаются (защита от двойного тапа)', async () => {
+    const p = props({ deleting: true });
+    await render(<DeleteAccountVariantBBody {...p} />);
+    // зачем: fireEvent библиотеки зовёт onPress родителя-обёртки и при disabled; настоящий Pressable при disabled не жмётся,
+    // поэтому проверяем сам признак disabled, который получает Pressable (и видит программа чтения экрана).
+    expect(screen.getByTestId('delete-account-grace-confirm').props.accessibilityState).toMatchObject({ disabled: true, busy: true });
+    expect(screen.getByTestId('delete-account-delete-now-link').props.accessibilityState).toMatchObject({ disabled: true });
+    expect(screen.getByTestId('delete-account-cancel').props.accessibilityState).toMatchObject({ disabled: true });
+  });
+});
+
+describe('окно 2: «Удалить навсегда?»', () => {
+  it('пока слово не введено — «Удалить навсегда» не срабатывает; после — срабатывает; «Назад» возвращает', async () => {
+    const p = props({ step: 'now' });
+    await render(<DeleteAccountVariantBBody {...p} />);
+    expect(screen.getByText('Удалить навсегда?')).toBeTruthy();
+    expect(screen.getByText('сразу')).toBeTruthy();
+    expect(screen.getByTestId('delete-account-confirm').props.accessibilityState).toMatchObject({ disabled: true });
+    await fireEvent.changeText(screen.getByTestId('delete-account-confirm-input'), 'удалить');
+    expect(p.onChangeInput).toHaveBeenCalledWith('удалить');
+    await screen.rerender(<DeleteAccountVariantBBody {...p} confirmInput="УДАЛИТЬ" confirmMatches />);
+    expect(screen.getByTestId('delete-account-confirm').props.accessibilityState).toMatchObject({ disabled: false });
+    await fireEvent.press(screen.getByTestId('delete-account-confirm'));
+    expect(p.onConfirmNow).toHaveBeenCalledTimes(1);
+    await fireEvent.press(screen.getByTestId('delete-account-now-back'));
+    expect(p.onBack).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('проводка: флаг, режим «навсегда», поле deleteNow', () => {
+  it('окно: новые окна только для Google/Apple при флаге; «навсегда» — beginAccountDeletionNow; «через 14 дней» — без слова', () => {
+    const modal = readSource('components/DeleteAccountConfirmModal.tsx');
+    expect(modal).toContain("hasProviderSignIn && getRemoteBool('account_delete_variant_b_ui_enabled') === true");
+    expect(modal).toContain("const res = mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion();");
+    expect(modal).toContain("(mode !== 'grace' && (!deleteConfirmMatches && !retryApproved))");
+    expect(modal).toContain('const dialogBody = variantBBody ?? (');
+  });
+
+  it('удаление: признак «сейчас» взводится и снимается; постановка шлёт deleteNow только при признаке', () => {
+    const auth = readSource('app/auth_provider.ts');
+    expect(auth).toContain('export async function beginAccountDeletionNow(): Promise<DeleteAccountHandoff> {\n  armAccountDeleteNow();\n  try {\n    return await beginAccountDeletion();\n  } finally {\n    disarmAccountDeleteNow();\n  }\n}');
+    const sync = readSource('app/cloud_sync.ts');
+    expect(sync).toContain('const deleteNowArmed = takeArmedAccountDeleteNow();');
+    expect(sync).toContain('const deleteNow = await resolveAccountDeleteNow(proof.operationId, deleteNowArmed);');
+    expect(sync).toContain('const res = await fn(deleteNow ? { ...base, deleteNow: true as const } : base);');
+    const flags = readSource('app/remote_flags.ts');
+    expect(flags).toContain('account_delete_variant_b_ui_enabled: false,');
+  });
+});

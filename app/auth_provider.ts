@@ -23,6 +23,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { armAccountDeleteNow, disarmAccountDeleteNow } from './account_delete_now';
 import { DEV_LINKED_DEMO_REFUSAL, getDevLinkedAuthDemo, getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAccountLinkedDemo, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
 import { ACCOUNT_DELETE_GUEST_BACKGROUND_ENQUEUE_TIMEOUT_MS } from './account_delete_timeout';
 import { markFirestoreCacheClearPending } from './firestore_cache_clear';
@@ -5104,6 +5105,21 @@ export type DeleteAccountHandoff =
  * пределах одного удаления.
  */
 const legacyDeletionServerEnqueuedOperations = new Set<string>();
+
+/**
+ * «Удалить навсегда сейчас» (владелец 25.10, макет account-delete-variant-b; сервер 713677ddd).
+ * зачем: тот же путь удаления (отзыв Apple, замки, выход, досылка) — меняется только поле запроса постановки deleteNow,
+ * его ставит startCloudDeletionEnqueue по признаку account_delete_now (взводится здесь, забирается в момент постановки,
+ * на диске хранится по операции для повторов). Неиспользованный признак снимается — не перетечёт в обычное удаление.
+ */
+export async function beginAccountDeletionNow(): Promise<DeleteAccountHandoff> {
+  armAccountDeleteNow();
+  try {
+    return await beginAccountDeletion();
+  } finally {
+    disarmAccountDeleteNow();
+  }
+}
 
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   // зачем (координатор 15.10, P24b): при удалении отложенную запись пуш-настроек НЕ досылаем, а отменяем — users/{A} удаляется.

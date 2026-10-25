@@ -24,7 +24,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticTap as doHaptic, hapticWarning } from '../hooks/use-haptics';
-import { beginAccountDeletion, peekLinkedAuthFromCurrentUser } from '../app/auth_provider';
+import { beginAccountDeletion, beginAccountDeletionNow, peekLinkedAuthFromCurrentUser } from '../app/auth_provider';
 import { enqueueThemedBlockingChoiceAlert } from '../app/themed_blocking_alert_queue';
 import { emitAppEvent } from '../app/events';
 import {
@@ -41,6 +41,10 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 import { isDevAccountLinkedDemo, isDevDeleteConfirmBypass } from '../app/dev_account_state';
 import { reportAccountDeleteHandoffFailed, reportAccountDeleteHandoffThrew } from '../app/auth_release_reasons';
+import { getRemoteBool } from '../app/remote_flags';
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
+import { DeleteAccountVariantBBody, type DeleteAccountVariantBStep } from './account/DeleteAccountVariantBBody';
+import { deleteAccountVariantBCopy } from './account/delete_account_variant_b_copy';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — чёрные в любой теме
 // зачем (аудит 11.10): запасной toUpperCase в рендере — причину пишем один раз за процесс, а не на каждую букву.
@@ -83,6 +87,13 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   // зачем (EN-проход 13.10, auth-gap-009): dev `account=linked` (только память, в сторе всегда false; действия аккаунта при нём
   // отказывают первой строкой) показывает вариант «удалится через 14 дней» без настоящего входа — иначе кадр снимается только с Google.
   const hasProviderSignIn = useMemo(() => visible && (peekLinkedAuthFromCurrentUser() !== null || isDevAccountLinkedDemo()), [visible]);
+  // зачем (владелец 25.10, макет account-delete-variant-b «Да, так»): новые окна — только для входа Google/Apple и только при флаге
+  // «Пульта» (ВЫКЛ до выкладки сервера 713677ddd: без него «вернуть за 14 дней» не работает). Гость и флаг выкл — окно прежнее.
+  const variantB = useMemo(() => hasProviderSignIn && getRemoteBool('account_delete_variant_b_ui_enabled') === true, [hasProviderSignIn]);
+  const [variantBStep, setVariantBStep] = useState<DeleteAccountVariantBStep>('grace');
+  const variantBCopy = useMemo(() => deleteAccountVariantBCopy(lang), [lang]);
+  // Режим последнего подтверждения — для «Повторить» в окне отказа (повтор идёт тем же режимом).
+  const lastDeleteModeRef = useRef<'legacy' | 'grace' | 'now'>('legacy');
   const reduceMotion = useReduceMotion();
   // зачем: приглушённый тон CTA «Удалить» + одна дрожь на подтверждении —
   // деструктивный паттерн из ThemedConfirmModal (destructive), но здесь кнопка
@@ -193,9 +204,11 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     if (visible) {
       setDeleteConfirmInput('');
       setDeleting(false);
+      setVariantBStep('grace');
       deleteInFlightRef.current = false;
+      console.log('[ACCOUNT-DELETE-UI] open', JSON.stringify({ variantB, provider: hasProviderSignIn })); // guard-ok: одна строка на открытие окна
     }
-  }, [visible]);
+  }, [visible, variantB, hasProviderSignIn]);
 
   const enqueueInfoAlert = useCallback(
     (title: string, message: string) => {
@@ -236,10 +249,16 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     [enqueueInfoAlert, onRequestClose],
   );
 
-  const handleConfirmDelete = useCallback(async () => {
+  const handleConfirmDelete = useCallback(async (modeArg?: unknown) => {
     const retryApproved = retryApprovedRef.current;
     retryApprovedRef.current = false;
-    if (deleteInFlightRef.current || deleting || (!deleteConfirmMatches && !retryApproved)) {
+    // зачем (вариант Б): «через 14 дней» обратимо — без ввода слова; «навсегда» и прежнее окно — только с совпавшим словом.
+    // onPress прежней кнопки передаёт событие — это прежний режим. Повтор из окна отказа берёт режим прошлой попытки.
+    const mode: 'legacy' | 'grace' | 'now' = retryApproved
+      ? lastDeleteModeRef.current
+      : modeArg === 'grace' || modeArg === 'now' ? modeArg : 'legacy';
+    lastDeleteModeRef.current = mode;
+    if (deleteInFlightRef.current || deleting || (mode !== 'grace' && (!deleteConfirmMatches && !retryApproved))) {
       if (retryApproved) {
         console.warn('[ACCOUNT-DELETE-UI] retry:skipped', JSON.stringify({ inFlight: deleteInFlightRef.current, deleting })); // guard-ok: ранний выход логируется
       } else {
@@ -266,7 +285,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       // resumePendingAccountDeleteLocalExit(). Раньше здесь ждали ВСЮ цепочку
       // целиком, и на плохой сети настройки висели заблокированными десятки
       // секунд — ровно то «зависает намертво», которое чиним.
-      const res = await beginAccountDeletion();
+      console.log('[ACCOUNT-DELETE-UI] confirm', JSON.stringify({ mode, retry: retryApproved })); // guard-ok: одна строка на подтверждение
+      // «Навсегда» — та же цепочка с полем deleteNow (beginAccountDeletionNow); иначе прежний вызов.
+      const res = mode === 'now' ? await beginAccountDeletionNow() : await beginAccountDeletion();
       if (!res.ok) {
         traceAccountDeleteUi(`local_delete_rejected:${res.reason}`);
         reportAccountDeleteHandoffFailed(res.reason);
@@ -391,7 +412,53 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   // зачем: окно удаления аккаунта — Liquid Glass по макету PRF-21 (confirm/pending): заголовок,
   // короткое предупреждение, слово-подтверждение, «Отмена» (тон темы) и «Удалить» (семантика
   // ошибки — единственный красный элемент). Зелёных поверхностей нет, обводок нет.
-  const dialogBody = (
+  const variantBBody = variantB ? (
+    <View style={[styles.dialog, isHybrid ? styles.hybridDialog : styles.classicDialog, { backgroundColor: glass.opaqueSheet }]}>
+      <ScrollView
+        style={isHybrid ? styles.hybridScrollViewport : undefined}
+        decelerationRate="fast"
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <DeleteAccountVariantBBody
+          step={variantBStep}
+          glass={glass}
+          fontSizes={f}
+          copy={variantBCopy}
+          title={L({ ru: 'Удалить аккаунт?', uk: 'Видалити акаунт?', en: 'Delete account?', es: '¿Eliminar la cuenta?', 'pt-BR': 'Excluir a conta?', vi: 'Xóa tài khoản?', id: 'Hapus akun?', tr: 'Hesap silinsin mi?', pl: 'Usunąć konto?' })}
+          cancelLabel={L({ ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}
+          confirmLabel={L({ ru: 'Введи «УДАЛИТЬ» для подтверждения:', uk: 'Введи «ВИДАЛИТИ» для підтвердження:', en: 'Type “DELETE” to confirm:', es: 'Escribe «ELIMINAR» para confirmar:', 'pt-BR': 'Digite «EXCLUIR» para confirmar:', vi: 'Nhập "XÓA" để xác nhận:', id: 'Ketik "HAPUS" untuk mengonfirmasi:', tr: '"SİL" yazarak onayla:', pl: 'Wpisz "USUŃ", aby potwierdzić:' })}
+          confirmWord={deleteConfirmWord}
+          confirmInput={deleteConfirmInput}
+          confirmMatches={deleteConfirmMatches}
+          deleting={deleting}
+          gracePaint={deleteButtonPaint(glass, true)}
+          linkColor={semanticInk(glass).badText}
+          nowPaint={deletePaint}
+          inputShadow={nestedBoxShadow(glass)}
+          onChangeInput={setDeleteConfirmInput}
+          onSubmitInput={Keyboard.dismiss}
+          onConfirmGrace={() => { void handleConfirmDelete('grace'); }}
+          onOpenNow={() => {
+            doHaptic();
+            setDeleteConfirmInput('');
+            setVariantBStep('now');
+            console.log('[ACCOUNT-DELETE-UI] step', JSON.stringify({ to: 'now' })); // guard-ok: переход окна
+          }}
+          onConfirmNow={() => { void handleConfirmDelete('now'); }}
+          onBack={() => {
+            doHaptic();
+            setDeleteConfirmInput('');
+            setVariantBStep('grace');
+            console.log('[ACCOUNT-DELETE-UI] step', JSON.stringify({ to: 'grace' })); // guard-ok: переход окна
+          }}
+          onCancel={handleCancel}
+        />
+      </ScrollView>
+    </View>
+  ) : null;
+
+  const dialogBody = variantBBody ?? (
     <View style={[styles.dialog, isHybrid ? styles.hybridDialog : styles.classicDialog, { backgroundColor: glass.opaqueSheet }]}>
           <ScrollView
             style={isHybrid ? styles.hybridScrollViewport : undefined}

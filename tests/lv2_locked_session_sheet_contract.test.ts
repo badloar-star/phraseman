@@ -40,7 +40,9 @@ describe('learning-v2-013: locked session opens the locked sheet', () => {
     expect(block).toContain('onClose={() => setLearningV2LockedSession(null)}');
   });
 
-  it('the sheet hides the facts row when locked (mockup noFacts)', () => {
-    expect(sheet).toContain('{locked ? null : <View style={sx.stats}>');
+  it('the sheet hides the facts row when locked (mockup noFacts) and when there are no facts at all', () => {
+    // зачем (владелец 25.10, координатор): черновые факты «минут/попытки» убраны (f305f6ed6) — ряд рисуется, только если есть хотя бы один факт;
+    // закрытое занятие по-прежнему без ряда фактов (макет noFacts)
+    expect(sheet).toContain('{locked || stats.length === 0 ? null : <View style={sx.stats}>');
   });
 });

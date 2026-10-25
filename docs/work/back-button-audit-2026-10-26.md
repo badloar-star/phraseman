@@ -7,7 +7,7 @@ Governance-ID: TG-03C9A99A4B85
 
 - маршрутов-экранов: 97; корневых: 14; dev-экранов: 0
 - общая ScreenBackButton: 22; своя кнопка: 33; без «назад»: 16; только «закрыть»: 10
-- router.back мимо safeRouterBack: 0; fallback не как в реестре: 16; своя Android-назад: 13; свайп iOS выключен: 0
+- router.back мимо safeRouterBack: 0; fallback не как в реестре: 16; своя Android-назад: 14; свайп iOS выключен: 0
 - в базе непереведённых (config/screen_back_baseline.json): 36
 - не экраны (компоненты в app/ без переходов на них, заглушки маршрутов) — в таблицы не вошли: 65
 
@@ -28,6 +28,14 @@ Governance-ID: TG-03C9A99A4B85
 Новый компонент не нужен. Нужно довести правило до конца по зонам, и чтобы каждый экран с «назад» был в реестре ролей.
 Для этого — новый сторож `tests/back_nav_registry_contract.test.ts` (база только уменьшается).
 
+> ⚠ **Поправка 26.10 (Ядро):** сканер смотрит код, а не макеты. По гейту «приложение = макет» эталон главнее.
+> - «Нет «назад»» и «только «закрыть»» — дефект, только если на эталоне есть «назад».
+> - Уже сверены как `match` (кнопку не добавлять): «Правда / ложь» (truefalse, cards-v2-033), промокод
+>   (promo_code_entry, overlays-campaigns-005).
+> - По остальным ждём ответа 3 · МАКЕТЫ.
+>
+> Пункт Б снят — см. ниже.
+
 ### Настоящие проблемы (чинят владельцы зон)
 
 **А. Экран не в реестре ролей → «назад» не к открывшему, а на fallback** (`[NAV-BACK] candidate:reset
@@ -40,7 +48,11 @@ reason=leaving_no_section`). Человек пришёл в диалог с за
 - `(tabs)/arena` — Арена удалена (D54/D83), файл-вкладка остался без роли: проверить, что на него никто не переходит,
   и убрать вместе с маршрутом (зона координатора, не восстанавливать).
 
-**Б. Экраны Карточек передают запасной `/flashcards` вопреки решению владельца.** Реестр для раздела 'flashcards' ведёт
+**Б. ~~Экраны Карточек передают запасной `/flashcards` вопреки решению владельца.~~ СНЯТО после перепроверки (26.10).**
+Решение 16.08 было про соседей таббара Карточек (сохранённые / наборы / мои наборы): их «назад» на `/flashcards`
+зацикливал раздел. В 2.0 `/flashcards` — хаб Карточек (cards-002 «Хаб и выбор режима»), тренировки запускаются из него.
+Fallback `/flashcards` для тренировок — возврат к родителю, а из хаба «назад» ведёт на Главную. Петли нет, менять не
+нужно. Исходный текст пункта: Реестр для раздела 'flashcards' ведёт
 на Главную. Это решение владельца от 16.08: «набор → Мои наборы → ГЛАВНАЯ»; `/flashcards` — сосед по таббару Карточек,
 и «назад» туда зацикливал раздел. Экраны же передают `/flashcards`:
 - `flashcards_blitz/recall/speaking/swipe`;
@@ -132,7 +144,7 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/combined_lesson_pick.tsx | /combined_lesson_pick | child · lessons | нет | safeRouterBack → '/(tabs)/lessons' | /lessons_list | общая | свайп | НЕТ «назад»; fallback ≠ реестр (/lessons_list) | Обучение (Learning V2) |
 | app/community_pack_create.tsx | /community_pack_create | child · flashcards | нет | safeRouterBack → (cloudEdit ? { pathname: '/flashcards_collection', params: { pack: editPackId } } : '/flashcards') as any, / '/flashcards'; replace ×1 | /(tabs)/home | общая | свайп | НЕТ «назад»; fallback ≠ реестр (/(tabs)/home) | Карточки |
 | app/dialogue_v2_briefing.tsx | /dialogue_v2_briefing | child · dialogs | своя: через components/dialogs/glass/DialogueGlassKit.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/lessons) | Диалоги |
-| app/dialogue_v2_completion.tsx | /dialogue_v2_completion | unknown | своя: через components/dialogs/glass/DialogueGlassKit.tsx | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | общая | свайп | нестандартная кнопка; нет в реестре ролей — «назад» сбрасывает историю на fallback | Диалоги |
+| app/dialogue_v2_completion.tsx | /dialogue_v2_completion | unknown | своя: через components/dialogs/glass/DialogueGlassKit.tsx | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | нестандартная кнопка; нет в реестре ролей — «назад» сбрасывает историю на fallback; своя Android-назад — проверить логом | Диалоги |
 | app/dialogue_v2_freeform.tsx | /dialogue_v2_freeform | unknown | своя: через components/dialogs/glass/DialogueGlassKit.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | нестандартная кнопка; нет в реестре ролей — «назад» сбрасывает историю на fallback | Диалоги |
 | app/dialogue_v2_memory.tsx | /dialogue_v2_memory | unknown | своя: BackGlyph | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | нестандартная кнопка; нет в реестре ролей — «назад» сбрасывает историю на fallback | Диалоги |
 | app/dialogue_v2_session.tsx | /dialogue_v2_session | unknown | своя: через app/ai_dialog_consent_gate.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | нестандартная кнопка; нет в реестре ролей — «назад» сбрасывает историю на fallback | Диалоги |
@@ -152,7 +164,7 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/flashcards_voice_picker.tsx | /flashcards_voice_picker | portal | своя: BackGlyph | safeRouterBack → '/settings_edu' | /(tabs)/home | общая | свайп | нестандартная кнопка | Карточки |
 | app/friends_duel.tsx | /friends_duel | unknown | нет («закрыть») | safeRouterBack → HOME | /(tabs)/home | общая | свайп | только «закрыть»; нет в реестре ролей — «назад» сбрасывает историю на fallback | Друзья |
 | app/friends_week_mine.tsx | /friends_week_mine | unknown | ScreenBackButton | safeRouterBack → '/(tabs)/settings' | /(tabs)/home | общая | свайп | нет в реестре ролей — «назад» сбрасывает историю на fallback | Друзья |
-| app/hint.tsx | /hint | child · lessons | ScreenBackButton через components/theory/TheoryLessonView.tsx | safeRouterBack → '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | fallback ≠ реестр (/lessons_list) | ? |
+| app/hint.tsx | /hint | child · lessons | ScreenBackButton через components/theory/TheoryLessonView.tsx | safeRouterBack → '/lessons_list' / '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | fallback ≠ реестр (/lessons_list) | ? |
 | app/language_welcome.tsx | /language_welcome | child · settings | своя: BackGlyph | safeRouterBack → '/settings_language'; replace ×1 | /(tabs)/settings | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/settings) | Онбординг |
 | app/learning-v2/chapter-exam.tsx | /learning-v2/chapter-exam | child · lessons | своя: через components/learning-v2/LearningV2ChapterExamResult.tsx | safeRouterBack → '/learning-v2/course' | /lessons_list | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/lessons_list) | Обучение (Learning V2) |
 | app/learning-v2/course.tsx | /learning-v2/course | child · lessons | своя: через app/(tabs)/lessons.tsx | — | /lessons_list | общая | свайп | нестандартная кнопка | Обучение (Learning V2) |
@@ -220,7 +232,7 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/dev_cards_result_preview.tsx | нет | нет | — | safeRouterBack → HOME; router.back ×1 | /(tabs)/home | общая | свайп | Карточки |
 | app/diagnostic_test.tsx | есть | ScreenBackButton через app/settings_edu.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → HOME; replace ×2 | /lessons_list | общая | свайп | ? |
 | app/dialogue_v2_briefing.tsx | есть | своя: через components/dialogs/glass/DialogueGlassKit.tsx | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | Диалоги |
-| app/dialogue_v2_completion.tsx | есть | своя: через components/dialogs/glass/DialogueGlassKit.tsx | своя | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | общая | свайп | Диалоги |
+| app/dialogue_v2_completion.tsx | есть | своя: через components/dialogs/glass/DialogueGlassKit.tsx | своя | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | Диалоги |
 | app/dialogue_v2_freeform.tsx | есть | своя: через components/dialogs/glass/DialogueGlassKit.tsx | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | Диалоги |
 | app/dialogue_v2_memory.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | Диалоги |
 | app/dialogue_v2_session.tsx | есть | своя: через app/ai_dialog_consent_gate.tsx | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | Диалоги |
@@ -241,7 +253,7 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/flashcards_voice_picker.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/settings_edu' | /(tabs)/home | общая | свайп | Карточки |
 | app/friends_duel.tsx | нет | нет («закрыть») | — | safeRouterBack → HOME | /(tabs)/home | общая | свайп | Друзья |
 | app/friends_week_mine.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/settings' | /(tabs)/home | общая | свайп | Друзья |
-| app/hint.tsx | есть | ScreenBackButton через components/theory/TheoryLessonView.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | ? |
+| app/hint.tsx | есть | ScreenBackButton через components/theory/TheoryLessonView.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list' / '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | ? |
 | app/language_welcome.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/settings_language'; replace ×1 | /(tabs)/settings | общая | свайп | Онбординг |
 | app/learning-v2/chapter-exam.tsx | есть | своя: через components/learning-v2/LearningV2ChapterExamResult.tsx | своя | safeRouterBack → '/learning-v2/course' | /lessons_list | общая | свайп | Обучение (Learning V2) |
 | app/learning-v2/course.tsx | есть | своя: через app/(tabs)/lessons.tsx | своя | — | /lessons_list | общая | свайп | Обучение (Learning V2) |

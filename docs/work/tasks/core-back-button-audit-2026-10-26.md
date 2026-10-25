@@ -2,6 +2,7 @@
 
 Governance-ID: TG-03C9A99A4B85
 Governance-ID: TG-E7CD81D4BB85
+Governance-ID: TG-7C91CB4E8C80
 Status: In progress
 Owner: 1 · ЯДРО (координатор: приказ владельца «последовательность кнопки назад на всех экранах, подэкранах и т. д.»)
 Related epic/enabler: screen-back-button-one-place-2026-10-22.md (5 · ВХОД: ScreenBackButton, сторож, база 80 → 36)

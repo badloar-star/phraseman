@@ -109,3 +109,8 @@ Outcome: (а) модуль HOME_SCENE_INK — постоянные цвета н
 Governance-ID: TG-35E90C158110
 
 Outcome: в docs/work/color-literal-census-2026-10-25.md пометить MODE_META и #5872FF из app/learning-v2/session/[id].tsx как «невидимо, кандидат на удаление после OTA» (живёт только в LearningV2LegacySessionScreen; английский идёт через learning_v2_direct_session_player_v1.tsx, 0 литералов) и сдвинуть вниз по заметности. Scope: только этот документ. Architecture/Security/Debt: нет. Verification: перечитать раздел. Rollback: git revert.
+
+## Продолжение: перемер пейвола М на закоммиченном коде (координатор 25.10, после 28b693a44 и de97b53fe)
+Governance-ID: TG-7D7C943AF657
+
+Outcome: контраст шапки, плашек, графика, таблицы, планов и нижней панели пейвола М по коду components/paywall/m/** во всех 174 сочетаниях, по худшему краю каждого градиента, с новыми размерами (13/16/19) и живыми ru-текстами. Scope: новый scripts/paywall_m_code_contrast_measure.ts (роли читаются из исходника со сторожем), раздел в docs/work/paywall-m-theme-token-map-2026-10-25.md; код пейвола не меняется. Architecture/Security: нет. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert.

@@ -1,8 +1,8 @@
 // speaking_no_speech_copy.ts — честная подпись «не расслышал» по причине (жалоба №4, решение координатора 25.10, вариант 3).
 // зачем: раньше любой пустой результат показывал «Не расслышал. Скажи чуть громче», хотя громкость не измеряется вовсе —
 // человек повторял громче, а причина была в коротком нажатии, длинной фразе или неготовой модели. Каждая строка говорит, что
-// сделать дальше. Голос — docs/work/VOICE.md (тон «тепло»). Живые тексты Переводчика 706b13a30 (short/long/loading/empty); retry — черновик
-// до его ответа. Порядок: ru, uk, en, es, pt-BR, vi, id, tr, pl.
+// сделать дальше. Голос — docs/work/VOICE.md (тон «тепло»). Живые тексты Переводчика: 706b13a30 (short/long/loading/empty),
+// 73b9ec696 (retry). Порядок: ru, uk, en, es, pt-BR, vi, id, tr, pl.
 import { triLang, type Lang } from '../constants/i18n';
 
 export type SpeakingNoSpeechKind = 'short' | 'long' | 'retry' | 'loading' | 'empty';
@@ -38,15 +38,15 @@ const COPY: Readonly<Record<SpeakingNoSpeechKind, Nine>> = {
   // зачем (Ревизор → координатор 25.10): судья не уложился на короткой фразе (медленный телефон) или сломался — человек ни при чём,
   // нейтрально «не успел разобрать — скажи ещё раз», без «длинная» и без «ближе к телефону»
   retry: [
-    'Не успел разобрать. Скажи ещё раз',
-    'Не встиг розібрати. Скажи ще раз',
-    'Didn’t catch that in time. Say it again',
-    'No me dio tiempo a entenderlo. Repítelo',
-    'Não deu tempo de entender. Diga de novo',
-    'Chưa kịp nghe rõ. Nói lại nhé',
-    'Belum sempat menangkapnya. Ucapkan lagi',
-    'Anlamaya yetişemedim. Bir daha söyle',
-    'Nie zdążyłem zrozumieć. Powiedz jeszcze raz',
+    'Не успел разобрать — скажи ещё раз',
+    'Не встиг розібрати — скажи ще раз',
+    'Didn’t catch that in time — say it again',
+    'No me dio tiempo a entenderlo: dilo otra vez',
+    'Não deu tempo de entender — fala de novo',
+    'Mình chưa kịp nghe ra — nói lại nhé',
+    'Belum sempat menangkap — ucapkan lagi ya',
+    'Yetişemedim — bir daha söyle',
+    'Nie zdążyłem rozpoznać — powiedz jeszcze raz',
   ],
   loading: [
     'Распознавание ещё просыпается. Секунду — и повтори',

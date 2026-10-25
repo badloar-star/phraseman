@@ -25,7 +25,7 @@ import { PaywallMPlans } from './PaywallMPlans';
 import { PaywallMRoad } from './PaywallMRoad';
 import { paywallMText, paywallMZeroFromPrice } from './paywall_m_copy';
 import type { PaywallMHead, PaywallMHeadFacts, PaywallMHeadKind } from './paywall_m_head';
-import { PaywallMEnergyPanel, PaywallMLockPanel, PaywallMRefusedPanel, PaywallMStreakPanel, PaywallMWorkshopPanel } from './PaywallMPanels';
+import { PaywallMDialogPanel, PaywallMEnergyPanel, PaywallMLockPanel, PaywallMRefusedPanel, PaywallMStreakPanel, PaywallMWorkshopPanel } from './PaywallMPanels';
 import { paywallMPanelKindFor, paywallMWeekDays } from './paywall_m_panels';
 import { animateNextLayoutTransition } from '../../../app/smooth_layout';
 import {
@@ -136,6 +136,9 @@ export const PaywallMSheet = memo(function PaywallMSheet(props: PaywallMSheetPro
         {panelKind === 'refused' ? (
           <PaywallMRefusedPanel g={g} lang={lang} bottomInset={props.bottomInset} restoring={props.restoring} purchasing={props.purchasing} busy={props.ctaBusy}
             onRestore={props.onRestore} onPurchase={props.onPurchase} onLater={props.onLater} laterDisabled={props.laterDisabled} />
+        ) : panelKind === 'dialog' ? (
+          <PaywallMDialogPanel {...common} minutes={props.facts.dialogMinutes ?? 0} phrases={props.facts.dialogPhrases ?? 0}
+            correctionWas={props.facts.correctionWas ?? null} correctionNow={props.facts.correctionNow ?? null} ctaLabel={paywallMText(lang, 'mc.dialog.cta')} />
         ) : panelKind === 'energy' ? (
           <PaywallMEnergyPanel {...common}
             plusSub={!havePrice ? null : props.yearlyTrialDays ? paywallMText(lang, 'mc.energy.plusSubTrial', { days: props.yearlyTrialDays })

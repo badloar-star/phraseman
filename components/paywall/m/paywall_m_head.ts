@@ -19,6 +19,9 @@ export type PaywallMHeadFacts = Readonly<{
   /** Минуты и фразы первого разговора с ИИ. */
   dialogMinutes?: number | null;
   dialogPhrases?: number | null;
+  /** Одна фраза человека из первого разговора: как было и как стало после разбора (только на телефоне). */
+  correctionWas?: string | null;
+  correctionNow?: string | null;
   /** Номер закрытого урока (для «общего замка» и Мастерской). */
   lockedLesson?: number | null;
   /** Фраз в пройденном уроке (Мастерская). */

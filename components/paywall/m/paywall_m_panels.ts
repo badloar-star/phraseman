@@ -8,12 +8,14 @@
 import type { PaywallMHeadFacts, PaywallMHeadKind } from './paywall_m_head';
 import { PAYWALL_M_TOTAL_LESSONS, type PaywallMPerson } from './paywall_m_model';
 
-export type PaywallMPanelKind = 'energy' | 'streak' | 'lock' | 'workshop' | 'refused';
+export type PaywallMPanelKind = 'energy' | 'streak' | 'lock' | 'workshop' | 'refused' | 'dialog';
 
 /** Какая панель открывается первой для этого места входа; null — сразу общий экран М. */
 export function paywallMPanelKindFor(place: PaywallMHeadKind, person: Pick<PaywallMPerson, 'streakDays' | 'lessonsDone'>, facts: PaywallMHeadFacts = {}): PaywallMPanelKind | null {
   if (place === 'energy') return 'energy';
   if (place === 'refused') return 'refused';
+  // Разговор с ИИ: панель про первый бесплатный разговор — только когда он записан на телефоне (минуты и реплики из app/dialog_first_free_summary.ts); иначе сразу общий экран
+  if (place === 'dialog') return finitePositive(facts.dialogMinutes) && finitePositive(facts.dialogPhrases) ? 'dialog' : null;
   // Мастерская: урок и число фраз приходят от кнопки урока (параметры входа); нет любого из них — панели нет, сразу общий экран
   if (place === 'workshop') return finitePositive(facts.lockedLesson) && finitePositive(facts.workshopPhrases) ? 'workshop' : null;
   if (place === 'streak') return person.streakDays > 0 ? 'streak' : null;
@@ -54,4 +56,27 @@ export function paywallMIsMissedDay(day: PaywallMWeekDay): boolean {
 /** Доля полосы «3 из 32»: 0…1, не выходит за края. */
 export function paywallMLessonProgress(lessonsDone: number): number {
   return Math.max(0, Math.min(1, lessonsDone / PAYWALL_M_TOTAL_LESSONS));
+}
+
+export type PaywallMCorrectionPart = Readonly<{ text: string; changed: boolean }>;
+
+const wordKey = (w: string): string => w.toLowerCase().replace(/[^\p{L}\p{N}']/gu, '');
+
+/**
+ * Фраза «как стало» кусками: слова, которых не было в «как было», помечены changed — их красим цветом «верно».
+ * зачем (макет 6dkmYjjEX3kCv2s1nuFT9B, окно «Разговор с ИИ»): исправленное слово в фразе человека видно сразу. Порядок слов и пробелы сохраняются; нет «как было» — всё как есть.
+ */
+export function paywallMCorrectionParts(was: string | null | undefined, now: string): readonly PaywallMCorrectionPart[] {
+  const have = new Set((was ?? '').split(/\s+/).map(wordKey).filter(Boolean));
+  const parts: PaywallMCorrectionPart[] = [];
+  for (const piece of now.split(/(\s+)/)) {
+    if (piece === '') continue;
+    const isSpace = /^\s+$/.test(piece);
+    const key = isSpace ? '' : wordKey(piece);
+    const changed = !isSpace && key !== '' && have.size > 0 && !have.has(key);
+    const last = parts[parts.length - 1];
+    if (last && last.changed === changed) parts[parts.length - 1] = { text: last.text + piece, changed };
+    else parts.push({ text: piece, changed });
+  }
+  return parts;
 }

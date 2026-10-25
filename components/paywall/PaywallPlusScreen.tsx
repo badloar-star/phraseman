@@ -79,11 +79,23 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const wsLessonParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_lesson);
   const wsPhrasesParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_phrases);
   const lessonsDoneFact = firstParam(params.lessons_done);
+  // зачем (5 · ВХОД faf515267, координатор 26.10): итог первого бесплатного разговора приходит параметрами входа dialog_limit — читаем их для панели «Разговор с ИИ», без сети
+  const dialogMinutesParam = firstParam((params as Record<string, string | string[] | undefined>).firstDialogMinutes);
+  const dialogTurnsParam = firstParam((params as Record<string, string | string[] | undefined>).firstDialogTurns);
+  const dialogWasParam = firstParam((params as Record<string, string | string[] | undefined>).firstDialogWas);
+  const dialogNowParam = firstParam((params as Record<string, string | string[] | undefined>).firstDialogNow);
   const mFacts = useMemo(() => {
     const num = (raw: string | undefined): number | null => { const n = Number(raw); return raw !== undefined && Number.isFinite(n) && n >= 0 ? n : null; };
     const done = num(lessonsDoneFact);
-    return { lockedLesson: num(wsLessonParam) ?? (done === null ? null : done + 1), workshopPhrases: num(wsPhrasesParam) };
-  }, [lessonsDoneFact, wsLessonParam, wsPhrasesParam]);
+    const text = (raw: string | undefined): string | null => (typeof raw === 'string' && raw.trim() !== '' ? raw.trim() : null);
+    const was = text(dialogWasParam);
+    const now = text(dialogNowParam);
+    return {
+      lockedLesson: num(wsLessonParam) ?? (done === null ? null : done + 1), workshopPhrases: num(wsPhrasesParam),
+      dialogMinutes: num(dialogMinutesParam), dialogPhrases: num(dialogTurnsParam),
+      correctionWas: was && now ? was : null, correctionNow: was && now ? now : null,
+    };
+  }, [lessonsDoneFact, wsLessonParam, wsPhrasesParam, dialogMinutesParam, dialogTurnsParam, dialogWasParam, dialogNowParam]);
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
       setControlVisibility(getPaywallControlVisibility());

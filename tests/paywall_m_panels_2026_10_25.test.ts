@@ -1,7 +1,7 @@
 // зачем (координатор 25.10, окна по месту пейвола М): панель выбирается из существующего контекста; нет числа для панели — сразу общий экран, без выдуманных цифр.
 import { PAYWALL_M_COPY_ROWS } from '../components/paywall/m/paywall_m_copy.generated';
 import { paywallMText } from '../components/paywall/m/paywall_m_copy';
-import { paywallMIsMissedDay, paywallMLessonProgress, paywallMPanelKindFor, paywallMWeekDays } from '../components/paywall/m/paywall_m_panels';
+import { paywallMCorrectionParts, paywallMIsMissedDay, paywallMLessonProgress, paywallMPanelKindFor, paywallMWeekDays } from '../components/paywall/m/paywall_m_panels';
 
 const person = (over: Partial<{ streakDays: number; lessonsDone: number }> = {}) => ({ streakDays: 12, lessonsDone: 3, ...over });
 
@@ -65,5 +65,28 @@ describe('пейвол М: заголовок панели серии', () => {
     for (const key of ['mc.streak.title', 'm.head.streak.title'] as const) {
       for (const text of Object.values(PAYWALL_M_COPY_ROWS[key])) expect(text).not.toMatch(/[0-9]/);
     }
+  });
+});
+
+// зачем (5 · ВХОД faf515267 + макет 6dkmYjjEX3kCv2s1nuFT9B, раздел 2): панель «Разговор с ИИ» — только когда итог первого бесплатного разговора записан на телефоне.
+describe('пейвол М: панель «Разговор с ИИ»', () => {
+  it('нужны и минуты, и реплики; нет любого — сразу общий экран', () => {
+    expect(paywallMPanelKindFor('dialog', person(), { dialogMinutes: 6, dialogPhrases: 14 })).toBe('dialog');
+    expect(paywallMPanelKindFor('dialog', person(), { dialogMinutes: 6 })).toBeNull();
+    expect(paywallMPanelKindFor('dialog', person(), { dialogMinutes: 0, dialogPhrases: 14 })).toBeNull();
+    expect(paywallMPanelKindFor('dialog', person(), { dialogMinutes: null, dialogPhrases: null })).toBeNull();
+  });
+
+  it('заголовок подставляет минуты и фразы человека и склоняет слова', () => {
+    expect(paywallMText('ru', 'mc.dialog.title', { min: 6, n: 14 })).toBe('6 минут по-английски и 14 твоих фраз');
+    expect(paywallMText('ru', 'mc.dialog.title', { min: 1, n: 1 })).toBe('1 минута по-английски и 1 твоя фраза');
+  });
+
+  it('исправленные слова выделяются; порядок и пробелы сохраняются; без «как было» выделения нет', () => {
+    const parts = paywallMCorrectionParts('I goed to school', 'I went to school');
+    expect(parts.map((p) => p.text).join('')).toBe('I went to school');
+    expect(parts.filter((p) => p.changed).map((p) => p.text.trim())).toEqual(['went']);
+    expect(paywallMCorrectionParts(null, 'I went to school').some((p) => p.changed)).toBe(false);
+    expect(paywallMCorrectionParts('I went to school.', 'I went to school.').some((p) => p.changed)).toBe(false);
   });
 });

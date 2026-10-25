@@ -23,8 +23,9 @@ import { useStudyTarget } from '../../StudyTargetContext';
 import { paywallMText } from './paywall_m_copy';
 import { PaywallMWorkshopPreviewBlock } from './PaywallMWorkshopPreview';
 import { paywallMWorkshopPreview } from './paywall_m_workshop_preview';
-import { PAYWALL_M_TOTAL_LESSONS } from './paywall_m_model';
-import { paywallMIsMissedDay, paywallMLessonProgress, type PaywallMWeekDay } from './paywall_m_panels';
+import { semanticInk } from '../../../constants/liquidGlassSemanticInk';
+import { PAYWALL_M_LIMITS, PAYWALL_M_TOTAL_LESSONS } from './paywall_m_model';
+import { paywallMCorrectionParts, paywallMIsMissedDay, paywallMLessonProgress, type PaywallMWeekDay } from './paywall_m_panels';
 
 type ShellProps = Readonly<{
   g: GlassTokens; kicker: string | null; title: string; children?: React.ReactNode; body?: string | null;
@@ -206,7 +207,37 @@ export const PaywallMWorkshopPanel = memo(function PaywallMWorkshopPanel(p: Comm
   );
 });
 
+// ── разговор с ИИ: цифры первого бесплатного разговора и одна исправленная фраза ──────────────
+// зачем (макет 6dkmYjjEX3kCv2s1nuFT9B, раздел 2; 5 · ВХОД faf515267): минуты, реплики и фраза «было → стало» лежат на телефоне (app/dialog_first_free_summary.ts),
+// пейвол получает их параметрами входа dialog_limit; новых запросов нет. Нет фразы — блок «Твоя фраза» не рисуем, цифры в заголовке остаются.
+export const PaywallMDialogPanel = memo(function PaywallMDialogPanel(p: CommonProps & Readonly<{
+  minutes: number; phrases: number; correctionWas: string | null; correctionNow: string | null; ctaLabel: string;
+}>) {
+  const { g, lang } = p;
+  const goodInk = semanticInk(g).goodText;
+  const parts = useMemo(() => (p.correctionNow ? paywallMCorrectionParts(p.correctionWas, p.correctionNow) : []), [p.correctionWas, p.correctionNow]);
+  return (
+    <Shell g={g} bottomInset={p.bottomInset} kicker={paywallMText(lang, 'mc.dialog.kicker')} title={paywallMText(lang, 'mc.dialog.title', { min: p.minutes, n: p.phrases })}
+      body={paywallMText(lang, 'mc.dialog.body', { limit: PAYWALL_M_LIMITS.dialogPerMonth })} ctaLabel={p.ctaLabel} onCta={p.onOpenFull} fine={p.fine}
+      laterLabel={paywallMText(lang, 'm.notNow')} onLater={p.onLater} laterDisabled={p.laterDisabled}>
+      {parts.length > 0 && p.correctionNow ? (
+        <View testID="paywall-m-dialog-phrase" style={[S.phraseCard, { backgroundColor: g.opaqueCard }]}>
+          <Text style={[S.phraseLabel, { color: g.secondary }]}>{paywallMText(lang, 'mc.dialog.yourPhrase')}</Text>
+          {p.correctionWas ? <Text style={[S.phraseWas, { color: g.secondary }]}>{p.correctionWas}</Text> : null}
+          <Text style={[S.phraseNow, { color: g.text }]}>
+            {parts.map((part, i) => (part.changed ? <Text key={`${i}:${part.text}`} style={{ color: goodInk }}>{part.text}</Text> : part.text))}
+          </Text>
+        </View>
+      ) : null}
+    </Shell>
+  );
+});
+
 const S = StyleSheet.create({
+  phraseCard: { borderRadius: 20, padding: 14, gap: 6 },
+  phraseLabel: { fontSize: 13, lineHeight: 17 },
+  phraseWas: { fontSize: 16, lineHeight: 22, textDecorationLine: 'line-through' },
+  phraseNow: { fontSize: 19, lineHeight: 25, fontWeight: '800', letterSpacing: -0.2 },
   refusedHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   refusedTile: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   refusedTitle: { flex: 1, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3 },

@@ -23,7 +23,10 @@ function headExports(file) {
   const src = execFileSync('git', ['show', `HEAD:${file}`], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   const names = new Set();
   for (const m of src.matchAll(/export\s*\{([^}]*)\}\s*from/g)) {
-    for (const part of m[1].split(',')) {
+    // зачем (25.10, ложный СТОП на supportInboxOnNewMail): внутри фигурных скобок бывают комментарии перед именем — без их вырезания
+    // «// …\n  имя» не проходит проверку идентификатора, и экспортированная функция считалась «нет в HEAD»
+    const body = m[1].replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/[^\n]*/g, '');
+    for (const part of body.split(',')) {
       const name = part.trim().split(/\s+as\s+/).pop()?.trim();
       if (name && /^[A-Za-z_$][\w$]*$/.test(name)) names.add(name);
     }

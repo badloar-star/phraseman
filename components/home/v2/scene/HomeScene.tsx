@@ -168,7 +168,7 @@ export default function HomeScene(p: Props) {
   // зачем (особые сцены, пачка 3): ранг монеты и место в Пике — те же копии на телефоне, что у шапки и плитки Пика (0 сети)
   const myCoinRank = useMyCoinRank();
   const peakPlace = useSpireHomePlace(p.onSpecial && p.studyTarget !== undefined ? String(p.studyTarget) : null);
-  const moreFacts = useHomeSceneMoreFacts({ enabled: Boolean(p.onSpecial), studyTarget: p.studyTarget, lang: p.lang, streakDays: p.streakDays,
+  const moreFacts = useHomeSceneMoreFacts({ enabled: Boolean(p.onSpecial), ready: personal.hydrated, studyTarget: p.studyTarget, lang: p.lang, streakDays: p.streakDays,
     lessons: personal.completedLessons.length, phrasesLearned: localFacts.phrasesLearned, coinRank: myCoinRank, peakPlace });
   const specialFacts = useMemo(() => ({ mistakesOpen: p.mistakesOpen ?? null, wordsDue, activityDates: personal.activityDates, local: localFacts, more: moreFacts }), [p.mistakesOpen, wordsDue, personal.activityDates, localFacts, moreFacts]);
   const special = useHomeSceneSpecial({ lang: p.lang, decision, facts: specialFacts, place: null, active: p.active && !p.pending && Boolean(p.onSpecial) });

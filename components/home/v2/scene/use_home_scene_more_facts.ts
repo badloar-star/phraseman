@@ -27,6 +27,14 @@ export const homeSceneWeekKeyOf = (d: Date): string => homeSceneDayKeyOf(new Dat
 
 export type HomeSceneCounters = Readonly<{ lessons: number; phrases: number | null; rank: number | null }>;
 
+/**
+ * Снимок для записи: неизвестные сейчас счётчики (null) не стирают прошлые значения.
+ * зачем (Ревизор 25.10 по a796ac60e, 🔴 ложный рубеж): иначе «неизвестно» затирало снимок, и следующий вход видел «переход порога».
+ */
+export function homeSceneMergeCounters(prev: HomeSceneCounters | null, now: HomeSceneCounters): HomeSceneCounters {
+  return { lessons: now.lessons, phrases: now.phrases ?? prev?.phrases ?? null, rank: now.rank ?? prev?.rank ?? null };
+}
+
 /** Рубеж с прошлого снимка: первый порог, который счётчик перешёл; ранг — любое повышение. Снимка нет — рубежа нет. */
 export function homeScenePickMilestone(prev: HomeSceneCounters | null, now: HomeSceneCounters): Readonly<{ key: string; n: number }> | null {
   if (!prev) return null;
@@ -86,6 +94,11 @@ const EMPTY: HomeSceneMoreFacts = Object.freeze({ phrase: null, phraseSeen: null
 
 type Input = Readonly<{
   enabled: boolean;
+  /**
+   * Личный прогресс прочитан с диска (personal.hydrated). До этого уроков «0» — ни читать, ни писать снимок нельзя.
+   * зачем (Ревизор 25.10 по a796ac60e, 🔴): снимок {lessons:0} до гидрации → после гидрации «перешёл порог 100» у каждого занимающегося.
+   */
+  ready: boolean;
   studyTarget: unknown;
   lang: string;
   streakDays: number;
@@ -118,21 +131,28 @@ export function useHomeSceneMoreFacts(i: Input): HomeSceneMoreFacts {
   const countersKey = `${i.lessons}|${String(i.phrasesLearned)}|${String(i.coinRank)}|${String(i.peakPlace)}|${i.streakDays}`;
   useEffect(() => {
     if (!i.enabled) return undefined;
+    if (!i.ready) { console.log(LOG, 'special:more_skip', JSON.stringify({ reason: 'personal_progress_not_hydrated' })); return undefined; } // guard-ok: ранний выход с причиной
     let alive = true;
     const now = new Date();
     const today = homeSceneDayKeyOf(now);
     void (async () => {
       const [stats, phraseMod, prevCounters, peakMemo, seenDay] = await Promise.all([
-        import('../../../../app/lifetime_profile_stats').then((m) => m.readLifetimeProfileStatsCache()).catch(() => null),
-        import('../../../../app/daily_phrase_system').catch(() => null),
+        import('../../../../app/lifetime_profile_stats').then((m) => m.readLifetimeProfileStatsCache()).catch((error: unknown) => {
+          console.warn(LOG, 'special:more_stats_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); return null; // guard-ok: сбой с причиной — без рекорда серии
+        }),
+        import('../../../../app/daily_phrase_system').catch((error: unknown) => {
+          console.warn(LOG, 'special:more_phrase_module_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); return null; // guard-ok: сбой с причиной — без фразы дня
+        }),
         readJson<HomeSceneCounters>(MILESTONE_KEY),
         readJson<HomeScenePeakMemo>(PEAK_KEY),
-        AsyncStorage.getItem(PHRASE_SEEN_KEY).catch(() => null),
+        AsyncStorage.getItem(PHRASE_SEEN_KEY).catch((error: unknown) => {
+          console.warn(LOG, 'special:more_phrase_seen_read_failed', JSON.stringify({ error: error instanceof Error ? error.message : String(error) })); return null; // guard-ok: сбой с причиной — считаем «не показана»
+        }),
       ]);
       if (!alive) return;
       const counters: HomeSceneCounters = { lessons: i.lessons, phrases: i.phrasesLearned, rank: i.coinRank };
       const milestone = homeScenePickMilestone(prevCounters, counters);
-      writeJson(MILESTONE_KEY, counters);
+      writeJson(MILESTONE_KEY, homeSceneMergeCounters(prevCounters, counters));
       let peakOvertaken: HomeSceneMoreFacts['peakOvertaken'] = null;
       if (i.peakPlace !== null) {
         const step = homeScenePeakStep(peakMemo, i.peakPlace, now);
@@ -145,13 +165,14 @@ export function useHomeSceneMoreFacts(i: Input): HomeSceneMoreFacts {
       const phrase = p && p.english ? { text: p.english, tr: (i.lang === 'uk' ? p.literal_uk : p.literal) || null } : null;
       const phraseSeen = phraseSeenDay === today || seenDay === today;
       const best = typeof stats?.longestStreakDays === 'number' ? stats.longestStreakDays : null;
-      const streakBest = best !== null && best > 0 ? { streak: i.streakDays, best } : null;
+      // зачем (координатор 25.10, тот же класс, что ложный рубеж): серия 0 — ещё не прочитана или её нет; «0 из N» не показываем
+      const streakBest = best !== null && best > 0 && i.streakDays > 0 ? { streak: i.streakDays, best } : null;
       const next: HomeSceneMoreFacts = Object.freeze({ phrase, phraseSeen: phrase ? phraseSeen : null, streakBest, milestone, peakOvertaken });
       console.log(LOG, 'special:more', JSON.stringify({ phrase: Boolean(phrase), phraseSeen: next.phraseSeen, streak: i.streakDays, best, milestone: milestone?.key ?? null, prevCounters, counters, peakOvertaken })); // guard-ok: одна строка на вход
       setFacts(next);
     })();
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: пересчёт по ключу счётчиков, цели и языку
-  }, [i.enabled, i.studyTarget, i.lang, countersKey]);
+  }, [i.enabled, i.ready, i.studyTarget, i.lang, countersKey]);
   return facts;
 }

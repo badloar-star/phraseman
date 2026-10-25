@@ -54,3 +54,25 @@ describe('[HOME-SCENE] тексты и подключение пачки 3', () 
     expect(home).toContain('if (next) markHomeScenePhraseSeen();');
   });
 });
+
+describe('[HOME-SCENE] рубеж не ложный до гидрации (Ревизор 25.10 по a796ac60e)', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const m = require('../components/home/v2/scene/use_home_scene_more_facts') as typeof import('../components/home/v2/scene/use_home_scene_more_facts');
+  it('неизвестные счётчики не стирают снимок', () => {
+    expect(m.homeSceneMergeCounters({ lessons: 120, phrases: 300, rank: 4 }, { lessons: 120, phrases: null, rank: null })).toEqual({ lessons: 120, phrases: 300, rank: 4 });
+  });
+  it('хук не читает и не пишет снимок, пока личный прогресс не прочитан', () => {
+    const src = read('components/home/v2/scene/use_home_scene_more_facts.ts');
+    expect(src).toContain("if (!i.ready) { console.log(LOG, 'special:more_skip', JSON.stringify({ reason: 'personal_progress_not_hydrated' })); return undefined; }");
+    expect(read('components/home/v2/scene/HomeScene.tsx')).toContain('ready: personal.hydrated');
+    expect(src).not.toMatch(/\.catch\(\(\) => null\)/);
+  });
+});
+
+describe('[HOME-SCENE] остальные сцены со снимками не врут до загрузки', () => {
+  it('рекорд серии — только при известной серии > 0; место в Пике — только известное', () => {
+    const src = read('components/home/v2/scene/use_home_scene_more_facts.ts');
+    expect(src).toContain('best !== null && best > 0 && i.streakDays > 0 ?');
+    expect(src).toContain('if (i.peakPlace !== null) {');
+  });
+});

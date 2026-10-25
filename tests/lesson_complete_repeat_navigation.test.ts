@@ -14,7 +14,10 @@ describe('lesson_complete repeat navigation', () => {
     expect(handlerStart).toBeGreaterThanOrEqual(0);
     // Подготовка экрана — без ожидания (PM-229: обработчик ошибки теперь пишет причину в журнал).
     expect(handler).toMatch(/void primeLessonScreenFromStorage\(lessonId, studyTarget\)\.catch\(/);
-    expect(handler).toContain("router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });");
+    // зачем (Мастерская фраз, aa2bbfc3e): «Ещё раз» по-прежнему ведёт через replace на /lesson1 с id и serverAttemptId = repeatAttemptId; параметры режима
+    // workshop/from добавляются ТОЛЬКО при isWorkshopCompletion — обычный повтор урока остаётся с двумя параметрами. Сторож ловит смысл, а не точную строку.
+    expect(handler).toMatch(/router\.replace\(\{ pathname: '\/lesson1', params: \{ id: lessonId, serverAttemptId: repeatAttemptId(?:, \.\.\.\(isWorkshopCompletion \? \{ workshop: '1', from: 'workshop' \} : \{\}\))? \} \}\);/);
+    expect(handler.split("workshop: '1'").length - 1).toBe(handler.split("isWorkshopCompletion ? { workshop: '1'").length - 1);
     expect(handler.indexOf('markNextNavigationAsReplace()')).toBeLessThan(handler.indexOf('router.replace'));
     expect(handler).not.toContain('await primeLessonScreenFromStorage');
   });

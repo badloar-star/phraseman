@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Значок уведомлений: было → стало</title>
+<style>
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600 700; }
+:root { --page: #0E0F12; --panel: #17191D; --ink: #F2F3F5; --soft: #A9ADB4; --ok: #6FD39A; --no: #FF8A80; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; padding: 32px 16px 64px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+h1 { font-size: 26px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
+.lead { color: var(--soft); font-size: 15px; line-height: 1.55; margin: 0 0 8px; max-width: 760px; }
+.note { display: inline-block; margin: 8px 0 28px; padding: 8px 12px; border-radius: 10px; background: #2A2418; color: #F3D9A4; font-size: 13px; }
+.theme { background: var(--panel); border-radius: 18px; padding: 20px; margin-bottom: 18px; }
+.theme h2 { font-size: 16px; font-weight: 600; margin: 0 0 14px; }
+.grid { display: grid; grid-template-columns: 120px 1fr 1fr; gap: 12px 16px; align-items: center; }
+.colhead { font-size: 12px; color: var(--soft); text-transform: none; }
+.place { font-size: 13px; color: var(--soft); line-height: 1.35; }
+.cell { display: flex; flex-direction: column; gap: 8px; }
+.scene { height: 76px; border-radius: 14px; position: relative; display: flex; align-items: center; justify-content: flex-end; padding-right: 22px; }
+.env { position: relative; width: 44px; height: 38px; display: flex; align-items: center; justify-content: center; }
+.badge { position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
+  font-size: 13px; font-weight: 700; line-height: 18px; text-align: center; }
+.sheet { border-radius: 14px; padding: 12px 14px 12px 22px; position: relative; }
+.dot { position: absolute; top: 18px; left: 9px; width: 8px; height: 8px; border-radius: 4px; }
+.row-title { font-size: 14px; font-weight: 600; }
+.row-sub { font-size: 12px; margin-top: 3px; }
+.k { font-size: 12px; color: var(--soft); font-variant-numeric: tabular-nums; }
+.k b { font-weight: 600; }
+.pass { color: var(--ok); } .fail { color: var(--no); }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } .colhead.empty { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Значок «непрочитано»: было → стало</h1>
+  <p class="lead">Слева — прежний постоянный красный #EF4444 с белой цифрой (цифра 3,76 при норме 4,5, в теме не участвовал).
+  Справа — новый: красный текущей темы из одного источника. Кружок должен отличаться от поверхности (≥ 3), цифра — читаться (≥ 4,5).
+  В приложении значок виден в центре уведомлений (колокольчик на Главной): точка у непрочитанного письма команды
+  (строка подсвечена) и точка у непрочитанного уведомления. Сама точка на колокольчике Главной красится цветом текста темы
+  и не менялась. Конверт с цифрой сейчас открывается только из дев-витрины — показан последним рядом для полноты.</p>
+  <div class="note">Отрисовка по токенам темы, не снимок эмулятора — Сверка ночью не снимает. Цвета те же, что выдаёт приложение.</div>
+  <div id="list"></div>
+</div>
+<script>
+const DATA = [{"rows":{"teamRow":"#3D4148","noteRow":"#222429","oldTeam":2.72,"oldNote":4.13,"newTeam":3.6,"newNote":5.45},"id":"graphite","label":"Графит · тёмная · Спокойно","sceneTop":"#545C66","sceneBottom":"#313B45","sceneText":"#FFFFFF","accentText":"#F2F1F6","sheet":"#222429","text":"#FFFFFF","secondary":"#B8B9BD","bg":"#0C0D10","old":{"sceneFill":1.8,"sheetFill":4.13,"ink":3.76},"scene":{"fill":"#F29892","ink":"#0C0D10","fillK":3.12,"inkK":8.96},"sheetPaint":{"fill":"#ED756E","ink":"#0C0D10","fillK":5.45,"inkK":6.82}},{"rows":{"teamRow":"#E8ECEF","noteRow":"#DCE4EB","oldTeam":3.17,"oldNote":2.93,"newTeam":5.27,"newNote":4.87},"id":"polar","label":"Полярная · светлая · Спокойно","sceneTop":"#006098","sceneBottom":"#002C58","sceneText":"#13191E","accentText":"#1A3042","sheet":"#FAFCFE","text":"#13191E","secondary":"#535C64","bg":"#EAF1F7","old":{"sceneFill":1.78,"sheetFill":3.66,"ink":3.76},"scene":{"fill":"#D1A7AA","ink":"#13191E","fillK":3.14,"inkK":8.28},"sheetPaint":{"fill":"#AB3837","ink":"#EAF1F7","fillK":6.09,"inkK":5.5}},{"rows":{"teamRow":"#D8FAEE","noteRow":"#ECECEF","oldTeam":3.37,"oldNote":3.19,"newTeam":6.2,"newNote":5.86},"id":"grad_aurora","label":"Аврора (градиент) · светлая · Максимум","sceneTop":"#006F4E","sceneBottom":"#003817","sceneText":"#111114","accentText":"#185E47","sheet":"#FFFFFF","text":"#111114","secondary":"#5C5C63","bg":"#DED7F9","old":{"sceneFill":1.65,"sheetFill":3.76,"ink":3.76},"scene":{"fill":"#CFAEC7","ink":"#111114","fillK":3.11,"inkK":9.45},"sheetPaint":{"fill":"#A33130","ink":"#DED7F9","fillK":6.91,"inkK":5}},{"rows":{"teamRow":"#5D4A49","noteRow":"#383235","oldTeam":2.2,"oldNote":3.33,"newTeam":3.17,"newNote":4.81},"id":"grad_coral","label":"Коралл (градиент) · тёмная · Максимум","sceneTop":"#5D4746","sceneBottom":"#553E3B","sceneText":"#FFFFFF","accentText":"#FFC8BD","sheet":"#383235","text":"#FFFFFF","secondary":"#C3C4C7","bg":"#0C0D10","old":{"sceneFill":2.27,"sheetFill":3.33,"ink":3.76},"scene":{"fill":"#F67C75","ink":"#0C0D10","fillK":3.28,"inkK":7.46},"sheetPaint":{"fill":"#F67C75","ink":"#0C0D10","fillK":4.81,"inkK":7.46}},{"rows":{"teamRow":"#D1D6D8","noteRow":"#F6F7F8","oldTeam":2.57,"oldNote":3.51,"newTeam":5.02,"newNote":6.86},"id":"grad_full_titanium","label":"Титан · светлая · Спокойно","sceneTop":"#34383D","sceneBottom":"#0A0C0F","sceneText":"#181a20","accentText":"#932A25","sheet":"#DCE1E4","text":"#181a20","secondary":"#55505B","bg":"#e0e3e5","old":{"sceneFill":3.14,"sheetFill":2.86,"ink":3.76},"scene":{"fill":"#B27070","ink":"#181A20","fillK":3.06,"inkK":4.51},"sheetPaint":{"fill":"#993231","ink":"#E0E3E5","fillK":5.58,"inkK":5.71}},{"rows":{"teamRow":"#51393B","noteRow":"#3C4248","oldTeam":2.79,"oldNote":2.7,"newTeam":6.2,"newNote":6},"id":"grad_full_titanium","label":"Титан · тёмная · Максимум","sceneTop":"#34383D","sceneBottom":"#0A0C0F","sceneText":"#fff9f6","accentText":"#FFB2A9","sheet":"#292F34","text":"#fff9f6","secondary":"#DACFD0","bg":"#121416","old":{"sceneFill":3.14,"sheetFill":3.6,"ink":3.76},"scene":{"fill":"#FFB4AD","ink":"#121416","fillK":6.96,"inkK":10.89},"sheetPaint":{"fill":"#FFB4AD","ink":"#121416","fillK":7.99,"inkK":10.89}}];
+const OLD = '#EF4444', OLD_INK = '#FFFFFF';
+const TEAM = ['Новое письмо от команды', 'Мы обновили раздел карточек'];
+const NOTE = ['Аня ответила на твой вопрос', '5 минут назад'];
+const mark = (v, min) => '<b class="' + (v >= min ? 'pass' : 'fail') + '">' + String(v).replace('.', ',') + '</b>';
+const env = (stroke) => '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="' + stroke + '" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M4 7.5l8 5.5 8-5.5"/></svg>';
+function scene(t, fill, ink, kFill, kInk) {
+  return '<div class="cell"><div class="scene" style="background:linear-gradient(180deg,' + t.sceneTop + ',' + t.sceneBottom + ')">'
+    + '<div class="env">' + env(t.accentText) + '<span class="badge" style="background:' + fill + ';color:' + ink + '">3</span></div></div>'
+    + '<div class="k">кружок к сцене ' + mark(kFill, 3) + ' · цифра ' + mark(kInk, 4.5) + '</div></div>';
+}
+function sheet(t, row, fill, kFill, title, sub) {
+  return '<div class="cell"><div class="sheet" style="background:' + row + '"><span class="dot" style="background:' + fill + '"></span>'
+    + '<div class="row-title" style="color:' + t.text + '">' + title + '</div>'
+    + '<div class="row-sub" style="color:' + t.secondary + '">' + sub + '</div></div>'
+    + '<div class="k">точка к строке ' + mark(kFill, 3) + '</div></div>';
+}
+document.getElementById('list').innerHTML = DATA.map((t) =>
+  '<section class="theme"><h2>' + t.label + '</h2><div class="grid">'
+  + '<div class="colhead empty"></div><div class="colhead">Было · #EF4444</div><div class="colhead">Стало · красный темы</div>'
+  + '<div class="place">Письмо команды (строка подсвечена)</div>' + sheet(t, t.rows.teamRow, OLD, t.rows.oldTeam, TEAM[0], TEAM[1]) + sheet(t, t.rows.teamRow, t.sheetPaint.fill, t.rows.newTeam, TEAM[0], TEAM[1])
+  + '<div class="place">Уведомление</div>' + sheet(t, t.rows.noteRow, OLD, t.rows.oldNote, NOTE[0], NOTE[1]) + sheet(t, t.rows.noteRow, t.sheetPaint.fill, t.rows.newNote, NOTE[0], NOTE[1])
+  + '<div class="place">Конверт с цифрой<br>(только дев-витрина)</div>' + scene(t, OLD, OLD_INK, t.old.sceneFill, t.old.ink) + scene(t, t.scene.fill, t.scene.ink, t.scene.fillK, t.scene.inkK)
+  + '</div></section>').join('');
+</script>
+</body>
+</html>

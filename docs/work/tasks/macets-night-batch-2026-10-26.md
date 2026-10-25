@@ -27,3 +27,9 @@ Governance-ID: TG-36DCC8AEEFDC
 git revert соответствующего коммита.
 
 Governance-ID: TG-F1DEB9A96127
+
+Governance-ID: TG-36D31AA874DE
+
+Governance-ID: TG-E68D605568EA
+
+Governance-ID: TG-DED1DC9B03E7

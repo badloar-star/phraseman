@@ -73,6 +73,10 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
 
   ['/friends', 'friends'],
   ['/(tabs)/friends', 'friends'],
+  // зачем (аудит «назад» 26.10, пункт А): вкладка «Сообщество» заменила «Друзей» (те же PATHNAME_TO_IDX 3) — без корня дочерние
+  // экраны, открытые с неё, теряли историю ([NAV-BACK] candidate:reset leaving_no_section)
+  ['/community', 'friends'],
+  ['/(tabs)/community', 'friends'],
   ['/settings', 'settings'],
   ['/(tabs)/settings', 'settings'],
 
@@ -95,6 +99,9 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/achievements_screen',
   '/referrals',
   '/promo_code_entry',
+  // зачем (аудит «назад» 26.10, пункт А): память диалогов открывается из «Приватности» — портал наследует раздел открывшего
+  // и «назад» возвращает туда, а не в хаб Диалогов
+  '/dialogue_v2_memory',
   '/settings_edu',
   '/flashcards_voice_picker',
   '/survey_screen',
@@ -282,6 +289,13 @@ function fixedChildSection(pathname: string): NavigationSection | null {
   // зачем (Сверка 14.10, 3 из 3): брифинг диалога был без раздела — история «куда вернуться» обнулялась на нём, пейвол «энергия → Plus»
   // наследовал пустой раздел, и крестик уводил на Главную, снимая брифинг. Брифинг — часть «Диалогов»: крестик возвращает на него.
   if (pathname === '/dialogue_v2_briefing') return 'dialogs';
+  // зачем (аудит «назад» 26.10, пункт А): тема и свободный диалог открываются из хаба Диалогов. Тема без раздела ломала «назад» с
+  // брифинга, открытого из неё: история сбрасывалась и человек прыгал через тему в хаб. Сессия и итог намеренно НЕ здесь:
+  // итог по B1 закрывается в хаб (с разделом ✕ вернул бы в законченную сессию), сессия — решение владельца Диалогов.
+  if (pathname === '/dialogue_v2_theme' || pathname === '/dialogue_v2_freeform') return 'dialogs';
+  // зачем (там же): дуэль и «моя неделя» — экраны Друзей; «Сегодня» открывается с Главной
+  if (pathname === '/friends_duel' || pathname === '/friends_week_mine') return 'friends';
+  if (pathname === '/today_tasks') return 'home';
 
   if (
     pathname.startsWith('/settings_')

@@ -11,6 +11,19 @@ import { navigationRoutePolicyForAudit } from '../app/navigation_back';
 const ROOT = path.join(__dirname, '..');
 const baseline: string[] = JSON.parse(fs.readFileSync(path.join(ROOT, 'config/back_nav_registry_baseline.json'), 'utf8'));
 
+/**
+ * Намеренно без роли — решение владельцев зон, не долг (аудит 26.10, пункт А).
+ * Сюда добавлять только с причиной; переход в реестр — убрать отсюда.
+ */
+const INTENTIONALLY_UNREGISTERED: Readonly<Record<string, string>> = {
+  // итог диалога закрывается ✕ и Android-«назад» в хаб (B1 Моментов, bdd4ece38); сессия кладёт итог поверх себя push-ем —
+  // с разделом 'dialogs' ✕ вернул бы в только что законченную сессию
+  'app/dialogue_v2_completion.tsx': 'B1: ✕ и «назад» в хаб Диалогов, не в законченную сессию',
+  // сессию открывает брифинг push-ем — с разделом 'dialogs' «назад» из идущей сессии вернул бы на брифинг (повторный старт, трата
+  // энергии) вместо хаба; менять — решение владельца Диалогов
+  'app/dialogue_v2_session.tsx': 'выход из сессии — в хаб, не на брифинг (решает владелец Диалогов)',
+};
+
 function routeFiles(dir: string, out: string[] = []): string[] {
   for (const name of fs.readdirSync(path.join(ROOT, dir))) {
     const rel = `${dir}/${name}`;
@@ -37,11 +50,23 @@ const screensWithBack = routeFiles('app').filter((rel) => {
 describe('экраны с «назад» — в реестре ролей навигации', () => {
   it('экран без роли есть только в базе (база только уменьшается)', () => {
     const unknown = screensWithBack.filter((rel) => navigationRoutePolicyForAudit(routeOf(rel)).role === 'unknown');
-    expect(unknown.filter((rel) => !baseline.includes(rel))).toEqual([]); // новый экран — сразу в реестр app/navigation_back.ts
+    // новый экран — сразу в реестр app/navigation_back.ts
+    expect(unknown.filter((rel) => !baseline.includes(rel) && !(rel in INTENTIONALLY_UNREGISTERED))).toEqual([]);
   });
 
-  it('в базе нет лишнего: добавленный в реестр или удалённый экран убран из базы', () => {
-    const stale = baseline.filter((rel) => !fs.existsSync(path.join(ROOT, rel)) || navigationRoutePolicyForAudit(routeOf(rel)).role !== 'unknown');
+  it('в базе и в списке «намеренно» нет лишнего: добавленный в реестр или удалённый экран убран', () => {
+    const listed = [...baseline, ...Object.keys(INTENTIONALLY_UNREGISTERED)];
+    const stale = listed.filter((rel) => !fs.existsSync(path.join(ROOT, rel)) || navigationRoutePolicyForAudit(routeOf(rel)).role !== 'unknown');
     expect(stale).toEqual([]);
+  });
+
+  it('пункт А аудита: тема, свободный диалог, друзья, «Сегодня» — в разделах; память — портал; «Сообщество» — корень', () => {
+    expect(navigationRoutePolicyForAudit('/dialogue_v2_theme')).toEqual({ role: 'child', section: 'dialogs' });
+    expect(navigationRoutePolicyForAudit('/dialogue_v2_freeform')).toEqual({ role: 'child', section: 'dialogs' });
+    expect(navigationRoutePolicyForAudit('/friends_duel')).toEqual({ role: 'child', section: 'friends' });
+    expect(navigationRoutePolicyForAudit('/friends_week_mine')).toEqual({ role: 'child', section: 'friends' });
+    expect(navigationRoutePolicyForAudit('/today_tasks')).toEqual({ role: 'child', section: 'home' });
+    expect(navigationRoutePolicyForAudit('/dialogue_v2_memory').role).toBe('portal');
+    expect(navigationRoutePolicyForAudit('/(tabs)/community')).toEqual({ role: 'root', section: 'friends' });
   });
 });

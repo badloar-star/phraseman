@@ -102,5 +102,7 @@ export function lv2TaskTileLook(g: Lv2Glass, verdict: Lv2TaskTileVerdict): Lv2Ta
 
 /** Блок «Правильно: … / объяснение» (`.lane`): верный — бледно-зелёный с зелёным заголовком, неверный — тот же тёплый бледный тон; без рамки. */
 export function lv2TaskVerdictBlockLook(g: Lv2Glass, ok: boolean): Readonly<{ backgroundColor: string; titleColor: string; bodyColor: string }> {
-  return { backgroundColor: ok ? g.goodSoft : lv2TaskAmber(g).fill, titleColor: ok ? g.good : g.text, bodyColor: g.secondary };
+  // зачем (4 · ТЕМЫ 25.10, замер L11/L17): сырой good на подложке поверх фона давал 3,55–3,76 в светлых темах — заголовок цветом semanticInk
+  // (тон темы, доведённый до ≥ 4,55 и на фоне экрана); пояснение secondary на заливке блока не дотягивало до 4,5 — text
+  return { backgroundColor: ok ? g.goodSoft : lv2TaskAmber(g).fill, titleColor: ok ? semanticInk(g).goodText : g.text, bodyColor: g.text };
 }

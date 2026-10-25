@@ -33,7 +33,8 @@ async function main(): Promise<void> {
   assert.match(chrome, /name="albums"/);
   assert.doesNotMatch(chrome, /Badge|badge/);
   // таблетки HUD: красное сердце — токен темы (bad), не белое
-  assert.match(chrome, /iconTone === 'bad' \? g\.bad : g\.text/);
+  // 4 · ТЕМЫ 25.10 (0ace9f5c7): значок «ошибка» — доведённый тон темы semanticInk, не сырой bad
+  assert.match(chrome, /iconTone === 'bad' \? semanticInk\(g\)\.badText : g\.text/);
   // никаких обводок и сжатия шрифта
   assert.doesNotMatch(chrome, /borderWidth|borderColor|adjustsFontSizeToFit/);
 

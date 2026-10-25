@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 import { actionBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -135,7 +136,9 @@ export const Lv2Chip = memo(function Lv2Chip({
   // зачем (владелец 22.10, 1:1, таблица 4 · ТЕМЫ п. 1, 6): заливка чипа — `--ctl` макета (controlSoft), полка — `chipShelf`; выбранный — акцент 14 % (accentWash14)
   const task = lv2TaskTokens(g);
   const bg = ok ? g.goodFill : bad ? g.badFill : selected ? task.accentWash14 : task.controlSoft;
-  const ink = ok ? g.good : bad ? g.bad : g.text;
+  // зачем (4 · ТЕМЫ 25.10, замер L16): текст и значок чипа «верно / неверно» стоят на 18 %-заливке поверх фона — сырой good/bad там < 4,5;
+  // semanticInk получает весь Lv2Glass (с bg) и доводит тон темы с учётом этой заливки
+  const ink = ok ? semanticInk(g).goodText : bad ? semanticInk(g).badText : g.text;
   const plate = ok ? lv2Alpha(LV2_GOOD, 0.25) : bad ? lv2Alpha(LV2_BAD, 0.25) : task.chipShelf;
   return (
     <View style={[styles.chipPlate, { backgroundColor: plate, opacity: verdict === 'dim' ? 0.45 : 1 }, style]}>
@@ -194,7 +197,7 @@ export const Lv2Option = memo(function Lv2Option({
   const edge = look.edgeColor;
   const lifted = look.lifted;
   const ink = look.color;
-  const markInk = ok ? g.good : g.bad;
+  const markInk = ok ? semanticInk(g).goodText : semanticInk(g).badText; // зачем: пометка плитки — тот же доведённый тон, что текст (замер L16)
   return (
     <Pressable
       testID={testID}

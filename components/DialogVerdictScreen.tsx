@@ -670,15 +670,16 @@ export default function DialogVerdictScreen({
                       maxFontSizeMultiplier={1.2}
                     >
                       {triLang(lang, {
-                        ru: 'Подробный разбор сейчас недоступен. Не будем приписывать ошибки или успехи без проверки.',
-                        uk: 'Детальний розбір зараз недоступний. Не будемо приписувати помилки чи успіхи без перевірки.',
-                        en: 'A detailed review isn’t available right now. We won’t point out mistakes or wins without checking.',
-                        es: 'El análisis detallado no está disponible ahora. No atribuiremos errores ni aciertos sin comprobarlos.',
-                        'pt-BR': 'A análise detalhada não está disponível agora. Não vamos atribuir erros ou acertos sem verificar.',
-                        vi: 'Bản phân tích chi tiết hiện chưa có. Chúng tôi sẽ không khẳng định lỗi hay thành công khi chưa kiểm tra.',
-                        id: 'Ulasan terperinci belum tersedia. Kami tidak akan mengklaim kesalahan atau keberhasilan tanpa memeriksa.',
-                        tr: 'Ayrıntılı değerlendirme şu anda kullanılamıyor. Kontrol etmeden hata ya da başarı iddiasında bulunmayacağız.',
-                        pl: 'Szczegółowa analiza jest teraz niedostępna. Nie będziemy przypisywać błędów ani sukcesów bez sprawdzenia.',
+                        // зачем (голос PhraseMan, VOICE.md, владелец 25.10): по-человечески вместо служебного объяснения
+                        ru: 'Разбор пока не загрузился. Загляни чуть позже — он никуда не денется.',
+                        uk: 'Розбір поки не завантажився. Зазирни трохи згодом — він нікуди не дінеться.',
+                        en: 'The review hasn’t loaded yet. Check back a bit later — it isn’t going anywhere.',
+                        es: 'El análisis todavía no cargó. Vuelve en un rato: no se va a ir a ningún lado.',
+                        'pt-BR': 'A análise ainda não carregou. Volta daqui a pouco — ela não vai fugir.',
+                        vi: 'Phần phân tích chưa tải xong. Lát nữa quay lại nhé — nó không chạy đâu.',
+                        id: 'Ulasannya belum termuat. Cek lagi nanti — tidak akan ke mana-mana.',
+                        tr: 'Değerlendirme henüz yüklenmedi. Biraz sonra bak — bir yere kaçmıyor.',
+                        pl: 'Analiza jeszcze się nie wczytała. Zajrzyj trochę później — nigdzie nie ucieknie.',
                       })}
                     </Text>
                   ) : completionFeedbackMode === 'needs_learner_turn' ? (
@@ -687,15 +688,15 @@ export default function DialogVerdictScreen({
                       maxFontSizeMultiplier={1.2}
                     >
                       {triLang(lang, {
-                        ru: 'В переписке пока нет твоих реплик, поэтому оценивать язык ещё нечего.',
-                        uk: 'У листуванні поки немає твоїх реплік, тому оцінювати мову ще нічого.',
-                        en: 'There are no messages from you in this conversation yet, so there is no language to assess.',
-                        es: 'Aún no hay mensajes tuyos en esta conversación, así que todavía no hay nada que evaluar.',
-                        'pt-BR': 'Ainda não há mensagens suas nesta conversa, então ainda não há idioma para avaliar.',
-                        vi: 'Cuộc trò chuyện này chưa có tin nhắn nào từ bạn, nên chưa có ngôn ngữ để đánh giá.',
-                        id: 'Belum ada pesan darimu dalam percakapan ini, jadi belum ada bahasa yang bisa dinilai.',
-                        tr: 'Bu konuşmada senden henüz mesaj yok; bu yüzden değerlendirilecek bir dil de yok.',
-                        pl: 'W tej rozmowie nie ma jeszcze Twoich wiadomości, więc nie ma czego oceniać językowo.',
+                        ru: 'Реплик пока нет — оценивать нечего. Напиши хоть «hi» 🙂',
+                        uk: 'Реплік поки немає — оцінювати нічого. Напиши хоч «hi» 🙂',
+                        en: 'No messages yet — nothing to rate. Even a “hi” will do 🙂',
+                        es: 'Aún no hay mensajes, nada que evaluar. Aunque sea un «hi» 🙂',
+                        'pt-BR': 'Ainda sem mensagens — nada para avaliar. Manda pelo menos um “hi” 🙂',
+                        vi: 'Chưa có tin nhắn nào — chưa có gì để chấm. Gõ thử một câu “hi” đi 🙂',
+                        id: 'Belum ada pesan — belum ada yang dinilai. Ketik “hi” saja juga boleh 🙂',
+                        tr: 'Henüz mesaj yok — değerlendirecek bir şey yok. Bir “hi” bile yeter 🙂',
+                        pl: 'Jeszcze brak wiadomości — nie ma czego oceniać. Napisz choćby „hi” 🙂',
                       })}
                     </Text>
                   ) : (review?.corrections ?? []).length === 0 ? (
@@ -704,15 +705,15 @@ export default function DialogVerdictScreen({
                       maxFontSizeMultiplier={1.2}
                     >
                       {triLang(lang, {
-                        ru: 'Ошибок не нашлось — отличная работа!',
-                        uk: 'Помилок не знайшлося — чудова робота!',
-                        en: 'No mistakes found — great work!',
-                        es: '¡Sin errores — buen trabajo!',
-                        'pt-BR': 'Sem erros — ótimo trabalho!',
-                        vi: 'Không có lỗi — làm tốt lắm!',
-                        id: 'Tidak ada kesalahan — kerja bagus!',
-                        tr: 'Hata yok — harika iş!',
-                        pl: 'Bez błędów — świetna robota!',
+                        ru: 'Ни одной ошибки. Носитель бы позавидовал!',
+                        uk: 'Жодної помилки. Носій мови позаздрив би!',
+                        en: 'Not a single mistake. A native speaker would be jealous!',
+                        es: 'Ni un solo error. ¡Un nativo te tendría envidia!',
+                        'pt-BR': 'Nenhum erro. Um nativo ficaria com inveja!',
+                        vi: 'Không một lỗi nào. Người bản xứ cũng phải ghen tị!',
+                        id: 'Tidak ada satu kesalahan pun. Penutur asli pasti iri!',
+                        tr: 'Tek bir hata yok. Ana dili olan kıskanırdı!',
+                        pl: 'Ani jednego błędu. Native by pozazdrościł!',
                       })}
                     </Text>
                   ) : (

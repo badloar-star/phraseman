@@ -35,10 +35,10 @@
 | Экран | На эталоне | Строки реестра · статус | Вывод |
 |---|---|---|---|
 | lesson_verbs | маршрут — Redirect на lesson_irregular_verbs; там **назад** (learn.html H1–H4б), «Порция пройдена» — **✕ слева** (H5) | learn-064…068 pending · learn-069 pending | «назад» есть на эталоне — смотреть lesson_irregular_verbs, не lesson_verbs |
-| level_exam | **назад** (learn.html K1–K5б, K8); итог K6–K7 — **✕ слева** | learn-085…093 pending · overlays-runtime-028 pending | **дефект**: эталон с «назад» |
+| level_exam | **назад** (learn.html K1–K5б, K8); итог K6–K7 — **✕ слева** | learn-085…093 pending · overlays-runtime-028 pending | «назад» на эталоне есть и в коде есть — общая кнопка через ExamHeader с 22.10 (d739a0bd5); сканер аудита её не видит. Итог: ✕ слева добавлен 90f5cfe7f ✅ |
 | hint | **назад** (learn.html G1–G5, общий TheoryLessonView) | строки на lesson_help: learn-059 diff · learn-060…063 pending | «назад» нужен ✅ (ScreenBackButton есть) |
 | lesson_menu | **назад** (learn.html B1–B5) | learn-019/021/022/023 pending · learn-020 diff · overlays-runtime-030…033 pending | «назад» нужен ✅ (своя BackGlyph) |
-| combined_lesson_pick | **назад** (learn.html A15–A17) | learn-016/017/018 match | **дефект**: эталон с «назад», в коде нет |
+| combined_lesson_pick | **назад** (learn.html A15–A17) | learn-016/017/018 match | «назад» нужен ✅ — SafeTopBackButton в коде с 22.10 (29128ef22); «НЕТ назад» в аудите — ложное срабатывание сканера |
 | learning-v2/session/[id] | **✕ слева** (learning-v2.html №67 скелет) | learning-v2-067 pending r1 | «только закрыть» = эталон |
 | learning-v2/chapter-exam | вопросы и итог — **✕ слева**, «Разбор ошибок» — **назад** (chapter-exam-season.html №8–13) | строк нет (эталон Сезона в реестре не заведён) | ✕ = эталон; «назад» нужен только на «Разборе» |
 | lesson1 | **назад** (learn.html D1–D18, V1–V2) | learn-028 diff · learn-029…035, 041…044, 046 pending · voice-mics-learn-001/002 pending r1 | «назад» нужен ✅ (своя кнопка) |
@@ -73,7 +73,7 @@
 
 ## Итог для владельцев зон
 
-- **Дефект по эталону (эталон с «назад», в коде нет):** level_exam (Learning V2), combined_lesson_pick (Learning V2).
+- **Дефектов по эталону нет.** (Исправлено 26.10: level_exam и combined_lesson_pick значились дефектами по сканеру аудита, но общая кнопка «назад» стоит в коде с 22.10 — d739a0bd5, 29128ef22; сканер не узнаёт SafeTopBackButton/ExamHeader. Итог экзамена уровня получил ✕ по эталону K6–K7 — 90f5cfe7f.)
 - **«Только закрыть» = эталон, не трогать:** community_pack_create, truefalse, promo_code_entry (✕ справа), friends_duel,
   lingman_video_watch (✕ справа), learning-v2/session, chapter-exam (кроме «Разбора»), modes_showcase_run, placement,
   session_intro, «Язык», «Политика», «Условия», dialogue_v2_completion.

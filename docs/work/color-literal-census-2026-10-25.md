@@ -1596,3 +1596,26 @@
 - **Сцена Главной:** цвета вынесены в `components/home/v2/scene/home_scene_ink.ts` (`HOME_SCENE_INK`, по образцу `SPIRE_SCENE_INK`), подключают
   Моменты. Попутно: в `today_scene/TodaySceneView.tsx:240` надзаголовок ещё белый 86 % — с модулем он станет белым 100 %, как у обычной и
   особых сцен.
+
+## Итог ночного перевода (Темы, 25.10)
+
+Переведено на токены (коммиты): окна обновления/обязательного обновления/рассылки — scrimStrong и shadowTint (eb3dddbe7);
+экран блокировки аккаунта в `_layout` (9f1cb43e2, d4d0f6818); значок «непрочитано» — красный темы из `notificationBadgePaint`
+(323f0905a); «Очистить память» — badText (02962b8f1). Онбординг — theme-exempt со сторожем (eb3dddbe7).
+
+Остальное по замеру живости — не живой долг:
+- **Не видны человеку (мёртвые или только дев-витрина):** `app/theory_topic_accents.ts` (76 — снаружи берут только
+  `isInteractiveTheoryLesson`, палитра `TOPIC_ACCENTS` не используется), `app/learning_v2_session_intro_check.tsx` (43 — маршрут
+  открывается только из дев-витрины), `components/learning-v2/horizons/model.ts` (70 — его берут только `LearningV2Horizons`/`HorizonArtwork`/`art.ts`, а их вне дев никто
+  не рисует), `app/flashcards/cardStatus.ts` (5 — только мёртвый `StatusFilterChips`), точки медалей и белая
+  клетка в `app/medal_utils.ts` (не вызываются), конверт с цифрой в `AppMessagesInbox` (только дев-витрина). В уборку.
+- **Не проверено до конца:** `components/ui/v2_theme.ts` (56) — его берут `components/ui` (`v2_ui`, `v2_sheet`, `V2Countdown`, `V2Fx`,
+  палитра турниров). Живой путь найден один: `V2Chip` из `v2_ui` в `modules/learning-v2/modes/sound_contrast_mode_v1.tsx`
+  (зона Learning V2) — перевести фишку на токены вместе с ними; остальной набор вне дев не подключён.
+- **Осознанные палитры (не цвета темы по смыслу):** скины башни `modules/spire/tower_skins.ts`, оформления Plus
+  `components/paywallThemeConfig.ts` и `app/paywall_copy.ts`, карточка профиля (`profile_card_looks.ts`, `profile_card_system.ts`),
+  пресеты `ugcCardThemePresets.ts`, бренд YouTube в `lingman_youtube_chrome.ts`, превью тостов медалей `medalToastThemeStyles.ts`
+  (живой путь — `medalToastStyleFromTokens`).
+- **Решения координатора/макета:** нейтральные плитки значков в тёмной панели «Ошибки» (`panelPaint.ts:49`, координатор 13.10,
+  образец «Тени»); блик на кнопке окна обновления (theme-exempt, свет, а не цвет).
+- **Сцена Главной** — модуль `home_scene_ink.ts` у Моментов (см. выше).

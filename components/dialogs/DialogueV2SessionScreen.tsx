@@ -320,6 +320,28 @@ export function DialogueV2SessionScreen({
   const goalStripFitsRef = React.useRef(false);
   const goalShown = !!(goal && coachingLabels && bottom === 'input' && !goalFolded);
   const goalStripShown = !!(goal && coachingLabels && bottom === 'input' && goalFolded && goalStripFits);
+  // зачем (жалоба владельца 25.10 «нет кнопки Перевести, кнопки только на первом сообщении»; координатор: сперва логи): у каждой
+  // реплики собеседника — индекс, какие действия показаны и какое условие решило. Пишем один раз на реплику и смену её действий.
+  const bubbleLogRef = React.useRef(new Map<string, string>());
+  React.useEffect(() => {
+    messages.forEach((message, index) => {
+      if (message.author === 'learner') return; // guard-ok: журнал только про реплики собеседника
+      const actions = [
+        message.translation && onToggleTranslation ? 'translate' : null,
+        message.preparedBotVoice ? 'listen' : null,
+        message.explanation && onOpenWhy ? 'why' : null,
+      ].filter(Boolean);
+      const previous = index > 0 ? messages[index - 1] : null;
+      const reason = message.translation ? 'has_translation'
+        : message.id === 'persona_0' ? 'opening_from_packet_has_no_translation'
+          : previous?.author === 'learner' && previous.offLanguage ? 'soft_nudge_has_no_translation'
+            : 'server_coaching_gave_no_translation';
+      const signature = `${actions.join(',')}|${reason}|${coachingLabels ? 'labels' : 'no_labels'}`;
+      if (bubbleLogRef.current.get(message.id) === signature) return; // guard-ok: уже записано
+      bubbleLogRef.current.set(message.id, signature);
+      console.log('[DIALOG-BUBBLE]', JSON.stringify({ screen: 'scenario', index, id: message.id, role: message.author, actions, reason, labels: !!coachingLabels })); // guard-ok: одна строка на реплику
+    });
+  }, [coachingLabels, messages, onOpenWhy, onToggleTranslation]);
   const vanishPrevRef = React.useRef<{ count: number; lastId: string | null }>({ count: 0, lastId: null });
   const vanishLayoutRef = React.useRef({ header: 0, list: 0, content: 0, keyboard: 0, scrollY: 0 });
   const setGoalFold = React.useCallback((folded: boolean, trigger: 'focus' | 'blur' | 'keyboard') => {

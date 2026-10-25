@@ -212,6 +212,20 @@ export function parseDialogueV2CoachedTurnResponse(
   if (response.coaching !== undefined && !coaching) {
     console.warn('[DIALOGUE-V2] coached:parse → coaching block rejected, reply kept', { scenarioId: request.scenarioId });
   }
+  // зачем (жалоба владельца 25.10 «нет кнопки Перевести, только на первом сообщении»; координатор: сперва логи [DIALOG-BUBBLE]):
+  // перевод реплики есть только из разбора хода (replyTranslations); пишем, пришёл ли разбор и почему переводов нет — без текстов.
+  const rawTranslations = (response.coaching as { replyTranslations?: unknown } | undefined)?.replyTranslations;
+  console.log('[DIALOG-BUBBLE] coaching', JSON.stringify({
+    scenarioId: request.scenarioId, replies: safeReplies.length,
+    coaching: response.coaching === undefined ? 'absent' : coaching ? 'parsed' : 'rejected',
+    rawTranslations: Array.isArray(rawTranslations) ? `array:${rawTranslations.length}` : rawTranslations === null ? 'null' : typeof rawTranslations,
+    translations: coaching?.replyTranslations ? coaching.replyTranslations.length : null,
+    reason: response.coaching === undefined ? 'no_coaching_in_response'
+      : !coaching ? 'coaching_rejected'
+        : coaching.replyTranslations ? 'ok'
+          : Array.isArray(rawTranslations) && rawTranslations.length !== safeReplies.length ? 'count_mismatch'
+            : Array.isArray(rawTranslations) ? 'translation_text_rejected' : 'no_translations_from_model',
+  })); // guard-ok: одна строка на ответ хода
   const selection = response.preparedBotVoiceSelection === undefined
     ? null
     : parseDialogueV2PreparedBotVoiceSelection(response.preparedBotVoiceSelection);

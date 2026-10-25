@@ -104,6 +104,16 @@ export function DialogueV2FreeformScreen({
 }: DialogueV2FreeformScreenProps) {
   const glass = useDialogueGlass();
   const markKeyboardCause = useDialogKeyboardLog('freeform');
+  // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; координатор: сперва логи [DIALOG-BUBBLE]): у ответов свободного разговора
+  // перевода нет — ответ хода несёт только текст; пишем это по каждой реплике собеседника один раз.
+  const bubbleLoggedRef = React.useRef(new Set<string>());
+  React.useEffect(() => {
+    messages.forEach((message, index) => {
+      if (message.author !== 'assistant' || bubbleLoggedRef.current.has(message.id)) return; // guard-ok: только новые реплики собеседника
+      bubbleLoggedRef.current.add(message.id);
+      console.log('[DIALOG-BUBBLE]', JSON.stringify({ screen: 'freeform', index, id: message.id, role: message.author, actions: [], reason: 'freeform_turn_has_no_translation_field' })); // guard-ok: одна строка на реплику
+    });
+  }, [messages]);
   const voiceBusy = voiceStatus !== 'idle';
   const canSend = draft.trim().length > 0 && !voiceBusy;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);

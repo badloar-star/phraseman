@@ -27,7 +27,9 @@ describe('Память диалогов: «Очистить память это�
   it('красный текст без заливки и плашки', () => {
     expect(start).toBeGreaterThan(0);
     expect(end).toBeGreaterThan(start);
-    expect(control).toContain('color: p.wrong');
+    // красный — badText темы (≥ 4,5 на фоне во всех 174 сочетаниях, Темы 25.10), а не p.wrong
+    expect(control).toContain('color: semanticInk(g).badText');
+    expect(control).not.toContain('color: p.wrong');
     expect(control).not.toContain('PlateFill');
     expect(control).not.toContain('boxShadow');
     expect(control).not.toMatch(/backgroundColor/);

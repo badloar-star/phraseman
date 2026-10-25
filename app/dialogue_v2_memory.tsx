@@ -31,6 +31,7 @@ import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { PressableScale } from '../components/feedback/PressableScale';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../components/v2/ShadowSurface';
+import { semanticInk } from '../constants/liquidGlassSemanticInk';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { safeRouterBack } from './navigation_back';
@@ -294,14 +295,15 @@ export default function DialogueV2MemoryRoute() {
       // зачем (владелец 13.10, dialogs-gap-001/002): «Очистить память этого языка» — красный текст БЕЗ заливки и плашки; опасное действие не должно выглядеть главной кнопкой.
       style={{ minHeight: V2.cta.height, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: clearing ? 0.65 : 1 }}
     >
-      <Text style={{ color: p.wrong, ...V2_TYPE.headline, textAlign: 'center' }}>{clearing ? copy.clearing : copy.clear}</Text>
+      {/* зачем (Темы 25.10, docs/work/zones-contrast-2026-10-25.md): p.wrong на фоне экрана давал до 4,49 в 3 из 174 сочетаний; badText — тот же красный темы, доведённый до ≥ 4,5 */}
+      <Text style={{ color: semanticInk(g).badText, ...V2_TYPE.headline, textAlign: 'center' }}>{clearing ? copy.clearing : copy.clear}</Text>
     </PressableScale>
   );
 
   const renderClearFeedback = () => (
     <>
       {clearFailed ? (
-        <Text testID="dialogue-v2-memory-clear-failed" accessibilityLiveRegion="polite" style={{ color: p.wrong, ...V2_TYPE.body, textAlign: 'center' }}>{copy.clearFailed}</Text>
+        <Text testID="dialogue-v2-memory-clear-failed" accessibilityLiveRegion="polite" style={{ color: semanticInk(g).badText, ...V2_TYPE.body, textAlign: 'center' }}>{copy.clearFailed}</Text>
       ) : null}
       <ThemedConfirmModal
         visible={confirmOpen}

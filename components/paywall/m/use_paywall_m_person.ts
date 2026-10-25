@@ -44,7 +44,9 @@ export function usePaywallMPerson(enabled: boolean): PaywallMPerson {
     streakDays: progress.streakCount,
     phrasesLearned,
     activeDays: progress.activityDates.length,
-  }), [phrasesLearned, progress.activityDates.length, progress.completedLessons.length, progress.streakCount]);
+    activityDates: progress.activityDates,
+    hydrated: progress.hydrated,
+  }), [phrasesLearned, progress.activityDates, progress.completedLessons.length, progress.hydrated, progress.streakCount]);
 }
 
 /**

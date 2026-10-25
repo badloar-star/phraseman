@@ -71,6 +71,6 @@ describe('пейвол М: шапка по месту', () => {
     expect(paywallMHeadKindForContext('phrase_workshop')).toBe('workshop');
     expect(paywallMHeadKindForContext('course_after_lesson3')).toBe('lock');
     expect(paywallMHeadKindForContext('flashcard_limit')).toBe('general');
-    expect(paywallMHeadKindForContext('plus_server_refused')).toBe('general');
+    expect(paywallMHeadKindForContext('plus_server_refused')).toBe('refused');
   });
 });

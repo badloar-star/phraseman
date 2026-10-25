@@ -13,6 +13,8 @@ import { PhraseWorkshopRowButton, type PhraseWorkshopButtonState } from "./works
 import { usePhraseWorkshopEntries } from "./workshop/use_phrase_workshop_entries";
 import { phraseWorkshopText, phraseWorkshopToastFields } from "./workshop/phrase_workshop_copy";
 import { openPremiumPaywall } from "../../app/paywall_navigation";
+import { peekLearningV2LessonBankV1 } from "../../app/learning_v2_lesson_phrase_bank_cache_v1";
+import { useStudyTarget } from "../StudyTargetContext";
 import { emitAppEvent } from "../../app/events";
 import { useRouter } from "expo-router";
 
@@ -136,6 +138,7 @@ export default function LearningV2AllLessonsList(props: Props) {
   // зачем (владелец 25.10, «Мастерская фраз»; код за флагом): состояние кнопки у пройденных уроков и что делает тап по ней —
   // замок Plus → экран Plus, «копится» → тост, открыто → экран режима (lesson1 с workshop=1). Журнал [PHRASE-WORKSHOP].
   const router = useRouter();
+  const { studyTarget: workshopStudyTarget } = useStudyTarget();
   const workshopEntries = usePhraseWorkshopEntries(rows);
   const workshopTitle = phraseWorkshopText(props.lang, "title");
   const handleWorkshop = useCallback((ordinal: number, state: PhraseWorkshopButtonState) => {
@@ -145,11 +148,12 @@ export default function LearningV2AllLessonsList(props: Props) {
       return;
     }
     if (state === "locked_plus") {
-      openPremiumPaywall(router, { context: "phrase_workshop", source: "phrase_workshop" });
+      // зачем (макет М, окно «Мастерская фраз»): панели нужны урок и число фраз банка — идут параметрами входа (банк уже в памяти, читали для состояния кнопки)
+      openPremiumPaywall(router, { context: "phrase_workshop", source: "phrase_workshop", workshop_lesson: ordinal, workshop_phrases: peekLearningV2LessonBankV1(String(workshopStudyTarget), ordinal)?.length });
       return;
     }
     router.push({ pathname: "/lesson1", params: { id: String(ordinal), workshop: "1", from: "workshop" } } as never);
-  }, [router]);
+  }, [router, workshopStudyTarget]);
   const [level, setLevel] = useState<CourseLevel>(() => getCourseLevelForLesson(selectedOrdinal));
   const currentWord = CURRENT_WORD[props.lang] ?? CURRENT_WORD.en;
   const levelHasRows = useMemo(() => {

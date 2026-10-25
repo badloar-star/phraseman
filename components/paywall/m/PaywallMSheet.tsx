@@ -6,7 +6,7 @@
 // paywall_m_enabled (по умолчанию выключен) — прежнее окно не тронуто. Цены и пробный — ТОЛЬКО строки магазина; нет цен — «цены грузятся» тихой строкой, кнопка остаётся
 // рабочей (D158), «Сегодня 0» без цены не показываем.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -24,7 +24,10 @@ import { PaywallMHeaderCard, type PaywallMStat } from './PaywallMHeaderCard';
 import { PaywallMPlans } from './PaywallMPlans';
 import { PaywallMRoad } from './PaywallMRoad';
 import { paywallMText, paywallMZeroFromPrice } from './paywall_m_copy';
-import type { PaywallMHead } from './paywall_m_head';
+import type { PaywallMHead, PaywallMHeadFacts, PaywallMHeadKind } from './paywall_m_head';
+import { PaywallMEnergyPanel, PaywallMLockPanel, PaywallMRefusedPanel, PaywallMStreakPanel, PaywallMWorkshopPanel } from './PaywallMPanels';
+import { paywallMPanelKindFor, paywallMWeekDays } from './paywall_m_panels';
+import { animateNextLayoutTransition } from '../../../app/smooth_layout';
 import {
   PAYWALL_M_TOTAL_LESSONS, paywallMChartModel, paywallMCompareRows, paywallMFooter, paywallMPace,
   type PaywallMChartKind, type PaywallMPerson,
@@ -37,6 +40,10 @@ export type PaywallMSheetProps = Readonly<{
   maxHeight: number; windowHeight: number; swipeEnabled: boolean; onSwipeClose: (dy: number) => void; onLater: () => void; laterDisabled: boolean; bottomInset: number;
   // человек и шапка места
   person: PaywallMPerson; head: PaywallMHead; chartKind: PaywallMChartKind;
+  /** Место входа (из контекста): по нему сначала открывается короткая панель, если для места есть цифры. */
+  placeKind: PaywallMHeadKind;
+  /** Факты места (номер урока, число фраз Мастерской): нет — панель этого места не открывается. */
+  facts: PaywallMHeadFacts;
   // планы и цены (только магазин)
   plansReady: boolean; selected: PaywallPlan; onSelect: (plan: PaywallPlan) => void;
   yearlyPrice: string | null; monthlyPrice: string | null; yearlyPerMonth: string | null; savingsPct: number | null;
@@ -103,6 +110,47 @@ export const PaywallMSheet = memo(function PaywallMSheet(props: PaywallMSheetPro
   const fine = props.tapNotice ?? (havePrice && footer.fineKey ? paywallMText(lang, footer.fineKey, footer.fineVars) : null);
 
   const plate = paywallPlateBg(g);
+
+  // зачем (макет 6dkmYjjEX3kCv2s1nuFT9B): по месту входа сначала короткая панель про человека, по тапу — общий экран М с шапкой места. Панель — первым кадром (всё считается на телефоне);
+  // нет цифры места (серии нет, снимок прогресса ещё не прочитан) — сразу общий экран. Стадию держим локально: переключение мгновенное, без сети.
+  const panelKind = person.hydrated === false ? null : paywallMPanelKindFor(props.placeKind, person, props.facts);
+  const [stage, setStage] = useState<'panel' | 'full'>(panelKind ? 'panel' : 'full');
+  const openFull = useCallback(() => { animateNextLayoutTransition(); setStage('full'); }, []);
+  const week = useMemo(() => (panelKind === 'streak' ? paywallMWeekDays(person.activityDates ?? [], new Date()) : []), [panelKind, person.activityDates]);
+  const finePrice = props.yearlyPrice;
+  const panelFine = props.tapNotice ?? (!havePrice || !finePrice ? null
+    : props.yearlyTrialDays ? paywallMText(lang, 'mc.fine.trial', { days: props.yearlyTrialDays, price: finePrice })
+      : props.yearlyPerMonth ? paywallMText(lang, 'mc.fine.noTrial', { price: finePrice, monthly: props.yearlyPerMonth }) : null);
+  if (stage === 'panel' && panelKind) {
+    const common = { g, lang, bottomInset: props.bottomInset, fine: panelFine, onOpenFull: openFull, onLater: props.onLater, laterDisabled: props.laterDisabled } as const;
+    const lockItem = road[0];
+    return (
+      <PaywallSwipeSheet
+        testID="paywall-sheet"
+        style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: props.maxHeight }]}
+        enabled={props.swipeEnabled}
+        travel={props.windowHeight}
+        onSwipeClose={props.onSwipeClose}
+        header={<View style={[S.handle, { backgroundColor: g.glassEdge, marginBottom: 14 }]} />}
+      >
+        {panelKind === 'refused' ? (
+          <PaywallMRefusedPanel g={g} lang={lang} bottomInset={props.bottomInset} restoring={props.restoring} purchasing={props.purchasing} busy={props.ctaBusy}
+            onRestore={props.onRestore} onPurchase={props.onPurchase} onLater={props.onLater} laterDisabled={props.laterDisabled} />
+        ) : panelKind === 'energy' ? (
+          <PaywallMEnergyPanel {...common}
+            plusSub={!havePrice ? null : props.yearlyTrialDays ? paywallMText(lang, 'mc.energy.plusSubTrial', { days: props.yearlyTrialDays })
+              : props.yearlyPerMonth ? paywallMText(lang, 'mc.energy.plusSubNoTrial', { monthly: props.yearlyPerMonth }) : null} />
+        ) : panelKind === 'workshop' ? (
+          <PaywallMWorkshopPanel {...common} lesson={props.facts.lockedLesson ?? 0} phrases={props.facts.workshopPhrases ?? 0} ctaLabel={paywallMText(lang, 'mc.workshop.cta')} />
+        ) : panelKind === 'streak' ? (
+          <PaywallMStreakPanel {...common} streakDays={person.streakDays} week={week} ctaLabel={paywallMText(lang, 'mc.streak.cta')} />
+        ) : (
+          <PaywallMLockPanel {...common} lessonsDone={person.lessonsDone} nextLesson={lockItem ? lockItem.lesson : person.lessonsDone + 1} ctaLabel={paywallMText(lang, 'mc.lock.cta')}
+            phrase={lockItem ? { meta: paywallMText(lang, 'm.head.lock.pill', { lesson: lockItem.lesson }), english: lockItem.english, translation: lockItem.translation } : null} />
+        )}
+      </PaywallSwipeSheet>
+    );
+  }
   return (
     <PaywallSwipeSheet
       testID="paywall-sheet"

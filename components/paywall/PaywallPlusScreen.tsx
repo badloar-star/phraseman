@@ -73,8 +73,17 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const [controlVisibility, setControlVisibility] = useState(getPaywallControlVisibility);
   // зачем (владелец «Да, так», координатор 25.10): пейвол «Вариант М» — за флагом «Пульта» paywall_m_enabled, по умолчанию выключен; вход «Не видим твой Plus» остаётся на своём доке
   const [mFlag, setMFlag] = useState(isPaywallMEnabled);
-  const showM = mFlag && !serverRefused;
+  const showM = mFlag;
   const mPerson = usePaywallMPerson(showM);
+  // зачем (макет М, окна по месту): факты места входа — из параметров маршрута (урок и число фраз Мастерской от кнопки урока; закрытый урок замка — lessons_done + 1)
+  const wsLessonParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_lesson);
+  const wsPhrasesParam = firstParam((params as Record<string, string | string[] | undefined>).workshop_phrases);
+  const lessonsDoneFact = firstParam(params.lessons_done);
+  const mFacts = useMemo(() => {
+    const num = (raw: string | undefined): number | null => { const n = Number(raw); return raw !== undefined && Number.isFinite(n) && n >= 0 ? n : null; };
+    const done = num(lessonsDoneFact);
+    return { lockedLesson: num(wsLessonParam) ?? (done === null ? null : done + 1), workshopPhrases: num(wsPhrasesParam) };
+  }, [lessonsDoneFact, wsLessonParam, wsPhrasesParam]);
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
       setControlVisibility(getPaywallControlVisibility());
@@ -265,7 +274,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             <PaywallMSheet
               g={g} lang={lang} maxHeight={windowHeight - insets.top - 8} windowHeight={windowHeight} swipeEnabled={swipeEnabled} onSwipeClose={onSwipeClose}
               onLater={() => p.handleClose('close', 'x')} laterDisabled={checkoutInFlight} bottomInset={insets.bottom}
-              person={mPerson} head={paywallMHeadFor(paywallMHeadKindForContext(ctx), lang, mPerson)} chartKind={paywallMChartKindFor(paywallMHeadKindForContext(ctx))}
+              person={mPerson} placeKind={paywallMHeadKindForContext(ctx)} facts={mFacts} head={paywallMHeadFor(paywallMHeadKindForContext(ctx), lang, mPerson, mFacts)} chartKind={paywallMChartKindFor(paywallMHeadKindForContext(ctx))}
               plansReady={plansShown === 'ready'} selected={p.selected} onSelect={selectPlan}
               yearlyPrice={p.yearlyPrice || null} monthlyPrice={p.monthlyPrice || null} yearlyPerMonth={p.yearlyPerMonth || null} savingsPct={p.savingsPct ?? null}
               yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}

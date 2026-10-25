@@ -6,10 +6,11 @@
 // фразы урока), не выдумываем: такая шапка падает на общую, а не печатает «0» или пусто. Чистый модуль — тест tests/paywall_m_head_2026_10_25.test.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
+import { SERVER_REFUSED_CONTEXT } from '../../../app/paywall_entry_contract';
 import { paywallMText } from './paywall_m_copy';
 import { PAYWALL_M_LIMITS, PAYWALL_M_TOTAL_LESSONS, type PaywallMChartKind, type PaywallMPerson } from './paywall_m_model';
 
-export type PaywallMHeadKind = 'general' | 'energy' | 'dialog' | 'streak' | 'workshop' | 'lock';
+export type PaywallMHeadKind = 'general' | 'energy' | 'dialog' | 'streak' | 'workshop' | 'lock' | 'refused';
 
 export type PaywallMHead = Readonly<{ pill: string | null; kicker: string; title: string; sub: string }>;
 
@@ -102,6 +103,7 @@ export function paywallMHeadKindForContext(context: string): PaywallMHeadKind {
     case 'streak': return 'streak';
     case 'phrase_workshop': return 'workshop';
     case 'course_after_lesson3': case 'lesson_b1': return 'lock';
+    case SERVER_REFUSED_CONTEXT: return 'refused'; // константа Ядра: слово входа не пишем в клиентских файлах (сторож paywall_server_refused_variant)
     default: return 'general';
   }
 }

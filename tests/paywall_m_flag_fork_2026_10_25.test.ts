@@ -17,9 +17,9 @@ describe('пейвол «Вариант М»: флаг и развилка', () 
     expect(getRemoteBool('paywall_m_enabled')).toBe(true);
   });
 
-  it('экран: М только при флаге и не на входе «Не видим твой Plus»; прежнее окно остаётся веткой else', () => {
+  it('экран: М только при флаге (вход «Не видим твой Plus» получает свою панель М); прежнее окно остаётся веткой else', () => {
     const screen = read('components/paywall/PaywallPlusScreen.tsx');
-    expect(screen).toContain('const showM = mFlag && !serverRefused;');
+    expect(screen).toContain('const showM = mFlag;');
     expect(screen).toContain('{showM ? (');
     expect(screen).toContain('<PaywallSwipeSheet testID="paywall-sheet"');
     expect(screen).toContain('usePaywallMPerson(showM)');

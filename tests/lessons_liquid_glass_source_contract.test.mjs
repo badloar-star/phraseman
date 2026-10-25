@@ -9,7 +9,8 @@ test('legacy lesson list resolves the active Liquid Glass theme above its real l
   // владелец 18.10 «верх ТОЧНО как на Главной»: своего слоя bgTop → bg → bgBottom поверх полотна нет — под Уроками то же полотно (V2Backdrop), что под Главной
   assert.ok(!lessons.includes('colors={[alphaHex(learnGlass.bgTop, 0), learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}'), 'no page-level gradient over the shared canvas');
   assert.ok(lessons.includes('page === "lessons" || page === "dialogs" || page === "v2"'), 'V2 map page is transparent over the shared canvas');
-  assert.ok(lessons.includes('<ScreenGradient forceFullBleed bleedTop={isRetainedTab ? insets.top : 0}>'), 'legacy catalog keeps its themed full-bleed canvas, lifted over the safe area to match the shell (R69)');
+  // 25.10 (Ревизор, прогон 05:00): когда сцена «Сезон» рисует свой верхний вылет (seasonBleed), полотно страницы свой bleedTop не добавляет — верх не считается дважды
+  assert.ok(lessons.includes('<ScreenGradient forceFullBleed bleedTop={isRetainedTab && seasonBleed === 0 ? insets.top : 0}>'), 'legacy catalog keeps its themed full-bleed canvas, lifted over the safe area to match the shell (R69), unless the Season scene paints its own bleed');
   // зачем (стиль «Тень» 12.10, координатор: красные сторожи): круглые кнопки шапки без кромки, с малой тенью.
   assert.ok(lessons.includes('boxShadow: nestedBoxShadow(learnGlass)'), 'header controls use the nested shadow');
   assert.ok(!lessons.includes('borderColor: learnGlass.glassEdge'), 'header controls have no glass edge');

@@ -388,12 +388,14 @@ test('protects pre-edit business, classic, default tile, and dependency contract
   });
   assert.deepEqual(
     {
-      selection: sha256(fs.readFileSync('app/flashcards/deck_selection.ts')),
+      // 25.10 (Ревизор, прогон 05:00): deck_selection.ts хешируется БЕЗ учёта окончаний строк — на рабочей копии CRLF, в git LF, и один и тот же файл давал два хеша
+      selection: sha256(fs.readFileSync('app/flashcards/deck_selection.ts', 'utf8').replace(/\r\n/g, '\n')),
       prefs: sha256(fs.readFileSync('app/flashcards/mode_prefs.ts')),
       pressable: sha256(fs.readFileSync('components/PressableHybrid.tsx')),
     },
     {
-      selection: '36983768bb30e47df6fcd07687ec40aac2c89791293dbc1584cd2ff5832c99ce',
+      // перепин 25.10: 07789abb1 (словарь V2, 21.10) только ДОБАВИЛ вид колоды `lv2:<id>` (тип FcDeckId и ветку в проверке id); колоды weak/saved/custom/pack:* и правила выбора не менялись
+      selection: 'a3359084b9b76a60b4c4aa87441398a528684e3715ee4f201661d37e1f57e54a',
       prefs: 'c429dbc2fe16bc9c0d962494ed3c389fcf7a85ae64c686adc769e3aa73c80ae0',
       // хэш обновлён 10.10: PressableHybrid перешёл на общее движение кита (constants/kitPress) — см. press-standard-and-sheet-timing-2026-10-10.
       pressable: '6321f8fdef1d67a253119d0e46165ff39231f6e51b065b96b40c5e30bb60962b',

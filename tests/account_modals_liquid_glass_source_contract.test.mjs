@@ -47,7 +47,10 @@ test('NicknameEditModal: шторка Liquid Glass, вся логика смен
 
 test('DeleteAccountConfirmModal: слово-подтверждение, деструктив только семантикой ошибки, логика удаления цела', () => {
   assert.ok(del.includes('glass.opaqueSheet'), 'непрозрачная основа');
-  assert.ok(del.includes('t.wrongBg') && del.includes('t.wrong'), 'деструктивное действие — цвет ошибки');
+  // 25.10 (Ревизор, прогон 05:00): координатор 18.10, вариант (а) — «Удалить» сплошная красная кнопка с подписью по контрасту (78fd3a941); краску считает deleteButtonPaint (заливка bad темы ≥ 4,57 к шторке,
+  // подпись ≥ 4,51), а не приглушённый wrongBg 12 % — тот давал подпись 3,82:1. Деструктив по-прежнему цветом ошибки темы.
+  assert.ok(del.includes("import { deleteButtonPaint } from './account/delete_button_paint';") && del.includes('deleteButtonPaint(glass, deleteConfirmMatches)'), 'деструктивное действие — цвет ошибки через deleteButtonPaint');
+  assert.ok(!del.includes('t.wrongBg'), 'приглушённый wrongBg (контраст подписи 3,82:1) не возвращается');
   // 12.10: плашки об удалении нет (правило владельца 22.09 «уведомлений об удалении не показывать никогда»).
   assert.ok(!del.includes('markAccountDeletedNoticePending()'), 'уведомление об удалении не ставится');
   for (const token of ['beginAccountDeletion()', 'deleteConfirmMatches', 'deleteInFlightRef',

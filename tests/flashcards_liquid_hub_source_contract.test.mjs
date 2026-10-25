@@ -112,7 +112,8 @@ function loadConstantsModule(name, cache = new Map()) {
   const module = { exports: {} };
   cache.set(name, module.exports);
   // зачем (22.10): тени палитры с c0bfb85b7 спрашивают облегчённый режим — в харнессе он выключен (тени как на обычном телефоне)
-  const localRequire = (id) => (/^\.\/liquidGlass/.test(id) ? loadConstantsModule(id.slice(2), cache)
+  // 25.10 (Ревизор, прогон 05:00): палитра с a50cfbf18 (премиум-темы) зовёт premiumThemeTokenOverrides из соседнего constants/premiumThemeVisualSpecs — грузим его тем же транспилятором, иначе вместо функции был пустой объект
+  const localRequire = (id) => (/^\.\/(liquidGlass|premiumThemeVisualSpecs)/.test(id) ? loadConstantsModule(id.slice(2), cache)
     : id === './lite_mode_flag' ? { isLiteModeOn: () => false } : {});
   new Function('require', 'module', 'exports', code)(localRequire, module, module.exports);
   cache.set(name, module.exports);

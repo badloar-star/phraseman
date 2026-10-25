@@ -11,8 +11,11 @@ test('dialogue hub keeps back, title and live energy in one safe-area header row
   assert.match(source, /testID="ai-dialog-home-header-row"/);
   assert.match(source, /flexDirection: 'row', alignItems: 'flex-start'/);
   // зачем (12.10, п.72): на кнопке теперь testID для робота съёмки — перед icon допускаем другие свойства
-  assert.match(source, /<V2IconButton[^>]*icon="chevron-back"/);
-  assert.match(source, /safeRouterBack\(router, '\/\(tabs\)\/home'/);
+  // 25.10 (Ревизор, прогон 05:00): закон владельца 22.10 «назад/✕ в одном месте» — кнопку назад рисует общий ScreenBackSlot, а не своя V2IconButton; строка шапки прежняя
+  assert.match(source, /const backButton = <ScreenBackSlot \/>;/);
+  assert.doesNotMatch(source, /<V2IconButton[^>]*icon="chevron-back"/);
+  // (путь «назад» теперь ведёт общая кнопка ScreenBackSlot с запасным маршрутом на уровне оболочки, прямого safeRouterBack на экране нет — закон 22.10)
+  assert.match(source, /import ScreenBackButton, \{ ScreenBackSlot \} from '..\/components\/v2\/ScreenBackButton';/);
   // 30.09: пилюля энергии стеклянная (glass) — старая тёмная капсула выбивалась из тем 2.0.
   // 30.09 (макет hubHead): справа столбик — энергия и пилюля остатка «N/30» (у Plus её нет).
   assert.match(source, /<V2LargeTitle[\s\S]*right=\{headerRight\}/);

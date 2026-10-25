@@ -82,6 +82,9 @@ test('the Liquid Glass catalogue background is scoped to active Learning V1 only
   const source = read('app/(tabs)/lessons.tsx');
 
   // зачем (R69, Сверка 15.10): градиент страницы начинается прозрачным слоем (шов под статус-баром), дальше прежняя тройка bgTop → bg → bgBottom, locations [0, 0.1, 0.55, 1]
-  assert.match(source, /\{page === "lessons" \? \(\s*<LinearGradient[\s\S]*?colors=\{\[alphaHex\(learnGlass\.bgTop, 0\), learnGlass\.bgTop, learnGlass\.bg, learnGlass\.bgBottom\]\}\s*locations=\{\[0, 0\.1, 0\.55, 1\]\}/);
-  assert.match(source, /backgroundColor:\s*page === "lessons" \|\| page === "dialogs"\s*\? "transparent"\s*:\s*t\.bgPrimary/);
+  // 25.10 (Ревизор, прогон 05:00): владелец 18.10 «верхняя зона ТОЧНО как на Главной, особо — Уроки» — свой слой bgTop → bg → bgBottom поверх полотна убран; под Уроками то же полотно (ScreenGradient/V2Backdrop),
+  // что под Главной. Контракт стережёт это: собственного градиента страницы «lessons» нет, фон страницы прозрачный (карта V2 тоже), полотно общее.
+  assert.doesNotMatch(source, /\{page === "lessons" \? \(\s*<LinearGradient/);
+  assert.match(source, /<ScreenGradient forceFullBleed bleedTop=/);
+  assert.match(source, /backgroundColor:\s*(\/\/[^\n]*\n\s*)?page === "lessons" \|\| page === "dialogs" \|\| page === "v2"\s*\? "transparent"\s*:\s*t\.bgPrimary/);
 });

@@ -9,6 +9,12 @@ import { lv2Alpha, lv2CardStyle, useLv2Glass, type Lv2Glass } from "./LearningV2
 import type { Lang } from "../../constants/i18n";
 import { COURSE_LEVELS, COURSE_LEVEL_RANGES, getCourseLevelForLesson, type CourseLevel } from "../../app/course_levels";
 import { useSeasonListBottomPad } from "./season/use_season_list_bottom_pad";
+import { PhraseWorkshopRowButton, type PhraseWorkshopButtonState } from "./workshop/PhraseWorkshopRowButton";
+import { usePhraseWorkshopEntries } from "./workshop/use_phrase_workshop_entries";
+import { phraseWorkshopText, phraseWorkshopToastFields } from "./workshop/phrase_workshop_copy";
+import { openPremiumPaywall } from "../../app/paywall_navigation";
+import { emitAppEvent } from "../../app/events";
+import { useRouter } from "expo-router";
 
 /**
  * Список «Все уроки» V2 — по эталону learning-v2.html, блок 1.6 (`lessonsList()` / `lrow()`).
@@ -73,23 +79,20 @@ type RowProps = Readonly<{
   currentWord: string;
   g: Lv2Glass;
   onPress: (row: AllLessonsRow) => void;
+  /** «Мастерская фраз» (владелец 25.10): состояние кнопки под строкой пройденного урока; нет поля — строка как раньше. */
+  workshop?: PhraseWorkshopButtonState;
+  workshopTitle?: string;
+  onWorkshop?: (ordinal: number, state: PhraseWorkshopButtonState) => void;
 }>;
 
-const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onPress }: RowProps) {
+const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onPress, workshop, workshopTitle, onWorkshop }: RowProps) {
   const locked = !row.isAvailable;
   const dim = locked || row.isInProgress;
   const meta = `${level} · ${String(row.ordinal).padStart(2, "0")}${row.isCurrent ? ` · ${currentWord}` : ""}`;
   const handle = useCallback(() => onPress(row), [onPress, row]);
-  return (
-    <PressableHybrid
-      variant="card"
-      testID={`learning-v2-all-lessons-row-${row.ordinal}`}
-      accessibilityLabel={`${meta}. ${row.title}`}
-      accessibilityState={{ disabled: locked }}
-      onPress={handle}
-      style={[lv2CardStyle(g, 14), dim ? styles.dim : null]}
-      contentStyle={styles.rowContent}
-    >
+  const withWorkshop = workshop !== undefined && onWorkshop !== undefined && workshopTitle !== undefined;
+  const rowBody = (
+    <>
       {/* зачем: владелец 18.10 — единый стиль с картой и Диалогами: слева плитка урока тоном текста 9 % со значком урока (тот же, что у заголовка урока на карте) */}
       <View style={[styles.lessonTile, { backgroundColor: glassTone(g.text, 0.09) }]} testID={`learning-v2-all-lessons-icon-${row.ordinal}`}>
         <Ionicons name={learningV2LessonIonIcon(row.ordinal)} size={22} color={g.text} />
@@ -103,6 +106,25 @@ const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onP
         : row.isInProgress ? <Ionicons name="construct-outline" size={22} color={g.text} />
         : <ProgressRing pct={pct} done={pct >= 1} count={row.completedCount} g={g} />}
       <Ionicons name="chevron-forward" size={20} color={dim ? g.text : g.secondary} />
+    </>
+  );
+  return (
+    <PressableHybrid
+      variant="card"
+      testID={`learning-v2-all-lessons-row-${row.ordinal}`}
+      accessibilityLabel={`${meta}. ${row.title}`}
+      accessibilityState={{ disabled: locked }}
+      onPress={handle}
+      style={[lv2CardStyle(g, 14), dim ? styles.dim : null]}
+      contentStyle={withWorkshop ? styles.rowContentColumn : styles.rowContent}
+    >
+      {withWorkshop ? (
+        <>
+          <View style={styles.rowTop}>{rowBody}</View>
+          {/* зачем (владелец 25.10, «Мастерская фраз», макет «Да, так»): карточка пройденного урока растёт вниз — под строкой кнопка */}
+          <PhraseWorkshopRowButton ordinal={row.ordinal} state={workshop} title={workshopTitle} g={g} onPress={onWorkshop} />
+        </>
+      ) : rowBody}
     </PressableHybrid>
   );
 });
@@ -111,6 +133,23 @@ export default function LearningV2AllLessonsList(props: Props) {
   const g = useLv2Glass();
   const bottomPad = useSeasonListBottomPad(props.bottomPadding, "all_lessons"); // зачем (Ревизор 25.10): последний урок не под капсулой таббара
   const { rows, sessionsPerLesson, selectedOrdinal, onOpenLesson, onLockedLesson } = props;
+  // зачем (владелец 25.10, «Мастерская фраз»; код за флагом): состояние кнопки у пройденных уроков и что делает тап по ней —
+  // замок Plus → экран Plus, «копится» → тост, открыто → экран режима (lesson1 с workshop=1). Журнал [PHRASE-WORKSHOP].
+  const router = useRouter();
+  const workshopEntries = usePhraseWorkshopEntries(rows);
+  const workshopTitle = phraseWorkshopText(props.lang, "title");
+  const handleWorkshop = useCallback((ordinal: number, state: PhraseWorkshopButtonState) => {
+    console.log("[PHRASE-WORKSHOP] tap", JSON.stringify({ ordinal, state })); // guard-ok: одна строка на нажатие по кнопке
+    if (state === "accumulating") {
+      emitAppEvent("action_toast", { type: "info", layout: "top_line", lineIcon: "time-outline", ...phraseWorkshopToastFields() });
+      return;
+    }
+    if (state === "locked_plus") {
+      openPremiumPaywall(router, { context: "phrase_workshop", source: "phrase_workshop" });
+      return;
+    }
+    router.push({ pathname: "/lesson1", params: { id: String(ordinal), workshop: "1", from: "workshop" } } as never);
+  }, [router]);
   const [level, setLevel] = useState<CourseLevel>(() => getCourseLevelForLesson(selectedOrdinal));
   const currentWord = CURRENT_WORD[props.lang] ?? CURRENT_WORD.en;
   const levelHasRows = useMemo(() => {
@@ -130,8 +169,8 @@ export default function LearningV2AllLessonsList(props: Props) {
     else onOpenLesson(row.ordinal);
   }, [onLockedLesson, onOpenLesson]);
   const renderItem = useCallback(({ item }: { item: AllLessonsRow }) => (
-    <LessonRow row={item} level={level} pct={sessionsPerLesson > 0 ? item.completedCount / sessionsPerLesson : 0} currentWord={currentWord} g={g} onPress={handleRow} />
-  ), [currentWord, g, handleRow, level, sessionsPerLesson]);
+    <LessonRow row={item} level={level} pct={sessionsPerLesson > 0 ? item.completedCount / sessionsPerLesson : 0} currentWord={currentWord} g={g} onPress={handleRow} workshop={workshopEntries.get(item.ordinal) as PhraseWorkshopButtonState | undefined} workshopTitle={workshopTitle} onWorkshop={handleWorkshop} />
+  ), [currentWord, g, handleRow, handleWorkshop, level, sessionsPerLesson, workshopEntries, workshopTitle]);
   const header = (
     <View style={styles.chips}>
       {COURSE_LEVELS.map((code) => {
@@ -172,6 +211,7 @@ export default function LearningV2AllLessonsList(props: Props) {
       data={visible}
       keyExtractor={(item) => String(item.ordinal)}
       renderItem={renderItem}
+      extraData={workshopEntries}
       ListHeaderComponent={header}
       contentContainerStyle={[styles.list, { paddingBottom: bottomPad }]}
       ItemSeparatorComponent={Separator}
@@ -200,6 +240,9 @@ const styles = StyleSheet.create({
   classicChip: { marginLeft: "auto", flexShrink: 1, maxWidth: "100%" },
   classicText: { flexShrink: 1 },
   rowContent: { minHeight: 70, paddingVertical: 9, paddingLeft: 18, paddingRight: 16, flexDirection: "row", alignItems: "center", gap: 16 },
+  // «Мастерская фраз» (макет 25.10): та же строка, но карточка растёт вниз — сверху строка, под ней кнопка (отступ снизу 17)
+  rowContentColumn: { width: "100%", paddingTop: 9, paddingBottom: 17, paddingLeft: 18, paddingRight: 16, flexDirection: "column", alignItems: "stretch" },
+  rowTop: { minHeight: 52, flexDirection: "row", alignItems: "center", gap: 16 },
   rowCopy: { flex: 1, minWidth: 0 },
   // плитка урока как у заголовка урока на карте V2: 46, радиус 12 (размер в строке сверят Макеты по эталону «Все уроки»)
   lessonTile: { width: 46, height: 46, borderRadius: 12, alignItems: "center", justifyContent: "center" },

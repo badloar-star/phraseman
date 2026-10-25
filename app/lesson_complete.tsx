@@ -577,7 +577,13 @@ export default function LessonComplete() {
     combo?: string | string[];
     /** Разбивка «тема:верно:всего» через запятую, напр. "3:16:17,10:10:16". */
     comboBreakdown?: string | string[];
+    /** «Мастерская фраз» (владелец 25.10): "1" — песочница на фразах урока V2, без зачёта старого курса. */
+    workshop?: string | string[];
   }>();
+  // зачем (владелец 25.10, «Мастерская фраз»): итог песочницы — как у комбо (без медалей, звёзд и цели), и дополнительно без любых
+  // зачётов старого курса: бонус первого прохождения, «задание дня», ачивки, отметка «урок пройден», медаль. Монеты (копилка рун
+  // со своим ключом сессии) и серия приходят от экрана режима.
+  const isWorkshopCompletion = (Array.isArray(params.workshop) ? params.workshop[0] : params.workshop) === '1';
   // зачем (владелец 2026-09-17): комбинированный урок — отдельная тренировка.
   // Медаль принадлежит КОНКРЕТНОЙ теме, а комбо смешивает несколько, поэтому
   // здесь медалей и цели дня нет; вместо них показываем разбивку по темам.
@@ -585,7 +591,7 @@ export default function LessonComplete() {
     () => parseCombinedLessonTopicsParam(params.combo),
     [params.combo],
   );
-  const isComboCompletion = comboTopics.length > 0;
+  const isComboCompletion = comboTopics.length > 0 || isWorkshopCompletion;
   const comboBreakdown = useMemo(
     () => parseCombinedLessonBreakdownParam(params.comboBreakdown),
     [params.comboBreakdown],
@@ -614,8 +620,10 @@ export default function LessonComplete() {
   const runeCompletionOrdinal = Number(Array.isArray(rawRuneOrdinal) ? rawRuneOrdinal[0] : rawRuneOrdinal) || 1;
   const practiceRunes = usePracticeRunes({
     activity: 'lesson',
-    sessionKey: `lesson${lessonId}_runes_${studyTarget}`,
+    // зачем (мастерская фраз): тот же ключ сессии и цена повтора, что на экране режима (lesson1), иначе копилка не найдётся
+    sessionKey: isWorkshopCompletion ? `v2cl_l${lessonId}` : `lesson${lessonId}_runes_${studyTarget}`,
     completionOrdinal: runeCompletionOrdinal,
+    repeatPriceOnly: isWorkshopCompletion || undefined,
     devFakeStartRunes: devRunesFake?.runes,
   });
   const practiceRunesSettleOnceRef = useRef(false);
@@ -681,7 +689,8 @@ export default function LessonComplete() {
   const [lessonCefr,  setLessonCefr]  = useState<string>('A1');
   const [medalTier, setMedalTier]     = useState<MedalTier>('none');
   const [medalImproved, setMedalImproved] = useState(false);
-  const isQualifyingLessonPass = params.passed === '1';
+  // зачем (мастерская фраз): проход песочницы не засчитывается как прохождение урока N — ни бонус, ни «задание дня», ни ачивки
+  const isQualifyingLessonPass = params.passed === '1' && !isWorkshopCompletion;
   const [completionXpReady, setCompletionXpReady] = useState(false);
   const [showPremiumBanner, setShowPremiumBanner] = useState(false);
   const [repeatOpening, setRepeatOpening] = useState(false);
@@ -1084,7 +1093,7 @@ export default function LessonComplete() {
       }).finally(() => {
         if (!cancelled) setCompletionXpReady(true);
       });
-      void markLessonFinishedOnce(lessonId, studyTarget);
+      if (!isWorkshopCompletion) void markLessonFinishedOnce(lessonId, studyTarget);
     })();
 
     // Загружаем оценку урока, сохраняем медаль
@@ -1096,6 +1105,18 @@ export default function LessonComplete() {
       // одной темы (lessonId), а в комбо lessonId — лишь первая из выбранных:
       // запись затёрла бы честно заработанные медаль и проценты чужой темы.
       // Поэтому здесь ранний выход со своим расчётом счёта и без медалей.
+      if (isWorkshopCompletion) {
+        // зачем (мастерская фраз): счёт из маршрута (его кладёт экран режима); медаль и прогресс урока N не трогаем
+        const routeResult = parseRouteLessonResult(params.resultCorrect, params.resultTotal);
+        console.log('[PHRASE-WORKSHOP] result', JSON.stringify({ lessonId, correct: routeResult?.correct ?? null, wrong: routeResult?.wrong ?? null, score: routeResult?.score ?? null })); // guard-ok: итог песочницы
+        if (cancelled) return;
+        setLessonCounts({ correct: routeResult?.correct ?? 0, wrong: routeResult?.wrong ?? 0 });
+        setLessonScore(routeResult?.score ?? 0);
+        setMedalTier('none');
+        setMedalImproved(false);
+        setResultsReady(true);
+        return;
+      }
       if (isComboCompletion) {
         const okTotal = comboBreakdown.reduce((sum, row) => sum + row.correct, 0);
         const allTotal = comboBreakdown.reduce((sum, row) => sum + row.total, 0);
@@ -1413,20 +1434,23 @@ export default function LessonComplete() {
     // The route is the synchronous source of truth for the next screen. Storage
     // remains the durable fallback, but navigation never waits for the native
     // write and therefore stays instant on Android.
-    void AsyncStorage.setItem(
-      lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
-      repeatAttemptId,
-    ).catch(noteSwallowedHandler('lesson_complete:useCallback.setItem'));
-    void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_complete:useCallback.primeLessonScreenFromStorage'));
+    // зачем (мастерская фраз): «ещё раз» в песочнице — новый заход в режим; ключи старого урока N не пишем и не прогреваем
+    if (!isWorkshopCompletion) {
+      void AsyncStorage.setItem(
+        lessonSessionKey(lessonId, 'serverAttemptId', studyTarget),
+        repeatAttemptId,
+      ).catch(noteSwallowedHandler('lesson_complete:useCallback.setItem'));
+      void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_complete:useCallback.primeLessonScreenFromStorage'));
+    }
     try {
       markNextNavigationAsReplace();
-      router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId } });
+      router.replace({ pathname: '/lesson1', params: { id: lessonId, serverAttemptId: repeatAttemptId, ...(isWorkshopCompletion ? { workshop: '1', from: 'workshop' } : {}) } });
     } catch (error: unknown) {
       console.warn(`[LESSON-COMPLETE] повтор урока не открылся lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
       repeatOpeningRef.current = false;
       setRepeatOpening(false);
     }
-  }, [lessonId, params.repeatAttemptId, router, studyTarget]);
+  }, [lessonId, params.repeatAttemptId, router, studyTarget, isWorkshopCompletion]);
 
   // Android: системный «Назад» НЕ должен попадать на сам пройденный урок.
   // Раньше lesson_complete не перехватывал hardwareBackPress — pop возвращал на

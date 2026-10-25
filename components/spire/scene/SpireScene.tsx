@@ -35,6 +35,7 @@ import SpireScenePedestal, { SPIRE_SCENE_PEDESTAL_INSET } from './SpireScenePede
 import type { SpireSceneCopy, SpireSceneDecision, SpireSceneRoom } from './spire_scene_model';
 import { setSpireSceneHeaderTint } from './spire_scene_header_tint';
 import SpireSceneBackdrop, { setSpireSceneBackdrop, type SpireSceneBackdropSpec } from './spire_scene_backdrop';
+import { useSpireHeaderOverlayInset } from './spire_header_overlay';
 import { spireSceneFrame, spireScenePedestalCompact, spireSceneVisibleH } from './spire_scene_layout';
 import { SPIRE_SCENE_INK } from './spire_scene_palette';
 
@@ -136,7 +137,14 @@ function SpireScene(p: Props) {
     return () => setSpireSceneHeaderTint(null);
   }, [p.headerTint, tokens.sceneTop]);
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, верх цельный): фон сцены — от верха экрана; bleed = где верх сцены на экране (под шапкой «Сообщества»)
-  const [bleed, setBleed] = useState(0);
+  const [measuredBleed, setBleed] = useState(0);
+  // зачем (Сверка 25.10: полоса ~108 px под часами = строка состояния; замок «верх цельный»): при шапке поверх сцены верх сцены на экране РОВНО равен
+  // высоте шапки (тот же источник, что отступ ленты Пика) — замер measureInWindow на Android мог не включать строку состояния; он — только запасной путь
+  const headerInset = useSpireHeaderOverlayInset();
+  const bleed = headerInset > 0 ? headerInset : measuredBleed;
+  useEffect(() => {
+    console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_bleed', headerInset, measuredBleed, bleed, source: headerInset > 0 ? 'header_overlay' : 'measure' })); // guard-ok: одна строка на смену источника/значения
+  }, [headerInset, measuredBleed, bleed]);
   const backdrop = useMemo<SpireSceneBackdropSpec>(() => ({ top: tokens.sceneTop, bottom: tokens.sceneBottom, glow, evening, bleed, sceneH: frame.sceneH }), [tokens.sceneTop, tokens.sceneBottom, glow, evening, bleed, frame.sceneH]);
   useEffect(() => {
     if (!p.headerTint) return undefined;
@@ -193,7 +201,7 @@ function SpireScene(p: Props) {
           target.measureInWindow((_x, y) => {
             const next = Math.max(0, Math.round(y));
             // зачем (Сверка 25.10: шов под вкладками на 4fa3e9457?; сперва логи): где верх сцены на экране, какой сдвиг фона, сцена из какой сборки
-            console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_measure', rev: 'scene-from-top-4fa3e9457', windowY: Math.round(y), bleedBefore: bleed, bleedAfter: next, layoutY: Math.round(e.nativeEvent.layout.y), sceneH: frame.sceneH })); // guard-ok: одна строка на раскладку сцены
+            console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_measure', rev: 'scene-from-top-4fa3e9457', windowY: Math.round(y), bleedBefore: measuredBleed, bleedAfter: next, headerInset, layoutY: Math.round(e.nativeEvent.layout.y), sceneH: frame.sceneH })); // guard-ok: одна строка на раскладку сцены
             setBleed((prev) => (prev === next ? prev : next));
           });
         }}

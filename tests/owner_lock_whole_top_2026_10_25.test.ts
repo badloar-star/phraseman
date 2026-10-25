@@ -32,6 +32,8 @@ describe('верх экрана цельный (замок владельца 25
     const scene = read('components/spire/scene/SpireScene.tsx');
     expect(scene).toContain('<View pointerEvents="none" style={[s.backdrop, { top: -bleed, height: bleed + frame.sceneH }]}><SpireSceneBackdrop spec={backdrop} offsetTop={0} /></View>');
     expect(scene).not.toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
+    // Сверка 25.10: полоса ~108 px под часами — bleed из замера не включал строку состояния; при шапке поверх сцены bleed = высота шапки
+    expect(scene).toContain('const bleed = headerInset > 0 ? headerInset : measuredBleed;');
     // лента Пика отступает на высоту шапки — башня на месте
     expect(read('components/spire/SpireHomeScreen.tsx')).toContain('useSpireHeaderOverlayInset()');
     // и плоской полосы под часами на Пике нет

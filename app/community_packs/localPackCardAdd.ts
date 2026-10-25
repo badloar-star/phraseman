@@ -10,7 +10,7 @@
 import { normalizePackCardTexts, normalizePackLanguage } from '../flashcards/pack_languages';
 import { isDevCardsFail } from '../dev_cards_state';
 import type { CardItem } from '../flashcards/types';
-import { loadLocalAuthorPacks, saveLocalAuthorPack, type LocalAuthorPack } from './localAuthorPacks';
+import { loadLocalAuthorPacks, loadLocalAuthorPacksResult, saveLocalAuthorPack, type LocalAuthorPack, type LocalAuthorPacksLoadResult } from './localAuthorPacks';
 import { withLocalPackLock } from './local_pack_lock';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
 
@@ -26,15 +26,30 @@ export async function loadAddableLocalPacks(): Promise<LocalAuthorPack[]> {
   return addable;
 }
 
+export type PackPickerState = Readonly<{ addable: LocalAuthorPack[]; publishedCount: number; status: LocalAuthorPacksLoadResult['status'] }>;
+
+/** Пауза перед тихим повтором чтения: аккаунт на холодном старте обычно успевает стать готовым. */
+export const PACK_PICKER_STALE_RETRY_MS = 300;
+
 /**
  * Состояние шторки «В какой набор?»: куда можно добавлять и сколько опубликованных наборов выпало из списка.
  * зачем (решение координатора 12.10): если addable пуст, но опубликованные есть, текст «Своих наборов пока нет» неверен — показываем «Нет наборов, куда можно добавить».
+ * зачем (находка Ревизора 25.10, тест pack_picker_state): сбой чтения (status 'stale': аккаунт не готов, сменилось поколение, хранилище
+ * бросило без тёплого кэша) выглядел как «наборов нет». Теперь статус идёт наружу; при 'stale' — один тихий повтор.
  */
-export async function loadPackPickerState(): Promise<Readonly<{ addable: LocalAuthorPack[]; publishedCount: number }>> {
-  const packs = await loadLocalAuthorPacks();
-  const addable = packs.filter((pack) => !pack.cloudPackId);
-  console.log(`${LOG} шторка: доступно=${addable.length} опубликовано=${packs.length - addable.length}`);
-  return { addable, publishedCount: packs.length - addable.length };
+export async function loadPackPickerState(): Promise<PackPickerState> {
+  let result = await loadLocalAuthorPacksResult();
+  if (result.status === 'stale') {
+    console.warn(`${LOG} шторка: чтение stale (из кэша наборов=${result.packs.length}) — тихий повтор через ${PACK_PICKER_STALE_RETRY_MS} мс`);
+    await new Promise((resolve) => { setTimeout(resolve, PACK_PICKER_STALE_RETRY_MS); });
+    result = await loadLocalAuthorPacksResult();
+    if (result.status === 'stale') {
+      console.warn(`${LOG} шторка: повтор тоже stale (из кэша наборов=${result.packs.length}) — ${result.packs.length > 0 ? 'показываем кэш' : 'показываем «Не удалось загрузить наборы» + «Повторить»'}`);
+    }
+  }
+  const addable = result.packs.filter((pack) => !pack.cloudPackId);
+  console.log(`${LOG} шторка: доступно=${addable.length} опубликовано=${result.packs.length - addable.length} status=${result.status}`);
+  return { addable, publishedCount: result.packs.length - addable.length, status: result.status };
 }
 
 /** Карточка набора из любой карточки приложения (тексты — как при «Создать набор из выбранных»). */

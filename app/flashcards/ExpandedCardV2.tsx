@@ -90,12 +90,21 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
     ru: 'Нет наборов, куда можно добавить', uk: 'Немає наборів, куди можна додати', en: 'No packs to add to', es: 'No hay sets a los que añadir',
     'pt-BR': 'Não há pacotes para adicionar', vi: 'Không có bộ thẻ nào để thêm vào', id: 'Tidak ada paket untuk ditambah', tr: 'Eklenebilecek paket yok', pl: 'Brak zestawów, do których można dodać',
   });
+  // зачем (находка Ревизора 25.10): наборы не прочитались — не «Своих наборов пока нет», а честный сбой и «Повторить» (черновик, вычитка 10 · ПЕРЕВОДЧИКА)
+  const loadFailedText = triLang(lang, {
+    ru: 'Не удалось загрузить наборы', uk: 'Не вдалося завантажити набори', en: "Couldn't load your packs", es: 'No se pudieron cargar los sets',
+    'pt-BR': 'Não foi possível carregar os conjuntos', vi: 'Không tải được bộ thẻ', id: 'Set tidak dapat dimuat', tr: 'Setler yüklenemedi', pl: 'Nie udało się wczytać zestawów',
+  });
+  const retryText = triLang(lang, {
+    ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',
+  });
   const lh = useLineScale();
   const [flipped, setFlipped] = useState(false);
   const [mode, setMode] = useState<'card' | 'packs'>('card');
   const [packs, setPacks] = useState<readonly LocalAuthorPack[] | null>(null);
   // зачем (решение координатора 12.10): есть только опубликованные наборы — добавлять некуда, но «Своих наборов нет» было бы неправдой
   const [onlyPublished, setOnlyPublished] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [adding, setAdding] = useState(false);
   // зачем (аудит Optimistic UI Карточек, 12.10): `adding` — состояние, второй тап в том же кадре видел его «ещё свободным»; синхронный замок — ref
   const addingRef = useRef(false);
@@ -120,11 +129,18 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
   const openPacks = useCallback(() => {
     if (!sourceCard) { console.warn(`${TAG} «В набор»: исходной карточки нет cardId=${cardId}`); return; }
     setMode('packs');
+    setPacks(null);
+    setLoadFailed(false);
     void loadPackPickerState().then((state) => {
+      // зачем (находка Ревизора 25.10): stale и пусто — наборы не прочитались, это не «наборов нет»; кэш дал наборы — показываем их
+      const failed = state.status === 'stale' && state.addable.length === 0 && state.publishedCount === 0;
+      console.log(`${TAG} «В набор»: status=${state.status} доступно=${state.addable.length} опубликовано=${state.publishedCount} → ${failed ? 'load_failed_retry' : state.addable.length > 0 ? 'list' : state.publishedCount > 0 ? 'only_published' : 'no_packs'}`);
+      setLoadFailed(failed);
       setOnlyPublished(state.addable.length === 0 && state.publishedCount > 0);
       setPacks(state.addable);
     }).catch((error: unknown) => {
-      console.warn(`${TAG} «В набор»: не удалось прочитать наборы: ${error instanceof Error ? error.message : String(error)}`);
+      console.warn(`${TAG} «В набор»: не удалось прочитать наборы: ${error instanceof Error ? error.message : String(error)} → load_failed_retry`);
+      setLoadFailed(true);
       setPacks([]);
     });
   }, [cardId, sourceCard]);
@@ -217,6 +233,11 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
           {packs === null ? (
             <View testID="fc-expanded-pack-picker-loading">
               {[0, 1, 2].map((n) => <View key={n} style={[styles.pickSkeleton, { backgroundColor: g.opaqueControl }]} />)}
+            </View>
+          ) : packs.length === 0 && loadFailed ? (
+            <View testID="fc-expanded-pack-picker-failed">
+              <Text style={[styles.empty, { color: g.secondary, lineHeight: lh(22) }]}>{loadFailedText}</Text>
+              <SheetRow g={g} testID="fc-expanded-pack-picker-retry" icon="refresh" title={retryText} onPress={openPacks} />
             </View>
           ) : packs.length === 0 ? (
             <View>

@@ -124,18 +124,29 @@ async function readPacksForTargetResult(
 ): Promise<LocalAuthorPacksForTargetResult> {
   const key = flashcardsLocalAuthorPacksKey(studyTarget);
   const cacheKey = warmPacksKey(studyTarget, token);
-  if (!cacheKey || !isCurrentAccountGeneration(token)) return { packs: [], status: 'stale' };
+  if (!cacheKey || !isCurrentAccountGeneration(token)) {
+    console.warn(`[PACK-READ] stale до чтения ${JSON.stringify({ studyTarget: studyTarget ?? null, reason: !cacheKey ? 'account_not_ready' : 'account_generation_changed' })}`); // guard-ok: ранний выход называет причину
+    return { packs: [], status: 'stale' };
+  }
   try {
     const parsed = parsePacks(await AsyncStorage.getItem(key));
-    if (!isCurrentAccountGeneration(token)) return { packs: [], status: 'stale' };
+    if (!isCurrentAccountGeneration(token)) {
+      console.warn(`[PACK-READ] stale после чтения ${JSON.stringify({ studyTarget: studyTarget ?? null, reason: 'account_generation_changed' })}`); // guard-ok: ранний выход называет причину
+      return { packs: [], status: 'stale' };
+    }
     if (parsed.status === 'ready') {
       warmPacksByKey.set(cacheKey, parsed.packs);
       return parsed;
     }
     return { packs: warmPacksByKey.get(cacheKey) ?? [], status: 'stale' };
-  } catch {
-    return isCurrentAccountGeneration(token)
-      ? { packs: warmPacksByKey.get(cacheKey) ?? [], status: 'stale' }
+  } catch (error: unknown) {
+    // зачем (правило владельца «немой catch запрещён»; находка Ревизора 25.10): сбой хранилища уходил в 'stale' без причины —
+    // в журнале шторки «В какой набор?» было не отличить «наборов нет» от «не прочиталось».
+    const current = isCurrentAccountGeneration(token);
+    const warm = current ? warmPacksByKey.get(cacheKey) : undefined;
+    console.warn(`[PACK-READ] чтение наборов упало ${JSON.stringify({ studyTarget: studyTarget ?? null, message: error instanceof Error ? error.message : String(error), currentAccount: current, warmCache: warm?.length ?? null })} → stale`);
+    return current
+      ? { packs: warm ?? [], status: 'stale' }
       : { packs: [], status: 'stale' };
   }
 }
@@ -167,6 +178,7 @@ export async function loadLocalAuthorPacksResult(
 ): Promise<LocalAuthorPacksLoadResult> {
   const token = accountToken;
   if (!accountScopeKey(token) || !isCurrentAccountGeneration(token)) {
+    console.warn(`[PACK-READ] все наборы: stale ${JSON.stringify({ reason: !accountScopeKey(token) ? 'account_not_ready' : 'account_generation_changed' })}`); // guard-ok: ранний выход называет причину
     return { packs: [], status: 'stale' };
   }
   const lists = await Promise.all(LEARNING_LANGUAGE_TARGETS.map(async studyTarget =>

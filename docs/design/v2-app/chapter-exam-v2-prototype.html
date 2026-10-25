@@ -69,7 +69,7 @@ body { background: var(--page); color: var(--ink); font-family: var(--font); -we
 .epr { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px; border-radius: 14px; }
 .epr + .epr { box-shadow: 0 -1px 0 rgba(80, 82, 113, .14); border-radius: 0 0 14px 14px; }
 .epr:active { background: rgba(95, 92, 177, .08); } .epr:focus-visible { outline: 2px solid var(--acc); }
-.epr .n { width: 40px; height: 40px; border-radius: 12px; background: var(--tile); display: grid; place-items: center; font-size: 15px; font-weight: 800; flex: none; }
+.epr .n { width: 40px; height: 40px; border-radius: 12px; background: var(--tile); display: grid; place-items: center; font-size: 16px; font-weight: 800; flex: none; }
 .epr .m { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; font-size: 16px; line-height: 21px; } .epr .m span { font-size: 13px; line-height: 17px; color: var(--sec); }
 .epr .r { width: 22px; height: 22px; color: var(--sec); flex: none; } .epr .r.ok { color: var(--good); } .epr .r svg { width: 22px; height: 22px; }
 .epr[aria-disabled="true"] { cursor: default; }
@@ -84,12 +84,12 @@ textarea.ok { color: var(--good); } textarea.no { color: var(--bad); }
 textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
 .ans { margin-top: 16px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); padding: 20px 16px 14px; text-align: center; }
 .dash { font-size: 22px; letter-spacing: 3px; color: var(--muted); }
-.hint { margin-top: 12px; font-size: 12.5px; line-height: 17px; font-weight: 700; color: var(--acc); }
+.hint { margin-top: 12px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--acc); }
 .micwrap { margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .mic { all: unset; cursor: pointer; width: 76px; height: 76px; border-radius: 38px; background: #1D1D2F; display: grid; place-items: center; color: #FFFFFF; box-shadow: var(--plateSh); }
 .mic svg { width: 28px; height: 28px; }
 .mlab { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
-.alt { all: unset; cursor: pointer; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
+.alt { all: unset; cursor: pointer; font-size: 13px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
 .alt:focus-visible, .x:focus-visible, .cta:focus-visible, .second:focus-visible, .mic:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 .note { margin-top: 8px; font-size: 13px; line-height: 18px; color: var(--sec); text-align: center; min-height: 18px; }
 /* зачем (карта Тем E12–E15): текст плашки — цветом текста, «Верно/Неверно» жирным; цвет «верно/неверно» несёт значок ✓/✕ */
@@ -129,20 +129,20 @@ textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
 .topics { border-radius: 20px; background: var(--card); box-shadow: 0 14px 26px -14px rgba(51, 51, 87, .34); padding: 2px 16px; }
 .tp { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; font-size: 16px; line-height: 21px; }
 .tp + .tp { box-shadow: 0 -1px 0 rgba(80, 82, 113, .14); }
-.tp .r { flex: none; display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 700; }
+.tp .r { flex: none; display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 700; }
 .tp .r svg { width: 18px; height: 18px; }
 .tp .r.ok { color: var(--good); } .tp .r.no { color: var(--bad); }
 .rfoot { position: absolute; left: 0; right: 0; bottom: 0; height: 156px; background: var(--foot); padding: 12px 20px 0; }
 .second { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 100%; height: 50px; margin-top: 10px; border-radius: 25px; background: var(--ctl); color: var(--text); font-size: 16px; font-weight: 700; }
 .second[aria-disabled="true"] { color: var(--sec); cursor: default; }
 .second:active { transform: scale(.97); }
-.link { all: unset; cursor: pointer; margin-top: 14px; font-size: 15px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
+.link { all: unset; cursor: pointer; margin-top: 14px; font-size: 16px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
 .link:focus-visible { outline: 2px solid var(--acc); }
 .mist { align-self: stretch; margin-top: 12px; border-radius: 20px; background: var(--card); box-shadow: 0 14px 26px -14px rgba(51, 51, 87, .34); padding: 14px 16px; }
 .mist .q { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
-.mist .p { margin-top: 4px; font-size: 15px; line-height: 21px; color: var(--sec); }
-.mist .y { margin-top: 10px; font-size: 15px; line-height: 21px; } .mist .y b { color: var(--bad); }
-.mist .c { margin-top: 4px; font-size: 17px; line-height: 23px; font-weight: 700; color: var(--good); }
+.mist .p { margin-top: 4px; font-size: 16px; line-height: 21px; color: var(--sec); }
+.mist .y { margin-top: 10px; font-size: 16px; line-height: 21px; } .mist .y b { color: var(--bad); }
+.mist .c { margin-top: 4px; font-size: 16px; line-height: 23px; font-weight: 700; color: var(--good); }
 </style>
 </head>
 <body>

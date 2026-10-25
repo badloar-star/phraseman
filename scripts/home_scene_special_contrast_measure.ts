@@ -7,6 +7,8 @@
 // заголовок 36 или 2×32, надзаголовок 17), фон под ним = линейный градиент верх→низ (0,22·W;0 → 0,78·W;H) + пятно света
 // sceneGlow (центр 18 %·W;0, радиусы 70 %·W × 50 %·H) + ореол героя (белый 22 %, центр 57 %·W+84; inset+52+84, радиус 84,
 // только при обычном шрифте) + затемнение низа scrim (0→40 % на нижних 300), если оно есть у темы.
+// Перемер после c5f60dc21 (Моменты): герой гаснет к 0 у верха блока текста (переход 24 dp), при сильном заходе — heroBounded;
+// маска считается функцией homeSceneHeroFade из приложения.
 // Перемер 25.10 (после e3b3c313e, 3a42a7e8f, a796ac60e, fdd62974d, d6dec448b): надзаголовок теперь белый 100 %; ореол при
 // крупном шрифте не рисуется; добавлен АРТ ГЕРОЯ по самой светлой зоне под текстом — при шрифте ≤ ×1,15 герой (160 dp,
 // right −14, верх inset+52, поля 10, непрозрачность 0,96) заходит на надзаголовок и заголовок; при шрифте > ×1,15 (heroBounded)
@@ -19,6 +21,7 @@ import sharp from 'sharp';
 import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { HOME_SCENE_HERO } from '../components/home/v2/scene/home_scene_state';
+import { homeSceneHeroFade } from '../components/home/v2/scene/home_scene_hero_fade';
 
 const STAGE = fs.readFileSync(path.join(__dirname, '..', 'components/home/v2/scene/HomeSceneStage.tsx'), 'utf8');
 for (const line of [
@@ -32,6 +35,10 @@ for (const line of [
   "hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },",
   "heroVisual: { width: '100%', height: '100%', padding: HERO_PAD, opacity: 0.96 },",
   '{heroBounded ? null : <Rect x="57%" y={topInset + HERO_TOP} width={168} height={168} fill="url(#sceneHalo)" />}',
+  'const fade = homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO, fontBounded: fontScale > HERO_BOUND_FONT_SCALE });',
+  'const heroBounded = fade.bounded;',
+  "<LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />",
+  'body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },',
 ]) if (!STAGE.includes(line)) throw new Error(`HomeSceneStage изменился: нет «${line}» — обнови модель сцены в этом скрипте`);
 
 type Rgba = [number, number, number, number];
@@ -96,9 +103,15 @@ async function main(): Promise<void> {
     const worst = new Map<Line, Hit>(); const worstArt = new Map<Line, Hit>();
     let maxAlpha = 1, maxAlphaWhere = '', onArt = 0, onArtBad = 0;
     for (const W of [360, 390]) for (const inset of [0, 48]) for (const longTitle of [false, true]) for (const k of [1, 1.15, 1.2]) {
-      const H = 392 + inset; const bounded = k > 1.15;
+      const H = 392 + inset;
+      // зачем (перемер после c5f60dc21, Моменты): маска героя считается той же функцией, что в приложении; блок текста начинается на 24 dp
+      // выше надзаголовка (paddingTop body), место под героя — от inset + 52 до него
+      const bx = boxes(H, longTitle, k); const bodyTop = bx[0]!.y0 - 24;
+      const fade = homeSceneHeroFade({ heroTop: 0, spaceH: bodyTop - (inset + 52), heroH: 160, fontBounded: k > 1.15 });
+      const bounded = fade.bounded;
+      const maskAt = (heroY: number): number => { if (!fade.masked) return 1; const f = heroY / 160; if (f <= fade.fadeFrom) return 1; if (f >= fade.fadeTo) return 0; return 1 - (f - fade.fadeFrom) / Math.max(1e-6, fade.fadeTo - fade.fadeFrom); };
       const artX0 = W + 14 - 160 + 10, artY0 = inset + 52 + 10;
-      for (const b of boxes(H, longTitle, k)) for (let y = b.y0; y <= b.y1; y += 2) for (let x = 20; x <= 20 + (W - 40) * b.x1; x += 4) {
+      for (const b of bx) for (let y = b.y0; y <= b.y1; y += 2) for (let x = 20; x <= 20 + (W - 40) * b.x1; x += 4) {
         const gx0 = 0.22 * W, gx1 = 0.78 * W; const dx = gx1 - gx0, dy = H;
         const tt = Math.max(0, Math.min(1, ((x - gx0) * dx + y * dy) / (dx * dx + dy * dy)));
         let bg: Rgb = [0, 1, 2].map((i) => top[i]! * (1 - tt) + bot[i]! * tt) as Rgb;
@@ -113,7 +126,9 @@ async function main(): Promise<void> {
         // арт героя под этой точкой текста (полоска рекорда у левого края — героя под ней нет)
         if (bounded || b.line.graphic) continue;
         for (const a of arts[app]) {
-          const p = artAt(a, Math.floor(x - artX0), Math.floor(y - artY0)); if (!p) continue;
+          const p0 = artAt(a, Math.floor(x - artX0), Math.floor(y - artY0)); if (!p0) continue;
+          const mk = maskAt(y - (inset + 52)); if (mk <= 0) continue;
+          const p: Rgba = [p0[0], p0[1], p0[2], p0[3] * mk];
           const artBg = over(p, 1, bg); const ra = ratio(over(b.line.fg, 1, artBg), artBg);
           onArt++; if (ra < 4.5) onArtBad++;
           if (ra < 4.5) { let lo = 0, hi = p[3]; for (let i = 0; i < 18; i++) { const m = (lo + hi) / 2; const bb = over([p[0], p[1], p[2], m], 1, bg); if (ratio(over(b.line.fg, 1, bb), bb) >= 4.5) lo = m; else hi = m; }

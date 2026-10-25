@@ -10,3 +10,4 @@
 | окно званий в home.tsx | app/(tabs)/home.tsx (titleModal) | Темы, ae74bf7e1 | setTitleModalVisible(true) нигде нет |
 | HomeMistakesLockedSheet | components/.../HomeMistakesLockedSheet | Темы, ae74bf7e1 | не импортируется с 21.09 |
 | старый экран занятия V2 | app/learning-v2/session/[id].tsx → LearningV2LegacySessionScreen | Learning V2 | открывается только для языков обучения ≠ en, а они скрыты (D129/D130); en идёт через настоящий плеер |
+| ProgressProofBlock | components/feedback/ProgressProofBlock.tsx | Темы, 84a97fbd5 | нигде не подключён (и текст t.textSecond = cta, до 1,00) |

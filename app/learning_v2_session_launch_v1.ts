@@ -9,6 +9,8 @@
 // и Главная запускают занятие этими функциями — копий подготовки нет.
 // ═══════════════════════════════════════════════════════════════════════════
 import * as Crypto from 'expo-crypto';
+import { InteractionManager } from 'react-native';
+import { onAccountOwnerChanged } from './account_owner_change';
 import { DebugLogger } from './debug-logger';
 import type { LearningV2CourseSessionReadyHandleV3 } from './learning_v2_course_released_session_client_v3';
 
@@ -81,19 +83,29 @@ export function prepareLearningV2SessionRunV1(
 ): Promise<LearningV2PreparedSessionRunV1> {
   if (options.devUnlockedDrafts) return Promise.resolve({ sessionRunId: Crypto.randomUUID(), handle: null });
   const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+  const inflightKey = preparationKeyOf(locator);
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «урок всегда должен быть готов… собран до того, как юзер его попробует начать»): заготовка,
+  // собранная заранее (Главная, вход на «Обучение», финиш прошлого занятия), отдаётся тапу сразу и забирается — второй раз
+  // её никто не получит (у каждого запуска свой sessionRunId).
+  if (preparedSlot && preparedSlot.key === inflightKey) {
+    const taken = preparedSlot;
+    preparedSlot = null;
+    console.log(`[V2-PREPARE] take_ready ${sessionTag} reason=${taken.reason} age_ms=${Date.now() - taken.readyAt}`); // guard-ok: одна строка на тап
+    return Promise.resolve(taken.ready);
+  }
   // зачем (жалобы 24.10 №5/№6, «занятие 3 главы 1 стабильно не готовится, проверь связь»): на медленном телефоне сборка не
   // укладывалась в срок, срок отклонял ожидание, а сама сборка шла дальше и её результат выбрасывался — следующий тап начинал
   // с нуля и снова не успевал. Теперь незаконченная подготовка того же занятия переиспользуется: повторный тап (или прогрев)
   // дожидается уже идущей работы, а не начинает новую.
-  const inflightKey = JSON.stringify([locator.environment, locator.seasonId, locator.studyTarget, locator.learnerSourceLocale, locator.lessonOrdinal, locator.sessionOrdinal]);
   const running = inflightPreparations.get(inflightKey);
-  const operation = running ?? startPreparation(locator, sessionTag, inflightKey);
+  const operation = running ?? startTrackedPreparation(locator, sessionTag, inflightKey);
+  // Тап забрал результат этой подготовки — в запас (preparedSlot) он уже не попадёт.
+  claimedByTap.add(operation);
   if (running) {
     console.warn(`${LOG} [R08-PREP] reuse_inflight ${sessionTag}`); // guard-ok: повторный тап ждёт идущую подготовку
+    console.log(`[V2-PREPARE] tap_joins_running ${sessionTag}`); // guard-ok: тап раньше конца заготовки
   } else {
-    inflightPreparations.set(inflightKey, operation);
-    const clear = () => { if (inflightPreparations.get(inflightKey) === operation) inflightPreparations.delete(inflightKey); };
-    operation.then(clear, clear);
+    console.log(`[V2-PREPARE] tap_cold ${sessionTag} slot=${preparedSlot ? preparedSlot.key : 'empty'}`); // guard-ok: заготовки не было
   }
   const timed = new Promise<LearningV2PreparedSessionRunV1>((_, reject) => {
     const timer = setTimeout(() => {
@@ -108,6 +120,123 @@ export function prepareLearningV2SessionRunV1(
 }
 
 const inflightPreparations = new Map<string, Promise<LearningV2PreparedSessionRunV1>>();
+/** Подготовки, результат которых уже ждёт тап: в запас их не кладём (иначе один sessionRunId выдали бы дважды). */
+const claimedByTap = new WeakSet<Promise<LearningV2PreparedSessionRunV1>>();
+
+function preparationKeyOf(locator: LearningV2SessionLocatorV1): string {
+  return JSON.stringify([locator.environment, locator.seasonId, locator.studyTarget, locator.learnerSourceLocale, locator.lessonOrdinal, locator.sessionOrdinal]);
+}
+
+function startTrackedPreparation(locator: LearningV2SessionLocatorV1, sessionTag: string, inflightKey: string): Promise<LearningV2PreparedSessionRunV1> {
+  const operation = startPreparation(locator, sessionTag, inflightKey);
+  inflightPreparations.set(inflightKey, operation);
+  const clear = () => { if (inflightPreparations.get(inflightKey) === operation) inflightPreparations.delete(inflightKey); };
+  operation.then(clear, clear);
+  return operation;
+}
+
+// ── Заготовка «урок готов до тапа» (ЗАМОК ВЛАДЕЛЬЦА 25.10) ─────────────────────────────────────────────────────────────
+// зачем: координатор 25.10 — «держать в памяти одну заготовку, не больше»: новая заготовка вытесняет прежнюю.
+export type LearningV2PrewarmReasonV1 = 'home' | 'lessons_entry' | 'lessons_expand' | 'session_finish';
+type PreparedSlotV1 = Readonly<{ key: string; ready: LearningV2PreparedSessionRunV1; reason: LearningV2PrewarmReasonV1; readyAt: number }>;
+let preparedSlot: PreparedSlotV1 | null = null;
+// зачем: заготовка привязана к языку интерфейса и ученику — смена аккаунта её сбрасывает, чужой запуск не достанется
+onAccountOwnerChanged('learning_v2_prepared_slot', () => {
+  if (preparedSlot) console.log(`[V2-PREPARE] slot_cleared reason=account_changed key=${preparedSlot.key}`); // guard-ok: сброс с причиной
+  preparedSlot = null;
+});
+
+/** Есть ли готовая заготовка именно этого занятия (тап откроет его без ожидания). */
+export function isLearningV2SessionReadyV1(locator: LearningV2SessionLocatorV1): boolean {
+  return preparedSlot?.key === preparationKeyOf(locator);
+}
+
+/**
+ * Собрать занятие заранее и положить в запас. Никогда не бросает: отказ пишется в журнал, тап соберёт занятие сам.
+ * Вызывать вне первого кадра — scheduleLearningV2SessionPrewarmV1 делает это после interactions и паузы.
+ */
+export function prewarmLearningV2SessionRunV1(locator: LearningV2SessionLocatorV1, reason: LearningV2PrewarmReasonV1): Promise<void> {
+  const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+  const key = preparationKeyOf(locator);
+  if (preparedSlot?.key === key) {
+    console.log(`[V2-PREPARE] prewarm_skip ${sessionTag} reason=${reason} why=already_ready`); // guard-ok: ранний выход с причиной
+    return Promise.resolve();
+  }
+  const running = inflightPreparations.get(key);
+  const operation = running ?? startTrackedPreparation(locator, sessionTag, key);
+  const startedAt = Date.now();
+  console.log(`[V2-PREPARE] prewarm_start ${sessionTag} reason=${reason} joined=${running ? 'yes' : 'no'}`); // guard-ok: одна строка на заготовку
+  return operation.then((ready) => {
+    if (claimedByTap.has(operation)) {
+      console.log(`[V2-PREPARE] prewarm_used_by_tap ${sessionTag} reason=${reason} ms=${Date.now() - startedAt}`); // guard-ok: тап успел раньше
+      return;
+    }
+    if (preparedSlot && preparedSlot.key !== key) console.log(`[V2-PREPARE] slot_replaced old=${preparedSlot.key} new=${key}`); // guard-ok: одна заготовка
+    preparedSlot = Object.freeze({ key, ready, reason, readyAt: Date.now() });
+    console.log(`[V2-PREPARE] prewarm_ready ${sessionTag} reason=${reason} ms=${Date.now() - startedAt}`); // guard-ok: одна строка на заготовку
+  }, (error: unknown) => {
+    console.warn(`[V2-PREPARE] prewarm_failed ${sessionTag} reason=${reason} error=${error instanceof Error ? error.message : String(error)}`); // guard-ok: отказ с причиной, тап соберёт сам
+  });
+}
+
+/** Пауза после interactions перед заготовкой — первый кадр и прокрутка экрана не делят поток со сборкой. */
+export const LEARNING_V2_PREWARM_DELAY_MS = 1_500;
+
+/**
+ * Заготовка вне первого кадра: после InteractionManager.runAfterInteractions и паузы. Возвращает отмену (уход с экрана).
+ */
+export function scheduleLearningV2SessionPrewarmV1(
+  locator: LearningV2SessionLocatorV1,
+  reason: LearningV2PrewarmReasonV1,
+  delayMs: number = LEARNING_V2_PREWARM_DELAY_MS,
+): () => void {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let cancelled = false;
+  const task = InteractionManager.runAfterInteractions(() => {
+    if (cancelled) return;
+    timer = setTimeout(() => { timer = null; void prewarmLearningV2SessionRunV1(locator, reason); }, delayMs);
+  });
+  return () => {
+    cancelled = true;
+    task.cancel?.();
+    if (timer) clearTimeout(timer);
+  };
+}
+
+/** Следующее выпущенное занятие курса после (урок, занятие) — по каталогу и потолку выпуска. null — дальше ничего нет. */
+export function nextLearningV2SessionOrdinalsV1(lessonOrdinal: number, sessionOrdinal: number): Readonly<{ lessonOrdinal: number; sessionOrdinal: number }> | null {
+  try {
+    // зачем: каталог курса грузится лениво — модуль запуска не тянет его на старт приложения
+    /* eslint-disable @typescript-eslint/no-require-imports */
+    const { factoryNativeLearningV2AvailabilityV1 } = require('../modules/learning-v2/content/factory_native/factory_native_catalog_v1') as typeof import('../modules/learning-v2/content/factory_native/factory_native_catalog_v1');
+    const { isLearningV2SessionReleasedV1 } = require('./learning_v2_session_availability_v1') as typeof import('./learning_v2_session_availability_v1');
+    /* eslint-enable @typescript-eslint/no-require-imports */
+    const next = factoryNativeLearningV2AvailabilityV1().sessions
+      .filter((s) => s.lessonOrdinal > lessonOrdinal || (s.lessonOrdinal === lessonOrdinal && s.sessionOrdinal > sessionOrdinal))
+      .sort((a, b) => a.lessonOrdinal - b.lessonOrdinal || a.sessionOrdinal - b.sessionOrdinal)
+      .find((s) => isLearningV2SessionReleasedV1(s.lessonOrdinal, s.sessionOrdinal));
+    return next ? { lessonOrdinal: next.lessonOrdinal, sessionOrdinal: next.sessionOrdinal } : null;
+  } catch (error) {
+    console.warn(`[V2-PREPARE] next_unknown after=lesson-${lessonOrdinal}:session:${sessionOrdinal} error=${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина
+    return null;
+  }
+}
+
+/** Финиш занятия: следующее занятие собирается сразу, пока человек смотрит итог (после анимаций и паузы). */
+export function scheduleNextLearningV2SessionPrewarmV1(finished: LearningV2SessionLocatorV1): () => void {
+  const next = nextLearningV2SessionOrdinalsV1(finished.lessonOrdinal, finished.sessionOrdinal);
+  if (!next) {
+    console.log(`[V2-PREPARE] prewarm_skip after=lesson-${finished.lessonOrdinal}:session:${finished.sessionOrdinal} reason=session_finish why=no_next_released`); // guard-ok: ранний выход с причиной
+    return () => undefined;
+  }
+  return scheduleLearningV2SessionPrewarmV1({ ...finished, ...next }, 'session_finish');
+}
+
+export function __resetLearningV2PreparedSlotForTests(): void {
+  preparedSlot = null;
+  inflightPreparations.clear();
+}
+
 // зачем (владелец 25.10, сперва логи): шаг, на котором сейчас идущая подготовка, — чтобы срок 12 с назвал место, а не «долго»
 const preparationSteps = new Map<string, 'yield' | 'import' | 'load' | 'done'>();
 /** Подготовка дольше этого — одна critical-запись на процесс с разбивкой по шагам (данные с поля, без uid и текста). */

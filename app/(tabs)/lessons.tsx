@@ -228,7 +228,7 @@ import { LEARNING_V2_HIDDEN, isLearningV2OpenForUiLangV1, logLearningV2Hidden } 
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import { rememberLearningV2LastLesson, useLearningV2LastLesson } from "../learning_v2_last_lesson";
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_probe";
-import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
+import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, prewarmLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
 import {
   factoryNativeLearningV2AvailabilityV1,
   factoryNativeLearningV2NewWordCountV1,
@@ -3184,9 +3184,10 @@ export default function LessonsTab({
     // learningV2PreparedLaunchesRef и НИКОГДА не стоят на пути нажатия.
     // зачем (R08 🔴, координатор + Advisor 15.10, замер CPU): две подготовки сразу — 5 сборок материала и SHA-256 на чистом JS одной
     // цепочкой микрозадач — держали JS-поток 6–10 с: карта не рисовалась, касания ждали. Теперь греем текущее, следующее — после него.
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «урок готов до тапа», координатор: одна заготовка в памяти): греем ТОЛЬКО текущее — в общую
+    // заготовку (prewarmLearningV2SessionRunV1), которую заберёт тап по узлу. Следующее собирает финиш прошлого занятия.
     const targets = [
       { lessonOrdinal: current.lessonOrdinal, sessionOrdinal: current.sessionOrdinal },
-      { lessonOrdinal: current.lessonOrdinal, sessionOrdinal: current.sessionOrdinal + 1 },
     ] as const;
     const warmAt = (index: number): void => {
       const target = targets[index];
@@ -3212,9 +3213,16 @@ export default function LessonsTab({
       }
       const startedAt = Date.now();
       if (__DEV__) console.log('[V2-PREWARM] start', JSON.stringify({ courseSessionId }));
-      void prewarmLearningV2SessionLaunch(
-        target.lessonOrdinal,
-        target.sessionOrdinal,
+      void prewarmLearningV2SessionRunV1(
+        {
+          environment: learningV2Catalog?.environment ?? "production",
+          seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+          studyTarget,
+          learnerSourceLocale: lang,
+          lessonOrdinal: target.lessonOrdinal,
+          sessionOrdinal: target.sessionOrdinal,
+        },
+        "lessons_entry",
       )
         .then(() => {
           if (__DEV__) {
@@ -3245,7 +3253,9 @@ export default function LessonsTab({
   }, [
     currentLearningV2SessionCoordinates,
     learningV2FactoryNativeSessionIds,
-    prewarmLearningV2SessionLaunch,
+    learningV2Catalog?.environment,
+    learningV2Catalog?.seasonId,
+    lang,
     studyTarget,
   ]);
 
@@ -3479,7 +3489,9 @@ export default function LessonsTab({
         // английских занятий сети в подготовке нет вовсе (материал из бандла): отказ значит «нет локального материала», а не «нет связи».
         // Причина пишется в лог ([V2-LAUNCH]) на каждом отказе, текст честный: «Сейчас недоступно» и приглашение попробовать снова.
         const prepareFailureReason = error instanceof Error ? error.message : String(error);
-        const bundledUnavailable = prepareFailureReason === "learning_v2_factory_session_unavailable";
+        // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, координатор: «проверьте связь» — только если сети реально нет): английское занятие собирается
+        // из бандла, сети в подготовке нет — любой его отказ показываем как «Сейчас недоступно», не как обрыв связи.
+        const bundledUnavailable = prepareFailureReason === "learning_v2_factory_session_unavailable" || studyTarget === "en";
         // зачем (жалобы 24.10 №5/№6): у английских занятий сети в подготовке нет — «проверь связь» на сроке подготовки врал.
         // Срок значит «телефон ещё собирает занятие»; подготовка не бросается, повторный тап её подхватит.
         const stillPreparing = prepareFailureReason.startsWith("learning_v2_session_prepare_timeout");

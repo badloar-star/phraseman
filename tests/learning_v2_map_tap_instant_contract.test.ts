@@ -95,9 +95,13 @@ describe("Learning V2 map tap instant contract", () => {
     expect(visibleHandler).not.toContain("prewarmLearningV2SessionLaunch(");
   });
 
-  test("греется не только текущее занятие, но и следующее", () => {
-    // После прохождения занятия следующий тап обязан быть тёплым.
-    expect(source).toContain("sessionOrdinal: current.sessionOrdinal + 1");
+  test("после прохождения занятия следующий тап тёплый", () => {
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, одна заготовка в памяти): пару «текущее + следующее» при входе больше не греем — вторая
+    // вытеснила бы первую. Следующее занятие собирает финиш прошлого (scheduleNextLearningV2SessionPrewarmV1 в плеере),
+    // вход на «Обучение» греет текущее через общую заготовку.
+    expect(source).toContain("prewarmLearningV2SessionRunV1(");
+    const player = readFileSync(join(__dirname, "..", "app", "learning_v2_direct_session_player_v1.tsx"), "utf8");
+    expect(player).toContain("scheduleNextLearningV2SessionPrewarmV1(");
   });
 
   test("каждый ранний выход прогрева называет причину", () => {

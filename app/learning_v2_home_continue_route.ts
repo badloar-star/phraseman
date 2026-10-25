@@ -10,8 +10,41 @@ import {
   logLearningV2PrepareFailureV1,
   parseLearningV2ReleaseEnvironmentV1,
   prepareLearningV2SessionRunV1,
+  scheduleLearningV2SessionPrewarmV1,
   stageLearningV2ReadyHandoffV1,
 } from './learning_v2_session_launch_v1';
+
+/**
+ * ЗАМОК ВЛАДЕЛЬЦА 25.10 «урок готов до тапа»: занятие из карточки «Продолжить» собирается заранее — после первого кадра
+ * Главной (interactions + пауза, без касания потока прокрутки). Тап «Продолжить» забирает готовую заготовку.
+ */
+export function useHomeContinueV2Prewarm(
+  route: Readonly<Record<string, string>> | null,
+  lang: string,
+  studyTarget: string,
+  active: boolean,
+): void {
+  const lessonOrdinal = route ? Number(route.lessonOrdinal) : NaN;
+  const sessionOrdinal = route ? Number(route.sessionOrdinal) : NaN;
+  const environmentRaw = route?.releaseEnvironment;
+  const seasonId = route?.releaseSeasonId || 'learning-v2';
+  useEffect(() => {
+    if (!active || !Number.isInteger(lessonOrdinal) || !Number.isInteger(sessionOrdinal)) {
+      if (active && route) console.log(`${LOG} prewarm skip: метка без урока/занятия (${JSON.stringify(route)})`); // guard-ok: ранний выход с причиной
+      return undefined;
+    }
+    return scheduleLearningV2SessionPrewarmV1({
+      environment: parseLearningV2ReleaseEnvironmentV1(environmentRaw),
+      seasonId,
+      studyTarget,
+      learnerSourceLocale: lang,
+      lessonOrdinal,
+      sessionOrdinal,
+    }, 'home');
+    // route целиком в зависимостях не нужен: заготовку определяют только примитивы ниже (новый объект метки на каждом рендере)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, environmentRaw, lang, lessonOrdinal, seasonId, sessionOrdinal, studyTarget]);
+}
 
 const LOG = '[HOME-CONTINUE]';
 

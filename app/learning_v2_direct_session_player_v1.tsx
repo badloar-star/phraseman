@@ -290,6 +290,7 @@ import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from "../components/
 import { LearningV2HudPlate } from "../components/learning-v2/LearningV2TaskChrome";
 import { lv2TaskPlateStyle, lv2TaskTrackColor } from "../components/learning-v2/learning_v2_task_layout_tokens";
 import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint } from "../components/learning-v2/LearningV2SessionUnavailable";
+import { scheduleNextLearningV2SessionPrewarmV1 } from "./learning_v2_session_launch_v1";
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -2295,6 +2296,20 @@ export default function LearningV2DirectSessionPlayerV1() {
         };
         try {
           await commitLocalProgress();
+          // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «урок готов до тапа»): следующее занятие собирается, пока человек смотрит итог —
+          // после анимаций финала и паузы; сеть не нужна (бандл), Firestore не читается.
+          if (locator) {
+            scheduleNextLearningV2SessionPrewarmV1({
+              environment: locator.environment,
+              seasonId: locator.seasonId,
+              studyTarget: locator.studyTarget,
+              learnerSourceLocale: locator.learnerSourceLocale,
+              lessonOrdinal: locator.lessonOrdinal,
+              sessionOrdinal: locator.sessionOrdinal,
+            });
+          } else {
+            console.warn("[V2-PREPARE] prewarm_skip reason=session_finish why=no_locator"); // guard-ok: ранний выход с причиной
+          }
         } catch (error: unknown) {
           // зачем (координатор 22.10, прогресс v2): логический отказ хранилища («не следующее и не открытое») повтором не
           // лечится — повторять его бессмысленно; пишем причину и не крутим попытки. Повторы — только для сбоя записи.
@@ -2542,6 +2557,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     run,
     runSummary,
     studyTarget,
+    locator,
   ]);
 
   const showPracticeIndex = useCallback(

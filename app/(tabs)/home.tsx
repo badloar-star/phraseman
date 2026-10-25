@@ -147,7 +147,7 @@ import {
 import { lessonNamesForStudyTarget } from '../lesson_titles_for_study_target';
 import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
-import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
+import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { markHomeFirstPaint } from '../home_paint_marker';
@@ -938,6 +938,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // перечитывается на каждый возврат на Главную (focusTick) — после пройденного занятия число свежее, а не из метки
     const continueV2Progress = useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive);
     const continueV2Launching = useHomeContinueV2Launching(); // зачем (Ревизор по R09, 🟡): занятие готовится до 12 с — карточка «Продолжить» показывает занятость вместо молчания
+    useHomeContinueV2Prewarm(continueV2?.route ?? null, lang, String(studyTarget), homeRuntimeActive); // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): урок готов до тапа «Продолжить»
     useEffect(() => {
         logHomeContinueChoice(continueChoice, continueInput, String(studyTarget));
         // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал пишется на смену решения или меток, а не на каждый рендер

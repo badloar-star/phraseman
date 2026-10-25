@@ -42,8 +42,8 @@ describe('строка-переход к выбору слов', () => {
     expect(saved).toHaveLength(1);
     expect(saved[0]).toMatchObject({ hardMode: false, speechVoiceId: 'v1', uiSounds: true });
     const toast = emitted.find((e) => e.type === 'action_toast')!.payload;
-    expect(toast.messageRu).toBe('Включил выбор слов');
-    expect(toast.action.labelRu).toBe('Вернуть');
+    expect(toast.messageRu).toBe('Слова снова на месте');
+    expect(toast.action.labelRu).toBe('Отмена');
     await act(async () => { toast.action.onPress(); });
     expect(calls).toEqual([false, true]);
     await flush();

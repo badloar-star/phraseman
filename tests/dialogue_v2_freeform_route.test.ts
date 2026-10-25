@@ -149,7 +149,8 @@ describe('Dialogue V2 freeform route', () => {
     });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
       { id: 'learner_1', author: 'learner', text: 'Guten Tag!' },
-      { id: 'assistant_2', author: 'assistant', text: 'Hallo! Woran möchtest du heute arbeiten?' },
+      // зачем (aafa29de4): реплика ИИ несёт ход сервера — по нему «Перевести» просит перевод тапом
+      { id: 'assistant_2', author: 'assistant', text: 'Hallo! Woran möchtest du heute arbeiten?', turnId: expect.stringMatching(/^d2ft_[a-f0-9]{36}$/) },
     ]));
     expect(mockResolveCurrentPreparedBotVoice).toHaveBeenCalledWith(expect.objectContaining({
       response: {
@@ -372,7 +373,8 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Hallo zusammen' }));
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
       { id: 'learner_1', author: 'learner', text: 'Hallo zusammen' },
-      { id: 'assistant_2', author: 'assistant', text: 'Hallo! Woran möchtest du heute arbeiten?' },
+      // зачем (aafa29de4): реплика ИИ несёт ход сервера — по нему «Перевести» просит перевод тапом
+      { id: 'assistant_2', author: 'assistant', text: 'Hallo! Woran möchtest du heute arbeiten?', turnId: expect.stringMatching(/^d2ft_[a-f0-9]{36}$/) },
     ]));
     expect(mockScreen.mock.calls.at(-1)[0].sending).toBe(false);
   });

@@ -6,15 +6,15 @@
 // тремя сердцами, лестница камней из tier_names. Имён людей и мест из макета тут
 // нет — их неоткуда честно взять. «Показан» хранится локально (spire_local_store).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useState } from 'react';
-import { Modal, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { Modal, PixelRatio, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle } from 'react-native-svg';
 import { triLang, type Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { COIN_RANK_TABLE } from '../../app/coin_rank_table_v1';
+import { coinRankSourceForSize } from '../../app/coin_rank_table_v1';
 import { spireTierName } from '../../modules/spire/tier_names';
 import V2Pressable from '../v2/V2Pressable';
 import SpireTowerSvg from './SpireTowerSvg';
@@ -74,12 +74,22 @@ const tourPlayerLabel = (lang: Lang, n: number): string => triLang(lang, {
   vi: `Người chơi\u00A0${n}`, id: `Pemain\u00A0${n}`, tr: `Oyuncu\u00A0${n}`, pl: `Gracz\u00A0${n}`,
 });
 
+/** Монета тура 40 dp. */
+const TOUR_COIN_DP = 40;
+
 function TourTop({ lang }: Readonly<{ lang: Lang }>) {
   const p = useSpirePalette(); const sh = useSpireShadow();
+  // зачем (координатор 26.10, аудит скорости Моментов №10): монеты тура брали полный арт 768² на круг 40 dp — декод на каждый показ тура.
+  // Берём уменьшенную копию под размер, как AvatarView (coinRankSourceForSize: s96 / s192); журнал — какой вариант выбран.
+  const ratio = PixelRatio.get();
+  useEffect(() => {
+    const variants = TOUR_PLAYERS.map((player) => coinRankSourceForSize(player.rank, TOUR_COIN_DP, ratio).variant);
+    console.log('[SPIRE-TOUR] монеты тура', JSON.stringify({ dp: TOUR_COIN_DP, ratio, variants, before: 'full 768²' })); // guard-ok: одна строка на показ тура
+  }, [ratio]);
   return (
     <View style={s.stones}>
       {TOUR_PLAYERS.map((player, i) => {
-        const coin = COIN_RANK_TABLE.find((row) => row.rank === player.rank);
+        const coin = coinRankSourceForSize(player.rank, TOUR_COIN_DP, ratio);
         return (
           <View key={`top-${player.rank}`} style={[s.player, { backgroundColor: p.cardRaised }, sh.nested]}>
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
@@ -150,7 +160,7 @@ const s = StyleSheet.create({
   stones: { width: '100%', gap: 12, paddingHorizontal: 34 },
   player: { minHeight: 62, borderRadius: 14, paddingVertical: 8, paddingLeft: 12, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
   place: { width: 26, textAlign: 'center', fontSize: 16, fontWeight: '700' },
-  coin: { width: 40, height: 40 },
+  coin: { width: TOUR_COIN_DP, height: TOUR_COIN_DP },
   playerName: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: '600' }, // зачем: шкала Шпиля 16/13 (spire_design_layer_contract); в макете 17 px, ближайшая ступень шкалы — 16
   steps: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   stepsUnit: { fontSize: 13, fontWeight: '600' },

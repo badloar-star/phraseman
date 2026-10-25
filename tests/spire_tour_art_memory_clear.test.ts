@@ -11,7 +11,7 @@ describe('тур Шпиля: арт как в макете spire.html', () => {
     expect(tour).not.toMatch(/ringText[^>]*>10</);
   });
   it('страница 3: игроки с монетами ранга 12/9/7 и числом ступеней вместо лестницы камней', () => {
-    expect(tour).toContain('COIN_RANK_TABLE.find');
+    expect(tour).toContain('coinRankSourceForSize(player.rank, TOUR_COIN_DP, ratio)'); // зачем (аудит скорости 26.10 №10): монета под размер, не полный арт 768²
     expect(tour).toMatch(/\{ rank: 12, steps: 47 \}, \{ rank: 9, steps: 39 \}, \{ rank: 7, steps: 33 \}/);
     expect(tour).toContain('<TourTop lang={lang} />');
     expect(tour).not.toContain('TourStones');

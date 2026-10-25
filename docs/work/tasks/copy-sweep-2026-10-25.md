@@ -1,6 +1,8 @@
 # Task packet: зачистка текстов интерфейса — убрать «воду» и метафоры (Переводчик, приоритет владельца 25.10)
 
 Governance-ID: TG-F342C5235E3D
+Governance-ID: TG-14E1CA27D69A
+Governance-ID: TG-89929F2EF2B4
 Status: In progress
 Owner: «10 · ПЕРЕВОДЧИК»
 

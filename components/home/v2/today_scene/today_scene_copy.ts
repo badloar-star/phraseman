@@ -124,7 +124,7 @@ export function buildTodaySceneCopy(i: TodaySceneCopyInput): TodaySceneCopy {
   if (d.state === 'evening') {
     return {
       ...base, kicker: streakKicker(lang, i.streakDays), title: midnightTitle(lang, i.minutesToMidnight), line: null,
-      warm: tri(lang, { ru: 'Одно занятие — и серия спасена', uk: 'Одне заняття — і серію врятовано', en: 'One session and your streak is saved', es: 'Una sesión y tu racha está a salvo', 'pt-BR': 'Uma sessão e sua sequência está salva', vi: 'Một buổi học là chuỗi được cứu', id: 'Satu sesi dan rangkaianmu selamat', tr: 'Bir oturum ve serin kurtuldu', pl: 'Jedne zajęcia i seria uratowana' }),
+      warm: tri(lang, { ru: 'Одно занятие — и серия спасена', uk: 'Одне заняття — і серію врятовано', en: 'One lesson and your streak is saved', es: 'Una lección y tu racha está a salvo', 'pt-BR': 'Uma lição e sua sequência está salva', vi: 'Một buổi học là chuỗi được cứu', id: 'Satu pelajaran dan rangkaianmu selamat', tr: 'Bir ders ve serin kurtuldu', pl: 'Jedne zajęcia i seria uratowana' }),
     };
   }
   if (d.state === 'morning') {

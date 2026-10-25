@@ -12,7 +12,8 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
-import React, { memo, useCallback, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import MaskedView from '@react-native-masked-view/masked-view';
 import { StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -27,6 +28,7 @@ import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
 import { useAfterFirstFrame } from '../../../../hooks/use-after-first-frame';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
 import { homeSceneStageHeight } from './home_scene_fit';
+import { homeSceneHeroFade } from './home_scene_hero_fade';
 import { homeSceneWarmTone } from './home_scene_warm_tone';
 import { useShadowGlass } from '../../../v2/ShadowSurface';
 import type { HomeSceneState } from './home_scene_state';
@@ -119,7 +121,13 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
-  const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;
+  // зачем (координатор 25.10 по замеру Тем 8bd8aea17: правило о герое поверх текста отменено — текст обязан читаться): высота места под героя
+  // известна после раскладки; герой рисуется со 2-го кадра (heroReady), так что маска встаёт вместе с ним, без мигания
+  const [heroSpaceH, setHeroSpaceH] = useState<number | null>(null);
+  const fade = homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO, fontBounded: fontScale > HERO_BOUND_FONT_SCALE });
+  const heroBounded = fade.bounded;
+  const heroMask = useMemo(() => <LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />, [fade.fadeFrom, fade.fadeTo]);
+  useEffect(() => { console.log(LOG, 'hero_fade', JSON.stringify({ why: fade.why, bounded: fade.bounded, masked: fade.masked, fadeFrom: Number(fade.fadeFrom.toFixed(2)), fadeTo: Number(fade.fadeTo.toFixed(2)), fontScale, spaceH: heroSpaceH })); }, [fade.why, fade.bounded, fade.masked, fade.fadeFrom, fade.fadeTo, fontScale, heroSpaceH]); // guard-ok: одна строка на смену геометрии героя
   // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия
   const titleStyle = copy.title.length > TITLE_LONG_CHARS ? s.titleLong : s.title;
   const pressCta = () => {
@@ -172,15 +180,25 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
       <View style={s.topSpace} />
-      {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота, поверх текста допустимо), крупный — не выше свободного места */}
-      <View style={s.heroSpace} pointerEvents="none">
-        {art && heroReady ? (
+      {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота; правило: под текстом герой ≤ 16 % в светлом и ≤ 9 % в тёмном — над текстом он плавно гаснет к 0, home_scene_hero_fade), крупный или «маска съела бы героя» — не выше свободного места */}
+      <View style={s.heroSpace} pointerEvents="none" onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setHeroSpaceH((prev) => (prev === h ? prev : h)); }}>
+        {art && heroReady ? (fade.masked ? (
+          // зачем (координатор 25.10, скорость): маска — СНАРУЖИ анимированного слоя и статична (градиент считается от раскладки, не от кадров):
+          // на Android MaskedView рисуется во внешний буфер — его не перерисовываем на каждом кадре появления героя. Маска — только альфа.
+          <MaskedView pointerEvents="none" style={s.hero} maskElement={heroMask}>
+            <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={StyleSheet.absoluteFill}>
+              <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
+                <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition="center" />
+              </View>
+            </Animated.View>
+          </MaskedView>
+        ) : (
           <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : s.hero}>
             <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
               <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
             </View>
           </Animated.View>
-        ) : null}
+        )) : null}
       </View>
       <View style={s.body}>
         {pending ? (

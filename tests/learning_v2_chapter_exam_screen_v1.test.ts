@@ -83,8 +83,8 @@ describe('chapter exam: Sverka defects stay fixed', () => {
     const copy = require('../components/learning-v2/learning_v2_chapter_exam_result_copy');
     expect(copy.learningV2ChapterExamFailedTitle('ru', 0)).toBe('Пока не вышло');
     expect(copy.learningV2ChapterExamFailedTitle('ru', 5)).toBe('Пока не вышло');
-    expect(copy.learningV2ChapterExamFailedTitle('ru', 6)).toBe('Почти получилось');
-    expect(copy.learningV2ChapterExamFailedTitle('ru', 9)).toBe('Почти получилось');
+    expect(copy.learningV2ChapterExamFailedTitle('ru', 6)).toBe('Почти! Ещё чуть-чуть');
+    expect(copy.learningV2ChapterExamFailedTitle('ru', 9)).toBe('Почти! Ещё чуть-чуть');
     expect(copy.learningV2ChapterExamFailedBody('ru', 12)).toBe('Чтобы сдать, нужно 10. Разберём 12 ошибок, и через час можно пересдать.');
     expect(copy.learningV2ChapterExamFailedBody('ru', 3)).toContain('Разберём 3 ошибки');
     expect(copy.learningV2ChapterExamFailedBody('uk', 4)).toContain('Розберемо 4 помилки');

@@ -8,11 +8,11 @@ type Row = Readonly<Record<Lang9, string>>;
 
 const COPY = {
   score: { ru: "{x} из 12", uk: "{x} з 12", en: "{x} of 12", es: "{x} de 12", "pt-BR": "{x} de 12", vi: "{x}/12", id: "{x} dari 12", tr: "12'de {x}", pl: "{x} z 12" },
-  passedTitle: { ru: "Экзамен сдан", uk: "Іспит складено", en: "Exam passed", es: "Examen aprobado", "pt-BR": "Exame aprovado", vi: "Đã đạt", id: "Lulus ujian", tr: "Sınavı geçtin", pl: "Egzamin zdany" },
+  passedTitle: { ru: "Экзамен сдан!", uk: "Іспит складено!", en: "Exam passed", es: "Examen aprobado", "pt-BR": "Exame aprovado", vi: "Đã đạt", id: "Lulus ujian", tr: "Sınavı geçtin", pl: "Egzamin zdany" },
   // зачем (Сверка 22.10): «Почти получилось» при 0 из 12 нелепо — при 0–5 верных другой заголовок (черновик для Переводчика)
   failedLowTitle: { ru: "Пока не вышло", uk: "Поки не вийшло", en: "Not this time", es: "Esta vez no", "pt-BR": "Ainda não foi", vi: "Lần này chưa đạt", id: "Belum berhasil", tr: "Bu sefer olmadı", pl: "Tym razem nie" },
-  failedTitle: { ru: "Почти получилось", uk: "Майже вийшло", en: "Almost there", es: "Casi lo logras", "pt-BR": "Quase lá", vi: "Suýt đạt", id: "Hampir berhasil", tr: "Az kaldı", pl: "Prawie się udało" },
-  unlocked: { ru: "Глава {n} открыта", uk: "Розділ {n} відкрито", en: "Chapter {n} unlocked", es: "Capítulo {n} desbloqueado", "pt-BR": "Capítulo {n} desbloqueado", vi: "Chương {n} đã mở", id: "Bab {n} terbuka", tr: "{n}. ünite açıldı", pl: "Rozdział {n} otwarty" },
+  failedTitle: { ru: "Почти! Ещё чуть-чуть", uk: "Майже! Ще трохи", en: "Almost there", es: "Casi lo logras", "pt-BR": "Quase lá", vi: "Suýt đạt", id: "Hampir berhasil", tr: "Az kaldı", pl: "Prawie się udało" },
+  unlocked: { ru: "Глава {n} открыта!", uk: "Розділ {n} відкрито!", en: "Chapter {n} unlocked", es: "Capítulo {n} desbloqueado", "pt-BR": "Capítulo {n} desbloqueado", vi: "Chương {n} đã mở", id: "Bab {n} terbuka", tr: "{n}. ünite açıldı", pl: "Rozdział {n} otwarty" },
   openedAlso: { ru: "Начнём с эпизода {a}", uk: "Почнемо з епізоду {a}", en: "We'll start with episode {a}", es: "Empezamos por el episodio {a}", "pt-BR": "Vamos começar pelo episódio {a}", vi: "Bắt đầu từ tập {a}", id: "Kita mulai dari episode {a}", tr: "{a}. bölümden başlıyoruz", pl: "Zaczniemy od odcinka {a}" },
   toChapter: { ru: "К главе {n}", uk: "До розділу {n}", en: "To chapter {n}", es: "Al capítulo {n}", "pt-BR": "Para o capítulo {n}", vi: "Đến chương {n}", id: "Ke bab {n}", tr: "{n}. üniteye geç", pl: "Do rozdziału {n}" },
   review: { ru: "Разбор ошибок", uk: "Розбір помилок", en: "Review mistakes", es: "Repasar errores", "pt-BR": "Revisar erros", vi: "Xem lại lỗi", id: "Tinjau kesalahan", tr: "Hataları incele", pl: "Przejrzyj błędy" },

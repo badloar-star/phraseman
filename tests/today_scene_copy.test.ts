@@ -23,7 +23,7 @@ describe('buildTodaySceneCopy · русский', () => {
   });
   it('вечер: «До полуночи 2 ч 20 мин», серия с правильным склонением, тёплая строка', () => {
     const c = copy('ru', [t('lesson', 0, 1), t('dialog', 0, 1), t('cards', 0, 10)], 21);
-    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До\u00A0полуночи 2\u00A0ч\u00A020\u00A0мин', line: null, warm: 'Одно занятие сохранит серию' });
+    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До\u00A0полуночи 2\u00A0ч\u00A020\u00A0мин', line: null, warm: 'Одно занятие — и серия спасена' });
   });
   it('вечер, ровно часы и ровно минуты — без «0 мин» и «0 ч»', () => {
     expect(copy('ru', [t('lesson', 0, 1)], 22, 1, false, 120).title).toBe('До\u00A0полуночи 2\u00A0ч');
@@ -32,9 +32,9 @@ describe('buildTodaySceneCopy · русский', () => {
     expect(copy('ru', [t('lesson', 0, 1)], 23, 2, false, 45).kicker).toBe('Серия 2 дня');
     expect(copy('ru', [t('lesson', 0, 1)], 23, 11, false, 45).kicker).toBe('Серия 11 дней');
   });
-  it('все выполнено: «3 из 3», «Все кольца замкнуты», без тёплой строки', () => {
+  it('все выполнено: «3 из 3», «Все задания дня — в кармане!», без тёплой строки', () => {
     const c = copy('ru', [t('lesson', 1, 1), t('dialog', 1, 1), t('cards', 10, 10)], 22);
-    expect(c).toMatchObject({ title: '3 из 3', line: 'Все кольца замкнуты', warm: null });
+    expect(c).toMatchObject({ title: '3 из 3', line: 'Все задания дня — в кармане!', warm: null });
   });
   it('видео вместо диалога: «Осталось: видео и карточки»', () => {
     const c = copy('ru', [t('lesson', 1, 1), t('video', 4, 10), t('cards', 6, 10)], 16, 5, true);

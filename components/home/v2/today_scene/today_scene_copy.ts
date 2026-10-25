@@ -116,14 +116,15 @@ export function buildTodaySceneCopy(i: TodaySceneCopyInput): TodaySceneCopy {
   if (d.state === 'done') {
     return {
       ...base, kicker: dateKicker, title: ofLine(lang, d.doneCount, d.total),
-      line: tri(lang, { ru: 'Все кольца замкнуты', uk: 'Усі кільця замкнено', en: 'All rings closed', es: 'Todos los anillos cerrados', 'pt-BR': 'Todos os anéis fechados', vi: 'Đã đóng mọi vòng', id: 'Semua cincin tertutup', tr: 'Tüm halkalar kapandı', pl: 'Wszystkie kółka zamknięte' }),
+      // зачем (голос PhraseMan, VOICE.md, владелец 25.10): без метафоры «кольца замкнуты» — тепло и по делу
+      line: tri(lang, { ru: 'Все задания дня — в кармане!', uk: 'Усі завдання дня — в кишені!', en: "All of today's tasks — done!", es: '¡Todas las tareas del día, listas!', 'pt-BR': 'Todas as tarefas do dia: feitas!', vi: 'Xong hết nhiệm vụ hôm nay rồi!', id: 'Semua tugas hari ini beres!', tr: 'Günün tüm görevleri cepte!', pl: 'Wszystkie zadania dnia — w kieszeni!' }),
       warm: null,
     };
   }
   if (d.state === 'evening') {
     return {
       ...base, kicker: streakKicker(lang, i.streakDays), title: midnightTitle(lang, i.minutesToMidnight), line: null,
-      warm: tri(lang, { ru: 'Одно занятие сохранит серию', uk: 'Одне заняття збереже серію', en: 'One lesson keeps your streak', es: 'Una lección mantiene tu racha', 'pt-BR': 'Uma lição mantém sua sequência', vi: 'Một bài học sẽ giữ chuỗi của bạn', id: 'Satu pelajaran menjaga runtunanmu', tr: 'Bir ders serini korur', pl: 'Jedna lekcja ocali serię' }),
+      warm: tri(lang, { ru: 'Одно занятие — и серия спасена', uk: 'Одне заняття — і серію врятовано', en: 'One session and your streak is saved', es: 'Una sesión y tu racha está a salvo', 'pt-BR': 'Uma sessão e sua sequência está salva', vi: 'Một buổi học là chuỗi được cứu', id: 'Satu sesi dan rangkaianmu selamat', tr: 'Bir oturum ve serin kurtuldu', pl: 'Jedne zajęcia i seria uratowana' }),
     };
   }
   if (d.state === 'morning') {

@@ -72,7 +72,7 @@ describe('Сцена Главной: тексты состояний', () => {
   });
   it('вечер: серия, время до полуночи, тёплая строка, эпизод в кнопке', () => {
     const c = buildHomeSceneCopy({ ...copyBase, state: 'streak_risk' });
-    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До полуночи 2 ч 20 мин' /* неразрывные пробелы: строка рвётся только между фразой и временем (Сверка 22.10) */, warm: 'Одно занятие сохранит серию', cta: 'Продолжить эпизод 12' });
+    expect(c).toMatchObject({ kicker: 'Серия 5 дней', title: 'До полуночи 2 ч 20 мин' /* неразрывные пробелы: строка рвётся только между фразой и временем (Сверка 22.10) */, warm: 'Одно занятие — и серия спасена', cta: 'Продолжить эпизод 12' });
   });
   it('вечер при 0 энергии говорит, когда энергия', () => {
     const c = buildHomeSceneCopy({ ...copyBase, state: 'streak_risk', zeroEnergyNote: true, energyMinutes: 42 });
@@ -122,6 +122,6 @@ describe('Сцена Главной: входы из данных на теле�
   });
   it('серия прервалась: сколько было дней', () => {
     const c = buildHomeSceneCopy({ lang: 'ru', state: 'streak_lost', zeroEnergyNote: false, badge: null, episode: 12, title: 'Т', progress: null, streakDays: 0, minutesToMidnight: 0, daysAway: 2, energyMinutes: null, theoryAvailable: false, wordsAvailable: false, lostStreakDays: 5 });
-    expect(c.line).toBe('Было 5 дней. Одно занятие, и огонь снова загорится');
+    expect(c.line).toBe('Было 5 дней. Не беда — одно занятие, и начинаем новую');
   });
 });

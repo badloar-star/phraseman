@@ -33,3 +33,15 @@ safeRouterBack(router, '/(tabs)/home'), ровно как handleLessonsBack дл
 
 ## Rollback
 Revert коммита.
+
+## Дополнение 25.10 ~11:10: «Все уроки» и отступ под таббаром (тот же OTA)
+Governance-ID: TG-7C33B86E9D30
+Governance-ID: TG-788DC061536D
+Governance-ID: TG-39251C53360D
+- Владелец: «из „Все уроки“ выхожу — и таббара нет, и пропадает». «Все уроки» — не маршрут, а замена обложки списком (allLessonsOpen) в
+  том же экране. Скрытие таббара (useHideTabBar) не вызывается нигде. Гипотеза: вход с Главной (push) — у списка своя «Назад», после неё
+  обложка без кнопки (закрыто 15658f6b9). Проверяем журналом [LESSONS-NAV]: открытие/закрытие, чем закрыт, вкладка или push, canGoBack,
+  запрос скрытия таббара до/после.
+- Ревизор: списки Сезона брали голый bottomPadding (SeasonPickScreens подвал, LearningV2AllLessonsList) — подпись под капсулой таббара.
+  use_season_list_bottom_pad: isTabPage ? max(bottomPadding, useTabContentBottomPad()) : bottomPadding (как SeasonCourseView).
+- Сторож: tests/season_push_back_contract.test.mjs — списки Сезона на вкладке учитывают таббар, журнал открытия/закрытия на месте.

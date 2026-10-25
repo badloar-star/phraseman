@@ -36,6 +36,7 @@ import NoEnergyModal from '../../NoEnergyModal';
 import { usePremium } from '../../PremiumContext';
 import { useTheme } from '../../ThemeContext';
 import { useIsTabPage, useTabTopBleedInset } from '../../tab_top_bleed';
+import { useTabBarVisibility } from '../../TabBarVisibilityContext';
 import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLessonsList';
 import type LearningV2ChaptersCourse from '../LearningV2ChaptersCourse';
@@ -73,6 +74,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   // виден), и push-маршрутом /learning-v2/course поверх вкладок (таббара нет). Старая карта рисовала «Назад» из navigationControl, Сезон —
   // нет. Решение — по TabPageContext (его ставит только TabSlider): не вкладка → штатная «Назад» в SeasonCourseView.
   const isTabPage = useIsTabPage();
+  const { hidden: tabBarHiddenRequested } = useTabBarVisibility();
   useEffect(() => {
     let canGoBack: boolean | null = null;
     try { canGoBack = router.canGoBack(); } catch (error) {
@@ -191,17 +193,31 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     return visibleLessons.map((ordinal) => ({ ordinal, title: titles[ordinal - 1] ?? '', completedCount: byLesson.get(ordinal) ?? 0, isCurrent: ordinal === lesson, isAvailable: true, isInProgress: false }));
   }, [completed, lesson, rows, titles, visibleLessons]);
 
+  // зачем (владелец 25.10: «из „Все уроки“ выхожу — и таббара нет, и пропадает»; сперва логи): откуда открыт список, чем закрыт и куда
+  // вернул — вкладка (таббар) или push (выход только «Назад»), canGoBack, просил ли кто-то спрятать таббар до и после.
+  const noteLessonsListNav = useCallback((what: 'open' | 'close', by: string) => {
+    let canGoBack: boolean | null = null;
+    try { canGoBack = router.canGoBack(); } catch (error) {
+      console.warn('[LESSONS-NAV] canGoBack не прочитался', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+    }
+    console.log(`[LESSONS-NAV] all_lessons:${what}`, JSON.stringify({ by, lesson, isTabPage, route: isTabPage ? 'tab:lessons' : 'push:/learning-v2/course', canGoBack, tabBarHiddenRequested, after: what === 'close' ? (isTabPage ? 'хаб, таббар' : 'хаб, ScreenBackButton') : 'список, SeasonListHeader «Назад»' })); // guard-ok: открытие/закрытие «Все уроки»
+  }, [isTabPage, lesson, router, tabBarHiddenRequested]);
+  const closeLessonsList = useCallback((by: string) => {
+    noteLessonsListNav('close', by);
+    setAllLessonsOpen(false);
+  }, [noteLessonsListNav]);
   const openLessonsList = useCallback((from: string) => {
     console.log(`${LOG} нажатие → «Все уроки»`, JSON.stringify({ from, lesson })); // guard-ok: куда ведёт нажатие
+    noteLessonsListNav('open', from);
     setAllLessonsOpen(true);
-  }, [lesson]);
+  }, [lesson, noteLessonsListNav]);
   const openLesson = useCallback((ordinal: number) => {
     console.log(`${LOG} нажатие → урок`, JSON.stringify({ from: lesson, to: ordinal })); // guard-ok: куда ведёт нажатие
     userChoseRef.current = true;
     setRequestedLesson(ordinal);
     onExpandedLesson(ordinal);
-    setAllLessonsOpen(false);
-  }, [lesson, onExpandedLesson]);
+    closeLessonsList('lesson_pick');
+  }, [closeLessonsList, lesson, onExpandedLesson]);
   // зачем (проверка Optimistic UI 22.10): двойной тап по «Продолжить» (хаб, список, раскрытая карта — все идут сюда) не открывает окно запуска дважды
   const primaryTapRef = useRef(0);
   const classicTapRef = useRef(0);
@@ -311,16 +327,16 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     if (!allLessonsOpen) return undefined;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       console.log(`${LOG} аппаратная «назад» из «Все уроки»`, JSON.stringify({ to: 'хаб' })); // guard-ok: куда ведёт нажатие
-      setAllLessonsOpen(false);
+      closeLessonsList('hardware_back');
       return true;
     });
     return () => sub.remove();
-  }, [allLessonsOpen]);
+  }, [allLessonsOpen, closeLessonsList]);
 
   if (allLessonsOpen) {
     return (
       <View testID="season-all-lessons" style={styles.root}>
-        <SeasonListHeader screen="season_all_lessons" kicker={null} title={seasonCardText(lang, 'allLessons')} onBack={() => setAllLessonsOpen(false)} testID="season-all-lessons-header" />
+        <SeasonListHeader screen="season_all_lessons" kicker={null} title={seasonCardText(lang, 'allLessons')} onBack={() => closeLessonsList('header_back')} testID="season-all-lessons-header" />
         <LearningV2AllLessonsList
           lang={lang}
           rows={allLessonRows}

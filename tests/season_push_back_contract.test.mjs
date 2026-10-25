@@ -36,6 +36,27 @@ test('флаг Сезона выключен: старая карта по-пр�
   assert.match(oldMap, /\{props\.navigationControl\}/);
 });
 
+test('списки Сезона на вкладке учитывают капсулу таббара (Ревизор 25.10: подпись под таббаром)', () => {
+  const hook = read('components/learning-v2/season/use_season_list_bottom_pad.ts');
+  assert.match(hook, /const used = isTabPage \? Math\.max\(given, tabBottomPad\) : given;/);
+  const all = read('components/learning-v2/LearningV2AllLessonsList.tsx');
+  assert.match(all, /const bottomPad = useSeasonListBottomPad\(props\.bottomPadding, "all_lessons"\);/);
+  assert.match(all, /paddingBottom: bottomPad \}/);
+  assert.doesNotMatch(all, /paddingBottom: props\.bottomPadding/);
+  const pick = read('components/learning-v2/season/SeasonPickScreens.tsx');
+  assert.match(pick, /const bottomPad = useSeasonListBottomPad\(props\.bottomPadding, props\.screen\);/);
+  assert.match(pick, /styles\.footer, \{ paddingBottom: bottomPad \}/);
+  assert.match(view, /const contentBottomPad = isTabPage \? Math\.max\(props\.bottomPadding, tabBottomPad\) : props\.bottomPadding;/, 'обложка — то же правило');
+});
+
+test('«Все уроки»: каждый выход идёт через closeLessonsList с журналом (вкладка → таббар, push → «Назад» на обложке)', () => {
+  assert.match(connected, /\[LESSONS-NAV\] all_lessons:\$\{what\}/);
+  assert.match(connected, /onBack=\{\(\) => closeLessonsList\('header_back'\)\}/);
+  assert.match(connected, /closeLessonsList\('hardware_back'\);/);
+  assert.match(connected, /closeLessonsList\('lesson_pick'\);/);
+  assert.doesNotMatch(connected, /onBack=\{\(\) => setAllLessonsOpen\(false\)\}/, 'выход из списка мимо журнала');
+});
+
 test('журнал [LESSONS-NAV]: режим экрана, canGoBack и чем решён выход', () => {
   assert.match(connected, /\[LESSONS-NAV\] season/);
   assert.match(connected, /back: isTabPage \? 'not_needed\(tab_root\)' : 'ScreenBackButton'/);

@@ -21,6 +21,7 @@ import { seasonText } from './season_copy';
 import { seasonCardText, seasonEpisodesCountLabel } from './season_copy_card';
 import type { SeasonCard, SeasonChapterSpan, SeasonDeck, SeasonEpisodeCard } from './season_course_model';
 import type { SeasonEpisodeInfo } from './SeasonCourseView';
+import { useSeasonListBottomPad } from './use_season_list_bottom_pad';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 export type SeasonRowState = 'done' | 'cur' | 'open' | 'lock';
@@ -58,12 +59,13 @@ export const SeasonListHeader = memo(function SeasonListHeader(props: Readonly<{
 
 function Shell(props: Readonly<{ screen: string; kicker: string; title: string; onBack: () => void; bottomPadding: number; primary: SeasonPrimaryAction | null; testID: string; children: React.ReactNode }>) {
   const g = useLv2Glass();
+  const bottomPad = useSeasonListBottomPad(props.bottomPadding, props.screen); // зачем (Ревизор 25.10): подвал «▶ …» не под капсулой таббара
   return (
     <View style={styles.root} testID={props.testID}>
       <SeasonListHeader screen={props.screen} kicker={props.kicker} title={props.title} onBack={props.onBack} testID={props.testID} />
       <ScrollView style={styles.flex} contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>{props.children}</ScrollView>
       {props.primary ? (
-        <View style={[styles.footer, { paddingBottom: props.bottomPadding }]}>
+        <View style={[styles.footer, { paddingBottom: bottomPad }]}>
           <V2Pressable accessibilityLabel={props.primary.label} onPress={props.primary.onPress} testID={`${props.testID}-primary`} style={[styles.primary, { backgroundColor: g.text }]}>
             <Ionicons name="play" size={18} color={g.opaqueCard} />
             <Text style={[styles.primaryText, { color: g.opaqueCard }]}>{props.primary.label}</Text>

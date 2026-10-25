@@ -8,6 +8,7 @@ import PressableHybrid from "../PressableHybrid";
 import { lv2Alpha, lv2CardStyle, useLv2Glass, type Lv2Glass } from "./LearningV2Glass";
 import type { Lang } from "../../constants/i18n";
 import { COURSE_LEVELS, COURSE_LEVEL_RANGES, getCourseLevelForLesson, type CourseLevel } from "../../app/course_levels";
+import { useSeasonListBottomPad } from "./season/use_season_list_bottom_pad";
 
 /**
  * Список «Все уроки» V2 — по эталону learning-v2.html, блок 1.6 (`lessonsList()` / `lrow()`).
@@ -108,6 +109,7 @@ const LessonRow = memo(function LessonRow({ row, level, pct, currentWord, g, onP
 
 export default function LearningV2AllLessonsList(props: Props) {
   const g = useLv2Glass();
+  const bottomPad = useSeasonListBottomPad(props.bottomPadding, "all_lessons"); // зачем (Ревизор 25.10): последний урок не под капсулой таббара
   const { rows, sessionsPerLesson, selectedOrdinal, onOpenLesson, onLockedLesson } = props;
   const [level, setLevel] = useState<CourseLevel>(() => getCourseLevelForLesson(selectedOrdinal));
   const currentWord = CURRENT_WORD[props.lang] ?? CURRENT_WORD.en;
@@ -171,7 +173,7 @@ export default function LearningV2AllLessonsList(props: Props) {
       keyExtractor={(item) => String(item.ordinal)}
       renderItem={renderItem}
       ListHeaderComponent={header}
-      contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}
+      contentContainerStyle={[styles.list, { paddingBottom: bottomPad }]}
       ItemSeparatorComponent={Separator}
       initialNumToRender={10}
       windowSize={5}

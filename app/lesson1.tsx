@@ -174,6 +174,8 @@ import { KIT_MOTION, SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from './debug-logger';
+import LessonHardModeSwitchLine from '../components/lessons/LessonHardModeSwitchLine';
+import { useLessonHardModeSwitch } from './lesson_hardmode_switch';
 import { traceLessonExit } from './lesson_exit_trace';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 // зачем (m15, владелец 14.10, за флагом moments_v3): шторка «Выйти из урока?» грузится лениво и только когда флаг включён и человек нажал «назад»
@@ -477,6 +479,8 @@ interface LessonContentProps {
   onSpeakingActiveChange?: (active: boolean) => void;
   goNext: () => void;
   handleTypedSubmit: () => void;
+  /** Жалоба №4: строка под полем при «Вводе с клавиатуры» — переход к выбору слов. */
+  onSwitchToTiles?: () => void;
   typedText: string;
   setTypedText: (val: string) => void;
   shuffled: string[];
@@ -563,6 +567,7 @@ const LessonContent = React.memo(function LessonContent({
   onSpeakingActiveChange,
   goNext,
   handleTypedSubmit,
+  onSwitchToTiles,
   typedText,
   setTypedText,
   shuffled,
@@ -1354,6 +1359,11 @@ const LessonContent = React.memo(function LessonContent({
               </Text>
             )}
           </View>
+
+          {/* зачем (жалоба №4, вариант А макета hardmode-switch-line.html): при «Вводе с клавиатуры» — тихая строка под полем, тап включает выбор слов */}
+          {settings.hardMode && status === 'playing' && onSwitchToTiles ? (
+            <LessonHardModeSwitchLine lang={lang} mutedColor={glass.secondary} actionColor={t.accentText} onSwitch={onSwitchToTiles} />
+          ) : null}
 
           {speakingResult && speakingFailWords.length === 0 && (
             <View testID="lesson1-speaking-score-below-divider" style={{ minHeight: 24, marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20), justifyContent: 'center' }}>
@@ -2165,6 +2175,12 @@ function LessonScreen() {
   const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
   const [typedText,    setTypedText]    = useState('');
+  // зачем (жалоба №4, координатор 25.10): строка под полем выключает «Ввод с клавиатуры» сразу на месте, тост «Вернуть» — обратно
+  const switchLessonToTiles = useLessonHardModeSwitch({
+    lessonId,
+    setHardMode: useCallback((hardMode: boolean) => setSettings((prev) => ({ ...prev, hardMode })), []),
+    clearTyped: useCallback(() => setTypedText(''), []),
+  });
   const [showTapHint,  setShowTapHint]  = useState(false);
   // CHANGE v5: contraction branching state
   const [phraseWordIdx, setPhraseWordIdx] = useState(0);        // position in original phrase words
@@ -4248,6 +4264,7 @@ function LessonScreen() {
             wasWrong={wasWrong}
             textInputRef={textInputRef}
             settings={settings}
+            onSwitchToTiles={switchLessonToTiles}
             router={router}
             s={s}
             t={t}

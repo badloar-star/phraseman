@@ -63,7 +63,7 @@ import SpireTower from './SpireTower';
 import SpireWeekResultCard from './SpireWeekResultCard';
 import { useSpirePreview } from './spire_preview_context';
 import SpireScene from './scene/SpireScene'; import { useSpireSceneTop } from './scene/use_spire_scene_top';
-import { useSpireSceneScroll } from './scene/use_spire_scene_scroll';
+import { useSpireSceneScroll } from './scene/use_spire_scene_scroll'; import { useSpireHeaderOverlayInset } from './scene/spire_header_overlay';
 import type { SpireMemberRow } from './spire_room_types';
 import { useIsPlus } from '../plus/use_is_plus';
 import { spireTimeLeftText } from './spire_strings';
@@ -285,7 +285,7 @@ export default function SpireHomeScreen() {
   return (
     <View style={s.root} testID="spire-home">
       <ScrollView
-        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }, budget.headerThin ? thin.content : null]}
+        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }, budget.headerThin ? thin.content : null, { paddingTop: (budget.headerThin ? 0 : 6) + useSpireHeaderOverlayInset() /* зачем (замок «верх цельный» 25.10): шапка «Сообщества» поверх сцены — лента отступает на её высоту, башня на месте */ }]}
         showsVerticalScrollIndicator={false}
         {...sceneScroll}
         decelerationRate="fast"

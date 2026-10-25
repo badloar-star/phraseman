@@ -21,23 +21,20 @@ describe('верх экрана цельный (замок владельца 25
     expect(read('components/TopFadeMask.tsx')).toMatch(/if \(suppressed \|\| height <= 0\) return null;/);
   });
 
-  it('на Пике слой шапки цвета сцены и полоса под часами не гаснут при прокрутке', () => {
-    expect(read('components/spire/scene/spire_scene_header.tsx')).toMatch(/const WHOLE_TOP_KEEPS_HEADER = true;/);
-    expect(read('components/home/v2/scene/HomeSceneStatusStrip.tsx')).toMatch(/scrollY && source !== 'spire'/);
-  });
-
-  it('Пик: слой шапки рисует ТОТ ЖЕ фон, что сцена (не плоский цвет токена) — цвет на стыке совпадает', () => {
-    // опись Сверки 25.10 по ec963892d: плоский слой #514CA6 (81,76,166) над сценой 140,114,202 — скачок 133. Плоский цвет токена ≠ сцена на стыке.
-    const header = read('components/spire/scene/spire_scene_header.tsx');
+  it('Пик: сцена от самого верха, шапка с вкладками прозрачная ПОВЕРХ неё, отдельного слоя шапки нет', () => {
+    // опись Сверки 25.10 по ec963892d: плоский слой шапки #514CA6 (81,76,166) над сценой 140,114,202 — скачок 133. Плоский слой ≠ сцена на стыке,
+    // поэтому слоя нет вовсе: фон сцены (spire_scene_backdrop) рисуется от верха экрана под шапкой и часами, шапка лежит поверх прозрачной.
+    const community = read('app/(tabs)/community.tsx');
+    expect(community).not.toContain('<SpireSceneHeaderLayer');
+    expect(community).toContain("const overScene = SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null;");
+    expect(community).toContain("headerOver: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2 },");
+    expect(community).toContain('<View style={overScene ? s.bodyUnder : s.body}>');
     const scene = read('components/spire/scene/SpireScene.tsx');
-    expect(header).toContain('const backdrop = useSpireSceneBackdrop();');
-    expect(header).toContain("backgroundColor: backdrop ? 'transparent' : tone.tint");
-    expect(header).toContain('<SpireSceneBackdrop spec={backdrop} offsetTop={0} />');
-    // сцена рисует тот же спек, что публикует для шапки, сдвинутым на своё расстояние до верха экрана
-    expect(scene).toContain('setSpireSceneBackdrop(backdrop);');
-    expect(scene).toContain('<SpireSceneBackdrop spec={backdrop} offsetTop={bleed} />');
+    expect(scene).toContain('<View pointerEvents="none" style={[s.backdrop, { top: -bleed, height: bleed + frame.sceneH }]}><SpireSceneBackdrop spec={backdrop} offsetTop={0} /></View>');
     expect(scene).not.toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
-    // и плоской полосы под часами на Пике больше нет
+    // лента Пика отступает на высоту шапки — башня на месте
+    expect(read('components/spire/SpireHomeScreen.tsx')).toContain('useSpireHeaderOverlayInset()');
+    // и плоской полосы под часами на Пике нет
     expect(read('components/home/v2/scene/HomeSceneStatusStrip.tsx')).toContain('const SPIRE_WHOLE_TOP = true;');
   });
 

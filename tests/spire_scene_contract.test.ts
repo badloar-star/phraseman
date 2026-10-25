@@ -142,14 +142,15 @@ async function main(): Promise<void> {
   assert.ok(header.includes("spireSceneHeaderTone({ enabled: SPIRE_SCENE_V2_ENABLED, onPeak, tint })"), "тон шапки — через флаг");
   assert.ok(header.includes("if (tone === null) return null;"), "нет тона — слоя нет");
   const community = read("app/(tabs)/community.tsx");
-  // строка вкладок «Сообщества» — прежний код (как до «Сцены»): при выключенном флаге шапка та же, слой поверх неё не рисуется
-  assert.ok(community.includes("      <View style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null]}>\n"), "шапка без подложки; со «Сценой» Пика — отступ на зону часов (полноэкранная вкладка)");
-  assert.ok(community.includes("borderBottomColor: on ? accentGfx.border : 'transparent'"), "черта вкладки — прежний цвет");
-  assert.ok(community.includes("<Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>"), "текст вкладок — прежние цвета");
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «верх цельный»; координатор после 2.0.2: «сцена от самого верха, шапка прозрачная поверх, слой spire_header_layer убрать»):
+  // без «Сцены» (флаг выключен, другой раздел) шапка прежняя; со «Сценой» Пика она лежит поверх тела, вкладки белые, отдельного слоя нет
+  assert.ok(community.includes("<View onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)} style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, overScene ? s.headerOver : null]}>"), "шапка без подложки; со «Сценой» Пика — поверх тела");
+  assert.ok(community.includes("const overScene = SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null;"), "поверх сцены — только при флаге, на Пике и когда сцена на экране");
+  assert.ok(community.includes("borderBottomColor: on ? (overScene ? SPIRE_SCENE_INK.text : accentGfx.border) : 'transparent'"), "черта вкладки — прежний цвет, на сцене белая");
+  assert.ok(community.includes("color: overScene ? (on ? SPIRE_SCENE_INK.text : SPIRE_SCENE_INK.muted) : on ? p.text : p.textSecondary"), "текст вкладок — прежние цвета, на сцене белые");
   assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}"), "справа — как раньше; на Пике со «Сценой» — настоящий EnergyBar (аудит F4)");
   assert.ok(community.includes("hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}"), "вкладки: зона касания ≥ 44 и без щелей между ними");
-  assert.ok(!community.includes("peakHeader") && !community.includes("SPIRE_SCENE_INK"), "строка вкладок не знает о «Сцене»");
-  assert.ok(community.includes("<SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} tabsInset={backInset} />\n      </View>"), "слой «Сцены» — последним в шапке, поверх вкладок, с тем же отступом под часы");
+  assert.ok(!community.includes("<SpireSceneHeaderLayer"), "отдельного слоя шапки нет — сцена сама под шапкой");
   assert.ok(read("components/spire/scene/spire_scene_header.tsx").includes("topInset > 0 ? { paddingTop: 12 + topInset } : null"), "рисованные вкладки — на месте настоящих (аудит F5)");
 
   // ── шаг 3b-3: прокрутка Пика гасит цвет шапки тем же механизмом, что маску Главной ──

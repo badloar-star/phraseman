@@ -12,7 +12,9 @@ import { SUB_RUNTIME_OWNER_IDS, type SubRuntimeOwnerId } from '../tab_page_model
 import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../spire_tab_flag';
 import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
-import SpireSceneHeaderLayer from '../../components/spire/scene/spire_scene_header';
+import { useSpireSceneHeaderTint } from '../../components/spire/scene/spire_scene_header_tint';
+import { setSpireHeaderOverlayInset } from '../../components/spire/scene/spire_header_overlay';
+import { SPIRE_SCENE_INK } from '../../components/spire/scene/spire_scene_palette';
 import { useTabTopBleedInset } from '../../components/tab_top_bleed';
 import SpireEnergyPill from '../../components/spire/SpireEnergyPill';
 import ScreenBackButton, { SCREEN_BACK_RESERVED } from '../../components/v2/ScreenBackButton';
@@ -64,6 +66,13 @@ export default function CommunityTabRoute() {
   // зачем (владелец 22.10: «Пик полноэкранным», без полосы над ним; схема eab9aa35d): со «Сценой» Пика вкладка рисует фон от верха экрана —
   // шапка отступает на зону часов сама; без «Сцены» (флаг выключен) оболочка отступает как раньше и здесь 0
   const topInset = useTabTopBleedInset();
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «верх цельный»; координатор: «сцена от самого верха, шапка прозрачная поверх, слой spire_header_layer убрать»):
+  // на Пике со «Сценой» шапка лежит ПОВЕРХ тела, тело — от верха экрана, лента Пика отступает на высоту шапки (spire_header_overlay); вкладки белые
+  const sceneTint = useSpireSceneHeaderTint();
+  const overScene = SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null;
+  const [headerH, setHeaderH] = useState(0);
+  useEffect(() => { setSpireHeaderOverlayInset(overScene ? headerH : 0); }, [overScene, headerH]);
+  useEffect(() => () => setSpireHeaderOverlayInset(0), []);
 
   useEffect(() => {
     const fromParam = sectionFromParam(sectionParam);
@@ -151,7 +160,7 @@ export default function CommunityTabRoute() {
 
   return (
     <View testID="community-tab" style={s.root}>
-      <View style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null]}>
+      <View onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)} style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, overScene ? s.headerOver : null]}>
         {section === 'packs' && packsSlot?.overlay ? (
           // зачем (packs-simple.html кадр 2): открытый поиск «Наборов» встаёт на место строки вкладок.
           <View style={[s.headerOverlay, backInset]}>{packsSlot.overlay}</View>
@@ -171,9 +180,9 @@ export default function CommunityTabRoute() {
                 // зачем (координатор 22.10: «тап при x≈93 dp не попадает»): зазор между вкладками 22 перекрыт целиком (11 + 11), высота зоны ≥ 44
                 hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}
                 // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.
-                style={[s.tab, { borderBottomColor: on ? accentGfx.border : 'transparent' }]}
+                style={[s.tab, { borderBottomColor: on ? (overScene ? SPIRE_SCENE_INK.text : accentGfx.border) : 'transparent' }]}
               >
-                <Text style={[s.tabText, { color: on ? p.text : p.textSecondary }]}>{seg.label}</Text>
+                <Text style={[s.tabText, { color: overScene ? (on ? SPIRE_SCENE_INK.text : SPIRE_SCENE_INK.muted) : on ? p.text : p.textSecondary }]}>{seg.label}</Text>
               </Pressable>
             );
           })}
@@ -181,11 +190,8 @@ export default function CommunityTabRoute() {
         {/* зачем (аудит кнопок Ревизора 22.10, F4): на Пике со «Сценой» энергия — настоящий EnergyBar (тап открывает его окно), рисунок слоя «Сцены» — только вид */}
         <View style={s.headerRight}>{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}</View>
         </>)}
-        {/* зачем (Пик v2, эталон peak-scene-v2.html; координатор 22.10): «Сцена» Пика уходит под вкладки — слой цвета сцены с белыми вкладками и энергией
-            поверх этой шапки, гаснет при прокрутке Пика как маска Главной; флаг SPIRE_SCENE_V2_ENABLED выключен или вкладка не «Пик» — слоя нет */}
-        <SpireSceneHeaderLayer onPeak={section === 'spire'} tabs={segments} active={section} styles={s} topInset={topInset} tabsInset={backInset} />
       </View>
-      <View style={s.body}>
+      <View style={overScene ? s.bodyUnder : s.body}>
         {renderSection('friends')}
         {spireVisible ? renderSection('spire') : null}
         {renderSection('packs')}
@@ -209,6 +215,9 @@ const s = StyleSheet.create({
   // вкладками, — открытие поиска не сдвигает список (первый кадр = итоговая геометрия), поле не вылезает за шапку.
   headerOverlay: { flex: 1, height: 52, marginVertical: -5, justifyContent: 'center' },
   body: { flex: 1, minHeight: 0 },
+  // зачем (замок «верх цельный» 25.10): на Пике со «Сценой» шапка поверх, тело от верха экрана — сцена идёт под вкладками и часами
+  headerOver: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2 },
+  bodyUnder: { ...StyleSheet.absoluteFillObject },
   // Скрытый раздел не рисуется, но сохраняет своё состояние и скролл.
   hidden: { display: 'none' },
 });

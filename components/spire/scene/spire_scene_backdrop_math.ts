@@ -10,7 +10,14 @@ const rgbaOf = (c: string): readonly [number, number, number, number] => {
   return [Number.parseInt(h.slice(0, 2), 16) || 0, Number.parseInt(h.slice(2, 4), 16) || 0, Number.parseInt(h.slice(4, 6), 16) || 0, 1];
 };
 const lin = (v: number): number => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
-const whiteOn = (c: readonly number[]): number => { const l = 0.2126 * lin(c[0]!) + 0.7152 * lin(c[1]!) + 0.0722 * lin(c[2]!); return 1.05 / (l + 0.05); };
+const lum = (c: readonly number[]): number => 0.2126 * lin(c[0]!) + 0.7152 * lin(c[1]!) + 0.0722 * lin(c[2]!);
+// неактивная вкладка — белый 78 % (SPIRE_SCENE_INK.muted) поверх фона: худший из двух текстов вкладок
+const MUTED_ALPHA = 0.78;
+const whiteOn = (c: readonly number[]): number => {
+  const muted = c.map((v) => 255 * MUTED_ALPHA + v * (1 - MUTED_ALPHA));
+  const bg = lum(c);
+  return Math.min(1.05 / (bg + 0.05), (lum(muted) + 0.05) / (bg + 0.05));
+};
 
 /**
  * зачем (замок владельца 25.10 + «контраст текста вкладок на сцене ≥ 4,5»): белые вкладки «Пик / Друзья / Наборы» лежат там, где свет сцены ярче всего —

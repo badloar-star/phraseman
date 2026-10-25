@@ -181,6 +181,8 @@ function SpireScene(p: Props) {
   }, [pedestalCompact, visibleH, fontScale, off, shape]);
   return (
     <View>
+      {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, «сцена от самого верха»): фон над рамкой сцены — от верха экрана под шапкой «Сообщества» и часами; низ скруглён, как у рамки */}
+      <View pointerEvents="none" style={[s.backdrop, { top: -bleed, height: bleed + frame.sceneH }]}><SpireSceneBackdrop spec={backdrop} offsetTop={0} /></View>
       <View
         testID={`spire-scene-${p.decision.state}`}
         style={[s.stage, { height: frame.sceneH }]}
@@ -191,7 +193,6 @@ function SpireScene(p: Props) {
           target.measureInWindow((_x, y) => { const next = Math.max(0, Math.round(y)); setBleed((prev) => (prev === next ? prev : next)); });
         }}
       >
-        <SpireSceneBackdrop spec={backdrop} offsetTop={bleed} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
           <Defs>
             {evening ? (
@@ -274,6 +275,7 @@ export default memo(SpireScene);
 const s = StyleSheet.create({
   // зачем (scenes-compact .sc): сцена во всю ширину, скругление только снизу 32
   stage: { overflow: 'hidden', borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
+  backdrop: { position: 'absolute', left: 0, right: 0, overflow: 'hidden', borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   tower: { position: 'absolute' },
   copy: { position: 'absolute', left: 20 },

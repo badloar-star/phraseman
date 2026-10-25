@@ -54,7 +54,8 @@ describe('typed paywall entry pipeline', () => {
 
   test('the single Plus paywall consumes the dispatcher entry instead of minting a disconnected identity', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
-    expect(source).toContain("import { paywallEntryAnalyticsParams, type PaywallEntry } from '../../app/paywall_entry_contract';");
+    // зачем (39d9916b3): в тот же импорт вошла константа входа «Не видим твой Plus» (SERVER_REFUSED_CONTEXT) — смысл проверки прежний: экран берёт параметры аналитики и тип входа из контракта диспетчера.
+    expect(source).toMatch(/import \{[^}]*\bpaywallEntryAnalyticsParams\b[^}]*\btype PaywallEntry\b[^}]*\} from '\.\.\/\.\.\/app\/paywall_entry_contract';/);
     expect(source).toContain('export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEntry })');
     expect(source).toContain('const ctx = entry.context;');
     expect(source).toContain('const source = entry.source;');

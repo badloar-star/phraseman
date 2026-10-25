@@ -33,6 +33,14 @@ jest.mock('react-native', () => ({
   StyleSheet: { flatten: (style: unknown) => style },
 }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ back: mockBack, push: mockPush, replace: mockReplace }) }));
+// зачем (координатор 25.10, офлайн «Свободный разговор»): стенд управляет сетью — возврат связи запускает старт заново.
+type MockNetState = { isConnected: boolean | null; isInternetReachable?: boolean | null; type?: string };
+let mockNetListener: ((state: MockNetState) => void) | null = null;
+jest.mock('@react-native-community/netinfo', () => ({
+  __esModule: true,
+  default: { addEventListener: (cb: (state: MockNetState) => void) => { mockNetListener = cb; return () => { mockNetListener = null; }; } },
+}));
+const emitNet = (isConnected: boolean) => { mockNetListener?.({ isConnected, isInternetReachable: isConnected, type: isConnected ? 'wifi' : 'none' }); };
 jest.mock('../app/dialogue_v2_freeform_client', () => ({
   // потолки вызовов — для стража «•••» экрана (координатор 24.10)
   DIALOGUE_V2_FREEFORM_START_TIMEOUT_MS: 22_000,
@@ -300,15 +308,18 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
   });
 
-  // 18.10 (владелец: экранов-ошибок нигде): старт не удался и после тихих повторов — без «Не удалось продолжить» + «Повторить»,
-  // тихий уход в хаб Диалогов; новых стартов после ухода нет.
-  it('returns to the dialogs hub after the start fails even after silent retries, without an error screen', async () => {
+  // зачем (координатор 25.10; Сверка: офлайн экран сам уходил в «Диалоги недоступны»): старт не удался и после тихих повторов —
+  // экран остаётся, над полем плашка «Нет связи» с «Повторить»; в хаб не уходим, лишних стартов нет.
+  const connectionNotice = () => mockScreen.mock.calls.at(-1)[0].connectionNotice as { message: string; retryLabel: string; onRetry: () => void } | null;
+  it('stays on the screen after the start fails even after silent retries: connection notice with Retry, no hub redirect', async () => {
     failStartTimes(6);
     const screen = await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(6));
+    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
+    expect(mockReplace).not.toHaveBeenCalled();
+    expect(screen.queryByTestId('dialogue-v2-freeform-unavailable')).toBeNull();
+    expect(connectionNotice()?.retryLabel).toBe('Повторить');
     expect(mockStart).toHaveBeenCalledTimes(6);
-    expect(screen.queryByLabelText('Повторить')).toBeNull();
-    expect(screen.queryByText('Не удалось продолжить разговор')).toBeNull();
   });
 
   it('rejects a 2048-code-unit four-byte draft before optimistic append or callable transport', async () => {
@@ -418,13 +429,15 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockTurn).toHaveBeenCalledTimes(2);
   });
 
-  it('redirects to the hub exactly once after a failed start', async () => {
+  it('Retry on the connection notice starts again and the notice disappears', async () => {
     failStartTimes(6, 'null');
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockReplace).toHaveBeenCalledTimes(1));
-    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
-    expect(mockReplace).toHaveBeenCalledTimes(1);
-    expect(mockStart).toHaveBeenCalledTimes(6);
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(6));
+    await waitFor(() => expect(connectionNotice()).not.toBeNull());
+    await act(async () => { connectionNotice()!.onRetry(); });
+    await waitFor(() => expect(connectionNotice()).toBeNull());
+    expect(mockStart).toHaveBeenCalledTimes(7);
+    expect(mockReplace).not.toHaveBeenCalled();
   });
 
   it('a failed start retries silently without the error panel and the chat keeps the queued message', async () => {
@@ -439,13 +452,35 @@ describe('Dialogue V2 freeform route', () => {
     expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Hallo' }));
   });
 
-  it('goes to the hub only after 1 start + 5 silent retries fail', async () => {
+  it('offline: the screen stays, the draft stays, and when the network comes back the start runs again', async () => {
     failStartTimes(6);
     await render(h(DialogueV2FreeformRoute));
-    await waitFor(() => expect(mockReplace).toHaveBeenCalledWith('/ai_dialog_home'));
-    expect(mockStart).toHaveBeenCalledTimes(6);
-    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
-    expect(mockStart).toHaveBeenCalledTimes(6);
+    await act(async () => { emitNet(false); });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo, wie geht'); });
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(6));
+    await waitFor(() => expect(connectionNotice()?.message).toBe('Нет связи. Проверь интернет и попробуй ещё раз.'));
+    expect(mockScreen.mock.calls.at(-1)[0].draft).toBe('Hallo, wie geht');
+    expect(mockReplace).not.toHaveBeenCalled();
+    await act(async () => { emitNet(true); });
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(7));
+    await waitFor(() => expect(connectionNotice()).toBeNull());
+    expect(mockScreen.mock.calls.at(-1)[0].draft).toBe('Hallo, wie geht');
+  });
+
+  it('a message sent without connection waits as a bubble without dots and goes out once the start succeeds', async () => {
+    failStartTimes(6);
+    await render(h(DialogueV2FreeformRoute));
+    await act(async () => { emitNet(false); });
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(6));
+    await waitFor(() => expect(connectionNotice()).not.toBeNull());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([{ id: 'learner_1', author: 'learner', text: 'Hallo' }]);
+    expect(mockScreen.mock.calls.at(-1)[0].sending).toBe(false);
+    expect(mockTurn).not.toHaveBeenCalled();
+    await act(async () => { emitNet(true); });
+    await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(1));
+    expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Hallo' }));
   });
 
   it('drops a pending silent retry of the previous language after the language changes', async () => {

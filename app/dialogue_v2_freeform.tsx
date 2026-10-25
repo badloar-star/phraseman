@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import NetInfo from '@react-native-community/netinfo';
 import * as Crypto from 'expo-crypto';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -173,6 +174,17 @@ function DialogueV2FreeformContent() {
   }, []);
   const targetRef = useRef<unknown>(studyTarget);
   targetRef.current = studyTarget;
+  // зачем (координатор 25.10, Сверка: офлайн экран сам уходил в «Диалоги недоступны»): человека из экрана не выбрасываем — после
+  // провала старта над полем ввода тихая плашка «Нет связи» с «Повторить»; старт заново, когда связь вернулась или нажали «Повторить».
+  const [startOffline, setStartOffline] = useState(false);
+  const startOfflineRef = useRef(false);
+  const [netConnected, setNetConnected] = useState<boolean | null>(null);
+  const markStartOffline = useCallback((value: boolean, why: string) => {
+    if (startOfflineRef.current === value) return; // guard-ok: плашка уже в этом состоянии
+    startOfflineRef.current = value;
+    setStartOffline(value);
+    console.log(`[DIALOG-NET] freeform:strip ${value ? 'shown' : 'hidden'} ${JSON.stringify({ why })}`);
+  }, []);
 
   const voice = useDialogueV2VoiceMessage({
     studyTarget: isSupportedTarget(studyTarget) ? studyTarget : 'en',
@@ -220,9 +232,13 @@ function DialogueV2FreeformContent() {
     // Сбой текущего поколения: тихий повтор (чат и очередь реплики живы) или, после последнего, панель с «Повторить».
     const handleStartFailure = (cause: string) => {
       const plan = planFreeformStartRetry(attempt);
+      console.warn(`[DIALOG-NET] freeform:start failed ${JSON.stringify({ generation, attempt, cause: cause.slice(0, 120), plan: plan.kind, queued: queuedMessageRef.current !== null })}`);
+      markStartOffline(true, `start_failed attempt=${attempt}`);
+      // реплика в очереди ждёт старта без «•••»: точки обещают ответ, которого без связи не будет
+      if (queuedMessageRef.current !== null) setSending(false);
       if (plan.kind === 'give_up') {
-        console.warn('[DIALOGUE-V2] freeform: start → unavailable after silent retries', { generation, studyTarget: target, attempts: attempt + 1, cause, queued: queuedMessageRef.current !== null });
-        setUnavailable(true);
+        // зачем (координатор 25.10): раньше здесь unavailable → уход в хаб и потеря набранного. Теперь экран остаётся, плашка ждёт сеть или «Повторить».
+        console.warn(`[DIALOG-NET] freeform:start give_up → stay on screen, strip waits for network or retry ${JSON.stringify({ generation, attempts: attempt + 1, queued: queuedMessageRef.current !== null })}`);
         return;
       }
       console.warn('[DIALOGUE-V2] freeform: start → failed, silent retry', { generation, studyTarget: target, attempt, nextAttempt: plan.nextAttempt, delayMs: plan.delayMs, cause });
@@ -241,6 +257,7 @@ function DialogueV2FreeformContent() {
       return;
     }
     startInFlightRef.current = generation;
+    console.log(`[DIALOG-NET] freeform:start try ${JSON.stringify({ generation, attempt, strip: startOfflineRef.current })}`);
     replaceSession(null);
     setUnavailable(false);
     setTurnFailed(false);
@@ -255,6 +272,8 @@ function DialogueV2FreeformContent() {
         return;
       }
       console.log('[DIALOGUE-V2] freeform: start → session ready', { generation, studyTarget: target, attempt, queued: queuedMessageRef.current !== null });
+      console.log(`[DIALOG-NET] freeform:start ok ${JSON.stringify({ generation, attempt })}`);
+      markStartOffline(false, 'session_ready');
       replaceSession(Object.freeze({ ...started, studyTarget: target, generation }));
     } catch (error: unknown) {
       const current = generationRef.current === generation && targetRef.current === target;
@@ -276,7 +295,7 @@ function DialogueV2FreeformContent() {
     } finally {
       if (startInFlightRef.current === generation) startInFlightRef.current = null;
     }
-  }, [askConsentAgain, clearStartRetryTimer, replaceSession]);
+  }, [askConsentAgain, clearStartRetryTimer, markStartOffline, replaceSession]);
   startSessionRef.current = startCurrentSession;
   useEffect(() => clearStartRetryTimer, [clearStartRetryTimer]);
 
@@ -294,12 +313,37 @@ function DialogueV2FreeformContent() {
     startingRef.current = false;
     setSending(false);
     setUnavailable(false);
+    markStartOffline(false, 'contour_reset');
     setTurnFailed(false);
     setDailyCap(false);
     if (!accessResolved || !hasPremiumAccess || !isSupportedTarget(studyTarget)) return undefined;
     void startCurrentSession(studyTarget, generation);
     return undefined;
-  }, [accessResolved, clearStartRetryTimer, discardVoice, hasPremiumAccess, replaceSession, startCurrentSession, studyTarget]);
+  }, [accessResolved, clearStartRetryTimer, discardVoice, hasPremiumAccess, markStartOffline, replaceSession, startCurrentSession, studyTarget]);
+
+  // зачем (координатор 25.10): связь вернулась (NetInfo: не подключено → подключено), а плашка «Нет связи» висит — старт заново сам.
+  // Запросов не добавляет: NetInfo отдаёт состояние системы; старт — только при переходе «нет связи → есть» и без сессии.
+  useEffect(() => {
+    let last: boolean | null = null;
+    const unsubscribe = NetInfo.addEventListener((state) => {
+      const connected = state.isConnected === false ? false : state.isConnected === true ? true : null;
+      if (connected === last) return; // guard-ok: состояние сети прежнее
+      const previous = last;
+      last = connected;
+      setNetConnected(connected);
+      console.log(`[DIALOG-NET] freeform:netinfo ${JSON.stringify({ connected, previous, reachable: state.isInternetReachable ?? null, type: state.type ?? null, strip: startOfflineRef.current })}`);
+      if (connected !== true || previous !== false) return; // guard-ok: повтор только на переходе «нет связи → есть»
+      const target = targetRef.current;
+      if (!startOfflineRef.current || sessionRef.current || !isSupportedTarget(target)) {
+        console.log(`[DIALOG-NET] freeform:retry ← network back skipped ${JSON.stringify({ strip: startOfflineRef.current, hasSession: !!sessionRef.current, target: String(target) })}`);
+        return;
+      }
+      console.log(`[DIALOG-NET] freeform:retry ← network back ${JSON.stringify({ generation: generationRef.current })}`);
+      clearStartRetryTimer();
+      void startSessionRef.current(target, generationRef.current, 0);
+    });
+    return () => unsubscribe();
+  }, [clearStartRetryTimer]);
 
   const runPendingTurn = useCallback(async (pending: PendingTurn) => {
     if (!isCurrentPending(pending)) {
@@ -465,8 +509,9 @@ function DialogueV2FreeformContent() {
       }
       queuedMessageRef.current = probe.userMessage;
       appendLearnerMessage(probe.userMessage);
-      setSending(true);
-      console.log('[DIALOGUE-V2] freeform: send queued until session ready', { length: probe.userMessage.length }); // guard-ok
+      // без связи — пузырь ждёт старта без «•••» (плашка «Нет связи» уже объясняет ожидание)
+      setSending(!startOfflineRef.current);
+      console.log('[DIALOGUE-V2] freeform: send queued until session ready', { length: probe.userMessage.length, offline: startOfflineRef.current }); // guard-ok
       return;
     }
     if (turnFailedRef.current) {
@@ -582,5 +627,14 @@ function DialogueV2FreeformContent() {
     learnerTurnsSent: messages.reduce((count, message) => (message.author === 'learner' ? count + 1 : count), 0),
     interfaceLang: lang,
   });
-  return <DialogueV2FreeformScreen sayHints={sayHints} title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
+  // зачем (координатор 25.10): нет сети (NetInfo) — «Нет связи» (u31 C18), сеть есть, а старт не прошёл — «Сервис временно недоступен» (C19)
+  const connectionNotice = startOffline && !session ? {
+    message: netConnected === true ? coachingLabels.serviceError : coachingLabels.networkError,
+    retryLabel: labels.retry,
+    onRetry: () => {
+      console.log(`[DIALOG-NET] freeform:retry ← button ${JSON.stringify({ generation: generationRef.current, connected: netConnected })}`);
+      retryFreeform();
+    },
+  } : null;
+  return <DialogueV2FreeformScreen connectionNotice={connectionNotice} sayHints={sayHints} title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

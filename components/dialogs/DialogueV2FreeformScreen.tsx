@@ -10,6 +10,8 @@ import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_me
 import type { Lang } from '../../constants/i18n';
 import { DialogueGlassSysError, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
+import { hapticTap } from '../../hooks/use-haptics';
+import { glassTone } from './glass/glassTone';
 import { DialogSayHints } from './hints/DialogSayHints';
 import type { DialogSayHint } from './hints/dialog_say_hints_model';
 import {
@@ -66,6 +68,8 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   voiceNotice?: string | null;
   /** R52: сбой хода — плашка с «Повторить» под лентой (как в сценарном диалоге), а не весь экран «недоступно». */
   turnError?: Readonly<{ message: string; retryLabel?: string; onRetry?: () => void }> | null;
+  /** Нет связи / старт не прошёл (координатор 25.10): тихая плашка над полем с «Повторить»; экран и черновик на месте. */
+  connectionNotice?: Readonly<{ message: string; retryLabel: string; onRetry: () => void }> | null;
   /** «Можно сказать…» над полем ввода: 1–3 фразы на изучаемом языке со смыслом (владелец 24.10 «постоянно должны быть подсказки»). */
   sayHints?: readonly DialogSayHint[];
 }>;
@@ -94,6 +98,7 @@ export function DialogueV2FreeformScreen({
   voiceNotice = null,
   turnError = null,
   sayHints = NO_SAY_HINTS,
+  connectionNotice = null,
 }: DialogueV2FreeformScreenProps) {
   const glass = useDialogueGlass();
   const voiceBusy = voiceStatus !== 'idle';
@@ -163,6 +168,23 @@ export function DialogueV2FreeformScreen({
 
         <View style={[styles.composer, { backgroundColor: glass.bg }]}>
           {/* зачем (владелец 24.10 через координатора): «Можно сказать…» всегда над полем; тап кладёт фразу в черновик, отправляет человек сам */}
+          {connectionNotice ? (
+            <View testID="dialogue-v2-freeform-connection" accessibilityRole="alert" style={[styles.connection, { backgroundColor: glassTone(glass.text, 0.06) }]}>
+              <Ionicons name="cloud-offline-outline" size={18} color={glass.secondary} />
+              <Text maxFontSizeMultiplier={1.3} numberOfLines={2} style={[styles.connectionText, { color: glass.secondary }]}>{connectionNotice.message}</Text>
+              <PressableScale
+                onPress={() => { void hapticTap(); connectionNotice.onRetry(); }}
+                variant="flat"
+                accessibilityRole="button"
+                accessibilityLabel={connectionNotice.retryLabel}
+                hitSlop={8}
+                testID="dialogue-v2-freeform-connection-retry"
+                style={[styles.connectionRetry, { backgroundColor: glassTone(glass.text, 0.1) }]}
+              >
+                <Text maxFontSizeMultiplier={1.3} style={[styles.connectionRetryText, { color: glass.text }]}>{connectionNotice.retryLabel}</Text>
+              </PressableScale>
+            </View>
+          ) : null}
           <DialogSayHints lang={interfaceLang} hints={sayHints} onUse={onChangeDraft} disabled={voiceBusy} testID="dialogue-v2-freeform-say-hints" />
           <View style={styles.composerRow}>
             <Pressable
@@ -250,6 +272,11 @@ const styles = StyleSheet.create({
   voiceRow: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 },
   composer: { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8 },
   composerRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  // плашка «Нет связи»: тон темы, без обводки, кегли 13 (D145)
+  connection: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 44, paddingLeft: 12, paddingRight: 6, paddingVertical: 6, borderRadius: 14, marginBottom: 10 },
+  connectionText: { flex: 1, fontSize: 13, lineHeight: 17 },
+  connectionRetry: { minHeight: 32, paddingHorizontal: 12, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  connectionRetryText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
 });
 
 export default DialogueV2FreeformScreen;

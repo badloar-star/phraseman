@@ -13,7 +13,7 @@ describe('экран блокировки аккаунта на токенах �
     const start = src.indexOf('{ready && isBanned && (');
     const block = src.slice(start, src.indexOf('<OfflineBanner', start));
     expect(start).toBeGreaterThan(0);
-    expect(block).toContain('liquidGlassTokens(liquidGlassThemeId).opaqueCard');
+    expect(block).toContain('banGlass.opaqueCard');
     expect(block).not.toMatch(/#[0-9a-fA-F]{3,8}\b|rgba?\(/);
   });
 

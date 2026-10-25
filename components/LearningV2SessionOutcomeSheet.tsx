@@ -174,11 +174,13 @@ export default function LearningV2SessionOutcomeSheet({
     leave(onSecondaryPress, true);
   }, [actionsDisabled, leave, onSecondaryPress]);
 
+  // зачем (владелец 25.10 через координатора): «≈ 5 минут» и «3 попытки» больше не передаются — плитка без значения не рисуется,
+  // чтобы не оставалась пустая стеклянная плашка; если фактов нет совсем, ряд фактов не рисуется (см. stats.length ниже)
   const stats = [
     { id: "duration", testID: "learning-v2-session-modal-duration", icon: "time-outline" as const, value: durationLabel },
     { id: "words", testID: "learning-v2-session-modal-words", icon: "book-outline" as const, value: wordsLabel },
     { id: "attempts", testID: "learning-v2-session-modal-attempts", icon: "heart-outline" as const, value: attemptsLabel },
-  ];
+  ].filter((stat) => typeof stat.value === "string" && stat.value.trim().length > 0);
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismiss}>
@@ -245,7 +247,7 @@ export default function LearningV2SessionOutcomeSheet({
               ) : null}
 
               {/* зачем (learning-v2.html 2.4/2.5 `noFacts: true`, learning-v2-013): у закрытого занятия фактов о занятии нет. */}
-              {locked ? null : <View style={sx.stats}>
+              {locked || stats.length === 0 ? null : <View style={sx.stats}>
                 {stats.map((stat) => (
                   <View key={stat.id} testID={stat.testID} style={[sx.stat, { backgroundColor: g.opaqueControl }]}>
                     {/* зачем (сверка 010, learning-v2.html `.facts > div::after`): каждый факт — отдельная стеклянная плитка с бликом и кромкой (--lg-sheen/--lg-rim). */}

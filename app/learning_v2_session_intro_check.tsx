@@ -54,21 +54,19 @@ const starsText = (n: number, lang: Lang): string => {
   return `${n} ${word}`;
 };
 const introCopy = (lang: Lang) => ({
-  close: triLang(lang, { ru: 'Закрыть проверку интро', uk: 'Закрити перевірку інтро', en: 'Close intro check', es: 'Cerrar la prueba inicial', 'pt-BR': 'Fechar a verificação inicial', vi: 'Đóng phần kiểm tra mở đầu', id: 'Tutup cek pembuka', tr: 'Giriş kontrolünü kapat', pl: 'Zamknij sprawdzian wstępny' }),
+  // зачем (владелец 25.10 через координатора, «черновик разраба»): без механики, времени и жаргона — «интро», «сессия», «попытка», «ноль звёзд»
+  close: triLang(lang, { ru: 'Закрыть проверку', uk: 'Закрити перевірку', en: 'Close the check', es: 'Cerrar la prueba', 'pt-BR': 'Fechar a verificação', vi: 'Đóng phần kiểm tra', id: 'Tutup cek', tr: 'Kontrolü kapat', pl: 'Zamknij sprawdzian' }),
   counter: (n: number) => triLang(lang, { ru: `Вопрос ${n} из 3`, uk: `Питання ${n} з 3`, en: `Question ${n} of 3`, es: `Pregunta ${n} de 3`, 'pt-BR': `Pergunta ${n} de 3`, vi: `Câu ${n}/3`, id: `Pertanyaan ${n} dari 3`, tr: `Soru ${n}/3`, pl: `Pytanie ${n} z 3` }),
-  collected: (n: number) => { const st = starsText(n, lang); return triLang(lang, { ru: `Собрано ${st} в этой сессии`, uk: `Зібрано ${st} у цій сесії`, en: `${st} collected this session`, es: `${st} en esta sesión`, 'pt-BR': `${st} nesta sessão`, vi: `Đã nhận ${st} trong phiên này`, id: `${st} terkumpul di sesi ini`, tr: `Bu oturumda ${st} toplandı`, pl: `Zebrano ${st} w tej sesji` }); },
-  eyebrow: triLang(lang, { ru: 'ПРОВЕРКА ИНТРО', uk: 'ПЕРЕВІРКА ІНТРО', en: 'INTRO CHECK', es: 'PRUEBA INICIAL', 'pt-BR': 'VERIFICAÇÃO INICIAL', vi: 'KIỂM TRA MỞ ĐẦU', id: 'CEK PEMBUKA', tr: 'GİRİŞ KONTROLÜ', pl: 'SPRAWDZIAN WSTĘPNY' }),
-  eyebrowDetail: triLang(lang, { ru: '3 вопроса · до 9 звёзд', uk: '3 питання · до 9 зірок', en: '3 questions · up to 9 stars', es: '3 preguntas · hasta 9 estrellas', 'pt-BR': '3 perguntas · até 9 estrelas', vi: '3 câu hỏi · tối đa 9 sao', id: '3 pertanyaan · hingga 9 bintang', tr: '3 soru · en fazla 9 yıldız', pl: '3 pytania · do 9 gwiazdek' }),
+  collected: (n: number) => { const st = starsText(n, lang); return triLang(lang, { ru: `Собрано ${st} за занятие`, uk: `Зібрано ${st} за заняття`, en: `${st} collected this session`, es: `${st} en esta sesión`, 'pt-BR': `${st} nesta sessão`, vi: `Đã nhận ${st} trong buổi học này`, id: `${st} terkumpul di sesi ini`, tr: `Bu oturumda ${st} toplandı`, pl: `Zebrano ${st} na zajęciach` }); },
+  eyebrow: triLang(lang, { ru: 'КОРОТКАЯ ПРОВЕРКА', uk: 'КОРОТКА ПЕРЕВІРКА', en: 'QUICK CHECK', es: 'PRUEBA RÁPIDA', 'pt-BR': 'VERIFICAÇÃO RÁPIDA', vi: 'KIỂM TRA NHANH', id: 'CEK SINGKAT', tr: 'KISA KONTROL', pl: 'KRÓTKI SPRAWDZIAN' }),
   questionNumber: (n: number) => triLang(lang, { ru: `ВОПРОС ${n}`, uk: `ПИТАННЯ ${n}`, en: `QUESTION ${n}`, es: `PREGUNTA ${n}`, 'pt-BR': `PERGUNTA ${n}`, vi: `CÂU ${n}`, id: `PERTANYAAN ${n}`, tr: `SORU ${n}`, pl: `PYTANIE ${n}` }),
   answer: (letter: string, choice: string) => triLang(lang, { ru: `Ответ ${letter}: ${choice}`, uk: `Відповідь ${letter}: ${choice}`, en: `Answer ${letter}: ${choice}`, es: `Respuesta ${letter}: ${choice}`, 'pt-BR': `Resposta ${letter}: ${choice}`, vi: `Đáp án ${letter}: ${choice}`, id: `Jawaban ${letter}: ${choice}`, tr: `Cevap ${letter}: ${choice}`, pl: `Odpowiedź ${letter}: ${choice}` }),
   wrong: triLang(lang, { ru: 'Почти. Перечитай формулу и попробуй ещё раз.', uk: 'Майже. Перечитай формулу й спробуй ще раз.', en: 'Almost. Reread the pattern and try again.', es: 'Casi. Vuelve a leer la fórmula e inténtalo otra vez.', 'pt-BR': 'Quase. Releia a fórmula e tente de novo.', vi: 'Gần đúng rồi. Đọc lại công thức và thử lần nữa.', id: 'Hampir. Baca lagi polanya dan coba sekali lagi.', tr: 'Neredeyse. Kalıbı yeniden oku ve tekrar dene.', pl: 'Prawie. Przeczytaj wzór jeszcze raz i spróbuj ponownie.' }),
   correctA11y: (n: number, explanation: string) => { const st = starsText(n, lang); return triLang(lang, { ru: `Верно. Плюс ${st}. ${explanation}`, uk: `Правильно. Плюс ${st}. ${explanation}`, en: `Correct. Plus ${st}. ${explanation}`, es: `Correcto. Más ${st}. ${explanation}`, 'pt-BR': `Correto. Mais ${st}. ${explanation}`, vi: `Đúng. Cộng ${st}. ${explanation}`, id: `Benar. Tambah ${st}. ${explanation}`, tr: `Doğru. Artı ${st}. ${explanation}`, pl: `Dobrze. Plus ${st}. ${explanation}` }); },
   correct: (n: number) => { const st = starsText(n, lang); return triLang(lang, { ru: `Верно! +${st}`, uk: `Правильно! +${st}`, en: `Correct! +${st}`, es: `¡Correcto! +${st}`, 'pt-BR': `Correto! +${st}`, vi: `Đúng rồi! +${st}`, id: `Benar! +${st}`, tr: `Doğru! +${st}`, pl: `Dobrze! +${st}` }); },
-  attempt: (n: number) => triLang(lang, { ru: `Попытка ${n}`, uk: `Спроба ${n}`, en: `Attempt ${n}`, es: `Intento ${n}`, 'pt-BR': `Tentativa ${n}`, vi: `Lần thử ${n}`, id: `Percobaan ${n}`, tr: `Deneme ${n}`, pl: `Próba ${n}` }),
-  skipA11y: triLang(lang, { ru: 'Пропустить вопрос интро', uk: 'Пропустити питання інтро', en: 'Skip intro question', es: 'Saltar la pregunta', 'pt-BR': 'Pular a pergunta', vi: 'Bỏ qua câu hỏi', id: 'Lewati pertanyaan', tr: 'Soruyu atla', pl: 'Pomiń pytanie' }),
-  skipHint: triLang(lang, { ru: 'Вопрос получит ноль звёзд, проверка продолжится', uk: 'Питання отримає нуль зірок, перевірка продовжиться', en: 'This question gets zero stars; the check continues', es: 'La pregunta suma cero estrellas y la prueba sigue', 'pt-BR': 'A pergunta fica sem estrelas e a verificação continua', vi: 'Câu này được 0 sao, bài kiểm tra vẫn tiếp tục', id: 'Pertanyaan ini dapat nol bintang, cek berlanjut', tr: 'Bu soru sıfır yıldız alır, kontrol devam eder', pl: 'Pytanie dostanie zero gwiazdek, sprawdzian trwa dalej' }),
+  skipA11y: triLang(lang, { ru: 'Пропустить вопрос', uk: 'Пропустити питання', en: 'Skip question', es: 'Saltar la pregunta', 'pt-BR': 'Pular a pergunta', vi: 'Bỏ qua câu hỏi', id: 'Lewati pertanyaan', tr: 'Soruyu atla', pl: 'Pomiń pytanie' }),
   skip: triLang(lang, { ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Saltar', 'pt-BR': 'Pular', vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń' }),
-  start: triLang(lang, { ru: 'Начать сессию', uk: 'Почати сесію', en: 'Start session', es: 'Empezar la sesión', 'pt-BR': 'Começar a sessão', vi: 'Bắt đầu phiên', id: 'Mulai sesi', tr: 'Oturumu başlat', pl: 'Zacznij sesję' }),
+  start: triLang(lang, { ru: 'Начать занятие', uk: 'Почати заняття', en: 'Start session', es: 'Empezar la sesión', 'pt-BR': 'Começar a sessão', vi: 'Bắt đầu buổi học', id: 'Mulai sesi', tr: 'Oturumu başlat', pl: 'Zacznij zajęcia' }),
   next: triLang(lang, { ru: 'Следующий вопрос', uk: 'Наступне питання', en: 'Next question', es: 'Siguiente pregunta', 'pt-BR': 'Próxima pergunta', vi: 'Câu tiếp theo', id: 'Pertanyaan berikutnya', tr: 'Sonraki soru', pl: 'Następne pytanie' }),
 });
 
@@ -222,7 +220,6 @@ export default function LearningV2SessionIntroCheck({
           <View style={styles.eyebrowIcon}><Ionicons name="sparkles" size={18} color="#F8C84E" /></View>
           <View style={styles.eyebrowCopy}>
             <Text style={styles.eyebrow}>{t.eyebrow}</Text>
-            <Text style={styles.eyebrowDetail}>{t.eyebrowDetail}</Text>
           </View>
         </Animated.View>
 
@@ -293,11 +290,9 @@ export default function LearningV2SessionIntroCheck({
         )}
         {result !== 'correct' && (
           <View style={styles.assistRow}>
-            <Text style={styles.attemptText}>{t.attempt(attempts)}</Text>
             <Pressable
               accessibilityRole="button"
               accessibilityLabel={t.skipA11y}
-              accessibilityHint={t.skipHint}
               onPress={skip}
               style={({ pressed }) => [styles.skipButton, pressed && styles.pressed]}
             >
@@ -349,7 +344,6 @@ const styles = StyleSheet.create({
   eyebrowIcon: { width: 42, height: 42, borderRadius: 15, backgroundColor: '#F8C84E1F', boxShadow: NESTED_SHADOW, alignItems: 'center', justifyContent: 'center' },
   eyebrowCopy: { flex: 1 },
   eyebrow: { color: '#F8C84E', fontSize: 13, lineHeight: 17, letterSpacing: 1.4, fontWeight: '700' },
-  eyebrowDetail: { color: '#7F8B99', fontSize: 13, lineHeight: 18, marginTop: 2, fontWeight: '700' },
   questionCard: { minHeight: 180, borderRadius: 28, backgroundColor: '#1B2430', padding: 24, justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.28, shadowRadius: 24, shadowOffset: { width: 0, height: 14 }, elevation: 8 },
   // Карточка вопроса: на низком экране минимум ниже, текст всё равно ведёт.
   questionCardShort: { minHeight: 132, padding: 18 },
@@ -372,8 +366,8 @@ const styles = StyleSheet.create({
   rewardCopy: { flex: 1 },
   feedbackCorrect: { color: '#FFF2B5', fontWeight: '700', fontSize: 16 },
   explanation: { color: '#C7B777', fontSize: 13, lineHeight: 18, fontWeight: '700', marginTop: 2 },
-  assistRow: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  attemptText: { color: '#7F8B99', fontSize: 13, fontWeight: '700' },
+  // зачем (владелец 25.10): «Попытка N» убрана из показа — «Пропустить» остаётся справа, без пустого места слева
+  assistRow: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' },
   skipButton: { minHeight: 48, justifyContent: 'center', paddingHorizontal: 8 },
   skipText: { color: '#AEB9C5', fontWeight: '800' },
   cta: { height: 58, borderRadius: 20, backgroundColor: '#8EE65A', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 9 },

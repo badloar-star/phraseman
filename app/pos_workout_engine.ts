@@ -495,10 +495,11 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
       es: 'La señal está en la relación entre palabras.', 'pt-BR': "O sinal aponta para a relação entre palavras, não para a palavra em si.", vi: "Tín hiệu nằm ở quan hệ giữa các từ, không phải bản thân từ.", id: "Sinyalnya ada pada relasi antarkata, bukan kata itu sendiri.", tr: "Sinyal kelimenin kendisinde değil, kelimeler arasındaki ilişkide.", pl: "Sygnał jest w relacji między słowami, nie w samym słowie.",
     },
     nextStep: {
-      ru: 'Дальше будут пары in/on/at, to/for/from и короткие slot-дриллы.',
-      uk: 'Далі будуть пари in/on/at, to/for/from і короткі slot-дрили.',
-      en: 'Next come pairs like in/on/at, to/for/from, and short slot drills.',
-      es: 'Seguimos con pares in/on/at, to/for/from y slots cortos.', 'pt-BR': "Depois vêm pares in/on/at, to/for/from e slot drills curtos.", vi: "Tiếp theo là các cặp in/on/at, to/for/from và slot drills ngắn.", id: "Selanjutnya ada pasangan in/on/at, to/for/from, dan slot drill pendek.", tr: "Sırada in/on/at, to/for/from çiftleri ve kısa slot drill’ler var.", pl: "Dalej będą pary in/on/at, to/for/from i krótkie slot drills.",
+      // зачем (владелец 25.10 через координатора): «slot-дриллы» — жаргон разработчика → «короткие упражнения»
+      ru: 'Дальше будут пары in/on/at, to/for/from и короткие упражнения.',
+      uk: 'Далі будуть пари in/on/at, to/for/from і короткі вправи.',
+      en: 'Next come pairs like in/on/at, to/for/from, and short exercises.',
+      es: 'Seguimos con pares in/on/at, to/for/from y ejercicios cortos.', 'pt-BR': "Depois vêm pares in/on/at, to/for/from e exercícios curtos.", vi: "Tiếp theo là các cặp in/on/at, to/for/from và bài tập ngắn.", id: "Selanjutnya ada pasangan in/on/at, to/for/from, dan latihan singkat.", tr: "Sırada in/on/at, to/for/from çiftleri ve kısa alıştırmalar var.", pl: "Dalej będą pary in/on/at, to/for/from i krótkie ćwiczenia.",
     },
   },
   article: {
@@ -547,10 +548,10 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
       es: 'La senal apunta a cantidad: some en positivo, any en negacion/pregunta, some en ofertas y peticiones.', 'pt-BR': "O sinal aponta para lógica de quantidade: some em positivo, any em negativa/pergunta, some em ofertas e pedidos.", vi: "Tín hiệu hướng tới logic số lượng: some trong khẳng định, any trong phủ định/câu hỏi, some trong đề nghị và lời nhờ.", id: "Sinyalnya mengarah ke logika jumlah: some untuk positif, any untuk negatif/pertanyaan, some untuk tawaran dan permintaan.", tr: "Sinyal miktar mantığına işaret ediyor: olumlu miktarda some, olumsuz/soruda any, teklif ve ricalarda some.", pl: "Sygnał wskazuje na logikę ilości: some w twierdzeniu, any w przeczeniu/pytaniu, some w ofertach i prośbach.",
     },
     nextStep: {
-      ru: 'Next we contrast some/any/no in short slots and mixed review.',
-      uk: 'Next we contrast some/any/no in short slots and mixed review.',
-      en: 'Next we contrast some/any/no in short slots and mixed review.',
-      es: 'Luego contrastamos some/any/no en huecos cortos y repaso mixto.', 'pt-BR': "Depois vamos contrastar some/any/no em lacunas curtas e revisão mista.", vi: "Tiếp theo ta sẽ đối chiếu some/any/no trong chỗ trống ngắn và ôn tập trộn.", id: "Selanjutnya kita membedakan some/any/no dalam slot pendek dan review campuran.", tr: "Sonra kısa boşluklarda ve karma tekrar içinde some/any/no karşılaştıracağız.", pl: "Potem porównamy some/any/no w krótkich lukach i mieszanej powtórce.",
+      ru: 'Дальше сравним some/any/no в коротких упражнениях и смешанном повторении.',
+      uk: 'Далі порівняємо some/any/no у коротких вправах і змішаному повторенні.',
+      en: 'Next we contrast some/any/no in short exercises and mixed review.',
+      es: 'Luego contrastamos some/any/no en huecos cortos y repaso mixto.', 'pt-BR': "Depois vamos contrastar some/any/no em lacunas curtas e revisão mista.", vi: "Tiếp theo ta sẽ đối chiếu some/any/no trong chỗ trống ngắn và ôn tập trộn.", id: "Selanjutnya kita membedakan some/any/no dalam latihan singkat dan review campuran.", tr: "Sonra kısa boşluklarda ve karma tekrar içinde some/any/no karşılaştıracağız.", pl: "Potem porównamy some/any/no w krótkich lukach i mieszanej powtórce.",
     },
   },
   existential: {

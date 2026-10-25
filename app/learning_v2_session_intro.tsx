@@ -73,15 +73,16 @@ const lineText = (line: IntroLine): string =>
 
 const stringsFor = (lang: Lang) => ({
   close: triLang(lang, {
-    ru: "Закрыть интро",
-    uk: "Закрити вступ",
-    en: "Close intro",
-    es: "Cerrar introducción",
-    "pt-BR": "Fechar introdução",
-    vi: "Đóng phần giới thiệu",
-    id: "Tutup pengantar",
-    tr: "Girişi kapat",
-    pl: "Zamknij wprowadzenie",
+    // зачем (владелец 25.10 через координатора): без жаргона «интро» — просто «Закрыть»
+    ru: "Закрыть",
+    uk: "Закрити",
+    en: "Close",
+    es: "Cerrar",
+    "pt-BR": "Fechar",
+    vi: "Đóng",
+    id: "Tutup",
+    tr: "Kapat",
+    pl: "Zamknij",
   }),
   next: triLang(lang, {
     ru: "Дальше",

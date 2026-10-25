@@ -1684,15 +1684,16 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
             pl: "Sprawdzian rozdziału",
           })
         : `${triLang(lang, {
-            ru: "Сессия",
+            // зачем (владелец 25.10 через координатора): «Сессия» — слово разработчика; ученик видит «Занятие N»
+            ru: "Занятие",
             en: "Session",
-            uk: "Сесія",
+            uk: "Заняття",
             es: "Sesión",
             "pt-BR": "Sessão",
             vi: "Buổi",
             id: "Sesi",
             tr: "Oturum",
-            pl: "Sesja",
+            pl: "Zajęcia",
           })} ${row.sessionOrdinal}`;
   const wave = [-72, -34, 20, 70, 86, 52, 4, -48][
     (row.sessionOrdinal - 1) % 8
@@ -3608,15 +3609,16 @@ export default function LessonsTab({
       ) {
         console.warn('[V2-TAP] denied:wip', JSON.stringify({ courseSessionId: selectedCourseSessionId, state })); // guard-ok: ранний выход логируется
         showLearningV2DenialHint(triLang(lang, {
-          ru: "Сессия ещё в работе",
-          en: "This session is still in progress",
-          uk: "Сесія ще в роботі",
-          es: "Esta sesión todavía está en preparación",
-          "pt-BR": "Esta sessão ainda está em preparação",
-          vi: "Buổi học này vẫn đang được hoàn thiện",
-          id: "Sesi ini masih dalam pengerjaan",
-          tr: "Bu oturum hâlâ hazırlanıyor",
-          pl: "Ta sesja jest jeszcze przygotowywana",
+          // зачем (владелец 25.10 через координатора): «ещё в работе» звучало как черновик разработчика
+          ru: "Это занятие скоро откроется",
+          en: "This session opens soon",
+          uk: "Це заняття скоро відкриється",
+          es: "Esta sesión se abrirá pronto",
+          "pt-BR": "Esta sessão abre em breve",
+          vi: "Buổi học này sắp mở",
+          id: "Sesi ini segera dibuka",
+          tr: "Bu oturum yakında açılacak",
+          pl: "Te zajęcia wkrótce się otworzą",
         }));
         return;
       }
@@ -6006,11 +6008,11 @@ export default function LessonsTab({
           pl: "Zamknij",
         })}
         onSecondaryPress={() => launchSelectedLearningV2Session(true)}
-        sessionLabel={triLang(lang, { ru: "Сессия", en: "Session", uk: "Сесія", es: "Sesión", "pt-BR": "Sessão", vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Sesja" })}
+        // зачем (владелец 25.10 через координатора, «черновик разраба»): без «≈ 5 минут» и «3 попытки» — механика и время не показываются;
+        // «Сессия» → «Занятие». Пустые плитки фактов шторка сама не рисует.
+        sessionLabel={triLang(lang, { ru: "Занятие", en: "Session", uk: "Заняття", es: "Sesión", "pt-BR": "Sessão", vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Zajęcia" })}
         chapterLabel={triLang(lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })}
-        durationLabel={triLang(lang, { ru: "≈ 5 минут", en: "≈ 5 minutes", uk: "≈ 5 хвилин", es: "≈ 5 minutos", "pt-BR": "≈ 5 minutos", vi: "≈ 5 phút", id: "≈ 5 menit", tr: "≈ 5 dakika", pl: "≈ 5 minut" })}
         wordsLabel={learningV2NewWordCountLabel(selectedLearningV2NewWordCount, lang)}
-        attemptsLabel={triLang(lang, { ru: "3 попытки", en: "3 attempts", uk: "3 спроби", es: "3 intentos", "pt-BR": "3 tentativas", vi: "3 lượt thử", id: "3 percobaan", tr: "3 deneme", pl: "3 próby" })}
         onClose={() => {
           learningV2ModalRequestRef.current += 1;
           setSelectedLearningV2Session(null);
@@ -6050,7 +6052,7 @@ export default function LessonsTab({
         secondaryLabel={null}
         onSecondaryPress={() => setLearningV2LockedSession(null)}
         closeLabel={triLang(lang, { ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar", vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij" })}
-        sessionLabel={triLang(lang, { ru: "Сессия", en: "Session", uk: "Сесія", es: "Sesión", "pt-BR": "Sessão", vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Sesja" })}
+        sessionLabel={triLang(lang, { ru: "Занятие", en: "Session", uk: "Заняття", es: "Sesión", "pt-BR": "Sessão", vi: "Buổi", id: "Sesi", tr: "Oturum", pl: "Zajęcia" })}
         chapterLabel={triLang(lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })}
         onClose={() => setLearningV2LockedSession(null)}
       />

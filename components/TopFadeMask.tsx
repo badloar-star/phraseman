@@ -33,6 +33,10 @@ export interface TopFadeMaskProps {
   showThreshold?: number;
   zIndex?: number;
   style?: ViewStyle;
+  /** зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «нигде верхняя часть не должна отличаться, она должна быть цельной»): на странице со «Сценой» копия полотна страницы (в светлых темах бледная) ложилась полосой поверх тёмной сцены — там маски нет. */
+  suppressed?: boolean;
+  /** Для журнала [TOP-BAND]: какая страница сейчас под маской. */
+  screen?: string;
 }
 
 const loggedScrims = new Set<string>();
@@ -65,6 +69,8 @@ export default function TopFadeMask({
   showThreshold = 6,
   zIndex = 5,
   style,
+  suppressed = false,
+  screen = 'unknown',
 }: TopFadeMaskProps) {
   const insets = useStableSafeAreaInsets();
   const { liquidGlassThemeId } = useTheme();
@@ -98,7 +104,11 @@ export default function TopFadeMask({
   }, [scrollY, showThreshold, maskOpacity]);
 
   const height = insets.top + headerHeight + extra;
-  if (height <= 0) return null;
+  useEffect(() => {
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «нигде верхняя часть не должна отличаться, она должна быть цельной»; сперва логи): чем закрыт верх экрана и почему — экран, тема, решение, цвет полотна копии
+    console.log('[TOP-BAND]', JSON.stringify({ at: 'top_fade_mask', screen, theme: liquidGlassThemeId, isLight: glass.isLight, decision: suppressed ? 'skip_scene_page' : height <= 0 ? 'skip_zero_height' : 'draw_on_scroll', canvasTop: glass.bgTop, height: Math.round(height) })); // guard-ok: одна строка на смену решения
+  }, [screen, liquidGlassThemeId, glass.isLight, glass.bgTop, suppressed, height]);
+  if (suppressed || height <= 0) return null;
 
   const animatedOpacity = scrollY ? maskOpacity : undefined;
   const resolved = topFadeScrim(glass.isLight, glass.bgTop, maxOpacity, tone);

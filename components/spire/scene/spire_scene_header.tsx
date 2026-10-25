@@ -24,6 +24,8 @@ const LOG = '[SPIRE-SCENE]';
 const SHOW_THRESHOLD = 6;
 const FADE_OUT_MS = 180;
 const FADE_IN_MS = 260;
+/** зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, верх цельный): слой шапки цвета сцены не гаснет при прокрутке — прежнее гашение оставлено выключенным для отката. */
+const WHOLE_TOP_KEEPS_HEADER = true;
 
 type Tab = Readonly<{ key: string; label: string }>;
 
@@ -59,9 +61,12 @@ function LitLayer({ tone, tabs, active, styles, topInset, tabsInset }: Readonly<
   // зачем: слой появляется, когда Пик уже на экране и мог быть прокручен, — начинаем с текущего вида маски, без ожидания следующей смены
   const shownRef = useRef<boolean | null>(null);
   if (shownRef.current === null) shownRef.current = topFade?.isMaskShown() ?? false;
-  const fade = useRef(new Animated.Value(shownRef.current ? 0 : 1)).current;
+  const fade = useRef(new Animated.Value(WHOLE_TOP_KEEPS_HEADER || !shownRef.current ? 1 : 0)).current;
   useEffect(() => {
     console.log(LOG, 'header layer on', JSON.stringify({ scrolled: shownRef.current, tint: tone.tint, scrollSource: scrollY ? 'TopFadeScroll' : 'нет провайдера — слой не гаснет' })); // guard-ok: одна строка на появление слоя
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «нигде верхняя часть не должна отличаться, она должна быть цельной»): слой цвета сцены под часами и вкладками больше не гаснет при прокрутке — погасший открывал бледное полотно оболочки полосой над сценой
+    console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_header_layer', tint: tone.tint, decision: 'always_on' })); // guard-ok: одна строка на появление слоя
+    if (WHOLE_TOP_KEEPS_HEADER) return undefined;
     if (!scrollY) return undefined;
     const id = scrollY.addListener(({ value }) => {
       const shown = value > SHOW_THRESHOLD;

@@ -35,7 +35,8 @@ function HomeSceneStatusStrip({ height, scrollY, visible, source = 'home' }: Pro
     console.log('[SAFE-TOP]', JSON.stringify({ at: 'status_strip', source, visible, tint, height: Math.round(height), spireFlag: SPIRE_SCENE_V2_ENABLED, decision })); // guard-ok: одна строка на смену решения
   }, [source, visible, tint, height, decision]);
   if (decision !== 'draw' || tint === null) return null;
-  const opacity = scrollY ? scrollY.interpolate({ inputRange: [0, FADE_DISTANCE], outputRange: [1, 0], extrapolate: 'clamp' }) : 1;
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, верх цельный): на Пике полоса под часами не гаснет при прокрутке — вместе со слоем шапки держит цвет верха сцены
+  const opacity = scrollY && source !== 'spire' ? scrollY.interpolate({ inputRange: [0, FADE_DISTANCE], outputRange: [1, 0], extrapolate: 'clamp' }) : 1;
   return <Animated.View testID={source === 'spire' ? 'spire-scene-status-strip' : 'home-scene-status-strip'} pointerEvents="none" style={[s.strip, { height, backgroundColor: tint, opacity }]} />;
 }
 

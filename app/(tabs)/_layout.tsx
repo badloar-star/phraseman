@@ -834,7 +834,8 @@ function TabScaffold({
           от верха экрана (страница Главной полноэкранная, см. homeFullBleedPages); сплошной цвет не совпадал с градиентом сцены */}
       {/* зачем (Пик v2, эталон peak-scene-v2.html): «Сцена» Пика уходит под часы — полоса цветом верха сцены, только на «Сообществе» */}
       <HomeSceneStatusStrip height={insets.top} scrollY={topFadeScroll?.scrollY} visible={visualIdx === communityLogicalIdx} source="spire" />
-      <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} />
+      {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «нигде верхняя часть не должна отличаться, она должна быть цельной»): на Главной и Пике (страницы со «Сценой») маска-копия полотна не рисуется — сцена сама идёт до верха */}
+      <TopFadeMask scrollY={topFadeScroll?.scrollY} zIndex={2} suppressed={tabFullBleedPages.includes(physicalPageIdx)} screen={`tab:${visualIdx}`} />
       <View
         onLayout={notifyFirstContentReady}
         style={{ flex: 1 }}

@@ -36,6 +36,7 @@
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { assertAuthAccountUsableForCallable } from './account_gate';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   commitStarOperations,
@@ -148,6 +149,9 @@ export const communitySyncPackRuneSale = onCall(CALLABLE_BASE, async (request) =
   }
 
   const db = admin.firestore();
+  // зачем (сверка Ревизора 25.10): в 14-дневной отсрочке удаления вход жив (вариант Б) — покупка набора удаляемым аккаунтом не
+  // начисляет руны автору и не пишет чек.
+  await assertAuthAccountUsableForCallable(db, authUid, 'communitySyncPackRuneSale');
   const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
   const buyerRef = db.collection('users').doc(buyerStableId);
   // Один чек на пару «набор + покупатель»: вторая покупка того же набора тем же

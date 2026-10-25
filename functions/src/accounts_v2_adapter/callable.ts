@@ -16,6 +16,7 @@ import {
   type AccountsV2TxGuard,
 } from './firestore_port';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
+import { assertAuthAccountUsableForCallable } from '../account_gate';
 import { accountsV2FlagsReader, type AccountsV2FlagsReader } from '../accounts_v2_flags';
 import { ACCOUNTS_V2_CLIENT_TOO_OLD, accountsV2ClientTooOld, splitClientVersion } from '../accounts_v2_client_version';
 import {
@@ -451,6 +452,12 @@ export async function handleAccountsV2SyncGated(
   request: AccountsV2SyncRequest,
   flags: AccountsV2FlagsReader,
   deps: AccountsV2SyncDeps = DEFAULT_DEPS,
+  /**
+   * зачем (сверка Ревизора 25.10, вариант Б 713677ddd): в 14-дневной отсрочке удаления вход жив — синк не должен писать прогресс
+   * удаляемому аккаунту. Шлюз ПОСЛЕ ворот флага и версии (выключено → по-прежнему 0 чтений). Боевая обёртка передаёт
+   * assertAuthAccountUsableForCallable; по умолчанию — без шлюза (тесты на фейковом Firestore считают точное число чтений).
+   */
+  assertAccountUsable: (db: Firestore, authUid: string) => Promise<void> = async () => undefined,
 ): Promise<AccountsV2SyncResponse> {
   const read = await flags.read();
   if (!read.ok) {
@@ -467,6 +474,9 @@ export async function handleAccountsV2SyncGated(
     console.warn(`[ACCOUNTS-V2] reject reason=client_too_old client=${version.clientVersion} min=${read.flags.minClientVersion} reads=0`);
     throw finalError('failed-precondition', ACCOUNTS_V2_CLIENT_TOO_OLD);
   }
+  // нет uid — шлюз не нужен: handleAccountsV2Sync сам откажет reauth
+  const callerUid = typeof request.auth?.uid === 'string' ? request.auth.uid : '';
+  if (callerUid) await assertAccountUsable(db, callerUid);
   return handleAccountsV2Sync(db, { ...request, data: version.data }, deps);
 }
 
@@ -476,5 +486,8 @@ export async function handleAccountsV2SyncGated(
  */
 export const accountsV2SyncApply = onCall(HOT_CALLABLE_OPTIONS, (request) => {
   const db = admin.firestore();
-  return handleAccountsV2SyncGated(db, { auth: request.auth ?? null, data: request.data }, accountsV2FlagsReader(db));
+  return handleAccountsV2SyncGated(
+    db, { auth: request.auth ?? null, data: request.data }, accountsV2FlagsReader(db), DEFAULT_DEPS,
+    (gateDb, authUid) => assertAuthAccountUsableForCallable(gateDb, authUid, 'accountsV2SyncApply'),
+  );
 });

@@ -25,6 +25,7 @@
 import * as admin from 'firebase-admin';
 import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { assertAuthAccountUsableForCallable } from './account_gate';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { getWeekKey, isoDateUtc } from './progress_events';
@@ -150,6 +151,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
   }
 
   const db = admin.firestore();
+  // зачем (сверка Ревизора 25.10): в 14-дневной отсрочке удаления вход жив (вариант Б) — рулетка не должна начислять удаляемому аккаунту.
+  await assertAuthAccountUsableForCallable(db, authUid, 'referralSpin');
   await assertAuthStableLink(db, authUid, stableId);
 
   const outerPolicy = await resolveReferralRoulettePolicy(db);

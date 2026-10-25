@@ -12,6 +12,7 @@
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { assertAuthAccountUsableForCallable } from './account_gate';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   assertAuthStableLink,
@@ -77,6 +78,8 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
   }
 
   const db = admin.firestore();
+  // зачем (сверка Ревизора 25.10): в 14-дневной отсрочке удаления вход жив (вариант Б) — кредиты рулетки удаляемому аккаунту не выдаём.
+  await assertAuthAccountUsableForCallable(db, authUid, 'referralClaimSpin');
   await assertAuthStableLink(db, authUid, referrerStableId);
 
   const outerPolicy = await resolveReferralRoulettePolicy(db);

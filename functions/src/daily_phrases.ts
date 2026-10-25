@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { assertAuthAccountUsableForCallable } from './account_gate';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
 import { swallowed } from './swallowed_error'; // зачем: PM-229 — немой catch пишет причину [PM-229]
@@ -31,8 +32,10 @@ export const dailyPhraseSetSaved = onCall({ region: REGION, enforceAppCheck: ENF
 
   const phraseId = cleanPhraseId(request.data?.phraseId);
   const saved = request.data?.saved === true;
-  const stableUid = await resolveStableUid(authUid);
   const db = admin.firestore();
+  // зачем (сверка Ревизора 25.10): в 14-дневной отсрочке удаления вход жив (вариант Б) — сохранения и публичные счётчики не двигаем.
+  await assertAuthAccountUsableForCallable(db, authUid, 'dailyPhraseSetSaved');
+  const stableUid = await resolveStableUid(authUid);
 
   const phraseRef = db.collection(DAILY_PHRASES).doc(phraseId);
   const saveRef = db.collection(DAILY_PHRASE_SAVES).doc(`${phraseId}_${stableUid}`);

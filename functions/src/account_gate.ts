@@ -231,6 +231,29 @@ export async function assertAuthAccountUsable(
 }
 
 /**
+ * Шлюз удаления для callable, которые берут authUid напрямую (не через resolveStableUidForAuth).
+ *
+ * зачем (сверка Ревизора 25.10, вариант Б 713677ddd): пользователь Auth теперь живёт 14 дней отсрочки, повторный вход возможен —
+ * такие callable стали доступны аккаунту в удалении (рулетка, продажа набора, синк Accounts V2, сохранение фразы дня). Отказ
+ * тот же, что у остальных шлюзов (failed-precondition account_delete_pending → клиент предлагает «Восстановить»), но с причиной
+ * в журнале [ACCOUNT-GATE] — без немого отказа. Стоимость: 2 точечных чтения на вызов.
+ */
+export async function assertAuthAccountUsableForCallable(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  callable: string,
+  nowMs = Date.now(),
+): Promise<void> {
+  try {
+    await assertAuthAccountUsable(db, authUid, nowMs);
+  } catch (error) {
+    const reason = error instanceof HttpsError ? error.message : (error instanceof Error ? error.message : String(error));
+    console.warn(`[ACCOUNT-GATE] reject callable=${callable} auth=${String(authUid).slice(0, 6)} reason=${reason}`);
+    throw error;
+  }
+}
+
+/**
  * Проверка группы личностей разом (аккаунт + его псевдонимы после слияний).
  *
  * Отказ выдаёт ПЕРВАЯ мёртвая личность, но grace имеет приоритет над смертью:

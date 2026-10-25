@@ -112,6 +112,24 @@ function SeasonCourse(props: SeasonCourseProps) {
       const primary: SeasonExpandedAction | null = examActions && props.onStartExam && status.state === 'available'
         ? { label: learningV2ChapterExamCopy(lang, 'start'), icon: 'play', onPress: () => { close(); props.onStartExam?.(card.chapterOrdinal); } }
         : null;
+      // зачем (владелец 25.10, макет exam-window-real.html на настоящих снимках; раньше у сданного экзамена окно показывало описание «можно сдать» и только «Закрыть»):
+      // сдан — галочка, «Экзамен сдан», «{c} из {q} верно. Глава {n} открыта.», белая «▶ К главе {n}» + «Закрыть»; пауза — часы, «Пересдать через {m} мин», «Попытка: {c} из {q}.», «Закрыть».
+      // Тексты «от 10 верных» / «~N минут» в этих состояниях не показываются. «К главе» ведёт туда же, куда одноимённая кнопка под каруселью (refocus на первую карту главы).
+      const examClose: SeasonExpandedAction = { label: seasonCardText(lang, 'closeCard'), onPress: () => close('exam_close_button') };
+      if (status.state === 'passed') {
+        const nextChapter = card.chapterOrdinal < props.chapterCount ? card.chapterOrdinal + 1 : null;
+        const nextIndex = nextChapter === null ? -1 : deck.cards.findIndex((c) => c.chapterOrdinal === nextChapter);
+        const toChapter: SeasonExpandedAction | null = nextChapter !== null && nextIndex >= 0
+          ? { label: seasonCardText(lang, 'examToChapter', { n: nextChapter }), icon: 'play', onPress: () => { close('to_chapter'); refocus(nextIndex); } }
+          : null;
+        const scoreLine = nextChapter !== null ? seasonCardText(lang, 'examWinScore', { c: status.correct, q: CHAPTER_EXAM_QUESTION_COUNT_V1, n: nextChapter }) : null;
+        console.log('[EPISODE-MODAL]', 'exam_window_state', JSON.stringify({ state: 'passed', correct: status.correct, questions: CHAPTER_EXAM_QUESTION_COUNT_V1, nextChapter, toChapter: toChapter !== null })); // guard-ok: ветка и значения, которые её решили
+        return { ...common, kind: 'exam' as const, sealIcon: 'checkmark' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: seasonCardText(lang, 'examWinPassed'), translation: scoreLine, exam: null, title: null, words: [] as readonly string[], primary: toChapter, secondary: examClose };
+      }
+      if (status.state === 'cooldown') {
+        console.log('[EPISODE-MODAL]', 'exam_window_state', JSON.stringify({ state: 'cooldown', lastCorrect: status.lastCorrect, questions: CHAPTER_EXAM_QUESTION_COUNT_V1, minutesLeft: status.minutesLeft })); // guard-ok: ветка и значения, которые её решили
+        return { ...common, kind: 'exam' as const, sealIcon: 'time-outline' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: seasonCardText(lang, 'examRetakeIn', { m: status.minutesLeft }), translation: seasonCardText(lang, 'examWinAttempt', { c: status.lastCorrect, q: CHAPTER_EXAM_QUESTION_COUNT_V1 }), exam: null, title: null, words: [] as readonly string[], primary: null, secondary: examClose };
+      }
       let secondary: SeasonExpandedAction | null = null;
       if (primary) secondary = { label: learningV2ChapterExamCopy(lang, 'later'), onPress: close };
       // зачем (Сверка: окно экзамена в состоянии «сдан/пауза» — нижняя половина пустая, закрыть можно только по подложке; в эталоне такого окна нет — заказано у Макетов): пока — одна стеклянная «Закрыть», без выдумок

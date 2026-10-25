@@ -43,6 +43,8 @@ export type SeasonExpandedCardProps = Readonly<{
   dark: boolean;
   art: SeasonArt;
   glyph: IonName;
+  /** Значок в плитке слева сверху у окна экзамена: трофей (можно сдать), галочка (сдан), часы (пауза). Нет — трофей. */
+  sealIcon?: IonName;
   /** Метка в левом верхнем углу: «Эпизод 14» или «Экзамен главы». */
   chipLabel: string;
   /** Справа сверху: «20 заданий». */
@@ -147,7 +149,7 @@ function SeasonExpandedCard(p: SeasonExpandedCardProps) {
           </>
         )}
         <View style={styles.top}>
-          {p.kind === 'exam' ? <View style={styles.seal}><Ionicons name="trophy" size={24} color={WHITE} /></View> : (
+          {p.kind === 'exam' ? <View style={styles.seal}><Ionicons name={p.sealIcon ?? 'trophy'} size={24} color={WHITE} /></View> : (
             <View style={styles.chip}>
               <Text style={styles.chipText}>{p.chipLabel}</Text>
             </View>

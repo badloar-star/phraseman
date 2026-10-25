@@ -1769,6 +1769,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // back button. Screens with a richer local contract (confirm forfeit, close an
   // inner sheet, persist a lesson) are excluded by shouldHandleGlobalHardwareBack.
   useEffect(() => {
+    // зачем (Сверка 25.10: системная «Назад» на push-Сезоне уходила в lessons_list, кто её брал — не видно; «сперва логи»): на каждый
+    // переход — берёт ли корень «Назад» на этом пути и почему; на нажатие — путь и запасной маршрут. Только Android.
+    if (Platform.OS === 'android') {
+      const pathForBack = navigationPathSignature ?? pathname;
+      console.log('[BACK-GLOBAL] gate', JSON.stringify({ path: pathForBack, ready, onboarding: effectiveShowOnboarding, isBanned, devUtility: Boolean(currentDevUtilityRoute), rootHandles: shouldHandleGlobalHardwareBack(pathForBack) })); // guard-ok: одна строка на переход
+    }
     if (
       Platform.OS !== 'android'
       || !ready
@@ -1780,6 +1786,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
       const currentPath = navigationPathSignature ?? pathname;
+      console.log('[BACK-GLOBAL] press', JSON.stringify({ path: currentPath, fallback: navigationFallbackForPath(currentPath), handledBy: 'root_layout' })); // guard-ok: кто взял «Назад»
       safeRouterBack(router, navigationFallbackForPath(currentPath));
       return true;
     });

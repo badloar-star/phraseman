@@ -69,6 +69,16 @@ test('Android: системная «Назад» на push-Сезоне = «‹�
   assert.ok(connected.indexOf("noteBackTap('season_course_push'") < connected.indexOf('аппаратная «назад» из «Все уроки»'), 'подписка Сезона объявлена раньше подписки «Все уроки»');
 });
 
+test('Android: глобальный «Назад» корня не перехватывает push-Сезон (Сверка 25.10 ❌ по 1c45ee89f: POP_TO lessons_list)', () => {
+  const nav = read('app/navigation_back.ts');
+  const owned = nav.match(/const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set\(\[([\s\S]*?)\]\);/);
+  assert.ok(owned, 'список экранов со своим «Назад» найден');
+  assert.ok(owned[1].includes("'/learning-v2/course'"), 'push-Сезон сам решает «Назад»');
+  const root = read('app/_layout.tsx');
+  assert.match(root, /\[BACK-GLOBAL\] gate/);
+  assert.match(root, /\[BACK-GLOBAL\] press/);
+});
+
 test('журнал [LESSONS-NAV]: режим экрана, canGoBack и чем решён выход', () => {
   assert.match(connected, /\[LESSONS-NAV\] season/);
   assert.match(connected, /back: isTabPage \? 'not_needed\(tab_root\)' : 'ScreenBackButton'/);

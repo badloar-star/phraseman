@@ -159,6 +159,9 @@ const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
   '/lesson1',
   '/lesson_complete',
   '/lesson_words',
+  // зачем (Сверка 25.10 ❌ по 1c45ee89f): push-Сезон сам решает «Назад» — окно эпизода → «Все уроки» → тот же путь, что «‹»
+  // (SeasonCourseConnected). Глобальный обработчик корня переподписывался на каждом переходе, вызывался первым и вёл в /lessons_list.
+  '/learning-v2/course',
   // зачем (Сверка 15.10): тренировка «Ошибок» сама решает «Назад» — сначала прячет клавиатуру, потом выход в хаб «Ошибок»
   '/mistake_practice_session',
   '/pack_opening',

@@ -34,3 +34,43 @@ iOS — так же; без петель (итог → «назад» не во�
   владелец хочет единую стрелку на всех экранах — правка значка в одном месте (ChapterExamV2Run, styles.x).
 - Запасной маршрут экзамена — /learning-v2/course, в реестре ролей для раздела — /lessons_list. Срабатывает только без истории
   (глубокая ссылка); курс V2 — правильная точка, реестр стоит дополнить, а не экран.
+
+## Зона «Обучение» по аудиту Ядра 8e9e5ec8b (16 экранов) — проверено по коду
+
+Скрипт аудита видит не все кнопки: SafeTopBackButton и ScreenCloseButton (общие компоненты) он местами не узнаёт. Ниже — что в коде на самом деле.
+
+### «Нет назад» — 5 экранов
+
+| экран | на самом деле | вердикт |
+|---|---|---|
+| lesson_verbs | не экран: переадресация на /lesson_irregular_verbs (DeferredRedirect) | ложная находка |
+| level_exam | «назад» есть — ExamHeader с onBack (safeRouterBack → /lessons_list) | есть; своя шапка, не общая кнопка → в список ниже |
+| combined_lesson_pick | общая SafeTopBackButton (combo-pick-back) | ложная находка |
+| learning_v2_session_intro_check | общая ScreenCloseButton — крестик проверки интро по макету | «закрыть» по макету, не баг |
+| learning_v2_authoring_preview | dev-экран авторов, людям не виден | вне выпуска |
+
+### Запасной маршрут «не в свой раздел» — проверено, куда ведёт и почему
+
+safeRouterBack берёт запасной маршрут только без истории (глубокая ссылка, холодный старт); с историей — туда, откуда пришёл.
+/lessons_list — тот же экран вкладки «Уроки» (re-export (tabs)/lessons).
+
+| экран | запасной | вердикт |
+|---|---|---|
+| hint («Теория») | был /(tabs)/home | **исправлено → /lessons_list** (экран раздела «Уроки») |
+| lesson_menu | /(tabs)/home | осознанно: после онбординга стек пуст, комментарий в коде; оставил |
+| lesson1 | /(tabs)/home при пустом стеке, иначе меню/список | осознанно: иначе lesson_menu тоже без истории и человек застревает (комментарий в коде); оставил |
+| combined_lesson_pick | /(tabs)/lessons | = /lessons_list, раздел верный |
+| learning-v2/session/[id] | /(tabs)/lessons | раздел верный; экран людям не виден (только не-en) |
+| learning-v2/chapter-exam | /learning-v2/course | курс V2 внутри раздела «Уроки» — верно |
+
+### «Только закрыть» — 3 экрана
+
+learning_v2_session_intro, learning_v2_placement, learning_v2_modes_showcase_run (dev) — крестик стоит по макетам занятия/проверки
+уровня (полноэкранный режим без шапки). Не баг; если владелец хочет стрелку везде — правка значка в общем ScreenCloseButton.
+
+### Своя кнопка вместо общей — не переносил вслепую
+
+lesson_menu (LessonMenuHeader), lesson_help, lesson_intro_screens (BackGlyph), exam и level_exam (ExamHeader), chapter-exam v1 (итог),
+lesson1 (LessonReviewSheet), mistake_practice_session (PanelKit), learning-v2/course. Перенос на ScreenBackButton меняет место кнопки
+и раскладку шапки (полоса SCREEN_BACK_ZONE, отступ заголовка SCREEN_BACK_RESERVED) — по гейту «приложение = макет» такую правку
+проверяет кадр. Предложение: по одному экрану за раз, с кадром Сверки до/после.

@@ -126,7 +126,8 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
     () => lessonTheorySectionsSeenKey(lessonId, studyTarget),
     [lessonId, studyTarget],
   );
-  const goBack = React.useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
+  // зачем (аудит «назад» 26.10): «Теория» — экран раздела «Уроки»; без истории (глубокая ссылка) «назад» ведёт в раздел, а не на Главную
+  const goBack = React.useCallback(() => safeRouterBack(router, '/lessons_list' as any), [router]);
 
   return (
     <TheoryLessonView

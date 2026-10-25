@@ -63,7 +63,7 @@ function BoldSentence({ before, bold, after, color, strongColor, size }: Readonl
 function FailureNote({ text, color, size }: Readonly<{ text: string | null | undefined; color: string; size: number }>) {
   if (!text) return null;
   return (
-    <Text testID="delete-account-failure-note" accessibilityLiveRegion="polite" style={[styles.note, { color, fontSize: size }]}>{text}</Text>
+    <Text testID="delete-account-failure-note" accessibilityLiveRegion="polite" style={[styles.note, { color, fontSize: size, lineHeight: Math.round(size * 1.35) }]}>{text}</Text>
   );
 }
 
@@ -160,5 +160,6 @@ const styles = StyleSheet.create({
   link: { alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 12 },
   // зачем (D145, координатор 25.10): ссылка — обычный текст, размер из шкалы 16/13; 16 как у кнопок окна.
   linkLabel: { fontSize: 16, fontWeight: '600', textAlign: 'center' },
-  note: { marginTop: 12, textAlign: 'center', lineHeight: 18 },
+  // зачем (Макеты по f6c3f3f45): межстрочный — от фактического размера (f.caption 13–17 по настройке шрифта), не зашитые 18.
+  note: { marginTop: 12, textAlign: 'center' },
 });

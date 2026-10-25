@@ -161,11 +161,49 @@ export function isRouteExcludedInStore(regex, routeFile) {
   return !regex.test(`./${routeFile.slice('app/'.length)}`);
 }
 
+// зачем (координатор 26.10, Макеты: снятые экраны Learning V2): «компонент нигде не импортируется» — третий проверяемый вид
+// доказательства. Смотрим рабочий код (не тесты): относительные пути и псевдоним '@/'. Импорт из любого места — экран достижим.
+const IMPORT_SCAN_DIRS = ['app', 'components', 'modules', 'hooks', 'constants', 'contexts', 'lib', 'store_release_stubs'];
+const IMPORT_SPECIFIER_RE = /(?:\bfrom\s+|\bimport\s*\(\s*|\brequire\s*\(\s*)['"]([^'"]+)['"]/g;
+const stripModuleExt = (p) => p.replace(/\.(tsx?|jsx?|mjs|cjs)$/, '').replace(/\/index$/, '');
+
+/** Файлы рабочего кода, которые импортируют componentRel (путь от корня). Пусто — компонент недостижим. */
+export function componentImporters(root, componentRel) {
+  const component = String(componentRel).replace(/\\/g, '/');
+  const target = stripModuleExt(component);
+  const out = [];
+  const walk = (rel) => {
+    for (const entry of fs.readdirSync(path.join(root, rel), { withFileTypes: true })) {
+      const child = `${rel}/${entry.name}`;
+      if (entry.isDirectory()) {
+        if (entry.name !== 'node_modules' && entry.name !== '__tests__') walk(child);
+        continue;
+      }
+      if (!/\.(tsx?|jsx?)$/.test(entry.name) || /\.test\.|\.spec\./.test(entry.name) || child === component) continue;
+      const text = fs.readFileSync(path.join(root, child), 'utf8');
+      for (const match of text.matchAll(IMPORT_SPECIFIER_RE)) {
+        const spec = match[1];
+        let resolved = null;
+        if (spec.startsWith('.')) resolved = path.posix.normalize(path.posix.join(path.posix.dirname(child), spec));
+        else if (spec.startsWith('@/')) resolved = spec.slice(2);
+        if (resolved && stripModuleExt(resolved) === target) {
+          out.push(child);
+          break;
+        }
+      }
+    }
+  };
+  for (const dir of IMPORT_SCAN_DIRS) if (fs.existsSync(path.join(root, dir))) walk(dir);
+  return out.sort();
+}
+
 /**
  * Доказательство строки no_release_surface (поле release_surface_proof):
  *  - { kind: 'store_route_excluded', routes: ['app/...tsx', ...] } — каждый маршрут существует и вырезан в стор-режиме;
  *  - { kind: 'flag_off', flag, flag_source, guard_test } — flag_source требует явного `=== true` для этого флага
- *    (по умолчанию выключен), а тест-сторож существует и упоминает флаг.
+ *    (по умолчанию выключен), а тест-сторож существует и упоминает флаг;
+ *  - { kind: 'component_unreachable', components: ['components/...tsx', ...], guard_test } — каждый компонент существует и
+ *    НИ ОДИН файл рабочего кода его не импортирует; тест-сторож существует и проверяет вид component_unreachable.
  */
 export function releaseSurfaceViolations(root, row, regex) {
   const out = [];
@@ -200,6 +238,27 @@ export function releaseSurfaceViolations(root, row, regex) {
     if (!guardText) out.push({ id: row.id, code: 'release_surface_guard_missing', detail: proof.guard_test ?? '(нет guard_test)' });
     else if (flag && !guardText.includes(flag)) {
       out.push({ id: row.id, code: 'release_surface_guard_unrelated', detail: `${proof.guard_test} не упоминает ${flag}` });
+    }
+    return out;
+  }
+  if (proof.kind === 'component_unreachable') {
+    const components = Array.isArray(proof.components) ? proof.components : [];
+    if (components.length === 0) out.push({ id: row.id, code: 'release_surface_components_missing', detail: 'нет components' });
+    for (const component of components) {
+      if (typeof component !== 'string' || !fs.existsSync(path.join(root, component))) {
+        out.push({ id: row.id, code: 'release_surface_component_missing', detail: String(component) });
+        continue;
+      }
+      const importers = componentImporters(root, component);
+      if (importers.length > 0) {
+        out.push({ id: row.id, code: 'release_surface_component_imported', detail: `${component} импортируют: ${importers.join(', ')}` });
+      }
+    }
+    const guard = typeof proof.guard_test === 'string' ? path.join(root, proof.guard_test) : '';
+    const guardText = guard && fs.existsSync(guard) ? fs.readFileSync(guard, 'utf8') : '';
+    if (!guardText) out.push({ id: row.id, code: 'release_surface_guard_missing', detail: proof.guard_test ?? '(нет guard_test)' });
+    else if (!guardText.includes('component_unreachable')) {
+      out.push({ id: row.id, code: 'release_surface_guard_unrelated', detail: `${proof.guard_test} не проверяет component_unreachable` });
     }
     return out;
   }

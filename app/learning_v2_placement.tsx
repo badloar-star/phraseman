@@ -153,8 +153,8 @@ function PlacementRun({ bridge }: Readonly<{ bridge: PlacementBridgeV1 }>) {
               onNext={onNext}
               header={(
                 <View>
-                  <PlacementTopicCard lang={lang} lessonOrdinal={view.lessonOrdinal} title={lessonTitle(view.lessonOrdinal)} dots={view.dots} />
-                  {/* зачем (владелец 25.10 «не надо плашку»): «ещё N вопросов по теме» не показываем — повтор по теме идёт молча, точки попыток остаются */}
+                  <PlacementTopicCard lang={lang} lessonOrdinal={view.lessonOrdinal} title={lessonTitle(view.lessonOrdinal)} />
+                  {/* зачем (владелец 25.10 «не надо плашку»): «ещё N вопросов по теме» не показываем; с 25.10 вопрос на урок один — ни добора, ни точек попыток */}
                 </View>
               )}
             />

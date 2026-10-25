@@ -11,6 +11,8 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 export const SEASON_CARD_COPY = {
   toEpisode: ['К эпизоду {n}', 'До епізоду {n}', 'Go to episode {n}', 'Ir al episodio {n}', 'Ir ao episódio {n}', 'Đến tập {n}', 'Ke episode {n}', '{n}. bölüme git', 'Do odcinka {n}'],
   repeatEpisode: ['Повторить эпизод {n}', 'Повторити епізод {n}', 'Repeat episode {n}', 'Repetir el episodio {n}', 'Repetir o episódio {n}', 'Ôn lại tập {n}', 'Ulangi episode {n}', '{n}. bölümü tekrarla', 'Powtórz odcinek {n}'],
+  // зачем (владелец 25.10): эпизод открыт экзаменом/тестом, но не пройден — «Начать», не «Повторить». Кроме ru — предложение для «Переводчика».
+  beginEpisode: ['Начать эпизод {n}', 'Почати епізод {n}', 'Start episode {n}', 'Empezar el episodio {n}', 'Começar o episódio {n}', 'Bắt đầu tập {n}', 'Mulai episode {n}', '{n}. bölümü başlat', 'Zacznij odcinek {n}'],
   openByExam: ['Открыть экзаменом главы', 'Відкрити іспитом розділу', 'Unlock with the chapter exam', 'Abrir con el examen del capítulo', 'Abrir com o exame do capítulo', 'Mở bằng bài thi chương', 'Buka dengan ujian bab', 'Ünite sınavıyla aç', 'Otwórz egzaminem rozdziału'],
   // зачем (эталон chapter-exam-season.html, правка владельца 22.10 №10): строка под «Сдать экзамен» в подписи под каруселью;
   // склеиваются через « · ». Кроме ru — предложение для «Переводчика».

@@ -18,7 +18,8 @@ describe('Замки: тест «Не хочу с начала» — интер�
   it('размеры обвязки — из CSS макета', () => {
     expect(chrome).toContain('top: { gap: 12, minHeight: 54, marginTop: 2, close: 44, closeIcon: 22 }');
     expect(chrome).toContain('topic: { marginTop: 10, radius: 18, padV: 10, padH: 12, gap: 12, tile: 46, tileRadius: 12, tileIcon: 22');
-    expect(chrome).toContain('dot: 10, dotGap: 5');
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10 «убери 2 доп вопроса вообще»: точек попыток в карточке темы нет
+    expect(chrome).not.toMatch(/PlacementTries|placement-tries|dotGap/u);
     // ЗАМОК ВЛАДЕЛЬЦА 25.10: «не надо плашку» — плашки «ещё N вопросов по теме» нет ни в обвязке, ни на экране
     expect(chrome).not.toMatch(/PlacementExtraBanner|placement-extra/u);
     expect(screen).not.toMatch(/PlacementExtraBanner/u);

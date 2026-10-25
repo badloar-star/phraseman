@@ -45,6 +45,7 @@ const KNOWN_GUARDS = [
   'tests/owner_locks_mistakes_delete_2026_10_24.test.ts', // Learning V2 24.10: ошибки можно удалять (одна, из карточки, все) с «Вернуть»
   'tests/owner_locks_cant_speak_2026_10_25.test.ts', // Learning V2 25.10: «Не могу говорить» только по переключателю Пульта
   'tests/owner_locks_lesson_ready_before_tap_2026_10_25.test.ts', // Learning V2 25.10: урок готов до тапа
+  'tests/owner_locks_episode_cta_2026_10_25.test.ts', // Learning V2 25.10: «Повторить» только у пройденного эпизода
   'tests/v2_screens_color_literals_ratchet.test.mjs',
   'tests/theme_semantic_follows_current_theme.test.ts',
   // 8 · МОМЕНТЫ 22.10: искры без сдвига тона, палитры визиток, металл рангов, «по заходам»

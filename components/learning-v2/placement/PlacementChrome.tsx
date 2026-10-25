@@ -1,5 +1,5 @@
 // PlacementChrome.tsx — общая обвязка экранов теста «Не хочу с начала» (макет chapter-exam-season.html, раздел 6): шапка, карточка темы, плашка «ещё 2», подвал.
-// зачем (координатор 24.10, «1 в 1 по макету»): размеры — из CSS макета (.extop, .tvx, .tvtrk, .tvn, .topic, .tries, .exfoot, .tcta).
+// зачем (координатор 24.10, «1 в 1 по макету»): размеры — из CSS макета (.extop, .tvx, .tvtrk, .tvn, .topic, .exfoot, .tcta).
 // Обводок нет — плита темы + тень «Тень»; заливки — токены темы (useLv2Glass / lv2TaskTokens). Тап по кнопкам — хаптик только у управляющих (V2Pressable).
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -12,18 +12,14 @@ import { lv2TaskPlateStyle } from '../learning_v2_task_layout_tokens';
 import { lv2TaskTokens } from '../learning_v2_task_theme_tokens';
 import { seasonText } from '../season/season_copy';
 import { placementCopy } from './placement_copy';
-import type { PlacementTryDot } from './placement_view_model';
 
 /** Размеры из CSS макета. */
 export const PLACEMENT_LAYOUT = {
   top: { gap: 12, minHeight: 54, marginTop: 2, close: 44, closeIcon: 22 },
   progress: { height: 6, radius: 3, labelSize: 13, labelLine: 17, labelGap: 5 },
-  topic: { marginTop: 10, radius: 18, padV: 10, padH: 12, gap: 12, tile: 46, tileRadius: 12, tileIcon: 22, kickerSize: 13, kickerLine: 17, titleSize: 16, titleLine: 21, dot: 10, dotGap: 5 },
+  topic: { marginTop: 10, radius: 18, padV: 10, padH: 12, gap: 12, tile: 46, tileRadius: 12, tileIcon: 22, kickerSize: 13, kickerLine: 17, titleSize: 16, titleLine: 21 },
   foot: { padTop: 12, padH: 20, padBottom: 34, cta: 52, ghost: 50, ghostGap: 10 },
 } as const;
-
-// зачем: макет `.tries i.no { background: #D99A4E }` — тёплая точка промаха, одна в обеих темах (как амбер экзамена)
-const MISS_DOT = '#D99A4E'; // theme-exempt: точка промаха теста, эталон `.tries i.no`
 
 type TopBarProps = Readonly<{
   closeLabel: string;
@@ -64,20 +60,11 @@ export const PlacementLessonTile = memo(function PlacementLessonTile({ lessonOrd
   );
 });
 
-/** Точки попыток (`.tries`): верно — зелёная, мимо — тёплая, текущая — цвет текста, впереди — пустая. */
-export const PlacementTries = memo(function PlacementTries({ dots }: Readonly<{ dots: readonly PlacementTryDot[] }>) {
-  const g = useLv2Glass();
-  const t = lv2TaskTokens(g);
-  const colorOf = (dot: PlacementTryDot): string => (dot === 'ok' ? g.good : dot === 'no' ? MISS_DOT : dot === 'cur' ? g.text : t.controlSoft);
-  return (
-    <View testID="placement-tries" style={styles.tries}>
-      {dots.map((dot, i) => <View key={`try-${i}`} testID={`placement-try-${dot}`} style={[styles.dot, { backgroundColor: colorOf(dot) }]} />)}
-    </View>
-  );
-});
-
-/** Карточка темы (`.topic`): плитка урока, «Урок n» и название, справа точки попыток. */
-export const PlacementTopicCard = memo(function PlacementTopicCard({ lang, lessonOrdinal, title, dots }: Readonly<{ lang: string; lessonOrdinal: number; title: string; dots: readonly PlacementTryDot[] }>) {
+/**
+ * Карточка темы (`.topic`): плитка урока, «Урок n» и название.
+ * ЗАМОК ВЛАДЕЛЬЦА 25.10 «убери 2 доп вопроса вообще»: один вопрос на урок — точек попыток справа нет, текст занимает их место.
+ */
+export const PlacementTopicCard = memo(function PlacementTopicCard({ lang, lessonOrdinal, title }: Readonly<{ lang: string; lessonOrdinal: number; title: string }>) {
   const g = useLv2Glass();
   return (
     <View testID="placement-topic" style={[styles.topic, lv2TaskPlateStyle(g)]}>
@@ -86,7 +73,6 @@ export const PlacementTopicCard = memo(function PlacementTopicCard({ lang, lesso
         <Text style={[styles.topicKicker, { color: g.secondary }]}>{seasonText(lang as never, 'lesson', { n: lessonOrdinal })}</Text>
         <Text style={[styles.topicTitle, { color: g.text }]} numberOfLines={2}>{title}</Text>
       </View>
-      <PlacementTries dots={dots} />
     </View>
   );
 });
@@ -124,8 +110,6 @@ const styles = StyleSheet.create({
   topicText: { flex: 1, minWidth: 0 },
   topicKicker: { fontSize: L.topic.kickerSize, lineHeight: L.topic.kickerLine, fontWeight: '700' },
   topicTitle: { marginTop: 2, fontSize: L.topic.titleSize, lineHeight: L.topic.titleLine, fontWeight: '700' },
-  tries: { flexDirection: 'row', gap: L.topic.dotGap, marginLeft: 'auto' },
-  dot: { width: L.topic.dot, height: L.topic.dot, borderRadius: L.topic.dot / 2 },
   foot: { paddingTop: L.foot.padTop, paddingHorizontal: L.foot.padH },
   cta: { height: L.foot.cta, borderRadius: L.foot.cta / 2, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },

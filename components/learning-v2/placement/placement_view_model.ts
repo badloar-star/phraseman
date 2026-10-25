@@ -1,19 +1,12 @@
 // placement_view_model.ts — чистая модель вида теста «Не хочу с начала» (макет chapter-exam-season.html, раздел 6).
-// зачем (координатор 24.10: «только интерфейс, 1 в 1»): экраны ничего не считают сами — подпись «урок n из N», точки попыток, плашка «Ещё 2 вопроса»
-// и строки итога берутся отсюда из состояния движка (`placement_test_v1.ts`, его не меняем). Тестируется без React.
+// зачем (координатор 24.10: «только интерфейс, 1 в 1»): экраны ничего не считают сами — подпись «урок n из N» и строки итога берутся
+// отсюда из состояния движка (`placement_test_v1.ts`). Тестируется без React.
+// ЗАМОК ВЛАДЕЛЬЦА 25.10 «убери 2 доп вопроса вообще»: один вопрос на урок — точек попыток и плашки «ещё вопросы» в модели нет.
 import {
-  PLACEMENT_TEST_EXTRA_QUESTIONS_V1,
   placementCurrentLessonV1,
-  placementExtraQuestionsLeftV1,
   placementTestResultV1,
   type PlacementTestStateV1,
 } from '../../../modules/learning-v2/exam/placement_test_v1';
-
-/** Точка попытки (`.tries i`): верно / мимо / текущая / ещё впереди (пустая). */
-export type PlacementTryDot = 'ok' | 'no' | 'cur' | 'empty';
-
-/** Сколько точек всего после первой ошибки: первый вопрос + два дополнительных. */
-export const PLACEMENT_TRIES_TOTAL = 1 + PLACEMENT_TEST_EXTRA_QUESTIONS_V1;
 
 export type PlacementQuestionView = Readonly<{
   lessonOrdinal: number;
@@ -22,23 +15,7 @@ export type PlacementQuestionView = Readonly<{
   total: number;
   /** Доля полосы прогресса, 0…1. */
   progress: number;
-  dots: readonly PlacementTryDot[];
-  /** Плашка «Ещё 2 вопроса по этой теме» (после первой ошибки; она же закрывается, когда вопросов не осталось). */
-  extraBanner: boolean;
 }>;
-
-/**
- * Точки попыток по теме. До первой ошибки — одна текущая (макет `['cur']`); после ошибки — три: сделанные, текущая и пустые впереди
- * (макет `['no','cur','']`). Тема решена — текущей нет.
- */
-export function placementTryDots(attempts: readonly boolean[], decided: boolean): readonly PlacementTryDot[] {
-  if (attempts.length === 0) return ['cur'];
-  const dots: PlacementTryDot[] = attempts.map((right) => (right ? 'ok' : 'no'));
-  if (!decided) dots.push('cur');
-  if (attempts[0] === true && decided) return dots;
-  while (dots.length < PLACEMENT_TRIES_TOTAL) dots.push('empty');
-  return dots;
-}
 
 /** Вид текущего вопроса; null — тест окончен. */
 export function placementQuestionView(state: PlacementTestStateV1): PlacementQuestionView | null {
@@ -51,8 +28,6 @@ export function placementQuestionView(state: PlacementTestStateV1): PlacementQue
     position,
     total,
     progress: total > 0 ? position / total : 0,
-    dots: placementTryDots(state.attempts, false),
-    extraBanner: placementExtraQuestionsLeftV1(state) > 0,
   });
 }
 

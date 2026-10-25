@@ -1,10 +1,8 @@
 // placement_test_v1.ts — движок входного теста «Не хочу с начала» (реестр владельца №10). Чистые функции, без хранения и сети.
-// зачем (владелец 21.10, docs/work/OWNER_DECISIONS_2026-10-21.md стр. 85–91): «1 вопрос на тему по порядку уроков; ошибка →
-// ещё 2 по теме, засчитано при 2 из 3; стоп на первой незасчитанной теме». Тест бесплатный, без энергии. Итог — номер урока N,
-// с которого человек начнёт: уроки 1…N−1 ПРОСТО ОТКРЫТЫ (не засчитаны, без звёзд). Решает телефон; этот модуль только считает.
-
-export const PLACEMENT_TEST_EXTRA_QUESTIONS_V1 = 2 as const;
-export const PLACEMENT_TEST_PASS_OF_THREE_V1 = 2 as const;
+// зачем (владелец 21.10, docs/work/OWNER_DECISIONS_2026-10-21.md стр. 85–91): «1 вопрос на тему по порядку уроков». Тест бесплатный,
+// без энергии. Итог — номер урока N, с которого человек начнёт. Решает телефон; этот модуль только считает.
+// ЗАМОК ВЛАДЕЛЬЦА 25.10: «а вообще убери 2 доп вопроса вообще» (снимает его же замок 21.10 №10 «ошибка → ещё 2, зачёт 2 из 3»):
+// по каждому уроку ОДИН вопрос; первая ошибка — тест окончен, этот урок — «начнём здесь». Добора и зачёта «2 из 3» нет.
 
 export type PlacementLessonOutcomeV1 = 'credited' | 'failed';
 
@@ -13,7 +11,7 @@ export type PlacementTestStateV1 = Readonly<{
   lessons: readonly number[];
   /** Индекс текущего урока в `lessons`. */
   index: number;
-  /** Ответы по текущему уроку: первый вопрос и, после ошибки, ещё до двух. */
+  /** Ответ по текущему уроку (один вопрос на урок; массив — для совместимости формы состояния). */
   attempts: readonly boolean[];
   /** Итог по решённым темам, по порядку. */
   outcomes: readonly Readonly<{ lessonOrdinal: number; outcome: PlacementLessonOutcomeV1; attempts: readonly boolean[] }>[];
@@ -38,16 +36,10 @@ export function placementCurrentLessonV1(state: PlacementTestStateV1): number | 
   return state.finished ? null : state.lessons[state.index] ?? null;
 }
 
-/** Решена ли тема: первый ответ верный — да; после ошибки — 2 верных из 3 или уже не набрать. */
+/** Решена ли тема: решает первый (единственный) ответ — верно → тема знакома, мимо → стоп. */
 export function placementLessonDecisionV1(attempts: readonly boolean[]): PlacementLessonOutcomeV1 | null {
   if (attempts.length === 0) return null;
-  if (attempts[0]) return 'credited';
-  const total = 1 + PLACEMENT_TEST_EXTRA_QUESTIONS_V1;
-  const right = attempts.filter(Boolean).length;
-  const left = total - attempts.length;
-  if (right >= PLACEMENT_TEST_PASS_OF_THREE_V1) return 'credited';
-  if (right + left < PLACEMENT_TEST_PASS_OF_THREE_V1) return 'failed';
-  return null;
+  return attempts[0] ? 'credited' : 'failed';
 }
 
 /** Ответ на текущий вопрос → новое состояние (исходное не меняется). */
@@ -61,13 +53,8 @@ export function answerPlacementTestV1(state: PlacementTestStateV1, correct: bool
   const nextIndex = state.index + 1;
   // стоп на первой незасчитанной теме; иначе — следующий урок, если он есть
   const finished = decision === 'failed' || nextIndex >= state.lessons.length;
+  console.log('[PLACEMENT]', JSON.stringify({ lessonOrdinal, correct, decision, next: finished ? (decision === 'failed' ? 'stop_start_here' : 'stop_all_known') : state.lessons[nextIndex] })); // guard-ok: решение по каждому ответу
   return Object.freeze({ ...state, index: finished ? state.index : nextIndex, attempts: Object.freeze([]), outcomes, finished });
-}
-
-/** Сколько вопросов по текущей теме ещё осталось после первой ошибки (плашка «Ещё 2 вопроса по этой теме»). */
-export function placementExtraQuestionsLeftV1(state: PlacementTestStateV1): number {
-  if (state.finished || state.attempts.length === 0 || state.attempts[0]) return 0;
-  return 1 + PLACEMENT_TEST_EXTRA_QUESTIONS_V1 - state.attempts.length;
 }
 
 export function placementTestResultV1(state: PlacementTestStateV1): PlacementTestResultV1 {

@@ -22,6 +22,7 @@ import { seasonCardText, seasonTasksLabel } from './season_copy_card';
 import { CHAPTER_EXAM_PASS_CORRECT_V1, CHAPTER_EXAM_QUESTION_COUNT_V1 } from '../../../modules/learning-v2/exam/chapter_exam_v1';
 import { SEASON_CHAPTER_EXAM_ENABLED } from './season_flags';
 import type { SeasonCard, SeasonEpisodeCard } from './season_course_model';
+import { seasonEpisodeCtaV1 } from './season_episode_cta';
 import { seasonExamCaption, type SeasonExamStatus } from './season_exam_caption';
 import type { SeasonExamCaptionView } from './SeasonCourseView';
 import { learningV2ChapterExamCopy } from '../learning_v2_chapter_exam_copy';
@@ -95,12 +96,13 @@ function SeasonCourse(props: SeasonCourseProps) {
       return { ...common, kind: 'exam' as const, chipLabel: seasonText(lang, 'exam'), rightLabel: null, phrase: `${seasonText(lang, 'exam')} ${card.chapterOrdinal}`, translation: examInfo ? examInfo.description : null, exam: examInfo ? examInfo.panel : null, title: null, words: [] as readonly string[], primary, secondary };
     }
     const info = props.episodeInfo(card);
-    let primary: SeasonExpandedAction;
-    if (card.state === 'current') {
-      primary = { label: props.newcomer ? seasonText(lang, 'startEpisode', { n: card.sessionOrdinal }) : seasonText(lang, 'continueEpisode', { n: card.sessionOrdinal }), icon: 'play', onPress: () => { close(); props.onPrimary(card); } };
-    } else {
-      primary = { label: seasonCardText(lang, 'repeatEpisode', { n: card.sessionOrdinal }), icon: 'play', onPress: () => { close(); props.onPrimary(card); } };
-    }
+    // зачем (владелец 25.10, ЗАМОК «открыто ≠ пройдено»): «Повторить» — только у пройденного; открытый экзаменом/тестом — «Начать эпизод N»
+    const cta = seasonEpisodeCtaV1(card, props.newcomer === true);
+    const ctaLabel = cta === 'start_with' ? seasonText(lang, 'startEpisode', { n: card.sessionOrdinal })
+      : cta === 'continue' ? seasonText(lang, 'continueEpisode', { n: card.sessionOrdinal })
+        : cta === 'begin' ? seasonCardText(lang, 'beginEpisode', { n: card.sessionOrdinal })
+          : seasonCardText(lang, 'repeatEpisode', { n: card.sessionOrdinal });
+    const primary: SeasonExpandedAction = { label: ctaLabel, icon: 'play', onPress: () => { close(); props.onPrimary(card); } };
     let secondary: SeasonExpandedAction | null = null;
     if (props.newcomer && card.state === 'current' && props.onNotFromStart) {
       secondary = { label: seasonText(lang, 'notFromStart'), icon: 'school-outline', onPress: () => { close(); props.onNotFromStart?.(); } };

@@ -124,7 +124,9 @@ describe('телефон: флаг, проводка, «Пульт»', () => {
     expect(close).toContain('const gold = i.golden ? spireStepPendingCoins(i.coins, i.floorBefore, false) : 0;');
     const hook = read('app/spire/use_spire_gold.ts');
     expect(hook).toContain("getRemoteBool(SPIRE_GOLD_FLAG_KEY) === true");
-    expect(hook).toContain("tryPlayV2Event('coins_many', 'spire_gold');");
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10: звука на верный ответ нет — и на золотом; вибрация остаётся
+    expect(hook).not.toMatch(/tryPlayV2Event|coins_many/);
+    expect(hook).toContain('void hapticSuccess();');
     expect(hook).toContain("if (report.outcome !== 'passed')");
   });
 

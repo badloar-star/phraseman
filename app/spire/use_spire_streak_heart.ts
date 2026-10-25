@@ -11,7 +11,6 @@ import { useCallback, useRef, useState } from 'react';
 import type { SpireStepState } from '../../modules/spire/step_machine';
 import { SPIRE_STEP_MAX_HEARTS } from '../../modules/spire/step_machine';
 import { SPIRE_STREAK_HEART_START, spireStreakHeartStep, type SpireStreakHeartState } from '../../modules/spire/streak_heart';
-import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import { hapticSuccess } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
 import { getRemoteBool, hasRemoteBoolOverride } from '../remote_flags';
@@ -51,8 +50,7 @@ export function useSpireStreakHeart(runId: string): Readonly<{ view: SpireStreak
     DebugLogger.info(SPIRE, `${TAG} ступень ${runId} задание ${taskNo} ok=${String(ok)} серия ${prev.streak}→${step.state.streak} сердца ${next.hearts}→${step.hearts} уже давали=${String(prev.given)}${step.refilled ? ' → СЕРДЦЕ ВЕРНУЛОСЬ' : ''}${step.skip ? ` пропуск=${step.skip}` : ''}`);
     setView((v) => ({ enabled: v.enabled, streak: step.state.streak, given: step.state.given, refillSeq: v.refillSeq + (step.refilled ? 1 : 0) }));
     if (!step.refilled) return next;
-    // зачем (ТЗ §2): звук plus и вибрация success — событие возврата сердца, а не плитка ответа (правило вибрации владельца)
-    tryPlayV2Event('plus', 'spire_streak_heart');
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): сердце возвращается на верном ответе — без звука; вибрация success остаётся
     void hapticSuccess();
     return { ...next, hearts: step.hearts };
   }, [runId]);

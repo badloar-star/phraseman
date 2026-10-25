@@ -100,7 +100,9 @@ describe('флаг и проводка', () => {
     expect(runner).toContain('streakHeart: streakHeart.view,');
     const hook = read('app/spire/use_spire_streak_heart.ts');
     expect(hook).toContain('if (!enabledRef.current) return next;');
-    expect(hook).toContain("tryPlayV2Event('plus', 'spire_streak_heart');");
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10: сердце возвращается на верном ответе — без звука, вибрация остаётся
+    expect(hook).not.toMatch(/tryPlayV2Event/);
+    expect(hook).toContain('void hapticSuccess();');
     expect(hook).toContain('[SPIRE-STREAK-HEART]');
   });
 

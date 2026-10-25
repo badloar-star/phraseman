@@ -19,6 +19,7 @@
 // Тяжёлые зависимости (expo-audio, настройки, аудиоактивность) лежат в sound_v2_runtime.ts и грузятся
 // лениво — только когда флаг включён и событие прошло проверки.
 
+import { isCorrectAnswerSoundSilenced } from '../audio/correct_answer_silence';
 import {
   SOUND_V2_CATALOG,
   SOUND_V2_RESET_ON_ERROR_EVENT,
@@ -55,7 +56,9 @@ export type SoundV2SkipReason =
   | 'effects_disabled'
   | 'quiet_recording'
   | 'voice_active'
-  | 'player_unavailable';
+  | 'player_unavailable'
+  /** ЗАМОК ВЛАДЕЛЬЦА 25.10: звук верного ответа не играет ни в одном режиме (modules/audio/correct_answer_silence.ts). */
+  | 'correct_answer_silenced';
 
 export type SoundV2PlayResult = Readonly<{
   event: string;
@@ -638,6 +641,8 @@ function getBank(): SoundBank {
 
 /** Сыграть событие. Никогда не бросает: при любой причине «не играть» возвращает played=false и причину (и пишет её в лог). */
 export function playEvent(event: SoundV2EventId, options?: PlayEventOptions): SoundV2PlayResult {
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «удалить звук … при правильных ответах в любых режимах»): единая точка для всех прямых вызовов банка
+  if (isCorrectAnswerSoundSilenced(String(event), 'sound_bank')) return { event: String(event), played: false, reason: 'correct_answer_silenced' };
   try {
     const result = getBank().playEvent(event, options);
     // зачем (координатор 18.10, «ни одного звука»): СПЕРВА ЛОГИ — флаг V2 и итог каждого события ([SOUND-AUDIT] v2)

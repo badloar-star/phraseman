@@ -13,7 +13,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { SPIRE_GOLD_DAILY_CAP, spireGoldDayKey, spireGoldenTaskIndex } from '../../modules/spire/golden_task';
 import type { SpireStepReport } from '../../modules/spire/report_queue';
-import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import { hapticSuccess } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
 import { getRemoteBool, hasRemoteBoolOverride } from '../remote_flags';
@@ -105,8 +104,8 @@ export function useSpireGold(input: SpireGoldInput): Readonly<{
     if (!ok) return;
     hitRef.current = true;
     setView((v) => ({ ...v, hit: true }));
-    // зачем (владелец 25.10 «со звоном»): звон монет и вибрация success — событие награды, не плитка ответа
-    tryPlayV2Event('coins_many', 'spire_gold');
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «удалить звук … при правильных ответах в любых режимах»): звона нет; вибрация success,
+    // «×2» и вспышка остаются (координатор 25.10)
     void hapticSuccess();
   }, [runId]);
 

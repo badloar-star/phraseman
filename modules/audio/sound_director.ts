@@ -1,3 +1,4 @@
+import { isCorrectAnswerSoundSilenced } from './correct_answer_silence';
 import { ExpoSfxBackend } from './expo_sfx_backend';
 import { soundAudit } from './sound_audit';
 import { tryPlayV2ForDirector } from '../sound_v2/legacy_bridge';
@@ -53,6 +54,8 @@ export class SoundDirector {
   ) {}
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
+    // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): звук верного ответа (Арена и любой будущий) не доходит до арбитра — как выключенный звук
+    if (isCorrectAnswerSoundSilenced(eventId, options.scope ?? 'director')) return { kind: 'drop', reason: 'disabled' };
     const decision = this.arbiter.request(eventId, options);
     // зачем (координатор 18.10, владелец: «в приложении ни одного звука»): СПЕРВА ЛОГИ — каждое решение диспетчера с причиной и флагами,
     // которые глушат звук (эффекты выкл / идёт речь / идёт запись), плюс общий тумблер «Звуки» и путь V2. Один grep по [SOUND-AUDIT].

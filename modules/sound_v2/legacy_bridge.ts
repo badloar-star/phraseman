@@ -34,7 +34,7 @@ export function resetRecentSoundEventsForTests(): void {
 type Plan = Readonly<{ event: SoundV2EventId; advance?: boolean; step?: number }>;
 
 /** События, которые пользователь явно оставил без звука; true от моста также блокирует legacy fallback. */
-export const MUTED_SOUND_V2_EVENTS: ReadonlySet<SoundV2EventId> = new Set(['tap', 'correct']);
+export const MUTED_SOUND_V2_EVENTS: ReadonlySet<SoundV2EventId> = new Set(['tap', 'correct', 'lightning']); // lightning — серия верных ответов (ЗАМОК ВЛАДЕЛЬЦА 25.10)
 
 function isMutedSoundV2Event(event: SoundV2EventId): boolean {
   return MUTED_SOUND_V2_EVENTS.has(event);
@@ -68,7 +68,7 @@ export const FC_TO_V2: Readonly<Record<string, Plan>> = {
 };
 
 /** Причины отказа, при которых старый звук тоже молчал бы (звуки выключены / идёт запись) — тогда не подхватываем старым. */
-const SILENT_REASONS: ReadonlySet<string> = new Set(['effects_disabled', 'quiet_recording']);
+const SILENT_REASONS: ReadonlySet<string> = new Set(['effects_disabled', 'quiet_recording', 'correct_answer_silenced']);
 
 function playPlan(source: string, id: string, plan: Plan): boolean {
   try {

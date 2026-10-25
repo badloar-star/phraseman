@@ -34,9 +34,11 @@ describe('sound_v2: публичный API при выключенном фла�
 
   it('playEvent возвращает flag_off, не бросает и не грузит нативный слой', () => {
     setSoundV2FlagForTests(false);
-    for (const id of ['tap', 'correct', 'coin_rank'] as const) {
+    for (const id of ['tap', 'coin_rank'] as const) {
       expect(playEvent(id)).toEqual({ event: id, played: false, reason: 'flag_off' });
     }
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10: звук верного ответа глушится раньше флага
+    expect(playEvent('correct')).toEqual({ event: 'correct', played: false, reason: 'correct_answer_silenced' });
     prewarmSoundV2(['tap', 'correct']);
     expect(runtimeLoaded).not.toHaveBeenCalled();
     expect(log.mock.calls.some((c) => String(c[0]).includes('[SOUND-V2] skip event=tap reason=flag_off'))).toBe(true);

@@ -237,11 +237,12 @@ describe('остальные события V2 — места подключен
     nowSpy.mockRestore();
   });
 
-  it('молния: шаг серии берётся из уровня кольца, а не из счётчика движка (в уроках ответы без звука — серия не сбрасывалась бы)', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 25.10 «удалить звук … при правильных ответах в любых режимах»: «молния» серии верных ответов не звучит
+  it('молния серии верных ответов — без звука (замок владельца 25.10): мост глушит до банка', () => {
     setSoundV2FlagForTests(true);
-    playMock.mockReturnValue({ event: 'lightning', played: true });
-    tryPlayV2Event('lightning', 'combo_ring', false, 2);
-    expect(playMock).toHaveBeenLastCalledWith('lightning', { step: 2 });
+    playMock.mockClear();
+    expect(tryPlayV2Event('lightning', 'combo_ring', false, 2)).toBe(true);
+    expect(playMock).not.toHaveBeenCalled();
   });
 
   it('все 12 событий V2 без старого аналога теперь имеют место подключения', () => {

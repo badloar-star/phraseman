@@ -114,3 +114,8 @@ Outcome: в docs/work/color-literal-census-2026-10-25.md пометить MODE_M
 Governance-ID: TG-7D7C943AF657
 
 Outcome: контраст шапки, плашек, графика, таблицы, планов и нижней панели пейвола М по коду components/paywall/m/** во всех 174 сочетаниях, по худшему краю каждого градиента, с новыми размерами (13/16/19) и живыми ru-текстами. Scope: новый scripts/paywall_m_code_contrast_measure.ts (роли читаются из исходника со сторожем), раздел в docs/work/paywall-m-theme-token-map-2026-10-25.md; код пейвола не меняется. Architecture/Security: нет. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert.
+
+## Продолжение: панель голосового ответа (e8aa1c456) и окна удаления Б на коде (координатор 25.10)
+Governance-ID: TG-C420F43734EB
+
+Outcome: (1) контраст подписей и состояний SpeakingPanel (встроенная строка и раскрытая карточка: статус «не расслышал» с причиной, вердикт, подсказка, кнопки микрофона/«Готово»/«Ещё раз»/настройки) во всех 174 сочетаниях через настоящую тему приложения makeLiquidGlassTheme → buildSpeakingPanelTheme; (2) перемер окон удаления Б по коду DeleteAccountVariantBBody, когда 5 · ВХОД закоммитит вёрстку. Scope: скрипты scripts/speaking_panel_contrast_measure.ts и обновление scripts/account_delete_b_contrast_measure.ts, отчёты в docs/work/; код приложения не меняется. Architecture/Security/Debt: нет. Verification: прогон скриптов через tsx. Rollback: git revert.

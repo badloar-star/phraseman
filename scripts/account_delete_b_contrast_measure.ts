@@ -18,6 +18,22 @@ const MODAL = fs.readFileSync(path.join(__dirname, '..', 'components/DeleteAccou
 for (const line of ['backgroundColor: glass.opaqueSheet', 'backgroundColor: glass.opaqueControl,', 'backgroundColor: glass.buttonFill,']) {
   if (!MODAL.includes(line)) throw new Error(`окно удаления изменилось: нет «${line}» в DeleteAccountConfirmModal.tsx — обнови поверхности в этом скрипте`);
 }
+// зачем (перемер 25.10 на коде: 74649503b, DeleteAccountVariantBBody): роли берём из вёрстки окна, а не из макета — сторож строк кода
+const BODY = fs.readFileSync(path.join(__dirname, '..', 'components/account/DeleteAccountVariantBBody.tsx'), 'utf8');
+for (const line of [
+  "style={[styles.title, { color: glass.text, fontSize: f.h2 }]}",
+  'color={glass.secondary} strongColor={glass.text} size={f.body} />',
+  'fill={props.gracePaint.fill} ink={props.gracePaint.ink}',
+  'fill={glass.buttonFill} ink={glass.text}',
+  "<Text style={[styles.linkLabel, { color: props.linkColor }]}>{copy.w1DeleteNowLink}</Text>",
+  "<Text style={[styles.inputLabel, { color: glass.secondary, fontSize: f.caption }]}>{props.confirmLabel}</Text>",
+  'backgroundColor: glass.opaqueControl, color: glass.text,',
+  'placeholderTextColor={glass.mutedText}',
+  'fill={props.nowPaint.fill} ink={props.nowPaint.ink}',
+]) if (!BODY.includes(line)) throw new Error(`DeleteAccountVariantBBody изменился: нет «${line}» — обнови модель`);
+for (const line of ['gracePaint={deleteButtonPaint(glass, true)}', 'linkColor={semanticInk(glass).badText}', 'nowPaint={deletePaint}']) {
+  if (!MODAL.includes(line)) throw new Error(`DeleteAccountConfirmModal: нет «${line}» — обнови модель`);
+}
 const screen = (g: G): string => flattenOver(g.bg, '#000000');
 const dialog = (g: G): string => flattenOver(g.opaqueSheet, screen(g));
 const control = (g: G): string => flattenOver(g.opaqueControl, dialog(g)); // поле ввода и плашка цифр восстановления

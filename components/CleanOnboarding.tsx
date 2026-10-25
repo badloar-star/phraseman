@@ -1,3 +1,7 @@
+// theme-exempt: до выбора темы; перевод на тему по умолчанию — после OTA, через макет владельцу (решение координатора 25.10).
+// зачем: онбординг идёт до выбора темы — его цвета (#0C111B, #07110A, #2A303B, #6B7280 …) не оттенки темы, а своя фиксированная
+// палитра. В этом OTA не перекрашиваем: первый экран каждого нового пользователя, ≈ 6400 строк, риск регрессии перед выпуском.
+// Исключение закреплено сторожем tests/onboarding_pre_theme_palette_exemption.test.mjs: только перечисленные файлы, число цветов не растёт.
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { isAccountDeleteIdentityQuarantinedFromKnownState } from '../app/account_delete_quarantine';
 import React, { memo, Profiler, useCallback, useEffect, useMemo, useRef, useState } from 'react';

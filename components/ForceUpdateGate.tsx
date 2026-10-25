@@ -54,6 +54,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { noAndroidOutline } from '../constants/androidGlow';
 import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 import { LinearGradient } from './SafeLinearGradient';
+import { colorWithAlpha } from './v2/plateAlpha';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type GateMode = 'force' | 'optional';
@@ -293,6 +294,8 @@ export default function ForceUpdateGate() {
   const { lang } = useLang();
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10, перепись цветов 25.10): тени окна и кнопки — тон тени темы, а не постоянный чёрный
+  const shadowInk = colorWithAlpha(glass.shadowTint, 1);
   const [userId, setUserId] = useState<string | null>(null);
   const [gate, setGate] = useState<GateState | null>(null);
   // Пока открыт предпросмотр, обычный поток не перерисовывает окно.
@@ -490,7 +493,8 @@ export default function ForceUpdateGate() {
         <ResponsiveModalScrollView
           style={[
             styles.backdrop,
-            { backgroundColor: forced ? glass.bg : 'rgba(0,0,0,0.68)' },
+            // зачем (закон владельца 22.10): необязательное окно — над сильным скримом темы, а не постоянным чёрным 68 %
+            { backgroundColor: forced ? glass.bg : glass.scrimStrong },
           ]}
         >
           {forced ? (
@@ -507,7 +511,7 @@ export default function ForceUpdateGate() {
             testID="force-update-glass"
             style={[
               styles.card,
-              { backgroundColor: Platform.OS === 'android' ? glass.opaqueSheet : glass.sheet },
+              { backgroundColor: Platform.OS === 'android' ? glass.opaqueSheet : glass.sheet, shadowColor: shadowInk },
               sheetStyle,
             ]}
           >
@@ -574,7 +578,7 @@ export default function ForceUpdateGate() {
               onPress={openStore}
               style={({ pressed }) => [
                 styles.primaryButton,
-                { backgroundColor: glass.accent, opacity: pressed ? 0.82 : 1 },
+                { backgroundColor: glass.accent, shadowColor: shadowInk, opacity: pressed ? 0.82 : 1 },
               ]}
             >
               <Text style={[styles.primaryLabel, { color: glass.accentInk }]}>{gate.cta}</Text>
@@ -634,7 +638,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     alignItems: 'center',
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOpacity: 0.34,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 10 },
@@ -676,7 +679,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 20,
-    shadowColor: '#000000',
     shadowOpacity: 0.22,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 5 },

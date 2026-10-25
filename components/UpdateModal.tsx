@@ -26,6 +26,7 @@ import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import ResponsiveModalScrollView from './ResponsiveModalScrollView';
 
 import DuoPressable from './DuoPressable';
+import { colorWithAlpha } from './v2/plateAlpha';
 import PressableHybrid from './PressableHybrid';
 // Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
 // не казённое «Доступно обновление», а «это Компас, я подрос, обнови меня».
@@ -175,6 +176,8 @@ function UpdateModal({
   const { lang } = useLang();
   const tx = pickUpdateText(lang);
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (закон владельца 22.10, перепись цветов 25.10): тени окна и кнопки — тон тени темы, а не постоянный чёрный
+  const shadowInk = colorWithAlpha(glass.shadowTint, 1);
 
   // зачем (R58 #57, аудит кнопок 15.10): двойной тап «Обновить» дважды открывал стор и дважды отдавал слот окна
   const openingStoreRef = useRef(false);
@@ -233,13 +236,14 @@ function UpdateModal({
         disabled={primaryDisabled}
         edgeColor={glass.bgBottom}
         edgeHeight={2}
-        wrapStyle={styles.updateBtnWrap}
+        wrapStyle={[styles.updateBtnWrap, { shadowColor: shadowInk }]}
         style={styles.updateBtn}
         gradientColors={[glass.lightTint, glass.cta, glass.cta]}
         gradientStart={{ x: 0, y: 0 }}
         gradientEnd={{ x: 0, y: 1 }}
       >
         <LinearGradient
+          // theme-exempt: блик — свет на кнопке, а не цвет темы; одинаков на любой заливке
           colors={['rgba(255,255,255,0.28)', 'rgba(255,255,255,0)']}
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 1 }}
@@ -279,8 +283,8 @@ function UpdateModal({
       onRequestClose={onClose ? onClose : blockAndroidBack}
     >
       <View accessibilityViewIsModal importantForAccessibility="yes" style={styles.modalRoot}>
-        <ResponsiveModalScrollView style={styles.backdrop}>
-          <View testID="ordinary-update-glass" style={styles.card}>
+        <ResponsiveModalScrollView style={[styles.backdrop, { backgroundColor: glass.scrimStrong }]}>
+          <View testID="ordinary-update-glass" style={[styles.card, { shadowColor: shadowInk }]}>
             <UpdateModalBackground glass={glass} />
 
             {isHybrid ? (
@@ -308,7 +312,8 @@ export default memo(UpdateModal);
 
 const styles = StyleSheet.create({
   modalRoot: { flex: 1 },
-  backdrop: { backgroundColor: 'rgba(0,0,0,0.68)' },
+  // затемнение — glass.scrimStrong (закон владельца 22.10), задаётся в разметке
+  backdrop: {},
   card: {
     width: '100%',
     maxWidth: 390,
@@ -318,7 +323,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     alignItems: 'center',
     overflow: 'hidden',
-    shadowColor: '#000000',
     shadowOpacity: 0.34,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 10 },
@@ -352,7 +356,6 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 20,
     marginBottom: 10,
-    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.22,
     shadowRadius: 8,

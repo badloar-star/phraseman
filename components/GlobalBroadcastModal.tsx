@@ -80,7 +80,8 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
   const isReviewPromo = payload?.kind === 'review_promo';
   // зачем: D104 — награда рассылки теперь монетами; жемчужную картинку убрали.
   const isCoinReward = payload?.rewardType === 'coins';
-  const dimColor = 'rgba(0,0,0,0.62)';
+  // зачем (закон владельца 22.10, перепись цветов 25.10): затемнение под окном — сильный скрим текущей темы, а не постоянный чёрный 62 %
+  const dimColor = glass.scrimStrong;
 
   // зачем (R58 #5, аудит кнопок 15.10): закрытие ждало сеть — без сети окно было не закрыть. Теперь окно закрывается сразу,
   // получение награды идёт фоном с повторами (global_broadcast_modal), вибрация успеха — когда начисление подтвердилось.

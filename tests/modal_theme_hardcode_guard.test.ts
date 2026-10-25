@@ -15,8 +15,6 @@ const COLOR = /^(#[0-9a-fA-F]{3,8}|rgba?\(.*\)|hsla?\(.*\)|white|black|red|green
 const CEILING: Readonly<Record<string, number>> = {
   'components/medalToastThemeStyles.ts': 177, // старые палитры тостов медалей по ThemeMode: живой путь окна — medalToastStyleFromTokens (токены темы), эти — превью
   'components/ExamResultPreviewAdminModal.tsx': 27, // окно только для админа
-  'components/UpdateModal.tsx': 5, // блик и чёрная подложка
-  'components/GlobalBroadcastModal.tsx': 1, // затемнение подложки
   'components/home/HomeMistakesLockedSheet.tsx': 1, // затемнение подложки
 };
 

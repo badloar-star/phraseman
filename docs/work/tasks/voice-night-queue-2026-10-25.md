@@ -44,3 +44,7 @@ No architecture change.
 `git revert <коммит>` по пачкам.
 
 Governance-ID: TG-D760FFCC6144 (Макеты 1642c7302: вчера-пуш, Эпизод N, экзамен «Почти»)
+
+Governance-ID: TG-CECD2A37DA26 (спуск в лиге ×9, вычитка удаления аккаунта, Learning V2 7 языков)
+
+Governance-ID: TG-1C6ABB56FCC0 (Learning V2: 11 ключей ×7 по списку Ревизора 12a9bc15d)

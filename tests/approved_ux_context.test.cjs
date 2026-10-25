@@ -18,7 +18,10 @@ test('remaining contextual explanations preserve the existing controls', () => {
   const mic = read('app/flashcards/SpeakHoldButton.tsx');
   assert.ok(!mic.includes('accessibilityLabel={`qa-${testID}`}'));
   assert.ok(mic.includes('accessibilityHint='));
-  assert.ok(mic.includes("'#07110A'"));
+  // зачем (Темы 25.10, 98d392158): значок микрофона — токен темы (ctaInk/accentInk, что контрастнее на заливке), а не постоянный #07110A;
+  // контраст ≥ 4,5 во всех 174 сочетаниях держит tests/zones_contrast_fixes_2026_10_25.test.ts
+  assert.ok(mic.includes('colorContrast(g.ctaInk, accent) >= colorContrast(g.accentInk, accent) ? g.ctaInk : g.accentInk'));
+  assert.ok(!mic.includes("'#07110A'"));
   const speaking = read('app/flashcards_speaking_session.tsx');
   assert.ok(speaking.includes('<SpeakingTaskHint>'));
   assert.ok(!speaking.includes('accessibilityLabel="qa-fc-speak-'));

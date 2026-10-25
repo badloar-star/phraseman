@@ -1,0 +1,23 @@
+diff --git a/components/home/v2/scene/PremiumThemeMotion.tsx b/components/home/v2/scene/PremiumThemeMotion.tsx
+index f03d4b2da..442ffae53 100644
+--- a/components/home/v2/scene/PremiumThemeMotion.tsx
++++ b/components/home/v2/scene/PremiumThemeMotion.tsx
+@@ -126,7 +126,9 @@ export const PremiumThemeMotion = memo(function PremiumThemeMotion({ themeId, wi
+   const plateDataUri = useStormPlateData(themeId);
+   const html = useMemo(() => {
+     const css = PREMIUM_MATERIAL_CSS[themeId as keyof typeof PREMIUM_MATERIAL_CSS];
+-    if (css) return cssHtml(themeId as keyof typeof PREMIUM_MATERIAL_CSS, reducedMotion);
++    // вариант (координатор 25.10, решение после замера Сверки): CSS-движение «Оливковой» подчиняется тому же удалённому флагу, что WebGL —
++    // выкл → WebView не монтируется вовсе (ни процесса WebView, ни слоя поверх сцены), под ним тот же градиент сцены
++    if (css) return webglAllowed ? cssHtml(themeId as keyof typeof PREMIUM_MATERIAL_CSS, reducedMotion) : null;
+     const shader = webglAllowed ? WEBGL_THEMES.get(themeId) : undefined;
+     const spec = premiumThemeVisualSpec(themeId);
+     if (!shader || !spec) return null;
+@@ -143,7 +145,6 @@ export const PremiumThemeMotion = memo(function PremiumThemeMotion({ themeId, wi
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [themeId]);
+   useEffect(() => {
+-    if (engine !== 'webgl') return;
+     console.log(THEME_MOTION, 'webgl_gate', JSON.stringify({ themeId, kind, webglAllowed, shown: webglAllowed ? 'shader' : 'static_gradient' })); // guard-ok: что решил удалённый флаг
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [webglAllowed, themeId]);

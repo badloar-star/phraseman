@@ -664,20 +664,28 @@ const sec = (t) => `<div class="cta ghost">${t}</div>`;
 const accOf = (ph) => getComputedStyle(ph).getPropertyValue('--acc').trim();
 
 /* ---------- 08. Комбо (предложение: эффект снят 03.08) ---------- */
-const comboUnder = () => `${lessonUnder({ w: '30%', tip: '3 подряд', heat: '', n: '6 / 20' })}<div style="position:absolute;left:0;right:0;top:118px;z-index:60;display:flex;justify-content:center;pointer-events:none" data-cc hidden>${coinChar(5, 52, { mood: 'idle', shadow: false })}</div>`;
-const comboInit = (ph) => { const h = ph.querySelector('[data-heat]'); const tip = h.querySelector('.tip'); const set = (w, t, cls) => { h.className = `heat ${cls}`; h.querySelector('i').style.setProperty('--w', w); tip.style.setProperty('--w', w); tip.textContent = t; tip.style.animation = 'none'; void tip.offsetWidth; tip.style.animation = 'emPop 400ms var(--em-ease-pop) both'; };
+/* зачем (решение владельца «2е», разбор R1 moments-v3-m08-a, координатор 25.10): в этом выпуске серия — КОЛЬЦО в шапке урока, как ComboRing (lesson1, size 34):
+   кольцо залито целиком цветом нагрева 3 → 5 → 10 (acc → warn → bad), число в центре, плашка «N подряд» под кольцом; полоса урока остаётся обычной */
+const M08_CSS = `<style>.em-ph .m08r{position:relative;flex:none;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center}
+.em-ph .m08r svg{position:absolute;inset:0;transform:rotate(-90deg)}.em-ph .m08r .tr{stroke:var(--control)}.em-ph .m08r .fg{stroke:var(--acc);stroke-dasharray:91.1;stroke-dashoffset:var(--off,0);transition:stroke-dashoffset 400ms var(--em-ease),stroke 300ms ease}
+.em-ph .m08r b{position:relative;font-size:13px;font-weight:800;color:var(--tx)}.em-ph .m08r.h2 .fg{stroke:var(--warn);filter:drop-shadow(0 0 5px color-mix(in srgb,var(--warn) 55%,transparent))}
+.em-ph .m08r.h3 .fg{stroke:var(--bad);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--bad) 65%,transparent))}.em-ph .m08r.off .fg{--off:91.1}
+.em-ph .m08r .tip{position:absolute;top:40px;left:50%;transform:translateX(-50%);padding:4px 9px;border-radius:10px;background:var(--control);color:var(--tx);box-shadow:var(--sh2);font-size:12px;font-weight:800;white-space:nowrap;animation:emPop 400ms var(--em-ease-pop) both}</style>`;
+const m08Ring = '<span class="m08r" data-ring><svg viewBox="0 0 34 34"><circle class="tr" cx="17" cy="17" r="14.5" fill="none" stroke-width="5"/><circle class="fg" cx="17" cy="17" r="14.5" fill="none" stroke-width="5" stroke-linecap="round"/></svg><b>3</b><span class="tip">3 подряд</span></span>';
+const comboUnder = () => `${M08_CSS}${lessonUnder({ w: '30%', n: '6 / 20' }).replace('<span class="pill" style="height:28px', `${m08Ring}<span class="pill" style="height:28px`)}<div style="position:absolute;left:0;right:0;top:118px;z-index:60;display:flex;justify-content:center;pointer-events:none" data-cc hidden>${coinChar(5, 52, { mood: 'idle', shadow: false })}</div>`;
+const comboInit = (ph) => { const h = ph.querySelector('[data-ring]'); const tip = h.querySelector('.tip'); const set = (n, t, cls) => { h.className = `m08r ${cls}`; h.querySelector('b').textContent = n; tip.textContent = t; tip.style.animation = 'none'; void tip.offsetWidth; tip.style.animation = 'emPop 400ms var(--em-ease-pop) both'; };
   return seq(ph, [
-    [0, () => { h.classList.add('heat'); }],
-    [1200, () => { set('50%', '5 подряд', 'h2'); const w = ph.querySelector('[data-cc]'); w.hidden = false; const cc = w.querySelector('.cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }],
-    [2600, () => { set('100%', '10 подряд', 'h3'); ph.querySelector('.full')?.classList.add('freeze'); ph.querySelector('[data-opt]').classList.add('burn'); zap(ph); ph.querySelector('.q-under').previousElementSibling.classList.add('shake'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'bang', 1); }],
+    [0, () => { set('3', '3 подряд', ''); }],
+    [1200, () => { set('5', '5 подряд', 'h2'); const w = ph.querySelector('[data-cc]'); w.hidden = false; const cc = w.querySelector('.cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }],
+    [2600, () => { set('10', '10 подряд', 'h3'); ph.querySelector('.full')?.classList.add('freeze'); ph.querySelector('[data-opt]').classList.add('burn'); zap(ph); ph.querySelector('.q-under').previousElementSibling.classList.add('shake'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'bang', 1); }],
     [4600, () => { ph.querySelector('[data-q]').textContent = 'Где находится вокзал?'; ph.querySelector('[data-opt]').className = 'opt'; ph.querySelector('[data-opt]').textContent = 'Can I have the bill, please?'; ph.querySelector('[data-opt2]').className = 'opt no'; }],
-    [5300, () => { const v = document.createElement('div'); v.className = 'vignette cold'; ph.appendChild(v); setTimeout(() => v.remove(), 1200); set('0%', 'серия сброшена', ''); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('cheer'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }],
+    [5300, () => { const v = document.createElement('div'); v.className = 'vignette cold'; ph.appendChild(v); setTimeout(() => v.remove(), 1200); set('0', 'серия сброшена', 'off'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('cheer'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }],
   ]); };
-moment({ id: 'm08', num: '08', short: 'Комбо (предложение)', title: '«Молния» — серия правильных ответов', tag: 'new', tag2: 'предложение, нужно решение владельца',
-  lead: 'Поверх настоящей шапки урока: прогресс-бар «греется» на 3 → 5 → 10 (пороги combo_engine), на 10 — молния и вспышка ответа; ошибка обнуляет серию (как в коде), без множителей монет. Эффект комбо снят 03.08 — показываем как предложение.',
+moment({ id: 'm08', num: '08', short: 'Комбо (кольцо)', title: '«Молния» — серия правильных ответов', tag: 'new', tag2: 'решение владельца: кольцо в этом выпуске',
+  lead: 'В шапке урока кольцо серии (как в приложении): заливается и «греется» на 3 → 5 → 10 (пороги combo_engine), под ним плашка «N подряд»; на 10 — молния и вспышка ответа; ошибка обнуляет серию, без множителей монет. Решение владельца: кольцо в этом выпуске, полоса нагрева — позже.',
   variants: [
     { k: 'A', label: '3 → 5 → 10 → ошибка (сброс)', time: '~6,5 с', phone: { under: comboUnder() }, init: comboInit, total: 7,
-      beats: [{ t: 0.0, w: 'бар 30 %, «3 подряд»', h: 'light', snd: 'tick' }, { t: 1.2, w: 'бар 50 % и теплеет, монета выглядывает', h: 'medium', snd: 'correct' }, { t: 2.6, w: '<b>10 подряд</b>: стоп-кадр, молния, вспышка ответа, монета cheer', h: 'heavy', snd: 'star', big: true }, { t: 4.6, w: 'неверный ответ', h: 'rigid', snd: 'wrong' }, { t: 5.3, w: 'холодная виньетка, «серия сброшена», бар пустой', h: 'light', snd: 'learn' }],
+      beats: [{ t: 0.0, w: 'кольцо залито, «3 подряд»', h: 'light', snd: 'tick' }, { t: 1.2, w: 'кольцо теплеет, «5 подряд», монета выглядывает', h: 'medium', snd: 'correct' }, { t: 2.6, w: '<b>10 подряд</b>: стоп-кадр, молния, вспышка ответа, монета cheer', h: 'heavy', snd: 'star', big: true }, { t: 4.6, w: 'неверный ответ', h: 'rigid', snd: 'wrong' }, { t: 5.3, w: 'холодная виньетка, «серия сброшена», кольцо пустое', h: 'light', snd: 'learn' }],
       why: 'Серия ответов держит внимание до конца урока; правила честные — ошибка обнуляет.', ref: 'Beat Saber, Duolingo combo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 

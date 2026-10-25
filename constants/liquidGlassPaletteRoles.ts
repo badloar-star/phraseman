@@ -63,7 +63,7 @@ export function paletteContrast(a: string, b: string): number {
  * Цвет заданного оттенка и насыщенности, светлота которого сдвинута от `start` в сторону `dir`
  * (+1 светлее, −1 темнее) до контраста ≥ `min` со ВСЕМИ поверхностями `against`.
  */
-function toContrast(hue: number, chroma: number, start: number, dir: 1 | -1, min: number, against: readonly string[]): string {
+export function toContrast(hue: number, chroma: number, start: number, dir: 1 | -1, min: number, against: readonly string[]): string {
   let lightness = start;
   let color = oklchToHexLocal(lightness, chroma, hue);
   for (let i = 0; i < 60; i += 1) {

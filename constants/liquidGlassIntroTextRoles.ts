@@ -1,0 +1,36 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// liquidGlassIntroTextRoles.ts — три цвета текста во вступлении занятия: английский, частицы, русский перевод.
+//
+// зачем (владелец 25.10, координатор: «английский, русский и грамматические частицы (is/are, a/the, -s, «A + is + B») — РАЗНЫЕ цвета
+// во всех 29 темах»; эталон рисуют Макеты — intro-text-colors.html): роли из палитры текущей темы, каждая ≥ 4,55 на карточке
+// вступления (plateFillFrom → plateFillTo) в светлом и тёмном. Частицы — оттенок акцента самой темы (берётся с «Максимума», чтобы и в
+// «Спокойно» оставался цвет), с постоянной насыщенностью и светлотой, подобранной под контраст: доводка к тексту обесцвечивала их
+// до серого («Лёд» светлый: ΔE 0,02 к переводу). Пока НЕ подключено к экрану — подключение после утверждения макета владельцем.
+// ═══════════════════════════════════════════════════════════════════════════
+import { hueOfHex, toContrast } from './liquidGlassPaletteRoles';
+import { legibleOn } from './liquidGlassSurfaceRoles';
+import { liquidGlassTokens, type LiquidGlassThemeId } from './liquidGlassThemePalette';
+
+export type IntroTextRoles = Readonly<{ langText: string; particle: string; gloss: string }>;
+
+const PARTICLE_CHROMA = 0.13;
+const MIN = 4.55;
+const cache = new Map<string, IntroTextRoles>();
+
+export function introTextRoles(themeId: LiquidGlassThemeId, variant: Readonly<{ level?: 'calm' | 'accent' | 'max'; appearance?: 'dark' | 'light'; intensity?: number }> = {}): IntroTextRoles {
+  const key = `${themeId}|${variant.level ?? ''}|${variant.appearance ?? ''}|${variant.intensity ?? ''}`;
+  const hit = cache.get(key);
+  if (hit) return hit;
+  const g = liquidGlassTokens(themeId, variant as never);
+  const surfaces = [g.plateFillFrom.slice(0, 7), g.plateFillTo.slice(0, 7)];
+  const dark = !g.isLight;
+  const themeAccent = liquidGlassTokens(themeId, { ...variant, level: 'max' } as never).accent;
+  const hue = hueOfHex(themeAccent, hueOfHex(g.opaqueControl, 255));
+  const roles: IntroTextRoles = Object.freeze({
+    langText: legibleOn(g.text, g.text, surfaces, MIN),
+    particle: toContrast(hue, PARTICLE_CHROMA, dark ? 0.72 : 0.5, dark ? 1 : -1, MIN, surfaces),
+    gloss: legibleOn(g.secondary, g.text, surfaces, MIN),
+  });
+  cache.set(key, roles);
+  return roles;
+}

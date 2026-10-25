@@ -37,7 +37,7 @@ body { background: var(--page); color: var(--ink); font-family: var(--font); -we
 
 /* ── телефон: 411 × 914 dp, цвета Сумерек (светлая) со снимков ── */
 .ph { --bg: #EAEBFE; --bgHi: #FCFCFF; --text: #17181E; --sec: #595A63; --muted: #8A8B95; --card: #FCFCFF; --sit: #EEEDF8; --tile: #D7D8EA; --track: #E6E7F2;
-  --acc: #5F5CB1; --accG: #54529B; --btnOff: #BBBCC8; --btnOffInk: #484951; --badSoft: rgba(167, 53, 51, .14); --btn: #17181E; --ctl: #DBDDEC; --okPlate: #D5D6EA; --noPlate: #E5DCE2; --good: #006F30; --bad: #A73533; --foot: #E2E3F7;
+  --acc: #5F5CB1; --accG: #54529B; --btnOff: #BBBCC8; --btnOffInk: #484951; --badSoft: rgba(167, 53, 51, .14); --btn: #17181E; --ctl: #DBDDEC; --okPlate: rgba(0, 111, 48, .14); --noPlate: rgba(167, 53, 51, .14); --plateSh: 0 6px 14px -6px rgba(51, 51, 87, .34); --good: #006F30; --bad: #A73533; --foot: #FBFBFE;
   --shadow: 0 5px 10px -5px rgba(51, 51, 87, .34);
   position: relative; width: 411px; height: 914px; border-radius: 44px; overflow: hidden; transform: scale(var(--k, 1)); transform-origin: 0 0;
   background: radial-gradient(70% 45% at 50% 45%, var(--bgHi) 0%, var(--bg) 70%); color: var(--text); font-family: 'Inter', system-ui, sans-serif;
@@ -86,7 +86,7 @@ textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
 .dash { font-size: 22px; letter-spacing: 3px; color: var(--muted); }
 .hint { margin-top: 12px; font-size: 12.5px; line-height: 17px; font-weight: 700; color: var(--acc); }
 .micwrap { margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.mic { all: unset; cursor: pointer; width: 76px; height: 76px; border-radius: 38px; background: #1D1D2F; display: grid; place-items: center; color: #6E6F80; box-shadow: 0 10px 20px -10px rgba(29, 29, 47, .6); }
+.mic { all: unset; cursor: pointer; width: 76px; height: 76px; border-radius: 38px; background: #1D1D2F; display: grid; place-items: center; color: #FFFFFF; box-shadow: var(--plateSh); }
 .mic svg { width: 28px; height: 28px; }
 .mlab { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
 .alt { all: unset; cursor: pointer; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
@@ -94,7 +94,7 @@ textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
 .note { margin-top: 8px; font-size: 13px; line-height: 18px; color: var(--sec); text-align: center; min-height: 18px; }
 /* зачем (карта Тем E12–E15): текст плашки — цветом текста, «Верно/Неверно» жирным; цвет «верно/неверно» несёт значок ✓/✕ */
 .plate { margin-top: 14px; border-radius: 16px; padding: 13px 15px; font-size: 16px; line-height: 23px; color: var(--text); display: flex; gap: 8px; align-items: flex-start; }
-.plate .pi { flex: none; width: 20px; height: 20px; margin-top: 1.5px; } .plate.ok .pi { color: var(--good); } .plate.no .pi { color: var(--bad); }
+.plate .pi { flex: none; width: 18px; height: 18px; margin-top: 2.5px; } .plate.ok .pi { color: var(--good); } .plate.no .pi { color: var(--bad); }
 .plate.ok { background: var(--okPlate); } .plate.no { background: var(--noPlate); }
 .plate b { font-weight: 700; }
 .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 102px; background: var(--foot); padding: 12px 20px 0; }
@@ -121,7 +121,7 @@ textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
 .rew { height: 40px; padding: 0 16px; border-radius: 20px; display: flex; align-items: center; gap: 6px; margin-top: 16px; background: var(--ctl); font-size: 16px; font-weight: 800; }
 .rew img { width: 22px; height: 22px; border-radius: 11px; }
 .unl { align-self: stretch; margin-top: 22px; border-radius: 22px; padding: 14px; display: flex; align-items: center; gap: 14px; background: var(--card); box-shadow: 0 14px 26px -14px rgba(51, 51, 87, .34), 0 1px 3px rgba(51, 51, 87, .06); }
-.mini { width: 56px; height: 56px; border-radius: 16px; flex: none; display: grid; place-items: center; color: #fff; background: linear-gradient(160deg, #8F8BE6, #3E3A93); box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .5); }
+.mini { width: 56px; height: 56px; border-radius: 16px; flex: none; display: grid; place-items: center; color: #FFFFFF; background: var(--acc); box-shadow: var(--plateSh); }
 .mini svg { width: 26px; height: 26px; }
 .unl .t { font-size: 16px; line-height: 21px; font-weight: 700; } .unl .s { margin-top: 2px; font-size: 13px; line-height: 17px; color: var(--sec); }
 .where { align-self: stretch; margin-top: 22px; }

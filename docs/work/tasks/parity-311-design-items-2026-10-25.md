@@ -32,3 +32,7 @@ Out of scope: серия/моменты (Моменты), итог диалог�
 ## Rollback
 
 Правки лежат в рабочей копии без коммита; откат — вернуть строки.
+
+Governance-ID: TG-F8068AC1B904
+
+Governance-ID: TG-BAB7EEEA5707

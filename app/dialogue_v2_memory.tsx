@@ -318,6 +318,25 @@ export default function DialogueV2MemoryRoute() {
     </>
   );
 
+  // зачем (разбор Макетов 49c24a872, dialogs-gap-001; правило «сперва логи»): в «Учебной сводке» вместо названий целей стоит «Сохранённая задача» — непонятно, корень в данных
+  // (id целей в памяти не совпадают с id каталога) или в каталоге (ещё не пришёл/нет перевода). Журнал [DIALOGUE-V2-MEMORY-LABELS] показывает ЦЕПОЧКУ: сколько id в сводке,
+  // сколько нашли, примеры id из памяти и из каталога, откуда пришёл каталог (labels.size), язык. После диагноза временное убрать, строку про пропуск оставить.
+  // (хук стоит ДО ранних return экрана — порядок хуков не меняется)
+  const summary = state.kind === 'available' ? state.memory.sharedSummary : null;
+  const summaryStrengths = summary?.strengths;
+  const summaryFocus = summary?.focusAreas;
+  useEffect(() => {
+    if (!summaryStrengths && !summaryFocus) return;
+    const ids = [...(summaryStrengths ?? []), ...(summaryFocus ?? [])];
+    const missing = ids.filter((id) => !labels.objectiveLabels.has(id));
+    console.log('[DIALOGUE-V2-MEMORY-LABELS]', JSON.stringify({ // guard-ok: одна строка на изменение сводки или каталога
+      studyTarget: String(studyTarget), lang, summaryIds: ids.length, resolved: ids.length - missing.length, missing: missing.length,
+      missingSample: missing.slice(0, 5), memorySample: ids.slice(0, 3), catalogueObjectives: labels.objectiveLabels.size,
+      catalogueSample: [...labels.objectiveLabels.keys()].slice(0, 5), catalogueScenes: labels.scenarioTitles.size,
+      verdict: missing.length === 0 ? 'ok' : labels.objectiveLabels.size === 0 ? 'каталог без задач (не пришёл или пуст)' : 'id из памяти не найдены в каталоге',
+    }));
+  }, [summaryStrengths, summaryFocus, labels, studyTarget, lang]);
+
   if (!accessResolved) {
     return <SafeAreaView testID="dialogue-v2-memory-access-checking" style={{ flex: 1, backgroundColor: p.bg }} />;
   }

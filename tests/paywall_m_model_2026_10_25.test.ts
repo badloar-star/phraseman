@@ -1,7 +1,9 @@
 // зачем (координатор 25.10, пейвол «Вариант М»): числа окна считаются честно — темп человека из его прогресса, линия «бесплатно» из лимитов кода,
 // подпись кнопки зависит ТОЛЬКО от пробного, который дал магазин; нет цены — «0» и «≈ в месяц» не выдумываем.
+import fs from 'node:fs';
+import path from 'node:path';
 import {
-  PAYWALL_M_LIMITS, PAYWALL_M_MAX_PACE, PAYWALL_M_MIN_PACE, paywallMChartModel, paywallMCompareRows, paywallMFooter, paywallMPace,
+  PAYWALL_M_LIMITS, PAYWALL_M_MAX_PACE, PAYWALL_M_MIN_PACE, PAYWALL_M_PLUS_FREEZES_PER_MONTH, paywallMChartModel, paywallMCompareRows, paywallMFooter, paywallMPace,
 } from '../components/paywall/m/paywall_m_model';
 
 describe('пейвол М: темп и график', () => {
@@ -45,6 +47,14 @@ describe('пейвол М: темп и график', () => {
 });
 
 describe('пейвол М: таблица и подпись кнопки', () => {
+  // зачем (Ревизор 25.10): «3 в месяц» в таблице — копия PREMIUM_FREE_FREEZES_PER_MONTH; модуль с ней тянет хранилище, поэтому сверяем по тексту исходника, а не импортом
+  it('число защит серии в таблице равно настоящему лимиту подписки', () => {
+    const src = fs.readFileSync(path.join(__dirname, '..', 'app/premium_freeze_allowance.ts'), 'utf8');
+    const m = /export const PREMIUM_FREE_FREEZES_PER_MONTH = (\d+);/.exec(src);
+    expect(m).not.toBeNull();
+    expect(PAYWALL_M_PLUS_FREEZES_PER_MONTH).toBe(Number(m![1]));
+  });
+
   it('шесть строк, числа из кода, порядок как на макете', () => {
     const rows = paywallMCompareRows();
     expect(rows.map((r) => r.id)).toEqual(['speak', 'dialog', 'explain', 'energy', 'phrases', 'streak']);

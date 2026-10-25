@@ -4,7 +4,9 @@
 # зачем (решение владельца 25.10 через координатора: одно обновление по воздуху на 2.0.2 из HEAD при недельном лимите 95 %; аудит
 # docs/work/release/OTA_COMPAT_AUDIT_2026-10-25.md): повторяет ПРОВЕРЕННУЮ схему OTA-2 — обычный `eas update` на этой машине падал.
 #   1) снимок ревизии (git archive, core.autocrlf=false) в чистую папку;   2) npm ci;
-#   3) release:precheck в снимке (временный .git без ветки) — пропускает ТОЛЬКО красный PARITY-GATE (решение владельца);
+#   3) release:precheck в снимке (временный .git без ветки). Красный PARITY-GATE пропускается ТОЛЬКО с флагом
+#      --allow-parity-gate (решение координатора 25.10: для OTA он не блокирует — это сверка уже выпущенных экранов 2.0.2;
+#      новые экраны OTA проходят склейку «макет | эмулятор» до включения своего флага); без флага — стоп;
 #   4) eas env:pull production → .env.ota.pulled (ключи входа и покупок; значения не печатаются);
 #   5) экспорт iOS и Android ОТДЕЛЬНО: TMP/TEMP=C:\Temp\claude\ota_tmp, --max-workers 1, куча 8 ГБ, STORE_RELEASE=1, AI_DIALOG, EXPLAIN;
 #   6) dev-строки в бандле каждой платформы (scripts/store_bundle_dev_strings_gate.mjs, с картой);
@@ -12,10 +14,18 @@
 #   8) печать команды публикации. СКРИПТ НЕ ПУБЛИКУЕТ.
 #
 # Запуск (тяжёлое — через светофор):
-#   bash .claude/semaphore/slot.sh run --wait=3600 "OTA из HEAD" -- bash scripts/ota_from_head.sh [ревизия]
+#   bash .claude/semaphore/slot.sh run --wait=3600 "OTA из HEAD" -- bash scripts/ota_from_head.sh [ревизия] [--allow-parity-gate]
 set -u
 REPO=$(cd "$(dirname "$0")/.." && pwd)
-REV=${1:-HEAD}
+REV=HEAD
+ALLOW_PARITY=0
+for ARG in "$@"; do
+  case "$ARG" in
+    --allow-parity-gate) ALLOW_PARITY=1 ;;
+    -*) echo "[OTA-HEAD] ✖ неизвестный флаг $ARG"; exit 2 ;;
+    *) REV=$ARG ;;
+  esac
+done
 FULL=$(git -C "$REPO" rev-parse "$REV") || { echo "[OTA-HEAD] ✖ нет ревизии $REV"; exit 2; }
 SHORT=${FULL:0:9}
 SNAP=/c/Temp/claude/ota_head
@@ -25,7 +35,7 @@ LOG="$LOGD/ota_from_head.log"
 say() { echo "$*" | tee -a "$LOG"; }
 step_fail() { say "[OTA-HEAD] ✖ СТОП на шаге «$1». Журналы: $LOGD"; exit 1; }
 START=$(date +%s)
-say "[OTA-HEAD] ревизия $SHORT ($REV), снимок $SNAP, журналы $LOGD"
+say "[OTA-HEAD] ревизия $SHORT ($REV), снимок $SNAP, журналы $LOGD, allow-parity-gate=$ALLOW_PARITY"
 
 # 1) снимок
 rm -rf "$SNAP" && mkdir -p "$SNAP" || step_fail "папка снимка"
@@ -49,7 +59,12 @@ node scripts/release_precheck.mjs > "$LOGD/precheck.txt" 2>&1; PRC=$?
 rm -rf .git
 if [ $PRC -ne 0 ]; then
   if grep -q "не прошло гейтов — 1\." "$LOGD/precheck.txt" && grep -q "\[PARITY-GATE\] ОТКАЗ" "$LOGD/precheck.txt"; then
-    say "[OTA-HEAD] precheck: красный только PARITY-GATE (по решению владельца не стоп)"
+    if [ "$ALLOW_PARITY" -ne 1 ]; then
+      say "[OTA-HEAD] precheck: красный PARITY-GATE, флага --allow-parity-gate нет — стоп (пропуск только осознанный)"
+      step_fail "release:precheck (PARITY-GATE)"
+    fi
+    say "[OTA-HEAD] precheck: красный только PARITY-GATE — ПРОПУЩЕН флагом --allow-parity-gate (решение координатора 25.10)"
+    grep -aE "^\[PARITY-GATE\] строк=|^\[PARITY-GATE\] по причинам" "$LOGD/precheck.txt" | sed 's/^/  /' | tee -a "$LOG"
   else
     grep -aE "ОТКАЗ|не прошло" "$LOGD/precheck.txt" | tail -5 | tee -a "$LOG"; step_fail "release:precheck"
   fi
@@ -59,6 +74,10 @@ else say "[OTA-HEAD] precheck: всё зелёное"; fi
 EAS_NO_VCS=1 eas env:pull --environment production --path .env.ota.pulled --non-interactive > "$LOGD/env_pull.log" 2>&1 || step_fail "eas env:pull"
 say "[OTA-HEAD] env production: ключей $(grep -cE '^EXPO_PUBLIC_[A-Z0-9_]+=' .env.ota.pulled)"
 set -a; . ./.env.ota.pulled; set +a
+# зачем (Ревизор 25.10): ключи production не должны лежать в снимке дольше нужного. `eas update --skip-bundler` их не читает —
+# они уже вшиты в бандл на экспорте; склейка сверяет их и после неё файл не нужен. trap стирает его и при падении любого шага.
+wipe_env() { [ -f "$SNAP/.env.ota.pulled" ] && rm -f "$SNAP/.env.ota.pulled" && say "[OTA-HEAD] .env.ota.pulled стёрт ($1)"; return 0; }
+trap 'wipe_env exit' EXIT
 export EXPO_PUBLIC_STORE_RELEASE=1 EXPO_PUBLIC_AI_DIALOG_ENABLED=true EXPO_PUBLIC_EXPLAIN_ENABLED=true
 export NODE_OPTIONS=--max-old-space-size=8192 CI=1
 mkdir -p /c/Temp/claude/ota_tmp && export TMP='C:\Temp\claude\ota_tmp' TEMP='C:\Temp\claude\ota_tmp'
@@ -75,8 +94,13 @@ done
 
 # 7) склейка и проверки
 node "$REPO/scripts/ota_merge_dist.cjs" "$SNAPW" 2>&1 | tee -a "$LOG"; [ "${PIPESTATUS[0]}" -eq 0 ] || step_fail "склейка dist-ota"
+wipe_env "после склейки"
 
 # 8) команда публикации — для координатора, скрипт её не запускает
 say "[OTA-HEAD] ГОТОВО за $(( $(date +%s) - START )) с. dist-ota: $SNAP/dist-ota"
 say "[OTA-HEAD] Публикация (только координатор, при 95 % и 🟢 Ревизора; message без пробелов):"
-say "  cd $SNAP && EAS_NO_VCS=1 eas update --branch production --environment production --platform all --skip-bundler --input-dir dist-ota --message 2.0.2-OTA3_from_${SHORT} --non-interactive"
+# --channel, а не --branch (координатор 25.10, как OTA-1/OTA-2). Проверено чтением `eas channel:view production` 25.10: канал
+# production целиком (branchMappingLogic "true") ведёт в единственную ветку production — публикация та же, но канал идёт за
+# сборками, если его когда-нибудь перенаправят.
+say "[OTA-HEAD] После публикации удалить снимок: rm -rf $SNAP (в нём бандлы и временные файлы сборки)"
+say "  cd $SNAP && EAS_NO_VCS=1 eas update --channel production --environment production --platform all --skip-bundler --input-dir dist-ota --message 2.0.2-OTA3_from_${SHORT} --non-interactive"

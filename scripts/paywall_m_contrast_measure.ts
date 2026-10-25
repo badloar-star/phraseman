@@ -26,7 +26,10 @@ const plate = (g: G): string => flattenOver(g.isLight ? g.opaqueControl : g.shee
 const card = (g: G): string => flattenOver(g.opaqueCard, sheet(g));
 const selected = (g: G): string[] => { const p = plate(g); return [p, flattenOver(alpha(g.accent, 0.3), p), flattenOver(alpha(p, 0.9), p)]; };
 const selInk = (g: G, base: string): string => legibleOn(base, g.isLight ? g.text : '#FFFFFF', selected(g), 4.55); // theme-exempt: крайняя точка доводки в тёмном, как paywallPlanRowPaint
-const header = (g: G): string => flattenOver(g.accentSoft, card(g)); // шапка «Ты на 3-м уроке» — мягкий акцент на карточке
+// зачем (координатор 25.10, Макеты 41a054a1d): шапка «Ты на 3-м уроке» в макете стоит на градиенте выбранного плана (акцент 30 % → плашка),
+// а не на мягком акценте. Градиент меряем по ВСЕМ краям, итог — худший край: в graphite светлой тёмный край давал 3,74.
+const header = (g: G): string[] => [flattenOver(g.accentSoft, card(g)), ...selected(g)];
+const hdrInk = (g: G, base: string): string => legibleOn(base, g.isLight ? g.text : '#FFFFFF', header(g), 4.55); // theme-exempt: крайняя точка доводки в тёмном, как paywallPlanRowPaint
 const plusFill = (g: G): string => flattenOver(alpha(g.accentGraphic, 0.12), card(g)); // заливка под линией Plus на графике
 const lab = (h: string): number[] => {
   const n = parseInt(h.slice(1, 7), 16); const L = (v: number): number => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; };
@@ -39,9 +42,10 @@ const dE = (a: string, b: string): number => { const x = lab(a), y = lab(b); ret
 type Role = { id: string; area: string; what: string; pair: string; min: number; kind?: 'dE'; fn: (g: G) => [string, string[]] };
 const ROLES: Role[] = [
   // ── шапка и общий текст ──
-  { id: 'M1', area: 'Шапка', what: '«Ты на 3-м уроке из 32»', pair: '`accentTextSafe` на accentSoft поверх карточки', min: 4.5, fn: (g) => [g.accentTextSafe, [header(g)]] },
-  { id: 'M1*', area: 'Шапка', what: 'то же после доводки (замена)', pair: 'legibleOn(accentTextSafe → text) по подложке шапки', min: 4.5, fn: (g) => [legibleOn(g.accentTextSafe, g.text, [header(g)], 4.55), [header(g)]] },
-  { id: 'M2', area: 'Шапка', what: 'Личный заголовок «Через месяц ты расскажешь…»', pair: '`text` на accentSoft поверх карточки', min: 4.5, fn: (g) => [g.text, [header(g)]] },
+  { id: 'M1', area: 'Шапка', what: '«Ты на 3-м уроке из 32»', pair: '`accentTextSafe` на градиенте шапки (худший край)', min: 4.5, fn: (g) => [g.accentTextSafe, header(g)] },
+  { id: 'M1*', area: 'Шапка', what: 'то же после доводки (замена)', pair: 'legibleOn(accentTextSafe → text в светлой / #FFFFFF в тёмной) по всем краям', min: 4.5, fn: (g) => [hdrInk(g, g.accentTextSafe), header(g)] },
+  { id: 'M2', area: 'Шапка', what: 'Личный заголовок «Через месяц ты расскажешь…»', pair: '`text` на градиенте шапки (худший край)', min: 4.5, fn: (g) => [g.text, header(g)] },
+  { id: 'M2*', area: 'Шапка', what: 'заголовок после доводки (замена)', pair: 'legibleOn(text → text в светлой / #FFFFFF в тёмной) по всем краям', min: 4.5, fn: (g) => [hdrInk(g, g.text), header(g)] },
   { id: 'M3', area: 'Шапка', what: 'Плитки цифр: число', pair: '`text` на opaqueCard', min: 4.5, fn: (g) => [g.text, [card(g)]] },
   { id: 'M4', area: 'Шапка', what: 'Плитки цифр: подпись («дней подряд»)', pair: '`secondary` на opaqueCard', min: 4.5, fn: (g) => [g.secondary, [card(g)]] },
   { id: 'M5', area: 'Лист', what: '«Не сейчас», абзац, «Восстановить покупки», «Условия»', pair: '`secondary` на листе', min: 4.5, fn: (g) => [g.secondary, [sheet(g)]] },

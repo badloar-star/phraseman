@@ -57,8 +57,9 @@ describe('Замки: тест «Не хочу с начала» — интер�
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: координатор 24.10 «за флагом» — пока Learning V2 не подключил вопросы и прогресс, флаг выключен, вход с обложки ведёт как раньше
-  it('флаг выключен, вход с обложки ведёт на тест только по флагу, выключенный экран уводит назад', () => {
-    expect(flags).toContain('LEARNING_V2_PLACEMENT_UI_ENABLED = false as boolean');
+  // ЗАМОК ВЛАДЕЛЬЦА 25.10 (через координатора): «Не хочу с начала» ВХОДИТ в релиз — флаг включён; вход и редирект по-прежнему через флаг
+  it('флаг включён (релиз 25.10), вход с обложки ведёт на тест только по флагу, выключенный экран уводит назад', () => {
+    expect(flags).toContain('LEARNING_V2_PLACEMENT_UI_ENABLED = true as boolean');
     expect(entry).toContain('if (LEARNING_V2_PLACEMENT_UI_ENABLED) { router.push(LEARNING_V2_PLACEMENT_HREF as never); return; }');
     expect(code(read('app/learning_v2_placement_route.ts'))).toContain("LEARNING_V2_PLACEMENT_HREF = '/learning_v2_placement'");
     expect(screen).toContain('isLearningV2Hidden()');

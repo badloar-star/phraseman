@@ -11,7 +11,9 @@ const base = {
 describe('premium theme server conditions', () => {
   it('grants only the exact six completed conditions', () => {
     // зачем (30.09 «ТЕМЫ ВСЕ ФРИ», координатор 24.10): покупка Plus тему не открывает
-    expect(premiumThemeConditionSatisfied({ ...base, condition: 'plus_purchase', premiumPurchased: true })).toBe(false);
+    // зачем (слово владельца 25.10): Оливковая — условие пакета Codex «покупка Plus», засчитывается только проверенной покупкой
+    expect(premiumThemeConditionSatisfied({ ...base, condition: 'plus_purchase', premiumPurchased: true })).toBe(true);
+    expect(premiumThemeConditionSatisfied({ ...base, condition: 'plus_purchase', premiumPurchased: false })).toBe(false);
     expect(premiumThemeConditionSatisfied({ ...base, condition: 'final_coin_rank', progress: {
       'coin_rank_v1:owner-1': JSON.stringify({ ownerStableId: 'owner-1', rank: 19 }),
     } })).toBe(true);
@@ -92,7 +94,7 @@ describe('premium theme server conditions', () => {
       videoSeconds: 999_999_999,
     };
     expect(__premiumThemesTestHooks.progressByCondition(facts)).toEqual({
-      plus_purchase: { current: 0, target: 1, unit: 'purchase' },
+      plus_purchase: { current: 1, target: 1, unit: 'purchase' }, // покупка Plus проверена — условие Оливковой выполнено
       final_coin_rank: { current: 19, target: 19, unit: 'rank' },
       streak_365: { current: 0, target: 365, unit: 'days' },
       final_spire: { current: 11, target: 11, unit: 'tier' },

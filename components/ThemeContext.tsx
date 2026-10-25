@@ -28,11 +28,12 @@ import {
 } from '../constants/liquidGlassThemePalette';
 import { createThemePersister, type ThemePersister } from '../app/theme_persist';
 import { getDevAppearance, getDevThemeChoice, setDevAppearance, setDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
-import { actionToastTri, emitAppEvent } from '../app/events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
 import { FOLLOW_SYSTEM_MARKER_KEY, decideFirstRunTheme, pickSystemDefaultTheme } from '../app/theme_first_run_default';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import {
+  claimPremiumThemeCondition,
   peekPremiumThemeEntitlements,
   primePremiumThemeEntitlements,
   usePremiumThemeEntitlements,
@@ -448,8 +449,28 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     void Promise.all([primePremiumThemeEntitlements(), primePremiumThemePackCache()]);
   }, []);
 
-  // зачем (решение владельца 30.09 «ТЕМЫ ВСЕ ФРИ» = темы не продаются; координатор 24.10): покупка Plus больше не засчитывается условием особой темы —
-  // прежний подписчик на premium_activated с повторами claimPremiumThemeCondition('plus_purchase') снят. Особые темы открываются только достижениями.
+  // зачем (слово владельца 25.10: «те что Кодекс добавил, там у каждой есть условия, и они должны быть»): покупка Plus — условие Оливковой, как в пакете Codex.
+  useEffect(() => {
+    const retryTimers = new Set<ReturnType<typeof setTimeout>>();
+    const sub = onAppEvent('premium_activated', () => {
+      void claimPremiumThemeCondition('plus_purchase');
+      // RevenueCat webhook/server projection may arrive a few seconds after the
+      // local purchase event. Two bounded retries keep the unlock immediate in
+      // the normal case without trusting the local purchase flag.
+      for (const delayMs of [8_000, 24_000]) {
+        const timer = setTimeout(() => {
+          retryTimers.delete(timer);
+          void claimPremiumThemeCondition('plus_purchase');
+        }, delayMs);
+        retryTimers.add(timer);
+      }
+    });
+    return () => {
+      sub.remove();
+      retryTimers.forEach(clearTimeout);
+      retryTimers.clear();
+    };
+  }, []);
 
   // зачем (владелец 13.10): пока человек ничего не выбирал, пара тема/оформление/насыщенность следует за системным режимом и НЕ лежит в хранилище.
   // Первый же его выбор (тема, оформление или насыщенность) замораживает ту пару, которую он сейчас видит, и записывает её целиком — дальше это

@@ -23,6 +23,8 @@ const SEARCH_DIRS = ['tests', 'functions/src'];
 const KNOWN_GUARDS = [
   // 4 · ТЕМЫ 24.10: премиум-темы Codex проходят контраст всех тем, темы не продаются
   'tests/premium_themes_contrast.test.ts',
+  // 4 · ТЕМЫ 25.10 (слово владельца): условия 6 премиум-тем = пакет Codex, «Оливковая» — через Plus
+  'tests/premium_theme_conditions_match_codex_package.test.ts',
   'tests/v2_tab_bar_liquid_glass_theme.test.cjs',
   'tests/owner_locks_spire_summit_2026_10_22.test.ts',
   'tests/owner_locks_spire_2026_10_22.test.ts',

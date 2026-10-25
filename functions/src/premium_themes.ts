@@ -100,9 +100,8 @@ export function premiumThemeConditionSatisfied(input: Readonly<{
   videoSeconds: number;
 }>): boolean {
   switch (input.condition) {
-    // зачем (решение владельца 30.09 «ТЕМЫ ВСЕ ФРИ» = темы не продаются; координатор 24.10): тема за покупку Plus — продажа темы. Путь выключен:
-    // особые темы открываются только достижениями. Новое условие для olive назначает координатор/владелец.
-    case 'plus_purchase': return false;
+    // зачем (слово владельца 25.10: «те что Кодекс добавил, там у каждой есть условия, и они должны быть»): Оливковая открывается проверенной покупкой Plus, как в пакете Codex
+    case 'plus_purchase': return input.premiumPurchased;
     case 'final_coin_rank': return coinRank(input.progress, input.stableUid) >= FINAL_COIN_RANK;
     case 'streak_365': return numericProgress(input.progress, 'streak_count') >= STREAK_DAYS;
     case 'final_spire': return maxSpireTier(input.spireTiers) >= FINAL_SPIRE_TIER;
@@ -134,8 +133,7 @@ function boundedProgress(rawCurrent: number, target: number, unit: PremiumThemeP
  */
 function progressByCondition(facts: PremiumThemeFacts): PremiumThemeProgressByCondition {
   return Object.freeze({
-    // покупка Plus тему не открывает (30.09 «темы не продаются») — прогресс не показывается выполненным
-    plus_purchase: boundedProgress(0, 1, 'purchase'),
+    plus_purchase: boundedProgress(facts.premiumPurchased ? 1 : 0, 1, 'purchase'),
     final_coin_rank: boundedProgress(coinRank(facts.progress, facts.stableUid), FINAL_COIN_RANK, 'rank'),
     streak_365: boundedProgress(numericProgress(facts.progress, 'streak_count'), STREAK_DAYS, 'days'),
     final_spire: boundedProgress(maxSpireTier(facts.spireTiers), FINAL_SPIRE_TIER, 'tier'),

@@ -36,11 +36,11 @@ describe('Sage Porcelain picker contract', () => {
     expect((pickerCode.match(/isLiquidGlassThemeAvailable\(/g) ?? []).length).toBeLessThanOrEqual(1);
     // список особых тем — единственное место, где строка может быть закрыта
     expect(pickerCode).toMatch(/PREMIUM_GRADIENT_OPTIONS(?:\.filter\([^\n]*?\))?\.map[\s\S]*?available=\{[^}]*isLiquidGlassThemeAvailable\(item\.mode\)\}/);
-    // ни у одной особой темы условие открытия — не покупка
-    const catalog = readSource('app', 'premium_theme_catalog.ts');
-    expect(catalog).not.toMatch(/condition: 'plus_purchase'[^}]*unlockAt: \d/);
+    // зачем (слово владельца 25.10: «все темы не бесплатные, те что с условиями — те с условиями. Те что вчера Кодекс добавил, там у каждой есть
+    // условия, и они должны быть»): условия особых тем — как в пакете Codex, «Оливковая» открывается покупкой Plus; сам выбор тем Plus не продаёт
+    // (нет пейвола и цены на экране), условие выдаёт сервер — tests/premium_theme_conditions_match_codex_package.test.ts
     const server = readSource('functions', 'src', 'premium_themes.ts');
-    expect(server).toMatch(/case 'plus_purchase': return false;/);
+    expect(server).toMatch(/case 'plus_purchase': return input\.premiumPurchased;/);
   });
 
   it('paints rows from real theme formulas with the glass tokens and no thick borders', () => {

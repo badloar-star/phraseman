@@ -35,6 +35,8 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'premium_access_changed @ app/(tabs)/settings.tsx',
   'premium_access_changed @ components/EnergyContext.tsx',
   'premium_activated @ components/EnergyContext.tsx',
+  // зачем (слово владельца 25.10, пакет Codex): после покупки Plus тема «Оливковая» просит сервер пересчитать условие (claim + 2 повтора)
+  'premium_activated @ components/ThemeContext.tsx',
   'premium_deactivated @ components/EnergyContext.tsx',
   // зачем (04.10): энергия перечитывает лимиты при смене удалённого конфига (слушатель с 4792f3e59).
   'remote_config_changed @ components/EnergyContext.tsx',

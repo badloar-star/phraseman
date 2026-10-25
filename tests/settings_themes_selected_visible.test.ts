@@ -28,10 +28,9 @@ describe('экран тем: показанная тема отмечена', ()
     expect(screen).toContain('LIQUID_GLASS_GRADIENT_THEME_IDS.map(mode => ({ mode }))');
     const { LIQUID_GLASS_GRADIENT_THEME_IDS } = require('../constants/liquidGlassGradientThemes') as { LIQUID_GLASS_GRADIENT_THEME_IDS: readonly string[] };
     for (const id of LIQUID_GLASS_GRADIENT_THEME_IDS) listed.add(id);
-    // исключение одно — «Оливковая» (grad_full_olive): скрыта из выбора до назначения достижения владельцем (30.09 «темы не продаются», координатор 24.10);
-    // у кого она уже выдана, строка показывается (фильтр по premiumEntitlements.unlocked)
-    expect(screen).toContain("const HIDDEN_UNTIL_ACHIEVEMENT: ReadonlySet<string> = new Set<string>(['grad_full_olive']);");
-    expect(screen).toContain('!HIDDEN_UNTIL_ACHIEVEMENT.has(item.mode) || premiumEntitlements.unlocked.has(item.mode as never)');
+    // зачем (слово владельца 25.10: «все темы не бесплатные, те что с условиями — те с условиями. Те что вчера Кодекс добавил, там у каждой есть условия, и они должны быть»): исключений нет — «Оливковая» снова в выборе с замком и условием
+    expect(screen).not.toContain('HIDDEN_UNTIL_ACHIEVEMENT');
+    expect(screen).toContain('{PREMIUM_GRADIENT_OPTIONS.map((item, index) => {');
     expect((LIQUID_GLASS_THEME_IDS as readonly string[]).filter((id) => !listed.has(id))).toEqual([]);
   });
 });

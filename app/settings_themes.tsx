@@ -72,9 +72,6 @@ const THEME_OPTIONS: ThemeOption[] = [
 const GRADIENT_OPTIONS: ThemeOption[] = LIQUID_GLASS_GRADIENT_THEME_IDS.map(mode => ({ mode }));
 const STANDARD_GRADIENT_OPTIONS: ThemeOption[] = GRADIENT_OPTIONS.filter(({ mode }) => !isPremiumThemeId(mode));
 const PREMIUM_GRADIENT_OPTIONS: ThemeOption[] = GRADIENT_OPTIONS.filter(({ mode }) => isPremiumThemeId(mode));
-// зачем (30.09 «ТЕМЫ ВСЕ ФРИ», координатор 24.10): «Оливковая» открывалась покупкой Plus — путь выключен; до назначения достижения владельцем строка скрыта.
-// У кого тема уже выдана — строка остаётся и тема работает (не отбираем).
-const HIDDEN_UNTIL_ACHIEVEMENT: ReadonlySet<string> = new Set<string>(['grad_full_olive']);
 
 /** В какой карточке и на какой строке стоит тема (карточка «gradient» = особые + градиентные подряд). Нет нигде — null и строка журнала с причиной. */
 function selectedCardOf(id: LiquidGlassThemeId): { card: 'main' | 'gradient'; rowCount: number; rowIndex: number } | null {
@@ -370,7 +367,7 @@ export default function SettingsThemes() {
               style={[settingsGlassCardStyle(glass), styles.list]}
             >
               <ThemeGlassSmoke glass={glass} radius={20} />
-              {PREMIUM_GRADIENT_OPTIONS.filter((item) => !HIDDEN_UNTIL_ACHIEVEMENT.has(item.mode) || premiumEntitlements.unlocked.has(item.mode as never)).map((item, index) => {
+              {PREMIUM_GRADIENT_OPTIONS.map((item, index) => {
                 const premium = premiumThemeById(item.mode)!;
                 return (
                   <ThemeRow

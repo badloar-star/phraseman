@@ -10,8 +10,7 @@ const all = (ru: string, uk: string, en: string, es: string, pt: string, vi: str
 const COPY: Readonly<Record<PremiumThemeId, ThemeCopy>> = Object.freeze({
   grad_full_olive: {
     title: all('Керамика открыта', 'Кераміку відкрито', 'Ceramic unlocked', 'Cerámica desbloqueada', 'Cerâmica desbloqueada', 'Ceramic unlocked', 'Keramik terbuka', 'Seramik açıldı', 'Ceramika odblokowana'),
-    // зачем (30.09 «ТЕМЫ ВСЕ ФРИ», координатор 24.10): шутка про покупку Plus снята — тема не продаётся; новая — когда владелец назначит достижение
-    joke: all('', '', '', '', '', '', '', '', ''),
+    joke: all('Plus куплен. Интерфейс теперь выглядит так, будто у него есть свой архитектор.', 'Plus придбано. Інтерфейс тепер виглядає так, ніби має власного архітектора.', 'Plus acquired. Your interface now looks like it has its own architect.', 'Plus comprado. Tu interfaz ahora parece tener arquitecto propio.', 'Plus comprado. Sua interface agora parece ter arquiteto próprio.', 'Đã có Plus. Giao diện giờ trông như có kiến trúc sư riêng.', 'Plus didapat. Antarmuka kini tampak punya arsitek sendiri.', 'Plus alındı. Arayüzün artık kendi mimarı varmış gibi.', 'Plus kupiony. Interfejs wygląda, jakby miał własnego architekta.'),
   },
   grad_full_ref_signal_lime: {
     title: all('Обсидиан открыт', 'Обсидіан відкрито', 'Obsidian unlocked', 'Obsidiana desbloqueada', 'Obsidiana desbloqueada', 'Obsidian unlocked', 'Obsidian terbuka', 'Obsidyen açıldı', 'Obsydian odblokowany'),
@@ -41,8 +40,7 @@ export function premiumThemeUnlockCopy(themeId: PremiumThemeId, lang: Lang): Rea
 }
 
 const REQUIREMENT: Readonly<Record<PremiumThemeId, Copy>> = Object.freeze({
-  // зачем (30.09, координатор 24.10): условие «покупка Plus» снято — тема скрыта из выбора до назначения достижения владельцем
-  grad_full_olive: all('', '', '', '', '', '', '', '', ''),
+  grad_full_olive: all('Покупка Phraseman Plus', 'Покупка Phraseman Plus', 'Purchase Phraseman Plus', 'Compra Phraseman Plus', 'Compre Phraseman Plus', 'Mua Phraseman Plus', 'Beli Phraseman Plus', 'Phraseman Plus satın al', 'Kup Phraseman Plus'),
   grad_full_ref_signal_lime: all('Последний ранг монеты', 'Останній ранг монети', 'Reach the final coin rank', 'Alcanza el último rango de moneda', 'Alcance o último rank da moeda', 'Đạt hạng xu cuối', 'Capai peringkat koin terakhir', 'Son jeton rütbesine ulaş', 'Osiągnij ostatnią rangę monety'),
   grad_full_ref_storm_violet: all('Серия 365 дней', 'Серія 365 днів', 'Reach a 365-day streak', 'Alcanza una racha de 365 días', 'Alcance uma série de 365 dias', 'Đạt chuỗi 365 ngày', 'Capai rentetan 365 hari', '365 günlük seriye ulaş', 'Osiągnij serię 365 dni'),
   // зачем (Ревизор 25.10, spire_old_names_guard): раздел называется «Пик» (D-решение 13.10), имена — как в spire_game_strings.toSpire

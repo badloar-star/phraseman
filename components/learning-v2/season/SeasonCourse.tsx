@@ -133,6 +133,18 @@ function SeasonCourse(props: SeasonCourseProps) {
     setExpanded(index);
   }, [deck.cards, shakeLocked]);
 
+  // зачем (Сверка, Android: «Назад» при открытом окне эпизода уводило в classic lessons_list; координатор 25.10): открыто окно — «Назад» закрывает окно и больше ничего.
+  // Подписка живёт только пока окно открыто (после подписки Сезона на «Назад» — вызывается первой) и возвращает true.
+  useEffect(() => {
+    if (expanded === null) return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log('[EPISODE-MODAL]', 'closed', JSON.stringify({ reason: 'hardware_back', index: expanded })); // guard-ok: причина закрытия окна
+      setExpanded(null);
+      return true;
+    });
+    return () => sub.remove();
+  }, [expanded]);
+
   // зачем (эталон chapter-exam-season.html, capX pause: «Пересдать через 59 мин»): отсчёт минут — раз в 30 с и только пока на карусели
   // выбрана карта экзамена на паузе (Performance Bible: никаких вечных таймеров)
   const [examNowMs, setExamNowMs] = useState(() => Date.now());

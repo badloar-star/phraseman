@@ -13,7 +13,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   default: { getItem: jest.fn(async () => null), setItem: jest.fn(async () => undefined), removeItem: jest.fn(async () => undefined), multiSet: jest.fn(async () => undefined), multiGet: jest.fn(async () => []), multiRemove: jest.fn(async () => undefined) },
 }));
 
-import { DEV_HOME_SCENE_FACT_STATES, getDevHomeSceneFacts, setDevHomeSceneFacts } from '../app/dev_home_scene_facts';
+import { DEV_HOME_SCENE_FACT_STATES, getDevHomeSceneFacts, getDevHomeSceneSetup, setDevHomeSceneFacts } from '../app/dev_home_scene_facts';
 import { parseDevStateParams } from '../app/dev_state_fixtures';
 import { homeScenePreviewSetup } from '../components/home/v2/scene/home_scene_preview_fixtures';
 import { HOME_SCENE_STATES, pickHomeSceneState } from '../components/home/v2/scene/home_scene_state';
@@ -38,8 +38,10 @@ describe('dev-подмена фактов «Сцены» на боевой Гл�
 
   it('подмена только в памяти: задать → прочитать → снять', () => {
     expect(getDevHomeSceneFacts()).toBeNull();
+    expect(getDevHomeSceneSetup(false)).toBeNull();
     expect(setDevHomeSceneFacts('welcome_back')).toBe(true);
     expect(getDevHomeSceneFacts()).toBe('welcome_back');
+    expect(pickHomeSceneState({ ...getDevHomeSceneSetup(false)!.input, energy: 5, offline: false }).state).toBe('welcome_back');
     expect(setDevHomeSceneFacts(null)).toBe(true);
     expect(getDevHomeSceneFacts()).toBeNull();
   });
@@ -57,7 +59,13 @@ describe('dev-подмена фактов «Сцены» на боевой Гл�
     expect(src).toContain('const special = devSetup ? null : specialLive;');
     expect(src).toContain('minutesToMidnight={devSetup?.minutesToMidnight}');
     expect(src).toContain("console.log('[DEV-HOME-FACTS] applied'");
-    // моки эталона грузятся лениво — только при подмене
-    expect(src).not.toMatch(/^import \{[^}]*homeScenePreviewSetup[^}]*\} from '\.\/home_scene_preview_fixtures'/m);
+    // зачем (Ревизор 26.10 на 360e0c457): моки эталона не должны попадать в стор-бандл — HomeScene ссылается на них только типом,
+    // require живёт в dev-модуле (в сторе он заглушка)
+    expect(src).not.toMatch(/require\(['"]\.\/home_scene_preview_fixtures['"]\)/);
+    expect(src).not.toMatch(/^import \{[^}]*\} from '\.\/home_scene_preview_fixtures'/m);
+    expect(src).toMatch(/^import type \{ HomeScenePreviewSetup \} from '\.\/home_scene_preview_fixtures';$/m);
+    expect(src).toContain('getDevHomeSceneSetup(p.plus)');
+    const dev = fs.readFileSync(path.join(__dirname, '..', 'app/dev_home_scene_facts.ts'), 'utf8');
+    expect(dev).toContain("require('../components/home/v2/scene/home_scene_preview_fixtures')");
   });
 });

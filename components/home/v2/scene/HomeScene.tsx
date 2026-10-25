@@ -37,7 +37,7 @@ import { useMyCoinRank } from '../../../../hooks/use_my_coin_rank';
 import { useSpireHomePlace } from '../../../../app/spire/spire_home_place';
 import { useTabTopBleedInset } from '../../../tab_top_bleed';
 import { noteHomeRender } from '../../../../app/home_scroll_probe';
-import { getDevHomeSceneFacts, subscribeDevHomeSceneFacts } from '../../../../app/dev_home_scene_facts';
+import { getDevHomeSceneFacts, getDevHomeSceneSetup, subscribeDevHomeSceneFacts } from '../../../../app/dev_home_scene_facts';
 import type { HomeScenePreviewSetup } from './home_scene_preview_fixtures';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
 import { HOME_SCENE_INK } from './home_scene_ink';
@@ -133,13 +133,8 @@ export default function HomeScene(p: Props) {
   // зачем (координатор 25.10, «приложение = макет» на настоящем экране): dev_state?homefacts=<герой> — факты эталона (часы, разрыв
   // заходов, история дней, прогресс урока) вместо телефона; героя выбирает та же pickHomeSceneState. В стор-сборке — заглушка (null).
   const devFactsState = useSyncExternalStore(subscribeDevHomeSceneFacts, getDevHomeSceneFacts, getDevHomeSceneFacts);
-  const devSetup = useMemo((): HomeScenePreviewSetup | null => {
-    if (!devFactsState) return null;
-    // лениво: моки эталона нужны только при подмене, обычный старт Главной за модуль не платит
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { homeScenePreviewSetup } = require('./home_scene_preview_fixtures') as typeof import('./home_scene_preview_fixtures');
-    return homeScenePreviewSetup(devFactsState, p.plus);
-  }, [devFactsState, p.plus]);
+  // моки эталона берёт сам dev-модуль (в стор-сборке он заглушка → null, моков в бандле нет)
+  const devSetup = useMemo((): HomeScenePreviewSetup | null => (devFactsState ? getDevHomeSceneSetup(p.plus) : null), [devFactsState, p.plus]);
   const hour = devSetup ? devSetup.input.hour : now.getHours();
   const todayKey = dayKeyOf(now);
   const dayCounted = p.streakToday === 'unknown' ? null : p.streakToday === 'counted';

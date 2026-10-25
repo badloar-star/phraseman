@@ -2,6 +2,9 @@
 
 Governance-ID: TG-E0469B2C9626
 Governance-ID: TG-083F870BD02C
+Governance-ID: TG-F6D17E1A6901
+Governance-ID: TG-9E1C02B886C2
+(Ревизор 26.10 на 360e0c457: require моков эталона в HomeScene тянул их в стор-бандл — перенесён в dev-модуль getDevHomeSceneSetup, в сторе заглушка)
 Status: In progress
 Owner: 1 · ЯДРО (координатор 25.10: владелец хочет «приложение = макет» на настоящем экране)
 Related epic/enabler: a06701f33 (ссылки Сверки на 16 состояний), гейт «приложение = макет»

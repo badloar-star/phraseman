@@ -46,6 +46,19 @@ export function getDevHomeSceneFacts(): DevHomeSceneFactState | null {
   return devAvailable() ? current : null;
 }
 
+/**
+ * Факты эталона для заказанного героя — тот же homeScenePreviewSetup, что у /dev_home_scene_preview; null — подмены нет.
+ * зачем (Ревизор 26.10 на 360e0c457): require моков стоял в HomeScene, и Metro клал ~10 КБ моков эталона в стор-бандл.
+ * Здесь require живёт в dev-модуле: в стор-сборке модуль подменяет заглушка, моков в бандле нет.
+ */
+export function getDevHomeSceneSetup(plus: boolean): import('../components/home/v2/scene/home_scene_preview_fixtures').HomeScenePreviewSetup | null {
+  const state = getDevHomeSceneFacts();
+  if (!state) return null;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { homeScenePreviewSetup } = require('../components/home/v2/scene/home_scene_preview_fixtures') as typeof import('../components/home/v2/scene/home_scene_preview_fixtures');
+  return homeScenePreviewSetup(state, plus);
+}
+
 export function subscribeDevHomeSceneFacts(listener: () => void): () => void {
   listeners.add(listener);
   return () => { listeners.delete(listener); };

@@ -99,8 +99,8 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     const send = require('../store_release_stubs/dev_state/dev_dialog_send_stub');
     expect(send.devDialogNextMonthStartMs(Date.UTC(2026, 9, 13))).toBe(Date.UTC(2026, 10, 1));
     const homeFacts = require('../store_release_stubs/dev_state/dev_home_scene_facts_stub');
-    expect([homeFacts.getDevHomeSceneFacts(), homeFacts.setDevHomeSceneFacts('streak_risk'), homeFacts.getDevHomeSceneFacts(), homeFacts.isDevHomeSceneFactState('streak_risk')])
-      .toEqual([null, false, null, false]); // факты «Сцены» не подменяются
+    expect([homeFacts.getDevHomeSceneFacts(), homeFacts.setDevHomeSceneFacts('streak_risk'), homeFacts.getDevHomeSceneFacts(), homeFacts.isDevHomeSceneFactState('streak_risk'), homeFacts.getDevHomeSceneSetup(false)])
+      .toEqual([null, false, null, false, null]); // факты «Сцены» не подменяются, моков эталона в сторе нет
     expect(typeof homeFacts.subscribeDevHomeSceneFacts(() => undefined)).toBe('function');
     /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
   });

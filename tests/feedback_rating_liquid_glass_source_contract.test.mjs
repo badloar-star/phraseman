@@ -29,7 +29,9 @@ const DEPENDENCY_HASHES = {
   // 25.10: номер сборки в журнале сбоев из конфигурации сборки (f31847e07, resolveAppBuildNumberV1) — путь доставки отзыва не тронут.
   'app/debug-logger.ts': 'b571e0a05e2767f4ae0ef04b4614ba4129492c4735274b12e8e19a899151f0ac',
 };
-const PROTECTED_AST = { count: 7, digest: 'd7b3c388ae552a4f7e26861d7d8cebf2a20d5cd5dff8fe768c6e90c41d494a44' };
+// 25.10 перепин по слову владельца («оценку без текста отправить нельзя», ЗАМОК ВЛАДЕЛЬЦА 25.10): изменилась ТОЛЬКО var.sendFeedback — ранний выход при отсутствии слова из 3+ букв (feedbackBlockReason) и журнал [RATING-SUBMIT];
+// путь доставки (enqueue → flush → fallback submit), согласие, payload и «Спасибо» прежние, остальные 6 защищённых узлов не менялись.
+const PROTECTED_AST = { count: 7, digest: 'a0dc17685cdf8aaad06c3d8a161e1c980567c523a144324bc9fecb2d478c4876' };
 const LEGACY_RENDER_HASHES = {
   default: '267079d88eeb0b7faf69a36280c40073803a9adfbc18439fa141c775677af3cc',
   'compact-stars': 'd62f04873bc254aa93d38de979b3c405664f4d1c11195ab219c10954a15508c0',
@@ -199,7 +201,13 @@ function createHarness({
       enqueueFeedbackEntry: async (...args) => { calls.enqueued.push(args); return enqueueResult; },
       flushFeedbackOutbox: async (...args) => { calls.flushed.push(args); },
     },
-    '../app/debug-logger': { DebugLogger: { error: (...args) => calls.errors.push(args) } },
+    // ЗАМОК ВЛАДЕЛЬЦА 25.10 («оценку без текста отправить нельзя»): карточка берёт правило из app/feedback_text_rule и подсказку из feedback_rating_copy; в харнессе — то же правило (слово из 3+ букв по trim) и заглушка текста
+    '../app/feedback_text_rule': {
+      feedbackTextAllowsSend: text => /\p{L}{3,}/u.test(text.trim()),
+      feedbackBlockReason: text => (/\p{L}{3,}/u.test(text.trim()) ? null : 'no_word'),
+    },
+    './feedback_rating_copy': { feedbackNeedWordPlaceholder: () => 'need-word-placeholder' },
+    '../app/debug-logger': { DebugLogger: { error: (...args) => calls.errors.push(args), info: () => undefined } },
     // зачем (337e0e9be, dev_dialog_feedback): карточка читает dev-флаг «отправлено» — в harness его нет, всегда false
     '../app/dev_dialog_state': { isDevDialogFeedbackSent: () => false },
   };

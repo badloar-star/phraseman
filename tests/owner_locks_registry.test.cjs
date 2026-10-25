@@ -25,6 +25,8 @@ const KNOWN_GUARDS = [
   'tests/premium_themes_contrast.test.ts',
   // 4 · ТЕМЫ 25.10 (слово владельца): условия 6 премиум-тем = пакет Codex, «Оливковая» — через Plus
   'tests/premium_theme_conditions_match_codex_package.test.ts',
+  // 4 · ТЕМЫ 25.10 (слово владельца): верх экрана цельный — без полосы под часами и вкладками над «Сценой»
+  'tests/owner_lock_whole_top_2026_10_25.test.ts',
   'tests/v2_tab_bar_liquid_glass_theme.test.cjs',
   'tests/owner_locks_spire_summit_2026_10_22.test.ts',
   'tests/owner_locks_spire_2026_10_22.test.ts',
@@ -36,6 +38,8 @@ const KNOWN_GUARDS = [
   // Learning V2 22.10: правила входного теста №10 и «пропущенное — ПРОСТО ОТКРЫТО» (прогресс v2: открыто ≠ пройдено, ничего не теряется)
   'tests/learning_v2_placement_test_v1.test.ts',
   'tests/learning_v2_course_progress_v2.test.ts',
+  // 2 · ДИЗАЙН 25.10 (слово владельца): оценку без текста отправить нельзя — слово из 3+ букв
+  'tests/owner_locks_rating_needs_text_2026_10_25.test.ts',
   'tests/owner_locks_mistakes_delete_2026_10_24.test.ts', // Learning V2 24.10: ошибки можно удалять (одна, из карточки, все) с «Вернуть»
   'tests/owner_locks_cant_speak_2026_10_25.test.ts', // Learning V2 25.10: «Не могу говорить» только по переключателю Пульта
   'tests/v2_screens_color_literals_ratchet.test.mjs',

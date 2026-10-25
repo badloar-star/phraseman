@@ -24,6 +24,9 @@ import {
   type FeedbackKind,
 } from '../app/feedback_client';
 import { enqueueFeedbackEntry, flushFeedbackOutbox } from '../app/feedback_outbox';
+// ЗАМОК ВЛАДЕЛЬЦА 25.10: «оценку без текста отправить нельзя» — правило и тексты вынесены в отдельные модули (сторож: tests/owner_locks_rating_needs_text_2026_10_25.test.ts)
+import { feedbackBlockReason, feedbackTextAllowsSend } from '../app/feedback_text_rule';
+import { feedbackNeedWordPlaceholder } from './feedback_rating_copy';
 import { type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from './v2/ShadowSurface';
@@ -95,9 +98,21 @@ export default function FeedbackRatingCard({
     // This is a lifecycle retry, not a background timer.
   }, []);
 
+  // ЗАМОК ВЛАДЕЛЬЦА 25.10: «оценку без текста отправить нельзя» — для ВСЕХ оценок, включая 5★; нужно слово из 3+ букв (feedbackTextAllowsSend). Кнопка и отправка спрашивают одну функцию.
+  const sendBlocked = !feedbackTextAllowsSend(text);
+  // зачем: после выбора звёзд поле само подсказывает, что нужно слово; без звёзд — прежний плейсхолдер экрана-хозяина
+  const inputPlaceholder = rating > 0 ? feedbackNeedWordPlaceholder(lang) : placeholder;
+
   const sendFeedback = async (): Promise<void> => {
     const message = text.trim();
-    if (state === 'sent' || (message === '' && rating === 0)) return;
+    if (state === 'sent') return;
+    // [RATING-SUBMIT]: попытка (экран, звёзды, длина — без текста и идентификаторов) и блок с причиной
+    const blockReason = feedbackBlockReason(message);
+    DebugLogger.info('[RATING-SUBMIT]', `attempt ${JSON.stringify({ screen: kind, stars: rating, len: message.length })}`);
+    if (blockReason) {
+      DebugLogger.info('[RATING-SUBMIT]', `blocked ${JSON.stringify({ screen: kind, stars: rating, len: message.length, reason: blockReason })}`);
+      return;
+    }
     hapticTap();
     const input = {
       kind, entityId, entityLabel: entityLabel ?? null, message, rating,
@@ -131,7 +146,7 @@ export default function FeedbackRatingCard({
   if (liquidGlassRate) {
     const glass = liquidGlassTokens(liquidGlassThemeId);
     const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
-    const sendDisabled = text.trim() === '' && rating === 0;
+    const sendDisabled = sendBlocked;
     const liquidBodyVisible = expanded || state === 'sent';
     return (
       <View
@@ -221,7 +236,7 @@ export default function FeedbackRatingCard({
               accessibilityLabel={title}
               value={text}
               onChangeText={setText}
-              placeholder={placeholder}
+              placeholder={inputPlaceholder}
               placeholderTextColor={glass.mutedText}
               multiline
               maxLength={2000}
@@ -325,7 +340,7 @@ export default function FeedbackRatingCard({
               accessibilityLabel={title}
               value={text}
               onChangeText={setText}
-              placeholder={placeholder}
+              placeholder={inputPlaceholder}
               placeholderTextColor={t.textGhost}
               multiline={!compactStars}
               maxLength={2000}
@@ -345,23 +360,23 @@ export default function FeedbackRatingCard({
               testID={`${testID}-send`}
               accessibilityRole="button"
               accessibilityLabel={sendLabel}
-              accessibilityState={{ disabled: text.trim() === '' && rating === 0 }}
-              disabled={text.trim() === '' && rating === 0}
+              accessibilityState={{ disabled: sendBlocked }}
+              disabled={sendBlocked}
               onPress={() => { void sendFeedback(); }}
               style={[
                 styles.sendButton,
                 compactStars ? styles.compactSendButton : null,
-                { backgroundColor: text.trim() === '' && rating === 0 ? glassFill(t.bgCard, 0.6) : t.accent }, // light-accent-ok: кнопка с текстом
+                { backgroundColor: sendBlocked ? glassFill(t.bgCard, 0.6) : t.accent }, // light-accent-ok: кнопка с текстом
               ]}
             >
               {compactStars ? (
                 <Ionicons
                   name="send"
                   size={18}
-                  color={text.trim() === '' && rating === 0 ? t.textGhost : t.textOnGold}
+                  color={sendBlocked ? t.textGhost : t.textOnGold}
                 />
               ) : (
-                <Text style={{ color: text.trim() === '' && rating === 0 ? t.textGhost : t.textOnGold, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                <Text style={{ color: sendBlocked ? t.textGhost : t.textOnGold, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
                   {sendLabel}
                 </Text>
               )}

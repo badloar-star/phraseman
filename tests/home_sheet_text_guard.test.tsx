@@ -5,7 +5,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import { Text } from 'react-native';
 
 const mockDebugError = jest.fn();
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: (...args: unknown[]) => mockDebugError(...args) } }));
@@ -14,9 +13,10 @@ import HomeSheetTextGuard from '../components/home/HomeSheetTextGuard';
 
 const TEXT_ERROR = 'Text strings must be rendered within a <Text> component.';
 let mockThrow = true;
+// зачем: в этом стенде Text из react-native не определён (Element type is invalid) — рабочий ребёнок рисует хост-элемент с testID
 function Boom(): React.ReactElement {
   if (mockThrow) throw new Error(TEXT_ERROR);
-  return <Text>ok</Text>;
+  return React.createElement('View', { testID: 'sheet-ok' });
 }
 
 describe('HomeSheetTextGuard', () => {
@@ -36,7 +36,7 @@ describe('HomeSheetTextGuard', () => {
         <Boom />
       </HomeSheetTextGuard>,
     );
-    expect(screen.queryByText('ok')).toBeNull();
+    expect(JSON.stringify(screen.toJSON())).not.toContain('sheet-ok');
     const call = warn.mock.calls.find((args) => args[0] === '[TEXT-OUTSIDE]');
     expect(call).toBeDefined();
     const payload = JSON.parse(String(call![1]));
@@ -49,10 +49,10 @@ describe('HomeSheetTextGuard', () => {
 
   it('новое открытие (resetKey) снова рисует содержимое', async () => {
     const screen = await render(<HomeSheetTextGuard name="home_poll_v2" resetKey="open"><Boom /></HomeSheetTextGuard>);
-    expect(screen.queryByText('ok')).toBeNull();
+    expect(JSON.stringify(screen.toJSON())).not.toContain('sheet-ok');
     mockThrow = false;
     await screen.rerender(<HomeSheetTextGuard name="home_poll_v2" resetKey="closed"><Boom /></HomeSheetTextGuard>);
-    expect(screen.getByText('ok')).toBeTruthy();
+    expect(JSON.stringify(screen.toJSON())).toContain('sheet-ok');
   });
 
   it('сбой снимка данных не ломает журнал', async () => {

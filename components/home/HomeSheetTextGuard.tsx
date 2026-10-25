@@ -17,20 +17,21 @@ type Props = Readonly<{
   children: React.ReactNode;
 }>;
 
-type State = Readonly<{ failed: boolean; resetKey: string }>;
+type State = Readonly<{ failed: boolean }>;
 
 const TEXT_OUTSIDE = /Text strings must be rendered within a <Text> component/;
 
-export default class HomeSheetTextGuard extends React.Component<Props, State> {
-  state: State = { failed: false, resetKey: this.props.resetKey };
+// зачем (тест 25.10: сброс через getDerivedStateFromProps не возвращал содержимое после падения): новое открытие
+// пересоздаёт предохранитель по ключу — состояние гарантированно чистое. Содержимое шторки при закрытии и так выгружается.
+export default function HomeSheetTextGuard(props: Props): React.ReactElement {
+  return <SheetTextGuardBoundary key={props.resetKey} {...props} />;
+}
 
-  static getDerivedStateFromError(): Partial<State> {
+class SheetTextGuardBoundary extends React.Component<Props, State> {
+  state: State = { failed: false };
+
+  static getDerivedStateFromError(): State {
     return { failed: true };
-  }
-
-  static getDerivedStateFromProps(props: Props, state: State): Partial<State> | null {
-    if (props.resetKey === state.resetKey) return null;
-    return { failed: false, resetKey: props.resetKey };
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo): void {

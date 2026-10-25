@@ -9,10 +9,11 @@
 // к файлам контента, которые ведёт Codex; прогресс — готовая колода (season_course_model) из уже посчитанного снимка, новых чтений Firebase нет.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, useWindowDimensions, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useIsTabPage } from '../../tab_top_bleed';
-import { useTabContentBottomPad } from '../../../hooks/use-tab-content-bottom-pad';
+import { useTabContentBottomPad, useTabPillTop } from '../../../hooks/use-tab-content-bottom-pad';
+import { seasonLayoutLog } from './season_modal_log';
 import V2Pressable from '../../v2/V2Pressable';
 import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE, screenBackTop } from '../../v2/ScreenBackButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -214,6 +215,32 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   // отступ не меньше useTabContentBottomPad (высота капсулы + зазор)
   const tabBottomPad = useTabContentBottomPad();
   const contentBottomPad = isTabPage ? Math.max(props.bottomPadding, tabBottomPad) : props.bottomPadding;
+  // зачем (владелец 25.10, iPhone 2.0.2: «Сдашь — откроется глава 2 · 12 вопросов…» видна ПОД капсулой таб-бара, хотя отступ низа уже учитывает таб-бар; координатор: СПЕРВА ЛОГИ):
+  // [SEASON-LAYOUT] at:'caption' — где подпись под каруселью В ОКНЕ против верха капсулы: низ подписи, верх капсулы, перекрытие, отступы (bottomPadding / таб-бар / итоговый), прокрутка и высота содержимого.
+  // Тот же замер при остановке прокрутки: докрученная до конца страница обязана держать подпись выше капсулы (overlapPx ≤ 0). Одна строка на смену значений; перекрытие — warn.
+  const win = useWindowDimensions();
+  const pillTop = useTabPillTop();
+  const captionRef = useRef<View>(null);
+  const scrollInfo = useRef({ y: 0, contentH: 0, viewportH: 0 });
+  const captionLogKey = useRef('');
+  const logCaption = useCallback((why: string) => {
+    captionRef.current?.measureInWindow((_x, y, _w, h) => {
+      const capsuleTopY = win.height - pillTop;
+      const bottom = y + h;
+      const overlapPx = Math.round(bottom - capsuleTopY);
+      const s = scrollInfo.current;
+      const atEnd = s.contentH > 0 && s.y + s.viewportH >= s.contentH - 1;
+      const key = [why, y, h, win.height, pillTop, s.y, s.contentH, s.viewportH].map((n) => (typeof n === 'number' ? Math.round(n) : n)).join('|');
+      if (key === captionLogKey.current) return;
+      captionLogKey.current = key;
+      const bad = overlapPx > 0 && atEnd; // под капсулой в конце прокрутки = ошибка; в начале страница ещё прокручивается и подпись может быть ниже — это не дефект
+      seasonLayoutLog(bad ? 'warn' : 'info', JSON.stringify({ at: 'caption', why, captionY: Math.round(y), captionH: Math.round(h), captionBottom: Math.round(bottom), windowH: Math.round(win.height), pillTop: Math.round(pillTop), capsuleTopY: Math.round(capsuleTopY), overlapPx, atEnd, scrollY: Math.round(s.y), contentH: Math.round(s.contentH), viewportH: Math.round(s.viewportH), bottomPadding: props.bottomPadding, tabBottomPad: Math.round(tabBottomPad), contentBottomPad: Math.round(contentBottomPad), isTabPage, verdict: bad ? 'CAPTION_UNDER_TABBAR_AT_END' : 'ok' }));
+    });
+  }, [contentBottomPad, isTabPage, pillTop, props.bottomPadding, tabBottomPad, win.height]);
+  const onPageScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    scrollInfo.current.y = e.nativeEvent.contentOffset.y;
+    onCoverScroll(e);
+  }, [onCoverScroll]);
   useEffect(() => {
     console.log('[SEASON-BOTTOM] отступ низа', JSON.stringify({ isTabPage, given: props.bottomPadding, tab: tabBottomPad, used: contentBottomPad })); // guard-ok: одна строка на смену отступа
   }, [contentBottomPad, isTabPage, props.bottomPadding, tabBottomPad]);
@@ -224,7 +251,10 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
 
   return (
     <>
-    <ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onCoverScroll} scrollEventThrottle={32}>
+    <ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onPageScroll} scrollEventThrottle={32}
+      onLayout={(e) => { scrollInfo.current.viewportH = e.nativeEvent.layout.height; }}
+      onContentSizeChange={(_w, h) => { scrollInfo.current.contentH = h; logCaption('content_size'); }}
+      onMomentumScrollEnd={() => logCaption('scroll_end')} onScrollEndDrag={() => logCaption('drag_end')}>
       <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
@@ -302,7 +332,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
         testID="season-carousel"
       />
 
-      <View style={styles.caption} testID="season-caption">
+      <View ref={captionRef} onLayout={() => logCaption('layout')} style={styles.caption} testID="season-caption">
         <Text style={[styles.captionKicker, { color: g.secondary }]}>{caption.kicker}</Text>
         {/* зачем (владелец 22.10, выбор варианта 3): на карточке только номер и звёзды — «Эпизод N» и название эпизода здесь, под каруселью */}
         <Text style={[styles.captionTitle, { color: g.text }]} numberOfLines={3}>{caption.title}</Text>

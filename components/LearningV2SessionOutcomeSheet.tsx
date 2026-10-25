@@ -45,9 +45,7 @@ interface LearningV2SessionOutcomeSheetProps {
   closeLabel?: string;
   sessionLabel?: string;
   chapterLabel?: string;
-  durationLabel?: string;
   wordsLabel?: string;
-  attemptsLabel?: string;
   onMounted?: () => void;
   /**
    * зачем (живой макет lesson-preparing-live.html, владелец утвердил 25.10): тап «Начать» не закрывает шторку, а оставляет её, пока занятие собирается —
@@ -83,9 +81,8 @@ export default function LearningV2SessionOutcomeSheet({
   closeLabel = "Закрыть", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
   sessionLabel = "Сессия", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
   chapterLabel = "Глава", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
-  durationLabel = "≈ 5 минут", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
-  wordsLabel = "4 новых слова", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
-  attemptsLabel = "3 попытки", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  // зачем (Ревизор 25.10): без русского значения по умолчанию — пустая строка не рисует плитку ни в одном языке
+  wordsLabel = "",
   onMounted,
   locked = false,
   bestStars,
@@ -197,12 +194,10 @@ export default function LearningV2SessionOutcomeSheet({
     leave(() => undefined, true);
   }, [exitSignal, leave]);
 
-  // зачем (владелец 25.10 через координатора): «≈ 5 минут» и «3 попытки» больше не передаются — плитка без значения не рисуется,
-  // чтобы не оставалась пустая стеклянная плашка; если фактов нет совсем, ряд фактов не рисуется (см. stats.length ниже)
+  // зачем (владелец 25.10 через координатора, 🔴 Ревизора): плиток «≈ 5 минут» и «3 попытки» нет совсем — ни пропсов, ни русских значений
+  // по умолчанию (они всплывали во всех языках). Остался факт слов; пустой не рисуется, без фактов нет и ряда (stats.length ниже)
   const stats = [
-    { id: "duration", testID: "learning-v2-session-modal-duration", icon: "time-outline" as const, value: durationLabel },
     { id: "words", testID: "learning-v2-session-modal-words", icon: "book-outline" as const, value: wordsLabel },
-    { id: "attempts", testID: "learning-v2-session-modal-attempts", icon: "heart-outline" as const, value: attemptsLabel },
   ].filter((stat) => typeof stat.value === "string" && stat.value.trim().length > 0);
 
   return (

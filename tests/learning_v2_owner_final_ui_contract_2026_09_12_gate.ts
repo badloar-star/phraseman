@@ -80,9 +80,10 @@ assert.match(modal, /testID="learning-v2-session-skip-intro"/);
 // Запрет «объёмной» плашки с толстым нижним краем (текстуры сняты владельцем) остаётся. Имя orbPlate в новой шторке — плоская
 // площадка под значком занятия (тон и затемнение, без обводки), поэтому запрещаем сам приём, а не имя.
 assert.doesNotMatch(modal, /borderBottomWidth:\s*5/);
-assert.match(modal, /learning-v2-session-modal-duration/);
+// зачем (владелец 25.10 через координатора, 🔴 Ревизора): плиток «≈ 5 минут» и «3 попытки» в шторке нет; факт слов остаётся
+assert.doesNotMatch(modal, /learning-v2-session-modal-duration/);
 assert.match(modal, /learning-v2-session-modal-words/);
-assert.match(modal, /learning-v2-session-modal-attempts/);
+assert.doesNotMatch(modal, /learning-v2-session-modal-attempts/);
 assert.doesNotMatch(modal, /styles\.grabber|GestureDetector/);
 assert.match(lessons, /factoryNativeLearningV2NewWordCountV1/);
 assert.doesNotMatch(lessons, /wordsLabel=\{triLang\(lang, \{ ru: "4 новых слова"/u);

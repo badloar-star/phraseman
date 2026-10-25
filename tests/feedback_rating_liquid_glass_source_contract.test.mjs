@@ -26,7 +26,8 @@ const DEPENDENCY_HASHES = {
   'hooks/use-haptics.ts': 'fbb8366e985889400c4736f097ed12532cd06e3d5b6e2a997129e776e66ab208',
   // зачем (30.09): +контракт диагностики PM-226 (DiagnosticErrorInput, [DIAG]) в efe19ae9d — только добавление, путь доставки отзыва не тронут.
   // 10.10: PM-228 (лимит журнала, 0d6609bd2) и PM-229 (c0b7e4b1e).
-  'app/debug-logger.ts': 'c674fd3f4f3670ea6754978be2045c0dbe3d11dd485b0502d2ae201ef6515d04',
+  // 25.10: номер сборки в журнале сбоев из конфигурации сборки (f31847e07, resolveAppBuildNumberV1) — путь доставки отзыва не тронут.
+  'app/debug-logger.ts': 'b571e0a05e2767f4ae0ef04b4614ba4129492c4735274b12e8e19a899151f0ac',
 };
 const PROTECTED_AST = { count: 7, digest: 'd7b3c388ae552a4f7e26861d7d8cebf2a20d5cd5dff8fe768c6e90c41d494a44' };
 const LEGACY_RENDER_HASHES = {

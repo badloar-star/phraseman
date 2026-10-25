@@ -29,8 +29,6 @@ const FORBIDDEN = [
 // Чужие зоны, где обороты ещё стоят (храповик: только вниз). Владельцы — в docs/work/copy-sweep-2026-10-25.md.
 const PENDING = {
   'components/paywall/m/paywall_m_copy.generated.ts': 4, // 2 · ДИЗАЙН — пейвол М: «серия переживёт» ru+en в двух ключах
-  'functions/src/friends_push_copy.ts': 1, // 1 · ЯДРО — пуш друзей «огонь не погаснет»
-  'functions/src/re_engage_push.ts': 1, // 1 · ЯДРО — пуш «Одна сессия сегодня»
 };
 
 function literalsOf(src) {

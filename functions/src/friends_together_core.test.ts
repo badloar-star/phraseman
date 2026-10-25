@@ -285,7 +285,7 @@ describe('friends_together_core: серия вдвоём для пуша', () =>
   });
 
   test('текст пуша: с серией — про огонь пары, без серии — прежний зов', () => {
-    expect(core.friendNudgePushCopy('Алекс', 7)).toEqual({ title: 'Алекс: серия вдвоём ждёт', body: '7 дней подряд. Одно маленькое занятие — и огонь не погаснет.' });
+    expect(core.friendNudgePushCopy('Алекс', 7)).toEqual({ title: 'Алекс: серия вдвоём ждёт', body: '7 дней подряд. Одно короткое занятие — и серия продолжается.' });
     expect(core.friendNudgePushCopy('Алекс', 22).body.startsWith('22 дня подряд')).toBe(true);
     expect(core.friendNudgePushCopy('Алекс', 1)).toEqual({ title: 'Алекс: пять минут практики?', body: 'Одно маленькое занятие.' });
     expect(core.friendNudgePushCopy('', 0).title).toBe('Friend: пять минут практики?');

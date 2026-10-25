@@ -426,15 +426,15 @@ function normLang(lang: string): CopyLang {
 // streak 3, so we keep the copy positive — the series "is waiting", grows with one session — for
 // every streak length, no «под угрозой»/«не теряй». One emoji, no extra «!».
 const STREAK_AT_RISK_COPY: Record<CopyLang, (streak: number) => Copy> = {
-  ru: (s) => ({ title: `🔥 Серия ${s} дней ждёт тебя`, body: 'Одна сессия сегодня — и серия растёт.' }),
-  uk: (s) => ({ title: `🔥 Серія ${s} днів чекає на тебе`, body: 'Одна сесія сьогодні — і серія росте.' }),
-  en: (s) => ({ title: `🔥 Your ${s}-day streak is waiting`, body: 'One session today and your streak grows.' }),
-  es: (s) => ({ title: `🔥 Tu racha de ${s} días te espera`, body: 'Una sesión hoy y tu racha crece.' }),
-  'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias te espera`, body: 'Uma sessão hoje e sua sequência cresce.' }),
-  vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày đang chờ bạn`, body: 'Một buổi hôm nay là chuỗi dài thêm.' }),
-  id: (s) => ({ title: `🔥 Seri ${s} hari menantimu`, body: 'Satu sesi hari ini, serimu bertambah.' }),
-  tr: (s) => ({ title: `🔥 ${s} günlük serin seni bekliyor`, body: 'Bugün bir oturum, serin uzar.' }),
-  pl: (s) => ({ title: `🔥 Twoja seria ${s} dni czeka`, body: 'Jedna sesja dziś i seria rośnie.' }),
+  ru: (s) => ({ title: `🔥 Серия ${s} дней ждёт тебя`, body: 'Одно занятие сегодня — и серия растёт.' }),
+  uk: (s) => ({ title: `🔥 Серія ${s} днів чекає на тебе`, body: 'Одне заняття сьогодні — і серія росте.' }),
+  en: (s) => ({ title: `🔥 Your ${s}-day streak is waiting`, body: 'One lesson today and your streak grows.' }),
+  es: (s) => ({ title: `🔥 Tu racha de ${s} días te espera`, body: 'Una lección hoy y tu racha crece.' }),
+  'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias te espera`, body: 'Uma lição hoje e sua sequência cresce.' }),
+  vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày đang chờ bạn`, body: 'Một bài hôm nay là chuỗi dài thêm.' }),
+  id: (s) => ({ title: `🔥 Rangkaian ${s} hari menantimu`, body: 'Satu pelajaran hari ini, rangkaianmu bertambah.' }),
+  tr: (s) => ({ title: `🔥 ${s} günlük serin seni bekliyor`, body: 'Bugün bir ders, serin uzar.' }),
+  pl: (s) => ({ title: `🔥 Twoja seria ${s} dni czeka`, body: 'Jedna lekcja dziś i seria rośnie.' }),
 };
 
 const INACTIVE_RETURN_COPY: Record<CopyLang, Copy> = {

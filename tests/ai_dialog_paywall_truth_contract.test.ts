@@ -57,7 +57,9 @@ describe('AI dialogue paywall truth contract', () => {
     // Вне ветки !dialogsOpenThisMonth контекст 'dialog_limit' у сценариев
     // появляться не должен. Карточка «Свободный разговор» (только Plus) — отдельный
     // вход со своим source и в счёт сценариев не идёт.
-    const scenarioLimitMentions = dialoguesCatalogue.split("context: 'dialog_limit', source: 'dialogs_catalogue'").length - 1;
+    // зачем (координатор 25.10, пейвол «М»): params входа строит dialogLimitPaywallParams — те же context/source + итог первого разговора.
+    const scenarioLimitMentions = dialoguesCatalogue.split("context: 'dialog_limit', source: 'dialogs_catalogue'").length - 1
+      + dialoguesCatalogue.split("dialogLimitPaywallParams('dialogs_catalogue')").length - 1;
     const exhaustedBranches = dialoguesCatalogue.split('if (!dialogsOpenThisMonth) {').length - 1;
     expect(exhaustedBranches).toBeGreaterThan(0);
     expect(scenarioLimitMentions).toBe(exhaustedBranches * 2); // trackAiDialogEvent + router.push

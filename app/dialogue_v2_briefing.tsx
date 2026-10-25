@@ -1,4 +1,5 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { dialogLimitPaywallParams } from './dialog_first_free_summary';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -423,7 +424,7 @@ export default function DialogueV2BriefingRoute() {
           router.push({
             pathname: '/premium_modal',
             // зачем (сторож paywall_entry_callsite_registry): source — только из PAYWALL_SOURCE_VALUES; неизвестный терял атрибуцию покупки.
-            params: { context: 'dialog_limit', source: 'ai_dialog_briefing_direct' },
+            params: dialogLimitPaywallParams('ai_dialog_briefing_direct'),
           } as never);
           return;
         }

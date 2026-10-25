@@ -14,6 +14,7 @@
  * текст-нить как фундамент. Маршрут expo-router: /ai_companion_session.
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { dialogLimitPaywallParams } from './dialog_first_free_summary';
 import {
   View,
   Text,
@@ -88,7 +89,7 @@ function AiCompanionPlusGate({ children }: { children: React.ReactNode }) {
     markNextNavigationAsReplace();
     router.replace({
       pathname: '/premium_modal',
-      params: { context: 'dialog_limit', source: 'ai_companion_direct_entry' },
+      params: dialogLimitPaywallParams('ai_companion_direct_entry'),
     } as never);
   }, [router]);
 
@@ -184,7 +185,7 @@ function AiCompanionSession() {
     markNextNavigationAsReplace();
     router.replace({
       pathname: '/premium_modal',
-      params: { context: 'dialog_limit', source: 'ai_companion_direct_entry' },
+      params: dialogLimitPaywallParams('ai_companion_direct_entry'),
     } as never);
   }, [router]);
 

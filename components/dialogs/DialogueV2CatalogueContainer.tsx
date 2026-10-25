@@ -1,4 +1,5 @@
 import { useFocusEffect, useRouter } from 'expo-router';
+import { dialogLimitPaywallParams } from '../../app/dialog_first_free_summary';
 import React, { memo, useCallback, useEffect, useMemo, useState, useRef, useSyncExternalStore } from 'react';
 import { InteractionManager, Text, View } from 'react-native';
 
@@ -171,7 +172,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sc
   const openPlus = useCallback(() => {
     router.push({
       pathname: '/premium_modal',
-      params: { context: 'dialog_limit', source: 'dialogue_v2_hub' },
+      params: dialogLimitPaywallParams('dialogue_v2_hub'),
     } as never);
   }, [router]);
   const openLessons = useCallback(() => {
@@ -182,7 +183,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sc
     if (!hasPremiumAccess) {
       router.push({
         pathname: '/premium_modal',
-        params: { context: 'dialog_limit', source: 'dialogue_v2_freeform' },
+        params: dialogLimitPaywallParams('dialogue_v2_freeform'),
       } as never);
       return;
     }

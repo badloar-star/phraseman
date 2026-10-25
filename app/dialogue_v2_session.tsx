@@ -1,4 +1,5 @@
 import { useEnergy } from '../components/EnergyContext';
+import { dialogLimitPaywallParams, recordDialogFirstFreeSummary } from './dialog_first_free_summary';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { actionToastTri, emitAppEvent } from './events';
 import * as Crypto from 'expo-crypto';
@@ -765,13 +766,22 @@ function SessionContent() {
       }));
     }
     // зачем (D1–D5): цифры итога из разбора каждого хода, а не из одной заметки ревью.
+    const sessionCorrections = learnerMessages.flatMap((message) => (
+      message.author === 'learner' && message.betterPhrasing
+        ? [{ original: message.text, corrected: message.betterPhrasing }]
+        : []
+    ));
     rememberDialogueV2SessionOutcome(serverSession.sessionId, {
       learnerTurns,
-      corrections: learnerMessages.flatMap((message) => (
-        message.author === 'learner' && message.betterPhrasing
-          ? [{ original: message.text, corrected: message.betterPhrasing }]
-          : []
-      )),
+      corrections: sessionCorrections,
+    });
+    // зачем (координатор 25.10, пейвол «М»): итог ПЕРВОГО бесплатного разговора — только на телефоне, для экрана Plus при dialog_limit.
+    void recordDialogFirstFreeSummary({
+      freeTier,
+      startedAtMs: firstFrameAtRef.current,
+      endedAtMs: Date.now(),
+      learnerTurns,
+      corrections: sessionCorrections,
     });
     // зачем (координатор 12.10, dialogs-003): «пройден» = диалог закончил собеседник (на экране итога это «Диалог пройден») и ученик сказал хотя бы одну реплику;
     // отметка мгновенная (память + хаб в тот же кадр), диск догоняет фоном. Остановка вручную или по лимиту прохождением не считается.
@@ -902,7 +912,7 @@ function SessionContent() {
         : null;
   const openPlus = () => nav.push({
     pathname: '/premium_modal',
-    params: { context: 'dialog_limit', source: 'dialogue_v2_session' },
+    params: dialogLimitPaywallParams('dialogue_v2_session'),
   } as never);
   // зачем (Макеты / координатор 15.10): голосовая стена D165 (3 голосовых в день) открывала dialog_limit — там текст про месячный
   // лимит ОТВЕТОВ («… ответов в месяц»), человек не понимал, что кончился именно голос. Готовый одобренный контекст ai_voice_input

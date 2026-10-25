@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { dialogLimitPaywallParams } from './dialog_first_free_summary';
 import { DebugLogger } from './debug-logger';
 import {
   View,
@@ -444,7 +445,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_dialog_daily_limit' });
     router.push({
       pathname: '/premium_modal',
-      params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' },
+      params: dialogLimitPaywallParams('ai_dialog_daily_limit'),
     } as never);
   }, [router]);
 

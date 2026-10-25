@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { dialogLimitPaywallParams } from '../app/dialog_first_free_summary';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «French AI-dialog gate»)
@@ -392,7 +393,7 @@ function DialogsTabContentBody({
           reason: 'monthly_limit',
         });
         void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_catalogue' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
+        router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogs_catalogue') } as never);
         return;
       }
       // Тап и статус плитки обязаны спрашивать ОДНО правило, иначе плитка
@@ -429,7 +430,7 @@ function DialogsTabContentBody({
           reason: 'monthly_limit',
         });
         void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_catalogue' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
+        router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogs_catalogue') } as never);
         return;
       }
       /**
@@ -732,7 +733,7 @@ function DialogsTabContentBody({
             hapticTap();
             if (!hasPremiumAccess) {
               void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_companion' });
-              router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_companion' } } as never);
+              router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogs_companion') } as never);
               return;
             }
             // зачем без отдельного события: ai_companion_opened никогда не было в

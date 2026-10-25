@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { dialogLimitPaywallParams } from './dialog_first_free_summary';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
@@ -349,7 +350,7 @@ export default function DialogueV2MemoryRoute() {
           <View style={{ flex: 1, padding: V2.screenPad, justifyContent: 'center', gap: V2.gap }}>
             <Text style={{ color: p.text, ...V2_TYPE.section, textAlign: 'center' }}>{copy.plusRequired}</Text>
             <PressableScale
-              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogue_v2_memory' } } as never)}
+              onPress={() => router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogue_v2_memory') } as never)}
               accessibilityRole="button"
               style={{ minHeight: V2.cta.height, borderRadius: V2.cta.radius, backgroundColor: p.cta, alignItems: 'center', justifyContent: 'center' }}
             >

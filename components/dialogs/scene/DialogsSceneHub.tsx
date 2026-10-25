@@ -9,6 +9,7 @@
 // Нет каталога для сцены (язык без проверенных диалогов) — рисуется прежняя шапка из пропса `fallback`.
 // ═══════════════════════════════════════════════════════════════════════════
 import { useRouter } from 'expo-router';
+import { dialogLimitPaywallParams } from '../../../app/dialog_first_free_summary';
 import React, { memo, useCallback } from 'react';
 import { View } from 'react-native';
 
@@ -47,7 +48,7 @@ function DialogsSceneHub({ fallback }: Props) {
   }, [router, studyTarget]);
 
   const openPlus = useCallback(() => {
-    router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogue_v2_hub_scene' } } as never);
+    router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogue_v2_hub_scene') } as never);
   }, [router]);
 
   const act = useCallback((state: DialogsSceneState, via: 'cta' | 'round') => {

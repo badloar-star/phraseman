@@ -63,7 +63,8 @@ describe('D187: no exit-intent offer — the paywall closes on the first tap', (
     const tapStart = dialog.indexOf('const openDialogPaywall = useCallback(() => {');
     expect(tapStart).toBeGreaterThan(-1);
     const tapBody = dialog.slice(tapStart, dialog.indexOf('}, [router]);', tapStart));
-    expect(tapBody).toContain("params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' }");
+    // зачем (координатор 25.10, пейвол «М»): params входа строит dialogLimitPaywallParams — те же context/source + итог первого разговора.
+    expect(tapBody).toContain("params: dialogLimitPaywallParams('ai_dialog_daily_limit')");
     // единственный переход на пейвол лимита в сессии диалога — внутри обработчика тапа
     expect(dialog.split("context: 'dialog_limit'").length - 1).toBe(tapBody.split("context: 'dialog_limit'").length - 1);
     const companion = readPaywallScreen('app/ai_companion_session.tsx').replace(/\r\n/g, '\n');

@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { dialogLimitPaywallParams } from './dialog_first_free_summary';
 import NetInfo from '@react-native-community/netinfo';
 import * as Crypto from 'expo-crypto';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -318,7 +319,7 @@ function DialogueV2FreeformContent() {
         // ref, а не router в зависимостях: от startCurrentSession зависит эффект старта — новая ссылка перезапустила бы сессию
         routerRef.current.replace({
           pathname: '/premium_modal',
-          params: { context: 'dialog_limit', source: 'dialogue_v2_freeform_server' },
+          params: dialogLimitPaywallParams('dialogue_v2_freeform_server'),
         } as never);
       } else if (isFreeformDailyCap(error)) {
         // зачем: до завтра сервер ответит тем же — тихие повторы и уход в хаб бессмысленны, показываем «на сегодня всё».
@@ -615,7 +616,7 @@ function DialogueV2FreeformContent() {
         onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         icon="lock-closed" // зачем (R1_DIFF_ONE_FIX, dialogs-gap-010): в образце замок заливной, не контурный
         title={labels.plus}
-        action={{ label: labels.openPlus, onPress: () => router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogue_v2_freeform' } } as never) }}
+        action={{ label: labels.openPlus, onPress: () => router.push({ pathname: '/premium_modal', params: dialogLimitPaywallParams('dialogue_v2_freeform') } as never) }}
       />
     );
   }

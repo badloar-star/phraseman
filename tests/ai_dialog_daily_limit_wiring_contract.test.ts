@@ -29,7 +29,8 @@ describe('ИИ-диалог — месячный лимит обычного а�
     expect(session).toContain('const handleDailyLimitReached = useCallback((observation?: AiDialogQuotaObservation | null) => {');
     expect(session).toContain('void markAiDialogDailyQuotaExhausted(studyTarget, accountStableId, observation);');
     expect(session).toContain('handleDailyLimitReached(quotaObservationFromDialogError(error));');
-    expect(session).toContain("params: { context: 'dialog_limit', source: 'ai_dialog_daily_limit' }");
+    // зачем (координатор 25.10, пейвол «М»): params входа строит dialogLimitPaywallParams — те же context/source + итог первого разговора.
+    expect(session).toContain("params: dialogLimitPaywallParams('ai_dialog_daily_limit')");
     expect(session.match(/errorKind === 'free_limit' && !hasPremiumAccess/g)).toHaveLength(2);
     expect(session.match(/recordAiDialogDailyQuotaFromServer\(studyTarget, accountStableId, quotaObservation\)/g)).toHaveLength(2);
     expect(session).toContain("reason: 'monthly_limit'");
@@ -90,7 +91,7 @@ describe('ИИ-диалог — месячный лимит обычного а�
     expect(catalogue.match(/!dialogsOpenThisMonth \|\| !unlocked \? 'locked'/g)).toHaveLength(2);
     expect(catalogue).not.toContain("context: 'dialog_locked_level', source: 'dialogs_catalogue'");
     expect(catalogue.match(/showGlassAlert\(dialogLockedLabel\(scenario, lang\)\)/g)).toHaveLength(2);
-    expect(catalogue).toContain("params: { context: 'dialog_limit', source: 'dialogs_catalogue' }");
+    expect(catalogue).toContain("params: dialogLimitPaywallParams('dialogs_catalogue')");
   });
 
   test('сервер: месячный кап бесплатных ответов, полный отказ только при freeMonthlyReplies=0', () => {

@@ -30,8 +30,8 @@ describe('«не засчитано»: проводка блока', () => {
 
   it('курс V2: «ты» вместо «вы» в неверном вердикте (ru/uk/tr)', () => {
     const src = read('modules/learning-v2/modes/mode_feedback_v1.tsx');
-    expect(src).toContain('ru: "Попробуй ещё раз."');
-    expect(src).toContain('uk: "Спробуй ще раз."');
+    expect(src).toContain('ru: "Не то. Попробуй ещё раз"');
+    expect(src).toContain('uk: "Не те. Спробуй ще раз"');
     expect(src).toContain('tr: "Tekrar dene."');
     expect(src).not.toContain('ru: "Попробуйте');
     expect(src).not.toContain('uk: "Спробуйте');

@@ -81,7 +81,7 @@ test("S01 choice feedback keeps correct confirmation brief and resolves exact au
   });
   expect(resolvedCorrect).toEqual({
     tone: "correct",
-    text: "Верно.",
+    text: "Верно!",
     authored: false,
     responseId: null,
     analysis: null,
@@ -197,7 +197,7 @@ test.each([
     orderedResponseIds: ["tile-is", "tile-late"],
   })).toEqual({
     tone: "wrong",
-    text: "Попробуй ещё раз.",
+    text: "Не то. Попробуй ещё раз",
     authored: false,
     responseId: null,
     analysis: null,
@@ -239,7 +239,7 @@ test.each([
     orderedResponseIds: ["tile-I", "tile-am", "tile-ready"],
   })).toEqual({
     tone: "correct",
-    text: "Верно.",
+    text: "Верно!",
     authored: false,
     responseId: null,
     analysis: null,
@@ -296,7 +296,7 @@ test("S01 builder and dictation bind :tile:dN feedback to generated runtime tile
     });
     expect(correctFeedback).toEqual({
       tone: "correct",
-      text: "Правильно.",
+      text: "Правильно!",
       authored: false,
       responseId: null,
       analysis: null,
@@ -325,7 +325,7 @@ test.each([
 
   expect(resolved).toEqual({
     tone: "correct",
-    text: interfaceLocale === "ru" ? "Верно." : "Правильно.",
+    text: interfaceLocale === "ru" ? "Верно!" : "Правильно!",
     authored: false,
     responseId: null,
     analysis: null,
@@ -360,7 +360,7 @@ test("ambiguous duplicate feedback rows fail closed to generic wrong feedback", 
     orderedResponseIds: [],
   })).toEqual({
     tone: "wrong",
-    text: "Попробуй ещё раз.",
+    text: "Не то. Попробуй ещё раз",
     authored: false,
     responseId: null,
     analysis: null,

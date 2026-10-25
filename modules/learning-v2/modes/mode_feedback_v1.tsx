@@ -31,8 +31,8 @@ function diagnosticsFromRow(row: LearningV2LearnerModeChoiceFeedbackV1 | undefin
 }
 
 const CORRECT_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
-  ru: "Верно.",
-  uk: "Правильно.",
+  ru: "Верно!",
+  uk: "Правильно!",
   en: "Correct.",
   es: "Correcto.",
   "pt-BR": "Correto.",
@@ -44,8 +44,9 @@ const CORRECT_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, stri
 
 const WRONG_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
   // зачем (координатор 15.10): приложение на «ты» — было «Попробуйте…» / «Спробуйте…» / «Tekrar deneyin.»
-  ru: "Попробуй ещё раз.",
-  uk: "Спробуй ще раз.",
+  // зачем (Переводчик 4a04ededa): «Не то» сразу говорит, что ответ неверный, «попробуй ещё раз» — что делать дальше
+  ru: "Не то. Попробуй ещё раз",
+  uk: "Не те. Спробуй ще раз",
   en: "Try again.",
   es: "Inténtalo de nuevo.",
   "pt-BR": "Tente novamente.",

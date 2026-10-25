@@ -257,10 +257,11 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   // зачем: тень на внешнем слое, клип кадра по скруглению — на внутреннем (overflow:hidden на контейнере с boxShadow режет тень).
   heroShadow: { marginTop: 14, borderRadius: 18, backgroundColor: g.opaqueControl },
   hero: { aspectRatio: 16 / 9, borderRadius: 18, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
-  play: { width: 58, height: 58, borderRadius: 29, alignItems: 'center', justifyContent: 'center', backgroundColor: g.mediaScrim },
-  duration: { position: 'absolute', right: 8, bottom: 10, paddingHorizontal: 7, minHeight: 22, borderRadius: 6, justifyContent: 'center', backgroundColor: g.mediaScrim },
+  // зачем (Темы 25.10): белый mediaInk поверх кадра на mediaScrim давал 3,36 на светлом кадре (87 из 174) — сильный скрим темы под значком, длительностью и дорожкой → 6,68
+  play: { width: 58, height: 58, borderRadius: 29, alignItems: 'center', justifyContent: 'center', backgroundColor: g.scrimStrong },
+  duration: { position: 'absolute', right: 8, bottom: 10, paddingHorizontal: 7, minHeight: 22, borderRadius: 6, justifyContent: 'center', backgroundColor: g.scrimStrong },
   durationText: { fontSize: 13, lineHeight: 17, fontWeight: '600', fontVariant: ['tabular-nums'] },
-  progressTrack: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, backgroundColor: g.mediaScrim },
+  progressTrack: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 3, backgroundColor: g.scrimStrong },
   progressFill: { position: 'absolute', left: 0, top: 0, bottom: 0 },
   title: { marginTop: 16, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
   metaRow: { marginTop: 8, flexDirection: 'row', alignItems: 'center', gap: 18, flexWrap: 'wrap' },

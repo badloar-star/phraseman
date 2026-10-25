@@ -18,7 +18,8 @@ describe('аудит Карточек', () => {
     const src = read('app/flashcards/CollectionListView.tsx');
     expect(src).toContain('renderLeftActions={renderSwipeDeleteAction}');
     expect(src).toContain('direction !== SwipeDirection.RIGHT');
-    expect(src).toContain('backgroundColor: LV2_BAD');
+    // Темы 25.10: красная зона — пара темы dangerFill/dangerInk (замер контраста Карточек), а не постоянный LV2_BAD
+    expect(src).toContain('backgroundColor: g.dangerFill');
   });
   it('#11 лимит Free считается по языку набора', () => {
     expect(read('app/flashcards_collection.tsx')).toContain('savedCardsForPackLanguage.length >= FREE_SAVED_CARD_LIMIT');

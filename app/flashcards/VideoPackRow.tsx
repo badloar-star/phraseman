@@ -191,8 +191,9 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
                   <Text style={[styles.durationText, { color: g.mediaInk }]}>{duration}</Text>
                 </View>
               ) : null}
+              {/* зачем (Темы 25.10): дорожка прогресса на кадре — сильный скрим темы, белая заливка читается на светлом кадре */}
               {progress > 0 ? (
-                <View style={[styles.largeProgress, { backgroundColor: g.mediaScrim }]} pointerEvents="none">
+                <View style={[styles.largeProgress, { backgroundColor: g.scrimStrong }]} pointerEvents="none">
                   <View style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${Math.round(progress * 100)}%`, backgroundColor: g.mediaInk }} />
                 </View>
               ) : null}

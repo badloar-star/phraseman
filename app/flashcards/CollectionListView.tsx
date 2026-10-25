@@ -23,7 +23,6 @@ import { FlowText } from '../../components/text-integrity';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens, type GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { PlateFill, actionBoxShadow, plateBoxShadow, raisedBoxShadow } from '../../components/v2/ShadowSurface';
-import { LV2_BAD } from '../../components/learning-v2/LearningV2Glass';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import PressableHybrid from '../../components/PressableHybrid';
 import { LUM } from '../../constants/motionHybrid';
@@ -379,19 +378,21 @@ export default function CollectionListView({
           width: 96,
           marginRight: 12,
           borderRadius: 20,
-          backgroundColor: LV2_BAD, // зачем (замечание владельца 10.10): красный удаления — семантический токен, не литерал
+          // зачем (Темы 25.10, docs/work/cards-dialogs-contrast-2026-10-25.md): красный удаления — пара темы dangerFill/dangerInk (≥ 4,5 во всех 174 сочетаниях);
+          // прежний постоянный красный с белой подписью давал 2,77 во всех темах
+          backgroundColor: g.dangerFill,
           alignItems: 'center',
           justifyContent: 'center',
           alignSelf: 'stretch',
         }}
       >
-        <Ionicons name="trash-outline" size={24} color={g.mediaInk} />
-        <Text style={{ color: g.mediaInk, fontSize: f.caption, fontWeight: '700', marginTop: 4 }}>
+        <Ionicons name="trash-outline" size={24} color={g.dangerInk} />
+        <Text style={{ color: g.dangerInk, fontSize: f.caption, fontWeight: '700', marginTop: 4 }}>
           {deleteLabel}
         </Text>
       </View>
     ),
-    [f.caption, deleteLabel, g.mediaInk],
+    [f.caption, deleteLabel, g.dangerFill, g.dangerInk],
   );
 
   const reduceMotion = useReduceMotion();

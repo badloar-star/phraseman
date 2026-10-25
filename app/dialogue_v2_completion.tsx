@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BackHandler, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -407,17 +407,26 @@ export default function DialogueV2CompletionRoute() {
   // зачем (аудит «назад» 26.10, B1: правило владельца «назад» = кнопка экрана): ✕ ведёт к Диалогам, а общий обработчик Android уводил на
   // Главную (экран вне реестра разделов → история сброшена). Экран сам владеет «назад» (navigation_back SCREEN_OWNED_ANDROID_BACK_PATHS);
   // открытое окно энергии закрывает «назад» само (Modal onRequestClose) и сюда не доходит. Повтор нажатия во время перехода — пропуск.
+  // зачем (Ревизор 26.10 по bdd4ece38): обработчик живёт только пока экран в фокусе — открытый поверх пейвол / следующий экран сам решает
+  // «назад»; флаг ухода сбрасывается при фокусе и через 1 с, если переход не случился, иначе все следующие «назад» молча терялись.
   const backLeavingRef = useRef(false);
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
+    backLeavingRef.current = false;
+    let reset: ReturnType<typeof setTimeout> | null = null;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (backLeavingRef.current) { console.log('[DIALOG-BACK] hardware back skip reason=already_leaving'); return true; } // guard-ok: ранний выход — повтор
       backLeavingRef.current = true;
       console.log('[DIALOG-BACK] hardware back → как ✕: к Диалогам'); // guard-ok: одна строка на выход
       safeRouterBack(router, '/ai_dialog_home' as never);
+      if (reset) clearTimeout(reset);
+      reset = setTimeout(() => {
+        if (backLeavingRef.current) console.log('[DIALOG-BACK] leaving flag reset reason=still_on_screen_after_1s'); // guard-ok: переход не случился — снова принимаем «назад»
+        backLeavingRef.current = false;
+      }, 1000);
       return true;
     });
-    return () => sub.remove();
-  }, [router]);
+    return () => { sub.remove(); if (reset) clearTimeout(reset); };
+  }, [router]));
   const again = () => {
     // зачем ([DIALOG-REPEAT], Сверка 15.10): «Ещё раз» молча ничего не делал без сцены и на двойной тап — каждый выход с причиной.
     // Энергия и месячная квота Free проверяются на брифинге при «Начать» (там же пейвол dialog_limit), здесь только переход.

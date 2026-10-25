@@ -20,6 +20,13 @@ describe('итог диалога: Android «назад» = ✕', () => {
     expect(handler).toContain("safeRouterBack(router, '/ai_dialog_home' as never);");
     expect(handler).toContain('return true;');
     expect(handler).toContain('[DIALOG-BACK] hardware back skip reason=already_leaving');
-    expect(screen).toContain('return () => sub.remove();');
+    expect(screen).toContain('return () => { sub.remove(); if (reset) clearTimeout(reset); };');
+  });
+
+  it('Ревизор 26.10: обработчик только пока экран в фокусе, флаг ухода сбрасывается при фокусе и через 1 с', () => {
+    expect(screen).toMatch(/useFocusEffect\(useCallback\(\(\) => \{\n\s+backLeavingRef\.current = false;[\s\S]*?BackHandler\.addEventListener\('hardwareBackPress'/);
+    expect(screen).toContain('[DIALOG-BACK] leaving flag reset reason=still_on_screen_after_1s');
+    expect(screen).toMatch(/\}, 1000\);/);
+    expect(screen).not.toMatch(/useEffect\(\(\) => \{\n\s+const sub = BackHandler/);
   });
 });

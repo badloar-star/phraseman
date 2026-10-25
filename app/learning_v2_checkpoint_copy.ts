@@ -51,8 +51,8 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
         pl: 'sprawdzian',
       })}`,
     entryBody: triLang(lang, {
-      ru: 'Проверим, что закрепилось. Подсказок не будет — разбор в конце.',
-      uk: 'Перевіримо, що закріпилося. Підказок не буде — розбір наприкінці.',
+      ru: 'Проверим, что осело в голове. Подсказок не будет, разбор — в конце',
+      uk: 'Перевіримо, що осіло в голові. Підказок не буде, розбір — наприкінці',
       en: "Let's check what stuck. No hints — the review comes at the end.",
       es: 'Veamos qué se ha asentado. Sin pistas: el repaso viene al final.',
       'pt-BR': 'Vamos ver o que ficou. Sem dicas: a revisão vem no final.',
@@ -73,8 +73,8 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
       pl: 'Egzamin końcowy',
     }),
     finalBody: triLang(lang, {
-      ru: 'Весь материал урока. Спокойно, времени сколько нужно.',
-      uk: 'Увесь матеріал уроку. Спокійно, часу скільки треба.',
+      ru: 'Весь урок целиком. Без спешки — время не ограничено',
+      uk: 'Увесь урок цілком. Без поспіху — час не обмежений',
       en: "The whole lesson's material. Take your time, no rush.",
       es: 'Todo el material de la lección. Con calma, sin prisa.',
       'pt-BR': 'Todo o conteúdo da lição. Com calma, sem pressa.',
@@ -161,8 +161,8 @@ export function learningV2CheckpointCopy(lang: Lang): LearningV2CheckpointCopy {
       pl: 'Warto powtórzyć',
     }),
     done: triLang(lang, {
-      ru: 'Глава закрыта',
-      uk: 'Розділ закрито',
+      ru: 'Глава закрыта!',
+      uk: 'Розділ закрито!',
       en: 'Chapter complete',
       es: 'Capítulo cerrado',
       'pt-BR': 'Capítulo concluído',

@@ -69,3 +69,8 @@ Outcome: карта токенов и контраст во всех 174 соч�
 Governance-ID: TG-EB452124A08E
 
 Outcome: перемерить шапку «Ты на 3-м уроке» пейвола М в 174 сочетаниях по всем краям её градиента (акцент 30 % → плашка, как у выбранного плана) и взять худший край; проверить, что в замере контекстных окон градиентные подложки тоже меряются по всем краям. Scope: scripts/paywall_m_contrast_measure.ts, отчёт docs/work/paywall-m-theme-token-map-2026-10-25.md; код приложения не меняется. Architecture: без изменений, только модель подложки в скрипте. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert коммита.
+
+## Продолжение: перемер 12 особых сцен Главной и кнопки «Готовим занятие…» (координатор 25.10)
+Governance-ID: TG-F0D751ADFED9
+
+Outcome: после коммитов Моментов e3b3c313e, 3a42a7e8f, a796ac60e, fdd62974d и d6dec448b перемерить во всех 174 сочетаниях надзаголовок (белый), заголовок, подпись, кнопку сцены и иконку на арте сцены — по самой светлой зоне под текстом. Scope: scripts/home_scene_special_contrast_measure.ts и отчёт docs/work/home-scene-special-contrast-2026-10-25.md; код сцены не меняется. Architecture: без изменений, модель фона в скрипте сверяется с HomeSceneStage. Security and privacy: данных не касается. Technical debt: нет. Verification: прогон скрипта через tsx. Rollback: git revert коммита.

@@ -22,6 +22,7 @@ import { useScaledTextStyles } from '../../../../hooks/useLineScale';
 import { useEnergyCountdown } from '../../../EnergyContext';
 import { ThemedArtLayers } from '../../../theme/ThemedArtLayers';
 import V2Pressable from '../../../v2/V2Pressable';
+import { colorWithAlpha } from '../../../v2/plateAlpha';
 import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
 import { useAfterFirstFrame } from '../../../../hooks/use-after-first-frame';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
@@ -220,7 +221,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             style={s.cta}
           >
             {/* зачем (живой макет lesson-preparing-live.html, владелец 25.10): обычно занятие уже собрано — кнопка не меняется; в крайнем случае (> 0,35 с) кольцо хода, «Готовим занятие…», мягкая заливка. Прежнее приглушение до 72 % убрано */}
-            <LessonPrepCtaBody source="home" lang={lang} label={copy.cta} ink="#121318" fillColor="rgba(18,19,24,0.09)" idleIcon={<Ionicons name="play" size={18} color="#121318" />} labelStyle={s.ctaText} testID="home-scene-cta-prep" />
+            <LessonPrepCtaBody source="home" lang={lang} label={copy.cta} ink={CTA_INK} fillColor={CTA_PREP_FILL} idleIcon={<Ionicons name="play" size={18} color={CTA_INK} />} labelStyle={s.ctaText} testID="home-scene-cta-prep" />
           </V2Pressable>
         ) : null}
         {chips.length > 0 ? (
@@ -282,3 +283,7 @@ const baseStyles = StyleSheet.create({
   note: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17, marginTop: 12 },
   skel: { borderRadius: 8, backgroundColor: 'rgba(255,255,255,0.18)' },
 });
+
+// зачем (ратчет цветовых литералов, Ревизор 25.10): тёмный текст на белой кнопке сцены задан ОДИН раз — в ctaText; значок и мягкая заливка хода «Готовим занятие…» берут тот же цвет оттуда, а не новыми литералами
+const CTA_INK = String(StyleSheet.flatten(s.ctaText).color);
+const CTA_PREP_FILL = colorWithAlpha(CTA_INK, 0.09);

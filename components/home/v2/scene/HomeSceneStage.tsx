@@ -11,6 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
 import React, { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
@@ -104,6 +105,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const warmTone = homeSceneWarmTone(useShadowGlass().accent).flame;
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
+  const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
+  const glowLoggedRef = useRef(false);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
   const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;
   // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия
@@ -125,12 +128,14 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         console.log('[HOME-FIT]', JSON.stringify({ planned: stageH, actual: Math.round(e.nativeEvent.layout.height), windowH, windowW, pillTop, fontScale, title: copy.title })); // guard-ok: одна строка на смену высоты
         // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, «верх цельный»; координатор: полоса у владельца на Главной в 7:56 — первый кадр или возврат на вкладку?): когда сцена встала,
         // от какой высоты экрана она красит верх, каким цветом и готова ли (pending — скелет). Мс — от загрузки модуля сцены.
+        // зачем (координатор 25.10, 2.0.3: «фон без пустоты на холодном старте»; сперва логи): когда сцена впервые встала и чем нарисован её фон
+        if (!firstLayoutLoggedRef.current) { firstLayoutLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'stage_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'native_gradient', sceneReady: !pending, state, sceneTop: tokens.sceneTop })); } // guard-ok: одна строка на монтирование
         console.log('[TOP-BAND]', JSON.stringify({ at: 'home_scene_stage_layout', msSinceModule: Math.round(Date.now() - HOME_STAGE_MODULE_AT), sceneReady: !pending, state, topInset: Math.round(topInset), y: Math.round(e.nativeEvent.layout.y), sceneTop: tokens.sceneTop })); // guard-ok: одна строка на смену раскладки
       }}
     >
       <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
       <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
-      <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
+      <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
         <Defs>
           <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
             {/* зачем (эталон home-scene-states.html): вечером справа сверху — тёплый свет eveningGlow, угли снизу слева — sceneEmber */}

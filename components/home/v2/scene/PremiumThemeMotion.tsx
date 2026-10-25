@@ -3,6 +3,7 @@ import React, { memo, useEffect, useMemo, useRef, useState, useSyncExternalStore
 import { StyleSheet, View } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
 import WebView from 'react-native-webview';
+import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
 
 import {
   premiumThemePackRevision,
@@ -185,6 +186,8 @@ export const PremiumThemeMotion = memo(function PremiumThemeMotion({ themeId, wi
           loadedRef.current = true;
           webRef.current?.injectJavaScript(premiumMotionSetRunningScript(runningRef.current));
           console.log(THEME_MOTION, 'loaded', JSON.stringify({ themeId, kind, engine, running: runningRef.current })); // guard-ok: журнал живого фона
+          // зачем (координатор 25.10, первый кадр Главной): сколько ждали живое движение премиум-темы от старта JS
+          console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'premium_motion_loaded', msSinceJsEntry: msSinceJsEntry(), themeId, engine })); // guard-ok: одна строка на загрузку
         }}
         onMessage={(event) => {
           let data: { t?: unknown; fps?: unknown; speed?: unknown } | null = null;

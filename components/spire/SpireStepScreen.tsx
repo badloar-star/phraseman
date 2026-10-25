@@ -26,6 +26,8 @@ import SpireCountdownOverlay from './SpireCountdownOverlay';
 import SpireExitSheet from './SpireExitSheet';
 import SpireTaskView from './SpireTaskView';
 import SpireTimerRing from './SpireTimerRing';
+import SpireHeartsRow from './SpireHeartsRow';
+import type { SpireStreakHeartView } from '../../app/spire/use_spire_streak_heart';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireText } from './spire_strings';
@@ -44,24 +46,14 @@ type Props = Readonly<{
   onAbort: (reason: 'no_energy' | 'cancelled') => void;
 }>;
 
-function Hearts({ lang, hearts }: Readonly<{ lang: Lang; hearts: number }>) {
-  const p = useSpirePalette(); const sh = useSpireShadow();
-  return (
-    <View style={[s.hearts, { backgroundColor: p.control }, sh.nested]} accessible accessibilityLabel={spireGameText(lang, 'hearts', { n: hearts })}>
-      {Array.from({ length: SPIRE_STEP_MAX_HEARTS }, (_, i) => (
-        // guard-ok: ровно 3 неподвижных сердца, порядок не меняется
-        <Ionicons key={`heart-${i}`} name="heart" size={18} color={i < hearts ? p.text : p.textMuted} style={i < hearts ? null : s.heartOff} />
-      ))}
-    </View>
-  );
-}
-
 /** Всё, что нужно вёрстке ступени; раннер собирает это из своего состояния, DEV-превью — из моков. */
 export type SpireStepLayoutProps = Readonly<{
   lang: Lang;
   ctx: SpireStepSession['ctx'];
   budgetMs: number;
   hearts: number;
+  /** «Сердечко за серию» (флаг spire_streak_heart); нет — прежние три сердца. */
+  streakHeart?: SpireStreakHeartView | null;
   clock: SpireClock;
   paused: boolean;
   preparing: boolean;
@@ -112,7 +104,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{`${spireGameText(lang, 'step')} ${ctx.stepInFloor + 1}`}</Text>
           <Text style={[s.sub, { color: p.textSecondary }]}>{`${spireText(lang, 'floor')} ${ctx.floor} · ${spireTierName(ctx.tier, lang)}`}</Text>
         </View>
-        <Hearts lang={lang} hearts={hearts} />
+        <SpireHeartsRow lang={lang} hearts={hearts} streak={props.streakHeart ?? null} />
         {/* зачем (spire-009, вердикт Макетов c0cd6e2ae, координатор 18.10): в образце (spire.html, stepHead) шапка ступени — заголовок и сердца, энергии справа нет; «⚡ 2» убрана. Пилюля остаётся на главной Шпиля, проп showEnergy сохранён для вызовов */}
       </View>
       <ScreenBackButton screen="spire_step" testID="spire-step-back" accessibilityLabel={spireText(lang, 'back')} onPress={props.onBack} />
@@ -232,6 +224,7 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
       ctx={ctx}
       budgetMs={pick.plan.budgetMs}
       hearts={runner.state.hearts}
+      streakHeart={runner.streakHeart}
       clock={runner.clock}
       paused={paused}
       preparing={runner.phase === 'charging' || runner.phase === 'countdown'}
@@ -329,8 +322,6 @@ const s = StyleSheet.create({
   headText: { flex: 1, minWidth: 0 },
   title: { fontSize: 20, lineHeight: 25, fontWeight: '700' },
   sub: { fontSize: 16, lineHeight: 20, marginTop: 2 },
-  hearts: { height: 37, borderRadius: 19, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  heartOff: { opacity: 0.5 },
   scroll: { flex: 1 },
   content: { paddingHorizontal: V2.screenPad },
   counterBar: { paddingTop: 8, alignItems: 'center' },

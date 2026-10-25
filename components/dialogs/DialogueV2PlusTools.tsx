@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   tile: { height: 58, borderRadius: 20, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
   text: { flex: 1, minWidth: 0 },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  sub: { fontSize: 13, lineHeight: 16, fontWeight: '600' },
+  sub: { fontSize: 13, lineHeight: 17, fontWeight: '600' }, // зачем (шкала V2_TYPE 13/17, храповик typography_store_surface 25.10): было lineHeight 16
   right: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   plus: { height: 22, paddingHorizontal: 8, borderRadius: 11, flexDirection: 'row', alignItems: 'center', gap: 3 },
   plusText: { fontSize: 13, lineHeight: 17, fontWeight: '800' },

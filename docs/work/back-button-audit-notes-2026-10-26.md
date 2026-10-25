@@ -26,8 +26,11 @@
 > **Итог сверки с эталонами** (Макеты, 988d643cd, `back-button-mockup-truth-2026-10-26.md`; колонка «эталон» в таблицах ниже):
 > - в зонах Ядра (Карточки, «без зоны», Друзья, Видео) дефектов нет: «✕» там, где на эталоне «✕»; корни — без «назад»;
 > - у today_tasks, shop, ai_companion_session, ai_dialog_briefing, ai_dialog_session эталона нет — утром владельцу;
-> - настоящие дефекты — в Обучении: `level_exam` и `combined_lesson_pick` — на эталоне «назад», в коде нет (раздаёт
->   координатор).
+> - ~~настоящие дефекты — в Обучении: `level_exam` и `combined_lesson_pick`~~ — **снято 26.10** (Макеты e9d51db21):
+>   кнопка у обоих есть, сканер не узнавал `SafeTopBackButton` (у `level_exam` — через `ExamHeader`). Сканер научен всем
+>   экспортам общей кнопки (`scripts/back_button_audit_detect.mjs`), экранов с находками 71 → 67. У `combined_lesson_pick`
+>   остаётся только «fallback ≠ реестр»: `/(tabs)/lessons` против `/lessons_list` — это одна вкладка «Уроки» (`lessons_list` —
+>   её реэкспорт), решает владелец Обучения.
 
 ### Настоящие проблемы (чинят владельцы зон)
 
@@ -70,9 +73,9 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 
 **Г. Нет видимой «назад» на не-корневом экране:**
 - `flashcards_truefalse_session` (Карточки);
-- `lesson_verbs`, `level_exam` (Обучение) — у level_exam выход есть, кнопки нет;
+- `lesson_verbs` (Обучение); ~~`level_exam`~~ — снято 26.10: кнопка есть (`ExamHeader` → `SafeTopBackButton`), сканер её не узнавал;
 - `community_pack_create` (Карточки);
-- `combined_lesson_pick` (Обучение);
+- ~~`combined_lesson_pick` (Обучение)~~ — снято 26.10: `SafeTopBackButton` напрямую;
 - `shards_shop`, `referrals`, `promo_code_entry` (порталы).
 
 Модалки `premium_modal` / `premium_modal_v2` закрываются крестиком — для модалки это норма, если владелец не скажет иначе.

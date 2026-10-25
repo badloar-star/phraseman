@@ -6,9 +6,9 @@ Governance-ID: TG-03C9A99A4B85
 ## Сводка
 
 - маршрутов-экранов: 97; корневых: 15; dev-экранов: 0
-- общая ScreenBackButton: 22; своя кнопка: 31; без «назад»: 17; только «закрыть»: 11
+- общая ScreenBackButton (вкл. SafeTopBackButton): 33; своя кнопка: 21; без «назад»: 10; только «закрыть»: 12
 - router.back мимо safeRouterBack: 0; fallback не как в реестре: 17; своя Android-назад: 14; свайп iOS выключен: 0
-- в базе непереведённых (config/screen_back_baseline.json): 36
+- в базе непереведённых (config/screen_back_baseline.json): 35
 - не экраны (компоненты в app/ без переходов на них, заглушки маршрутов) — в таблицы не вошли: 65
 
 ## Разбор (Ядро, вручную по находкам сканера)
@@ -39,8 +39,11 @@ Governance-ID: TG-03C9A99A4B85
 > **Итог сверки с эталонами** (Макеты, 988d643cd, `back-button-mockup-truth-2026-10-26.md`; колонка «эталон» в таблицах ниже):
 > - в зонах Ядра (Карточки, «без зоны», Друзья, Видео) дефектов нет: «✕» там, где на эталоне «✕»; корни — без «назад»;
 > - у today_tasks, shop, ai_companion_session, ai_dialog_briefing, ai_dialog_session эталона нет — утром владельцу;
-> - настоящие дефекты — в Обучении: `level_exam` и `combined_lesson_pick` — на эталоне «назад», в коде нет (раздаёт
->   координатор).
+> - ~~настоящие дефекты — в Обучении: `level_exam` и `combined_lesson_pick`~~ — **снято 26.10** (Макеты e9d51db21):
+>   кнопка у обоих есть, сканер не узнавал `SafeTopBackButton` (у `level_exam` — через `ExamHeader`). Сканер научен всем
+>   экспортам общей кнопки (`scripts/back_button_audit_detect.mjs`), экранов с находками 71 → 67. У `combined_lesson_pick`
+>   остаётся только «fallback ≠ реестр»: `/(tabs)/lessons` против `/lessons_list` — это одна вкладка «Уроки» (`lessons_list` —
+>   её реэкспорт), решает владелец Обучения.
 
 ### Настоящие проблемы (чинят владельцы зон)
 
@@ -83,9 +86,9 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 
 **Г. Нет видимой «назад» на не-корневом экране:**
 - `flashcards_truefalse_session` (Карточки);
-- `lesson_verbs`, `level_exam` (Обучение) — у level_exam выход есть, кнопки нет;
+- `lesson_verbs` (Обучение); ~~`level_exam`~~ — снято 26.10: кнопка есть (`ExamHeader` → `SafeTopBackButton`), сканер её не узнавал;
 - `community_pack_create` (Карточки);
-- `combined_lesson_pick` (Обучение);
+- ~~`combined_lesson_pick` (Обучение)~~ — снято 26.10: `SafeTopBackButton` напрямую;
 - `shards_shop`, `referrals`, `promo_code_entry` (порталы).
 
 Модалки `premium_modal` / `premium_modal_v2` закрываются крестиком — для модалки это норма, если владелец не скажет иначе.
@@ -149,29 +152,27 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/ai_dialog_consent_gate.tsx | /ai_dialog_consent_gate | portal | своя: BackGlyph | safeRouterBack → '/(tabs)/lessons' | /(tabs)/home | общая | свайп | нестандартная кнопка | круг 48 → своя кнопка — нужна общая 48 | Диалоги |
 | app/ai_dialog_home.tsx | /ai_dialog_home | root · dialogs | ScreenBackButton | — | — | общая | свайп | «назад» на корневом экране | — | Диалоги |
 | app/ai_dialog_session.tsx | /ai_dialog_session | portal | своя: BackGlyph | safeRouterBack → '/(tabs)/home'; replace ×2 | /(tabs)/home | общая | свайп | нестандартная кнопка | нет эталона → не править до макета | Диалоги |
-| app/combined_lesson_pick.tsx | /combined_lesson_pick | child · lessons | нет | safeRouterBack → '/(tabs)/lessons' | /lessons_list | общая | свайп | НЕТ «назад»; fallback ≠ реестр (/lessons_list) | назад → дефект | Обучение (Learning V2) |
+| app/combined_lesson_pick.tsx | /combined_lesson_pick | child · lessons | SafeTopBackButton | safeRouterBack → '/(tabs)/lessons' | /lessons_list | общая | свайп | fallback ≠ реестр (/lessons_list) | назад → «назад» нужен ✅ — SafeTopBackButton в коде с 22.10 (29128ef22); «НЕТ назад» в ауди | Обучение (Learning V2) |
 | app/community_pack_create.tsx | /community_pack_create | child · flashcards | нет | safeRouterBack → (cloudEdit ? { pathname: '/flashcards_collection', params: { pack: editPackId } } : '/flashcards') as any, / '/flashcards'; replace ×1 | /(tabs)/home | общая | свайп | НЕТ «назад»; fallback ≠ реестр (/(tabs)/home) | ✕ слева → «назад» не нужен; ✕ = эталон | Карточки |
-| app/dialogue_v2_briefing.tsx | /dialogue_v2_briefing | child · dialogs | нет | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | НЕТ «назад»; fallback ≠ реестр (/(tabs)/lessons) | назад → «назад» нужен ✅ | Диалоги |
-| app/dialogue_v2_completion.tsx | /dialogue_v2_completion | unknown | нет («закрыть») | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | только «закрыть»; нет в реестре ролей — «назад» сбрасывает историю на fallback; своя Android-назад — проверить логом | «закрыть» 42 → вне вопроса «назад» | Диалоги |
-| app/dialogue_v2_freeform.tsx | /dialogue_v2_freeform | child · dialogs | своя: через app/ai_dialog_consent_gate.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/lessons) | назад → «назад» нужен ✅ | Диалоги |
+| app/dialogue_v2_briefing.tsx | /dialogue_v2_briefing | child · dialogs | SafeTopBackButton через components/dialogs/DialogueV2BriefingScreen.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | fallback ≠ реестр (/(tabs)/lessons) | назад → «назад» нужен ✅ | Диалоги |
+| app/dialogue_v2_completion.tsx | /dialogue_v2_completion | unknown | SafeTopBackButton через components/dialogs/glass/DialogueGlassKit.tsx | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | нет в реестре ролей — «назад» сбрасывает историю на fallback; своя Android-назад — проверить логом | «закрыть» 42 → вне вопроса «назад» | Диалоги |
+| app/dialogue_v2_freeform.tsx | /dialogue_v2_freeform | child · dialogs | SafeTopBackButton через components/dialogs/DialogueV2FreeformScreen.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | fallback ≠ реестр (/(tabs)/lessons) | назад → «назад» нужен ✅ | Диалоги |
 | app/dialogue_v2_memory.tsx | /dialogue_v2_memory | portal | своя: BackGlyph | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | нестандартная кнопка | круг 48 → своя кнопка — нужна общая 48 | Диалоги |
-| app/dialogue_v2_session.tsx | /dialogue_v2_session | unknown | своя: через app/ai_dialog_consent_gate.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | нестандартная кнопка; нет в реестре ролей — «назад» сбрасывает историю на fallback | назад → «назад» нужен ✅ | Диалоги |
-| app/exam.tsx | /exam | child · lessons | своя: через components/v2/BackGlyph.tsx | safeRouterBack → '/lessons_list' / HOME; replace ×4 | /lessons_list | своя (BackHandler) | свайп | нестандартная кнопка; своя Android-назад — проверить логом | — | Обучение (Learning V2) |
-| app/flashcards_blitz_session.tsx | /flashcards_blitz_session | child · flashcards | своя: через components/v2/BackGlyph.tsx | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/home) | — | Карточки |
-| app/flashcards_card_editor.tsx | /flashcards_card_editor | child · flashcards | своя: через components/mistakes-panel/PanelKit.tsx | safeRouterBack → fallback; replace ×2 | /(tabs)/home | общая | свайп | нестандартная кнопка | — | Карточки |
+| app/dialogue_v2_session.tsx | /dialogue_v2_session | unknown | SafeTopBackButton через components/dialogs/glass/DialogueGlassKit.tsx | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | нет в реестре ролей — «назад» сбрасывает историю на fallback | назад → «назад» нужен ✅ | Диалоги |
+| app/exam.tsx | /exam | child · lessons | SafeTopBackButton через components/level-exam/ExamGlassParts.tsx | safeRouterBack → '/lessons_list' / HOME; replace ×4 | /lessons_list | своя (BackHandler) | свайп | своя Android-назад — проверить логом | — | Обучение (Learning V2) |
+| app/flashcards_blitz_session.tsx | /flashcards_blitz_session | child · flashcards | SafeTopBackButton | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | fallback ≠ реестр (/(tabs)/home) | — | Карточки |
 | app/flashcards_collection.tsx | /flashcards_collection | child · flashcards | ScreenBackButton | safeRouterBack → backTarget; replace ×3 | /(tabs)/home | своя (BackHandler) | свайп | своя Android-назад — проверить логом | — | Карточки |
 | app/flashcards_my_packs.tsx | /flashcards_my_packs | root · flashcards | нет | safeRouterBack → '/flashcards' | — | своя (BackHandler) | свайп | своя Android-назад — проверить логом | — | Карточки |
 | app/flashcards_packs.tsx | /flashcards_packs | root · flashcards | своя: arrow-back | safeRouterBack → '/flashcards' | — | своя (BackHandler) | свайп | «назад» на корневом экране; своя Android-назад — проверить логом | — | Карточки |
 | app/flashcards_recall_session.tsx | /flashcards_recall_session | child · flashcards | своя: через components/v2/BackGlyph.tsx | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/home) | — | Карточки |
 | app/flashcards_speaking_session.tsx | /flashcards_speaking_session | child · flashcards | своя: через components/v2/BackGlyph.tsx | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/home) | — | Карточки |
-| app/flashcards_swipe.tsx | /flashcards_swipe | child · flashcards | своя: через components/v2/BackGlyph.tsx | safeRouterBack → '/flashcards'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/home); своя Android-назад — проверить логом | — | Карточки |
+| app/flashcards_swipe.tsx | /flashcards_swipe | child · flashcards | SafeTopBackButton | safeRouterBack → '/flashcards'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | fallback ≠ реестр (/(tabs)/home); своя Android-назад — проверить логом | — | Карточки |
 | app/flashcards_training_setup.tsx | /flashcards_training_setup | child · flashcards | ScreenBackButton | safeRouterBack → '/flashcards' | /(tabs)/home | общая | свайп | fallback ≠ реестр (/(tabs)/home) | — | Карточки |
-| app/flashcards_truefalse_session.tsx | /flashcards_truefalse_session | child · flashcards | нет | — | /(tabs)/home | общая | свайп | НЕТ «назад» | ✕ слева → не дефект | Карточки |
 | app/flashcards_video_packs.tsx | /flashcards_video_packs | child · flashcards | своя: через components/packs/PackScreenKit.tsx | safeRouterBack → '/flashcards' | /(tabs)/home | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/(tabs)/home) | — | Карточки |
 | app/flashcards_voice_picker.tsx | /flashcards_voice_picker | portal | своя: BackGlyph | safeRouterBack → '/settings_edu' | /(tabs)/home | общая | свайп | нестандартная кнопка | — | Карточки |
 | app/friends_duel.tsx | /friends_duel | child · friends | нет («закрыть») | safeRouterBack → HOME | /(tabs)/friends | общая | свайп | только «закрыть» | ✕ слева → «только закрыть» = эталон | Друзья |
 | app/friends_week_mine.tsx | /friends_week_mine | child · friends | ScreenBackButton | safeRouterBack → '/(tabs)/settings' | /(tabs)/friends | общая | свайп | fallback ≠ реестр (/(tabs)/friends) | — | Друзья |
-| app/hint.tsx | /hint | child · lessons | ScreenBackButton через components/theory/TheoryLessonView.tsx | safeRouterBack → '/lessons_list' / '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | fallback ≠ реестр (/lessons_list) | назад → «назад» нужен ✅ (ScreenBackButton есть) | ? |
+| app/hint.tsx | /hint | child · lessons | SafeTopBackButton | safeRouterBack → '/lessons_list' / '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | fallback ≠ реестр (/lessons_list) | назад → «назад» нужен ✅ (ScreenBackButton есть) | ? |
 | app/language_welcome.tsx | /language_welcome | child · settings | своя: BackGlyph | safeRouterBack → '/(tabs)/settings'; replace ×1 | /(tabs)/settings | общая | свайп | нестандартная кнопка | назад → «назад» нужен ✅ (своя BackGlyph) | Онбординг |
 | app/learning-v2/chapter-exam.tsx | /learning-v2/chapter-exam | child · lessons | своя: через components/learning-v2/LearningV2ChapterExamResult.tsx | safeRouterBack → '/learning-v2/course' | /lessons_list | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/lessons_list) | вопросы и итог — ✕ слева, «Разбор ошибок» — назад → ✕ = эталон; «назад» нужен только на «Р | Обучение (Learning V2) |
 | app/learning-v2/course.tsx | /learning-v2/course | child · lessons | своя: через app/(tabs)/lessons.tsx | — | /lessons_list | общая | свайп | нестандартная кнопка | — | Обучение (Learning V2) |
@@ -181,15 +182,13 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/learning_v2_modes_showcase_run/[family].tsx | /learning_v2_modes_showcase_run/[family] | child · lessons | нет («закрыть») | safeRouterBack → LEARNING_V2_MODES_SHOWCASE_ROUTE | /lessons_list | общая | свайп | только «закрыть» | режимы занятия на эталоне — ✕ слева → «только закрыть» = эталон | Обучение (Learning V2) |
 | app/learning_v2_placement.tsx | /learning_v2_placement | child · lessons | нет («закрыть») | safeRouterBack → FALLBACK_ROUTE | /lessons_list | общая | свайп | только «закрыть» | ✕ слева на тесте, обложка — ничего → «только закрыть» = эталон | Обучение (Learning V2) |
 | app/learning_v2_session_intro.tsx | /learning_v2_session_intro | child · lessons | нет («закрыть») | — | /lessons_list | общая | свайп | только «закрыть» | ✕ слева → «только закрыть» = эталон | Обучение (Learning V2) |
-| app/learning_v2_session_intro_check.tsx | /learning_v2_session_intro_check | child · lessons | нет | — | /lessons_list | общая | свайп | НЕТ «назад» | — | Обучение (Learning V2) |
-| app/lesson1.tsx | /lesson1 | child · lessons | своя: через components/LessonReviewSheet.tsx | safeRouterBack → '/(tabs)/lessons' / { pathname: '/lessons_list', params: { id: String(lessonId) } } / '/(tabs)/home' / { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×2 | /lessons_list | своя (BackHandler) | свайп | нестандартная кнопка; fallback ≠ реестр (/lessons_list); своя Android-назад — проверить логом | назад → «назад» нужен ✅ (своя кнопка) | Обучение (Learning V2) |
+| app/learning_v2_session_intro_check.tsx | /learning_v2_session_intro_check | child · lessons | нет («закрыть») | — | /lessons_list | общая | свайп | только «закрыть» | — | Обучение (Learning V2) |
+| app/lesson1.tsx | /lesson1 | child · lessons | SafeTopBackButton | safeRouterBack → '/(tabs)/lessons' / { pathname: '/lessons_list', params: { id: String(lessonId) } } / '/(tabs)/home' / { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×2 | /lessons_list | своя (BackHandler) | свайп | fallback ≠ реестр (/lessons_list); своя Android-назад — проверить логом | назад → «назад» нужен ✅ (своя кнопка) | Обучение (Learning V2) |
 | app/lesson_complete.tsx | /lesson_complete | child · lessons | ScreenBackButton | dismissToTabRoute; replace ×8 | /lessons_list | своя (BackHandler) | свайп | своя Android-назад — проверить логом | — | Обучение (Learning V2) |
-| app/lesson_help.tsx | /lesson_help | child · lessons | своя: через components/v2/BackGlyph.tsx | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } } | /lessons_list | общая | свайп | нестандартная кнопка | — | Обучение (Learning V2) |
 | app/lesson_intro_screens.tsx | /lesson_intro_screens | child · lessons | своя: BackGlyph | — | /lessons_list | общая | свайп | нестандартная кнопка | — | Обучение (Learning V2) |
-| app/lesson_menu.tsx | /lesson_menu | child · lessons | своя: через components/v2/BackGlyph.tsx | safeRouterBack → '/(tabs)/home'; replace ×3 | /lessons_list | общая | свайп | нестандартная кнопка; fallback ≠ реестр (/lessons_list) | назад → «назад» нужен ✅ (своя BackGlyph) | Обучение (Learning V2) |
+| app/lesson_menu.tsx | /lesson_menu | child · lessons | SafeTopBackButton через app/lesson_words.tsx | safeRouterBack → '/(tabs)/home'; replace ×3 | /lessons_list | общая | свайп | fallback ≠ реестр (/lessons_list) | назад → «назад» нужен ✅ (своя BackGlyph) | Обучение (Learning V2) |
 | app/lesson_verbs.tsx | /lesson_verbs | child · lessons | нет | — | /lessons_list | общая | свайп | НЕТ «назад» | маршрут — Redirect на lesson_irregular_verbs; там назад → «назад» есть на эталоне — смотре | Обучение (Learning V2) |
-| app/lesson_words.tsx | /lesson_words | child · lessons | ScreenBackButton через app/settings_edu.tsx | safeRouterBack → '/lessons_list' / { pathname: '/lessons_list', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | своя (BackHandler) | свайп | своя Android-назад — проверить логом | — | Обучение (Learning V2) |
-| app/level_exam.tsx | /level_exam | child · lessons | нет | safeRouterBack → '/lessons_list'; replace ×1 | /lessons_list | общая | свайп | НЕТ «назад» | назад → дефект | Обучение (Learning V2) |
+| app/lesson_words.tsx | /lesson_words | child · lessons | SafeTopBackButton | safeRouterBack → '/lessons_list' / { pathname: '/lessons_list', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | своя (BackHandler) | свайп | своя Android-назад — проверить логом | — | Обучение (Learning V2) |
 | app/lingman_playlist.tsx | /lingman_playlist | child · lingman | своя: BackGlyph | safeRouterBack → LINGMAN_BACK_FALLBACK | /(tabs)/video | общая | свайп | нестандартная кнопка | назад → «назад» нужен ✅ (есть своя BackGlyph) | Видео |
 | app/lingman_video_watch.tsx | /lingman_video_watch | child · lingman | своя: BackGlyph | safeRouterBack → LINGMAN_BACK_FALLBACK | /(tabs)/video | общая | свайп | нестандартная кнопка | ✕ справа → «назад» не нужен; ✕ справа = эталон | Видео |
 | app/lingman_videos.tsx | /lingman_videos | root · lingman | своя: через components/youtube/YoutubeChannelHeader.tsx | safeRouterBack → '/(tabs)/home' | — | общая | свайп | «назад» на корневом экране | корень «Видео» — ничего → «назад» на корне не нужен | Видео |
@@ -201,12 +200,12 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/premium_modal_v2.tsx | /premium_modal_v2 | transient | нет | replace ×1 | /(tabs)/home | общая | свайп | НЕТ «назад» | — | Пейвол / Plus |
 | app/privacy_screen.tsx | /privacy_screen | child · settings | нет («закрыть») | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | только «закрыть» | — | Вход, аккаунт, настройки |
 | app/privacy_settings.tsx | /privacy_settings | child · settings | своя: BackGlyph | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | нестандартная кнопка | — | Вход, аккаунт, настройки |
-| app/promo_code_entry.tsx | /promo_code_entry | portal | нет | safeRouterBack → '/(tabs)/settings' / closeFallback | /(tabs)/home | общая | свайп | НЕТ «назад» | ✕ справа → «назад» не нужен; ✕ справа = эталон | ? |
-| app/referrals.tsx | /referrals | portal | нет | safeRouterBack → closeFallback | /(tabs)/home | общая | свайп | НЕТ «назад» | эталон «назад» → эталона в силе нет → не править до решения | Друзья |
+| app/promo_code_entry.tsx | /promo_code_entry | portal | нет («закрыть») | safeRouterBack → '/(tabs)/settings' / closeFallback | /(tabs)/home | общая | свайп | только «закрыть» | ✕ справа → «назад» не нужен; ✕ справа = эталон | ? |
+| app/referrals.tsx | /referrals | portal | нет («закрыть») | safeRouterBack → closeFallback | /(tabs)/home | общая | свайп | только «закрыть» | эталон «назад» → эталона в силе нет → не править до решения | Друзья |
 | app/settings_language.tsx | /settings_language | child · settings | нет («закрыть») | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | только «закрыть» | — | Вход, аккаунт, настройки |
 | app/shards_shop.tsx | /shards_shop | portal | нет | — | /(tabs)/home | общая | свайп | НЕТ «назад» | нет экрана: маршрут — Redirect на /flashcards_my_packs; эталона нет → вне аудита | Моменты / монеты |
-| app/shop.tsx | /shop | portal | нет («закрыть») | safeRouterBack → '/(tabs)/home' | /(tabs)/home | своя (BackHandler) | свайп | только «закрыть»; своя Android-назад — проверить логом | нет эталона 2.0 → не править до макета | Моменты / монеты |
-| app/streak_stats.tsx | /streak_stats | root · stats | своя: через components/ActivityHeatmap365.tsx | safeRouterBack → '/(tabs)/home' | — | общая | свайп | «назад» на корневом экране | — | Моменты / монеты |
+| app/shop.tsx | /shop | portal | SafeTopBackButton | safeRouterBack → '/(tabs)/home' | /(tabs)/home | своя (BackHandler) | свайп | своя Android-назад — проверить логом | нет эталона 2.0 → не править до макета | Моменты / монеты |
+| app/streak_stats.tsx | /streak_stats | root · stats | SafeTopBackButton | safeRouterBack → '/(tabs)/home' | — | общая | свайп | «назад» на корневом экране | — | Моменты / монеты |
 | app/survey_screen.tsx | /survey_screen | portal | своя: BackGlyph | safeRouterBack → HOME | /(tabs)/home | общая | свайп | нестандартная кнопка | — | ? |
 | app/terms_screen.tsx | /terms_screen | child · settings | нет («закрыть») | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | только «закрыть» | — | Вход, аккаунт, настройки |
 | app/year_activity.tsx | /year_activity | root · stats | ScreenBackButton | safeRouterBack → HOME | — | общая | свайп | «назад» на корневом экране | — | ? |
@@ -233,33 +232,33 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/ai_dialog_session.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/(tabs)/home'; replace ×2 | /(tabs)/home | общая | свайп | нет эталона → не править до макета | Диалоги |
 | app/coin_rank.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → HOME | /(tabs)/home | общая | свайп | — | Моменты / монеты |
 | app/coin_rank_catalog.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → HOME | /(tabs)/home | общая | свайп | — | Моменты / монеты |
-| app/combined_lesson_pick.tsx | нет | нет | — | safeRouterBack → '/(tabs)/lessons' | /lessons_list | общая | свайп | назад → дефект | Обучение (Learning V2) |
+| app/combined_lesson_pick.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/lessons' | /lessons_list | общая | свайп | назад → «назад» нужен ✅ — SafeTopBackButton в коде с 22.10 (29128ef22); «НЕТ назад» в ауди | Обучение (Learning V2) |
 | app/community_pack_create.tsx | нет | нет | — | safeRouterBack → (cloudEdit ? { pathname: '/flashcards_collection', params: { pack: editPackId } } : '/flashcards') as any, / '/flashcards'; replace ×1 | /(tabs)/home | общая | свайп | ✕ слева → «назад» не нужен; ✕ = эталон | Карточки |
 | app/dev_cards_result_preview.tsx | нет | нет | — | safeRouterBack → HOME; router.back ×1 | /(tabs)/home | общая | свайп | — | Карточки |
 | app/diagnostic_test.tsx | есть | ScreenBackButton через app/settings_edu.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → HOME; replace ×2 | /lessons_list | общая | свайп | — | ? |
-| app/dialogue_v2_briefing.tsx | нет | нет | — | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | назад → «назад» нужен ✅ | Диалоги |
-| app/dialogue_v2_completion.tsx | нет | нет («закрыть») | — | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | «закрыть» 42 → вне вопроса «назад» | Диалоги |
-| app/dialogue_v2_freeform.tsx | есть | своя: через app/ai_dialog_consent_gate.tsx | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | назад → «назад» нужен ✅ | Диалоги |
+| app/dialogue_v2_briefing.tsx | есть | SafeTopBackButton через components/dialogs/DialogueV2BriefingScreen.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | назад → «назад» нужен ✅ | Диалоги |
+| app/dialogue_v2_completion.tsx | есть | SafeTopBackButton через components/dialogs/glass/DialogueGlassKit.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/ai_dialog_home'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | «закрыть» 42 → вне вопроса «назад» | Диалоги |
+| app/dialogue_v2_freeform.tsx | есть | SafeTopBackButton через components/dialogs/DialogueV2FreeformScreen.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/ai_dialog_home' | /(tabs)/lessons | общая | свайп | назад → «назад» нужен ✅ | Диалоги |
 | app/dialogue_v2_memory.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | круг 48 → своя кнопка — нужна общая 48 | Диалоги |
-| app/dialogue_v2_session.tsx | есть | своя: через app/ai_dialog_consent_gate.tsx | своя | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | назад → «назад» нужен ✅ | Диалоги |
+| app/dialogue_v2_session.tsx | есть | SafeTopBackButton через components/dialogs/glass/DialogueGlassKit.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/ai_dialog_home' | /(tabs)/home | общая | свайп | назад → «назад» нужен ✅ | Диалоги |
 | app/dialogue_v2_theme.tsx | есть | ScreenBackButton через components/dialogs/hub/DialogueV2ThemeScreen.tsx | общая (20 / 48 / безопасный верх) | — | /(tabs)/lessons | общая | свайп | круг 48 → совпадает | Диалоги |
-| app/exam.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → '/lessons_list' / HOME; replace ×4 | /lessons_list | своя (BackHandler) | свайп | — | Обучение (Learning V2) |
+| app/exam.tsx | есть | SafeTopBackButton через components/level-exam/ExamGlassParts.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list' / HOME; replace ×4 | /lessons_list | своя (BackHandler) | свайп | — | Обучение (Learning V2) |
 | app/flashcards.tsx | корень | нет | — | — | — | общая | свайп | — | Карточки |
-| app/flashcards_blitz_session.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | — | Карточки |
-| app/flashcards_card_editor.tsx | есть | своя: через components/mistakes-panel/PanelKit.tsx | своя | safeRouterBack → fallback; replace ×2 | /(tabs)/home | общая | свайп | — | Карточки |
+| app/flashcards_blitz_session.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | — | Карточки |
+| app/flashcards_card_editor.tsx | есть | SafeTopBackButton через app/lesson_words.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → fallback; replace ×2 | /(tabs)/home | общая | свайп | — | Карточки |
 | app/flashcards_collection.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → backTarget; replace ×3 | /(tabs)/home | своя (BackHandler) | свайп | — | Карточки |
 | app/flashcards_my_packs.tsx | корень | нет | — | safeRouterBack → '/flashcards' | — | своя (BackHandler) | свайп | — | Карточки |
 | app/flashcards_packs.tsx | корень | своя: arrow-back | своя | safeRouterBack → '/flashcards' | — | своя (BackHandler) | свайп | — | Карточки |
 | app/flashcards_recall_session.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | — | Карточки |
 | app/flashcards_speaking_session.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → '/flashcards'; replace ×2 | /(tabs)/home | общая | свайп | — | Карточки |
-| app/flashcards_swipe.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → '/flashcards'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | — | Карточки |
+| app/flashcards_swipe.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/flashcards'; replace ×1 | /(tabs)/home | своя (BackHandler) | свайп | — | Карточки |
 | app/flashcards_training_setup.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/flashcards' | /(tabs)/home | общая | свайп | — | Карточки |
-| app/flashcards_truefalse_session.tsx | нет | нет | — | — | /(tabs)/home | общая | свайп | ✕ слева → не дефект | Карточки |
+| app/flashcards_truefalse_session.tsx | есть | SafeTopBackButton через app/flashcards_swipe.tsx | общая (20 / 48 / безопасный верх) | — | /(tabs)/home | общая | свайп | ✕ слева → не дефект | Карточки |
 | app/flashcards_video_packs.tsx | есть | своя: через components/packs/PackScreenKit.tsx | своя | safeRouterBack → '/flashcards' | /(tabs)/home | общая | свайп | — | Карточки |
 | app/flashcards_voice_picker.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/settings_edu' | /(tabs)/home | общая | свайп | — | Карточки |
 | app/friends_duel.tsx | нет | нет («закрыть») | — | safeRouterBack → HOME | /(tabs)/friends | общая | свайп | ✕ слева → «только закрыть» = эталон | Друзья |
 | app/friends_week_mine.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/settings' | /(tabs)/friends | общая | свайп | — | Друзья |
-| app/hint.tsx | есть | ScreenBackButton через components/theory/TheoryLessonView.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list' / '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | назад → «назад» нужен ✅ (ScreenBackButton есть) | ? |
+| app/hint.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list' / '/(tabs)/home'; replace ×1 | /lessons_list | общая | свайп | назад → «назад» нужен ✅ (ScreenBackButton есть) | ? |
 | app/language_welcome.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/(tabs)/settings'; replace ×1 | /(tabs)/settings | общая | свайп | назад → «назад» нужен ✅ (своя BackGlyph) | Онбординг |
 | app/learning-v2/chapter-exam.tsx | есть | своя: через components/learning-v2/LearningV2ChapterExamResult.tsx | своя | safeRouterBack → '/learning-v2/course' | /lessons_list | общая | свайп | вопросы и итог — ✕ слева, «Разбор ошибок» — назад → ✕ = эталон; «назад» нужен только на «Р | Обучение (Learning V2) |
 | app/learning-v2/course.tsx | есть | своя: через app/(tabs)/lessons.tsx | своя | — | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
@@ -270,17 +269,17 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/learning_v2_modes_showcase_run/[family].tsx | нет | нет («закрыть») | — | safeRouterBack → LEARNING_V2_MODES_SHOWCASE_ROUTE | /lessons_list | общая | свайп | режимы занятия на эталоне — ✕ слева → «только закрыть» = эталон | Обучение (Learning V2) |
 | app/learning_v2_placement.tsx | нет | нет («закрыть») | — | safeRouterBack → FALLBACK_ROUTE | /lessons_list | общая | свайп | ✕ слева на тесте, обложка — ничего → «только закрыть» = эталон | Обучение (Learning V2) |
 | app/learning_v2_session_intro.tsx | нет | нет («закрыть») | — | — | /lessons_list | общая | свайп | ✕ слева → «только закрыть» = эталон | Обучение (Learning V2) |
-| app/learning_v2_session_intro_check.tsx | нет | нет | — | — | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
-| app/lesson1.tsx | есть | своя: через components/LessonReviewSheet.tsx | своя | safeRouterBack → '/(tabs)/lessons' / { pathname: '/lessons_list', params: { id: String(lessonId) } } / '/(tabs)/home' / { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×2 | /lessons_list | своя (BackHandler) | свайп | назад → «назад» нужен ✅ (своя кнопка) | Обучение (Learning V2) |
+| app/learning_v2_session_intro_check.tsx | нет | нет («закрыть») | — | — | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
+| app/lesson1.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/lessons' / { pathname: '/lessons_list', params: { id: String(lessonId) } } / '/(tabs)/home' / { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×2 | /lessons_list | своя (BackHandler) | свайп | назад → «назад» нужен ✅ (своя кнопка) | Обучение (Learning V2) |
 | app/lesson_complete.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | dismissToTabRoute; replace ×8 | /lessons_list | своя (BackHandler) | свайп | — | Обучение (Learning V2) |
-| app/lesson_help.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } } | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
+| app/lesson_help.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } } | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
 | app/lesson_intro_screens.tsx | есть | своя: BackGlyph | своя | — | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
-| app/lesson_irregular_verbs.tsx | есть | ScreenBackButton через app/settings_edu.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
-| app/lesson_menu.tsx | есть | своя: через components/v2/BackGlyph.tsx | своя | safeRouterBack → '/(tabs)/home'; replace ×3 | /lessons_list | общая | свайп | назад → «назад» нужен ✅ (своя BackGlyph) | Обучение (Learning V2) |
+| app/lesson_irregular_verbs.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
+| app/lesson_menu.tsx | есть | SafeTopBackButton через app/lesson_words.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/home'; replace ×3 | /lessons_list | общая | свайп | назад → «назад» нужен ✅ (своя BackGlyph) | Обучение (Learning V2) |
 | app/lesson_theory_v2.tsx | есть | ScreenBackButton через components/theory/TheoryLessonView.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | общая | свайп | — | Обучение (Learning V2) |
 | app/lesson_verbs.tsx | нет | нет | — | — | /lessons_list | общая | свайп | маршрут — Redirect на lesson_irregular_verbs; там назад → «назад» есть на эталоне — смотре | Обучение (Learning V2) |
-| app/lesson_words.tsx | есть | ScreenBackButton через app/settings_edu.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list' / { pathname: '/lessons_list', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | своя (BackHandler) | свайп | — | Обучение (Learning V2) |
-| app/level_exam.tsx | нет | нет | — | safeRouterBack → '/lessons_list'; replace ×1 | /lessons_list | общая | свайп | назад → дефект | Обучение (Learning V2) |
+| app/lesson_words.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list' / { pathname: '/lessons_list', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | своя (BackHandler) | свайп | — | Обучение (Learning V2) |
+| app/level_exam.tsx | есть | SafeTopBackButton через components/level-exam/ExamGlassParts.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → '/lessons_list'; replace ×1 | /lessons_list | общая | свайп | назад → «назад» на эталоне есть и в коде есть — общая кнопка через ExamHeader с 22.10 (d73 | Обучение (Learning V2) |
 | app/lingman_playlist.tsx | есть | своя: BackGlyph | своя | safeRouterBack → LINGMAN_BACK_FALLBACK | /(tabs)/video | общая | свайп | назад → «назад» нужен ✅ (есть своя BackGlyph) | Видео |
 | app/lingman_video_watch.tsx | есть | своя: BackGlyph | своя | safeRouterBack → LINGMAN_BACK_FALLBACK | /(tabs)/video | общая | свайп | ✕ справа → «назад» не нужен; ✕ справа = эталон | Видео |
 | app/lingman_videos.tsx | корень | своя: через components/youtube/YoutubeChannelHeader.tsx | своя | safeRouterBack → '/(tabs)/home' | — | общая | свайп | корень «Видео» — ничего → «назад» на корне не нужен | Видео |
@@ -294,19 +293,19 @@ combined_lesson_pick, session, chapter-exam, lesson1; Вход и настрой
 | app/pos_analytics_audit.tsx | нет | нет | — | — | /flashcards_collection | общая | свайп | — | ? |
 | app/premium_modal.tsx | нет | нет | — | — | /(tabs)/home | общая | свайп | — | Пейвол / Plus |
 | app/premium_modal_v2.tsx | нет | нет | — | replace ×1 | /(tabs)/home | общая | свайп | — | Пейвол / Plus |
-| app/preposition_drill.tsx | есть | ScreenBackButton через app/settings_edu.tsx | общая (20 / 48 / безопасный верх) | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | общая | свайп | — | ? |
+| app/preposition_drill.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → { pathname: '/lesson_menu', params: { id: String(lessonId) } }; replace ×1 | /lessons_list | общая | свайп | — | ? |
 | app/privacy_screen.tsx | нет | нет («закрыть») | — | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | — | Вход, аккаунт, настройки |
 | app/privacy_settings.tsx | есть | своя: BackGlyph | своя | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | — | Вход, аккаунт, настройки |
-| app/promo_code_entry.tsx | нет | нет | — | safeRouterBack → '/(tabs)/settings' / closeFallback | /(tabs)/home | общая | свайп | ✕ справа → «назад» не нужен; ✕ справа = эталон | ? |
-| app/referrals.tsx | нет | нет | — | safeRouterBack → closeFallback | /(tabs)/home | общая | свайп | эталон «назад» → эталона в силе нет → не править до решения | Друзья |
+| app/promo_code_entry.tsx | нет | нет («закрыть») | — | safeRouterBack → '/(tabs)/settings' / closeFallback | /(tabs)/home | общая | свайп | ✕ справа → «назад» не нужен; ✕ справа = эталон | ? |
+| app/referrals.tsx | нет | нет («закрыть») | — | safeRouterBack → closeFallback | /(tabs)/home | общая | свайп | эталон «назад» → эталона в силе нет → не править до решения | Друзья |
 | app/runes_wallet.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → HOME | /(tabs)/home | общая | свайп | — | Моменты / монеты |
 | app/settings_edu.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/settings' | /(tabs)/home | общая | свайп | — | Вход, аккаунт, настройки |
 | app/settings_language.tsx | нет | нет («закрыть») | — | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | — | Вход, аккаунт, настройки |
 | app/settings_notifications.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | — | Вход, аккаунт, настройки |
 | app/settings_themes.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | — | Вход, аккаунт, настройки |
 | app/shards_shop.tsx | нет | нет | — | — | /(tabs)/home | общая | свайп | нет экрана: маршрут — Redirect на /flashcards_my_packs; эталона нет → вне аудита | Моменты / монеты |
-| app/shop.tsx | нет | нет («закрыть») | — | safeRouterBack → '/(tabs)/home' | /(tabs)/home | своя (BackHandler) | свайп | нет эталона 2.0 → не править до макета | Моменты / монеты |
-| app/streak_stats.tsx | корень | своя: через components/ActivityHeatmap365.tsx | своя | safeRouterBack → '/(tabs)/home' | — | общая | свайп | — | Моменты / монеты |
+| app/shop.tsx | есть | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/home' | /(tabs)/home | своя (BackHandler) | свайп | нет эталона 2.0 → не править до макета | Моменты / монеты |
+| app/streak_stats.tsx | корень | SafeTopBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/home' | — | общая | свайп | — | Моменты / монеты |
 | app/support_report.tsx | есть | ScreenBackButton | общая (20 / 48 / безопасный верх) | safeRouterBack → '/(tabs)/settings' | /(tabs)/home | общая | свайп | — | Вход, аккаунт, настройки |
 | app/survey_screen.tsx | есть | своя: BackGlyph | своя | safeRouterBack → HOME | /(tabs)/home | общая | свайп | — | ? |
 | app/terms_screen.tsx | нет | нет («закрыть») | — | safeRouterBack → '/(tabs)/settings' | /(tabs)/settings | общая | свайп | — | Вход, аккаунт, настройки |

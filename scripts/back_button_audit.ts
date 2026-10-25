@@ -10,6 +10,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import ts from 'typescript';
+// зачем (Макеты e9d51db21): общая кнопка рисуется не только <ScreenBackButton> — распознавание всех её экспортов в одном модуле, его же проверяет тест
+import { sharedBackTag, sharedCloseTag } from './back_button_audit_detect.mjs';
 
 const ROOT = path.resolve(__dirname, '..');
 
@@ -121,8 +123,10 @@ function localImports(fromRel: string, src: string): string[] {
  * зачем: экраны рисуют «назад» через общие шапки (PracticeChrome, шапка Пика, SectionSheetHeader…). Смотрим импорты на две
  * ступени вглубь (кроме app/navigation_back и самой ScreenBackButton): чья обёртка рисует общую кнопку или свою.
  */
-function backViaImports(fileRel: string, src: string): { shared: string | null; own: string | null } {
+function backViaImports(fileRel: string, src: string): { shared: string | null; sharedTag: string | null; sharedClose: string | null; own: string | null } {
   let shared: string | null = null;
+  let sharedTag: string | null = null;
+  let sharedClose: string | null = null;
   let own: string | null = null;
   const seen = new Set<string>([fileRel]);
   let level = localImports(fileRel, src);
@@ -132,13 +136,15 @@ function backViaImports(fileRel: string, src: string): { shared: string | null; 
       if (seen.has(dep) || dep === 'components/v2/ScreenBackButton.tsx') continue;
       seen.add(dep);
       const depSrc = read(dep);
-      if (!shared && /\bScreenBackButton\b/.test(depSrc) && /<ScreenBackButton\b/.test(depSrc)) shared = dep;
+      const depTag = sharedBackTag(depSrc);
+      if (!shared && depTag) { shared = dep; sharedTag = depTag; }
+      if (!sharedClose && sharedCloseTag(depSrc)) sharedClose = dep;
       if (!own && OWN_BACK.test(depSrc) && /<(BackButton|PracticeBackButton|DialogueGlassBackButton|ResultsGlassBackButton|BackGlyph)\b/.test(depSrc)) own = dep;
       if (dep.startsWith('components/')) next.push(...localImports(dep, depSrc));
     }
     level = next;
   }
-  return { shared, own };
+  return { shared, sharedTag, sharedClose, own };
 }
 
 /**
@@ -185,12 +191,12 @@ for (const file of walk('app').sort()) {
   const policy = navigationRoutePolicyForAudit(route);
   const expected = policy.role === 'root' ? '—' : navigationFallbackForPath(route);
   const via = backViaImports(file, src);
-  const sharedDirect = /<ScreenBackButton\b/.test(src);
-  const usesShared = sharedDirect || via.shared !== null;
+  const sharedDirect = sharedBackTag(src);
+  const usesShared = sharedDirect !== null || via.shared !== null;
   const ownDirect = OWN_BACK.exec(src)?.[0]?.replace(/['"]/g, '') ?? null;
   const own = ownDirect ?? (via.own ? `через ${via.own}` : null);
-  const close = CLOSE_UI.test(src);
-  const back = usesShared ? (sharedDirect ? 'ScreenBackButton' : `ScreenBackButton через ${via.shared}`) : own ? `своя: ${own}` : close ? 'нет («закрыть»)' : 'нет';
+  const close = CLOSE_UI.test(src) || sharedCloseTag(src) !== null || via.sharedClose !== null;
+  const back = usesShared ? (sharedDirect ?? `${via.sharedTag} через ${via.shared}`) : own ? `своя: ${own}` : close ? 'нет («закрыть»)' : 'нет';
   const position = usesShared ? 'общая (20 / 48 / безопасный верх)' : own ? 'своя' : '—';
   const fallbacks = safeBackFallbacks(src);
   const routerBack = (src.match(/\brouter\.back\(\)/g) ?? []).length;
@@ -245,7 +251,7 @@ lines.push('Governance-ID: TG-03C9A99A4B85');
 lines.push('Собрал 1 · ЯДРО скриптом `scripts/back_button_audit.ts` (только чтение исходников, детерминированно). «Должна» — fallback по реестру ролей `app/navigation_back.ts` (`navigationFallbackForPath`); у корневых — «—».', '');
 lines.push('## Сводка', '');
 lines.push(`- маршрутов-экранов: ${rows.length}; корневых: ${count((r) => r.role === 'root')}; dev-экранов: ${count((r) => r.zone === 'dev (не в релизе)')}`);
-lines.push(`- общая ScreenBackButton: ${count((r) => r.back === 'ScreenBackButton')}; своя кнопка: ${count((r) => r.back.startsWith('своя'))}; без «назад»: ${count((r) => r.back === 'нет' && r.role !== 'root')}; только «закрыть»: ${count((r) => r.back.startsWith('нет («') && r.role !== 'root')}`);
+lines.push(`- общая ScreenBackButton (вкл. SafeTopBackButton): ${count((r) => r.back === 'ScreenBackButton' || r.back === 'SafeTopBackButton')}; своя кнопка: ${count((r) => r.back.startsWith('своя'))}; без «назад»: ${count((r) => r.back === 'нет' && r.role !== 'root')}; только «закрыть»: ${count((r) => r.back.startsWith('нет («') && r.role !== 'root')}`);
 lines.push(`- router.back мимо safeRouterBack: ${count((r) => r.flags.includes('router.back мимо safeRouterBack'))}; fallback не как в реестре: ${count((r) => r.flags.some((f) => f.startsWith('fallback')))}; своя Android-назад: ${count((r) => r.android.startsWith('своя'))}; свайп iOS выключен: ${count((r) => r.ios !== 'свайп')}`);
 lines.push(`- в базе непереведённых (config/screen_back_baseline.json): ${baseline.size}`);
 lines.push(`- не экраны (компоненты в app/ без переходов на них, заглушки маршрутов) — в таблицы не вошли: ${skippedNotScreens.length}`, '');

@@ -7,7 +7,7 @@
 // сцена — сдвинутым вверх на расстояние до верха экрана (лишнее обрезает её рамка), шапка — его верхнюю часть. Стык совпадает пиксель в пиксель.
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { memo, useMemo, useSyncExternalStore } from 'react';
+import React, { memo, useEffect, useMemo, useSyncExternalStore } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -43,6 +43,10 @@ function SpireSceneBackdrop({ spec: b, offsetTop }: Readonly<{ spec: SpireSceneB
   const height = b.bleed + b.sceneH;
   const { width } = useWindowDimensions();
   const shade = useMemo(() => spireTopShadeAlpha(b, width), [b, width]);
+  useEffect(() => {
+    // зачем (Сверка 25.10, шов под вкладками): чем и на какой высоте закрыт верх — сдвиг фона, его высота, сила и низ затемнения
+    console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_backdrop_draw', offsetTop, height, bleed: b.bleed, sceneH: b.sceneH, shade, shadeEndsAt: b.bleed + 48 - offsetTop, top: b.top })); // guard-ok: одна строка на смену фона
+  }, [offsetTop, height, b, shade]);
   return (
     <View pointerEvents="none" style={[s.fill, { top: -offsetTop, height }]}>
       <LinearGradient colors={[b.top, b.bottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />

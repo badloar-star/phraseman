@@ -190,7 +190,12 @@ function SpireScene(p: Props) {
           const target = e.currentTarget as unknown as { measureInWindow?: (cb: (x: number, y: number) => void) => void };
           // зачем: верх сцены на экране — до него тянется общий фон; не померилось — фон от своего верха, как раньше (журнал [TOP-BAND])
           if (typeof target?.measureInWindow !== 'function') { console.warn('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_bleed', decision: 'no_measure' })); return; } // guard-ok: ранний выход с причиной
-          target.measureInWindow((_x, y) => { const next = Math.max(0, Math.round(y)); setBleed((prev) => (prev === next ? prev : next)); });
+          target.measureInWindow((_x, y) => {
+            const next = Math.max(0, Math.round(y));
+            // зачем (Сверка 25.10: шов под вкладками на 4fa3e9457?; сперва логи): где верх сцены на экране, какой сдвиг фона, сцена из какой сборки
+            console.log('[TOP-BAND]', JSON.stringify({ at: 'spire_scene_measure', rev: 'scene-from-top-4fa3e9457', windowY: Math.round(y), bleedBefore: bleed, bleedAfter: next, layoutY: Math.round(e.nativeEvent.layout.y), sceneH: frame.sceneH })); // guard-ok: одна строка на раскладку сцены
+            setBleed((prev) => (prev === next ? prev : next));
+          });
         }}
       >
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">

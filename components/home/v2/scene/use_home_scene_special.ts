@@ -4,7 +4,8 @@
 // зачем (владелец 25.10 утвердил 12 новых состояний; спецификация docs/work/tasks/home-scene-new-states-spec-2026-10-25.md):
 // всё из данных телефона — 0 новых чтений Firestore. Пачка 1: «Накопились ошибки» (счётчик ошибок уже считает Главная),
 // «Слова на повтор» (память свайпа карточек — один ключ хранилища), «Праздник» (календарь телефона), «Итоги недели»
-// (дни занятий из личного прогресса). Остальные состояния ждут своих данных (их входы — null, модель их не выбирает).
+// (дни занятий из личного прогресса). Пачка 2 (координатор 25.10, замены данных): та же ошибка снова, ошибка исправлена сегодня,
+// выучено фраз, взаимный друг уже занимался — факты из use_home_scene_local_facts. Остальные входы — null (модель их не выбирает).
 // Журнал [HOME-SCENE] special: факты, решение с причиной, показ; каждый ранний выход и сбой — с причиной.
 // ═══════════════════════════════════════════════════════════════════════════
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -15,6 +16,7 @@ import { pickHomeSceneSpecial, type HomeSceneSpecialDecision, type HomeSceneSpec
 import { buildHomeSceneSpecialCopy } from './home_scene_special_copy';
 import { noteHomeSceneSpecialShown, peekHomeSceneSpecialJournal, readHomeSceneSpecialJournal } from './home_scene_special_journal';
 import type { HomeSceneDecision } from './home_scene_state';
+import type { HomeSceneLocalFacts } from './use_home_scene_local_facts';
 
 const LOG = '[HOME-SCENE]';
 
@@ -51,6 +53,8 @@ export type HomeSceneSpecialFacts = Readonly<{
   /** Карточки «пора повторить»; null — ещё не прочитаны. */
   wordsDue: number | null;
   activityDates: readonly string[];
+  /** Пачка 2: ошибки, выучено фраз, друг. */
+  local?: HomeSceneLocalFacts;
 }>;
 
 export type HomeSceneSpecialView = Readonly<{
@@ -84,13 +88,20 @@ export function useHomeSceneSpecial(i: Readonly<{
     [i.facts.activityDates, dayKey]);
   const decision: HomeSceneSpecialDecision | null = useMemo(() => {
     if (!journal) return null;
+    const local = i.facts.local;
     const input: HomeSceneSpecialInput = {
-      now: new Date(), mistakesOpen: i.facts.mistakesOpen, repeatedMistake: null, masteredMistake: null, phraseOfDaySeen: null,
-      wordsDue: i.facts.wordsDue, progressDays: null, today: null, activeLastWeek: weekDays > 0, milestoneKey: null, friendAhead: null, peakOvertaken: null,
+      now: new Date(), mistakesOpen: i.facts.mistakesOpen,
+      repeatedMistake: local?.repeatedMistake ? { id: local.repeatedMistake.id, times: 2 } : null,
+      masteredMistake: local?.masteredMistake ? { id: local.masteredMistake.id } : null,
+      phraseOfDaySeen: null, wordsDue: i.facts.wordsDue,
+      // «Про тебя» — только когда есть что сказать: выучено фраз известно и не ноль
+      progressDays: local?.phrasesLearned ? i.facts.activityDates.length : null,
+      today: null, activeLastWeek: weekDays > 0, milestoneKey: null,
+      friendAhead: local?.friend ? { uid: local.friend.uid } : null, peakOvertaken: null,
     };
     return pickHomeSceneSpecial(input, i.decision, journal);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: час нужен только для «фразы дня до 20:00» и смены дня
-  }, [journal, i.decision, i.facts.mistakesOpen, i.facts.wordsDue, weekDays, dayKey, hour]);
+  }, [journal, i.decision, i.facts.mistakesOpen, i.facts.wordsDue, i.facts.local, i.facts.activityDates.length, weekDays, dayKey, hour]);
   const logRef = useRef('');
   useEffect(() => {
     const key = decision ? `${decision.special ?? 'none'}|${decision.reason}` : 'journal_pending';
@@ -108,15 +119,17 @@ export function useHomeSceneSpecial(i: Readonly<{
   }, [special, specialKey, i.active, journal]);
   return useMemo(() => {
     if (!special) return null;
+    const local = i.facts.local;
+    const right = special === 'mistake_poke' ? local?.repeatedMistake?.phrase : special === 'mistake_mastered' ? local?.masteredMistake?.phrase : undefined;
     const copy = buildHomeSceneSpecialCopy({
-      lang: i.lang, special,
-      n: special === 'mistakes_pile' ? i.facts.mistakesOpen ?? 0 : special === 'words_due' ? i.facts.wordsDue ?? 0 : undefined,
+      lang: i.lang, special, right, friendName: local?.friend?.name,
+      n: special === 'mistakes_pile' ? i.facts.mistakesOpen ?? 0 : special === 'words_due' ? i.facts.wordsDue ?? 0 : special === 'fun_stats' ? local?.phrasesLearned ?? 0 : undefined,
       holiday: special === 'holiday' ? specialKey ?? undefined : undefined,
       place: i.place ?? undefined,
       weekDays,
     });
     return Object.freeze({ special, key: specialKey, copy, route: ROUTE[special] });
-  }, [special, specialKey, i.lang, i.facts.mistakesOpen, i.facts.wordsDue, i.place, weekDays]);
+  }, [special, specialKey, i.lang, i.facts.mistakesOpen, i.facts.wordsDue, i.facts.local, i.place, weekDays]);
 }
 
 /**

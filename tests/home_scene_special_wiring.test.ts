@@ -16,7 +16,7 @@ describe('[HOME-SCENE] особые сцены — тексты', () => {
   it('у всех 12 сцен на 9 языках есть заголовок и кнопка', () => {
     for (const special of HOME_SCENE_SPECIAL_STATES) {
       for (const lang of LANGS) {
-        const c = buildHomeSceneSpecialCopy({ lang, special, n: 23, best: 46, today: 40, friendName: 'Аня', placeTo: 4, wrong: 'I am agree', right: 'I agree', phrase: 'We are together', phraseTr: 'Мы вместе', holiday: 'halloween', milestoneKey: 'phrases_100', weekDays: 5 });
+        const c = buildHomeSceneSpecialCopy({ lang, special, n: 23, best: 46, today: 40, friendName: 'Аня', placeTo: 4, right: 'I agree', phrase: 'We are together', phraseTr: 'Мы вместе', holiday: 'halloween', milestoneKey: 'phrases_100', weekDays: 5 });
         expect(c.title.length).toBeGreaterThan(0);
         expect(c.cta && c.cta.length).toBeTruthy();
       }
@@ -34,7 +34,11 @@ describe('[HOME-SCENE] особые сцены — тексты', () => {
   });
 
   it('друг — без рода в тексте', () => {
-    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'friend_nudge', friendName: 'Аня', n: 3 }).title).toBe('Аня: 3 урока сегодня');
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'friend_nudge', friendName: 'Аня' }).title).toBe('Аня сегодня уже в деле');
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'fun_stats', n: 124 }).title).toBe('124 фразы выучены');
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'fun_stats', n: 125 }).title).toBe('125 фраз выучено');
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'mistake_poke', right: 'I agree' })).toMatchObject({ title: 'Серьёзно? Снова эта фраза', line: '«I agree»', cta: 'Исправить' });
+    expect(buildHomeSceneSpecialCopy({ lang: 'ru', special: 'mistake_mastered', right: 'I agree' })).toMatchObject({ title: 'Выучено!', line: '«I agree»' });
   });
 });
 
@@ -67,5 +71,37 @@ describe('[HOME-SCENE] подключение к сцене', () => {
     expect(home).toContain("if (route === 'mistakes') { openHomeMistakesHub('home_scene_special'); return; }");
     expect(home).toContain("if (route === 'cards') { quickItems[2]!.onPress(); return; }");
     expect(home).toContain("if (route === 'stats') { go('/streak_stats'); return; }");
+  });
+});
+
+describe('[HOME-SCENE] пачка 2 — отбор фактов телефона (замены координатора 25.10)', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const facts = require('../components/home/v2/scene/use_home_scene_local_facts') as typeof import('../components/home/v2/scene/use_home_scene_local_facts');
+  const row = (o: Partial<{ mistakeId: string; phrase: string; status: string; captureCount: number; correctedAtMs: number | null; firstCapturedAtMs: number }>) =>
+    ({ mistakeId: 'm', phrase: 'I agree', status: 'active', captureCount: 1, correctedAtMs: null, firstCapturedAtMs: 0, ...o });
+  const NOW = new Date(2026, 9, 25, 15);
+
+  it('та же ошибка снова: активная, ≥ 2 раз, чаще всех', () => {
+    expect(facts.homeScenePickRepeatedMistake([row({ captureCount: 1 })])).toBeNull();
+    expect(facts.homeScenePickRepeatedMistake([row({ mistakeId: 'a', captureCount: 2 }), row({ mistakeId: 'b', captureCount: 4, phrase: 'I am here' }), row({ mistakeId: 'c', captureCount: 9, status: 'corrected' })]))
+      .toEqual({ id: 'b', phrase: 'I am here' });
+  });
+
+  it('исправлена сегодня — по дню телефона; вчерашняя не считается', () => {
+    const today = new Date(2026, 9, 25, 9).getTime();
+    const yesterday = new Date(2026, 9, 24, 23).getTime();
+    expect(facts.homeScenePickMasteredToday([row({ mistakeId: 'y', status: 'corrected', correctedAtMs: yesterday })], NOW)).toBeNull();
+    expect(facts.homeScenePickMasteredToday([row({ mistakeId: 't', status: 'corrected', correctedAtMs: today })], NOW)).toEqual({ id: 't', phrase: 'I agree' });
+  });
+
+  it('друг: только с именем и днём занятия сегодня', () => {
+    const days = (s: unknown) => new Set<string>((s as string[] | null) ?? []);
+    const pairs = [
+      { friendUid: 'f1', name: 'Борис', friendActiveDays: ['2026-10-24'] },
+      { friendUid: 'f2', name: 'Аня', friendActiveDays: ['2026-10-25'] },
+      { friendUid: 'f3', friendActiveDays: ['2026-10-25'] },
+    ];
+    expect(facts.homeScenePickActiveFriend(pairs, '2026-10-25', days)).toEqual({ uid: 'f2', name: 'Аня' });
+    expect(facts.homeScenePickActiveFriend(pairs.slice(0, 1), '2026-10-25', days)).toBeNull();
   });
 });

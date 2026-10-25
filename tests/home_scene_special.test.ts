@@ -44,7 +44,7 @@ describe('[HOME-SCENE] особые сцены поверх героя', () => {
   it('порядок: рубеж → праздник → ошибки → слова → Пик → друг → та же ошибка → фраза дня', () => {
     const all: HomeSceneSpecialInput = {
       ...quiet(at(2026, 10, 31, 10)), milestoneKey: 'lessons_10', mistakesOpen: 20, wordsDue: 15, peakOvertaken: { from: 3, to: 4 },
-      friendAhead: { uid: 'f1', lessonsToday: 3 }, repeatedMistake: { id: 'm1', times: 2 }, phraseOfDaySeen: false,
+      friendAhead: { uid: 'f1' }, repeatedMistake: { id: 'm1', times: 2 }, phraseOfDaySeen: false,
     };
     expect(homeSceneSpecialCandidates(all, 'continue').map((c) => c.state)).toEqual([
       'milestone', 'holiday', 'mistakes_pile', 'words_due', 'peak_overtaken', 'friend_nudge', 'mistake_poke', 'phrase_of_day_unseen',
@@ -67,7 +67,7 @@ describe('[HOME-SCENE] особые сцены поверх героя', () => {
   });
 
   it('личный рекорд — только вместо «Продолжить»; статистика и исправленная ошибка — только вместо «День засчитан»', () => {
-    const i: HomeSceneSpecialInput = { ...quiet(), today: { tasks: 30, bestDay: 36 }, progressDays: 9, masteredMistake: { id: 'm9', streak: 5 } };
+    const i: HomeSceneSpecialInput = { ...quiet(), today: { tasks: 30, bestDay: 36 }, progressDays: 9, masteredMistake: { id: 'm9' } };
     expect(homeSceneSpecialCandidates(i, 'continue').map((c) => c.state)).toEqual(['personal_best']);
     expect(homeSceneSpecialCandidates(i, 'day_done').map((c) => c.state)).toEqual(['mistake_mastered', 'fun_stats']);
     expect(homeSceneSpecialCandidates({ ...i, today: { tasks: 20, bestDay: 36 } }, 'continue')).toEqual([]);
@@ -106,9 +106,9 @@ describe('[HOME-SCENE] особые сцены поверх героя', () => {
     expect(pickHomeSceneSpecial({ ...quiet(), milestoneKey: 'phrases_100' }, base('continue'), j).special).toBeNull();
     expect(pickHomeSceneSpecial({ ...quiet(), milestoneKey: 'lessons_10' }, base('continue'), j).key).toBe('lessons_10');
     j = recordHomeSceneSpecialShown(HOME_SCENE_SPECIAL_EMPTY_JOURNAL, 'friend_nudge', 'f1', at(2026, 10, 17));
-    expect(pickHomeSceneSpecial({ ...quiet(), friendAhead: { uid: 'f1', lessonsToday: 4 } }, base('continue'), j).special).toBeNull();
-    expect(pickHomeSceneSpecial({ ...quiet(), friendAhead: { uid: 'f2', lessonsToday: 4 } }, base('continue'), j).key).toBe('f2');
-    expect(pickHomeSceneSpecial({ ...quiet(at(2026, 10, 24)), friendAhead: { uid: 'f1', lessonsToday: 4 } }, base('continue'), j).key).toBe('f1');
+    expect(pickHomeSceneSpecial({ ...quiet(), friendAhead: { uid: 'f1' } }, base('continue'), j).special).toBeNull();
+    expect(pickHomeSceneSpecial({ ...quiet(), friendAhead: { uid: 'f2' } }, base('continue'), j).key).toBe('f2');
+    expect(pickHomeSceneSpecial({ ...quiet(at(2026, 10, 24)), friendAhead: { uid: 'f1' } }, base('continue'), j).key).toBe('f1');
   });
 
   it('праздник — в оба дня Нового года, хотя «не два дня подряд»', () => {

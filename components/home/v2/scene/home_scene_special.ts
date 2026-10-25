@@ -32,9 +32,7 @@ export const HOME_SCENE_URGENT: ReadonlySet<HomeSceneState> = new Set<HomeSceneS
 export const HOME_SCENE_SPECIAL_LIMITS = Object.freeze({
   mistakesPile: 15,
   mistakeRepeats: 2,
-  mistakeMasteredStreak: 5,
   wordsDue: 12,
-  friendLessonsToday: 2,
   personalBestGap: 10,
   funStatsMinDays: 7,
   phraseOfDayUntilHour: 20,
@@ -65,8 +63,11 @@ export type HomeSceneSpecialInput = Readonly<{
   mistakesOpen: number | null;
   /** Ошибка, повторённая ≥ 2 раз (та же фраза): id и сколько раз. */
   repeatedMistake: Readonly<{ id: string; times: number }> | null;
-  /** Ошибка, исправленная N раз подряд (берём ту, что дольше всех подряд). */
-  masteredMistake: Readonly<{ id: string; streak: number }> | null;
+  /**
+   * Ошибка, исправленная СЕГОДНЯ (журнал «Мои ошибки»: status corrected, correctedAtMs — сегодня).
+   * зачем (координатор 25.10, замена данных): счётчика «5 раз подряд» на телефоне нет — сцена про исправление сегодня.
+   */
+  masteredMistake: Readonly<{ id: string }> | null;
   /** Фраза дня сегодня уже открыта (локальная отметка). */
   phraseOfDaySeen: boolean | null;
   /** Слов ждут повтора по графику карточек. */
@@ -79,8 +80,11 @@ export type HomeSceneSpecialInput = Readonly<{
   activeLastWeek: boolean | null;
   /** Сегодня пересечён рубеж: ключ ('phrases_100', 'lessons_10', 'rank_3'). */
   milestoneKey: string | null;
-  /** Взаимный друг, прошедший сегодня ≥ 2 урока (уже загруженный список друзей). */
-  friendAhead: Readonly<{ uid: string; lessonsToday: number }> | null;
+  /**
+   * Взаимный друг, который сегодня уже занимался (дни друга из уже загруженного снимка «Вместе»).
+   * зачем (координатор 25.10, замена данных): числа уроков друга за сегодня на телефоне нет.
+   */
+  friendAhead: Readonly<{ uid: string }> | null;
   /** В кэше комнаты недели тебя обогнали с прошлого входа: место было → стало. */
   peakOvertaken: Readonly<{ from: number; to: number }> | null;
 }>;
@@ -152,9 +156,7 @@ export function homeSceneSpecialCandidates(input: HomeSceneSpecialInput, base: H
   if (input.peakOvertaken && input.peakOvertaken.to > input.peakOvertaken.from) {
     push('peak_overtaken', null, `peak ${input.peakOvertaken.from}→${input.peakOvertaken.to}`);
   }
-  if (input.friendAhead && input.friendAhead.lessonsToday >= L.friendLessonsToday) {
-    push('friend_nudge', input.friendAhead.uid, `friendLessonsToday=${input.friendAhead.lessonsToday}`);
-  }
+  if (input.friendAhead) push('friend_nudge', input.friendAhead.uid, 'friendActiveToday=true');
   if (input.repeatedMistake && input.repeatedMistake.times >= L.mistakeRepeats) {
     push('mistake_poke', input.repeatedMistake.id, `mistakeTimes=${input.repeatedMistake.times}`);
   }
@@ -163,9 +165,7 @@ export function homeSceneSpecialCandidates(input: HomeSceneSpecialInput, base: H
     const gap = input.today.bestDay - input.today.tasks;
     if (gap > 0 && gap <= L.personalBestGap) push('personal_best', null, `tasks=${input.today.tasks} best=${input.today.bestDay}`);
   }
-  if (base === 'day_done' && input.masteredMistake && input.masteredMistake.streak >= L.mistakeMasteredStreak) {
-    push('mistake_mastered', input.masteredMistake.id, `masteredStreak=${input.masteredMistake.streak}`);
-  }
+  if (base === 'day_done' && input.masteredMistake) push('mistake_mastered', input.masteredMistake.id, 'correctedToday=true');
   if (input.now.getDay() === 1 && input.activeLastWeek === true) push('weekly_recap', null, 'monday activeLastWeek=true');
   if (base === 'day_done' && input.progressDays !== null && input.progressDays >= L.funStatsMinDays) {
     push('fun_stats', null, `progressDays=${input.progressDays}`);

@@ -6,6 +6,11 @@
 
 type CounterKey = 'layout' | 'home' | 'scene';
 
+// зачем (координатор 26.10, «сперва логи» для «скролл стал дёрганым»): счётчики перерисовок не показывают, ЧТО видит человек. Пока окно прокрутки открыто, каждый кадр JS-потока
+// (requestAnimationFrame) меряет промежуток до прошлого: сколько кадров, самый длинный промежуток, сколько кадров дольше 50 и 100 мс. Промежуток > 33 мс = JS не успел отдать кадр.
+// UI-поток этим не виден (его janky меряет Сверка по gfxinfo) — но если провалы JS совпадают с перерисовками, причина найдена. Только числа, раз в секунду, только пока идёт прокрутка.
+const frames = { n: 0, maxGap: 0, over50: 0, over100: 0, sumGap: 0 };
+
 const counts: Record<CounterKey | 'hops', number> = { layout: 0, home: 0, scene: 0, hops: 0 };
 const WINDOW_TICK_MS = 1000;
 const IDLE_CLOSE_MS = 1600;
@@ -14,11 +19,33 @@ let active = false;
 let startedAt = 0;
 let lastActivityAt = 0;
 let timer: ReturnType<typeof setInterval> | null = null;
+let rafId: number | null = null;
+let lastFrameAt = 0;
+
+function resetFrames(): void { frames.n = 0; frames.maxGap = 0; frames.over50 = 0; frames.over100 = 0; frames.sumGap = 0; }
+
+/** Промежуток между кадрами JS-потока, мс. Открыто для теста; в приложении зовётся из цикла кадров. */
+export function noteHomeFrameGap(gapMs: number): void {
+  if (!active || !Number.isFinite(gapMs) || gapMs < 0) return;
+  frames.n += 1;
+  frames.sumGap += gapMs;
+  if (gapMs > frames.maxGap) frames.maxGap = gapMs;
+  if (gapMs > 50) frames.over50 += 1;
+  if (gapMs > 100) frames.over100 += 1;
+}
+
+function frameLoop(): void {
+  const now = Date.now();
+  if (lastFrameAt > 0) noteHomeFrameGap(now - lastFrameAt);
+  lastFrameAt = now;
+  rafId = typeof requestAnimationFrame === 'function' ? requestAnimationFrame(frameLoop) : null;
+}
 
 function print(event: string): void {
   const now = Date.now();
-  console.log('[HOME-SCROLL]', event, JSON.stringify({ tMs: now - startedAt, layout: counts.layout, home: counts.home, scene: counts.scene, jsHops: counts.hops })); // guard-ok: числа за секунду прокрутки
+  console.log('[HOME-SCROLL]', event, JSON.stringify({ tMs: now - startedAt, layout: counts.layout, home: counts.home, scene: counts.scene, jsHops: counts.hops, frames: frames.n, avgGapMs: frames.n > 0 ? Math.round(frames.sumGap / frames.n) : null, maxGapMs: Math.round(frames.maxGap), over50: frames.over50, over100: frames.over100 })); // guard-ok: числа за секунду прокрутки
   counts.layout = 0; counts.home = 0; counts.scene = 0; counts.hops = 0;
+  resetFrames();
 }
 
 function stop(reason: string): void {
@@ -26,6 +53,9 @@ function stop(reason: string): void {
   print(`end:${reason}`);
   active = false;
   if (timer) { clearInterval(timer); timer = null; }
+  if (rafId !== null && typeof cancelAnimationFrame === 'function') cancelAnimationFrame(rafId);
+  rafId = null;
+  lastFrameAt = 0;
 }
 
 /** Окно открывается касанием прокрутки (onScrollBeginDrag) и закрывается остановкой/простоем. */
@@ -35,6 +65,9 @@ export function startHomeScrollWindow(): void {
   active = true;
   startedAt = lastActivityAt;
   counts.layout = 0; counts.home = 0; counts.scene = 0; counts.hops = 0;
+  resetFrames();
+  lastFrameAt = 0;
+  frameLoop();
   console.log('[HOME-SCROLL]', 'start'); // guard-ok: начало окна прокрутки
   timer = setInterval(() => {
     if (Date.now() - lastActivityAt > IDLE_CLOSE_MS) { stop('idle'); return; }

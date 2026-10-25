@@ -53,6 +53,9 @@ export function spireRoomRefreshMsFor(liveMembers: number): number {
 const PARTICIPATION_KEEP = 3;
 const ROOM_SCHEMA = 'spire-room-cache.v1' as const;
 
+/** Потолок одной синхронизации комнаты (сеть join + чтение документа). */
+export const SPIRE_ROOM_SYNC_TIMEOUT_MS = 12_000;
+
 export type SpireRoomLoad = Readonly<{
   status: 'network' | 'cache' | 'offline' | 'paused' | 'unavailable';
   room: SpireRoomSnapshot | null;
@@ -179,7 +182,18 @@ export function spireSyncRoom(gate: SpireLiveGate, input: SpireSyncRoomInput): P
     DebugLogger.info(LOG, `room: синхронизация ${input.lang} уже идёт — присоединяемся`);
     return running;
   }
-  const task = runSync(gate, input).finally(() => { inFlight.delete(key); });
+  // зачем ([SPIRE-ROOM], владелец 25.10 «комната не загрузилась, пришлось перезаходить»): зависший запрос держал «в полёте» и
+  // следующий вход присоединялся к нему же. Потолок SPIRE_ROOM_SYNC_TIMEOUT_MS: ответ «offline / timeout» с кэшем недели, в
+  // полёте ничего не остаётся — повтор (use_spire_room_sync) идёт заново
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<SpireRoomLoad>((resolve) => {
+    timer = setTimeout(() => {
+      DebugLogger.warn(LOG, `room: синхронизация ${input.lang} не ответила за ${SPIRE_ROOM_SYNC_TIMEOUT_MS}мс — тайм-аут, отдаём кэш недели`);
+      void spireReadRoomCache(input.uid, input.lang).then((c) => resolve({ status: 'offline', room: c && c.weekId === spireCurrentWeekKey(Date.now()) ? c : null, reason: 'timeout' }))
+        .catch((error: unknown) => { DebugLogger.warn(LOG, `room: кэш после тайм-аута не прочитался (${spireErrorText(error)}) — пусто`); resolve({ status: 'offline', room: null, reason: 'timeout' }); });
+    }, SPIRE_ROOM_SYNC_TIMEOUT_MS);
+  });
+  const task = Promise.race([runSync(gate, input), timeout]).finally(() => { if (timer) clearTimeout(timer); inFlight.delete(key); });
   inFlight.set(key, task);
   return task;
 }

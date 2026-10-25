@@ -56,7 +56,9 @@ describe('Пик: экран и хук подключены', () => {
     expect(screen).toContain('void spireLoadEnter(config !== null).then((disk) => { if (alive && disk) setConfig((cur) => cur ?? disk); });');
     expect(screen).toContain('useSpireLoadReadiness(realGame, preview !== null);');
     expect(hook).toContain('void spireFirstFrameRoom(uid, lang as SpireLang, Date.now() - identityStartedAt).then((first) => { if (alive && first) setRoomLoad((cur) => cur ?? first); });');
-    expect(hook).toMatch(/spireLoadMark\('room:sync', \{ status: load\.status/);
+    // [SPIRE-ROOM] 25.10: загрузка комнаты — use_spire_room_sync (тайм-аут, автоповтор, повтор при возврате)
+    expect(read('app/spire/use_spire_room_sync.ts')).toMatch(/spireLoadMark\('room:sync', \{ status: load\.status/);
+    expect(hook).toContain('useSpireRoomSync({ gate, ids, lang, setRoomLoad });');
   });
 });
 

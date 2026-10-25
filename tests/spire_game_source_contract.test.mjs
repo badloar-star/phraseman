@@ -75,7 +75,11 @@ test('game hook: no network while the gate is closed', () => {
   assert.ok(game.includes("spireOpenLiveGate(config, 'home')"), 'gate opened only through the check');
   assert.ok(game.includes('unlocked && lang ? spireOpenLiveGate'), 'gate requires the unlocked screen');
   // Каждый эффект/функция с сетью начинается с раннего выхода по воротам.
-  for (const marker of ['spireSyncRoom(gate', 'spireLoadFriendChips(gate', 'spireLoadWeekResult(gate', 'spireEnsureWeekPack(gate']) {
+  // [SPIRE-ROOM] 25.10: комната — в use_spire_room_sync (там ранний выход по воротам); хук игры зовёт её с теми же воротами
+  const roomSync = read('app/spire/use_spire_room_sync.ts');
+  assert.ok(game.includes('useSpireRoomSync({ gate, ids, lang, setRoomLoad });'), 'room sync gets the same gate');
+  assert.ok(roomSync.indexOf('if (!gate || !ids || !lang) {') > -1 && roomSync.indexOf('if (!gate || !ids || !lang) {') < roomSync.indexOf('spireSyncRoom(gate'), 'room sync is behind the gate');
+  for (const marker of ['spireLoadFriendChips(gate', 'spireLoadWeekResult(gate', 'spireEnsureWeekPack(gate']) {
     const at = game.indexOf(marker);
     assert.ok(at > -1, `${marker} is used`);
     const guard = game.lastIndexOf('if (!gate', at);

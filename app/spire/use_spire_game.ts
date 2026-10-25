@@ -14,7 +14,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, InteractionManager } from 'react-native';
+import { AppState } from 'react-native';
 
 import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/config_contract';
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
@@ -42,8 +42,9 @@ import { spireOpenLiveGate, type SpireLiveGate } from './spire_live_gate';
 import { spireEstimateStepBudgetMs, spireRememberStepBudget } from './spire_step_budget';
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
-import { spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
-import { spireFirstFrameRoom, spireLoadMark } from './spire_load_trace';
+import type { SpireRoomLoad } from './spire_room_client';
+import { useSpireRoomSync } from './use_spire_room_sync';
+import { spireFirstFrameRoom } from './spire_load_trace';
 import { publishSpirePositionFeed } from './spire_position_feed';
 import { useSpireOwnerEpoch } from './spire_owner_epoch';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
@@ -90,6 +91,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   );
   const [ids, setIds] = useState<Readonly<{ uid: string; stableId: string }> | null>(null);
   const [roomLoad, setRoomLoad] = useState<SpireRoomLoad | null>(null);
+  useSpireRoomSync({ gate, ids, lang, setRoomLoad }); // [SPIRE-ROOM] владелец 25.10: комната не остаётся пустой до перезахода
   const [friends, setFriends] = useState<readonly SpireFriendChip[]>([]);
   const [weekResult, setWeekResult] = useState<SpireWeekResultView | null>(null);
   const [session, setSession] = useState<SpireStepSession | null>(null);
@@ -145,26 +147,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   useEffect(() => {
     if (!gate || !ids || !lang) return undefined;
     let alive = true;
-    const syncStartedAt = Date.now(); void spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang }).then((load) => {
-      spireLoadMark('room:sync', { status: load.status, reason: load.reason, members: load.room?.members.length ?? null, ms: Date.now() - syncStartedAt, alive }); if (!alive) return;
-      DebugLogger.info(LOG, `game: комната status=${load.status} reason=${load.reason} group=${load.room?.groupId ?? '—'}`);
-      // зачем (аудит Optimistic UI Шпиля, 13.10; Performance Bible «Layout Stability»): плашка «нет сети» вставляется в поток НАД башней — без перехода башня прыгала бы вниз.
-      if (load.status === 'offline') animateNextLayoutTransition();
-      setRoomLoad(load);
-      if (load.room) {
-        // Прогрев пакета недели: «Подняться» стартует без ожидания сети. После анимаций
-        // входа — разбор файла (~1 МБ JSON) не должен съесть первый кадр экрана.
-        const room = load.room;
-        InteractionManager.runAfterInteractions(() => {
-          if (!alive) return;
-          void spireEnsureWeekPack(gate, { lang, tier: room.tier, weekId: room.weekId })
-            .then((p) => DebugLogger.info(LOG, `game: прогрев пакета status=${p.status} source=${p.source}`));
-        });
-      }
-    }).catch((error: unknown) => { // зачем (Ревизор c2a45e78d, координатор 18.10): отказ синхронизации комнаты не немой — код и время; экран держит кэш, потолок 2,5 с снимает скелет
-      const code = String((error as { code?: unknown } | null)?.code ?? (error instanceof Error ? error.name : 'unknown')).slice(0, 60);
-      spireLoadMark('room:sync_failed', { code, ms: Date.now() - syncStartedAt, alive }); DebugLogger.warn(LOG, `[PIK-LOAD] sync_failed code=${code} ms=${Date.now() - syncStartedAt}`);
-    });
+    // комната недели — use_spire_room_sync (кэш сразу, тайм-аут, автоповтор, повтор при возврате; [SPIRE-ROOM])
     // зачем (аудит «пропала сеть», Авторизация 13.10): ранние выходы загрузки друзей и итога недели были немыми — пишем причину.
     void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => {
       if (!alive) { DebugLogger.info(LOG, 'game: друзья пришли после ухода с экрана — не показываю'); return; }

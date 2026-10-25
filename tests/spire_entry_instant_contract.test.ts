@@ -32,7 +32,8 @@ describe('блоки над башней встают плавно', () => {
 
   it('плашка «нет сети» и карточка итога недели вставляются через layout-переход', () => {
     expect(game).toMatch(/import \{ animateNextLayoutTransition \} from '..\/smooth_layout'/);
-    expect(game).toMatch(/if \(load\.status === 'offline'\) animateNextLayoutTransition\(\);\n\s*setRoomLoad\(load\)/);
+    // [SPIRE-ROOM] 25.10: загрузка комнаты переехала в use_spire_room_sync (автоповтор); переход перед вставкой плашки — там же
+    expect(read('app/spire/use_spire_room_sync.ts')).toMatch(/if \(load\.status === 'offline'\) animateNextLayoutTransition\(\);\n\s*setRoomLoad\(\(cur\) => spireMergeRoomLoad\(cur, load\)\)/);
     expect(game).toMatch(/if \(res\) animateNextLayoutTransition\(\);\n\s*setWeekResult\(res\)/);
   });
 

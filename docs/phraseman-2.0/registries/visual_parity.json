@@ -4698,7 +4698,9 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending"
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "practice-028",
@@ -12739,7 +12741,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-004",
@@ -12824,7 +12828,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-006",
@@ -12867,7 +12873,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-007",
@@ -12913,7 +12921,9 @@
       },
       "blocked_reason": null,
       "verdict_note": "Замков на строках нет — все занятия открыты (441 из 441), это данные. Кадр Сверки 18.10 00:32 (BACK-BTN), тема по умолчанию эмулятора.",
-      "verdict_by": "Макеты 18.10"
+      "verdict_by": "Макеты 18.10",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-008",
@@ -13054,7 +13064,9 @@
         "final_at": "2026-10-12"
       },
       "shot_at": null,
-      "shot_at_source": null
+      "shot_at_source": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-011",
@@ -13097,7 +13109,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-012",
@@ -13141,7 +13155,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-013",
@@ -13185,7 +13201,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-014",
@@ -13228,7 +13246,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-015",
@@ -13271,7 +13291,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-016",
@@ -13312,7 +13334,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-017",
@@ -13355,7 +13379,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-018",
@@ -13410,7 +13436,9 @@
         "final_at": "2026-10-12"
       },
       "shot_at": null,
-      "shot_at_source": null
+      "shot_at_source": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-019",
@@ -13453,7 +13481,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-020",
@@ -13618,7 +13648,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-024",
@@ -13659,7 +13691,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-025",
@@ -13700,7 +13734,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-026",
@@ -13741,7 +13777,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-027",
@@ -13826,7 +13864,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-029",
@@ -13868,7 +13908,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-030",
@@ -13910,7 +13952,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-031",
@@ -13952,7 +13996,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-032",
@@ -13994,7 +14040,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-033",
@@ -14036,7 +14084,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-034",
@@ -14080,7 +14130,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-035",
@@ -14122,7 +14174,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-036",
@@ -14164,7 +14218,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-037",
@@ -14206,7 +14262,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-038",
@@ -14248,7 +14306,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-039",
@@ -14290,7 +14350,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-040",
@@ -14332,7 +14394,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-041",
@@ -14374,7 +14438,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-042",
@@ -14416,7 +14482,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-043",
@@ -14458,7 +14526,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-044",
@@ -14500,7 +14570,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-045",
@@ -14542,7 +14614,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-046",
@@ -14584,7 +14658,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-047",
@@ -14626,7 +14702,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-048",
@@ -14668,7 +14746,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-049",
@@ -14709,7 +14789,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-050",
@@ -14751,7 +14833,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-051",
@@ -14792,7 +14876,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-052",
@@ -14834,7 +14920,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-053",
@@ -14878,7 +14966,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-054",
@@ -14920,7 +15010,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-055",
@@ -14962,7 +15054,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-056",
@@ -15004,7 +15098,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-057",
@@ -15045,7 +15141,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-058",
@@ -15086,7 +15184,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-059",
@@ -15127,7 +15227,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-060",
@@ -15170,7 +15272,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-061",
@@ -15213,7 +15317,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-062",
@@ -15256,7 +15362,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-063",
@@ -15297,7 +15405,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-064",
@@ -15338,7 +15448,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-065",
@@ -15419,7 +15531,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-067",
@@ -15460,7 +15574,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-068",
@@ -15501,7 +15617,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-069",
@@ -15545,7 +15663,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-070",
@@ -15589,7 +15709,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-071",
@@ -15633,7 +15755,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-072",
@@ -15769,7 +15893,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-075",
@@ -15813,7 +15939,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-076",
@@ -15856,7 +15984,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-077",
@@ -15899,7 +16029,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-078",
@@ -15942,7 +16074,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-079",
@@ -15985,7 +16119,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-080",
@@ -16071,7 +16207,9 @@
           "app/learning_v2_authoring_preview.tsx"
         ]
       },
-      "blocked_reason": null
+      "blocked_reason": null,
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "learning-v2-082",
@@ -44640,7 +44778,9 @@
       "triage": {
         "restitch_note": "образец home-by-language-mockup перерисован по HomeV2 (координатор 13.10): шапка «серия · монеты · колокол · аватар», ряд из трёх плиток всегда (D143), «Видео · Смотреть все ›», «СЕГОДНЯ» строками со счётчиками, «ФРАЗА ДНЯ», таббар из 4 иконок без подписей. Нужна пересклейка"
       },
-      "verdict_note": "РЕШЕНИЕ владельца 18.10 (08:01): плашка «Продолжить» — ВАРИАНТ Г (fa6672b5b, continue-card-variants.html): высота 96, слева название и одна строка «N из M · Урок 1» (или тип места), справа кольцо прогресса 74 px вокруг одной иконки continue 48 px, без полосы и без стрелки, цвета темы; иконки плиток — утверждённый набор B (b4af17fc1); испанские уроки открыты (D188). Эталон home-by-language-mockup.html обновлён (Макеты 18.10). Старая плашка с полосой — отличие. Ряд из 4 плиток — горизонтальная лента: три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за правым краем (прокрутка вбок), затухание справа ~24 dp (в коде делается) — решение владельца, не отличие."
+      "verdict_note": "РЕШЕНИЕ владельца 18.10 (08:01): плашка «Продолжить» — ВАРИАНТ Г (fa6672b5b, continue-card-variants.html): высота 96, слева название и одна строка «N из M · Урок 1» (или тип места), справа кольцо прогресса 74 px вокруг одной иконки continue 48 px, без полосы и без стрелки, цвета темы; иконки плиток — утверждённый набор B (b4af17fc1); испанские уроки открыты (D188). Эталон home-by-language-mockup.html обновлён (Макеты 18.10). Старая плашка с полосой — отличие. Ряд из 4 плиток — горизонтальная лента: три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за правым краем (прокрутка вбок), затухание справа ~24 dp (в коде делается) — решение владельца, не отличие.",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "auth-gap-019",
@@ -44962,7 +45102,9 @@
       "shot_at": null,
       "shot_at_source": null,
       "added_reason": "координатор 17.10: вариант (в) — основной эталон",
-      "verdict_note": "РЕШЕНИЕ владельца 18.10 (08:01): плашка «Продолжить» — ВАРИАНТ Г (fa6672b5b, continue-card-variants.html): высота 96, слева название и одна строка «N из M · Урок 1» (или тип места), справа кольцо прогресса 74 px вокруг одной иконки continue 48 px, без полосы и без стрелки, цвета темы; иконки плиток — утверждённый набор B (b4af17fc1); испанские уроки открыты (D188). Эталон home-by-language-mockup.html обновлён (Макеты 18.10). Старая плашка с полосой — отличие. Ряд из 4 плиток — горизонтальная лента: три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за правым краем (прокрутка вбок), затухание справа ~24 dp (в коде делается) — решение владельца, не отличие."
+      "verdict_note": "РЕШЕНИЕ владельца 18.10 (08:01): плашка «Продолжить» — ВАРИАНТ Г (fa6672b5b, continue-card-variants.html): высота 96, слева название и одна строка «N из M · Урок 1» (или тип места), справа кольцо прогресса 74 px вокруг одной иконки continue 48 px, без полосы и без стрелки, цвета темы; иконки плиток — утверждённый набор B (b4af17fc1); испанские уроки открыты (D188). Эталон home-by-language-mockup.html обновлён (Макеты 18.10). Старая плашка с полосой — отличие. Ряд из 4 плиток — горизонтальная лента: три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за правым краем (прокрутка вбок), затухание справа ~24 dp (в коде делается) — решение владельца, не отличие.",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "home-008",
@@ -44996,7 +45138,9 @@
       "shot_at": null,
       "shot_at_source": null,
       "added_reason": "координатор 17.10: вариант (в) — основной эталон",
-      "verdict_note": "РЕШЕНИЕ владельца 18.10 (08:01): плашка «Продолжить» — ВАРИАНТ Г (fa6672b5b, continue-card-variants.html): высота 96, слева название и одна строка «N из M · Урок 1» (или тип места), справа кольцо прогресса 74 px вокруг одной иконки continue 48 px, без полосы и без стрелки, цвета темы; иконки плиток — утверждённый набор B (b4af17fc1); испанские уроки открыты (D188). Эталон home-by-language-mockup.html обновлён (Макеты 18.10). Старая плашка с полосой — отличие. Ряд из 4 плиток — горизонтальная лента: три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за правым краем (прокрутка вбок), затухание справа ~24 dp (в коде делается) — решение владельца, не отличие."
+      "verdict_note": "РЕШЕНИЕ владельца 18.10 (08:01): плашка «Продолжить» — ВАРИАНТ Г (fa6672b5b, continue-card-variants.html): высота 96, слева название и одна строка «N из M · Урок 1» (или тип места), справа кольцо прогресса 74 px вокруг одной иконки continue 48 px, без полосы и без стрелки, цвета темы; иконки плиток — утверждённый набор B (b4af17fc1); испанские уроки открыты (D188). Эталон home-by-language-mockup.html обновлён (Макеты 18.10). Старая плашка с полосой — отличие. Ряд из 4 плиток — горизонтальная лента: три плитки в прежнем размере ((ширина − 2 поля − 2 зазора)/3), Пик за правым краем (прокрутка вбок), затухание справа ~24 dp (в коде делается) — решение владельца, не отличие.",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     },
     {
       "id": "lessons-classic-tab-001",
@@ -47994,6 +48138,529 @@
       },
       "added_reason": "владелец 15.10: один счётчик голоса на все микрофоны, цифра на каждом",
       "note": "Дизайн вешает бейджи после окна Ядра 11:30; во всех прочих кадрах этих страниц с микрофоном Free теперь тоже цифра 3 (во время записи 2) — старые строки сверять с бейджем. Остаток подменяется lv2voice=3|1|0 (Ядро 5095efc6f, общий счётчик) — проверить, что подмена действует и вне курса"
+    },
+    {
+      "id": "home-scene-001",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 1,
+        "label": "1 · Новичок: «Начать»",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Новичок: «Начать» (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-002",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 2,
+        "label": "2 · Продолжить эпизод, днём",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Продолжить эпизод, днём (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-003",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 3,
+        "label": "3 · Серия под угрозой, вечер",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Серия под угрозой, вечер (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-004",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 4,
+        "label": "4 · День выполнен, серия засчитана",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · День выполнен, серия засчитана (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-005",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 5,
+        "label": "5 · 0 энергии",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · 0 энергии (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-006",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 6,
+        "label": "6 · Нет сети",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Нет сети (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-007",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 7,
+        "label": "7 · Экзамен главы ждёт",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Экзамен главы ждёт (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-008",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 8,
+        "label": "8 · Серия прервалась, начни новую",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Серия прервалась, начни новую (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-009",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 9,
+        "label": "9 · С возвращением после 3+ дней",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · С возвращением после 3+ дней (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-010",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 10,
+        "label": "10 · Всё выпущенное пройдено",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Всё выпущенное пройдено (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "home-scene-011",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/home-scene-states.html",
+        "phone": 11,
+        "label": "11 · Plus · продолжить днём",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "Главная · «Сцена»",
+      "state": "Главная · Plus · продолжить днём (высота сцены — вариант 2 scenes-compact.html, 46 %)",
+      "code": [
+        "app/(tabs)/home.tsx",
+        "components/home/v2/scene/HomeScene.tsx",
+        "components/home/v2/scene/HomeSceneStage.tsx",
+        "components/home/v2/scene/home_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "today-scene-001",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/today-scene-concepts.html",
+        "phone": 1,
+        "label": "A · Утро: 0 из 3",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "«Сегодня» · «Сцена»",
+      "state": "«Сегодня» · Утро: 0 из 3",
+      "code": [
+        "components/home/v2/today_scene/TodayScene.tsx",
+        "components/home/v2/today_scene/TodaySceneView.tsx",
+        "components/home/v2/today_scene/today_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "today-scene-002",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/today-scene-concepts.html",
+        "phone": 2,
+        "label": "A · День: 1 из 3",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "«Сегодня» · «Сцена»",
+      "state": "«Сегодня» · День: 1 из 3",
+      "code": [
+        "components/home/v2/today_scene/TodayScene.tsx",
+        "components/home/v2/today_scene/TodaySceneView.tsx",
+        "components/home/v2/today_scene/today_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "today-scene-003",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/today-scene-concepts.html",
+        "phone": 3,
+        "label": "A · Вечер: серия под угрозой",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "«Сегодня» · «Сцена»",
+      "state": "«Сегодня» · Вечер: серия под угрозой",
+      "code": [
+        "components/home/v2/today_scene/TodayScene.tsx",
+        "components/home/v2/today_scene/TodaySceneView.tsx",
+        "components/home/v2/today_scene/today_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "today-scene-004",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/today-scene-concepts.html",
+        "phone": 4,
+        "label": "A · Все задания выполнены",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "«Сегодня» · «Сцена»",
+      "state": "«Сегодня» · Все задания выполнены",
+      "code": [
+        "components/home/v2/today_scene/TodayScene.tsx",
+        "components/home/v2/today_scene/TodaySceneView.tsx",
+        "components/home/v2/today_scene/today_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
+    },
+    {
+      "id": "today-scene-005",
+      "source": "coordinator-2026-10-25",
+      "mockup": {
+        "file": "docs/design/v2-app/today-scene-concepts.html",
+        "phone": 5,
+        "label": "A · Видео вместо диалога: 4 из 10 минут",
+        "mapping": "phones_order_2026-10-25"
+      },
+      "screen": "«Сегодня» · «Сцена»",
+      "state": "«Сегодня» · Видео вместо диалога: 4 из 10 минут",
+      "code": [
+        "components/home/v2/today_scene/TodayScene.tsx",
+        "components/home/v2/today_scene/TodaySceneView.tsx",
+        "components/home/v2/today_scene/today_scene_copy.ts"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": true,
+      "anim_notes": [
+        "появление героя / колец"
+      ],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "release": "r1",
+      "release_note": "координатор 25.10 (разбор PARITY 311, c00798d52): заметный экран заведён в R1 — снять первым"
     }
   ]
 }

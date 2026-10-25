@@ -96,6 +96,9 @@ function labelsFor(lang: ReturnType<typeof useLang>['lang']) {
     unavailable: triLang(lang, { ru: 'Не удалось продолжить разговор', uk: 'Не вдалося продовжити розмову', en: 'Couldn’t continue the chat', es: 'No se pudo continuar la conversación', 'pt-BR': 'Não foi possível continuar a conversa', vi: 'Không thể tiếp tục trò chuyện', id: 'Obrolan tidak dapat dilanjutkan', tr: 'Sohbete devam edilemedi', pl: 'Nie udało się kontynuować rozmowy', fr: 'Impossible de poursuivre la conversation', de: 'Das Gespräch konnte nicht fortgesetzt werden' }),
     // зачем (координатор 18.10): дневной потолок ИИ — спокойное «на сегодня всё», без технических слов и без «Повторить».
     dailyCap: triLang(lang, { ru: 'На сегодня разговоров достаточно. Продолжим завтра.', uk: 'На сьогодні розмов досить. Продовжимо завтра.', en: "That's enough talking for today. Let's continue tomorrow.", es: 'Por hoy ya hemos hablado bastante. Seguimos mañana.', 'pt-BR': 'Por hoje já conversamos bastante. Continuamos amanhã.', vi: 'Hôm nay trò chuyện vậy là đủ rồi. Mai mình nói tiếp nhé.', id: 'Untuk hari ini sudah cukup mengobrol. Kita lanjut besok.', tr: 'Bugünlük bu kadar sohbet yeter. Yarın devam ederiz.', pl: 'Na dziś wystarczy rozmów. Kontynuujemy jutro.', fr: 'Assez discuté pour aujourd’hui. On continue demain.', de: 'Für heute ist genug geredet. Morgen geht es weiter.' }),
+    // зачем (10 · ПЕРЕВОДЧИК 25.10, 08328d174): плашка «Нет связи» — в одну строку на 360 dp; длинные тексты ошибок резались, а «попробуй ещё раз» дублировало кнопку
+    stripOffline: triLang(lang, { ru: 'Нет связи', uk: 'Немає зв’язку', en: 'No connection', es: 'Sin conexión', 'pt-BR': 'Sem conexão', vi: 'Mất kết nối', id: 'Tidak ada koneksi', tr: 'Bağlantı yok', pl: 'Brak połączenia' }),
+    stripService: triLang(lang, { ru: 'Сервис недоступен', uk: 'Сервіс недоступний', en: 'Service unavailable', es: 'Servicio no disponible', 'pt-BR': 'Serviço indisponível', vi: 'Dịch vụ không khả dụng', id: 'Layanan tidak tersedia', tr: 'Hizmet kullanılamıyor', pl: 'Usługa niedostępna' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
   });
 }
@@ -629,7 +632,7 @@ function DialogueV2FreeformContent() {
   });
   // зачем (координатор 25.10): нет сети (NetInfo) — «Нет связи» (u31 C18), сеть есть, а старт не прошёл — «Сервис временно недоступен» (C19)
   const connectionNotice = startOffline && !session ? {
-    message: netConnected === true ? coachingLabels.serviceError : coachingLabels.networkError,
+    message: netConnected === true ? labels.stripService : labels.stripOffline,
     retryLabel: labels.retry,
     onRetry: () => {
       console.log(`[DIALOG-NET] freeform:retry ← button ${JSON.stringify({ generation: generationRef.current, connected: netConnected })}`);

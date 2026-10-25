@@ -458,7 +458,7 @@ describe('Dialogue V2 freeform route', () => {
     await act(async () => { emitNet(false); });
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo, wie geht'); });
     await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(6));
-    await waitFor(() => expect(connectionNotice()?.message).toBe('Нет связи. Проверь интернет и попробуй ещё раз.'));
+    await waitFor(() => expect(connectionNotice()?.message).toBe('Нет связи'));
     expect(mockScreen.mock.calls.at(-1)[0].draft).toBe('Hallo, wie geht');
     expect(mockReplace).not.toHaveBeenCalled();
     await act(async () => { emitNet(true); });

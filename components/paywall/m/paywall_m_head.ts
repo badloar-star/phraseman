@@ -49,7 +49,7 @@ export function paywallMHeadFor(kind: PaywallMHeadKind, lang: Lang, person: Payw
     case 'energy':
       return {
         pill: paywallMText(lang, 'm.head.energy.pill'),
-        kicker: paywallMText(lang, 'm.head.energy.kicker', { n: PAYWALL_M_LIMITS.energy }),
+        kicker: '', // зачем (Макеты 25.10): число «занятий подряд сегодня» человека на устройстве не считается — константу лимита за факт не выдаём, строка скрыта
         title: paywallMText(lang, 'm.head.energy.title'),
         sub: paywallMText(lang, 'm.head.energy.sub'),
       };

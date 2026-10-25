@@ -45,7 +45,7 @@ describe('пейвол М: шапка по месту', () => {
   });
 
   it('энергия и серия берут числа из кода и прогресса', () => {
-    expect(paywallMHeadFor('energy', 'ru', person).kicker).toBe('5 занятий подряд сегодня');
+    expect(paywallMHeadFor('energy', 'ru', person).kicker).toBe(''); // честного числа занятий сегодня нет — строку не показываем
     expect(paywallMHeadFor('streak', 'ru', person).pill).toBe('Серия 12 дней');
   });
 

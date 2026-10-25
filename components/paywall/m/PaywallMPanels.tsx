@@ -18,12 +18,16 @@ import { planRowSelectedPaint } from '../paywallPlanRowPaint';
 import { paywallPlateBg } from '../paywall_surfaces';
 import { paywallServerRefusedText } from '../paywall_server_refused_copy';
 import { useRestoreOutcome } from '../PaywallServerRefusedDock';
+import { peekLearningV2LessonBankV1 } from '../../../app/learning_v2_lesson_phrase_bank_cache_v1';
+import { useStudyTarget } from '../../StudyTargetContext';
 import { paywallMText } from './paywall_m_copy';
-import { PAYWALL_M_LIMITS, PAYWALL_M_TOTAL_LESSONS } from './paywall_m_model';
+import { PaywallMWorkshopPreviewBlock } from './PaywallMWorkshopPreview';
+import { paywallMWorkshopPreview } from './paywall_m_workshop_preview';
+import { PAYWALL_M_TOTAL_LESSONS } from './paywall_m_model';
 import { paywallMIsMissedDay, paywallMLessonProgress, type PaywallMWeekDay } from './paywall_m_panels';
 
 type ShellProps = Readonly<{
-  g: GlassTokens; kicker: string; title: string; children?: React.ReactNode; body?: string | null;
+  g: GlassTokens; kicker: string | null; title: string; children?: React.ReactNode; body?: string | null;
   ctaLabel?: string | null; onCta?: () => void; fine?: string | null; laterLabel?: string | null; onLater?: () => void; laterDisabled?: boolean; bottomInset: number;
 }>;
 
@@ -32,7 +36,7 @@ const Shell = memo(function Shell(p: ShellProps) {
   const { g } = p;
   return (
     <View testID="paywall-m-panel" style={[S.shell, { paddingBottom: Math.max(p.bottomInset, 14) }]}>
-      <Text style={[S.kicker, { color: g.accentTextSafe }]}>{p.kicker}</Text>
+      {p.kicker ? <Text style={[S.kicker, { color: g.accentTextSafe }]}>{p.kicker}</Text> : null}
       <Text accessibilityRole="header" style={[S.title, { color: g.text }]}>{p.title}</Text>
       {p.children}
       {p.body ? <Text style={[S.body, { color: g.secondary }]}>{p.body}</Text> : null}
@@ -63,7 +67,7 @@ export const PaywallMEnergyPanel = memo(function PaywallMEnergyPanel(p: CommonPr
   const paint = useMemo(() => planRowSelectedPaint(g), [g]);
   const plusTileStyle = useMemo(() => ({ backgroundColor: plate, borderColor: paint.edge }), [plate, paint.edge]); // guard-ok: рамка плитки Plus 1 px по карте Тем E7, исключение PhraseMan 2.0
   return (
-    <Shell g={g} bottomInset={p.bottomInset} kicker={paywallMText(lang, 'mc.energy.kicker', { n: PAYWALL_M_LIMITS.energy })} title={paywallMText(lang, 'mc.energy.title')}>
+    <Shell g={g} bottomInset={p.bottomInset} kicker={null /* зачем (Макеты 25.10): «N занятий подряд сегодня» — факт человека, а честного числа на устройстве нет; константа 5 врала бы — строку не показываем */} title={paywallMText(lang, 'mc.energy.title')}>
       <View style={S.tiles}>
         <V2Pressable testID="paywall-m-energy-wait" accessibilityRole="button" accessibilityLabel={paywallMText(lang, 'mc.energy.wait')} disabled={p.laterDisabled} onPress={p.onLater}
           withHaptic={false} scaleTo={0.97} outerStyle={S.tileCell} style={[S.tile, { backgroundColor: plate }]}>
@@ -97,7 +101,7 @@ export const PaywallMStreakPanel = memo(function PaywallMStreakPanel(p: CommonPr
     }
   };
   return (
-    <Shell g={g} bottomInset={p.bottomInset} kicker={paywallMText(lang, 'mc.streak.kicker', { n: p.streakDays })} title={paywallMText(lang, 'mc.streak.title')}
+    <Shell g={g} bottomInset={p.bottomInset} kicker={paywallMText(lang, 'mc.streak.kicker', { n: p.streakDays })} title={paywallMText(lang, 'mc.streak.title', { n: p.streakDays })}
       body={paywallMText(lang, 'mc.streak.body')} ctaLabel={p.ctaLabel} onCta={p.onOpenFull} fine={p.fine} laterLabel={paywallMText(lang, 'mc.later')} onLater={p.onLater} laterDisabled={p.laterDisabled}>
       <View testID="paywall-m-week" style={[S.week, { backgroundColor: g.opaqueCard }]}>
         {p.week.map((d) => {
@@ -111,7 +115,7 @@ export const PaywallMStreakPanel = memo(function PaywallMStreakPanel(p: CommonPr
               ) : (
                 <View style={[S.dot, { backgroundColor: g.opaqueControl }]} />
               )}
-              <Text style={[S.weekLabel, { color: g.secondary }]} numberOfLines={1}>{missed ? paywallMText(lang, 'mc.streak.missed') : weekdayLabel(d.date)}</Text>
+              <Text style={[S.weekLabel, d.today ? S.weekLabelToday : null, { color: d.today ? g.text : g.secondary }]} numberOfLines={1}>{missed ? paywallMText(lang, 'mc.streak.missed') : weekdayLabel(d.date)}</Text>
             </View>
           );
         })}
@@ -191,9 +195,14 @@ export const PaywallMRefusedPanel = memo(function PaywallMRefusedPanel(p: Readon
 // ── Мастерская фраз: пройденный урок и что внутри ──────────────────────────
 export const PaywallMWorkshopPanel = memo(function PaywallMWorkshopPanel(p: CommonProps & Readonly<{ lesson: number; phrases: number; ctaLabel: string }>) {
   const { g, lang } = p;
+  const { studyTarget } = useStudyTarget();
+  // зачем (Макеты 25.10): банк фраз урока уже в памяти (его читал список «Все уроки»); нет банка — блока нет, без выдуманных фраз
+  const preview = useMemo(() => paywallMWorkshopPreview(peekLearningV2LessonBankV1(String(studyTarget), p.lesson), lang, p.phrases), [studyTarget, p.lesson, p.phrases, lang]);
   return (
     <Shell g={g} bottomInset={p.bottomInset} kicker={paywallMText(lang, 'mc.workshop.kicker', { lesson: p.lesson, n: p.phrases })} title={paywallMText(lang, 'mc.workshop.title')}
-      body={paywallMText(lang, 'mc.workshop.body')} ctaLabel={p.ctaLabel} onCta={p.onOpenFull} fine={p.fine} laterLabel={paywallMText(lang, 'm.notNow')} onLater={p.onLater} laterDisabled={p.laterDisabled} />
+      body={paywallMText(lang, 'mc.workshop.body')} ctaLabel={p.ctaLabel} onCta={p.onOpenFull} fine={p.fine} laterLabel={paywallMText(lang, 'm.notNow')} onLater={p.onLater} laterDisabled={p.laterDisabled}>
+      {preview ? <PaywallMWorkshopPreviewBlock g={g} preview={preview} /> : null}
+    </Shell>
   );
 });
 
@@ -223,6 +232,7 @@ const S = StyleSheet.create({
   weekDay: { flex: 1, alignItems: 'center', gap: 6 },
   dot: { width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center' },
   weekLabel: { fontSize: 13, lineHeight: 17 },
+  weekLabelToday: { fontWeight: '700' }, // зачем (Макеты 25.10): сегодняшний день в макете выделен жирной подписью
   lockCard: { borderRadius: 20, padding: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   lockTile: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   lockText: { flex: 1, minWidth: 0 },

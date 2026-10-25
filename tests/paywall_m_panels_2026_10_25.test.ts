@@ -1,4 +1,6 @@
 // зачем (координатор 25.10, окна по месту пейвола М): панель выбирается из существующего контекста; нет числа для панели — сразу общий экран, без выдуманных цифр.
+import { PAYWALL_M_COPY_ROWS } from '../components/paywall/m/paywall_m_copy.generated';
+import { paywallMText } from '../components/paywall/m/paywall_m_copy';
 import { paywallMIsMissedDay, paywallMLessonProgress, paywallMPanelKindFor, paywallMWeekDays } from '../components/paywall/m/paywall_m_panels';
 
 const person = (over: Partial<{ streakDays: number; lessonsDone: number }> = {}) => ({ streakDays: 12, lessonsDone: 3, ...over });
@@ -48,5 +50,20 @@ describe('пейвол М: неделя серии', () => {
     expect(paywallMLessonProgress(3)).toBeCloseTo(3 / 32, 5);
     expect(paywallMLessonProgress(-1)).toBe(0);
     expect(paywallMLessonProgress(99)).toBe(1);
+  });
+});
+
+// зачем (Макеты 25.10, 🔴): в заголовок панели серии попало «30 дней» числом — человек с серией 12 увидел бы чужую цифру. Число — только подстановкой {n}.
+describe('пейвол М: заголовок панели серии', () => {
+  it('число берётся из серии человека и склоняется', () => {
+    expect(paywallMText('ru', 'mc.streak.title', { n: 12 })).toBe('12 дней подряд! Пропуск Plus прикроет');
+    expect(paywallMText('ru', 'mc.streak.title', { n: 1 })).toBe('1 день подряд! Пропуск Plus прикроет');
+    expect(paywallMText('ru', 'mc.streak.title', { n: 2 })).toBe('2 дня подряд! Пропуск Plus прикроет');
+  });
+
+  it('ни в одном языке в заголовках серии нет зашитой цифры', () => {
+    for (const key of ['mc.streak.title', 'm.head.streak.title'] as const) {
+      for (const text of Object.values(PAYWALL_M_COPY_ROWS[key])) expect(text).not.toMatch(/[0-9]/);
+    }
   });
 });

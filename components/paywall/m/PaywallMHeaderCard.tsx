@@ -22,7 +22,7 @@ export const PaywallMHeaderCard = memo(function PaywallMHeaderCard({ g, kicker, 
   return (
     <View testID="paywall-m-header" style={[S.card, { backgroundColor: g.opaqueCard }]}>
       <LinearGradient pointerEvents="none" colors={paint.gradient} style={StyleSheet.absoluteFill} />
-      <Text style={[S.kicker, { color: paint.trialInk }]}>{kicker}</Text>
+      {kicker ? <Text style={[S.kicker, { color: paint.trialInk }]}>{kicker}</Text> : null}
       <Text accessibilityRole="header" style={[S.title, { color: paint.ink }]}>{title}</Text>
       <View style={S.stats}>
         {stats.map((s) => (

@@ -31,6 +31,8 @@ export type DeleteAccountVariantBBodyProps = Readonly<{
   confirmInput: string;
   confirmMatches: boolean;
   deleting: boolean;
+  /** Тихая строка под кнопками после 3 неудачных тихих повторов (не окно); null — строки нет. */
+  failureNote?: string | null;
   /** Красная кнопка окна 1 (всегда активна) и ссылка. */
   gracePaint: Paint;
   /** Цвет тихой ссылки «Удалить навсегда сейчас» — semanticInk(glass).badText (замер Тем 55d8d4f9f: 5,80 против 4,81 у сырого bad). */
@@ -54,6 +56,14 @@ function BoldSentence({ before, bold, after, color, strongColor, size }: Readonl
       <Text style={{ color: strongColor, fontWeight: '700' }}>{bold}</Text>
       {after}
     </Text>
+  );
+}
+
+// зачем (координатор 25.10): «Не получилось» — тихая строка в самом окне, не модалка (окна-ошибки запрещены 22.09).
+function FailureNote({ text, color, size }: Readonly<{ text: string | null | undefined; color: string; size: number }>) {
+  if (!text) return null;
+  return (
+    <Text testID="delete-account-failure-note" accessibilityLiveRegion="polite" style={[styles.note, { color, fontSize: size }]}>{text}</Text>
   );
 }
 
@@ -101,6 +111,7 @@ export function DeleteAccountVariantBBody(props: DeleteAccountVariantBBodyProps)
             <Text style={[styles.linkLabel, { color: props.linkColor }]}>{copy.w1DeleteNowLink}</Text>
           </Pressable>
         </View>
+        <FailureNote text={props.failureNote} color={glass.secondary} size={f.caption} />
       </View>
     );
   }
@@ -130,6 +141,7 @@ export function DeleteAccountVariantBBody(props: DeleteAccountVariantBBodyProps)
         <PillButton testID="delete-account-confirm" label={copy.w2Cta} fill={props.nowPaint.fill} ink={props.nowPaint.ink} disabled={!props.confirmMatches || deleting} busy={deleting} onPress={props.onConfirmNow} />
         <PillButton testID="delete-account-now-back" label={copy.w2Back} fill={glass.buttonFill} ink={glass.text} disabled={deleting} onPress={props.onBack} />
       </View>
+      <FailureNote text={props.failureNote} color={glass.secondary} size={f.caption} />
     </View>
   );
 }
@@ -148,4 +160,5 @@ const styles = StyleSheet.create({
   link: { alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 12 },
   // зачем (D145, координатор 25.10): ссылка — обычный текст, размер из шкалы 16/13; 16 как у кнопок окна.
   linkLabel: { fontSize: 16, fontWeight: '600', textAlign: 'center' },
+  note: { marginTop: 12, textAlign: 'center', lineHeight: 18 },
 });

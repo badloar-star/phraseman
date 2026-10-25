@@ -92,6 +92,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   // «Пульта» (ВЫКЛ до выкладки сервера 713677ddd: без него «вернуть за 14 дней» не работает). Гость и флаг выкл — окно прежнее.
   const variantB = useMemo(() => hasProviderSignIn && getRemoteBool('account_delete_variant_b_ui_enabled') === true, [hasProviderSignIn]);
   const [variantBStep, setVariantBStep] = useState<DeleteAccountVariantBStep>('grace');
+  // зачем (координатор 25.10, после 3 тихих повторов): не окно, а тихая строка в самом окне — «Не получилось, проверь интернет».
+  const [handoffFailedNote, setHandoffFailedNote] = useState(false);
   const variantBCopy = useMemo(() => deleteAccountVariantBCopy(lang), [lang]);
   // Режим последнего подтверждения — для «Повторить» в окне отказа (повтор идёт тем же режимом).
   const lastDeleteModeRef = useRef<'legacy' | 'grace' | 'now'>('legacy');
@@ -206,6 +208,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       setDeleteConfirmInput('');
       setDeleting(false);
       setVariantBStep('grace');
+      setHandoffFailedNote(false);
       deleteInFlightRef.current = false;
       console.log('[ACCOUNT-DELETE-UI] open', JSON.stringify({ variantB, provider: hasProviderSignIn })); // guard-ok: одна строка на открытие окна
     }
@@ -269,6 +272,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       return;
     }
     deleteInFlightRef.current = true;
+    setHandoffFailedNote(false);
     startAccountDeleteUiTrace();
     if (isHybrid) {
       void hapticWarning();
@@ -299,6 +303,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         if (variantB) {
           // Аккаунт не тронут, окно удаления остаётся открытым — человек видит, что он по-прежнему в своём аккаунте.
           console.warn('[ACCOUNT-DELETE-UI] handoff_failed_silent', JSON.stringify({ mode, reason: res.reason })); // guard-ok: ранний выход с причиной
+          console.warn('[ACCOUNT-DELETE]', JSON.stringify({ step: 'handoff_failed_note_shown', mode, lastReason: res.reason })); // guard-ok: что увидел человек и почему
+          setHandoffFailedNote(true);
           deleteInFlightRef.current = false;
           return;
         }
@@ -384,6 +390,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       if (variantB) {
         // зачем (правило владельца 22.09): в новых окнах окна об отказе нет; повторы уже были внутри retryAccountDeleteHandoffQuietly.
         console.warn('[ACCOUNT-DELETE-UI] handoff_threw_silent', JSON.stringify({ mode })); // guard-ok: catch с причиной выше
+        console.warn('[ACCOUNT-DELETE]', JSON.stringify({ step: 'handoff_failed_note_shown', mode, lastReason: `threw:${error instanceof Error ? error.name : typeof error}` })); // guard-ok: что увидел человек и почему
+        setHandoffFailedNote(true);
         deleteInFlightRef.current = false;
         return;
       }
@@ -448,6 +456,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           confirmInput={deleteConfirmInput}
           confirmMatches={deleteConfirmMatches}
           deleting={deleting}
+          failureNote={handoffFailedNote ? variantBCopy.handoffFailed : null}
           gracePaint={deleteButtonPaint(glass, true)}
           linkColor={semanticInk(glass).badText}
           nowPaint={deletePaint}
@@ -458,6 +467,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           onOpenNow={() => {
             doHaptic();
             setDeleteConfirmInput('');
+            setHandoffFailedNote(false);
             setVariantBStep('now');
             console.log('[ACCOUNT-DELETE-UI] step', JSON.stringify({ to: 'now' })); // guard-ok: переход окна
           }}
@@ -465,6 +475,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           onBack={() => {
             doHaptic();
             setDeleteConfirmInput('');
+            setHandoffFailedNote(false);
             setVariantBStep('grace');
             console.log('[ACCOUNT-DELETE-UI] step', JSON.stringify({ to: 'grace' })); // guard-ok: переход окна
           }}

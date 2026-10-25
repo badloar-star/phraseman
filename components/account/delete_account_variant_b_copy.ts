@@ -20,6 +20,7 @@ export type DeleteVariantBCopy = Readonly<{
   w2BodyAfter: string;
   w2Cta: string;
   w2Back: string;
+  handoffFailed: string;
 }>;
 
 export function deleteAccountVariantBCopy(lang: Lang): DeleteVariantBCopy {
@@ -36,5 +37,18 @@ export function deleteAccountVariantBCopy(lang: Lang): DeleteVariantBCopy {
     w2BodyAfter: pick(lang, { ru: '. Вернуть их будет нельзя.', uk: '. Повернути їх буде неможливо.', en: '. You won’t be able to get them back.', es: '. No podrás recuperarlos.', 'pt-BR': '. Não será possível recuperá-los.', vi: '. Không thể khôi phục lại.', id: '. Semuanya tidak bisa dikembalikan.', tr: ' silinecek. Geri getirmek mümkün olmayacak.', pl: '. Nie da się ich przywrócić.' }),
     w2Cta: pick(lang, { ru: 'Удалить навсегда', uk: 'Видалити назавжди', en: 'Delete permanently', es: 'Eliminar para siempre', 'pt-BR': 'Excluir para sempre', vi: 'Xóa vĩnh viễn', id: 'Hapus permanen', tr: 'Kalıcı olarak sil', pl: 'Usuń na zawsze' }),
     w2Back: pick(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+    // зачем (координатор 25.10): строка в окне после 3 тихих повторов — тепло и честно, без шуток. ru/en — черновик координатора,
+    // остальные 7 — черновик 5 · ВХОД, на вычитку Переводчику.
+    handoffFailed: pick(lang, {
+      ru: 'Не получилось. Проверь интернет и нажми ещё раз.',
+      uk: 'Не вийшло. Перевір інтернет і натисни ще раз.',
+      en: "That didn't work. Check your connection and tap again.",
+      es: 'No salió. Revisa tu conexión y vuelve a tocar.',
+      'pt-BR': 'Não deu certo. Verifique a conexão e toque de novo.',
+      vi: 'Chưa được. Hãy kiểm tra kết nối rồi nhấn lại.',
+      id: 'Belum berhasil. Periksa koneksi lalu ketuk lagi.',
+      tr: 'Olmadı. Bağlantını kontrol et ve tekrar dokun.',
+      pl: 'Nie udało się. Sprawdź połączenie i naciśnij jeszcze raz.',
+    }),
   });
 }

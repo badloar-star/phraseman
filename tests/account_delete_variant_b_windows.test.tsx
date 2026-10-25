@@ -118,3 +118,32 @@ describe('проводка: флаг, режим «навсегда», поле 
     expect(flags).toContain('account_delete_variant_b_ui_enabled: false,');
   });
 });
+
+// зачем (координатор 25.10): после 3 неудачных тихих повторов — тихая строка в окне (не модалка), кнопка снова активна.
+describe('строка «Не получилось» после тихих повторов', () => {
+  it('видна под кнопками в обоих окнах, кнопки активны; без признака — строки нет', async () => {
+    const note = deleteAccountVariantBCopy('ru').handoffFailed;
+    expect(note).toBe('Не получилось. Проверь интернет и нажми ещё раз.');
+    await render(<DeleteAccountVariantBBody {...props({ failureNote: note })} />);
+    expect(screen.getByTestId('delete-account-failure-note').props.children).toBe(note);
+    expect(screen.getByTestId('delete-account-grace-confirm').props.accessibilityState).toMatchObject({ disabled: false });
+    await render(<DeleteAccountVariantBBody {...props({ step: 'now', failureNote: note })} />);
+    expect(screen.getByTestId('delete-account-failure-note')).toBeTruthy();
+    await render(<DeleteAccountVariantBBody {...props({ failureNote: null })} />);
+    expect(screen.queryByTestId('delete-account-failure-note')).toBeNull();
+  });
+
+  it('окно ставит признак только на ветках отказа variantB, снимает при новой попытке и смене шага; лог с причиной', () => {
+    const modal = readSource('components/DeleteAccountConfirmModal.tsx');
+    expect(modal.split('setHandoffFailedNote(true);').length - 1).toBe(2);
+    expect(modal.split('setHandoffFailedNote(false);').length - 1).toBe(4);
+    expect(modal).toContain("console.warn('[ACCOUNT-DELETE]', JSON.stringify({ step: 'handoff_failed_note_shown', mode, lastReason: res.reason }));");
+    expect(modal).toContain('failureNote={handoffFailedNote ? variantBCopy.handoffFailed : null}');
+    const confirm = modal.slice(modal.indexOf('const handleConfirmDelete'), modal.indexOf('const handleCancel'));
+    for (const branch of ['if (!res.ok) {', '} catch (error: unknown) {']) {
+      const body = confirm.slice(confirm.indexOf(branch));
+      const variantB = body.slice(body.indexOf('if (variantB) {'), body.indexOf('showInfoAlert('));
+      expect(variantB).toContain('setHandoffFailedNote(true);');
+    }
+  });
+});

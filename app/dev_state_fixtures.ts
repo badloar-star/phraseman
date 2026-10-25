@@ -263,6 +263,8 @@ export type DevStateRequest = Readonly<{
   spireScroll?: 'top' | 'off';
   /** D162: рубильник комнаты Пика для ПОКАЗА — coins (по монетам недели), steps (по ступеням), off — снять (решает config/spire_v1.rankBy). */
   spireRankBy?: 'coins' | 'steps' | 'off';
+  /** «Призрак друга» на ступени Пика (зачем: кадры Сверки, флаг в сторе выключен): on — показать, off — снять подмену. */
+  spireGhost?: 'on' | 'off';
   /** Баланс монет для ПОКАЗА (0..10 000 000) на «Монетах» и «Повысить ранг»; при подмене настоящее повышение отказывает до сервера (dev_coin_rank.ts). off — снять. */
   coins?: number | 'off';
   /** hold — тап «Повысить» держит «Проверяем повышение…», сервер не вызывается. */
@@ -512,6 +514,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.spireWeek = pick('spireWeek', ['up', 'stay', 'down', 'top', 'marble', 'obsidian', 'off'] as const);
   request.spireScroll = pick('spireScroll', ['top', 'off'] as const);
   request.spireRankBy = pick('spireRankBy', ['coins', 'steps', 'off'] as const);
+  request.spireGhost = pick('spireGhost', ['on', 'off'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -1177,6 +1180,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('spireRankBy', request.spireRankBy, async () => {
       const { setDevSpireRankByOverride } = await import('./dev_spire_tier');
       return setDevSpireRankByOverride(request.spireRankBy === 'off' ? null : request.spireRankBy!);
+    });
+  }
+  if (request.spireGhost !== undefined) {
+    await step('spireGhost', request.spireGhost, async () => {
+      const { setDevSpireGhostOverride } = await import('../components/spire/spire_ghost_flag');
+      return setDevSpireGhostOverride(request.spireGhost === 'on' ? true : null);
     });
   }
   if (request.coinRank !== undefined) {

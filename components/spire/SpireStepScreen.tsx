@@ -36,6 +36,8 @@ import { spireText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
 import ScreenBackButton, { SCREEN_BACK_SIZE, ScreenOriginReset } from '../v2/ScreenBackButton';
 import { usePeakPerfProbe } from '../../app/spire/peak_perf_probe';
+import SpireGhostLayer from './SpireGhostLayer';
+import { useSpireGhost, type SpireGhostView } from '../../app/spire/use_spire_ghost';
 
 type Props = Readonly<{
   lang: Lang;
@@ -81,6 +83,8 @@ export type SpireStepLayoutProps = Readonly<{
   exitSlot: React.ReactNode;
   /** Цифра отсчёта 3 → 2 → 1 перед стартом ступени; null/нет — отсчёта нет (превью, пауза). */
   countdownDigit?: number | null;
+  /** «Призрак друга» (флаг spire_ghost, ТЗ spire-engagement §3а): полоска над кольцом и метка на кольце; нет — ступень как в 2.0.2. */
+  ghost?: SpireGhostView | null;
 }>;
 
 /** Чистая вёрстка ступени: шапка, кольцо, задание, подсказка после ошибки, «k / 10». Без раннера и сети. */
@@ -115,6 +119,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
       <ScrollView style={s.scroll} contentContainerStyle={[s.content, { paddingBottom: 16 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast" onLayout={(e) => { boxes.current.viewport = e.nativeEvent.layout.height; }} onContentSizeChange={(_w, h) => { boxes.current.content = h; }}>
         <View style={s.ringWrap}>
           <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
+          {props.ghost ? <SpireGhostLayer lang={lang} view={props.ghost} clock={clock} paused={paused} done={taskIndex} /> : null}
         </View>
         {preparing || !task ? (
           // зачем (18.10): под цифрами отсчёта «Готовим ступень…» не показываем — цифры занимают экран
@@ -177,6 +182,8 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
   // зачем: кнопка «назад» Android внутри Modal приходит в onRequestClose — ведём её в шторку выхода.
   exitRef.current = runner.requestExit;
   const { ctx, pick } = session;
+  // зачем (владелец 25.10, призрак друга): один выбор на ступень из кэша комнаты и снимка друзей, 0 чтений сети; флаг выключен — null
+  const ghost = useSpireGhost({ uid, ctx, budgetMs: pick.plan.budgetMs });
   const task = pick.tasks[runner.displayTaskIndex];
   // зачем (владелец 17.10: «пары все на экране»): верные пары считаем локально по тем же отпечаткам, что и раннер
   // (spireRevealItemIndexes) — пара гаснет мгновенно, без сети; вердикт по-прежнему выносит раннер в submitItems.
@@ -233,6 +240,7 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
       streakHeart={runner.streakHeart}
       gold={runner.gold}
       clock={runner.clock}
+      ghost={ghost}
       paused={paused}
       preparing={runner.phase === 'charging' || runner.phase === 'countdown'}
       countdownDigit={runner.countdownDigit}

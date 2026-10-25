@@ -31,7 +31,9 @@ const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx'
   'components/streak/moments/StreakMilestoneRibbon.tsx',
   // зачем (координатор 15.10): шторка m22 «Энергия закончилась → Plus» — кнопка 17 и строка под ней 12 из эталона v3 (m22-A),
   // одобренного владельцем 14.10; свежее конкретное одобрение важнее общего D145. Помечены две строки `d145-micro:`.
-  'components/spire/moments/SpireNoEnergySheet.tsx']);
+  'components/spire/moments/SpireNoEnergySheet.tsx',
+  // зачем (координатор 25.10, призрак друга; живой макет spire-step-live.html): буква имени в бегунке 16 dp (9 sp) и на метке кольца 22 dp (12 sp)
+  'components/spire/SpireGhostLayer.tsx']);
 function lineAt(src, index) {
   const start = src.lastIndexOf('\n', index) + 1;
   const end = src.indexOf('\n', index);

@@ -31,6 +31,10 @@ import { usePeakPerfProbe } from '../../../app/spire/peak_perf_probe';
 import { stepMomentText } from './step_moment_strings';
 import { useAfterRoundChoice } from '../use_after_round_choice';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
+import { peekSpireGhostFor } from '../../../app/spire/spire_ghost_memory';
+import { spireGhostEnabled } from '../spire_ghost_flag';
+import { spireGhostMarginMs } from '../../../modules/spire/ghost';
+import { spireGhostShortName, spireGhostText } from '../spire_ghost_strings';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 /** В ступени 10 заданий (spire_game_strings.failSub: «Новый набор из 10 заданий»). */
@@ -74,6 +78,15 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, onLater, busy, test
   const floorNow = Math.min(outcome.local.floor, SPIRE_FLOOR_COUNT);
   const stairsN = spireStepsIn(floorNow);
   const stepK = Math.max(0, Math.min(stairsN, outcome.local.stepInFloor));
+  // зачем (владелец 25.10, призрак друга; флаг выключен — null и ни одной лишней строки): итог — «Быстрее на 0:14 · Аня 2:10»; не быстрее — молчим, без стыда
+  const [ghostLine] = useState<string | null>(() => {
+    if (!spireGhostEnabled()) return null;
+    const ghost = peekSpireGhostFor(outcome.report.weekKey, outcome.floorBefore);
+    if (!ghost) { console.log('[SPIRE]', '[SPIRE-GHOST]', 'итог: призрака на этой ступени не было'); return null; } // guard-ok: ранний выход с причиной
+    const margin = spireGhostMarginMs(ghost.avgMs, outcome.usedMs);
+    console.log('[SPIRE]', '[SPIRE-GHOST]', `итог: кандидат=${ghost.uid.slice(0, 6)} среднее друга=${ghost.avgMs}мс моё=${outcome.usedMs}мс разрыв=${margin}мс показано=${margin > 0 ? 'да' : 'нет'}`); // guard-ok: единичный лог итога
+    return margin > 0 ? spireGhostText(lang, 'faster', { t: spireClock(margin), name: spireGhostShortName(ghost.name), avg: spireClock(ghost.avgMs) }) : null;
+  });
 
   useEffect(() => {
     console.log(`[STEP-MOMENT] пройдена: время=${outcome.usedMs}/${outcome.budgetMs} ошибок=${outcome.errors} ступень=${outcome.local.stepInFloor}/${stairsN} монеты=${coins.perStep} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
@@ -116,6 +129,7 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, onLater, busy, test
         </View>
         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(300)} style={[s.hXl, { color: p.text }]} testID={`${testID}-title`}>{stepMomentText(lang, 'ofTasks', { ok: TASKS_PER_STEP - outcome.errors, all: TASKS_PER_STEP })}</Animated.Text>
         <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(400)} style={[s.p, { color: p.textSecondary }]}>{`${errorsText} · +${coins.perStep} ${spireGameText(lang, 'coins')}`}</Animated.Text>
+        {ghostLine ? <Animated.Text entering={reduceMotion ? undefined : FadeIn.delay(500)} style={[s.ghost, { color: p.accentTextSafe }]} testID={`${testID}-ghost`}>{ghostLine}</Animated.Text> : null}
         <View style={s.stair} accessible accessibilityLabel={spireGameText(lang, 'onFloorProgress', { k: stepK, n: stairsN })}>
           {Array.from({ length: stairsN }, (_, i) => i + 1).map((i) => (
             <Animated.View
@@ -211,6 +225,7 @@ const s = StyleSheet.create({
   // зачем (Макеты 15.10, CODE_VS_ETALON; решение координатора): типографика по листам приёмки m06: «3 ошибки — ступень не пройдена» 24/30 · 800 · −0,3
   hLg: { marginTop: 14, ...V2_TYPE.momentTitleLg, textAlign: 'center' },
   p: { marginTop: 4, fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  ghost: { marginTop: 6, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
   stair: { marginTop: 22, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'flex-end', gap: 6 },
   stairBar: { flex: 1, borderRadius: 6 },
   small: { marginTop: 8, fontSize: 13, lineHeight: 17, textAlign: 'center' },

@@ -16,6 +16,9 @@ import { spireClock, spireGameText } from './spire_game_strings';
 
 const SIZE = 132;
 const R = 59;
+// зачем (призрак друга): метка на кольце считает свою точку от тех же размеров — экспорт, а не копия чисел
+export const SPIRE_RING_SIZE = SIZE;
+export const SPIRE_RING_R = R;
 const STROKE = 7;
 const CIRC = 2 * Math.PI * R;
 

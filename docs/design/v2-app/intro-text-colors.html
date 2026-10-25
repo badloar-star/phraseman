@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Цвета текста вступления</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<style>
+/* Раскладка: панель выбора сверху → лента экранов вступления (листается вбок) → легенда ролей с контрастом.
+   зачем (владелец 25.10 через координатора): «на всех интро текст должен быть отформатирован правильно, чтобы частички имели свои
+   цвета и отдельно цвет рус и англ текста (для всех тем)». Экраны — вступление занятия Learning V2 1:1 по app/learning_v2_session_intro.tsx
+   (заголовок 26/32, карточка knowledgeFlow 18/18/20, абзац 16/23, «Проверь себя», варианты 16/600); текст — урок 17, занятие 1 дословно
+   (content/learning-v2-course/release/en/l17/s01/intro.json), пример с ошибкой — эталон урока 1. Цвета экранов — ТОЛЬКО токены темы
+   (liquidGlassTokens + semanticInk, сняты скриптом), контраст считается на странице. Свои классы без kit.css. */
+:root {
+  --page: #F4F4F6; --panel: #FFFFFF; --ink: #16171C; --ink2: #5A5C66; --seg: #E9E9EE; --segOn: #FFFFFF; --segInk: #16171C; --line: rgba(22, 23, 28, .08);
+  --okc: #1E7A46; --warnc: #9A5B00;
+  --display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --page: #0F1013; --panel: #191A1F; --ink: #EEEFF2; --ink2: #A2A4AE; --seg: #22242A; --segOn: #383A42; --segInk: #F4F5F8; --line: rgba(255, 255, 255, .08);
+  --okc: #7FD69A; --warnc: #F2B35E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --page: #0F1013; --panel: #191A1F; --ink: #EEEFF2; --ink2: #A2A4AE; --seg: #22242A; --segOn: #383A42; --segInk: #F4F5F8; --line: rgba(255, 255, 255, .08);
+  --okc: #7FD69A; --warnc: #F2B35E; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--page); color: var(--ink); font-family: var(--display); -webkit-font-smoothing: antialiased; }
+.wrap { padding-block: 22px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); max-width: 1880px; margin: 0 auto; }
+h1 { margin: 0; font-size: clamp(22px, 4vw, 30px); line-height: 1.2; font-weight: 800; letter-spacing: -.02em; text-wrap: balance; }
+.lead { margin: 8px 0 0; max-width: 68ch; font-size: 15px; line-height: 1.5; color: var(--ink2); }
+.ctrls { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; align-items: center; }
+.grp { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.grp > span { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink2); }
+.seg { display: flex; flex-wrap: wrap; gap: 3px; padding: 3px; border-radius: 12px; background: var(--seg); }
+.seg button { all: unset; cursor: pointer; padding: 8px 12px; border-radius: 9px; font-size: 14px; font-weight: 600; color: var(--ink2); white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease, transform 120ms cubic-bezier(.23, 1, .32, 1); }
+.seg button[aria-pressed="true"] { background: var(--segOn); color: var(--segInk); box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+.seg button:active { transform: scale(.97); }
+.seg button:focus-visible { outline: 2px solid #6F8EFF; outline-offset: 2px; }
+.strip { display: flex; gap: 20px; margin-top: 20px; overflow-x: auto; padding-bottom: 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.cell { flex: none; width: 340px; display: flex; flex-direction: column; gap: 8px; scroll-snap-align: start; }
+.cap { font-size: 15px; font-weight: 700; } .cap small { display: block; font-size: 13px; font-weight: 500; color: var(--ink2); margin-top: 2px; }
+.legend { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.lg { background: var(--panel); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; box-shadow: 0 1px 0 var(--line); }
+.lg h2 { margin: 0; font-size: 15px; font-weight: 700; }
+.lrow { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; font-size: 14px; }
+.lrow .nm { color: var(--ink2); }
+.lrow .cr { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 13px; }
+.lrow .cr.ok { color: var(--okc); } .lrow .cr.warn { color: var(--warnc); }
+.swatch { grid-column: 1 / -1; border-radius: 10px; padding: 8px 12px; font-size: 16px; line-height: 23px; }
+.note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink2); }
+.note b { color: var(--ink); }
+.warnbox { font-size: 14px; line-height: 1.45; color: var(--warnc); font-weight: 600; }
+
+/* ── экран вступления: цвета — переменные темы приложения, заданные скриптом из токенов ── */
+.ph { position: relative; width: 340px; border-radius: 40px; overflow: hidden; background: linear-gradient(180deg, var(--t-bgTop) 0%, var(--t-bg) 55%, var(--t-bgBottom) 100%); color: var(--t-text);
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .55), 0 0 0 7px #08090B; padding: 0 0 22px; font-family: var(--display); }
+.sb { height: 44px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 30px; font-size: 15px; font-weight: 600; color: var(--t-text); }
+.hd { display: flex; align-items: center; gap: 12px; padding: 0 16px; }
+.x { width: 42px; height: 42px; border-radius: 21px; background: var(--t-ctl); display: grid; place-items: center; flex: none; box-shadow: var(--t-shadow); }
+.meta { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.stage { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1px; color: var(--t-text); opacity: .86; }
+.cnt { font-size: 13px; line-height: 18px; font-weight: 700; color: var(--t-muted); font-variant-numeric: tabular-nums; }
+.pill { height: 32px; padding: 0 10px; border-radius: 16px; background: var(--t-ctl); display: inline-flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 800; box-shadow: var(--t-shadow); }
+.prog { display: flex; gap: 6px; margin: 12px 20px 0; } .prog i { flex: 1; height: 4px; border-radius: 4px; background: var(--t-ctl); } .prog i.on { background: var(--t-accentG); }
+.col { padding: 18px 20px 0; }
+.ttl { margin-top: 8px; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; color: var(--t-text); opacity: .92; text-wrap: balance; }
+.ttl b { font-weight: 800; opacity: 1; }
+.sub { margin-top: 8px; font-size: 16px; line-height: 22px; color: var(--t-secondary); }
+.card { margin-top: 20px; border-radius: 16px; background: var(--t-card); box-shadow: var(--t-shadow); padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 14px; }
+.par { font-size: 16px; line-height: 23px; font-weight: 400; color: var(--t-text); margin: 0; }
+.qp { margin-top: 24px; }
+.qe { display: flex; justify-content: space-between; font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; }
+.qe span:last-child { color: var(--t-muted); letter-spacing: 0; }
+.qq { margin-top: 10px; font-size: 19px; line-height: 25px; font-weight: 700; }
+.ans { margin-top: 14px; display: flex; flex-direction: column; gap: 9px; }
+.ch { all: unset; cursor: pointer; min-height: 52px; border-radius: 14px; padding: 8px 14px 8px 10px; display: flex; align-items: center; gap: 14px; background: var(--t-card); box-shadow: var(--t-shadow);
+  transition: transform 120ms cubic-bezier(.23, 1, .32, 1); }
+.ch:active { transform: scale(.98); }
+.ch:focus-visible { outline: 2px solid var(--t-accentG); outline-offset: 2px; }
+.ch .lt { width: 30px; height: 30px; border-radius: 9px; background: var(--t-ctl); display: grid; place-items: center; font-size: 13px; font-weight: 700; color: var(--t-secondary); flex: none; }
+.ch .tx { flex: 1; font-size: 16px; line-height: 21px; font-weight: 600; }
+.ch.good { box-shadow: inset 0 0 0 1px var(--t-good), var(--t-shadow); } .ch.good .lt { background: var(--t-good); color: var(--t-ctaInk); }
+.ch.bad { box-shadow: inset 0 0 0 1px var(--t-bad), var(--t-shadow); } .ch.bad .lt { background: var(--t-bad); color: var(--t-ctaInk); }
+.verdict { margin-top: 12px; font-size: 16px; line-height: 22px; font-weight: 600; min-height: 22px; }
+
+/* ── роли текста ── */
+/* как сейчас: абзац без разметки — всё одним цветом и весом */
+.v-now .ru, .v-now .en, .v-now .pt, .v-now .op { color: var(--t-text); font-weight: 400; }
+.v-now .tgt { color: var(--t-text); font-weight: 700; }
+/* предложение: русский — второй тон текста, английский — основной тон и жирный, знаки формулы — приглушённые */
+.v-a .ru, .v-b .ru { color: var(--t-secondary); font-weight: 400; }
+.v-a .en, .v-b .en, .v-a .tgt, .v-b .tgt { color: var(--t-text); font-weight: 700; }
+.v-a .op, .v-b .op { color: var(--t-muted); font-weight: 700; }
+/* вариант А: частицы и служебные — тон акцента темы */
+.v-a .pt { color: var(--t-accent); font-weight: 700; }
+/* вариант Б: частицы — подложка-подсветка цветом акцента, текст основной */
+.v-b .pt { color: var(--t-text); font-weight: 700; background: var(--t-soft); border-radius: 5px; padding: 0 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* ошибочный пример — зачёркнут красным во всех вариантах, как сейчас */
+.wrong, .wrong * { color: var(--t-badText) !important; font-weight: 700 !important; text-decoration: line-through; background: none !important; }
+.okline { display: flex; gap: 10px; align-items: center; font-weight: 700; }
+.okline svg { flex: none; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>Цвета текста во вступлении занятия</h1>
+  <p class="lead">Английский, служебные слова и формула, русское пояснение и ошибочный пример — каждый своим цветом из темы. Тексты — урок 17, занятие 1, как в приложении. Ленту экранов можно листать вбок.</p>
+  <div class="ctrls">
+    <div class="grp"><span>Тема</span><div class="seg" role="group" aria-label="Тема" id="g-theme"></div></div>
+    <div class="grp"><span>Уровень цвета</span><div class="seg" role="group" aria-label="Уровень цвета" id="g-level"></div></div>
+    <div class="grp"><span>Частицы</span><div class="seg" role="group" aria-label="Частицы" id="g-var"></div></div>
+  </div>
+  <div class="strip" id="strip" aria-label="Экраны вступления"></div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<script>
+// токены тем приложения (liquidGlassTokens + semanticInk, сняты скриптом 25.10; уровень «Спокойно» — по умолчанию у людей)
+const TOK = {"ink:calm":{"isLight":true,"bg":"#EFEFF6","bgTop":"#F6F6FB","bgBottom":"#EBECF3","card":"#FEFEFF","ctl":"#E1E2EA","text":"#17181E","secondary":"#595A63","muted":"#5E5F67","accent":"#1D1D2F","accentTextSafe":"#2A2B41","accentSoft":"#2A2B4114","accentGraphic":"#1D1D2F","good":"#097234","bad":"#AB3837","goodText":"#0B6431","badText":"#953333","cta":"#1D1D2F","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #2D2D5357, 0px 1px 3px 0px #2D2D530F"},"ink:max":{"isLight":true,"bg":"#EAEBFE","bgTop":"#F3F4FD","bgBottom":"#ECE4F7","card":"#FCFCFF","ctl":"#DBDDEC","text":"#17181E","secondary":"#595A63","muted":"#5E5F67","accent":"#5F5CB1","accentTextSafe":"#514EA1","accentSoft":"#E6E9FFF7","accentGraphic":"#54529B","good":"#006F30","bad":"#A73533","goodText":"#03622D","badText":"#913130","cta":"#1D1D2F","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #33335757, 0px 1px 3px 0px #3333570F"},"marine:calm":{"isLight":false,"bg":"#010505","bgTop":"#040E10","bgBottom":"#020B0D","card":"#171A1A","ctl":"#122224","text":"#F6FBFC","secondary":"#B9C7C9","muted":"#ACBBBC","accent":"#D0EAED","accentTextSafe":"#D0EAED","accentSoft":"#A5BDBF33","accentGraphic":"#D0EAED","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#ED756E","cta":"#D0EAED","ctaInk":"#010708","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)"},"marine:max":{"isLight":false,"bg":"#000F16","bgTop":"#002936","bgBottom":"#001B17","card":"#16232A","ctl":"#123037","text":"#F6FBFD","secondary":"#B8CFD6","muted":"#98ACB1","accent":"#5CCFEB","accentTextSafe":"#5CCFEB","accentSoft":"#006C859E","accentGraphic":"#5CCFEB","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#EE8983","cta":"#D0EAED","ctaInk":"#010708","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)"},"grad_full_horizon:calm":{"isLight":true,"bg":"#dde8ef","bgTop":"#dde8ef","bgBottom":"#dde8ef","card":"#f2f8ff","ctl":"#f2f8ff","text":"#181a20","secondary":"#55505B","muted":"#55505B","accent":"#805022","accentTextSafe":"#704822","accentSoft":"#0000000D","accentGraphic":"#7B4D22","good":"#126432","bad":"#9C3535","goodText":"#126432","badText":"#9C3535","cta":"#797671","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #1A1A3457, 0px 1px 3px 0px #1A1A340F"},"grad_full_horizon:max":{"isLight":true,"bg":"#dde8ef","bgTop":"#dde8ef","bgBottom":"#dde8ef","card":"#f2f8ff","ctl":"#f2f8ff","text":"#181a20","secondary":"#55505B","muted":"#55505B","accent":"#805022","accentTextSafe":"#7B4D22","accentSoft":"#FFBB784D","accentGraphic":"#7B4D22","good":"#126432","bad":"#9C3535","goodText":"#126432","badText":"#9C3535","cta":"#797671","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #0A0A1457, 0px 1px 3px 0px #0A0A140F"},"grad_full_ref_storm_violet:calm":{"isLight":false,"bg":"#040709","bgTop":"#040709","bgBottom":"#040709","card":"#1e1929","ctl":"#1e1929","text":"#fff9f6","secondary":"#DACFD0","muted":"#DACFD0","accent":"#d697ff","accentTextSafe":"#d697ff","accentSoft":"#B4BCCF30","accentGraphic":"#d697ff","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#ED756E","cta":"#F8ECFF","ctaInk":"#4B3559","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)"},"grad_full_ref_storm_violet:max":{"isLight":false,"bg":"#040709","bgTop":"#040709","bgBottom":"#040709","card":"#1e1929","ctl":"#1e1929","text":"#fff9f6","secondary":"#DACFD0","muted":"#DACFD0","accent":"#d697ff","accentTextSafe":"#d697ff","accentSoft":"#D697FF3D","accentGraphic":"#d697ff","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#ED756E","cta":"#F8ECFF","ctaInk":"#4B3559","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)"}};
+const THEMES = [['ink', 'Сумерки', 'светлая'], ['marine', 'Океан', 'тёмная'], ['grad_full_horizon', 'Горизонт', 'светлая премиум'], ['grad_full_ref_storm_violet', 'Аметист', 'тёмная премиум']];
+const LEVELS = [['calm', 'Спокойно'], ['max', 'Максимум']];
+const VARS = [['now', 'Как сейчас'], ['a', 'А · тон акцента'], ['b', 'Б · подложка']];
+const st = { theme: 'ink', level: 'calm', v: 'a' };
+try { const s = JSON.parse(localStorage.getItem('intro-colors') || '{}'); Object.assign(st, s); } catch (e) { console.warn('[INTRO-COLORS] выбор не прочитан', e); }
+
+// ── разбор текста на роли (так же предлагается делать в приложении при показе — без разметки в материалах курса) ──
+const FUNC = new Set(['am', 'is', 'are', 'was', 'were', 'be', 'a', 'an', 'the', 'this', 'these', 'that', 'those', 'there', 'do', 'does', 'did', 'will', 'to', 'not', "don't", "doesn't"]);
+const RX = /(-(?:es|s)\b)|([A-Za-z][A-Za-z'’]*)|(\+|→)|([А-Яа-яЁёІіЇїЄєҐґ][А-Яа-яЁёІіЇїЄєҐґ'’-]*)|(\s+)|([^\sA-Za-zА-Яа-яЁёІіЇїЄєҐґ+→]+)/gu;
+function roles(text) {
+  const out = []; let m;
+  RX.lastIndex = 0;
+  while ((m = RX.exec(text))) {
+    const t = m[0];
+    const role = m[1] ? 'pt' : m[2] ? (FUNC.has(t.toLowerCase().replace('’', "'")) ? 'pt' : 'en') : m[3] ? 'op' : m[4] ? 'ru' : 'gap';
+    out.push({ t, role });
+  }
+  // пробел между двумя английскими словами — часть английского; остальное — по соседу слева (пунктуация не красится отдельно)
+  return out.map((x, i) => {
+    if (x.role !== 'gap') return x;
+    const prev = out[i - 1]?.role; const next = out[i + 1]?.role;
+    const lat = (r) => r === 'en' || r === 'pt' || r === 'op';
+    return { t: x.t, role: lat(prev) && lat(next) && /^\s+$/.test(x.t) ? 'en' : (prev === 'ru' || !prev ? 'ru' : prev === 'pt' ? 'en' : prev) };
+  });
+}
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const rich = (text) => roles(text).map((x) => `<span class="${x.role}">${esc(x.t)}</span>`).join('');
+
+const IC = {
+  x: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  bolt: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
+  check: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  cross: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+};
+const L17 = [
+  { stage: 'СМЫСЛ', n: 1, title: 'Назвать предмет на полке', body: 'Вы распаковываете вещи для дома. Друг показывает на предмет, который удерживает книги на полке, и спрашивает, что это. Bookend — книжный упор; его можно посчитать. Назовите один предмет: This is a bookend. Порядок: This + is + a bookend. Перед названием одного исчисляемого предмета здесь нужен артикль. A выбираем перед согласным звуком, an — перед гласным; bookend начинается с согласного, поэтому a bookend.' },
+  { stage: 'СХЕМА', n: 2, title: 'Два пуфа в комнате', body: 'Друг спрашивает, где можно сесть, и вы сообщаете, что в комнате два пуфа. Ottoman — пуф; один — an ottoman, два — two ottomans. Соберите предложение: There are + two ottomans + in the room → There are two ottomans in the room. Для нескольких предметов используем are и множественное ottomans с -s. Перед two артикль a не ставим; место называем в конце.' },
+  { stage: 'ЛОВУШКА', n: 3, title: 'Новая посуда', body: 'Вы показываете другу только что купленную керамическую посуду. Crockery — посуда в целом: отдельные тарелки можно посчитать, но общее название crockery неисчисляемое. Скажите: This crockery is new. Соберите фразу: This crockery + is + new. С этим общим названием используем this и is, не добавляем a или множественное -s. New в конце сообщает, какая посуда.' },
+];
+const CHOICES = ['This crockery is new.', 'This crockery are new.', 'These crockeries are new.'];
+const head = (stage, n) => `<div class="sb"><span>9:41</span><span>●●● ▮</span></div><div class="hd"><span class="x">${IC.x}</span><div class="meta"><span class="stage">${stage}</span><span class="cnt">${n} из 3</span></div><span class="pill">${IC.bolt}4</span></div>
+  <div class="prog">${[1, 2, 3].map((k) => `<i class="${k <= n ? 'on' : ''}"></i>`).join('')}</div>`;
+const page = (p) => `<div class="ph" id="ph-${p.n}">${head(p.stage, p.n)}<div class="col"><div class="ttl">${esc(p.title)}</div><div class="card"><p class="par">${rich(p.body)}</p></div></div></div>`;
+// «Проверь себя»: варианты — английский своим тоном, но без подсветки частиц (подсветка is/are подсказала бы ответ)
+const check = () => `<div class="ph" id="ph-q">${head('ЛОВУШКА', 3)}<div class="col"><div class="ttl">Новая посуда</div>
+  <div class="qp"><div class="qe"><span>Проверь себя</span><span>3 / 3</span></div><div class="qq">Выберите фразу для этой ситуации.</div>
+  <div class="ans">${CHOICES.map((c, i) => `<button class="ch" data-i="${i}"><span class="lt">${'ABC'[i]}</span><span class="tx"><span class="en">${esc(c)}</span></span></button>`).join('')}</div>
+  <div class="verdict" id="verdict" aria-live="polite"></div></div></div></div>`;
+// эталон урока 1: правильный и ошибочный пример — роли «правильный» / «неверный» уже размечены в материалах
+const lesson1 = () => `<div class="ph" id="ph-l1">${head('СМЫСЛ', 1)}<div class="col"><div class="ttl"><b>am, is, are</b> — это и есть «быть»</div><div class="sub">Одно короткое слово связывает, кто есть кто.</div>
+  <div class="card"><p class="par">${rich('В русском мы говорим «Я — Анна» и обходимся без глагола. В английском между словами обязательно стоит связка.')}</p>
+  <p class="par okline"><span style="color:var(--t-goodText)">${IC.check}</span><span class="tgt-wrap">${rich('I am Anna.')}</span></p>
+  <p class="par okline"><span style="color:var(--t-badText)">${IC.cross}</span><span class="wrong">I Anna.</span></p></div></div></div>`;
+
+const CELLS = [
+  ['СМЫСЛ', 'урок 17 · страница 1', () => page(L17[0])],
+  ['СХЕМА', 'урок 17 · страница 2 — формула с «+» и «→»', () => page(L17[1])],
+  ['ЛОВУШКА', 'урок 17 · страница 3 — снимок владельца', () => page(L17[2])],
+  ['Проверь себя', 'нажми вариант', check],
+  ['Ошибочный пример', 'урок 1 — зачёркнут красным', lesson1],
+];
+
+// ── контраст WCAG ──
+const rgb = (c) => { const h = c.replace('#', ''); const a = h.length === 8 ? parseInt(h.slice(6, 8), 16) / 255 : 1; return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16), a]; };
+const over = (fg, bg) => { const f = rgb(fg); const b = rgb(bg); return '#' + [0, 1, 2].map((i) => Math.round(f[i] * f[3] + b[i] * (1 - f[3])).toString(16).padStart(2, '0')).join(''); };
+const lum = (c) => rgb(c).slice(0, 3).map((x) => { x /= 255; return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }).reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
+const cr = (a, b) => { const A = lum(a); const B = lum(b); return (Math.max(A, B) + 0.05) / (Math.min(A, B) + 0.05); };
+
+function applyTheme(el, t) {
+  const map = { bg: t.bg, bgTop: t.bgTop, bgBottom: t.bgBottom, card: t.card, ctl: t.ctl, text: t.text, secondary: t.secondary, muted: t.muted, accent: t.accentTextSafe, accentG: t.accentGraphic,
+    soft: t.accentSoft, good: t.good, bad: t.bad, goodText: t.goodText, badText: t.badText, ctaInk: t.ctaInk, shadow: t.shadow };
+  for (const [k, v] of Object.entries(map)) el.style.setProperty(`--t-${k}`, v);
+}
+function render() {
+  const t = TOK[`${st.theme}:${st.level}`];
+  const strip = document.getElementById('strip');
+  strip.innerHTML = CELLS.map(([c, s, f]) => `<div class="cell"><div class="cap">${c}<small>${s}</small></div>${f()}</div>`).join('');
+  strip.querySelectorAll('.ph').forEach((ph) => { applyTheme(ph, t); ph.classList.add(`v-${st.v}`); });
+  // правильный пример урока 1: в «как сейчас» — роль target (жирный основной), в предложении — английский с частицами
+  strip.querySelectorAll('.tgt-wrap').forEach((w) => { if (st.v === 'now') w.querySelectorAll('span').forEach((s) => { s.className = 'tgt'; }); });
+  wireChoices(t);
+  legend(t);
+}
+function wireChoices() {
+  const ph = document.getElementById('ph-q'); const v = document.getElementById('verdict');
+  ph.querySelectorAll('.ch').forEach((b) => b.addEventListener('click', () => {
+    const i = Number(b.dataset.i);
+    if (i === 0) { b.classList.add('good'); v.innerHTML = '<span style="color:var(--t-goodText)">Верно</span>'; ph.querySelectorAll('.ch').forEach((x) => { x.disabled = true; }); }
+    else { b.classList.add('bad'); v.innerHTML = `<span style="color:var(--t-badText)">${esc(b.textContent.slice(1))}</span> <span class="ru">— не так. Попробуй ещё.</span>`; }
+  }));
+}
+function legend(t) {
+  const card = t.card;
+  const pBg = st.v === 'b' ? over(t.accentSoft, card) : card;
+  const pFg = st.v === 'b' ? t.text : st.v === 'a' ? t.accentTextSafe : t.text;
+  const rows = st.v === 'now'
+    ? [['Весь абзац', t.text, card, 'Русский и английский одним цветом и весом']]
+    : [['Русское пояснение', t.secondary, card, 'второй тон текста, обычный вес'], ['Английский', t.text, card, 'основной тон, жирный'],
+      ['Частицы и служебные', pFg, pBg, st.v === 'a' ? 'тон акцента темы, жирный' : 'подложка цвета акцента, текст основной'], ['Знаки формулы + →', t.muted, card, 'приглушённые, жирные'],
+      ['Ошибочный пример', t.badText, card, 'красный, зачёркнут — как сейчас']];
+  const sample = { 'Русское пояснение': '<span class="ru">Соберите фразу:</span>', 'Английский': '<span class="en">crockery new</span>', 'Частицы и служебные': '<span class="pt">this</span> <span class="pt">is</span> <span class="pt">a</span> <span class="pt">-s</span>',
+    'Знаки формулы + →': '<span class="op">+ →</span>', 'Ошибочный пример': '<span class="wrong">I Anna.</span>', 'Весь абзац': '<span class="ru">Скажите: This crockery is new.</span>' };
+  const sep = st.v === 'a' ? cr(t.accentTextSafe, t.text) : null;
+  const themeName = THEMES.find((x) => x[0] === st.theme)[1]; const levelName = LEVELS.find((x) => x[0] === st.level)[1];
+  document.getElementById('legend').innerHTML = `<div class="lg v-${st.v}" id="lg-roles"><h2>Роли текста · ${themeName}, ${levelName}</h2>
+    ${rows.map(([n, fg, bg, d]) => { const c = cr(fg, bg); return `<div class="lrow"><span class="nm">${n} — ${d}</span><span class="cr ${c >= 4.5 ? 'ok' : 'warn'}">${c.toFixed(1)} : 1 ${c >= 4.5 ? '✓' : '!'}</span><div class="swatch" style="background:${card}">${sample[n]}</div></div>`; }).join('')}
+    ${sep !== null && sep < 1.6 ? `<div class="warnbox">На уровне «${levelName}» в этой теме акцент почти совпадает с цветом английского (${sep.toFixed(1)} : 1) — частицы в варианте А почти не видны. Вариант Б работает на всех уровнях.</div>` : ''}</div>
+    <div class="lg"><h2>Как это сделать в приложении</h2><p class="note">Сейчас абзацы вступления приходят из материалов одной строкой без ролей, поэтому весь текст одного цвета. Предлагаем делить текст на роли <b>при показе</b>: кириллица — русский, латиница — английский, служебные слова (am/is/are, a/an/the, this/these, there, do/does, will, to, not) и окончания <b>-s/-es</b> — частицы, «+» и «→» — знаки формулы. Материалы курса трогать не нужно, на 9 языках работает так же.</p>
+    <p class="note">Ситуация в раскладке «Скажи так» сейчас рисуется вообще без ролей — она получит тот же разбор. В «Проверь себя» варианты ответа — тоном английского, но <b>без подсветки частиц</b>: иначе is/are подсказывали бы ответ.</p></div>`;
+  applyTheme(document.getElementById('lg-roles'), t);
+}
+function seg(id, list, key) {
+  const el = document.getElementById(id);
+  el.innerHTML = list.map(([v, a, b]) => `<button data-v="${v}" aria-pressed="${st[key] === v}">${a}${b ? ` · ${b}` : ''}</button>`).join('');
+  el.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    st[key] = b.dataset.v; el.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    try { localStorage.setItem('intro-colors', JSON.stringify(st)); } catch (err) { console.warn('[INTRO-COLORS] выбор не сохранён', err); }
+    render();
+  });
+}
+seg('g-theme', THEMES, 'theme'); seg('g-level', LEVELS, 'level'); seg('g-var', VARS, 'v');
+render();
+</script>
+</body>
+</html>

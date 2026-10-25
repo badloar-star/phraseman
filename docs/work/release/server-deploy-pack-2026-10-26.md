@@ -33,6 +33,28 @@ App Check не включается (пломба).
 | 8 | политика 14dd45fd9 + 7868dd51c + 13ea0d2ca | См. «Политика на сайте». | `hosting:knowlywww` | — |
 | 9 | **51884d675** сводка «Восстановить аккаунт?» (5 · ВХОД) | Пока ничего: новое окно включается флагом `account_delete_variant_b_ui_enabled` (ВЫКЛ). После включения в окне восстановления видно «серия · фразы · урок N из 32». Одно чтение `users/{stableUid}` только при входе в удаляемый аккаунт; сбой — окно без цифр. | `accountDeleteStatusMine` | 🟢 Новое поле `summary` в ответе; старые клиенты его не читают. |
 
+### Дописано ночью 26.10 (Ядро) — отдельной кнопкой, шаг 2б
+
+Строки ниже **не входят** в команду шага 2. Это отдельная команда (шаг 2б), её выкладывают по отдельному «да». Все три —
+только код, без новых чтений и без новых данных.
+
+| # | Коммит | Что меняется для человека | Функции | Старые клиенты 2.0.1/2.0.2 |
+|---|---|---|---|---|
+| 10 | **99637a1a6** права до разбора команды (безопасность, Ревизор L732) | Для админа ничего. Не-админ, вызвавший админскую выдачу Plus или бан с кривой командой, раньше получал «неверный аргумент», а с правильной — «нет прав», и по этой разнице мог подбирать формат. Теперь любой не-админ получает только «нет прав». Ревью безопасности — у Ревизора (передаёт координатор). | `adminGrantAccess`, `adminSetUserBan` | 🟢 зовёт только админка |
+| 11 | **43053dbd5** настоящий срок Plus для кольца | Кольцо Plus у аватара подписчика гаснет само, когда подписка кончилась. Раньше сервер считал срок подписки «бессрочным» (`premium_expiry='0'`), и кольцо горело вечно. Та же ошибка была у старого админского гранта со сроком. | `publicProfileProjectMine`, `adminGrantAccess`, `revenueCatShardsWebhook`, `premiumExpiryCron`, `adminGetUserProfile`, `adminSearchUsers` | 🟢 клиент читает тот же `plusUntilMs` |
+| 12 | **c0473f366** журнал `[FREEFORM-PLUS]` | Для человека ничего. В журнале появляется, чей отказ «нужен Plus» в свободном разговоре и какое поле подписки его решило: 48 отказов за 3 дня шли очередями по 13–18 попыток. | `dialogueV2FreeformSessionStart`, `dialogueV2FreeformSessionTurn` (`dialogueV2FreeformTranslate` из строки 4 получит то же из HEAD) | 🟢 ответ не меняется |
+
+Сухой прогон шага 2б — без `--execute`; кнопка — та же строка с `--execute`:
+```bash
+bash scripts/deploy_from_clean_head.sh --only "functions:default:adminGrantAccess,functions:default:adminSetUserBan,functions:default:publicProfileProjectMine,functions:default:revenueCatShardsWebhook,functions:default:premiumExpiryCron,functions:default:adminGetUserProfile,functions:default:adminSearchUsers,functions:default:dialogueV2FreeformSessionStart,functions:default:dialogueV2FreeformSessionTurn"
+```
+Проверка после (журналы, только чтение):
+- `[ADMIN-PLUS]` `step: in / out` — выдача Plus из админки проходит как раньше;
+- кольцо Plus у тестового подписчика с истёкшим `premium_rc_expiry_ms` погасло после `publicProfileProjectMine`;
+- `[FREEFORM-PLUS] refused` с полями `branches` при очередном отказе.
+
+Откат — `git revert` нужного коммита и та же строка `--only` только с его функциями.
+
 **Можно вычеркнуть (решает владелец):** «золотое задание» — `functions:default:spireReportSteps` (строка 6). Убрать его из
 строки шага 2 — остальной пакет от него не зависит, флаг `spire_gold` просто останется без сервера.
 

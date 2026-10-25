@@ -254,7 +254,7 @@ export function ChapterExamV2ReviewView(p: ReviewProps) {
   );
 }
 
-// Размеры — 1:1 по CSS прототипа (.res, .trophy, .big, .rtitle, .dots, .rew, .unl, .mini, .where, .topics, .tp, .link, .mist, .epr, .rfoot, .second).
+// Размеры — 1:1 по CSS прототипа; кегли текста — шкала D145 16/13 (Ревизор 25.10: 14/15/17 → 13/16, межстрочные как в прототипе) (.res, .trophy, .big, .rtitle, .dots, .rew, .unl, .mini, .where, .topics, .tp, .link, .mist, .epr, .rfoot, .second).
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   flexShrink: { flexShrink: 1 },
@@ -280,18 +280,18 @@ const styles = StyleSheet.create({
   tp: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, paddingVertical: 13 },
   tpText: { fontSize: 16, lineHeight: 21 },
   tpEp: { marginTop: 2, fontSize: 13, lineHeight: 17 },
-  tpR: { fontSize: 14, fontWeight: '700' },
+  tpR: { fontSize: 13, fontWeight: '700' },
   link: { marginTop: 14, paddingVertical: 6, paddingHorizontal: 10, borderRadius: 8 },
-  linkText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  linkText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   mist: { marginTop: 12, borderRadius: 20, paddingVertical: 14, paddingHorizontal: 16 },
   mistQ: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
-  mistP: { marginTop: 4, fontSize: 15, lineHeight: 21 },
-  mistY: { marginTop: 10, fontSize: 15, lineHeight: 21 },
-  mistC: { marginTop: 4, fontSize: 17, lineHeight: 23, fontWeight: '700' },
+  mistP: { marginTop: 4, fontSize: 16, lineHeight: 21 },
+  mistY: { marginTop: 10, fontSize: 16, lineHeight: 21 },
+  mistC: { marginTop: 4, fontSize: 16, lineHeight: 23, fontWeight: '700' },
   bold: { fontWeight: '700' },
   epr: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 10, borderRadius: 14 },
   eprN: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  eprNText: { fontSize: 15, fontWeight: '800' },
+  eprNText: { fontSize: 16, fontWeight: '800' },
   eprM: { flex: 1, minWidth: 0, gap: 2 },
   eprT: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   eprS: { fontSize: 13, lineHeight: 17 },

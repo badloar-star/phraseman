@@ -207,7 +207,7 @@ export default function ChapterExamV2Question({ lang, item, ordinal, writeMode, 
   );
 }
 
-// Размеры — 1:1 по CSS прототипа (.scroll, .hd, .tile, .sitc, .bub, .ask, .wrongc, textarea, .ans, .mic, .plate, .foot, .cta).
+// Размеры — 1:1 по CSS прототипа; кегли текста — шкала D145 16/13 (Ревизор 25.10: 12,5/14 → 13) (.scroll, .hd, .tile, .sitc, .bub, .ask, .wrongc, textarea, .ans, .mic, .plate, .foot, .cta).
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   scroll: { paddingTop: 18, paddingHorizontal: 41, paddingBottom: 24 },
@@ -227,12 +227,12 @@ const styles = StyleSheet.create({
   input: { minHeight: 104, borderRadius: 16, paddingTop: 14, paddingBottom: 14, paddingHorizontal: 16, fontSize: 20, lineHeight: 27, fontWeight: '700', textAlignVertical: 'top' },
   ans: { marginTop: 16, borderRadius: 16, paddingTop: 20, paddingHorizontal: 16, paddingBottom: 14, alignItems: 'center' },
   dash: { fontSize: 22, letterSpacing: 3, textAlign: 'center' },
-  hint: { marginTop: 12, fontSize: 12.5, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
+  hint: { marginTop: 12, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
   micwrap: { marginTop: 22, alignItems: 'center', gap: 10 },
   mic: { width: 76, height: 76, borderRadius: 38, alignItems: 'center', justifyContent: 'center' },
   mlab: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   alt: { paddingVertical: 6, paddingHorizontal: 10, borderRadius: 8 },
-  altText: { fontSize: 14, lineHeight: 20, fontWeight: '700' },
+  altText: { fontSize: 13, lineHeight: 20, fontWeight: '700' },
   note: { marginTop: 8, minHeight: 18, fontSize: 13, lineHeight: 18, textAlign: 'center' },
   plate: { marginTop: 14, borderRadius: 16, paddingVertical: 13, paddingHorizontal: 15, flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
   plateIcon: { marginTop: 2 },

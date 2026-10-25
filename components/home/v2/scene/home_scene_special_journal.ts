@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../../../../app/debug-logger';
 import {
   HOME_SCENE_SPECIAL_EMPTY_JOURNAL,
+  homeSceneSpecialLogKey,
   parseHomeSceneSpecialJournal,
   recordHomeSceneSpecialShown,
   type HomeSceneSpecialJournal,
@@ -54,7 +55,7 @@ export function noteHomeSceneSpecialShown(state: HomeSceneSpecialState, key: str
   const next = recordHomeSceneSpecialShown(prev, state, key, now);
   if (next === prev) return prev;
   memory = next;
-  DebugLogger.info(LOG, `особые сцены: показ ${state}${key ? ` key=${key}` : ''} @${next.last?.day ?? '—'}`); // guard-ok
+  DebugLogger.info(LOG, `особые сцены: показ ${state}${key ? ` key=${homeSceneSpecialLogKey(state, key)}` : ''} @${next.last?.day ?? '—'}`); // guard-ok
   AsyncStorage.setItem(HOME_SCENE_SPECIAL_JOURNAL_KEY, JSON.stringify(next)).catch((error: unknown) => {
     DebugLogger.warn(LOG, `особые сцены: журнал не записался — только в памяти (${error instanceof Error ? error.message : String(error)})`); // guard-ok
   });

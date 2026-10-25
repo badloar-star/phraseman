@@ -214,6 +214,15 @@ export function pickHomeSceneSpecial(
   return none(`all skipped base=${base.state}: ${skipped.join(' ')}`);
 }
 
+/**
+ * Ключ показа для журнала [HOME-SCENE]: uid друга не печатаем.
+ * зачем (Ревизор 25.10 по 3a42a7e8f, приватность): в журнал — только «друг», как в Пике; id ошибок и рубежи — не личные данные.
+ */
+export function homeSceneSpecialLogKey(state: HomeSceneSpecialState | null | undefined, key: string | null | undefined): string | null {
+  if (key === null || key === undefined) return null;
+  return state === 'friend_nudge' ? 'friend' : key;
+}
+
 /** Новый журнал после показа (неизменяемо). Повторный показ в тот же день журнал не меняет. */
 export function recordHomeSceneSpecialShown(
   journal: HomeSceneSpecialJournal,

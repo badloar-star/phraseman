@@ -30,8 +30,9 @@ const RIVAL_TAP = 44;
 
 // зачем (владелец 22.10: «аватарки нажимались»): на «Сцене» монета соперника — кнопка с зоной касания не меньше 44, без «Сцены» — прежний значок
 const RivalCoin = memo(function RivalCoin({ m, size, marginLeft, onPress }: Readonly<{ m: SpireRival; size: number; marginLeft: number; onPress?: (uid: string) => void }>) {
-  // зачем (эталон plus-ring-etalon.html, «Пик · жители этажей»): монеты мелкие и стопкой — плоское кольцо 3 + зазор 2, без значка
-  const coin = <SpireRankCoin rank={m.coinRank} size={size} plus={m.isPremium} plusKind="flat" />;
+  // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10: «убери обводки фиолетовые вокруг монеток на башне! Пик»): монеты соперников на башне — без кольца Plus
+  // во всех темах (как своя метка, SpireTowerMarker). Plus по-прежнему виден в списках и на пьедестале. Сторож — tests/owner_locks_tower_coins_2026_10_25.test.ts
+  const coin = <SpireRankCoin rank={m.coinRank} size={size} plus={false} />;
   if (!onPress) return <View style={{ marginLeft }}>{coin}</View>;
   return (
     <V2Pressable outerStyle={{ marginLeft }} hitSlop={Math.max(0, Math.ceil((RIVAL_TAP - size) / 2))} scaleTo={0.9} onPress={() => onPress(m.uid)} accessibilityRole="button" accessibilityLabel={m.name}>

@@ -24,6 +24,7 @@ import { spireSkinForTier, spireThemedSkinForTier, type SpireTowerThemeColors } 
 import { getDevSpireScrollOverride, getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
+import { logSpireScroll } from './spire_scroll_log';
 import { SPIRE_WINDOW_MAX } from './spire_tower_window';
 import { SPIRE_CROWN_RISE, spireCrownTopY, spireWindowScrollY } from './spire_tower_crown';
 import { spireTowerFitScale, spireTowerHeadroom, spireTowerNeedUnits } from './spire_tower_bounds';
@@ -53,7 +54,7 @@ type Props = Readonly<{
   /** Высота окна, dp (по умолчанию 400 по макету): экран сужает её, если низ окна иначе уходит под кнопку «Играть». */
   windowHeight?: number;
   /** Палец в окне башни (true) / отпущен (false): экран на это время не отдаёт жест странице и обновлению потягиванием. */
-  onTouchActive?: (active: boolean) => void;
+  onTouchActive?: (active: boolean, why?: string) => void;
   /**
    * зачем (Пик v2, владелец 22.10; эталон peak-scene-v2.html): 'scene' — башня герой «Сцены»: без плиты окна, тени, скругления и затухания
    * у верха, подписи этажей светлые (сцена всегда тёмная). По умолчанию — прежнее окно.
@@ -228,7 +229,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   }, []);
 
   // зачем (Ревизор по 690a67f59, 🟡): окно башни ушло с экрана (замок языка, «Все участники», смена вкладки) с пальцем на нём — блокировка страницы и обновления потягиванием не должна остаться
-  useEffect(() => () => onTouchActive?.(false), [onTouchActive]);
+  useEffect(() => () => onTouchActive?.(false, 'tower_unmount'), [onTouchActive]);
 
   // окно стало выше/ниже (измерили док) — свой этаж снова по центру нового окна, без анимации
   // зачем (координатор 15.10, 🔴 Pixel 8: «в окне этажи 5 и 4, хотя твой этаж — 1»): без своего этажа (нет недели) окно после сжатия 400 → ~120 оставалось на старом смещении — ранний выход пропускал этот случай; теперь и «низ башни» пересчитывается по новой высоте
@@ -306,11 +307,12 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         decelerationRate="fast"
         onContentSizeChange={onContentSizeChange}
         onScroll={onScrollEcho}
+        // зачем (владелец 25.10, iPhone: «скролл Пика то не работает, то появляется»): [SPIRE-SCROLL] — касание и перетаскивание окна башни с причиной
         onScrollBeginDrag={() => { draggedRef.current = true; }}
-        onTouchStart={() => onTouchActive?.(true)}
-        onTouchEnd={() => onTouchActive?.(false)}
-        onTouchCancel={() => onTouchActive?.(false)}
-        onScrollEndDrag={() => onTouchActive?.(false)}
+        onTouchStart={() => onTouchActive?.(true, 'tower_touch_start')}
+        onTouchEnd={() => onTouchActive?.(false, 'tower_touch_end')}
+        onTouchCancel={() => onTouchActive?.(false, 'tower_touch_cancel')}
+        onScrollEndDrag={(e) => { logSpireScroll('tower_drag_end', { y: roundLayout(e.nativeEvent.contentOffset.y), contentH: roundLayout(e.nativeEvent.contentSize.height), windowH: roundLayout(e.nativeEvent.layoutMeasurement.height), variant, vy: e.nativeEvent.velocity?.y ?? null }); onTouchActive?.(false, 'tower_drag_end'); }}
         scrollEventThrottle={32}
       >
         {width > 0 ? (

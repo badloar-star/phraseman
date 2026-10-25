@@ -295,7 +295,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
   const onCta = useCallback(() => {
     // зачем (особые сцены 25.10): кнопка особой сцены ведёт туда, о чём сцена говорит; «Продолжить» — прежний обработчик Главной
     if (specialView && onSpecial && specialView.route !== 'continue') {
-      console.log(LOG, 'special:tap', JSON.stringify({ special: specialView.special, key: specialView.key, route: specialView.route, cta: copy.cta })); // guard-ok: одна строка на тап
+      console.log(LOG, 'special:tap', JSON.stringify({ special: specialView.special, key: specialView.special === 'friend_nudge' ? 'friend' : specialView.key, route: specialView.route, cta: copy.cta })); // guard-ok: одна строка на тап
       onSpecial(specialView.route);
       return;
     }

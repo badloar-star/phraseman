@@ -91,7 +91,7 @@ export function useHomeSceneLocalFacts(studyTarget: unknown, enabled: boolean): 
         phrasesLearned: typeof stats?.phrasesLearned === 'number' ? stats.phrasesLearned : null,
         friend,
       });
-      console.log(LOG, 'special:facts', JSON.stringify({ mistakes: items.length, repeated: next.repeatedMistake?.id ?? null, mastered: next.masteredMistake?.id ?? null, phrasesLearned: next.phrasesLearned, friend: next.friend?.uid ?? null, ms: Date.now() - startedAt })); // guard-ok: одна строка на чтение
+      console.log(LOG, 'special:facts', JSON.stringify({ mistakes: items.length, repeated: next.repeatedMistake?.id ?? null, mastered: next.masteredMistake?.id ?? null, phrasesLearned: next.phrasesLearned, friend: next.friend ? 'есть' : 'нет', ms: Date.now() - startedAt })); // guard-ok: одна строка на чтение
       setFacts(next);
     });
     return () => { alive = false; };

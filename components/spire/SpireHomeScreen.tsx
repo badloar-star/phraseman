@@ -55,7 +55,7 @@ import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
 const SpireMomentsLayer = lazy(() => import('./moments/SpireMomentsLayer'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
 import { useSpireTowerBudget } from './use_spire_tower_budget'; import { useSpirePikRenderTrace, useSpireRoomCeiling } from './use_spire_room_ceiling'; // зачем (Сверка 18.10 находка 13): потолок скелета подиума + [PIK-LOAD]
-import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock';
+import { useSpireTowerTouchLock } from './use_spire_tower_touch_lock'; import { spirePageScrollLogProps, useSpireScrollStateLog } from './spire_scroll_log'; // зачем (владелец 25.10, iPhone: «скролл Пика то не работает, то появляется»): журнал [SPIRE-SCROLL]
 import { SPIRE_THIN_HEADER_STYLES as thin } from './spire_thin_header';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
@@ -273,6 +273,7 @@ export default function SpireHomeScreen() {
   const budget = useSpireTowerBudget(DOCK_GAP, podiumColumns); const towerWindowH = budget.windowH; // зачем (строка 25 R1_BACKLOG; координатор 15.10, 🔴): окно башни и ступени ужатия — из замеров верха башни, дока и карточки (use_spire_tower_budget), не из модели высоты
   const scene = useSpireSceneTop({ lang, members, rankBy: game.rankBy, roomSearching: podiumSkeleton, offline, plus: hasPremiumAccess, tier: devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null, floor: myFloor, stepInFloor: shownStepInFloor, coins: config?.coins ?? null, active: runtimeOwnerId === 'spire' }); // зачем (Пик v2, владелец 22.10): «Сцена» за флагом SPIRE_SCENE_V2_ENABLED; null — прежний верх экрана
   const sceneScroll = useSpireSceneScroll(scene !== null, runtimeOwnerId === 'spire'); // зачем (3b-3): прокрутка гасит цвет шапки «Сообщества», как маска Главной
+  useSpireScrollStateLog({ scrollEnabled: !towerTouch.locked, scene: scene !== null, config: config !== null, unlocked, roomLoad: game.roomLoad?.status ?? null, members: members?.length ?? null, owner: runtimeOwnerId, tailPad: roundLayout(tailPad) }); // [SPIRE-SCROLL]: что решает прокрутку страницы
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
@@ -289,7 +290,7 @@ export default function SpireHomeScreen() {
         showsVerticalScrollIndicator={false}
         {...sceneScroll}
         decelerationRate="fast"
-        scrollEnabled={!towerTouch.locked}
+        scrollEnabled={!towerTouch.locked} {...spirePageScrollLogProps(!towerTouch.locked)}
         // зачем (смета Firebase 13.10, п. 5): друзья в кэше 30 мин — вручную обновляются потягиванием; спиннер системный, экран не блокируется
         refreshControl={<RefreshControl enabled={!towerTouch.locked} refreshing={friendsRefreshing} onRefresh={onPullRefreshFriends} tintColor={p.text} colors={[p.text]} progressBackgroundColor={p.control} testID="spire-pull-refresh" />}
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}

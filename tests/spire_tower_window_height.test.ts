@@ -293,13 +293,16 @@ describe('скелет подиума и свайп по окну башни', (
     expect(home).toContain('<RefreshControl enabled={!towerTouch.locked}');
     expect(home).toContain('onTouchActive={towerTouch.onTouchActive}');
     const tower = read('components/spire/SpireTower.tsx');
-    expect(tower).toContain('onTouchStart={() => onTouchActive?.(true)}');
-    expect(tower).toContain('onTouchEnd={() => onTouchActive?.(false)}');
-    expect(tower).toContain('onTouchCancel={() => onTouchActive?.(false)}');
-    expect(tower).toContain('onScrollEndDrag={() => onTouchActive?.(false)}');
-    expect(tower).toContain('useEffect(() => () => onTouchActive?.(false), [onTouchActive]);'); // размонтирование окна с пальцем на нём снимает блокировку (Ревизор 15.10)
+    expect(tower).toContain("onTouchStart={() => onTouchActive?.(true, 'tower_touch_start')}");
+    expect(tower).toContain("onTouchEnd={() => onTouchActive?.(false, 'tower_touch_end')}");
+    expect(tower).toContain("onTouchCancel={() => onTouchActive?.(false, 'tower_touch_cancel')}");
+    expect(tower).toContain("onTouchActive?.(false, 'tower_drag_end'); }}");
+    expect(tower).toContain("useEffect(() => () => onTouchActive?.(false, 'tower_unmount'), [onTouchActive]);"); // размонтирование окна с пальцем на нём снимает блокировку (Ревизор 15.10)
     const lock = read('components/spire/use_spire_tower_touch_lock.ts');
-    expect(lock).toContain('useFocusEffect(useCallback(() => () => setLocked(false), []));'); // уход с экрана (blur) тоже снимает блокировку
+    expect(lock).toContain("useFocusEffect(useCallback(() => () => { logSpireScroll('tower_touch_blur_reset'); setLocked(false); }, []));");
+    // зачем (владелец 25.10, только iPhone: «скролл Пика то не работает, то появляется»): на iOS касание башни страницу не блокирует — вложенную прокрутку ведёт система; Android — как было
+    expect(lock).toContain("export const SPIRE_TOWER_LOCKS_PAGE = Platform.OS !== 'ios';");
+    expect(lock).toContain('if (!SPIRE_TOWER_LOCKS_PAGE) return;'); // уход с экрана (blur) тоже снимает блокировку
   });
 
   it('ref уровня пишется не в рендере, а в layout-эффекте (Ревизор по 9c5f781be)', () => {

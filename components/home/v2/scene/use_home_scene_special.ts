@@ -12,7 +12,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 
 import type { Lang } from '../../../../constants/i18n';
 import type { HomeSceneCopy } from './home_scene_copy';
-import { pickHomeSceneSpecial, type HomeSceneSpecialDecision, type HomeSceneSpecialInput, type HomeSceneSpecialJournal, type HomeSceneSpecialState } from './home_scene_special';
+import { homeSceneSpecialLogKey, pickHomeSceneSpecial, type HomeSceneSpecialDecision, type HomeSceneSpecialInput, type HomeSceneSpecialJournal, type HomeSceneSpecialState } from './home_scene_special';
 import { buildHomeSceneSpecialCopy } from './home_scene_special_copy';
 import { noteHomeSceneSpecialShown, peekHomeSceneSpecialJournal, readHomeSceneSpecialJournal } from './home_scene_special_journal';
 import type { HomeSceneDecision } from './home_scene_state';
@@ -107,7 +107,7 @@ export function useHomeSceneSpecial(i: Readonly<{
     const key = decision ? `${decision.special ?? 'none'}|${decision.reason}` : 'journal_pending';
     if (logRef.current === key) return;
     logRef.current = key;
-    console.log(LOG, 'special', JSON.stringify({ special: decision?.special ?? null, key: decision?.key ?? null, reason: decision?.reason ?? 'journal_pending', base: i.decision.state, mistakesOpen: i.facts.mistakesOpen, wordsDue: i.facts.wordsDue, lastWeekDays: weekDays, last: journal?.last ?? null })); // guard-ok: одна строка на смену решения
+    console.log(LOG, 'special', JSON.stringify({ special: decision?.special ?? null, key: homeSceneSpecialLogKey(decision?.special, decision?.key), reason: decision?.reason ?? 'journal_pending', base: i.decision.state, mistakesOpen: i.facts.mistakesOpen, wordsDue: i.facts.wordsDue, lastWeekDays: weekDays, last: journal?.last ? { ...journal.last, key: homeSceneSpecialLogKey(journal.last.state, journal.last.key) } : null })); // guard-ok: одна строка на смену решения
   }, [decision, i.decision.state, i.facts.mistakesOpen, i.facts.wordsDue, weekDays, journal]);
   const special = decision?.special ?? null;
   const specialKey = decision?.key ?? null;

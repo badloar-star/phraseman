@@ -127,10 +127,13 @@ test('compact Home utility row shrinks on narrow screens and preserves optional 
   assert.match(header, /stats: \{[^}]*flex: 1/);
   assert.match(header, /stat\.onPress \?/);
   assert.match(header, /accessibilityRole="text"/);
-  const coinsStat = home.slice(home.indexOf("testID: 'home-v2-coins'"), home.indexOf("testID: 'home-v2-coins'") + 750);
+  // зачем (25.10): окно 750 знаков обрывалось до onPress после комментария «одно число монет» (de99afcd4) — блок тот же, окно шире
+  const coinsStat = home.slice(home.indexOf("testID: 'home-v2-coins'"), home.indexOf("testID: 'home-v2-coins'") + 1500);
   // зачем (04.10): PM-052/D75 (9ecb23d94) убрал сбор наград и rewardCollect; в подписи — сам баланс,
   // а пока он не известен — «—», как и на экране (без нуля-заглушки).
-  assert.match(coinsStat, /accessibilityLabel: `\$\{homeV2CoinsLabel\}: \$\{runesKnown \? runesBalance : '—'\}`/);
+  // зачем (координатор 25.10, «одно число монет», de99afcd4): подпись для диктора — то же число, что на плашке (кошелёк + ожидающие Пика)
+  assert.match(coinsStat, /value: runesKnown \? String\(homeShownCoins\) : '—'/);
+  assert.match(coinsStat, /accessibilityLabel: `\$\{homeV2CoinsLabel\}: \$\{runesKnown \? homeShownCoins : '—'\}`/);
   assert.match(coinsStat, /onPress: \(\) => \{ nav\.push\('\/coin_rank'\); \}/);
   assert.doesNotMatch(coinsStat, /homeRunesA11yLabel/);
 });

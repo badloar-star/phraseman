@@ -16,7 +16,9 @@ describe('Home-owned survey entry (Today row + sheet)', () => {
 
   test('Home mounts the survey only through the hook and the lazy sheet, never the legacy chain', () => {
     expect(home).toContain('const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);');
-    expect(home).toContain('{homeSurvey.launch ? (<Suspense fallback={null}>');
+    // зачем (a0a8607fe, диагностика [TEXT-OUTSIDE] 25.10): снаружи Suspense стоит предохранитель HomeSheetTextGuard — смысл прежний:
+    // окно анкеты монтируется только при launch и лениво, Suspense вплотную к окну
+    expect(home).toMatch(/\{homeSurvey\.launch \? \(\s*(?:\/\/[^\n]*\n\s*)?<HomeSheetTextGuard\s+name="home_survey"[\s\S]*?><Suspense fallback=\{null\}>\s*<SurveySheetModal/);
     expect(home).toContain('<SurveySheetModal');
     expect(home).not.toContain('fetchActiveSurveyWithRetry(');
     expect(home).not.toContain('setSurveyOffer');

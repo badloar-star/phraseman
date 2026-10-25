@@ -14,7 +14,7 @@
    цвета и отдельно цвет рус и англ текста (для всех тем)». Экраны — вступление занятия Learning V2 1:1 по app/learning_v2_session_intro.tsx
    (заголовок 26/32, карточка knowledgeFlow 18/18/20, абзац 16/23, «Проверь себя», варианты 16/600); текст — урок 17, занятие 1 дословно
    (content/learning-v2-course/release/en/l17/s01/intro.json), пример с ошибкой — эталон урока 1. Цвета экранов — ТОЛЬКО токены темы
-   (liquidGlassTokens + semanticInk; роли текста — introTextRoles Тем d21474944), контраст считается на странице. Свои классы без kit.css. */
+   (liquidGlassTokens + semanticInk, сняты скриптом), контраст считается на странице. Свои классы без kit.css. */
 :root {
   --page: #F4F4F6; --panel: #FFFFFF; --ink: #16171C; --ink2: #5A5C66; --seg: #E9E9EE; --segOn: #FFFFFF; --segInk: #16171C; --line: rgba(22, 23, 28, .08);
   --okc: #1E7A46; --warnc: #9A5B00;
@@ -53,7 +53,6 @@ h1 { margin: 0; font-size: clamp(22px, 4vw, 30px); line-height: 1.2; font-weight
 .swatch { grid-column: 1 / -1; border-radius: 10px; padding: 8px 12px; font-size: 16px; line-height: 23px; }
 .note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--ink2); }
 .note b { color: var(--ink); }
-.warnbox { font-size: 14px; line-height: 1.45; color: var(--warnc); font-weight: 600; }
 
 /* ── экран вступления: цвета — переменные темы приложения, заданные скриптом из токенов ── */
 .ph { position: relative; width: 340px; border-radius: 40px; overflow: hidden; background: linear-gradient(180deg, var(--t-bgTop) 0%, var(--t-bg) 55%, var(--t-bgBottom) 100%); color: var(--t-text);
@@ -93,13 +92,12 @@ h1 { margin: 0; font-size: clamp(22px, 4vw, 30px); line-height: 1.2; font-weight
 .v-now .tgt { color: var(--t-text); font-weight: 700; }
 /* предложение: русский — второй тон текста, английский — основной тон и жирный, знаки формулы — приглушённые */
 /* зачем (Темы d21474944, координатор 25.10 «бери цвета ровно оттуда»): роли — introTextRoles(тема) = { langText, particle, gloss } */
-.v-a .ru, .v-b .ru { color: var(--t-gloss); font-weight: 400; }
-.v-a .en, .v-b .en, .v-a .tgt, .v-b .tgt { color: var(--t-en); font-weight: 700; }
-.v-a .op, .v-b .op { color: var(--t-muted); font-weight: 700; }
-/* вариант А: частицы и служебные — цвет particle (оттенок акцента темы) */
-.v-a .pt { color: var(--t-pt); font-weight: 700; }
-/* вариант Б: частицы — подложка из particle (18 %), текст langText */
-.v-b .pt { color: var(--t-en); font-weight: 700; background: var(--t-ptSoft); border-radius: 5px; padding: 0 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.v-ok .ru { color: var(--t-gloss); font-weight: 400; }
+.v-ok .en, .v-ok .tgt { color: var(--t-en); font-weight: 700; }
+.v-ok .op { color: var(--t-muted); font-weight: 700; }
+/* УТВЕРЖДЕНО владельцем 25.10 «МАКСИМУМ И ПОДЛОЖКА»: частица — particle (цвет акцента с «Максимума» на любом уровне), жирный,
+   мягкая подложка 12 % из того же particle (accentSoft в тёмных темах опускал контраст частицы ниже 4,5 : 1) */
+.v-ok .pt { color: var(--t-pt); font-weight: 700; background: var(--t-ptSoft); border-radius: 5px; padding: 0 3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 /* ошибочный пример — зачёркнут красным во всех вариантах, как сейчас */
 .wrong, .wrong * { color: var(--t-badText) !important; font-weight: 700 !important; text-decoration: line-through; background: none !important; }
 .okline { display: flex; gap: 10px; align-items: center; font-weight: 700; }
@@ -111,11 +109,11 @@ h1 { margin: 0; font-size: clamp(22px, 4vw, 30px); line-height: 1.2; font-weight
 
 <div class="wrap">
   <h1>Цвета текста во вступлении занятия</h1>
-  <p class="lead">Английский, служебные слова и формула, русское пояснение и ошибочный пример — каждый своим цветом из темы. Тексты — урок 17, занятие 1, как в приложении. Ленту экранов можно листать вбок.</p>
+  <p class="lead">Английский, служебные слова и формула, русское пояснение и ошибочный пример — каждый своим цветом из темы. Утверждено владельцем 25.10: частица — насыщенный цвет акцента, мягкая подложка и жирный шрифт. Тексты — урок 17, занятие 1, как в приложении. Ленту экранов можно листать вбок.</p>
   <div class="ctrls">
     <div class="grp"><span>Тема</span><div class="seg" role="group" aria-label="Тема" id="g-theme"></div></div>
     <div class="grp"><span>Уровень цвета</span><div class="seg" role="group" aria-label="Уровень цвета" id="g-level"></div></div>
-    <div class="grp"><span>Частицы</span><div class="seg" role="group" aria-label="Частицы" id="g-var"></div></div>
+    <div class="grp"><span>Вид</span><div class="seg" role="group" aria-label="Вид" id="g-var"></div></div>
   </div>
   <div class="strip" id="strip" aria-label="Экраны вступления"></div>
   <div class="legend" id="legend"></div>
@@ -127,9 +125,9 @@ h1 { margin: 0; font-size: clamp(22px, 4vw, 30px); line-height: 1.2; font-weight
 const TOK = {"ink:calm":{"isLight":true,"bg":"#EFEFF6","bgTop":"#F6F6FB","bgBottom":"#EBECF3","card":"#FEFEFF","ctl":"#E1E2EA","text":"#17181E","secondary":"#595A63","muted":"#5E5F67","accent":"#1D1D2F","accentTextSafe":"#2A2B41","accentSoft":"#2A2B4114","accentGraphic":"#1D1D2F","good":"#097234","bad":"#AB3837","goodText":"#0B6431","badText":"#953333","cta":"#1D1D2F","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #2D2D5357, 0px 1px 3px 0px #2D2D530F","langText":"#17181E","particle":"#5A56AA","gloss":"#595A63"},"ink:max":{"isLight":true,"bg":"#EAEBFE","bgTop":"#F3F4FD","bgBottom":"#ECE4F7","card":"#FCFCFF","ctl":"#DBDDEC","text":"#17181E","secondary":"#595A63","muted":"#5E5F67","accent":"#5F5CB1","accentTextSafe":"#514EA1","accentSoft":"#E6E9FFF7","accentGraphic":"#54529B","good":"#006F30","bad":"#A73533","goodText":"#03622D","badText":"#913130","cta":"#1D1D2F","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #33335757, 0px 1px 3px 0px #3333570F","langText":"#17181E","particle":"#5A56AA","gloss":"#595A63"},"marine:calm":{"isLight":false,"bg":"#010505","bgTop":"#040E10","bgBottom":"#020B0D","card":"#171A1A","ctl":"#122224","text":"#F6FBFC","secondary":"#B9C7C9","muted":"#ACBBBC","accent":"#D0EAED","accentTextSafe":"#D0EAED","accentSoft":"#A5BDBF33","accentGraphic":"#D0EAED","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#ED756E","cta":"#D0EAED","ctaInk":"#010708","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)","langText":"#F6FBFC","particle":"#00B8D9","gloss":"#B9C7C9"},"marine:max":{"isLight":false,"bg":"#000F16","bgTop":"#002936","bgBottom":"#001B17","card":"#16232A","ctl":"#123037","text":"#F6FBFD","secondary":"#B8CFD6","muted":"#98ACB1","accent":"#5CCFEB","accentTextSafe":"#5CCFEB","accentSoft":"#006C859E","accentGraphic":"#5CCFEB","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#EE8983","cta":"#D0EAED","ctaInk":"#010708","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)","langText":"#F6FBFD","particle":"#00B8D9","gloss":"#B8CFD6"},"grad_full_horizon:calm":{"isLight":true,"bg":"#dde8ef","bgTop":"#dde8ef","bgBottom":"#dde8ef","card":"#f2f8ff","ctl":"#f2f8ff","text":"#181a20","secondary":"#55505B","muted":"#55505B","accent":"#805022","accentTextSafe":"#704822","accentSoft":"#0000000D","accentGraphic":"#7B4D22","good":"#126432","bad":"#9C3535","goodText":"#126432","badText":"#9C3535","cta":"#797671","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #1A1A3457, 0px 1px 3px 0px #1A1A340F","langText":"#181A20","particle":"#964E00","gloss":"#55505B"},"grad_full_horizon:max":{"isLight":true,"bg":"#dde8ef","bgTop":"#dde8ef","bgBottom":"#dde8ef","card":"#f2f8ff","ctl":"#f2f8ff","text":"#181a20","secondary":"#55505B","muted":"#55505B","accent":"#805022","accentTextSafe":"#7B4D22","accentSoft":"#FFBB784D","accentGraphic":"#7B4D22","good":"#126432","bad":"#9C3535","goodText":"#126432","badText":"#9C3535","cta":"#797671","ctaInk":"#FFFFFF","shadow":"0px 14px 26px -14px #0A0A1457, 0px 1px 3px 0px #0A0A140F","langText":"#181A20","particle":"#964E00","gloss":"#55505B"},"grad_full_ref_storm_violet:calm":{"isLight":false,"bg":"#040709","bgTop":"#040709","bgBottom":"#040709","card":"#1e1929","ctl":"#1e1929","text":"#fff9f6","secondary":"#DACFD0","muted":"#DACFD0","accent":"#d697ff","accentTextSafe":"#d697ff","accentSoft":"#B4BCCF30","accentGraphic":"#d697ff","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#ED756E","cta":"#F8ECFF","ctaInk":"#4B3559","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)","langText":"#FFF9F6","particle":"#BF8CE0","gloss":"#DACFD0"},"grad_full_ref_storm_violet:max":{"isLight":false,"bg":"#040709","bgTop":"#040709","bgBottom":"#040709","card":"#1e1929","ctl":"#1e1929","text":"#fff9f6","secondary":"#DACFD0","muted":"#DACFD0","accent":"#d697ff","accentTextSafe":"#d697ff","accentSoft":"#D697FF3D","accentGraphic":"#d697ff","good":"#73CB87","bad":"#ED756E","goodText":"#73CB87","badText":"#ED756E","cta":"#F8ECFF","ctaInk":"#4B3559","shadow":"0px 16px 28px -14px rgba(0,0,0,0.75)","langText":"#FFF9F6","particle":"#BF8CE0","gloss":"#DACFD0"}};
 const THEMES = [['ink', 'Сумерки', 'светлая'], ['marine', 'Океан', 'тёмная'], ['grad_full_horizon', 'Горизонт', 'светлая премиум'], ['grad_full_ref_storm_violet', 'Аметист', 'тёмная премиум']];
 const LEVELS = [['calm', 'Спокойно'], ['max', 'Максимум']];
-const VARS = [['now', 'Как сейчас'], ['a', 'А · тон акцента'], ['b', 'Б · подложка']];
-const st = { theme: 'ink', level: 'calm', v: 'a' };
-try { const s = JSON.parse(localStorage.getItem('intro-colors') || '{}'); Object.assign(st, s); } catch (e) { console.warn('[INTRO-COLORS] выбор не прочитан', e); }
+const VARS = [['ok', 'Утверждено'], ['now', 'Как сейчас']];
+const st = { theme: 'ink', level: 'calm', v: 'ok' };
+try { const s = JSON.parse(localStorage.getItem('intro-colors') || '{}'); Object.assign(st, s); if (st.v !== 'now') st.v = 'ok'; } catch (e) { console.warn('[INTRO-COLORS] выбор не прочитан', e); }
 
 // ── разбор текста на роли (так же предлагается делать в приложении при показе — без разметки в материалах курса) ──
 const FUNC = new Set(['am', 'is', 'are', 'was', 'were', 'be', 'a', 'an', 'the', 'this', 'these', 'that', 'those', 'there', 'do', 'does', 'did', 'will', 'to', 'not', "don't", "doesn't"]);
@@ -195,7 +193,7 @@ const cr = (a, b) => { const A = lum(a); const B = lum(b); return (Math.max(A, B
 
 function applyTheme(el, t) {
   const map = { bg: t.bg, bgTop: t.bgTop, bgBottom: t.bgBottom, card: t.card, ctl: t.ctl, text: t.text, secondary: t.secondary, muted: t.muted, accent: t.accentTextSafe, accentG: t.accentGraphic,
-    soft: t.accentSoft, en: t.langText, gloss: t.gloss, pt: t.particle, ptSoft: `${t.particle}2E`, good: t.good, bad: t.bad, goodText: t.goodText, badText: t.badText, ctaInk: t.ctaInk, shadow: t.shadow };
+    soft: t.accentSoft, en: t.langText, gloss: t.gloss, pt: t.particle, ptSoft: `${t.particle}1F`, good: t.good, bad: t.bad, goodText: t.goodText, badText: t.badText, ctaInk: t.ctaInk, shadow: t.shadow };
   for (const [k, v] of Object.entries(map)) el.style.setProperty(`--t-${k}`, v);
 }
 function render() {
@@ -218,20 +216,18 @@ function wireChoices() {
 }
 function legend(t) {
   const card = t.card;
-  const pBg = st.v === 'b' ? over(`${t.particle}2E`, card) : card;
-  const pFg = st.v === 'b' ? t.langText : st.v === 'a' ? t.particle : t.text;
+  const pBg = over(`${t.particle}1F`, card);
+  const pFg = t.particle;
   const rows = st.v === 'now'
     ? [['Весь абзац', t.text, card, 'Русский и английский одним цветом и весом']]
     : [['Русское пояснение', t.gloss, card, 'gloss, обычный вес'], ['Английский', t.langText, card, 'langText, жирный'],
-      ['Частицы и служебные', pFg, pBg, st.v === 'a' ? 'particle, жирный' : 'подложка из particle, текст langText'], ['Знаки формулы + →', t.muted, card, 'приглушённые, жирные'],
+      ['Частицы и служебные', pFg, pBg, 'particle, жирный, подложка 12 % из particle'], ['Знаки формулы + →', t.muted, card, 'приглушённые, жирные'],
       ['Ошибочный пример', t.badText, card, 'красный, зачёркнут — как сейчас']];
   const sample = { 'Русское пояснение': '<span class="ru">Соберите фразу:</span>', 'Английский': '<span class="en">crockery new</span>', 'Частицы и служебные': '<span class="pt">this</span> <span class="pt">is</span> <span class="pt">a</span> <span class="pt">-s</span>',
     'Знаки формулы + →': '<span class="op">+ →</span>', 'Ошибочный пример': '<span class="wrong">I Anna.</span>', 'Весь абзац': '<span class="ru">Скажите: This crockery is new.</span>' };
-  const sep = st.v === 'a' ? cr(t.particle, t.langText) : null;
   const themeName = THEMES.find((x) => x[0] === st.theme)[1]; const levelName = LEVELS.find((x) => x[0] === st.level)[1];
   document.getElementById('legend').innerHTML = `<div class="lg v-${st.v}" id="lg-roles"><h2>Роли текста · ${themeName}, ${levelName}</h2>
     ${rows.map(([n, fg, bg, d]) => { const c = cr(fg, bg); return `<div class="lrow"><span class="nm">${n} — ${d}</span><span class="cr ${c >= 4.5 ? 'ok' : 'warn'}">${c.toFixed(1)} : 1 ${c >= 4.5 ? '✓' : '!'}</span><div class="swatch" style="background:${card}">${sample[n]}</div></div>`; }).join('')}
-    ${sep !== null && sep < 1.6 ? `<div class="warnbox">На уровне «${levelName}» в этой теме акцент почти совпадает с цветом английского (${sep.toFixed(1)} : 1) — частицы в варианте А почти не видны. Вариант Б работает на всех уровнях.</div>` : ''}</div>
     <div class="lg"><h2>Как это сделать в приложении</h2><p class="note">Сейчас абзацы вступления приходят из материалов одной строкой без ролей, поэтому весь текст одного цвета. Предлагаем делить текст на роли <b>при показе</b>: кириллица — русский, латиница — английский, служебные слова (am/is/are, a/an/the, this/these, there, do/does, will, to, not) и окончания <b>-s/-es</b> — частицы, «+» и «→» — знаки формулы. Материалы курса трогать не нужно, на 9 языках работает так же.</p>
     <p class="note">Ситуация в раскладке «Скажи так» сейчас рисуется вообще без ролей — она получит тот же разбор. В «Проверь себя» варианты ответа — тоном английского, но <b>без подсветки частиц</b>: иначе is/are подсказывали бы ответ.</p></div>`;
   applyTheme(document.getElementById('lg-roles'), t);

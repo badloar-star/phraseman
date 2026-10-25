@@ -5,7 +5,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { normalizeEol } from './helpers/read_source';
-import { noteOutcomeHostMounted, noteOutcomeHostUnmounted, peekOutcomeHost, traceOutcomeCloseAfter } from '../components/spire/moments/outcome_host_trace';
+import { noteOutcomeHostMounted, noteOutcomeHostUnmounted, peekOutcomeHost, traceOutcomeCloseAfter } from '../components/spire/spire_outcome_host_trace';
 
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8'));
 

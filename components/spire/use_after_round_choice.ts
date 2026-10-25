@@ -6,7 +6,7 @@
 // Вибрацию даёт сама кнопка (V2Pressable) — здесь её не дублируем. Журнал [SPIRE-AFTER-ROUND]: показ, выбор, значение, которое его решило, что открылось, игнорированные тапы.
 import { useCallback, useEffect, useRef } from 'react';
 import type { SpireStepOutcome } from '../../app/spire/use_spire_game';
-import { traceOutcomeCloseAfter } from './moments/outcome_host_trace';
+import { traceOutcomeCloseAfter } from './spire_outcome_host_trace';
 
 export type AfterRoundChoice = 'next' | 'toSpire';
 

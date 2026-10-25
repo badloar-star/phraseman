@@ -11,7 +11,7 @@ import type { Lang } from '../../../constants/i18n';
 import type { SpireCoinsConfig } from '../../../modules/spire/config_contract';
 import type { SpireStepOutcome } from '../../../app/spire/use_spire_game';
 import { SheetSwipeRoot } from '../../modal_fx/SheetSwipeClose';
-import { noteOutcomeHostMounted, noteOutcomeHostUnmounted } from './outcome_host_trace';
+import { noteOutcomeHostMounted, noteOutcomeHostUnmounted } from '../spire_outcome_host_trace';
 
 const SpireStepResultMoment = lazy(() => import('./SpireStepResultMoment'));
 const SpireFloorMoment = lazy(() => import('./SpireFloorMoment'));

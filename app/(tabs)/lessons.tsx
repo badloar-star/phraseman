@@ -234,6 +234,7 @@ import {
   factoryNativeLearningV2NewWordCountV1,
 } from "../../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { DebugLogger } from '../debug-logger';
+import NetInfo from '@react-native-community/netinfo';
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useMemHomeRegisterSources } from '../mem_home_probe';
 
@@ -3483,6 +3484,21 @@ export default function LessonsTab({
         // Срок значит «телефон ещё собирает занятие»; подготовка не бросается, повторный тап её подхватит.
         const stillPreparing = prepareFailureReason.startsWith("learning_v2_session_prepare_timeout");
         console.warn(`[V2-LAUNCH] prepare_failed session=${sessionId} reason=${prepareFailureReason} bundledUnavailable=${bundledUnavailable ? "yes" : "no"} hint=${bundledUnavailable ? "unavailable_now" : stillPreparing ? "still_preparing" : "check_connection"}`);
+        // зачем (жалоба №5 вердикта Ревизора 25.10, «проверь связь» при настоящем обрыве; координатор: сперва логи [NET-CHECK]):
+        // «проверь связь» здесь — ветка «всё остальное», сеть она не проверяет. Пишем, была ли сеть в момент отказа (снимок NetInfo,
+        // запросов в сеть нет), срок это или нет, и что увидел человек — чтобы отличить настоящий обрыв от внутреннего отказа.
+        const netCheckShown = bundledUnavailable ? "unavailable_now" : stillPreparing ? "still_preparing" : "check_connection";
+        void NetInfo.fetch().then((net) => {
+          const facts = JSON.stringify({
+            screen: "lessons", session: sessionId, reason: prepareFailureReason.slice(0, 160), timeout: stillPreparing, bundledUnavailable,
+            connected: net.isConnected ?? null, reachable: net.isInternetReachable ?? null, type: net.type ?? null,
+            retry: "next_tap_reuses_inflight", shown: netCheckShown,
+          });
+          console.warn(`[NET-CHECK] lesson_launch ${facts}`); // guard-ok: только при отказе подготовки
+          DebugLogger.error("learning_v2:net_check", new Error(`[NET-CHECK] lesson_launch ${facts}`), "warning");
+        }).catch((netError: unknown) => {
+          console.warn(`[NET-CHECK] lesson_launch netinfo_failed ${JSON.stringify({ session: sessionId, shown: netCheckShown, error: netError instanceof Error ? netError.message : String(netError) })}`); // guard-ok: причина сбоя снимка сети
+        });
         showLearningV2DenialHint(stillPreparing ? triLang(lang, {
           ru: "Занятие ещё готовится. Нажми «Начать» через пару секунд",
           en: "The session is still getting ready. Tap Start again in a few seconds",

@@ -72,8 +72,9 @@ const { coinChar, ladder, ladderPlay, shareCard } = EM2;
 const { attachBeats, emo, firework, seq } = EM3;
 const { io, coin, spireUnder, stepUnder, towerSvg, LEAGUES_RU } = EMA;
 // Комната недели — монеты за неделю (D162). Повышаются 5 из 30: «Ты» — 5-й.
-const ROOM = [{ name: 'Марк', rank: 12, pts: 610 }, { name: 'Ира', rank: 7, pts: 580 }, { name: 'Соня', rank: 8, pts: 520 }, { name: 'Олег', rank: 4, pts: 500 }, { name: 'Ты', rank: 5, pts: 470, me: true }, { name: 'Лена', rank: 9, pts: 450 }, { name: 'Дима', rank: 3, pts: 410 }];
-const ROOM2 = [{ name: 'Марк', rank: 12, pts: 610 }, { name: 'Ира', rank: 7, pts: 580 }, { name: 'Соня', rank: 8, pts: 520 }, { name: 'Олег', rank: 4, pts: 500 }, { name: 'Лена', rank: 9, pts: 450 }, { name: 'Ты', rank: 5, pts: 440, me: true }, { name: 'Дима', rank: 3, pts: 410 }];
+// зачем (владелец 25.10 «оставить ступени»; общий подиум engagement-moments-app.js пишет «N ступ.»): черновик v3-a тоже в ступенях недели, иначе подиум показал бы «610 ступ.»
+const ROOM = [{ name: 'Марк', rank: 12, pts: 47 }, { name: 'Ира', rank: 7, pts: 44 }, { name: 'Соня', rank: 8, pts: 41 }, { name: 'Олег', rank: 4, pts: 40 }, { name: 'Ты', rank: 5, pts: 39, me: true }, { name: 'Лена', rank: 9, pts: 36 }, { name: 'Дима', rank: 3, pts: 33 }];
+const ROOM2 = [{ name: 'Марк', rank: 12, pts: 47 }, { name: 'Ира', rank: 7, pts: 44 }, { name: 'Соня', rank: 8, pts: 41 }, { name: 'Олег', rank: 4, pts: 40 }, { name: 'Лена', rank: 9, pts: 37 }, { name: 'Ты', rank: 5, pts: 38, me: true }, { name: 'Дима', rank: 3, pts: 33 }];
 const lad = (rows, o) => ladder(rows.map((r) => ({ ...r, pts: r.pts.toLocaleString('ru-RU') })), o);
 const prim = (t, ar = true) => `<div class="cta">${t}${ar ? `<span class="ar">${io('arrowR', 20)}</span>` : ''}</div>`;
 const sec = (t) => `<div class="cta ghost">${t}</div>`;

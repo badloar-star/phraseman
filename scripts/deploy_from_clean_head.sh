@@ -72,10 +72,18 @@ echo "[DEPLOY-CLEAN] выгружено файлов: $(find "$X" -type f | wc -
 
 # зачем (Сайт 18.10, репетиция R103-0/R111): параметры функций (defineString — адреса писем, версии ключей восстановления…) лежат в
 # functions/.env и functions/.env.<проект>; они в .gitignore, в выгрузке HEAD их нет — CLI без терминала падает «no value for the
-# following environment variables». Копируем ровно эти два файла из рабочего дерева: это настройки, не секреты (секреты — Secret
+# following environment variables». Копируем ровно эти два файла (для целей content — ещё functions-content/.env.<проект>, см. ниже) из рабочего дерева: это настройки, не секреты (секреты — Secret
 # Manager), и обычный `firebase deploy` из рабочего дерева берёт те же файлы. Значения в журнал не пишем — только имена ключей.
 if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions'; then
-  for envf in functions/.env "functions/.env.$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')).projects.default)" "$(cygpath -w "$ROOT/.firebaserc")")"; do
+  ENV_PROJECT=$(node -e "process.stdout.write(JSON.parse(require('fs').readFileSync(process.argv[1],'utf8')).projects.default)" "$(cygpath -w "$ROOT/.firebaserc")")
+  ENV_FILES=(functions/.env "functions/.env.$ENV_PROJECT")
+  # зачем (координатор 25.10, сухой прогон V4): у кодовой базы content свои dotenv — без них CLI падает «no value for
+  # LEARNING_V2_ROOT_OWNER_UID_SHA256». Берём ТОЛЬКО functions-content/.env.<проект>; functions-content/.env — никогда:
+  # из него в env всех 9 content-функций на бою уехали ключи отписки (EMAIL_UNSUBSCRIBE_*), а коду content он не нужен.
+  if printf '%s\n' "${TARGETS[@]}" | grep -q '^functions:content:'; then
+    ENV_FILES+=("functions-content/.env.$ENV_PROJECT")
+  fi
+  for envf in "${ENV_FILES[@]}"; do
     [ -f "$ROOT/$envf" ] || { echo "[DEPLOY-CLEAN] ОТКАЗ: нет $envf в рабочем дереве — параметры функций не задать"; exit 1; }
     # зачем (координатор 18.10): файл берётся из рабочего дерева, не из HEAD — сторож, чтобы в выкладку не уехал секрет.
     # Имя с SECRET / KEY / TOKEN / PASSWORD — отказ; исключения — версии ключа (*_VERSION) и аудитория токена (*_AUDIENCE): это не секреты.

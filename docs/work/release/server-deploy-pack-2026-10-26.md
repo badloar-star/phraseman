@@ -31,6 +31,7 @@ App Check не включается (пломба).
 | 6 | **ec03e9e58 + ccd507589** «золотое задание» Пика (пропущено в списке координатора) | Пока ничего: включается флагом `spire_gold` (ВЫКЛ). После включения ~30 % ступеней — ×2 монеты за верный ответ, не больше 3 в день. | `spireReportSteps` | 🟢 Двойной замок: флаг ВЫКЛ, и телефон показывает золото, только если сервер прислал `goldRule`. Ответ Пика старые клиенты не проверяют по ключам (проверено на a78dbec4d). Не хотите — уберите `spireReportSteps` из строки, остальное от него не зависит. |
 | 7 | админка (Пульт) после fb61aa1f6 | Переключатели новых флагов в Пульте, 20 ответов поддержки (be3c2a3f0), политика в `oauth-privacy.html`. | `hosting:admin` | — |
 | 8 | политика 14dd45fd9 + 7868dd51c + 13ea0d2ca | См. «Политика на сайте». | `hosting:knowlywww` | — |
+| 9 | **51884d675** сводка «Восстановить аккаунт?» (5 · ВХОД) | Пока ничего: новое окно включается флагом `account_delete_variant_b_ui_enabled` (ВЫКЛ). После включения в окне восстановления видно «серия · фразы · урок N из 32». Одно чтение `users/{stableUid}` только при входе в удаляемый аккаунт; сбой — окно без цифр. | `accountDeleteStatusMine` | 🟢 Новое поле `summary` в ответе; старые клиенты его не читают. |
 
 **Можно вычеркнуть (решает владелец):** «золотое задание» — `functions:default:spireReportSteps` (строка 6). Убрать его из
 строки шага 2 — остальной пакет от него не зависит, флаг `spire_gold` просто останется без сервера.
@@ -43,11 +44,11 @@ App Check не включается (пломба).
 1. **Сухой прогон** (ничего не выкладывает): сверка «бой vs HEAD», сборка, команда.
    Замер 25.10 19:45: `OK`, создаётся только `dialogueV2FreeformTranslate`.
    ```bash
-   bash scripts/deploy_from_clean_head.sh --only "functions:default:accountDeleteWorker,functions:default:accountDeleteEnqueue,functions:default:accountDeleteCredentialStatus,functions:default:accountDeleteRestoreMine,functions:default:revenueCatPremiumReconcileMine,functions:default:referralSpin,functions:default:referralClaimSpin,functions:default:communitySyncPackRuneSale,functions:default:dailyPhraseSetSaved,functions:default:dialogueV2FreeformTranslate,functions:default:spireFinalizeCron,functions:default:spireReportSteps,hosting:admin,hosting:knowlywww"
+   bash scripts/deploy_from_clean_head.sh --only "functions:default:accountDeleteWorker,functions:default:accountDeleteEnqueue,functions:default:accountDeleteCredentialStatus,functions:default:accountDeleteRestoreMine,functions:default:accountDeleteStatusMine,functions:default:revenueCatPremiumReconcileMine,functions:default:referralSpin,functions:default:referralClaimSpin,functions:default:communitySyncPackRuneSale,functions:default:dailyPhraseSetSaved,functions:default:dialogueV2FreeformTranslate,functions:default:spireFinalizeCron,functions:default:spireReportSteps,hosting:admin,hosting:knowlywww"
    ```
 2. **Кнопка владельца** — та же строка с `--execute`:
    ```bash
-   bash scripts/deploy_from_clean_head.sh --only "functions:default:accountDeleteWorker,functions:default:accountDeleteEnqueue,functions:default:accountDeleteCredentialStatus,functions:default:accountDeleteRestoreMine,functions:default:revenueCatPremiumReconcileMine,functions:default:referralSpin,functions:default:referralClaimSpin,functions:default:communitySyncPackRuneSale,functions:default:dailyPhraseSetSaved,functions:default:dialogueV2FreeformTranslate,functions:default:spireFinalizeCron,functions:default:spireReportSteps,hosting:admin,hosting:knowlywww" --execute
+   bash scripts/deploy_from_clean_head.sh --only "functions:default:accountDeleteWorker,functions:default:accountDeleteEnqueue,functions:default:accountDeleteCredentialStatus,functions:default:accountDeleteRestoreMine,functions:default:accountDeleteStatusMine,functions:default:revenueCatPremiumReconcileMine,functions:default:referralSpin,functions:default:referralClaimSpin,functions:default:communitySyncPackRuneSale,functions:default:dailyPhraseSetSaved,functions:default:dialogueV2FreeformTranslate,functions:default:spireFinalizeCron,functions:default:spireReportSteps,hosting:admin,hosting:knowlywww" --execute
    ```
    Почему одной командой: связки внутри пакета не ломаются, если функции встанут с разницей в секунды.
    - Воркер и постановка задачи удаления: новая причина «удалить сейчас» нужна обоим. Шлёт её только новый экран за

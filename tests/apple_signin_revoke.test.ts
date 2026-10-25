@@ -77,3 +77,27 @@ describe('Sign in with Apple revoke on account deletion', () => {
     expect(allLogs()).not.toContain(CODE);
   });
 });
+
+// зачем (Ревизор 25.10 на 045c5c569): динамический import до замка добавлял тик при ВЫКЛ флаге — красились тесты удаления.
+describe('вызов из удаления аккаунта', () => {
+  it('флаг проверяется синхронно; без await import; до beginLocalAccountDeletionAttempt', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const src: string = require('fs').readFileSync(require('path').join(__dirname, '..', 'app', 'auth_provider.ts'), 'utf8');
+    expect(src).not.toContain("import('./apple_signin_revoke')");
+    const guard = src.indexOf('if (isAppleSignInRevokeEnabled()) {');
+    const call = src.indexOf("await revokeAppleSignInForDeletion('begin_account_deletion')");
+    const lock = src.indexOf('beginLocalAccountDeletionAttempt();', guard);
+    expect(guard).toBeGreaterThan(0);
+    expect(call).toBeGreaterThan(guard);
+    expect(lock).toBeGreaterThan(call);
+    // зачем (Ревизор 25.10): при ВЫКЛ замок взводится синхронно — между проверкой флага и замком единственный await внутри if
+    expect((src.slice(guard, lock).match(/\bawait\b/g) ?? []).length).toBe(1);
+  });
+
+  it('при ВЫКЛ флаге отзыв не зовётся и не трогает модули входа', async () => {
+    const calls: string[] = [];
+    const off = deps({ flag: false, revoke: async () => { calls.push('revoke'); } });
+    await expect(revokeAppleSignInForDeletion('delete', off)).resolves.toBe('flag_off');
+    expect(calls).toEqual([]);
+  });
+});

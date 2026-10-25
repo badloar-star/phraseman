@@ -59,6 +59,15 @@ const defaultDeps: AppleRevokeDeps = {
   timeoutMs: APPLE_REVOKE_TIMEOUT_MS,
 };
 
+/**
+ * Флаг отзыва — синхронно, без модулей входа.
+ * зачем (Ревизор 25.10 на 045c5c569): удаление зовёт отзыв только при ВКЛ флаге. При ВЫКЛ путь удаления байт в байт прежний —
+ * без единого лишнего await до взвода замка локального удаления.
+ */
+export function isAppleSignInRevokeEnabled(): boolean {
+  return defaultDeps.flagEnabled();
+}
+
 function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T | 'timeout'> {
   let timer: ReturnType<typeof setTimeout> | null = null;
   const ceiling = new Promise<'timeout'>((resolve) => { timer = setTimeout(() => resolve('timeout'), ms); });

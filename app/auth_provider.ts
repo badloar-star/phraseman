@@ -24,6 +24,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { armAccountDeleteNow, disarmAccountDeleteNow } from './account_delete_now';
+import { isAppleSignInRevokeEnabled, revokeAppleSignInForDeletion } from './apple_signin_revoke';
 import { DEV_LINKED_DEMO_REFUSAL, getDevLinkedAuthDemo, getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAccountLinkedDemo, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
 import { ACCOUNT_DELETE_GUEST_BACKGROUND_ENQUEUE_TIMEOUT_MS } from './account_delete_timeout';
 import { markFirestoreCacheClearPending } from './firestore_cache_clear';
@@ -5142,9 +5143,14 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   }
   // зачем (координатор 25.10, Apple 5.1.1(v)): отзыв Sign in with Apple — ДО замков и выхода, пока вход Apple жив и человек на экране
   // (окно Apple = «подтверди удаление»). За флагом apple_signin_revoke_enabled (выкл); никогда не бросает и не блокирует удаление.
-  await import('./apple_signin_revoke')
-    .then((m) => m.revokeAppleSignInForDeletion('begin_account_deletion'))
-    .catch((e: unknown) => console.warn(`[APPLE-REVOKE] import failed ${e instanceof Error ? e.message : String(e)}`));
+  // зачем (Ревизор 25.10): флаг синхронно — при ВЫКЛ ни одного await до beginLocalAccountDeletionAttempt (замок взводится в том же тике).
+  if (isAppleSignInRevokeEnabled()) {
+    try {
+      await revokeAppleSignInForDeletion('begin_account_deletion');
+    } catch (e: unknown) {
+      console.warn(`[APPLE-REVOKE] revoke threw name=${e instanceof Error ? e.name : typeof e}`); // guard-ok: только имя ошибки, удаление идёт дальше
+    }
+  }
   // зачем (ревью L-1): удаление аккаунта отменяет любой отложенный вход после смены.
   discardAccountSwitchResumeCredential('account_delete');
   beginLocalAccountDeletionAttempt();

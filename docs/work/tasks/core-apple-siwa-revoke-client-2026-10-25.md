@@ -1,6 +1,18 @@
 # Ядро · отзыв токена Sign in with Apple при удалении аккаунта — клиент, за флагом (25.10)
 
 Governance-ID: TG-170828AF6944
+Governance-ID: TG-151C82DB6B46
+
+## Поправка 25.10 вечер (Ревизор: 045c5c569 красит 3 теста удаления, 🔴 для OTA)
+`await import('./apple_signin_revoke')` стоял ДО `beginLocalAccountDeletionAttempt` и добавлял асинхронный тик ВСЕГДА, даже
+при выключенном флаге. За этот тик тест «устройство, начавшее удаление, гасит свой же маркер удаления» видел
+`isLocalAccountDeletionInProgress() = false`. Журнал `import failed ${e.message}` нарушал сторож «только коды».
+Исправление:
+- статический импорт;
+- синхронная проверка флага `isAppleSignInRevokeEnabled()`: при ВЫКЛ путь удаления байт в байт прежний, без `await`;
+- в журнал — только имя ошибки.
+
+Проверка: auth_provider_behavior, aa_auth_error_codes_only, apple_signin_revoke.
 
 ## Outcome
 Координатор 25.10: подготовить отзыв Sign in with Apple (требование Apple 5.1.1(v)) — клиент и сервер, за флагом, по умолчанию

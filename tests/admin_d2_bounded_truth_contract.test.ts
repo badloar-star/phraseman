@@ -161,7 +161,6 @@ describe('Admin D2 bounded and truthful loader contract', () => {
       ['window.loadAlertsConfig = async function', 'window.saveAlertsConfig', 'window._alertsLoaded'],
       ['window.loadOpenAiDialogModelConfig = async function', 'window.saveOpenAiDialogModel', '_openAiDialogModelLoaded'],
       ['window.loadOpenAiDialogQuotaConfig = async function', 'window.saveOpenAiDialogQuota', '_openAiDialogQuotaLoaded'],
-      ['window.loadOpenAiBudgetDashboard = async function', 'window.loadOnboardingSources', '_openAiBudgetLoaded'],
       ['window.loadOnboardingSources = async function', '// ── 🧭 Экраны онбординга', '_onboardingSourcesLoaded'],
       ['window.loadOnboardingScreens = async function', 'window.previewOnboardingScreens', '_onboardingScreensLoaded'],
       ['window.loadOnboardingFunnel = async function', 'window.loadOnboardingExits', '_onboardingFunnelLoaded'],
@@ -199,10 +198,22 @@ describe('Admin D2 bounded and truthful loader contract', () => {
 
   test('daily phrase saved-count failure stays unknown and never becomes zero', () => {
     const source = block('window.loadDailyPhrases = async function', 'window.renderDailyPhrases = function');
-    expect(source).toContain('Promise.allSettled');
+    expect(source).toContain("where(documentId(),'in'");
     expect(source).toContain('_dailyPhrasesSourceHealth');
-    expect(source).toContain('(Number.isFinite(ownCount) ? ownCount : null)');
+    expect(source).toContain('savedCount:failures.length?null:');
+    expect(source).toContain("failures.push('daily_phrase_save_counts')");
+    expect(source).toContain('startAfter(window._dailyPhrasesCursor)');
     expect(source).not.toContain("catch(() => ({ docs: [] }))");
+  });
+
+  test('incomplete budget coverage never claims a total or a monthly forecast', () => {
+    const source = block('window.loadOpenAiBudgetDashboard = async function', 'let _revenueAnalyticsLoaded');
+    expect(source).not.toContain('_openAiBudgetLoaded = true');
+    expect(source).toContain("status:'partial'");
+    expect(source).not.toContain('openAiBudgetUsd(totals.estimatedMonthUsd');
+    // зачем: в выложенной админке (70af8ef55) метки «Неполный учёт» нет — честность держит текст «оценка, не счёт OpenAI».
+    expect(source).toContain('Оценка зарегистрированных вызовов, не счёт OpenAI');
+    expect(source).toContain('Токены; старый учёт TTS также включает символы');
   });
 
   test('ban list and Ops log are bounded, ordered, and partial-safe', () => {
@@ -211,10 +222,17 @@ describe('Admin D2 bounded and truthful loader contract', () => {
     expect(bans).toContain("orderBy('bannedAt', 'desc')");
     expect(bans).toContain('limit(BAN_LIST_PAGE + 1)');
     expect(bans).toContain('_banListSourceHealth');
-    for (const cap of ['OPS_ADMIN_PAGE', 'OPS_REPORT_PAGE']) expect(ops).toContain(`limit(${cap} + 1)`);
+    expect(ops).toContain("httpsCallable(functionsUs, 'adminListOpsLog')");
+    expect(ops).not.toContain('getDocs(');
+    const backend = fs.readFileSync(path.join(root, 'functions/src/admin_ops_log.ts'), 'utf8');
+    expect(backend).toContain('ADMIN_LOG_CAP + 1');
+    expect(backend).toContain('REPORT_CAP + 1');
+    expect(backend).toContain('DEFAULT_TIMESTAMP_FIELDS');
     expect(ops).toContain('window._opsSourceHealth');
-    expect(ops).toContain('Показана выборка');
-    expectLoadedOnlyAfterRead(ops, 'window._opsLoaded');
+    expect(html).toContain('Старые записи могут отсутствовать.');
+    expect(ops.indexOf('window._opsLoaded=window._opsSourceHealth.complete')).toBeGreaterThan(ops.indexOf('await httpsCallable'));
+    expect(ops).toContain('complete:!truncated&&!unavailable.length');
+    expect(ops).toContain("state:'error', complete:false");
   });
 
   test('Learning V2 pipeline labels its hardcoded state as a static manual checklist', () => {
@@ -292,9 +310,7 @@ describe('Admin D2 bounded and truthful loader contract', () => {
     expect(funnel).toContain('campaign.settingsFunnel = null');
   });
 
-  test('daily digest does not turn a failed latest-run read into no saved report', () => {
-    const digest = block('window.loadDailyDigest = async function', 'window.generateDailyDigest');
-    expect(digest).not.toContain("getDocs(query(collection(db, 'admin_digest_runs'), orderBy('generatedAtMs', 'desc'), limit(1))).catch(() => null)");
-    expect(digest).toContain('window._dailyDigestLoaded = false');
-  });
-});
+  test('retired digest no longer reads latest-run documents', () => {
+    expect(html).not.toContain("collection(db, 'admin_digest_runs')");
+  });});
+

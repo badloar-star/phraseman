@@ -83,6 +83,7 @@ function TourTop({ lang }: Readonly<{ lang: Lang }>) {
   // Берём уменьшенную копию под размер, как AvatarView (coinRankSourceForSize: s96 / s192); журнал — какой вариант выбран.
   const ratio = PixelRatio.get();
   useEffect(() => {
+    if (!__DEV__) return; // зачем (Ревизор/координатор 26.10: зонд [HOME-SCROLL] работал в стор-сборке): замеры только в разработке — в сторе ни счётчиков, ни таймеров, ни строк
     const variants = TOUR_PLAYERS.map((player) => coinRankSourceForSize(player.rank, TOUR_COIN_DP, ratio).variant);
     console.log('[SPIRE-TOUR] монеты тура', JSON.stringify({ dp: TOUR_COIN_DP, ratio, variants, before: 'full 768²' })); // guard-ok: одна строка на показ тура
   }, [ratio]);

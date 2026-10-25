@@ -56,7 +56,7 @@ describe('проводка', () => {
     const floor = read('components/spire/moments/SpireFloorMoment.tsx');
     expect(floor).toContain('const [towerReady, setTowerReady] = useState(false);');
     expect(floor).toContain('{towerReady ? <SpireTowerSvg lang={lang} myFloor={litFloor}');
-    expect(floor).toContain('[FLOOR-MOMENT] первый кадр окна через');
+    expect(floor).toContain("if (__DEV__) console.log(`[FLOOR-MOMENT] первый кадр окна через"); // замер только в разработке (Ревизор 26.10)
     expect(floor).toMatch(/<View style=\{\[s\.window, \{ width: TOWER_W, height: TOWER_H \}\]\} testID=\{`\$\{testID\}-tower`\}>/);
   });
 

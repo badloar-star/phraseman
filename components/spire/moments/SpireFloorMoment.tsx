@@ -89,7 +89,7 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
       const firstFrameMs = Date.now() - t0;
       cancel2 = nextFrame(() => {
         setTowerReady(true);
-        console.log(`[FLOOR-MOMENT] первый кадр окна через ${firstFrameMs} мс, башня смонтирована через ${Date.now() - t0} мс (раньше — в первом кадре)`); // guard-ok: единичный замер показа
+        if (__DEV__) console.log(`[FLOOR-MOMENT] первый кадр окна через ${firstFrameMs} мс, башня смонтирована через ${Date.now() - t0} мс (раньше — в первом кадре)`); // guard-ok: единичный замер показа
       });
     });
     return () => { cancel1(); cancel2?.(); };

@@ -167,9 +167,9 @@ export const DoneChainProvider = memo(function DoneChainProvider({ before, lang,
     finish('skipped');
   }, [finish]);
   const bodyBuildsRef = useRef(0);
-  const body = useMemo(() => { bodyBuildsRef.current += 1; return children(skip); }, [children, skip]);
+  const body = useMemo(() => { if (__DEV__) bodyBuildsRef.current += 1; return children(skip); }, [children, skip]);
   useEffect(() => {
-    if (revealed < T.beats) return;
+    if (!__DEV__ || revealed < T.beats) return; // зачем (Ревизор/координатор 26.10: зонд [HOME-SCROLL] работал в стор-сборке): замеры только в разработке — в сторе ни счётчиков, ни таймеров, ни строк
     console.log(`${DONE_CHAIN_LOG} замер: тело экрана построено ${bodyBuildsRef.current} раз(а) за ${T.beats} ударов (раньше — на каждом ударе)`); // guard-ok: единичный замер в конце цепочки
   }, [revealed]);
 
@@ -305,9 +305,9 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
   const word = runeWord(lang, amount);
   const coinsFormat = useCallback((n: number) => `+${n} ${word}`, [word]);
   const rowRendersRef = useRef(0);
-  rowRendersRef.current += 1;
+  if (__DEV__) rowRendersRef.current += 1;
   useEffect(() => {
-    if (!animate) return undefined;
+    if (!__DEV__ || !animate) return undefined; // зачем (Ревизор/координатор 26.10: зонд [HOME-SCROLL] работал в стор-сборке): замеры только в разработке — в сторе ни счётчиков, ни таймеров, ни строк
     const id = setTimeout(() => console.log(`${DONE_CHAIN_LOG} замер: строка монет перерисована ${rowRendersRef.current} раз(а) за счёт (раньше — на каждом тике 40 мс, ~25+)`), T.balanceAt + T.balanceCount + 200); // guard-ok: единичный замер
     return () => clearTimeout(id);
   }, [animate]);

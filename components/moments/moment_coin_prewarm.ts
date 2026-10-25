@@ -34,7 +34,7 @@ export function prewarmMomentCoin(rank: number | null, reason: string): void {
     const t0 = Date.now();
     Image.loadAsync(pick.source as Parameters<typeof Image.loadAsync>[0])
       .then(() => {
-        console.log(LOG, 'ready', JSON.stringify({ reason, rank, variant: pick.variant, ms: Date.now() - t0 })); // guard-ok: одна строка на вариант
+        if (__DEV__) console.log(LOG, 'ready', JSON.stringify({ reason, rank, variant: pick.variant, ms: Date.now() - t0 })); // guard-ok: одна строка на вариант
       })
       .catch((error: unknown) => {
         warmed.delete(key);

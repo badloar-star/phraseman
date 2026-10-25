@@ -40,7 +40,7 @@ function SpireMomentsLayer({ lang, outcome, coins, coinRank, busy, stepActive = 
   React.useEffect(() => {
     const t0 = Date.now();
     Promise.all([import('./SpireStepResultMoment'), import('./SpireFloorMoment')])
-      .then(() => console.log(`[SPIRE-MOMENTS-PREWARM] модули окон итога готовы через ${Date.now() - t0} мс (раньше — грузились при открытии окна)`)) // guard-ok: единичный замер
+      .then(() => { if (__DEV__) console.log(`[SPIRE-MOMENTS-PREWARM] модули окон итога готовы через ${Date.now() - t0} мс (раньше — грузились при открытии окна)`); }) // guard-ok: единичный замер, только в разработке
       .catch((error: unknown) => console.warn(`[SPIRE-MOMENTS-PREWARM] модули окон итога не прогрелись: ${error instanceof Error ? error.message : String(error)} — окно загрузит их само`)); // guard-ok: сбой с причиной
   }, []);
   // зачем (Ревизор P17, 15.10): окна m05 ждали только закрытия итога ступени — после «Ещё раз» итог гас, и «Позиция выросла» всплывала поверх

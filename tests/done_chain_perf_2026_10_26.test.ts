@@ -9,7 +9,11 @@ const chain = fs.readFileSync(path.join(__dirname, '..', 'components/completion/
 describe('цепочка итога урока: без перерисовки всего экрана', () => {
   it('skip стабилен (удар — из ref), тело экрана — useMemo от children и skip, не от удара', () => {
     expect(chain).toContain('}, [finish]);');
-    expect(chain).toContain('const body = useMemo(() => { bodyBuildsRef.current += 1; return children(skip); }, [children, skip]);');
+    expect(chain).toContain('const body = useMemo(() => { if (__DEV__) bodyBuildsRef.current += 1; return children(skip); }, [children, skip]);');
+    // зачем (Ревизор 26.10): замеры только в разработке
+    expect(chain).toContain('if (!__DEV__ || revealed < T.beats) return;');
+    expect(chain).toContain('if (__DEV__) rowRendersRef.current += 1;');
+    expect(chain).toContain('if (!__DEV__ || !animate) return undefined;');
     expect(chain).toContain('<ChainCtx.Provider value={value}>{body}</ChainCtx.Provider>');
     expect(chain).not.toContain('{children(skip)}</ChainCtx.Provider>');
     expect(chain).toContain('замер: тело экрана построено');

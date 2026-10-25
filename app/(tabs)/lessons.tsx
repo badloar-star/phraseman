@@ -3543,7 +3543,7 @@ export default function LessonsTab({
           es: "No disponible ahora. Inténtalo de nuevo un poco más tarde",
           "pt-BR": "Indisponível agora. Tente de novo daqui a pouco",
           vi: "Hiện chưa dùng được. Hãy thử lại sau ít phút",
-          id: "Belum tersedia sekarang. Coba lagi sebentar lagi",
+          id: "Belum tersedia sekarang. Coba lagi nanti",
           tr: "Şu anda kullanılamıyor. Biraz sonra tekrar dene",
           pl: "Chwilowo niedostępne. Spróbuj ponownie za chwilę",
         }) : triLang(lang, {

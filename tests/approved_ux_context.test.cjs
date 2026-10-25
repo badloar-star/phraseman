@@ -52,7 +52,8 @@ test('voice controls announce user-facing labels and retain QA testIDs', () => {
 // зачем: PM-171 — app/ideas_submit.tsx удалён вместе с разделом «Идеи», UX-контракт
 // на его тексты снят вместе с экраном.
 test('approved empty shelves and learning settings explain the next action', () => {
-  assert.ok(read('app/achievements_screen.tsx').includes('Здесь будут твои награды. Занимайся'));
+  // зачем (голос PhraseMan, VOICE.md 25.10): пустая полка говорит, что первая награда близко — следующий шаг по-прежнему ясен
+  assert.ok(read('app/achievements_screen.tsx').includes('Полка наград пока пустая. Первая уже близко'));
   assert.ok(read('app/flashcards_my_packs.tsx').includes('кнопкой «+» внизу'));
   // зачем (05.10, f76077ff4): макет 2.0 profile.html education (04.10) новее снимка 14.09 — пояснение автоперехода
   // короткое, но по-прежнему говорит, что произойдёт: «Следующее задание откроется само».

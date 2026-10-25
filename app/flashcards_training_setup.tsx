@@ -658,11 +658,11 @@ export default function FlashcardsTrainingSetupScreen() {
   }, [canStart, cancelQueuedStart, loadState, quotaPreview.status, startTraining, summary.cardCount]);
 
   const emptyLabel = triLang(lang, {
-    ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
-    en: 'No cards to practice yet. Save cards or add a community pack.', es: 'Aún no hay tarjetas para practicar. Guarda tarjetas o añade un pack de la comunidad.',
-    'pt-BR': 'Ainda não há cartões para praticar. Salve cartões ou adicione um pacote da comunidade.', vi: 'Chưa có thẻ để luyện tập. Hãy lưu thẻ hoặc thêm bộ thẻ cộng đồng.',
-    id: 'Belum ada kartu untuk latihan. Simpan kartu atau tambahkan paket komunitas.', tr: 'Henüz çalışacak kart yok. Kart kaydet veya topluluktan bir paket ekle.',
-    pl: 'Nie ma jeszcze kart do ćwiczeń. Zapisz karty lub dodaj zestaw społeczności.',
+    ru: 'Тренировать пока нечего. Сохрани пару карточек — или возьми готовый набор.', uk: 'Тренувати поки нічого. Збережи кілька карток — або візьми готовий набір.',
+    en: 'Nothing to practice yet. Save a couple of cards — or grab a ready-made pack.', es: 'Todavía no hay nada que practicar. Guarda un par de tarjetas o toma un pack listo.',
+    'pt-BR': 'Ainda não há o que praticar. Salve uns cartões — ou pegue um pacote pronto.', vi: 'Chưa có gì để luyện. Lưu vài thẻ — hoặc lấy một bộ có sẵn.',
+    id: 'Belum ada yang bisa dilatih. Simpan beberapa kartu — atau ambil paket siap pakai.', tr: 'Henüz çalışacak bir şey yok. Birkaç kart kaydet — ya da hazır bir paket al.',
+    pl: 'Na razie nie ma czego ćwiczyć. Zapisz parę kart — albo weź gotowy zestaw.',
   });
   const selectionExplanation = trainingSetupExplanation(loadState, decks.length, deckSelectionLabel(lang, summary), {
     empty: emptyLabel,

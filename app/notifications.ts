@@ -2370,14 +2370,14 @@ export const scheduleEnergyFullNotification = async (
 
     const _pe = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
     const title = pickNotif(lang, notificationCopy({
-      ru: _pe(['⚡ Энергия восстановлена!', '⚡ Полный заряд!', '🔋 Энергия снова полная']),
-      uk: _pe(['⚡ Енергію відновлено!', '⚡ Повний заряд!', '🔋 Енергія знову повна']),
-      es: _pe(['⚡ ¡Energía recargada!', '⚡ ¡Carga completa!', '🔋 Tu energía está al máximo']), en: _pe(['⚡ Energy restored!', '⚡ Fully charged!', '🔋 Energy is full again']),
+      ru: _pe(['⚡ Энергия снова полная!', '⚡ Полный заряд!', '🔋 Батарейка заряжена']),
+      uk: _pe(['⚡ Енергія знову повна!', '⚡ Повний заряд!', '🔋 Батарейка заряджена']),
+      es: _pe(['⚡ ¡Energía recargada!', '⚡ ¡Carga completa!', '🔋 Tu energía está al máximo']), en: _pe(['⚡ Energy’s full again!', '⚡ Fully charged!', '🔋 Battery’s topped up']),
       'pt-BR': _pe(['⚡ Energia recarregada!', '⚡ Carga completa!', '🔋 Sua energia está cheia']),
       vi: _pe(['⚡ Năng lượng đã hồi đầy!', '⚡ Đầy năng lượng!', '🔋 Năng lượng đã đầy lại']),
       id: _pe(['⚡ Energi pulih penuh!', '⚡ Penuh lagi!', '🔋 Energimu sudah penuh']),
       tr: _pe(['⚡ Enerji doldu!', '⚡ Tam şarj!', '🔋 Enerjin yeniden dolu']),
-      pl: _pe(['⚡ Energia odnowiona!', '⚡ Pełne naładowanie!', '🔋 Energia znów pełna']),
+      pl: _pe(['⚡ Energia znów pełna!', '⚡ Pełne naładowanie!', '🔋 Bateria naładowana']),
     }));
     const body = pickNotif(lang, notificationCopy({
       ru: _pe(['Заряд полон — самое время для урока.', 'Заряд полон. Один урок — и день засчитан.', 'Энергия ждёт. Продолжим практику?']),

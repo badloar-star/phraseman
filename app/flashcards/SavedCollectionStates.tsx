@@ -105,9 +105,9 @@ function SavedCollectionEmpty({ lang, searchActive, onCommunity }: Props) {
     ru: 'Попробуй другое слово.', uk: 'Спробуй інше слово.', en: 'Try another word.', es: 'Prueba con otra palabra.',
     'pt-BR': 'Tente outra palavra.', vi: 'Thử từ khác.', id: 'Coba kata lain.', tr: 'Başka bir kelime dene.', pl: 'Spróbuj innego słowa.',
   }) : triLang(lang, {
-    ru: 'Сохраняй слова из уроков', uk: 'Зберігай слова з уроків', en: 'Save words from lessons', es: 'Guarda palabras de las lecciones',
-    'pt-BR': 'Salve palavras das aulas', vi: 'Lưu từ từ bài học', id: 'Simpan kata dari pelajaran',
-    tr: 'Derslerden kelime kaydet', pl: 'Zapisuj słowa z lekcji',
+    ru: 'Сохрани первую фразу прямо из урока', uk: 'Збережи перший вислів просто з уроку', en: 'Save your first phrase right from a lesson', es: 'Guarda tu primera frase directamente desde una lección',
+    'pt-BR': 'Salve sua primeira frase direto de uma lição', vi: 'Lưu cụm từ đầu tiên ngay từ bài học', id: 'Simpan frasa pertamamu langsung dari pelajaran',
+    tr: 'İlk ifadeni doğrudan dersten kaydet', pl: 'Zapisz pierwszy zwrot prosto z lekcji',
   });
   const action = triLang(lang, {
     ru: 'Открыть каталог', uk: 'Відкрити каталог', en: 'Open the catalog', es: 'Abrir el catálogo',

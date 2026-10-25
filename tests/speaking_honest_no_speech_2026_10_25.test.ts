@@ -23,7 +23,7 @@ describe('честная подпись «не расслышал»', () => {
   it('у каждой причины своя подпись на ru/uk; «громче» нет ни в одной; все 9 языков заполнены и короткие', () => {
     const ru = (['short', 'long', 'retry', 'loading', 'empty'] as const).map((k) => speakingNoSpeechText('ru', k));
     expect(new Set(ru).size).toBe(5);
-    expect(speakingNoSpeechText('ru', 'short')).toMatch(/Держи кнопку/);
+    expect(speakingNoSpeechText('ru', 'short')).toMatch(/Отпускай кнопку/);
     expect(speakingNoSpeechText('ru', 'long')).toMatch(/Длинная фраза/);
     expect(speakingNoSpeechText('ru', 'loading')).toMatch(/Распознавание/);
     expect(speakingNoSpeechText('uk', 'empty')).toMatch(/ближче/);
@@ -31,7 +31,8 @@ describe('честная подпись «не расслышал»', () => {
       expect(row).toHaveLength(9);
       for (const text of row) { expect(text.trim().length).toBeGreaterThan(0); expect(text.length).toBeLessThanOrEqual(64); }
     }
-    expect(ru.join(' ')).not.toMatch(/громче/);
+    // «громче» — только там, где слов не разобрано (empty): в остальных причинах громкость ни при чём
+    expect(ru.filter((_, i) => i !== 4).join(' ')).not.toMatch(/громче/);
   });
 
   it('панель: исход пути удержания ставит причину, подпись «не расслышал» берётся по причине', () => {

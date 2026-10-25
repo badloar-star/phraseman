@@ -79,8 +79,8 @@ const LegacyBonusHero = forwardRef<LegacyBonusHeroHandle, Props>(function Legacy
     [glass.mediaInk],
   );
   const ringGlow = useMemo(
-    () => ({ boxShadow: `0 0 0 2px ${colorWithAlpha(glass.accent, 0.55)}, 0 0 24px 6px ${colorWithAlpha(glass.accent, 0.35)}` }),
-    [glass.accent],
+    () => ({ boxShadow: `0 0 0 2px ${colorWithAlpha(glass.accentGraphic, 0.55)}, 0 0 24px 6px ${colorWithAlpha(glass.accentGraphic, 0.35)}` }),
+    [glass.accentGraphic],
   );
   const coinStyle = useAnimatedStyle(() => ({ transform: [{ scale: coinScale.value }] }));
   const numStyle = useAnimatedStyle(() => ({ transform: [{ scale: numScale.value }] }));

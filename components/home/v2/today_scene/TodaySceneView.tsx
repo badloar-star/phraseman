@@ -91,7 +91,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   // тот же оттенок, углублённый до читаемого; тёплая строка — тон Главной (≥ 4,5 на сцене во всех темах, аудит scene_contrast_audit)
   const ringLook = useMemo(() => todaySceneRingLook(tokens), [tokens]);
   const doneTick = useMemo(() => todayRingOnCard(tokens.todayRingDone, card, TODAY_RING_ON_CARD_MIN[0]), [tokens.todayRingDone, card]);
-  const warmTone = homeSceneWarmTone(card.accent).flame;
+  const warmTone = homeSceneWarmTone(card.accent).flame; // light-accent-ok: расчёт тёплого тона пламени от акцента карточки, не окраска графики акцентом
   const nextTask = decision.nextIndex === null ? null : tasks[decision.nextIndex] ?? null;
   const ringTasks: readonly TodayRingsTask[] = tasks.map((task) => ({ progress: task.progress, target: task.target }));
   // зачем (координатор 24.10, Р2): сцена «Сегодня» тёмная — пока она под часами и экран в фокусе, значки строки состояния светлые

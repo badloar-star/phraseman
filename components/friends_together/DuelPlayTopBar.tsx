@@ -69,7 +69,7 @@ function DuelPlayTopBar({ current, total, progressLabel, timeLabel, startedAtMs,
       <ScreenBackSlot />
       <View style={styles.middle} accessible accessibilityRole="progressbar" accessibilityLabel={progressLabel} accessibilityValue={{ min: 0, max: total, now: current }}>
         <View style={[styles.track, { backgroundColor: lv2TaskTrackColor(g) }]}>
-          <View style={[styles.trackFill, { width: fill, backgroundColor: g.accent }]} />
+          <View style={[styles.trackFill, { width: fill, backgroundColor: g.accentGraphic }]} />
         </View>
         <FlowText testID="friend-duel-progress" provenance="authored" style={[styles.label, { color: g.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale }]}>{/* guard-ok: подпись полосы прогресса (.tvn макета), не расшифровка */}
           {progressLabel}

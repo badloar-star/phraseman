@@ -128,12 +128,12 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
         {copy.sub ? <Text testID="dialogs-scene-sub" style={[s.sub, { color: c.secondary }]}>{copy.sub}</Text> : null}
         {copy.meterUsed !== null ? (
           <View testID="dialogs-scene-meter" style={s.meter}>
-            {METER_SEGMENTS.map((id, i) => <View key={id} style={[s.seg, { backgroundColor: i < (copy.meterUsed ?? 0) ? c.accent : c.track }]} />)}
+            {METER_SEGMENTS.map((id, i) => <View key={id} style={[s.seg, { backgroundColor: i < (copy.meterUsed ?? 0) ? c.accent : c.track }]} />)} {/* light-accent-ok: c.accent сцены = accentText темы (глубокий в светлой), не сырой accent */}
           </View>
         ) : null}
         {copy.prog || copy.bar !== null ? (
           <View style={s.progRow}>
-            {copy.bar !== null ? <View style={[s.bar, { backgroundColor: c.track }]}><View style={[s.barFill, { width: `${Math.round(copy.bar * 100)}%`, backgroundColor: c.accent }]} /></View> : null}
+            {copy.bar !== null ? <View style={[s.bar, { backgroundColor: c.track }]}><View style={[s.barFill, { width: `${Math.round(copy.bar * 100)}%`, backgroundColor: c.accent }]} /></View> : null} {/* light-accent-ok: c.accent сцены = accentText темы (глубокий в светлой), не сырой accent */}
             {copy.prog ? <Text testID="dialogs-scene-prog" style={[s.prog, { color: c.secondary }]}>{copy.prog}</Text> : null}
           </View>
         ) : null}

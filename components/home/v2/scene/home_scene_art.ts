@@ -55,7 +55,7 @@ export function resolveHomeSceneArt(state: HomeSceneState, brightness: ThemedArt
   const small = pick?.small ?? null;
   return Object.freeze({
     base: small ? small.base : resolved.base,
-    accent: small ? small.accent : resolved.accent,
+    accent: small ? small.accent : resolved.accent, // light-accent-ok: переносит цвет акцента арта сцены как данные, окраска — в потребителе
     name,
     origin: own ? resolved.origin : `placeholder:${resolved.origin}`,
     hero512: small !== null,

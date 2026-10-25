@@ -2443,7 +2443,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // (тот же порог 45 верных, что у счётчика пройденных уроков выше); урок в процессе — блокнот с ручкой (continue).
         const lastLessonCompleted = continueV2Progress ? continueV2Progress.total > 0 && continueV2Progress.done >= continueV2Progress.total : (lastLesson?.progress ?? 0) >= 45;
         // зачем (координатор 15.10): основа и слой .accent плитки — из ОДНОГО resolveThemedArt (кэш реестра), второго разрешения нет
-        const tileArt = (name: Parameters<typeof resolveThemedArt>[0], fallback: number) => { const r = resolveThemedArt(name, homeArtTone); return { art: (r.base ?? fallback) as number, artAccent: r.accent }; };
+        const tileArt = (name: Parameters<typeof resolveThemedArt>[0], fallback: number) => { const r = resolveThemedArt(name, homeArtTone); return { art: (r.base ?? fallback) as number, artAccent: r.accent }; }; // light-accent-ok: artAccent — данные тона арта плитки, окрашивает сам ThemedArtLayers, не графика акцентом
         const priorityCardArt = resolveThemedArt(lastLessonCompleted ? 'today' : 'continue', homeArtTone);
         const priorityCardImage = priorityCardArt.base ?? lastLessonImage;
         // зачем (слово владельца 17.10): у диалога и набора карточек на карточке «последнее место» арт их плитки (тот же resolveThemedArt, что у плиток ниже)

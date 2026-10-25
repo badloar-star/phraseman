@@ -91,7 +91,7 @@ export function dialogsHubTokens(g: HubGlass): DialogsHubTokens {
     pill: Object.freeze({ track: g.opaqueControl, idleInk: g.secondary, selectedBg: g.text, selectedInk: g.bg }),
     card: Object.freeze({
       fill: g.opaqueCard,
-      fillCurrent: lv2Mix(g.opaqueCard, g.accent, 0.14),
+      fillCurrent: lv2Mix(g.opaqueCard, g.accentGraphic, 0.14),
       fillLocked: lv2Mix(g.opaqueCard, g.bg, 0.45),
       title: g.text,
       sub: g.secondary,

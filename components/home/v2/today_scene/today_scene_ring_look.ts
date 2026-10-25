@@ -28,7 +28,7 @@ type CardTone = Readonly<{ accentText: string; opaqueCard: string }>;
 
 /** Оттенок кольца на карточке темы: светлый оттенок со сцены, углублённый к акцентному тексту карточки до контраста ≥ min. */
 export function todayRingOnCard(ring: string, card: CardTone, min: number): string {
-  return legibleOn(ring, card.accentText, [card.opaqueCard], min);
+  return legibleOn(ring, card.accentText, [card.opaqueCard], min); // light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText
 }
 
 /** Три мини-кольца на карточке темы — по лесенке TODAY_RING_ON_CARD_MIN. */

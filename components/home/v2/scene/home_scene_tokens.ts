@@ -181,7 +181,7 @@ function deepenForWhite(c: Rgb, target: number): Rgb {
 /** Цвета «Сцены» Главной по эталону home-scene-states.html (формула sceneTok страницы) из токенов выбранной темы. */
 export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false): HomeSceneStageTokens {
   const t = input.theme;
-  const accent = rgbOf(t.accent) ?? (rgbOf(FALLBACK_ACCENT) as Rgb);
+  const accent = rgbOf(t.accent) ?? (rgbOf(FALLBACK_ACCENT) as Rgb); // light-accent-ok: вход расчёта палитры сцены (данные темы), не окраска графики
   const done = (top: Rgb, bot: Rgb, glow: string, eveTop: Rgb, eveBot: Rgb, eveningGlow: string, scrim: boolean, seam: number): HomeSceneStageTokens => {
     const sceneTop = hexOf(evening ? eveTop : top);
     return Object.freeze({
@@ -206,7 +206,7 @@ export function homeSceneThemeTokens(input: HomeSceneThemeInput, evening = false
     return done(top, bot, glow, top, bot, glow, false, ratioRgb(bot, rgbOf(t.opaqueCard) ?? [0, 0, 0]));
   }
   if (input.appearance === 'dark') {
-    const grad = t.accentGradient.length > 0 ? t.accentGradient : [t.accent, t.accent];
+    const grad = t.accentGradient.length > 0 ? t.accentGradient : [t.accent, t.accent]; // light-accent-ok: тёмная ветвь расчёта палитры сцены (данные темы), не окраска графики
     const first = rgbOf(grad[0]) ?? accent;
     const last = rgbOf(grad[grad.length - 1]) ?? accent;
     const top = mixRgb(first, rgbOf(t.bgTop) ?? [0, 0, 0], HOME_SCENE_DARK_ACCENT_MIX);

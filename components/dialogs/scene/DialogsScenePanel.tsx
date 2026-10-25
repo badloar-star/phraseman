@@ -72,7 +72,7 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
       accessibilityLabel={`${card.title}, ${card.whoBefore}${card.whoName}${card.whoAfter}`}
       onPress={onPress}
       scaleTo={0.98}
-      style={[s.card, { backgroundColor: current ? alphaHex(g.accentText, 0.16) : g.opaqueControl }, card.status === 'locked' ? s.cardLocked : null]}
+      style={[s.card, { backgroundColor: current ? alphaHex(g.accentText /* light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText */, 0.16) : g.opaqueControl }, card.status === 'locked' ? s.cardLocked : null]}
     >
       <View style={s.cardMain}>
         <View style={s.worldRow}>
@@ -104,7 +104,7 @@ function DialogCard({ card, onPress }: Readonly<{ card: DialogsSceneCardData; on
             <View style={[s.go, { backgroundColor: current ? g.cta : g.selected }]}>
               <Ionicons name={current ? 'play' : 'chevron-forward'} size={16} color={current ? g.ctaInk : g.text} />
             </View>
-            {card.ring ? <Text style={[s.ring, { color: g.accentText }]}>{card.ring}</Text> : null}
+            {card.ring ? <Text style={[s.ring, { color: g.accentText /* light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText */ }]}>{card.ring}</Text> : null}
           </>
         )}
       </View>
@@ -122,7 +122,7 @@ export const DialogsScenePlusPanel = memo(function DialogsScenePlusPanel({ rows 
     <View testID="dialogs-scene-plus-panel" style={[s.panel, { backgroundColor: g.opaqueCard, boxShadow: `0 26px 50px -22px ${g.isLight ? g.shadowTint : 'rgba(0,0,0,0.62)'}` /* theme-exempt: тень панели тёмного оформления, эталон --shc */ }]}>
       {rows.map((r) => (
         <View key={r.label} style={s.plusRow}>
-          <Ionicons name={r.icon} size={20} color={g.accentText} />
+          <Ionicons name={r.icon} size={20} color={g.accentText /* light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText */} />
           <Text style={[s.plusText, { color: g.text }]}>{r.label}</Text>
         </View>
       ))}

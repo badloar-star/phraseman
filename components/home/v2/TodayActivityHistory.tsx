@@ -98,7 +98,7 @@ function TodayActivityHistory({ dayKey, tasks }: Props) {
             accessibilityState={{ selected: active }}
             accessibilityLabel={todayHistoryDayA11y(lang, row.dayKey, completed)}
             onPress={() => setSelectedDayKey(row.dayKey)}
-            style={({ pressed }) => [s.day, active ? { backgroundColor: alphaHex(p.accent, 0.12) } : null, pressed ? s.pressed : null]}
+            style={({ pressed }) => [s.day, active ? { backgroundColor: alphaHex(p.accentGraphic, 0.12) } : null, pressed ? s.pressed : null]}
           >
             <ActivityRings row={row} colors={ringColors} track={track} />
             <Text style={[s.date, { color: p.text }]}>{todayHistoryDateLabel(lang, row.dayKey)}</Text>

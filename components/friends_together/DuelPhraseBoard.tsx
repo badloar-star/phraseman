@@ -95,7 +95,7 @@ function DuelPhraseBoard({ phrase, picked, verdict, lang, textScale, onAppend, o
       {phrase.situation ? (
         <View style={[styles.situation, { backgroundColor: g.opaqueCard, boxShadow: plateBoxShadow(g) }]}>
           {/* `.sit`: 9 % акцента поверх карточки — тон, не рамка */}
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.situationTint, { backgroundColor: lv2Alpha(g.accent.slice(0, 7), 0.09) }]} />
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.situationTint, { backgroundColor: lv2Alpha(g.accentGraphic.slice(0, 7), 0.09) }]} />
           <View style={styles.situationKicker}>
             <Ionicons name="chatbubble-ellipses-outline" size={15} color={g.secondary} accessible={false} />
             <FlowText testID="friend-duel-situation-label" provenance="authored" style={[styles.kicker, { color: g.secondary, fontSize: 13 * textScale, lineHeight: 17 * textScale }]}>{/* guard-ok: метка карточки «Ситуация» (.sit .k макета), не расшифровка */}

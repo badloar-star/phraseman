@@ -65,7 +65,7 @@ function DialogsHubThemes({ worlds, totals, onWorld, onAll }: Props) {
                     <Text style={[styles.sub, { color: t.tile.count }]} numberOfLines={1} maxFontSizeMultiplier={1.2}>{counter}</Text>
                   </View>
                   <View pointerEvents="none" style={[styles.track, { backgroundColor: track }]}>
-                    <View style={[styles.fill, { width: `${Math.round(dialogsHubProgress(world.done, world.total) * 100)}%`, backgroundColor: g.accent }]} />
+                    <View style={[styles.fill, { width: `${Math.round(dialogsHubProgress(world.done, world.total) * 100)}%`, backgroundColor: g.accentGraphic }]} />
                   </View>
                 </V2Pressable>
               );
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   allOuter: { marginTop: 20 },
   allTile: { paddingHorizontal: 16, gap: 12 },
   title: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
-  sub: { fontSize: 13, lineHeight: 16, fontWeight: '600' },
+  sub: { fontSize: 13, lineHeight: 17, fontWeight: '600' }, // зачем (шкала V2_TYPE 13/17, храповик typography_store_surface 25.10): было lineHeight 16
   count: { fontSize: 13, lineHeight: 17, fontWeight: '700', fontVariant: ['tabular-nums'] },
   track: { position: 'absolute', left: 12, right: 12, bottom: 7, height: 3, borderRadius: 2, overflow: 'hidden' },
   fill: { height: 3, borderRadius: 2 },

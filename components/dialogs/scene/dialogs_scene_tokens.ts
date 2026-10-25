@@ -104,8 +104,8 @@ function legibleOn(color: string, text: string, under: string, min: number): str
 }
 
 export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColors {
-  const gradFirst = hex6(t.accentGradient[0] ?? t.accentText, t.accentText);
-  const gradLast = hex6(t.accentGradient[t.accentGradient.length - 1] ?? t.accentText, t.accentText);
+  const gradFirst = hex6(t.accentGradient[0] ?? t.accentText, t.accentText); // light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText
+  const gradLast = hex6(t.accentGradient[t.accentGradient.length - 1] ?? t.accentText, t.accentText); // light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText
   const bgTop = hex6(t.bgTop, t.bg);
   const bgBottom = hex6(t.bgBottom, t.bg);
   const dark = !t.isLight;
@@ -131,7 +131,7 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
     halo: t.accentGlow,
     text: t.text,
     secondary: legibleOn(t.secondary, t.text, textZone, DIALOGS_SCENE_MIN_TEXT_CONTRAST),
-    accent: t.accentText,
+    accent: t.accentText, // light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText
     cta: ctaShapeOk ? t.cta : t.text,
     ctaInk: ctaShapeOk ? t.ctaInk : textZone,
     glass: alphaHex(hex6(t.text, bottom), 0.12), // зачем (modal_theme_hardcode_guard 22.10): запасной цвет — тон фона сцены, а не литерал #FFFFFF; t.text всегда шестизначный hex
@@ -164,7 +164,7 @@ export function dialogsSceneContrast(t: DialogsSceneThemeTokens, colors: Dialogs
   return Object.freeze({
     text: contrastRatio(colors.text, colors.textZone),
     secondary: contrastRatio(colors.secondary, colors.textZone),
-    accent: contrastRatio(colors.accent, colors.textZone),
+    accent: contrastRatio(colors.accent, colors.textZone), // light-accent-ok: замер контраста токена сцены, не окраска графики
     seam: contrastRatio(colors.textZone, t.opaqueCard),
   });
 }

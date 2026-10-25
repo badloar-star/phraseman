@@ -1,5 +1,1222 @@
 {
   "schemaVersion": "dialogue-v2-opening-translations.v1",
   "uiLang": "tr",
-  "entries": {}
+  "entries": {
+    "de:everyday_01": {
+      "source": "Hallo! Schön, von dir zu hören. Wie geht's dir?",
+      "text": "Merhaba! Senden haber almak çok güzel. Nasılsın?"
+    },
+    "de:everyday_02": {
+      "source": "Hey! Was gibt's? Wolltest du mir etwas sagen?",
+      "text": "Selam! Ne var ne yok? Bana bir şey mi söyleyecektin?"
+    },
+    "de:everyday_03": {
+      "source": "Hallo! Große Neuigkeit: Ich habe heute die neue Stelle bekommen!",
+      "text": "Merhaba! Büyük haber: bugün yeni işe kabul edildim!"
+    },
+    "de:everyday_04": {
+      "source": "Hallo! Was gibt's Neues heute?",
+      "text": "Merhaba! Bugün ne var ne yok?"
+    },
+    "de:everyday_05": {
+      "source": "Hallo. Gestern habe ich lange vor dem Café gewartet. Was ist passiert?",
+      "text": "Merhaba. Dün kafenin önünde uzun süre bekledim. Ne oldu?"
+    },
+    "de:everyday_06": {
+      "source": "Hallo! Ich habe ein paar Minuten Zeit. Was gibt's?",
+      "text": "Merhaba! Birkaç dakikam var. Ne oldu?"
+    },
+    "de:everyday_07": {
+      "source": "Hallo! Ich habe gehört, du suchst jemanden für dein Haustier. Für wann denn?",
+      "text": "Merhaba! Evcil hayvanın için birine ihtiyacın varmış. Ne zaman?"
+    },
+    "de:everyday_08": {
+      "source": "Hallo zusammen! Wir müssen ein Geschenk kaufen. Hat jemand eine Idee?",
+      "text": "Herkese merhaba! Bir hediye almamız lazım. Fikri olan var mı?"
+    },
+    "de:everyday_09": {
+      "source": "Hallo! Ich bin vom Shop. Ich kann Ihnen bei Ihrer Bestellung helfen.",
+      "text": "Merhaba! Mağazadan yazıyorum. Siparişinizle ilgili yardımcı olabilirim."
+    },
+    "de:everyday_10": {
+      "source": "Hallo! Ich habe mich gefragt, wie es gelaufen ist. Hat mein Rat geholfen?",
+      "text": "Merhaba! Nasıl geçti diye merak ediyordum. Tavsiyem işe yaradı mı?"
+    },
+    "de:everyday_11": {
+      "source": "Hey! Das Wochenende steht vor der Tür, und ich habe noch nichts vor. Was macht ihr beiden?",
+      "text": "Selam! Hafta sonu geliyor ve hâlâ bir planım yok. Siz ikiniz ne yapıyorsunuz?"
+    },
+    "de:everyday_12": {
+      "source": "Hallo! Ich muss etwas Wichtiges entscheiden und schwanke ständig hin und her. Kannst du mir beim Nachdenken helfen?",
+      "text": "Merhaba! Önemli bir karar vermem lazım ve sürekli kararsız kalıyorum. Düşünmeme yardım eder misin?"
+    },
+    "de:everyday_13": {
+      "source": "Hallo! Wolltest du mit mir über etwas sprechen? Ich habe deinen Zettel an der Tür gesehen.",
+      "text": "Merhaba! Bir şey mi konuşmak istiyordun? Kapıdaki notunu gördüm."
+    },
+    "de:everyday_14": {
+      "source": "Hey, du wolltest über etwas reden? Ich habe gerade etwas Zeit, also schieß los.",
+      "text": "Selam, bir şey mi konuşmak istiyordun? Biraz vaktim var, anlat bakalım."
+    },
+    "de:everyday_15": {
+      "source": "Hallo! Du hast gesagt, dass dich etwas stört. Ich höre zu, aber ich hoffe, wir können ruhig darüber sprechen.",
+      "text": "Merhaba! Seni rahatsız eden bir şey olduğunu söyledin. Dinliyorum ama umarım sakin konuşabiliriz."
+    },
+    "de:everyday_16": {
+      "source": "Ehrlich gesagt, buchen wir einfach die billigste Wohnung für die Reise und fertig. Warum so viel überlegen?",
+      "text": "Açıkçası, gezi için en ucuz daireyi tutalım ve bitsin. Neden bu kadar kafa yoruyoruz?"
+    },
+    "de:everyday_17": {
+      "source": "Hey! Alles okay? Du wirkst in letzter Zeit anders, und ich wusste nicht, ob ich es ansprechen soll.",
+      "text": "Selam! Her şey yolunda mı? Son zamanlarda farklı görünüyorsun, konuyu açsam mı bilemedim."
+    },
+    "de:everyday_18": {
+      "source": "Hast du das mit der Feier gehört? Manche sagen, sie ist abgesagt, andere, sie wurde verschoben. Ich bin total verwirrt.",
+      "text": "Parti meselesini duydun mu? Kimi iptal oldu diyor, kimi ertelendi. Kafam çok karıştı."
+    },
+    "de:everyday_19": {
+      "source": "Also, dieser Chat ist zu einem Chaos geworden. Alle sind verletzt, und niemand hört zu. Kannst du uns helfen, neu anzufangen?",
+      "text": "Tamam, bu sohbet tam bir karmaşaya döndü. Herkes kırgın ve kimse dinlemiyor. Yeniden başlamamıza yardım eder misin?"
+    },
+    "de:social_01": {
+      "source": "Hallo! Schön, dich kennenzulernen. Ich bin Mila. Wie geht es dir?",
+      "text": "Merhaba! Tanıştığıma memnun oldum. Ben Mila. Bugün nasılsın?"
+    },
+    "de:social_02": {
+      "source": "Hallo! Unser Treffen ist morgen um 10. Passt das noch?",
+      "text": "Merhaba! Buluşmamız yarın saat 10'da. Hâlâ uygun mu?"
+    },
+    "de:social_03": {
+      "source": "Hallo! Kann ich dir helfen? Suchst du etwas?",
+      "text": "Merhaba! Yardım edebilir miyim? Bir şey mi arıyorsun?"
+    },
+    "de:social_04": {
+      "source": "Hallo! Ich hoffe, meine Hilfe war nützlich. Ist jetzt alles gut?",
+      "text": "Merhaba! Umarım yardımım işe yaramıştır. Şimdi her şey yolunda mı?"
+    },
+    "de:social_05": {
+      "source": "Hallo! Stell dir vor: Ich habe heute meine Führerscheinprüfung bestanden!",
+      "text": "Merhaba! Bil bakalım ne oldu? Bugün ehliyet sınavını geçtim!"
+    },
+    "de:social_06": {
+      "source": "Willkommen in der Gruppe! Sag uns bitte, wie du heißt und was du gern machst.",
+      "text": "Gruba hoş geldin! Lütfen bize adını ve nelerden hoşlandığını anlat."
+    },
+    "de:social_07": {
+      "source": "Hallo! Wir haben uns ewig nicht gesehen. Was hast du diese Woche vor?",
+      "text": "Selam! Görüşmeyeli asırlar oldu. Bu hafta neler yapıyorsun?"
+    },
+    "de:social_08": {
+      "source": "Hey! Wie läuft deine Woche? Hast du schon Pläne fürs Wochenende?",
+      "text": "Selam! Haftan nasıl geçiyor? Hafta sonu için planın var mı?"
+    },
+    "de:social_09": {
+      "source": "Hallo! Treffen wir uns heute Abend noch? Ich freue mich schon sehr.",
+      "text": "Merhaba! Bu akşam hâlâ buluşuyor muyuz? Gerçekten sabırsızlanıyorum."
+    },
+    "de:social_10": {
+      "source": "Hallo! Es war schön, dich gestern zu sehen. Bist du gut nach Hause gekommen?",
+      "text": "Merhaba! Dün seni görmek çok güzeldi. Eve sorunsuz vardın mı?"
+    },
+    "de:social_11": {
+      "source": "Hallo zusammen! Wir reden seit Tagen über Samstag, aber noch ist nichts geplant. Hat jemand eine Idee?",
+      "text": "Herkese merhaba! Günlerdir cumartesiyi konuşuyoruz ama hâlâ bir şey kararlaştırmadık. Fikri olan var mı?"
+    },
+    "de:social_12": {
+      "source": "Hey. Tut mir leid, dass ich so still war. Die Arbeit ist gerade ziemlich viel.",
+      "text": "Selam. Bu kadar sessiz kaldığım için kusura bakma. Son zamanlarda iş çok yoğun."
+    },
+    "de:social_13": {
+      "source": "Hallo. Ich habe deine Nachricht von heute Morgen gesehen und bin nicht sicher, was du meinst. Können wir reden?",
+      "text": "Merhaba. Bu sabahki mesajını gördüm ama ne demek istediğini tam anlamadım. Konuşabilir miyiz?"
+    },
+    "de:social_14": {
+      "source": "Hallo! Am Freitag gibt es bei mir eine kleine Feier, und ich würde mich freuen, wenn du kommst. Hast du Zeit?",
+      "text": "Merhaba! Cuma günü evimde küçük bir parti veriyoruz, gelirsen çok sevinirim. Gelebilir misin?"
+    },
+    "de:social_15": {
+      "source": "Hey, ich habe darüber nachgedacht, wie wir unsere Pläne zuletzt organisiert haben. Können wir darüber reden, was jeder erwartet?",
+      "text": "Selam, son zamanlarda birlikte nasıl plan yaptığımızı düşünüyorum. Her birimizin ne beklediğini konuşabilir miyiz?"
+    },
+    "de:social_16": {
+      "source": "Hallo! Ich habe gesehen, dass du etwas besprechen wolltest. Ich bin heute etwas im Stress, aber erzähl mal.",
+      "text": "Merhaba! Bir şey konuşmak istediğini gördüm. Bugün biraz yoğunum ama anlat bakalım."
+    },
+    "de:social_17": {
+      "source": "Hey! Ich zähle am Samstag wieder auf dich beim ganzen Umzug, okay? Du bist immer so zuverlässig, ich wusste, dass du Ja sagst.",
+      "text": "Selam! Bu cumartesi yine bütün taşınma için sana güveniyorum, tamam mı? Sen hep çok güvenilirsin, evet diyeceğini biliyordum."
+    },
+    "de:social_18": {
+      "source": "Ich bin ehrlich: Ich bin wegen der Sache noch verletzt. Aber ich höre dir zu. Was wolltest du mir sagen?",
+      "text": "Açık konuşacağım, olanlar yüzünden hâlâ biraz kırgınım. Ama seni dinlemeye hazırım. Ne söylemek istiyordun?"
+    },
+    "de:social_19": {
+      "source": "Ehrlich gesagt ist dieser Verlauf angespannt geworden. Die einen fühlen sich übergangen, die anderen beschuldigt. Kann uns jemand helfen, das zu klären?",
+      "text": "Açıkçası bu yazışma gerildi. Yarımız görmezden gelindiğini, diğer yarısı suçlandığını hissediyor. Biri bunu çözmemize yardım edebilir mi?"
+    },
+    "de:travel_01": {
+      "source": "Hallo! Bist du schon in der Stadt? Wie war die Reise?",
+      "text": "Merhaba! Şehre vardın mı? Yolculuk nasıldı?"
+    },
+    "de:travel_02": {
+      "source": "Guten Abend! Brauchst du Hilfe mit der Wohnung?",
+      "text": "İyi akşamlar! Daireyle ilgili yardıma ihtiyacın var mı?"
+    },
+    "de:travel_03": {
+      "source": "Hallo! Danke für Ihre Buchung. Wie kann ich Ihnen helfen?",
+      "text": "Merhaba! Rezervasyon için teşekkürler. Nasıl yardımcı olabilirim?"
+    },
+    "de:travel_04": {
+      "source": "Hallo! Brauchst du einen Transfer vom Flughafen?",
+      "text": "Merhaba! Havalimanından transfere ihtiyacın var mı?"
+    },
+    "de:travel_05": {
+      "source": "Hallo! Probier das kleine Café am Bahnhof. Der Kaffee dort ist super!",
+      "text": "Merhaba! İstasyonun yanındaki küçük kafeyi dene. Kahvesi harika!"
+    },
+    "de:travel_06": {
+      "source": "Hallo! Wohin möchtest du? Lea und ich können dir den Weg erklären.",
+      "text": "Merhaba! Nereye gitmek istiyorsun? Lea ile ben sana yolu gösterebiliriz."
+    },
+    "de:travel_07": {
+      "source": "Hallo! Ich prüfe gerade deine Buchung. Kannst du mir die Buchungsnummer schicken?",
+      "text": "Merhaba! Rezervasyonunu kontrol ediyorum. Rezervasyon numarasını gönderebilir misin?"
+    },
+    "de:travel_08": {
+      "source": "Hallo! Es ist schon sieben Uhr. Kommst du bald? Ich warte in der Wohnung.",
+      "text": "Merhaba! Saat yedi oldu bile. Yakında gelir misin? Dairede bekliyorum."
+    },
+    "de:travel_09": {
+      "source": "Hallo! Willkommen bei uns. Mit wem schreibe ich, und wie können wir helfen?",
+      "text": "Merhaba! Pansiyonumuza hoş geldin. Kiminle yazışıyorum ve nasıl yardımcı olabiliriz?"
+    },
+    "de:travel_10": {
+      "source": "Hallo! Ich möchte dir morgen die Altstadt zeigen. Wo treffen wir uns?",
+      "text": "Merhaba! Yarın sana eski şehri göstermek istiyorum. Nerede buluşalım?"
+    },
+    "de:travel_11": {
+      "source": "Guten Tag, hier ist Niko vom Gästeservice. Clara ist auch dabei. Was können wir für Sie tun?",
+      "text": "Merhaba, ben misafir hizmetlerinden Niko. Clara da burada. Sizin için ne yapabiliriz?"
+    },
+    "de:travel_12": {
+      "source": "Hallo! Jeder scheint eine andere Idee für die Reise zu haben. Kannst du uns helfen, einen Plan zu machen?",
+      "text": "Selam! Herkesin gezi için farklı bir fikri var gibi. Bir plan yapmamıza yardım eder misin?"
+    },
+    "de:travel_13": {
+      "source": "Hallo! Hier ist Lea von der Reservierung. Sie möchten etwas ändern, richtig? Um welche Buchung geht es?",
+      "text": "Merhaba! Ben rezervasyon bölümünden Lea. Bir şeyi değiştirmek istediğinizi anlıyorum. Hangi rezervasyonla ilgili?"
+    },
+    "de:travel_14": {
+      "source": "Guten Tag, hier ist Niko vom Kundenservice. Wie ich höre, möchten Sie ein Anliegen vorbringen. Wie kann ich Ihnen helfen?",
+      "text": "İyi günler, ben müşteri hizmetlerinden Niko. Bir sorunu iletmek istediğinizi anlıyorum. Nasıl yardımcı olabilirim?"
+    },
+    "de:travel_15": {
+      "source": "Hallo! Ich habe gehört, dass es ein Problem mit unserer Verbindung morgen gibt. Was ist genau passiert?",
+      "text": "Merhaba! Yarınki aktarmamızla ilgili bir sorun varmış. Tam olarak ne oldu?"
+    },
+    "de:travel_16": {
+      "source": "Hallo. Ich habe unser System geprüft, und unter diesem Namen ist keine Buchung zu finden. Was liegt Ihnen vor?",
+      "text": "Merhaba. Sistemimizi kontrol ettim, bu isimle bir rezervasyon görünmüyor. Sizin elinizde ne var?"
+    },
+    "de:travel_17": {
+      "source": "Danke für Ihre Nachricht. Wir haben Ihre Meldung zum stornierten Aufenthalt gesehen. Könnten Sie uns schildern, was aus Ihrer Sicht passiert ist?",
+      "text": "Bizimle iletişime geçtiğiniz için teşekkürler. İptal edilen konaklamayla ilgili bildiriminizi gördük. Sizin açınızdan neler olduğunu anlatabilir misiniz?"
+    },
+    "de:travel_18": {
+      "source": "Danke, dass du vermittelst. Gast und Gastgeber sind beide verärgert, und der Service steckt dazwischen. Wo möchtest du anfangen?",
+      "text": "Araya girdiğin için teşekkürler. Misafir de ev sahibi de üzgün, hizmet ekibi de arada kaldı. Nereden başlamak istersin?"
+    },
+    "de:travel_19": {
+      "source": "Alle fragen, was los ist, und die Nachrichten häufen sich. Kannst du uns ein klares Bild davon geben, wo wir stehen?",
+      "text": "Herkes neler olduğunu soruyor ve mesajlar birikiyor. Durumun ne olduğunu bize net bir şekilde anlatabilir misin?"
+    },
+    "de:work_01": {
+      "source": "Hallo! Ich bin Marina aus dem Team. Wie heißt du?",
+      "text": "Merhaba! Ben ekipten Marina. Senin adın ne?"
+    },
+    "de:work_02": {
+      "source": "Hallo! Wobei kann ich dir heute helfen?",
+      "text": "Merhaba! Bugün sana nasıl yardımcı olabilirim?"
+    },
+    "de:work_03": {
+      "source": "Hallo! Unser Anruf ist morgen. Passt die Uhrzeit noch für dich?",
+      "text": "Merhaba! Görüşmemiz yarın. Saat hâlâ sana uygun mu?"
+    },
+    "de:work_04": {
+      "source": "Guten Morgen! Die Besprechung beginnt in zehn Minuten. Kommst du?",
+      "text": "Günaydın! Toplantı on dakika sonra başlıyor. Geliyor musun?"
+    },
+    "de:work_05": {
+      "source": "Hallo! Ich habe dir die Anleitung geschickt. Ist alles klar?",
+      "text": "Merhaba! Talimatları sana gönderdim. Her şey açık mı?"
+    },
+    "de:work_06": {
+      "source": "Hallo! Bitte bereite den kurzen Bericht bis Freitag vor. Marina und ich beantworten Fragen.",
+      "text": "Merhaba! Lütfen kısa raporu cumaya kadar hazırla. Marina ile ben sorularını yanıtlarız."
+    },
+    "de:work_07": {
+      "source": "Hallo! Kurze Nachfrage: Das Projekt ist bis Donnerstag fällig. Wie läuft es?",
+      "text": "Merhaba! Hatırlatayım: proje perşembe teslim. Nasıl gidiyor?"
+    },
+    "de:work_08": {
+      "source": "Hallo! Kurze Frage: Wie weit sind wir mit der Kundenaufgabe?",
+      "text": "Merhaba! Kısa bir soru: müşterinin işinde ne durumdayız?"
+    },
+    "de:work_09": {
+      "source": "Hallo! Ich bin Sam von der IT. Marina sagt, du brauchst Hilfe. Was ist los?",
+      "text": "Merhaba! Ben bilgi işlemden Sam. Marina yardıma ihtiyacın olduğunu söyledi. Sorun ne?"
+    },
+    "de:work_10": {
+      "source": "Hallo! Wie war dein erster Tag bei uns? Ich hoffe, es ging gut.",
+      "text": "Merhaba! Bizimle ilk günün nasıl geçti? Umarım iyiydi."
+    },
+    "de:work_11": {
+      "source": "Wir reden seit zwei Tagen über den Launch, aber ich sehe immer noch nicht, wer was macht. Was meinst du?",
+      "text": "İki gündür lansmanı konuşuyoruz ama hâlâ kimin ne yapacağını göremiyorum. Sen ne düşünüyorsun?"
+    },
+    "de:work_12": {
+      "source": "Hallo! Du hast erwähnt, dass etwas nicht funktioniert. Kannst du mir erklären, was los ist, damit ich nachsehen kann?",
+      "text": "Merhaba! Bir şeyin çalışmadığını söylemiştin. Ne olduğunu anlatır mısın, ben de bakayım?"
+    },
+    "de:work_13": {
+      "source": "Hallo! Ich habe gehört, dass nächste Woche eine Besprechung geplant ist. Worum geht es dabei?",
+      "text": "Merhaba! Gelecek hafta bir toplantı ayarlıyormuşuz. Ne hakkında?"
+    },
+    "de:work_14": {
+      "source": "Der Kunde hat gerade angerufen und braucht die Lieferung am Mittwoch statt am Freitag. Kannst du das möglich machen?",
+      "text": "Müşteri az önce aradı, teslimatı cuma yerine çarşamba istiyor. Yetiştirebilir misin?"
+    },
+    "de:work_15": {
+      "source": "Hallo! Ich habe gerade meinen Angebotsentwurf mit dir geteilt. Ich hätte gern deine ehrliche Meinung, bevor ich ihn abschicke.",
+      "text": "Merhaba! Teklif taslağımı az önce seninle paylaştım. Göndermeden önce dürüst fikrini almak istiyorum."
+    },
+    "de:work_16": {
+      "source": "Wir haben drei dringende Projekte, aber diesen Monat nur zwei verfügbare Leute. Wir müssen entscheiden, was zuerst kommt. Wo fangen wir an?",
+      "text": "Üç acil projemiz var ve bu ay sadece iki kişi müsait. Önce hangisinin geleceğine karar vermeliyiz. Nereden başlayalım?"
+    },
+    "de:work_17": {
+      "source": "Zu deiner Information: Wir haben beschlossen, das ganze Team bis Monatsende auf das neue Tool umzustellen. Sag Bescheid, falls etwas unklar ist.",
+      "text": "Bilgin olsun: ay sonuna kadar bütün ekibi yeni araca geçirmeye karar verdik. Anlaşılmayan bir şey olursa söyle."
+    },
+    "de:work_18": {
+      "source": "Hallo. Die Integration verzögert sich, und mein Team und das Plattform-Team schieben sich gegenseitig die Schuld zu. Kannst du uns helfen, das zu klären?",
+      "text": "Merhaba. Entegrasyon gecikiyor ve benim ekibimle platform ekibi birbirini suçluyor. Bunu netleştirmemize yardım eder misin?"
+    },
+    "de:work_19": {
+      "source": "Danke, dass du dir Zeit genommen hast. Bevor wir über die Konditionen sprechen, würde ich gern hören, wie du das Projekt siehst und wo die größten Lücken sind.",
+      "text": "Zaman ayırdığın için teşekkürler. Şartları konuşmadan önce projeyi nasıl gördüğünü ve en büyük eksiklerin nerede olduğunu düşündüğünü duymak istiyorum."
+    },
+    "en:everyday_01": {
+      "source": "Hi! It's nice to hear from you. How are you?",
+      "text": "Merhaba! Senden haber almak çok güzel. Nasılsın?"
+    },
+    "en:everyday_02": {
+      "source": "Hey! What's up? Did you want to tell me something?",
+      "text": "Selam! Ne var ne yok? Bana bir şey mi söyleyecektin?"
+    },
+    "en:everyday_03": {
+      "source": "Hi! Big news: I got the new job today!",
+      "text": "Merhaba! Büyük haber: bugün yeni işe kabul edildim!"
+    },
+    "en:everyday_04": {
+      "source": "Hi! What's new with you today?",
+      "text": "Merhaba! Bugün ne var ne yok?"
+    },
+    "en:everyday_05": {
+      "source": "Hi. Yesterday I waited a long time outside the café. What happened?",
+      "text": "Merhaba. Dün kafenin önünde uzun süre bekledim. Ne oldu?"
+    },
+    "en:everyday_06": {
+      "source": "Hi! I have a few free minutes. What's up?",
+      "text": "Merhaba! Birkaç dakikam var. Ne oldu?"
+    },
+    "en:everyday_07": {
+      "source": "Hi! I heard you need someone for your pet. When is it?",
+      "text": "Merhaba! Evcil hayvanın için birine ihtiyacın varmış. Ne zaman?"
+    },
+    "en:everyday_08": {
+      "source": "Hi everyone! We need to buy a gift. Any ideas?",
+      "text": "Herkese merhaba! Bir hediye almamız lazım. Fikri olan var mı?"
+    },
+    "en:everyday_09": {
+      "source": "Hello! I'm from the shop. I can help you with your order.",
+      "text": "Merhaba! Mağazadan yazıyorum. Siparişinizle ilgili yardımcı olabilirim."
+    },
+    "en:everyday_10": {
+      "source": "Hi! I've been wondering how it went. Did my advice help?",
+      "text": "Merhaba! Nasıl geçti diye merak ediyordum. Tavsiyem işe yaradı mı?"
+    },
+    "en:everyday_11": {
+      "source": "Hey! The weekend is coming and I have no plans yet. What are you two doing?",
+      "text": "Selam! Hafta sonu geliyor ve hâlâ bir planım yok. Siz ikiniz ne yapıyorsunuz?"
+    },
+    "en:everyday_12": {
+      "source": "Hi! I have to decide something big and I keep going back and forth. Can you help me think it through?",
+      "text": "Merhaba! Önemli bir karar vermem lazım ve sürekli kararsız kalıyorum. Düşünmeme yardım eder misin?"
+    },
+    "en:everyday_13": {
+      "source": "Hello! Did you want to talk about something? I saw your note on the door.",
+      "text": "Merhaba! Bir şey mi konuşmak istiyordun? Kapıdaki notunu gördüm."
+    },
+    "en:everyday_14": {
+      "source": "Hey, you wanted to talk about something? I'm free for a bit, so go ahead.",
+      "text": "Selam, bir şey mi konuşmak istiyordun? Biraz vaktim var, anlat bakalım."
+    },
+    "en:everyday_15": {
+      "source": "Hi! You said something has been bothering you. I'm listening, but I hope we can talk calmly.",
+      "text": "Merhaba! Seni rahatsız eden bir şey olduğunu söyledin. Dinliyorum ama umarım sakin konuşabiliriz."
+    },
+    "en:everyday_16": {
+      "source": "Honestly, let's just book the cheapest flat for the trip and be done. Why overthink it?",
+      "text": "Açıkçası, gezi için en ucuz daireyi tutalım ve bitsin. Neden bu kadar kafa yoruyoruz?"
+    },
+    "en:everyday_17": {
+      "source": "Hey! Is everything okay? You've seemed different lately, and I wasn't sure whether to bring it up.",
+      "text": "Selam! Her şey yolunda mı? Son zamanlarda farklı görünüyorsun, konuyu açsam mı bilemedim."
+    },
+    "en:everyday_18": {
+      "source": "Have you heard about the party? Some say it's cancelled, others say it's moved. I'm so confused.",
+      "text": "Parti meselesini duydun mu? Kimi iptal oldu diyor, kimi ertelendi. Kafam çok karıştı."
+    },
+    "en:everyday_19": {
+      "source": "Okay, this chat has turned into a mess. Everyone is hurt and nobody is listening. Could you help us start over?",
+      "text": "Tamam, bu sohbet tam bir karmaşaya döndü. Herkes kırgın ve kimse dinlemiyor. Yeniden başlamamıza yardım eder misin?"
+    },
+    "en:social_01": {
+      "source": "Hi! Nice to meet you. I'm Mila. How are you today?",
+      "text": "Merhaba! Tanıştığıma memnun oldum. Ben Mila. Bugün nasılsın?"
+    },
+    "en:social_02": {
+      "source": "Hi! Our meeting is tomorrow at 10. Still okay for you?",
+      "text": "Merhaba! Buluşmamız yarın saat 10'da. Hâlâ uygun mu?"
+    },
+    "en:social_03": {
+      "source": "Hello! Can I help you? Are you looking for something?",
+      "text": "Merhaba! Yardım edebilir miyim? Bir şey mi arıyorsun?"
+    },
+    "en:social_04": {
+      "source": "Hi! I hope my help was useful. Is everything okay now?",
+      "text": "Merhaba! Umarım yardımım işe yaramıştır. Şimdi her şey yolunda mı?"
+    },
+    "en:social_05": {
+      "source": "Hi! Guess what? I passed my driving test today!",
+      "text": "Merhaba! Bil bakalım ne oldu? Bugün ehliyet sınavını geçtim!"
+    },
+    "en:social_06": {
+      "source": "Welcome to the group! Please tell us your name and what you enjoy.",
+      "text": "Gruba hoş geldin! Lütfen bize adını ve nelerden hoşlandığını anlat."
+    },
+    "en:social_07": {
+      "source": "Hey! I haven't seen you for ages. What are you up to this week?",
+      "text": "Selam! Görüşmeyeli asırlar oldu. Bu hafta neler yapıyorsun?"
+    },
+    "en:social_08": {
+      "source": "Hey! How's your week going? Any plans for the weekend?",
+      "text": "Selam! Haftan nasıl geçiyor? Hafta sonu için planın var mı?"
+    },
+    "en:social_09": {
+      "source": "Hi! Are we still meeting tonight? I'm really looking forward to it.",
+      "text": "Merhaba! Bu akşam hâlâ buluşuyor muyuz? Gerçekten sabırsızlanıyorum."
+    },
+    "en:social_10": {
+      "source": "Hi! It was nice to see you yesterday. Did you get home okay?",
+      "text": "Merhaba! Dün seni görmek çok güzeldi. Eve sorunsuz vardın mı?"
+    },
+    "en:social_11": {
+      "source": "Hey everyone! We keep talking about Saturday, but nothing is decided yet. Any ideas?",
+      "text": "Herkese merhaba! Günlerdir cumartesiyi konuşuyoruz ama hâlâ bir şey kararlaştırmadık. Fikri olan var mı?"
+    },
+    "en:social_12": {
+      "source": "Hey. Sorry I've been so quiet. Work has been a lot lately.",
+      "text": "Selam. Bu kadar sessiz kaldığım için kusura bakma. Son zamanlarda iş çok yoğun."
+    },
+    "en:social_13": {
+      "source": "Hi. I saw your message this morning, and I'm not sure what you meant. Can we talk?",
+      "text": "Merhaba. Bu sabahki mesajını gördüm ama ne demek istediğini tam anlamadım. Konuşabilir miyiz?"
+    },
+    "en:social_14": {
+      "source": "Hi! We're having a small party at my place on Friday, and I'd love for you to come. Can you make it?",
+      "text": "Merhaba! Cuma günü evimde küçük bir parti veriyoruz, gelirsen çok sevinirim. Gelebilir misin?"
+    },
+    "en:social_15": {
+      "source": "Hey, I've been thinking about how we plan things together lately. Can we talk about what each of us expects?",
+      "text": "Selam, son zamanlarda birlikte nasıl plan yaptığımızı düşünüyorum. Her birimizin ne beklediğini konuşabilir miyiz?"
+    },
+    "en:social_16": {
+      "source": "Hi! I saw you wanted to talk about something. I'm a bit busy today, but tell me what's up.",
+      "text": "Merhaba! Bir şey konuşmak istediğini gördüm. Bugün biraz yoğunum ama anlat bakalım."
+    },
+    "en:social_17": {
+      "source": "Hey! I'm counting on you for the whole move this Saturday again, okay? You're always so reliable, I knew you'd say yes.",
+      "text": "Selam! Bu cumartesi yine bütün taşınma için sana güveniyorum, tamam mı? Sen hep çok güvenilirsin, evet diyeceğini biliyordum."
+    },
+    "en:social_18": {
+      "source": "I'll be honest, I'm still a bit hurt about what happened. I'm willing to hear you out, though. What did you want to say?",
+      "text": "Açık konuşacağım, olanlar yüzünden hâlâ biraz kırgınım. Ama seni dinlemeye hazırım. Ne söylemek istiyordun?"
+    },
+    "en:social_19": {
+      "source": "Honestly, this thread has gotten tense. Half of us feel ignored and the other half feel blamed. Could someone help us sort it out?",
+      "text": "Açıkçası bu yazışma gerildi. Yarımız görmezden gelindiğini, diğer yarısı suçlandığını hissediyor. Biri bunu çözmemize yardım edebilir mi?"
+    },
+    "en:travel_01": {
+      "source": "Hello! Are you here yet? How was your trip?",
+      "text": "Merhaba! Şehre vardın mı? Yolculuk nasıldı?"
+    },
+    "en:travel_02": {
+      "source": "Hello! Do you need help with the apartment?",
+      "text": "Merhaba! Daireyle ilgili yardıma ihtiyacın var mı?"
+    },
+    "en:travel_03": {
+      "source": "Hello! Thank you for your booking. How can I help you?",
+      "text": "Merhaba! Rezervasyon için teşekkürler. Nasıl yardımcı olabilirim?"
+    },
+    "en:travel_04": {
+      "source": "Hello! Do you need a ride from the airport?",
+      "text": "Merhaba! Havalimanından transfere ihtiyacın var mı?"
+    },
+    "en:travel_05": {
+      "source": "Hi! Try the small café near the station. The coffee is great!",
+      "text": "Merhaba! İstasyonun yanındaki küçük kafeyi dene. Kahvesi harika!"
+    },
+    "en:travel_06": {
+      "source": "Hi! Where do you want to go? Lea and I can show you the way.",
+      "text": "Merhaba! Nereye gitmek istiyorsun? Lea ile ben sana yolu gösterebiliriz."
+    },
+    "en:travel_07": {
+      "source": "Hello! I'm checking your booking. Can you send me the booking number, please?",
+      "text": "Merhaba! Rezervasyonunu kontrol ediyorum. Rezervasyon numarasını gönderebilir misin?"
+    },
+    "en:travel_08": {
+      "source": "Hi! It's already seven o'clock. Are you coming soon? I'm waiting at the apartment.",
+      "text": "Merhaba! Saat yedi oldu bile. Yakında gelir misin? Dairede bekliyorum."
+    },
+    "en:travel_09": {
+      "source": "Hello! Welcome to our guesthouse. Who am I writing to, and how can we help?",
+      "text": "Merhaba! Pansiyonumuza hoş geldin. Kiminle yazışıyorum ve nasıl yardımcı olabiliriz?"
+    },
+    "en:travel_10": {
+      "source": "Hi! I'd like to show you the old town tomorrow. Where shall we meet?",
+      "text": "Merhaba! Yarın sana eski şehri göstermek istiyorum. Nerede buluşalım?"
+    },
+    "en:travel_11": {
+      "source": "Hello, this is Niko from guest support. Clara is also here. What can we do for you?",
+      "text": "Merhaba, ben misafir hizmetlerinden Niko. Clara da burada. Sizin için ne yapabiliriz?"
+    },
+    "en:travel_12": {
+      "source": "Hey! Everyone seems to have a different idea for the trip. Can you help us figure out a plan?",
+      "text": "Selam! Herkesin gezi için farklı bir fikri var gibi. Bir plan yapmamıza yardım eder misin?"
+    },
+    "en:travel_13": {
+      "source": "Hello! Lea from reservations here. I understand you'd like to change something. Which booking is it about?",
+      "text": "Merhaba! Ben rezervasyon bölümünden Lea. Bir şeyi değiştirmek istediğinizi anlıyorum. Hangi rezervasyonla ilgili?"
+    },
+    "en:travel_14": {
+      "source": "Good afternoon, this is Niko from customer service. I understand you wanted to raise a concern. How can I help?",
+      "text": "İyi günler, ben müşteri hizmetlerinden Niko. Bir sorunu iletmek istediğinizi anlıyorum. Nasıl yardımcı olabilirim?"
+    },
+    "en:travel_15": {
+      "source": "Hi! I heard there's a problem with our connection tomorrow. What exactly happened?",
+      "text": "Merhaba! Yarınki aktarmamızla ilgili bir sorun varmış. Tam olarak ne oldu?"
+    },
+    "en:travel_16": {
+      "source": "Hello. I've checked our system, and it shows no booking under that name. Can you tell me what you have on your side?",
+      "text": "Merhaba. Sistemimizi kontrol ettim, bu isimle bir rezervasyon görünmüyor. Sizin elinizde ne var?"
+    },
+    "en:travel_17": {
+      "source": "Thank you for contacting us. We've seen your report about the cancelled stay. Could you walk us through what happened from your side?",
+      "text": "Bizimle iletişime geçtiğiniz için teşekkürler. İptal edilen konaklamayla ilgili bildiriminizi gördük. Sizin açınızdan neler olduğunu anlatabilir misiniz?"
+    },
+    "en:travel_18": {
+      "source": "Thanks for stepping in. The guest and the host are both upset, and the service team is caught in the middle. Where would you like to begin?",
+      "text": "Araya girdiğin için teşekkürler. Misafir de ev sahibi de üzgün, hizmet ekibi de arada kaldı. Nereden başlamak istersin?"
+    },
+    "en:travel_19": {
+      "source": "Everyone is asking what's going on, and the messages are piling up. Could you give us a clear picture of where we stand?",
+      "text": "Herkes neler olduğunu soruyor ve mesajlar birikiyor. Durumun ne olduğunu bize net bir şekilde anlatabilir misin?"
+    },
+    "en:work_01": {
+      "source": "Hi! I'm Marina from the team. What's your name?",
+      "text": "Merhaba! Ben ekipten Marina. Senin adın ne?"
+    },
+    "en:work_02": {
+      "source": "Hello! How can I help you today?",
+      "text": "Merhaba! Bugün sana nasıl yardımcı olabilirim?"
+    },
+    "en:work_03": {
+      "source": "Hi! Our call is tomorrow. Is the time still okay for you?",
+      "text": "Merhaba! Görüşmemiz yarın. Saat hâlâ sana uygun mu?"
+    },
+    "en:work_04": {
+      "source": "Good morning! The meeting starts in ten minutes. Are you coming?",
+      "text": "Günaydın! Toplantı on dakika sonra başlıyor. Geliyor musun?"
+    },
+    "en:work_05": {
+      "source": "Hi! I sent you the instructions. Is everything clear?",
+      "text": "Merhaba! Talimatları sana gönderdim. Her şey açık mı?"
+    },
+    "en:work_06": {
+      "source": "Hi! Please prepare the short report by Friday. Marina and I can answer questions.",
+      "text": "Merhaba! Lütfen kısa raporu cumaya kadar hazırla. Marina ile ben sorularını yanıtlarız."
+    },
+    "en:work_07": {
+      "source": "Hi! Just checking: the project is due on Thursday. How is it going?",
+      "text": "Merhaba! Hatırlatayım: proje perşembe teslim. Nasıl gidiyor?"
+    },
+    "en:work_08": {
+      "source": "Hi! Quick question: where are we with the client task?",
+      "text": "Merhaba! Kısa bir soru: müşterinin işinde ne durumdayız?"
+    },
+    "en:work_09": {
+      "source": "Hi! I'm Sam from IT. Marina says you need help. What's the problem?",
+      "text": "Merhaba! Ben bilgi işlemden Sam. Marina yardıma ihtiyacın olduğunu söyledi. Sorun ne?"
+    },
+    "en:work_10": {
+      "source": "Hi! How was your first day with us? I hope it went well.",
+      "text": "Merhaba! Bizimle ilk günün nasıl geçti? Umarım iyiydi."
+    },
+    "en:work_11": {
+      "source": "We've talked about the launch for two days, but I still don't see who does what. Thoughts?",
+      "text": "İki gündür lansmanı konuşuyoruz ama hâlâ kimin ne yapacağını göremiyorum. Sen ne düşünüyorsun?"
+    },
+    "en:work_12": {
+      "source": "Hi! You mentioned something wasn't working. Can you tell me what's going on, so I can look into it?",
+      "text": "Merhaba! Bir şeyin çalışmadığını söylemiştin. Ne olduğunu anlatır mısın, ben de bakayım?"
+    },
+    "en:work_13": {
+      "source": "Hi! I heard we're setting up a meeting next week. What is it about?",
+      "text": "Merhaba! Gelecek hafta bir toplantı ayarlıyormuşuz. Ne hakkında?"
+    },
+    "en:work_14": {
+      "source": "The client just called, and they need the delivery on Wednesday instead of Friday. Can you make that work?",
+      "text": "Müşteri az önce aradı, teslimatı cuma yerine çarşamba istiyor. Yetiştirebilir misin?"
+    },
+    "en:work_15": {
+      "source": "Hey! I just shared my draft proposal with you. I'd really like your honest opinion before I send it on.",
+      "text": "Merhaba! Teklif taslağımı az önce seninle paylaştım. Göndermeden önce dürüst fikrini almak istiyorum."
+    },
+    "en:work_16": {
+      "source": "We have three urgent projects and only two people available this month. We need to decide what comes first. Where do we start?",
+      "text": "Üç acil projemiz var ve bu ay sadece iki kişi müsait. Önce hangisinin geleceğine karar vermeliyiz. Nereden başlayalım?"
+    },
+    "en:work_17": {
+      "source": "Just so you know, we've decided to move the whole team to the new tool by the end of the month. Let me know if anything's unclear.",
+      "text": "Bilgin olsun: ay sonuna kadar bütün ekibi yeni araca geçirmeye karar verdik. Anlaşılmayan bir şey olursa söyle."
+    },
+    "en:work_18": {
+      "source": "Hi. The integration is slipping, and my team and the platform team are each pointing at the other. Can you help us clear it up?",
+      "text": "Merhaba. Entegrasyon gecikiyor ve benim ekibimle platform ekibi birbirini suçluyor. Bunu netleştirmemize yardım eder misin?"
+    },
+    "en:work_19": {
+      "source": "Thanks for making time. Before we discuss terms, I'd like to hear how you see the project and where you think the biggest gaps are.",
+      "text": "Zaman ayırdığın için teşekkürler. Şartları konuşmadan önce projeyi nasıl gördüğünü ve en büyük eksiklerin nerede olduğunu düşündüğünü duymak istiyorum."
+    },
+    "es:everyday_01": {
+      "source": "¡Hola! Qué bueno saber de ti. ¿Cómo estás?",
+      "text": "Merhaba! Senden haber almak çok güzel. Nasılsın?"
+    },
+    "es:everyday_02": {
+      "source": "¡Ey! ¿Qué pasa? ¿Querías decirme algo?",
+      "text": "Selam! Ne var ne yok? Bana bir şey mi söyleyecektin?"
+    },
+    "es:everyday_03": {
+      "source": "¡Hola! Gran noticia: ¡hoy me dieron el nuevo trabajo!",
+      "text": "Merhaba! Büyük haber: bugün yeni işe kabul edildim!"
+    },
+    "es:everyday_04": {
+      "source": "¡Hola! ¿Qué hay de nuevo hoy?",
+      "text": "Merhaba! Bugün ne var ne yok?"
+    },
+    "es:everyday_05": {
+      "source": "Hola. Ayer esperé mucho rato delante del café. ¿Qué pasó?",
+      "text": "Merhaba. Dün kafenin önünde uzun süre bekledim. Ne oldu?"
+    },
+    "es:everyday_06": {
+      "source": "¡Hola! Tengo unos minutos libres. ¿Qué pasa?",
+      "text": "Merhaba! Birkaç dakikam var. Ne oldu?"
+    },
+    "es:everyday_07": {
+      "source": "¡Hola! Me dijeron que buscas a alguien para tu mascota. ¿Para cuándo?",
+      "text": "Merhaba! Evcil hayvanın için birine ihtiyacın varmış. Ne zaman?"
+    },
+    "es:everyday_08": {
+      "source": "¡Hola a todos! Tenemos que comprar un regalo. ¿Alguna idea?",
+      "text": "Herkese merhaba! Bir hediye almamız lazım. Fikri olan var mı?"
+    },
+    "es:everyday_09": {
+      "source": "¡Hola! Soy de la tienda. Puedo ayudarle con su pedido.",
+      "text": "Merhaba! Mağazadan yazıyorum. Siparişinizle ilgili yardımcı olabilirim."
+    },
+    "es:everyday_10": {
+      "source": "¡Hola! Me preguntaba cómo te fue. ¿Te sirvió mi consejo?",
+      "text": "Merhaba! Nasıl geçti diye merak ediyordum. Tavsiyem işe yaradı mı?"
+    },
+    "es:everyday_11": {
+      "source": "¡Ey! Ya llega el fin de semana y no tengo planes. ¿Qué vais a hacer vosotros?",
+      "text": "Selam! Hafta sonu geliyor ve hâlâ bir planım yok. Siz ikiniz ne yapıyorsunuz?"
+    },
+    "es:everyday_12": {
+      "source": "¡Hola! Tengo que decidir algo importante y no paro de dudar. ¿Me ayudas a pensarlo?",
+      "text": "Merhaba! Önemli bir karar vermem lazım ve sürekli kararsız kalıyorum. Düşünmeme yardım eder misin?"
+    },
+    "es:everyday_13": {
+      "source": "¡Hola! ¿Querías hablar de algo? Vi tu nota en la puerta.",
+      "text": "Merhaba! Bir şey mi konuşmak istiyordun? Kapıdaki notunu gördüm."
+    },
+    "es:everyday_14": {
+      "source": "Oye, ¿querías hablar de algo? Tengo un rato libre, así que dime.",
+      "text": "Selam, bir şey mi konuşmak istiyordun? Biraz vaktim var, anlat bakalım."
+    },
+    "es:everyday_15": {
+      "source": "¡Hola! Dijiste que algo te estaba molestando. Te escucho, pero ojalá podamos hablarlo con calma.",
+      "text": "Merhaba! Seni rahatsız eden bir şey olduğunu söyledin. Dinliyorum ama umarım sakin konuşabiliriz."
+    },
+    "es:everyday_16": {
+      "source": "Sinceramente, reservemos el piso más barato para el viaje y listo. ¿Para qué darle tantas vueltas?",
+      "text": "Açıkçası, gezi için en ucuz daireyi tutalım ve bitsin. Neden bu kadar kafa yoruyoruz?"
+    },
+    "es:everyday_17": {
+      "source": "¡Ey! ¿Todo bien? Últimamente te noto distinto y no sabía si sacar el tema.",
+      "text": "Selam! Her şey yolunda mı? Son zamanlarda farklı görünüyorsun, konuyu açsam mı bilemedim."
+    },
+    "es:everyday_18": {
+      "source": "¿Te enteraste de lo de la fiesta? Unos dicen que se cancela y otros que se cambia de día. Estoy muy confundida.",
+      "text": "Parti meselesini duydun mu? Kimi iptal oldu diyor, kimi ertelendi. Kafam çok karıştı."
+    },
+    "es:everyday_19": {
+      "source": "Vale, este chat se ha convertido en un lío. Todos estamos heridos y nadie escucha. ¿Puedes ayudarnos a empezar de nuevo?",
+      "text": "Tamam, bu sohbet tam bir karmaşaya döndü. Herkes kırgın ve kimse dinlemiyor. Yeniden başlamamıza yardım eder misin?"
+    },
+    "es:social_01": {
+      "source": "¡Hola! Encantada de conocerte. Soy Mila. ¿Cómo estás hoy?",
+      "text": "Merhaba! Tanıştığıma memnun oldum. Ben Mila. Bugün nasılsın?"
+    },
+    "es:social_02": {
+      "source": "¡Hola! Tenemos la reunión mañana a las 10. ¿Sigue bien para ti?",
+      "text": "Merhaba! Buluşmamız yarın saat 10'da. Hâlâ uygun mu?"
+    },
+    "es:social_03": {
+      "source": "¡Hola! ¿Te puedo ayudar? ¿Buscas algo?",
+      "text": "Merhaba! Yardım edebilir miyim? Bir şey mi arıyorsun?"
+    },
+    "es:social_04": {
+      "source": "¡Hola! Espero que mi ayuda te haya servido. ¿Todo bien ahora?",
+      "text": "Merhaba! Umarım yardımım işe yaramıştır. Şimdi her şey yolunda mı?"
+    },
+    "es:social_05": {
+      "source": "¡Hola! ¿Sabes qué? ¡Hoy aprobé el examen de conducir!",
+      "text": "Merhaba! Bil bakalım ne oldu? Bugün ehliyet sınavını geçtim!"
+    },
+    "es:social_06": {
+      "source": "¡Te damos la bienvenida al grupo! Cuéntanos cómo te llamas y qué te gusta hacer.",
+      "text": "Gruba hoş geldin! Lütfen bize adını ve nelerden hoşlandığını anlat."
+    },
+    "es:social_07": {
+      "source": "¡Hola! Hace siglos que no nos vemos. ¿Qué planes tienes esta semana?",
+      "text": "Selam! Görüşmeyeli asırlar oldu. Bu hafta neler yapıyorsun?"
+    },
+    "es:social_08": {
+      "source": "¡Ey! ¿Qué tal tu semana? ¿Tienes planes para el fin de semana?",
+      "text": "Selam! Haftan nasıl geçiyor? Hafta sonu için planın var mı?"
+    },
+    "es:social_09": {
+      "source": "¡Hola! ¿Seguimos quedando esta noche? Tengo muchas ganas de verte.",
+      "text": "Merhaba! Bu akşam hâlâ buluşuyor muyuz? Gerçekten sabırsızlanıyorum."
+    },
+    "es:social_10": {
+      "source": "¡Hola! Qué bueno verte ayer. ¿Llegaste bien a casa?",
+      "text": "Merhaba! Dün seni görmek çok güzeldi. Eve sorunsuz vardın mı?"
+    },
+    "es:social_11": {
+      "source": "¡Hola a todos! Llevamos días hablando del sábado, pero todavía no hay plan. ¿Alguna idea?",
+      "text": "Herkese merhaba! Günlerdir cumartesiyi konuşuyoruz ama hâlâ bir şey kararlaştırmadık. Fikri olan var mı?"
+    },
+    "es:social_12": {
+      "source": "Hola. Perdona que haya estado tan callado. El trabajo me está agobiando últimamente.",
+      "text": "Selam. Bu kadar sessiz kaldığım için kusura bakma. Son zamanlarda iş çok yoğun."
+    },
+    "es:social_13": {
+      "source": "Hola. Vi tu mensaje de esta mañana y no estoy segura de qué quisiste decir. ¿Podemos hablar?",
+      "text": "Merhaba. Bu sabahki mesajını gördüm ama ne demek istediğini tam anlamadım. Konuşabilir miyiz?"
+    },
+    "es:social_14": {
+      "source": "¡Hola! Vamos a hacer una fiestecita en mi casa el viernes y me encantaría que vinieras. ¿Puedes venir?",
+      "text": "Merhaba! Cuma günü evimde küçük bir parti veriyoruz, gelirsen çok sevinirim. Gelebilir misin?"
+    },
+    "es:social_15": {
+      "source": "Oye, he estado pensando en cómo organizamos nuestros planes últimamente. ¿Podemos hablar de lo que cada uno espera?",
+      "text": "Selam, son zamanlarda birlikte nasıl plan yaptığımızı düşünüyorum. Her birimizin ne beklediğini konuşabilir miyiz?"
+    },
+    "es:social_16": {
+      "source": "¡Hola! Vi que querías hablar de algo. Hoy ando algo liada, pero cuéntame qué pasa.",
+      "text": "Merhaba! Bir şey konuşmak istediğini gördüm. Bugün biraz yoğunum ama anlat bakalım."
+    },
+    "es:social_17": {
+      "source": "¡Ey! Cuento contigo para toda la mudanza este sábado otra vez, ¿vale? Siempre eres tan fiable que sabía que dirías que sí.",
+      "text": "Selam! Bu cumartesi yine bütün taşınma için sana güveniyorum, tamam mı? Sen hep çok güvenilirsin, evet diyeceğini biliyordum."
+    },
+    "es:social_18": {
+      "source": "Voy a ser sincero: todavía estoy dolido por lo que pasó. Pero estoy dispuesto a escucharte. ¿Qué querías decirme?",
+      "text": "Açık konuşacağım, olanlar yüzünden hâlâ biraz kırgınım. Ama seni dinlemeye hazırım. Ne söylemek istiyordun?"
+    },
+    "es:social_19": {
+      "source": "Sinceramente, este hilo se ha puesto tenso. Unos nos sentimos ignorados y otros se sienten culpados. ¿Alguien puede ayudarnos a aclararlo?",
+      "text": "Açıkçası bu yazışma gerildi. Yarımız görmezden gelindiğini, diğer yarısı suçlandığını hissediyor. Biri bunu çözmemize yardım edebilir mi?"
+    },
+    "es:travel_01": {
+      "source": "¡Hola! ¿Ya estás en la ciudad? ¿Qué tal el viaje?",
+      "text": "Merhaba! Şehre vardın mı? Yolculuk nasıldı?"
+    },
+    "es:travel_02": {
+      "source": "¡Hola! ¿Necesitas ayuda con el apartamento?",
+      "text": "Merhaba! Daireyle ilgili yardıma ihtiyacın var mı?"
+    },
+    "es:travel_03": {
+      "source": "¡Hola! Gracias por tu reserva. ¿En qué puedo ayudarte?",
+      "text": "Merhaba! Rezervasyon için teşekkürler. Nasıl yardımcı olabilirim?"
+    },
+    "es:travel_04": {
+      "source": "¡Hola! ¿Necesitas transporte desde el aeropuerto?",
+      "text": "Merhaba! Havalimanından transfere ihtiyacın var mı?"
+    },
+    "es:travel_05": {
+      "source": "¡Hola! Prueba el café pequeño de la estación. ¡Es genial!",
+      "text": "Merhaba! İstasyonun yanındaki küçük kafeyi dene. Kahvesi harika!"
+    },
+    "es:travel_06": {
+      "source": "¡Hola! ¿A dónde quieres ir? Lea y yo podemos explicarte el camino.",
+      "text": "Merhaba! Nereye gitmek istiyorsun? Lea ile ben sana yolu gösterebiliriz."
+    },
+    "es:travel_07": {
+      "source": "¡Hola! Estoy revisando tu reserva. ¿Me puedes mandar el número de reserva?",
+      "text": "Merhaba! Rezervasyonunu kontrol ediyorum. Rezervasyon numarasını gönderebilir misin?"
+    },
+    "es:travel_08": {
+      "source": "¡Hola! Ya son las siete. ¿Llegas pronto? Te espero en el apartamento.",
+      "text": "Merhaba! Saat yedi oldu bile. Yakında gelir misin? Dairede bekliyorum."
+    },
+    "es:travel_09": {
+      "source": "¡Hola! Te damos la bienvenida. ¿Con quién hablo y en qué podemos ayudarte?",
+      "text": "Merhaba! Pansiyonumuza hoş geldin. Kiminle yazışıyorum ve nasıl yardımcı olabiliriz?"
+    },
+    "es:travel_10": {
+      "source": "¡Hola! Me gustaría enseñarte el casco antiguo mañana. ¿Dónde quedamos?",
+      "text": "Merhaba! Yarın sana eski şehri göstermek istiyorum. Nerede buluşalım?"
+    },
+    "es:travel_11": {
+      "source": "Hola, soy Niko, del servicio de atención al huésped. Clara también está aquí. ¿En qué podemos ayudarle?",
+      "text": "Merhaba, ben misafir hizmetlerinden Niko. Clara da burada. Sizin için ne yapabiliriz?"
+    },
+    "es:travel_12": {
+      "source": "¡Hola! Cada uno parece tener una idea distinta para el viaje. ¿Nos ayudas a hacer un plan?",
+      "text": "Selam! Herkesin gezi için farklı bir fikri var gibi. Bir plan yapmamıza yardım eder misin?"
+    },
+    "es:travel_13": {
+      "source": "¡Hola! Soy Lea, de reservas. Entiendo que quiere cambiar algo. ¿De qué reserva se trata?",
+      "text": "Merhaba! Ben rezervasyon bölümünden Lea. Bir şeyi değiştirmek istediğinizi anlıyorum. Hangi rezervasyonla ilgili?"
+    },
+    "es:travel_14": {
+      "source": "Buenas tardes, soy Niko, de atención al cliente. Entiendo que desea plantear un problema. ¿En qué puedo ayudarle?",
+      "text": "İyi günler, ben müşteri hizmetlerinden Niko. Bir sorunu iletmek istediğinizi anlıyorum. Nasıl yardımcı olabilirim?"
+    },
+    "es:travel_15": {
+      "source": "¡Hola! He oído que hay algún problema con nuestra conexión de mañana. ¿Qué ha pasado exactamente?",
+      "text": "Merhaba! Yarınki aktarmamızla ilgili bir sorun varmış. Tam olarak ne oldu?"
+    },
+    "es:travel_16": {
+      "source": "Hola. He revisado nuestro sistema y no aparece ninguna reserva con ese nombre. ¿Qué datos tiene usted?",
+      "text": "Merhaba. Sistemimizi kontrol ettim, bu isimle bir rezervasyon görünmüyor. Sizin elinizde ne var?"
+    },
+    "es:travel_17": {
+      "source": "Gracias por contactarnos. Hemos visto su informe sobre la estancia cancelada. ¿Podría explicarnos qué ocurrió desde su punto de vista?",
+      "text": "Bizimle iletişime geçtiğiniz için teşekkürler. İptal edilen konaklamayla ilgili bildiriminizi gördük. Sizin açınızdan neler olduğunu anlatabilir misiniz?"
+    },
+    "es:travel_18": {
+      "source": "Gracias por intervenir. El huésped y el anfitrión están molestos y el servicio está en medio. ¿Por dónde quieres empezar?",
+      "text": "Araya girdiğin için teşekkürler. Misafir de ev sahibi de üzgün, hizmet ekibi de arada kaldı. Nereden başlamak istersin?"
+    },
+    "es:travel_19": {
+      "source": "Todos preguntan qué está pasando y los mensajes no paran de acumularse. ¿Puedes darnos una imagen clara de cómo estamos?",
+      "text": "Herkes neler olduğunu soruyor ve mesajlar birikiyor. Durumun ne olduğunu bize net bir şekilde anlatabilir misin?"
+    },
+    "es:work_01": {
+      "source": "¡Hola! Soy Marina, del equipo. ¿Cómo te llamas?",
+      "text": "Merhaba! Ben ekipten Marina. Senin adın ne?"
+    },
+    "es:work_02": {
+      "source": "¡Hola! ¿En qué te puedo ayudar hoy?",
+      "text": "Merhaba! Bugün sana nasıl yardımcı olabilirim?"
+    },
+    "es:work_03": {
+      "source": "¡Hola! Nuestra llamada es mañana. ¿Te sigue bien la hora?",
+      "text": "Merhaba! Görüşmemiz yarın. Saat hâlâ sana uygun mu?"
+    },
+    "es:work_04": {
+      "source": "¡Buenos días! La reunión empieza en diez minutos. ¿Vienes?",
+      "text": "Günaydın! Toplantı on dakika sonra başlıyor. Geliyor musun?"
+    },
+    "es:work_05": {
+      "source": "¡Hola! Te mandé las instrucciones. ¿Está todo claro?",
+      "text": "Merhaba! Talimatları sana gönderdim. Her şey açık mı?"
+    },
+    "es:work_06": {
+      "source": "¡Hola! Por favor, prepara el informe corto para el viernes. Marina y yo resolvemos dudas.",
+      "text": "Merhaba! Lütfen kısa raporu cumaya kadar hazırla. Marina ile ben sorularını yanıtlarız."
+    },
+    "es:work_07": {
+      "source": "¡Hola! Solo para confirmar: el proyecto es para el jueves. ¿Cómo va?",
+      "text": "Merhaba! Hatırlatayım: proje perşembe teslim. Nasıl gidiyor?"
+    },
+    "es:work_08": {
+      "source": "¡Hola! Una pregunta rápida: ¿cómo vamos con la tarea del cliente?",
+      "text": "Merhaba! Kısa bir soru: müşterinin işinde ne durumdayız?"
+    },
+    "es:work_09": {
+      "source": "¡Hola! Soy Sam, de informática. Marina dice que necesitas ayuda. ¿Qué pasa?",
+      "text": "Merhaba! Ben bilgi işlemden Sam. Marina yardıma ihtiyacın olduğunu söyledi. Sorun ne?"
+    },
+    "es:work_10": {
+      "source": "¡Hola! ¿Cómo fue tu primer día con nosotros? Espero que bien.",
+      "text": "Merhaba! Bizimle ilk günün nasıl geçti? Umarım iyiydi."
+    },
+    "es:work_11": {
+      "source": "Llevamos dos días hablando del lanzamiento, pero sigo sin ver quién hace qué. ¿Qué opinas?",
+      "text": "İki gündür lansmanı konuşuyoruz ama hâlâ kimin ne yapacağını göremiyorum. Sen ne düşünüyorsun?"
+    },
+    "es:work_12": {
+      "source": "¡Hola! Comentaste que algo no funcionaba. ¿Me cuentas qué pasa para que pueda revisarlo?",
+      "text": "Merhaba! Bir şeyin çalışmadığını söylemiştin. Ne olduğunu anlatır mısın, ben de bakayım?"
+    },
+    "es:work_13": {
+      "source": "¡Hola! Me enteré de que organizamos una reunión la semana que viene. ¿De qué va?",
+      "text": "Merhaba! Gelecek hafta bir toplantı ayarlıyormuşuz. Ne hakkında?"
+    },
+    "es:work_14": {
+      "source": "El cliente acaba de llamar y necesita la entrega el miércoles en lugar del viernes. ¿Puedes hacerlo posible?",
+      "text": "Müşteri az önce aradı, teslimatı cuma yerine çarşamba istiyor. Yetiştirebilir misin?"
+    },
+    "es:work_15": {
+      "source": "¡Hola! Acabo de compartir contigo mi borrador de la propuesta. Me gustaría tu opinión sincera antes de enviarla.",
+      "text": "Merhaba! Teklif taslağımı az önce seninle paylaştım. Göndermeden önce dürüst fikrini almak istiyorum."
+    },
+    "es:work_16": {
+      "source": "Tenemos tres proyectos urgentes y solo dos personas disponibles este mes. Hay que decidir qué va primero. ¿Por dónde empezamos?",
+      "text": "Üç acil projemiz var ve bu ay sadece iki kişi müsait. Önce hangisinin geleceğine karar vermeliyiz. Nereden başlayalım?"
+    },
+    "es:work_17": {
+      "source": "Para que lo sepas: hemos decidido pasar a todo el equipo a la nueva herramienta antes de fin de mes. Dime si algo no está claro.",
+      "text": "Bilgin olsun: ay sonuna kadar bütün ekibi yeni araca geçirmeye karar verdik. Anlaşılmayan bir şey olursa söyle."
+    },
+    "es:work_18": {
+      "source": "Hola. La integración se está retrasando y mi equipo y el de plataforma se señalan mutuamente. ¿Puedes ayudarnos a aclararlo?",
+      "text": "Merhaba. Entegrasyon gecikiyor ve benim ekibimle platform ekibi birbirini suçluyor. Bunu netleştirmemize yardım eder misin?"
+    },
+    "es:work_19": {
+      "source": "Gracias por hacer un hueco. Antes de hablar de condiciones, me gustaría saber cómo ves el proyecto y dónde crees que están las mayores brechas.",
+      "text": "Zaman ayırdığın için teşekkürler. Şartları konuşmadan önce projeyi nasıl gördüğünü ve en büyük eksiklerin nerede olduğunu düşündüğünü duymak istiyorum."
+    },
+    "fr:everyday_01": {
+      "source": "Salut ! Ça fait plaisir de te lire. Comment vas-tu ?",
+      "text": "Merhaba! Senden haber almak çok güzel. Nasılsın?"
+    },
+    "fr:everyday_02": {
+      "source": "Coucou ! Quoi de neuf ? Tu voulais me dire quelque chose ?",
+      "text": "Selam! Ne var ne yok? Bana bir şey mi söyleyecektin?"
+    },
+    "fr:everyday_03": {
+      "source": "Salut ! Grande nouvelle : j'ai eu le nouveau travail aujourd'hui !",
+      "text": "Merhaba! Büyük haber: bugün yeni işe kabul edildim!"
+    },
+    "fr:everyday_04": {
+      "source": "Salut ! Quoi de neuf aujourd'hui ?",
+      "text": "Merhaba! Bugün ne var ne yok?"
+    },
+    "fr:everyday_05": {
+      "source": "Salut. Hier, j'ai attendu longtemps devant le café. Que s'est-il passé ?",
+      "text": "Merhaba. Dün kafenin önünde uzun süre bekledim. Ne oldu?"
+    },
+    "fr:everyday_06": {
+      "source": "Salut ! J'ai quelques minutes. Qu'est-ce qu'il y a ?",
+      "text": "Merhaba! Birkaç dakikam var. Ne oldu?"
+    },
+    "fr:everyday_07": {
+      "source": "Salut ! J'ai entendu dire que tu cherches quelqu'un pour ton animal. C'est pour quand ?",
+      "text": "Merhaba! Evcil hayvanın için birine ihtiyacın varmış. Ne zaman?"
+    },
+    "fr:everyday_08": {
+      "source": "Salut tout le monde ! Il faut acheter un cadeau. Des idées ?",
+      "text": "Herkese merhaba! Bir hediye almamız lazım. Fikri olan var mı?"
+    },
+    "fr:everyday_09": {
+      "source": "Bonjour ! Je suis de la boutique. Je peux vous aider avec votre commande.",
+      "text": "Merhaba! Mağazadan yazıyorum. Siparişinizle ilgili yardımcı olabilirim."
+    },
+    "fr:everyday_10": {
+      "source": "Salut ! Je me demandais comment ça s'était passé. Mon conseil t'a servi ?",
+      "text": "Merhaba! Nasıl geçti diye merak ediyordum. Tavsiyem işe yaradı mı?"
+    },
+    "fr:everyday_11": {
+      "source": "Hé ! Le week-end arrive et je n'ai encore rien prévu. Vous faites quoi, vous deux ?",
+      "text": "Selam! Hafta sonu geliyor ve hâlâ bir planım yok. Siz ikiniz ne yapıyorsunuz?"
+    },
+    "fr:everyday_12": {
+      "source": "Salut ! Je dois prendre une décision importante et j'hésite sans arrêt. Tu peux m'aider à y réfléchir ?",
+      "text": "Merhaba! Önemli bir karar vermem lazım ve sürekli kararsız kalıyorum. Düşünmeme yardım eder misin?"
+    },
+    "fr:everyday_13": {
+      "source": "Bonjour ! Tu voulais me parler de quelque chose ? J'ai vu ton mot sur la porte.",
+      "text": "Merhaba! Bir şey mi konuşmak istiyordun? Kapıdaki notunu gördüm."
+    },
+    "fr:everyday_14": {
+      "source": "Dis, tu voulais me parler de quelque chose ? J'ai un moment, alors vas-y.",
+      "text": "Selam, bir şey mi konuşmak istiyordun? Biraz vaktim var, anlat bakalım."
+    },
+    "fr:everyday_15": {
+      "source": "Salut ! Tu as dit que quelque chose te dérangeait. Je t'écoute, mais j'espère qu'on pourra en parler calmement.",
+      "text": "Merhaba! Seni rahatsız eden bir şey olduğunu söyledin. Dinliyorum ama umarım sakin konuşabiliriz."
+    },
+    "fr:everyday_16": {
+      "source": "Franchement, réservons l'appart le moins cher pour le voyage et c'est réglé. Pourquoi se compliquer ?",
+      "text": "Açıkçası, gezi için en ucuz daireyi tutalım ve bitsin. Neden bu kadar kafa yoruyoruz?"
+    },
+    "fr:everyday_17": {
+      "source": "Hé ! Tout va bien ? Tu as l'air ailleurs ces derniers temps, et je ne savais pas si je devais en parler.",
+      "text": "Selam! Her şey yolunda mı? Son zamanlarda farklı görünüyorsun, konuyu açsam mı bilemedim."
+    },
+    "fr:everyday_18": {
+      "source": "Tu as entendu pour la fête ? Certains disent qu'elle est annulée, d'autres qu'elle est déplacée. Je suis complètement perdue.",
+      "text": "Parti meselesini duydun mu? Kimi iptal oldu diyor, kimi ertelendi. Kafam çok karıştı."
+    },
+    "fr:everyday_19": {
+      "source": "Bon, ce groupe est devenu un vrai chantier. Tout le monde est blessé et personne n'écoute. Tu peux nous aider à repartir de zéro ?",
+      "text": "Tamam, bu sohbet tam bir karmaşaya döndü. Herkes kırgın ve kimse dinlemiyor. Yeniden başlamamıza yardım eder misin?"
+    },
+    "fr:social_01": {
+      "source": "Salut ! Enchantée de te rencontrer. Je suis Mila. Comment ça va ?",
+      "text": "Merhaba! Tanıştığıma memnun oldum. Ben Mila. Bugün nasılsın?"
+    },
+    "fr:social_02": {
+      "source": "Salut ! Notre rendez-vous est demain à 10 h. Ça te va toujours ?",
+      "text": "Merhaba! Buluşmamız yarın saat 10'da. Hâlâ uygun mu?"
+    },
+    "fr:social_03": {
+      "source": "Bonjour ! Je peux t'aider ? Tu cherches quelque chose ?",
+      "text": "Merhaba! Yardım edebilir miyim? Bir şey mi arıyorsun?"
+    },
+    "fr:social_04": {
+      "source": "Salut ! J'espère que mon aide t'a servi. Tout va bien maintenant ?",
+      "text": "Merhaba! Umarım yardımım işe yaramıştır. Şimdi her şey yolunda mı?"
+    },
+    "fr:social_05": {
+      "source": "Salut ! Devine quoi ? J'ai eu mon permis de conduire aujourd'hui !",
+      "text": "Merhaba! Bil bakalım ne oldu? Bugün ehliyet sınavını geçtim!"
+    },
+    "fr:social_06": {
+      "source": "Bienvenue dans le groupe ! Dis-nous comment tu t'appelles et ce que tu aimes.",
+      "text": "Gruba hoş geldin! Lütfen bize adını ve nelerden hoşlandığını anlat."
+    },
+    "fr:social_07": {
+      "source": "Salut ! Ça fait une éternité qu'on ne s'est pas vus. Tu fais quoi cette semaine ?",
+      "text": "Selam! Görüşmeyeli asırlar oldu. Bu hafta neler yapıyorsun?"
+    },
+    "fr:social_08": {
+      "source": "Coucou ! Ta semaine se passe bien ? Tu as des projets pour le week-end ?",
+      "text": "Selam! Haftan nasıl geçiyor? Hafta sonu için planın var mı?"
+    },
+    "fr:social_09": {
+      "source": "Salut ! On se voit toujours ce soir ? J'ai vraiment hâte.",
+      "text": "Merhaba! Bu akşam hâlâ buluşuyor muyuz? Gerçekten sabırsızlanıyorum."
+    },
+    "fr:social_10": {
+      "source": "Salut ! C'était sympa de te voir hier. Le retour s'est bien passé ?",
+      "text": "Merhaba! Dün seni görmek çok güzeldi. Eve sorunsuz vardın mı?"
+    },
+    "fr:social_11": {
+      "source": "Salut tout le monde ! On parle de samedi depuis des jours, mais rien n'est décidé. Des idées ?",
+      "text": "Herkese merhaba! Günlerdir cumartesiyi konuşuyoruz ama hâlâ bir şey kararlaştırmadık. Fikri olan var mı?"
+    },
+    "fr:social_12": {
+      "source": "Salut. Désolé d'avoir été si silencieux. Le boulot me pèse beaucoup en ce moment.",
+      "text": "Selam. Bu kadar sessiz kaldığım için kusura bakma. Son zamanlarda iş çok yoğun."
+    },
+    "fr:social_13": {
+      "source": "Salut. J'ai vu ton message de ce matin, et je ne comprends pas bien. On peut en parler ?",
+      "text": "Merhaba. Bu sabahki mesajını gördüm ama ne demek istediğini tam anlamadım. Konuşabilir miyiz?"
+    },
+    "fr:social_14": {
+      "source": "Salut ! On organise une petite fête chez moi vendredi et j'aimerais beaucoup que tu viennes. Tu peux ?",
+      "text": "Merhaba! Cuma günü evimde küçük bir parti veriyoruz, gelirsen çok sevinirim. Gelebilir misin?"
+    },
+    "fr:social_15": {
+      "source": "Dis, j'ai réfléchi à la façon dont on organise nos plans en ce moment. On pourrait parler de ce que chacun attend ?",
+      "text": "Selam, son zamanlarda birlikte nasıl plan yaptığımızı düşünüyorum. Her birimizin ne beklediğini konuşabilir miyiz?"
+    },
+    "fr:social_16": {
+      "source": "Salut ! J'ai vu que tu voulais me parler de quelque chose. Je suis un peu occupée aujourd'hui, mais dis-moi.",
+      "text": "Merhaba! Bir şey konuşmak istediğini gördüm. Bugün biraz yoğunum ama anlat bakalım."
+    },
+    "fr:social_17": {
+      "source": "Hé ! Je compte sur toi pour tout le déménagement samedi, encore une fois, d'accord ? Tu es toujours si fiable, je savais que tu dirais oui.",
+      "text": "Selam! Bu cumartesi yine bütün taşınma için sana güveniyorum, tamam mı? Sen hep çok güvenilirsin, evet diyeceğini biliyordum."
+    },
+    "fr:social_18": {
+      "source": "Je vais être franc : je suis encore blessé par ce qui s'est passé. Mais je suis prêt à t'écouter. Que voulais-tu me dire ?",
+      "text": "Açık konuşacağım, olanlar yüzünden hâlâ biraz kırgınım. Ama seni dinlemeye hazırım. Ne söylemek istiyordun?"
+    },
+    "fr:social_19": {
+      "source": "Franchement, ce fil est devenu tendu. Les uns se sentent ignorés, les autres se sentent accusés. Quelqu'un peut nous aider à y voir clair ?",
+      "text": "Açıkçası bu yazışma gerildi. Yarımız görmezden gelindiğini, diğer yarısı suçlandığını hissediyor. Biri bunu çözmemize yardım edebilir mi?"
+    },
+    "fr:travel_01": {
+      "source": "Bonjour ! Tu es déjà en ville ? Le voyage s'est bien passé ?",
+      "text": "Merhaba! Şehre vardın mı? Yolculuk nasıldı?"
+    },
+    "fr:travel_02": {
+      "source": "Bonsoir ! Tu as besoin d'aide pour l'appartement ?",
+      "text": "İyi akşamlar! Daireyle ilgili yardıma ihtiyacın var mı?"
+    },
+    "fr:travel_03": {
+      "source": "Bonjour ! Merci pour votre réservation. Comment puis-je vous aider ?",
+      "text": "Merhaba! Rezervasyon için teşekkürler. Nasıl yardımcı olabilirim?"
+    },
+    "fr:travel_04": {
+      "source": "Bonjour ! Tu as besoin d'un transfert depuis l'aéroport ?",
+      "text": "Merhaba! Havalimanından transfere ihtiyacın var mı?"
+    },
+    "fr:travel_05": {
+      "source": "Salut ! Essaie le petit café de la gare. Il est super !",
+      "text": "Merhaba! İstasyonun yanındaki küçük kafeyi dene. Kahvesi harika!"
+    },
+    "fr:travel_06": {
+      "source": "Salut ! Où veux-tu aller ? Lea et moi, on peut t'expliquer le chemin.",
+      "text": "Merhaba! Nereye gitmek istiyorsun? Lea ile ben sana yolu gösterebiliriz."
+    },
+    "fr:travel_07": {
+      "source": "Bonjour ! Je vérifie ta réservation. Tu peux m'envoyer le numéro de réservation ?",
+      "text": "Merhaba! Rezervasyonunu kontrol ediyorum. Rezervasyon numarasını gönderebilir misin?"
+    },
+    "fr:travel_08": {
+      "source": "Salut ! Il est déjà sept heures. Tu arrives bientôt ? Je t'attends à l'appartement.",
+      "text": "Merhaba! Saat yedi oldu bile. Yakında gelir misin? Dairede bekliyorum."
+    },
+    "fr:travel_09": {
+      "source": "Bonjour ! Bienvenue chez nous. Avec qui je parle, et comment peut-on t'aider ?",
+      "text": "Merhaba! Pansiyonumuza hoş geldin. Kiminle yazışıyorum ve nasıl yardımcı olabiliriz?"
+    },
+    "fr:travel_10": {
+      "source": "Salut ! J'aimerais te montrer la vieille ville demain. On se retrouve où ?",
+      "text": "Merhaba! Yarın sana eski şehri göstermek istiyorum. Nerede buluşalım?"
+    },
+    "fr:travel_11": {
+      "source": "Bonjour, ici Niko du service clients. Clara est là aussi. Que pouvons-nous faire pour vous ?",
+      "text": "Merhaba, ben misafir hizmetlerinden Niko. Clara da burada. Sizin için ne yapabiliriz?"
+    },
+    "fr:travel_12": {
+      "source": "Salut ! Chacun semble avoir une idée différente pour le voyage. Tu peux nous aider à faire un plan ?",
+      "text": "Selam! Herkesin gezi için farklı bir fikri var gibi. Bir plan yapmamıza yardım eder misin?"
+    },
+    "fr:travel_13": {
+      "source": "Bonjour ! Lea, du service réservations. Je crois que vous souhaitez modifier quelque chose. De quelle réservation s'agit-il ?",
+      "text": "Merhaba! Ben rezervasyon bölümünden Lea. Bir şeyi değiştirmek istediğinizi anlıyorum. Hangi rezervasyonla ilgili?"
+    },
+    "fr:travel_14": {
+      "source": "Bonjour, ici Niko du service clientèle. Je crois que vous souhaitez nous signaler un problème. Comment puis-je vous aider ?",
+      "text": "İyi günler, ben müşteri hizmetlerinden Niko. Bir sorunu iletmek istediğinizi anlıyorum. Nasıl yardımcı olabilirim?"
+    },
+    "fr:travel_15": {
+      "source": "Salut ! J'ai entendu dire qu'il y a un problème avec notre correspondance de demain. Que s'est-il passé exactement ?",
+      "text": "Merhaba! Yarınki aktarmamızla ilgili bir sorun varmış. Tam olarak ne oldu?"
+    },
+    "fr:travel_16": {
+      "source": "Bonjour. J'ai vérifié notre système et aucune réservation n'apparaît à ce nom. Qu'avez-vous de votre côté ?",
+      "text": "Merhaba. Sistemimizi kontrol ettim, bu isimle bir rezervasyon görünmüyor. Sizin elinizde ne var?"
+    },
+    "fr:travel_17": {
+      "source": "Merci de nous avoir contactés. Nous avons lu votre signalement sur le séjour annulé. Pourriez-vous nous expliquer ce qui s'est passé de votre côté ?",
+      "text": "Bizimle iletişime geçtiğiniz için teşekkürler. İptal edilen konaklamayla ilgili bildiriminizi gördük. Sizin açınızdan neler olduğunu anlatabilir misiniz?"
+    },
+    "fr:travel_18": {
+      "source": "Merci d'intervenir. L'invité et l'hôte sont tous les deux contrariés, et le service est pris entre les deux. Par où voulez-vous commencer ?",
+      "text": "Araya girdiğiniz için teşekkürler. Misafir de ev sahibi de üzgün, hizmet ekibi de arada kaldı. Nereden başlamak istersiniz?"
+    },
+    "fr:travel_19": {
+      "source": "Tout le monde demande ce qui se passe et les messages s'accumulent. Peux-tu nous donner une vue claire de la situation ?",
+      "text": "Herkes neler olduğunu soruyor ve mesajlar birikiyor. Durumun ne olduğunu bize net bir şekilde anlatabilir misin?"
+    },
+    "fr:work_01": {
+      "source": "Salut ! Je suis Marina, de l'équipe. Comment tu t'appelles ?",
+      "text": "Merhaba! Ben ekipten Marina. Senin adın ne?"
+    },
+    "fr:work_02": {
+      "source": "Salut ! Je peux t'aider avec quelque chose ?",
+      "text": "Merhaba! Bugün sana nasıl yardımcı olabilirim?"
+    },
+    "fr:work_03": {
+      "source": "Salut ! Notre appel est demain. L'heure te convient toujours ?",
+      "text": "Merhaba! Görüşmemiz yarın. Saat hâlâ sana uygun mu?"
+    },
+    "fr:work_04": {
+      "source": "Bonjour ! La réunion commence dans dix minutes. Tu arrives ?",
+      "text": "Günaydın! Toplantı on dakika sonra başlıyor. Geliyor musun?"
+    },
+    "fr:work_05": {
+      "source": "Salut ! Je t'ai envoyé les instructions. Tout est clair ?",
+      "text": "Merhaba! Talimatları sana gönderdim. Her şey açık mı?"
+    },
+    "fr:work_06": {
+      "source": "Salut ! Peux-tu préparer le court rapport pour vendredi ? Marina et moi répondons à tes questions.",
+      "text": "Merhaba! Lütfen kısa raporu cumaya kadar hazırla. Marina ile ben sorularını yanıtlarız."
+    },
+    "fr:work_07": {
+      "source": "Salut ! Petit point : le projet est à rendre jeudi. Comment ça avance ?",
+      "text": "Merhaba! Hatırlatayım: proje perşembe teslim. Nasıl gidiyor?"
+    },
+    "fr:work_08": {
+      "source": "Salut ! Petite question : où en est-on avec la tâche du client ?",
+      "text": "Merhaba! Kısa bir soru: müşterinin işinde ne durumdayız?"
+    },
+    "fr:work_09": {
+      "source": "Salut ! Je suis Sam, de l'informatique. Marina dit que tu as besoin d'aide. Qu'y a-t-il ?",
+      "text": "Merhaba! Ben bilgi işlemden Sam. Marina yardıma ihtiyacın olduğunu söyledi. Sorun ne?"
+    },
+    "fr:work_10": {
+      "source": "Salut ! Comment s'est passé ton premier jour chez nous ? J'espère que c'était bien.",
+      "text": "Merhaba! Bizimle ilk günün nasıl geçti? Umarım iyiydi."
+    },
+    "fr:work_11": {
+      "source": "On parle du lancement depuis deux jours, mais je ne vois toujours pas qui fait quoi. Qu'en penses-tu ?",
+      "text": "İki gündür lansmanı konuşuyoruz ama hâlâ kimin ne yapacağını göremiyorum. Sen ne düşünüyorsun?"
+    },
+    "fr:work_12": {
+      "source": "Salut ! Tu as dit que quelque chose ne marchait pas. Tu peux m'expliquer ce qui se passe pour que je regarde ?",
+      "text": "Merhaba! Bir şeyin çalışmadığını söylemiştin. Ne olduğunu anlatır mısın, ben de bakayım?"
+    },
+    "fr:work_13": {
+      "source": "Salut ! J'ai entendu dire qu'on organise une réunion la semaine prochaine. Elle porte sur quoi ?",
+      "text": "Merhaba! Gelecek hafta bir toplantı ayarlıyormuşuz. Ne hakkında?"
+    },
+    "fr:work_14": {
+      "source": "Le client vient d'appeler : il veut la livraison mercredi au lieu de vendredi. Tu peux tenir ce délai ?",
+      "text": "Müşteri az önce aradı, teslimatı cuma yerine çarşamba istiyor. Yetiştirebilir misin?"
+    },
+    "fr:work_15": {
+      "source": "Salut ! Je viens de partager mon brouillon de proposition avec toi. J'aimerais avoir ton avis sincère avant de l'envoyer.",
+      "text": "Merhaba! Teklif taslağımı az önce seninle paylaştım. Göndermeden önce dürüst fikrini almak istiyorum."
+    },
+    "fr:work_16": {
+      "source": "On a trois projets urgents et seulement deux personnes disponibles ce mois-ci. Il faut décider de l'ordre. On commence par où ?",
+      "text": "Üç acil projemiz var ve bu ay sadece iki kişi müsait. Önce hangisinin geleceğine karar vermeliyiz. Nereden başlayalım?"
+    },
+    "fr:work_17": {
+      "source": "Pour information : nous avons décidé de faire passer toute l'équipe au nouvel outil d'ici la fin du mois. Dis-moi si quelque chose n'est pas clair.",
+      "text": "Bilgin olsun: ay sonuna kadar bütün ekibi yeni araca geçirmeye karar verdik. Anlaşılmayan bir şey olursa söyle."
+    },
+    "fr:work_18": {
+      "source": "Bonjour. L'intégration prend du retard, et mon équipe et celle de la plateforme se renvoient la responsabilité. Peux-tu nous aider à clarifier ?",
+      "text": "Merhaba. Entegrasyon gecikiyor ve benim ekibimle platform ekibi birbirini suçluyor. Bunu netleştirmemize yardım eder misin?"
+    },
+    "fr:work_19": {
+      "source": "Merci d'avoir pris le temps. Avant de discuter des conditions, j'aimerais savoir comment tu vois le projet et où tu situes les plus gros écarts.",
+      "text": "Zaman ayırdığın için teşekkürler. Şartları konuşmadan önce projeyi nasıl gördüğünü ve en büyük eksiklerin nerede olduğunu düşündüğünü duymak istiyorum."
+    }
+  }
 }

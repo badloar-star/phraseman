@@ -1,5 +1,1222 @@
 {
   "schemaVersion": "dialogue-v2-opening-translations.v1",
   "uiLang": "vi",
-  "entries": {}
+  "entries": {
+    "de:everyday_01": {
+      "source": "Hallo! Schön, von dir zu hören. Wie geht's dir?",
+      "text": "Chào bạn! Vui quá khi nhận được tin của bạn. Bạn khỏe không?"
+    },
+    "de:everyday_02": {
+      "source": "Hey! Was gibt's? Wolltest du mir etwas sagen?",
+      "text": "Này! Có chuyện gì thế? Bạn muốn nói gì với mình à?"
+    },
+    "de:everyday_03": {
+      "source": "Hallo! Große Neuigkeit: Ich habe heute die neue Stelle bekommen!",
+      "text": "Chào! Tin lớn đây: hôm nay mình được nhận vào công việc mới!"
+    },
+    "de:everyday_04": {
+      "source": "Hallo! Was gibt's Neues heute?",
+      "text": "Chào! Hôm nay có gì mới không?"
+    },
+    "de:everyday_05": {
+      "source": "Hallo. Gestern habe ich lange vor dem Café gewartet. Was ist passiert?",
+      "text": "Chào. Hôm qua mình đợi rất lâu trước quán cà phê. Đã có chuyện gì vậy?"
+    },
+    "de:everyday_06": {
+      "source": "Hallo! Ich habe ein paar Minuten Zeit. Was gibt's?",
+      "text": "Chào! Mình có vài phút rảnh. Có chuyện gì thế?"
+    },
+    "de:everyday_07": {
+      "source": "Hallo! Ich habe gehört, du suchst jemanden für dein Haustier. Für wann denn?",
+      "text": "Chào! Nghe nói bạn cần người trông thú cưng. Khi nào vậy?"
+    },
+    "de:everyday_08": {
+      "source": "Hallo zusammen! Wir müssen ein Geschenk kaufen. Hat jemand eine Idee?",
+      "text": "Chào cả nhà! Chúng ta cần mua một món quà. Có ai có ý tưởng không?"
+    },
+    "de:everyday_09": {
+      "source": "Hallo! Ich bin vom Shop. Ich kann Ihnen bei Ihrer Bestellung helfen.",
+      "text": "Xin chào! Tôi là nhân viên cửa hàng. Tôi có thể giúp quý khách với đơn hàng."
+    },
+    "de:everyday_10": {
+      "source": "Hallo! Ich habe mich gefragt, wie es gelaufen ist. Hat mein Rat geholfen?",
+      "text": "Chào! Mình cứ thắc mắc mọi chuyện thế nào rồi. Lời khuyên của mình có giúp được không?"
+    },
+    "de:everyday_11": {
+      "source": "Hey! Das Wochenende steht vor der Tür, und ich habe noch nichts vor. Was macht ihr beiden?",
+      "text": "Này! Sắp cuối tuần rồi mà mình chưa có kế hoạch gì. Hai bạn định làm gì?"
+    },
+    "de:everyday_12": {
+      "source": "Hallo! Ich muss etwas Wichtiges entscheiden und schwanke ständig hin und her. Kannst du mir beim Nachdenken helfen?",
+      "text": "Chào! Mình phải quyết định một chuyện lớn mà cứ phân vân mãi. Bạn giúp mình suy nghĩ được không?"
+    },
+    "de:everyday_13": {
+      "source": "Hallo! Wolltest du mit mir über etwas sprechen? Ich habe deinen Zettel an der Tür gesehen.",
+      "text": "Chào! Bạn muốn nói chuyện gì à? Mình thấy mẩu giấy của bạn trên cửa."
+    },
+    "de:everyday_14": {
+      "source": "Hey, du wolltest über etwas reden? Ich habe gerade etwas Zeit, also schieß los.",
+      "text": "Này, bạn muốn nói chuyện gì à? Mình đang rảnh một chút, cứ nói đi."
+    },
+    "de:everyday_15": {
+      "source": "Hallo! Du hast gesagt, dass dich etwas stört. Ich höre zu, aber ich hoffe, wir können ruhig darüber sprechen.",
+      "text": "Chào! Bạn nói có chuyện làm bạn khó chịu. Mình đang nghe đây, mong là mình nói chuyện bình tĩnh nhé."
+    },
+    "de:everyday_16": {
+      "source": "Ehrlich gesagt, buchen wir einfach die billigste Wohnung für die Reise und fertig. Warum so viel überlegen?",
+      "text": "Thật lòng mà nói, cứ đặt căn hộ rẻ nhất cho chuyến đi là xong. Nghĩ nhiều làm gì?"
+    },
+    "de:everyday_17": {
+      "source": "Hey! Alles okay? Du wirkst in letzter Zeit anders, und ich wusste nicht, ob ich es ansprechen soll.",
+      "text": "Này! Mọi chuyện ổn chứ? Dạo này trông bạn khác lắm, mình không biết có nên hỏi không."
+    },
+    "de:everyday_18": {
+      "source": "Hast du das mit der Feier gehört? Manche sagen, sie ist abgesagt, andere, sie wurde verschoben. Ich bin total verwirrt.",
+      "text": "Bạn nghe chuyện bữa tiệc chưa? Người thì bảo hủy, người lại bảo dời. Mình rối quá."
+    },
+    "de:everyday_19": {
+      "source": "Also, dieser Chat ist zu einem Chaos geworden. Alle sind verletzt, und niemand hört zu. Kannst du uns helfen, neu anzufangen?",
+      "text": "Thôi, nhóm chat này loạn hết cả rồi. Ai cũng tổn thương mà chẳng ai chịu nghe. Bạn giúp tụi mình làm lại từ đầu được không?"
+    },
+    "de:social_01": {
+      "source": "Hallo! Schön, dich kennenzulernen. Ich bin Mila. Wie geht es dir?",
+      "text": "Chào bạn! Rất vui được làm quen. Mình là Mila. Hôm nay bạn thế nào?"
+    },
+    "de:social_02": {
+      "source": "Hallo! Unser Treffen ist morgen um 10. Passt das noch?",
+      "text": "Chào! Mình hẹn nhau lúc 10 giờ sáng mai nhé. Bạn vẫn đi được chứ?"
+    },
+    "de:social_03": {
+      "source": "Hallo! Kann ich dir helfen? Suchst du etwas?",
+      "text": "Chào! Mình giúp gì được không? Bạn đang tìm gì à?"
+    },
+    "de:social_04": {
+      "source": "Hallo! Ich hoffe, meine Hilfe war nützlich. Ist jetzt alles gut?",
+      "text": "Chào! Mong là mình đã giúp được bạn. Giờ mọi thứ ổn chưa?"
+    },
+    "de:social_05": {
+      "source": "Hallo! Stell dir vor: Ich habe heute meine Führerscheinprüfung bestanden!",
+      "text": "Chào! Đoán xem nào? Hôm nay mình thi đậu bằng lái rồi!"
+    },
+    "de:social_06": {
+      "source": "Willkommen in der Gruppe! Sag uns bitte, wie du heißt und was du gern machst.",
+      "text": "Chào mừng bạn đến với nhóm! Hãy cho mọi người biết tên bạn và bạn thích làm gì nhé."
+    },
+    "de:social_07": {
+      "source": "Hallo! Wir haben uns ewig nicht gesehen. Was hast du diese Woche vor?",
+      "text": "Chào! Lâu lắm rồi mới gặp lại. Tuần này bạn định làm gì?"
+    },
+    "de:social_08": {
+      "source": "Hey! Wie läuft deine Woche? Hast du schon Pläne fürs Wochenende?",
+      "text": "Này! Tuần này của bạn thế nào? Cuối tuần có kế hoạch gì chưa?"
+    },
+    "de:social_09": {
+      "source": "Hallo! Treffen wir uns heute Abend noch? Ich freue mich schon sehr.",
+      "text": "Chào! Tối nay mình vẫn gặp nhau chứ? Mình mong lắm."
+    },
+    "de:social_10": {
+      "source": "Hallo! Es war schön, dich gestern zu sehen. Bist du gut nach Hause gekommen?",
+      "text": "Chào! Hôm qua gặp bạn vui lắm. Bạn về nhà an toàn chứ?"
+    },
+    "de:social_11": {
+      "source": "Hallo zusammen! Wir reden seit Tagen über Samstag, aber noch ist nichts geplant. Hat jemand eine Idee?",
+      "text": "Chào cả nhà! Bàn chuyện thứ Bảy mấy hôm rồi mà vẫn chưa chốt được gì. Có ai có ý tưởng không?"
+    },
+    "de:social_12": {
+      "source": "Hey. Tut mir leid, dass ich so still war. Die Arbeit ist gerade ziemlich viel.",
+      "text": "Chào. Xin lỗi vì dạo này mình im lặng quá. Công việc nhiều quá."
+    },
+    "de:social_13": {
+      "source": "Hallo. Ich habe deine Nachricht von heute Morgen gesehen und bin nicht sicher, was du meinst. Können wir reden?",
+      "text": "Chào. Mình thấy tin nhắn của bạn sáng nay mà không chắc bạn muốn nói gì. Mình nói chuyện được không?"
+    },
+    "de:social_14": {
+      "source": "Hallo! Am Freitag gibt es bei mir eine kleine Feier, und ich würde mich freuen, wenn du kommst. Hast du Zeit?",
+      "text": "Chào! Thứ Sáu này mình tổ chức một bữa tiệc nhỏ ở nhà, rất mong bạn đến. Bạn đến được không?"
+    },
+    "de:social_15": {
+      "source": "Hey, ich habe darüber nachgedacht, wie wir unsere Pläne zuletzt organisiert haben. Können wir darüber reden, was jeder erwartet?",
+      "text": "Này, dạo này mình hay nghĩ về cách tụi mình lên kế hoạch cùng nhau. Mình nói chuyện xem mỗi người mong đợi gì nhé?"
+    },
+    "de:social_16": {
+      "source": "Hallo! Ich habe gesehen, dass du etwas besprechen wolltest. Ich bin heute etwas im Stress, aber erzähl mal.",
+      "text": "Chào! Mình thấy bạn muốn nói chuyện. Hôm nay mình hơi bận, nhưng cứ kể đi."
+    },
+    "de:social_17": {
+      "source": "Hey! Ich zähle am Samstag wieder auf dich beim ganzen Umzug, okay? Du bist immer so zuverlässig, ich wusste, dass du Ja sagst.",
+      "text": "Này! Thứ Bảy này mình lại trông cậy vào bạn cả buổi chuyển nhà nhé? Bạn lúc nào cũng đáng tin, mình biết bạn sẽ đồng ý mà."
+    },
+    "de:social_18": {
+      "source": "Ich bin ehrlich: Ich bin wegen der Sache noch verletzt. Aber ich höre dir zu. Was wolltest du mir sagen?",
+      "text": "Thật lòng thì mình vẫn còn hơi buồn về chuyện đã xảy ra. Nhưng mình sẵn sàng nghe bạn nói. Bạn muốn nói gì?"
+    },
+    "de:social_19": {
+      "source": "Ehrlich gesagt ist dieser Verlauf angespannt geworden. Die einen fühlen sich übergangen, die anderen beschuldigt. Kann uns jemand helfen, das zu klären?",
+      "text": "Thật lòng mà nói, cuộc trò chuyện này căng thẳng quá rồi. Một nửa thấy bị phớt lờ, nửa còn lại thấy bị đổ lỗi. Có ai giúp tụi mình gỡ rối không?"
+    },
+    "de:travel_01": {
+      "source": "Hallo! Bist du schon in der Stadt? Wie war die Reise?",
+      "text": "Chào! Bạn đến thành phố chưa? Chuyến đi thế nào?"
+    },
+    "de:travel_02": {
+      "source": "Guten Abend! Brauchst du Hilfe mit der Wohnung?",
+      "text": "Chào buổi tối! Bạn cần giúp gì với căn hộ không?"
+    },
+    "de:travel_03": {
+      "source": "Hallo! Danke für Ihre Buchung. Wie kann ich Ihnen helfen?",
+      "text": "Xin chào! Cảm ơn đã đặt phòng. Tôi có thể giúp gì?"
+    },
+    "de:travel_04": {
+      "source": "Hallo! Brauchst du einen Transfer vom Flughafen?",
+      "text": "Chào! Bạn cần xe đón từ sân bay không?"
+    },
+    "de:travel_05": {
+      "source": "Hallo! Probier das kleine Café am Bahnhof. Der Kaffee dort ist super!",
+      "text": "Chào! Thử quán cà phê nhỏ gần nhà ga nhé. Cà phê ở đó ngon lắm!"
+    },
+    "de:travel_06": {
+      "source": "Hallo! Wohin möchtest du? Lea und ich können dir den Weg erklären.",
+      "text": "Chào! Bạn muốn đi đâu? Mình và Lea có thể chỉ đường cho bạn."
+    },
+    "de:travel_07": {
+      "source": "Hallo! Ich prüfe gerade deine Buchung. Kannst du mir die Buchungsnummer schicken?",
+      "text": "Chào! Mình đang kiểm tra đặt chỗ của bạn. Bạn gửi mình mã đặt chỗ được không?"
+    },
+    "de:travel_08": {
+      "source": "Hallo! Es ist schon sieben Uhr. Kommst du bald? Ich warte in der Wohnung.",
+      "text": "Chào! Đã bảy giờ rồi. Bạn sắp tới chưa? Mình đang đợi ở căn hộ."
+    },
+    "de:travel_09": {
+      "source": "Hallo! Willkommen bei uns. Mit wem schreibe ich, und wie können wir helfen?",
+      "text": "Xin chào! Chào mừng bạn đến nhà nghỉ của chúng tôi. Mình đang nói chuyện với ai và có thể giúp gì?"
+    },
+    "de:travel_10": {
+      "source": "Hallo! Ich möchte dir morgen die Altstadt zeigen. Wo treffen wir uns?",
+      "text": "Chào! Mai mình muốn dẫn bạn đi xem phố cổ. Mình gặp nhau ở đâu?"
+    },
+    "de:travel_11": {
+      "source": "Guten Tag, hier ist Niko vom Gästeservice. Clara ist auch dabei. Was können wir für Sie tun?",
+      "text": "Xin chào, tôi là Niko từ bộ phận hỗ trợ khách. Clara cũng ở đây. Chúng tôi có thể giúp gì cho quý khách?"
+    },
+    "de:travel_12": {
+      "source": "Hallo! Jeder scheint eine andere Idee für die Reise zu haben. Kannst du uns helfen, einen Plan zu machen?",
+      "text": "Này! Hình như ai cũng có ý riêng cho chuyến đi. Bạn giúp tụi mình lên kế hoạch được không?"
+    },
+    "de:travel_13": {
+      "source": "Hallo! Hier ist Lea von der Reservierung. Sie möchten etwas ändern, richtig? Um welche Buchung geht es?",
+      "text": "Xin chào! Tôi là Lea ở bộ phận đặt phòng. Tôi hiểu là quý khách muốn thay đổi điều gì đó. Đó là đặt phòng nào ạ?"
+    },
+    "de:travel_14": {
+      "source": "Guten Tag, hier ist Niko vom Kundenservice. Wie ich höre, möchten Sie ein Anliegen vorbringen. Wie kann ich Ihnen helfen?",
+      "text": "Chào buổi chiều, tôi là Niko từ bộ phận chăm sóc khách hàng. Tôi hiểu là quý khách muốn phản ánh một vấn đề. Tôi có thể giúp gì ạ?"
+    },
+    "de:travel_15": {
+      "source": "Hallo! Ich habe gehört, dass es ein Problem mit unserer Verbindung morgen gibt. Was ist genau passiert?",
+      "text": "Chào! Nghe nói chuyến nối tiếp ngày mai của tụi mình có vấn đề. Chính xác là chuyện gì vậy?"
+    },
+    "de:travel_16": {
+      "source": "Hallo. Ich habe unser System geprüft, und unter diesem Namen ist keine Buchung zu finden. Was liegt Ihnen vor?",
+      "text": "Xin chào. Tôi đã kiểm tra hệ thống và không thấy đặt phòng nào dưới tên đó. Quý khách có thông tin gì không ạ?"
+    },
+    "de:travel_17": {
+      "source": "Danke für Ihre Nachricht. Wir haben Ihre Meldung zum stornierten Aufenthalt gesehen. Könnten Sie uns schildern, was aus Ihrer Sicht passiert ist?",
+      "text": "Cảm ơn quý khách đã liên hệ. Chúng tôi đã xem phản ánh về kỳ lưu trú bị hủy. Quý khách có thể kể lại sự việc từ phía mình không ạ?"
+    },
+    "de:travel_18": {
+      "source": "Danke, dass du vermittelst. Gast und Gastgeber sind beide verärgert, und der Service steckt dazwischen. Wo möchtest du anfangen?",
+      "text": "Cảm ơn đã đứng ra giúp. Khách và chủ nhà đều bực, còn đội dịch vụ thì kẹt ở giữa. Nên bắt đầu từ đâu ạ?"
+    },
+    "de:travel_19": {
+      "source": "Alle fragen, was los ist, und die Nachrichten häufen sich. Kannst du uns ein klares Bild davon geben, wo wir stehen?",
+      "text": "Mọi người đều hỏi chuyện gì đang xảy ra, tin nhắn cứ dồn lên. Bạn có thể cho tụi mình biết rõ tình hình hiện giờ không?"
+    },
+    "de:work_01": {
+      "source": "Hallo! Ich bin Marina aus dem Team. Wie heißt du?",
+      "text": "Chào! Mình là Marina trong nhóm. Bạn tên gì?"
+    },
+    "de:work_02": {
+      "source": "Hallo! Wobei kann ich dir heute helfen?",
+      "text": "Chào! Hôm nay mình giúp gì được cho bạn?"
+    },
+    "de:work_03": {
+      "source": "Hallo! Unser Anruf ist morgen. Passt die Uhrzeit noch für dich?",
+      "text": "Chào! Cuộc gọi của tụi mình là ngày mai. Giờ đó bạn vẫn tiện chứ?"
+    },
+    "de:work_04": {
+      "source": "Guten Morgen! Die Besprechung beginnt in zehn Minuten. Kommst du?",
+      "text": "Chào buổi sáng! Mười phút nữa cuộc họp bắt đầu. Bạn có đến không?"
+    },
+    "de:work_05": {
+      "source": "Hallo! Ich habe dir die Anleitung geschickt. Ist alles klar?",
+      "text": "Chào! Mình đã gửi hướng dẫn cho bạn rồi. Mọi thứ rõ chưa?"
+    },
+    "de:work_06": {
+      "source": "Hallo! Bitte bereite den kurzen Bericht bis Freitag vor. Marina und ich beantworten Fragen.",
+      "text": "Chào! Bạn chuẩn bị bản báo cáo ngắn trước thứ Sáu nhé. Mình và Marina sẽ giải đáp thắc mắc."
+    },
+    "de:work_07": {
+      "source": "Hallo! Kurze Nachfrage: Das Projekt ist bis Donnerstag fällig. Wie läuft es?",
+      "text": "Chào! Mình hỏi chút: dự án phải nộp vào thứ Năm. Tiến độ thế nào rồi?"
+    },
+    "de:work_08": {
+      "source": "Hallo! Kurze Frage: Wie weit sind wir mit der Kundenaufgabe?",
+      "text": "Chào! Hỏi nhanh chút: việc của khách hàng tới đâu rồi?"
+    },
+    "de:work_09": {
+      "source": "Hallo! Ich bin Sam von der IT. Marina sagt, du brauchst Hilfe. Was ist los?",
+      "text": "Chào! Mình là Sam bên IT. Marina bảo bạn cần giúp. Có vấn đề gì vậy?"
+    },
+    "de:work_10": {
+      "source": "Hallo! Wie war dein erster Tag bei uns? Ich hoffe, es ging gut.",
+      "text": "Chào! Ngày đầu tiên làm việc với tụi mình thế nào? Mong là mọi thứ suôn sẻ."
+    },
+    "de:work_11": {
+      "source": "Wir reden seit zwei Tagen über den Launch, aber ich sehe immer noch nicht, wer was macht. Was meinst du?",
+      "text": "Tụi mình bàn chuyện ra mắt hai ngày rồi mà mình vẫn chưa rõ ai làm gì. Bạn nghĩ sao?"
+    },
+    "de:work_12": {
+      "source": "Hallo! Du hast erwähnt, dass etwas nicht funktioniert. Kannst du mir erklären, was los ist, damit ich nachsehen kann?",
+      "text": "Chào! Bạn nói có gì đó không chạy. Kể mình nghe chuyện gì đang xảy ra để mình kiểm tra nhé?"
+    },
+    "de:work_13": {
+      "source": "Hallo! Ich habe gehört, dass nächste Woche eine Besprechung geplant ist. Worum geht es dabei?",
+      "text": "Chào! Nghe nói tuần sau tụi mình có một cuộc họp. Họp về chuyện gì vậy?"
+    },
+    "de:work_14": {
+      "source": "Der Kunde hat gerade angerufen und braucht die Lieferung am Mittwoch statt am Freitag. Kannst du das möglich machen?",
+      "text": "Khách vừa gọi, họ cần giao hàng vào thứ Tư thay vì thứ Sáu. Bạn xoay xở được không?"
+    },
+    "de:work_15": {
+      "source": "Hallo! Ich habe gerade meinen Angebotsentwurf mit dir geteilt. Ich hätte gern deine ehrliche Meinung, bevor ich ihn abschicke.",
+      "text": "Chào! Mình vừa chia sẻ bản nháp đề xuất cho bạn. Mình rất muốn nghe ý kiến thật lòng của bạn trước khi gửi đi."
+    },
+    "de:work_16": {
+      "source": "Wir haben drei dringende Projekte, aber diesen Monat nur zwei verfügbare Leute. Wir müssen entscheiden, was zuerst kommt. Wo fangen wir an?",
+      "text": "Tụi mình có ba dự án gấp mà tháng này chỉ có hai người rảnh. Cần quyết định việc nào làm trước. Bắt đầu từ đâu đây?"
+    },
+    "de:work_17": {
+      "source": "Zu deiner Information: Wir haben beschlossen, das ganze Team bis Monatsende auf das neue Tool umzustellen. Sag Bescheid, falls etwas unklar ist.",
+      "text": "Báo để bạn biết: tụi mình đã quyết định chuyển cả nhóm sang công cụ mới trước cuối tháng. Có gì chưa rõ thì cứ nói nhé."
+    },
+    "de:work_18": {
+      "source": "Hallo. Die Integration verzögert sich, und mein Team und das Plattform-Team schieben sich gegenseitig die Schuld zu. Kannst du uns helfen, das zu klären?",
+      "text": "Chào. Việc tích hợp đang chậm, và nhóm mình với nhóm nền tảng cứ đổ lỗi cho nhau. Bạn giúp tụi mình làm rõ được không?"
+    },
+    "de:work_19": {
+      "source": "Danke, dass du dir Zeit genommen hast. Bevor wir über die Konditionen sprechen, würde ich gern hören, wie du das Projekt siehst und wo die größten Lücken sind.",
+      "text": "Cảm ơn bạn đã dành thời gian. Trước khi bàn điều khoản, mình muốn nghe bạn nhìn nhận dự án thế nào và theo bạn chỗ thiếu sót lớn nhất ở đâu."
+    },
+    "en:everyday_01": {
+      "source": "Hi! It's nice to hear from you. How are you?",
+      "text": "Chào bạn! Vui quá khi nhận được tin của bạn. Bạn khỏe không?"
+    },
+    "en:everyday_02": {
+      "source": "Hey! What's up? Did you want to tell me something?",
+      "text": "Này! Có chuyện gì thế? Bạn muốn nói gì với mình à?"
+    },
+    "en:everyday_03": {
+      "source": "Hi! Big news: I got the new job today!",
+      "text": "Chào! Tin lớn đây: hôm nay mình được nhận vào công việc mới!"
+    },
+    "en:everyday_04": {
+      "source": "Hi! What's new with you today?",
+      "text": "Chào! Hôm nay có gì mới không?"
+    },
+    "en:everyday_05": {
+      "source": "Hi. Yesterday I waited a long time outside the café. What happened?",
+      "text": "Chào. Hôm qua mình đợi rất lâu trước quán cà phê. Đã có chuyện gì vậy?"
+    },
+    "en:everyday_06": {
+      "source": "Hi! I have a few free minutes. What's up?",
+      "text": "Chào! Mình có vài phút rảnh. Có chuyện gì thế?"
+    },
+    "en:everyday_07": {
+      "source": "Hi! I heard you need someone for your pet. When is it?",
+      "text": "Chào! Nghe nói bạn cần người trông thú cưng. Khi nào vậy?"
+    },
+    "en:everyday_08": {
+      "source": "Hi everyone! We need to buy a gift. Any ideas?",
+      "text": "Chào cả nhà! Chúng ta cần mua một món quà. Có ai có ý tưởng không?"
+    },
+    "en:everyday_09": {
+      "source": "Hello! I'm from the shop. I can help you with your order.",
+      "text": "Xin chào! Tôi là nhân viên cửa hàng. Tôi có thể giúp quý khách với đơn hàng."
+    },
+    "en:everyday_10": {
+      "source": "Hi! I've been wondering how it went. Did my advice help?",
+      "text": "Chào! Mình cứ thắc mắc mọi chuyện thế nào rồi. Lời khuyên của mình có giúp được không?"
+    },
+    "en:everyday_11": {
+      "source": "Hey! The weekend is coming and I have no plans yet. What are you two doing?",
+      "text": "Này! Sắp cuối tuần rồi mà mình chưa có kế hoạch gì. Hai bạn định làm gì?"
+    },
+    "en:everyday_12": {
+      "source": "Hi! I have to decide something big and I keep going back and forth. Can you help me think it through?",
+      "text": "Chào! Mình phải quyết định một chuyện lớn mà cứ phân vân mãi. Bạn giúp mình suy nghĩ được không?"
+    },
+    "en:everyday_13": {
+      "source": "Hello! Did you want to talk about something? I saw your note on the door.",
+      "text": "Chào! Bạn muốn nói chuyện gì à? Mình thấy mẩu giấy của bạn trên cửa."
+    },
+    "en:everyday_14": {
+      "source": "Hey, you wanted to talk about something? I'm free for a bit, so go ahead.",
+      "text": "Này, bạn muốn nói chuyện gì à? Mình đang rảnh một chút, cứ nói đi."
+    },
+    "en:everyday_15": {
+      "source": "Hi! You said something has been bothering you. I'm listening, but I hope we can talk calmly.",
+      "text": "Chào! Bạn nói có chuyện làm bạn khó chịu. Mình đang nghe đây, mong là mình nói chuyện bình tĩnh nhé."
+    },
+    "en:everyday_16": {
+      "source": "Honestly, let's just book the cheapest flat for the trip and be done. Why overthink it?",
+      "text": "Thật lòng mà nói, cứ đặt căn hộ rẻ nhất cho chuyến đi là xong. Nghĩ nhiều làm gì?"
+    },
+    "en:everyday_17": {
+      "source": "Hey! Is everything okay? You've seemed different lately, and I wasn't sure whether to bring it up.",
+      "text": "Này! Mọi chuyện ổn chứ? Dạo này trông bạn khác lắm, mình không biết có nên hỏi không."
+    },
+    "en:everyday_18": {
+      "source": "Have you heard about the party? Some say it's cancelled, others say it's moved. I'm so confused.",
+      "text": "Bạn nghe chuyện bữa tiệc chưa? Người thì bảo hủy, người lại bảo dời. Mình rối quá."
+    },
+    "en:everyday_19": {
+      "source": "Okay, this chat has turned into a mess. Everyone is hurt and nobody is listening. Could you help us start over?",
+      "text": "Thôi, nhóm chat này loạn hết cả rồi. Ai cũng tổn thương mà chẳng ai chịu nghe. Bạn giúp tụi mình làm lại từ đầu được không?"
+    },
+    "en:social_01": {
+      "source": "Hi! Nice to meet you. I'm Mila. How are you today?",
+      "text": "Chào bạn! Rất vui được làm quen. Mình là Mila. Hôm nay bạn thế nào?"
+    },
+    "en:social_02": {
+      "source": "Hi! Our meeting is tomorrow at 10. Still okay for you?",
+      "text": "Chào! Mình hẹn nhau lúc 10 giờ sáng mai nhé. Bạn vẫn đi được chứ?"
+    },
+    "en:social_03": {
+      "source": "Hello! Can I help you? Are you looking for something?",
+      "text": "Chào! Mình giúp gì được không? Bạn đang tìm gì à?"
+    },
+    "en:social_04": {
+      "source": "Hi! I hope my help was useful. Is everything okay now?",
+      "text": "Chào! Mong là mình đã giúp được bạn. Giờ mọi thứ ổn chưa?"
+    },
+    "en:social_05": {
+      "source": "Hi! Guess what? I passed my driving test today!",
+      "text": "Chào! Đoán xem nào? Hôm nay mình thi đậu bằng lái rồi!"
+    },
+    "en:social_06": {
+      "source": "Welcome to the group! Please tell us your name and what you enjoy.",
+      "text": "Chào mừng bạn đến với nhóm! Hãy cho mọi người biết tên bạn và bạn thích làm gì nhé."
+    },
+    "en:social_07": {
+      "source": "Hey! I haven't seen you for ages. What are you up to this week?",
+      "text": "Chào! Lâu lắm rồi mới gặp lại. Tuần này bạn định làm gì?"
+    },
+    "en:social_08": {
+      "source": "Hey! How's your week going? Any plans for the weekend?",
+      "text": "Này! Tuần này của bạn thế nào? Cuối tuần có kế hoạch gì chưa?"
+    },
+    "en:social_09": {
+      "source": "Hi! Are we still meeting tonight? I'm really looking forward to it.",
+      "text": "Chào! Tối nay mình vẫn gặp nhau chứ? Mình mong lắm."
+    },
+    "en:social_10": {
+      "source": "Hi! It was nice to see you yesterday. Did you get home okay?",
+      "text": "Chào! Hôm qua gặp bạn vui lắm. Bạn về nhà an toàn chứ?"
+    },
+    "en:social_11": {
+      "source": "Hey everyone! We keep talking about Saturday, but nothing is decided yet. Any ideas?",
+      "text": "Chào cả nhà! Bàn chuyện thứ Bảy mấy hôm rồi mà vẫn chưa chốt được gì. Có ai có ý tưởng không?"
+    },
+    "en:social_12": {
+      "source": "Hey. Sorry I've been so quiet. Work has been a lot lately.",
+      "text": "Chào. Xin lỗi vì dạo này mình im lặng quá. Công việc nhiều quá."
+    },
+    "en:social_13": {
+      "source": "Hi. I saw your message this morning, and I'm not sure what you meant. Can we talk?",
+      "text": "Chào. Mình thấy tin nhắn của bạn sáng nay mà không chắc bạn muốn nói gì. Mình nói chuyện được không?"
+    },
+    "en:social_14": {
+      "source": "Hi! We're having a small party at my place on Friday, and I'd love for you to come. Can you make it?",
+      "text": "Chào! Thứ Sáu này mình tổ chức một bữa tiệc nhỏ ở nhà, rất mong bạn đến. Bạn đến được không?"
+    },
+    "en:social_15": {
+      "source": "Hey, I've been thinking about how we plan things together lately. Can we talk about what each of us expects?",
+      "text": "Này, dạo này mình hay nghĩ về cách tụi mình lên kế hoạch cùng nhau. Mình nói chuyện xem mỗi người mong đợi gì nhé?"
+    },
+    "en:social_16": {
+      "source": "Hi! I saw you wanted to talk about something. I'm a bit busy today, but tell me what's up.",
+      "text": "Chào! Mình thấy bạn muốn nói chuyện. Hôm nay mình hơi bận, nhưng cứ kể đi."
+    },
+    "en:social_17": {
+      "source": "Hey! I'm counting on you for the whole move this Saturday again, okay? You're always so reliable, I knew you'd say yes.",
+      "text": "Này! Thứ Bảy này mình lại trông cậy vào bạn cả buổi chuyển nhà nhé? Bạn lúc nào cũng đáng tin, mình biết bạn sẽ đồng ý mà."
+    },
+    "en:social_18": {
+      "source": "I'll be honest, I'm still a bit hurt about what happened. I'm willing to hear you out, though. What did you want to say?",
+      "text": "Thật lòng thì mình vẫn còn hơi buồn về chuyện đã xảy ra. Nhưng mình sẵn sàng nghe bạn nói. Bạn muốn nói gì?"
+    },
+    "en:social_19": {
+      "source": "Honestly, this thread has gotten tense. Half of us feel ignored and the other half feel blamed. Could someone help us sort it out?",
+      "text": "Thật lòng mà nói, cuộc trò chuyện này căng thẳng quá rồi. Một nửa thấy bị phớt lờ, nửa còn lại thấy bị đổ lỗi. Có ai giúp tụi mình gỡ rối không?"
+    },
+    "en:travel_01": {
+      "source": "Hello! Are you here yet? How was your trip?",
+      "text": "Chào! Bạn đến thành phố chưa? Chuyến đi thế nào?"
+    },
+    "en:travel_02": {
+      "source": "Hello! Do you need help with the apartment?",
+      "text": "Chào! Bạn cần giúp gì với căn hộ không?"
+    },
+    "en:travel_03": {
+      "source": "Hello! Thank you for your booking. How can I help you?",
+      "text": "Xin chào! Cảm ơn đã đặt phòng. Tôi có thể giúp gì?"
+    },
+    "en:travel_04": {
+      "source": "Hello! Do you need a ride from the airport?",
+      "text": "Chào! Bạn cần xe đón từ sân bay không?"
+    },
+    "en:travel_05": {
+      "source": "Hi! Try the small café near the station. The coffee is great!",
+      "text": "Chào! Thử quán cà phê nhỏ gần nhà ga nhé. Cà phê ở đó ngon lắm!"
+    },
+    "en:travel_06": {
+      "source": "Hi! Where do you want to go? Lea and I can show you the way.",
+      "text": "Chào! Bạn muốn đi đâu? Mình và Lea có thể chỉ đường cho bạn."
+    },
+    "en:travel_07": {
+      "source": "Hello! I'm checking your booking. Can you send me the booking number, please?",
+      "text": "Chào! Mình đang kiểm tra đặt chỗ của bạn. Bạn gửi mình mã đặt chỗ được không?"
+    },
+    "en:travel_08": {
+      "source": "Hi! It's already seven o'clock. Are you coming soon? I'm waiting at the apartment.",
+      "text": "Chào! Đã bảy giờ rồi. Bạn sắp tới chưa? Mình đang đợi ở căn hộ."
+    },
+    "en:travel_09": {
+      "source": "Hello! Welcome to our guesthouse. Who am I writing to, and how can we help?",
+      "text": "Xin chào! Chào mừng bạn đến nhà nghỉ của chúng tôi. Mình đang nói chuyện với ai và có thể giúp gì?"
+    },
+    "en:travel_10": {
+      "source": "Hi! I'd like to show you the old town tomorrow. Where shall we meet?",
+      "text": "Chào! Mai mình muốn dẫn bạn đi xem phố cổ. Mình gặp nhau ở đâu?"
+    },
+    "en:travel_11": {
+      "source": "Hello, this is Niko from guest support. Clara is also here. What can we do for you?",
+      "text": "Xin chào, tôi là Niko từ bộ phận hỗ trợ khách. Clara cũng ở đây. Chúng tôi có thể giúp gì cho quý khách?"
+    },
+    "en:travel_12": {
+      "source": "Hey! Everyone seems to have a different idea for the trip. Can you help us figure out a plan?",
+      "text": "Này! Hình như ai cũng có ý riêng cho chuyến đi. Bạn giúp tụi mình lên kế hoạch được không?"
+    },
+    "en:travel_13": {
+      "source": "Hello! Lea from reservations here. I understand you'd like to change something. Which booking is it about?",
+      "text": "Xin chào! Tôi là Lea ở bộ phận đặt phòng. Tôi hiểu là quý khách muốn thay đổi điều gì đó. Đó là đặt phòng nào ạ?"
+    },
+    "en:travel_14": {
+      "source": "Good afternoon, this is Niko from customer service. I understand you wanted to raise a concern. How can I help?",
+      "text": "Chào buổi chiều, tôi là Niko từ bộ phận chăm sóc khách hàng. Tôi hiểu là quý khách muốn phản ánh một vấn đề. Tôi có thể giúp gì ạ?"
+    },
+    "en:travel_15": {
+      "source": "Hi! I heard there's a problem with our connection tomorrow. What exactly happened?",
+      "text": "Chào! Nghe nói chuyến nối tiếp ngày mai của tụi mình có vấn đề. Chính xác là chuyện gì vậy?"
+    },
+    "en:travel_16": {
+      "source": "Hello. I've checked our system, and it shows no booking under that name. Can you tell me what you have on your side?",
+      "text": "Xin chào. Tôi đã kiểm tra hệ thống và không thấy đặt phòng nào dưới tên đó. Quý khách có thông tin gì không ạ?"
+    },
+    "en:travel_17": {
+      "source": "Thank you for contacting us. We've seen your report about the cancelled stay. Could you walk us through what happened from your side?",
+      "text": "Cảm ơn quý khách đã liên hệ. Chúng tôi đã xem phản ánh về kỳ lưu trú bị hủy. Quý khách có thể kể lại sự việc từ phía mình không ạ?"
+    },
+    "en:travel_18": {
+      "source": "Thanks for stepping in. The guest and the host are both upset, and the service team is caught in the middle. Where would you like to begin?",
+      "text": "Cảm ơn đã đứng ra giúp. Khách và chủ nhà đều bực, còn đội dịch vụ thì kẹt ở giữa. Nên bắt đầu từ đâu ạ?"
+    },
+    "en:travel_19": {
+      "source": "Everyone is asking what's going on, and the messages are piling up. Could you give us a clear picture of where we stand?",
+      "text": "Mọi người đều hỏi chuyện gì đang xảy ra, tin nhắn cứ dồn lên. Bạn có thể cho tụi mình biết rõ tình hình hiện giờ không?"
+    },
+    "en:work_01": {
+      "source": "Hi! I'm Marina from the team. What's your name?",
+      "text": "Chào! Mình là Marina trong nhóm. Bạn tên gì?"
+    },
+    "en:work_02": {
+      "source": "Hello! How can I help you today?",
+      "text": "Chào! Hôm nay mình giúp gì được cho bạn?"
+    },
+    "en:work_03": {
+      "source": "Hi! Our call is tomorrow. Is the time still okay for you?",
+      "text": "Chào! Cuộc gọi của tụi mình là ngày mai. Giờ đó bạn vẫn tiện chứ?"
+    },
+    "en:work_04": {
+      "source": "Good morning! The meeting starts in ten minutes. Are you coming?",
+      "text": "Chào buổi sáng! Mười phút nữa cuộc họp bắt đầu. Bạn có đến không?"
+    },
+    "en:work_05": {
+      "source": "Hi! I sent you the instructions. Is everything clear?",
+      "text": "Chào! Mình đã gửi hướng dẫn cho bạn rồi. Mọi thứ rõ chưa?"
+    },
+    "en:work_06": {
+      "source": "Hi! Please prepare the short report by Friday. Marina and I can answer questions.",
+      "text": "Chào! Bạn chuẩn bị bản báo cáo ngắn trước thứ Sáu nhé. Mình và Marina sẽ giải đáp thắc mắc."
+    },
+    "en:work_07": {
+      "source": "Hi! Just checking: the project is due on Thursday. How is it going?",
+      "text": "Chào! Mình hỏi chút: dự án phải nộp vào thứ Năm. Tiến độ thế nào rồi?"
+    },
+    "en:work_08": {
+      "source": "Hi! Quick question: where are we with the client task?",
+      "text": "Chào! Hỏi nhanh chút: việc của khách hàng tới đâu rồi?"
+    },
+    "en:work_09": {
+      "source": "Hi! I'm Sam from IT. Marina says you need help. What's the problem?",
+      "text": "Chào! Mình là Sam bên IT. Marina bảo bạn cần giúp. Có vấn đề gì vậy?"
+    },
+    "en:work_10": {
+      "source": "Hi! How was your first day with us? I hope it went well.",
+      "text": "Chào! Ngày đầu tiên làm việc với tụi mình thế nào? Mong là mọi thứ suôn sẻ."
+    },
+    "en:work_11": {
+      "source": "We've talked about the launch for two days, but I still don't see who does what. Thoughts?",
+      "text": "Tụi mình bàn chuyện ra mắt hai ngày rồi mà mình vẫn chưa rõ ai làm gì. Bạn nghĩ sao?"
+    },
+    "en:work_12": {
+      "source": "Hi! You mentioned something wasn't working. Can you tell me what's going on, so I can look into it?",
+      "text": "Chào! Bạn nói có gì đó không chạy. Kể mình nghe chuyện gì đang xảy ra để mình kiểm tra nhé?"
+    },
+    "en:work_13": {
+      "source": "Hi! I heard we're setting up a meeting next week. What is it about?",
+      "text": "Chào! Nghe nói tuần sau tụi mình có một cuộc họp. Họp về chuyện gì vậy?"
+    },
+    "en:work_14": {
+      "source": "The client just called, and they need the delivery on Wednesday instead of Friday. Can you make that work?",
+      "text": "Khách vừa gọi, họ cần giao hàng vào thứ Tư thay vì thứ Sáu. Bạn xoay xở được không?"
+    },
+    "en:work_15": {
+      "source": "Hey! I just shared my draft proposal with you. I'd really like your honest opinion before I send it on.",
+      "text": "Chào! Mình vừa chia sẻ bản nháp đề xuất cho bạn. Mình rất muốn nghe ý kiến thật lòng của bạn trước khi gửi đi."
+    },
+    "en:work_16": {
+      "source": "We have three urgent projects and only two people available this month. We need to decide what comes first. Where do we start?",
+      "text": "Tụi mình có ba dự án gấp mà tháng này chỉ có hai người rảnh. Cần quyết định việc nào làm trước. Bắt đầu từ đâu đây?"
+    },
+    "en:work_17": {
+      "source": "Just so you know, we've decided to move the whole team to the new tool by the end of the month. Let me know if anything's unclear.",
+      "text": "Báo để bạn biết: tụi mình đã quyết định chuyển cả nhóm sang công cụ mới trước cuối tháng. Có gì chưa rõ thì cứ nói nhé."
+    },
+    "en:work_18": {
+      "source": "Hi. The integration is slipping, and my team and the platform team are each pointing at the other. Can you help us clear it up?",
+      "text": "Chào. Việc tích hợp đang chậm, và nhóm mình với nhóm nền tảng cứ đổ lỗi cho nhau. Bạn giúp tụi mình làm rõ được không?"
+    },
+    "en:work_19": {
+      "source": "Thanks for making time. Before we discuss terms, I'd like to hear how you see the project and where you think the biggest gaps are.",
+      "text": "Cảm ơn bạn đã dành thời gian. Trước khi bàn điều khoản, mình muốn nghe bạn nhìn nhận dự án thế nào và theo bạn chỗ thiếu sót lớn nhất ở đâu."
+    },
+    "es:everyday_01": {
+      "source": "¡Hola! Qué bueno saber de ti. ¿Cómo estás?",
+      "text": "Chào bạn! Vui quá khi nhận được tin của bạn. Bạn khỏe không?"
+    },
+    "es:everyday_02": {
+      "source": "¡Ey! ¿Qué pasa? ¿Querías decirme algo?",
+      "text": "Này! Có chuyện gì thế? Bạn muốn nói gì với mình à?"
+    },
+    "es:everyday_03": {
+      "source": "¡Hola! Gran noticia: ¡hoy me dieron el nuevo trabajo!",
+      "text": "Chào! Tin lớn đây: hôm nay mình được nhận vào công việc mới!"
+    },
+    "es:everyday_04": {
+      "source": "¡Hola! ¿Qué hay de nuevo hoy?",
+      "text": "Chào! Hôm nay có gì mới không?"
+    },
+    "es:everyday_05": {
+      "source": "Hola. Ayer esperé mucho rato delante del café. ¿Qué pasó?",
+      "text": "Chào. Hôm qua mình đợi rất lâu trước quán cà phê. Đã có chuyện gì vậy?"
+    },
+    "es:everyday_06": {
+      "source": "¡Hola! Tengo unos minutos libres. ¿Qué pasa?",
+      "text": "Chào! Mình có vài phút rảnh. Có chuyện gì thế?"
+    },
+    "es:everyday_07": {
+      "source": "¡Hola! Me dijeron que buscas a alguien para tu mascota. ¿Para cuándo?",
+      "text": "Chào! Nghe nói bạn cần người trông thú cưng. Khi nào vậy?"
+    },
+    "es:everyday_08": {
+      "source": "¡Hola a todos! Tenemos que comprar un regalo. ¿Alguna idea?",
+      "text": "Chào cả nhà! Chúng ta cần mua một món quà. Có ai có ý tưởng không?"
+    },
+    "es:everyday_09": {
+      "source": "¡Hola! Soy de la tienda. Puedo ayudarle con su pedido.",
+      "text": "Xin chào! Tôi là nhân viên cửa hàng. Tôi có thể giúp quý khách với đơn hàng."
+    },
+    "es:everyday_10": {
+      "source": "¡Hola! Me preguntaba cómo te fue. ¿Te sirvió mi consejo?",
+      "text": "Chào! Mình cứ thắc mắc mọi chuyện thế nào rồi. Lời khuyên của mình có giúp được không?"
+    },
+    "es:everyday_11": {
+      "source": "¡Ey! Ya llega el fin de semana y no tengo planes. ¿Qué vais a hacer vosotros?",
+      "text": "Này! Sắp cuối tuần rồi mà mình chưa có kế hoạch gì. Hai bạn định làm gì?"
+    },
+    "es:everyday_12": {
+      "source": "¡Hola! Tengo que decidir algo importante y no paro de dudar. ¿Me ayudas a pensarlo?",
+      "text": "Chào! Mình phải quyết định một chuyện lớn mà cứ phân vân mãi. Bạn giúp mình suy nghĩ được không?"
+    },
+    "es:everyday_13": {
+      "source": "¡Hola! ¿Querías hablar de algo? Vi tu nota en la puerta.",
+      "text": "Chào! Bạn muốn nói chuyện gì à? Mình thấy mẩu giấy của bạn trên cửa."
+    },
+    "es:everyday_14": {
+      "source": "Oye, ¿querías hablar de algo? Tengo un rato libre, así que dime.",
+      "text": "Này, bạn muốn nói chuyện gì à? Mình đang rảnh một chút, cứ nói đi."
+    },
+    "es:everyday_15": {
+      "source": "¡Hola! Dijiste que algo te estaba molestando. Te escucho, pero ojalá podamos hablarlo con calma.",
+      "text": "Chào! Bạn nói có chuyện làm bạn khó chịu. Mình đang nghe đây, mong là mình nói chuyện bình tĩnh nhé."
+    },
+    "es:everyday_16": {
+      "source": "Sinceramente, reservemos el piso más barato para el viaje y listo. ¿Para qué darle tantas vueltas?",
+      "text": "Thật lòng mà nói, cứ đặt căn hộ rẻ nhất cho chuyến đi là xong. Nghĩ nhiều làm gì?"
+    },
+    "es:everyday_17": {
+      "source": "¡Ey! ¿Todo bien? Últimamente te noto distinto y no sabía si sacar el tema.",
+      "text": "Này! Mọi chuyện ổn chứ? Dạo này trông bạn khác lắm, mình không biết có nên hỏi không."
+    },
+    "es:everyday_18": {
+      "source": "¿Te enteraste de lo de la fiesta? Unos dicen que se cancela y otros que se cambia de día. Estoy muy confundida.",
+      "text": "Bạn nghe chuyện bữa tiệc chưa? Người thì bảo hủy, người lại bảo dời. Mình rối quá."
+    },
+    "es:everyday_19": {
+      "source": "Vale, este chat se ha convertido en un lío. Todos estamos heridos y nadie escucha. ¿Puedes ayudarnos a empezar de nuevo?",
+      "text": "Thôi, nhóm chat này loạn hết cả rồi. Ai cũng tổn thương mà chẳng ai chịu nghe. Bạn giúp tụi mình làm lại từ đầu được không?"
+    },
+    "es:social_01": {
+      "source": "¡Hola! Encantada de conocerte. Soy Mila. ¿Cómo estás hoy?",
+      "text": "Chào bạn! Rất vui được làm quen. Mình là Mila. Hôm nay bạn thế nào?"
+    },
+    "es:social_02": {
+      "source": "¡Hola! Tenemos la reunión mañana a las 10. ¿Sigue bien para ti?",
+      "text": "Chào! Mình hẹn nhau lúc 10 giờ sáng mai nhé. Bạn vẫn đi được chứ?"
+    },
+    "es:social_03": {
+      "source": "¡Hola! ¿Te puedo ayudar? ¿Buscas algo?",
+      "text": "Chào! Mình giúp gì được không? Bạn đang tìm gì à?"
+    },
+    "es:social_04": {
+      "source": "¡Hola! Espero que mi ayuda te haya servido. ¿Todo bien ahora?",
+      "text": "Chào! Mong là mình đã giúp được bạn. Giờ mọi thứ ổn chưa?"
+    },
+    "es:social_05": {
+      "source": "¡Hola! ¿Sabes qué? ¡Hoy aprobé el examen de conducir!",
+      "text": "Chào! Đoán xem nào? Hôm nay mình thi đậu bằng lái rồi!"
+    },
+    "es:social_06": {
+      "source": "¡Te damos la bienvenida al grupo! Cuéntanos cómo te llamas y qué te gusta hacer.",
+      "text": "Chào mừng bạn đến với nhóm! Hãy cho mọi người biết tên bạn và bạn thích làm gì nhé."
+    },
+    "es:social_07": {
+      "source": "¡Hola! Hace siglos que no nos vemos. ¿Qué planes tienes esta semana?",
+      "text": "Chào! Lâu lắm rồi mới gặp lại. Tuần này bạn định làm gì?"
+    },
+    "es:social_08": {
+      "source": "¡Ey! ¿Qué tal tu semana? ¿Tienes planes para el fin de semana?",
+      "text": "Này! Tuần này của bạn thế nào? Cuối tuần có kế hoạch gì chưa?"
+    },
+    "es:social_09": {
+      "source": "¡Hola! ¿Seguimos quedando esta noche? Tengo muchas ganas de verte.",
+      "text": "Chào! Tối nay mình vẫn gặp nhau chứ? Mình mong lắm."
+    },
+    "es:social_10": {
+      "source": "¡Hola! Qué bueno verte ayer. ¿Llegaste bien a casa?",
+      "text": "Chào! Hôm qua gặp bạn vui lắm. Bạn về nhà an toàn chứ?"
+    },
+    "es:social_11": {
+      "source": "¡Hola a todos! Llevamos días hablando del sábado, pero todavía no hay plan. ¿Alguna idea?",
+      "text": "Chào cả nhà! Bàn chuyện thứ Bảy mấy hôm rồi mà vẫn chưa chốt được gì. Có ai có ý tưởng không?"
+    },
+    "es:social_12": {
+      "source": "Hola. Perdona que haya estado tan callado. El trabajo me está agobiando últimamente.",
+      "text": "Chào. Xin lỗi vì dạo này mình im lặng quá. Công việc nhiều quá."
+    },
+    "es:social_13": {
+      "source": "Hola. Vi tu mensaje de esta mañana y no estoy segura de qué quisiste decir. ¿Podemos hablar?",
+      "text": "Chào. Mình thấy tin nhắn của bạn sáng nay mà không chắc bạn muốn nói gì. Mình nói chuyện được không?"
+    },
+    "es:social_14": {
+      "source": "¡Hola! Vamos a hacer una fiestecita en mi casa el viernes y me encantaría que vinieras. ¿Puedes venir?",
+      "text": "Chào! Thứ Sáu này mình tổ chức một bữa tiệc nhỏ ở nhà, rất mong bạn đến. Bạn đến được không?"
+    },
+    "es:social_15": {
+      "source": "Oye, he estado pensando en cómo organizamos nuestros planes últimamente. ¿Podemos hablar de lo que cada uno espera?",
+      "text": "Này, dạo này mình hay nghĩ về cách tụi mình lên kế hoạch cùng nhau. Mình nói chuyện xem mỗi người mong đợi gì nhé?"
+    },
+    "es:social_16": {
+      "source": "¡Hola! Vi que querías hablar de algo. Hoy ando algo liada, pero cuéntame qué pasa.",
+      "text": "Chào! Mình thấy bạn muốn nói chuyện. Hôm nay mình hơi bận, nhưng cứ kể đi."
+    },
+    "es:social_17": {
+      "source": "¡Ey! Cuento contigo para toda la mudanza este sábado otra vez, ¿vale? Siempre eres tan fiable que sabía que dirías que sí.",
+      "text": "Này! Thứ Bảy này mình lại trông cậy vào bạn cả buổi chuyển nhà nhé? Bạn lúc nào cũng đáng tin, mình biết bạn sẽ đồng ý mà."
+    },
+    "es:social_18": {
+      "source": "Voy a ser sincero: todavía estoy dolido por lo que pasó. Pero estoy dispuesto a escucharte. ¿Qué querías decirme?",
+      "text": "Thật lòng thì mình vẫn còn hơi buồn về chuyện đã xảy ra. Nhưng mình sẵn sàng nghe bạn nói. Bạn muốn nói gì?"
+    },
+    "es:social_19": {
+      "source": "Sinceramente, este hilo se ha puesto tenso. Unos nos sentimos ignorados y otros se sienten culpados. ¿Alguien puede ayudarnos a aclararlo?",
+      "text": "Thật lòng mà nói, cuộc trò chuyện này căng thẳng quá rồi. Một nửa thấy bị phớt lờ, nửa còn lại thấy bị đổ lỗi. Có ai giúp tụi mình gỡ rối không?"
+    },
+    "es:travel_01": {
+      "source": "¡Hola! ¿Ya estás en la ciudad? ¿Qué tal el viaje?",
+      "text": "Chào! Bạn đến thành phố chưa? Chuyến đi thế nào?"
+    },
+    "es:travel_02": {
+      "source": "¡Hola! ¿Necesitas ayuda con el apartamento?",
+      "text": "Chào! Bạn cần giúp gì với căn hộ không?"
+    },
+    "es:travel_03": {
+      "source": "¡Hola! Gracias por tu reserva. ¿En qué puedo ayudarte?",
+      "text": "Xin chào! Cảm ơn đã đặt phòng. Tôi có thể giúp gì?"
+    },
+    "es:travel_04": {
+      "source": "¡Hola! ¿Necesitas transporte desde el aeropuerto?",
+      "text": "Chào! Bạn cần xe đón từ sân bay không?"
+    },
+    "es:travel_05": {
+      "source": "¡Hola! Prueba el café pequeño de la estación. ¡Es genial!",
+      "text": "Chào! Thử quán cà phê nhỏ gần nhà ga nhé. Cà phê ở đó ngon lắm!"
+    },
+    "es:travel_06": {
+      "source": "¡Hola! ¿A dónde quieres ir? Lea y yo podemos explicarte el camino.",
+      "text": "Chào! Bạn muốn đi đâu? Mình và Lea có thể chỉ đường cho bạn."
+    },
+    "es:travel_07": {
+      "source": "¡Hola! Estoy revisando tu reserva. ¿Me puedes mandar el número de reserva?",
+      "text": "Chào! Mình đang kiểm tra đặt chỗ của bạn. Bạn gửi mình mã đặt chỗ được không?"
+    },
+    "es:travel_08": {
+      "source": "¡Hola! Ya son las siete. ¿Llegas pronto? Te espero en el apartamento.",
+      "text": "Chào! Đã bảy giờ rồi. Bạn sắp tới chưa? Mình đang đợi ở căn hộ."
+    },
+    "es:travel_09": {
+      "source": "¡Hola! Te damos la bienvenida. ¿Con quién hablo y en qué podemos ayudarte?",
+      "text": "Xin chào! Chào mừng bạn đến nhà nghỉ của chúng tôi. Mình đang nói chuyện với ai và có thể giúp gì?"
+    },
+    "es:travel_10": {
+      "source": "¡Hola! Me gustaría enseñarte el casco antiguo mañana. ¿Dónde quedamos?",
+      "text": "Chào! Mai mình muốn dẫn bạn đi xem phố cổ. Mình gặp nhau ở đâu?"
+    },
+    "es:travel_11": {
+      "source": "Hola, soy Niko, del servicio de atención al huésped. Clara también está aquí. ¿En qué podemos ayudarle?",
+      "text": "Xin chào, tôi là Niko từ bộ phận hỗ trợ khách. Clara cũng ở đây. Chúng tôi có thể giúp gì cho quý khách?"
+    },
+    "es:travel_12": {
+      "source": "¡Hola! Cada uno parece tener una idea distinta para el viaje. ¿Nos ayudas a hacer un plan?",
+      "text": "Này! Hình như ai cũng có ý riêng cho chuyến đi. Bạn giúp tụi mình lên kế hoạch được không?"
+    },
+    "es:travel_13": {
+      "source": "¡Hola! Soy Lea, de reservas. Entiendo que quiere cambiar algo. ¿De qué reserva se trata?",
+      "text": "Xin chào! Tôi là Lea ở bộ phận đặt phòng. Tôi hiểu là quý khách muốn thay đổi điều gì đó. Đó là đặt phòng nào ạ?"
+    },
+    "es:travel_14": {
+      "source": "Buenas tardes, soy Niko, de atención al cliente. Entiendo que desea plantear un problema. ¿En qué puedo ayudarle?",
+      "text": "Chào buổi chiều, tôi là Niko từ bộ phận chăm sóc khách hàng. Tôi hiểu là quý khách muốn phản ánh một vấn đề. Tôi có thể giúp gì ạ?"
+    },
+    "es:travel_15": {
+      "source": "¡Hola! He oído que hay algún problema con nuestra conexión de mañana. ¿Qué ha pasado exactamente?",
+      "text": "Chào! Nghe nói chuyến nối tiếp ngày mai của tụi mình có vấn đề. Chính xác là chuyện gì vậy?"
+    },
+    "es:travel_16": {
+      "source": "Hola. He revisado nuestro sistema y no aparece ninguna reserva con ese nombre. ¿Qué datos tiene usted?",
+      "text": "Xin chào. Tôi đã kiểm tra hệ thống và không thấy đặt phòng nào dưới tên đó. Quý khách có thông tin gì không ạ?"
+    },
+    "es:travel_17": {
+      "source": "Gracias por contactarnos. Hemos visto su informe sobre la estancia cancelada. ¿Podría explicarnos qué ocurrió desde su punto de vista?",
+      "text": "Cảm ơn quý khách đã liên hệ. Chúng tôi đã xem phản ánh về kỳ lưu trú bị hủy. Quý khách có thể kể lại sự việc từ phía mình không ạ?"
+    },
+    "es:travel_18": {
+      "source": "Gracias por intervenir. El huésped y el anfitrión están molestos y el servicio está en medio. ¿Por dónde quieres empezar?",
+      "text": "Cảm ơn đã đứng ra giúp. Khách và chủ nhà đều bực, còn đội dịch vụ thì kẹt ở giữa. Nên bắt đầu từ đâu ạ?"
+    },
+    "es:travel_19": {
+      "source": "Todos preguntan qué está pasando y los mensajes no paran de acumularse. ¿Puedes darnos una imagen clara de cómo estamos?",
+      "text": "Mọi người đều hỏi chuyện gì đang xảy ra, tin nhắn cứ dồn lên. Bạn có thể cho tụi mình biết rõ tình hình hiện giờ không?"
+    },
+    "es:work_01": {
+      "source": "¡Hola! Soy Marina, del equipo. ¿Cómo te llamas?",
+      "text": "Chào! Mình là Marina trong nhóm. Bạn tên gì?"
+    },
+    "es:work_02": {
+      "source": "¡Hola! ¿En qué te puedo ayudar hoy?",
+      "text": "Chào! Hôm nay mình giúp gì được cho bạn?"
+    },
+    "es:work_03": {
+      "source": "¡Hola! Nuestra llamada es mañana. ¿Te sigue bien la hora?",
+      "text": "Chào! Cuộc gọi của tụi mình là ngày mai. Giờ đó bạn vẫn tiện chứ?"
+    },
+    "es:work_04": {
+      "source": "¡Buenos días! La reunión empieza en diez minutos. ¿Vienes?",
+      "text": "Chào buổi sáng! Mười phút nữa cuộc họp bắt đầu. Bạn có đến không?"
+    },
+    "es:work_05": {
+      "source": "¡Hola! Te mandé las instrucciones. ¿Está todo claro?",
+      "text": "Chào! Mình đã gửi hướng dẫn cho bạn rồi. Mọi thứ rõ chưa?"
+    },
+    "es:work_06": {
+      "source": "¡Hola! Por favor, prepara el informe corto para el viernes. Marina y yo resolvemos dudas.",
+      "text": "Chào! Bạn chuẩn bị bản báo cáo ngắn trước thứ Sáu nhé. Mình và Marina sẽ giải đáp thắc mắc."
+    },
+    "es:work_07": {
+      "source": "¡Hola! Solo para confirmar: el proyecto es para el jueves. ¿Cómo va?",
+      "text": "Chào! Mình hỏi chút: dự án phải nộp vào thứ Năm. Tiến độ thế nào rồi?"
+    },
+    "es:work_08": {
+      "source": "¡Hola! Una pregunta rápida: ¿cómo vamos con la tarea del cliente?",
+      "text": "Chào! Hỏi nhanh chút: việc của khách hàng tới đâu rồi?"
+    },
+    "es:work_09": {
+      "source": "¡Hola! Soy Sam, de informática. Marina dice que necesitas ayuda. ¿Qué pasa?",
+      "text": "Chào! Mình là Sam bên IT. Marina bảo bạn cần giúp. Có vấn đề gì vậy?"
+    },
+    "es:work_10": {
+      "source": "¡Hola! ¿Cómo fue tu primer día con nosotros? Espero que bien.",
+      "text": "Chào! Ngày đầu tiên làm việc với tụi mình thế nào? Mong là mọi thứ suôn sẻ."
+    },
+    "es:work_11": {
+      "source": "Llevamos dos días hablando del lanzamiento, pero sigo sin ver quién hace qué. ¿Qué opinas?",
+      "text": "Tụi mình bàn chuyện ra mắt hai ngày rồi mà mình vẫn chưa rõ ai làm gì. Bạn nghĩ sao?"
+    },
+    "es:work_12": {
+      "source": "¡Hola! Comentaste que algo no funcionaba. ¿Me cuentas qué pasa para que pueda revisarlo?",
+      "text": "Chào! Bạn nói có gì đó không chạy. Kể mình nghe chuyện gì đang xảy ra để mình kiểm tra nhé?"
+    },
+    "es:work_13": {
+      "source": "¡Hola! Me enteré de que organizamos una reunión la semana que viene. ¿De qué va?",
+      "text": "Chào! Nghe nói tuần sau tụi mình có một cuộc họp. Họp về chuyện gì vậy?"
+    },
+    "es:work_14": {
+      "source": "El cliente acaba de llamar y necesita la entrega el miércoles en lugar del viernes. ¿Puedes hacerlo posible?",
+      "text": "Khách vừa gọi, họ cần giao hàng vào thứ Tư thay vì thứ Sáu. Bạn xoay xở được không?"
+    },
+    "es:work_15": {
+      "source": "¡Hola! Acabo de compartir contigo mi borrador de la propuesta. Me gustaría tu opinión sincera antes de enviarla.",
+      "text": "Chào! Mình vừa chia sẻ bản nháp đề xuất cho bạn. Mình rất muốn nghe ý kiến thật lòng của bạn trước khi gửi đi."
+    },
+    "es:work_16": {
+      "source": "Tenemos tres proyectos urgentes y solo dos personas disponibles este mes. Hay que decidir qué va primero. ¿Por dónde empezamos?",
+      "text": "Tụi mình có ba dự án gấp mà tháng này chỉ có hai người rảnh. Cần quyết định việc nào làm trước. Bắt đầu từ đâu đây?"
+    },
+    "es:work_17": {
+      "source": "Para que lo sepas: hemos decidido pasar a todo el equipo a la nueva herramienta antes de fin de mes. Dime si algo no está claro.",
+      "text": "Báo để bạn biết: tụi mình đã quyết định chuyển cả nhóm sang công cụ mới trước cuối tháng. Có gì chưa rõ thì cứ nói nhé."
+    },
+    "es:work_18": {
+      "source": "Hola. La integración se está retrasando y mi equipo y el de plataforma se señalan mutuamente. ¿Puedes ayudarnos a aclararlo?",
+      "text": "Chào. Việc tích hợp đang chậm, và nhóm mình với nhóm nền tảng cứ đổ lỗi cho nhau. Bạn giúp tụi mình làm rõ được không?"
+    },
+    "es:work_19": {
+      "source": "Gracias por hacer un hueco. Antes de hablar de condiciones, me gustaría saber cómo ves el proyecto y dónde crees que están las mayores brechas.",
+      "text": "Cảm ơn bạn đã dành thời gian. Trước khi bàn điều khoản, mình muốn nghe bạn nhìn nhận dự án thế nào và theo bạn chỗ thiếu sót lớn nhất ở đâu."
+    },
+    "fr:everyday_01": {
+      "source": "Salut ! Ça fait plaisir de te lire. Comment vas-tu ?",
+      "text": "Chào bạn! Vui quá khi nhận được tin của bạn. Bạn khỏe không?"
+    },
+    "fr:everyday_02": {
+      "source": "Coucou ! Quoi de neuf ? Tu voulais me dire quelque chose ?",
+      "text": "Này! Có chuyện gì thế? Bạn muốn nói gì với mình à?"
+    },
+    "fr:everyday_03": {
+      "source": "Salut ! Grande nouvelle : j'ai eu le nouveau travail aujourd'hui !",
+      "text": "Chào! Tin lớn đây: hôm nay mình được nhận vào công việc mới!"
+    },
+    "fr:everyday_04": {
+      "source": "Salut ! Quoi de neuf aujourd'hui ?",
+      "text": "Chào! Hôm nay có gì mới không?"
+    },
+    "fr:everyday_05": {
+      "source": "Salut. Hier, j'ai attendu longtemps devant le café. Que s'est-il passé ?",
+      "text": "Chào. Hôm qua mình đợi rất lâu trước quán cà phê. Đã có chuyện gì vậy?"
+    },
+    "fr:everyday_06": {
+      "source": "Salut ! J'ai quelques minutes. Qu'est-ce qu'il y a ?",
+      "text": "Chào! Mình có vài phút rảnh. Có chuyện gì thế?"
+    },
+    "fr:everyday_07": {
+      "source": "Salut ! J'ai entendu dire que tu cherches quelqu'un pour ton animal. C'est pour quand ?",
+      "text": "Chào! Nghe nói bạn cần người trông thú cưng. Khi nào vậy?"
+    },
+    "fr:everyday_08": {
+      "source": "Salut tout le monde ! Il faut acheter un cadeau. Des idées ?",
+      "text": "Chào cả nhà! Chúng ta cần mua một món quà. Có ai có ý tưởng không?"
+    },
+    "fr:everyday_09": {
+      "source": "Bonjour ! Je suis de la boutique. Je peux vous aider avec votre commande.",
+      "text": "Xin chào! Tôi là nhân viên cửa hàng. Tôi có thể giúp quý khách với đơn hàng."
+    },
+    "fr:everyday_10": {
+      "source": "Salut ! Je me demandais comment ça s'était passé. Mon conseil t'a servi ?",
+      "text": "Chào! Mình cứ thắc mắc mọi chuyện thế nào rồi. Lời khuyên của mình có giúp được không?"
+    },
+    "fr:everyday_11": {
+      "source": "Hé ! Le week-end arrive et je n'ai encore rien prévu. Vous faites quoi, vous deux ?",
+      "text": "Này! Sắp cuối tuần rồi mà mình chưa có kế hoạch gì. Hai bạn định làm gì?"
+    },
+    "fr:everyday_12": {
+      "source": "Salut ! Je dois prendre une décision importante et j'hésite sans arrêt. Tu peux m'aider à y réfléchir ?",
+      "text": "Chào! Mình phải quyết định một chuyện lớn mà cứ phân vân mãi. Bạn giúp mình suy nghĩ được không?"
+    },
+    "fr:everyday_13": {
+      "source": "Bonjour ! Tu voulais me parler de quelque chose ? J'ai vu ton mot sur la porte.",
+      "text": "Chào! Bạn muốn nói chuyện gì à? Mình thấy mẩu giấy của bạn trên cửa."
+    },
+    "fr:everyday_14": {
+      "source": "Dis, tu voulais me parler de quelque chose ? J'ai un moment, alors vas-y.",
+      "text": "Này, bạn muốn nói chuyện gì à? Mình đang rảnh một chút, cứ nói đi."
+    },
+    "fr:everyday_15": {
+      "source": "Salut ! Tu as dit que quelque chose te dérangeait. Je t'écoute, mais j'espère qu'on pourra en parler calmement.",
+      "text": "Chào! Bạn nói có chuyện làm bạn khó chịu. Mình đang nghe đây, mong là mình nói chuyện bình tĩnh nhé."
+    },
+    "fr:everyday_16": {
+      "source": "Franchement, réservons l'appart le moins cher pour le voyage et c'est réglé. Pourquoi se compliquer ?",
+      "text": "Thật lòng mà nói, cứ đặt căn hộ rẻ nhất cho chuyến đi là xong. Nghĩ nhiều làm gì?"
+    },
+    "fr:everyday_17": {
+      "source": "Hé ! Tout va bien ? Tu as l'air ailleurs ces derniers temps, et je ne savais pas si je devais en parler.",
+      "text": "Này! Mọi chuyện ổn chứ? Dạo này trông bạn khác lắm, mình không biết có nên hỏi không."
+    },
+    "fr:everyday_18": {
+      "source": "Tu as entendu pour la fête ? Certains disent qu'elle est annulée, d'autres qu'elle est déplacée. Je suis complètement perdue.",
+      "text": "Bạn nghe chuyện bữa tiệc chưa? Người thì bảo hủy, người lại bảo dời. Mình rối quá."
+    },
+    "fr:everyday_19": {
+      "source": "Bon, ce groupe est devenu un vrai chantier. Tout le monde est blessé et personne n'écoute. Tu peux nous aider à repartir de zéro ?",
+      "text": "Thôi, nhóm chat này loạn hết cả rồi. Ai cũng tổn thương mà chẳng ai chịu nghe. Bạn giúp tụi mình làm lại từ đầu được không?"
+    },
+    "fr:social_01": {
+      "source": "Salut ! Enchantée de te rencontrer. Je suis Mila. Comment ça va ?",
+      "text": "Chào bạn! Rất vui được làm quen. Mình là Mila. Hôm nay bạn thế nào?"
+    },
+    "fr:social_02": {
+      "source": "Salut ! Notre rendez-vous est demain à 10 h. Ça te va toujours ?",
+      "text": "Chào! Mình hẹn nhau lúc 10 giờ sáng mai nhé. Bạn vẫn đi được chứ?"
+    },
+    "fr:social_03": {
+      "source": "Bonjour ! Je peux t'aider ? Tu cherches quelque chose ?",
+      "text": "Chào! Mình giúp gì được không? Bạn đang tìm gì à?"
+    },
+    "fr:social_04": {
+      "source": "Salut ! J'espère que mon aide t'a servi. Tout va bien maintenant ?",
+      "text": "Chào! Mong là mình đã giúp được bạn. Giờ mọi thứ ổn chưa?"
+    },
+    "fr:social_05": {
+      "source": "Salut ! Devine quoi ? J'ai eu mon permis de conduire aujourd'hui !",
+      "text": "Chào! Đoán xem nào? Hôm nay mình thi đậu bằng lái rồi!"
+    },
+    "fr:social_06": {
+      "source": "Bienvenue dans le groupe ! Dis-nous comment tu t'appelles et ce que tu aimes.",
+      "text": "Chào mừng bạn đến với nhóm! Hãy cho mọi người biết tên bạn và bạn thích làm gì nhé."
+    },
+    "fr:social_07": {
+      "source": "Salut ! Ça fait une éternité qu'on ne s'est pas vus. Tu fais quoi cette semaine ?",
+      "text": "Chào! Lâu lắm rồi mới gặp lại. Tuần này bạn định làm gì?"
+    },
+    "fr:social_08": {
+      "source": "Coucou ! Ta semaine se passe bien ? Tu as des projets pour le week-end ?",
+      "text": "Này! Tuần này của bạn thế nào? Cuối tuần có kế hoạch gì chưa?"
+    },
+    "fr:social_09": {
+      "source": "Salut ! On se voit toujours ce soir ? J'ai vraiment hâte.",
+      "text": "Chào! Tối nay mình vẫn gặp nhau chứ? Mình mong lắm."
+    },
+    "fr:social_10": {
+      "source": "Salut ! C'était sympa de te voir hier. Le retour s'est bien passé ?",
+      "text": "Chào! Hôm qua gặp bạn vui lắm. Bạn về nhà an toàn chứ?"
+    },
+    "fr:social_11": {
+      "source": "Salut tout le monde ! On parle de samedi depuis des jours, mais rien n'est décidé. Des idées ?",
+      "text": "Chào cả nhà! Bàn chuyện thứ Bảy mấy hôm rồi mà vẫn chưa chốt được gì. Có ai có ý tưởng không?"
+    },
+    "fr:social_12": {
+      "source": "Salut. Désolé d'avoir été si silencieux. Le boulot me pèse beaucoup en ce moment.",
+      "text": "Chào. Xin lỗi vì dạo này mình im lặng quá. Công việc nhiều quá."
+    },
+    "fr:social_13": {
+      "source": "Salut. J'ai vu ton message de ce matin, et je ne comprends pas bien. On peut en parler ?",
+      "text": "Chào. Mình thấy tin nhắn của bạn sáng nay mà không chắc bạn muốn nói gì. Mình nói chuyện được không?"
+    },
+    "fr:social_14": {
+      "source": "Salut ! On organise une petite fête chez moi vendredi et j'aimerais beaucoup que tu viennes. Tu peux ?",
+      "text": "Chào! Thứ Sáu này mình tổ chức một bữa tiệc nhỏ ở nhà, rất mong bạn đến. Bạn đến được không?"
+    },
+    "fr:social_15": {
+      "source": "Dis, j'ai réfléchi à la façon dont on organise nos plans en ce moment. On pourrait parler de ce que chacun attend ?",
+      "text": "Này, dạo này mình hay nghĩ về cách tụi mình lên kế hoạch cùng nhau. Mình nói chuyện xem mỗi người mong đợi gì nhé?"
+    },
+    "fr:social_16": {
+      "source": "Salut ! J'ai vu que tu voulais me parler de quelque chose. Je suis un peu occupée aujourd'hui, mais dis-moi.",
+      "text": "Chào! Mình thấy bạn muốn nói chuyện. Hôm nay mình hơi bận, nhưng cứ kể đi."
+    },
+    "fr:social_17": {
+      "source": "Hé ! Je compte sur toi pour tout le déménagement samedi, encore une fois, d'accord ? Tu es toujours si fiable, je savais que tu dirais oui.",
+      "text": "Này! Thứ Bảy này mình lại trông cậy vào bạn cả buổi chuyển nhà nhé? Bạn lúc nào cũng đáng tin, mình biết bạn sẽ đồng ý mà."
+    },
+    "fr:social_18": {
+      "source": "Je vais être franc : je suis encore blessé par ce qui s'est passé. Mais je suis prêt à t'écouter. Que voulais-tu me dire ?",
+      "text": "Thật lòng thì mình vẫn còn hơi buồn về chuyện đã xảy ra. Nhưng mình sẵn sàng nghe bạn nói. Bạn muốn nói gì?"
+    },
+    "fr:social_19": {
+      "source": "Franchement, ce fil est devenu tendu. Les uns se sentent ignorés, les autres se sentent accusés. Quelqu'un peut nous aider à y voir clair ?",
+      "text": "Thật lòng mà nói, cuộc trò chuyện này căng thẳng quá rồi. Một nửa thấy bị phớt lờ, nửa còn lại thấy bị đổ lỗi. Có ai giúp tụi mình gỡ rối không?"
+    },
+    "fr:travel_01": {
+      "source": "Bonjour ! Tu es déjà en ville ? Le voyage s'est bien passé ?",
+      "text": "Chào! Bạn đến thành phố chưa? Chuyến đi thế nào?"
+    },
+    "fr:travel_02": {
+      "source": "Bonsoir ! Tu as besoin d'aide pour l'appartement ?",
+      "text": "Chào buổi tối! Bạn cần giúp gì với căn hộ không?"
+    },
+    "fr:travel_03": {
+      "source": "Bonjour ! Merci pour votre réservation. Comment puis-je vous aider ?",
+      "text": "Xin chào! Cảm ơn đã đặt phòng. Tôi có thể giúp gì?"
+    },
+    "fr:travel_04": {
+      "source": "Bonjour ! Tu as besoin d'un transfert depuis l'aéroport ?",
+      "text": "Chào! Bạn cần xe đón từ sân bay không?"
+    },
+    "fr:travel_05": {
+      "source": "Salut ! Essaie le petit café de la gare. Il est super !",
+      "text": "Chào! Thử quán cà phê nhỏ gần nhà ga nhé. Cà phê ở đó ngon lắm!"
+    },
+    "fr:travel_06": {
+      "source": "Salut ! Où veux-tu aller ? Lea et moi, on peut t'expliquer le chemin.",
+      "text": "Chào! Bạn muốn đi đâu? Mình và Lea có thể chỉ đường cho bạn."
+    },
+    "fr:travel_07": {
+      "source": "Bonjour ! Je vérifie ta réservation. Tu peux m'envoyer le numéro de réservation ?",
+      "text": "Chào! Mình đang kiểm tra đặt chỗ của bạn. Bạn gửi mình mã đặt chỗ được không?"
+    },
+    "fr:travel_08": {
+      "source": "Salut ! Il est déjà sept heures. Tu arrives bientôt ? Je t'attends à l'appartement.",
+      "text": "Chào! Đã bảy giờ rồi. Bạn sắp tới chưa? Mình đang đợi ở căn hộ."
+    },
+    "fr:travel_09": {
+      "source": "Bonjour ! Bienvenue chez nous. Avec qui je parle, et comment peut-on t'aider ?",
+      "text": "Xin chào! Chào mừng bạn đến nhà nghỉ của chúng tôi. Mình đang nói chuyện với ai và có thể giúp gì?"
+    },
+    "fr:travel_10": {
+      "source": "Salut ! J'aimerais te montrer la vieille ville demain. On se retrouve où ?",
+      "text": "Chào! Mai mình muốn dẫn bạn đi xem phố cổ. Mình gặp nhau ở đâu?"
+    },
+    "fr:travel_11": {
+      "source": "Bonjour, ici Niko du service clients. Clara est là aussi. Que pouvons-nous faire pour vous ?",
+      "text": "Xin chào, tôi là Niko từ bộ phận hỗ trợ khách. Clara cũng ở đây. Chúng tôi có thể giúp gì cho quý khách?"
+    },
+    "fr:travel_12": {
+      "source": "Salut ! Chacun semble avoir une idée différente pour le voyage. Tu peux nous aider à faire un plan ?",
+      "text": "Này! Hình như ai cũng có ý riêng cho chuyến đi. Bạn giúp tụi mình lên kế hoạch được không?"
+    },
+    "fr:travel_13": {
+      "source": "Bonjour ! Lea, du service réservations. Je crois que vous souhaitez modifier quelque chose. De quelle réservation s'agit-il ?",
+      "text": "Xin chào! Tôi là Lea ở bộ phận đặt phòng. Tôi hiểu là quý khách muốn thay đổi điều gì đó. Đó là đặt phòng nào ạ?"
+    },
+    "fr:travel_14": {
+      "source": "Bonjour, ici Niko du service clientèle. Je crois que vous souhaitez nous signaler un problème. Comment puis-je vous aider ?",
+      "text": "Chào buổi chiều, tôi là Niko từ bộ phận chăm sóc khách hàng. Tôi hiểu là quý khách muốn phản ánh một vấn đề. Tôi có thể giúp gì ạ?"
+    },
+    "fr:travel_15": {
+      "source": "Salut ! J'ai entendu dire qu'il y a un problème avec notre correspondance de demain. Que s'est-il passé exactement ?",
+      "text": "Chào! Nghe nói chuyến nối tiếp ngày mai của tụi mình có vấn đề. Chính xác là chuyện gì vậy?"
+    },
+    "fr:travel_16": {
+      "source": "Bonjour. J'ai vérifié notre système et aucune réservation n'apparaît à ce nom. Qu'avez-vous de votre côté ?",
+      "text": "Xin chào. Tôi đã kiểm tra hệ thống và không thấy đặt phòng nào dưới tên đó. Quý khách có thông tin gì không ạ?"
+    },
+    "fr:travel_17": {
+      "source": "Merci de nous avoir contactés. Nous avons lu votre signalement sur le séjour annulé. Pourriez-vous nous expliquer ce qui s'est passé de votre côté ?",
+      "text": "Cảm ơn quý khách đã liên hệ. Chúng tôi đã xem phản ánh về kỳ lưu trú bị hủy. Quý khách có thể kể lại sự việc từ phía mình không ạ?"
+    },
+    "fr:travel_18": {
+      "source": "Merci d'intervenir. L'invité et l'hôte sont tous les deux contrariés, et le service est pris entre les deux. Par où voulez-vous commencer ?",
+      "text": "Cảm ơn đã đứng ra giúp. Khách và chủ nhà đều bực, còn đội dịch vụ thì kẹt ở giữa. Nên bắt đầu từ đâu ạ?"
+    },
+    "fr:travel_19": {
+      "source": "Tout le monde demande ce qui se passe et les messages s'accumulent. Peux-tu nous donner une vue claire de la situation ?",
+      "text": "Mọi người đều hỏi chuyện gì đang xảy ra, tin nhắn cứ dồn lên. Bạn có thể cho tụi mình biết rõ tình hình hiện giờ không?"
+    },
+    "fr:work_01": {
+      "source": "Salut ! Je suis Marina, de l'équipe. Comment tu t'appelles ?",
+      "text": "Chào! Mình là Marina trong nhóm. Bạn tên gì?"
+    },
+    "fr:work_02": {
+      "source": "Salut ! Je peux t'aider avec quelque chose ?",
+      "text": "Chào! Hôm nay mình giúp gì được cho bạn?"
+    },
+    "fr:work_03": {
+      "source": "Salut ! Notre appel est demain. L'heure te convient toujours ?",
+      "text": "Chào! Cuộc gọi của tụi mình là ngày mai. Giờ đó bạn vẫn tiện chứ?"
+    },
+    "fr:work_04": {
+      "source": "Bonjour ! La réunion commence dans dix minutes. Tu arrives ?",
+      "text": "Chào buổi sáng! Mười phút nữa cuộc họp bắt đầu. Bạn có đến không?"
+    },
+    "fr:work_05": {
+      "source": "Salut ! Je t'ai envoyé les instructions. Tout est clair ?",
+      "text": "Chào! Mình đã gửi hướng dẫn cho bạn rồi. Mọi thứ rõ chưa?"
+    },
+    "fr:work_06": {
+      "source": "Salut ! Peux-tu préparer le court rapport pour vendredi ? Marina et moi répondons à tes questions.",
+      "text": "Chào! Bạn chuẩn bị bản báo cáo ngắn trước thứ Sáu nhé. Mình và Marina sẽ giải đáp thắc mắc."
+    },
+    "fr:work_07": {
+      "source": "Salut ! Petit point : le projet est à rendre jeudi. Comment ça avance ?",
+      "text": "Chào! Mình hỏi chút: dự án phải nộp vào thứ Năm. Tiến độ thế nào rồi?"
+    },
+    "fr:work_08": {
+      "source": "Salut ! Petite question : où en est-on avec la tâche du client ?",
+      "text": "Chào! Hỏi nhanh chút: việc của khách hàng tới đâu rồi?"
+    },
+    "fr:work_09": {
+      "source": "Salut ! Je suis Sam, de l'informatique. Marina dit que tu as besoin d'aide. Qu'y a-t-il ?",
+      "text": "Chào! Mình là Sam bên IT. Marina bảo bạn cần giúp. Có vấn đề gì vậy?"
+    },
+    "fr:work_10": {
+      "source": "Salut ! Comment s'est passé ton premier jour chez nous ? J'espère que c'était bien.",
+      "text": "Chào! Ngày đầu tiên làm việc với tụi mình thế nào? Mong là mọi thứ suôn sẻ."
+    },
+    "fr:work_11": {
+      "source": "On parle du lancement depuis deux jours, mais je ne vois toujours pas qui fait quoi. Qu'en penses-tu ?",
+      "text": "Tụi mình bàn chuyện ra mắt hai ngày rồi mà mình vẫn chưa rõ ai làm gì. Bạn nghĩ sao?"
+    },
+    "fr:work_12": {
+      "source": "Salut ! Tu as dit que quelque chose ne marchait pas. Tu peux m'expliquer ce qui se passe pour que je regarde ?",
+      "text": "Chào! Bạn nói có gì đó không chạy. Kể mình nghe chuyện gì đang xảy ra để mình kiểm tra nhé?"
+    },
+    "fr:work_13": {
+      "source": "Salut ! J'ai entendu dire qu'on organise une réunion la semaine prochaine. Elle porte sur quoi ?",
+      "text": "Chào! Nghe nói tuần sau tụi mình có một cuộc họp. Họp về chuyện gì vậy?"
+    },
+    "fr:work_14": {
+      "source": "Le client vient d'appeler : il veut la livraison mercredi au lieu de vendredi. Tu peux tenir ce délai ?",
+      "text": "Khách vừa gọi, họ cần giao hàng vào thứ Tư thay vì thứ Sáu. Bạn xoay xở được không?"
+    },
+    "fr:work_15": {
+      "source": "Salut ! Je viens de partager mon brouillon de proposition avec toi. J'aimerais avoir ton avis sincère avant de l'envoyer.",
+      "text": "Chào! Mình vừa chia sẻ bản nháp đề xuất cho bạn. Mình rất muốn nghe ý kiến thật lòng của bạn trước khi gửi đi."
+    },
+    "fr:work_16": {
+      "source": "On a trois projets urgents et seulement deux personnes disponibles ce mois-ci. Il faut décider de l'ordre. On commence par où ?",
+      "text": "Tụi mình có ba dự án gấp mà tháng này chỉ có hai người rảnh. Cần quyết định việc nào làm trước. Bắt đầu từ đâu đây?"
+    },
+    "fr:work_17": {
+      "source": "Pour information : nous avons décidé de faire passer toute l'équipe au nouvel outil d'ici la fin du mois. Dis-moi si quelque chose n'est pas clair.",
+      "text": "Báo để bạn biết: tụi mình đã quyết định chuyển cả nhóm sang công cụ mới trước cuối tháng. Có gì chưa rõ thì cứ nói nhé."
+    },
+    "fr:work_18": {
+      "source": "Bonjour. L'intégration prend du retard, et mon équipe et celle de la plateforme se renvoient la responsabilité. Peux-tu nous aider à clarifier ?",
+      "text": "Chào. Việc tích hợp đang chậm, và nhóm mình với nhóm nền tảng cứ đổ lỗi cho nhau. Bạn giúp tụi mình làm rõ được không?"
+    },
+    "fr:work_19": {
+      "source": "Merci d'avoir pris le temps. Avant de discuter des conditions, j'aimerais savoir comment tu vois le projet et où tu situes les plus gros écarts.",
+      "text": "Cảm ơn bạn đã dành thời gian. Trước khi bàn điều khoản, mình muốn nghe bạn nhìn nhận dự án thế nào và theo bạn chỗ thiếu sót lớn nhất ở đâu."
+    }
+  }
 }

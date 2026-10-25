@@ -1,5 +1,1222 @@
 {
   "schemaVersion": "dialogue-v2-opening-translations.v1",
   "uiLang": "pt-BR",
-  "entries": {}
+  "entries": {
+    "de:everyday_01": {
+      "source": "Hallo! Schön, von dir zu hören. Wie geht's dir?",
+      "text": "Oi! Que bom ter notícias suas. Tudo bem?"
+    },
+    "de:everyday_02": {
+      "source": "Hey! Was gibt's? Wolltest du mir etwas sagen?",
+      "text": "E aí! Tudo certo? Você queria me contar alguma coisa?"
+    },
+    "de:everyday_03": {
+      "source": "Hallo! Große Neuigkeit: Ich habe heute die neue Stelle bekommen!",
+      "text": "Oi! Grande notícia: hoje consegui o emprego novo!"
+    },
+    "de:everyday_04": {
+      "source": "Hallo! Was gibt's Neues heute?",
+      "text": "Oi! Quais são as novidades de hoje?"
+    },
+    "de:everyday_05": {
+      "source": "Hallo. Gestern habe ich lange vor dem Café gewartet. Was ist passiert?",
+      "text": "Oi. Ontem esperei muito tempo na frente do café. O que aconteceu?"
+    },
+    "de:everyday_06": {
+      "source": "Hallo! Ich habe ein paar Minuten Zeit. Was gibt's?",
+      "text": "Oi! Tenho uns minutinhos livres. O que foi?"
+    },
+    "de:everyday_07": {
+      "source": "Hallo! Ich habe gehört, du suchst jemanden für dein Haustier. Für wann denn?",
+      "text": "Oi! Fiquei sabendo que você precisa de alguém para cuidar do seu pet. Para quando?"
+    },
+    "de:everyday_08": {
+      "source": "Hallo zusammen! Wir müssen ein Geschenk kaufen. Hat jemand eine Idee?",
+      "text": "Oi, pessoal! Precisamos comprar um presente. Alguma ideia?"
+    },
+    "de:everyday_09": {
+      "source": "Hallo! Ich bin vom Shop. Ich kann Ihnen bei Ihrer Bestellung helfen.",
+      "text": "Olá! Sou da loja. Posso ajudar com o seu pedido."
+    },
+    "de:everyday_10": {
+      "source": "Hallo! Ich habe mich gefragt, wie es gelaufen ist. Hat mein Rat geholfen?",
+      "text": "Oi! Fiquei pensando em como foi. Meu conselho ajudou?"
+    },
+    "de:everyday_11": {
+      "source": "Hey! Das Wochenende steht vor der Tür, und ich habe noch nichts vor. Was macht ihr beiden?",
+      "text": "E aí! O fim de semana está chegando e ainda não tenho planos. O que vocês dois vão fazer?"
+    },
+    "de:everyday_12": {
+      "source": "Hallo! Ich muss etwas Wichtiges entscheiden und schwanke ständig hin und her. Kannst du mir beim Nachdenken helfen?",
+      "text": "Oi! Preciso tomar uma decisão importante e fico mudando de ideia. Você me ajuda a pensar?"
+    },
+    "de:everyday_13": {
+      "source": "Hallo! Wolltest du mit mir über etwas sprechen? Ich habe deinen Zettel an der Tür gesehen.",
+      "text": "Olá! Você queria conversar sobre alguma coisa? Vi seu bilhete na porta."
+    },
+    "de:everyday_14": {
+      "source": "Hey, du wolltest über etwas reden? Ich habe gerade etwas Zeit, also schieß los.",
+      "text": "Ei, você queria conversar sobre algo? Estou livre por um tempinho, pode falar."
+    },
+    "de:everyday_15": {
+      "source": "Hallo! Du hast gesagt, dass dich etwas stört. Ich höre zu, aber ich hoffe, wir können ruhig darüber sprechen.",
+      "text": "Oi! Você disse que algo está te incomodando. Estou ouvindo, mas espero que a gente converse com calma."
+    },
+    "de:everyday_16": {
+      "source": "Ehrlich gesagt, buchen wir einfach die billigste Wohnung für die Reise und fertig. Warum so viel überlegen?",
+      "text": "Sinceramente, vamos reservar o apartamento mais barato para a viagem e pronto. Para que complicar?"
+    },
+    "de:everyday_17": {
+      "source": "Hey! Alles okay? Du wirkst in letzter Zeit anders, und ich wusste nicht, ob ich es ansprechen soll.",
+      "text": "Ei! Está tudo bem? Você parece diferente ultimamente, e eu não sabia se devia tocar no assunto."
+    },
+    "de:everyday_18": {
+      "source": "Hast du das mit der Feier gehört? Manche sagen, sie ist abgesagt, andere, sie wurde verschoben. Ich bin total verwirrt.",
+      "text": "Você soube da festa? Uns dizem que foi cancelada, outros que mudou de dia. Não estou entendendo mais nada."
+    },
+    "de:everyday_19": {
+      "source": "Also, dieser Chat ist zu einem Chaos geworden. Alle sind verletzt, und niemand hört zu. Kannst du uns helfen, neu anzufangen?",
+      "text": "Bom, esse chat virou uma bagunça. Todo mundo está magoado e ninguém escuta ninguém. Você pode nos ajudar a recomeçar?"
+    },
+    "de:social_01": {
+      "source": "Hallo! Schön, dich kennenzulernen. Ich bin Mila. Wie geht es dir?",
+      "text": "Oi! Prazer em te conhecer. Eu sou a Mila. Como você está hoje?"
+    },
+    "de:social_02": {
+      "source": "Hallo! Unser Treffen ist morgen um 10. Passt das noch?",
+      "text": "Oi! Nosso encontro é amanhã às 10. Ainda está bom para você?"
+    },
+    "de:social_03": {
+      "source": "Hallo! Kann ich dir helfen? Suchst du etwas?",
+      "text": "Olá! Posso te ajudar? Está procurando alguma coisa?"
+    },
+    "de:social_04": {
+      "source": "Hallo! Ich hoffe, meine Hilfe war nützlich. Ist jetzt alles gut?",
+      "text": "Oi! Espero que minha ajuda tenha servido. Está tudo bem agora?"
+    },
+    "de:social_05": {
+      "source": "Hallo! Stell dir vor: Ich habe heute meine Führerscheinprüfung bestanden!",
+      "text": "Oi! Adivinha só? Passei na prova de direção hoje!"
+    },
+    "de:social_06": {
+      "source": "Willkommen in der Gruppe! Sag uns bitte, wie du heißt und was du gern machst.",
+      "text": "Que bom ter você no grupo! Conta pra gente seu nome e do que você gosta."
+    },
+    "de:social_07": {
+      "source": "Hallo! Wir haben uns ewig nicht gesehen. Was hast du diese Woche vor?",
+      "text": "Oi! Faz séculos que a gente não se vê. Quais são seus planos para esta semana?"
+    },
+    "de:social_08": {
+      "source": "Hey! Wie läuft deine Woche? Hast du schon Pläne fürs Wochenende?",
+      "text": "E aí! Como está sendo sua semana? Algum plano para o fim de semana?"
+    },
+    "de:social_09": {
+      "source": "Hallo! Treffen wir uns heute Abend noch? Ich freue mich schon sehr.",
+      "text": "Oi! Ainda vamos nos ver hoje à noite? Mal posso esperar."
+    },
+    "de:social_10": {
+      "source": "Hallo! Es war schön, dich gestern zu sehen. Bist du gut nach Hause gekommen?",
+      "text": "Oi! Foi bom te ver ontem. Chegou bem em casa?"
+    },
+    "de:social_11": {
+      "source": "Hallo zusammen! Wir reden seit Tagen über Samstag, aber noch ist nichts geplant. Hat jemand eine Idee?",
+      "text": "Oi, pessoal! Faz dias que a gente fala de sábado, mas nada foi decidido ainda. Alguma ideia?"
+    },
+    "de:social_12": {
+      "source": "Hey. Tut mir leid, dass ich so still war. Die Arbeit ist gerade ziemlich viel.",
+      "text": "Oi. Desculpa ter sumido. O trabalho anda puxado ultimamente."
+    },
+    "de:social_13": {
+      "source": "Hallo. Ich habe deine Nachricht von heute Morgen gesehen und bin nicht sicher, was du meinst. Können wir reden?",
+      "text": "Oi. Vi sua mensagem de hoje de manhã e não entendi bem o que você quis dizer. Podemos conversar?"
+    },
+    "de:social_14": {
+      "source": "Hallo! Am Freitag gibt es bei mir eine kleine Feier, und ich würde mich freuen, wenn du kommst. Hast du Zeit?",
+      "text": "Oi! Vou fazer uma festinha em casa na sexta e adoraria que você viesse. Você consegue?"
+    },
+    "de:social_15": {
+      "source": "Hey, ich habe darüber nachgedacht, wie wir unsere Pläne zuletzt organisiert haben. Können wir darüber reden, was jeder erwartet?",
+      "text": "Ei, tenho pensado em como a gente anda organizando as coisas. Podemos conversar sobre o que cada um espera?"
+    },
+    "de:social_16": {
+      "source": "Hallo! Ich habe gesehen, dass du etwas besprechen wolltest. Ich bin heute etwas im Stress, aber erzähl mal.",
+      "text": "Oi! Vi que você queria conversar. Hoje o dia está corrido, mas me conta o que houve."
+    },
+    "de:social_17": {
+      "source": "Hey! Ich zähle am Samstag wieder auf dich beim ganzen Umzug, okay? Du bist immer so zuverlässig, ich wusste, dass du Ja sagst.",
+      "text": "E aí! Conto com você de novo para a mudança inteira neste sábado, tá? Você é sempre tão confiável, eu sabia que ia dizer sim."
+    },
+    "de:social_18": {
+      "source": "Ich bin ehrlich: Ich bin wegen der Sache noch verletzt. Aber ich höre dir zu. Was wolltest du mir sagen?",
+      "text": "Vou ser sincero: ainda estou um pouco magoado com o que aconteceu. Mas estou disposto a te ouvir. O que você queria dizer?"
+    },
+    "de:social_19": {
+      "source": "Ehrlich gesagt ist dieser Verlauf angespannt geworden. Die einen fühlen sich übergangen, die anderen beschuldigt. Kann uns jemand helfen, das zu klären?",
+      "text": "Sinceramente, essa conversa ficou tensa. Metade de nós se sente ignorada e a outra metade, culpada. Alguém pode ajudar a resolver isso?"
+    },
+    "de:travel_01": {
+      "source": "Hallo! Bist du schon in der Stadt? Wie war die Reise?",
+      "text": "Olá! Já está na cidade? Como foi a viagem?"
+    },
+    "de:travel_02": {
+      "source": "Guten Abend! Brauchst du Hilfe mit der Wohnung?",
+      "text": "Boa noite! Precisa de ajuda com o apartamento?"
+    },
+    "de:travel_03": {
+      "source": "Hallo! Danke für Ihre Buchung. Wie kann ich Ihnen helfen?",
+      "text": "Olá! Agradecemos a sua reserva. Como posso ajudar?"
+    },
+    "de:travel_04": {
+      "source": "Hallo! Brauchst du einen Transfer vom Flughafen?",
+      "text": "Olá! Precisa de transporte do aeroporto?"
+    },
+    "de:travel_05": {
+      "source": "Hallo! Probier das kleine Café am Bahnhof. Der Kaffee dort ist super!",
+      "text": "Oi! Experimenta o cafezinho perto da estação. O café é ótimo!"
+    },
+    "de:travel_06": {
+      "source": "Hallo! Wohin möchtest du? Lea und ich können dir den Weg erklären.",
+      "text": "Oi! Para onde você quer ir? Eu e a Lea podemos te mostrar o caminho."
+    },
+    "de:travel_07": {
+      "source": "Hallo! Ich prüfe gerade deine Buchung. Kannst du mir die Buchungsnummer schicken?",
+      "text": "Olá! Estou verificando sua reserva. Pode me mandar o número da reserva, por favor?"
+    },
+    "de:travel_08": {
+      "source": "Hallo! Es ist schon sieben Uhr. Kommst du bald? Ich warte in der Wohnung.",
+      "text": "Oi! Já são sete horas. Vai chegar logo? Estou te esperando no apartamento."
+    },
+    "de:travel_09": {
+      "source": "Hallo! Willkommen bei uns. Mit wem schreibe ich, und wie können wir helfen?",
+      "text": "Olá! Boas-vindas à nossa pousada. Com quem eu falo e como podemos ajudar?"
+    },
+    "de:travel_10": {
+      "source": "Hallo! Ich möchte dir morgen die Altstadt zeigen. Wo treffen wir uns?",
+      "text": "Oi! Queria te mostrar o centro histórico amanhã. Onde a gente se encontra?"
+    },
+    "de:travel_11": {
+      "source": "Guten Tag, hier ist Niko vom Gästeservice. Clara ist auch dabei. Was können wir für Sie tun?",
+      "text": "Olá, aqui é o Niko, do atendimento ao hóspede. A Clara também está aqui. Em que podemos ajudar?"
+    },
+    "de:travel_12": {
+      "source": "Hallo! Jeder scheint eine andere Idee für die Reise zu haben. Kannst du uns helfen, einen Plan zu machen?",
+      "text": "Oi! Parece que cada um tem uma ideia diferente para a viagem. Você ajuda a gente a montar um plano?"
+    },
+    "de:travel_13": {
+      "source": "Hallo! Hier ist Lea von der Reservierung. Sie möchten etwas ändern, richtig? Um welche Buchung geht es?",
+      "text": "Olá! Aqui é a Lea, das reservas. Entendi que gostaria de alterar algo. De qual reserva se trata?"
+    },
+    "de:travel_14": {
+      "source": "Guten Tag, hier ist Niko vom Kundenservice. Wie ich höre, möchten Sie ein Anliegen vorbringen. Wie kann ich Ihnen helfen?",
+      "text": "Boa tarde, aqui é o Niko, do atendimento ao cliente. Entendi que deseja relatar um problema. Como posso ajudar?"
+    },
+    "de:travel_15": {
+      "source": "Hallo! Ich habe gehört, dass es ein Problem mit unserer Verbindung morgen gibt. Was ist genau passiert?",
+      "text": "Oi! Fiquei sabendo que tem um problema com a nossa conexão de amanhã. O que aconteceu exatamente?"
+    },
+    "de:travel_16": {
+      "source": "Hallo. Ich habe unser System geprüft, und unter diesem Namen ist keine Buchung zu finden. Was liegt Ihnen vor?",
+      "text": "Olá. Verifiquei nosso sistema e não aparece nenhuma reserva nesse nome. Quais dados tem do seu lado?"
+    },
+    "de:travel_17": {
+      "source": "Danke für Ihre Nachricht. Wir haben Ihre Meldung zum stornierten Aufenthalt gesehen. Könnten Sie uns schildern, was aus Ihrer Sicht passiert ist?",
+      "text": "Agradecemos o contato. Vimos o seu relato sobre a estadia cancelada. Poderia nos contar o que aconteceu do seu lado?"
+    },
+    "de:travel_18": {
+      "source": "Danke, dass du vermittelst. Gast und Gastgeber sind beide verärgert, und der Service steckt dazwischen. Wo möchtest du anfangen?",
+      "text": "Que bom que você entrou na conversa. O hóspede e o anfitrião estão chateados, e a equipe de atendimento está no meio. Por onde você quer começar?"
+    },
+    "de:travel_19": {
+      "source": "Alle fragen, was los ist, und die Nachrichten häufen sich. Kannst du uns ein klares Bild davon geben, wo wir stehen?",
+      "text": "Todo mundo está perguntando o que está acontecendo, e as mensagens não param de chegar. Você pode nos dar uma visão clara da situação?"
+    },
+    "de:work_01": {
+      "source": "Hallo! Ich bin Marina aus dem Team. Wie heißt du?",
+      "text": "Oi! Sou a Marina, da equipe. Qual é o seu nome?"
+    },
+    "de:work_02": {
+      "source": "Hallo! Wobei kann ich dir heute helfen?",
+      "text": "Olá! Como posso te ajudar hoje?"
+    },
+    "de:work_03": {
+      "source": "Hallo! Unser Anruf ist morgen. Passt die Uhrzeit noch für dich?",
+      "text": "Oi! Nossa ligação é amanhã. O horário ainda está bom para você?"
+    },
+    "de:work_04": {
+      "source": "Guten Morgen! Die Besprechung beginnt in zehn Minuten. Kommst du?",
+      "text": "Bom dia! A reunião começa em dez minutos. Você vem?"
+    },
+    "de:work_05": {
+      "source": "Hallo! Ich habe dir die Anleitung geschickt. Ist alles klar?",
+      "text": "Oi! Te mandei as instruções. Está tudo claro?"
+    },
+    "de:work_06": {
+      "source": "Hallo! Bitte bereite den kurzen Bericht bis Freitag vor. Marina und ich beantworten Fragen.",
+      "text": "Oi! Por favor, prepare o relatório curto até sexta. Eu e a Marina tiramos as dúvidas."
+    },
+    "de:work_07": {
+      "source": "Hallo! Kurze Nachfrage: Das Projekt ist bis Donnerstag fällig. Wie läuft es?",
+      "text": "Oi! Só confirmando: o projeto é para quinta. Como está indo?"
+    },
+    "de:work_08": {
+      "source": "Hallo! Kurze Frage: Wie weit sind wir mit der Kundenaufgabe?",
+      "text": "Oi! Pergunta rápida: como estamos com a tarefa do cliente?"
+    },
+    "de:work_09": {
+      "source": "Hallo! Ich bin Sam von der IT. Marina sagt, du brauchst Hilfe. Was ist los?",
+      "text": "Oi! Aqui é Sam, da TI. A Marina disse que você precisa de ajuda. Qual é o problema?"
+    },
+    "de:work_10": {
+      "source": "Hallo! Wie war dein erster Tag bei uns? Ich hoffe, es ging gut.",
+      "text": "Oi! Como foi seu primeiro dia com a gente? Espero que tenha sido bom."
+    },
+    "de:work_11": {
+      "source": "Wir reden seit zwei Tagen über den Launch, aber ich sehe immer noch nicht, wer was macht. Was meinst du?",
+      "text": "Faz dois dias que falamos do lançamento, mas ainda não vejo quem faz o quê. O que você acha?"
+    },
+    "de:work_12": {
+      "source": "Hallo! Du hast erwähnt, dass etwas nicht funktioniert. Kannst du mir erklären, was los ist, damit ich nachsehen kann?",
+      "text": "Oi! Você comentou que algo não estava funcionando. Me conta o que está acontecendo para eu dar uma olhada?"
+    },
+    "de:work_13": {
+      "source": "Hallo! Ich habe gehört, dass nächste Woche eine Besprechung geplant ist. Worum geht es dabei?",
+      "text": "Oi! Fiquei sabendo que vamos marcar uma reunião na semana que vem. É sobre o quê?"
+    },
+    "de:work_14": {
+      "source": "Der Kunde hat gerade angerufen und braucht die Lieferung am Mittwoch statt am Freitag. Kannst du das möglich machen?",
+      "text": "O cliente acabou de ligar e precisa da entrega na quarta em vez de sexta. Você consegue?"
+    },
+    "de:work_15": {
+      "source": "Hallo! Ich habe gerade meinen Angebotsentwurf mit dir geteilt. Ich hätte gern deine ehrliche Meinung, bevor ich ihn abschicke.",
+      "text": "Oi! Acabei de compartilhar com você o rascunho da proposta. Queria muito sua opinião sincera antes de enviar."
+    },
+    "de:work_16": {
+      "source": "Wir haben drei dringende Projekte, aber diesen Monat nur zwei verfügbare Leute. Wir müssen entscheiden, was zuerst kommt. Wo fangen wir an?",
+      "text": "Temos três projetos urgentes e só duas pessoas disponíveis este mês. Precisamos decidir o que vem primeiro. Por onde começamos?"
+    },
+    "de:work_17": {
+      "source": "Zu deiner Information: Wir haben beschlossen, das ganze Team bis Monatsende auf das neue Tool umzustellen. Sag Bescheid, falls etwas unklar ist.",
+      "text": "Só para você saber: decidimos passar toda a equipe para a nova ferramenta até o fim do mês. Me avisa se algo não estiver claro."
+    },
+    "de:work_18": {
+      "source": "Hallo. Die Integration verzögert sich, und mein Team und das Plattform-Team schieben sich gegenseitig die Schuld zu. Kannst du uns helfen, das zu klären?",
+      "text": "Oi. A integração está atrasando, e a minha equipe e a da plataforma estão jogando a culpa uma na outra. Você pode ajudar a esclarecer isso?"
+    },
+    "de:work_19": {
+      "source": "Danke, dass du dir Zeit genommen hast. Bevor wir über die Konditionen sprechen, würde ich gern hören, wie du das Projekt siehst und wo die größten Lücken sind.",
+      "text": "Agradeço por arranjar um tempo. Antes de falar das condições, queria ouvir como você vê o projeto e onde acha que estão as maiores lacunas."
+    },
+    "en:everyday_01": {
+      "source": "Hi! It's nice to hear from you. How are you?",
+      "text": "Oi! Que bom ter notícias suas. Tudo bem?"
+    },
+    "en:everyday_02": {
+      "source": "Hey! What's up? Did you want to tell me something?",
+      "text": "E aí! Tudo certo? Você queria me contar alguma coisa?"
+    },
+    "en:everyday_03": {
+      "source": "Hi! Big news: I got the new job today!",
+      "text": "Oi! Grande notícia: hoje consegui o emprego novo!"
+    },
+    "en:everyday_04": {
+      "source": "Hi! What's new with you today?",
+      "text": "Oi! Quais são as novidades de hoje?"
+    },
+    "en:everyday_05": {
+      "source": "Hi. Yesterday I waited a long time outside the café. What happened?",
+      "text": "Oi. Ontem esperei muito tempo na frente do café. O que aconteceu?"
+    },
+    "en:everyday_06": {
+      "source": "Hi! I have a few free minutes. What's up?",
+      "text": "Oi! Tenho uns minutinhos livres. O que foi?"
+    },
+    "en:everyday_07": {
+      "source": "Hi! I heard you need someone for your pet. When is it?",
+      "text": "Oi! Fiquei sabendo que você precisa de alguém para cuidar do seu pet. Para quando?"
+    },
+    "en:everyday_08": {
+      "source": "Hi everyone! We need to buy a gift. Any ideas?",
+      "text": "Oi, pessoal! Precisamos comprar um presente. Alguma ideia?"
+    },
+    "en:everyday_09": {
+      "source": "Hello! I'm from the shop. I can help you with your order.",
+      "text": "Olá! Sou da loja. Posso ajudar com o seu pedido."
+    },
+    "en:everyday_10": {
+      "source": "Hi! I've been wondering how it went. Did my advice help?",
+      "text": "Oi! Fiquei pensando em como foi. Meu conselho ajudou?"
+    },
+    "en:everyday_11": {
+      "source": "Hey! The weekend is coming and I have no plans yet. What are you two doing?",
+      "text": "E aí! O fim de semana está chegando e ainda não tenho planos. O que vocês dois vão fazer?"
+    },
+    "en:everyday_12": {
+      "source": "Hi! I have to decide something big and I keep going back and forth. Can you help me think it through?",
+      "text": "Oi! Preciso tomar uma decisão importante e fico mudando de ideia. Você me ajuda a pensar?"
+    },
+    "en:everyday_13": {
+      "source": "Hello! Did you want to talk about something? I saw your note on the door.",
+      "text": "Olá! Você queria conversar sobre alguma coisa? Vi seu bilhete na porta."
+    },
+    "en:everyday_14": {
+      "source": "Hey, you wanted to talk about something? I'm free for a bit, so go ahead.",
+      "text": "Ei, você queria conversar sobre algo? Estou livre por um tempinho, pode falar."
+    },
+    "en:everyday_15": {
+      "source": "Hi! You said something has been bothering you. I'm listening, but I hope we can talk calmly.",
+      "text": "Oi! Você disse que algo está te incomodando. Estou ouvindo, mas espero que a gente converse com calma."
+    },
+    "en:everyday_16": {
+      "source": "Honestly, let's just book the cheapest flat for the trip and be done. Why overthink it?",
+      "text": "Sinceramente, vamos reservar o apartamento mais barato para a viagem e pronto. Para que complicar?"
+    },
+    "en:everyday_17": {
+      "source": "Hey! Is everything okay? You've seemed different lately, and I wasn't sure whether to bring it up.",
+      "text": "Ei! Está tudo bem? Você parece diferente ultimamente, e eu não sabia se devia tocar no assunto."
+    },
+    "en:everyday_18": {
+      "source": "Have you heard about the party? Some say it's cancelled, others say it's moved. I'm so confused.",
+      "text": "Você soube da festa? Uns dizem que foi cancelada, outros que mudou de dia. Não estou entendendo mais nada."
+    },
+    "en:everyday_19": {
+      "source": "Okay, this chat has turned into a mess. Everyone is hurt and nobody is listening. Could you help us start over?",
+      "text": "Bom, esse chat virou uma bagunça. Todo mundo está magoado e ninguém escuta ninguém. Você pode nos ajudar a recomeçar?"
+    },
+    "en:social_01": {
+      "source": "Hi! Nice to meet you. I'm Mila. How are you today?",
+      "text": "Oi! Prazer em te conhecer. Eu sou a Mila. Como você está hoje?"
+    },
+    "en:social_02": {
+      "source": "Hi! Our meeting is tomorrow at 10. Still okay for you?",
+      "text": "Oi! Nosso encontro é amanhã às 10. Ainda está bom para você?"
+    },
+    "en:social_03": {
+      "source": "Hello! Can I help you? Are you looking for something?",
+      "text": "Olá! Posso te ajudar? Está procurando alguma coisa?"
+    },
+    "en:social_04": {
+      "source": "Hi! I hope my help was useful. Is everything okay now?",
+      "text": "Oi! Espero que minha ajuda tenha servido. Está tudo bem agora?"
+    },
+    "en:social_05": {
+      "source": "Hi! Guess what? I passed my driving test today!",
+      "text": "Oi! Adivinha só? Passei na prova de direção hoje!"
+    },
+    "en:social_06": {
+      "source": "Welcome to the group! Please tell us your name and what you enjoy.",
+      "text": "Que bom ter você no grupo! Conta pra gente seu nome e do que você gosta."
+    },
+    "en:social_07": {
+      "source": "Hey! I haven't seen you for ages. What are you up to this week?",
+      "text": "Oi! Faz séculos que a gente não se vê. Quais são seus planos para esta semana?"
+    },
+    "en:social_08": {
+      "source": "Hey! How's your week going? Any plans for the weekend?",
+      "text": "E aí! Como está sendo sua semana? Algum plano para o fim de semana?"
+    },
+    "en:social_09": {
+      "source": "Hi! Are we still meeting tonight? I'm really looking forward to it.",
+      "text": "Oi! Ainda vamos nos ver hoje à noite? Mal posso esperar."
+    },
+    "en:social_10": {
+      "source": "Hi! It was nice to see you yesterday. Did you get home okay?",
+      "text": "Oi! Foi bom te ver ontem. Chegou bem em casa?"
+    },
+    "en:social_11": {
+      "source": "Hey everyone! We keep talking about Saturday, but nothing is decided yet. Any ideas?",
+      "text": "Oi, pessoal! Faz dias que a gente fala de sábado, mas nada foi decidido ainda. Alguma ideia?"
+    },
+    "en:social_12": {
+      "source": "Hey. Sorry I've been so quiet. Work has been a lot lately.",
+      "text": "Oi. Desculpa ter sumido. O trabalho anda puxado ultimamente."
+    },
+    "en:social_13": {
+      "source": "Hi. I saw your message this morning, and I'm not sure what you meant. Can we talk?",
+      "text": "Oi. Vi sua mensagem de hoje de manhã e não entendi bem o que você quis dizer. Podemos conversar?"
+    },
+    "en:social_14": {
+      "source": "Hi! We're having a small party at my place on Friday, and I'd love for you to come. Can you make it?",
+      "text": "Oi! Vou fazer uma festinha em casa na sexta e adoraria que você viesse. Você consegue?"
+    },
+    "en:social_15": {
+      "source": "Hey, I've been thinking about how we plan things together lately. Can we talk about what each of us expects?",
+      "text": "Ei, tenho pensado em como a gente anda organizando as coisas. Podemos conversar sobre o que cada um espera?"
+    },
+    "en:social_16": {
+      "source": "Hi! I saw you wanted to talk about something. I'm a bit busy today, but tell me what's up.",
+      "text": "Oi! Vi que você queria conversar. Hoje o dia está corrido, mas me conta o que houve."
+    },
+    "en:social_17": {
+      "source": "Hey! I'm counting on you for the whole move this Saturday again, okay? You're always so reliable, I knew you'd say yes.",
+      "text": "E aí! Conto com você de novo para a mudança inteira neste sábado, tá? Você é sempre tão confiável, eu sabia que ia dizer sim."
+    },
+    "en:social_18": {
+      "source": "I'll be honest, I'm still a bit hurt about what happened. I'm willing to hear you out, though. What did you want to say?",
+      "text": "Vou ser sincero: ainda estou um pouco magoado com o que aconteceu. Mas estou disposto a te ouvir. O que você queria dizer?"
+    },
+    "en:social_19": {
+      "source": "Honestly, this thread has gotten tense. Half of us feel ignored and the other half feel blamed. Could someone help us sort it out?",
+      "text": "Sinceramente, essa conversa ficou tensa. Metade de nós se sente ignorada e a outra metade, culpada. Alguém pode ajudar a resolver isso?"
+    },
+    "en:travel_01": {
+      "source": "Hello! Are you here yet? How was your trip?",
+      "text": "Olá! Já está na cidade? Como foi a viagem?"
+    },
+    "en:travel_02": {
+      "source": "Hello! Do you need help with the apartment?",
+      "text": "Olá! Precisa de ajuda com o apartamento?"
+    },
+    "en:travel_03": {
+      "source": "Hello! Thank you for your booking. How can I help you?",
+      "text": "Olá! Agradecemos a sua reserva. Como posso ajudar?"
+    },
+    "en:travel_04": {
+      "source": "Hello! Do you need a ride from the airport?",
+      "text": "Olá! Precisa de transporte do aeroporto?"
+    },
+    "en:travel_05": {
+      "source": "Hi! Try the small café near the station. The coffee is great!",
+      "text": "Oi! Experimenta o cafezinho perto da estação. O café é ótimo!"
+    },
+    "en:travel_06": {
+      "source": "Hi! Where do you want to go? Lea and I can show you the way.",
+      "text": "Oi! Para onde você quer ir? Eu e a Lea podemos te mostrar o caminho."
+    },
+    "en:travel_07": {
+      "source": "Hello! I'm checking your booking. Can you send me the booking number, please?",
+      "text": "Olá! Estou verificando sua reserva. Pode me mandar o número da reserva, por favor?"
+    },
+    "en:travel_08": {
+      "source": "Hi! It's already seven o'clock. Are you coming soon? I'm waiting at the apartment.",
+      "text": "Oi! Já são sete horas. Vai chegar logo? Estou te esperando no apartamento."
+    },
+    "en:travel_09": {
+      "source": "Hello! Welcome to our guesthouse. Who am I writing to, and how can we help?",
+      "text": "Olá! Boas-vindas à nossa pousada. Com quem eu falo e como podemos ajudar?"
+    },
+    "en:travel_10": {
+      "source": "Hi! I'd like to show you the old town tomorrow. Where shall we meet?",
+      "text": "Oi! Queria te mostrar o centro histórico amanhã. Onde a gente se encontra?"
+    },
+    "en:travel_11": {
+      "source": "Hello, this is Niko from guest support. Clara is also here. What can we do for you?",
+      "text": "Olá, aqui é o Niko, do atendimento ao hóspede. A Clara também está aqui. Em que podemos ajudar?"
+    },
+    "en:travel_12": {
+      "source": "Hey! Everyone seems to have a different idea for the trip. Can you help us figure out a plan?",
+      "text": "Oi! Parece que cada um tem uma ideia diferente para a viagem. Você ajuda a gente a montar um plano?"
+    },
+    "en:travel_13": {
+      "source": "Hello! Lea from reservations here. I understand you'd like to change something. Which booking is it about?",
+      "text": "Olá! Aqui é a Lea, das reservas. Entendi que gostaria de alterar algo. De qual reserva se trata?"
+    },
+    "en:travel_14": {
+      "source": "Good afternoon, this is Niko from customer service. I understand you wanted to raise a concern. How can I help?",
+      "text": "Boa tarde, aqui é o Niko, do atendimento ao cliente. Entendi que deseja relatar um problema. Como posso ajudar?"
+    },
+    "en:travel_15": {
+      "source": "Hi! I heard there's a problem with our connection tomorrow. What exactly happened?",
+      "text": "Oi! Fiquei sabendo que tem um problema com a nossa conexão de amanhã. O que aconteceu exatamente?"
+    },
+    "en:travel_16": {
+      "source": "Hello. I've checked our system, and it shows no booking under that name. Can you tell me what you have on your side?",
+      "text": "Olá. Verifiquei nosso sistema e não aparece nenhuma reserva nesse nome. Quais dados tem do seu lado?"
+    },
+    "en:travel_17": {
+      "source": "Thank you for contacting us. We've seen your report about the cancelled stay. Could you walk us through what happened from your side?",
+      "text": "Agradecemos o contato. Vimos o seu relato sobre a estadia cancelada. Poderia nos contar o que aconteceu do seu lado?"
+    },
+    "en:travel_18": {
+      "source": "Thanks for stepping in. The guest and the host are both upset, and the service team is caught in the middle. Where would you like to begin?",
+      "text": "Que bom que você entrou na conversa. O hóspede e o anfitrião estão chateados, e a equipe de atendimento está no meio. Por onde você quer começar?"
+    },
+    "en:travel_19": {
+      "source": "Everyone is asking what's going on, and the messages are piling up. Could you give us a clear picture of where we stand?",
+      "text": "Todo mundo está perguntando o que está acontecendo, e as mensagens não param de chegar. Você pode nos dar uma visão clara da situação?"
+    },
+    "en:work_01": {
+      "source": "Hi! I'm Marina from the team. What's your name?",
+      "text": "Oi! Sou a Marina, da equipe. Qual é o seu nome?"
+    },
+    "en:work_02": {
+      "source": "Hello! How can I help you today?",
+      "text": "Olá! Como posso te ajudar hoje?"
+    },
+    "en:work_03": {
+      "source": "Hi! Our call is tomorrow. Is the time still okay for you?",
+      "text": "Oi! Nossa ligação é amanhã. O horário ainda está bom para você?"
+    },
+    "en:work_04": {
+      "source": "Good morning! The meeting starts in ten minutes. Are you coming?",
+      "text": "Bom dia! A reunião começa em dez minutos. Você vem?"
+    },
+    "en:work_05": {
+      "source": "Hi! I sent you the instructions. Is everything clear?",
+      "text": "Oi! Te mandei as instruções. Está tudo claro?"
+    },
+    "en:work_06": {
+      "source": "Hi! Please prepare the short report by Friday. Marina and I can answer questions.",
+      "text": "Oi! Por favor, prepare o relatório curto até sexta. Eu e a Marina tiramos as dúvidas."
+    },
+    "en:work_07": {
+      "source": "Hi! Just checking: the project is due on Thursday. How is it going?",
+      "text": "Oi! Só confirmando: o projeto é para quinta. Como está indo?"
+    },
+    "en:work_08": {
+      "source": "Hi! Quick question: where are we with the client task?",
+      "text": "Oi! Pergunta rápida: como estamos com a tarefa do cliente?"
+    },
+    "en:work_09": {
+      "source": "Hi! I'm Sam from IT. Marina says you need help. What's the problem?",
+      "text": "Oi! Aqui é Sam, da TI. A Marina disse que você precisa de ajuda. Qual é o problema?"
+    },
+    "en:work_10": {
+      "source": "Hi! How was your first day with us? I hope it went well.",
+      "text": "Oi! Como foi seu primeiro dia com a gente? Espero que tenha sido bom."
+    },
+    "en:work_11": {
+      "source": "We've talked about the launch for two days, but I still don't see who does what. Thoughts?",
+      "text": "Faz dois dias que falamos do lançamento, mas ainda não vejo quem faz o quê. O que você acha?"
+    },
+    "en:work_12": {
+      "source": "Hi! You mentioned something wasn't working. Can you tell me what's going on, so I can look into it?",
+      "text": "Oi! Você comentou que algo não estava funcionando. Me conta o que está acontecendo para eu dar uma olhada?"
+    },
+    "en:work_13": {
+      "source": "Hi! I heard we're setting up a meeting next week. What is it about?",
+      "text": "Oi! Fiquei sabendo que vamos marcar uma reunião na semana que vem. É sobre o quê?"
+    },
+    "en:work_14": {
+      "source": "The client just called, and they need the delivery on Wednesday instead of Friday. Can you make that work?",
+      "text": "O cliente acabou de ligar e precisa da entrega na quarta em vez de sexta. Você consegue?"
+    },
+    "en:work_15": {
+      "source": "Hey! I just shared my draft proposal with you. I'd really like your honest opinion before I send it on.",
+      "text": "Oi! Acabei de compartilhar com você o rascunho da proposta. Queria muito sua opinião sincera antes de enviar."
+    },
+    "en:work_16": {
+      "source": "We have three urgent projects and only two people available this month. We need to decide what comes first. Where do we start?",
+      "text": "Temos três projetos urgentes e só duas pessoas disponíveis este mês. Precisamos decidir o que vem primeiro. Por onde começamos?"
+    },
+    "en:work_17": {
+      "source": "Just so you know, we've decided to move the whole team to the new tool by the end of the month. Let me know if anything's unclear.",
+      "text": "Só para você saber: decidimos passar toda a equipe para a nova ferramenta até o fim do mês. Me avisa se algo não estiver claro."
+    },
+    "en:work_18": {
+      "source": "Hi. The integration is slipping, and my team and the platform team are each pointing at the other. Can you help us clear it up?",
+      "text": "Oi. A integração está atrasando, e a minha equipe e a da plataforma estão jogando a culpa uma na outra. Você pode ajudar a esclarecer isso?"
+    },
+    "en:work_19": {
+      "source": "Thanks for making time. Before we discuss terms, I'd like to hear how you see the project and where you think the biggest gaps are.",
+      "text": "Agradeço por arranjar um tempo. Antes de falar das condições, queria ouvir como você vê o projeto e onde acha que estão as maiores lacunas."
+    },
+    "es:everyday_01": {
+      "source": "¡Hola! Qué bueno saber de ti. ¿Cómo estás?",
+      "text": "Oi! Que bom ter notícias suas. Tudo bem?"
+    },
+    "es:everyday_02": {
+      "source": "¡Ey! ¿Qué pasa? ¿Querías decirme algo?",
+      "text": "E aí! Tudo certo? Você queria me contar alguma coisa?"
+    },
+    "es:everyday_03": {
+      "source": "¡Hola! Gran noticia: ¡hoy me dieron el nuevo trabajo!",
+      "text": "Oi! Grande notícia: hoje consegui o emprego novo!"
+    },
+    "es:everyday_04": {
+      "source": "¡Hola! ¿Qué hay de nuevo hoy?",
+      "text": "Oi! Quais são as novidades de hoje?"
+    },
+    "es:everyday_05": {
+      "source": "Hola. Ayer esperé mucho rato delante del café. ¿Qué pasó?",
+      "text": "Oi. Ontem esperei muito tempo na frente do café. O que aconteceu?"
+    },
+    "es:everyday_06": {
+      "source": "¡Hola! Tengo unos minutos libres. ¿Qué pasa?",
+      "text": "Oi! Tenho uns minutinhos livres. O que foi?"
+    },
+    "es:everyday_07": {
+      "source": "¡Hola! Me dijeron que buscas a alguien para tu mascota. ¿Para cuándo?",
+      "text": "Oi! Fiquei sabendo que você precisa de alguém para cuidar do seu pet. Para quando?"
+    },
+    "es:everyday_08": {
+      "source": "¡Hola a todos! Tenemos que comprar un regalo. ¿Alguna idea?",
+      "text": "Oi, pessoal! Precisamos comprar um presente. Alguma ideia?"
+    },
+    "es:everyday_09": {
+      "source": "¡Hola! Soy de la tienda. Puedo ayudarle con su pedido.",
+      "text": "Olá! Sou da loja. Posso ajudar com o seu pedido."
+    },
+    "es:everyday_10": {
+      "source": "¡Hola! Me preguntaba cómo te fue. ¿Te sirvió mi consejo?",
+      "text": "Oi! Fiquei pensando em como foi. Meu conselho ajudou?"
+    },
+    "es:everyday_11": {
+      "source": "¡Ey! Ya llega el fin de semana y no tengo planes. ¿Qué vais a hacer vosotros?",
+      "text": "E aí! O fim de semana está chegando e ainda não tenho planos. O que vocês dois vão fazer?"
+    },
+    "es:everyday_12": {
+      "source": "¡Hola! Tengo que decidir algo importante y no paro de dudar. ¿Me ayudas a pensarlo?",
+      "text": "Oi! Preciso tomar uma decisão importante e fico mudando de ideia. Você me ajuda a pensar?"
+    },
+    "es:everyday_13": {
+      "source": "¡Hola! ¿Querías hablar de algo? Vi tu nota en la puerta.",
+      "text": "Olá! Você queria conversar sobre alguma coisa? Vi seu bilhete na porta."
+    },
+    "es:everyday_14": {
+      "source": "Oye, ¿querías hablar de algo? Tengo un rato libre, así que dime.",
+      "text": "Ei, você queria conversar sobre algo? Estou livre por um tempinho, pode falar."
+    },
+    "es:everyday_15": {
+      "source": "¡Hola! Dijiste que algo te estaba molestando. Te escucho, pero ojalá podamos hablarlo con calma.",
+      "text": "Oi! Você disse que algo está te incomodando. Estou ouvindo, mas espero que a gente converse com calma."
+    },
+    "es:everyday_16": {
+      "source": "Sinceramente, reservemos el piso más barato para el viaje y listo. ¿Para qué darle tantas vueltas?",
+      "text": "Sinceramente, vamos reservar o apartamento mais barato para a viagem e pronto. Para que complicar?"
+    },
+    "es:everyday_17": {
+      "source": "¡Ey! ¿Todo bien? Últimamente te noto distinto y no sabía si sacar el tema.",
+      "text": "Ei! Está tudo bem? Você parece diferente ultimamente, e eu não sabia se devia tocar no assunto."
+    },
+    "es:everyday_18": {
+      "source": "¿Te enteraste de lo de la fiesta? Unos dicen que se cancela y otros que se cambia de día. Estoy muy confundida.",
+      "text": "Você soube da festa? Uns dizem que foi cancelada, outros que mudou de dia. Não estou entendendo mais nada."
+    },
+    "es:everyday_19": {
+      "source": "Vale, este chat se ha convertido en un lío. Todos estamos heridos y nadie escucha. ¿Puedes ayudarnos a empezar de nuevo?",
+      "text": "Bom, esse chat virou uma bagunça. Todo mundo está magoado e ninguém escuta ninguém. Você pode nos ajudar a recomeçar?"
+    },
+    "es:social_01": {
+      "source": "¡Hola! Encantada de conocerte. Soy Mila. ¿Cómo estás hoy?",
+      "text": "Oi! Prazer em te conhecer. Eu sou a Mila. Como você está hoje?"
+    },
+    "es:social_02": {
+      "source": "¡Hola! Tenemos la reunión mañana a las 10. ¿Sigue bien para ti?",
+      "text": "Oi! Nosso encontro é amanhã às 10. Ainda está bom para você?"
+    },
+    "es:social_03": {
+      "source": "¡Hola! ¿Te puedo ayudar? ¿Buscas algo?",
+      "text": "Olá! Posso te ajudar? Está procurando alguma coisa?"
+    },
+    "es:social_04": {
+      "source": "¡Hola! Espero que mi ayuda te haya servido. ¿Todo bien ahora?",
+      "text": "Oi! Espero que minha ajuda tenha servido. Está tudo bem agora?"
+    },
+    "es:social_05": {
+      "source": "¡Hola! ¿Sabes qué? ¡Hoy aprobé el examen de conducir!",
+      "text": "Oi! Adivinha só? Passei na prova de direção hoje!"
+    },
+    "es:social_06": {
+      "source": "¡Te damos la bienvenida al grupo! Cuéntanos cómo te llamas y qué te gusta hacer.",
+      "text": "Que bom ter você no grupo! Conta pra gente seu nome e do que você gosta."
+    },
+    "es:social_07": {
+      "source": "¡Hola! Hace siglos que no nos vemos. ¿Qué planes tienes esta semana?",
+      "text": "Oi! Faz séculos que a gente não se vê. Quais são seus planos para esta semana?"
+    },
+    "es:social_08": {
+      "source": "¡Ey! ¿Qué tal tu semana? ¿Tienes planes para el fin de semana?",
+      "text": "E aí! Como está sendo sua semana? Algum plano para o fim de semana?"
+    },
+    "es:social_09": {
+      "source": "¡Hola! ¿Seguimos quedando esta noche? Tengo muchas ganas de verte.",
+      "text": "Oi! Ainda vamos nos ver hoje à noite? Mal posso esperar."
+    },
+    "es:social_10": {
+      "source": "¡Hola! Qué bueno verte ayer. ¿Llegaste bien a casa?",
+      "text": "Oi! Foi bom te ver ontem. Chegou bem em casa?"
+    },
+    "es:social_11": {
+      "source": "¡Hola a todos! Llevamos días hablando del sábado, pero todavía no hay plan. ¿Alguna idea?",
+      "text": "Oi, pessoal! Faz dias que a gente fala de sábado, mas nada foi decidido ainda. Alguma ideia?"
+    },
+    "es:social_12": {
+      "source": "Hola. Perdona que haya estado tan callado. El trabajo me está agobiando últimamente.",
+      "text": "Oi. Desculpa ter sumido. O trabalho anda puxado ultimamente."
+    },
+    "es:social_13": {
+      "source": "Hola. Vi tu mensaje de esta mañana y no estoy segura de qué quisiste decir. ¿Podemos hablar?",
+      "text": "Oi. Vi sua mensagem de hoje de manhã e não entendi bem o que você quis dizer. Podemos conversar?"
+    },
+    "es:social_14": {
+      "source": "¡Hola! Vamos a hacer una fiestecita en mi casa el viernes y me encantaría que vinieras. ¿Puedes venir?",
+      "text": "Oi! Vou fazer uma festinha em casa na sexta e adoraria que você viesse. Você consegue?"
+    },
+    "es:social_15": {
+      "source": "Oye, he estado pensando en cómo organizamos nuestros planes últimamente. ¿Podemos hablar de lo que cada uno espera?",
+      "text": "Ei, tenho pensado em como a gente anda organizando as coisas. Podemos conversar sobre o que cada um espera?"
+    },
+    "es:social_16": {
+      "source": "¡Hola! Vi que querías hablar de algo. Hoy ando algo liada, pero cuéntame qué pasa.",
+      "text": "Oi! Vi que você queria conversar. Hoje o dia está corrido, mas me conta o que houve."
+    },
+    "es:social_17": {
+      "source": "¡Ey! Cuento contigo para toda la mudanza este sábado otra vez, ¿vale? Siempre eres tan fiable que sabía que dirías que sí.",
+      "text": "E aí! Conto com você de novo para a mudança inteira neste sábado, tá? Você é sempre tão confiável, eu sabia que ia dizer sim."
+    },
+    "es:social_18": {
+      "source": "Voy a ser sincero: todavía estoy dolido por lo que pasó. Pero estoy dispuesto a escucharte. ¿Qué querías decirme?",
+      "text": "Vou ser sincero: ainda estou um pouco magoado com o que aconteceu. Mas estou disposto a te ouvir. O que você queria dizer?"
+    },
+    "es:social_19": {
+      "source": "Sinceramente, este hilo se ha puesto tenso. Unos nos sentimos ignorados y otros se sienten culpados. ¿Alguien puede ayudarnos a aclararlo?",
+      "text": "Sinceramente, essa conversa ficou tensa. Metade de nós se sente ignorada e a outra metade, culpada. Alguém pode ajudar a resolver isso?"
+    },
+    "es:travel_01": {
+      "source": "¡Hola! ¿Ya estás en la ciudad? ¿Qué tal el viaje?",
+      "text": "Olá! Já está na cidade? Como foi a viagem?"
+    },
+    "es:travel_02": {
+      "source": "¡Hola! ¿Necesitas ayuda con el apartamento?",
+      "text": "Olá! Precisa de ajuda com o apartamento?"
+    },
+    "es:travel_03": {
+      "source": "¡Hola! Gracias por tu reserva. ¿En qué puedo ayudarte?",
+      "text": "Olá! Agradecemos a sua reserva. Como posso ajudar?"
+    },
+    "es:travel_04": {
+      "source": "¡Hola! ¿Necesitas transporte desde el aeropuerto?",
+      "text": "Olá! Precisa de transporte do aeroporto?"
+    },
+    "es:travel_05": {
+      "source": "¡Hola! Prueba el café pequeño de la estación. ¡Es genial!",
+      "text": "Oi! Experimenta o cafezinho perto da estação. O café é ótimo!"
+    },
+    "es:travel_06": {
+      "source": "¡Hola! ¿A dónde quieres ir? Lea y yo podemos explicarte el camino.",
+      "text": "Oi! Para onde você quer ir? Eu e a Lea podemos te mostrar o caminho."
+    },
+    "es:travel_07": {
+      "source": "¡Hola! Estoy revisando tu reserva. ¿Me puedes mandar el número de reserva?",
+      "text": "Olá! Estou verificando sua reserva. Pode me mandar o número da reserva, por favor?"
+    },
+    "es:travel_08": {
+      "source": "¡Hola! Ya son las siete. ¿Llegas pronto? Te espero en el apartamento.",
+      "text": "Oi! Já são sete horas. Vai chegar logo? Estou te esperando no apartamento."
+    },
+    "es:travel_09": {
+      "source": "¡Hola! Te damos la bienvenida. ¿Con quién hablo y en qué podemos ayudarte?",
+      "text": "Olá! Boas-vindas à nossa pousada. Com quem eu falo e como podemos ajudar?"
+    },
+    "es:travel_10": {
+      "source": "¡Hola! Me gustaría enseñarte el casco antiguo mañana. ¿Dónde quedamos?",
+      "text": "Oi! Queria te mostrar o centro histórico amanhã. Onde a gente se encontra?"
+    },
+    "es:travel_11": {
+      "source": "Hola, soy Niko, del servicio de atención al huésped. Clara también está aquí. ¿En qué podemos ayudarle?",
+      "text": "Olá, aqui é o Niko, do atendimento ao hóspede. A Clara também está aqui. Em que podemos ajudar?"
+    },
+    "es:travel_12": {
+      "source": "¡Hola! Cada uno parece tener una idea distinta para el viaje. ¿Nos ayudas a hacer un plan?",
+      "text": "Oi! Parece que cada um tem uma ideia diferente para a viagem. Você ajuda a gente a montar um plano?"
+    },
+    "es:travel_13": {
+      "source": "¡Hola! Soy Lea, de reservas. Entiendo que quiere cambiar algo. ¿De qué reserva se trata?",
+      "text": "Olá! Aqui é a Lea, das reservas. Entendi que gostaria de alterar algo. De qual reserva se trata?"
+    },
+    "es:travel_14": {
+      "source": "Buenas tardes, soy Niko, de atención al cliente. Entiendo que desea plantear un problema. ¿En qué puedo ayudarle?",
+      "text": "Boa tarde, aqui é o Niko, do atendimento ao cliente. Entendi que deseja relatar um problema. Como posso ajudar?"
+    },
+    "es:travel_15": {
+      "source": "¡Hola! He oído que hay algún problema con nuestra conexión de mañana. ¿Qué ha pasado exactamente?",
+      "text": "Oi! Fiquei sabendo que tem um problema com a nossa conexão de amanhã. O que aconteceu exatamente?"
+    },
+    "es:travel_16": {
+      "source": "Hola. He revisado nuestro sistema y no aparece ninguna reserva con ese nombre. ¿Qué datos tiene usted?",
+      "text": "Olá. Verifiquei nosso sistema e não aparece nenhuma reserva nesse nome. Quais dados tem do seu lado?"
+    },
+    "es:travel_17": {
+      "source": "Gracias por contactarnos. Hemos visto su informe sobre la estancia cancelada. ¿Podría explicarnos qué ocurrió desde su punto de vista?",
+      "text": "Agradecemos o contato. Vimos o seu relato sobre a estadia cancelada. Poderia nos contar o que aconteceu do seu lado?"
+    },
+    "es:travel_18": {
+      "source": "Gracias por intervenir. El huésped y el anfitrión están molestos y el servicio está en medio. ¿Por dónde quieres empezar?",
+      "text": "Que bom que você entrou na conversa. O hóspede e o anfitrião estão chateados, e a equipe de atendimento está no meio. Por onde você quer começar?"
+    },
+    "es:travel_19": {
+      "source": "Todos preguntan qué está pasando y los mensajes no paran de acumularse. ¿Puedes darnos una imagen clara de cómo estamos?",
+      "text": "Todo mundo está perguntando o que está acontecendo, e as mensagens não param de chegar. Você pode nos dar uma visão clara da situação?"
+    },
+    "es:work_01": {
+      "source": "¡Hola! Soy Marina, del equipo. ¿Cómo te llamas?",
+      "text": "Oi! Sou a Marina, da equipe. Qual é o seu nome?"
+    },
+    "es:work_02": {
+      "source": "¡Hola! ¿En qué te puedo ayudar hoy?",
+      "text": "Olá! Como posso te ajudar hoje?"
+    },
+    "es:work_03": {
+      "source": "¡Hola! Nuestra llamada es mañana. ¿Te sigue bien la hora?",
+      "text": "Oi! Nossa ligação é amanhã. O horário ainda está bom para você?"
+    },
+    "es:work_04": {
+      "source": "¡Buenos días! La reunión empieza en diez minutos. ¿Vienes?",
+      "text": "Bom dia! A reunião começa em dez minutos. Você vem?"
+    },
+    "es:work_05": {
+      "source": "¡Hola! Te mandé las instrucciones. ¿Está todo claro?",
+      "text": "Oi! Te mandei as instruções. Está tudo claro?"
+    },
+    "es:work_06": {
+      "source": "¡Hola! Por favor, prepara el informe corto para el viernes. Marina y yo resolvemos dudas.",
+      "text": "Oi! Por favor, prepare o relatório curto até sexta. Eu e a Marina tiramos as dúvidas."
+    },
+    "es:work_07": {
+      "source": "¡Hola! Solo para confirmar: el proyecto es para el jueves. ¿Cómo va?",
+      "text": "Oi! Só confirmando: o projeto é para quinta. Como está indo?"
+    },
+    "es:work_08": {
+      "source": "¡Hola! Una pregunta rápida: ¿cómo vamos con la tarea del cliente?",
+      "text": "Oi! Pergunta rápida: como estamos com a tarefa do cliente?"
+    },
+    "es:work_09": {
+      "source": "¡Hola! Soy Sam, de informática. Marina dice que necesitas ayuda. ¿Qué pasa?",
+      "text": "Oi! Aqui é Sam, da TI. A Marina disse que você precisa de ajuda. Qual é o problema?"
+    },
+    "es:work_10": {
+      "source": "¡Hola! ¿Cómo fue tu primer día con nosotros? Espero que bien.",
+      "text": "Oi! Como foi seu primeiro dia com a gente? Espero que tenha sido bom."
+    },
+    "es:work_11": {
+      "source": "Llevamos dos días hablando del lanzamiento, pero sigo sin ver quién hace qué. ¿Qué opinas?",
+      "text": "Faz dois dias que falamos do lançamento, mas ainda não vejo quem faz o quê. O que você acha?"
+    },
+    "es:work_12": {
+      "source": "¡Hola! Comentaste que algo no funcionaba. ¿Me cuentas qué pasa para que pueda revisarlo?",
+      "text": "Oi! Você comentou que algo não estava funcionando. Me conta o que está acontecendo para eu dar uma olhada?"
+    },
+    "es:work_13": {
+      "source": "¡Hola! Me enteré de que organizamos una reunión la semana que viene. ¿De qué va?",
+      "text": "Oi! Fiquei sabendo que vamos marcar uma reunião na semana que vem. É sobre o quê?"
+    },
+    "es:work_14": {
+      "source": "El cliente acaba de llamar y necesita la entrega el miércoles en lugar del viernes. ¿Puedes hacerlo posible?",
+      "text": "O cliente acabou de ligar e precisa da entrega na quarta em vez de sexta. Você consegue?"
+    },
+    "es:work_15": {
+      "source": "¡Hola! Acabo de compartir contigo mi borrador de la propuesta. Me gustaría tu opinión sincera antes de enviarla.",
+      "text": "Oi! Acabei de compartilhar com você o rascunho da proposta. Queria muito sua opinião sincera antes de enviar."
+    },
+    "es:work_16": {
+      "source": "Tenemos tres proyectos urgentes y solo dos personas disponibles este mes. Hay que decidir qué va primero. ¿Por dónde empezamos?",
+      "text": "Temos três projetos urgentes e só duas pessoas disponíveis este mês. Precisamos decidir o que vem primeiro. Por onde começamos?"
+    },
+    "es:work_17": {
+      "source": "Para que lo sepas: hemos decidido pasar a todo el equipo a la nueva herramienta antes de fin de mes. Dime si algo no está claro.",
+      "text": "Só para você saber: decidimos passar toda a equipe para a nova ferramenta até o fim do mês. Me avisa se algo não estiver claro."
+    },
+    "es:work_18": {
+      "source": "Hola. La integración se está retrasando y mi equipo y el de plataforma se señalan mutuamente. ¿Puedes ayudarnos a aclararlo?",
+      "text": "Oi. A integração está atrasando, e a minha equipe e a da plataforma estão jogando a culpa uma na outra. Você pode ajudar a esclarecer isso?"
+    },
+    "es:work_19": {
+      "source": "Gracias por hacer un hueco. Antes de hablar de condiciones, me gustaría saber cómo ves el proyecto y dónde crees que están las mayores brechas.",
+      "text": "Agradeço por arranjar um tempo. Antes de falar das condições, queria ouvir como você vê o projeto e onde acha que estão as maiores lacunas."
+    },
+    "fr:everyday_01": {
+      "source": "Salut ! Ça fait plaisir de te lire. Comment vas-tu ?",
+      "text": "Oi! Que bom ter notícias suas. Tudo bem?"
+    },
+    "fr:everyday_02": {
+      "source": "Coucou ! Quoi de neuf ? Tu voulais me dire quelque chose ?",
+      "text": "E aí! Tudo certo? Você queria me contar alguma coisa?"
+    },
+    "fr:everyday_03": {
+      "source": "Salut ! Grande nouvelle : j'ai eu le nouveau travail aujourd'hui !",
+      "text": "Oi! Grande notícia: hoje consegui o emprego novo!"
+    },
+    "fr:everyday_04": {
+      "source": "Salut ! Quoi de neuf aujourd'hui ?",
+      "text": "Oi! Quais são as novidades de hoje?"
+    },
+    "fr:everyday_05": {
+      "source": "Salut. Hier, j'ai attendu longtemps devant le café. Que s'est-il passé ?",
+      "text": "Oi. Ontem esperei muito tempo na frente do café. O que aconteceu?"
+    },
+    "fr:everyday_06": {
+      "source": "Salut ! J'ai quelques minutes. Qu'est-ce qu'il y a ?",
+      "text": "Oi! Tenho uns minutinhos livres. O que foi?"
+    },
+    "fr:everyday_07": {
+      "source": "Salut ! J'ai entendu dire que tu cherches quelqu'un pour ton animal. C'est pour quand ?",
+      "text": "Oi! Fiquei sabendo que você precisa de alguém para cuidar do seu pet. Para quando?"
+    },
+    "fr:everyday_08": {
+      "source": "Salut tout le monde ! Il faut acheter un cadeau. Des idées ?",
+      "text": "Oi, pessoal! Precisamos comprar um presente. Alguma ideia?"
+    },
+    "fr:everyday_09": {
+      "source": "Bonjour ! Je suis de la boutique. Je peux vous aider avec votre commande.",
+      "text": "Olá! Sou da loja. Posso ajudar com o seu pedido."
+    },
+    "fr:everyday_10": {
+      "source": "Salut ! Je me demandais comment ça s'était passé. Mon conseil t'a servi ?",
+      "text": "Oi! Fiquei pensando em como foi. Meu conselho ajudou?"
+    },
+    "fr:everyday_11": {
+      "source": "Hé ! Le week-end arrive et je n'ai encore rien prévu. Vous faites quoi, vous deux ?",
+      "text": "E aí! O fim de semana está chegando e ainda não tenho planos. O que vocês dois vão fazer?"
+    },
+    "fr:everyday_12": {
+      "source": "Salut ! Je dois prendre une décision importante et j'hésite sans arrêt. Tu peux m'aider à y réfléchir ?",
+      "text": "Oi! Preciso tomar uma decisão importante e fico mudando de ideia. Você me ajuda a pensar?"
+    },
+    "fr:everyday_13": {
+      "source": "Bonjour ! Tu voulais me parler de quelque chose ? J'ai vu ton mot sur la porte.",
+      "text": "Olá! Você queria conversar sobre alguma coisa? Vi seu bilhete na porta."
+    },
+    "fr:everyday_14": {
+      "source": "Dis, tu voulais me parler de quelque chose ? J'ai un moment, alors vas-y.",
+      "text": "Ei, você queria conversar sobre algo? Estou livre por um tempinho, pode falar."
+    },
+    "fr:everyday_15": {
+      "source": "Salut ! Tu as dit que quelque chose te dérangeait. Je t'écoute, mais j'espère qu'on pourra en parler calmement.",
+      "text": "Oi! Você disse que algo está te incomodando. Estou ouvindo, mas espero que a gente converse com calma."
+    },
+    "fr:everyday_16": {
+      "source": "Franchement, réservons l'appart le moins cher pour le voyage et c'est réglé. Pourquoi se compliquer ?",
+      "text": "Sinceramente, vamos reservar o apartamento mais barato para a viagem e pronto. Para que complicar?"
+    },
+    "fr:everyday_17": {
+      "source": "Hé ! Tout va bien ? Tu as l'air ailleurs ces derniers temps, et je ne savais pas si je devais en parler.",
+      "text": "Ei! Está tudo bem? Você parece diferente ultimamente, e eu não sabia se devia tocar no assunto."
+    },
+    "fr:everyday_18": {
+      "source": "Tu as entendu pour la fête ? Certains disent qu'elle est annulée, d'autres qu'elle est déplacée. Je suis complètement perdue.",
+      "text": "Você soube da festa? Uns dizem que foi cancelada, outros que mudou de dia. Não estou entendendo mais nada."
+    },
+    "fr:everyday_19": {
+      "source": "Bon, ce groupe est devenu un vrai chantier. Tout le monde est blessé et personne n'écoute. Tu peux nous aider à repartir de zéro ?",
+      "text": "Bom, esse chat virou uma bagunça. Todo mundo está magoado e ninguém escuta ninguém. Você pode nos ajudar a recomeçar?"
+    },
+    "fr:social_01": {
+      "source": "Salut ! Enchantée de te rencontrer. Je suis Mila. Comment ça va ?",
+      "text": "Oi! Prazer em te conhecer. Eu sou a Mila. Como você está hoje?"
+    },
+    "fr:social_02": {
+      "source": "Salut ! Notre rendez-vous est demain à 10 h. Ça te va toujours ?",
+      "text": "Oi! Nosso encontro é amanhã às 10. Ainda está bom para você?"
+    },
+    "fr:social_03": {
+      "source": "Bonjour ! Je peux t'aider ? Tu cherches quelque chose ?",
+      "text": "Olá! Posso te ajudar? Está procurando alguma coisa?"
+    },
+    "fr:social_04": {
+      "source": "Salut ! J'espère que mon aide t'a servi. Tout va bien maintenant ?",
+      "text": "Oi! Espero que minha ajuda tenha servido. Está tudo bem agora?"
+    },
+    "fr:social_05": {
+      "source": "Salut ! Devine quoi ? J'ai eu mon permis de conduire aujourd'hui !",
+      "text": "Oi! Adivinha só? Passei na prova de direção hoje!"
+    },
+    "fr:social_06": {
+      "source": "Bienvenue dans le groupe ! Dis-nous comment tu t'appelles et ce que tu aimes.",
+      "text": "Que bom ter você no grupo! Conta pra gente seu nome e do que você gosta."
+    },
+    "fr:social_07": {
+      "source": "Salut ! Ça fait une éternité qu'on ne s'est pas vus. Tu fais quoi cette semaine ?",
+      "text": "Oi! Faz séculos que a gente não se vê. Quais são seus planos para esta semana?"
+    },
+    "fr:social_08": {
+      "source": "Coucou ! Ta semaine se passe bien ? Tu as des projets pour le week-end ?",
+      "text": "E aí! Como está sendo sua semana? Algum plano para o fim de semana?"
+    },
+    "fr:social_09": {
+      "source": "Salut ! On se voit toujours ce soir ? J'ai vraiment hâte.",
+      "text": "Oi! Ainda vamos nos ver hoje à noite? Mal posso esperar."
+    },
+    "fr:social_10": {
+      "source": "Salut ! C'était sympa de te voir hier. Le retour s'est bien passé ?",
+      "text": "Oi! Foi bom te ver ontem. Chegou bem em casa?"
+    },
+    "fr:social_11": {
+      "source": "Salut tout le monde ! On parle de samedi depuis des jours, mais rien n'est décidé. Des idées ?",
+      "text": "Oi, pessoal! Faz dias que a gente fala de sábado, mas nada foi decidido ainda. Alguma ideia?"
+    },
+    "fr:social_12": {
+      "source": "Salut. Désolé d'avoir été si silencieux. Le boulot me pèse beaucoup en ce moment.",
+      "text": "Oi. Desculpa ter sumido. O trabalho anda puxado ultimamente."
+    },
+    "fr:social_13": {
+      "source": "Salut. J'ai vu ton message de ce matin, et je ne comprends pas bien. On peut en parler ?",
+      "text": "Oi. Vi sua mensagem de hoje de manhã e não entendi bem o que você quis dizer. Podemos conversar?"
+    },
+    "fr:social_14": {
+      "source": "Salut ! On organise une petite fête chez moi vendredi et j'aimerais beaucoup que tu viennes. Tu peux ?",
+      "text": "Oi! Vou fazer uma festinha em casa na sexta e adoraria que você viesse. Você consegue?"
+    },
+    "fr:social_15": {
+      "source": "Dis, j'ai réfléchi à la façon dont on organise nos plans en ce moment. On pourrait parler de ce que chacun attend ?",
+      "text": "Ei, tenho pensado em como a gente anda organizando as coisas. Podemos conversar sobre o que cada um espera?"
+    },
+    "fr:social_16": {
+      "source": "Salut ! J'ai vu que tu voulais me parler de quelque chose. Je suis un peu occupée aujourd'hui, mais dis-moi.",
+      "text": "Oi! Vi que você queria conversar. Hoje o dia está corrido, mas me conta o que houve."
+    },
+    "fr:social_17": {
+      "source": "Hé ! Je compte sur toi pour tout le déménagement samedi, encore une fois, d'accord ? Tu es toujours si fiable, je savais que tu dirais oui.",
+      "text": "E aí! Conto com você de novo para a mudança inteira neste sábado, tá? Você é sempre tão confiável, eu sabia que ia dizer sim."
+    },
+    "fr:social_18": {
+      "source": "Je vais être franc : je suis encore blessé par ce qui s'est passé. Mais je suis prêt à t'écouter. Que voulais-tu me dire ?",
+      "text": "Vou ser sincero: ainda estou um pouco magoado com o que aconteceu. Mas estou disposto a te ouvir. O que você queria dizer?"
+    },
+    "fr:social_19": {
+      "source": "Franchement, ce fil est devenu tendu. Les uns se sentent ignorés, les autres se sentent accusés. Quelqu'un peut nous aider à y voir clair ?",
+      "text": "Sinceramente, essa conversa ficou tensa. Metade de nós se sente ignorada e a outra metade, culpada. Alguém pode ajudar a resolver isso?"
+    },
+    "fr:travel_01": {
+      "source": "Bonjour ! Tu es déjà en ville ? Le voyage s'est bien passé ?",
+      "text": "Olá! Já está na cidade? Como foi a viagem?"
+    },
+    "fr:travel_02": {
+      "source": "Bonsoir ! Tu as besoin d'aide pour l'appartement ?",
+      "text": "Boa noite! Precisa de ajuda com o apartamento?"
+    },
+    "fr:travel_03": {
+      "source": "Bonjour ! Merci pour votre réservation. Comment puis-je vous aider ?",
+      "text": "Olá! Agradecemos a sua reserva. Como posso ajudar?"
+    },
+    "fr:travel_04": {
+      "source": "Bonjour ! Tu as besoin d'un transfert depuis l'aéroport ?",
+      "text": "Olá! Precisa de transporte do aeroporto?"
+    },
+    "fr:travel_05": {
+      "source": "Salut ! Essaie le petit café de la gare. Il est super !",
+      "text": "Oi! Experimenta o cafezinho perto da estação. O café é ótimo!"
+    },
+    "fr:travel_06": {
+      "source": "Salut ! Où veux-tu aller ? Lea et moi, on peut t'expliquer le chemin.",
+      "text": "Oi! Para onde você quer ir? Eu e a Lea podemos te mostrar o caminho."
+    },
+    "fr:travel_07": {
+      "source": "Bonjour ! Je vérifie ta réservation. Tu peux m'envoyer le numéro de réservation ?",
+      "text": "Olá! Estou verificando sua reserva. Pode me mandar o número da reserva, por favor?"
+    },
+    "fr:travel_08": {
+      "source": "Salut ! Il est déjà sept heures. Tu arrives bientôt ? Je t'attends à l'appartement.",
+      "text": "Oi! Já são sete horas. Vai chegar logo? Estou te esperando no apartamento."
+    },
+    "fr:travel_09": {
+      "source": "Bonjour ! Bienvenue chez nous. Avec qui je parle, et comment peut-on t'aider ?",
+      "text": "Olá! Boas-vindas à nossa pousada. Com quem eu falo e como podemos ajudar?"
+    },
+    "fr:travel_10": {
+      "source": "Salut ! J'aimerais te montrer la vieille ville demain. On se retrouve où ?",
+      "text": "Oi! Queria te mostrar o centro histórico amanhã. Onde a gente se encontra?"
+    },
+    "fr:travel_11": {
+      "source": "Bonjour, ici Niko du service clients. Clara est là aussi. Que pouvons-nous faire pour vous ?",
+      "text": "Olá, aqui é o Niko, do atendimento ao hóspede. A Clara também está aqui. Em que podemos ajudar?"
+    },
+    "fr:travel_12": {
+      "source": "Salut ! Chacun semble avoir une idée différente pour le voyage. Tu peux nous aider à faire un plan ?",
+      "text": "Oi! Parece que cada um tem uma ideia diferente para a viagem. Você ajuda a gente a montar um plano?"
+    },
+    "fr:travel_13": {
+      "source": "Bonjour ! Lea, du service réservations. Je crois que vous souhaitez modifier quelque chose. De quelle réservation s'agit-il ?",
+      "text": "Olá! Aqui é a Lea, das reservas. Entendi que gostaria de alterar algo. De qual reserva se trata?"
+    },
+    "fr:travel_14": {
+      "source": "Bonjour, ici Niko du service clientèle. Je crois que vous souhaitez nous signaler un problème. Comment puis-je vous aider ?",
+      "text": "Boa tarde, aqui é o Niko, do atendimento ao cliente. Entendi que deseja relatar um problema. Como posso ajudar?"
+    },
+    "fr:travel_15": {
+      "source": "Salut ! J'ai entendu dire qu'il y a un problème avec notre correspondance de demain. Que s'est-il passé exactement ?",
+      "text": "Oi! Fiquei sabendo que tem um problema com a nossa conexão de amanhã. O que aconteceu exatamente?"
+    },
+    "fr:travel_16": {
+      "source": "Bonjour. J'ai vérifié notre système et aucune réservation n'apparaît à ce nom. Qu'avez-vous de votre côté ?",
+      "text": "Olá. Verifiquei nosso sistema e não aparece nenhuma reserva nesse nome. Quais dados tem do seu lado?"
+    },
+    "fr:travel_17": {
+      "source": "Merci de nous avoir contactés. Nous avons lu votre signalement sur le séjour annulé. Pourriez-vous nous expliquer ce qui s'est passé de votre côté ?",
+      "text": "Agradecemos o contato. Vimos o seu relato sobre a estadia cancelada. Poderia nos contar o que aconteceu do seu lado?"
+    },
+    "fr:travel_18": {
+      "source": "Merci d'intervenir. L'invité et l'hôte sont tous les deux contrariés, et le service est pris entre les deux. Par où voulez-vous commencer ?",
+      "text": "Agradeço a mediação. O hóspede e o anfitrião estão chateados, e a equipe de atendimento está no meio. Por onde gostaria de começar?"
+    },
+    "fr:travel_19": {
+      "source": "Tout le monde demande ce qui se passe et les messages s'accumulent. Peux-tu nous donner une vue claire de la situation ?",
+      "text": "Todo mundo está perguntando o que está acontecendo, e as mensagens não param de chegar. Você pode nos dar uma visão clara da situação?"
+    },
+    "fr:work_01": {
+      "source": "Salut ! Je suis Marina, de l'équipe. Comment tu t'appelles ?",
+      "text": "Oi! Sou a Marina, da equipe. Qual é o seu nome?"
+    },
+    "fr:work_02": {
+      "source": "Salut ! Je peux t'aider avec quelque chose ?",
+      "text": "Olá! Como posso te ajudar hoje?"
+    },
+    "fr:work_03": {
+      "source": "Salut ! Notre appel est demain. L'heure te convient toujours ?",
+      "text": "Oi! Nossa ligação é amanhã. O horário ainda está bom para você?"
+    },
+    "fr:work_04": {
+      "source": "Bonjour ! La réunion commence dans dix minutes. Tu arrives ?",
+      "text": "Bom dia! A reunião começa em dez minutos. Você vem?"
+    },
+    "fr:work_05": {
+      "source": "Salut ! Je t'ai envoyé les instructions. Tout est clair ?",
+      "text": "Oi! Te mandei as instruções. Está tudo claro?"
+    },
+    "fr:work_06": {
+      "source": "Salut ! Peux-tu préparer le court rapport pour vendredi ? Marina et moi répondons à tes questions.",
+      "text": "Oi! Por favor, prepare o relatório curto até sexta. Eu e a Marina tiramos as dúvidas."
+    },
+    "fr:work_07": {
+      "source": "Salut ! Petit point : le projet est à rendre jeudi. Comment ça avance ?",
+      "text": "Oi! Só confirmando: o projeto é para quinta. Como está indo?"
+    },
+    "fr:work_08": {
+      "source": "Salut ! Petite question : où en est-on avec la tâche du client ?",
+      "text": "Oi! Pergunta rápida: como estamos com a tarefa do cliente?"
+    },
+    "fr:work_09": {
+      "source": "Salut ! Je suis Sam, de l'informatique. Marina dit que tu as besoin d'aide. Qu'y a-t-il ?",
+      "text": "Oi! Aqui é Sam, da TI. A Marina disse que você precisa de ajuda. Qual é o problema?"
+    },
+    "fr:work_10": {
+      "source": "Salut ! Comment s'est passé ton premier jour chez nous ? J'espère que c'était bien.",
+      "text": "Oi! Como foi seu primeiro dia com a gente? Espero que tenha sido bom."
+    },
+    "fr:work_11": {
+      "source": "On parle du lancement depuis deux jours, mais je ne vois toujours pas qui fait quoi. Qu'en penses-tu ?",
+      "text": "Faz dois dias que falamos do lançamento, mas ainda não vejo quem faz o quê. O que você acha?"
+    },
+    "fr:work_12": {
+      "source": "Salut ! Tu as dit que quelque chose ne marchait pas. Tu peux m'expliquer ce qui se passe pour que je regarde ?",
+      "text": "Oi! Você comentou que algo não estava funcionando. Me conta o que está acontecendo para eu dar uma olhada?"
+    },
+    "fr:work_13": {
+      "source": "Salut ! J'ai entendu dire qu'on organise une réunion la semaine prochaine. Elle porte sur quoi ?",
+      "text": "Oi! Fiquei sabendo que vamos marcar uma reunião na semana que vem. É sobre o quê?"
+    },
+    "fr:work_14": {
+      "source": "Le client vient d'appeler : il veut la livraison mercredi au lieu de vendredi. Tu peux tenir ce délai ?",
+      "text": "O cliente acabou de ligar e precisa da entrega na quarta em vez de sexta. Você consegue?"
+    },
+    "fr:work_15": {
+      "source": "Salut ! Je viens de partager mon brouillon de proposition avec toi. J'aimerais avoir ton avis sincère avant de l'envoyer.",
+      "text": "Oi! Acabei de compartilhar com você o rascunho da proposta. Queria muito sua opinião sincera antes de enviar."
+    },
+    "fr:work_16": {
+      "source": "On a trois projets urgents et seulement deux personnes disponibles ce mois-ci. Il faut décider de l'ordre. On commence par où ?",
+      "text": "Temos três projetos urgentes e só duas pessoas disponíveis este mês. Precisamos decidir o que vem primeiro. Por onde começamos?"
+    },
+    "fr:work_17": {
+      "source": "Pour information : nous avons décidé de faire passer toute l'équipe au nouvel outil d'ici la fin du mois. Dis-moi si quelque chose n'est pas clair.",
+      "text": "Só para você saber: decidimos passar toda a equipe para a nova ferramenta até o fim do mês. Me avisa se algo não estiver claro."
+    },
+    "fr:work_18": {
+      "source": "Bonjour. L'intégration prend du retard, et mon équipe et celle de la plateforme se renvoient la responsabilité. Peux-tu nous aider à clarifier ?",
+      "text": "Oi. A integração está atrasando, e a minha equipe e a da plataforma estão jogando a culpa uma na outra. Você pode ajudar a esclarecer isso?"
+    },
+    "fr:work_19": {
+      "source": "Merci d'avoir pris le temps. Avant de discuter des conditions, j'aimerais savoir comment tu vois le projet et où tu situes les plus gros écarts.",
+      "text": "Agradeço por arranjar um tempo. Antes de falar das condições, queria ouvir como você vê o projeto e onde acha que estão as maiores lacunas."
+    }
+  }
 }

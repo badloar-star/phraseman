@@ -7,6 +7,12 @@ jest.mock('../shared/generated/dialogue_v2_opening_translations.ru.json', () => 
     'en:social_01': { source: "Hi! Nice to meet you. I'm Mila. How are you today?", text: 'Привет! Рада познакомиться. Я Мила. Как ты сегодня?' },
   },
 }));
+// зачем (Переводчик 25.10): настоящие таблицы заполнены — «пустую таблицу языка» проверяем на подменённой пустой uk, а не на данных
+jest.mock('../shared/generated/dialogue_v2_opening_translations.uk.json', () => ({
+  schemaVersion: 'dialogue-v2-opening-translations.v1',
+  uiLang: 'uk',
+  entries: {},
+}));
 
 import { dialogueV2OpeningTranslation, resetDialogueV2OpeningTranslationsForTests } from '../app/dialogue_v2_opening_translations';
 

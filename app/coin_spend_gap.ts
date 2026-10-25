@@ -108,12 +108,13 @@ export async function purchaseWithSpendGap<R>(
 const COINS_SAVING_TEXT: Readonly<Record<string, string>> = {
   ru: 'Монеты ещё сохраняются — нужна связь, попробуй через минуту',
   uk: 'Монети ще зберігаються — потрібен зв’язок, спробуй за хвилину',
-  en: 'Your coins are still being saved — you need a connection, try again in a minute',
-  es: 'Tus monedas aún se están guardando: necesitas conexión, inténtalo en un minuto',
-  'pt-BR': 'Suas moedas ainda estão sendo salvas — é preciso conexão, tente em um minuto',
+  // зачем (Переводчик 25.10): en без канцелярского «you need a connection»; es/pt-BR/tr «ещё раз», id без двойного «lagi»
+  en: 'Your coins are still saving — connect to the internet and try again in a minute',
+  es: 'Tus monedas aún se están guardando: necesitas conexión, inténtalo de nuevo en un minuto',
+  'pt-BR': 'Suas moedas ainda estão sendo salvas — é preciso conexão, tente de novo em um minuto',
   vi: 'Xu của bạn vẫn đang được lưu — cần có mạng, hãy thử lại sau một phút',
-  id: 'Koinmu masih disimpan — perlu koneksi, coba lagi sebentar lagi',
-  tr: 'Jetonların hâlâ kaydediliyor — bağlantı gerekiyor, bir dakika sonra dene',
+  id: 'Koinmu masih disimpan — perlu koneksi, coba lagi dalam semenit',
+  tr: 'Jetonların hâlâ kaydediliyor — bağlantı gerekiyor, bir dakika sonra tekrar dene',
   pl: 'Monety wciąż się zapisują — potrzebne połączenie, spróbuj za minutę',
 };
 

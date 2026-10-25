@@ -78,7 +78,9 @@ describe('Сцена Диалогов: контракт подключения',
   });
   it('действия обёртки: лимит — premium_modal, остальное — брифинг следующего диалога', () => {
     expect(hub).toMatch(/pathname: '\/premium_modal'/);
-    expect(hub).toMatch(/context: 'dialog_limit'/);
+    // зачем (faf515267, пейвол «М»): params входа строит dialogLimitPaywallParams — тот же context 'dialog_limit' и source + итог первого разговора
+    expect(hub).toContain("params: dialogLimitPaywallParams('dialogue_v2_hub_scene')");
+    expect(read('app/dialog_first_free_summary.ts')).toMatch(/return { context: 'dialog_limit', source };/);
     expect(hub).toMatch(/pathname: '\/dialogue_v2_briefing'/);
     expect(hub).toMatch(/markDialogueV2OptimisticTap\('hub_tap'/);
     expect(hub).toMatch(/useStableSafeAreaInsets/);

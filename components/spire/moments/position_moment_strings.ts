@@ -19,9 +19,12 @@ const S = {
   overtake: ['{name} обгоняет тебя', '{name} випереджає тебе', '{name} is overtaking you', '{name} te adelanta', '{name} está passando você', '{name} đang vượt bạn', '{name} menyalipmu', '{name} seni geçiyor', '{name} wyprzedza cię'],
   // зачем (Макеты 18.10, замечание 30): «на 30 монет недели» — не по-русски; «за неделю», как в promoShortBody
   overtakeSub: ['на {n} {nwa} за неделю', 'на {n} {nwa} за тиждень', 'by {n} {nwa} this week', 'por {n} {nwa} esta semana', 'por {n} {nwa} esta semana', 'hơn {n} {nwa} tuần này', 'selisih {n} {nwa} minggu ini', 'bu hafta {n} {nwa} farkla', 'o {n} {nwa} w tym tygodniu'],
+  // зачем (координатор 25.10: «место — ступени, монеты — только награда»): комната по ступеням — разрыв в ступенях; {sw} — слово под {steps}
+  overtakeSubSteps: ['на {steps} {sw}', 'на {steps} {sw}', 'by {steps} {sw}', 'por {steps} {sw}', 'por {steps} {sw}', 'hơn {steps} {sw}', 'selisih {steps} {sw}', '{steps} {sw} farkla', 'o {steps} {sw}'],
   lastOver: ['Воскресенье · до итога', 'Неділя · до підсумку', 'Sunday · until results', 'Domingo · hasta el resultado', 'Domingo · até o resultado', 'Chủ nhật · đến lúc chốt', 'Hari Minggu · sebelum hasil', 'Pazar · sonuca kadar', 'Niedziela · do wyniku'],
   lastBody: ['До топ-5 — {gap}. Энергия вернётся через {t}.', 'До топ-5 — {gap}. Енергія повернеться через {t}.', '{gap} to the top 5. Energy is back in {t}.', 'Para el top 5: {gap}. La energía vuelve en {t}.', 'Para o top 5: {gap}. A energia volta em {t}.', 'Đến top 5 còn {gap}. Năng lượng quay lại sau {t}.', 'Kurang {gap} ke 5 besar. Energi kembali dalam {t}.', 'İlk 5’e {gap} kaldı. Enerji {t} sonra geri gelir.', 'Do top 5 — {gap}. Energia wróci za {t}.'],
   gapCoins: ['{n} {nw}', '{n} {nw}', '{n} {nw}', '{n} {nw}', '{n} {nw}', '{n} {nw}', '{n} {nw}', '{n} {nw}', '{n} {nw}'],
+  gapSteps: ['{steps} {sw}', '{steps} {sw}', '{steps} {sw}', '{steps} {sw}', '{steps} {sw}', '{steps} {sw}', '{steps} {sw}', '{steps} {sw}', '{steps} {sw}'],
   plusLink: ['Играй без ожидания с Plus', 'Грай без очікування з Plus', 'Play without waiting with Plus', 'Juega sin esperar con Plus', 'Jogue sem esperar com Plus', 'Chơi không chờ với Plus', 'Main tanpa menunggu dengan Plus', 'Plus ile beklemeden oyna', 'Graj bez czekania z Plus'],
 } as const satisfies Readonly<Record<string, Nine>>;
 

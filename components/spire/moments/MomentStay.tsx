@@ -32,6 +32,8 @@ export type MomentStayProps = Readonly<{
   place: number;
   /** Монеты недели человека (все режимы, D162). */
   weekCoins: number;
+  /** Ступени недели — когда комната считается по ступеням: строка места — ступенями (Макеты + владелец 25.10). */
+  weekSteps?: number;
   /** Сколько монет не хватило до топ-5. */
   /** Сколько монет не хватило до топ-5. зачем (Ядро 14.10): сервер присылает границу зоны только с 17.10 — нет поля → строки «До топ-5 не хватило N» нет, остальное окно как есть. */
   gapToTop5?: number;
@@ -43,7 +45,7 @@ export type MomentStayProps = Readonly<{
 export const MOMENT_STAY_SAY_DELAY_MS = 400;
 const GAP_MARK = '\u0001';
 
-function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay, testID = 'moment-stay' }: MomentStayProps) {
+function MomentStay({ lang, tier, coinRank, place, weekCoins, weekSteps, gapToTop5, onPlay, testID = 'moment-stay' }: MomentStayProps) {
   const p = useSpirePalette();
   // зачем (гейт Макетов, круг 1, m02 п. 3): окно эталона светлее фона — заливка шторки (`.modal`: градиент sheetplate1 → sheetplate2) и тень шторки, а не плита карточки
   const gs = sheetPlateTokens(useShadowGlass());
@@ -65,7 +67,10 @@ function MomentStay({ lang, tier, coinRank, place, weekCoins, gapToTop5, onPlay,
   const cardStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, pop.value * 1.6), transform: [{ scale: 0.9 + 0.1 * pop.value }] }));
   const league = momentLeagueIn(lang, tier, spireTierName(tier, lang));
   const hasGap = gapToTop5 !== undefined;
-  const [bodyBefore, bodyAfter] = hasGap
+  // зачем (Макеты + владелец 25.10: комната недели — по СТУПЕНЯМ): разрыв «не хватило N монет» бывает только в режиме монет; по ступеням — ступени недели
+  const [bodyBefore, bodyAfter] = !hasGap && weekSteps !== undefined && weekSteps > 0
+    ? [momentText(lang, 'stayBodyStepsNoGap', { place, steps: momentNumber(weekSteps) }), '']
+    : hasGap
     ? momentText(lang, 'stayBody', { place, coins: momentNumber(weekCoins), gap: GAP_MARK }).split(GAP_MARK)
     : [momentText(lang, 'stayBodyNoGap', { place, coins: momentNumber(weekCoins) }), ''];
 

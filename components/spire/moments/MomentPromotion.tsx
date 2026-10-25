@@ -52,8 +52,23 @@ export type MomentRoomRow = Readonly<{
   coinRank: number | null;
   /** Монеты недели во всех режимах (D162). */
   coins: number;
+  /** Ступени недели; нет — сервер их не прислал (старая лестница итога). */
+  steps?: number;
   isMe: boolean;
 }>;
+
+/**
+ * Чем мерить место в строке лесенки.
+ * зачем (координатор 25.10: «место — ступени, монеты — только награда»): комната по ступеням — в строке ступени; ступеней в строке
+ * нет (нынешний сервер не шлёт их в лестнице итога) — число скрыто, монеты как место не показываем.
+ */
+export type MomentLadderMetric = 'coins' | 'steps';
+
+/** Число строки по мере места; null — показывать нечего. */
+export function momentLadderValue(row: MomentRoomRow, metric: MomentLadderMetric): number | null {
+  if (metric === 'coins') return row.coins;
+  return typeof row.steps === 'number' ? row.steps : null;
+}
 
 export type MomentPromotionProps = Readonly<{
   lang: Lang;
@@ -72,6 +87,8 @@ export type MomentPromotionProps = Readonly<{
   myCoinRank: number | null;
   /** Монеты за повышение — число сервера (promotionCoins итога недели), их начисляет ночной крон; здесь только показ. 0 — строки «+N монет за повышение» нет. */
   bonusCoins: number;
+  /** Чем ранжирована комната недели (rankBy итога); нет — монеты, как было. */
+  rankBy?: 'steps' | 'coins';
   onPlay: () => void;
   testID?: string;
 }>;
@@ -94,9 +111,10 @@ type Phase = Readonly<{ act: 1 | 2 | 3; zone: boolean; topLine: boolean; cheer: 
 const PHASE_START: Phase = { act: 1, zone: false, topLine: false, cheer: false, tower: false, marker: false, tag: false, final: false, skip: true };
 const PHASE_END: Phase = { act: 3, zone: true, topLine: true, cheer: true, tower: true, marker: true, tag: true, final: true, skip: false };
 
-type RowProps = Readonly<{ row: MomentRoomRow; index: number; place: number; flicker: boolean; rise: boolean; onFirstLayout?: (e: LayoutChangeEvent) => void; testID: string }>;
+type RowProps = Readonly<{ row: MomentRoomRow; index: number; place: number; flicker: boolean; rise: boolean; metric?: MomentLadderMetric; onFirstLayout?: (e: LayoutChangeEvent) => void; testID: string }>;
 
-export const LadderRow = memo(function LadderRow({ row, index, place, flicker, rise, onFirstLayout, testID }: RowProps) {
+export const LadderRow = memo(function LadderRow({ row, index, place, flicker, rise, metric = 'coins', onFirstLayout, testID }: RowProps) {
+  const value = momentLadderValue(row, metric);
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const op = useSharedValue(1);
@@ -118,19 +136,20 @@ export const LadderRow = memo(function LadderRow({ row, index, place, flicker, r
       onLayout={onFirstLayout}
       testID={testID}
       accessible
-      accessibilityLabel={`${place}. ${row.name}, ${momentNumber(row.coins)}`}
+      accessibilityLabel={value === null ? `${place}. ${row.name}` : `${place}. ${row.name}, ${momentNumber(value)}`}
       style={[s.row, { backgroundColor: row.isMe ? p.cardRaised : p.card }, row.isMe ? sh.plate : sh.nested, rowStyle]}
     >
       <Text style={[s.pos, { color: p.textSecondary }]}>{place}</Text>
       <SpireRankCoin rank={row.coinRank} size={28} />
       <Text style={[s.name, { color: p.text }]} numberOfLines={1}>{row.name}</Text>
-      <Text style={[s.pts, { color: row.isMe ? p.text : p.textSecondary }]}>{momentNumber(row.coins)}</Text>
+      {value === null ? null : <Text style={[s.pts, { color: row.isMe ? p.text : p.textSecondary }]} testID={`${testID}-pts`}>{momentNumber(value)}</Text>}
       {row.isMe ? <Animated.View pointerEvents="none" style={[s.meRing, { boxShadow: `0 0 0 2px ${p.cta}` }, ringStyle]} /> : null}
     </Animated.View>
   );
 });
 
-function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bonusCoins, onPlay, testID = 'moment-promotion' }: MomentPromotionProps) {
+function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bonusCoins, rankBy = 'coins', onPlay, testID = 'moment-promotion' }: MomentPromotionProps) {
+  const metric: MomentLadderMetric = rankBy === 'steps' ? 'steps' : 'coins';
   const p = useSpirePalette();
   const buttonFill = useSpireButtonFill();
   const scene = useSpireScene();
@@ -171,7 +190,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   }, [clearTimers, finalIn, markerIn, tagIn, towerIn]);
 
   useEffect(() => {
-    if (__DEV__) console.log(`[MOMENT-PROMO] показ из=${fromTier} в=${toTier} место=${myPlace} строк=${rows?.length ?? 0} лестница=${String(hasLadder)} бонус=${bonusCoins} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    if (__DEV__) console.log(`[MOMENT-PROMO] показ из=${fromTier} в=${toTier} место=${myPlace} строк=${rows?.length ?? 0} лестница=${String(hasLadder)} мера=${metric} ступени_в_строках=${String((rows ?? []).some((r) => typeof r.steps === 'number'))} бонус=${bonusCoins} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
     if (reduceMotion) { setFire(false); return undefined; }
     const T = MOMENT_PROMO_TIMELINE;
     // без лестницы акт 1 не играется: акт 2 («место») встаёт на 0,4 с, дальше тот же ритм образца (сдвиг всех последующих меток)
@@ -236,7 +255,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
         {phase.act === 1 ? (
           <Animated.View key="act1" entering={reduceMotion ? undefined : FadeIn.duration(420)} exiting={reduceMotion ? undefined : FadeOut.duration(300)} style={[s.act, { paddingTop: insets.top + 28 }]}>
             <Text style={[s.ov, { color: p.textSecondary }]}>{momentText(lang, 'promoWeekOverline', { league: fromLeague })}</Text>
-            <Text style={[s.hMd, { color: p.text }]} testID={`${testID}-drum`}>{phase.topLine ? momentText(lang, 'promoBorder') : momentText(lang, 'promoCounting')}</Text>
+            <Text style={[s.hMd, { color: p.text }]} testID={`${testID}-drum`}>{phase.topLine ? momentText(lang, 'promoBorder') : momentText(lang, metric === 'steps' ? 'promoCountingPlaces' : 'promoCounting')}</Text>
             <View style={s.ladder}>
               {phase.zone ? (
                 <Animated.View pointerEvents="none" style={[s.zone, { backgroundColor: p.correct, boxShadow: `0 0 12px ${p.correct}` }, zoneStyle]}>
@@ -251,6 +270,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
                   place={i + 1}
                   flicker
                   rise={phase.topLine && row.isMe}
+                  metric={metric}
                   onFirstLayout={i === 0 ? (e) => setRowH(Math.round(e.nativeEvent.layout.height)) : undefined}
                   testID={`${testID}-row-${i}`}
                 />

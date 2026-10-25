@@ -20,14 +20,18 @@ export type SpirePositionRiseShow = Readonly<{
   fromIndex: number;
   toIndex: number;
   coinsGained: number;
+  /** Чем мерить место в строках (как ранжирована комната); нет — монеты. */
+  metric?: 'steps' | 'coins';
 }>;
 
-/** «Тебя обогнали»: кто обогнал и на сколько монет недели. */
+/** «Тебя обогнали»: кто обогнал и на сколько — в ступенях, если комната по ступеням (gapSteps), иначе в монетах недели. */
 export type SpireOvertakeShow = Readonly<{
   key: string;
   rivalName: string;
   rivalCoinRank: number | null;
   gapCoins: number;
+  /** Комната по ступеням (rankBy 'steps'): на сколько ступеней соперник впереди; есть — окно говорит ступенями. */
+  gapSteps?: number;
 }>;
 
 /** «Последний шанс»: конец недели, возврат энергии, сколько не хватает до топ-5 (undefined — границы нет). */
@@ -36,6 +40,8 @@ export type SpireLastChanceShow = Readonly<{
   weekEndsAtMs: number;
   energyReadyAtMs: number;
   gapCoins?: number;
+  /** Комната по ступеням: сколько ступеней нужно, чтобы войти в топ-5; есть — окно говорит ступенями. */
+  gapSteps?: number;
 }>;
 
 export type SpirePositionMomentKind = 'rise' | 'overtake' | 'lastChance';

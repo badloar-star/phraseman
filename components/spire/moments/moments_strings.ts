@@ -9,6 +9,7 @@ import type { Lang } from '../../../constants/i18n';
 import { clampSpireTierIndex } from '../../../modules/spire/tier_names';
 import { pluralWord, type PluralForms } from '../../../constants/plural';
 import { glueNumbers } from '../../moments/glue_numbers';
+import { spireStepsWord } from '../spire_plurals';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
@@ -19,6 +20,8 @@ const S = {
   skip: ['Пропустить', 'Пропустити', 'Skip', 'Omitir', 'Pular', 'Bỏ qua', 'Lewati', 'Geç', 'Pomiń'],
   // ── m01 · повышение ──
   promoWeekOverline: ['Итог недели · {league}', 'Підсумок тижня · {league}', 'Week result · {league}', 'Resultado de la semana · {league}', 'Resultado da semana · {league}', 'Kết quả tuần · {league}', 'Hasil minggu · {league}', 'Hafta sonucu · {league}', 'Wynik tygodnia · {league}'],
+  // зачем (координатор 25.10): комната по ступеням — «считаем места», не монеты; текст нейтральный, голос — потом от Переводчика
+  promoCountingPlaces: ['Считаем места недели…', 'Рахуємо місця тижня…', 'Counting this week’s places…', 'Contando los puestos de la semana…', 'Contando as posições da semana…', 'Đang tính hạng của tuần…', 'Menghitung peringkat minggu ini…', 'Haftanın sıralaması hesaplanıyor…', 'Liczymy miejsca z tygodnia…'],
   promoCounting: ['Считаем монеты недели…', 'Рахуємо монети тижня…', 'Counting this week’s coins…', 'Contando las monedas de la semana…', 'Contando as moedas da semana…', 'Đang tính xu của tuần…', 'Menghitung koin minggu ini…', 'Haftanın jetonları sayılıyor…', 'Liczymy monety z tygodnia…'],
   promoBorder: ['Граница топ-5 — под тобой', 'Межа топ-5 — під тобою', 'The top-5 line is below you', 'La línea del top 5 queda debajo de ti', 'A linha do top 5 ficou abaixo de você', 'Vạch top 5 nằm dưới bạn', 'Garis 5 besar ada di bawahmu', 'İlk 5 çizgisi senin altında', 'Granica top 5 jest pod tobą'],
   zoneTop5: ['ТОП-5', 'ТОП-5', 'TOP 5', 'TOP 5', 'TOP 5', 'TOP 5', 'TOP 5', 'İLK 5', 'TOP 5'],
@@ -36,6 +39,10 @@ const S = {
   promoShortOverline: ['Топ-5 · {league}', 'Топ-5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', 'Top 5 · {league}', '5 besar · {league}', 'İlk 5 · {league}', 'Top 5 · {league}'],
   promoShortTitle: ['Поднимаешься', 'Піднімаєшся', 'You’re moving up', 'Subes de liga', 'Você sobe de liga', 'Bạn thăng hạng', 'Kamu naik liga', 'Yükseliyorsun', 'Awansujesz'],
   promoShortBody: ['{place} место · {coins} {cw} за неделю', '{place} місце · {coins} {cw} за тиждень', 'Place {place} · {coins} {cw} this week', 'Puesto {place} · {coins} {cw} esta semana', 'Posição {place} · {coins} {cw} na semana', 'Hạng {place} · {coins} {cw} trong tuần', 'Peringkat {place} · {coins} {cw} minggu ini', '{place}. sıra · bu hafta {coins} {cw}', '{place}. miejsce · {coins} {cw} w tygodniu'],
+  // зачем (Макеты + владелец 25.10: комната недели считается по СТУПЕНЯМ): место — ступенями, монеты — только как награда за повышение
+  promoShortBodySteps: ['{place} место · {steps} {sw} за неделю', '{place} місце · {steps} {sw} за тиждень', 'Place {place} · {steps} {sw} this week', 'Puesto {place} · {steps} {sw} esta semana', 'Posição {place} · {steps} {sw} na semana', 'Hạng {place} · {steps} {sw} trong tuần', 'Peringkat {place} · {steps} {sw} minggu ini', '{place}. sıra · bu hafta {steps} {sw}', '{place}. miejsce · {steps} {sw} w tygodniu'],
+  promoShareTextSteps: ['Поднимаюсь в лигу {league} в Phraseman: {place} место, {steps} {sw} за неделю.', 'Піднімаюсь у лігу {league} у Phraseman: {place} місце, {steps} {sw} за тиждень.', 'Moving up to {league} in Phraseman: place {place}, {steps} {sw} this week.', 'Subo a {league} en Phraseman: puesto {place}, {steps} {sw} esta semana.', 'Subindo para {league} no Phraseman: posição {place}, {steps} {sw} na semana.', 'Thăng hạng {league} trong Phraseman: hạng {place}, {steps} {sw} trong tuần.', 'Naik ke {league} di Phraseman: peringkat {place}, {steps} {sw} minggu ini.', 'Phraseman’da {league} ligine yükseliyorum: {place}. sıra, bu hafta {steps} {sw}.', 'Awansuję do ligi {league} w Phraseman: {place}. miejsce, {steps} {sw} w tygodniu.'],
+  stayBodyStepsNoGap: ['{place} место · {steps} {sw} за неделю.', '{place} місце · {steps} {sw} за тиждень.', 'Place {place} · {steps} {sw} this week.', 'Puesto {place} · {steps} {sw} esta semana.', 'Posição {place} · {steps} {sw} na semana.', 'Hạng {place} · {steps} {sw} trong tuần.', 'Peringkat {place} · {steps} {sw} minggu ini.', '{place}. sıra · bu hafta {steps} {sw}.', '{place}. miejsce · {steps} {sw} w tygodniu.'],
   promoShortPlaceOnly: ['{place} место', '{place} місце', 'Place {place}', 'Puesto {place}', 'Posição {place}', 'Hạng {place}', 'Peringkat {place}', '{place}. sıra', '{place}. miejsce'],
   promoShareText: ['Поднимаюсь в лигу {league} в Phraseman: {place} место, {coins} {cw} за неделю.', 'Піднімаюсь у лігу {league} у Phraseman: {place} місце, {coins} {cw} за тиждень.', 'Moving up to {league} in Phraseman: place {place}, {coins} {cw} this week.', 'Subo a {league} en Phraseman: puesto {place}, {coins} {cw} esta semana.', 'Subindo para {league} no Phraseman: posição {place}, {coins} {cw} na semana.', 'Thăng hạng {league} trong Phraseman: hạng {place}, {coins} {cw} trong tuần.', 'Naik ke {league} di Phraseman: peringkat {place}, {coins} {cw} minggu ini.', 'Phraseman’da {league} ligine yükseliyorum: {place}. sıra, bu hafta {coins} {cw}.', 'Awansuję do ligi {league} w Phraseman: {place}. miejsce, {coins} {cw} w tygodniu.'],
   // ── m02 · удержался ──
@@ -101,7 +108,7 @@ export function momentCoinWord(lang: Lang, count: number, acc = false): string {
   return pluralWord(lang, count, table[lang] ?? table.en!);
 }
 
-/** Добавляет слова под числа: `{nw}` — к `{n}`, `{cw}` — к `{coins}`, `{nwa}` — винительный к `{n}`. */
+/** Добавляет слова под числа: `{nw}` — к `{n}`, `{cw}` — к `{coins}`, `{nwa}` — винительный к `{n}`, `{sw}` — «ступень» к `{steps}`. */
 export function withMomentCoinWords(lang: Lang, vars?: Readonly<Record<string, string | number>>): Readonly<Record<string, string | number>> | undefined {
   if (!vars) return vars;
   const out: Record<string, string | number> = { ...vars };
@@ -109,6 +116,8 @@ export function withMomentCoinWords(lang: Lang, vars?: Readonly<Record<string, s
   const coins = countOf(vars.coins);
   if (n !== null) { out.nw = momentCoinWord(lang, n); out.nwa = momentCoinWord(lang, n, true); }
   if (coins !== null) out.cw = momentCoinWord(lang, coins);
+  const steps = countOf(vars.steps);
+  if (steps !== null) out.sw = spireStepsWord(lang, steps);
   return out;
 }
 

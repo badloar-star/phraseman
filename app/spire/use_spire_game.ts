@@ -209,7 +209,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     if (week) { setWeekCheckedLang(lang); return undefined; }
     let alive = true;
     void import('../../components/spire/spire_home_week').then((m) => m.readCurrentLocalWeek(lang as Parameters<typeof m.readCurrentLocalWeek>[0]))
-      .then(() => { if (alive) setWeekCheckedLang(lang); })
+      // зачем (Ревизор 25.10 по 30dfcf973): прочитанную неделю отдаём в тот же рендер, что и «готово» — иначе гейт открывался при week=null (ступени 0)
+      .then((local) => { if (!alive) return; if (!weekRef.current && local) setWeek(local); setWeekCheckedLang(lang); })
       .catch((error: unknown) => { console.warn('[SPIRE-POSITION] неделя не прочиталась — позицию всё равно отдаём', String(error)); if (alive) setWeekCheckedLang(lang); }); // guard-ok: сбой с причиной
     return () => { alive = false; };
   }, [lang, week, weekCheckedLang]);

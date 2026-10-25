@@ -80,14 +80,14 @@ function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, on
     return (
       <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => finish('back')}>
         <SheetSwipeRoot>
-          <SpirePositionRiseMoment lang={lang} rows={rise.rows} fromIndex={rise.fromIndex} toIndex={rise.toIndex} coinsGained={rise.coinsGained} busy={busy} onPlay={() => finish('play_more', onClimb)} onLater={() => finish('to_tower')} />
+          <SpirePositionRiseMoment lang={lang} rows={rise.rows} fromIndex={rise.fromIndex} toIndex={rise.toIndex} coinsGained={rise.coinsGained} metric={rise.metric} busy={busy} onPlay={() => finish('play_more', onClimb)} onLater={() => finish('to_tower')} />
         </SheetSwipeRoot>
       </Modal>
     );
   }
   if (active.kind === 'overtake' && shown.overtake) {
     const o = shown.overtake;
-    return <SpireOvertakeToast lang={lang} rivalName={o.rivalName} rivalCoinRank={o.rivalCoinRank} myCoinRank={coinRank} gapCoins={o.gapCoins} onPlay={() => finish('play', onClimb)} onDismiss={() => finish('toast_gone')} />;
+    return <SpireOvertakeToast lang={lang} rivalName={o.rivalName} rivalCoinRank={o.rivalCoinRank} myCoinRank={coinRank} gapCoins={o.gapCoins} gapSteps={o.gapSteps} onPlay={() => finish('play', onClimb)} onDismiss={() => finish('toast_gone')} />;
   }
   if (active.kind === 'lastChance' && shown.lastChance) {
     const l = shown.lastChance;
@@ -98,6 +98,7 @@ function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, on
         weekEndsAtMs={l.weekEndsAtMs}
         energyReadyAtMs={l.energyReadyAtMs}
         gapCoins={l.gapCoins}
+        gapSteps={l.gapSteps}
         onPlus={() => finish('plus', () => { nav.push({ pathname: '/premium_modal', params: { context: 'no_energy', source: 'spire_last_chance' } } as never); })}
         onClose={() => finish('closed')}
       />

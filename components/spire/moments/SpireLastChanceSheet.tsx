@@ -32,13 +32,15 @@ export type SpireLastChanceSheetProps = Readonly<{
   energyReadyAtMs: number;
   /** Сколько монет недели не хватает до топ-5; undefined — границы нет (фраза опускается). */
   gapCoins?: number;
+  /** Комната по ступеням: сколько ступеней нужно до топ-5; есть — фраза ступенями (главнее gapCoins). */
+  gapSteps?: number;
   /** «Играй без ожидания с Plus ›». */
   onPlus: () => void;
   onClose: () => void;
   testID?: string;
 }>;
 
-function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, gapCoins, onPlus, onClose, testID = 'last-chance' }: SpireLastChanceSheetProps) {
+function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, gapCoins, gapSteps, onPlus, onClose, testID = 'last-chance' }: SpireLastChanceSheetProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const runtimeActive = useRuntimeActive(visible);
@@ -56,7 +58,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
 
   useEffect(() => {
     if (!visible) return;
-    console.log(`[LAST-CHANCE] показ: до_итога=${Math.max(0, weekEndsAtMs - Date.now())}мс энергия_через=${Math.max(0, energyReadyAtMs - Date.now())}мс разрыв=${String(gapCoins)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    console.log(`[LAST-CHANCE] показ: до_итога=${Math.max(0, weekEndsAtMs - Date.now())}мс энергия_через=${Math.max(0, energyReadyAtMs - Date.now())}мс разрыв=${gapSteps !== undefined ? `${gapSteps} ступ.` : String(gapCoins)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
     playEvent('sheet_open');
     void hapticTap();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: показ один раз на открытие
@@ -64,7 +66,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
 
   const energyClock = spireClock(Math.max(0, energyReadyAtMs - now));
   const [before, after] = positionMomentText(lang, 'lastBody', { gap: GAP_MARK, t: energyClock }).split(GAP_MARK);
-  const body = gapCoins === undefined ? spireGameText(lang, 'energyIn', { t: energyClock }) : null;
+  const body = gapCoins === undefined && gapSteps === undefined ? spireGameText(lang, 'energyIn', { t: energyClock }) : null;
 
   return (
     <KitSheetModal
@@ -85,7 +87,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
           {body ?? (
             <>
               {before}
-              <Text style={[s.bold, { color: p.text }]}>{positionMomentText(lang, 'gapCoins', { n: gapCoins ?? 0 })}</Text>
+              <Text style={[s.bold, { color: p.text }]}>{gapSteps !== undefined ? positionMomentText(lang, 'gapSteps', { steps: gapSteps }) : positionMomentText(lang, 'gapCoins', { n: gapCoins ?? 0 })}</Text>
               {after ?? ''}
             </>
           )}

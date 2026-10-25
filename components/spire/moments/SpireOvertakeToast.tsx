@@ -37,13 +37,15 @@ export type SpireOvertakeToastProps = Readonly<{
   myCoinRank: number | null;
   /** На сколько монет недели соперник впереди. */
   gapCoins: number;
+  /** Комната по ступеням: на сколько ступеней соперник впереди; есть — подпись ступенями, 0 — подписи нет (ничья по ступеням). */
+  gapSteps?: number;
   onPlay: () => void;
   onDismiss: () => void;
   autoDismissMs?: number;
   testID?: string;
 }>;
 
-function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoins, onPlay, onDismiss, autoDismissMs = OVERTAKE_AUTO_DISMISS_MS, testID = 'overtake-toast' }: SpireOvertakeToastProps) {
+function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoins, gapSteps, onPlay, onDismiss, autoDismissMs = OVERTAKE_AUTO_DISMISS_MS, testID = 'overtake-toast' }: SpireOvertakeToastProps) {
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
@@ -56,7 +58,7 @@ function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoi
   // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
   const fire = useFireOnce('OVERTAKE');
   useEffect(() => {
-    console.log(`[OVERTAKE] тост: соперник=${rivalName} разрыв=${gapCoins} автозакрытие=${autoDismissMs} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    console.log(`[OVERTAKE] тост: соперник=${rivalName} разрыв=${gapSteps !== undefined ? `${gapSteps} ступ.` : `${gapCoins} мон.`} автозакрытие=${autoDismissMs} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
     playEvent('tap');
     void hapticTap();
     if (!reduceMotion) enter.value = withTiming(1, { duration: 600, easing: Easing.bezier(0.3, 1.6, 0.5, 1) });
@@ -77,7 +79,12 @@ function SpireOvertakeToast({ lang, rivalName, rivalCoinRank, myCoinRank, gapCoi
         </View>
         <View style={s.copy}>
           <Text style={[s.title, { color: p.text }]} numberOfLines={2} testID={`${testID}-title`}>{positionMomentText(lang, 'overtake', { name: rivalName })}</Text>
-          <Text style={[s.sub, { color: p.textSecondary }]} testID={`${testID}-sub`}>{positionMomentText(lang, 'overtakeSub', { n: gapCoins })}</Text>
+          {/* зачем (координатор 25.10): место — ступени, монеты — только награда; ничья по ступеням — «на 0 ступеней» не пишем */}
+          {gapSteps === undefined ? (
+            <Text style={[s.sub, { color: p.textSecondary }]} testID={`${testID}-sub`}>{positionMomentText(lang, 'overtakeSub', { n: gapCoins })}</Text>
+          ) : gapSteps > 0 ? (
+            <Text style={[s.sub, { color: p.textSecondary }]} testID={`${testID}-sub`}>{positionMomentText(lang, 'overtakeSubSteps', { steps: gapSteps })}</Text>
+          ) : null}
         </View>
         <V2Pressable onPress={() => fire(onPlay, 'play')} accessibilityRole="button" accessibilityLabel={momentText(lang, 'play')} style={[s.play, { backgroundColor: p.cta }]} testID={`${testID}-play`}>
           <Text style={[s.playText, { color: p.ctaText }]}>{momentText(lang, 'play')}</Text>

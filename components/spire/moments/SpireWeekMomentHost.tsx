@@ -43,7 +43,7 @@ export type SpireWeekMomentHostProps = Readonly<{
 /** Строки лестницы сервера → строки момента; нет лестницы → undefined (акт 1 пропускается). */
 export function spireWeekLadderRows(ladder: SpireWeekMomentShow['result']['ladder']): readonly MomentRoomRow[] | undefined {
   if (!ladder || ladder.length === 0) return undefined;
-  return ladder.map((row) => ({ uid: `ladder-${row.place}`, name: row.name, coinRank: row.coinRank, coins: row.coins, isMe: row.isMe }));
+  return ladder.map((row) => ({ uid: `ladder-${row.place}`, name: row.name, coinRank: row.coinRank, coins: row.coins, ...(row.steps !== undefined ? { steps: row.steps } : {}), isMe: row.isMe }));
 }
 
 /** Сколько монет не хватило до зоны повышения: граница сервера минус мои монеты недели; нет границы — undefined (строки нет). */
@@ -81,25 +81,28 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
   const handleShare = useCallback(() => {
     if (sharingRef.current) { console.log('[WEEK-MOMENT] share: окно уже открыто — пропуск'); return; }
     sharingRef.current = true;
-    const message = momentText(lang, 'promoShareText', { league: spireTierName(result.newTier, lang), place: result.roomRank, coins: momentNumber(result.weekCoins ?? 0) });
+    // зачем (Макеты + владелец 25.10: комната недели — по СТУПЕНЯМ): в «Поделиться» — ступени недели, монеты — только в режиме монет
+    const message = result.rankBy === 'coins'
+      ? momentText(lang, 'promoShareText', { league: spireTierName(result.newTier, lang), place: result.roomRank, coins: momentNumber(result.weekCoins ?? 0) })
+      : momentText(lang, 'promoShareTextSteps', { league: spireTierName(result.newTier, lang), place: result.roomRank, steps: momentNumber(result.steps) });
     console.log(`[WEEK-MOMENT] share: открываю системное окно, символов=${message.length}`); // guard-ok: единичный лог действия
     Share.share({ message })
       .then((r) => { console.log(`[WEEK-MOMENT] share: результат action=${String(r.action)}`); }) // guard-ok: итог
       .catch((e: unknown) => { console.warn(`[WEEK-MOMENT] share: сбой ${e instanceof Error ? e.message : String(e)} — показана подсказка`); showShareFailed(); }) // guard-ok: catch называет причину
       .finally(() => { sharingRef.current = false; });
-  }, [lang, result.newTier, result.roomRank, result.weekCoins, showShareFailed]);
+  }, [lang, result.newTier, result.roomRank, result.weekCoins, result.rankBy, result.steps, showShareFailed]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
       <SheetSwipeRoot>
         <View style={{ flex: 1 }} testID={testID}>
           {outcome === 'promoted' ? (
             decision.isRepeatPromotion === true ? (
-              <MomentPromotionShort lang={lang} toTier={result.newTier} myPlace={result.roomRank} myCoinRank={coinRank} weekCoins={result.weekCoins} bonusCoins={result.promotionCoins} onPlay={handlePlay} onShare={handleShare} />
+              <MomentPromotionShort lang={lang} toTier={result.newTier} myPlace={result.roomRank} myCoinRank={coinRank} weekCoins={result.weekCoins} weekSteps={result.rankBy === 'coins' ? undefined : result.steps} bonusCoins={result.promotionCoins} onPlay={handlePlay} onShare={handleShare} />
             ) : (
-              <MomentPromotion lang={lang} fromTier={result.prevTier} toTier={result.newTier} rows={rows} myPlace={result.roomRank} myCoinRank={coinRank} bonusCoins={result.promotionCoins} onPlay={handlePlay} />
+              <MomentPromotion lang={lang} fromTier={result.prevTier} toTier={result.newTier} rows={rows} myPlace={result.roomRank} myCoinRank={coinRank} bonusCoins={result.promotionCoins} rankBy={result.rankBy === 'coins' ? 'coins' : 'steps'} onPlay={handlePlay} />
             )
           ) : outcome === 'stayed' ? (
-            <MomentStay lang={lang} tier={result.newTier} coinRank={coinRank} place={result.roomRank} weekCoins={result.weekCoins ?? 0} gapToTop5={spireWeekGapToTop5(result)} onPlay={handlePlay} />
+            <MomentStay lang={lang} tier={result.newTier} coinRank={coinRank} place={result.roomRank} weekCoins={result.weekCoins ?? 0} weekSteps={result.rankBy === 'coins' ? undefined : result.steps} gapToTop5={spireWeekGapToTop5(result)} onPlay={handlePlay} />
           ) : (
             <MomentDown lang={lang} newTier={result.newTier} coinRank={coinRank} onPlay={handlePlay} onRemind={onRemind} />
           )}

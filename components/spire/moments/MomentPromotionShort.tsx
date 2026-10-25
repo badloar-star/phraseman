@@ -21,7 +21,7 @@ import MomentFirework, { useMomentRumble } from './moments_effects';
 import { MomentCoin } from './moments_coin';
 import { MomentFullScreen } from './moments_layout';
 import { MOMENT_SOUND_EVENTS, playMomentSound } from './moments_sound';
-import { momentNumber, momentText } from './moments_strings';
+import { momentCoinWord, momentNumber, momentText } from './moments_strings';
 import { MOMENT_TITLE_MAX_FONT_SCALE } from '../../moments/title_scale';
 
 /** Тайминги эталона (вариант B), мс: монета cheer + искры 400 · фейерверк, дрожь, итог 900 · тексты 422/648/813 · кнопки 1044. */
@@ -38,6 +38,8 @@ export type MomentPromotionShortProps = Readonly<{
   myCoinRank: number | null;
   /** Монеты недели; undefined — нет данных (строка без монет). */
   weekCoins?: number;
+  /** Ступени недели — когда комната считается по ступеням (rankBy 'steps'); тогда строка места — ступенями. */
+  weekSteps?: number;
   /** Монеты за повышение — число сервера (promotionCoins); 0 — «+N» не показываем. */
   bonusCoins: number;
   onPlay: () => void;
@@ -46,14 +48,21 @@ export type MomentPromotionShortProps = Readonly<{
   testID?: string;
 }>;
 
-/** Строка под заголовком: «5 место · 470 монет за неделю · +100»; нет монет недели — только место. */
-export function promotionShortBody(lang: Lang, place: number, weekCoins: number | undefined, bonusCoins: number): string {
+/**
+ * Строка под заголовком: «5 место · 42 ступени за неделю · +100 монет»; комната по монетам — «5 место · 470 монет за неделю · +100».
+ * зачем (Макеты + владелец 25.10: комната недели — по СТУПЕНЯМ): место подкрепляем ступенями; монеты — только награда за повышение.
+ */
+export function promotionShortBody(lang: Lang, place: number, weekCoins: number | undefined, bonusCoins: number, weekSteps?: number): string {
+  if (weekSteps !== undefined && weekSteps > 0) {
+    const base = momentText(lang, 'promoShortBodySteps', { place, steps: momentNumber(weekSteps) });
+    return bonusCoins > 0 ? `${base} · +${momentNumber(bonusCoins)} ${momentCoinWord(lang, bonusCoins)}` : base;
+  }
   if (weekCoins === undefined || weekCoins <= 0) return momentText(lang, 'promoShortPlaceOnly', { place });
   const base = momentText(lang, 'promoShortBody', { place, coins: momentNumber(weekCoins) });
   return bonusCoins > 0 ? `${base} · +${momentNumber(bonusCoins)}` : base;
 }
 
-function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, bonusCoins, onPlay, onShare, testID = 'moment-promotion-short' }: MomentPromotionShortProps) {
+function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, weekSteps, bonusCoins, onPlay, onShare, testID = 'moment-promotion-short' }: MomentPromotionShortProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
@@ -84,7 +93,7 @@ function MomentPromotionShort({ lang, toTier, myPlace, myCoinRank, weekCoins, bo
           <MomentCoin rank={myCoinRank} size={120} mood={cheer ? 'cheer' : 'idle'} glints emote={cheer ? 'star' : null} emoteCount={4} testID={`${testID}-coin`} />
           <Animated.Text entering={beat(T.overline)} style={[s.ov, { color: p.accentTextSafe }]} testID={`${testID}-overline`}>{momentText(lang, 'promoShortOverline', { league }).toUpperCase()}</Animated.Text>
           <Animated.Text entering={beat(T.title)} accessibilityRole="header" maxFontSizeMultiplier={MOMENT_TITLE_MAX_FONT_SCALE} style={[s.title, { color: p.text }]} testID={`${testID}-title`}>{momentText(lang, 'promoShortTitle')}</Animated.Text>
-          <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{promotionShortBody(lang, myPlace, weekCoins, bonusCoins)}</Animated.Text>
+          <Animated.Text entering={beat(T.body)} style={[s.body, { color: p.textSecondary }]} testID={`${testID}-body`}>{promotionShortBody(lang, myPlace, weekCoins, bonusCoins, weekSteps)}</Animated.Text>
         </View>
         <Animated.View entering={beat(T.buttons)} style={[s.dock, { paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
           <V2Button label={momentText(lang, 'play')} icon="arrow-forward" onPress={() => fire(onPlay, 'play')} testID={`${testID}-play`} />

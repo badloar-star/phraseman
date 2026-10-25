@@ -56,7 +56,7 @@ describe('склонение «<число> монет» в окнах моме�
   });
 
   it('ни в одном ключе трёх таблиц на 9 языках не остаётся нераскрытых {плейсхолдеров}', () => {
-    const vars = { n: 21, coins: '1 180', place: 4, gap: 30, league: 'X', t: '1:00' };
+    const vars = { n: 21, coins: '1 180', steps: 42, place: 4, gap: 30, league: 'X', t: '1:00' }; // steps — строки места ступенями (Макеты + владелец 25.10)
     for (const lang of LANGS) {
       MOMENT_STRING_KEYS.forEach((k) => expect(momentText(lang, k, vars)).not.toMatch(/\{\w+\}/));
       POSITION_MOMENT_STRING_KEYS.forEach((k) => expect(positionMomentText(lang, k, { ...vars, name: 'A' })).not.toMatch(/\{\w+\}/));

@@ -123,6 +123,13 @@ describe('m05B · тост «обгоняет тебя»', () => {
     expect(onDismiss).not.toHaveBeenCalled();
   });
 
+  it('комната по ступеням: подпись «на N ступеней»; ничья по ступеням — подписи нет', async () => {
+    await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} gapSteps={3} onPlay={jest.fn()} onDismiss={jest.fn()} />);
+    expect(screen.getByTestId('overtake-toast-sub').props.children).toBe(glueNumbers('на 3 ступени'));
+    await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} gapSteps={0} onPlay={jest.fn()} onDismiss={jest.fn()} />);
+    expect(screen.queryByTestId('overtake-toast-sub')).toBeNull();
+  });
+
   it('без нажатия тост сам закрывается через 6 с ровно один раз', async () => {
     const onDismiss = jest.fn();
     await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} onPlay={jest.fn()} onDismiss={onDismiss} />);
@@ -151,6 +158,13 @@ describe('m05C · последний шанс', () => {
     expect(onPlus).toHaveBeenCalledTimes(1);
     await act(async () => { jest.advanceTimersByTime(5000); });
     expect(screen.getByTestId('last-chance-clock').props.children).toBe('03:12:35');
+  });
+
+  it('комната по ступеням: «До топ-5 — 4 ступени», монет в фразе нет', async () => {
+    await render(<SpireLastChanceSheet lang="ru" visible weekEndsAtMs={now() + 3600_000} energyReadyAtMs={now() + 580_000} gapSteps={4} onPlus={jest.fn()} onClose={jest.fn()} />);
+    expect(screen.getByText(/До топ-5 — /)).toBeTruthy();
+    expect(screen.getByText(glueNumbers('4 ступени'))).toBeTruthy();
+    expect(screen.queryByText(/монет/)).toBeNull();
   });
 
   it('нет границы топ-5 (старый итог): фраза про разрыв опущена, остаётся «Энергия через …»', async () => {

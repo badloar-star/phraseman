@@ -31,5 +31,7 @@ describe('Пик: позиция для окон мест — только по�
     const game = read('app/spire/use_spire_game.ts');
     expect(game).toContain('const positionReady = lang !== null && weekCheckedLang === lang;');
     expect(game).toContain('rows && room && ids && lang && positionReady ?');
+    // Ревизор 25.10: неделя, прочитанная хуком раньше родителя, приходит тем же рендером, что и «готово» — первая лента уже со своими ступенями
+    expect(game).toContain('.then((local) => { if (!alive) return; if (!weekRef.current && local) setWeek(local); setWeekCheckedLang(lang); })');
   });
 });

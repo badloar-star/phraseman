@@ -69,7 +69,7 @@ function decodeWallet(d: Record<string, unknown>): SpireWeekWalletView | undefin
   return { stars, earnedTotal, seq, paidCoins: Number.isSafeInteger(paidCoins) && paidCoins > 0 ? paidCoins : 0 };
 }
 
-export type SpireWeekLadderRowView = Readonly<{ place: number; name: string; coinRank: number | null; coins: number; isMe: boolean; removed?: true }>;
+export type SpireWeekLadderRowView = Readonly<{ place: number; name: string; coinRank: number | null; coins: number; isMe: boolean; removed?: true; /** Ступени недели — только если сервер их прислал (ступени в лестнице — у Ядра, 25.10). */ steps?: number }>;
 
 /** Подпись строки удалённого аккаунта — то же нейтральное имя без языка, что у заглушек друзей (friends.tsx). */
 export const SPIRE_LADDER_REMOVED_NAME = 'Phraseman';
@@ -91,6 +91,7 @@ function decodeLadder(raw: unknown): readonly SpireWeekLadderRowView[] | undefin
       name: removed ? SPIRE_LADDER_REMOVED_NAME : typeof r.name === 'string' ? r.name.slice(0, 48) : '',
       coinRank: !removed && Number.isInteger(rank) && rank >= 0 && rank <= 19 ? rank : null,
       coins: Math.max(0, n(r.coins)),
+      ...(typeof r.steps === 'number' && Number.isFinite(r.steps) ? { steps: Math.max(0, Math.floor(r.steps)) } : {}),
       isMe: r.isMe === true,
       ...(removed ? { removed: true as const } : {}),
     });

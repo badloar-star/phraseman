@@ -115,7 +115,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
     if (!snapshot || !rows) return;
     const prev = prevRef.current;
     prevRef.current = snapshot;
-    const d = spireDecideRise(prev, snapshot, rows);
+    const d = spireDecideRise(prev, snapshot, rows, rankBy);
     if (prev) console.log(`${LOG} rise ${d.show ? 'show' : 'skip'}: ${d.why}`);
     if (d.show && !consumedRef.current.has(`rise:${d.show.key}`)) setRise(d.show);
   }, [snapshot, rows]);
@@ -135,7 +135,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
       if (!alive) { console.log(`${LOG} overtake: экран ушёл до решения`); return; }
       const seen = readSeen(raw);
       if (seen && seen.roomFetchedAtMs !== snapshot.roomFetchedAtMs) {
-        const d = spireDecideOvertake(seen, snapshot, rows);
+        const d = spireDecideOvertake(seen, snapshot, rows, rankBy);
         if (d.show && overtakeShownThisSession) console.log(`${LOG} overtake skip: уже показывали в этой сессии (${d.why})`);
         else console.log(`${LOG} overtake ${d.show ? 'show' : 'skip'}: ${d.why}`);
         if (d.show && !overtakeShownThisSession && !consumedRef.current.has(`overtake:${d.show.key}`)) setOvertake(d.show);
@@ -147,7 +147,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
       }
     })();
     return () => { alive = false; };
-  }, [snapshot, rows, uid, lang]);
+  }, [snapshot, rows, uid, lang, rankBy]);
 
   // ── lastChance: пометка «показано на неделе» ──
   useEffect(() => {

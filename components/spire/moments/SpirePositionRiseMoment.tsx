@@ -17,7 +17,7 @@ import { V2_TYPE } from '../../../constants/v2Style';
 import { V2Button } from '../../v2/V2Kit';
 import { spireGameText } from '../spire_game_strings';
 import { useSpirePalette } from '../useSpirePalette';
-import { LadderRow, type MomentRoomRow } from './MomentPromotion';
+import { LadderRow, type MomentLadderMetric, type MomentRoomRow } from './MomentPromotion';
 import { MomentFullScreen, useMomentFootPad } from './moments_layout';
 import { momentText } from './moments_strings';
 import { positionMomentText } from './position_moment_strings';
@@ -41,6 +41,8 @@ export type SpirePositionRiseMomentProps = Readonly<{
   toIndex: number;
   /** Монеты за ступень («+10 монет»). */
   coinsGained: number;
+  /** Чем мерить место в строках (как ранжирована комната); нет — монеты. */
+  metric?: MomentLadderMetric;
   onPlay: () => void;
   onLater: () => void;
   busy?: boolean;
@@ -56,7 +58,7 @@ export function positionRiseOrderAfter(rows: readonly MomentRoomRow[], fromIndex
   return next;
 }
 
-function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, onPlay, onLater, busy, testID = 'position-rise' }: SpirePositionRiseMomentProps) {
+function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, metric = 'coins', onPlay, onLater, busy, testID = 'position-rise' }: SpirePositionRiseMomentProps) {
   // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
   const fire = useFireOnce('POSITION-RISE');
   const p = useSpirePalette();
@@ -118,7 +120,7 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
               </View>
             ) : null}
             {order.map((row, i) => (
-              <RiseRow key={row.uid} row={row} place={i + 1} originalIndex={originalIndexOf(row)} fromIndex={fromIndex} toIndex={toIndex} step={step} lift={lift} risen={risen} frozen={frozen && row.isMe} onLayout={i === 0 ? (e) => setRowH(Math.round(e.nativeEvent.layout.height)) : undefined} testID={`${testID}-row-${i}`} />
+              <RiseRow key={row.uid} row={row} place={i + 1} originalIndex={originalIndexOf(row)} fromIndex={fromIndex} toIndex={toIndex} step={step} lift={lift} risen={risen} frozen={frozen && row.isMe} metric={metric} onLayout={i === 0 ? (e) => setRowH(Math.round(e.nativeEvent.layout.height)) : undefined} testID={`${testID}-row-${i}`} />
             ))}
           </View>
         </View>
@@ -135,11 +137,11 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
 
 type RiseRowProps = Readonly<{
   row: MomentRoomRow; place: number; originalIndex: number; fromIndex: number; toIndex: number; step: number;
-  lift: ReturnType<typeof useSharedValue<number>>; risen: boolean; frozen: boolean; onLayout?: (e: LayoutChangeEvent) => void; testID: string;
+  lift: ReturnType<typeof useSharedValue<number>>; risen: boolean; frozen: boolean; metric: MomentLadderMetric; onLayout?: (e: LayoutChangeEvent) => void; testID: string;
 }>;
 
 /** Строка таблицы: до подъёма «Ты» едет вверх, строки между toIndex и fromIndex−1 — вниз на один шаг. */
-const RiseRow = memo(function RiseRow({ row, place, originalIndex, fromIndex, toIndex, step, lift, risen, frozen, onLayout, testID }: RiseRowProps) {
+const RiseRow = memo(function RiseRow({ row, place, originalIndex, fromIndex, toIndex, step, lift, risen, frozen, metric, onLayout, testID }: RiseRowProps) {
   const isMe = row.isMe;
   const displaced = !isMe && originalIndex >= toIndex && originalIndex < fromIndex;
   const style = useAnimatedStyle(() => ({
@@ -148,7 +150,7 @@ const RiseRow = memo(function RiseRow({ row, place, originalIndex, fromIndex, to
   }));
   return (
     <Animated.View style={style} onLayout={onLayout}>
-      <LadderRow row={row} index={0} place={place} flicker={false} rise={frozen} testID={testID} />
+      <LadderRow row={row} index={0} place={place} flicker={false} rise={frozen} metric={metric} testID={testID} />
     </Animated.View>
   );
 });

@@ -14,6 +14,11 @@ import {
   spireWeekEndsAtMs,
 } from '../app/spire/spire_position_moments_core';
 import { __resetSpirePositionMomentsForTests, useSpirePositionMomentsWith } from '../app/spire/use_spire_position_moments';
+import * as fs from 'fs';
+import * as path from 'path';
+import { spireZonesFor } from '../components/spire/spire_zones';
+import { POSITION_MOMENT_LANGS, positionMomentText } from '../components/spire/moments/position_moment_strings';
+import { glueNumbers } from '../components/moments/glue_numbers';
 
 const WEEK = '2026-W42';
 /** 15 живых, отсортированы по монетам: k = 5 → зона up = места 1..5. Я — на месте myPlace с монетами myCoins. */
@@ -83,6 +88,54 @@ describe('ядро решений m05', () => {
     const d = spireDecideLastChance(sunday, spirePositionOf(rows, 'steps', WEEK, 1)!, rows, 'steps', 0);
     expect(d.show).not.toBeNull();
     expect(d.show).not.toHaveProperty('gapCoins');
+  });
+});
+
+// зачем (координатор 25.10): «место — ступени, монеты — только награда» — в комнате по ступеням разрыв окон в ступенях.
+describe('m05 разрыв в единицах места (оба режима)', () => {
+  it('overtake: режим монет — только gapCoins; режим ступеней — ещё и gapSteps = ступени соперника минус мои', () => {
+    const seen = spirePositionOf(room(4, 1200, 15), 'steps', WEEK, 100)!;
+    const nowRows = room(6, 1200, 15);
+    const next = spirePositionOf(nowRows, 'steps', WEEK, 200)!;
+    const coins = spireDecideOvertake(seen, next, nowRows, 'coins');
+    expect(coins.show).not.toHaveProperty('gapSteps');
+    const steps = spireDecideOvertake(seen, next, nowRows, 'steps');
+    expect(steps.show!.gapSteps).toBe(nowRows[4].steps - 15);
+    expect(steps.why).toContain('rankBy=steps');
+  });
+
+  it('lastChance: режим ступеней — gapSteps «чтобы точно обойти» (последний в up минус мои плюс одна), монет нет', () => {
+    const sunday = new Date(2026, 9, 18, 19, 0).getTime();
+    const rows = room(8, 100, 13);
+    const zones = spireZonesFor(rows, 'steps');
+    const lastUp = Math.min(...rows.filter((_, i) => zones[i] === 'up').map((r) => r.steps));
+    const d = spireDecideLastChance(sunday, spirePositionOf(rows, 'steps', WEEK, 1)!, rows, 'steps', 0);
+    expect(d.show!.gapSteps).toBe(lastUp - 13 + 1);
+    expect(d.show).not.toHaveProperty('gapCoins');
+  });
+
+  it('lastChance: режим монет — gapCoins, ступеней нет', () => {
+    const sunday = new Date(2026, 9, 18, 19, 0).getTime();
+    const rows = room(8, 900);
+    const d = spireDecideLastChance(sunday, spirePositionOf(rows, 'coins', WEEK, 1)!, rows, 'coins', 0);
+    expect(d.show!.gapCoins).toBe(1100 - 900);
+    expect(d.show).not.toHaveProperty('gapSteps');
+  });
+
+  it('тексты: ступени склоняются, монеты — как было', () => {
+    expect(positionMomentText('ru', 'overtakeSubSteps', { steps: 1 })).toBe(glueNumbers('на 1 ступень'));
+    expect(positionMomentText('ru', 'overtakeSubSteps', { steps: 3 })).toBe(glueNumbers('на 3 ступени'));
+    expect(positionMomentText('ru', 'gapSteps', { steps: 5 })).toBe(glueNumbers('5 ступеней'));
+    expect(positionMomentText('en', 'overtakeSubSteps', { steps: 2 })).toBe(glueNumbers('by 2 steps'));
+    expect(positionMomentText('ru', 'overtakeSub', { n: 5 })).toBe(glueNumbers('на 5 монет за неделю'));
+    for (const lang of POSITION_MOMENT_LANGS) {
+      for (const key of ['overtakeSubSteps', 'gapSteps'] as const) expect(positionMomentText(lang, key, { steps: 4 })).not.toMatch(/\{/);
+    }
+  });
+
+  it('хук передаёт рубильник места в решение «обогнали»', () => {
+    const src = fs.readFileSync(path.resolve(__dirname, '..', 'app/spire/use_spire_position_moments.ts'), 'utf8');
+    expect(src).toContain('spireDecideOvertake(seen, snapshot, rows, rankBy)');
   });
 });
 

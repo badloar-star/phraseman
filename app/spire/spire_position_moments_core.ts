@@ -45,7 +45,7 @@ export function spirePositionOf(
   return { weekId, roomFetchedAtMs, place: index + 1, zone: zones[index] ?? 'stay', steps: me.steps, coins: me.weekCoins };
 }
 
-const toMomentRow = (r: SpireRoomRow): MomentRoomRow => ({ uid: r.uid, name: r.name, coinRank: r.coinRank ?? null, coins: r.weekCoins, isMe: r.isMe });
+const toMomentRow = (r: SpireRoomRow): MomentRoomRow => ({ uid: r.uid, name: r.name, coinRank: r.coinRank ?? null, coins: r.weekCoins, steps: r.steps, isMe: r.isMe });
 
 export type Decision<T> = Readonly<{ show: T | null; why: string }>;
 
@@ -57,6 +57,7 @@ export function spireDecideRise(
   prev: SpirePositionState | null,
   next: SpirePositionState,
   rows: readonly SpireRoomRow[],
+  rankBy: SpireRankByView = 'coins',
 ): Decision<SpirePositionRiseShow> {
   if (!prev) return { show: null, why: 'нет прежней позиции в этой сессии' };
   if (prev.weekId !== next.weekId) return { show: null, why: `другая неделя (${prev.weekId} → ${next.weekId})` };
@@ -73,6 +74,7 @@ export function spireDecideRise(
       fromIndex,
       toIndex: toIndex - start,
       coinsGained: Math.max(0, next.coins - prev.coins), // guard-ok: разность только для показа в окне, баланс не меняется
+      metric: rankBy, // зачем (координатор 25.10): строки окна меряют место тем же, чем комната
     },
     why: `зона ${prev.zone} → up, место ${prev.place} → ${next.place}`,
   };
@@ -86,6 +88,7 @@ export function spireDecideOvertake(
   seen: SpirePositionState | null,
   next: SpirePositionState,
   rows: readonly SpireRoomRow[],
+  rankBy: SpireRankByView = 'coins',
 ): Decision<SpireOvertakeShow> {
   if (!seen) return { show: null, why: 'прежней загрузки комнаты нет' };
   if (seen.weekId !== next.weekId) return { show: null, why: `другая неделя (${seen.weekId} → ${next.weekId})` };
@@ -100,8 +103,10 @@ export function spireDecideOvertake(
       rivalName: rival.name,
       rivalCoinRank: rival.coinRank ?? null,
       gapCoins: Math.max(0, rival.weekCoins - next.coins), // guard-ok: разность только для показа в окне, баланс не меняется
+      // зачем (координатор 25.10: «место — ступени, монеты — только награда»): комната по ступеням — и разрыв в ступенях
+      ...(rankBy === 'steps' ? { gapSteps: Math.max(0, rival.steps - next.steps) } : {}),
     },
-    why: `место ${seen.place} → ${next.place}`,
+    why: `место ${seen.place} → ${next.place}, rankBy=${rankBy}`,
   };
 }
 
@@ -116,6 +121,8 @@ export function spireWeekEndsAtMs(nowMs: number): number {
 /**
  * «Последний шанс»: местное воскресенье после 18:00, неделя ещё идёт, я ниже линии повышения (зона не up).
  * gapCoins — только в режиме монет: монеты последнего в зоне up минус мои (ничья на границе — в пользу игрока).
+ * gapSteps — только в режиме ступеней: ступени последнего в зоне up минус мои плюс одна — при равных ступенях
+ * сортировка не обещает место игроку, поэтому считаем, сколько нужно, чтобы точно обойти.
  */
 export function spireDecideLastChance(
   nowMs: number,
@@ -136,9 +143,15 @@ export function spireDecideLastChance(
     const upCoins = rows.filter((_, i) => zones[i] === 'up').map((r) => r.weekCoins);
     if (upCoins.length > 0) gapCoins = Math.max(0, Math.min(...upCoins) - next.coins); // guard-ok: разность только для показа в окне, баланс не меняется
   }
+  let gapSteps: number | undefined;
+  if (rankBy === 'steps') {
+    const zones = spireZonesFor(rows, rankBy);
+    const upSteps = rows.filter((_, i) => zones[i] === 'up').map((r) => r.steps);
+    if (upSteps.length > 0) gapSteps = Math.max(1, Math.min(...upSteps) - next.steps + 1);
+  }
   return {
-    show: { key: `${next.weekId}:lastChance`, weekEndsAtMs, energyReadyAtMs, ...(gapCoins !== undefined ? { gapCoins } : {}) },
-    why: `воскресенье ${local.getHours()}:xx, зона ${next.zone}, до конца недели ${Math.round((weekEndsAtMs - nowMs) / 60000)} мин, не хватает ${gapCoins ?? '—'}`,
+    show: { key: `${next.weekId}:lastChance`, weekEndsAtMs, energyReadyAtMs, ...(gapCoins !== undefined ? { gapCoins } : {}), ...(gapSteps !== undefined ? { gapSteps } : {}) },
+    why: `воскресенье ${local.getHours()}:xx, зона ${next.zone}, до конца недели ${Math.round((weekEndsAtMs - nowMs) / 60000)} мин, rankBy=${rankBy}, не хватает ${gapSteps !== undefined ? `${gapSteps} ступ.` : gapCoins ?? '—'}`,
   };
 }
 

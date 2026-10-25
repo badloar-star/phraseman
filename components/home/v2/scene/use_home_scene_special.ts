@@ -17,16 +17,17 @@ import { buildHomeSceneSpecialCopy } from './home_scene_special_copy';
 import { noteHomeSceneSpecialShown, peekHomeSceneSpecialJournal, readHomeSceneSpecialJournal } from './home_scene_special_journal';
 import type { HomeSceneDecision } from './home_scene_state';
 import type { HomeSceneLocalFacts } from './use_home_scene_local_facts';
+import type { HomeSceneMoreFacts } from './use_home_scene_more_facts';
 
 const LOG = '[HOME-SCENE]';
 
 /** Куда ведёт кнопка особой сцены; переход делает Главная (её охраняемая навигация и учёт открытий). */
-export type HomeSceneSpecialRoute = 'mistakes' | 'cards' | 'continue' | 'stats';
+export type HomeSceneSpecialRoute = 'mistakes' | 'cards' | 'continue' | 'stats' | 'phrase' | 'peak';
 
 const ROUTE: Readonly<Record<HomeSceneSpecialState, HomeSceneSpecialRoute>> = Object.freeze({
   mistakes_pile: 'mistakes', mistake_poke: 'mistakes', mistake_mastered: 'mistakes', words_due: 'cards',
-  holiday: 'continue', personal_best: 'continue', friend_nudge: 'continue', phrase_of_day_unseen: 'continue',
-  peak_overtaken: 'continue', milestone: 'stats', fun_stats: 'stats', weekly_recap: 'stats',
+  holiday: 'continue', personal_best: 'continue', friend_nudge: 'continue', phrase_of_day_unseen: 'phrase',
+  peak_overtaken: 'peak', milestone: 'stats', fun_stats: 'stats', weekly_recap: 'stats',
 });
 
 const DAY_KEY = /^(\d{4})-(\d{2})-(\d{2})$/;
@@ -55,6 +56,8 @@ export type HomeSceneSpecialFacts = Readonly<{
   activityDates: readonly string[];
   /** Пачка 2: ошибки, выучено фраз, друг. */
   local?: HomeSceneLocalFacts;
+  /** Пачка 3: фраза дня, рекорд серии, рубеж, место в Пике. */
+  more?: HomeSceneMoreFacts;
 }>;
 
 export type HomeSceneSpecialView = Readonly<{
@@ -93,15 +96,17 @@ export function useHomeSceneSpecial(i: Readonly<{
       now: new Date(), mistakesOpen: i.facts.mistakesOpen,
       repeatedMistake: local?.repeatedMistake ? { id: local.repeatedMistake.id, times: 2 } : null,
       masteredMistake: local?.masteredMistake ? { id: local.masteredMistake.id } : null,
-      phraseOfDaySeen: null, wordsDue: i.facts.wordsDue,
+      phraseOfDaySeen: i.facts.more?.phraseSeen ?? null, wordsDue: i.facts.wordsDue,
       // «Про тебя» — только когда есть что сказать: выучено фраз известно и не ноль
       progressDays: local?.phrasesLearned ? i.facts.activityDates.length : null,
-      today: null, activeLastWeek: weekDays > 0, milestoneKey: null,
-      friendAhead: local?.friend ? { uid: local.friend.uid } : null, peakOvertaken: null,
+      // зачем (координатор 25.10, замена данных): «личный рекорд» — рекорд серии против текущей серии (единицы честные — дни)
+      today: i.facts.more?.streakBest ? { tasks: i.facts.more.streakBest.streak, bestDay: i.facts.more.streakBest.best } : null,
+      activeLastWeek: weekDays > 0, milestoneKey: i.facts.more?.milestone?.key ?? null,
+      friendAhead: local?.friend ? { uid: local.friend.uid } : null, peakOvertaken: i.facts.more?.peakOvertaken ?? null,
     };
     return pickHomeSceneSpecial(input, i.decision, journal);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: час нужен только для «фразы дня до 20:00» и смены дня
-  }, [journal, i.decision, i.facts.mistakesOpen, i.facts.wordsDue, i.facts.local, i.facts.activityDates.length, weekDays, dayKey, hour]);
+  }, [journal, i.decision, i.facts.mistakesOpen, i.facts.wordsDue, i.facts.local, i.facts.more, i.facts.activityDates.length, weekDays, dayKey, hour]);
   const logRef = useRef('');
   useEffect(() => {
     const key = decision ? `${decision.special ?? 'none'}|${decision.reason}` : 'journal_pending';
@@ -123,13 +128,17 @@ export function useHomeSceneSpecial(i: Readonly<{
     const right = special === 'mistake_poke' ? local?.repeatedMistake?.phrase : special === 'mistake_mastered' ? local?.masteredMistake?.phrase : undefined;
     const copy = buildHomeSceneSpecialCopy({
       lang: i.lang, special, right, friendName: local?.friend?.name,
-      n: special === 'mistakes_pile' ? i.facts.mistakesOpen ?? 0 : special === 'words_due' ? i.facts.wordsDue ?? 0 : special === 'fun_stats' ? local?.phrasesLearned ?? 0 : undefined,
+      n: special === 'mistakes_pile' ? i.facts.mistakesOpen ?? 0 : special === 'words_due' ? i.facts.wordsDue ?? 0 : special === 'fun_stats' ? local?.phrasesLearned ?? 0
+        : special === 'milestone' ? i.facts.more?.milestone?.n ?? 0 : undefined,
+      milestoneKey: i.facts.more?.milestone?.key, placeTo: i.facts.more?.peakOvertaken?.to,
+      best: i.facts.more?.streakBest?.best, today: i.facts.more?.streakBest?.streak,
+      phrase: i.facts.more?.phrase?.text, phraseTr: i.facts.more?.phrase?.tr ?? undefined,
       holiday: special === 'holiday' ? specialKey ?? undefined : undefined,
       place: i.place ?? undefined,
       weekDays,
     });
     return Object.freeze({ special, key: specialKey, copy, route: ROUTE[special] });
-  }, [special, specialKey, i.lang, i.facts.mistakesOpen, i.facts.wordsDue, i.facts.local, i.place, weekDays]);
+  }, [special, specialKey, i.lang, i.facts.mistakesOpen, i.facts.wordsDue, i.facts.local, i.facts.more, i.place, weekDays]);
 }
 
 /**

@@ -32,6 +32,9 @@ import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
 import { useHomeSceneSpecial, useHomeSceneWordsDue, type HomeSceneSpecialRoute, type HomeSceneSpecialView } from './use_home_scene_special';
 import { useHomeSceneLocalFacts } from './use_home_scene_local_facts';
+import { useHomeSceneMoreFacts } from './use_home_scene_more_facts';
+import { useMyCoinRank } from '../../../../hooks/use_my_coin_rank';
+import { useSpireHomePlace } from '../../../../app/spire/spire_home_place';
 import { useTabTopBleedInset } from '../../../tab_top_bleed';
 import { noteHomeRender } from '../../../../app/home_scroll_probe';
 
@@ -162,7 +165,12 @@ export default function HomeScene(p: Props) {
   // зачем (владелец 25.10, 12 новых состояний сцены): особая сцена поверх героя — только из данных телефона; срочные герои главнее
   const wordsDue = useHomeSceneWordsDue(p.onSpecial ? p.studyTarget : undefined);
   const localFacts = useHomeSceneLocalFacts(p.studyTarget, Boolean(p.onSpecial));
-  const specialFacts = useMemo(() => ({ mistakesOpen: p.mistakesOpen ?? null, wordsDue, activityDates: personal.activityDates, local: localFacts }), [p.mistakesOpen, wordsDue, personal.activityDates, localFacts]);
+  // зачем (особые сцены, пачка 3): ранг монеты и место в Пике — те же копии на телефоне, что у шапки и плитки Пика (0 сети)
+  const myCoinRank = useMyCoinRank();
+  const peakPlace = useSpireHomePlace(p.onSpecial && p.studyTarget !== undefined ? String(p.studyTarget) : null);
+  const moreFacts = useHomeSceneMoreFacts({ enabled: Boolean(p.onSpecial), studyTarget: p.studyTarget, lang: p.lang, streakDays: p.streakDays,
+    lessons: personal.completedLessons.length, phrasesLearned: localFacts.phrasesLearned, coinRank: myCoinRank, peakPlace });
+  const specialFacts = useMemo(() => ({ mistakesOpen: p.mistakesOpen ?? null, wordsDue, activityDates: personal.activityDates, local: localFacts, more: moreFacts }), [p.mistakesOpen, wordsDue, personal.activityDates, localFacts, moreFacts]);
   const special = useHomeSceneSpecial({ lang: p.lang, decision, facts: specialFacts, place: null, active: p.active && !p.pending && Boolean(p.onSpecial) });
   return (
     <HomeSceneView

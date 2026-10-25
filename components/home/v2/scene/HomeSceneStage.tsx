@@ -164,7 +164,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
           ) : null}
         </Defs>
         <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" />
-        <Rect x="57%" y={topInset + HERO_TOP} width={168} height={168} fill="url(#sceneHalo)" />
+        {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
+        {heroBounded ? null : <Rect x="57%" y={topInset + HERO_TOP} width={168} height={168} fill="url(#sceneHalo)" />}
         {evening ? <Rect x={-40} y={stageH - 200} width={260} height={260} fill="url(#sceneEmber)" /> : null}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
@@ -189,8 +190,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
           </>
         ) : (
           <Animated.View key={specialKey ?? 'base'} entering={specialKey && !reduceMotion ? SPECIAL_ENTER : undefined}>
-            {/* зачем (Темы 25.10, home-scene-special-contrast: надзаголовок 86 % при шрифте ×1,2 — 20 из 58 тёмных сочетаний ниже 4,5, худшее 3,96 grad_ice): у особых сцен надзаголовок белый 100 % → 0 из 58 */}
-            {copy.kicker ? <Text testID="home-scene-kicker" style={[s.kicker, specialKey ? s.kickerSpecial : null]}>{copy.kicker}</Text> : null}
+            {/* зачем (Темы 25.10, home-scene-special-contrast + season-home-contrast: надзаголовок 86 % при крупном шрифте — 20/58 у особых и 25/58 у обычных сцен ниже 4,5): надзаголовок белый 100 % у ВСЕХ сцен */}
+            {copy.kicker ? <Text testID="home-scene-kicker" style={s.kicker}>{copy.kicker}</Text> : null}
             {liveEnergy === 'title'
               ? <LiveEnergyText testID="home-scene-title" header build={buildLiveText} style={titleStyle} />
               : <Text testID="home-scene-title" accessibilityRole="header" style={titleStyle}>{copy.title}</Text>}
@@ -264,8 +265,7 @@ const baseStyles = StyleSheet.create({
   // зачем: текст сцены у нижнего края (.a-body bottom 58) — место под панель «Сегодня», которая наезжает на 38
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета): подписи сцены — 13/17, крупные строки и кнопка — 16/21
-  kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
-  kickerSpecial: { color: '#FFFFFF' },
+  kicker: { color: '#FFFFFF', fontSize: 13, lineHeight: 17 },
   title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
   titleLong: { color: '#FFFFFF', fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4 },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },

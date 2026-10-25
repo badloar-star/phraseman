@@ -129,6 +129,7 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
+import { markHomeScenePhraseSeen } from '../../components/home/v2/scene/use_home_scene_more_facts';
 import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contracts';
 // зачем (владелец 2026-09-21): HomeSectionPulseButton больше не импортируется —
 // ряд из двух пилюль у «Сегодня» удалён. Сам компонент оставлен в проекте: он
@@ -661,6 +662,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         });
         if (dailyPhraseCardVisibleRef.current === next) return;
         dailyPhraseCardVisibleRef.current = next;
+        // зачем (особая сцена «Фраза дня», координатор 25.10): карточку фразы увидели — сцена «фраза не открыта» сегодня больше не выбирается
+        if (next) markHomeScenePhraseSeen();
         setDailyPhraseCardVisible(next);
     }, []);
     // зачем (владелец 2026-09-21, «ещё лагает»): скролл Главной шёл через
@@ -2837,6 +2840,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               if (route === 'mistakes') { openHomeMistakesHub('home_scene_special'); return; }
               if (route === 'cards') { quickItems[2]!.onPress(); return; }
               if (route === 'stats') { go('/streak_stats'); return; }
+              if (route === 'peak') { nav.push('/(tabs)/community?section=spire' as never); return; }
+              if (route === 'phrase') {
+                // «Послушать» — та же карточка фразы ниже на Главной (озвучка и «В карточки» там): прокрутка к ней
+                const top = dailyPhraseLayoutRef.current.top;
+                if (top <= 0) { console.warn('[HOME-SCENE] special:phrase_ignored', JSON.stringify({ reason: 'phrase_card_not_laid_out' })); return; } // guard-ok: ранний выход называет причину
+                homeScrollRef.current?.scrollTo({ y: Math.max(0, top - 12), animated: true });
+                return;
+              }
               homeSceneOnContinue();
             }}
           />

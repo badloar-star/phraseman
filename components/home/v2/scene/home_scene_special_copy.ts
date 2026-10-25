@@ -82,6 +82,12 @@ const T = {
   newRank: (l: Lang) => triLang(l, { ru: 'Новый ранг!', uk: 'Новий ранг!', en: 'New rank!', es: '¡Nuevo rango!', 'pt-BR': 'Nova patente!', vi: 'Hạng mới!', id: 'Peringkat baru!', tr: 'Yeni rütbe!', pl: 'Nowa ranga!' }),
   keepGoing: (l: Lang) => triLang(l, { ru: 'Так держать', uk: 'Так тримати', en: 'Keep it up', es: 'Sigue así', 'pt-BR': 'Continue assim', vi: 'Cứ thế phát huy', id: 'Pertahankan', tr: 'Böyle devam', pl: 'Tak trzymaj' }),
   look: (l: Lang) => triLang(l, { ru: 'Посмотреть', uk: 'Переглянути', en: 'Take a look', es: 'Ver', 'pt-BR': 'Ver', vi: 'Xem', id: 'Lihat', tr: 'Göz at', pl: 'Zobacz' }),
+  // зачем (координатор 25.10, замена данных): рекорд — серии в днях (счётчики заданий дня в разных единицах)
+  bestStreakKicker: (l: Lang, n: number) => triLang(l, {
+    ru: `Твой рекорд серии — ${n} ${ruPl(n, 'день', 'дня', 'дней')}`, uk: `Твій рекорд серії — ${n} ${ruPl(n, 'день', 'дні', 'днів')}`, en: `Your best streak: ${n} ${en(n, 'day', 'days')}`,
+    es: `Tu mejor racha: ${n} días`, 'pt-BR': `Sua melhor sequência: ${n} dias`, vi: `Chuỗi dài nhất của bạn: ${n} ngày`, id: `Runtunan terbaikmu: ${n} hari`, tr: `En iyi serin: ${n} gün`, pl: `Twoja najlepsza seria: ${n} ${plPl(n, 'dzień', 'dni', 'dni')}`,
+  }),
+  beatStreak: (l: Lang) => triLang(l, { ru: 'Побьёшь?', uk: 'Поб’єш?', en: 'Beat it?', es: '¿Lo superas?', 'pt-BR': 'Vai bater?', vi: 'Phá kỷ lục chứ?', id: 'Pecahkan?', tr: 'Geçer misin?', pl: 'Pobijesz?' }),
   bestKicker: (l: Lang, n: number) => triLang(l, {
     ru: `Твой рекорд — ${n} ${ruPl(n, 'задание', 'задания', 'заданий')}`, uk: `Твій рекорд — ${n} ${ruPl(n, 'завдання', 'завдання', 'завдань')}`, en: `Your record: ${n} ${en(n, 'task', 'tasks')}`,
     es: `Tu récord: ${n} tareas`, 'pt-BR': `Seu recorde: ${n} tarefas`, vi: `Kỷ lục của bạn: ${n} bài`, id: `Rekormu: ${n} tugas`, tr: `Rekorun: ${n} görev`, pl: `Twój rekord: ${n} ${plPl(n, 'zadanie', 'zadania', 'zadań')}`,
@@ -149,7 +155,7 @@ export function buildHomeSceneSpecialCopy(i: HomeSceneSpecialCopyInput): HomeSce
     }
     case 'personal_best': {
       const best = i.best ?? 0; const today = Math.min(i.today ?? 0, best);
-      return { ...base, kicker: T.bestKicker(l, best), title: T.beatIt(l), line: T.of(l, today, best), bar: best > 0 ? today / best : null, cta: T.cont(l) };
+      return { ...base, kicker: T.bestStreakKicker(l, best), title: T.beatStreak(l), line: T.of(l, today, best), bar: best > 0 ? today / best : null, cta: T.cont(l) };
     }
     case 'words_due':
       return { ...base, kicker: T.cards(l), title: T.wordsDue(l, n), line: T.beforeForget(l), cta: T.review(l) };

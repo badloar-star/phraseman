@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { logAppError } from './app_health';
 import { maskDiagnosticText, newTraceId, sanitizeDiagnosticContext } from './diagnostic_mask';
+import { resolveAppBuildNumberV1 } from './app_build_number';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 export type DebugLogEntry = {
@@ -237,7 +238,7 @@ export type DiagnosticErrorInput = {
 function resolveBuild(): string {
   try {
     const version = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
-    const build = Constants.nativeBuildVersion ?? 'unknown';
+    const build = resolveAppBuildNumberV1();
     return `${version}+${build}`;
   } catch (buildError) {
     console.warn('[DIAG] build resolve failed', buildError instanceof Error ? buildError.message : 'unknown');

@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 import { recordError } from './firebase';
 import { submitClientReport } from './client_reports';
 import { DebugLogger } from './debug-logger';
+import { resolveAppBuildNumberV1 } from './app_build_number';
 
 export type AppHealthSeverity = 'info' | 'warning' | 'critical';
 
@@ -169,7 +170,8 @@ export async function logAppError(context: string, error: unknown, meta: AppHeal
   // зачем (§AUTH-0230/§CORE-0158, приватность): имя в журнал сбоев не кладём — хватает uid из базы отчёта;
   // админка подставляет имя по uid сама (resolveUserNames), в Telegram и 90-дневный журнал оно не уходит.
   const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
-  const buildNumber = Constants.nativeBuildVersion ?? 'unknown';
+  // зачем (жалобы 9/13): родной номер пуст — берём из конфигурации сборки (app/app_build_number.ts)
+  const buildNumber = resolveAppBuildNumberV1();
 
   await submitClientReport('app_error', {
     context,

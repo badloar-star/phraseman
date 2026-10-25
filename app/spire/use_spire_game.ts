@@ -374,7 +374,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     setSession(null);
   }, []);
 
-  const dismissOutcome = useCallback(() => setOutcome(null), []);
+  const dismissOutcome = useCallback(() => setOutcome((cur) => { DebugLogger.info(LOG, `[SPIRE-AFTER-ROUND] dismissOutcome: итог ${cur ? `${cur.kind} ${cur.report.reportId}` : 'уже пуст'} → null`); return null; }), []); // зачем (Сверка 25.10): трасса закрытия итога
   const dismissWeekResult = useCallback(() => {
     const res = weekResult;
     if (res) animateNextLayoutTransition(); // зачем: крестик убирает карточку из потока — башня поднимается плавно

@@ -6,6 +6,7 @@
 // Вибрацию даёт сама кнопка (V2Pressable) — здесь её не дублируем. Журнал [SPIRE-AFTER-ROUND]: показ, выбор, значение, которое его решило, что открылось, игнорированные тапы.
 import { useCallback, useEffect, useRef } from 'react';
 import type { SpireStepOutcome } from '../../app/spire/use_spire_game';
+import { traceOutcomeCloseAfter } from './moments/outcome_host_trace';
 
 export type AfterRoundChoice = 'next' | 'toSpire';
 
@@ -51,6 +52,7 @@ export function useAfterRoundChoice({ outcome, busy, onNext, onLater }: Args): R
     }
     console.log(`[SPIRE-AFTER-ROUND] выбор=toSpire kind=${a.outcome.kind} sinceShownMs=${sinceShown} → onLater(): итог закрыт, главный экран Пика`); // guard-ok: выбор и что откроется
     a.onLater();
+    traceOutcomeCloseAfter(a.outcome.kind); // [SPIRE-AFTER-ROUND] окно итога должно быть снято через 300 мс и 1 с
   }, []);
 
   const next = useCallback(() => choose('next'), [choose]);

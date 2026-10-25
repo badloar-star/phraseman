@@ -5,12 +5,13 @@
 // Экран показывает его только при включённом флаге moments_v3 и когда есть итог (кроме save_failed — там прежняя плашка). Сами моменты грузятся лениво — после первого кадра Пика их в бандле запуска нет.
 // Закрытие свайпом вниз и «назад» ведут в onLater (как прежнее «Потом»); кнопки результата зовут climb / dismissOutcome из игры.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { Suspense, lazy, memo } from 'react';
+import React, { Suspense, lazy, memo, useEffect } from 'react';
 import { Modal } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import type { SpireCoinsConfig } from '../../../modules/spire/config_contract';
 import type { SpireStepOutcome } from '../../../app/spire/use_spire_game';
 import { SheetSwipeRoot } from '../../modal_fx/SheetSwipeClose';
+import { noteOutcomeHostMounted, noteOutcomeHostUnmounted } from './outcome_host_trace';
 
 const SpireStepResultMoment = lazy(() => import('./SpireStepResultMoment'));
 const SpireFloorMoment = lazy(() => import('./SpireFloorMoment'));
@@ -28,8 +29,16 @@ export type SpireOutcomeMomentHostProps = Readonly<{
 }>;
 
 function SpireOutcomeMomentHost({ lang, outcome, coins, coinRank, busy, onClimb, onLater }: SpireOutcomeMomentHostProps) {
+  // зачем ([SPIRE-AFTER-ROUND], Сверка 25.10: итог «Время вышло» висит 7+ с после «В раздел Пик»): монтирование и снятие окна в журнал
+  const kind = outcome.kind;
+  useEffect(() => {
+    noteOutcomeHostMounted(kind);
+    return () => noteOutcomeHostUnmounted(kind, 'outcome_cleared_or_screen_unmounted');
+  }, [kind]);
   return (
-    <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onLater}>
+    <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onLater}
+      onShow={() => console.log(`[SPIRE-AFTER-ROUND] натив: окно итога показано kind=${kind}`)} // guard-ok: трасса показа нативного окна
+      onDismiss={() => console.log(`[SPIRE-AFTER-ROUND] натив: окно итога закрыто kind=${kind} (onDismiss, только iOS)`)}>
       <SheetSwipeRoot>
         <Suspense fallback={null}>
           {outcome.kind === 'passed' || outcome.kind === 'failed' ? (

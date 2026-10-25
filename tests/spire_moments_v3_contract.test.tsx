@@ -258,11 +258,11 @@ describe('окна недели Пика: место — ступенями, м�
     expect(screen.getByTestId('r-pts').props.children).toBe('470');
   });
 
-  it('проводка: итог недели отдаёт rankBy и ступени лесенки; «Считаем места недели…» в режиме ступеней', () => {
+  it('проводка: итог недели отдаёт rankBy и ступени лесенки; «Считаем ступени недели…» в режиме ступеней', () => {
     expect(read('components/spire/moments/SpireWeekMomentHost.tsx')).toContain("rankBy={result.rankBy === 'coins' ? 'coins' : 'steps'}");
     expect(read('components/spire/moments/MomentPromotion.tsx')).toContain("metric === 'steps' ? 'promoCountingPlaces' : 'promoCounting'");
     expect(read('app/spire/spire_week_result_client.ts')).toContain("typeof r.steps === 'number' && Number.isFinite(r.steps)");
-    expect(momentText('ru', 'promoCountingPlaces')).toBe('Считаем места недели…');
+    expect(momentText('ru', 'promoCountingPlaces')).toBe('Считаем ступени недели…');
     // «позиция выросла»: строки окна меряют место тем же, чем комната
     expect(read('app/spire/use_spire_position_moments.ts')).toContain('spireDecideRise(prev, snapshot, rows, rankBy)');
   });

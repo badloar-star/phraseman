@@ -1,6 +1,6 @@
 // Координатор 25.10 (Ядро 9a59c27b6: сервер кладёт steps в каждую строку лесенки итога недели): клиент читает ступени строки,
 // если они пришли, и тогда окно повышения в режиме ступеней показывает число места; нет ступеней (старый итог) — число скрыто,
-// вверху «Считаем места недели…». Показ строки — сторож tests/spire_moments_v3_contract.test.tsx (LadderRow, momentLadderValue).
+// вверху «Считаем ступени недели…». Показ строки — сторож tests/spire_moments_v3_contract.test.tsx (LadderRow, momentLadderValue).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -21,7 +21,7 @@ describe('лесенка итога недели: ступени строки', 
     expect(read('functions/src/spire_finalize_core.ts')).toMatch(/coins: s\.weekCoins \?\? 0, steps: s\.steps,/);
   });
 
-  it('старый итог без steps — поля нет (окно скроет число и скажет «Считаем места недели…»)', () => {
+  it('старый итог без steps — поля нет (окно скроет число и скажет «Считаем ступени недели…»)', () => {
     const ladder = [{ place: 1, name: 'Аня', coinRank: 3, coins: 900, isMe: false }];
     const row = spireDecodeWeekResult({ ...base, ladder }, '2026-W42', 'ru')?.ladder?.[0];
     expect(row).toBeDefined();

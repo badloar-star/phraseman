@@ -59,13 +59,13 @@ const T = {
     en: `${n} ${en(n, 'mistake', 'mistakes')} piled up`, es: `Se juntaron ${n} errores`, 'pt-BR': `Juntaram-se ${n} erros`,
     vi: `Đã có ${n} lỗi cần xem lại`, id: `Sudah ada ${n} kesalahan`, tr: `${n} hata birikti`, pl: `Zebrało się ${n} ${plPl(n, 'błąd', 'błędy', 'błędów')}`,
   }),
-  pileLine: (l: Lang) => triLang(l, { ru: 'Половину можно разобрать прямо сейчас', uk: 'Половину можна розібрати просто зараз', en: 'You can sort out half of them right now', es: 'Puedes repasar la mitad ahora mismo', 'pt-BR': 'Dá para revisar metade agora mesmo', vi: 'Có thể xem lại một nửa ngay bây giờ', id: 'Separuhnya bisa dibahas sekarang juga', tr: 'Yarısını hemen şimdi çözebilirsin', pl: 'Połowę możesz przerobić od razu' }),
-  sortOut: (l: Lang) => triLang(l, { ru: 'Разобрать', uk: 'Розібрати', en: 'Review them', es: 'Repasar', 'pt-BR': 'Revisar', vi: 'Xem lại', id: 'Bahas', tr: 'Gözden geçir', pl: 'Przerób' }),
+  pileLine: (l: Lang) => triLang(l, { ru: 'Половину можно разобрать прямо сейчас', uk: 'Половину можна розібрати просто зараз', en: 'You can sort out half of them right now', es: 'Puedes repasar la mitad ahora mismo', 'pt-BR': 'Dá para revisar metade agora mesmo', vi: 'Có thể xem lại một nửa ngay bây giờ', id: 'Separuhnya bisa dibahas sekarang juga', tr: 'Yarısını hemen şimdi çözebilirsin', pl: 'Połowę możesz przejrzeć od razu' }),
+  sortOut: (l: Lang) => triLang(l, { ru: 'Разобрать', uk: 'Розібрати', en: 'Review them', es: 'Repasar', 'pt-BR': 'Revisar', vi: 'Xem lại', id: 'Bahas', tr: 'Gözden geçir', pl: 'Przejrzyj' }),
   pokeKicker: (l: Lang) => triLang(l, { ru: 'Ошибка из твоего списка', uk: 'Помилка з твого списку', en: 'A mistake from your list', es: 'Un error de tu lista', 'pt-BR': 'Um erro da sua lista', vi: 'Một lỗi trong danh sách của bạn', id: 'Kesalahan dari daftarmu', tr: 'Listendeki bir hata', pl: 'Błąd z twojej listy' }),
   // зачем (координатор 25.10): в журнале ошибок хранится верная фраза, а не неверный ответ — сцена называет фразу, на которой споткнулся
   pokeTitle: (l: Lang) => triLang(l, { ru: 'Серьёзно? Снова эта фраза', uk: 'Серйозно? Знову ця фраза', en: 'Really? This one again', es: '¿En serio? Otra vez esta frase', 'pt-BR': 'Sério? Essa frase de novo', vi: 'Thật à? Lại câu này', id: 'Serius? Frasa ini lagi', tr: 'Cidden mi? Yine bu ifade', pl: 'Serio? Znowu ten zwrot' }),
   fix: (l: Lang) => triLang(l, { ru: 'Исправить', uk: 'Виправити', en: 'Fix it', es: 'Corregir', 'pt-BR': 'Corrigir', vi: 'Sửa lỗi', id: 'Perbaiki', tr: 'Düzelt', pl: 'Popraw' }),
-  phraseKicker: (l: Lang) => triLang(l, { ru: 'Фраза дня', uk: 'Фраза дня', en: 'Phrase of the day', es: 'Frase del día', 'pt-BR': 'Frase do dia', vi: 'Câu của ngày', id: 'Frasa hari ini', tr: 'Günün ifadesi', pl: 'Zwrot dnia' }),
+  phraseKicker: (l: Lang) => triLang(l, { ru: 'Фраза дня', uk: 'Вислів дня', en: 'Phrase of the day', es: 'Frase del día', 'pt-BR': 'Frase do dia', vi: 'Cụm từ hôm nay', id: 'Frasa hari ini', tr: 'Günün ifadesi', pl: 'Fraza dnia' }),
   listen: (l: Lang) => triLang(l, { ru: 'Послушать', uk: 'Послухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' }),
   aboutYou: (l: Lang) => triLang(l, { ru: 'Про тебя', uk: 'Про тебе', en: 'About you', es: 'Sobre ti', 'pt-BR': 'Sobre você', vi: 'Về bạn', id: 'Tentang kamu', tr: 'Senin hakkında', pl: 'O tobie' }),
   // зачем (координатор 25.10): «фраз вслух» на телефоне не считается — берём выученные фразы
@@ -89,7 +89,7 @@ const T = {
   beatIt: (l: Lang) => triLang(l, { ru: 'Побьёшь сегодня?', uk: 'Поб’єш сьогодні?', en: 'Beat it today?', es: '¿Lo superas hoy?', 'pt-BR': 'Vai bater hoje?', vi: 'Hôm nay phá kỷ lục chứ?', id: 'Pecahkan hari ini?', tr: 'Bugün geçer misin?', pl: 'Pobijesz dziś?' }),
   of: (l: Lang, d: number, t: number) => triLang(l, { ru: `${d} из ${t}`, uk: `${d} з ${t}`, en: `${d} of ${t}`, es: `${d} de ${t}`, 'pt-BR': `${d} de ${t}`, vi: `${d}/${t}`, id: `${d} dari ${t}`, tr: `${d}/${t}`, pl: `${d} z ${t}` }),
   cont: (l: Lang) => triLang(l, { ru: 'Продолжить', uk: 'Продовжити', en: 'Continue', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' }),
-  cards: (l: Lang) => triLang(l, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Fiszki' }),
+  cards: (l: Lang) => triLang(l, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ học', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' }),
   wordsDue: (l: Lang, n: number) => triLang(l, {
     ru: `${n} ${ruPl(n, 'слово просится', 'слова просятся', 'слов просятся')} на повтор`, uk: `${n} ${ruPl(n, 'слово проситься', 'слова просяться', 'слів просяться')} на повторення`,
     en: `${n} ${en(n, 'word wants', 'words want')} a review`, es: `${n} palabras piden repaso`, 'pt-BR': `${n} palavras pedem revisão`, vi: `${n} từ cần ôn lại`, id: `${n} kata minta diulang`, tr: `${n} kelime tekrar bekliyor`, pl: `${n} ${plPl(n, 'słowo czeka', 'słowa czekają', 'słów czeka')} na powtórkę`,
@@ -100,18 +100,19 @@ const T = {
   // зачем (координатор 25.10: числа уроков друга нет — «друг сегодня уже занимался»; замок «без рода»): фраза без глагола прошедшего времени
   friendToday: (l: Lang, name: string) => triLang(l, {
     ru: `${name} сегодня уже в деле`, uk: `${name} сьогодні вже в ділі`, en: `${name} already practised today`,
-    es: `${name} ya practicó hoy`, 'pt-BR': `${name} já praticou hoje`, vi: `${name} hôm nay đã học rồi`, id: `${name} sudah belajar hari ini`, tr: `${name} bugün çoktan çalıştı`, pl: `${name} już dziś ćwiczy`,
+    es: `${name} ya practicó hoy`, 'pt-BR': `${name} já praticou hoje`, vi: `${name} hôm nay đã học rồi`, id: `${name} sudah belajar hari ini`, tr: `${name} bugün zaten çalıştı`, pl: `${name} już dziś ćwiczy`,
   }),
   catchUp: (l: Lang) => triLang(l, { ru: 'Догонишь?', uk: 'Наздоженеш?', en: 'Catch up?', es: '¿Le alcanzas?', 'pt-BR': 'Vai alcançar?', vi: 'Đuổi kịp nhé?', id: 'Bisa menyusul?', tr: 'Yetişir misin?', pl: 'Dogonisz?' }),
   catchUpCta: (l: Lang) => triLang(l, { ru: 'Догнать', uk: 'Наздогнати', en: 'Catch up', es: 'Alcanzar', 'pt-BR': 'Alcançar', vi: 'Đuổi kịp', id: 'Susul', tr: 'Yetiş', pl: 'Dogoń' }),
-  peakKicker: (l: Lang) => triLang(l, { ru: 'Пик · комната недели', uk: 'Пік · кімната тижня', en: 'Peak · room of the week', es: 'Cima · sala de la semana', 'pt-BR': 'Pico · sala da semana', vi: 'Đỉnh · phòng của tuần', id: 'Puncak · ruang minggu ini', tr: 'Zirve · haftanın odası', pl: 'Szczyt · pokój tygodnia' }),
-  overtaken: (l: Lang) => triLang(l, { ru: 'Тебя обогнали', uk: 'Тебе обігнали', en: 'Someone passed you', es: 'Te han adelantado', 'pt-BR': 'Passaram você', vi: 'Bạn vừa bị vượt', id: 'Kamu tersalip', tr: 'Geçildin', pl: 'Ktoś cię wyprzedził' }),
+  peakKicker: (l: Lang) => triLang(l, { ru: 'Пик · комната недели', uk: 'Пік · кімната тижня', en: 'Peak · room of the week', es: 'Pico · sala de la semana', 'pt-BR': 'Pico · sala da semana', vi: 'Đỉnh · phòng của tuần', id: 'Puncak · ruang minggu ini', tr: 'Zirve · haftanın odası', pl: 'Szczyt · pokój tygodnia' }),
+  overtaken: (l: Lang) => triLang(l, { ru: 'Тебя обогнали', uk: 'Тебе обігнали', en: 'Someone passed you', es: 'Te han adelantado', 'pt-BR': 'Passaram na sua frente', vi: 'Bạn vừa bị vượt', id: 'Kamu tersalip', tr: 'Geçildin', pl: 'Ktoś cię wyprzedził' }),
   placeBack: (l: Lang, n: number) => triLang(l, { ru: `${n} место — вернёшь?`, uk: `${n} місце — повернеш?`, en: `Place ${n} — take it back?`, es: `Puesto ${n}: ¿lo recuperas?`, 'pt-BR': `${n}º lugar — vai recuperar?`, vi: `Hạng ${n} — giành lại chứ?`, id: `Peringkat ${n} — rebut kembali?`, tr: `${n}. sıra — geri alır mısın?`, pl: `${n}. miejsce — odzyskasz?` }),
-  toPeak: (l: Lang) => triLang(l, { ru: 'В Пик', uk: 'У Пік', en: 'To the Peak', es: 'A la Cima', 'pt-BR': 'Para o Pico', vi: 'Tới Đỉnh', id: 'Ke Puncak', tr: 'Zirveye', pl: 'Na Szczyt' }),
+  toPeak: (l: Lang) => triLang(l, { ru: 'В Пик', uk: 'До Піку', en: 'To Peak', es: 'Al Pico', 'pt-BR': 'Para o Pico', vi: 'Tới Đỉnh', id: 'Ke Puncak', tr: 'Zirveye', pl: 'Do Szczytu' }),
   halloweenKicker: (l: Lang) => triLang(l, { ru: '31 октября · Хэллоуин', uk: '31 жовтня · Гелловін', en: 'October 31 · Halloween', es: '31 de octubre · Halloween', 'pt-BR': '31 de outubro · Halloween', vi: '31 tháng 10 · Halloween', id: '31 Oktober · Halloween', tr: '31 Ekim · Cadılar Bayramı', pl: '31 października · Halloween' }),
   halloweenTitle: (l: Lang) => triLang(l, { ru: 'Страшно полезный урок', uk: 'Страшенно корисний урок', en: 'A scarily useful lesson', es: 'Una lección terroríficamente útil', 'pt-BR': 'Uma aula assustadoramente útil', vi: 'Bài học hữu ích đến rợn người', id: 'Pelajaran yang seram bermanfaatnya', tr: 'Korkunç derecede faydalı bir ders', pl: 'Strasznie przydatna lekcja' }),
   newYearKicker: (l: Lang) => triLang(l, { ru: 'Новый год', uk: 'Новий рік', en: 'New Year', es: 'Año Nuevo', 'pt-BR': 'Ano-Novo', vi: 'Năm mới', id: 'Tahun Baru', tr: 'Yılbaşı', pl: 'Nowy Rok' }),
-  newYearTitle: (l: Lang) => triLang(l, { ru: 'С праздником! Один урок в честь', uk: 'Зі святом! Один урок на честь', en: 'Happy holidays! One lesson to celebrate', es: '¡Felices fiestas! Una lección para celebrar', 'pt-BR': 'Boas festas! Uma aula para comemorar', vi: 'Chúc mừng! Một bài học để ăn mừng', id: 'Selamat! Satu pelajaran untuk merayakan', tr: 'İyi bayramlar! Kutlamak için bir ders', pl: 'Wesołych świąt! Jedna lekcja na cześć' }),
+  // зачем (Переводчик 25.10): прежний заголовок обрывался («Один урок в честь») — строки из утверждённого home-new-states-copy (968be05e6)
+  newYearTitle: (l: Lang) => triLang(l, { ru: 'Новый год — новые фразы', uk: 'Новий рік — нові фрази', en: 'New year, new phrases', es: 'Año nuevo, frases nuevas', 'pt-BR': 'Ano novo, frases novas', vi: 'Năm mới, câu mới', id: 'Tahun baru, frasa baru', tr: 'Yeni yıl, yeni ifadeler', pl: 'Nowy rok, nowe zwroty' }),
   weekKicker: (l: Lang) => triLang(l, { ru: 'Итоги недели', uk: 'Підсумки тижня', en: 'Your week', es: 'Tu semana', 'pt-BR': 'Sua semana', vi: 'Tổng kết tuần', id: 'Ringkasan minggu', tr: 'Haftan', pl: 'Twój tydzień' }),
   daysOf7: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'день', 'дня', 'дней')} из 7`, uk: `${n} ${ruPl(n, 'день', 'дні', 'днів')} із 7`, en: `${n} of 7 days`, es: `${n} de 7 días`, 'pt-BR': `${n} de 7 dias`, vi: `${n}/7 ngày`, id: `${n} dari 7 hari`, tr: `7 günün ${n}'i`, pl: `${n} z 7 dni` }),
   almostNoGaps: (l: Lang) => triLang(l, { ru: 'Почти без пропусков', uk: 'Майже без пропусків', en: 'Almost no gaps', es: 'Casi sin faltar', 'pt-BR': 'Quase sem faltas', vi: 'Gần như không bỏ buổi', id: 'Hampir tanpa bolos', tr: 'Neredeyse hiç boşluk yok', pl: 'Prawie bez przerw' }),
@@ -119,6 +120,13 @@ const T = {
   learned: (l: Lang) => triLang(l, { ru: 'Выучено!', uk: 'Вивчено!', en: 'Learned!', es: '¡Aprendido!', 'pt-BR': 'Aprendido!', vi: 'Đã thuộc!', id: 'Sudah hafal!', tr: 'Öğrenildi!', pl: 'Opanowane!' }),
 
 };
+
+// зачем (Переводчик 25.10): кавычки — по типографике языка интерфейса, а не «ёлочки» во всех 9
+function quoted(l: Lang, text: string): string {
+  if (l === 'ru' || l === 'uk' || l === 'es') return `«${text}»`;
+  if (l === 'pl') return `„${text}”`;
+  return `“${text}”`;
+}
 
 /** Тексты особой сцены; кнопка — своя у каждой сцены (куда ведёт — homeSceneSpecialRoute). */
 export function buildHomeSceneSpecialCopy(i: HomeSceneSpecialCopyInput): HomeSceneCopy {
@@ -129,7 +137,7 @@ export function buildHomeSceneSpecialCopy(i: HomeSceneSpecialCopyInput): HomeSce
     case 'mistakes_pile':
       return { ...base, kicker: T.myMistakes(l), title: T.pileTitle(l, n), line: T.pileLine(l), cta: T.sortOut(l) };
     case 'mistake_poke':
-      return { ...base, kicker: T.pokeKicker(l), title: T.pokeTitle(l), line: i.right ? `«${i.right}»` : null, cta: T.fix(l) };
+      return { ...base, kicker: T.pokeKicker(l), title: T.pokeTitle(l), line: i.right ? quoted(l, i.right) : null, cta: T.fix(l) };
     case 'phrase_of_day_unseen':
       return { ...base, kicker: T.phraseKicker(l), title: i.phrase ?? '', line: i.phraseTr ?? null, cta: T.listen(l) };
     case 'fun_stats':
@@ -157,7 +165,7 @@ export function buildHomeSceneSpecialCopy(i: HomeSceneSpecialCopyInput): HomeSce
       // зачем: «почти без пропусков» — правда только от 5 дней из 7; иначе строку не показываем
       return { ...base, kicker: T.weekKicker(l), title: T.daysOf7(l, i.weekDays ?? 0), line: (i.weekDays ?? 0) >= 5 ? T.almostNoGaps(l) : null, cta: T.seeWeek(l) };
     case 'mistake_mastered':
-      return { ...base, kicker: T.myMistakes(l), title: T.learned(l), line: i.right ? `«${i.right}»` : null, cta: T.myMistakes(l) };
+      return { ...base, kicker: T.myMistakes(l), title: T.learned(l), line: i.right ? quoted(l, i.right) : null, cta: T.myMistakes(l) };
     default: {
       const never: never = i.special;
       return { ...base, kicker: '', title: String(never), line: null, cta: null };

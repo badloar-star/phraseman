@@ -7,6 +7,17 @@ const root = process.cwd();
 const home = fs.readFileSync(path.join(root, 'app/(tabs)/home.tsx'), 'utf8');
 const railPath = path.join(root, 'components/home/v2/HomeV2VideoRail.tsx');
 
+// модуль без импортов из .ts — транспилируем и исполняем как есть
+function loadTsModule(file) {
+  const ts = require('typescript');
+  const vm = require('node:vm');
+  const out = ts.transpileModule(fs.readFileSync(file, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+  const mod = { exports: {} };
+  vm.runInNewContext(`(function(module,exports){${out}
+})`, {})(mod, mod.exports);
+  return mod.exports;
+}
+
 function renderHeader({ bellSlot, avatarSlot, stats }) {
   const ts = require('typescript');
   const vm = require('node:vm');
@@ -31,6 +42,11 @@ function renderHeader({ bellSlot, avatarSlot, stats }) {
     '../../v2/KitSpinner': { __esModule: true, default: 'KitSpinner' },
     // зачем (17.10): шапка пишет причины перерисовок (render_cause_probe) — в песочнице это пустые заглушки
     '../../../app/render_cause_probe': { useRenderCause: () => undefined, renderWindowEpoch: () => 0 },
+    // зачем (Темы 25.10, красный против 2.0.2 у Ревизора 2d3dd7234): шапка с 5c94a294c читает чернила сцены HOME_SCENE_INK при загрузке
+    // (scenePlate в StyleSheet) — берём настоящий модуль, чтобы песочница видела те же значения, что приложение; кольцо Plus — заглушки
+    './scene/home_scene_ink': loadTsModule(path.join(root, 'components/home/v2/scene/home_scene_ink.ts')),
+    '../../plus/PlusAvatarRing': { PlusAvatarRing: 'PlusAvatarRing' },
+    '../../stories/story_ring_constants': { STORY_RING_SLOT: 48 },
   };
   const output = ts.transpileModule(source, {
     compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },

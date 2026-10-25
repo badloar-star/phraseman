@@ -7,12 +7,13 @@
 // Пороги: текст 4,5, значки и звёзды 3,0.
 import * as fs from 'fs';
 import * as path from 'path';
-import { LIQUID_GLASS_THEME_IDS, makeLiquidGlassTheme } from '../constants/liquidGlassThemePalette';
+import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens, makeLiquidGlassTheme } from '../constants/liquidGlassThemePalette';
 import { flattenOver, legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
 
-const PANEL = fs.readFileSync(path.join(__dirname, '..', 'components/SpeakingPanel.tsx'), 'utf8');
+// SPEAKING_PANEL_SRC — путь к другой версии файла (например, снимок HEAD, пока у владельца незакоммиченная правка)
+const PANEL = fs.readFileSync(process.env.SPEAKING_PANEL_SRC ?? path.join(__dirname, '..', 'components/SpeakingPanel.tsx'), 'utf8');
 for (const line of [
   'card: t.bgCard,', 'textPrimary: t.textPrimary,', 'textSecond: t.textSecond,', 'textMuted: t.textMuted,', 'accent: t.accent,',
   'correct: t.correct,', 'wrong: t.wrong,', 'onAccent: t.textOnGold,', 'accentText: t.accentText,',
@@ -24,12 +25,18 @@ for (const line of [
   'backgroundColor: listening ? mTheme.wrong : mTheme.accent,',
   "<Text style={[styles.retryText, { color: mTheme.accentText }]}>",
   "<Text style={[styles.perfectLine, { color: mTheme.correct }]}>",
+  // зачем (Learning V2 через координатора 25.10): раскрытая шторка красится mTheme — подмена поверх темы экрана; без неё замер шторки ложный
+  'card: glass.opaqueSheet,', 'textSecond: glass.secondary,', 'textMuted: glass.secondary,', 'accent: glass.cta,', 'onAccent: glass.ctaInk,',
 ]) if (!PANEL.includes(line)) throw new Error(`SpeakingPanel изменился: нет «${line}» — обнови модель панели`);
 
 type T = ReturnType<typeof makeLiquidGlassTheme>;
 // база Theme нужна только для полей, которых нет у токенов; панели они не нужны — пустой объект (тип из constants/theme тянет RN)
 const theme = (id: string, level: string, appearance: string): T => makeLiquidGlassTheme(id as never, {} as never, { level, appearance } as never);
 const bestInk = (fill: string, a: string, b: string): string => (paletteContrast(a.slice(0, 7), fill.slice(0, 7)) >= paletteContrast(b.slice(0, 7), fill.slice(0, 7)) ? a : b);
+// шторка (P*): mTheme = { ...theme, card: opaqueSheet, textPrimary: text, textSecond: secondary, textMuted: secondary, accent: cta,
+// accentText, onAccent: ctaInk } — в модели подменяем те же поля темы (bgCard ↔ card, textOnGold ↔ onAccent)
+const modal = (t: T, g: ReturnType<typeof liquidGlassTokens>): T => ({ ...t, bgCard: g.opaqueSheet, textPrimary: g.text, textSecond: g.secondary, textMuted: g.secondary,
+  accent: g.cta, accentText: g.accentText, textOnGold: g.ctaInk } as T);
 const card = (t: T): string => flattenOver(t.bgCard, flattenOver(t.bgPrimary, '#000000'));
 
 type Role = { id: string; where: string; what: string; min: number; fn: (t: T) => [string[], string[]] };
@@ -43,7 +50,7 @@ const ROLES: Role[] = [
   { id: 'P2', where: 'Карточка панели', what: 'Закрыть, «звук» слова (textMuted)', min: 4.5, fn: (t) => [[t.textMuted], [card(t)]] },
   { id: 'P3', where: 'Карточка панели', what: 'Слова фразы: чисто / мимо (correct / wrong)', min: 4.5, fn: (t) => [[t.correct, t.wrong], [card(t)]] },
   { id: 'P4', where: 'Карточка панели', what: 'Слово «нечётко» — янтарь #E6A23C (theme.warn у темы нет)', min: 4.5, fn: () => [['#E6A23C'], []] },
-  { id: 'P5', where: 'Карточка панели', what: 'Подсказка «Не услышали слово…» (textSecond = cta)', min: 4.5, fn: (t) => [[t.textSecond], [card(t)]] },
+  { id: 'P5', where: 'Карточка панели', what: 'Подсказка «Не услышали слово…» (mTheme.textSecond = secondary)', min: 4.5, fn: (t) => [[t.textSecond], [card(t)]] },
   { id: 'P6', where: 'Карточка панели', what: '«Отлично!» (correct)', min: 4.5, fn: (t) => [[t.correct], [card(t)]] },
   { id: 'P7a', where: 'Карточка панели', what: 'Микрофон: значок onAccent на accent', min: 3, fn: (t) => [[t.textOnGold], [t.accent]] },
   { id: 'P7b', where: 'Карточка панели', what: 'Стоп во время записи: значок onAccent на заливке wrong', min: 3, fn: (t) => [[t.textOnGold], [t.wrong]] },
@@ -61,8 +68,10 @@ const ROLES: Role[] = [
 type Hit = { role: Role; theme: string; app: string; level: string; v: number };
 const hits: Hit[] = [];
 for (const app of ['light', 'dark'] as const) for (const level of ['calm', 'accent', 'max'] as const) for (const id of LIQUID_GLASS_THEME_IDS) {
-  const t = theme(id, level, app);
+  const t0 = theme(id, level, app);
+  const m = modal(t0, liquidGlassTokens(id as never, { level, appearance: app } as never));
   for (const r of ROLES) {
+    const t = r.id.startsWith('P') ? m : t0;
     const [fgs, bgs0] = r.fn(t); const bgs = bgs0.length ? bgs0 : [card(t)];
     hits.push({ role: r, theme: id, app, level, v: Math.min(...fgs.flatMap((fg) => bgs.map((b) => contrastRatio(flattenOver(fg, b), b)))) });
   }

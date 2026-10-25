@@ -119,3 +119,8 @@ Outcome: контраст шапки, плашек, графика, таблиц
 Governance-ID: TG-C420F43734EB
 
 Outcome: (1) контраст подписей и состояний SpeakingPanel (встроенная строка и раскрытая карточка: статус «не расслышал» с причиной, вердикт, подсказка, кнопки микрофона/«Готово»/«Ещё раз»/настройки) во всех 174 сочетаниях через настоящую тему приложения makeLiquidGlassTheme → buildSpeakingPanelTheme; (2) перемер окон удаления Б по коду DeleteAccountVariantBBody, когда 5 · ВХОД закоммитит вёрстку. Scope: скрипты scripts/speaking_panel_contrast_measure.ts и обновление scripts/account_delete_b_contrast_measure.ts, отчёты в docs/work/; код приложения не меняется. Architecture/Security/Debt: нет. Verification: прогон скриптов через tsx. Rollback: git revert.
+
+## Продолжение: перемер сцены Главной после подключения HOME_SCENE_INK (Моменты 5c94a294c)
+Governance-ID: TG-060507F050AD
+
+Outcome: закоммитить scripts/home_scene_special_contrast_measure.ts (читает цвета из HOME_SCENE_INK, принимает в HomeSceneStage ссылку на модуль или тот же литерал), перемерить сцену на коде и удалить временный docs/work/home_scene_ink.ts.txt. Scope: скрипт, docs/work/home-scene-special-contrast-2026-10-25.md, удаление .txt. Architecture/Security/Debt: нет. Verification: прогон скрипта. Rollback: git revert.

@@ -22,14 +22,10 @@ import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { HOME_SCENE_HERO } from '../components/home/v2/scene/home_scene_state';
 import { homeSceneHeroFade } from '../components/home/v2/scene/home_scene_hero_fade';
+import { HOME_SCENE_INK } from '../components/home/v2/scene/home_scene_ink';
 
 const STAGE = fs.readFileSync(path.join(__dirname, '..', 'components/home/v2/scene/HomeSceneStage.tsx'), 'utf8');
 for (const line of [
-  "kicker: { color: '#FFFFFF', fontSize: 13, lineHeight: 17 },",
-  "line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17,",
-  "bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.28)'",
-  "ctaText: { color: '#121318',",
-  "backgroundColor: '#FFFFFF', flexDirection: 'row'",
   'const CTA_PREP_FILL = colorWithAlpha(CTA_INK, 0.09);',
   'const HERO_BOUND_FONT_SCALE = 1.15;',
   "hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },",
@@ -40,6 +36,13 @@ for (const line of [
   "<LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />",
   'body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },',
 ]) if (!STAGE.includes(line)) throw new Error(`HomeSceneStage изменился: нет «${line}» — обнови модель сцены в этом скрипте`);
+// зачем (25.10, модуль чернил сцены): цвета берём из HOME_SCENE_INK; в HomeSceneStage допускаем ссылку на модуль или тот же литерал
+const inkUse = (style: string, prop: string, key: keyof typeof HOME_SCENE_INK): void => {
+  const lit = String(HOME_SCENE_INK[key]).replace(/[().]/g, (ch) => `\\${ch}`);
+  const re = new RegExp(`${style}: \\{[^}]*${prop}: (HOME_SCENE_INK\\.${String(key)}|'${lit}')`);
+  if (!re.test(STAGE)) throw new Error(`HomeSceneStage: у ${style}.${prop} не HOME_SCENE_INK.${String(key)} и не ${HOME_SCENE_INK[key]} — обнови модель`);
+};
+inkUse('kicker', 'color', 'kicker'); inkUse('line', 'color', 'line'); inkUse('bar', 'backgroundColor', 'barTrack'); inkUse('ctaText', 'color', 'ctaInk'); inkUse('cta', 'backgroundColor', 'cta');
 
 type Rgba = [number, number, number, number];
 const parse = (c: string): Rgba => {
@@ -55,12 +58,12 @@ const lin = (v: number): number => { const x = v / 255; return x <= 0.04045 ? x 
 const lum = (c: Rgb): number => 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]);
 const ratio = (a: Rgb, b: Rgb): number => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
 const WHITE: Rgba = [255, 255, 255, 1];
-const INK: Rgb = [18, 19, 24]; // ctaText #121318 (сторож выше)
+const INK: Rgb = parse(HOME_SCENE_INK.ctaInk).slice(0, 3) as Rgb; // подпись белой кнопки (сторож выше)
 
 type Line = { id: string; what: string; fg: Rgba; graphic?: boolean };
-const KICKER: Line = { id: 'S1', what: 'Надзаголовок, белый', fg: WHITE };
-const TITLE: Line = { id: 'S2', what: 'Заголовок, белый', fg: WHITE };
-const LINE: Line = { id: 'S3', what: 'Строка под заголовком, белый 88 %', fg: [255, 255, 255, 0.88] };
+const KICKER: Line = { id: 'S1', what: 'Надзаголовок, белый', fg: parse(HOME_SCENE_INK.kicker) };
+const TITLE: Line = { id: 'S2', what: 'Заголовок, белый', fg: parse(HOME_SCENE_INK.text) };
+const LINE: Line = { id: 'S3', what: 'Строка под заголовком, белый 88 %', fg: parse(HOME_SCENE_INK.line) };
 const BAR: Line = { id: 'S4', what: 'Полоска рекорда: белая заливка на дорожке 28 %', fg: WHITE, graphic: true };
 const LINES = [KICKER, TITLE, LINE, BAR];
 function boxes(H: number, longTitle: boolean, k: number): { line: Line; y0: number; y1: number; x1: number }[] {

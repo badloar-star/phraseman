@@ -16,6 +16,9 @@ import { SEASON_CAROUSEL } from './season_carousel_layout';
 import type { SeasonCardState } from './season_course_model';
 import type { SeasonStarTones } from './season_star_tones';
 
+/** 60 % от 255 = 153 = 0x99: альфа света карточки эпизода в светлом оформлении (карта Тем, 25.10). */
+const LIGHT_GLOW_ALPHA_HEX = '99';
+
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
 
 const WHITE = '#FFFFFF'; // theme-exempt: текст и значки на градиентной обложке белые в обеих темах (эталон `.h2c { color: #fff }`)
@@ -91,7 +94,9 @@ function SeasonCardFace({ kind, state, ordinal, art, dark, phrase, progress, sta
   return (
     <View style={styles.card}>
       <LinearGradient colors={[art.from, art.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
-      <LinearGradient colors={[art.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
+      {/* зачем (Темы 25.10, docs/work/season-home-contrast-2026-10-25.md): в светлом оформлении свет в правом верхнем углу гасит большой номер
+          (29 из 58 сочетаний ниже 4,5, до 3,81). Свет 60 % вместо 100 % (первый цвет градиента с альфой 0x99) → 0 нарушений, минимум 4,79; тёмное — без изменений. */}
+      <LinearGradient colors={[dark ? art.glow : `${art.glow}${LIGHT_GLOW_ALPHA_HEX}`, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
       <Animated.View style={[styles.mark, lockShake]} testID="season-card-mark">
         {markIcon ? <Ionicons name={markIcon} size={12} color={WHITE} /> : null}
         <Text style={styles.markText}>{ordinal}</Text>

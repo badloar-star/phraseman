@@ -7,7 +7,7 @@
 // Firebase-экономия: банк читается ТОЛЬКО из AsyncStorage и ТОЛЬКО для пройденных уроков (0 сети, 0 Firestore);
 // при выключенном флаге хук не читает ничего. Журнал [PHRASE-WORKSHOP]: значение, которое решило состояние.
 // ═══════════════════════════════════════════════════════════════════════════
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import { usePremium } from '../../PremiumContext';
 import { useStudyTarget } from '../../StudyTargetContext';
@@ -24,6 +24,9 @@ import {
 const LOG = '[PHRASE-WORKSHOP]';
 
 type RowLike = Readonly<{ ordinal: number; completedCount: number }>;
+
+/** Пустая карта — одна замороженная константа (стабильная ссылка для extraData списка). */
+const NO_ENTRIES: ReadonlyMap<number, PhraseWorkshopEntryState> = Object.freeze(new Map<number, PhraseWorkshopEntryState>());
 
 export function usePhraseWorkshopEntries(rows: readonly RowLike[]): ReadonlyMap<number, PhraseWorkshopEntryState> {
   const enabled = isPhraseWorkshopEnabled();
@@ -61,9 +64,13 @@ export function usePhraseWorkshopEntries(rows: readonly RowLike[]): ReadonlyMap<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enabled, passedKey, target]);
 
+  // зачем (Ревизор 25.10, скорость): карта идёт в extraData FlatList «Всех уроков» — новый пустой Map на каждый пересчёт строк
+  // давал лишний перерендер всех строк при выключенном флаге. Пустая карта — одна замороженная константа; непустая с тем же
+  // содержимым возвращается прежней ссылкой.
+  const previousRef = useRef<ReadonlyMap<number, PhraseWorkshopEntryState>>(NO_ENTRIES);
   return useMemo(() => {
     const out = new Map<number, PhraseWorkshopEntryState>();
-    if (!enabled) return out;
+    if (!enabled) return NO_ENTRIES;
     for (const row of rows) {
       const input = { enabled, completedSessions: row.completedCount, bankPhrases: bank[row.ordinal] ?? 0, hasPlus };
       const state = phraseWorkshopEntryState(input);
@@ -72,6 +79,10 @@ export function usePhraseWorkshopEntries(rows: readonly RowLike[]): ReadonlyMap<
         console.log(`${LOG} state`, JSON.stringify({ ordinal: row.ordinal, state, why: phraseWorkshopEntryReason(input) }));
       }
     }
-    return out;
+    const previous = previousRef.current;
+    const same = out.size === previous.size && [...out].every(([ordinal, state]) => previous.get(ordinal) === state);
+    const next = out.size === 0 ? NO_ENTRIES : same ? previous : out;
+    previousRef.current = next;
+    return next;
   }, [bank, enabled, hasPlus, rows]);
 }

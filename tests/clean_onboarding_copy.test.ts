@@ -92,8 +92,9 @@ describe('onboarding copy helpers', () => {
 
   it('keeps the Russian wording that other contracts pin by substring', () => {
     const ru = onboardingCopy('ru');
-    expect(ru.signInBusy).toContain('Вход всё ещё выполняется');
-    expect(ru.signInBusy).toContain('Кнопки останутся недоступны');
+    // зачем (полный прогон 25.10): текст сменил 10 · ПЕРЕВОДЧИК 18.10 (acd0c034c) — без «провайдера»; его же держит onboarding_auth_busy_state_contract
+    expect(ru.signInBusy).toContain('Вход ещё идёт');
+    expect(ru.signInBusy).toContain('Кнопки снова заработают');
     expect(ru.legalWelcomePre).toContain('Продолжая, ты принимаешь');
     expect(ru.continueFree).toBe('Продолжить на обычном аккаунте');
     expect(ru.renewalNote).toContain('Подписка продлевается автоматически');

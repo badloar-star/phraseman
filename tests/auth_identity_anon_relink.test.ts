@@ -34,10 +34,15 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
     const end = source.indexOf('export const authEnsureStableLink', start);
     const body = source.slice(start, end);
 
-    expect(body.indexOf('await assertAccountDeletionNotPending(db, authUid)')).toBeGreaterThan(-1);
-    expect(body.indexOf('await assertAccountDeletionNotPending(db, authUid)'))
-      .toBeLessThan(body.indexOf('const existingLinkSnap'));
-    expect(body.indexOf('if (linkedStableId) await assertStableDeletionNotPending(db, linkedStableId)'))
+    // зачем (полный прогон 25.10): fdeced617 (ускорение входа 18.10) свёл независимые чтения в один Promise.all, а метки удаления
+    // связанного аккаунта читает на месте. Порядок защиты прежний — его и проверяем.
+    const deletionCheck = body.indexOf('await Promise.all([\n    assertAccountDeletionNotPending(db, authUid),');
+    expect(deletionCheck).toBeGreaterThan(-1);
+    expect(deletionCheck).toBeLessThan(body.indexOf('const existingLinkSnap'));
+    const linkedRetired = body.indexOf('const linkedStableRetired = linkedTombstone.exists || linkedDenial.exists;');
+    expect(linkedRetired).toBeGreaterThan(-1);
+    expect(body.indexOf("if (linkedStableRetired) throwIdentityRetired('stable');")).toBeGreaterThan(linkedRetired);
+    expect(body.indexOf("if (linkedStableRetired) throwIdentityRetired('stable');"))
       .toBeLessThan(body.indexOf('const linkedUserExists'));
     expect(source).toContain("throw new HttpsError('failed-precondition', 'identity_retired'");
     expect(source).toContain("recovery: 'create_fresh_anonymous'");

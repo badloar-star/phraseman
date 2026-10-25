@@ -104,7 +104,19 @@ describe('_layout: что ждёт онбординг (контракт по и�
     return layout.slice(start, layout.indexOf('\n', layout.indexOf('holdDuringOnboarding', start) >= 0 ? start + 1 : start));
   };
 
-  it.each(['lv2_completion_scheduler_install', 'achievements_coins_boot_check', 'published_pack_card_remove_flush', 'v2_audio_seed'])(
+  // зачем (полный прогон 25.10): посев озвучки v2_audio_seed убран из корня в 25888c669 (Learning V2 — только синтез речи).
+  // Вернётся в корень — обязан ждать онбординг; пока его нет, проверять нечего.
+  it('v2_audio_seed: в корне нет, а если вернётся — ждёт онбординг', () => {
+    const start = layout.indexOf("runAfterHomeFirstFrame('v2_audio_seed',");
+    if (start < 0) {
+      expect(layout).not.toContain('v2_audio_seed');
+      return;
+    }
+    const next = layout.indexOf('runAfterHomeFirstFrame(', start + 1);
+    expect(layout.slice(start, next > 0 ? next : undefined)).toContain('{ holdDuringOnboarding: true }');
+  });
+
+  it.each(['lv2_completion_scheduler_install', 'achievements_coins_boot_check', 'published_pack_card_remove_flush'])(
     '%s ждёт онбординг', (label) => {
       const start = layout.indexOf(`runAfterHomeFirstFrame('${label}',`);
       const next = layout.indexOf('runAfterHomeFirstFrame(', start + 1);

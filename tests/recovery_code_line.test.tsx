@@ -75,7 +75,10 @@ describe('RegistrationPromptModal: панели кода без красного
   const source = read('components/RegistrationPromptModal.tsx');
 
   it('нигде нет красного токена glass.bad, кроме отладочной кнопки, и красноватого фона поля кода', () => {
-    expect(source.split('glass.bad').length - 1).toBe(1); // DEBUG-кнопка сброса личности (только ENABLE_AUTH_IDENTITY_DEBUG)
+    // зачем (полный прогон 25.10): 0ace9f5c7 (4 · ТЕМЫ) перевёл красный текст на semanticInk(glass).badText (контраст 4.55+) —
+    // правило прежнее: красный в окне входа только у DEBUG-кнопки сброса личности (только ENABLE_AUTH_IDENTITY_DEBUG)
+    expect(source.split('glass.bad').length - 1).toBe(0);
+    expect(source.split('badText').length - 1).toBe(1);
     expect(source).not.toContain('t.wrongBg');
   });
 

@@ -5,6 +5,8 @@ let mockDev = true, mockActive = true, mockReplay = true;
 const mockDismiss = jest.fn();
 jest.mock('../components/AiConsentSheetModal', () => 'ConsentSheet');
 jest.mock('../components/feature_intro/DialogueConsentChatReplay', () => 'ConsentReplay');
+// зачем (полный прогон 25.10: набор не запускался): верх листа (48a578629) через ThemedArtLayers тянет expo-image (ESM) — заглушка, как у листа и мини-диалога
+jest.mock('../components/dialogs/scene/DialogsConsentTop', () => 'ConsentTop');
 jest.mock('../app/feature_intro_dev_replay', () => ({ useDevFeatureIntroReplay: () => mockDev }));
 jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => mockActive }));
 jest.mock('../hooks/use_feature_intro', () => ({ useFeatureIntro: (_: string, enabled: boolean) => ({ visible: enabled && mockReplay, dismiss: mockDismiss }) }));

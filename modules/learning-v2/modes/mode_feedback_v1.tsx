@@ -47,13 +47,13 @@ const WRONG_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string
   // зачем (Переводчик 4a04ededa): «Не то» сразу говорит, что ответ неверный, «попробуй ещё раз» — что делать дальше
   ru: "Не то. Попробуй ещё раз",
   uk: "Не те. Спробуй ще раз",
-  en: "Try again.",
-  es: "Inténtalo de nuevo.",
-  "pt-BR": "Tente novamente.",
-  vi: "Hãy thử lại.",
-  id: "Coba lagi.",
-  tr: "Tekrar dene.",
-  pl: "Spróbuj ponownie.",
+  en: "Not that one. Try again",
+  es: "No es eso. Inténtalo otra vez",
+  "pt-BR": "Não é isso. Tente de novo",
+  vi: "Chưa đúng. Thử lại nhé",
+  id: "Belum tepat. Coba lagi",
+  tr: "Olmadı. Tekrar dene",
+  pl: "Nie to. Spróbuj jeszcze raz",
 });
 
 function payloadFeedbackRows(

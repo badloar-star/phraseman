@@ -15,6 +15,7 @@
 // Считаем АГРЕГАТ, а не пофайловый список: владелец держит несколько сессий в
 // одном дереве (CLAUDE.md), и пофайловый baseline давал бы конфликты на каждом
 // параллельном коммите.
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -63,11 +64,45 @@ const AS_ANY = /\bas\s+any\b/g;
 const isReleaseGateSource = (relative) =>
   !EXCLUDED_AUTHORING_PREFIXES.some((prefix) => relative.startsWith(prefix));
 
+// зачем (координатор 25.10, блокер коммитов): счёт по РАБОЧЕМУ ДЕРЕВУ ловил чужие незакоммиченные правки (171 против 169 из-за
+// чужого файла) и блокировал коммиты всех сессий. Теперь по умолчанию считаем то, что уходит в коммит, — содержимое git-индекса.
+// safe_commit запускает pre-commit с GIT_INDEX_FILE своего временного индекса (HEAD + пути коммита), обычный `git commit` —
+// с обычным индексом; git сам берёт индекс из окружения. `--worktree` — прежний счёт по диску для ручного обзора.
+const WORKTREE_MODE = process.argv.includes('--worktree');
+
+const indexSources = () => {
+  const listed = execFileSync('git', ['ls-files', '-z', '--', ...SCANNED], { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+    .split('\0')
+    .filter((file) => file && isProductionSource(path.posix.basename(file)) && !/__(?:tests|mocks)__/.test(file) && isReleaseGateSource(file));
+  if (listed.length === 0) return [];
+  // один процесс на все файлы: запросы «:путь» → ответы «<sha> blob <size>\n<content>\n»
+  const raw = execFileSync('git', ['cat-file', '--batch'], {
+    cwd: root, input: listed.map((file) => `:${file}`).join('\n') + '\n', maxBuffer: 512 * 1024 * 1024,
+  });
+  const out = [];
+  let offset = 0;
+  for (const file of listed) {
+    const headerEnd = raw.indexOf(0x0a, offset);
+    const header = raw.subarray(offset, headerEnd).toString('utf8');
+    offset = headerEnd + 1;
+    const size = Number(header.split(' ')[2]);
+    if (!Number.isFinite(size) || header.endsWith('missing')) {
+      console.warn(`guard_as_any_ratchet: нет в индексе — пропуск ${file} (${header})`);
+      continue;
+    }
+    out.push({ relative: file, source: raw.subarray(offset, offset + size).toString('utf8') });
+    offset += size + 1;
+  }
+  return out;
+};
+
+const worktreeSources = () => SCANNED.flatMap(walk).filter(isReleaseGateSource)
+  .map((relative) => ({ relative, source: fs.readFileSync(path.join(root, relative), 'utf8') }));
+
 const scan = () => {
   const perFile = [];
   let total = 0;
-  for (const relative of SCANNED.flatMap(walk).filter(isReleaseGateSource)) {
-    const source = fs.readFileSync(path.join(root, relative), 'utf8');
+  for (const { relative, source } of (WORKTREE_MODE ? worktreeSources() : indexSources())) {
     const count = (stripNoise(source).match(AS_ANY) ?? []).length;
     if (count > 0) {
       perFile.push({ file: relative, count });

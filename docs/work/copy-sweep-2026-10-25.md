@@ -304,6 +304,22 @@
 | Сердца кончились — эта ступень сегодня упрямая. Ещё раз? | Серця скінчилися — ця сходинка сьогодні вперта. Ще раз? | Out of hearts — this step is stubborn today. Again? | Sin corazones: este escalón hoy está terco. ¿Otra vez? | Acabaram os corações — esse degrau está teimoso hoje. De novo? | Hết tim rồi — bậc này hôm nay cứng đầu quá. Thử lại? | Hati habis — anak tangga ini lagi bandel. Lagi? | Kalpler bitti — bu basamak bugün inatçı. Bir daha? | Koniec serc — ten stopień jest dziś uparty. Jeszcze raz? |
 | Мастерская ещё разогревается — повтори пару занятий урока | Майстерня ще розігрівається — повтори кілька занять уроку | The workshop is still warming up — redo a couple of this lesson’s sessions | El taller aún se está calentando: repite un par de sesiones de la lección | A oficina ainda está esquentando — refaça algumas sessões da lição | Xưởng còn đang khởi động — ôn lại vài buổi của bài này nhé | Bengkelnya masih pemanasan — ulangi beberapa sesi pelajaran ini | Atölye hâlâ ısınıyor — bu dersin birkaç oturumunu tekrarla | Warsztat jeszcze się rozgrzewa — powtórz kilka sesji tej lekcji |
 
+## Пачка 2б — Моменты Пика: 8 языков под их текущий ru (файл moments_strings.ts держат Моменты, вносят сами)
+
+Исходник ru — как сейчас в файле. Порядок: uk, en, es, pt-BR, vi, id, tr, pl.
+
+| Ключ | ru (их) | uk | en | es | pt-BR | vi | id | tr | pl |
+|---|---|---|---|---|---|---|---|---|---|
+| downBody | Неделя в пятёрке последних по ступеням — спускаемся в {league}. Отыграемся! | Тиждень у п’ятірці останніх за сходинками — спускаємось у {league}. Відіграємося! | A week in the bottom five by steps — down to {league}. We’ll bounce back! | Una semana entre los cinco últimos por escalones: bajamos a {league}. ¡Nos recuperamos! | Uma semana entre os cinco últimos em degraus — descemos para {league}. A gente dá a volta! | Một tuần trong nhóm 5 cuối theo số bậc — xuống {league}. Mình sẽ gỡ lại! | Seminggu di lima terbawah menurut anak tangga — turun ke {league}. Kita balas nanti! | Bu hafta basamaklarda son beşteydin — {league} ligine iniyoruz. Telafi ederiz! | Tydzień w ostatniej piątce według stopni — schodzimy do ligi {league}. Odegramy się! |
+| promoCountingPlaces | Считаем ступени недели… | Рахуємо сходинки тижня… | Counting this week’s steps… | Contando los escalones de la semana… | Contando os degraus da semana… | Đang đếm bậc của tuần… | Menghitung anak tangga minggu ini… | Haftanın basamakları sayılıyor… | Liczymy stopnie z tygodnia… |
+| мимо топ-5, режим ступеней (stayBodyStepsNoGap) | {place} место · {steps} {sw} за неделю. До топ-5 совсем чуть-чуть — в следующий раз! | {place} місце · {steps} {sw} за тиждень. До топ-5 зовсім трохи — наступного разу! | Place {place} · {steps} {sw} this week. The top 5 is close — next time! | Puesto {place} · {steps} {sw} esta semana. El top 5 está cerca: ¡la próxima! | Posição {place} · {steps} {sw} na semana. O top 5 está perto — na próxima! | Hạng {place} · {steps} {sw} trong tuần. Top 5 ngay trước mắt — lần sau nhé! | Peringkat {place} · {steps} {sw} minggu ini. 5 besar sudah dekat — lain kali! | {place}. sıra · bu hafta {steps} {sw}. İlk 5 çok yakın — bir dahaki sefere! | {place}. miejsce · {steps} {sw} w tygodniu. Top 5 tuż-tuż — następnym razem! |
+
+Замечания:
+- downBody ru говорит «пятёрка последних», а координатор для подсказки tour3Text дал правило «нижние 15 % и все без ступеней». Если спуск считается по 15 %, ru надо поправить на «Неделя в нижних 15 % по ступеням…» — решают Моменты/координатор; uk/en… переведу в тот же час.
+- В uk/en/… прежняя вторая фраза («Ранг, монеты и фразы на месте») расходилась с ru («Отыграемся!») — выровнено по ru.
+- Строка «мимо топ-5» без числа: последняя фраза необязательна — если не влезает в карточку, оставить как сейчас (только место и ступени).
+- «Она работает каждый день» — фикстура превью, не переводим (по слову координатора).
+
 ## Дальше
 
 После «да» владельца по голосу и пачке 1: правки в 🆓 файлах, списки владельцам 🔒 файлов, 8 языков по голосу,

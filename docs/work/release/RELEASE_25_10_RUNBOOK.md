@@ -11,7 +11,7 @@ Status: Готово к утру (9 · САЙТ, по поручению коо�
 
 | Где | Сейчас | Откуда известно |
 |---|---|---|
-| Google Play | **2.0.0 (142)**, production, автоотправка 21.10 (build 8b987540, submission f1056edc) | OWNER_DECISIONS_2026-10-21 стр. 265, 292 |
+| Google Play | ⚠ **Исправлено 26.10 (Ядро):** 142 в Play **нет** — автоотправка 21.10 (build 8b987540, submission f1056edc) ERRORED; 2.0.2 (144) тоже не загружен: `eas submit android` → 403 PERMISSION_DENIED (EAS_GOOGLE_PLAY_PERMISSION_DENIED). Ключ отправки — Firebase Admin SDK, прав в Play Console у него нет. **Что сейчас в Play — версия старше 142; номер смотрит владелец в Play Console.** Прежняя запись «2.0.0 (142), production» была неверной. | OWNER_DECISIONS_2026-10-21 стр. 1979–1988, 2136; NIGHT_BACKLOG_2026-10-26 стр. 202, 224–225 |
 | App Store | iOS 142 отклонён Apple 22.10 (ITMS-90186/90062: «поезд» 2.0.0 закрыт). **iOS 2.0.1 (143)** собран из того же JS 108b37562 и отправлен | там же стр. 406; MORNING_QUESTIONS_2026-10-22 Q44 |
 | `app.json` на HEAD | `version 2.0.1`, `android.versionCode 143`, `ios.buildNumber "143"`, **`runtimeVersion 2.0.0`** | `app.json:6,12,46,95` (коммит номера e6fc0317e) |
 
@@ -20,7 +20,7 @@ Status: Готово к утру (9 · САЙТ, по поручению коо�
 | Поле | Значение | Почему |
 |---|---|---|
 | `expo.version` | **2.0.2** | iOS 2.0.1 уже отправлен; если Apple его одобрит раньше, новая сборка с тем же 2.0.1 будет отклонена (ITMS-90062, как 22.10). 2.0.2 безопасен при любом исходе ревью 143. Android versionName = та же строка. |
-| `expo.android.versionCode` | **144** | > 142 в Play; гейт требует рост против прошлого снимка (`eas_production_version_gate.mjs:187`). 143 для Android не собирался, но в `app.json` уже стоит — берём следующий. |
+| `expo.android.versionCode` | **144** | > 142 (последний собранный для Android; в Play он не дошёл — см. строку Google Play выше, 144 всё равно больше любой версии в Play); гейт требует рост против прошлого снимка (`eas_production_version_gate.mjs:187`). 143 для Android не собирался, но в `app.json` уже стоит — берём следующий. |
 | `expo.ios.buildNumber` | **"144"** | > 143; сторож равенства `versionCode == buildNumber` (коммит e6fc0317e). |
 | `expo.runtimeVersion` | **2.0.2** ⚠ | 🔴 Сейчас 2.0.0 у ВСЕХ сборок 139–143. Канал OTA `production` + runtime 2.0.0 = заплатки «по воздуху» на базе 108b37562 (Q44, папка ota_patch_108b37562) прилетят и в новую сборку и **откатят её JS на код 18–22.10**. Новый JS → новая runtimeVersion. Цена: старые OTA для 2.0.0 новую сборку не трогают (это и нужно). |
 

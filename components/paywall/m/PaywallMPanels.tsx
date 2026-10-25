@@ -66,7 +66,8 @@ export const PaywallMEnergyPanel = memo(function PaywallMEnergyPanel(p: CommonPr
   const { formattedTime } = useEnergyCountdown({ visible: true });
   const plate = paywallPlateBg(g);
   const paint = useMemo(() => planRowSelectedPaint(g), [g]);
-  const plusTileStyle = useMemo(() => ({ backgroundColor: plate, borderColor: paint.edge }), [plate, paint.edge]); // guard-ok: рамка плитки Plus 1 px по карте Тем E7, исключение PhraseMan 2.0
+  // зачем (стиль «Тень», сторож shadow_style_no_container_borders; Ревизор 26.10): плитка Plus выделена градиентом плана, без рамки — прежнее кольцо снято
+  const plusTileStyle = useMemo(() => ({ backgroundColor: plate }), [plate]);
   return (
     <Shell g={g} bottomInset={p.bottomInset} kicker={null /* зачем (Макеты 25.10): «N занятий подряд сегодня» — факт человека, а честного числа на устройстве нет; константа 5 врала бы — строку не показываем */} title={paywallMText(lang, 'mc.energy.title')}>
       <View style={S.tiles}>
@@ -252,9 +253,8 @@ const S = StyleSheet.create({
   laterText: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   tiles: { flexDirection: 'row', gap: 10 },
   tileCell: { flex: 1 },
-  // у плитки «Подождать» рамка прозрачная — размеры плиток равны (карта Тем E7: рамка плитки Plus accentGraphic к листу ≥ 3)
-  tile: { minHeight: 132, borderRadius: 20, padding: 14, borderWidth: 1, borderColor: 'transparent', gap: 4, overflow: 'hidden' }, // guard-ok: рамка 1 px плитки Plus, исключение PhraseMan 2.0
-  tileFill: { borderRadius: 19 },
+  tile: { minHeight: 132, borderRadius: 20, padding: 14, gap: 4, overflow: 'hidden' },
+  tileFill: { borderRadius: 20 },
   tileLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 4 },
   tileBig: { fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, fontVariant: ['tabular-nums'] },
   tileSub: { fontSize: 13, lineHeight: 17 },

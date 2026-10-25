@@ -25,7 +25,10 @@ export const PaywallMCompare = memo(function PaywallMCompare({ g, title, freeHea
           <Text style={[S.head, S.plusCol, { color: g.accentTextSafe }]}>{plusHead}</Text>
         </View>
         {rows.map((r) => (
-          <View key={r.id} style={[S.row, S.rowLine, { borderTopColor: g.line }]}>
+          <React.Fragment key={r.id}>
+          {/* зачем (стиль «Тень», сторож shadow_style_no_container_borders): разделитель строк — высотой View, а не рамкой строки */}
+          <View style={[S.divider, { backgroundColor: g.line }]} />
+          <View style={[S.row, S.rowLine]}>
             <Text style={[S.label, S.labelText, { color: g.text }]}>{r.label}</Text>
             <Text style={[S.value, S.freeCol, { color: g.secondary }]}>{r.free}</Text>
             <View style={[S.plusCol, S.plusCell]}>
@@ -33,6 +36,7 @@ export const PaywallMCompare = memo(function PaywallMCompare({ g, title, freeHea
               <Text style={[S.plusText, { color: g.text }]}>{r.plus}</Text>
             </View>
           </View>
+          </React.Fragment>
         ))}
       </View>
     </View>
@@ -43,7 +47,8 @@ const S = StyleSheet.create({
   h2: { fontSize: 20, lineHeight: 26, fontWeight: '800', letterSpacing: -0.2, marginBottom: 12 },
   card: { borderRadius: 22, paddingHorizontal: 14, paddingVertical: 6 },
   row: { flexDirection: 'row', alignItems: 'center', minHeight: 40 },
-  rowLine: { minHeight: 48, borderTopWidth: StyleSheet.hairlineWidth },
+  rowLine: { minHeight: 48 },
+  divider: { height: StyleSheet.hairlineWidth },
   label: { flex: 1 },
   labelText: { fontSize: 16, lineHeight: 21, paddingVertical: 8, paddingRight: 8 },
   head: { fontSize: 13, lineHeight: 17, fontWeight: '700' },

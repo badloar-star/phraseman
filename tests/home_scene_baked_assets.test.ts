@@ -5,10 +5,15 @@ import * as fs from 'fs';
 import * as path from 'path';
 import sharp from 'sharp';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { isPremiumThemeId } from '../app/premium_theme_catalog';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { backdropAt, parseColor, renderBackdrop, sampleBilinear } from '../scripts/lib/scene_backdrop_math';
 import { capComposite, capCompositeFromMasks, capT } from '../scripts/lib/tabbar_cap_math';
 
+// зачем (координатор 25.10, Дизайн): для 6 премиум-тем запечённых фонов пока нет — генерируем ПОСЛЕ релиза (scripts/gen_scene_assets.mts).
+// Человек их не теряет: таблицу HOME_SCENE_BACKDROPS в приложении никто не читает (сцену рисуют шейдеры HomeSceneStage, у премиум-тем ещё и движение пакета Codex),
+// так что запасного «пустого» фона нет — проверено по коду 25.10. Сгенерируешь фоны — убери фильтр, сторож снова мерит все 29 тем.
+const BAKED_THEME_IDS = LIQUID_GLASS_THEME_IDS.filter((id) => !isPremiumThemeId(id));
 const DIR = path.join(__dirname, '..', 'assets', 'images', 'v2scene');
 const TABLE = fs.readFileSync(path.join(__dirname, '..', 'components', 'home', 'v2', 'scene', 'home_scene_baked_assets.generated.ts'), 'utf8').replace(/\r\n/g, '\n');
 const W = 232;
@@ -25,7 +30,7 @@ describe('Запечённые ассеты сцены Главной', () => {
     let count = 0;
     const missing: string[] = [];
     for (const appearance of ['dark', 'light'] as const) {
-      for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const id of BAKED_THEME_IDS) {
         for (const evening of [false, true]) {
           const key = `${id}|${appearance}|${evening ? 'eve' : 'day'}`;
           const file = `scene_bg_${id}_${appearance}_${evening ? 'eve' : 'day'}.webp`;
@@ -35,7 +40,8 @@ describe('Запечённые ассеты сцены Главной', () => {
         }
       }
     }
-    expect(count).toBe(LIQUID_GLASS_THEME_IDS.length * 4);
+    expect(count).toBe(BAKED_THEME_IDS.length * 4);
+    expect(BAKED_THEME_IDS.length).toBe(23);
     expect(missing).toEqual([]);
   });
 
@@ -43,7 +49,7 @@ describe('Запечённые ассеты сцены Главной', () => {
     const stale: string[] = [];
     const off: string[] = [];
     for (const appearance of ['dark', 'light'] as const) {
-      for (const id of LIQUID_GLASS_THEME_IDS) {
+      for (const id of BAKED_THEME_IDS) {
         for (const evening of [false, true]) {
           const t = homeSceneTokensForTheme(id, appearance, evening);
           const input = { sceneTop: t.sceneTop, sceneBottom: t.sceneBottom, glow: evening ? t.eveningGlow : t.sceneGlow, evening };

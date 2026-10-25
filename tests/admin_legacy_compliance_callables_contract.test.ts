@@ -37,7 +37,8 @@ describe('live admin compliance boundaries', () => {
 
   test('age and radar use complete server aggregates and honest privacy wording', () => {
     const age = block('window.loadAgeConsent = async function()', '// ═══ COMPLIANCE RADAR');
-    const radar = block('window.loadComplianceRadar = async function(force)', '// ═══ DAILY DIGEST');
+    // зачем: вкладка «Ежедневная сводка» снята в живой админке 24.10 (70af8ef55, вопрос владельцу Q62) — радар теперь заканчивается перед почтой поддержки
+    const radar = block('window.loadComplianceRadar = async function(force)', '// ═══ GMAIL SUPPORT INBOX');
     expect(age).toContain('getAdminGetComplianceOverviewCallable()');
     expect(age).not.toContain("collection(db, 'user_consents')");
     expect(age).toContain('Один текущий снимок на каноническую идентичность');

@@ -447,7 +447,8 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Search UID, email, name...');
     expect(adminHtml).toContain('No Plus users match this filter.');
     expect(countOccurrences(adminHtml, 'window.renderPremiumList = function renderPremiumList()')).toBe(1);
-    expect(adminHtml).toContain('window.loadPremiumData = async function loadPremiumData()');
+    // зачем: живая админка 24.10 (70af8ef55) добавила loadPremiumData(force=false) — смысл тот же, один загрузчик
+    expect(adminHtml).toContain('window.loadPremiumData = async function loadPremiumData(');
     expect(adminHtml).toContain('window.renderPremiumList?.()');
     expect(adminHtml).toContain('applyCleanCancelSurveysChrome');
     expect(adminHtml).toContain('cs-pill');
@@ -525,7 +526,8 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain('realCount: Object.keys(members).length');
     expect(adminHtml).not.toContain('Object.keys(group.members || {}).map');
     expect(adminHtml).toContain('applyCleanDailyPhrasesChrome');
-    expect(adminHtml).toContain('Loading daily phrases...');
+    // зачем: фразы дня в живой админке грузятся при открытии вкладки — пустое состояние зовёт открыть её
+    expect(adminHtml).toContain('Open the tab to load daily phrases.');
     expect(adminHtml).toContain('No daily phrases for this filter.');
     expect(adminHtml).toContain('class="daily-phrase-row"');
     expect(adminHtml).toContain('class="dp-pill is-${status}"');

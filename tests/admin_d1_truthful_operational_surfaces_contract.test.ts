@@ -14,7 +14,8 @@ describe('Admin D1 truthful operational surfaces', () => {
     expect(source).toContain('limit(MOD_QUEUE_PAGE + 1)');
     expect(source).toContain('window._modQueueSourceHealth');
     expect(source).toContain('sourceFailures');
-    expect(source).toMatch(/complete\s*:\s*sourceFailures\.length\s*===\s*0\s*&&\s*!truncated/);
+    // зачем: живая админка (выложена 24.10 18:50Z, в git 70af8ef55) добавила фильтр по источнику — при выбранном фильтре очередь честно не «полная»
+    expect(source).toMatch(/complete\s*:\s*(?:!selectedSource\s*&&\s*)?sourceFailures\.length\s*===\s*0\s*&&\s*!truncated/);
     expect(source).not.toContain('catch(() => {})');
     expect(source).not.toContain('Пусто — очередь чиста');
   });

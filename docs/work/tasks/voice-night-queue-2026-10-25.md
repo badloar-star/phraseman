@@ -53,3 +53,5 @@ Governance-ID: TG-A8F1F2D841A0 (проход голоса: Настройки, �
 Governance-ID: TG-7F0A10125996 (тот же проход голоса по зонам)
 
 Governance-ID: (тот же пакет) — mc.dialog.title без «по-английски» (Макеты через координатора)
+
+Governance-ID: TG-13FCBA0D04A8 (пейвол М: окна ×8 языков)

@@ -115,6 +115,16 @@ export function isAdminGrantActive(progress: ProgressLike, now: number): boolean
   return hasMeaningfulPlan(plan) && (expiryMs <= 0 || expiryMs > now);
 }
 
+/** Есть ли у профиля хоть одно vip_* поле. Без них isVipActive засчитывает старый админский грант (ветка legacy). */
+function hasVipShape(data: Record<string, unknown>): boolean {
+  return hasMeaningfulPlan(cleanPlan(data.vip_plan))
+    || isTruthyFlag(data.vip_active)
+    || isFalsyFlag(data.vip_admin_override) || isFalsyFlag(data.vip_active)
+    || parseProgressMs(data.vip_from) > 0
+    || parseProgressMs(data.vip_until ?? data.vip_expiry) > 0
+    || !!cleanStr(data.vip_admin_grant_at ?? data.vip_grant_at);
+}
+
 /** VIP-доступ (рефералка / опрос / ручная выдача): vip_* поля. */
 export function isVipActive(progress: ProgressLike, now: number = Date.now()): boolean {
   const data = progress ?? {};
@@ -124,16 +134,8 @@ export function isVipActive(progress: ProgressLike, now: number = Date.now()): b
   const vipRevoked = isFalsyFlag(data.vip_admin_override) || isFalsyFlag(data.vip_active);
   const vipFromMs = parseProgressMs(data.vip_from);
   const vipUntilMs = parseProgressMs(data.vip_until ?? data.vip_expiry);
-  const vipGrantAt = cleanStr(data.vip_admin_grant_at ?? data.vip_grant_at) || null;
-  const hasVipShape =
-    hasMeaningfulPlan(vipPlanRaw) ||
-    vipActiveFlag ||
-    vipRevoked ||
-    vipFromMs > 0 ||
-    vipUntilMs > 0 ||
-    !!vipGrantAt;
 
-  if (hasVipShape) {
+  if (hasVipShape(data)) {
     const plan = hasMeaningfulPlan(vipPlanRaw) ? vipPlanRaw : 'admin_vip';
     const windowStarted = vipFromMs <= 0 || vipFromMs <= now;
     const windowOpen = vipUntilMs <= 0 || vipUntilMs > now;
@@ -255,8 +257,17 @@ export function isRealPlusActive(progress: ProgressLike, now: number = Date.now(
 export function realPlusUntilMs(progress: ProgressLike, now: number = Date.now()): number | null {
   const data = progress ?? {};
   const untils: number[] = [];
-  if (isStorePremiumActive(progress, now) || isAdminGrantActive(progress, now)) untils.push(parseProgressMs(data.premium_expiry));
-  if (isVipActive(progress, now)) untils.push(parseProgressMs(data.vip_until ?? data.vip_expiry));
+  if (isStorePremiumActive(progress, now)) {
+    // зачем (бэклог 22.10 L710/L819): у подписки premium_expiry='0' — «срок ведёт вебхук», настоящий срок в premium_rc_expiry_ms.
+    // Раньше 0 уходил как «бессрочно», и кольцо Plus у подписчика горело вечно. Тот же запас, что у isStorePremiumActive.
+    const expiryMs = parseProgressMs(data.premium_expiry);
+    const rcExpiryMs = parseProgressMs(data.premium_rc_expiry_ms);
+    untils.push(expiryMs > 0 ? expiryMs : rcExpiryMs > 0 ? rcExpiryMs + SERVER_RC_GRACE_MS : 0);
+  }
+  if (isAdminGrantActive(progress, now)) untils.push(parseProgressMs(data.premium_expiry));
+  // зачем: без vip_* полей isVipActive — это тот же старый админский грант (его срок взят строкой выше из premium_expiry);
+  // пустой vip_until здесь значит «поля нет», а не «бессрочно» — иначе грант со сроком давал кольцу вечный 0.
+  if (isVipActive(progress, now) && hasVipShape(data)) untils.push(parseProgressMs(data.vip_until ?? data.vip_expiry));
   if (untils.length === 0) return null;
   if (untils.some((ms) => !(ms > 0))) return 0;
   return Math.max(...untils);

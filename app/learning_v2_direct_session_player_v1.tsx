@@ -275,6 +275,7 @@ import {
   markLearningV2LessonWordUnlockedV1,
   type LearningV2UnlockedLessonWordV1,
 } from "./learning_v2_unlocked_lesson_words_v1";
+import { recordLearningV2LessonBankPhraseV1 } from "./learning_v2_lesson_phrase_bank_v1";
 import { DebugLogger } from './debug-logger';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -1421,6 +1422,21 @@ export default function LearningV2DirectSessionPlayerV1() {
     run && runSummary && practiceIndex < runSummary.practiceInteractionCount
       ? getLearningV2CourseSessionPracticeInteractionV1(run, practiceIndex)
       : null;
+  // зачем (владелец 25.10, классический режим после урока V2; координатор): копим банк фраз урока при показе
+  // задания «Сборка фразы» — локально, 0 чтений сети. Предпросмотр автора не пишет. Журнал [CLASSIC-BANK].
+  const lessonBankRecordedRef = useRef(new Set<string>());
+  useEffect(() => {
+    if (isAuthoringPreview || !runSummary || !practice || practice.modePayload?.family !== "phrase_builder") return;
+    const bankKey = `${runSummary.targetLanguage}:${runSummary.lessonOrdinal}:${runSummary.sessionOrdinal}:${practice.interactionId}`;
+    if (lessonBankRecordedRef.current.has(bankKey)) return;
+    lessonBankRecordedRef.current.add(bankKey);
+    void recordLearningV2LessonBankPhraseV1({
+      targetLanguage: runSummary.targetLanguage,
+      lessonOrdinal: runSummary.lessonOrdinal,
+      sessionOrdinal: runSummary.sessionOrdinal,
+      modePayload: practice.modePayload,
+    }).catch(noteSwallowedHandler("player:lessonBankRecord"));
+  }, [isAuthoringPreview, practice, runSummary]);
   const learnerFacingPracticePrompt = practice
     ? sanitizeLearningV2LearnerPromptV1(practice.prompt)
     : "";

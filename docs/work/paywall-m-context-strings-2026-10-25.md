@@ -96,7 +96,7 @@
 | mc.energy.plusSubNoTrial | сейчас, ≈ {monthly} в месяц |
 | mc.energy.saved | Занятие сохранится |
 | mc.dialog.kicker | Первый разговор с ИИ |
-| mc.dialog.title | {min} минут по-английски и {n} твоих фраз |
+| mc.dialog.title | {min} минут разговора и {n} твоих фраз |
 | mc.dialog.yourPhrase | Твоя фраза: |
 | mc.dialog.body | Бесплатно — {limit} реплик в месяц. С Plus разговаривай каждый день и получай разбор каждой фразы. |
 | mc.dialog.cta | Продолжить разговор с Plus |

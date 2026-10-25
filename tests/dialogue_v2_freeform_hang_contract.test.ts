@@ -35,7 +35,9 @@ describe('«Свободный разговор» не висит на «••�
     expect(screen).toMatch(/\[FREEFORM-HANG\] watchdog: dots too long → retry bar[\s\S]{0,600}setSending\(false\);\s*setTurnFailed\(true\);/);
     expect(screen).toContain('[FREEFORM-HANG] turn:result_dropped');
     // поздний настоящий ответ снимает плашку
-    expect(screen).toMatch(/text: result\.assistantMessage,\s*\}\)\]\)\);\s*\/\/[^\n]*\n\s*setTurnFailed\(false\);/);
+    // зачем (Ядро 25.10): f106171a3 добавил перевод в тот же объект реплики (строки между text и `})]));`) — сторож краснел на HEAD.
+    // Смысл тот же: сразу после вставки ответа в ленту — setTurnFailed(false); допускаем до 400 знаков полей реплики.
+    expect(screen).toMatch(/text: result\.assistantMessage,[\s\S]{0,400}?\}\)\]\)\);\s*\/\/[^\n]*\n\s*setTurnFailed\(false\);/);
   });
 
   it('сбой хода гасит «•••» и ставит плашку с «Повторить»; «нет согласия» — снова окно согласия', () => {

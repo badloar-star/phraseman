@@ -43,6 +43,10 @@ function isFreeformNetworkFailure(error: unknown): boolean {
 function isFreeformConsentRequired(error: unknown): boolean {
   return (error as { reason?: unknown } | null)?.reason === 'ai_consent_required';
 }
+/** Сервер не видит Plus (DialogueV2FreeformUnavailableError.reason) — экран Plus, без тихих повторов и «сервис недоступен». */
+function isFreeformPlusRequired(error: unknown): boolean {
+  return (error as { reason?: unknown } | null)?.reason === 'plus_required';
+}
 import {
   resolveBundledDialogueV2FreeformPreparedBotVoiceAsset,
 } from './dialogue_v2_freeform_prepared_bot_voice_asset_registry';
@@ -136,6 +140,8 @@ export default function DialogueV2FreeformRoute() {
 function DialogueV2FreeformContent() {
   const askConsentAgain = useAiDialogConsentAskAgain();
   const router = useRouter();
+  const routerRef = useRef(router);
+  routerRef.current = router;
   const { studyTarget } = useStudyTarget();
   const { accessResolved, hasPremiumAccess } = usePremium();
   const { lang } = useLang();
@@ -287,6 +293,18 @@ function DialogueV2FreeformContent() {
         // зачем (координатор 22.10): сервер не нашёл согласия — не «недоступно» и не тихие повторы, а снова окно согласия.
         console.warn('[AI-CONSENT] freeform: start → server requires consent, ask again', { generation, studyTarget: target });
         askConsentAgain('freeform_start');
+      } else if (isFreeformPlusRequired(error)) {
+        // зачем (владелец 25.10, «написано „сервис недоступен“»): сервер не видит Plus у записи, а телефон его видел. Повтор ответит
+        // тем же — тихие повторы и плашка «Сервис недоступен» врали. Ведём на экран Plus тем же маршрутом, что плитка для бесплатных;
+        // replace — «Назад» с экрана Plus возвращает в хаб, а не снова сюда (иначе круг старт → отказ → Plus).
+        clearStartRetryTimer();
+        markStartOffline(false, 'plus_required');
+        console.warn(`[DIALOGUE-V2-FREEFORM] start → plus_required: server sees no Plus, open Plus screen ${JSON.stringify({ generation, attempt, studyTarget: target, queued: queuedMessageRef.current !== null })}`);
+        // ref, а не router в зависимостях: от startCurrentSession зависит эффект старта — новая ссылка перезапустила бы сессию
+        routerRef.current.replace({
+          pathname: '/premium_modal',
+          params: { context: 'dialog_limit', source: 'dialogue_v2_freeform_server' },
+        } as never);
       } else if (isFreeformDailyCap(error)) {
         // зачем: до завтра сервер ответит тем же — тихие повторы и уход в хаб бессмысленны, показываем «на сегодня всё».
         console.warn('[DIALOGUE-V2] freeform: start → daily cap, no retry', { generation, studyTarget: target });

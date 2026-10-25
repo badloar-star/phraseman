@@ -52,7 +52,9 @@ export type DialogueV2FreeformPreparedBotVoiceTextOnlyResponse = Readonly<{
 /** 'daily_cap' — сервер сказал «на сегодня всё» (общий дневной потолок ИИ или дневное окно); повтор бессмыслен до завтра. */
 // 'ai_consent_required' — сервер не нашёл согласия на ИИ: экран снова показывает окно согласия (шлюз), а не «недоступно».
 // 'network' — нет связи или вызов не дождался ответа (коды unavailable / deadline-exceeded): макет u31 C18, а не «сервис недоступен».
-export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap' | 'ai_consent_required' | 'network';
+// 'plus_required' — сервер не видит Plus у записи (permission-denied + dialogue_v2_freeform_plus_required): повтор ответит тем же,
+// экран ведёт на экран Plus, а не пишет «сервис недоступен» (владелец 25.10: клиент считал Plus, сервер — нет).
+export type DialogueV2FreeformFailureReason = 'unavailable' | 'daily_cap' | 'ai_consent_required' | 'network' | 'plus_required';
 
 export class DialogueV2FreeformUnavailableError extends Error {
   constructor(readonly reason: DialogueV2FreeformFailureReason = 'unavailable') {
@@ -63,6 +65,7 @@ export class DialogueV2FreeformUnavailableError extends Error {
 
 /** Ошибка старта/хода свободного разговора → наружу: причина «на сегодня всё» или обычное «недоступно». */
 function freeformFailure(error: unknown): DialogueV2FreeformUnavailableError {
+  if (isFreeformPlusRequiredError(error)) return new DialogueV2FreeformUnavailableError('plus_required');
   if (isAiConsentRequiredError(error)) return new DialogueV2FreeformUnavailableError('ai_consent_required');
   if (isAiDailyCapError(error)) return new DialogueV2FreeformUnavailableError('daily_cap');
   return new DialogueV2FreeformUnavailableError(isFreeformNetworkError(error) ? 'network' : 'unavailable');
@@ -75,6 +78,18 @@ function isFreeformNetworkError(error: unknown): boolean {
 }
 
 /** Отказ сервера «нет согласия на ИИ» — по коду/сообщению ошибки вызова (failed-precondition 'ai_consent_required'). */
+/**
+ * Сервер отказал «нужен Plus»: код permission-denied (в том числе с префиксом functions/) и сообщение сервера
+ * dialogue_v2_freeform_plus_required (functions/src/dialogue_v2_freeform_production_adapter.ts). Только этот отказ, а не любой
+ * permission-denied — иначе чужой отказ увёл бы на экран Plus человека, у которого Plus есть.
+ */
+export function isFreeformPlusRequiredError(error: unknown): boolean {
+  const row = (error && typeof error === 'object' ? error : {}) as { code?: unknown; message?: unknown };
+  const code = typeof row.code === 'string' ? row.code : '';
+  return /(^|\/)permission-denied$/.test(code)
+    && String(row.message ?? '').includes('dialogue_v2_freeform_plus_required');
+}
+
 export function isAiConsentRequiredError(error: unknown): boolean {
   const row = (error && typeof error === 'object' ? error : {}) as { code?: unknown; message?: unknown; details?: unknown };
   const details = row.details && typeof row.details === 'object' ? (row.details as { reason?: unknown }).reason : undefined;

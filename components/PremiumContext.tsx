@@ -382,7 +382,18 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       void reloadTrialEligible(isReloadCurrent);
     }
     resolvedReloadEpochRef.current = reloadEpoch;
-    console.warn('[PREMIUM-RESOLVE] reload:done', JSON.stringify({ epoch: reloadEpoch, totalMs: Date.now() - traceStartedAt, steps: traceSteps, access: projectedEntitlement.hasPremiumAccess }));
+    // зачем (координатор 25.10, свободный диалог владельца): телефон давал Plus, сервер — нет, а журнал печатал только итог.
+    // Теперь видно, КАКОЙ источник дал «да» (без идентификаторов): стор-покупка, VIP, облачная проверка, вводные 3 дня, dev-выдача.
+    const accessSources = {
+      realPremium: effectivePremium,
+      vip: effectiveVip,
+      verifiedCloud: effectiveVerifiedAccess,
+      intro: introState.active,
+      devOverride,
+      testerNoLimits,
+      noPremiumTester,
+    };
+    console.warn('[PREMIUM-RESOLVE] reload:done', JSON.stringify({ epoch: reloadEpoch, totalMs: Date.now() - traceStartedAt, steps: traceSteps, access: projectedEntitlement.hasPremiumAccess, sources: accessSources }));
   }, [reloadTrialEligible]);
   const reload = useCallback(async () => {
     const requestedEpoch = premiumReloadEpochRef.current;

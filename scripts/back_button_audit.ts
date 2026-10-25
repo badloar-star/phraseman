@@ -220,6 +220,23 @@ for (const file of walk('app').sort()) {
 }
 
 const esc = (s: string): string => s.replace(/\|/g, '/');
+
+/**
+ * Правда эталонов от Макетов (988d643cd): что на макете и вывод по экрану. Ключ — маршрут без начального слэша.
+ * зачем (координатор 26.10): сканер читает код, а гейт «приложение = макет» главнее — у каждой находки рядом эталон.
+ */
+const MOCKUP_TRUTH = 'docs/work/back-button-mockup-truth-2026-10-26.md';
+const mockupTruth = new Map<string, string>();
+if (fs.existsSync(path.join(ROOT, MOCKUP_TRUTH))) {
+  for (const line of read(MOCKUP_TRUTH).split(/\r?\n/)) {
+    const cells = line.split('|').map((c) => c.trim());
+    if (cells.length < 6 || !cells[1] || cells[1] === 'Экран' || /^-+$/.test(cells[1])) continue;
+    const etalon = cells[2].replace(/\*\*/g, '').replace(/\s*\(.*$/, '').trim();
+    const verdict = cells[cells.length - 2].replace(/\*\*/g, '').replace(/[:：].*$/, '').trim();
+    mockupTruth.set(cells[1].replace(/^\//, ''), `${etalon} → ${verdict}`.slice(0, 90));
+  }
+}
+const etalonOf = (route: string): string => mockupTruth.get(route.replace(/^\//, '')) ?? '—';
 const flagged = rows.filter((r) => r.flags.length && r.zone !== 'dev (не в релизе)');
 const count = (pred: (r: Row) => boolean): number => rows.filter(pred).length;
 const lines: string[] = [];
@@ -236,11 +253,12 @@ lines.push(`- не экраны (компоненты в app/ без перех�
 const NOTES = 'docs/work/back-button-audit-notes-2026-10-26.md';
 if (fs.existsSync(path.join(ROOT, NOTES))) lines.push(read(NOTES).trim(), '');
 lines.push('## Находки сканера (без dev-экранов)', '');
-lines.push('| экран | маршрут | роль · раздел | «назад» | ведёт | должна | Android | iOS | что не так | зона |', '|---|---|---|---|---|---|---|---|---|---|');
-for (const r of flagged) lines.push(`| ${r.file} | ${esc(r.route)} | ${r.role}${r.section ? ` · ${r.section}` : ''} | ${esc(r.back)} | ${esc(r.leads)} | ${esc(r.expected)} | ${r.android} | ${r.ios} | ${esc(r.flags.join('; '))} | ${r.zone} |`);
+lines.push(`Колонка «эталон» — из таблицы Макетов [${MOCKUP_TRUTH}](${MOCKUP_TRUTH.replace('docs/work/', '')}) (988d643cd): что на макете → вывод. «—» — эталон по этому экрану ещё не сверен; находка без эталона в правку не идёт.`, '');
+lines.push('| экран | маршрут | роль · раздел | «назад» | ведёт | должна | Android | iOS | что не так | эталон | зона |', '|---|---|---|---|---|---|---|---|---|---|---|');
+for (const r of flagged) lines.push(`| ${r.file} | ${esc(r.route)} | ${r.role}${r.section ? ` · ${r.section}` : ''} | ${esc(r.back)} | ${esc(r.leads)} | ${esc(r.expected)} | ${r.android} | ${r.ios} | ${esc(r.flags.join('; '))} | ${esc(etalonOf(r.route))} | ${r.zone} |`);
 lines.push('', '## Все экраны', '');
-lines.push('| экран | есть/нет | компонент | позиция | ведёт | должна | Android | iOS | зона |', '|---|---|---|---|---|---|---|---|---|');
-for (const r of rows) lines.push(`| ${r.file} | ${r.role === 'root' ? 'корень' : r.back.startsWith('нет') ? 'нет' : 'есть'} | ${esc(r.back)} | ${r.position} | ${esc(r.leads)} | ${esc(r.expected)} | ${r.android} | ${r.ios} | ${r.zone} |`);
+lines.push('| экран | есть/нет | компонент | позиция | ведёт | должна | Android | iOS | эталон | зона |', '|---|---|---|---|---|---|---|---|---|---|');
+for (const r of rows) lines.push(`| ${r.file} | ${r.role === 'root' ? 'корень' : r.back.startsWith('нет') ? 'нет' : 'есть'} | ${esc(r.back)} | ${r.position} | ${esc(r.leads)} | ${esc(r.expected)} | ${r.android} | ${r.ios} | ${esc(etalonOf(r.route))} | ${r.zone} |`);
 // зачем (координатор 26.10: «раздел Дизайна не трогай»): разделы других сессий живут ниже маркера — пересборка их переносит, а не стирает
 const FOREIGN_MARK = '## Разделы других сессий';
 const previous = fs.existsSync(OUT) ? fs.readFileSync(OUT, 'utf8') : '';

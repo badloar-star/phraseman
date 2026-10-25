@@ -433,6 +433,23 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     onRequestClose();
   }, [deleting, onRequestClose]);
 
+  // зачем (координатор 26.10, аудит «назад»): системная «назад» (Android, тап по фону) ведёт туда, откуда пришли: из окна
+  // «Удалить навсегда?» — в окно 1, как кнопка «Назад»; иначе закрывает окно. Пока идёт удаление — не делает ничего.
+  const handleSystemBack = useCallback(() => {
+    if (deleting || deleteInFlightRef.current) {
+      console.log('[ACCOUNT-DELETE-UI] back ignored reason=in_flight'); // guard-ok: ранний выход логируется
+      return;
+    }
+    if (variantB && variantBStep === 'now') {
+      setDeleteConfirmInput('');
+      setHandoffFailedNote(false);
+      setVariantBStep('grace');
+      console.log('[ACCOUNT-DELETE-UI] step', JSON.stringify({ to: 'grace', via: 'system_back' })); // guard-ok: переход окна
+      return;
+    }
+    onRequestClose();
+  }, [deleting, onRequestClose, variantB, variantBStep]);
+
   // зачем: окно удаления аккаунта — Liquid Glass по макету PRF-21 (confirm/pending): заголовок,
   // короткое предупреждение, слово-подтверждение, «Отмена» (тон темы) и «Удалить» (семантика
   // ошибки — единственный красный элемент). Зелёных поверхностей нет, обводок нет.
@@ -676,9 +693,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     return (
       <HybridAlertShell
         visible={visible}
-        onRequestClose={() => {
-          if (!deleting) onRequestClose();
-        }}
+        onRequestClose={handleSystemBack}
         shadowColor={EXEMPT_COLOR_1}
         testID="delete-account-modal-hybrid"
         scrollContent={false}
@@ -690,9 +705,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   }
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {
-      if (!deleting) onRequestClose();
-    }}>
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleSystemBack}>
       {panel}
     </Modal>
   );

@@ -136,7 +136,8 @@ describe('строка «Не получилось» после тихих по�
   it('окно ставит признак только на ветках отказа variantB, снимает при новой попытке и смене шага; лог с причиной', () => {
     const modal = readSource('components/DeleteAccountConfirmModal.tsx');
     expect(modal.split('setHandoffFailedNote(true);').length - 1).toBe(2);
-    expect(modal.split('setHandoffFailedNote(false);').length - 1).toBe(4);
+    // открытие, новая попытка, «Удалить навсегда сейчас», «Назад», системная «назад» из окна 2
+    expect(modal.split('setHandoffFailedNote(false);').length - 1).toBe(5);
     expect(modal).toContain("console.warn('[ACCOUNT-DELETE]', JSON.stringify({ step: 'handoff_failed_note_shown', mode, lastReason: res.reason }));");
     expect(modal).toContain('failureNote={handoffFailedNote ? variantBCopy.handoffFailed : null}');
     const confirm = modal.slice(modal.indexOf('const handleConfirmDelete'), modal.indexOf('const handleCancel'));
@@ -145,5 +146,25 @@ describe('строка «Не получилось» после тихих по�
       const variantB = body.slice(body.indexOf('if (variantB) {'), body.indexOf('showInfoAlert('));
       expect(variantB).toContain('setHandoffFailedNote(true);');
     }
+  });
+});
+
+// зачем (координатор 26.10, аудит «назад»): системная «назад» окна удаления — туда, откуда пришли; во время удаления — ничего.
+describe('системная «назад» окна удаления', () => {
+  const modal = readSource('components/DeleteAccountConfirmModal.tsx');
+  const handler = modal.slice(modal.indexOf('const handleSystemBack = useCallback(() => {'), modal.indexOf('}, [deleting, onRequestClose, variantB, variantBStep]);'));
+
+  it('обе оболочки окна (гибридная и Modal) зовут одну функцию', () => {
+    expect(modal.split('onRequestClose={handleSystemBack}').length - 1).toBe(2);
+    expect(modal).not.toContain('if (!deleting) onRequestClose();');
+  });
+
+  it('пока идёт удаление — ничего не делает (необратимый шаг не прерывается); окно 2 → окно 1; иначе закрыть', () => {
+    expect(handler.indexOf('if (deleting || deleteInFlightRef.current) {')).toBeGreaterThan(-1);
+    expect(handler.indexOf("console.log('[ACCOUNT-DELETE-UI] back ignored reason=in_flight');")).toBeLessThan(handler.indexOf("if (variantB && variantBStep === 'now') {"));
+    const toGrace = handler.slice(handler.indexOf("if (variantB && variantBStep === 'now') {"), handler.indexOf('onRequestClose();'));
+    expect(toGrace).toContain("setVariantBStep('grace');");
+    expect(toGrace).toContain('return;');
+    expect(handler.trim().endsWith('onRequestClose();')).toBe(true);
   });
 });

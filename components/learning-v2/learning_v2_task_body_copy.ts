@@ -13,7 +13,7 @@ export type LearningV2TaskBodyCopyKey = 'situation' | 'answer' | 'sayThis';
 
 const COPY: Readonly<Record<LearningV2TaskBodyCopyKey, Nine>> = {
   situation: ['Ситуация', 'Ситуація', 'Situation', 'Situación', 'Situação', 'Tình huống', 'Situasi', 'Durum', 'Sytuacja'],
-  answer: ['Ответь', 'Дай відповідь', 'Answer', 'Responde', 'Responda', 'Hãy trả lời', 'Jawab', 'Cevap ver', 'Odpowiedz'],
+  answer: ['Ответь', 'Дай відповідь', 'Answer', 'Responde', 'Responda', 'Trả lời', 'Jawab', 'Cevap ver', 'Odpowiedz'],
   sayThis: ['Скажи так', 'Скажи так', 'Say it like this', 'Dilo así', 'Diga assim', 'Hãy nói thế này', 'Katakan begini', 'Şöyle söyle', 'Powiedz tak'],
 };
 

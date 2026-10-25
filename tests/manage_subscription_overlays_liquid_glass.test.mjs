@@ -168,6 +168,8 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     '../components/LangContext': { useLang: () => ({ lang }) },
     '../constants/i18n': { triLang: (active, copy) => copy[active], Lang: {} },
     '../constants/liquidGlassThemePalette': { liquidGlassTokens: id => { calls.tokenIds.push(id); return glass; } },
+    // зачем (контраст-гейт OTA 25.10, Темы): подпись плашек статистики доводится legibleOn — в стенде тон проходит как есть
+    '../constants/liquidGlassSurfaceRoles': { flattenOver: (top) => top, legibleOn: (color) => color },
     '../hooks/use-screen': { useScreen: () => ({ contentMaxW: 640, rawBottomInset }) },
     '../components/keyboardAvoidance': { useKeyboardBottomInset: enabled => enabled ? currentKeyboardBottomInset : 0 },
     '../components/paywall/paywallShared': { usePaywallChrome: () => ({}) },

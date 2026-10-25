@@ -44,6 +44,7 @@ import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { flattenOver, legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import { useScreen } from '../hooks/use-screen';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim, storeUnreachableToast } from './paywall_purchase';
@@ -267,6 +268,9 @@ export default function ManageSubscription() {
   const L = lang as Lang;
   const { fontSize, uiScale, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (контраст-гейт OTA 25.10, Темы): подпись плашек «дней подряд / уроков» — secondary на buttonFillDisabled поверх шторки давала
+  // до 3,09 в 78 из 174 сочетаний; тот же серый тон темы, доведённый к тексту до ≥ 4,5 на плашке
+  const offerStatLabelInk = legibleOn(glass.secondary, glass.text, [flattenOver(glass.buttonFillDisabled, flattenOver(glass.opaqueSheet, glass.bg))], 4.55);
   const designScale = FONT_SCALE[fontSize] / FONT_SCALE.medium * uiScale;
   const scaled = useCallback((value: number) => Math.round(value * designScale), [designScale]);
   const LP = (
@@ -1062,7 +1066,7 @@ export default function ManageSubscription() {
                   {offerProgress.streak > 0 && (
                     <View style={[S.offerStat, { backgroundColor: glass.buttonFillDisabled }]}>
                       <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.streak}</Text>
-                      <Text style={[S.offerStatLabel, { color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18) }]}>
+                      <Text style={[S.offerStatLabel, { color: offerStatLabelInk, fontSize: scaled(13), lineHeight: scaled(18) }]}>
                         {LP('дней подряд', 'днів поспіль', 'days in a row', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
                       </Text>
                     </View>
@@ -1070,7 +1074,7 @@ export default function ManageSubscription() {
                   {offerProgress.lessonsCompleted > 0 && (
                     <View style={[S.offerStat, { backgroundColor: glass.buttonFillDisabled }]}>
                       <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.lessonsCompleted}</Text>
-                      <Text style={[S.offerStatLabel, { color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18) }]}>
+                      <Text style={[S.offerStatLabel, { color: offerStatLabelInk, fontSize: scaled(13), lineHeight: scaled(18) }]}>
                         {LP('уроков', 'уроків', 'lessons', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
                       </Text>
                     </View>

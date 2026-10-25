@@ -206,6 +206,8 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     '../components/v2/ScreenBackButton': { __esModule: true, default: 'ScreenBackButton', ScreenBackSlot: 'ScreenBackSlot', ScreenOriginBelowSafeTop: ({ children }) => children }, // 22.10: «назад» — общая кнопка
     '../hooks/use-screen': { useScreen: () => ({ contentMaxW: 640, rawBottomInset: 0 }) },
     '../constants/liquidGlassThemePalette': { liquidGlassTokens: id => { calls.tokenIds.push(id); return glass; } },
+    // зачем (контраст-гейт OTA 25.10, Темы): подпись плашек статистики доводится legibleOn — в стенде тон проходит как есть
+    '../constants/liquidGlassSurfaceRoles': { flattenOver: (top) => top, legibleOn: (color) => color },
     '../constants/i18n': { triLang: (active, copy) => copy[active], Lang: {} },
     '../components/paywall/paywallShared': { usePaywallChrome: () => ({ bgColors: ['#000', '#111'], tc: { heroAccent: '#ace', ctaBg: '#fff', ctaText: '#000' }, textPrimary: '#fff', textMuted: '#aaa', cardBg: '#222' }), PaywallCloseButton: 'PaywallCloseButton' },
     './revenuecat_init': { initRevenueCat: async () => {}, resolvePremiumPackages: () => ({ yearly: yearlyPackage ? yearlyPkg : null }), syncRevenueCatIdentity: async () => true },

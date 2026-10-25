@@ -4,7 +4,7 @@ import { switchOffTrackTone, switchOnTone } from '../components/settings/switch_
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Text, View } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -356,7 +356,7 @@ export default function SettingsEdu() {
       value: fcSfx,
       label: L({ ru: 'Звуковые эффекты', uk: 'Звукові ефекти', en: 'Sound effects', es: 'Efectos de sonido', 'pt-BR': 'Efeitos sonoros', vi: 'Hiệu ứng âm thanh', id: 'Efek suara', tr: 'Ses efektleri', pl: 'Efekty dźwiękowe' }),
       sub: L({ ru: 'Короткие звуки в карточках и тренировках', uk: 'Короткі звуки у картках і тренуваннях', en: 'Brief sounds in cards and training', es: 'Sonidos breves en tarjetas y entrenamientos', 'pt-BR': 'Sons curtos em cartões e treinos', vi: 'Âm thanh ngắn trong thẻ và luyện tập', id: 'Suara singkat di kartu dan latihan', tr: 'Kartlarda ve antrenmanlarda kısa sesler', pl: 'Krótkie dźwięki w kartach i ćwiczeniach' }),
-      icon: 'volume-high-outline' as const,
+      icon: 'volume-high' as const, // зачем (Сверка settings-gap-015, макет settings-gaps-states): значок звука в макете залитый, не контурный
       onValueChange: (value: boolean) => { setFcSfx(value); void Promise.resolve(setFcSfxEnabled(value)).catch(logToggleSaveFailure('fc_sfx', () => setFcSfx((current) => (current === value ? !value : current)))); },
     },
     {
@@ -365,7 +365,7 @@ export default function SettingsEdu() {
       label: L({ ru: 'Автопроизношение', uk: 'Автовимова', en: 'Auto pronunciation', es: 'Pronunciación automática', 'pt-BR': 'Pronúncia automática', vi: 'Tự động phát âm', id: 'Pelafalan otomatis', tr: 'Otomatik telaffuz', pl: 'Automatyczna wymowa' }),
       // зачем (D188-следствие, 14.10): озвучка работает для любого изучаемого языка — подпись не называет английский.
       sub: L({ ru: 'Озвучивать фразу после ответа', uk: 'Озвучувати вислів після відповіді', en: 'Read the phrase aloud after answering', es: 'Leer la frase después de responder', 'pt-BR': 'Ler a frase após responder', vi: 'Đọc câu sau khi trả lời', id: 'Bacakan frasa setelah menjawab', tr: 'Cevaptan sonra ifadeyi oku', pl: 'Odczytaj zdanie po odpowiedzi' }),
-      icon: 'volume-high-outline' as const,
+      icon: 'volume-high' as const, // зачем (Сверка settings-gap-015, макет settings-gaps-states): значок звука в макете залитый, не контурный
       onValueChange: (value: boolean) => { setFcAutoSpeak(value); void Promise.resolve(setFcAutoSpeakEnabled(value)).catch(logToggleSaveFailure('fc_autospeak', () => setFcAutoSpeak((current) => (current === value ? !value : current)))); },
     },
   ];
@@ -428,7 +428,7 @@ export default function SettingsEdu() {
 
             <View style={[rowStyle, { marginTop: 10, alignItems: 'flex-start' /* зачем (settings-gaps-states): в карточке скорости значок вверху, как в макете */ }]}>
               <PlateFill g={glass} radius={14} />
-              <RowIcon name="volume-high-outline" />
+              <RowIcon name="volume-high" />
               <View style={{ flex: 1, minWidth: 0 }}>
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
                   <Text style={[titleStyle, { flex: 1, minWidth: 0 }]}>{loc.edu.speed}</Text>
@@ -436,7 +436,7 @@ export default function SettingsEdu() {
                 </View>
                 <Text style={subStyle}>{loc.edu.speedHint}</Text>
                 <Slider
-                  style={{ width: '100%', height: 44 }}
+                  style={{ height: 44, alignSelf: 'stretch', ...(Platform.OS === 'android' ? { marginHorizontal: -16 } : null) /* зачем (Сверка settings-gap-015): на Android у ползунка свои поля ~16 по бокам — трек выходит короче колонки; в макете трек на всю ширину колонки */ }}
                   minimumValue={0.8}
                   maximumValue={1.3}
                   step={0.1}
@@ -478,10 +478,10 @@ export default function SettingsEdu() {
                 уступает колонка названия (подпись под ним уходит на 2-ю строку), а значение держит одну строку до 120. Раньше колонка не
                 сжималась, её ширину задавала подпись, и «Австралия · 2» складывалась в три строки. */}
             <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}><Text style={titleStyle}>{voiceRowTitle}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
-            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 0, maxWidth: 120, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится внутри 120, без обрезки; отступ — только gap строки 14, как в образце */ }}>
+            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 0, maxWidth: 120, textAlign: 'right', marginLeft: -6 /* зачем (Сверка settings-gap-015): «Голос озвучки (EN)» переносился на 2 строки при запасе в пару dp — зазоры значение↔колонка и значение↔стрелка уменьшены на 6 и 8 dp, название держит одну строку (в макете одна). Прежде: text-integrity — длинное имя голоса переносится внутри 120, без обрезки; отступ — только gap строки 14, как в образце */ }}>
               {voiceValue ?? L({ ru: 'Системный', uk: 'Системний', en: 'System', es: 'Del sistema', 'pt-BR': 'Do sistema', vi: 'Hệ thống', id: 'Sistem', tr: 'Sistem', pl: 'Systemowy' })}
             </Text>
-            <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+            <Ionicons name="chevron-forward" size={20} color={t.textMuted} style={{ marginLeft: -8 }} />
             </PressableHybrid>
           </BouncyScrollView>
         </ContentWrap>

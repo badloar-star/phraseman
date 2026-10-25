@@ -13,12 +13,19 @@ jest.mock('../app/learning_v2_course_released_session_client_v3', () => ({
 let mockUuid = 0;
 jest.mock('expo-crypto', () => ({ randomUUID: () => `run-${++mockUuid}` }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn(), warn: jest.fn() } }));
+const mockAppListeners: ((state: string) => void)[] = [];
+jest.mock('react-native', () => ({
+  InteractionManager: { runAfterInteractions: (cb: () => void) => { cb(); return { cancel: () => undefined }; } },
+  AppState: { currentState: 'active', addEventListener: (_: string, cb: (state: string) => void) => { mockAppListeners.push(cb); return { remove: () => undefined }; } },
+}));
+jest.mock('../app/account_owner_change', () => ({ onAccountOwnerChanged: () => undefined }));
 
 import {
   __resetLearningV2PreparedSlotForTests,
   isLearningV2SessionReadyV1,
   prepareLearningV2SessionRunV1,
   prewarmLearningV2SessionRunV1,
+  scheduleLearningV2SessionPrewarmV1,
 } from '../app/learning_v2_session_launch_v1';
 
 const at = (lessonOrdinal: number, sessionOrdinal: number) => ({
@@ -88,6 +95,19 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: урок готов до тапа
     const prewarmAt = player.indexOf('scheduleNextLearningV2SessionPrewarmV1(');
     expect(commitAt).toBeGreaterThan(0);
     expect(prewarmAt).toBeGreaterThan(commitAt);
+  });
+
+  it('the app went to the background before the pause ended: no build until it is back', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { AppState } = require('react-native') as { AppState: { currentState: string } };
+    AppState.currentState = 'background';
+    scheduleLearningV2SessionPrewarmV1(at(3, 2), 'home', 5);
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(mockPrepare).not.toHaveBeenCalled();
+    AppState.currentState = 'active';
+    mockAppListeners.forEach((listener) => listener('active'));
+    for (let i = 0; i < 40 && mockPrepare.mock.calls.length === 0; i += 1) await new Promise((resolve) => setTimeout(resolve, 2));
+    expect(mockPrepare).toHaveBeenCalledTimes(1);
   });
 
   it('the prewarm stays off the first frame: after interactions, with a pause', () => {

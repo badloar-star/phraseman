@@ -9,7 +9,7 @@
 // и Главная запускают занятие этими функциями — копий подготовки нет.
 // ═══════════════════════════════════════════════════════════════════════════
 import * as Crypto from 'expo-crypto';
-import { InteractionManager } from 'react-native';
+import { AppState, InteractionManager } from 'react-native';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { DebugLogger } from './debug-logger';
 import type { LearningV2CourseSessionReadyHandleV3 } from './learning_v2_course_released_session_client_v3';
@@ -192,14 +192,37 @@ export function scheduleLearningV2SessionPrewarmV1(
 ): () => void {
   let timer: ReturnType<typeof setTimeout> | null = null;
   let cancelled = false;
+  let appStateSub: { remove: () => void } | null = null;
+  const sessionTag = `lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal}`;
+  const arm = () => {
+    timer = setTimeout(() => {
+      timer = null;
+      // зачем (координатор 25.10): приложение ушло в фон до конца паузы — не собираем занятие в фоне (батарея, убийство
+      // процесса системой); дожидаемся возврата и снова даём паузу, чтобы не попасть на первый кадр после возврата.
+      if (AppState.currentState !== 'active') {
+        console.log(`[V2-PREPARE] prewarm_deferred ${sessionTag} reason=${reason} app_state=${AppState.currentState}`); // guard-ok: ранний выход с причиной
+        appStateSub?.remove();
+        appStateSub = AppState.addEventListener('change', (next) => {
+          if (next !== 'active' || cancelled) return;
+          appStateSub?.remove();
+          appStateSub = null;
+          arm();
+        });
+        return;
+      }
+      void prewarmLearningV2SessionRunV1(locator, reason);
+    }, delayMs);
+  };
   const task = InteractionManager.runAfterInteractions(() => {
     if (cancelled) return;
-    timer = setTimeout(() => { timer = null; void prewarmLearningV2SessionRunV1(locator, reason); }, delayMs);
+    arm();
   });
   return () => {
     cancelled = true;
     task.cancel?.();
     if (timer) clearTimeout(timer);
+    appStateSub?.remove();
+    appStateSub = null;
   };
 }
 

@@ -47,7 +47,16 @@ import { checkAchievements } from './achievements';
 import { STORE_URL } from './config';
 import { checkGemAchievements, getMedalTier, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
 import { lessonScoreToPercent, lessonStarCountFromPercent } from './lesson_star_scale';
-import { markNextNavigationAsReplace } from './navigation_back';
+import { dismissToTabRoute, markNextNavigationAsReplace } from './navigation_back';
+
+/**
+ * Выход из итога урока в список уроков.
+ * зачем (аудит «назад» 26.10, наблюдение Дизайна): /lessons_list — повторный экспорт вкладки «Уроки». replace итога на него
+ * клал поверх вкладки вторую копию списка; свайп iOS снимал копию и показывал тот же список ещё раз — петля, запрещённая
+ * владельцем. dismissToTabRoute сворачивает стек до вкладки «Уроки» (журнал [NAV-BACK] dismiss_to_tab). Параметр id вкладка
+ * не читает — к текущему уроку она прокручивает сама.
+ */
+const COMPLETE_TO_LESSONS_TAB = '/(tabs)/lessons';
 import { scheduleD1PersonalizedReminder } from './notifications';
 import { resolveNotificationLang } from './notification_lang';
 import {
@@ -1358,9 +1367,8 @@ export default function LessonComplete() {
             return;
           }
           void prefetchLessonMenuCache(next, studyTarget).catch(noteSwallowedHandler('lesson_complete:goNext.prefetchLessonMenuCache'));
-          markNextNavigationAsReplace();
           DebugLogger.info('[LESSON-NEXT]', `lesson=${lessonId}→${next}: проверки заняли ${Date.now() - tapAt}мс, уходим на список`);
-          router.replace({ pathname: '/lessons_list', params: { id: next } });
+          dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB);
         } catch (error: unknown) {
           // зачем (ревью Ядра 2dba22af6, координатор 13.10): падение readLegacyFreeLessonCap / router.replace было необработанным отказом — без строки в журнале, а кнопка разблокировалась молча.
           // Теперь причина в [LESSON-NEXT], человеку понятный тост (та же строка ошибки на 9 языках, что в DialogWhySheet), остаёмся на итоге; кнопку разблокирует finally ниже.
@@ -1393,8 +1401,7 @@ export default function LessonComplete() {
   const goBackFromComplete = useCallback(() => {
     if (!navOnce(`lesson_complete:back:${lessonId}`)) return; // зачем (аудит R58 #31, 15.10): «К урокам»/«Назад» без защиты от двойного тапа — два replace подряд
     hapticTap();
-    markNextNavigationAsReplace();
-    router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
+    dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB);
   }, [router, lessonId]);
 
   // зачем (Ревизор 2.76, координатор 15.10): «Добить» вёл прямо в тренировку без чека — Free добивал ошибки мимо дневной квоты.

@@ -58,15 +58,18 @@ describe('lesson complete back loop guard', () => {
     expect(handlerSlice).not.toContain("'/lesson1'");
   });
 
-  it('header back and hardware back share one safe destination (lessons_list)', () => {
+  it('header back and hardware back share one safe destination (the Lessons tab)', () => {
     const source = completeSource();
     expect(source).toContain('const goBackFromComplete = useCallback(');
     // зачем (разбор красных 15.10): 31029c044 добавил строку замка двойного тапа (navOnce) — фиксированные 220 символов больше
     // не доставали до перехода; режем по концу колбэка, проверки ниже прежние
     const backStart = source.indexOf('const goBackFromComplete = useCallback(');
     const backFn = source.slice(backStart, source.indexOf('}, [router, lessonId]);', backStart));
-    expect(backFn).toContain("pathname: '/lessons_list'");
-    expect(backFn.indexOf('markNextNavigationAsReplace()')).toBeLessThan(backFn.indexOf('router.replace'));
+    // зачем (аудит «назад» 26.10, наблюдение Дизайна): replace на /lessons_list клал поверх вкладки «Уроки» вторую копию списка
+    // (/lessons_list = та же вкладка), свайп iOS показывал её второй раз. Один безопасный выход теперь — свернуть стек до вкладки.
+    expect(source).toContain("const COMPLETE_TO_LESSONS_TAB = '/(tabs)/lessons';");
+    expect(backFn).toContain('dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB)');
+    expect(backFn).not.toContain("'/lesson1'");
   });
 
   it('marks both lesson-to-result replacements so the abandoned lesson leaves custom history', () => {

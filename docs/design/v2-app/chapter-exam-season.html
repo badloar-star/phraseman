@@ -818,7 +818,7 @@ const back = (e, cls, mode = 'mid') => {
   return `<div class="c4card ${cls}${st === 'lock' ? ' mute' : ''}" style="background:${art(c.h, (e % 8) * 4)}"><span class="gl">${io(c.ic)}</span><div class="top"><span class="qchip glass">${st === 'lock' ? io('lock-closed') : st === 'done' ? io('checkmark') : ''}Эпизод ${e}</span></div><div class="big">${EP[e].p}</div></div>`;
 };
 const exCard = (cls = '') => `<div class="c4card c4exam${cls}"><div class="top"><span class="seal">${io('trophy')}</span><span class="r">можно сдать заранее</span></div><div class="big" style="font-size:32px">Экзамен главы 2</div>`
-  + `<div class="ru">Вопросы из эпизодов 9–15. Сдашь от 10 из 12, и откроется глава 3, а эпизоды 13–16 станут открыты.</div><div class="f"><span>12 вопросов</span><span>от 10 верных</span><span>~7 минут</span></div>`
+  + `<div class="ru">Вопросы из эпизодов 9–15. Сдашь — откроется глава 3.</div><div class="f"><span>12 вопросов</span></div>`
   + `<div class="qbtn white t">${io('trophy')}Сдать экзамен</div><div class="ru" style="text-align:center;font-size:14px;margin-top:10px">С Plus экзамен бесплатный</div></div>`;
 const acts = (all = true) => `<div class="hacts">${all ? `<span class="qchip t">${io('copy-outline')}Вся глава</span>` : ''}<span class="qchip t">${io('albums-outline')}Слова</span><span class="qchip t">${io('book-outline')}Теория</span></div>`;
 
@@ -900,15 +900,14 @@ const inFlow = (st) => {
 };
 /* ── 2 · тап по карте экзамена: карта крупно ── */
 const zoomX = (plus) => `<div class="qdim"></div><div class="h2zoom"><div class="c4card c4exam"><div class="top"><span class="seal">${io('trophy')}</span><span class="r"><span class="qround glass" style="width:34px;height:34px;font-size:16px">${io('close')}</span></span></div>`
-  + `<div class="big" style="font-size:32px">Экзамен главы 2</div><div class="ru">По эпизодам 9–15. Сдашь от 10 из 12, и откроется глава 3, а эпизоды 13–16 станут открыты.</div><div class="f"><span>12 вопросов</span><span>от 10 верных</span><span>~7 минут</span></div>`
+  + `<div class="big" style="font-size:32px">Экзамен главы 2</div><div class="ru">По эпизодам 9–15. Сдашь — откроется глава 3.</div><div class="f"><span>12 вопросов</span></div>`
   + `<div class="qbtn white t">${io('play')}Начать экзамен${plus ? '' : `<span class="xen">${io('flash')}1</span>`}</div>${plus ? '<div class="ru" style="text-align:center;font-size:14px;margin-top:10px">С Plus экзамен бесплатный</div>' : ''}<div class="qbtn glass t">Позже</div></div></div>`;
 const zoomed = (plus) => T(phone(`<div style="height:52px"></div>${top2()}${c1sec('Глава 2 из 7', CH[1].scene, '3 из 8')}${flowX([[15, 'lock'], [16, 'lock'], ['x', 'avail'], [17, 'lock'], [18, 'lock']])}${capX('avail')}${acts()}<div style="height:140px"></div>`, { ...OPT2, overlay: zoomX(plus) }));
 // зачем (координатор 25.10): окно экзамена в состояниях «сдан» и «пауза» — тот же вид карты, ✕ справа сверху, короткие тексты без механики
 const zoomHead = (ic) => `<div class="qdim"></div><div class="h2zoom"><div class="c4card c4exam"><div class="top"><span class="seal">${io(ic)}</span><span class="r"><span class="qround glass" style="width:34px;height:34px;font-size:16px">${io('close')}</span></span></div>`;
-const zoomPass = (retake) => zoomHead('checkmark') + '<div class="big" style="font-size:32px">Экзамен сдан</div><div class="ru">11 из 12 верно. Глава 3 открыта.</div>'
-  + (retake
-    ? `<div class="qbtn white t">${io('refresh-outline')}Пройти ещё раз<span class="xen">${io('flash')}1</span></div><div class="qbtn glass t">Закрыть</div>`
-    : `<div class="qbtn white t">${io('play')}К главе 3</div><div class="qbtn glass t">Закрыть</div>`) + '</div></div>';
+// зачем (координатор 25.10): пересдачи после сдачи нет — в окне «сдан» «▶ К главе N» и «Закрыть»
+const zoomPass = () => zoomHead('checkmark') + '<div class="big" style="font-size:32px">Экзамен сдан</div><div class="ru">11 из 12 верно. Глава 3 открыта.</div>'
+  + `<div class="qbtn white t">${io('play')}К главе 3</div><div class="qbtn glass t">Закрыть</div></div></div>`;
 const zoomPause = () => zoomHead('time-outline') + '<div class="big" style="font-size:32px">Пересдать через 59 мин</div><div class="ru">Попытка: 9 из 12.</div><div class="qbtn glass t">Закрыть</div></div></div>';
 const zoomedState = (st, over) => T(phone(`<div style="height:52px"></div>${top2()}${c1sec('Глава 2 из 7', CH[1].scene, '3 из 8')}${flowX([[15, st === 'pass' ? 'open' : 'lock'], [16, st === 'pass' ? 'open' : 'lock'], ['x', st], [17, st === 'pass' ? 'open' : 'lock'], [18, st === 'pass' ? 'open' : 'lock']])}${capX(st)}${acts()}<div style="height:140px"></div>`, { ...OPT2, overlay: over }));
 
@@ -958,7 +957,7 @@ const tDone = () => R(`<div class="res" style="text-align:left"><span class="ich
 /* ── страница ── */
 const SECS = [
   ['ex1', '1 · Экзамен в карусели', 'Экзамен главы — последняя карта карусели, за ней начинаются карты следующей главы. Три состояния: можно сдать заранее; не сдал — «Разбор ошибок» и пересдача через час; сдал — глава 3 открыта, эпизоды 13–16 «просто открыты» (без звёзд, не пройдены).', [['Экзамен доступен', () => inFlow('avail')], ['Не сдал: пауза на час', () => inFlow('pause')], ['Сдал: глава 3 открыта', () => inFlow('pass')]]],
-  ['ex2', '2 · Тап по карте экзамена', 'Карта раскрывается крупно, как закрытый эпизод в способе 2. Free видит цену на кнопке, 1 энергия; Plus — «С Plus экзамен бесплатный». Сердечек нет. Сдан — результат, что открылось, «Пройти ещё раз» (если можно) или «К главе 3», и «Закрыть». Пауза — сколько осталось до пересдачи и «Закрыть».', [['Free', () => zoomed(false)], ['Plus', () => zoomed(true)], ['Сдан · можно пройти ещё раз', () => zoomedState('pass', zoomPass(true))], ['Сдан · без пересдачи', () => zoomedState('pass', zoomPass(false))], ['Пауза · пересдача через час', () => zoomedState('pause', zoomPause())]]],
+  ['ex2', '2 · Тап по карте экзамена', 'Карта раскрывается крупно, как закрытый эпизод в способе 2. Free видит цену на кнопке, 1 энергия; Plus — «С Plus экзамен бесплатный». Сердечек нет. Сдан — результат, что открылось, «К главе 3» и «Закрыть» (пересдачи после сдачи нет). Пауза — сколько осталось до пересдачи и «Закрыть».', [['Free', () => zoomed(false)], ['Plus', () => zoomed(true)], ['Сдан', () => zoomedState('pass', zoomPass())], ['Пауза · пересдача через час', () => zoomedState('pause', zoomPause())]]],
   ['ex3', '3 · Сам экзамен', '«Экзамен · N / 12», без сердечек и энергии. Разные задания из эпизодов главы по одобренной схеме: что сделать, ситуация, цель. Ответ сразу: верно — зелёная строка с «почему», неверно — правильный ответ и «почему».', [['Вопрос 1 · Собери фразу', q1], ['Вопрос 4 · верно', q4], ['Вопрос 7 · неверно', q7]]],
   ['ex4', '4 · Итог', 'Сдал — «11 из 12», награда и карта новой главы. Не сдал — «9 из 12», «Разбор ошибок», пересдача через час.', [['Сдал', passed], ['Не сдал', failed]]],
   ['ex5', '5 · Разбор ошибок', 'Каждая ошибка: вопрос, что ответил, как правильно, короткое «почему» и «Повторить эпизод N» к той теме, где ошибка.', [['Разбор', review]]],

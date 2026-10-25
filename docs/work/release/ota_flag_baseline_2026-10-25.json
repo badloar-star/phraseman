@@ -57,6 +57,18 @@
   "premium_theme_webgl_motion_enabled": false,
   "plus_server_recheck_enabled": false,
   "apple_signin_revoke_enabled": false,
-  "discount_offer_banner_enabled": false
- }
+  "discount_offer_banner_enabled": false,
+  "paywall_m_enabled": false
+ },
+ "notes": {
+  "paywall_m_enabled": "c27fb3114: пейвол М, ВЫКЛ до склейки экран=макет, решение владельца 25.10 (добавлен Ревизором по поручению координатора)"
+ },
+ "updates": [
+  {
+   "rev": "c27fb3114",
+   "added": [
+    "paywall_m_enabled=false"
+   ]
+  }
+ ]
 }

@@ -154,3 +154,8 @@ Outcome: zone_contrast_measure по Диалогам (список сценар�
 Governance-ID: TG-EF6AFAB94792
 
 Outcome: (1) онбординг в этом OTA не перекрашивается — в CleanOnboarding.tsx и onboarding_aha/aha_theme.ts шапка theme-exempt с причиной «до выбора темы; перевод на тему по умолчанию — после OTA, через макет владельцу»; сторож tests/onboarding_pre_theme_palette_exemption.test.mjs: исключение только у перечисленных файлов, число цветов в каждом не растёт, новый файл онбординга с литералом цвета ломает сторож (общий сканер пропускает /onboarding/i — дыра закрыта); (2) литералы из docs/work/color-literal-census-2026-10-25.md — в токены темы в свободных файлах, по заметности, со сторожем на 174. Scope: перечисленные файлы, сторожа, отчёт переписи. Architecture: только токены, вид прежний. Security/Debt: онбординг — долг до после OTA, записан. Verification: сторожа + соседние тесты, babel-разбор. Rollback: git revert.
+
+## Продолжение: фактура главной кнопки не прячет подпись; значок уведомлений на токенах (решения координатора 25.10)
+Governance-ID: TG-EF6AFAB94792
+
+Outcome: (1) перемер окна «Восстановить аккаунт?» (просьба ВХОДа) выявил системную просадку — ThemeAccentFill клал accentGradient поверх ctaFill, подпись ctaFillInk в 12 из 174 падала до 1,3–3,0; ThemeAccentFill получает ink и не рисует фактуру, если подпись на ней < 4,5 (AccountRestoreSummaryDialog, GlassAlertDialog, CardsSessionResultV2, LearningV2Glass), сторож 174. (2) значок уведомлений — вариант Б: один источник в homeNotificationBadge (оттенок bad темы, кружок ≥ 3 к поверхности, цифра ≥ 4,5), сторож 174.

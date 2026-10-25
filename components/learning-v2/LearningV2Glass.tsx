@@ -285,7 +285,7 @@ export const Lv2Cta = memo(function Lv2Cta({
         style,
       ]}
     >
-      {!disabled && !ghost ? <ThemeAccentFill glass={g} radius={26} /> : null}
+      {!disabled && !ghost ? <ThemeAccentFill glass={g} radius={26} ink={g.ctaFillInk} /> : null}
       {left ? <Ionicons name={left} size={18} color={ink} /> : null}
       <Text style={[styles.ctaText, { color: ink }]}>{children}</Text>
       {right ? <View style={styles.ctaRight}>{right}</View> : null}

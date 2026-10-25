@@ -254,7 +254,7 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
             style={s.flex}
             contentStyle={[s.cta, { backgroundColor: g.ctaFill, boxShadow: actionBoxShadow(g) }]}
           >
-            <ThemeAccentFill glass={g} radius={24} />
+            <ThemeAccentFill glass={g} radius={24} ink={g.ctaFillInk} />
             <Text style={[s.ctaText, { color: g.ctaFillInk }]}>{hasRetry ? props.retryLabel : c.done}</Text>
           </PressableHybrid>
         </View>

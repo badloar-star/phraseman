@@ -75,7 +75,7 @@ const AccountRestoreSummaryCard = memo(function AccountRestoreSummaryCard({ titl
               { opacity: pressed ? 0.88 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
             ]}
           >
-            {a.ghost ? null : <ThemeAccentFill glass={glass} radius={25} />}
+            {a.ghost ? null : <ThemeAccentFill glass={glass} radius={25} ink={glass.ctaFillInk} />}
             <Text numberOfLines={2} style={[styles.ctaText, { color: a.ghost ? glass.text : glass.ctaFillInk }]}>{a.label}</Text>
           </Pressable>
         ))}

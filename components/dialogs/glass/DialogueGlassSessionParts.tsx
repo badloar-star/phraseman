@@ -103,7 +103,7 @@ export function DialogueGlassGoalCard({
         <Ionicons name="flag-outline" size={20} color={glass.text} />
       </View>
       <View style={styles.goalText}>
-        <Text maxFontSizeMultiplier={1.3} style={[styles.goalKicker, { color: glass.secondary }]}>{kicker}</Text>
+        <Text maxFontSizeMultiplier={1.3} style={[styles.goalKicker, { color: glass.text }]}>{kicker}</Text>
         <Text maxFontSizeMultiplier={1.3} style={[styles.goalLabel, { color: glass.text }]}>{label}</Text>
       </View>
       {onHint ? <PressableHybrid
@@ -173,7 +173,7 @@ export function DialogueGlassBetterPhrasing({
       style={({ pressed }) => [styles.fixButton, { backgroundColor: glass.buttonFill, opacity: pressed ? 0.7 : 1 }]}
     >
       <Ionicons name="create-outline" size={15} color={glass.secondary} />
-      <Text maxFontSizeMultiplier={1.2} style={[styles.fixButtonText, { color: glass.secondary }]}>{label}</Text>
+      <Text maxFontSizeMultiplier={1.2} style={[styles.fixButtonText, { color: glass.text }]}>{label}</Text>
     </Pressable>
   );
 }
@@ -243,6 +243,8 @@ const styles = StyleSheet.create({
   goal: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingLeft: 10, paddingRight: 12 },
   goalTile: { width: 46, height: 46, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   goalText: { flex: 1, minWidth: 0 },
+  // зачем (замер 4 · ТЕМЫ 25.10, docs/work/cards-dialogs-contrast-2026-10-25.md): надзаголовок цели и «Исправить» — цвет glass.text
+  // (secondary давал 4,08:1 и 2,67:1 на светлых темах); иерархию держат размер и вес, не бледность.
   goalKicker: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   goalLabel: { fontSize: 16, lineHeight: 21, fontWeight: '700', marginTop: 2 },
   hintHit: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },

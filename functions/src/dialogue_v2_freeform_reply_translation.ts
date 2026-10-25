@@ -1,9 +1,8 @@
-// dialogue_v2_freeform_reply_translation.ts — перевод ответа ИИ свободного разговора на язык интерфейса человека.
-// зачем (жалоба владельца 25.10 «в диалогах нет кнопки ПЕРЕВЕСТИ», решение координатора): ход свободного разговора отдаёт
-// необязательное assistantTranslation; клиент показывает кнопку «Перевод» только когда поле есть. Перевод — короткий
-// запрос к той же модели после проверенного ответа: журнал хода, повтор хода и точные наборы полей не меняются.
-// Язык интерфейса — из профиля (новых полей в запросе нет, поэтому порядок выкладки клиента и сервера любой).
-// Любой сбой → null с причиной в журнале [DIALOGUE-V2-FREEFORM-TRANSLATE]; ход от перевода не падает.
+// dialogue_v2_freeform_reply_translation.ts — перевод одной реплики ИИ свободного разговора на язык интерфейса.
+// зачем (жалоба владельца 25.10 «в диалогах нет кнопки ПЕРЕВЕСТИ»; Ревизор по e00c839e0): перевод только по ЯВНОЙ просьбе
+// клиента (тап «Перевести») отдельным вызовом. Ответ хода не меняется — клиенты 2.0.1/2.0.2 проверяют его по точному набору
+// полей, лишнее поле уронило бы ход. Язык присылает клиент — без чтения профиля на каждый вызов.
+// Любой сбой → null с причиной в журнале [DIALOGUE-V2-FREEFORM-TRANSLATE].
 
 export type DialogueV2FreeformTranslationStudyTarget = 'en' | 'es' | 'fr' | 'de';
 
@@ -20,28 +19,12 @@ const INTERFACE_LANGUAGE_NAMES: Readonly<Record<string, string>> = Object.freeze
 });
 
 export const DIALOGUE_V2_FREEFORM_TRANSLATION_MAX_BYTES = 3_072;
-export const DIALOGUE_V2_FREEFORM_TRANSLATION_LANG_TTL_MS = 6 * 60 * 60 * 1000;
-const LANG_CACHE_MAX_ENTRIES = 1_000;
 const UNSAFE_TEXT_RE = /[\u0000-\u0009\u000b-\u001f\u007f-\u009f]/u;
 const BIDI_CONTROL_RE = /[؜‎‏‪-‮⁦-⁩]/u;
 
-function text(value: unknown): string {
-  return typeof value === 'string' ? value.trim() : '';
-}
-
-function record(value: unknown): Record<string, unknown> {
-  return value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : {};
-}
-
-/** Язык интерфейса из документа users/{uid}: lang → app_lang → progress.lang → progress.app_lang (как рассылки). */
-export function dialogueV2FreeformInterfaceLanguageFromProfile(data: unknown): string | null {
-  const profile = record(data);
-  const progress = record(profile.progress);
-  for (const candidate of [profile.lang, profile.app_lang, progress.lang, progress.app_lang]) {
-    const value = text(candidate);
-    if (Object.prototype.hasOwnProperty.call(INTERFACE_LANGUAGE_NAMES, value)) return value;
-  }
-  return null;
+/** Язык интерфейса, на который умеем переводить; иначе null. */
+export function dialogueV2FreeformTranslationLanguage(value: unknown): string | null {
+  return typeof value === 'string' && Object.prototype.hasOwnProperty.call(INTERFACE_LANGUAGE_NAMES, value) ? value : null;
 }
 
 export function dialogueV2FreeformTranslationInstruction(languageName: string): string {
@@ -63,8 +46,6 @@ export function canonicalDialogueV2FreeformTranslation(value: unknown, original:
 }
 
 export type DialogueV2FreeformReplyTranslatorDependencies = Readonly<{
-  /** Чтение users/{uid} (данные документа или null). */
-  readProfile(authUid: string): Promise<unknown>;
   /** Запрос к модели: инструкция + текст → сырой ответ. */
   translate(instruction: string, message: string): Promise<unknown>;
   nowMs(): number;
@@ -72,7 +53,7 @@ export type DialogueV2FreeformReplyTranslatorDependencies = Readonly<{
 }>;
 
 export type DialogueV2FreeformReplyTranslator = (input: Readonly<{
-  authUid: string;
+  translateTo: string;
   studyTarget: DialogueV2FreeformTranslationStudyTarget;
   assistantMessage: string;
 }>) => Promise<string | null>;
@@ -85,38 +66,15 @@ export function createDialogueV2FreeformReplyTranslator(
   dependencies: DialogueV2FreeformReplyTranslatorDependencies,
 ): DialogueV2FreeformReplyTranslator {
   const log = dependencies.log ?? defaultLog;
-  // зачем (Firebase-экономия): язык интерфейса читаем раз в 6 ч на uid в экземпляре функции, а не на каждый ход
-  const langCache = new Map<string, Readonly<{ lang: string | null; atMs: number }>>();
-
-  const interfaceLanguage = async (authUid: string): Promise<Readonly<{ lang: string | null; source: string }>> => {
-    const cached = langCache.get(authUid);
-    const now = dependencies.nowMs();
-    if (cached && now - cached.atMs < DIALOGUE_V2_FREEFORM_TRANSLATION_LANG_TTL_MS) return { lang: cached.lang, source: 'cache' };
-    const lang = dialogueV2FreeformInterfaceLanguageFromProfile(await dependencies.readProfile(authUid));
-    if (langCache.size >= LANG_CACHE_MAX_ENTRIES) {
-      const oldest = langCache.keys().next().value;
-      if (oldest !== undefined) langCache.delete(oldest);
-    }
-    langCache.set(authUid, Object.freeze({ lang, atMs: now }));
-    return { lang, source: 'profile' };
-  };
-
-  return async ({ authUid, studyTarget, assistantMessage }) => {
+  return async ({ translateTo, studyTarget, assistantMessage }) => {
     const startedAtMs = dependencies.nowMs();
-    let lang: string | null = null;
-    let source = 'none';
-    try {
-      ({ lang, source } = await interfaceLanguage(authUid));
-    } catch (error) {
-      log('skip', { reason: 'profile_read_failed', error: String((error as { code?: unknown })?.code ?? (error as Error)?.message ?? error).slice(0, 120) });
-      return null;
-    }
+    const lang = dialogueV2FreeformTranslationLanguage(translateTo);
     if (!lang) {
-      log('skip', { reason: 'interface_language_unknown', source });
+      log('skip', { reason: 'language_unsupported', translateTo: String(translateTo).slice(0, 16) });
       return null;
     }
     if (lang === studyTarget) {
-      log('skip', { reason: 'same_language', lang, studyTarget, source });
+      log('skip', { reason: 'same_language', lang, studyTarget });
       return null;
     }
     try {
@@ -126,7 +84,7 @@ export function createDialogueV2FreeformReplyTranslator(
         log('skip', { reason: 'translation_invalid', lang, studyTarget, ms: dependencies.nowMs() - startedAtMs });
         return null;
       }
-      log('ok', { lang, studyTarget, source, chars: translation.length, ms: dependencies.nowMs() - startedAtMs });
+      log('ok', { lang, studyTarget, chars: translation.length, ms: dependencies.nowMs() - startedAtMs });
       return translation;
     } catch (error) {
       log('skip', { reason: 'translate_failed', lang, studyTarget, ms: dependencies.nowMs() - startedAtMs, error: String((error as Error)?.message ?? error).slice(0, 120) });

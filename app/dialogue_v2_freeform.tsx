@@ -54,6 +54,7 @@ import {
   resolveCurrentDialogueV2FreeformPreparedBotVoice,
 } from './dialogue_v2_freeform_prepared_bot_voice_runtime';
 import { parseDialogueV2FreeformSessionTurnShape } from '../shared/dialogue_v2_freeform_session_contract';
+import { dialogueV2FreeformTranslateEnabled, requestDialogueV2FreeformTranslation } from './dialogue_v2_freeform_translate_client';
 import { safeRouterBack } from './navigation_back';
 import { isDevFreeformLoadingHeld } from './dev_dialog_state';
 import { planFreeformStartRetry } from './dialogue_v2_freeform_start_retry';
@@ -147,6 +148,20 @@ function DialogueV2FreeformContent() {
   const { lang } = useLang();
   const glass = useDialogueGlass();
   const labels = useMemo(() => labelsFor(lang), [lang]);
+  // зачем («Перевести» по тапу, Ревизор по e00c839e0): перевод — отдельный вызов по ходу из журнала сервера, только при флаге «Пульта»
+  // (вызов есть лишь на новом сервере). Сессия хода запоминается при показе реплики: после перезапуска сессии старый ход переводится своей.
+  const translateEnabled = dialogueV2FreeformTranslateEnabled();
+  const translateSessionByTurnRef = useRef(new Map<string, string>());
+  const requestTranslation = useMemo(() => (translateEnabled
+    ? (message: DialogueV2FreeformMessage): Promise<string | null> => {
+      const sessionId = message.turnId ? translateSessionByTurnRef.current.get(message.turnId) : undefined;
+      if (!message.turnId || !sessionId) {
+        console.warn('[DIALOG-BUBBLE]', JSON.stringify({ event: 'freeform_translate_skip', id: message.id, reason: message.turnId ? 'session_unknown' : 'no_turn_id' })); // guard-ok: ранний выход называет причину
+        return Promise.resolve(null);
+      }
+      return requestDialogueV2FreeformTranslation({ sessionId, turnId: message.turnId, translateTo: lang });
+    }
+    : undefined), [translateEnabled, lang]);
   // зачем (координатор 24.10, макет u31): тексты сбоя хода — общие со сценарным диалогом (C18 нет сети, C19 сервис недоступен)
   const coachingLabels = useMemo(() => dialogueV2SessionCoachingLabels(lang), [lang]);
   const [turnFailureKind, setTurnFailureKind] = useState<'network' | 'service'>('service');
@@ -397,11 +412,13 @@ function DialogueV2FreeformContent() {
         id: `assistant_${current.length + 1}`,
         author: 'assistant' as const,
         text: result.assistantMessage,
+        turnId: pending.turnId,
         // зачем (решение координатора 25.10): перевод — из того же ответа хода; нет поля (старый сервер) — кнопки «Перевод» нет
         ...(result.assistantTranslation ? { translation: result.assistantTranslation } : {}),
       })]));
       // поздний настоящий ответ после стража «•••» — плашку сбоя убираем, ответ уже в ленте
       setTurnFailed(false);
+      translateSessionByTurnRef.current.set(pending.turnId, pending.sessionId);
       console.log('[FREEFORM-HANG] turn:shown', JSON.stringify({ turnId: pending.turnId, shown: 'assistant_reply', chars: result.assistantMessage.length }));
       // The reviewed catalog is deliberately null, so this bridge is inert:
       // it cannot invoke the callable or add voice UI metadata at present.
@@ -659,5 +676,5 @@ function DialogueV2FreeformContent() {
       retryFreeform();
     },
   } : null;
-  return <DialogueV2FreeformScreen translateLabels={{ show: coachingLabels.translate, hide: coachingLabels.hideTranslation }} connectionNotice={connectionNotice} sayHints={sayHints}title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
+  return <DialogueV2FreeformScreen translateLabels={{ show: coachingLabels.translate, hide: coachingLabels.hideTranslation }} onRequestTranslation={requestTranslation} connectionNotice={connectionNotice} sayHints={sayHints}title={labels.title} messages={messages} draft={draft} sending={sending} voiceStatus={voice.status} voiceUnavailable={voice.unavailableOnDevice} voiceNotice={voice.failure === 'unavailable' && voice.unavailableOnDevice ? speechUnavailableOnDeviceText(lang) : null} voiceDraft={voice.voiceDraft} playingVoiceUri={voice.playingVoiceUri} interfaceLang={lang} labels={labels} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} onChangeDraft={setDraft} onSend={() => { void send(); }} onStartVoice={startVoice} onStopVoice={voice.stop} onDiscardVoice={voice.discard} onPlayVoice={voice.play} turnError={dailyCap ? { message: labels.dailyCap } : turnFailed ? { message: turnFailureKind === 'network' ? coachingLabels.networkError : coachingLabels.serviceError, retryLabel: labels.retry, onRetry: retryFreeform } : null} />;
 }

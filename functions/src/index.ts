@@ -184,6 +184,8 @@ const { dialogueV2TextTurn } = require("./dialogue_v2_turn_production_callable")
 const { dialogueV2SessionStart } = require("./dialogue_v2_session_start_callable");
 const { dialogueV2FreeformSessionStart } = require("./dialogue_v2_freeform_session_start_callable");
 const { dialogueV2FreeformSessionTurn } = require("./dialogue_v2_freeform_session_turn_callable");
+// зачем («Перевести» по тапу, 25.10): перевод реплики ИИ отдельным вызовом, ход не меняется; клиент зовёт только при флаге Пульта.
+const { dialogueV2FreeformTranslate } = require("./dialogue_v2_freeform_translate_callable");
 const { dialogueV2FreeformPreparedBotVoiceResolve } = require("./dialogue_v2_freeform_prepared_bot_voice_callable");
 // Server-owned terminal claim, debrief and structured-memory commit for V2.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -379,6 +381,7 @@ exports.dialogueV2TextTurn = dialogueV2TextTurn;
 exports.dialogueV2SessionStart = dialogueV2SessionStart;
 exports.dialogueV2FreeformSessionStart = dialogueV2FreeformSessionStart;
 exports.dialogueV2FreeformSessionTurn = dialogueV2FreeformSessionTurn;
+exports.dialogueV2FreeformTranslate = dialogueV2FreeformTranslate;
 exports.dialogueV2FreeformPreparedBotVoiceResolve = dialogueV2FreeformPreparedBotVoiceResolve;
 exports.dialogueV2SessionComplete = dialogueV2SessionComplete;
 // Стриминговый диалог (SSE): первое слово ответа видно почти сразу.

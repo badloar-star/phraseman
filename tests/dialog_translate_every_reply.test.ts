@@ -59,9 +59,27 @@ describe('проводка: кнопка у каждой реплики собе
     expect(route).toContain('...(result.assistantTranslation ? { translation: result.assistantTranslation } : {}),');
     expect(route).toContain('translateLabels={{ show: coachingLabels.translate, hide: coachingLabels.hideTranslation }}');
     const screen = readSource('components/dialogs/DialogueV2FreeformScreen.tsx');
-    expect(screen).toContain("const canTranslate = author === 'assistant' && !!message.translation && !!translateLabels;");
-    expect(screen).toContain('onPress={() => toggleTranslation(message.id)}');
+    expect(screen).toContain("const canTranslate = author === 'assistant' && (!!translation || canRequest) && !!translateLabels;");
+    expect(screen).toContain('onPress={() => (translation ? toggleTranslation(message.id) : requestTranslation(message))}');
     expect(screen).toContain('testID={`dialogue-v2-freeform-translation-${message.id}`}');
-    expect(screen).toContain("reason: hasTranslation ? 'has_translation' : 'no_translation',");
+    expect(screen).toContain("reason: hasTranslation ? 'has_translation' : onTap ? 'translate_on_tap' : 'no_translation',");
+  });
+
+  // зачем (Ревизор по e00c839e0): перевод — только по тапу отдельным вызовом и только при флаге «Пульта»; повторный тап во время
+  // запроса игнорируется, сбой — кнопка возвращается.
+  it('свободный разговор: перевод по тапу — защита от двойного тапа и откат', () => {
+    const screen = readSource('components/dialogs/DialogueV2FreeformScreen.tsx');
+    expect(screen).toContain("const canRequest = author === 'assistant' && !translation && !!onRequestTranslation && !!message.turnId;");
+    expect(screen).toContain('if (!onRequestTranslation || pendingTranslationsRef.current.has(message.id)) {');
+    expect(screen).toContain("reason: 'no_translation_returned'");
+    const client = readSource('app/dialogue_v2_freeform_translate_client.ts');
+    expect(client).toContain("getRemoteBool('dialogue_freeform_translate_enabled') === true");
+    expect(client).toContain("'dialogueV2FreeformTranslate'");
+    const flags = readSource('app/remote_flags.ts');
+    expect(flags).toContain('dialogue_freeform_translate_enabled: false,');
+    const route = readSource('app/dialogue_v2_freeform.tsx');
+    expect(route).toContain('onRequestTranslation={requestTranslation}');
+    expect(route).toContain('turnId: pending.turnId,');
+    expect(route).toContain('translateSessionByTurnRef.current.set(pending.turnId, pending.sessionId);');
   });
 });

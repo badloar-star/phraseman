@@ -17,6 +17,7 @@ import {
   runDialogueV2FreeformProductionAuthorizationTransaction,
 } from './dialogue_v2_freeform_production_adapter';
 import {
+  DIALOGUE_V2_FREEFORM_OWNER_HMAC_NAMESPACE,
   DIALOGUE_V2_FREEFORM_TURN_HMAC_NAMESPACE,
   createDialogueV2FreeformSessionLedger,
   type DialogueV2FreeformServerTurnProducer,
@@ -42,10 +43,6 @@ import { DIALOGUE_V2_SESSION_HMAC_KEY } from './dialogue_v2_session_production_r
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
 import { recordDialogueV2Billing } from './dialogue_v2_usage_billing';
 import { enforceCallerRateWindow } from './caller_rate_window';
-import {
-  createDialogueV2FreeformReplyTranslator,
-  type DialogueV2FreeformReplyTranslator,
-} from './dialogue_v2_freeform_reply_translation';
 
 /** PM-231 (A3): uid текущего хода для биллинга общего на модуль транспорта. */
 const freeformBillingContext = new AsyncLocalStorage<Readonly<{ authUid: string }>>();
@@ -77,25 +74,6 @@ const freeformOpenAiTransport = buildFreeformOpenAiTransport({
     await recordDialogueV2Billing({ mode: 'v2_freeform', usage, authUid: context?.authUid });
   },
 });
-// зачем («Перевести» у каждой реплики, решение координатора 25.10): тот же транспорт (ключ, модель, биллинг, дневной потолок),
-// но короткий срок — перевод не должен заметно задерживать ход; не успел — ход уходит без перевода.
-const freeformTranslationTransport = buildFreeformOpenAiTransport({
-  enabled: true,
-  resolveApiKey: () => DIALOGUE_V2_FREEFORM_OPENAI_API_KEY.value(),
-  resolveModel: () => resolveFreeformConfiguredDialogModel(
-    admin.firestore(),
-    process.env.OPENAI_DIALOG_MODEL,
-  ),
-  fetchImpl: (input, init) => fetch(input, init),
-  timeoutMs: 6_000,
-  onUsage: async (usage) => {
-    const context = freeformBillingContext.getStore();
-    if (!context) {
-      console.warn('[AI-BILLING] dialogue_v2 freeform translation usage without turn context', { model: usage.model });
-    }
-    await recordDialogueV2Billing({ mode: 'v2_freeform', usage, authUid: context?.authUid });
-  },
-});
 const produceFreeformAssistant = createDialogueV2FreeformServerTextProducer({
   enabled: true,
   transport: freeformOpenAiTransport,
@@ -118,8 +96,6 @@ type TurnPublicResult = Readonly<{
   assistantMessage: string;
   sessionId: string;
   expiresAtMs: number;
-  /** Перевод ответа на язык интерфейса; нет — клиент не показывает кнопку «Перевод». */
-  assistantTranslation?: string;
 }>;
 
 export type DialogueV2FreeformSessionTurnDependencies = Readonly<{
@@ -127,8 +103,6 @@ export type DialogueV2FreeformSessionTurnDependencies = Readonly<{
     authUid: string,
     input: DialogueV2FreeformSessionTurn,
   ): Promise<DialogueV2FreeformSessionTurnResult>;
-  /** Необязательно: перевод проверенного ответа. Сбой/null — ход без перевода. */
-  translateAssistant?: DialogueV2FreeformReplyTranslator;
 }>;
 
 export type DialogueV2FreeformAtomicSessionTurnRuntime = Readonly<{
@@ -377,30 +351,6 @@ function logFreeformTurnRefusal(stage: string, error?: unknown): void {
   }));
 }
 
-// зачем: перевод — украшение хода, а не его часть; любой сбой (включая брошенное исключение) возвращает null с причиной.
-async function translateAssistantSafely(
-  dependencies: DialogueV2FreeformSessionTurnDependencies,
-  authUid: string,
-  input: DialogueV2FreeformSessionTurn,
-  result: DialogueV2FreeformSessionTurnResult,
-): Promise<string | null> {
-  if (typeof dependencies.translateAssistant !== 'function') return null;
-  try {
-    const translation = await dependencies.translateAssistant({
-      authUid,
-      studyTarget: input.studyTarget,
-      assistantMessage: result.assistantMessage,
-    });
-    return typeof translation === 'string' && translation.trim() ? translation : null;
-  } catch (error) {
-    console.warn('[DIALOGUE-V2-FREEFORM-TRANSLATE] skip', JSON.stringify({
-      reason: 'translator_threw',
-      error: String((error as { message?: unknown })?.message ?? error).slice(0, 120),
-    }));
-    return null;
-  }
-}
-
 export function createDialogueV2FreeformSessionTurnHandler(
   dependencies: DialogueV2FreeformSessionTurnDependencies,
 ): (request: TurnRequest) => Promise<TurnPublicResult> {
@@ -442,13 +392,11 @@ export function createDialogueV2FreeformSessionTurnHandler(
       ms: Date.now() - startedAtMs,
       assistantChars: result.assistantMessage.length,
     }));
-    const assistantTranslation = await translateAssistantSafely(dependencies, authUid, input, result);
     return Object.freeze({
       ok: true,
       assistantMessage: result.assistantMessage,
       sessionId: result.sessionId,
       expiresAtMs: result.expiresAtMs,
-      ...(assistantTranslation ? { assistantTranslation } : {}),
     });
   };
 }
@@ -545,26 +493,17 @@ function digest(namespace: string, fields: readonly string[]): string {
   return hmac.digest('hex');
 }
 
+/**
+ * Подпись владельца сессии — та же формула, что у журнала хода (bindOwner ниже).
+ * зачем («Перевести» по тапу, 25.10): функция перевода проверяет, что сессия принадлежит вызывающему, не дублируя HMAC.
+ */
+export function dialogueV2FreeformSessionOwnerBinding(actor: DialogueV2FreeformSessionActor): string {
+  return digest(DIALOGUE_V2_FREEFORM_OWNER_HMAC_NAMESPACE, [actor.authUid, actor.stableAccountId]);
+}
+
 function productionDependencies(): DialogueV2FreeformSessionTurnDependencies {
   const database = (): FirebaseFirestore.Firestore => admin.firestore();
-  const translator = createDialogueV2FreeformReplyTranslator({
-    readProfile: async (authUid) => (await database().collection('users').doc(authUid).get()).data() ?? null,
-    translate: (instruction, message) => freeformTranslationTransport(Object.freeze({
-      policyVersion: 'dialogue_v2_freeform_tutor_v1' as const,
-      studyTarget: 'en' as const,
-      systemInstruction: instruction,
-      conversation: Object.freeze([Object.freeze({ role: 'user' as const, content: message })]),
-      languageBranchMemory: null,
-      maxOutputBytes: 3_072 as const,
-    })),
-    nowMs: Date.now,
-  });
   return Object.freeze({
-    // PM-231 (A3): перевод тоже платный — uid для биллинга через тот же контекст, что у хода.
-    translateAssistant: (translationInput) => freeformBillingContext.run(
-      Object.freeze({ authUid: translationInput.authUid }),
-      () => translator(translationInput),
-    ),
     runAuthorizedTurn: async (
       authUid: string,
       input: DialogueV2FreeformSessionTurn,

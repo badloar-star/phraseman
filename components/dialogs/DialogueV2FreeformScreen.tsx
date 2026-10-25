@@ -37,6 +37,8 @@ export type DialogueV2FreeformMessage = Readonly<{
   text: string;
   /** Перевод ответа на язык интерфейса (из ответа хода; старый сервер — нет). */
   translation?: string;
+  /** Ход сервера этой реплики ИИ — по нему перевод запрашивается тапом (у заготовленной первой реплики хода нет). */
+  turnId?: string;
   /** Replay-only local learner attachment. Its transcript never leaves the route. */
   voice?: Readonly<{ uri: string }>;
 }>;
@@ -77,6 +79,11 @@ export type DialogueV2FreeformScreenProps = Readonly<{
   connectionNotice?: Readonly<{ message: string; retryLabel: string; onRetry: () => void }> | null;
   /** Подписи кнопки «Перевод» / «Скрыть перевод» (общие со сценарным диалогом). */
   translateLabels?: Readonly<{ show: string; hide: string }>;
+  /**
+   * Перевод реплики ИИ по тапу (отдельный вызов сервера). Передаётся маршрутом только при флаге «Пульта»
+   * dialogue_freeform_translate_enabled; нет — кнопка только у реплик, перевод которых уже есть.
+   */
+  onRequestTranslation?: (message: DialogueV2FreeformMessage) => Promise<string | null>;
   /** «Можно сказать…» над полем ввода: 1–3 фразы на изучаемом языке со смыслом (владелец 24.10 «постоянно должны быть подсказки»). */
   sayHints?: readonly DialogSayHint[];
 }>;
@@ -107,6 +114,7 @@ export function DialogueV2FreeformScreen({
   sayHints = NO_SAY_HINTS,
   connectionNotice = null,
   translateLabels,
+  onRequestTranslation,
 }: DialogueV2FreeformScreenProps) {
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»): перевод — под репликой по тапу, повторный тап скрывает; состояние — на экране
   const [shownTranslations, setShownTranslations] = React.useState<ReadonlySet<string>>(() => new Set());
@@ -117,6 +125,34 @@ export function DialogueV2FreeformScreen({
       return next;
     });
   }, []);
+  // зачем («Перевести» по тапу, Ревизор по e00c839e0): перевода в ответе хода нет — первый тап просит его отдельным вызовом;
+  // пока идёт запрос, кнопка показывает «…», повторный тап игнорируется; сбой — кнопка возвращается, перевод не показан.
+  const [fetchedTranslations, setFetchedTranslations] = React.useState<ReadonlyMap<string, string>>(() => new Map());
+  const pendingTranslationsRef = React.useRef(new Set<string>());
+  const [pendingTranslations, setPendingTranslations] = React.useState<ReadonlySet<string>>(() => new Set());
+  const mountedRef = React.useRef(true);
+  React.useEffect(() => () => { mountedRef.current = false; }, []);
+  const requestTranslation = React.useCallback((message: DialogueV2FreeformMessage) => {
+    if (!onRequestTranslation || pendingTranslationsRef.current.has(message.id)) {
+      console.log('[DIALOG-BUBBLE]', JSON.stringify({ event: 'translate_tap_ignored', id: message.id, reason: onRequestTranslation ? 'already_pending' : 'no_requester' })); // guard-ok: ранний выход называет причину
+      return;
+    }
+    pendingTranslationsRef.current.add(message.id);
+    setPendingTranslations(new Set(pendingTranslationsRef.current));
+    console.log('[DIALOG-BUBBLE]', JSON.stringify({ event: 'translate_tap', id: message.id, turnId: message.turnId ?? null })); // guard-ok: одна строка на тап
+    void onRequestTranslation(message).then((translation) => {
+      pendingTranslationsRef.current.delete(message.id);
+      if (!mountedRef.current) return;
+      setPendingTranslations(new Set(pendingTranslationsRef.current));
+      if (!translation) {
+        console.warn('[DIALOG-BUBBLE]', JSON.stringify({ event: 'translate_shown', id: message.id, shown: false, reason: 'no_translation_returned' })); // guard-ok: причина сбоя
+        return;
+      }
+      setFetchedTranslations((current) => new Map(current).set(message.id, translation));
+      setShownTranslations((current) => new Set(current).add(message.id));
+      console.log('[DIALOG-BUBBLE]', JSON.stringify({ event: 'translate_shown', id: message.id, shown: true, chars: translation.length })); // guard-ok: одна строка на тап
+    });
+  }, [onRequestTranslation]);
   const glass = useDialogueGlass();
   const markKeyboardCause = useDialogKeyboardLog('freeform');
   // зачем (жалоба владельца 25.10 «нет кнопки Перевести»; координатор: сперва логи [DIALOG-BUBBLE]): у ответов свободного разговора
@@ -127,13 +163,16 @@ export function DialogueV2FreeformScreen({
       if (message.author !== 'assistant' || bubbleLoggedRef.current.has(message.id)) return; // guard-ok: только новые реплики собеседника
       bubbleLoggedRef.current.add(message.id);
       const hasTranslation = !!message.translation && !!translateLabels;
+      const onTap = !hasTranslation && !!translateLabels && !!onRequestTranslation && !!message.turnId;
       console.log('[DIALOG-BUBBLE]', JSON.stringify({
-        screen: 'freeform', index, id: message.id, role: message.author, actions: hasTranslation ? ['translate'] : [],
-        reason: hasTranslation ? 'has_translation' : 'no_translation',
-        source: message.translation ? 'turn_response' : message.id === 'assistant_opening' ? 'local_opening_has_no_translation' : 'turn_response_without_field',
+        screen: 'freeform', index, id: message.id, role: message.author, actions: hasTranslation || onTap ? ['translate'] : [],
+        reason: hasTranslation ? 'has_translation' : onTap ? 'translate_on_tap' : 'no_translation',
+        source: message.translation ? 'turn_response' : onTap ? 'translate_callable'
+          : message.id === 'assistant_opening' ? 'local_opening_has_no_translation'
+            : onRequestTranslation ? 'no_turn_id' : 'translate_flag_off',
       })); // guard-ok: одна строка на реплику
     });
-  }, [messages, translateLabels]);
+  }, [messages, translateLabels, onRequestTranslation]);
   const voiceBusy = voiceStatus !== 'idle';
   const canSend = draft.trim().length > 0 && !voiceBusy;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
@@ -180,8 +219,11 @@ export function DialogueV2FreeformScreen({
           ) : null}
           {messages.map((message) => {
             const author = message.author === 'learner' ? 'learner' : 'assistant';
-            const canTranslate = author === 'assistant' && !!message.translation && !!translateLabels;
-            const translationShown = canTranslate && shownTranslations.has(message.id);
+            const translation = message.translation ?? fetchedTranslations.get(message.id) ?? null;
+            const canRequest = author === 'assistant' && !translation && !!onRequestTranslation && !!message.turnId;
+            const canTranslate = author === 'assistant' && (!!translation || canRequest) && !!translateLabels;
+            const translationShown = canTranslate && !!translation && shownTranslations.has(message.id);
+            const translating = pendingTranslations.has(message.id);
             return (
               <DialogueGlassBubble
                 key={message.id}
@@ -192,9 +234,9 @@ export function DialogueV2FreeformScreen({
                     glass={glass}
                     testID={`dialogue-v2-freeform-translate-${message.id}`}
                     icon="language-outline"
-                    label={translationShown ? translateLabels.hide : translateLabels.show}
-                    active={translationShown}
-                    onPress={() => toggleTranslation(message.id)}
+                    label={translating ? `${translateLabels.show}…` : translationShown ? translateLabels.hide : translateLabels.show}
+                    active={translationShown || translating}
+                    onPress={() => (translation ? toggleTranslation(message.id) : requestTranslation(message))}
                   />
                 ) : undefined}
               >
@@ -215,7 +257,7 @@ export function DialogueV2FreeformScreen({
                 )}
                 {translationShown ? (
                   <Text testID={`dialogue-v2-freeform-translation-${message.id}`} maxFontSizeMultiplier={1.5} style={[styles.translation, { color: glass.secondary }]}>
-                    {message.translation}
+                    {translation}
                   </Text>
                 ) : null}
               </DialogueGlassBubble>

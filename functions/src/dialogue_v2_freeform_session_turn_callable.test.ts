@@ -361,36 +361,6 @@ describe('Dialogue V2 Plus freeform session turn callable', () => {
     );
   });
 
-  // зачем («Перевести» у каждой реплики, 25.10): перевод — необязательное поле; его отсутствие или сбой не меняют ход.
-  test('adds assistantTranslation only when the translator returns one', async () => {
-    const deps = { ...dependencies(), translateAssistant: jest.fn(async () => 'Конечно — расскажите, где вы встречаетесь.') };
-    const result = await createDialogueV2FreeformSessionTurnHandler(deps)(request());
-    expect(result).toEqual({
-      ok: true,
-      assistantMessage: 'Of course — tell me where you are meeting this person.',
-      sessionId: SESSION_ID,
-      expiresAtMs: EXPIRES_AT_MS,
-      assistantTranslation: 'Конечно — расскажите, где вы встречаетесь.',
-    });
-    expect(deps.translateAssistant).toHaveBeenCalledWith({
-      authUid: 'auth-user',
-      studyTarget: 'en',
-      assistantMessage: 'Of course — tell me where you are meeting this person.',
-    });
-  });
-
-  test('a missing or failing translation keeps the exact turn result', async () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    for (const translateAssistant of [
-      jest.fn(async () => null),
-      jest.fn(async () => { throw new Error('deadline'); }),
-    ]) {
-      const result = await createDialogueV2FreeformSessionTurnHandler({ ...dependencies(), translateAssistant })(request());
-      expect(Object.keys(result)).toEqual(['ok', 'assistantMessage', 'sessionId', 'expiresAtMs']);
-    }
-    warn.mockRestore();
-  });
-
   test.each([
     new HttpsError('permission-denied', 'dialogue_v2_freeform_plus_required'),
     new HttpsError('failed-precondition', 'dialogue_v2_freeform_identity_unavailable'),

@@ -31,6 +31,7 @@ describe('аварийный стоп ИИ', () => {
     const read = (file: string) => readFileSync(join(__dirname, file), 'utf8');
     expect(read('dialogue_v2_freeform_session_start_callable.ts')).toMatch(/withAiKillSwitch\('dialogueV2FreeformSessionStart'/);
     expect(read('dialogue_v2_freeform_session_turn_callable.ts')).toMatch(/withAiKillSwitch\('dialogueV2FreeformSessionTurn'/);
+    expect(read('dialogue_v2_freeform_translate_callable.ts')).toMatch(/withAiKillSwitch\('dialogueV2FreeformTranslate'/);
     expect(read('premium_dialog_review.ts')).toMatch(/if \(await aiKillSwitchOn\('premiumDialogReview'\)\)/);
   });
 });

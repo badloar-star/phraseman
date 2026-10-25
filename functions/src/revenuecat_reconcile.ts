@@ -143,6 +143,175 @@ function mapSubscriptionToSyntheticEvent(
   };
 }
 
+// ── Разовая покупка «навсегда» ───────────────────────────────────────────────
+// зачем (координатор 25.10, разбор «оплата в отсрочке удаления»): вебхук в отсрочке отказывает навсегда (квитанция отказа), а
+// подтяжка брала только подписки — «навсегда», купленное за 14 дней, после восстановления на сервер не приходило (телефон
+// показывал Plus, сервер — нет). Теперь подтяжка смотрит и разовые покупки RevenueCat v2 и применяет то же синтетическое
+// событие NON_RENEWING_PURCHASE, что прислал бы вебхук. Отбор строгий — только наш lifetime-продукт, оплачено и не возвращено.
+const LIFETIME_STORE_IDENTIFIER = 'phraseman_premium_lifetime_v1';
+
+function eligibleLifetimePurchase(purchase: Row): boolean {
+  const status = text(purchase.status).toLowerCase();
+  const store = text(purchase.store).toLowerCase();
+  return Boolean(
+    text(purchase.id)
+    && text(purchase.product_id)
+    && text(purchase.store_purchase_identifier)
+    && text(purchase.environment).toLowerCase() === 'production'
+    && text(purchase.ownership).toLowerCase() === 'purchased'
+    && status === 'owned'
+    && (store === 'play_store' || store === 'app_store')
+    && hasActivePremiumEntitlement(purchase)
+    && positiveMs(purchase.purchased_at) !== null
+  );
+}
+
+/** Почему разовая покупка не подошла — для журнала [PREMIUM-RECONCILE] (без идентификаторов). */
+function lifetimeSkipReason(purchase: Row): string {
+  if (text(purchase.environment).toLowerCase() !== 'production') return 'not_production';
+  if (text(purchase.ownership).toLowerCase() !== 'purchased') return 'not_purchased';
+  if (text(purchase.status).toLowerCase() !== 'owned') return `status_${text(purchase.status).toLowerCase() || 'missing'}`;
+  const store = text(purchase.store).toLowerCase();
+  if (store !== 'play_store' && store !== 'app_store') return `store_${store || 'missing'}`;
+  if (!hasActivePremiumEntitlement(purchase)) return 'no_premium_entitlement';
+  return 'invalid_fields';
+}
+
+function selectEligibleLifetimePurchase(items: unknown[]): Row | null {
+  return items
+    .map(row)
+    .filter((item): item is Row => item !== null && eligibleLifetimePurchase(item))
+    .sort((left, right) => (positiveMs(right.purchased_at) ?? 0) - (positiveMs(left.purchased_at) ?? 0))[0]
+    ?? null;
+}
+
+function mapLifetimePurchaseToSyntheticEvent(
+  stableUid: string,
+  purchase: Row,
+  storeIdentifier: string,
+  appId: string,
+): Row {
+  const ownerUid = text(stableUid, 160);
+  const purchaseId = text(purchase.id);
+  const storePurchaseId = text(purchase.store_purchase_identifier);
+  const productId = text(storeIdentifier);
+  const authoritativeAppId = text(appId, 128);
+  const purchasedAtMs = positiveMs(purchase.purchased_at);
+  const rawStore = text(purchase.store).toLowerCase();
+  if (productId !== LIFETIME_STORE_IDENTIFIER || !isManagedPremiumProductId(productId)) {
+    throw new Error('revenuecat_reconcile_not_lifetime_product');
+  }
+  if (!hasActivePremiumEntitlement(purchase)) {
+    throw new Error('revenuecat_reconcile_premium_entitlement_unverified');
+  }
+  if (
+    !ownerUid
+    || !/^app[a-zA-Z0-9]+$/.test(authoritativeAppId)
+    || !purchaseId
+    || !storePurchaseId
+    || purchasedAtMs === null
+    || (rawStore !== 'play_store' && rawStore !== 'app_store')
+  ) {
+    throw new Error('revenuecat_reconcile_purchase_invalid');
+  }
+  // id от самой покупки: повтор подтяжки даёт то же событие → квитанция «duplicate», без второго начисления
+  const eventHash = createHash('sha256')
+    .update(`lifetime|${purchaseId.length}:${purchaseId}|${purchasedAtMs}`)
+    .digest('hex')
+    .slice(0, 40);
+  return {
+    id: `rc_reconcile_lt_${eventHash}`,
+    type: 'NON_RENEWING_PURCHASE',
+    app_id: authoritativeAppId,
+    app_user_id: ownerUid,
+    original_app_user_id: ownerUid,
+    aliases: [],
+    product_id: productId,
+    entitlement_ids: ['premium'],
+    store: rawStore.toUpperCase(),
+    environment: 'PRODUCTION',
+    original_transaction_id: storePurchaseId,
+    transaction_id: storePurchaseId,
+    purchased_at_ms: purchasedAtMs,
+    event_timestamp_ms: purchasedAtMs,
+    period_type: 'NORMAL',
+  };
+}
+
+async function fetchEligibleLifetimePurchase(
+  initialUrl: string,
+  secret: string,
+  fetchImpl: FetchLike = fetch,
+): Promise<{ purchase: Row | null; seen: number; skipped: Record<string, number> }> {
+  const validatedInitialUrl = validatedRevenueCatPageUrl(initialUrl);
+  if (!validatedInitialUrl || !new URL(validatedInitialUrl).pathname.endsWith('/purchases')) {
+    throw new Error('revenuecat_v2_next_page_invalid');
+  }
+  const expectedPathname = new URL(validatedInitialUrl).pathname;
+  let nextUrl: string | null = validatedInitialUrl;
+  const purchases: unknown[] = [];
+  for (let page = 0; page < MAX_SUBSCRIPTION_PAGES && nextUrl; page += 1) {
+    const payload = row(await fetchRevenueCatJson(nextUrl, secret, fetchImpl));
+    if (!payload) throw new Error('revenuecat_v2_purchases_invalid');
+    const pageItems = Array.isArray(payload.items) ? payload.items : [];
+    const capacity = MAX_SUBSCRIPTIONS - purchases.length;
+    purchases.push(...pageItems.slice(0, Math.max(0, capacity)));
+    if (purchases.length >= MAX_SUBSCRIPTIONS) break;
+    nextUrl = validatedRevenueCatPageUrl(payload.next_page, expectedPathname);
+  }
+  const skipped: Record<string, number> = {};
+  for (const item of purchases.map(row)) {
+    if (!item || eligibleLifetimePurchase(item)) continue;
+    const reason = lifetimeSkipReason(item);
+    skipped[reason] = (skipped[reason] ?? 0) + 1;
+  }
+  return { purchase: selectEligibleLifetimePurchase(purchases), seen: purchases.length, skipped };
+}
+
+/**
+ * «Навсегда»: разовые покупки RevenueCat v2 → синтетическое NON_RENEWING_PURCHASE через тот же редьюсер.
+ * Журнал [PREMIUM-RECONCILE]: сколько пришло, что пропущено и почему, что применено (без идентификаторов покупки и uid).
+ */
+async function reconcileLifetimePurchase(
+  db: FirebaseFirestore.Firestore,
+  stableUid: string,
+  customerPath: string,
+  secret: string,
+  fetchImpl: FetchLike,
+  apply: typeof applyVerifiedPremiumSubscriptionEvent,
+): Promise<{ applied: boolean; reason: string }> {
+  const found = await fetchEligibleLifetimePurchase(`${customerPath}/purchases?limit=20`, secret, fetchImpl);
+  if (!found.purchase) {
+    logger.info('[PREMIUM-RECONCILE] lifetime none', JSON.stringify({ seen: found.seen, skipped: found.skipped }));
+    return { applied: false, reason: 'no_verified_subscription_or_lifetime' };
+  }
+  const productPayload = row(await fetchRevenueCatJson(
+    `${REVENUECAT_V2_ROOT}/products/${encodeURIComponent(text(found.purchase.product_id))}`,
+    secret,
+    fetchImpl,
+  ));
+  const storeIdentifier = text(productPayload?.store_identifier);
+  if (storeIdentifier !== LIFETIME_STORE_IDENTIFIER) {
+    logger.info('[PREMIUM-RECONCILE] lifetime skip', JSON.stringify({ reason: 'not_lifetime_product', seen: found.seen }));
+    return { applied: false, reason: 'no_verified_subscription_or_lifetime' };
+  }
+  const event = mapLifetimePurchaseToSyntheticEvent(stableUid, found.purchase, storeIdentifier, text(productPayload?.app_id, 128));
+  const outcome = await apply(event, String(event.type), String(event.product_id));
+  const existingStoreProjectionActive = outcome.statusCode === 200
+    && outcome.body.reason === 'duplicate'
+    && await hasActiveStorePremiumProjection(db, stableUid, Date.now());
+  const applied = isCacheablePaidLineageOutcome(outcome, existingStoreProjectionActive);
+  logger.info('[PREMIUM-RECONCILE] lifetime applied', JSON.stringify({
+    eventIdHash: String(event.id).slice(-8),
+    status: outcome.statusCode,
+    reason: outcome.body.reason ?? null,
+    updated: outcome.body.updated ?? null,
+    applied,
+  }));
+  if (!applied) throw new Error('revenuecat_reconcile_paid_lineage_unconfirmed');
+  return { applied: true, reason: 'lifetime' };
+}
+
 function reconcileReservationDecision(
   state: Row,
   nowMs: number,
@@ -182,7 +351,8 @@ function validatedRevenueCatPageUrl(value: unknown, expectedPathname?: string): 
   if (!rawUrl) throw new Error('revenuecat_v2_next_page_invalid');
   try {
     const url = new URL(rawUrl, `${REVENUECAT_API_ORIGIN}/`);
-    const isCustomerSubscriptionsPath = /^\/v2\/projects\/proj6af7e8d5\/customers\/[^/]+\/subscriptions$/.test(
+    // зачем (координатор 25.10): кроме подписок — разовые покупки («навсегда»); тот же проект, тот же хост, только два пути.
+    const isCustomerSubscriptionsPath = /^\/v2\/projects\/proj6af7e8d5\/customers\/[^/]+\/(?:subscriptions|purchases)$/.test(
       url.pathname,
     );
     if (
@@ -317,6 +487,8 @@ async function reconcileMine(
   nowMs: number,
   fetchImpl: FetchLike = fetch,
   scope: ReconciliationScope = 'premium',
+  /** Применение события (по умолчанию — общий редьюсер вебхука; тесты подменяют). */
+  apply: typeof applyVerifiedPremiumSubscriptionEvent = applyVerifiedPremiumSubscriptionEvent,
 ): Promise<Record<string, unknown>> {
   const reservation = await acquireReservation(db, stableUid, nowMs, scope);
   if (reservation !== 'acquired') {
@@ -342,8 +514,14 @@ async function reconcileMine(
       fetchImpl,
     );
     if (!subscription) {
+      // зачем (координатор 25.10): подписки нет — смотрим разовую покупку «навсегда» (подписки, как раньше, первыми).
+      const lifetime = await reconcileLifetimePurchase(db, stableUid, customerPath, secret, fetchImpl, apply);
+      if (lifetime.applied) {
+        await finishReservation(db, stableUid, Date.now(), 'active', scope);
+        return { ok: true, active: true, reconciled: true, source: 'revenuecat_v2', plan: 'lifetime' };
+      }
       await finishReservation(db, stableUid, Date.now(), 'not_found', scope);
-      return { ok: true, active: false, reconciled: false, reason: 'no_verified_subscription' };
+      return { ok: true, active: false, reconciled: false, reason: lifetime.reason };
     }
     const revenueCatProductId = text(subscription.product_id);
     const productPayload = row(await fetchRevenueCatJson(
@@ -363,7 +541,7 @@ async function reconcileMine(
       storeIdentifier,
       productAppId,
     );
-    const outcome = await applyVerifiedPremiumSubscriptionEvent(
+    const outcome = await apply(
       event,
       String(event.type),
       String(event.product_id),
@@ -437,4 +615,13 @@ export const __revenueCatReconcileTestHooks = {
   fetchEligiblePremiumSubscription,
   isCacheablePaidLineageOutcome,
   reconcileMine,
+  selectEligibleLifetimePurchase,
+  mapLifetimePurchaseToSyntheticEvent,
+  fetchEligibleLifetimePurchase,
 };
+
+/** Для сброса задержки подтяжки при восстановлении аккаунта (account_delete_restore). */
+export const REVENUECAT_RECONCILE_RESERVATIONS = 'revenuecat_reconcile_reservations';
+export function revenueCatPremiumReconcileReservationId(stableUid: string): string {
+  return reservationId(stableUid, 'premium');
+}

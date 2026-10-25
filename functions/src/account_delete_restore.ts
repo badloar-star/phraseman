@@ -10,6 +10,7 @@ import {
   accountDeletePermanentDenialId,
 } from './account_delete_job';
 import { accountDeleteGraceDaysLeft, accountDeleteRestorable } from './account_delete_grace';
+import { REVENUECAT_RECONCILE_RESERVATIONS, revenueCatPremiumReconcileReservationId } from './revenuecat_reconcile';
 
 /*
  * Восстановление аккаунта в течение grace-периода (владелец, 2026-08-31).
@@ -118,6 +119,9 @@ export const accountDeleteRestoreMine = onCall(OPTIONS, async (request) => {
       tx.delete(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
         .doc(accountDeletePermanentDenialId(identity)));
     }
+    // зачем (координатор 25.10): оплата в отсрочке отклонена вебхуком навсегда, Plus возвращает подтяжка RevenueCat. Сбрасываем её
+    // задержку (до 6 ч после прошлой попытки), чтобы Plus вернулся на первом же входе после восстановления.
+    tx.delete(db.collection(REVENUECAT_RECONCILE_RESERVATIONS).doc(revenueCatPremiumReconcileReservationId(stableUid)));
     // зачем след (правило «сперва логи»): отмена удаления — необратимое
     // решение в обратную сторону; без записи нельзя ответить «кто вернул
     // аккаунт и когда». PII не пишем — только хеши, они уже есть в job.

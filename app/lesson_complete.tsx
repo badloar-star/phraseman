@@ -300,15 +300,16 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8 }}>
                 {triLang(lang, {
-                  ru: 'Это значит для нас очень много.',
-                  en: 'That means a lot to us.',
-                  uk: 'Це для нас дуже багато значить.',
-                  es: 'Para nosotros es muy importante.',
-                  'pt-BR': 'Isso significa muito para nós.',
-                  vi: 'Điều này rất có ý nghĩa với chúng tôi.',
-                  id: 'Ini sangat berarti bagi kami.',
-                  tr: 'Bu bizim için çok önemli.',
-                  pl: 'To dla nas bardzo dużo znaczy.',
+                  // зачем (голос PhraseMan, VOICE.md, владелец 25.10): живо и по делу вместо дежурной фразы
+                  ru: 'Читаем каждый отзыв, честно.',
+                  en: 'We read every single review. Really.',
+                  uk: 'Читаємо кожен відгук, чесно.',
+                  es: 'Leemos cada opinión, de verdad.',
+                  'pt-BR': 'A gente lê cada avaliação, sério.',
+                  vi: 'Tụi mình đọc từng đánh giá, thật đấy.',
+                  id: 'Kami baca setiap ulasan, sungguh.',
+                  tr: 'Her yorumu okuyoruz, gerçekten.',
+                  pl: 'Czytamy każdą opinię, serio.',
                 })}
               </Text>
             </>
@@ -394,15 +395,16 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
   if (notif.kind === 'medal' && notif.medalTier) {
     modalTitle = medalLabel(notif.medalTier);
     modalSub = triLang(lang, {
-      ru: 'Отличная работа! Продолжай учиться!',
-      en: 'Great work! Keep learning!',
-      uk: 'Чудова робота! Продовжуй навчання!',
-      es: '¡Buen trabajo! Sigue con el inglés.',
-      'pt-BR': 'Bom trabalho! Continue estudando inglês.',
-      vi: 'Làm tốt lắm! Hãy tiếp tục học tiếng Anh.',
-      id: 'Kerja bagus! Terus belajar bahasa Inggris.',
-      tr: 'Harika iş! İngilizce çalışmaya devam et.',
-      pl: 'Dobra robota! Ucz się dalej angielskiego.',
+      // зачем (VOICE.md): без «Продолжай учиться» и без зашитого «английский» (язык изучения бывает любой)
+      ru: 'Урок позади! Следующий уже стучится',
+      en: 'Lesson done! The next one is already knocking',
+      uk: 'Урок позаду! Наступний уже стукає',
+      es: '¡Lección superada! La siguiente ya está tocando la puerta',
+      'pt-BR': 'Lição feita! A próxima já está batendo na porta',
+      vi: 'Xong bài rồi! Bài tiếp theo đang gõ cửa',
+      id: 'Pelajaran beres! Yang berikutnya sudah mengetuk',
+      tr: 'Ders bitti! Sıradaki kapıyı çalıyor bile',
+      pl: 'Lekcja za tobą! Następna już puka',
     });
   } else if (notif.kind === 'lesson_unlock') {
     // зачем (30.09, «1 в 1 с макета» overlays-specialist.html OS-ACHIEVEMENT-NOTIF-*):
@@ -412,9 +414,10 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Nova lição liberada', vi: 'Đã mở bài học mới', id: 'Pelajaran baru terbuka', tr: 'Yeni ders açıldı', pl: 'Nowa lekcja otwarta',
     });
     modalSub = triLang(lang, {
-      ru: 'Продолжай обучение, когда захочешь.', en: 'Keep learning whenever you’re ready.', uk: 'Продовжуй навчання, коли захочеш.',
-      es: 'Sigue aprendiendo cuando estés listo.', 'pt-BR': 'Continue estudando quando estiver pronto.', vi: 'Tiếp tục học khi bạn sẵn sàng.',
-      id: 'Lanjutkan belajar kapan pun kamu siap.', tr: 'Hazır olduğunda öğrenmeye devam et.', pl: 'Ucz się dalej, kiedy będziesz gotowy.',
+      // зачем (VOICE.md): тепло и без рода (pl «gotowy», es «listo» угадывали род)
+      ru: 'Заходи, когда будет минутка.', en: 'Drop in whenever you have a minute.', uk: 'Заходь, коли матимеш хвилинку.',
+      es: 'Pásate cuando tengas un minuto.', 'pt-BR': 'Passa aqui quando tiver um minutinho.', vi: 'Ghé vào khi rảnh một phút nhé.',
+      id: 'Mampir kapan pun ada waktu semenit.', tr: 'Bir dakikan olduğunda uğra.', pl: 'Wpadnij, kiedy znajdziesz chwilę.',
     });
   } else if (notif.kind === 'level_exam_unlock') {
     modalTitle = triLang(lang, {
@@ -422,9 +425,9 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Exame de nível liberado', vi: 'Đã mở bài thi cấp độ', id: 'Ujian level terbuka', tr: 'Seviye sınavı açıldı', pl: 'Egzamin poziomu otwarty',
     });
     modalSub = triLang(lang, {
-      ru: 'Проверь знания для следующего шага.', en: 'Check your knowledge before the next step.', uk: 'Перевір знання для наступного кроку.',
-      es: 'Comprueba lo que sabes para el siguiente paso.', 'pt-BR': 'Teste seus conhecimentos para o próximo passo.', vi: 'Kiểm tra kiến thức cho bước tiếp theo.',
-      id: 'Uji pengetahuanmu untuk langkah berikutnya.', tr: 'Bir sonraki adım için bilgini sına.', pl: 'Sprawdź wiedzę przed kolejnym krokiem.',
+      ru: 'Проверим, что осело в голове?', en: "Let's see what stuck?", uk: 'Перевіримо, що осіло в голові?',
+      es: '¿Vemos qué se te quedó?', 'pt-BR': 'Vamos ver o que ficou na cabeça?', vi: 'Xem điều gì đã đọng lại nhé?',
+      id: 'Yuk cek apa yang nyangkut?', tr: 'Bakalım aklında ne kalmış?', pl: 'Sprawdzimy, co zostało w głowie?',
     });
   } else {
     modalTitle = triLang(lang, {
@@ -432,9 +435,10 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       'pt-BR': 'Exame Lingman liberado', vi: 'Đã mở bài thi Lingman', id: 'Ujian Lingman terbuka', tr: 'Lingman sınavı açıldı', pl: 'Egzamin Lingman otwarty',
     });
     modalSub = triLang(lang, {
-      ru: 'Новый срез знаний доступен на твоём пути.', en: 'A new knowledge check is available on your path.', uk: 'Новий зріз знань доступний на твоєму шляху.',
-      es: 'Hay una nueva prueba de conocimientos en tu camino.', 'pt-BR': 'Uma nova avaliação está disponível no seu caminho.', vi: 'Một bài kiểm tra kiến thức mới đã có trên hành trình của bạn.',
-      id: 'Tes pengetahuan baru tersedia di jalurmu.', tr: 'Yolunda yeni bir bilgi ölçümü seni bekliyor.', pl: 'Na Twojej ścieżce czeka nowy sprawdzian wiedzy.',
+      // зачем (VOICE.md): «новый срез знаний на твоём пути» — канцелярит
+      ru: 'Проверим, что осело в голове?', en: "Let's see what stuck?", uk: 'Перевіримо, що осіло в голові?',
+      es: '¿Vemos qué se te quedó?', 'pt-BR': 'Vamos ver o que ficou na cabeça?', vi: 'Xem điều gì đã đọng lại nhé?',
+      id: 'Yuk cek apa yang nyangkut?', tr: 'Bakalım aklında ne kalmış?', pl: 'Sprawdzimy, co zostało w głowie?',
     });
   }
   // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-specialist.html
@@ -1522,7 +1526,7 @@ export default function LessonComplete() {
                 || triLang(lang, { ru: `Урок\u00A0${lessonId}`, en: `Lesson\u00A0${lessonId}`, uk: `Урок\u00A0${lessonId}`, es: `Lección\u00A0${lessonId}`, 'pt-BR': `Lição\u00A0${lessonId}`, vi: `Bài\u00A0${lessonId}`, id: `Pelajaran\u00A0${lessonId}`, tr: `Ders\u00A0${lessonId}`, pl: `Lekcja\u00A0${lessonId}` }))}
               stars={isComboCompletion ? null : resultStars}
               noteAction={guestSignInInvite ? {
-                label: triLang(lang, { ru: 'Один клик через Google — и прогресс в безопасности.', en: 'One tap with Google — and your progress is safe.', uk: 'Один тап через Google — і прогрес у безпеці.', es: 'Un toque en Google y tu progreso queda a salvo.', 'pt-BR': 'Um toque no Google e seu progresso fica seguro.', vi: 'Một chạm qua Google — tiến trình của bạn an toàn.', id: 'Sekali ketuk lewat Google — progresmu aman.', tr: 'Google ile tek dokunuş — ilerlemen güvende.', pl: 'Jedno kliknięcie przez Google — postępy są bezpieczne.' }),
+                label: triLang(lang, { ru: 'Один тап через Google — и прогресс не потеряется.', en: 'One tap with Google and your progress won’t get lost.', uk: 'Один тап через Google — і прогрес не загубиться.', es: 'Un toque con Google y tu progreso no se pierde.', 'pt-BR': 'Um toque no Google e seu progresso não se perde.', vi: 'Một chạm qua Google là tiến trình không bị mất.', id: 'Sekali ketuk lewat Google, progresmu tidak hilang.', tr: 'Google ile tek dokunuş, ilerlemen kaybolmaz.', pl: 'Jedno dotknięcie przez Google i postępy nie przepadną.' }),
                 testID: 'lesson-complete-guest-signin-invite',
                 onPress: () => {
                   console.log('[GUEST-SIGNIN-INVITE]', JSON.stringify({ lessonsDone: lessonId, decision: 'tap' }));
@@ -1531,7 +1535,7 @@ export default function LessonComplete() {
                 },
               } : undefined}
               starsNote={joinResultNotes(!isComboCompletion && resultStars === 1
-                ? triLang(lang, { ru: 'Для следующего урока нужно 2★', en: 'You need 2★ for the next lesson', uk: 'Для наступного уроку потрібно 2★', es: 'Necesitas 2★ para la siguiente lección', 'pt-BR': 'Você precisa de 2★ para a próxima lição', vi: 'Cần 2★ để mở bài tiếp theo', id: 'Butuh 2★ untuk pelajaran berikutnya', tr: 'Sonraki ders için 2★ gerekir', pl: 'Do następnej lekcji potrzeba 2★' })
+                ? triLang(lang, { ru: 'Ещё одна ★ — и следующий урок откроется', en: 'One more ★ and the next lesson opens', uk: 'Ще одна ★ — і наступний урок відкриється', es: 'Una ★ más y se abre la siguiente lección', 'pt-BR': 'Mais uma ★ e a próxima lição abre', vi: 'Thêm một ★ là mở bài tiếp theo', id: 'Satu ★ lagi dan pelajaran berikutnya terbuka', tr: 'Bir ★ daha ve sonraki ders açılır', pl: 'Jeszcze jedna ★ i następna lekcja się otworzy' })
                 : nextLessonUnlockHint
                   ? triLang(lang, { ru: 'Следующий урок открыт', en: 'The next lesson is open', uk: 'Наступний урок відкрито', es: 'La siguiente lección está abierta', 'pt-BR': 'A próxima lição está aberta', vi: 'Bài tiếp theo đã mở', id: 'Pelajaran berikutnya terbuka', tr: 'Sonraki ders açıldı', pl: 'Następna lekcja jest otwarta' })
                   : undefined, examUnlockNote ? examUnlockNoteText(lang, examUnlockNote) : undefined)}
@@ -1545,7 +1549,7 @@ export default function LessonComplete() {
               coinsGained={practiceRunes.runes}
               plusNote={completionRequiresPremium ? {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
-                body: triLang(lang, { ru: 'Первые три урока открыты бесплатно. Дальше — с Plus.', en: 'The first three lessons are free. The rest come with Plus.', uk: 'Перші три уроки відкриті безкоштовно. Далі — з Plus.', es: 'Las tres primeras lecciones son gratis. Después, con Plus.', 'pt-BR': 'As três primeiras lições são grátis. Depois, com Plus.', vi: 'Ba bài đầu miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran pertama gratis. Selanjutnya dengan Plus.', tr: 'İlk üç ders ücretsiz. Sonrası Plus ile.', pl: 'Pierwsze trzy lekcje są darmowe. Dalej — z Plus.' }),
+                body: triLang(lang, { ru: 'Три урока — бесплатно. Дальше — с Plus.', en: 'Three lessons are free. The rest come with Plus.', uk: 'Три уроки — безкоштовно. Далі — з Plus.', es: 'Tres lecciones gratis. Después, con Plus.', 'pt-BR': 'Três lições grátis. Depois, com Plus.', vi: 'Ba bài miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran gratis. Selanjutnya dengan Plus.', tr: 'Üç ders ücretsiz. Sonrası Plus ile.', pl: 'Trzy lekcje za darmo. Dalej — z Plus.' }),
               } : undefined}
               feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
                 <View style={{ width: '100%', gap: 12 }}>

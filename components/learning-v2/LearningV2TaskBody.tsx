@@ -8,6 +8,7 @@
 // Межстрочный растёт с системным шрифтом (FONTSCALE2).
 // ═════════════════════════════════════════════════════════════════════════
 import Ionicons from '@expo/vector-icons/Ionicons';
+import IntroRoleText from './IntroRoleText';
 import React, { memo, useMemo } from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 
@@ -38,7 +39,8 @@ export const LearningV2SituationCard = memo(function LearningV2SituationCard({ l
         <Ionicons name="chatbubble-ellipses-outline" size={LV2_TASK_BODY.situation.kickerIcon} color={g.secondary} />
         <Text style={[s.sitKickerText, { color: g.secondary }]}>{learningV2TaskBodyCopy(lang, 'situation')}</Text>
       </View>
-      <Text style={[s.sitValue, { color: g.text }]}>{text}</Text>
+      {/* зачем (владелец 25.10, «МАКСИМУМ И ПОДЛОЖКА»): ситуация «Скажи так» — те же цвета ролей, что во вступлении */}
+      <Text style={[s.sitValue, { color: g.text }]}><IntroRoleText text={text} glass={g} /></Text>
     </View>
   );
 });

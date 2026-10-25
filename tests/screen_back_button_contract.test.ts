@@ -95,8 +95,10 @@ describe('кнопка «назад»: одна и в одном месте', ()
     const community = read('app/(tabs)/community.tsx');
     expect(community).toContain("const byMenu = tabEnteredByMenu('/(tabs)/community');");
     expect(community).toContain('{backFromLink ? <ScreenBackButton');
-    // на Пике со «Сценой» видимые вкладки нарисованы в слое — сдвиг передаётся и туда (3·МАКЕТЫ 7961dde6a), иначе палец и рисунок разъедутся
-    expect(community).toContain('tabsInset={backInset}');
+    // на Пике со «Сценой» видимые вкладки — сами настоящие (слой нарисованных вкладок убран, замок «верх цельный» 25.10, 4fa3e9457):
+    // сдвиг от «назад» стоит на них, рисунок и палец совпадают
+    expect(community).toContain('<View testID="community-sections" accessibilityRole="tablist" style={[s.tabs, backInset]}>');
+    expect(community).not.toContain('<SpireSceneHeaderLayer');
   });
 
   it('подвиды вкладки открываются полноэкранно, «назад» внутри окна считает верх от экрана (координатор 22.10, вариант А)', () => {

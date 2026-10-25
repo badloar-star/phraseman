@@ -27,6 +27,8 @@ const KNOWN_GUARDS = [
   'tests/premium_theme_conditions_match_codex_package.test.ts',
   // 4 · ТЕМЫ 25.10 (слово владельца): верх экрана цельный — без полосы под часами и вкладками над «Сценой»
   'tests/owner_lock_whole_top_2026_10_25.test.ts',
+  // 4 · ТЕМЫ 25.10 (слово владельца «МАКСИМУМ И ПОДЛОЖКА»): цвета ролей текста вступления из темы, частицы с подложкой
+  'tests/owner_lock_intro_text_roles_2026_10_25.test.ts',
   'tests/v2_tab_bar_liquid_glass_theme.test.cjs',
   'tests/owner_locks_spire_summit_2026_10_22.test.ts',
   'tests/owner_locks_spire_2026_10_22.test.ts',

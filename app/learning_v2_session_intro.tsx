@@ -1,5 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import IntroRoleText from "../components/learning-v2/IntroRoleText";
 import {
   PixelRatio,
   ScrollView,
@@ -263,6 +264,14 @@ function IntroReaderParagraph({
       {parts.map((part, index) => {
         const role = introPartRole(part, nativeScriptIsCyrillic);
         const look = rolePresentation(role, glass);
+        // зачем (владелец 25.10, «МАКСИМУМ И ПОДЛОЖКА»): обычный текст (и bodyByLocale без частей) — в цветах ролей: английский / частица с подложкой / перевод / формула
+        if (role === "plain") {
+          return (
+            <Text key={`${index}-${part.text}`} testID={`learning-v2-intro-part-${lineIndex}-${index}`} style={{ fontSize: look.size }}>
+              <IntroRoleText text={part.text} glass={glass} />
+            </Text>
+          );
+        }
         return (
           <Text
             key={`${index}-${part.text}`}

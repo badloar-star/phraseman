@@ -17,14 +17,16 @@ const PARTICLE_CHROMA = 0.13;
 const MIN = 4.55;
 const cache = new Map<string, IntroTextRoles>();
 
-export function introTextRoles(themeId: LiquidGlassThemeId, variant: Readonly<{ level?: 'calm' | 'accent' | 'max'; appearance?: 'dark' | 'light'; intensity?: number }> = {}): IntroTextRoles {
-  const key = `${themeId}|${variant.level ?? ''}|${variant.appearance ?? ''}|${variant.intensity ?? ''}`;
+type RoleTokens = Readonly<{ plateFillFrom: string; plateFillTo: string; text: string; secondary: string; opaqueControl: string; isLight: boolean }>;
+
+/** Роли по уже посчитанным токенам темы (экран берёт токены активной темы); кэш по токенам — смена уровня/оформления даёт новый ключ. */
+export function introTextRolesForTokens(themeId: LiquidGlassThemeId, g: RoleTokens): IntroTextRoles {
+  const key = `${themeId}|${g.plateFillFrom}|${g.plateFillTo}|${g.text}|${g.secondary}|${g.isLight ? 'l' : 'd'}`;
   const hit = cache.get(key);
   if (hit) return hit;
-  const g = liquidGlassTokens(themeId, variant as never);
   const surfaces = [g.plateFillFrom.slice(0, 7), g.plateFillTo.slice(0, 7)];
   const dark = !g.isLight;
-  const themeAccent = liquidGlassTokens(themeId, { ...variant, level: 'max' } as never).accent;
+  const themeAccent = liquidGlassTokens(themeId, { level: 'max', appearance: dark ? 'dark' : 'light' } as never).accent;
   const hue = hueOfHex(themeAccent, hueOfHex(g.opaqueControl, 255));
   const roles: IntroTextRoles = Object.freeze({
     langText: legibleOn(g.text, g.text, surfaces, MIN),
@@ -33,4 +35,8 @@ export function introTextRoles(themeId: LiquidGlassThemeId, variant: Readonly<{ 
   });
   cache.set(key, roles);
   return roles;
+}
+
+export function introTextRoles(themeId: LiquidGlassThemeId, variant: Readonly<{ level?: 'calm' | 'accent' | 'max'; appearance?: 'dark' | 'light'; intensity?: number }> = {}): IntroTextRoles {
+  return introTextRolesForTokens(themeId, liquidGlassTokens(themeId, variant as never));
 }

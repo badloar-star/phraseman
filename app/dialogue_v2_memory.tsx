@@ -36,6 +36,7 @@ import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { safeRouterBack } from './navigation_back';
 import BackGlyph from '../components/v2/BackGlyph';
+import { SCREEN_BACK_SIZE } from '../components/v2/ScreenBackButton';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -270,14 +271,17 @@ export default function DialogueV2MemoryRoute() {
 
   const confirmClear = useCallback(() => setConfirmOpen(true), []);
 
+  // зачем (координатор 26.10 по эталону dialogs-gaps-states №1–6: `memHead` — `.rb.l` 48 + заголовок в строке; закон владельца «назад в одном
+  // месте везде»): круг «назад» 48 как у общей кнопки (было 44). Шапка minHeight вместо height — при шрифте ×1,3 на 360 dp заголовок может
+  // уйти в две строки и не должен обрезаться.
   const renderHeader = () => (
-    <View style={{ height: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap }}>
+    <View style={{ minHeight: 60, paddingHorizontal: V2.screenPad, flexDirection: 'row', alignItems: 'center', gap: V2.gap }}>
       <PressableScale
         onPress={() => safeRouterBack(router, '/ai_dialog_home' as never)}
         variant="flat"
         accessibilityRole="button"
         accessibilityLabel={copy.back}
-        style={{ width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center', backgroundColor: p.control }}
+        style={{ width: SCREEN_BACK_SIZE, height: SCREEN_BACK_SIZE, borderRadius: SCREEN_BACK_SIZE / 2, alignItems: 'center', justifyContent: 'center', backgroundColor: p.control }}
       >
         <BackGlyph size={23} color={p.text} />
       </PressableScale>

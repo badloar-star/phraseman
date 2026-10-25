@@ -1,0 +1,10 @@
+[
+  "app/(tabs)/community.tsx",
+  "app/dialogue_v2_completion.tsx",
+  "app/dialogue_v2_freeform.tsx",
+  "app/dialogue_v2_memory.tsx",
+  "app/dialogue_v2_session.tsx",
+  "app/friends_duel.tsx",
+  "app/friends_week_mine.tsx",
+  "app/today_tasks.tsx"
+]

@@ -302,9 +302,9 @@ export default function SettingsNotifications() {
   const prefsSeqRef = useRef(0);
   const scheduleSeqRef = useRef(0);
   const rollbackToast = () => emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.",
-        es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.',
-        id: 'Pengaturan tidak dapat disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+        ru: 'Настройка не сохранилась — попробуй ещё раз.', uk: 'Налаштування не збереглося — спробуй ще раз.', en: "The setting didn’t save — try again.",
+        es: 'El ajuste no se guardó: inténtalo otra vez.', 'pt-BR': 'A configuração não foi salva — tente de novo.', vi: 'Chưa lưu được cài đặt — thử lại nhé.',
+        id: 'Pengaturan belum tersimpan — coba lagi.', tr: 'Ayar kaydedilmedi — tekrar dene.', pl: 'Ustawienie się nie zapisało — spróbuj jeszcze raz.',
       }));
 
   const persistPrefs = async (next: NotifPrefs, enabling: boolean) => {
@@ -432,7 +432,8 @@ export default function SettingsNotifications() {
   const timeLabel = L({ ru:'Время', uk:'Час', en:'Time', es:'Hora', 'pt-BR':'Horário', vi:'Thời gian', id:'Waktu', tr:'Saat', pl:'Godzina' });
   const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Rangkaian terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
   const phraseLabel = L({ ru:'Фраза дня', uk:'Вислів дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
-  const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', en:'Energy restored', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
+  // зачем (голос PhraseMan, VOICE.md 25.10): подпись переключателя = заголовок самого пуша «Энергия снова полная»
+  const energyLabel = L({ ru:'Энергия снова полная', uk:'Енергія знову повна', en:'Energy’s full again', es:'Energía llena otra vez', 'pt-BR':'Energia cheia de novo', vi:'Năng lượng đầy lại', id:'Energi penuh lagi', tr:'Enerji yeniden dolu', pl:'Energia znów pełna' });
   const sectionRecaps = L({ ru:'ИТОГИ', uk:'ПІДСУМКИ', en:'RECAPS', es:'RESÚMENES', 'pt-BR':'RESUMOS', vi:'TỔNG KẾT', id:'RINGKASAN', tr:'ÖZETLER', pl:'PODSUMOWANIA' });
   const weeklyLabel = L({ ru:'Итоги недели', uk:'Підсумки тижня', en:'Weekly recap', es:'Resumen semanal', 'pt-BR':'Resumo da semana', vi:'Tổng kết tuần', id:'Ringkasan mingguan', tr:'Haftalık özet', pl:'Podsumowanie tygodnia' });
   const monthlyLabel = L({ ru:'Итоги месяца', uk:'Підсумки місяця', en:'Monthly recap', es:'Resumen mensual', 'pt-BR':'Resumo do mês', vi:'Tổng kết tháng', id:'Ringkasan bulanan', tr:'Aylık özet', pl:'Podsumowanie miesiąca' });

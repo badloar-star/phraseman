@@ -219,8 +219,8 @@ export default function SettingsEdu() {
       setS(reverted);
       void applyUserSettingsNow(reverted);
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.", es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
-        'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.', id: 'Pengaturan tidak bisa disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+        ru: 'Настройка не сохранилась — попробуй ещё раз.', uk: 'Налаштування не збереглося — спробуй ще раз.', en: "The setting didn’t save — try again.", es: 'El ajuste no se guardó: inténtalo otra vez.',
+        'pt-BR': 'A configuração não foi salva — tente de novo.', vi: 'Chưa lưu được cài đặt — thử lại nhé.', id: 'Pengaturan belum tersimpan — coba lagi.', tr: 'Ayar kaydedilmedi — tekrar dene.', pl: 'Ustawienie się nie zapisało — spróbuj jeszcze raz.',
       }));
     });
   };
@@ -344,8 +344,8 @@ export default function SettingsEdu() {
     if (revert) {
       revert();
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.", es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
-        'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.', id: 'Pengaturan tidak bisa disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+        ru: 'Настройка не сохранилась — попробуй ещё раз.', uk: 'Налаштування не збереглося — спробуй ще раз.', en: "The setting didn’t save — try again.", es: 'El ajuste no se guardó: inténtalo otra vez.',
+        'pt-BR': 'A configuração não foi salva — tente de novo.', vi: 'Chưa lưu được cài đặt — thử lại nhé.', id: 'Pengaturan belum tersimpan — coba lagi.', tr: 'Ayar kaydedilmedi — tekrar dene.', pl: 'Ustawienie się nie zapisało — spróbuj jeszcze raz.',
       }));
     }
   };

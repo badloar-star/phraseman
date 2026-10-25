@@ -17,6 +17,14 @@ describe('dev seen reset', () => {
     expect(devSeenResetKeys('team', 'S1', stored)).toEqual([]);
   });
 
+  it('feedback — кулдаун карточки оценки по всем четырём разделам (Сверка 25.10)', () => {
+    expect(devSeenResetKeys('feedback', 'S1', [])).toEqual([
+      'feedback_prompt_last_shown_v1:lesson', 'feedback_prompt_last_shown_v1:learning_v2', 'feedback_prompt_last_shown_v1:vocab', 'feedback_prompt_last_shown_v1:dialogue',
+    ]);
+    expect(parseDevSeenRequest('feedback')).toBe('feedback');
+    expect(devSeenResetKeys('reset', 'S1', [])).toContain('feedback_prompt_last_shown_v1:lesson');
+  });
+
   it('reset — все окна сразу, без посторонних ключей', () => {
     const keys = devSeenResetKeys('reset', 'S1', ['story_events_v1:x', 'user_name', 'premium_active']);
     expect(keys).toEqual(expect.arrayContaining([

@@ -5,7 +5,7 @@
  * первого показа больше не появляются, и снять их кадр повторно можно было только через pm clear. Вызывается ТОЛЬКО
  * из applyDevState после гейта dev-сборки (в стор-сборке ветка недоступна). Сервер не трогаем.
  */
-export const DEV_SEEN_WINDOWS = ['energy', 'welcome', 'plus', 'referral', 'stories', 'team'] as const;
+export const DEV_SEEN_WINDOWS = ['energy', 'welcome', 'plus', 'referral', 'stories', 'team', 'feedback'] as const;
 export type DevSeenWindow = (typeof DEV_SEEN_WINDOWS)[number];
 export type DevSeenRequest = 'reset' | DevSeenWindow;
 
@@ -21,6 +21,14 @@ const FIXED_KEYS: Readonly<Record<Exclude<DevSeenWindow, 'stories' | 'team'>, re
     'streak_paywall_shown',
   ],
   referral: ['referral_access_ended_seen_for_v1'],
+  // зачем (Сверка 25.10, замок «оценку без текста отправить нельзя»): карточка оценки на экранах завершения показывается раз в неделю на раздел —
+  // seen=feedback снимает кулдаун (feedback_prompt_throttle: feedback_prompt_last_shown_v1:<раздел>), чтобы проверить карточку повторно без pm clear
+  feedback: [
+    'feedback_prompt_last_shown_v1:lesson',
+    'feedback_prompt_last_shown_v1:learning_v2',
+    'feedback_prompt_last_shown_v1:vocab',
+    'feedback_prompt_last_shown_v1:dialogue',
+  ],
 };
 
 const STORY_EVENTS_PREFIX = 'story_events_v1:';

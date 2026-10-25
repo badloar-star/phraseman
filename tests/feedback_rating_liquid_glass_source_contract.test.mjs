@@ -30,11 +30,12 @@ const DEPENDENCY_HASHES = {
   'app/debug-logger.ts': 'b571e0a05e2767f4ae0ef04b4614ba4129492c4735274b12e8e19a899151f0ac',
 };
 // 25.10 перепин по слову владельца («оценку без текста отправить нельзя», ЗАМОК ВЛАДЕЛЬЦА 25.10): изменилась ТОЛЬКО var.sendFeedback — ранний выход при отсутствии слова из 3+ букв (feedbackBlockReason) и журнал [RATING-SUBMIT];
-// путь доставки (enqueue → flush → fallback submit), согласие, payload и «Спасибо» прежние, остальные 6 защищённых узлов не менялись.
-const PROTECTED_AST = { count: 7, digest: 'a0dc17685cdf8aaad06c3d8a161e1c980567c523a144324bc9fecb2d478c4876' };
+// путь доставки (enqueue → flush → fallback submit), согласие, payload и «Спасибо» прежние, остальные 6 защищённых узлов не менялись. Перепин 2 (Сверка 25.10): журнал [RATING-SUBMIT] идёт через logRating — и в консоль (logcat), и в журнал приложения.
+const PROTECTED_AST = { count: 7, digest: 'ac3a29aa7ca330295470aa951e8759cd1b782b67a8a17b602e5d664dce5e9c7e' };
+// 25.10 перепин (Сверка, координатор): у default и compact-stars кнопка «Отправить» теперь SendFade — заливка акцента + непрозрачность 0,4/1 с переходом 150 мс вместо серой заливки неактивной; остальная разметка и геометрия прежние
 const LEGACY_RENDER_HASHES = {
-  default: '267079d88eeb0b7faf69a36280c40073803a9adfbc18439fa141c775677af3cc',
-  'compact-stars': 'd62f04873bc254aa93d38de979b3c405664f4d1c11195ab219c10954a15508c0',
+  default: 'e1349399a73435eb7572eabf2a4a5bd4cc6fcad68e286a8da91b19204a92c53f',
+  'compact-stars': 'b27a789fecc024806c5005e7b6c354643b7fbf2c7efe86e06d2b58fa6a361e46',
 };
 
 const parse = candidate => ts.createSourceFile(
@@ -173,6 +174,17 @@ function createHarness({
       Text: 'Text', TextInput: 'TextInput', TouchableOpacity: 'TouchableOpacity', View: 'View',
     },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },
+    // 25.10 (Сверка, координатор): «Отправить» плавно (150 мс) меняет активность — SendFade на reanimated; в харнессе значение сразу целевое
+    'react-native-reanimated': {
+      __esModule: true,
+      default: { View: 'View' },
+      Easing: { out: () => value => value, cubic: value => value },
+      useReducedMotion: () => false,
+      useSharedValue: value => ({ value }),
+      useAnimatedStyle: factory => factory(),
+      withTiming: value => value,
+      cancelAnimation: () => undefined,
+    },
     './GlassSurface': { glassFill: (color, opacity) => `fill(${color},${opacity})` },
     './ThemeContext': {
       FONT_SCALE: { small: 1, medium: 1.15, large: 1.3 },

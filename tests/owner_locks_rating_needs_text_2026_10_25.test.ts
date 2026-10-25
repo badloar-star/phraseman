@@ -41,10 +41,23 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: оценку без текста 
   });
 
   it('журнал [RATING-SUBMIT]: попытка (screen, stars, len) и блок (reason), без текста и идентификаторов', () => {
+    // и в консоль (logcat ReactNativeJS, как [PEAK-COINS]), и в журнал приложения — Сверка 25.10 не нашла строки, пока писал только DebugLogger
+    expect(card).toContain("console.log('[RATING-SUBMIT]', event, json);");
     expect(card).toContain("DebugLogger.info('[RATING-SUBMIT]'");
-    expect(card).toContain('screen: kind, stars: rating, len: message.length');
+    expect(card).toContain("logRating('attempt', { screen: kind, stars: rating, len: message.length });");
     expect(card).toContain('reason: blockReason');
-    expect(card).not.toMatch(/\[RATING-SUBMIT\][^\n]*(message[,}]|entityId|userName)/);
+    expect(card).not.toMatch(/logRating\([^)]*(message[,} ]|entityId|userName)/);
+  });
+
+  // Сверка 25.10: неактивная «Отправить» отличалась от активной не больше, чем rgb 119,119,112 от самой себя — теперь непрозрачность 0,4 против 1 и переход 150 мс во всех трёх видах карточки
+  it('кнопка «Отправить»: неактивная приглушена, активная полноценная, переход 150 мс — во всех трёх видах', () => {
+    expect(card).toContain('const SEND_FADE_MS = 150;');
+    expect(card).toContain('const SEND_DISABLED_OPACITY = 0.4;');
+    expect(card.match(/<SendFade/g)?.length).toBe(2); // liquid-glass-rate и default/compact-stars
+    expect(card).toContain('blocked={sendDisabled}');
+    expect(card).toContain('blocked={sendBlocked}');
+    expect(card).not.toContain('glassFill(t.bgCard, 0.6)'); // серая «неактивная» заливка, совпадавшая с активной, не возвращается
+    expect(card).not.toContain('glass.buttonFillDisabled');
   });
 
   it('оценка уходит только через общую карточку: enqueue/submit больше никто не зовёт', () => {

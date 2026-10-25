@@ -13,6 +13,17 @@ jest.mock('react-native', () => ({
   StyleSheet: { create: (s: unknown) => s, flatten: (s: unknown) => s, absoluteFill: {}, absoluteFillObject: {} },
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
+// анимация кнопки: в харнессе значение сразу целевое (opacity = 0,4 + 0,6 × активность)
+jest.mock('react-native-reanimated', () => ({
+  __esModule: true,
+  default: { View: 'View' },
+  Easing: { out: () => (x: number) => x, cubic: (x: number) => x },
+  useReducedMotion: () => false,
+  useSharedValue: (v: number) => ({ value: v }),
+  useAnimatedStyle: (fn: () => unknown) => fn(),
+  withTiming: (v: number) => v,
+  cancelAnimation: () => undefined,
+}));
 jest.mock('../components/GlassSurface', () => ({ glassFill: (c: string) => c }));
 jest.mock('../components/ThemeContext', () => ({
   FONT_SCALE: { medium: 1 },
@@ -47,8 +58,9 @@ const loggedAttempts = () => mockInfo.mock.calls.filter((c) => c[0] === '[RATING
 
 for (const presentation of ['default', 'compact-stars', 'liquid-glass-rate'] as const) {
   describe(`карточка оценки · ${presentation}`, () => {
-    beforeEach(() => { mockEnqueue.mockClear(); mockInfo.mockClear(); });
-    afterEach(() => { cleanup(); });
+    let consoleLog: jest.SpyInstance;
+    beforeEach(() => { mockEnqueue.mockClear(); mockInfo.mockClear(); consoleLog = jest.spyOn(console, 'log').mockImplementation(() => undefined); });
+    afterEach(() => { cleanup(); consoleLog.mockRestore(); });
 
     const open = async () => {
       await render(
@@ -94,6 +106,29 @@ for (const presentation of ['default', 'compact-stars', 'liquid-glass-rate'] as 
       expect(loggedBlocks()).toEqual([]);
       expect(loggedAttempts()).toEqual(['attempt {"screen":"lesson","stars":4,"len":7}']);
       expect(JSON.stringify(mockInfo.mock.calls)).not.toContain('отлично');
+    });
+
+    it('кнопка «Отправить» видимо различается: без слова приглушена (0,4), со словом полноценная (1)', async () => {
+      await open();
+      await fireEvent.press(screen.getByTestId('feedback-rating-card-star-5'));
+      const opacityOf = () => {
+        const style = screen.getByTestId('feedback-rating-card-send-visual').props.style as unknown[];
+        return ([style].flat(3) as Array<{ opacity?: number } | null | undefined>).reduce((acc, s) => (typeof s?.opacity === 'number' ? s.opacity : acc), -1);
+      };
+      expect(opacityOf()).toBeCloseTo(0.4, 5);
+      await fireEvent.changeText(screen.getByTestId('feedback-rating-card-input'), 'ok');
+      expect(opacityOf()).toBeCloseTo(0.4, 5); // «ok» — два символа, всё ещё неактивна
+      await fireEvent.changeText(screen.getByTestId('feedback-rating-card-input'), 'ok good');
+      expect(opacityOf()).toBeCloseTo(1, 5);
+    });
+
+    it('журнал [RATING-SUBMIT] идёт и в консоль (logcat), и в журнал приложения', async () => {
+      await open();
+      await fireEvent.press(screen.getByTestId('feedback-rating-card-star-1'));
+      await fireEvent.press(send());
+      await flush();
+      expect(consoleLog).toHaveBeenCalledWith('[RATING-SUBMIT]', 'blocked', '{"screen":"lesson","stars":1,"len":0,"reason":"no_word"}');
+      expect(loggedBlocks().length).toBe(1);
     });
 
     it('поле комментария видно сразу; после выбора звёзд плейсхолдер подсказывает про слово', async () => {

@@ -9,8 +9,9 @@
 // (feedback_prompt_throttle, не чаще раза в неделю) — гейт решает вызывающий
 // экран (см. shouldPromptFeedback), сам компонент рендерится безусловно.
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 
 import { glassFill } from './GlassSurface';
 import { FONT_SCALE, useTheme } from './ThemeContext';
@@ -48,6 +49,30 @@ export interface FeedbackRatingCardProps {
   ratingA11yLabel: string;
   testID?: string;
   presentation?: 'default' | 'compact-stars' | 'liquid-glass-rate';
+}
+
+// зачем (Сверка 25.10 на эмуляторе, координатор): «Отправить» выглядел одинаково при пустом поле, «ok» и «ok good» — человек не видел, когда кнопка стала активной.
+// Теперь неактивная — приглушённая (непрозрачность 0,4), активная — полноценный акцент темы; переход ~150 мс на UI-потоке (при «уменьшить движение» — мгновенно).
+const SEND_FADE_MS = 150;
+const SEND_DISABLED_OPACITY = 0.4;
+
+function SendFade({ blocked, style, testID, children }: { blocked: boolean; style: StyleProp<ViewStyle>; testID?: string; children: React.ReactNode }) {
+  const reduceMotion = useReducedMotion();
+  const fade = useSharedValue(blocked ? 0 : 1);
+  useEffect(() => {
+    const target = blocked ? 0 : 1;
+    fade.value = reduceMotion ? target : withTiming(target, { duration: SEND_FADE_MS, easing: Easing.out(Easing.cubic) });
+    return () => cancelAnimation(fade);
+  }, [blocked, fade, reduceMotion]);
+  const animated = useAnimatedStyle(() => ({ opacity: SEND_DISABLED_OPACITY + (1 - SEND_DISABLED_OPACITY) * fade.value }));
+  return <Animated.View testID={testID} style={[style, animated]}>{children}</Animated.View>;
+}
+
+// [RATING-SUBMIT]: и в консоль (logcat «ReactNativeJS», как [PEAK-COINS] и другие наши префиксы), и в журнал приложения; без текста отзыва и идентификаторов
+function logRating(event: 'attempt' | 'blocked', data: Record<string, unknown>): void {
+  const json = JSON.stringify(data);
+  console.log('[RATING-SUBMIT]', event, json); // guard-ok: журнал причины отправки/блока оценки (правило «сперва логи»)
+  DebugLogger.info('[RATING-SUBMIT]', `${event} ${json}`);
 }
 
 export default function FeedbackRatingCard({
@@ -108,9 +133,9 @@ export default function FeedbackRatingCard({
     if (state === 'sent') return;
     // [RATING-SUBMIT]: попытка (экран, звёзды, длина — без текста и идентификаторов) и блок с причиной
     const blockReason = feedbackBlockReason(message);
-    DebugLogger.info('[RATING-SUBMIT]', `attempt ${JSON.stringify({ screen: kind, stars: rating, len: message.length })}`);
+    logRating('attempt', { screen: kind, stars: rating, len: message.length });
     if (blockReason) {
-      DebugLogger.info('[RATING-SUBMIT]', `blocked ${JSON.stringify({ screen: kind, stars: rating, len: message.length, reason: blockReason })}`);
+      logRating('blocked', { screen: kind, stars: rating, len: message.length, reason: blockReason });
       return;
     }
     hapticTap();
@@ -261,11 +286,12 @@ export default function FeedbackRatingCard({
               onPress={() => { void sendFeedback(); }}
               style={styles.liquidSendTarget}
             >
-              <View
+              <SendFade
+                blocked={sendDisabled}
                 testID={`${testID}-send-visual`}
                 style={[
                   styles.liquidSendVisual,
-                  { backgroundColor: sendDisabled ? glass.buttonFillDisabled : glass.ctaFill }, // зачем (владелец 13.10, №35): токены кнопок темы
+                  { backgroundColor: glass.ctaFill }, // зачем (владелец 13.10, №35): токены кнопок темы; неактивность — непрозрачностью 0,4 (SendFade), а не серой заливкой, которая у «Спокойно» совпадала с активной
                 ]}
               >
                 <Text
@@ -273,7 +299,7 @@ export default function FeedbackRatingCard({
                   style={[
                     styles.liquidSendLabel,
                     {
-                      color: sendDisabled ? glass.mutedText : glass.ctaFillInk,
+                      color: glass.ctaFillInk,
                       fontSize: 16 * textScale,
                       lineHeight: 22 * textScale,
                     },
@@ -285,9 +311,9 @@ export default function FeedbackRatingCard({
                 <Ionicons
                   name="send"
                   size={16}
-                  color={sendDisabled ? glass.mutedText : glass.ctaFillInk}
+                  color={glass.ctaFillInk}
                 />
-              </View>
+              </SendFade>
             </TouchableOpacity>
           </>
         ) : null}
@@ -366,20 +392,22 @@ export default function FeedbackRatingCard({
               style={[
                 styles.sendButton,
                 compactStars ? styles.compactSendButton : null,
-                { backgroundColor: sendBlocked ? glassFill(t.bgCard, 0.6) : t.accent }, // light-accent-ok: кнопка с текстом
               ]}
             >
-              {compactStars ? (
-                <Ionicons
-                  name="send"
-                  size={18}
-                  color={sendBlocked ? t.textGhost : t.textOnGold}
-                />
-              ) : (
-                <Text style={{ color: sendBlocked ? t.textGhost : t.textOnGold, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
-                  {sendLabel}
-                </Text>
-              )}
+              {/* зачем (Сверка 25.10): заливка акцента + непрозрачность 0,4 у неактивной, 150 мс переход (SendFade) — видно, когда кнопка стала активной */}
+              <SendFade
+                blocked={sendBlocked}
+                testID={`${testID}-send-visual`}
+                style={[styles.sendFill, compactStars ? styles.compactSendFill : null, { backgroundColor: t.accent }]} // light-accent-ok: кнопка с текстом
+              >
+                {compactStars ? (
+                  <Ionicons name="send" size={18} color={t.textOnGold} />
+                ) : (
+                  <Text style={{ color: t.textOnGold, fontSize: f.body, fontWeight: '900' }} maxFontSizeMultiplier={2}>
+                    {sendLabel}
+                  </Text>
+                )}
+              </SendFade>
             </TouchableOpacity>
           </View>
         </>
@@ -492,4 +520,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   compactSendButton: { width: 44, height: 44, minHeight: 44, marginTop: 0 },
+  sendFill: { alignSelf: 'stretch', flexGrow: 1, minHeight: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  compactSendFill: { minHeight: 44 },
 });

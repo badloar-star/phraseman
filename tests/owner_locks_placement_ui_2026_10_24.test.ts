@@ -23,14 +23,18 @@ describe('Замки: тест «Не хочу с начала» — интер�
     expect(chrome).toContain('foot: { padTop: 12, padH: 20, padBottom: 34, cta: 52, ghost: 50, ghostGap: 10 }');
   });
 
-  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1» — старт: плитка 55, заголовок 28/34, абзац 16/23, три правила с кружками 28
-  it('старт: размеры и три правила', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1» — старт: плитка 55, заголовок 28/34, абзац 16/23
+  // ЗАМОК ВЛАДЕЛЬЦА 25.10: «это что, черновик разраба или приложение?!» — на старте НЕТ правил теста
+  // («ещё два вопроса», «засчитаем два из трёх», «бесплатный, около 5 минут»): только заголовок, одна фраза и кнопки
+  it('старт: размеры, без правил и служебной механики', () => {
     expect(start).toContain("tile: { width: 55, height: 55, borderRadius: 14");
     expect(start).toContain("fontSize: 28, lineHeight: 34, fontWeight: '800', letterSpacing: -0.4");
     expect(start).toContain('fontSize: 16, lineHeight: 23');
-    expect(start).toContain("RULE_KEYS = ['rule1', 'rule2', 'rule3']");
-    expect(start).toContain('width: 28, height: 28, borderRadius: 14');
     expect(start).toContain("ghostLabel={placementCopy(lang, 'startOver')}");
+    expect(start).not.toMatch(/RULE_KEYS|rule[123]|styles\.rules/u);
+    const copy = read('components/learning-v2/placement/placement_copy.ts');
+    expect(copy).not.toMatch(/^\s*rule[123]:/mu);
+    expect(copy).not.toMatch(/около 5 минут|Засчитаем при двух|бесплатн/iu);
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1» — итог: «Открыто до урока N» 34/40, строки уроков с «открыт» зелёным и «начнём здесь», кнопка «Начать урок N»

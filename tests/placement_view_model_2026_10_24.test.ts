@@ -67,7 +67,7 @@ describe('Тест «Не хочу с начала»: модель вида', ()
       expect(placementCopy(lang, 'progress', { n: 2, of: 32 })).toMatch(/2/);
       expect(placementCopy(lang, 'progress', { n: 2, of: 32 })).toMatch(/32/);
       expect(placementCopy(lang, 'resultBody', { range: '1–3', n: 4, title: 'T' })).toMatch(/1–3/);
-      for (const key of ['introTitle', 'introBody', 'rule1', 'rule2', 'rule3', 'start', 'startOver', 'extra', 'opened', 'here'] as const) {
+      for (const key of ['introTitle', 'introBody', 'start', 'startOver', 'extra', 'opened', 'here'] as const) {
         expect(placementCopy(lang, key).length).toBeGreaterThan(3);
       }
     }

@@ -4,7 +4,8 @@ import { normalizeEol } from './helpers/read_source';
 
 describe('friends tab locale runtime', () => {
   it('does not route planned friend activity copy through legacy runtime markers', () => {
-    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8'));
+    // зачем (Ревизор 25.10): `fallback={dailyPollCard}` — проп карточки «Фраза дня вдвоём», а не языковой запасной текст; вырезаем только его
+    const source = normalizeEol(fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8')).replace(/\bfallback=\{/g, 'jsxSlot={');
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimePattern);

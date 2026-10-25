@@ -23,7 +23,7 @@ const COPY: Readonly<Record<PremiumThemeId, ThemeCopy>> = Object.freeze({
   },
   grad_full_titanium: {
     title: all('Титан открыт', 'Титан відкрито', 'Titanium unlocked', 'Titanio desbloqueado', 'Titânio desbloqueado', 'Đã mở Titan', 'Titanium terbuka', 'Titanyum açıldı', 'Tytan odblokowany'),
-    joke: all('Последняя башня взята. Лифт дальше не едет — зато тема приехала.', 'Останню вежу взято. Ліфт далі не їде — зате тема приїхала.', 'Final tower conquered. The elevator stops here, but your theme arrived.', 'Última torre conquistada. El ascensor para aquí, pero llegó tu tema.', 'Última torre conquistada. O elevador para aqui, mas o tema chegou.', 'Đã chinh phục tháp cuối. Thang máy dừng, còn chủ đề đã tới.', 'Menara terakhir ditaklukkan. Lift berhenti, temanya tiba.', 'Son kule fethedildi. Asansör durdu, tema geldi.', 'Ostatnia wieża zdobyta. Winda dalej nie jedzie, ale motyw dotarł.'),
+    joke: all('Последняя башня взята. Лифт дальше не едет — зато тема приехала.', 'Останню вежу взято. Ліфт далі не їде — зате тема приїхала.', 'Final tower conquered. The elevator stops here, but your theme arrived.', 'Última torre conquistada. El ascensor para aquí, pero llegó tu tema.', 'Última torre conquistada. O elevador para aqui, mas o tema chegou.', 'Đã chinh phục tháp cuối. Thang máy dừng, còn chủ đề đã tới.', 'Puncak terakhir ditaklukkan. Lift berhenti, temanya tiba.', 'Son kule fethedildi. Asansör durdu, tema geldi.', 'Ostatnia wieża zdobyta. Winda dalej nie jedzie, ale motyw dotarł.'),
   },
   grad_full_horizon: {
     title: all('Атмосфера открыта', 'Атмосферу відкрито', 'Atmosphere unlocked', 'Atmósfera desbloqueada', 'Atmosfera desbloqueada', 'Atmosphere unlocked', 'Atmosfer terbuka', 'Atmosfer açıldı', 'Atmosfera odblokowana'),
@@ -45,7 +45,8 @@ const REQUIREMENT: Readonly<Record<PremiumThemeId, Copy>> = Object.freeze({
   grad_full_olive: all('', '', '', '', '', '', '', '', ''),
   grad_full_ref_signal_lime: all('Последний ранг монеты', 'Останній ранг монети', 'Reach the final coin rank', 'Alcanza el último rango de moneda', 'Alcance o último rank da moeda', 'Đạt hạng xu cuối', 'Capai peringkat koin terakhir', 'Son jeton rütbesine ulaş', 'Osiągnij ostatnią rangę monety'),
   grad_full_ref_storm_violet: all('Серия 365 дней', 'Серія 365 днів', 'Reach a 365-day streak', 'Alcanza una racha de 365 días', 'Alcance uma série de 365 dias', 'Đạt chuỗi 365 ngày', 'Capai rentetan 365 hari', '365 günlük seriye ulaş', 'Osiągnij serię 365 dni'),
-  grad_full_titanium: all('Достичь последнего Шпиля', 'Дістатися останнього Шпиля', 'Reach the final Spire', 'Alcanza el último Pináculo', 'Alcance o último Pináculo', 'Đạt Tháp cuối', 'Capai Puncak terakhir', 'Son Kuleye ulaş', 'Dotrzyj do ostatniej Iglicy'),
+  // зачем (Ревизор 25.10, spire_old_names_guard): раздел называется «Пик» (D-решение 13.10), имена — как в spire_game_strings.toSpire
+  grad_full_titanium: all('Подняться на вершину Пика', 'Піднятися на вершину Піку', 'Reach the top of Peak', 'Llega a la cima del Pico', 'Chegue ao topo do Pico', 'Chinh phục Đỉnh', 'Taklukkan Puncak', "Zirve'nin en üstüne çık", 'Zdobądź Szczyt'),
   grad_full_horizon: all('200 часов видео', '200 годин відео', 'Watch 200 hours of video', 'Mira 200 horas de vídeo', 'Assista a 200 horas de vídeo', 'Xem 200 giờ video', 'Tonton 200 jam video', '200 saat video izle', 'Obejrzyj 200 godzin wideo'),
   grad_full_ref_gravity_blue: all('Пройти весь Learning V2', 'Пройти весь Learning V2', 'Complete all of Learning V2', 'Completa todo Learning V2', 'Conclua todo o Learning V2', 'Hoàn thành toàn bộ Learning V2', 'Selesaikan seluruh Learning V2', 'Learning V2’nin tamamını bitir', 'Ukończ cały Learning V2'),
 });

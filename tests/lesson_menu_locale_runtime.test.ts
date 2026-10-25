@@ -15,11 +15,12 @@ describe('lesson menu planned locale runtime copy', () => {
   });
 
   it('keeps auxiliary lesson card subtitles explicit for planned locales', () => {
-    expect(SOURCE).toContain("'pt-BR': `${wordsLearned}/${total} palavras`");
-    expect(SOURCE).toContain("vi: `${wordsLearned}/${total} từ`");
-    expect(SOURCE).toContain("id: `${wordsLearned}/${total} kata`");
-    expect(SOURCE).toContain("tr: `${wordsLearned}/${total} kelime`");
-    expect(SOURCE).toContain("pl: `${wordsLearned}/${total} słów`");
+    // зачем (Ревизор 25.10): c8ffad624 поставил неразрывный пробел «число + слово» — в исходнике это \u00A0
+    expect(SOURCE).toContain("'pt-BR': `${wordsLearned}/${total}\\u00A0palavras`");
+    expect(SOURCE).toContain("vi: `${wordsLearned}/${total}\\u00A0từ`");
+    expect(SOURCE).toContain("id: `${wordsLearned}/${total}\\u00A0kata`");
+    expect(SOURCE).toContain("tr: `${wordsLearned}/${total}\\u00A0kelime`");
+    expect(SOURCE).toContain("pl: `${wordsLearned}/${total}\\u00A0słów`");
     expect(SOURCE).toContain("'pt-BR': 'Verbos irregulares desta lição'");
     expect(SOURCE).toContain("vi: 'Động từ bất quy tắc của bài này'");
     expect(SOURCE).toContain("id: 'Kata kerja tak beraturan pelajaran ini'");

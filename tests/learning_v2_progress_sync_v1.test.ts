@@ -10,6 +10,7 @@ import { learningV2CourseSessionIdV1 } from '../modules/learning-v2/content/cour
 import {
   LEARNING_V2_CHAPTER_EXAM_SYNC_KEY_V1,
   LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1,
+  mergeChapterExamRecordV1,
   mergeChapterExamSyncRestoreValueV1,
   mergeCourseProgressSyncRestoreValueV1,
   packChapterExamSyncV1,
@@ -149,5 +150,29 @@ describe('episode stars cloud copy', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'app', 'cloud_sync.ts'), 'utf8');
     expect(src).toContain('[LEARNING_V2_SESSION_STARS_SYNC_KEY_V1]: mergeSessionStarsSyncRestoreValueV1,');
     expect(src).toContain("'learning-v2:session-star-results:v1:',");
+  });
+});
+
+// Ревизор 25.10 (экзамен v2): «Повторить эти темы» снимает паузу той же попытки — снятие обязано доехать до второго устройства.
+describe('exam cooldown lifted by review syncs across devices', () => {
+  const key = 'en:lesson-01:chapter-2';
+  const paused = exam(key, { lastFinishedAtMs: 5000, retryAtMs: 5000 + 3_600_000 });
+  const lifted = exam(key, { lastFinishedAtMs: 5000, retryAtMs: 9000 });
+  it('same attempt: the earlier retry wins in both merge directions', () => {
+    expect(mergeChapterExamRecordV1(paused, lifted).retryAtMs).toBe(9000);
+    expect(mergeChapterExamRecordV1(lifted, paused).retryAtMs).toBe(9000);
+    const restored = unpackChapterExamSyncV1(mergeChapterExamSyncRestoreValueV1(packChapterExamSyncV1({ [key]: paused }), packChapterExamSyncV1({ [key]: lifted })));
+    expect(restored[key]?.retryAtMs).toBe(9000);
+  });
+  it('a newer failed attempt keeps its own pause; passed has no pause', () => {
+    const newer = exam(key, { lastFinishedAtMs: 20_000, retryAtMs: 20_000 + 3_600_000, attempts: 2 });
+    expect(mergeChapterExamRecordV1(lifted, newer).retryAtMs).toBe(20_000 + 3_600_000);
+    expect(mergeChapterExamRecordV1(newer, lifted).retryAtMs).toBe(20_000 + 3_600_000);
+    const passed = exam(key, { status: 'passed', passedCorrect: 9, lastFinishedAtMs: 5000, retryAtMs: null });
+    expect(mergeChapterExamRecordV1(paused, passed).retryAtMs).toBeNull();
+  });
+  it('the cloud copy format stays six numbers per exam (old builds keep reading it)', () => {
+    const packed = JSON.parse(packChapterExamSyncV1({ [key]: lifted })) as Record<string, unknown[]>;
+    expect(packed[key]).toHaveLength(6);
   });
 });

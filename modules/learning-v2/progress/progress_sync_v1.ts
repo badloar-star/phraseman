@@ -72,6 +72,13 @@ export function mergeChapterExamRecordV1(a: ChapterExamSyncRecordV1, b: ChapterE
   const passed = a.status === "passed" || b.status === "passed";
   const latest = a.lastFinishedAtMs >= b.lastFinishedAtMs ? a : b;
   const passedScores = [a.passedCorrect, b.passedCorrect].filter((n): n is number => typeof n === "number");
+  // зачем (Ревизор 25.10, экзамен v2): «Повторить эти темы» снимает паузу той же попытки — retryAtMs становится раньше. При равном
+  // lastFinishedAtMs побеждала своя сторона, и на втором устройстве пауза держалась до срока. Для одной попытки — более ранняя
+  // пересдача (null = без паузы); разные попытки — по последней, как раньше.
+  const sameAttempt = a.lastFinishedAtMs === b.lastFinishedAtMs;
+  const retryAtMs = passed ? null
+    : sameAttempt ? (a.retryAtMs === null || b.retryAtMs === null ? null : Math.min(a.retryAtMs, b.retryAtMs))
+    : latest.retryAtMs;
   return Object.freeze({
     examKey: a.examKey,
     status: passed ? "passed" : "failed",
@@ -79,7 +86,7 @@ export function mergeChapterExamRecordV1(a: ChapterExamSyncRecordV1, b: ChapterE
     lastCorrect: latest.lastCorrect,
     attempts: Math.max(a.attempts, b.attempts),
     lastFinishedAtMs: latest.lastFinishedAtMs,
-    retryAtMs: passed ? null : latest.retryAtMs,
+    retryAtMs,
   });
 }
 

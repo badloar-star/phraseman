@@ -125,7 +125,8 @@ describe('подключение', () => {
     expect(read('app/learning_v2_direct_session_player_v1.tsx')).toContain('noteChapterExamV2EpisodeFinishedV1(accountScopeHash, runSummary.courseSessionId)');
     const flags = read('app/remote_flags.ts');
     expect(flags).toContain('learning_chapter_exam_v2_enabled: true,');
-    expect(flags).toMatch(/'learning_cant_speak_enabled', 'learning_chapter_exam_v2_enabled'/);
+    // в списке ключей, которые Пульт может менять (соседние ключи других сессий не мешают)
+    expect(flags).toMatch(/allowedBools = new Set<RemoteBoolKey>\(\[[\s\S]{0,1200}'learning_chapter_exam_v2_enabled'/);
   });
   it('шторка экзамена показывает 10 вопросов у главы v2', () => {
     expect(read('components/learning-v2/LearningV2ChapterExamSheet.tsx')).toContain('isChapterExamV2EnabledFor(lessonOrdinal, chapterOrdinal) ? CHAPTER_EXAM_V2_QUESTION_COUNT : CHAPTER_EXAM_QUESTION_COUNT_V1');

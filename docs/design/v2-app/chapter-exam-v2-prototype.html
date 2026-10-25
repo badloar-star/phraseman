@@ -64,6 +64,14 @@ body { background: var(--page); color: var(--ink); font-family: var(--font); -we
 .ask { margin-top: 14px; font-size: 16px; line-height: 23px; color: var(--sec); }
 .ask b { color: var(--text); }
 .wrongc { margin-top: 16px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); padding: 16px; font-size: 21px; line-height: 28px; font-weight: 700; }
+.tp .ep { margin-top: 2px; font-size: 13px; line-height: 17px; color: var(--sec); }
+.epr { all: unset; box-sizing: border-box; cursor: pointer; display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px; border-radius: 14px; }
+.epr + .epr { box-shadow: 0 -1px 0 rgba(80, 82, 113, .14); border-radius: 0 0 14px 14px; }
+.epr:active { background: rgba(95, 92, 177, .08); } .epr:focus-visible { outline: 2px solid var(--acc); }
+.epr .n { width: 40px; height: 40px; border-radius: 12px; background: var(--tile); display: grid; place-items: center; font-size: 15px; font-weight: 800; flex: none; }
+.epr .m { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; font-size: 16px; line-height: 21px; } .epr .m span { font-size: 13px; line-height: 17px; color: var(--sec); }
+.epr .r { width: 22px; height: 22px; color: var(--sec); flex: none; } .epr .r.ok { color: var(--good); } .epr .r svg { width: 22px; height: 22px; }
+.epr[aria-disabled="true"] { cursor: default; }
 .wrongc u { text-decoration: none; background: var(--noPlate); color: var(--bad); border-radius: 6px; padding: 0 4px; }
 .field { margin-top: 14px; position: relative; }
 textarea { all: unset; box-sizing: border-box; display: block; width: 100%; min-height: 104px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); padding: 14px 16px; font-size: 20px; line-height: 27px; font-weight: 700;
@@ -138,11 +146,11 @@ textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
   <div class="stagewrap" id="wrap"><div class="ph" id="ph"></div></div>
   <div class="side">
     <h1>Экзамен главы 2 — пройди сам</h1>
-    <p>Это проходимый макет экрана экзамена: печатай ответы, нажимай «Проверить» и «Дальше». Вид — по настоящим снимкам приложения (Сумерки, светлая).</p>
+    <p>Это проходимый макет экрана экзамена: печатай ответы, нажимай «Проверить» и «Дальше». Вид — по настоящим снимкам приложения (Сумерки, светлая), проверка ответа и итог — как в движке экзамена.</p>
     <ul>
       <li><b>10 заданий трёх видов:</b> ситуация — сам говоришь или пишешь; ответ собеседнику; найди и исправь ошибку.</li>
-      <li><b>Одна попытка, без подсказок.</b> Регистр, точка в конце и сокращения не важны: I'm = I am, isn't = is not.</li>
-      <li><b>Сдал</b> — откроется глава 3. <b>Не сдал</b> — «Где споткнулся» по темам; «Повторить эти темы», и можно пересдать сразу. Без повторения — через час.</li>
+      <li><b>Одна попытка, без подсказок.</b> Регистр, знаки и сокращения не важны (I'm = I am, isn't = is not); одну опечатку в длинном слове засчитывает.</li>
+      <li><b>Сдал</b> (8 из 10) — откроется глава 3. <b>Не сдал</b> — «Где споткнулся»: до трёх тем и их эпизоды. Повторил эпизоды — пересдать сразу, с другим набором заданий; без повторения — через час.</li>
       <li>Голосом в макете ответить нельзя — в задании с микрофоном нажми «или напиши».</li>
     </ul>
     <div class="ctl"><button id="restart">Начать заново</button><button id="cheatBtn" aria-expanded="false">Показать ответы</button></div>
@@ -152,7 +160,6 @@ textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
 
 <script>
 const COIN = 'data:image/webp;base64,UklGRnwFAABXRUJQVlA4WAoAAAAQAAAAKwAAKwAAQUxQSDwBAAABkHPbtrHn2k9s27bZubJtVUZlW53tpExpJ59t2zafvLd68dx7ImICgLdJcvvSzvnzuyvtyebA1qT2qoBIKLhWZ0LPdv4f4f1v3oaOUtdfQvVPhxIF15uE+k1XXvHfCcPvkTzyOMKUy5QolSOM/8dJ4PebMP/pJUbjEUF4V0XUOEE5IML3BMd/F6ENgnQVADwFWE4cAYYJ2n6QfYfnmbQ/QexRhaloFtPYIaad+5huvcb07BWmp3cxXd/HtDmJabAUU6E7Jnupx3juAHTiaQKw5rD8NQGAJSxTAAC2f3D8NBeCNhy1IFLhCoazcqLA4TO7D1YgPvQPq18BIGnMHza/wkDy0M8sPgQCX9uL9M5YAn/5up90vlfLAVWz0V/8fg4aA3W9yjOcJNyZCh1gqxvTNLd+dLQ21xitA7wBVlA4IBoEAADwFACdASosACwAPjEWiUOiISERxgAgAwSzAFYcoKrfMP7d+EHMd8LdkOQpNzCU8QDpweYDoLegB+2PWPegB5avsV/tx6VVAucmazFnSWwLG//tPxm953+s/r/nf/K/7p/2/738AX8o/n3+p/rPs7eu70U/09KFkX+QvZMqmvXZZU2dRcIuJnZmI4dQEe7HMiwa0kiBv7OGRWknQw/pLv/HKP0GBWszZPhQQISIqvAKAAD+693dWBr9O61zvFFpdknrTbP4k5n/o/VTjsTXqH57pArKMq/m3NUo8HJwtIngPdZTiro9oTPx/Ew3qBPTgo5dp9eA+5yeXYJsZDQ1tniZ6uYhDBnDw8HacRuzKXxO4ocRWrYSHZwfTiNdDobbzAlwmuFaY1UZziT+MuyisAyB65kvm4Pk8L1kc1kf4ZvwVtd5Xn/VtkMDBl/u5taIj/+oSuoNH1RPh+FQhFnkt1OZS6z1Rm7Kcux5w3EMcVNAeDYozGCdqX22ZNpTGV/J3W9XsJOWjQC6SkZTSgNUVF//5F4h9MJBqaWYC4T7O6kH0WVHXXR67VhGLeotkf9kUiQhQJTCUH64Hn1BTFMrdh9197vVVHzDXxl3P9RCERdDqpvURoDcq0f4YYWlcsku0UZ38XuNMMp+XZkWHE7K0hf7amzVp4uS6hz6cejUwMZ685W/g/jzXGPppjT0L2/uiyX4yUf+RQ1DjSpQ8iO/uR8MCvzV4+mpS/lvoOEMk7Rsj/4v7xbLoNuRfhIGbFV9aAzAmp6LQPcK3cAMAY0aAkhuNhsC7ko40kDAbBelRb1L3Lr34fMN/NdQUsISgCmbWO4tsz52X5IvSvMxNjmpjvZrtfWU3AoUb3WzevRd7o9qr15o1n+Fe8LJ5AunxqgpcFxb5ukNeT0WeyIdqhlgQh4aLP9Rs0lwuiXy9fSg7bY/ZhRr566htEqCKbAZKvge41lXqkrl6zuPfBsb5wF6VcYJLwPCtZpO62/sQI/wTUouHoIEzEPUgxvxgzdmoBFdL9PcB/dSbX3wlyB54Ht2MoDhD08HvxMlDt0VERYH2dlLI47DdmQOE0yo7ZrcCq/N81iOACPNq8WmKQmMFtlEDs0R4O65TmI0dqqX5NVxZ66UA4nMz//8Cjv2HVNZYO1Up9h4G9M4ISB/Do79it1Sm2OB6o55nKDuBzhsKv3R7edhyIzltUf9AqimGvLJkIREHpfWnmah//MEDAKRJ9vXuuVvZs5mOpzCkWw6QDvrmSLs67+uslm5M8v29FMrIXk1ZLoeUlNHsiGtRPONnTE0MEIXYu8VXyxepaDaGa/o3yjPVR28HnIPZepLhcuuSW9BSeEmAaGXqJQlk9iS24PsdFHzAptSUOYtMD748xCJJ6Pv0lUf4pD735pIAAA=';
-const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const IC = {
   x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
   mic: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
@@ -165,159 +172,206 @@ const IC = {
   people2: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="8.5" r="3.5"/><circle cx="17" cy="9.5" r="2.8"/><path d="M2.5 19.5c.7-3.6 3.4-5.5 6.5-5.5s5.8 1.9 6.5 5.5zM15.8 14.3c2.9-.2 5.1 1.4 5.7 4.2h-4.4c-.2-1.6-.7-3-1.3-4.2z"/></svg>',
   refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg>',
   play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.4-7.2c.6-.4.6-1.4 0-1.8L8.6 3.9C7.9 3.5 7 4 7 4.8z"/></svg>',
+  chev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
 };
-// ── темы главы 2 «Кофе с коллегой» (урок 1: «быть» и отрицание) ──
-const TOPICS = { t1: 'я / ты — am, are', t2: 'он / она / оно — is', t3: 'мы / они — are', t4: 'не — isn’t, aren’t, I’m not', t5: 'вопрос и короткий ответ' };
-// ── 10 заданий: ситуация, реплика и ответ сходятся по смыслу; фразы новые, бытовые ──
-const EXAM = [
-  { kind: 'say', topic: 't4', sit: 'Коллега спрашивает, готов ли отчёт. Скажи, что он ещё не готов.', ok: ["It isn't ready yet.", "It's not ready yet.", 'The report isn’t ready yet.', 'The report is not ready yet.'] },
-  { kind: 'dialog', topic: 't5', who: 'Марк, коллега', line: 'Are you new here?', ask: 'Ответь, что да — ты здесь <b>новенький</b>.', ok: ['Yes, I am.', "Yes, I'm new here.", "Yes, I'm new."] },
-  { kind: 'fix', topic: 't2', wrong: 'She <u>are</u> in a meeting.', raw: 'She are in a meeting.', ok: ['She is in a meeting.'] },
-  { kind: 'say', topic: 't2', sit: 'Ты взял кофе в автомате, а он холодный. Скажи об этом коллеге.', ok: ['The coffee is cold.', 'My coffee is cold.', "It's cold.", 'This coffee is cold.'] },
-  { kind: 'dialog', topic: 't5', who: 'Анна, коллега', line: 'Is Tom at work today?', ask: 'Ответь: нет, Том <b>дома</b>.', ok: ["No, he isn't. He's at home.", "No, he's at home.", 'No, he is at home.', "No, he isn't, he's at home."] },
-  { kind: 'fix', topic: 't3', wrong: 'We <u>is</u> late for the bus.', raw: 'We is late for the bus.', ok: ['We are late for the bus.'] },
-  { kind: 'say', topic: 't4', sit: 'Сосед зовёт тебя обедать, а ты только что поел. Скажи, что не голоден.', ok: ["I'm not hungry.", "Thanks, I'm not hungry.", "Thank you, I'm not hungry.", "Sorry, I'm not hungry."] },
-  { kind: 'dialog', topic: 't3', who: 'Лиза, жена', line: 'Where are my keys?', ask: 'Ответь: они <b>на столе</b>.', ok: ["They're on the table.", 'On the table.'] },
-  { kind: 'fix', topic: 't1', wrong: 'I <u>is</u> ready for the call.', raw: 'I is ready for the call.', ok: ['I am ready for the call.'] },
-  { kind: 'say', topic: 't3', sit: 'Новый знакомый спрашивает, откуда вы с другом. Скажи, что вы из Казани.', ok: ["We're from Kazan.", 'We are both from Kazan.'] },
-];
-// ── повторение слабых тем: короткие задания «из эпизодов» по каждой теме, без оценки ──
-const REVIEW = {
-  t1: [{ kind: 'say', topic: 't1', sit: 'Коллега спрашивает, свободен ли ты. Скажи, что ты сейчас занят.', ok: ["I'm busy.", "I'm busy now.", "Sorry, I'm busy."] }, { kind: 'fix', topic: 't1', wrong: 'You <u>is</u> early today.', raw: 'You is early today.', ok: ['You are early today.'] }],
-  t2: [{ kind: 'say', topic: 't2', sit: 'Ты показываешь новый офис. Скажи, что он большой.', ok: ['It is big.', 'The office is big.', "It's big."] }, { kind: 'fix', topic: 't2', wrong: 'He <u>am</u> my manager.', raw: 'He am my manager.', ok: ['He is my manager.'] }],
-  t3: [{ kind: 'say', topic: 't3', sit: 'Тебя спрашивают про коллег. Скажи, что они на обеде.', ok: ["They're at lunch.", 'They are at lunch.'] }, { kind: 'fix', topic: 't3', wrong: 'They <u>is</u> in the kitchen.', raw: 'They is in the kitchen.', ok: ['They are in the kitchen.'] }],
-  t4: [{ kind: 'say', topic: 't4', sit: 'Тебя спрашивают, устал ли ты. Скажи, что нет.', ok: ["I'm not tired.", "No, I'm not tired.", "No, I'm not."] }, { kind: 'fix', topic: 't4', wrong: 'It <u>not is</u> my bag.', raw: 'It not is my bag.', ok: ["It isn't my bag.", "It's not my bag."] }],
-  t5: [{ kind: 'dialog', topic: 't5', who: 'Марк, коллега', line: 'Are you busy?', ask: 'Ответь коротко: нет.', ok: ["No, I'm not.", 'No.'] }, { kind: 'dialog', topic: 't5', who: 'Анна, коллега', line: 'Is the room free?', ask: 'Ответь коротко: да.', ok: ['Yes, it is.', 'Yes.'] }],
-};
-const PASS_FROM = 8;
 
-// ── проверка ответа: регистр, пунктуация, кавычки, сокращения (I'm = I am, isn't = is not …) ──
-const CONTR = [[/\bi'm\b/g, 'i am'], [/\byou're\b/g, 'you are'], [/\bwe're\b/g, 'we are'], [/\bthey're\b/g, 'they are'], [/\bhe's\b/g, 'he is'], [/\bshe's\b/g, 'she is'],
-  [/\bit's\b/g, 'it is'], [/\bisn't\b/g, 'is not'], [/\baren't\b/g, 'are not'], [/\bthat's\b/g, 'that is'], [/\bthere's\b/g, 'there is']];
-function norm(s) {
-  let t = String(s).toLowerCase().replace(/[‘’ʼ`]/g, "'").replace(/[.,!?;:"«»()]/g, ' ');
-  for (const [re, to] of CONTR) t = t.replace(re, to);
-  return t.replace(/\s+/g, ' ').trim();
+// ── банк главы 2 в формате движка (ChapterExamV2Bank). зачем: файл Learning V2 подставляется сюда как есть ──
+const BANK = {"lessonOrdinal":1,"chapterOrdinal":2,"grammarPoints":[{"id":"l01c2_am_are","label":{"ru":"я / ты — am, are"},"episodeOrdinals":[12,13,15]},{"id":"l01c2_is","label":{"ru":"он / она / оно — is"},"episodeOrdinals":[9,16]},{"id":"l01c2_we_they","label":{"ru":"мы / они — are"},"episodeOrdinals":[]},{"id":"l01c2_not","label":{"ru":"не — isn’t, aren’t, I’m not"},"episodeOrdinals":[11,15]},{"id":"l01c2_question","label":{"ru":"вопрос и короткий ответ"},"episodeOrdinals":[]}],"items":[{"id":"m01","type":"situation","grammarPoint":"l01c2_not","situation":{"ru":"Коллега спрашивает, готов ли отчёт. Скажи, что он ещё не готов."},"accepted":["It isn't ready yet.","It's not ready yet.","The report isn't ready yet.","The report is not ready yet."]},{"id":"m02","type":"dialogue","grammarPoint":"l01c2_question","partnerLine":"Are you new here?","situation":{"ru":"Ответь, что да — ты здесь новенький."},"accepted":["Yes, I am.","Yes, I'm new here.","Yes, I'm new."]},{"id":"m03","type":"fix","grammarPoint":"l01c2_is","wrong":"She are in a meeting.","accepted":["She is in a meeting."]},{"id":"m04","type":"situation","grammarPoint":"l01c2_is","situation":{"ru":"Ты взял кофе в автомате, а он холодный. Скажи об этом коллеге."},"accepted":["The coffee is cold.","My coffee is cold.","It's cold.","This coffee is cold."]},{"id":"m05","type":"dialogue","grammarPoint":"l01c2_question","partnerLine":"Is Tom at work today?","situation":{"ru":"Ответь: нет, Том дома."},"accepted":["No, he isn't. He's at home.","No, he's at home.","No, he is at home."]},{"id":"m06","type":"fix","grammarPoint":"l01c2_we_they","wrong":"We is late for the bus.","accepted":["We are late for the bus."]},{"id":"m07","type":"situation","grammarPoint":"l01c2_not","situation":{"ru":"Сосед зовёт тебя обедать, а ты только что поел. Скажи, что не голоден."},"accepted":["I'm not hungry.","Thanks, I'm not hungry.","Thank you, I'm not hungry.","Sorry, I'm not hungry."]},{"id":"m08","type":"dialogue","grammarPoint":"l01c2_we_they","partnerLine":"Where are my keys?","situation":{"ru":"Ответь: они на столе."},"accepted":["They're on the table.","On the table."]},{"id":"m09","type":"fix","grammarPoint":"l01c2_am_are","wrong":"I is ready for the call.","accepted":["I am ready for the call."]},{"id":"m10","type":"situation","grammarPoint":"l01c2_we_they","situation":{"ru":"Новый знакомый спрашивает, откуда вы с другом. Скажи, что вы из Казани."},"accepted":["We're from Kazan.","We are both from Kazan."]}]};
+
+// ── копия чистых функций движка modules/learning-v2/exam/chapter_exam_v2.ts (a9b9d3d18) ──
+const PASS_CORRECT = 8; const COUNT = 10;
+const CONTRACTIONS = [
+  [/\bi'm\b/g, 'i am'], [/\byou're\b/g, 'you are'], [/\bwe're\b/g, 'we are'], [/\bthey're\b/g, 'they are'],
+  [/\b(he|she|it|that|there|what|where|who)'s\b/g, '$1 is'],
+  [/\bisn't\b/g, 'is not'], [/\baren't\b/g, 'are not'], [/\bwasn't\b/g, 'was not'], [/\bweren't\b/g, 'were not'],
+  [/\bdon't\b/g, 'do not'], [/\bdoesn't\b/g, 'does not'], [/\bdidn't\b/g, 'did not'],
+  [/\bcan't\b/g, 'can not'], [/\bcannot\b/g, 'can not'], [/\bwon't\b/g, 'will not'], [/\bwouldn't\b/g, 'would not'],
+  [/\bhaven't\b/g, 'have not'], [/\bhasn't\b/g, 'has not'],
+  [/\b(i|you|we|they|he|she|it)'ll\b/g, '$1 will'], [/\b(i|you|we|they)'ve\b/g, '$1 have'], [/\b(i|you|we|they|he|she)'d\b/g, '$1 would'],
+];
+function norm(text) {
+  let s = String(text ?? '').toLowerCase().replace(/[’‘`´]/g, "'");
+  for (const [re, to] of CONTRACTIONS) s = s.replace(re, to);
+  return s.replace(/[.,!?;:"«»()—–-]+/g, ' ').replace(/'/g, '').replace(/\s+/g, ' ').trim();
 }
-const right = (q, v) => q.ok.some((a) => norm(a) === norm(v));
+function oneEdit(a, b) {
+  if (a === b) return true; if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0; let j = 0; let e = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i += 1; j += 1; continue; }
+    e += 1; if (e > 1) return false;
+    if (a.length > b.length) i += 1; else if (b.length > a.length) j += 1; else { i += 1; j += 1; }
+  }
+  return e + (a.length - i) + (b.length - j) <= 1;
+}
+function check(item, answer) {
+  const given = norm(answer);
+  if (!given) return { correct: false, matched: null, typo: false };
+  if (item.wrong && given === norm(item.wrong)) return { correct: false, matched: null, typo: false, unchanged: true };
+  for (const v of item.accepted) if (given === norm(v)) return { correct: true, matched: v, typo: false };
+  const gw = given.split(' ');
+  for (const v of item.accepted) {
+    const tw = norm(v).split(' '); if (tw.length !== gw.length) continue;
+    const d = tw.map((w, k) => [w, gw[k]]).filter(([w, g]) => w !== g);
+    if (d.length === 1 && d[0][0].length >= 5 && oneEdit(d[0][0], d[0][1])) return { correct: true, matched: v, typo: true };
+  }
+  return { correct: false, matched: null, typo: false };
+}
+function seeded(seedText) {
+  let h = 2166136261; for (let i = 0; i < seedText.length; i += 1) { h ^= seedText.charCodeAt(i); h = Math.imul(h, 16777619); }
+  let st = h >>> 0;
+  return () => { st = (st + 0x6d2b79f5) >>> 0; let t = st; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+function shuffled(items, rnd) { const o = [...items]; for (let i = o.length - 1; i > 0; i -= 1) { const j = Math.floor(rnd() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; } return o; }
+function select(bank, examKey, attempt, prev) {
+  if (bank.items.length < COUNT) { log('select:not_enough', { items: bank.items.length }); return null; }
+  const rnd = seeded(`${examKey}#v2#${attempt}`); const p = new Set(prev || []);
+  const pool = [...shuffled(bank.items.filter((i) => !p.has(i.id)), rnd), ...shuffled(bank.items.filter((i) => p.has(i.id)), rnd)];
+  const picked = [];
+  for (const pt of bank.grammarPoints) { const f = pool.find((i) => i.grammarPoint === pt.id && !picked.includes(i)); if (f && picked.length < COUNT) picked.push(f); }
+  for (const it of pool) { if (picked.length >= COUNT) break; if (!picked.includes(it)) picked.push(it); }
+  const o = shuffled(picked, rnd);
+  for (let k = 2; k < o.length; k += 1) {
+    if (o[k].type === o[k - 1].type && o[k].type === o[k - 2].type) { const s = o.findIndex((x, m) => m > k && x.type !== o[k].type); if (s > 0) [o[k], o[s]] = [o[s], o[k]]; }
+  }
+  log('select:done', { attempt, items: o.map((i) => i.id) });
+  return o;
+}
+function score(bank, answers) {
+  const correct = answers.filter((a) => a.correct).length; const errs = new Map();
+  for (const a of answers) if (!a.correct) errs.set(a.grammarPoint, (errs.get(a.grammarPoint) ?? 0) + 1);
+  const weak = [...errs.entries()].sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0])).slice(0, 3)
+    .map(([gp, n]) => ({ grammarPoint: gp, errors: n, episodeOrdinals: bank.grammarPoints.find((p) => p.id === gp)?.episodeOrdinals ?? [] }));
+  return { correct, total: answers.length, passed: correct >= PASS_CORRECT, weak };
+}
 function log(event, data) { console.log('[EXAM-PROTO]', event, JSON.stringify(data)); } // guard-ok: журнал прохождения макета
 
-// ── состояние ──
-const S = { mode: 'exam', list: EXAM, i: 0, answers: [], checked: false, typing: false, reviewed: false, weak: [] };
+// ── состояние макета ──
+const S = { attempt: 0, list: [], i: 0, answers: [], checked: false, typing: false, draft: '', prevIds: [], res: null, reviewed: new Set(), writeMode: false };
 const ph = document.getElementById('ph');
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const label = (gp) => BANK.grammarPoints.find((p) => p.id === gp)?.label.ru ?? gp;
 const sb = '<div class="sb"><span>9:41</span><span style="display:flex;gap:6px;align-items:center"><svg width="16" height="11" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x=".75" y=".75" width="22" height="11.5" rx="3.5" stroke="currentColor" stroke-opacity=".45" stroke-width="1.5"/><rect x="2.5" y="2.5" width="16" height="8" rx="2" fill="currentColor"/></svg></span></div>';
-const label = () => (S.mode === 'exam' ? `Экзамен · ${S.i + 1} / ${S.list.length}` : `Повторение · ${S.i + 1} / ${S.list.length}`);
-const head = (bar = true) => `${sb}<div class="top"><button class="x" id="close" aria-label="Закрыть">${IC.x}</button>${bar ? `<div class="track"><i style="width:${((S.i + (S.checked ? 1 : 0)) / S.list.length) * 100}%"></i></div><div class="cnt">${label()}</div>` : ''}</div>`;
-const titleOf = (q) => (q.kind === 'say' ? ['chat', 'Скажи по-английски'] : q.kind === 'dialog' ? ['people', 'Ответь собеседнику'] : ['pen', 'Найди и исправь ошибку']);
+const head = (bar = true) => `${sb}<div class="top"><button class="x" id="close" aria-label="Закрыть">${IC.x}</button>${bar ? `<div class="track"><i style="width:${((S.i + (S.checked ? 1 : 0)) / S.list.length) * 100}%"></i></div><div class="cnt">Экзамен · ${S.i + 1} / ${S.list.length}</div>` : ''}</div>`;
+const TITLE = { situation: ['chat', 'Скажи по-английски'], dialogue: ['people', 'Ответь собеседнику'], fix: ['pen', 'Найди и исправь ошибку'] };
+const epWord = (eps) => (eps.length === 1 ? `Эпизод ${eps[0]}` : `Эпизоды ${eps.slice(0, -1).join(', ')} и ${eps[eps.length - 1]}`);
+const errWord = (n) => (n === 1 ? '1 ошибка' : `${n} ${n <= 4 ? 'ошибки' : 'ошибок'}`);
 
 function renderQ() {
-  const q = S.list[S.i]; const [ic, t] = titleOf(q);
-  const showMic = q.kind === 'say' && !S.typing && !S.checked;
+  const q = S.list[S.i]; const [ic, t] = TITLE[q.type];
+  // зачем: ситуация — «сам говоришь или пишешь»; выбрал «напиши» один раз — дальше ситуации сразу с полем (не тапать каждый раз)
+  const showMic = q.type === 'situation' && !S.writeMode && !S.typing && !S.checked;
   let body = `<div class="hd enter"><span class="tile">${IC[ic]}</span><b>${t}</b></div>`;
-  if (q.kind === 'say') body += `<div class="sitc enter"><div class="lb">${IC.sit}Ситуация</div><div class="tx">${esc(q.sit)}</div></div>`;
-  if (q.kind === 'dialog') body += `<div class="who enter">${esc(q.who)}</div><div class="bub enter">${esc(q.line)}</div><div class="ask enter">${q.ask}</div>`;
-  if (q.kind === 'fix') body += `<div class="wrongc enter">${q.wrong}</div><div class="ask enter">Перепиши фразу верно:</div>`;
+  if (q.type === 'situation') body += `<div class="sitc enter"><div class="lb">${IC.sit}Ситуация</div><div class="tx">${esc(q.situation.ru)}</div></div>`;
+  if (q.type === 'dialogue') body += `<div class="bub enter">${esc(q.partnerLine)}</div><div class="ask enter">${esc(q.situation.ru)}</div>`;
+  if (q.type === 'fix') body += `<div class="wrongc enter">${esc(q.wrong)}</div><div class="ask enter">Перепиши фразу без ошибки:</div>`;
   if (showMic) {
     body += `<div class="ans enter"><div class="dash">— — — — — —</div><div class="hint">Зажми кнопку и говори, отпусти — проверю</div></div>
-      <div class="micwrap enter"><button class="mic" id="mic" aria-label="Удерживай и говори">${IC.mic}</button><span class="mlab">Удерживай и говори</span><button class="alt" id="alt">или напиши</button></div><div class="note" id="note"></div>`;
+      <div class="micwrap enter"><button class="mic" id="mic" aria-label="Удерживай и говори">${IC.mic}</button><span class="mlab">Удерживай и говори</span><button class="alt" id="alt">или напиши</button></div><div class="note" id="note" aria-live="polite"></div>`;
   } else {
-    const cls = S.checked ? (S.answers[S.answers.length - 1].correct ? 'ok' : 'no') : '';
-    const val = S.checked ? S.answers[S.answers.length - 1].text : (q.kind === 'fix' ? q.raw : '');
-    body += `<div class="field enter"><textarea id="inp" rows="3" aria-label="Ответ" placeholder="Напиши по-английски" spellcheck="false" autocapitalize="sentences" class="${cls}" ${S.checked ? 'disabled' : ''}>${esc(val)}</textarea></div>`;
+    const last = S.answers[S.answers.length - 1];
+    const cls = S.checked ? (last.correct ? 'ok' : 'no') : '';
+    const val = S.checked ? last.text : (q.type === 'fix' ? q.wrong : S.draft);
+    body += `<div class="field enter"><textarea id="inp" rows="3" aria-label="Ответ" placeholder="Напиши по-английски" spellcheck="false" autocapitalize="sentences" autocomplete="off" class="${cls}" ${S.checked ? 'disabled' : ''}>${esc(val)}</textarea></div>`;
   }
   if (S.checked) {
     const a = S.answers[S.answers.length - 1];
-    body += a.correct ? '<div class="plate ok enter"><b>Верно.</b></div>' : `<div class="plate no enter"><b>Неверно.</b> Правильно: <b>${esc(q.ok[0])}</b></div>`;
+    body += a.correct
+      ? (a.typo ? `<div class="plate ok enter"><b>Верно.</b> Опечатка — пишется: <b>${esc(a.matched)}</b></div>` : '<div class="plate ok enter"><b>Верно.</b></div>')
+      : `<div class="plate no enter"><b>Неверно.</b> Правильно: <b>${esc(q.accepted[0])}</b></div>`;
   }
   const disabled = !S.checked && (showMic || !S.draft);
   ph.innerHTML = `${head()}<div class="scroll" id="scroll">${body}</div><div class="foot"><button class="cta" id="cta" aria-disabled="${disabled}">${S.checked ? 'Дальше' : 'Проверить'}</button></div><div class="home"></div>`;
   wire();
 }
 function wire() {
-  ph.querySelector('#close').onclick = () => { log('close', { mode: S.mode, i: S.i }); start(); };
+  ph.querySelector('#close').onclick = () => { log('close', { i: S.i }); start(0); };
   const inp = ph.querySelector('#inp'); const cta = ph.querySelector('#cta');
   if (inp && !inp.disabled) {
     S.draft = inp.value.trim();
     inp.oninput = () => { S.draft = inp.value.trim(); cta.setAttribute('aria-disabled', String(!S.draft)); };
     inp.onkeydown = (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); cta.click(); } };
-    if (matchMedia('(hover: hover)').matches) setTimeout(() => inp.focus({ preventScroll: true }), 60);
+    if (matchMedia('(hover: hover)').matches) setTimeout(() => { inp.focus({ preventScroll: true }); inp.setSelectionRange(inp.value.length, inp.value.length); }, 60);
   }
-  const alt = ph.querySelector('#alt'); if (alt) alt.onclick = () => { S.typing = true; S.draft = ''; renderQ(); };
+  const alt = ph.querySelector('#alt'); if (alt) alt.onclick = () => { S.typing = true; S.writeMode = true; S.draft = ''; renderQ(); };
   const mic = ph.querySelector('#mic'); if (mic) mic.onclick = () => { ph.querySelector('#note').textContent = 'В макете голос не работает — нажми «или напиши».'; };
   cta.onclick = () => {
     if (cta.getAttribute('aria-disabled') === 'true') return;
     if (!S.checked) {
-      const q = S.list[S.i]; const text = S.draft; const ok = right(q, text);
-      S.answers.push({ i: S.i, topic: q.topic, text, correct: ok }); S.checked = true;
-      log('check', { mode: S.mode, i: S.i + 1, topic: q.topic, text, normalized: norm(text), correct: ok });
+      const q = S.list[S.i]; const r = check(q, S.draft);
+      S.answers.push({ itemId: q.id, grammarPoint: q.grammarPoint, text: S.draft, correct: r.correct, typo: r.typo, matched: r.matched });
+      S.checked = true;
+      log('check', { attempt: S.attempt, n: S.i + 1, id: q.id, gp: q.grammarPoint, text: S.draft, normalized: norm(S.draft), ...r });
       renderQ(); return;
     }
     S.i += 1; S.checked = false; S.typing = false; S.draft = '';
-    if (S.i >= S.list.length) { if (S.mode === 'exam') result(); else reviewed(); } else renderQ();
+    if (S.i >= S.list.length) result(); else renderQ();
   };
 }
 
-// ── итог экзамена (LearningV2ChapterExamResultView): сдал — счёт, точки, монеты, глава 3; не сдал — «Где споткнулся» по темам ──
+// ── итог (LearningV2ChapterExamResultView): сдал — счёт, точки, монеты, глава 3; не сдал — «Где споткнулся» (до 3 тем) ──
 function result() {
-  const correct = S.answers.filter((a) => a.correct).length; const passed = correct >= PASS_FROM; const wrong = S.answers.filter((a) => !a.correct);
-  const byTopic = {}; for (const k of Object.keys(TOPICS)) byTopic[k] = 0; for (const a of wrong) byTopic[a.topic] += 1;
-  S.weak = Object.keys(byTopic).filter((k) => byTopic[k] > 0);
-  log('result', { correct, passed, weak: S.weak });
+  if (!S.res) { S.res = score(BANK, S.answers); log('score', { attempt: S.attempt, correct: S.res.correct, passed: S.res.passed, weak: S.res.weak.map((w) => `${w.grammarPoint}:${w.errors}`) }); }
+  const { correct, total, passed, weak } = S.res; const wrong = S.answers.filter((a) => !a.correct).length;
   const dots = `<div class="dots" aria-hidden="true">${S.list.map((_, i) => `<i class="${i < correct ? 'on' : ''}"></i>`).join('')}</div>`;
-  const errWord = (n) => (n === 1 ? '1 ошибка' : `${n} ${n <= 4 ? 'ошибки' : 'ошибок'}`);
-  const topics = `<div class="where enter"><h3>Где споткнулся</h3><div class="topics">${Object.entries(TOPICS).map(([k, t]) => `<div class="tp">${t}<span class="r ${byTopic[k] ? 'no' : 'ok'}">${byTopic[k] ? errWord(byTopic[k]) : IC.check}</span></div>`).join('')}</div></div>`;
   let body; let foot;
   if (passed) {
-    body = `<div class="trophy enter">${IC.trophy}</div><div class="big enter" style="margin-top:16px">${correct} из ${S.list.length}</div><div class="rtitle enter">Экзамен сдан</div>${dots}
+    body = `<div class="trophy enter">${IC.trophy}</div><div class="big enter" style="margin-top:16px">${correct} из ${total}</div><div class="rtitle enter">Экзамен сдан</div>${dots}
       <div class="rew enter">${COIN ? `<img src="${COIN}" alt="">` : ''}+40</div>
       <div class="unl enter"><span class="mini">${IC.people2}</span><div><div class="t">Глава 3 открыта</div><div class="s">Знакомство с командой. Начнём с эпизода 17</div></div></div>`;
-    foot = `<button class="cta" id="toCh">${IC.play}К главе 3</button>${wrong.length ? `<button class="second" id="mist">Разбор ${wrong.length === 1 ? 'ошибки' : 'ошибок'} · ${wrong.length}</button>` : ''}`;
+    foot = `<button class="cta" id="toCh">${IC.play}К главе 3</button>${wrong ? `<button class="second" id="mist">Разбор ${wrong === 1 ? 'ошибки' : 'ошибок'} · ${wrong}</button>` : ''}`;
   } else {
-    body = `<div class="big enter" style="margin-top:20px">${correct} из ${S.list.length}</div><div class="rtitle enter">${correct <= 5 ? 'Пока не вышло' : 'Почти получилось'}</div>${dots}${topics}<button class="link enter" id="mist">Разбор ошибок · ${wrong.length}</button>`;
+    const rows = weak.map((w) => `<div class="tp"><div><div>${esc(label(w.grammarPoint))}</div>${w.episodeOrdinals.length ? `<div class="ep">${epWord(w.episodeOrdinals)}</div>` : ''}</div><span class="r no">${errWord(w.errors)}</span></div>`).join('');
+    body = `<div class="big enter" style="margin-top:20px">${correct} из ${total}</div><div class="rtitle enter">${correct <= 5 ? 'Пока не вышло' : 'Почти получилось'}</div>${dots}
+      <div class="where enter"><h3>Где споткнулся</h3><div class="topics">${rows}</div></div><button class="link enter" id="mist">Разбор ошибок · ${wrong}</button>`;
     foot = `<button class="cta" id="review">${IC.refresh}Повторить эти темы</button><button class="second" aria-disabled="true">Пересдать через 59 мин</button>`;
   }
   ph.innerHTML = `${head(false)}<div class="res">${body}</div><div class="rfoot">${foot}</div><div class="home"></div>`;
-  ph.querySelector('#close').onclick = () => start();
-  const r = ph.querySelector('#review'); if (r) r.onclick = () => startReview();
+  ph.querySelector('#close').onclick = () => start(0);
+  const r = ph.querySelector('#review'); if (r) r.onclick = () => review();
   const toCh = ph.querySelector('#toCh'); if (toCh) toCh.onclick = () => { toCh.innerHTML = `${IC.check}Глава 3 открыта`; log('to_chapter', { chapter: 3 }); };
   const mi = ph.querySelector('#mist'); if (mi) mi.onclick = () => mistakes();
 }
 function mistakes() {
-  const wrong = S.answers.filter((a) => !a.correct);
+  const wrong = S.answers.map((a, i) => ({ ...a, n: i + 1 })).filter((a) => !a.correct);
   log('mistakes_open', { count: wrong.length });
-  const promptOf = (q) => (q.kind === 'say' ? esc(q.sit) : q.kind === 'dialog' ? `${esc(q.who)}: «${esc(q.line)}» — ${q.ask}` : `Исправь: ${esc(q.raw)}`);
-  ph.innerHTML = `${head(false)}<div class="res" style="align-items:stretch"><div class="rtitle enter" style="text-align:left">Разбор ошибок</div>${wrong.map((a) => { const q = S.list[a.i]; return `<div class="mist enter"><div class="q">Вопрос ${a.i + 1}</div><div class="p">${promptOf(q)}</div><div class="y">Твой ответ: <b>${esc(a.text)}</b></div><div class="c">${esc(q.ok[0])}</div></div>`; }).join('')}</div>
+  const promptOf = (q) => (q.type === 'situation' ? esc(q.situation.ru) : q.type === 'dialogue' ? `«${esc(q.partnerLine)}» — ${esc(q.situation.ru)}` : `Исправь: ${esc(q.wrong)}`);
+  ph.innerHTML = `${head(false)}<div class="res" style="align-items:stretch;bottom:102px"><div class="rtitle enter" style="text-align:left">Разбор ошибок</div>${wrong.map((a) => { const q = S.list[a.n - 1]; return `<div class="mist enter"><div class="q">Вопрос ${a.n}</div><div class="p">${promptOf(q)}</div><div class="y">Твой ответ: <b>${esc(a.text)}</b></div><div class="c">${esc(q.accepted[0])}</div></div>`; }).join('')}</div>
     <div class="rfoot" style="height:102px"><button class="cta" id="back">К итогу</button></div><div class="home"></div>`;
-  ph.querySelector('.res').style.bottom = '102px';
-  ph.querySelector('#close').onclick = () => start();
+  ph.querySelector('#close').onclick = () => start(0);
   ph.querySelector('#back').onclick = () => result();
 }
-function startReview() {
-  const list = S.weak.flatMap((k) => REVIEW[k]);
-  log('review_start', { weak: S.weak, items: list.length });
-  Object.assign(S, { mode: 'review', list, i: 0, checked: false, typing: false, draft: '', reviewAnswers: S.answers, answers: [] });
-  renderQ();
+// ── «Повторить эти темы»: эпизоды слабых тем; повторил всё → пересдать сразу (chapterExamV2RetryAtMs) ──
+function review() {
+  const eps = [...new Set(S.res.weak.flatMap((w) => w.episodeOrdinals))].sort((a, b) => a - b);
+  const done = eps.every((e) => S.reviewed.has(e));
+  log('review_open', { episodes: eps, done: [...S.reviewed] });
+  const rows = eps.map((e) => { const ok = S.reviewed.has(e); const topics = S.res.weak.filter((w) => w.episodeOrdinals.includes(e)).map((w) => label(w.grammarPoint)).join(' · ');
+    return `<button class="epr" data-ep="${e}" ${ok ? 'aria-disabled="true"' : ''}><span class="n">${e}</span><span class="m"><b>Эпизод ${e}</b><span>${esc(topics)}</span></span><span class="r ${ok ? 'ok' : ''}">${ok ? IC.check : IC.chev}</span></button>`; }).join('');
+  ph.innerHTML = `${head(false)}<div class="res" style="align-items:stretch"><div class="rtitle enter" style="text-align:left">Повтори эти темы</div>
+    <div class="topics enter" style="margin-top:16px;padding:4px 6px">${rows || '<div class="tp">Эпизодов для повторения нет</div>'}</div></div>
+    <div class="rfoot"><button class="cta" id="retake" aria-disabled="${!done && eps.length > 0}">${IC.play}Пересдать экзамен</button><button class="second" id="toRes">К итогу</button></div><div class="home"></div>`;
+  ph.querySelector('#close').onclick = () => start(0);
+  ph.querySelectorAll('.epr').forEach((b) => { b.onclick = () => { if (b.getAttribute('aria-disabled') === 'true') return; S.reviewed.add(Number(b.dataset.ep)); log('episode_done', { ep: Number(b.dataset.ep) }); review(); }; });
+  const rt = ph.querySelector('#retake'); rt.onclick = () => { if (rt.getAttribute('aria-disabled') === 'true') return; start(S.attempt + 1); };
+  ph.querySelector('#toRes').onclick = () => result();
 }
-function reviewed() {
-  log('review_done', { weak: S.weak });
-  ph.innerHTML = `${head(false)}<div class="res"><div class="trophy enter">${IC.refresh}</div><div class="rtitle enter" style="margin-top:16px">Темы повторены</div>
-    <div class="topics enter" style="align-self:stretch;margin-top:22px">${S.weak.map((k) => `<div class="tp">${TOPICS[k]}<span class="r ok">${IC.check}</span></div>`).join('')}</div></div>
-    <div class="rfoot"><button class="cta" id="retake">${IC.play}Пересдать экзамен</button><button class="second" id="toCh2">К главе 2</button></div><div class="home"></div>`;
-  ph.querySelector('#close').onclick = () => start();
-  ph.querySelector('#retake').onclick = () => start();
-  ph.querySelector('#toCh2').onclick = () => start();
+function start(attempt) {
+  const prev = attempt > 0 ? S.list.map((q) => q.id) : [];
+  const list = select(BANK, 'l01-c2', attempt, prev);
+  Object.assign(S, { attempt, list, i: 0, answers: [], checked: false, typing: false, draft: '', res: null, reviewed: new Set(), writeMode: false });
+  log('start', { attempt, items: list.length });
+  renderCheat(); renderQ();
 }
-function start() { Object.assign(S, { mode: 'exam', list: EXAM, i: 0, answers: [], checked: false, typing: false, draft: '', weak: [] }); log('start', { tasks: EXAM.length }); renderQ(); }
 
-// ── масштаб телефона под ширину экрана (на телефоне владельца) ──
+// ── масштаб телефона под ширину экрана ──
 function fit() { const w = document.getElementById('wrap'); const k = Math.min(1, (document.documentElement.clientWidth - 32) / 411); w.style.setProperty('--k', k); w.style.setProperty('--pw', `${411 * k}px`); ph.style.setProperty('--k', k); }
 addEventListener('resize', fit); fit();
-document.getElementById('restart').onclick = () => start();
+document.getElementById('restart').onclick = () => start(0);
 const cheat = document.getElementById('cheat');
-cheat.innerHTML = `<b>Принимаемые ответы</b> (первый — эталон):<ol>${EXAM.map((q) => `<li>${q.ok.map((a) => `<code>${esc(a)}</code>`).join(' · ')}</li>`).join('')}</ol>`;
+function renderCheat() { cheat.innerHTML = `<b>Принимаемые ответы этой попытки</b> (первый — эталон):<ol>${S.list.map((q) => `<li>${q.accepted.map((a) => `<code>${esc(a)}</code>`).join(' · ')}</li>`).join('')}</ol>`; }
 document.getElementById('cheatBtn').onclick = (e) => { cheat.hidden = !cheat.hidden; e.currentTarget.setAttribute('aria-expanded', String(!cheat.hidden)); e.currentTarget.textContent = cheat.hidden ? 'Показать ответы' : 'Скрыть ответы'; };
-start();
+start(0);
 </script>
 </body>
 </html>

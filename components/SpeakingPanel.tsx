@@ -4,6 +4,7 @@ import { DebugLogger } from '../app/debug-logger';
 import { speakingNoSpeechKindOf, speakingNoSpeechText, type SpeakingNoSpeechKind } from './speaking_no_speech_copy';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { legibleOn } from '../constants/liquidGlassSurfaceRoles';
 import {
   ActivityIndicator,
   AppState,
@@ -133,7 +134,7 @@ function micTrace(step: string, data?: Record<string, unknown>): void {
 // с числами: сколько держали, когда пришёл первый звук, сколько думал судья, слов в фразе и услышано. Текста речи нет.
 const reportedNoSpeechReasons = new Set<string>();
 function reportHoldNoSpeech(reason: string, data: Record<string, unknown>): SpeakingNoSpeechKind {
-  const kind = speakingNoSpeechKindOf(reason);
+  const kind = speakingNoSpeechKindOf(reason, typeof data.targetWords === 'number' ? data.targetWords : undefined);
   micTrace('hold:no_speech', { reason, kind, ...data });
   if (reportedNoSpeechReasons.has(reason)) return kind;
   reportedNoSpeechReasons.add(reason);
@@ -211,6 +212,8 @@ export interface SpeakingPanelTheme {
   onAccent: string;
   /** Акцент как ТЕКСТ/значок на карточке (≥ 4.5:1 в светлой теме) — не заливка accent. */
   accentText: string;
+  /** Текст на заливке correct (кнопка «Готово»): correctText темы; нет — onAccent. */
+  onCorrect?: string;
   /** Цвет «нечётко» в пословной карте (жёлтый). Опционален — есть фолбэк. */
   warn?: string;
 }
@@ -220,13 +223,17 @@ const WARN_COLOR_FALLBACK = '#E6A23C'; // theme-exempt: самостоятель
 const INLINE_GOOD_COLOR = '#F2C94C'; // theme-exempt: самостоятельные цвета отметок в строке ответа и затемнение панели (палитра панели)
 const INLINE_ALMOST_COLOR = '#F2994A'; // theme-exempt: самостоятельные цвета отметок в строке ответа и затемнение панели (палитра панели)
 
+// зачем (замер Тем 25.10, efbcf6f17): жёлтая/оранжевая звезда на светлой карточке падала до 1,20:1 — оттенок тот же, но
+// доводится к тексту темы до 3:1 (значок); без card/textPrimary (старый вызов) — прежний цвет
 export function inlineSpeakingResultColor(
   band: SpeakingBand,
-  theme: Pick<SpeakingPanelTheme, 'correct' | 'wrong'>,
+  theme: Pick<SpeakingPanelTheme, 'correct' | 'wrong'> & Partial<Pick<SpeakingPanelTheme, 'card' | 'textPrimary'>>,
 ): string {
   if (band === 'excellent') return theme.correct;
-  if (band === 'good') return INLINE_GOOD_COLOR;
-  if (band === 'almost') return INLINE_ALMOST_COLOR;
+  if (band === 'good' || band === 'almost') {
+    const tone = band === 'good' ? INLINE_GOOD_COLOR : INLINE_ALMOST_COLOR;
+    return theme.card && theme.textPrimary ? legibleOn(tone, theme.textPrimary, [theme.card], 3.05) : tone;
+  }
   return theme.wrong;
 }
 
@@ -244,6 +251,8 @@ export interface SpeakingPanelThemeSource {
   /** Текст на заливке акцента (accentInk темы) — кнопки панели на акценте. */
   textOnGold: string;
   accentText: string;
+  /** Текст на зелёной заливке correct (есть у всех тем приложения). */
+  correctText?: string;
 }
 
 /**
@@ -264,6 +273,7 @@ export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPa
     border: t.border,
     onAccent: t.textOnGold,
     accentText: t.accentText,
+    onCorrect: t.correctText ?? t.textOnGold, // зачем (замер Тем 25.10): onAccent на зелёной «Готово» падал до 2,08:1
   };
 }
 
@@ -2300,7 +2310,13 @@ export function SpeakingPanel({
   // на экране с микрофоном и «Сказать ещё раз», не понимая, что уже готово).
   // Вместо микрофона показываем явную кнопку «Готово», которая закрывает панель.
   const passThreshold = SPEECH_PRONUNCIATION_PASS_THRESHOLD;
-  const warnColor = theme.warn ?? WARN_COLOR_FALLBACK;
+  // зачем (замер Тем 25.10): янтарь «нечётко» на светлой карточке был до 1,66:1 — тот же оттенок, темнее в светлых темах (≥ 4,5).
+  // Слово рисуется на шторке «Скажи вслух» — её основа и текст (glass.opaqueSheet / glass.text), не карточка урока
+  const warnColor = useMemo(() => {
+    if (theme.warn) return theme.warn;
+    const sheet = liquidGlassTokens(liquidGlassThemeId);
+    return legibleOn(WARN_COLOR_FALLBACK, sheet.text, [sheet.opaqueSheet], 4.55);
+  }, [theme.warn, liquidGlassThemeId]);
   // Тренировка слов ДВИГАЕТ балл фразы: каждое дочиненное проблемное слово честно
   // поднимает результат от исходного к полному проходу; когда закрыты ВСЕ
   // проблемные слова — фраза звучит идеально (все слова чисто), балл дотягивается
@@ -2538,6 +2554,8 @@ export function SpeakingPanel({
     onAccent: glass.ctaInk,
     border: glass.line,
   };
+  // зачем (замер Тем 25.10): значок «стоп» на красной заливке во время записи был до 2,15:1 — тон основы шторки, доведённый к белому до 4,5
+  const stopInk = legibleOn(mTheme.card, '#FFFFFF', [mTheme.wrong], 4.5); // theme-exempt: белый — предел доводки значка на заливке wrong
 
   return (
     <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
@@ -2754,7 +2772,7 @@ export function SpeakingPanel({
 
           {/* Одна конкретная подсказка: что именно тянет балл вниз. */}
           {showResult && hintLine && (
-            <Text style={[styles.hintLine, { color: mTheme.textSecond }]}>{hintLine}</Text>
+            <Text style={[styles.hintLine, { color: mTheme.textMuted }]}>{hintLine}</Text>
           )}
 
           {/* Конкретный звук внутри слова, когда его удалось запеленговать.
@@ -2826,7 +2844,7 @@ export function SpeakingPanel({
               {status === 'requesting' || status === 'scoring' ? (
                 <ActivityIndicator color={mTheme.onAccent} />
               ) : (
-                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color={mTheme.onAccent} />
+                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color={listening ? stopInk : mTheme.onAccent} />
               )}
             </Pressable>
           )}
@@ -2846,7 +2864,7 @@ export function SpeakingPanel({
               accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               style={[styles.actionBtn, { backgroundColor: mTheme.correct }]}
             >
-              <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
+              <Text style={[styles.actionBtnText, { color: mTheme.onCorrect ?? mTheme.onAccent }]}>
                 {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               </Text>
             </Pressable>

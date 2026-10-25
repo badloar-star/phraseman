@@ -11,14 +11,18 @@ import { SPEAKING_NO_SPEECH_COPY, speakingNoSpeechKindOf, speakingNoSpeechText }
 describe('честная подпись «не расслышал»', () => {
   it('причина исхода → вид подписи', () => {
     expect(speakingNoSpeechKindOf('no_wav')).toBe('short');
-    expect(speakingNoSpeechKindOf('timeout')).toBe('long');
+    // таймаут: «длинная фраза» только от 6 слов, иначе нейтрально (медленный телефон — не вина человека)
+    expect(speakingNoSpeechKindOf('timeout', 6)).toBe('long');
+    expect(speakingNoSpeechKindOf('timeout', 3)).toBe('retry');
+    expect(speakingNoSpeechKindOf('timeout')).toBe('retry');
+    for (const reason of ['threw', 'score_null']) expect(speakingNoSpeechKindOf(reason, 8)).toBe('retry');
     expect(speakingNoSpeechKindOf('ctx_unavailable')).toBe('loading');
-    for (const reason of ['empty_transcript', 'score_null', 'threw', 'no_verdict', 'anything']) expect(speakingNoSpeechKindOf(reason)).toBe('empty');
+    for (const reason of ['empty_transcript', 'no_verdict', 'anything']) expect(speakingNoSpeechKindOf(reason)).toBe('empty');
   });
 
   it('у каждой причины своя подпись на ru/uk; «громче» нет ни в одной; все 9 языков заполнены и короткие', () => {
-    const ru = (['short', 'long', 'loading', 'empty'] as const).map((k) => speakingNoSpeechText('ru', k));
-    expect(new Set(ru).size).toBe(4);
+    const ru = (['short', 'long', 'retry', 'loading', 'empty'] as const).map((k) => speakingNoSpeechText('ru', k));
+    expect(new Set(ru).size).toBe(5);
     expect(speakingNoSpeechText('ru', 'short')).toMatch(/Держи кнопку/);
     expect(speakingNoSpeechText('ru', 'long')).toMatch(/Длинная фраза/);
     expect(speakingNoSpeechText('ru', 'loading')).toMatch(/Распознавание/);

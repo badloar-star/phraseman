@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-16:intro2:r2": {
-          "ru": "Очки — пара, поэтому нужно are, а не is.",
-          "uk": "Окуляри — пара, тому потрібно are, а не is."
+          "ru": "Sunglasses имеет форму множественного числа, поэтому нужно are, а не is.",
+          "uk": "Sunglasses має форму множини, тому потрібно are, а не is."
         },
         "en:lesson-05:session-16:intro2:r3": {
           "ru": "my и your поменялись местами: очки брата — your, а рюкзак ваш — my.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-16:intro3:r2": {
-          "ru": "Сандалии — пара, поэтому нужно are, а не is.",
-          "uk": "Сандалі — пара, тому потрібно are, а не is."
+          "ru": "Sandals — множественное число, поэтому нужно are, а не is.",
+          "uk": "Sandals — множина, тому потрібно are, а не is."
         },
         "en:lesson-05:session-16:intro3:r3": {
           "ru": "your — твои, а сандалии ваши: нужно my.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "8dea7dabe4d4510a0fa971c8fac5f84efcd202bf2fd4adc08233b429780fcefd"
+  "auxiliaryFingerprint": "ffaaa83ad7b0f58ede440dd89130585b9b5f8372fb8d2b426d0a53a82aff820e"
 }

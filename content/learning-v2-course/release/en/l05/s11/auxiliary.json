@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-11:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-11:intro1:r2": {
-          "ru": "В вопросе сначала Is: Is this your bedroom?",
-          "uk": "У питанні спочатку Is: Is this your bedroom?"
+          "ru": "Перед bedroom нужно your — «твоя», а не you — «ты».",
+          "uk": "Перед bedroom потрібно your — «твоя», а не you — «ти»."
         },
         "en:lesson-05:session-11:intro1:r3": {
           "ru": "С this нужно Is, а не Are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3a9dc8f5d966d91e40a6a77262eabe85dbda818fa48bc74676b2a912f4d427cf"
+  "auxiliaryFingerprint": "a9b2c72b3519e4d33e5f25298d59013d17aaeca7741bd9199c9eadd5d583e33d"
 }

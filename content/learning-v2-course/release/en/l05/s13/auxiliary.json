@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-13:intro2:r2": {
-          "ru": "his — его, а тётя принадлежит подруге: нужно her.",
-          "uk": "his — його, а тітка належить подрузі: потрібно her."
+          "ru": "his — его, а речь о тёте подруги: нужно her.",
+          "uk": "his — його, а йдеться про тітку подруги: потрібно her."
         },
         "en:lesson-05:session-13:intro2:r3": {
           "ru": "Тётя одна, поэтому нужно is, а не are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ff902cd59ce466b1d7bc833ef1ad58dbe71f6f99a9e94791c1d0c66f03f53c33"
+  "auxiliaryFingerprint": "69c00e47625f91a3ed2a14c4784b4cb0a34a122f34809357ce44eb02d0c8d5f8"
 }

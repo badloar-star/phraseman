@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-12:intro3:r2": {
-          "ru": "Ножницы — как пара, поэтому нужно are, а не is.",
-          "uk": "Ножиці — як пара, тому потрібно are, а не is."
+          "ru": "Scissors имеет форму множественного числа, поэтому нужно are, а не is.",
+          "uk": "Scissors має форму множини, тому потрібно are, а не is."
         },
         "en:lesson-05:session-12:intro3:r3": {
           "ru": "your — твои, а ножницы ваши: нужно my.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "45b785bcc92ee06dbc6f9c8b2378a5c70575a0392e54ac5b5995425471368818"
+  "auxiliaryFingerprint": "d517b996d9f89d3b32e60e9ac3767cc48bfdea7b1340afa0ffd97f9ee45a02b7"
 }

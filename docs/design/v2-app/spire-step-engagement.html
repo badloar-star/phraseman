@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ступень Пика — три идеи</title>
+<style>
+/* ───────── PhraseMan 2.0 · ступень Пика: золотое задание ×2, сердечко за серию, призрак друга (макеты для выбора, 25.10) ─────────
+   зачем (владелец «да хочу макет!», через координатора 25.10): три идеи из ТЗ Моментов (docs/work/tasks/spire-engagement-2026-10-25.md),
+   каждая — отдельная картинка с кадрами в светлой («Сумерки», ink) и тёмной («Океан», marine) теме. Это НЕ сборка 2.0.2 — только выбор.
+   Основа кадра — текущий экран ступени 1:1 по коду: SpireStepScreen (шапка: «назад» 48, «Ступень N» 20/25, «Этаж · лига» 16, ряд сердец
+   37 dp, радиус 19), SpireTimerRing (132, r 59, линия 7), SpireTaskView (подпись задания 13 с линиями, плита фразы ≥96 радиус 20,
+   варианты ≥58 радиус 16, промежуток 13), строка «пожаловаться», «k / 10» внизу. Все кнопки, сердца, таймер, задания на месте.
+   Цвета — liquidGlassTokens(ink|marine, level max) через tsx. «Золото» в 2.0 = токен gold (= accentBright темы, жёлтого нет с 01.10);
+   отдельная картинка показывает тёплое золото как НОВУЮ пару токенов — на выбор владельцу. Верх экрана цельный: фон темы
+   идёт под статус-бар без полосы (замок 25.10). Без рамок: только тон и тень, тонкая полупрозрачная кромка — у золотой плиты.
+   Классы с префиксом sx- — kit.css не подключён (его .ph/.dim ломают такие страницы). */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+html, body { margin: 0; background: #121317; color: #ECEDF1; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+.sx-board { padding: 44px 48px 52px; width: max-content; }
+.sx-board + .sx-board { border-top: 1px solid rgba(255, 255, 255, .06); }
+.sx-h1 { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.4px; margin: 0; }
+.sx-lead { font-size: 17px; line-height: 25px; color: #A9ABB5; margin: 8px 0 0; max-width: 1180px; }
+.sx-row { display: flex; gap: 40px; margin-top: 34px; }
+.sx-rowlab { font-size: 15px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #8C8E99; margin: 38px 0 -14px; }
+.sx-cell { display: flex; flex-direction: column; gap: 12px; }
+.sx-cap { width: 430px; min-height: 68px; }
+.sx-cap b { display: block; font-size: 18px; line-height: 24px; font-weight: 700; color: #F2F3F6; }
+.sx-cap span { display: block; font-size: 15px; line-height: 21px; color: #9A9CA7; margin-top: 2px; }
+.sx-foot { margin-top: 30px; font-size: 15px; line-height: 23px; color: #9A9CA7; max-width: 1380px; }
+.sx-foot b { color: #D9DAE0; font-weight: 600; }
+
+/* ── темы: токены приложения (liquidGlassTokens, level max) ── */
+.sx-ph.ink { --bg: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --tx: #17181E; --sec: #595A63; --mut: #5E5F67;
+  --card: #FCFCFF; --raised: #DBDDEC; --ctl: #DBDDEC; --line: #50527124; --ring: #514EA1; --graphic: #54529B;
+  --ok: rgba(0, 111, 48, .12); --okTx: #006F30; --wrong: #A73533;
+  --gold: #5F5CB1; --goldSoft: #E6E9FF; --goldInk: #FFFFFF; --goldTx: #514EA1; --goldGlow: rgba(95, 92, 177, .45); --goldEdge: rgba(95, 92, 177, .30);
+  --shimmer: rgba(255, 255, 255, .75); --ghost: rgba(23, 24, 30, .14);
+  --plate: 0 14px 26px -14px #33335757, 0 1px 3px #3333570F; --nested: 0 5px 10px -5px #33335747; --sb: #17181E; }
+.sx-ph.marine { --bg: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --tx: #F6FBFD; --sec: #B8CFD6; --mut: #98ACB1;
+  --card: #002027; --raised: #123037; --ctl: #123037; --line: #ACEAFA26; --ring: #64D1EC; --graphic: #5CCFEB;
+  --ok: rgba(115, 203, 135, .12); --okTx: #73CB87; --wrong: #ED756E;
+  --gold: #A0ECFF; --goldSoft: #006C859E; --goldInk: #001A22; --goldTx: #A0ECFF; --goldGlow: rgba(1, 150, 176, .55); --goldEdge: rgba(160, 236, 255, .28);
+  --shimmer: rgba(255, 255, 255, .20); --ghost: rgba(246, 251, 253, .16);
+  --plate: 0 16px 28px -14px rgba(0, 0, 0, .75); --nested: 0 6px 12px -6px rgba(0, 0, 0, .6); --sb: #F6FBFD; }
+/* предложение: тёплое золото — новая пара токенов gold/goldSoft на тему (светлая / тёмная), не литерал в компоненте */
+.sx-ph.ink.warm { --gold: #B07D0A; --goldSoft: #FFF1CF; --goldInk: #FFFFFF; --goldTx: #8A6200; --goldGlow: rgba(198, 146, 20, .45); --goldEdge: rgba(176, 125, 10, .30); }
+.sx-ph.marine.warm { --gold: #F2C55C; --goldSoft: #3A2E10; --goldInk: #241A02; --goldTx: #F2C55C; --goldGlow: rgba(242, 197, 92, .40); --goldEdge: rgba(242, 197, 92, .28); }
+
+/* ── телефон ── */
+.sx-ph { position: relative; width: 430px; height: 932px; border-radius: 58px; overflow: hidden; background: var(--bg); color: var(--tx);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), 0 0 0 10px #050506, 0 0 0 11px #2A2B30; }
+.sx-sb { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 34px 0 40px;
+  font-size: 16px; font-weight: 600; color: var(--sb); }
+.sx-sb svg { display: block; }
+.sx-scr { position: absolute; inset: 50px 0 0; }
+.sx-head { display: flex; align-items: center; gap: 8px; padding: 0 16px; min-height: 48px; }
+.sx-back { width: 48px; height: 48px; border-radius: 24px; background: var(--ctl); box-shadow: var(--nested); display: grid; place-items: center; margin-right: 6px; flex: none; }
+.sx-ht { flex: 1; min-width: 0; }
+.sx-title { font-size: 20px; line-height: 25px; font-weight: 700; }
+.sx-sub { font-size: 16px; line-height: 20px; margin-top: 2px; color: var(--sec); white-space: nowrap; }
+.sx-hearts { position: relative; height: 37px; border-radius: 19px; padding: 0 13px; display: flex; align-items: center; gap: 8px; background: var(--ctl); box-shadow: var(--nested); flex: none; }
+.sx-hearts .off { color: var(--mut); opacity: .5; }
+.sx-hearts .on { color: var(--tx); }
+.sx-ring { position: relative; width: 132px; height: 132px; margin: 34px auto 0; }
+.sx-ring .tm { position: absolute; inset: 0; display: grid; place-items: center; font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sx-over { margin: 44px 16px 0; display: flex; align-items: center; gap: 12px; }
+.sx-over i { flex: 1; height: 1px; background: var(--line); }
+.sx-over span { font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--sec); white-space: nowrap; }
+.sx-q { position: relative; margin: 18px 16px 0; min-height: 96px; border-radius: 20px; padding: 20px 22px; box-sizing: border-box; display: grid; place-items: center;
+  background: var(--raised); box-shadow: var(--plate); overflow: visible; }
+.sx-q .ph { position: relative; font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.3px; text-align: center; }
+.sx-opts { margin: 18px 16px 0; display: flex; flex-direction: column; gap: 13px; }
+.sx-opt { min-height: 58px; border-radius: 16px; padding: 12px 22px; box-sizing: border-box; display: grid; place-items: center; text-align: center;
+  font-size: 16px; line-height: 21px; font-weight: 700; background: var(--card); box-shadow: var(--nested); }
+.sx-opt.ok { background: linear-gradient(var(--ok), var(--ok)), var(--card); }
+.sx-report { margin: 10px 16px 0; min-height: 44px; display: flex; justify-content: flex-end; align-items: center; color: var(--sec); }
+.sx-count { position: absolute; left: 0; right: 0; bottom: 46px; text-align: center; font-size: 16px; font-weight: 700; color: var(--sec); }
+.sx-home { position: absolute; left: 50%; bottom: 9px; width: 140px; height: 5px; margin-left: -70px; border-radius: 3px; background: var(--tx); opacity: .85; }
+
+/* ── 1. золотое задание ── */
+.sx-q.gold { background: linear-gradient(140deg, var(--goldSoft) 0%, var(--raised) 78%); box-shadow: 0 0 0 1px var(--goldEdge), 0 18px 34px -16px var(--goldGlow), var(--plate); overflow: hidden; }
+.sx-q.gold .shine { position: absolute; inset: 0; background: linear-gradient(105deg, transparent 30%, var(--shimmer) 48%, transparent 64%); transform: translateX(-6%); pointer-events: none; }
+.sx-qwrap { position: relative; }
+.sx-x2 { position: absolute; z-index: 3; height: 30px; padding: 0 12px; border-radius: 15px; display: flex; align-items: center; gap: 4px;
+  background: var(--gold); color: var(--goldInk); font-size: 16px; font-weight: 700; box-shadow: 0 8px 18px -8px var(--goldGlow); }
+.sx-x2.burst { transform: scale(1.04); box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 22%, transparent), 0 0 34px 6px var(--goldGlow); }
+.sx-over.gold span { color: var(--goldTx); }
+.sx-over.gold i { background: color-mix(in srgb, var(--gold) 40%, transparent); }
+.sx-coins { height: 37px; border-radius: 19px; padding: 0 12px 0 6px; display: flex; align-items: center; gap: 6px; background: var(--ctl); box-shadow: var(--nested); flex: none;
+  font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.sx-coins img { width: 26px; height: 26px; border-radius: 13px; }
+.sx-coins.hot { box-shadow: 0 0 0 4px color-mix(in srgb, var(--gold) 20%, transparent), 0 0 22px 2px var(--goldGlow), var(--nested); transform: scale(1.04); }
+.sx-fly { position: absolute; z-index: 5; width: 34px; height: 34px; border-radius: 17px; box-shadow: 0 8px 16px -6px rgba(0, 0, 0, .45); }
+.sx-trail { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+
+/* ── 2. сердечко за серию ── */
+.sx-streak { position: absolute; left: 13px; right: 13px; top: 42px; display: flex; gap: 3px; }
+.sx-streak i { flex: 1; height: 3px; border-radius: 2px; background: var(--line); }
+.sx-streak i.on { background: var(--graphic); }
+.sx-streak.full i { box-shadow: 0 0 8px 0 color-mix(in srgb, var(--graphic) 70%, transparent); }
+.sx-streak.gone { opacity: 0; }
+.sx-hearts .fill { position: relative; display: flex; color: var(--tx); transform: scale(1.06); }
+.sx-hearts .fill::before { content: ""; position: absolute; inset: -9px; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--graphic) 55%, transparent) 0%, transparent 68%); }
+.sx-hearts .fill svg { position: relative; }
+
+/* ── 3. призрак друга ── */
+.sx-ghost { position: absolute; left: 50%; top: 51px; transform: translateX(-50%); height: 26px; border-radius: 13px; padding: 0 11px 0 3px; box-sizing: border-box;
+  display: flex; align-items: center; gap: 8px; white-space: nowrap; background: var(--card); box-shadow: var(--nested); font-size: 13px; line-height: 17px; font-weight: 600; color: var(--sec); }
+.sx-ava { width: 20px; height: 20px; border-radius: 10px; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: var(--tx); background: var(--ghost); }
+.sx-ghost .st { font-weight: 700; display: flex; align-items: center; gap: 3px; }
+.sx-ghost .st.me { color: var(--ring); }
+.sx-ghost .st.her { color: var(--tx); }
+.sx-ghost.past .sx-ava { opacity: .35; }
+</style>
+</head>
+<body>
+<main id="root"></main>
+<script>
+// зачем: кадры собираются из одних и тех же частей экрана ступени, чтобы три идеи различались только своим слоем
+const SV = {
+  back: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
+  heart: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.2s-7.6-4.7-9.7-9.5C.9 8.4 3.1 4.6 6.8 4.6c2.2 0 3.7 1.2 5.2 3.1 1.5-1.9 3-3.1 5.2-3.1 3.7 0 5.9 3.8 4.5 7.1-2.1 4.8-9.7 9.5-9.7 9.5z"/></svg>',
+  flag: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg>',
+  check: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+};
+const statusBar = () => `<div class="sx-sb"><span>9:41</span><span style="display:flex;gap:7px;align-items:center">
+  <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+  <svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x=".75" y=".75" width="22" height="11.5" rx="3.5" stroke="currentColor" stroke-opacity=".45" stroke-width="1.5"/><rect x="2.5" y="2.5" width="16" height="8" rx="2" fill="currentColor"/><rect x="24" y="4.5" width="1.6" height="4" rx=".8" fill="currentColor" fill-opacity=".45"/></svg></span></div>`;
+const hearts = (n, opt = {}) => `<div class="sx-hearts" aria-label="Сердца: ${n} из 3">${[0, 1, 2].map((i) => {
+  if (opt.fillAt === i) return `<span class="fill">${SV.heart}</span>`;
+  return `<span class="${i < n ? 'on' : 'off'}" style="display:flex">${SV.heart}</span>`;
+}).join('')}${opt.streak !== undefined ? `<div class="sx-streak${opt.streak >= 5 ? ' full' : ''}${opt.streakGone ? ' gone' : ''}">${[1, 2, 3, 4, 5].map((k) => `<i class="${k <= opt.streak ? 'on' : ''}"></i>`).join('')}</div>` : ''}</div>`;
+const head = (h, extra = '') => `<div class="sx-head"><div class="sx-back">${SV.back}</div><div class="sx-ht"><div class="sx-title">Ступень 8</div><div class="sx-sub">Этаж 4 · Гранит</div></div>${extra}${h}</div>`;
+// кольцо: доля оставшегося времени; g.at — где на шкале времени финишировал друг (доля), g.fade — метка тает
+const ring = (left, frac, g = null) => {
+  const C = 2 * Math.PI * 59;
+  let mark = '';
+  if (g) {
+    const a = (g.at * 360 - 90) * Math.PI / 180; const x = (66 + 59 * Math.cos(a)).toFixed(1); const y = 66 + 59 * Math.sin(a);
+    mark = `<g opacity="${g.fade ? .22 : 1}"><circle cx="${x}" cy="${y.toFixed(1)}" r="11" fill="var(--card)"/><circle cx="${x}" cy="${y.toFixed(1)}" r="11" fill="var(--ghost)"/>
+      <text x="${x}" y="${(y + 4.2).toFixed(1)}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--tx)" font-family="Inter">А</text></g>`;
+  }
+  return `<div class="sx-ring"><svg width="132" height="132" viewBox="0 0 132 132" style="overflow:visible"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--ctl)" stroke-width="7"/>
+    <circle cx="66" cy="66" r="59" fill="none" stroke="var(--ring)" stroke-width="7" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)} ${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - frac)).toFixed(1)}" transform="rotate(-90 66 66)"/>${mark}</svg><div class="tm">${left}</div></div>`;
+};
+const OPTS = ['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность'];
+const task = (o = {}) => {
+  const over = `<div class="sx-over${o.gold ? ' gold' : ''}"><i></i><span>${o.gold ? 'Золотое · Выбери перевод' : 'Выбери перевод'}</span><i></i></div>`;
+  const plate = `<div class="sx-qwrap"><div class="sx-q${o.gold ? ' gold' : ''}">${o.shine ? '<div class="shine"></div>' : ''}<div class="ph">Hire, fire, quit</div></div>${o.gold ? `<div class="sx-x2${o.burst ? ' burst' : ''}" style="right:26px;top:-9px">×2</div>` : ''}</div>`;
+  const opts = `<div class="sx-opts">${OPTS.map((t, i) => `<div class="sx-opt${o.ok === i ? ' ok' : ''}">${t}</div>`).join('')}</div>`;
+  return `${over}${plate}${opts}<div class="sx-report">${o.ok === undefined ? SV.flag : ''}</div>`;
+};
+const phone = (theme, body, n, after = '') => `<div class="sx-ph ${theme}">${statusBar()}<div class="sx-scr">${body}</div><div class="sx-count">${n} / 10</div><div class="sx-home"></div>${after}</div>`;
+const cell = (cap, sub, html) => `<div class="sx-cell"><div class="sx-cap"><b>${cap}</b><span>${sub}</span></div>${html}</div>`;
+const themes = [['ink', 'Светлая · «Сумерки»'], ['marine', 'Тёмная · «Океан»']];
+
+// ── 1. Золотое задание ×2 ──
+const coinChip = (hot) => `<div class="sx-coins${hot ? ' hot' : ''}"><img src="assets/coin_rank_10.webp" alt="">+20</div>`;
+// две монеты на дуге от плиты задания к счётчику «+20» в шапке (вторая с задержкой 80 мс — отстаёт по дуге)
+const flight = () => `<svg class="sx-trail" viewBox="0 0 430 932"><path d="M365 335 C 400 250, 330 140, 252 86" fill="none" stroke="var(--gold)" stroke-opacity=".45" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/></svg>
+  <img class="sx-fly" src="assets/coin_rank_10.webp" alt="" style="left:${327 - 17}px;top:${159 - 17}px">
+  <img class="sx-fly" src="assets/coin_rank_10.webp" alt="" style="left:${369 - 15}px;top:${246 - 15}px;width:30px;height:30px;opacity:.85">`;
+const goldFrames = (theme) => [
+  cell('1 · Золотое задание', 'Плита в золоте, «×2» в углу. Блик проходит один раз, 600 мс, тихий звук', phone(theme, head(hearts(3)) + ring('3:05', .771) + task({ gold: true, shine: true }), 5)),
+  cell('2 · Верный ответ', 'Вариант светится «верно», плита остаётся золотой', phone(theme, head(hearts(3)) + ring('3:01', .754) + task({ gold: true, ok: 0 }), 5)),
+  cell('3 · «×2» и монеты', '«×2» вспыхивает, звон монет, две монеты летят к «+20» в шапке', phone(theme, head(hearts(3), coinChip(true)) + ring('3:01', .754) + task({ gold: true, ok: 0, burst: true }), 5, `<div style="position:absolute;inset:0;pointer-events:none">${flight()}</div>`)),
+];
+
+// ── 2. Сердечко за серию ──
+const heartFrames = (theme) => [
+  cell('1 · Серия 3 из 5', 'Тонкая шкала из 5 делений под сердцами. Видна, пока одного сердца нет', phone(theme, head(hearts(2, { streak: 3 })) + ring('2:55', .729) + task(), 6)),
+  cell('2 · 5 из 5', 'Пятый верный подряд — шкала заполнена и светится', phone(theme, head(hearts(2, { streak: 5 })) + ring('2:20', .583) + task({ ok: 0 }), 8)),
+  cell('3 · Сердце вернулось', 'Сердце наливается со вспышкой, короткий звук. Шкала гаснет: раз за ступень', phone(theme, head(hearts(3, { fillAt: 2, streak: 5, streakGone: true })) + ring('2:19', .579) + task({ ok: 0 }), 8)),
+];
+
+// ── 3. Призрак друга ──
+// бюджет 4:00, Аня — 2:10 → её финиш на шкале времени там, где останется 1:50 (доля 0.458)
+const ghostLine = (kind) => {
+  const st = kind === 'ahead' ? '<span class="st me">· ты впереди</span>'
+    : kind === 'behind' ? '<span class="st her">· Аня впереди</span>'
+      : `<span class="st me">${SV.check}обогнал</span>`;
+  return `<div class="sx-ghost${kind === 'past' ? ' past' : ''}"><span class="sx-ava">А</span><span>Аня прошла эту ступень за 2:10</span>${st}</div>`;
+};
+const ghostFrames = (theme) => [
+  cell('1 · Ты впереди', 'Полоска сверху и метка «А» на кольце — где Аня финишировала', phone(theme, head(hearts(3)) + ghostLine('ahead') + ring('2:50', .708, { at: .458 }) + task(), 7)),
+  cell('2 · Аня впереди', 'Ты на 4-м задании, Аня в это время была бы на 6-м', phone(theme, head(hearts(2)) + ghostLine('behind') + ring('2:40', .667, { at: .458 }) + task(), 4)),
+  cell('3 · Обогнал', 'Метка тает, без звука. В итоге ступени — «Быстрее Ани на 0:14»', phone(theme, head(hearts(2)) + ghostLine('past') + ring('2:32', .633, { at: .458, fade: true }) + task(), 8)),
+];
+
+const board = (id, title, lead, frames, foot, warm = false) => `<section class="sx-board" id="${id}"><h1 class="sx-h1">${title}</h1><p class="sx-lead">${lead}</p>
+  ${themes.map(([th, lab]) => `<div class="sx-rowlab">${lab}</div><div class="sx-row">${frames(th + (warm ? ' warm' : '')).join('')}</div>`).join('')}
+  <div class="sx-foot">${foot}</div></section>`;
+
+document.getElementById('root').innerHTML = [
+  board('gold', 'Золотое задание ×2', 'Иногда одно задание ступени (с 3-го по 9-е) светится золотом. Верно с первой попытки — монеты за ступень удваиваются, со звоном.', goldFrames,
+    '<b>Золото — цвет темы</b>, как сейчас везде в 2.0 (жёлтого в приложении нет). Монета — монета ранга самого человека (на кадрах ранг 10, золотая). <b>Счётчика монет на экране ступени сейчас нет</b>: «+20» появляется в шапке только на время вспышки и тает.'),
+  board('gold-warm', 'Золотое задание ×2 — тёплое золото', 'То же самое, но плита и «×2» в настоящем тёплом золоте. Для этого в каждую тему добавится пара цветов «золото» — для светлой и для тёмной.', goldFrames,
+    'Отличие от первой картинки — только цвет золота. Остальной экран в цветах темы.', true),
+  board('heart', 'Сердечко за серию', '5 верных подряд без ошибок возвращают одно потерянное сердце. Один раз за ступень. Монет не даёт.', heartFrames,
+    'Ошибка или подсказка обнуляют шкалу. <b>Когда все 3 сердца целы — шкалы нет</b>: возвращать нечего. Шкала висит под рядом сердец, экран не сдвигается.'),
+  board('ghost', 'Призрак друга', 'Сверху маленькая полоска: за сколько эту ступень прошёл друг. Видно, обгоняешь или нет.', ghostFrames,
+    'Полоска стоит в промежутке между шапкой и кольцом — задание не сдвигается. Друга в твоей комнате недели нет — полоски нет. <b>Точного времени одной ступени у сервера нет</b>: без новых данных честная подпись — «в среднем за 2:10».'),
+].join('');
+</script>
+</body>
+</html>

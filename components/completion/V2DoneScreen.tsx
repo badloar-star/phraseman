@@ -104,7 +104,8 @@ const Star = memo(function Star({ on, index, g, animate }: { on: boolean; index:
 });
 
 // зачем (решение владельца 13.10, монеты за диалог): тот же блок «+N монет» нужен итогу диалога — не дублируем анимацию.
-export const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: { amount: number; lang: Lang; g: Lv2Glass; animate: boolean }) {
+// зачем (Сверка m18-A, `.sf`: монета 30 + «+N монет» 16/700 слева в карточке): `plaque` — строка-плашка итога диалога вместо крупного центрованного числа; без флага — как раньше (итог урока).
+export const CoinAward = memo(function CoinAward({ amount, lang, g, animate, plaque = false }: { amount: number; lang: Lang; g: Lv2Glass; animate: boolean; plaque?: boolean }) {
   // Макет: монета «пружинит», счёт растёт от 0 до суммы.
   const [shown, setShown] = useState(animate ? 0 : amount);
   const pop = useSharedValue(animate ? 0.5 : 1);
@@ -121,6 +122,16 @@ export const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: {
     return () => clearInterval(timer);
   }, [amount, animate, pop]);
   const style = useAnimatedStyle(() => ({ transform: [{ scale: pop.value }] }));
+  if (plaque) {
+    return (
+      <View style={[s.awardPlaque, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]} accessible accessibilityLabel={`+${amount} ${runeWord(lang, amount)}`}>
+        <Reanimated.View style={style}>
+          <Image source={HOME_RUNE_ICON_SOURCE} style={s.awardPlaqueCoin} contentFit="contain" accessible={false} />
+        </Reanimated.View>
+        <Text style={[s.awardPlaqueText, { color: g.text }]}>+{shown} {runeWord(lang, amount)}</Text>
+      </View>
+    );
+  }
   return (
     <View style={s.award} accessible accessibilityLabel={`+${amount} ${runeWord(lang, amount)}`}>
       <Reanimated.View style={style}>
@@ -435,6 +446,9 @@ const s = StyleSheet.create({
   awardCoin: { width: 44, height: 44 },
   awardNum: { fontSize: 34, fontWeight: '700', letterSpacing: -0.5, fontVariant: ['tabular-nums'] },
   awardUnit: { fontSize: 16, fontWeight: '600', marginLeft: -4 },
+  awardPlaque: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 12, paddingHorizontal: 16, paddingVertical: 12, borderRadius: 16 },
+  awardPlaqueCoin: { width: 30, height: 30 },
+  awardPlaqueText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
   panel: { borderRadius: 16, marginTop: 14, padding: 16 },
   plusNote: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   tile: { width: 46, height: 46, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },

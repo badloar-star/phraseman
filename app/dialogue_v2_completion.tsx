@@ -635,7 +635,7 @@ export default function DialogueV2CompletionRoute() {
               <View testID="dialogue-v2-completion-coins">
                 <DlgChain.DialogueChainMountAt offset={DlgChain.DIALOGUE_CHAIN_OFFSETS.coins(goalsTotal)}>
                   {/* guard-ok: только отображение начисленного, баланс не меняется (начисляет useDialogueV2CoinReward) */}
-                  <CoinAward amount={dialogCoinReward.coins} lang={lang} g={lv2Glass} animate={!reduceMotion} />
+                  <CoinAward amount={dialogCoinReward.coins} lang={lang} g={lv2Glass} animate={!reduceMotion} plaque />
                 </DlgChain.DialogueChainMountAt>
               </View>
             </DlgChain.DialogueChainBeat>

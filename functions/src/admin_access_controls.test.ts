@@ -205,6 +205,16 @@ describe('admin access controls', () => {
         .toEqual({ actorUid: 'admin-1', role: 'owner', email: 'a@b.c' });
     });
 
+    // зачем (Ревизор L732): не-админ с кривой командой получает отказ в правах, а не подсказку о формате входа.
+    it.each([
+      ['adminGrantAccess', { uid: '', kind: 'nope' }],
+      ['adminSetUserBan', { uid: '', banned: 'yes' }],
+    ] as const)('%s checks admin rights before parsing the command', async (name, data) => {
+      const callable = (accessControls as any)[name] as { run: (request: unknown) => Promise<unknown> };
+      await expect(callable.run({ data, auth: { uid: 'user-1', token: {} }, rawRequest: {} })).rejects.toMatchObject({ code: 'permission-denied' });
+      await expect(callable.run({ data, auth: null, rawRequest: {} })).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+
     it('accepts an exact future end date for a vip grant and uses it as the expiry', () => {
       const untilMs = NOW + 400 * DAY_MS;
       const input = normalizeAdminAccessInput({ ...base, kind: 'vip', untilMs }, NOW);

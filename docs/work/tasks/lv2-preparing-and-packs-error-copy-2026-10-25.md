@@ -55,3 +55,18 @@ No architecture change.
 ## Rollback
 
 Не применимо (текст для вставки).
+
+## Дополнение 25.10 — просьба 5 · ВХОД (проверка строк подготовки занятия)
+
+Порядок: ru, uk, en, es, pt-BR, vi, id, tr, pl. Слово кнопки «Продолжить» — как на кнопке плеера Learning V2
+(`learning_v2_direct_session_player_v1.tsx` resume: Продолжить / Продовжити / Continue / Continuar / Continuar / Tiếp tục / Lanjutkan /
+Devam et / Kontynuuj). Образец второй строки — уже существующая версия с «Начать» (`app/(tabs)/lessons.tsx` ~3516).
+
+```ts
+// короткое состояние, пока занятие догружается
+stillPreparing: ['Ещё готовится…', 'Ще готується…', 'Still getting ready…', 'Aún preparándose…', 'Ainda preparando…', 'Vẫn đang chuẩn bị…', 'Masih disiapkan…', 'Hâlâ hazırlanıyor…', 'Jeszcze się przygotowuje…'],
+// подсказка, если нажали «Продолжить» раньше, чем занятие готово
+stillPreparingContinue: ['Занятие ещё готовится. Нажми «Продолжить» через пару секунд', 'Заняття ще готується. Натисни «Продовжити» за кілька секунд', 'The session is still getting ready. Tap Continue again in a few seconds', 'La sesión aún se está preparando. Toca Continuar en unos segundos', 'A sessão ainda está sendo preparada. Toque em Continuar em alguns segundos', 'Buổi học vẫn đang chuẩn bị. Nhấn Tiếp tục sau vài giây', 'Sesi masih disiapkan. Ketuk Lanjutkan lagi dalam beberapa detik', "Oturum hâlâ hazırlanıyor. Birkaç saniye sonra Devam et'e dokun", 'Zajęcia jeszcze się przygotowują. Stuknij „Kontynuuj” za kilka sekund'],
+```
+
+Без слов «сессия», «интро», «попытка» (замок `no_dev_jargon_visible_copy_2026_10_25`). На «ты».

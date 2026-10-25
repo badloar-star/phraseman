@@ -1,8 +1,10 @@
 // зачем (владелец 25.10, координатор): во вступлении занятия английский, грамматические частицы и русский перевод — РАЗНЫЕ цвета
 // во всех 29 темах; каждый ≥ 4,5 на карточке вступления (plateFillFrom → plateFillTo) в светлом и тёмном, на всех уровнях.
+// 25.10 (координатор, замер docs/work/learning-v2-session-contrast-2026-10-25.md): и на всех подложках, где стоит IntroRoleText —
+// плашка ситуации задания (акцент 9 % на карточке), карточка «Скажи так», шторка теории Мастерской (introTextRoleSurfaces).
 // Различимость — ΔE в OKLab ≥ 0,06 попарно; частицы — с цветом (насыщенность OKLCH ≥ 0,05), а не серые.
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { introTextRoles } from '../constants/liquidGlassIntroTextRoles';
+import { introTextRoleSurfaces, introTextRoles } from '../constants/liquidGlassIntroTextRoles';
 import { paletteContrast } from '../constants/liquidGlassPaletteRoles';
 import { flattenOver } from '../constants/liquidGlassSurfaceRoles';
 
@@ -27,13 +29,13 @@ describe('цвета текста вступления: английский / �
           const r = introTextRoles(id as never, { level, appearance });
           const at = `${appearance}/${id}/${level}`;
           for (const [name, c] of Object.entries(r).filter(([k]) => k !== 'particleSoft')) {
-            for (const s of [g.plateFillFrom, g.plateFillTo]) {
+            for (const s of introTextRoleSurfaces(g)) {
               const k = paletteContrast(c.slice(0, 7), s.slice(0, 7));
               if (k < 4.5) bad.push(`${at} ${name} ${c} на ${s}: ${k.toFixed(2)}`);
             }
           }
           // частица на своей подложке (particleSoft, сведённой с обоими концами карточки) — тоже ≥ 4,5
-          for (const s of [g.plateFillFrom, g.plateFillTo]) {
+          for (const s of introTextRoleSurfaces(g)) {
             const k = paletteContrast(r.particle.slice(0, 7), flattenOver(r.particleSoft, s.slice(0, 7)));
             if (k < 4.5) bad.push(`${at} particle на particleSoft: ${k.toFixed(2)}`);
           }

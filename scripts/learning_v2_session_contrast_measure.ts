@@ -8,7 +8,7 @@ import * as path from 'path';
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens, type LiquidGlassThemeId } from '../constants/liquidGlassThemePalette';
 import { flattenOver } from '../constants/liquidGlassSurfaceRoles';
 import { contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
-import { introTextRoles } from '../constants/liquidGlassIntroTextRoles';
+import { introTextRoleSurfaces, introTextRoles } from '../constants/liquidGlassIntroTextRoles';
 import { semanticInk } from '../constants/liquidGlassSemanticInk';
 import { MODE_FEEDBACK_ART, feedbackInkSoftForLight } from '../constants/learningV2ModeFeedbackPalette';
 import { lv2TaskTokens } from '../components/learning-v2/learning_v2_task_theme_tokens';
@@ -38,9 +38,9 @@ type Ctx = { g: G; id: LiquidGlassThemeId; level: 'calm' | 'accent' | 'max'; app
 type Role = { id: string; area: string; what: string; pair: string; min: 4.5 | 3; fn: (c: Ctx) => [string, string[]] };
 const tints = (g: G): string[] => [over(MODE_FEEDBACK_ART.correctTint, scr(g)), over(MODE_FEEDBACK_ART.wrongTint, scr(g)), over(MODE_FEEDBACK_ART.correctTint, card(g)), over(MODE_FEEDBACK_ART.wrongTint, card(g))];
 const ROLES: Role[] = [
-  { id: 'L1', area: 'Вступление', what: 'Английский (langText) на карточке и фоне', pair: 'introTextRoles.langText', min: 4.5, fn: ({ g, id, level, app }) => [introTextRoles(id, { level, appearance: app }).langText, [card(g), scr(g)]] },
-  { id: 'L2', area: 'Вступление', what: 'Частица на подложке accentSoft', pair: 'introTextRoles.particle на particleSoft', min: 4.5, fn: ({ g, id, level, app }) => { const r = introTextRoles(id, { level, appearance: app }); return [r.particle, [over(r.particleSoft, card(g)), over(r.particleSoft, scr(g))]]; } },
-  { id: 'L3', area: 'Вступление', what: 'Перевод (gloss)', pair: 'introTextRoles.gloss', min: 4.5, fn: ({ g, id, level, app }) => [introTextRoles(id, { level, appearance: app }).gloss, [card(g), scr(g)]] },
+  { id: 'L1', area: 'Вступление', what: 'Английский (langText) на всех подложках IntroRoleText', pair: 'introTextRoles.langText', min: 4.5, fn: ({ g, id, level, app }) => [introTextRoles(id, { level, appearance: app }).langText, introTextRoleSurfaces(g)] },
+  { id: 'L2', area: 'Вступление', what: 'Частица на подложке accentSoft (карточка вступления, ситуация, «Скажи так», теория)', pair: 'introTextRoles.particle на particleSoft', min: 4.5, fn: ({ g, id, level, app }) => { const r = introTextRoles(id, { level, appearance: app }); return [r.particle, introTextRoleSurfaces(g).map((s) => over(r.particleSoft, s))]; } },
+  { id: 'L3', area: 'Вступление', what: 'Перевод (gloss) на всех подложках IntroRoleText', pair: 'introTextRoles.gloss', min: 4.5, fn: ({ g, id, level, app }) => [introTextRoles(id, { level, appearance: app }).gloss, introTextRoleSurfaces(g)] },
   { id: 'L4', area: 'Задание', what: 'Ситуация: надзаголовок на акценте 9 % поверх карточки', pair: '`secondary` на accentWash9', min: 4.5, fn: ({ g }) => [g.secondary, [over(task(g).accentWash9, card(g))]] },
   { id: 'L5', area: 'Задание', what: 'Ситуация: текст на акценте 9 % поверх карточки', pair: '`text` на accentWash9', min: 4.5, fn: ({ g }) => [g.text, [over(task(g).accentWash9, card(g))]] },
   { id: 'L6', area: 'Задание', what: 'Значок задания на плитке «текст 9 %»', pair: '`text` на text 9 % поверх фона', min: 3, fn: ({ g }) => [g.text, [over(alpha(g.text, 0.09), scr(g))]] },

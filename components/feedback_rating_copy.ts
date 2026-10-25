@@ -3,13 +3,14 @@
 import type { Lang } from '../constants/i18n';
 
 export const FEEDBACK_NEED_WORD_PLACEHOLDER: Readonly<Record<string, string>> = {
-  ru: 'Напиши хотя бы одно слово — тогда оценка отправится',
-  uk: 'Напиши хоча б одне слово — тоді оцінку буде надіслано',
+  // зачем (Переводчик 25.10): теплее — «и» вместо условия «тогда», uk без канцелярского пассива; id на «ты» (-mu)
+  ru: 'Напиши хотя бы одно слово — и оценка отправится',
+  uk: 'Напиши хоча б одне слово — і оцінка надішлеться',
   en: 'Write at least one word to send your rating',
   es: 'Escribe al menos una palabra para enviar tu valoración',
   'pt-BR': 'Escreva pelo menos uma palavra para enviar sua avaliação',
   vi: 'Hãy viết ít nhất một từ để gửi đánh giá',
-  id: 'Tulis setidaknya satu kata untuk mengirim penilaian',
+  id: 'Tulis setidaknya satu kata untuk mengirim penilaianmu',
   tr: 'Puanını göndermek için en az bir kelime yaz',
   pl: 'Napisz choć jedno słowo, aby wysłać ocenę',
 };

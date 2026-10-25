@@ -267,3 +267,18 @@ describe('окна недели Пика: место — ступенями, м�
     expect(read('app/spire/use_spire_position_moments.ts')).toContain('spireDecideRise(prev, snapshot, rows, rankBy)');
   });
 });
+
+// зачем (координатор 25.10): спуск из лиги решают ступени — ни один язык не называет критерием монеты.
+describe('спуск из лиги: критерий — ступени на всех языках', () => {
+  it('downBody: «по ступеням» на 9 языках, монеты как критерий не упоминаются', () => {
+    const expected: Readonly<Record<string, string>> = {
+      ru: 'последних по ступеням', uk: 'останніх за сходинками', en: 'bottom five by steps', es: 'últimos por escalones',
+      'pt-BR': 'últimos em degraus', vi: 'cuối theo số bậc', id: 'terbawah menurut anak tangga', tr: 'basamaklara göre son', pl: 'piątce według stopni',
+    };
+    for (const [lang, part] of Object.entries(expected)) {
+      const text = momentText(lang as Parameters<typeof momentText>[0], 'downBody', { league: 'X' });
+      expect({ lang, hit: text.includes(part) }).toEqual({ lang, hit: true });
+      expect(text).not.toMatch(/by coins|за монетами|por monedas|em moedas|theo xu|menurut koin|jetonlara göre|według monet|по монетам/);
+    }
+  });
+});

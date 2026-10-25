@@ -1,4 +1,7 @@
 jest.mock('expo-audio', () => ({ createAudioPlayer: jest.fn() }));
+// зачем (Ревизор 25.10, прогон 05:00): 031694020 заглушил tap/correct в банке V2 — мост забирал pm.ui.tap_soft до FakeBackend.
+// Этот файл проверяет очередь и вытеснение SoundDirector, а не банк V2: мост выключен; заглушки V2 покрывает sound_v2_wiring
+jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2ForDirector: () => false }));
 // зачем: e96eb6d1a — директор пишет [SFX-DROP] только при __DEV__; в этой среде jest глобала нет.
 (globalThis as { __DEV__?: boolean }).__DEV__ = false;
 

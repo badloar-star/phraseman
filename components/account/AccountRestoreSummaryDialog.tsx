@@ -11,7 +11,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
-import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
 const EXEMPT_COLOR_2 = '#000000'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
@@ -39,18 +39,18 @@ const AccountRestoreSummaryCard = memo(function AccountRestoreSummaryCard({ titl
       <Text accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(29) }]}>{title}</Text>
       <Text style={[styles.body, { color: glass.secondary, lineHeight: lh(22) }]}>{message}</Text>
       {cells && cells.length > 0 ? (
-        <View testID="account-restore-summary-cells" style={[styles.plaque, { backgroundColor: glass.opaqueControl }]}>
+        // зачем (стиль «Тень», Ревизор 26.10): плашка — заливка PlateFill и тень plateBoxShadow, без обводки; разделители ячеек —
+        // узкие View (как велит сторож «Тени»: линия — размером View, не рамкой).
+        <View testID="account-restore-summary-cells" style={[styles.plaque, { boxShadow: plateBoxShadow(glass) }]}>
+          <PlateFill g={glass} radius={16} />
           {cells.map((cell, index) => (
-            <View
-              key={cell.label}
-              accessible
-              accessibilityLabel={`${cell.value} ${cell.label}`}
-              // зачем: разделитель ячеек — одна сторона (как в макете), не обводка контейнера.
-              style={[styles.cell, index > 0 ? [styles.cellDivider, { borderLeftColor: glass.mutedText }] : null]}
-            >
-              <Text numberOfLines={1} style={[styles.cellValue, { color: glass.text }]}>{cell.value}</Text>
-              <Text numberOfLines={1} style={[styles.cellLabel, { color: glass.secondary }]}>{cell.label}</Text>
-            </View>
+            <React.Fragment key={cell.label}>
+              {index > 0 ? <View style={[styles.cellDivider, { backgroundColor: glass.mutedText }]} /> : null}
+              <View accessible accessibilityLabel={`${cell.value} ${cell.label}`} style={styles.cell}>
+                <Text numberOfLines={1} style={[styles.cellValue, { color: glass.text }]}>{cell.value}</Text>
+                <Text numberOfLines={1} style={[styles.cellLabel, { color: glass.secondary }]}>{cell.label}</Text>
+              </View>
+            </React.Fragment>
           ))}
         </View>
       ) : null}
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   // Плашка сводки: тон контрола, без кромки; ячейки поровну.
   plaque: { flexDirection: 'row', borderRadius: 16, paddingVertical: 12, marginTop: 16 },
   cell: { flex: 1, minWidth: 0, alignItems: 'center', paddingHorizontal: 6 },
-  cellDivider: { borderLeftWidth: StyleSheet.hairlineWidth },
+  cellDivider: { width: StyleSheet.hairlineWidth, alignSelf: 'stretch', opacity: 0.6 },
   cellValue: { fontSize: 16, fontWeight: '800' },
   cellLabel: { fontSize: 13, marginTop: 2 },
   actions: { marginTop: 18, gap: 12 },

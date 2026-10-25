@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Экзамен главы v2</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Раскладка: слева телефон с проходимым экзаменом главы 2, справа — короткая памятка и «шпаргалка» ответов для проверки.
+   зачем (владелец 25.10: «мне надо прямо пройти его в макете, как оно точно в приложении»; «фразы должны быть логичными»): экзамен главы v2
+   целиком — 10 заданий трёх видов, ввод печатается, «Проверить» проверяет (регистр, пунктуация, сокращения I'm = I am, несколько верных
+   вариантов), неверно → правильный ответ, итог по коду LearningV2ChapterExamResultView, не сдал → «Где споткнулся» → «Повторить эти темы»
+   → «Пересдать экзамен». Экран — по настоящим снимкам Сверки (exam_v2, practice; Сумерки светлая): размеры в dp = пиксели снимка / 2,625,
+   цвета сняты со снимков. Голосом в макете ответить нельзя — «или напиши». */
+:root { --page: #F3F3F5; --ink: #15161B; --ink2: #5B5D67; --panel: #FFFFFF; --line: rgba(21, 22, 27, .1);
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --page: #0F1013; --ink: #EEEFF2; --ink2: #A3A5AF; --panel: #191A1F; --line: rgba(255, 255, 255, .1); color-scheme: dark } }
+:root[data-theme="dark"] { --page: #0F1013; --ink: #EEEFF2; --ink2: #A3A5AF; --panel: #191A1F; --line: rgba(255, 255, 255, .1); color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--page); color: var(--ink); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+.w { padding-block: 20px 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); max-width: 1100px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+.side { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.side h1 { margin: 0; font-size: clamp(22px, 4vw, 28px); line-height: 1.2; font-weight: 800; letter-spacing: -.02em; text-wrap: balance; }
+.side p, .side li { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink2); }
+.side ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; }
+.side b { color: var(--ink); }
+.ctl { display: flex; flex-wrap: wrap; gap: 8px; }
+.ctl button { all: unset; cursor: pointer; padding: 9px 14px; border-radius: 10px; background: var(--panel); color: var(--ink); font-size: 14px; font-weight: 600; box-shadow: 0 1px 0 var(--line); }
+.ctl button:active { transform: scale(.97); } .ctl button:focus-visible { outline: 2px solid #6F8EFF; }
+.cheat { background: var(--panel); border-radius: 14px; padding: 12px 14px; font-size: 13.5px; line-height: 1.5; color: var(--ink2); }
+.cheat ol { margin: 6px 0 0; padding-left: 20px; } .cheat code { font-family: inherit; color: var(--ink); font-weight: 600; }
+.stagewrap { flex: none; width: var(--pw, 411px); height: calc(914px * var(--k, 1)); }
+
+/* ── телефон: 411 × 914 dp, цвета Сумерек (светлая) со снимков ── */
+.ph { --bg: #EAEBFE; --bgHi: #FCFCFF; --text: #17181E; --sec: #595A63; --muted: #8A8B95; --card: #FCFCFF; --sit: #EEEDF8; --tile: #D7D8EA; --track: #E6E7F2;
+  --acc: #5F5CB1; --btn: #17181E; --ctl: #DBDDEC; --okPlate: #D5D6EA; --noPlate: #E5DCE2; --good: #006F30; --bad: #A73533; --foot: #E2E3F7;
+  --shadow: 0 5px 10px -5px rgba(51, 51, 87, .34);
+  position: relative; width: 411px; height: 914px; border-radius: 44px; overflow: hidden; transform: scale(var(--k, 1)); transform-origin: 0 0;
+  background: radial-gradient(70% 45% at 50% 45%, var(--bgHi) 0%, var(--bg) 70%); color: var(--text); font-family: 'Inter', system-ui, sans-serif;
+  box-shadow: 0 24px 50px -26px rgba(0, 0, 0, .55), 0 0 0 7px #08090B; }
+.sb { height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 26px; font-size: 14px; font-weight: 600; }
+.top { position: absolute; left: 0; right: 0; top: 52px; height: 44px; }
+.x { all: unset; cursor: pointer; position: absolute; left: 20px; top: 0; width: 42px; height: 42px; border-radius: 21px; background: var(--card); box-shadow: var(--shadow); display: grid; place-items: center; }
+.x svg { width: 18px; height: 18px; }
+.track { position: absolute; left: 77px; right: 19px; top: 13px; height: 4px; border-radius: 2px; background: var(--track); overflow: hidden; }
+.track i { display: block; height: 4px; background: var(--acc); border-radius: 2px; transition: width 300ms cubic-bezier(.23, 1, .32, 1); }
+.cnt { position: absolute; left: 77px; top: 21px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.scroll { position: absolute; left: 0; right: 0; top: 110px; bottom: 102px; overflow-y: auto; padding: 18px 41px 24px; scrollbar-width: none; }
+.scroll::-webkit-scrollbar { display: none; }
+.hd { display: flex; align-items: center; gap: 13px; }
+.tile { width: 40px; height: 40px; border-radius: 11px; background: var(--tile); display: grid; place-items: center; flex: none; }
+.tile svg { width: 21px; height: 21px; }
+.hd b { font-size: 22px; line-height: 27px; font-weight: 700; letter-spacing: -.2px; }
+.sitc { margin-top: 16px; border-radius: 15px; background: var(--sit); padding: 13px 15px; }
+.sitc .lb { display: flex; align-items: center; gap: 5px; font-size: 13px; line-height: 17px; font-weight: 700; }
+.sitc .lb svg { width: 14px; height: 14px; }
+.sitc .tx { margin-top: 4px; font-size: 16px; line-height: 24px; color: var(--sec); }
+.who { margin-top: 18px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.bub { margin-top: 6px; display: inline-block; max-width: 290px; padding: 12px 16px; border-radius: 18px 18px 18px 6px; background: var(--card); box-shadow: var(--shadow); font-size: 19px; line-height: 25px; font-weight: 700; }
+.ask { margin-top: 14px; font-size: 16px; line-height: 23px; color: var(--sec); }
+.ask b { color: var(--text); }
+.wrongc { margin-top: 16px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); padding: 16px; font-size: 21px; line-height: 28px; font-weight: 700; }
+.wrongc u { text-decoration: none; background: var(--noPlate); color: var(--bad); border-radius: 6px; padding: 0 4px; }
+.field { margin-top: 14px; position: relative; }
+textarea { all: unset; box-sizing: border-box; display: block; width: 100%; min-height: 104px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); padding: 14px 16px; font-size: 20px; line-height: 27px; font-weight: 700;
+  color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere; caret-color: var(--acc); }
+textarea::placeholder { color: var(--muted); font-weight: 500; }
+textarea:focus-visible { box-shadow: 0 0 0 2px rgba(95, 92, 177, .35), var(--shadow); }
+textarea.ok { color: var(--good); } textarea.no { color: var(--bad); }
+textarea[disabled] { opacity: 1; -webkit-text-fill-color: currentColor; }
+.ans { margin-top: 16px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); padding: 20px 16px 14px; text-align: center; }
+.dash { font-size: 22px; letter-spacing: 3px; color: var(--muted); }
+.hint { margin-top: 12px; font-size: 12.5px; line-height: 17px; font-weight: 700; color: var(--acc); }
+.micwrap { margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.mic { all: unset; cursor: pointer; width: 76px; height: 76px; border-radius: 38px; background: #1D1D2F; display: grid; place-items: center; color: #6E6F80; box-shadow: 0 10px 20px -10px rgba(29, 29, 47, .6); }
+.mic svg { width: 28px; height: 28px; }
+.mlab { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.alt { all: unset; cursor: pointer; font-size: 14px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
+.alt:focus-visible, .x:focus-visible, .cta:focus-visible, .second:focus-visible, .mic:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+.note { margin-top: 8px; font-size: 13px; line-height: 18px; color: var(--sec); text-align: center; min-height: 18px; }
+.plate { margin-top: 14px; border-radius: 16px; padding: 13px 15px; font-size: 16px; line-height: 23px; }
+.plate.ok { background: var(--okPlate); } .plate.no { background: var(--noPlate); }
+.plate b { font-weight: 700; }
+.foot { position: absolute; left: 0; right: 0; bottom: 0; height: 102px; background: var(--foot); padding: 12px 20px 0; }
+.cta { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 52px; border-radius: 26px; background: var(--btn); color: #fff; font-size: 16px; font-weight: 700;
+  transition: transform 120ms cubic-bezier(.23, 1, .32, 1), opacity 160ms ease; }
+.cta:active { transform: scale(.97); }
+.cta[aria-disabled="true"] { opacity: .35; cursor: default; }
+.cta svg { width: 18px; height: 18px; }
+.home { position: absolute; left: 50%; bottom: 8px; width: 120px; height: 4px; margin-left: -60px; border-radius: 2px; background: var(--text); opacity: .8; }
+.enter { animation: enter 220ms cubic-bezier(.23, 1, .32, 1) both; }
+@keyframes enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .enter { animation: none; } .track i, .cta { transition: none; } }
+
+/* ── итог: LearningV2ChapterExamResultView ── */
+.res { position: absolute; left: 0; right: 0; top: 110px; bottom: 156px; overflow-y: auto; padding: 26px 20px 24px; display: flex; flex-direction: column; align-items: center; scrollbar-width: none; }
+.trophy { width: 88px; height: 88px; border-radius: 26px; background: rgba(95, 92, 177, .22); display: grid; place-items: center; color: #514EA1; }
+.trophy svg { width: 42px; height: 42px; }
+.big { font-size: 46px; line-height: 52px; font-weight: 800; letter-spacing: -1px; text-align: center; }
+.rtitle { margin-top: 4px; font-size: 22px; line-height: 28px; font-weight: 700; text-align: center; }
+.dots { display: flex; gap: 6px; margin-top: 16px; justify-content: center; }
+.dots i { width: 14px; height: 14px; border-radius: 7px; background: var(--ctl); }
+.dots i.on { background: var(--acc); }
+.rew { height: 40px; padding: 0 16px; border-radius: 20px; display: flex; align-items: center; gap: 6px; margin-top: 16px; background: var(--ctl); font-size: 16px; font-weight: 800; }
+.rew img { width: 22px; height: 22px; border-radius: 11px; }
+.unl { align-self: stretch; margin-top: 22px; border-radius: 22px; padding: 14px; display: flex; align-items: center; gap: 14px; background: var(--card); box-shadow: 0 14px 26px -14px rgba(51, 51, 87, .34), 0 1px 3px rgba(51, 51, 87, .06); }
+.mini { width: 56px; height: 56px; border-radius: 16px; flex: none; display: grid; place-items: center; color: #fff; background: linear-gradient(160deg, #8F8BE6, #3E3A93); box-shadow: 0 10px 20px -10px rgba(0, 0, 0, .5); }
+.mini svg { width: 26px; height: 26px; }
+.unl .t { font-size: 16px; line-height: 21px; font-weight: 700; } .unl .s { margin-top: 2px; font-size: 13px; line-height: 17px; color: var(--sec); }
+.where { align-self: stretch; margin-top: 22px; }
+.where h3 { margin: 0 0 8px; font-size: 13px; line-height: 17px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--sec); }
+.topics { border-radius: 20px; background: var(--card); box-shadow: 0 14px 26px -14px rgba(51, 51, 87, .34); padding: 2px 16px; }
+.tp { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; font-size: 16px; line-height: 21px; }
+.tp + .tp { box-shadow: 0 -1px 0 rgba(80, 82, 113, .14); }
+.tp .r { flex: none; display: flex; align-items: center; gap: 4px; font-size: 14px; font-weight: 700; }
+.tp .r svg { width: 18px; height: 18px; }
+.tp .r.ok { color: var(--good); } .tp .r.no { color: var(--bad); }
+.rfoot { position: absolute; left: 0; right: 0; bottom: 0; height: 156px; background: var(--foot); padding: 12px 20px 0; }
+.second { all: unset; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 100%; height: 50px; margin-top: 10px; border-radius: 25px; background: var(--ctl); color: var(--text); font-size: 16px; font-weight: 700; }
+.second[aria-disabled="true"] { color: var(--sec); cursor: default; }
+.second:active { transform: scale(.97); }
+.link { all: unset; cursor: pointer; margin-top: 14px; font-size: 15px; line-height: 20px; font-weight: 700; color: var(--acc); padding: 6px 10px; border-radius: 8px; }
+.link:focus-visible { outline: 2px solid var(--acc); }
+.mist { align-self: stretch; margin-top: 12px; border-radius: 20px; background: var(--card); box-shadow: 0 14px 26px -14px rgba(51, 51, 87, .34); padding: 14px 16px; }
+.mist .q { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); }
+.mist .p { margin-top: 4px; font-size: 15px; line-height: 21px; color: var(--sec); }
+.mist .y { margin-top: 10px; font-size: 15px; line-height: 21px; } .mist .y b { color: var(--bad); }
+.mist .c { margin-top: 4px; font-size: 17px; line-height: 23px; font-weight: 700; color: var(--good); }
+</style>
+</head>
+<body>
+
+<div class="w">
+  <div class="stagewrap" id="wrap"><div class="ph" id="ph"></div></div>
+  <div class="side">
+    <h1>Экзамен главы 2 — пройди сам</h1>
+    <p>Это проходимый макет экрана экзамена: печатай ответы, нажимай «Проверить» и «Дальше». Вид — по настоящим снимкам приложения (Сумерки, светлая).</p>
+    <ul>
+      <li><b>10 заданий трёх видов:</b> ситуация — сам говоришь или пишешь; ответ собеседнику; найди и исправь ошибку.</li>
+      <li><b>Одна попытка, без подсказок.</b> Регистр, точка в конце и сокращения не важны: I'm = I am, isn't = is not.</li>
+      <li><b>Сдал</b> — откроется глава 3. <b>Не сдал</b> — «Где споткнулся» по темам; «Повторить эти темы», и можно пересдать сразу. Без повторения — через час.</li>
+      <li>Голосом в макете ответить нельзя — в задании с микрофоном нажми «или напиши».</li>
+    </ul>
+    <div class="ctl"><button id="restart">Начать заново</button><button id="cheatBtn" aria-expanded="false">Показать ответы</button></div>
+    <div class="cheat" id="cheat" hidden></div>
+  </div>
+</div>
+
+<script>
+const COIN = 'data:image/webp;base64,UklGRnwFAABXRUJQVlA4WAoAAAAQAAAAKwAAKwAAQUxQSDwBAAABkHPbtrHn2k9s27bZubJtVUZlW53tpExpJ59t2zafvLd68dx7ImICgLdJcvvSzvnzuyvtyebA1qT2qoBIKLhWZ0LPdv4f4f1v3oaOUtdfQvVPhxIF15uE+k1XXvHfCcPvkTzyOMKUy5QolSOM/8dJ4PebMP/pJUbjEUF4V0XUOEE5IML3BMd/F6ENgnQVADwFWE4cAYYJ2n6QfYfnmbQ/QexRhaloFtPYIaad+5huvcb07BWmp3cxXd/HtDmJabAUU6E7Jnupx3juAHTiaQKw5rD8NQGAJSxTAAC2f3D8NBeCNhy1IFLhCoazcqLA4TO7D1YgPvQPq18BIGnMHza/wkDy0M8sPgQCX9uL9M5YAn/5up90vlfLAVWz0V/8fg4aA3W9yjOcJNyZCh1gqxvTNLd+dLQ21xitA7wBVlA4IBoEAADwFACdASosACwAPjEWiUOiISERxgAgAwSzAFYcoKrfMP7d+EHMd8LdkOQpNzCU8QDpweYDoLegB+2PWPegB5avsV/tx6VVAucmazFnSWwLG//tPxm953+s/r/nf/K/7p/2/738AX8o/n3+p/rPs7eu70U/09KFkX+QvZMqmvXZZU2dRcIuJnZmI4dQEe7HMiwa0kiBv7OGRWknQw/pLv/HKP0GBWszZPhQQISIqvAKAAD+693dWBr9O61zvFFpdknrTbP4k5n/o/VTjsTXqH57pArKMq/m3NUo8HJwtIngPdZTiro9oTPx/Ew3qBPTgo5dp9eA+5yeXYJsZDQ1tniZ6uYhDBnDw8HacRuzKXxO4ocRWrYSHZwfTiNdDobbzAlwmuFaY1UZziT+MuyisAyB65kvm4Pk8L1kc1kf4ZvwVtd5Xn/VtkMDBl/u5taIj/+oSuoNH1RPh+FQhFnkt1OZS6z1Rm7Kcux5w3EMcVNAeDYozGCdqX22ZNpTGV/J3W9XsJOWjQC6SkZTSgNUVF//5F4h9MJBqaWYC4T7O6kH0WVHXXR67VhGLeotkf9kUiQhQJTCUH64Hn1BTFMrdh9197vVVHzDXxl3P9RCERdDqpvURoDcq0f4YYWlcsku0UZ38XuNMMp+XZkWHE7K0hf7amzVp4uS6hz6cejUwMZ685W/g/jzXGPppjT0L2/uiyX4yUf+RQ1DjSpQ8iO/uR8MCvzV4+mpS/lvoOEMk7Rsj/4v7xbLoNuRfhIGbFV9aAzAmp6LQPcK3cAMAY0aAkhuNhsC7ko40kDAbBelRb1L3Lr34fMN/NdQUsISgCmbWO4tsz52X5IvSvMxNjmpjvZrtfWU3AoUb3WzevRd7o9qr15o1n+Fe8LJ5AunxqgpcFxb5ukNeT0WeyIdqhlgQh4aLP9Rs0lwuiXy9fSg7bY/ZhRr566htEqCKbAZKvge41lXqkrl6zuPfBsb5wF6VcYJLwPCtZpO62/sQI/wTUouHoIEzEPUgxvxgzdmoBFdL9PcB/dSbX3wlyB54Ht2MoDhD08HvxMlDt0VERYH2dlLI47DdmQOE0yo7ZrcCq/N81iOACPNq8WmKQmMFtlEDs0R4O65TmI0dqqX5NVxZ66UA4nMz//8Cjv2HVNZYO1Up9h4G9M4ISB/Do79it1Sm2OB6o55nKDuBzhsKv3R7edhyIzltUf9AqimGvLJkIREHpfWnmah//MEDAKRJ9vXuuVvZs5mOpzCkWw6QDvrmSLs67+uslm5M8v29FMrIXk1ZLoeUlNHsiGtRPONnTE0MEIXYu8VXyxepaDaGa/o3yjPVR28HnIPZepLhcuuSW9BSeEmAaGXqJQlk9iS24PsdFHzAptSUOYtMD748xCJJ6Pv0lUf4pD735pIAAA=';
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const IC = {
+  x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  mic: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+  chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 12a8 7 0 1 1 3.5 5.8L4 19l1-3.2A6.7 6.7 0 0 1 4 12z"/></svg>',
+  sit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 12a8 7 0 1 1 3.5 5.8L4 19l1-3.2A6.7 6.7 0 0 1 4 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="3" stroke-linecap="round"/></svg>',
+  people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="3.2"/><circle cx="16.5" cy="10" r="2.6"/><path d="M3.5 19c.6-3 3-4.6 5.5-4.6s4.9 1.6 5.5 4.6M14.5 15.2c2.6-.4 5 1 5.8 3.8"/></svg>',
+  pen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  trophy: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v2a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 13.9V17h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 11H8a4 4 0 0 1-4-4V5h3zm0 4H6a2 2 0 0 0 1 1.7zm10 0v1.7A2 2 0 0 0 18 7z"/></svg>',
+  people2: '<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="9" cy="8.5" r="3.5"/><circle cx="17" cy="9.5" r="2.8"/><path d="M2.5 19.5c.7-3.6 3.4-5.5 6.5-5.5s5.8 1.9 6.5 5.5zM15.8 14.3c2.9-.2 5.1 1.4 5.7 4.2h-4.4c-.2-1.6-.7-3-1.3-4.2z"/></svg>',
+  refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 5v6h-6"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.4-7.2c.6-.4.6-1.4 0-1.8L8.6 3.9C7.9 3.5 7 4 7 4.8z"/></svg>',
+};
+// ── темы главы 2 «Кофе с коллегой» (урок 1: «быть» и отрицание) ──
+const TOPICS = { t1: 'я / ты — am, are', t2: 'он / она / оно — is', t3: 'мы / они — are', t4: 'не — isn’t, aren’t, I’m not', t5: 'вопрос и короткий ответ' };
+// ── 10 заданий: ситуация, реплика и ответ сходятся по смыслу; фразы новые, бытовые ──
+const EXAM = [
+  { kind: 'say', topic: 't4', sit: 'Коллега спрашивает, готов ли отчёт. Скажи, что он ещё не готов.', ok: ["It isn't ready yet.", "It's not ready yet.", 'The report isn’t ready yet.', 'The report is not ready yet.'] },
+  { kind: 'dialog', topic: 't5', who: 'Марк, коллега', line: 'Are you new here?', ask: 'Ответь, что да — ты здесь <b>новенький</b>.', ok: ['Yes, I am.', "Yes, I'm new here.", "Yes, I'm new."] },
+  { kind: 'fix', topic: 't2', wrong: 'She <u>are</u> in a meeting.', raw: 'She are in a meeting.', ok: ['She is in a meeting.'] },
+  { kind: 'say', topic: 't2', sit: 'Ты взял кофе в автомате, а он холодный. Скажи об этом коллеге.', ok: ['The coffee is cold.', 'My coffee is cold.', "It's cold.", 'This coffee is cold.'] },
+  { kind: 'dialog', topic: 't5', who: 'Анна, коллега', line: 'Is Tom at work today?', ask: 'Ответь: нет, Том <b>дома</b>.', ok: ["No, he isn't. He's at home.", "No, he's at home.", 'No, he is at home.', "No, he isn't, he's at home."] },
+  { kind: 'fix', topic: 't3', wrong: 'We <u>is</u> late for the bus.', raw: 'We is late for the bus.', ok: ['We are late for the bus.'] },
+  { kind: 'say', topic: 't4', sit: 'Сосед зовёт тебя обедать, а ты только что поел. Скажи, что не голоден.', ok: ["I'm not hungry.", "Thanks, I'm not hungry.", "Thank you, I'm not hungry.", "Sorry, I'm not hungry."] },
+  { kind: 'dialog', topic: 't3', who: 'Лиза, жена', line: 'Where are my keys?', ask: 'Ответь: они <b>на столе</b>.', ok: ["They're on the table.", 'On the table.'] },
+  { kind: 'fix', topic: 't1', wrong: 'I <u>is</u> ready for the call.', raw: 'I is ready for the call.', ok: ['I am ready for the call.'] },
+  { kind: 'say', topic: 't3', sit: 'Новый знакомый спрашивает, откуда вы с другом. Скажи, что вы из Казани.', ok: ["We're from Kazan.", 'We are both from Kazan.'] },
+];
+// ── повторение слабых тем: короткие задания «из эпизодов» по каждой теме, без оценки ──
+const REVIEW = {
+  t1: [{ kind: 'say', topic: 't1', sit: 'Коллега спрашивает, свободен ли ты. Скажи, что ты сейчас занят.', ok: ["I'm busy.", "I'm busy now.", "Sorry, I'm busy."] }, { kind: 'fix', topic: 't1', wrong: 'You <u>is</u> early today.', raw: 'You is early today.', ok: ['You are early today.'] }],
+  t2: [{ kind: 'say', topic: 't2', sit: 'Ты показываешь новый офис. Скажи, что он большой.', ok: ['It is big.', 'The office is big.', "It's big."] }, { kind: 'fix', topic: 't2', wrong: 'He <u>am</u> my manager.', raw: 'He am my manager.', ok: ['He is my manager.'] }],
+  t3: [{ kind: 'say', topic: 't3', sit: 'Тебя спрашивают про коллег. Скажи, что они на обеде.', ok: ["They're at lunch.", 'They are at lunch.'] }, { kind: 'fix', topic: 't3', wrong: 'They <u>is</u> in the kitchen.', raw: 'They is in the kitchen.', ok: ['They are in the kitchen.'] }],
+  t4: [{ kind: 'say', topic: 't4', sit: 'Тебя спрашивают, устал ли ты. Скажи, что нет.', ok: ["I'm not tired.", "No, I'm not tired.", "No, I'm not."] }, { kind: 'fix', topic: 't4', wrong: 'It <u>not is</u> my bag.', raw: 'It not is my bag.', ok: ["It isn't my bag.", "It's not my bag."] }],
+  t5: [{ kind: 'dialog', topic: 't5', who: 'Марк, коллега', line: 'Are you busy?', ask: 'Ответь коротко: нет.', ok: ["No, I'm not.", 'No.'] }, { kind: 'dialog', topic: 't5', who: 'Анна, коллега', line: 'Is the room free?', ask: 'Ответь коротко: да.', ok: ['Yes, it is.', 'Yes.'] }],
+};
+const PASS_FROM = 8;
+
+// ── проверка ответа: регистр, пунктуация, кавычки, сокращения (I'm = I am, isn't = is not …) ──
+const CONTR = [[/\bi'm\b/g, 'i am'], [/\byou're\b/g, 'you are'], [/\bwe're\b/g, 'we are'], [/\bthey're\b/g, 'they are'], [/\bhe's\b/g, 'he is'], [/\bshe's\b/g, 'she is'],
+  [/\bit's\b/g, 'it is'], [/\bisn't\b/g, 'is not'], [/\baren't\b/g, 'are not'], [/\bthat's\b/g, 'that is'], [/\bthere's\b/g, 'there is']];
+function norm(s) {
+  let t = String(s).toLowerCase().replace(/[‘’ʼ`]/g, "'").replace(/[.,!?;:"«»()]/g, ' ');
+  for (const [re, to] of CONTR) t = t.replace(re, to);
+  return t.replace(/\s+/g, ' ').trim();
+}
+const right = (q, v) => q.ok.some((a) => norm(a) === norm(v));
+function log(event, data) { console.log('[EXAM-PROTO]', event, JSON.stringify(data)); } // guard-ok: журнал прохождения макета
+
+// ── состояние ──
+const S = { mode: 'exam', list: EXAM, i: 0, answers: [], checked: false, typing: false, reviewed: false, weak: [] };
+const ph = document.getElementById('ph');
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const sb = '<div class="sb"><span>9:41</span><span style="display:flex;gap:6px;align-items:center"><svg width="16" height="11" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="23" height="12" viewBox="0 0 26 13" fill="none"><rect x=".75" y=".75" width="22" height="11.5" rx="3.5" stroke="currentColor" stroke-opacity=".45" stroke-width="1.5"/><rect x="2.5" y="2.5" width="16" height="8" rx="2" fill="currentColor"/></svg></span></div>';
+const label = () => (S.mode === 'exam' ? `Экзамен · ${S.i + 1} / ${S.list.length}` : `Повторение · ${S.i + 1} / ${S.list.length}`);
+const head = (bar = true) => `${sb}<div class="top"><button class="x" id="close" aria-label="Закрыть">${IC.x}</button>${bar ? `<div class="track"><i style="width:${((S.i + (S.checked ? 1 : 0)) / S.list.length) * 100}%"></i></div><div class="cnt">${label()}</div>` : ''}</div>`;
+const titleOf = (q) => (q.kind === 'say' ? ['chat', 'Скажи по-английски'] : q.kind === 'dialog' ? ['people', 'Ответь собеседнику'] : ['pen', 'Найди и исправь ошибку']);
+
+function renderQ() {
+  const q = S.list[S.i]; const [ic, t] = titleOf(q);
+  const showMic = q.kind === 'say' && !S.typing && !S.checked;
+  let body = `<div class="hd enter"><span class="tile">${IC[ic]}</span><b>${t}</b></div>`;
+  if (q.kind === 'say') body += `<div class="sitc enter"><div class="lb">${IC.sit}Ситуация</div><div class="tx">${esc(q.sit)}</div></div>`;
+  if (q.kind === 'dialog') body += `<div class="who enter">${esc(q.who)}</div><div class="bub enter">${esc(q.line)}</div><div class="ask enter">${q.ask}</div>`;
+  if (q.kind === 'fix') body += `<div class="wrongc enter">${q.wrong}</div><div class="ask enter">Перепиши фразу верно:</div>`;
+  if (showMic) {
+    body += `<div class="ans enter"><div class="dash">— — — — — —</div><div class="hint">Зажми кнопку и говори, отпусти — проверю</div></div>
+      <div class="micwrap enter"><button class="mic" id="mic" aria-label="Удерживай и говори">${IC.mic}</button><span class="mlab">Удерживай и говори</span><button class="alt" id="alt">или напиши</button></div><div class="note" id="note"></div>`;
+  } else {
+    const cls = S.checked ? (S.answers[S.answers.length - 1].correct ? 'ok' : 'no') : '';
+    const val = S.checked ? S.answers[S.answers.length - 1].text : (q.kind === 'fix' ? q.raw : '');
+    body += `<div class="field enter"><textarea id="inp" rows="3" aria-label="Ответ" placeholder="Напиши по-английски" spellcheck="false" autocapitalize="sentences" class="${cls}" ${S.checked ? 'disabled' : ''}>${esc(val)}</textarea></div>`;
+  }
+  if (S.checked) {
+    const a = S.answers[S.answers.length - 1];
+    body += a.correct ? '<div class="plate ok enter"><b>Верно.</b></div>' : `<div class="plate no enter"><b>Неверно.</b> Правильно: <b>${esc(q.ok[0])}</b></div>`;
+  }
+  const disabled = !S.checked && (showMic || !S.draft);
+  ph.innerHTML = `${head()}<div class="scroll" id="scroll">${body}</div><div class="foot"><button class="cta" id="cta" aria-disabled="${disabled}">${S.checked ? 'Дальше' : 'Проверить'}</button></div><div class="home"></div>`;
+  wire();
+}
+function wire() {
+  ph.querySelector('#close').onclick = () => { log('close', { mode: S.mode, i: S.i }); start(); };
+  const inp = ph.querySelector('#inp'); const cta = ph.querySelector('#cta');
+  if (inp && !inp.disabled) {
+    S.draft = inp.value.trim();
+    inp.oninput = () => { S.draft = inp.value.trim(); cta.setAttribute('aria-disabled', String(!S.draft)); };
+    inp.onkeydown = (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); cta.click(); } };
+    if (matchMedia('(hover: hover)').matches) setTimeout(() => inp.focus({ preventScroll: true }), 60);
+  }
+  const alt = ph.querySelector('#alt'); if (alt) alt.onclick = () => { S.typing = true; S.draft = ''; renderQ(); };
+  const mic = ph.querySelector('#mic'); if (mic) mic.onclick = () => { ph.querySelector('#note').textContent = 'В макете голос не работает — нажми «или напиши».'; };
+  cta.onclick = () => {
+    if (cta.getAttribute('aria-disabled') === 'true') return;
+    if (!S.checked) {
+      const q = S.list[S.i]; const text = S.draft; const ok = right(q, text);
+      S.answers.push({ i: S.i, topic: q.topic, text, correct: ok }); S.checked = true;
+      log('check', { mode: S.mode, i: S.i + 1, topic: q.topic, text, normalized: norm(text), correct: ok });
+      renderQ(); return;
+    }
+    S.i += 1; S.checked = false; S.typing = false; S.draft = '';
+    if (S.i >= S.list.length) { if (S.mode === 'exam') result(); else reviewed(); } else renderQ();
+  };
+}
+
+// ── итог экзамена (LearningV2ChapterExamResultView): сдал — счёт, точки, монеты, глава 3; не сдал — «Где споткнулся» по темам ──
+function result() {
+  const correct = S.answers.filter((a) => a.correct).length; const passed = correct >= PASS_FROM; const wrong = S.answers.filter((a) => !a.correct);
+  const byTopic = {}; for (const k of Object.keys(TOPICS)) byTopic[k] = 0; for (const a of wrong) byTopic[a.topic] += 1;
+  S.weak = Object.keys(byTopic).filter((k) => byTopic[k] > 0);
+  log('result', { correct, passed, weak: S.weak });
+  const dots = `<div class="dots" aria-hidden="true">${S.list.map((_, i) => `<i class="${i < correct ? 'on' : ''}"></i>`).join('')}</div>`;
+  const errWord = (n) => (n === 1 ? '1 ошибка' : `${n} ${n <= 4 ? 'ошибки' : 'ошибок'}`);
+  const topics = `<div class="where enter"><h3>Где споткнулся</h3><div class="topics">${Object.entries(TOPICS).map(([k, t]) => `<div class="tp">${t}<span class="r ${byTopic[k] ? 'no' : 'ok'}">${byTopic[k] ? errWord(byTopic[k]) : IC.check}</span></div>`).join('')}</div></div>`;
+  let body; let foot;
+  if (passed) {
+    body = `<div class="trophy enter">${IC.trophy}</div><div class="big enter" style="margin-top:16px">${correct} из ${S.list.length}</div><div class="rtitle enter">Экзамен сдан</div>${dots}
+      <div class="rew enter">${COIN ? `<img src="${COIN}" alt="">` : ''}+40</div>
+      <div class="unl enter"><span class="mini">${IC.people2}</span><div><div class="t">Глава 3 открыта</div><div class="s">Знакомство с командой. Начнём с эпизода 17</div></div></div>`;
+    foot = `<button class="cta" id="toCh">${IC.play}К главе 3</button>${wrong.length ? `<button class="second" id="mist">Разбор ${wrong.length === 1 ? 'ошибки' : 'ошибок'} · ${wrong.length}</button>` : ''}`;
+  } else {
+    body = `<div class="big enter" style="margin-top:20px">${correct} из ${S.list.length}</div><div class="rtitle enter">${correct <= 5 ? 'Пока не вышло' : 'Почти получилось'}</div>${dots}${topics}<button class="link enter" id="mist">Разбор ошибок · ${wrong.length}</button>`;
+    foot = `<button class="cta" id="review">${IC.refresh}Повторить эти темы</button><button class="second" aria-disabled="true">Пересдать через 59 мин</button>`;
+  }
+  ph.innerHTML = `${head(false)}<div class="res">${body}</div><div class="rfoot">${foot}</div><div class="home"></div>`;
+  ph.querySelector('#close').onclick = () => start();
+  const r = ph.querySelector('#review'); if (r) r.onclick = () => startReview();
+  const toCh = ph.querySelector('#toCh'); if (toCh) toCh.onclick = () => { toCh.innerHTML = `${IC.check}Глава 3 открыта`; log('to_chapter', { chapter: 3 }); };
+  const mi = ph.querySelector('#mist'); if (mi) mi.onclick = () => mistakes();
+}
+function mistakes() {
+  const wrong = S.answers.filter((a) => !a.correct);
+  log('mistakes_open', { count: wrong.length });
+  const promptOf = (q) => (q.kind === 'say' ? esc(q.sit) : q.kind === 'dialog' ? `${esc(q.who)}: «${esc(q.line)}» — ${q.ask}` : `Исправь: ${esc(q.raw)}`);
+  ph.innerHTML = `${head(false)}<div class="res" style="align-items:stretch"><div class="rtitle enter" style="text-align:left">Разбор ошибок</div>${wrong.map((a) => { const q = S.list[a.i]; return `<div class="mist enter"><div class="q">Вопрос ${a.i + 1}</div><div class="p">${promptOf(q)}</div><div class="y">Твой ответ: <b>${esc(a.text)}</b></div><div class="c">${esc(q.ok[0])}</div></div>`; }).join('')}</div>
+    <div class="rfoot" style="height:102px"><button class="cta" id="back">К итогу</button></div><div class="home"></div>`;
+  ph.querySelector('.res').style.bottom = '102px';
+  ph.querySelector('#close').onclick = () => start();
+  ph.querySelector('#back').onclick = () => result();
+}
+function startReview() {
+  const list = S.weak.flatMap((k) => REVIEW[k]);
+  log('review_start', { weak: S.weak, items: list.length });
+  Object.assign(S, { mode: 'review', list, i: 0, checked: false, typing: false, draft: '', reviewAnswers: S.answers, answers: [] });
+  renderQ();
+}
+function reviewed() {
+  log('review_done', { weak: S.weak });
+  ph.innerHTML = `${head(false)}<div class="res"><div class="trophy enter">${IC.refresh}</div><div class="rtitle enter" style="margin-top:16px">Темы повторены</div>
+    <div class="topics enter" style="align-self:stretch;margin-top:22px">${S.weak.map((k) => `<div class="tp">${TOPICS[k]}<span class="r ok">${IC.check}</span></div>`).join('')}</div></div>
+    <div class="rfoot"><button class="cta" id="retake">${IC.play}Пересдать экзамен</button><button class="second" id="toCh2">К главе 2</button></div><div class="home"></div>`;
+  ph.querySelector('#close').onclick = () => start();
+  ph.querySelector('#retake').onclick = () => start();
+  ph.querySelector('#toCh2').onclick = () => start();
+}
+function start() { Object.assign(S, { mode: 'exam', list: EXAM, i: 0, answers: [], checked: false, typing: false, draft: '', weak: [] }); log('start', { tasks: EXAM.length }); renderQ(); }
+
+// ── масштаб телефона под ширину экрана (на телефоне владельца) ──
+function fit() { const w = document.getElementById('wrap'); const k = Math.min(1, (document.documentElement.clientWidth - 32) / 411); w.style.setProperty('--k', k); w.style.setProperty('--pw', `${411 * k}px`); ph.style.setProperty('--k', k); }
+addEventListener('resize', fit); fit();
+document.getElementById('restart').onclick = () => start();
+const cheat = document.getElementById('cheat');
+cheat.innerHTML = `<b>Принимаемые ответы</b> (первый — эталон):<ol>${EXAM.map((q) => `<li>${q.ok.map((a) => `<code>${esc(a)}</code>`).join(' · ')}</li>`).join('')}</ol>`;
+document.getElementById('cheatBtn').onclick = (e) => { cheat.hidden = !cheat.hidden; e.currentTarget.setAttribute('aria-expanded', String(!cheat.hidden)); e.currentTarget.textContent = cheat.hidden ? 'Показать ответы' : 'Скрыть ответы'; };
+start();
+</script>
+</body>
+</html>

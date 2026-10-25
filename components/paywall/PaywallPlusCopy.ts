@@ -190,6 +190,7 @@ export const COPY = {
   collapse: LP('Свернуть', 'Згорнути', 'Show less', 'Mostrar menos', 'Mostrar menos', 'Thu gọn', 'Ciutkan', 'Daha az', 'Zwiń'),
   restore: LP('Восстановить', 'Відновити', 'Restore', 'Restaurar', 'Restaurar', 'Khôi phục', 'Pulihkan', 'Geri yükle', 'Przywróć'),
   restoring: LP('Восстанавливаем…', 'Відновлюємо…', 'Restoring…', 'Restaurando…', 'Restaurando…', 'Đang khôi phục…', 'Memulihkan…', 'Geri yükleniyor…', 'Przywracamy…'),
+  enterPromo: LP('Ввести промокод', 'Ввести промокод', 'Enter promo code', 'Introducir código', 'Inserir código', 'Nhập mã khuyến mãi', 'Masukkan kode promo', 'Promosyon kodu gir', 'Wpisz kod promocyjny'),
   terms: LP('Условия', 'Умови', 'Terms', 'Términos', 'Termos', 'Điều khoản', 'Ketentuan', 'Koşullar', 'Warunki'),
   privacy: LP('Конфиденциальность', 'Конфіденційність', 'Privacy', 'Privacidad', 'Privacidade', 'Quyền riêng tư', 'Privasi', 'Gizlilik', 'Prywatność'),
   // Экран после покупки (макет AB).

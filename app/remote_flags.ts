@@ -45,6 +45,9 @@ export type RemoteBoolKey =
   // зачем («Перевести» по тапу в свободном разговоре, 25.10; Ревизор по e00c839e0): вызов перевода есть только на новом сервере —
   // кнопку показываем лишь по переключателю «Пульта». По умолчанию ВЫКЛ; включают ПОСЛЕ выкладки dialogueV2FreeformTranslate.
   | 'dialogue_freeform_translate_enabled'
+  // зачем (владелец 25.10, макет account-delete-variant-b «Да, так»): новые окна удаления («через 14 дней» + «Удалить навсегда сейчас»)
+  // — переключатель «Пульта», ВЫКЛ до выкладки сервера 713677ddd (без него «вернуть за 14 дней» для Google/Apple не работает).
+  | 'account_delete_variant_b_ui_enabled'
   | 'spire_streak_heart'
   // зачем (владелец 25.10, координатор 25.10): «золотое задание» Пика ×2 монеты ступени — переключатель «Пульта», по умолчанию ВЫКЛ
   | 'spire_gold'
@@ -90,6 +93,12 @@ export type RemoteBoolKey =
   // Дефолт FALSE = sell-switch: промокоды видны и активируются только когда
   // админ включил их в «Пульте».
   | 'promo_codes_enabled'
+  // Видимость вторичных действий единственного Plus-пейвола. Дефолты true
+  // сохраняют текущий крестик/restore и делают промокод доступным, только когда
+  // отдельный серверный sell-switch promo_codes_enabled разрешает активацию.
+  | 'paywall_close_visible'
+  | 'paywall_restore_visible'
+  | 'paywall_promo_code_visible'
   // Кнопка «Видео PHRASEMAN» на главной (иконка-плей в шапке) + сам экран видео.
   // Дефолт TRUE = kill-switch: кнопка показывается как сейчас. Админ ставит false
   // в «Пульте» → кнопка прячется у всех живьём (onSnapshot), без релиза. Экран
@@ -258,6 +267,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   learning_cant_speak_enabled: false,
   learning_chapter_exam_v2_enabled: true,
   dialogue_freeform_translate_enabled: false,
+  account_delete_variant_b_ui_enabled: false,
   spire_streak_heart: false,
   spire_gold: false,
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
@@ -342,6 +352,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   promo_banner_enabled: false,
   // Промокоды: дефолт FALSE = скрыто в настройках и заблокировано на callable.
   promo_codes_enabled: false,
+  paywall_close_visible: true,
+  paywall_restore_visible: true,
+  paywall_promo_code_visible: true,
   // Кнопка «Видео PHRASEMAN» на главной: дефолт TRUE = kill-switch (показывается
   // как сейчас). Админ ставит false в «Пульте» → кнопка прячется у всех живьём.
   video_button_enabled: true,
@@ -511,12 +524,13 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
-    'learning_cant_speak_enabled', 'dialogue_freeform_translate_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'spire_gold', 'premium_theme_webgl_motion_enabled',
+    'learning_cant_speak_enabled', 'account_delete_variant_b_ui_enabled', 'dialogue_freeform_translate_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'spire_gold', 'premium_theme_webgl_motion_enabled',
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',
     'plus_server_recheck_enabled', 'apple_signin_revoke_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
+    'paywall_close_visible', 'paywall_restore_visible', 'paywall_promo_code_visible',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',
     'accounts_v2_legacy_sync_disabled',
     'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',

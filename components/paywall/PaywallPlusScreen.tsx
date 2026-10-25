@@ -11,7 +11,7 @@ import { useOverlayActiveKey } from '../OverlayArbiter'; // зачем: [WINBACK
 import { parseDevPaywallState } from '../../app/dev_paywall_state';
 import { BackHandler, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { PaywallSwipeSheet } from './PaywallSwipeSheet';
-import { Stack, useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
@@ -20,7 +20,8 @@ import type { Lang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { usePaywallPurchase, type PaywallPlan } from '../../app/paywall_purchase';
-import { paywallEntryAnalyticsParams, type PaywallEntry } from '../../app/paywall_entry_contract';
+import { paywallEntryAnalyticsParams, SERVER_REFUSED_CONTEXT, type PaywallEntry } from '../../app/paywall_entry_contract';
+import { PaywallPlusDockSwitch } from './PaywallServerRefusedDock';
 import { parseResumeLessonId } from '../../app/paywall_lesson_continuation';
 import { logPaywallFunnel } from '../../app/paywall_funnel';
 import { trackEvent } from '../../app/analytics';
@@ -30,7 +31,7 @@ import { DebugLogger } from '../../app/debug-logger';
 import { useLoadGate } from '../../app/use_load_gate';
 import { PaywallScrim, usePaywallScreenStackOptions } from './paywallShared';
 import {
-  PaywallPlusDetails, PaywallPlusDock, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote,
+  PaywallPlusDetails, PaywallPlusHeader, PaywallPlusPlans, PaywallPlusPlansSkeleton, PaywallPlusPriceNote,
    PaywallPlusScroll, PaywallPlusTrialTimeline, paywallPlusCtaCopy, paywallSheetBg,
   type PaywallPlusState,
 } from './PaywallPlus';
@@ -38,6 +39,8 @@ import PaywallTrialReminderPrompt from './PaywallTrialReminderPrompt';
 import { COPY, pick } from './PaywallPlusCopy';
 import { paywallContextHeadline, paywallEntryFactsFromParams, type PaywallContextHeadline } from '../../app/paywall_context_headline';
 import { PaywallContextIcon } from './PaywallContextIcons';
+import { onAppEvent } from '../../app/events';
+import { getPaywallControlVisibility } from '../../app/paywall_control_visibility';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -50,6 +53,7 @@ function firstParam(raw: string | string[] | undefined): string | undefined {
 
 export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEntry }) {
   const params = useLocalSearchParams<Params>();
+  const router = useRouter();
   const { lang: rawLang } = useLang();
   const lang = rawLang as Lang;
   const { liquidGlassThemeId } = useTheme();
@@ -60,6 +64,15 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const { height: windowHeight } = useWindowDimensions();
   const ctx = entry.context;
   const source = entry.source;
+  // зачем (координатор 25.10, Ядро c161d894a): вход «Не видим твой Plus» — свой низ окна: «Восстановить покупки» первой, «Оформить Plus» второй
+  const serverRefused = ctx === SERVER_REFUSED_CONTEXT;
+  const [controlVisibility, setControlVisibility] = useState(getPaywallControlVisibility);
+  useEffect(() => {
+    const subscription = onAppEvent('remote_config_changed', () => {
+      setControlVisibility(getPaywallControlVisibility());
+    });
+    return () => subscription.remove();
+  }, []);
   const forceTrialUI = firstParam(params._force_trial_ui) === '1';
   // зачем (координатор 12.10): dev-превью триала с заданным N (`_force_trial_days=7`); мусор и значения вне 1…60 игнорируются. В стор-сборке не действует (хук требует DEV_IAP_BYPASS).
   const forceTrialDays = useMemo(() => {
@@ -158,7 +171,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // от «флаг оплаты не пришёл».
   useEffect(() => {
     DebugLogger.info('[PAYWALL]', `окно Plus: оплата payStarted=${String(p.payStarted)} purchasing=${String(p.purchasing)} restoring=${String(p.restoring)} `
-      + `закрытие/восстановить заблокированы=${String(checkoutInFlight)} тарифы/кнопка заняты=${String(ctaBusy)}`);
+      + `закрытие заблокировано=${String(checkoutInFlight)} тарифы/кнопки заняты=${String(ctaBusy)}`);
   }, [checkoutInFlight, ctaBusy, p.payStarted, p.purchasing, p.restoring]);
   const prompt = p.trialReminderPrompt;
   const baseOptions = usePaywallScreenStackOptions(false);
@@ -241,7 +254,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
           <PaywallScrim onPress={closeWindow} />
           <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}
             enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
-            header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
+            header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeVisible={controlVisibility.closeVisible} closeDisabled={checkoutInFlight}
               onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close', 'x'); }}
               contextTitle={contextual ? headline.title : undefined}
               contextSubtitle={contextual ? headline.subtitle : undefined}
@@ -274,13 +287,19 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                 </Text>
               ) : null}
             </PaywallPlusScroll>
-            <PaywallPlusDock lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
+            <PaywallPlusDockSwitch serverRefused={serverRefused} onLater={() => p.handleClose('close', 'x')} lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
               // зачем (R1_PAYWALL_UX, координатор 12.10): «Восстановить» не зависит от цен — раньше она молча не нажималась всё время загрузки цен (до потолка 12 с),
-              // а вернувшийся покупатель как раз сюда и идёт. Блокируем только на время самой оплаты/восстановления.
-              restoring={p.restoring} restoreDisabled={checkoutInFlight}
-              onRestore={() => { void p.handleRestore(); }} />
+              // а вернувшийся покупатель как раз сюда и идёт. Блокируем на время платёжного пайплайна или восстановления.
+              restoring={p.restoring} restoreVisible={controlVisibility.restoreVisible} restoreDisabled={ctaBusy}
+              onRestore={() => { void p.handleRestore(); }}
+              promoVisible={controlVisibility.promoVisible} promoDisabled={ctaBusy}
+              onPromo={() => {
+                if (ctaBusy) return;
+                // зачем (координатор 25.10): маршрут типизирован (typedRoutes), приведение типа не нужно
+                router.push({ pathname: '/promo_code_entry', params: { source: 'paywall' } });
+              }} />
           </PaywallSwipeSheet>
         </>
       )}

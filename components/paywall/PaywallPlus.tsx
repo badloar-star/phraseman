@@ -67,8 +67,8 @@ function markInk(g: GlassTokens): string { return g.level === 'accent' || g.leve
 function openLegal(url: string): void { openLegalLink(url, 'paywall_plus'); }
 
 // ── шапка ───────────────────────────────────────────────────────────────────
-export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeDisabled, onClose, contextTitle, contextSubtitle, contextIcon, contextPill }: {
-  lang: Lang; g: GlassTokens; trialDays: number | null; closeDisabled: boolean; onClose: () => void;
+export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, trialDays, closeVisible, closeDisabled, onClose, contextTitle, contextSubtitle, contextIcon, contextPill }: {
+  lang: Lang; g: GlassTokens; trialDays: number | null; closeVisible: boolean; closeDisabled: boolean; onClose: () => void;
   /** Заголовок/подзаголовок КОНТЕКСТА входа (paywallContextHeadline). Нет — прежняя шапка пробного периода. */
   contextTitle?: string; contextSubtitle?: string;
   /** Значок входа в плитке слева (PaywallContextIcon) и пилюля «что закончилось» рядом с ним (макет paywall-context-redesign #c1). */
@@ -80,7 +80,7 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
   const subtitle = contextTitle
     ? (contextSubtitle || '')
     : trialDays && canPromiseTrialReminder(trialDays) ? pick(lang, COPY.heroTrialSub) : '';
-  const close = (
+  const close = closeVisible ? (
     <V2Pressable
       testID="paywall-close"
       accessibilityLabel={pick(lang, COPY.close)}
@@ -93,7 +93,7 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
     >
       <Ionicons name="close" size={18} color={g.text} />
     </V2Pressable>
-  );
+  ) : null;
   return (
     <View>
       <View style={[S.handle, { backgroundColor: g.glassEdge }]} />
@@ -271,10 +271,11 @@ export function paywallPlusCtaCopy(lang: Lang, args: {
   };
 }
 
-export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, notice, purchasing, disabled, bottomInset, onPress, restoring, restoreDisabled, onRestore }: {
+export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, label, fine, notice, purchasing, disabled, bottomInset, onPress, restoring, restoreVisible, restoreDisabled, onRestore, promoVisible, promoDisabled, onPromo }: {
   lang: Lang; g: GlassTokens; state: PaywallPlusState; label: string; fine: string; notice: boolean;
   purchasing: boolean; disabled: boolean; bottomInset: number; onPress: () => void;
-  restoring: boolean; restoreDisabled: boolean; onRestore: () => void;
+  restoring: boolean; restoreVisible: boolean; restoreDisabled: boolean; onRestore: () => void;
+  promoVisible: boolean; promoDisabled: boolean; onPromo: () => void;
 }) {
   const ready = state === 'ready';
   // зачем (D158): кнопка покупки ВСЕГДА активна, кроме самой покупки/восстановления (disabled от экрана).
@@ -304,14 +305,23 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
           : <Text style={[S.ctaText, { color: g.ctaFillInk }]}>{label}</Text>}
       </V2Pressable>
       <Text testID="paywall-fine" style={[S.fine, { color: g.mutedText }]}>{fineText}</Text>
-      <View style={S.links}>
+      {restoreVisible || promoVisible ? <View style={S.secondaryActions}>
         {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}
-        <V2Pressable testID="paywall-restore" withHaptic={false} scaleTo={0.95} disabled={restoreDisabled}
-          accessibilityState={{ busy: restoring }} onPress={onRestore}
-          style={[S.linkHit, S.restoreRow, { opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
+        {restoreVisible ? <V2Pressable testID="paywall-restore" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.restore)} withHaptic={false} scaleTo={0.95} disabled={restoreDisabled}
+          accessibilityState={{ disabled: restoreDisabled, busy: restoring }} onPress={onRestore}
+          style={[S.secondaryAction, { backgroundColor: paywallPlateBg(g), opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
           {restoring ? <ActivityIndicator size="small" color={g.mutedText} /> : null}
-          <Text style={[S.link, { color: g.mutedText }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
-        </V2Pressable>
+          {!restoring ? <Ionicons name="refresh-outline" size={17} color={g.secondary} /> : null}
+          <Text style={[S.secondaryActionText, { color: g.secondary }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
+        </V2Pressable> : null}
+        {promoVisible ? <V2Pressable testID="paywall-promo-code" accessibilityRole="button" accessibilityLabel={pick(lang, COPY.enterPromo)}
+          accessibilityState={{ disabled: promoDisabled }} withHaptic={false} scaleTo={0.95} disabled={promoDisabled} onPress={onPromo}
+          style={[S.secondaryAction, { backgroundColor: paywallPlateBg(g), opacity: promoDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}>
+          <Ionicons name="pricetag-outline" size={17} color={g.secondary} />
+          <Text style={[S.secondaryActionText, { color: g.secondary }]}>{pick(lang, COPY.enterPromo)}</Text>
+        </V2Pressable> : null}
+      </View> : null}
+      <View style={S.links}>
         <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(TERMS_URL)} style={S.linkHit}>
           <Text style={[S.link, { color: g.mutedText }]}>{pick(lang, COPY.terms)}</Text>
         </V2Pressable>
@@ -396,6 +406,9 @@ const S = StyleSheet.create({
   planRowTop: { marginTop: 14 },
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
+  secondaryActions: { flexDirection: 'row', gap: 8, marginTop: 12 },
+  secondaryAction: { flex: 1, minHeight: 44, borderRadius: 16, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  secondaryActionText: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },
   restoreRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   link: { fontSize: 13, lineHeight: 18 },

@@ -14,7 +14,6 @@ import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
 import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 
-const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
 const EXEMPT_COLOR_2 = '#000000'; // theme-exempt: затемнение и тень окна — тёмный скрим/чёрная тень в любой теме
 
 export type AccountRestoreSummaryAction = Readonly<{ label: string; ghost?: boolean; onPress: () => void }>;
@@ -88,6 +87,9 @@ const AccountRestoreSummaryCard = memo(function AccountRestoreSummaryCard({ titl
 type DialogProps = CardProps & Readonly<{ visible: boolean; onRequestClose: () => void }>;
 
 function AccountRestoreSummaryDialogBase({ visible, onRequestClose, ...card }: DialogProps) {
+  // зачем (закон владельца 22.10, замер Тем 26.10): затемнение под окном — сильный скрим текущей темы, не постоянный чёрный 62 %.
+  const { liquidGlassThemeId } = useTheme();
+  const scrim = liquidGlassTokens(liquidGlassThemeId).scrimStrong;
   // зачем: новая карточка на каждое открытие (сброс защиты от двойного тапа); при закрытии остаётся — оболочка доигрывает выход.
   const openSeqRef = useRef(0);
   const wasVisibleRef = useRef(false);
@@ -98,7 +100,7 @@ function AccountRestoreSummaryDialogBase({ visible, onRequestClose, ...card }: D
       visible={visible}
       onRequestClose={onRequestClose}
       placement="center"
-      backdropColor={EXEMPT_COLOR_1}
+      backdropColor={scrim}
       shadowColor={EXEMPT_COLOR_2}
       testID="account-restore-summary-shell"
     >

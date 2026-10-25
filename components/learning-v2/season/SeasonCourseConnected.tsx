@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import { useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { BackHandler, StyleSheet, View } from 'react-native';
+import { BackHandler, Dimensions, PixelRatio, Platform, StyleSheet, View } from 'react-native';
 
 import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
@@ -75,6 +75,17 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   // нет. Решение — по TabPageContext (его ставит только TabSlider): не вкладка → штатная «Назад» в SeasonCourseView.
   const isTabPage = useIsTabPage();
   const { hidden: tabBarHiddenRequested } = useTabBarVisibility();
+  // зачем (координатор 25.10, iPhone 2.0.2: окно эпизода у́же и обрезано справа, на Android ровно; «сперва логи»): где корень Сезона стоит
+  // в окне и какой ширины — против ширины окна и экрана. Отличие от окна = Сезон сам сдвинут/сужен; совпадение = беда внутри окна эпизода.
+  const rootRef = useRef<View>(null);
+  const onRootLayout = useCallback(() => {
+    const win = Dimensions.get('window');
+    const scr = Dimensions.get('screen');
+    rootRef.current?.measureInWindow((x, y, width, height) => {
+      const diffW = Math.round((win.width - width) * 10) / 10;
+      console.log('[SEASON-LAYOUT] root', JSON.stringify({ os: Platform.OS, x, y, width, height, windowW: win.width, screenW: scr.width, diffW, shiftedX: Math.abs(x) > 0.5, scale: PixelRatio.get(), fontScale: PixelRatio.getFontScale(), isTabPage })); // guard-ok: одна строка на раскладку корня
+    });
+  }, [isTabPage]);
   useEffect(() => {
     let canGoBack: boolean | null = null;
     try { canGoBack = router.canGoBack(); } catch (error) {
@@ -353,7 +364,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   }
 
   return (
-    <View testID="season-course" style={styles.root}>
+    <View ref={rootRef} onLayout={onRootLayout} testID="season-course" style={styles.root}>
       <SeasonCourse
         // новая колода (смена урока/прогресса) пересоздаёт состояние карусели: карта текущего эпизода — в фокусе
         key={`${lesson}|${deck.cards.length}|${deck.currentIndex}`}

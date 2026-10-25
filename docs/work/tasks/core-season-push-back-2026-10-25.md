@@ -45,3 +45,10 @@ Governance-ID: TG-39251C53360D
 - Ревизор: списки Сезона брали голый bottomPadding (SeasonPickScreens подвал, LearningV2AllLessonsList) — подпись под капсулой таббара.
   use_season_list_bottom_pad: isTabPage ? max(bottomPadding, useTabContentBottomPad()) : bottomPadding (как SeasonCourseView).
 - Сторож: tests/season_push_back_contract.test.mjs — списки Сезона на вкладке учитывают таббар, журнал открытия/закрытия на месте.
+
+## Дополнение 25.10 ~11:30: журналы для iOS (окно эпизода обрезано справа)
+Governance-ID: TG-D5300686D388
+- [SEASON-LAYOUT] root (SeasonCourseConnected): measureInWindow корня Сезона против окна и экрана — x, width, diffW, scale, fontScale.
+- [NAV-TRANSITION] (app/learning-v2/course.tsx): состав стека на входе + события перехода/жеста.
+- Только console.log: в релизе DebugLogger.info/warn молчат, журнал debug_logs_v1 никто не читает. Снимать — «Консоль» на Mac.
+- Окно эпизода и [EPISODE-MODAL] — 2 · ДИЗАЙН (SeasonExpandedCard, season_modal_bounds, season_modal_log).

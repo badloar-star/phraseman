@@ -6,6 +6,7 @@
 // Новых запросов нет: ответ уже пришёл. Журнал [MOMENT-REWARD] spire:flush merged=… reason=… на каждый ответ.
 import type { AccountGenerationToken } from '../account_generation';
 import { settleSpirePendingCoins } from './spire_pending_coins';
+import { settleSpireGoldFromFlush } from './spire_gold_settle';
 
 export type SpireFlushWalletResult = Readonly<{ merged: boolean; reason: string; balanceBefore: number | null; balanceAfter: number | null }>;
 
@@ -80,11 +81,13 @@ async function mergeInsideBatch(
     const verdicts = Array.isArray(d.results) ? (d.results as Readonly<{ reportId: string; verdict: string; reason?: string }>[]).filter((r) => r && typeof r.reportId === 'string') : [];
     if (server.starsSeq <= localSeq) {
       settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, balanceBefore);
+      settleSpireGoldFromFlush(stableId, d, verdicts, balanceBefore, balanceBefore); // [SPIRE-GOLD] золото — своя строка
       return log({ merged: false, reason: `older_seq:${server.starsSeq}<=${localSeq}`, balanceBefore, balanceAfter: balanceBefore }, extra);
     }
     const granted = isCount(d.coinsGranted) ? d.coinsGranted : undefined;
     const visible = await deps.merge(token, { stars: server.stars, starsSeq: server.starsSeq, ...(granted !== undefined ? { serverCreditedDelta: granted } : {}) });
     settleSpirePendingCoins(stableId, verdicts, true, balanceBefore, visible.balance);
+    settleSpireGoldFromFlush(stableId, d, verdicts, balanceBefore, visible.balance); // [SPIRE-GOLD] золото — своя строка
     return log({ merged: true, reason: `newer_seq:${server.starsSeq}>${localSeq}`, balanceBefore, balanceAfter: visible.balance }, extra);
   } catch (error) {
     return log({ merged: false, reason: `merge_failed:${error instanceof Error ? error.message : String(error)}`, balanceBefore, balanceAfter: null }, extra);

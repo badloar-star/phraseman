@@ -131,7 +131,8 @@ describe('Ревизор 24.10: три сценария гашения и одн
     const home = read('app', '(tabs)', 'home.tsx');
     expect(home).toContain('if (!homeRuntimeActive) return undefined;');
     expect(home).toContain('return subscribeDisplayedRunes(read);');
-    expect(read('app', 'spire', 'spire_step_close.ts')).toContain('addSpirePendingCoins(i.owner, i.reportId, amount, Date.now(), peekRunes());');
+    // Ревизор 25.10: золото — отдельная строка; основная — ставка ступени и этажа
+    expect(read('app', 'spire', 'spire_step_close.ts')).toContain('addSpirePendingCoins(i.owner, i.reportId, amount - gold, Date.now(), base);');
   });
 });
 

@@ -7,7 +7,7 @@
 // Первый кадр = итоговая геометрия: кольцо и подпись паузы стоят сразу, задание
 // появляется после списания энергии (D72 — энергия на первом задании).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useMemo, useRef, type MutableRefObject } from 'react';
+import React, { memo, useCallback, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { Modal, ScrollView, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
@@ -28,6 +28,8 @@ import SpireTaskView from './SpireTaskView';
 import SpireTimerRing from './SpireTimerRing';
 import SpireHeartsRow from './SpireHeartsRow';
 import SpireGoldFrame from './SpireGoldFrame';
+import SpireGoldReward, { type SpireGoldLaunch } from './SpireGoldReward';
+import { peekSpireConfig } from '../../app/spire_config_client';
 import type { SpireGoldView } from '../../app/spire/use_spire_gold';
 import type { SpireStreakHeartView } from '../../app/spire/use_spire_streak_heart';
 import { useSpirePalette } from './useSpirePalette';
@@ -93,6 +95,10 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const insets = useStableSafeAreaInsets();
   const counter = Math.min(taskIndex + 1, SPIRE_STEP_TASK_COUNT);
+  // [SPIRE-GOLD] монеты летят от «×2» к «+N» в шапке; ставка ступени — из конфига Пика в памяти (без сети)
+  const [goldLaunch, setGoldLaunch] = useState<SpireGoldLaunch | null>(null);
+  const onGoldLaunch = useCallback((x: number, y: number) => setGoldLaunch((cur) => ({ seq: (cur?.seq ?? 0) + 1, x, y })), []);
+  const goldPerStep = peekSpireConfig()?.coins.perStep ?? 0;
   const fb = feedback && !feedback.ok ? feedback : null;
   // зачем ([PEAK-PERF], жалоба №3 «после 6–7 шага сильно тормозит»): время кадра и перерисовки ступени по фактам с устройства
   usePeakPerfProbe('step', `floor=${ctx.floor} step=${ctx.stepInFloor + 1} task=${counter}`);
@@ -115,6 +121,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
         <SpireHeartsRow lang={lang} hearts={hearts} streak={props.streakHeart ?? null} />
         {/* зачем (spire-009, вердикт Макетов c0cd6e2ae, координатор 18.10): в образце (spire.html, stepHead) шапка ступени — заголовок и сердца, энергии справа нет; «⚡ 2» убрана. Пилюля остаётся на главной Шпиля, проп showEnergy сохранён для вызовов */}
       </View>
+      {goldPerStep > 0 ? <SpireGoldReward launch={goldLaunch} perStep={goldPerStep} top={insets.top + (SCREEN_BACK_SIZE - 37) / 2} right={V2.screenPad + 104} /> : null}
       <ScreenBackButton screen="spire_step" testID="spire-step-back" accessibilityLabel={spireText(lang, 'back')} onPress={props.onBack} />
       <ScrollView style={s.scroll} contentContainerStyle={[s.content, { paddingBottom: 16 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast" onLayout={(e) => { boxes.current.viewport = e.nativeEvent.layout.height; }} onContentSizeChange={(_w, h) => { boxes.current.content = h; }}>
         <View style={s.ringWrap}>
@@ -125,7 +132,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           // зачем (18.10): под цифрами отсчёта «Готовим ступень…» не показываем — цифры занимают экран
           props.countdownDigit != null ? null : <Text style={[s.preparing, { color: p.textSecondary }]}>{spireGameText(lang, 'preparing')}</Text>
         ) : (
-          <SpireGoldFrame active={props.gold?.goldIndex === taskIndex} hit={props.gold?.hit === true}>
+          <SpireGoldFrame active={props.gold?.goldIndex === taskIndex} hit={props.gold?.hit === true} onLaunch={onGoldLaunch}>
           <SpireTaskView
             key={`${task.taskId}:${taskIndex}`}
             lang={lang}

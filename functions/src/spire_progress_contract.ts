@@ -130,6 +130,8 @@ export type SpireBatchEvaluation = Readonly<{
   acceptedFailed: number;
   /** [SPIRE-GOLD] номера ступеней недели, за которые засчитано золото (×2 ставки ступени). */
   goldenSteps: readonly number[];
+  /** [SPIRE-GOLD] reportId засчитанного золота — клиент гасит отдельную «ожидающую» строку золота именно по ним. */
+  goldAccepted: readonly string[];
   /** [SPIRE-GOLD] заявки золота, которые не засчитаны, с причиной — в журнал. */
   goldSkipped: readonly Readonly<{ reportId: string; step: number; reason: 'not_golden' | 'daily_cap' | 'gold_off' }>[];
   /** false → писать в Firestore нечего (экономия записи на пустой/дублирующей пачке). */
@@ -296,6 +298,7 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
   let acceptedPassed = 0;
   let acceptedFailed = 0;
   const goldenSteps: number[] = [];
+  const goldAccepted: string[] = [];
   const goldSkipped: { reportId: string; step: number; reason: 'not_golden' | 'daily_cap' | 'gold_off' }[] = [];
 
   for (const report of parsed) {
@@ -390,6 +393,7 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
       else if (used >= SPIRE_GOLD_DAILY_CAP) goldSkipped.push({ reportId: report.reportId, step, reason: 'daily_cap' });
       else {
         goldenSteps.push(step);
+        goldAccepted.push(report.reportId);
         record = { ...record, goldDay: day, goldCount: used + 1 };
       }
     }
@@ -403,6 +407,7 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
     acceptedPassed,
     acceptedFailed,
     goldenSteps,
+    goldAccepted,
     goldSkipped,
     changed,
   };

@@ -8,7 +8,7 @@
  * UI-треде, «Уменьшить движение» — без блика и масштаба, только прозрачность. Раскладка задания не сдвигается: слои
  * абсолютные, касания проходят к заданию. «Тёплое золото» — позже, сменой токена (координатор 25.10).
  */
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -17,7 +17,8 @@ import { useSpirePalette } from './useSpirePalette';
 
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 
-function SpireGoldFrame({ active, hit, children }: Readonly<{ active: boolean; hit: boolean; children: React.ReactNode }>) {
+function SpireGoldFrame({ active, hit, onLaunch, children }: Readonly<{ active: boolean; hit: boolean; onLaunch?: (x: number, y: number) => void; children: React.ReactNode }>) {
+  const badgeRef = useRef<View>(null);
   const p = useSpirePalette();
   const reduce = useReducedMotion();
   const fill = useSharedValue(0);
@@ -37,6 +38,8 @@ function SpireGoldFrame({ active, hit, children }: Readonly<{ active: boolean; h
 
   useEffect(() => {
     if (!active || !hit) return;
+    // зачем (макет, координатор 25.10): монеты вылетают из «×2» — точка старта в окне для слоя награды
+    badgeRef.current?.measureInWindow((x, y, w, h) => onLaunch?.(x + w / 2, y + h / 2));
     if (reduce) return;
     pulse.value = withSequence(
       withTiming(0.95, { duration: 65, easing: EASE_OUT }),
@@ -45,7 +48,7 @@ function SpireGoldFrame({ active, hit, children }: Readonly<{ active: boolean; h
     );
     ring.value = 0;
     ring.value = withTiming(1, { duration: 460, easing: EASE_OUT });
-  }, [active, hit, pulse, reduce, ring]);
+  }, [active, hit, onLaunch, pulse, reduce, ring]);
 
   const fillStyle = useAnimatedStyle(() => ({ opacity: fill.value }));
   const shineStyle = useAnimatedStyle(() => ({
@@ -75,7 +78,7 @@ function SpireGoldFrame({ active, hit, children }: Readonly<{ active: boolean; h
         </View>
       </Animated.View>
       {children}
-      <Animated.View pointerEvents="none" style={[s.badge, { backgroundColor: p.accentGraphic }, badgeStyle]} testID="spire-gold-x2" importantForAccessibility="no-hide-descendants" accessibilityElementsHidden>
+      <Animated.View ref={badgeRef} pointerEvents="none" style={[s.badge, { backgroundColor: p.accentGraphic }, badgeStyle]} testID="spire-gold-x2" importantForAccessibility="no-hide-descendants" accessibilityElementsHidden>
         <Animated.View style={[StyleSheet.absoluteFill, s.ring, { backgroundColor: p.accentGraphic }, ringStyle]} />
         <Text style={[s.badgeText, { color: p.bg }]}>×2</Text>
       </Animated.View>

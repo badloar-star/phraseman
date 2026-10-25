@@ -10,7 +10,7 @@ import { InteractionManager } from 'react-native';
 import { DebugLogger } from '../debug-logger';
 import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
 import type { SpireFlushTrigger, SpireLang, SpireWeekLocal } from '../../modules/spire/report_queue';
-import { addSpirePendingCoins, removeSpirePendingCoins, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire_pending_coins';
+import { addSpirePendingCoins, removeSpirePendingCoins, spireGoldPendingId, spirePendingCoinsHas, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire_pending_coins';
 import { peekRunes } from '../runes_system';
 
 export const PEAK_CLOSE = '[PEAK-CLOSE]';
@@ -65,10 +65,13 @@ export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined
     spireCloseMark(i.reportId, i.t0, `монеты сразу: нет (новая пройденная=${String(i.passedNew)} владелец=${i.owner ? 'есть' : 'нет'} конфиг=${i.coins ? 'есть' : 'нет'})`);
     return false;
   }
-  // [SPIRE-GOLD] золото решено: ещё одна ставка ступени (perStep), этаж и вершина не удваиваются — как functions/src/spire_coins.ts
+  // [SPIRE-GOLD] золото решено: ещё одна ставка ступени (perStep), этаж и вершина не удваиваются — как functions/src/spire_coins.ts.
+  // зачем (Ревизор 25.10): золото — ОТДЕЛЬНАЯ строка spire_gold:{reportId}, чтобы отказ сервера снял только её и объяснил тостом
   const gold = i.golden ? spireStepPendingCoins(i.coins, i.floorBefore, false) : 0;
   const amount = spireStepPendingCoins(i.coins, i.floorBefore, i.floorCleared) + gold;
-  addSpirePendingCoins(i.owner, i.reportId, amount, Date.now(), peekRunes());
+  const base = peekRunes();
+  addSpirePendingCoins(i.owner, i.reportId, amount - gold, Date.now(), base);
+  if (gold > 0) addSpirePendingCoins(i.owner, spireGoldPendingId(i.reportId), gold, Date.now(), base);
   spireCloseMark(i.reportId, i.t0, `монеты сразу: +${amount} (этаж до=${i.floorBefore} этаж закрыт=${String(i.floorCleared)} золото=${gold > 0 ? `+${gold}` : 'нет'}) до записи на диск`);
   return true;
 }
@@ -76,4 +79,5 @@ export function spireStepCoinsNow(i: Readonly<{ owner: string | null | undefined
 /** Запись не удалась или на диске повтор — снять показанные монеты (причина в журнал [PEAK-COINS] settle reason=…). */
 export function spireStepCoinsUndo(owner: string | null | undefined, reportId: string, reason: 'save_failed' | 'save_threw' | 'duplicate_on_disk', late = false): void {
   removeSpirePendingCoins(owner, reportId, reason, late);
+  if (spirePendingCoinsHas(owner, spireGoldPendingId(reportId))) removeSpirePendingCoins(owner, spireGoldPendingId(reportId), `gold_${reason}`, late);
 }

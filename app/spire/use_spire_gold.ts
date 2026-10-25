@@ -16,6 +16,7 @@ import type { SpireStepReport } from '../../modules/spire/report_queue';
 import { hapticSuccess } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
 import { getRemoteBool, hasRemoteBoolOverride } from '../remote_flags';
+import { readSpireGoldServerOk } from './spire_gold_server';
 
 // зачем (сторож spire_game_source_contract: префикс [SPIRE] во всех файлах app/spire): контекст [SPIRE], метка задачи в строке
 const SPIRE = '[SPIRE]';
@@ -85,8 +86,13 @@ export function useSpireGold(input: SpireGoldInput): Readonly<{
       DebugLogger.info(SPIRE, `${TAG} ступень ${runId} №${stepNumber}: по хешу золота нет`);
       return undefined;
     }
-    void readDay(stableId).then((day) => {
+    void Promise.all([readSpireGoldServerOk(), readDay(stableId)]).then(([server, day]) => {
       if (!alive) { DebugLogger.info(SPIRE, `${TAG} ступень ${runId}: счётчик дня пришёл после ухода — пропуск`); return; }
+      // зачем (координатор 25.10): флаг включён, а сервер правила не знает — золото не обещаем, иначе ×2 снимется после синхронизации
+      if (!server.ok) {
+        DebugLogger.info(SPIRE, `${TAG} gate reason=server_too_old ступень ${runId} №${stepNumber}: правило сервера=${server.rule ?? 'неизвестно'} (${server.source}) — золото не показываем`);
+        return;
+      }
       if (day.count >= SPIRE_GOLD_DAILY_CAP) {
         DebugLogger.info(SPIRE, `${TAG} ступень ${runId} №${stepNumber}: золото было бы на задании ${index + 1}, но потолок дня ${day.count}/${SPIRE_GOLD_DAILY_CAP}`);
         return;

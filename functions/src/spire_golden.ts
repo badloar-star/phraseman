@@ -10,6 +10,8 @@
  */
 export const SPIRE_GOLD_RATE_PERCENT = 30;
 export const SPIRE_GOLD_DAILY_CAP = 3;
+/** Версия правила в ответе spireReportSteps (goldRule): клиент показывает золото, только если сервер её назвал. */
+export const SPIRE_GOLD_RULE_VERSION = 1;
 /** Номер задания 3…9 (индексы 2…8): не первое и не последнее. */
 export const SPIRE_GOLD_FIRST_INDEX = 2;
 export const SPIRE_GOLD_LAST_INDEX = 8;

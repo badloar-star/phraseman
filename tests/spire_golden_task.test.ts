@@ -12,6 +12,8 @@ import { spireEvaluateBatch, spireWeekStartMsFromDate, type SpireEvaluateInput }
 import { SPIRE_CONFIG_DEFAULTS } from '../functions/src/spire_config_contract';
 import { spireStepCoinOps } from '../functions/src/spire_coins';
 
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn() } }));
+
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.resolve(__dirname, '..', rel), 'utf8'));
 
 describe('правило золотого задания: телефон = сервер', () => {
@@ -138,5 +140,36 @@ describe('телефон: флаг, проводка, «Пульт»', () => {
     const frame = read('components/spire/SpireGoldFrame.tsx');
     expect(frame).not.toMatch(/withRepeat/);
     expect(frame).toContain('useReducedMotion');
+  });
+});
+
+describe('координатор 25.10: защита «сервер старый» и полёт монет', () => {
+  it('сервер называет версию правила; клиент понимает ту же', () => {
+    expect(read('functions/src/spire_progress.ts')).toContain('goldRule: SPIRE_GOLD_RULE_VERSION,');
+    const { SPIRE_GOLD_CLIENT_RULE } = require('../app/spire/spire_gold_server') as typeof import('../app/spire/spire_gold_server');
+    expect(SPIRE_GOLD_CLIENT_RULE).toBe(server.SPIRE_GOLD_RULE_VERSION);
+    expect(read('app/spire_report_client.ts')).toContain("if (res.data?.ok === true) void import('./spire/spire_gold_server').then((m) => m.noteSpireGoldServerRule(res.data?.goldRule))");
+  });
+
+  it('нет поля в ответе → сервер старый, золото не показываем; версия 1 → можно', async () => {
+    const m = require('../app/spire/spire_gold_server') as typeof import('../app/spire/spire_gold_server');
+    m.__resetSpireGoldServerForTests();
+    expect((await m.readSpireGoldServerOk()).ok).toBe(false);
+    m.noteSpireGoldServerRule(undefined);
+    expect((await m.readSpireGoldServerOk()).ok).toBe(false);
+    m.noteSpireGoldServerRule(1);
+    expect((await m.readSpireGoldServerOk()).ok).toBe(true);
+    const hook = read('app/spire/use_spire_gold.ts');
+    expect(hook).toContain('gate reason=server_too_old');
+    expect(hook).toMatch(/Promise\.all\(\[readSpireGoldServerOk\(\), readDay\(stableId\)\]\)[\s\S]{0,400}if \(!server\.ok\)/);
+  });
+
+  it('полёт монет: только transform/opacity, без вечных циклов, «Уменьшить движение» — без полёта', () => {
+    const reward = read('components/spire/SpireGoldReward.tsx');
+    expect(reward).not.toMatch(/withRepeat/);
+    expect(reward).toContain('if (reduce) {');
+    expect(reward).not.toMatch(/useAnimatedStyle\(\(\) => \(\{[^}]*(left|top|width|height):/);
+    expect(reward).not.toMatch(/haptic/i);
+    expect(read('components/spire/SpireStepScreen.tsx')).toContain('onLaunch={onGoldLaunch}');
   });
 });

@@ -183,6 +183,14 @@ export function peekSpirePendingEntries(owner: string | null | undefined): reado
   return owner ? memory.get(owner) ?? [] : [];
 }
 
+/** [SPIRE-GOLD] id отдельной «ожидающей» строки золота ступени (Ревизор 25.10: отказ сервера снимает только её). */
+export const spireGoldPendingId = (reportId: string): string => `spire_gold:${reportId}`;
+
+/** Есть ли «ожидающая» строка с этим id (золото ступени — `spire_gold:{reportId}`). */
+export function spirePendingCoinsHas(owner: string | null | undefined, reportId: string): boolean {
+  return !!owner && (memory.get(owner) ?? []).some((e) => e.reportId === reportId);
+}
+
 /** Σ ожидающих владельца (для показа на Главной). */
 export function spirePendingCoinsTotal(owner: string | null | undefined, nowMs: number = Date.now()): number {
   if (!owner) return 0;

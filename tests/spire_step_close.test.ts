@@ -18,6 +18,8 @@ const removePending = jest.fn();
 jest.mock('../app/spire/spire_pending_coins', () => ({
   addSpirePendingCoins: (...a: unknown[]) => addPending(...(a as [])),
   removeSpirePendingCoins: (...a: unknown[]) => removePending(...(a as [])),
+  spireGoldPendingId: (id: string) => `spire_gold:${id}`,
+  spirePendingCoinsHas: () => false,
   spireStepPendingCoins: (_c: unknown, floor: number, cleared: boolean) => (cleared ? 10 + floor * 10 : 10),
 }));
 jest.mock('../app/runes_system', () => ({ peekRunes: () => 600 }));
@@ -74,7 +76,9 @@ describe('[PEAK-COINS] вариант A: монеты в момент итога
   });
   it('[SPIRE-GOLD] золото решено → ещё одна ставка ступени; этаж не удваивается', () => {
     spireStepCoinsNow({ owner: 'me', reportId: 'g1', t0: 0, coins, passedNew: true, floorBefore: 4, floorCleared: true, golden: true });
-    expect(addPending).toHaveBeenLastCalledWith('me', 'g1', 50 + 10, expect.any(Number), 600);
+    // Ревизор 25.10: золото — своя строка, отказ сервера снимет только её
+    expect(addPending).toHaveBeenCalledWith('me', 'g1', 50, expect.any(Number), 600);
+    expect(addPending).toHaveBeenLastCalledWith('me', 'spire_gold:g1', 10, expect.any(Number), 600);
   });
   it('провал, повтор, нет владельца или конфига — монет нет', () => {
     for (const bad of [{ passedNew: false, owner: 'me', coins }, { passedNew: true, owner: null, coins }, { passedNew: true, owner: 'me', coins: null }]) {

@@ -1,3 +1,4 @@
+import { SPIRE_GOLD_RULE_VERSION } from './spire_golden';
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
@@ -393,6 +394,10 @@ export const spireReportSteps = onCall(SPIRE_REPORT_OPTIONS, async (request) => 
     reachedAtMs: outcome.record.reachedAtMs,
     totalMs: outcome.record.totalMs,
     results: outcome.results,
+    // [SPIRE-GOLD] сервер знает правило золота — клиент без этого поля золото не показывает (gate server_too_old)
+    goldRule: SPIRE_GOLD_RULE_VERSION,
+    // зачем (Ревизор 25.10): что с золотом каждой ступени — клиент снимает только золотую «ожидающую» строку и объясняет тостом
+    gold: { accepted: outcome.goldAccepted, skipped: outcome.goldSkipped.map((g) => ({ reportId: g.reportId, reason: g.reason })) },
     // PM-280: монеты = руны до PM-069. Клиент кладёт `stars` в свой баланс
     // (как ответы других начислений журнала); null — журнал не трогали.
     coinsGranted: outcome.coins.granted,

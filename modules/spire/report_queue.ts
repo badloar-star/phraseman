@@ -342,6 +342,8 @@ export type SpireFlushResponse = Readonly<{
   reachedAtMs?: number;
   totalMs?: number;
   results?: readonly SpireFlushVerdict[];
+  /** [SPIRE-GOLD] версия правила золотого задания на сервере; нет — сервер старый. */
+  goldRule?: number;
 }>;
 
 function backoffMs(attempts: number): number {

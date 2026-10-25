@@ -81,6 +81,8 @@ async function callSpireReportSteps(payload: Readonly<Record<string, unknown>>):
   const { captureAccountGeneration } = await import('./account_generation');
   const token = captureAccountGeneration();
   const res = await fn(payload);
+  // зачем ([SPIRE-GOLD]): версию правила берём только из принятой пачки — ответ-отказ (spire_not_live) её не несёт и не должен гасить золото
+  if (res.data?.ok === true) void import('./spire/spire_gold_server').then((m) => m.noteSpireGoldServerRule(res.data?.goldRule)).catch((error: unknown) => console.warn(`[SPIRE-GOLD] запомнить правило сервера не удалось: ${error instanceof Error ? error.message : String(error)}`)); // guard-ok: причина сбоя
   // зачем (координатор 18.10, D1 проверки наград моментов): ответ несёт новый баланс (stars/starsSeq) — вливаем его, чтобы «+N» окна ступени
   // сразу был на Главной; поздний ответ (seq не новее) не трогает свежий баланс. Не ждём: очередь и окно от слияния не зависят.
   void import('./spire/spire_flush_wallet')

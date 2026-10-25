@@ -61,15 +61,16 @@ type Props = Readonly<{
   onToggleSave: () => void;
 }>;
 
+// зачем (Переводчик 25.10): «набор» по глоссарию 9 языков (a00f814c8) — es/en pack, pt-BR pacote, id/tr paket; шторку пропустили при общей замене
 const copyFor = (lang: Lang) => triLang(lang, {
   ru: { edit: 'Изменить', saved: 'Сохранено', save: 'Сохранить', del: 'Удалить', speak: 'Озвучить', close: 'Закрыть', toPack: 'В набор', pickPack: 'В какой набор?', noPacks: 'Своих наборов пока нет', createPack: 'Создать набор', flip: 'Перевернуть карточку' },
   uk: { edit: 'Змінити', saved: 'Збережено', save: 'Зберегти', del: 'Видалити', speak: 'Озвучити', close: 'Закрити', toPack: 'До набору', pickPack: 'До якого набору?', noPacks: 'Власних наборів поки немає', createPack: 'Створити набір', flip: 'Перевернути картку' },
   en: { edit: 'Edit', saved: 'Saved', save: 'Save', del: 'Delete', speak: 'Listen', close: 'Close', toPack: 'To a pack', pickPack: 'Which pack?', noPacks: 'You have no packs yet', createPack: 'Create a pack', flip: 'Flip the card' },
-  es: { edit: 'Editar', saved: 'Guardada', save: 'Guardar', del: 'Eliminar', speak: 'Escuchar', close: 'Cerrar', toPack: 'A un set', pickPack: '¿A qué set?', noPacks: 'Aún no tienes sets', createPack: 'Crear un set', flip: 'Girar la tarjeta' },
-  'pt-BR': { edit: 'Editar', saved: 'Salvo', save: 'Salvar', del: 'Excluir', speak: 'Ouvir', close: 'Fechar', toPack: 'Para um conjunto', pickPack: 'Para qual conjunto?', noPacks: 'Você ainda não tem conjuntos', createPack: 'Criar um conjunto', flip: 'Virar o cartão' },
+  es: { edit: 'Editar', saved: 'Guardada', save: 'Guardar', del: 'Eliminar', speak: 'Escuchar', close: 'Cerrar', toPack: 'A un pack', pickPack: '¿A qué pack?', noPacks: 'Aún no tienes packs', createPack: 'Crear un pack', flip: 'Girar la tarjeta' },
+  'pt-BR': { edit: 'Editar', saved: 'Salvo', save: 'Salvar', del: 'Excluir', speak: 'Ouvir', close: 'Fechar', toPack: 'Para um pacote', pickPack: 'Para qual pacote?', noPacks: 'Você ainda não tem pacotes', createPack: 'Criar um pacote', flip: 'Virar o cartão' },
   vi: { edit: 'Sửa', saved: 'Đã lưu', save: 'Lưu', del: 'Xóa', speak: 'Nghe', close: 'Đóng', toPack: 'Vào bộ thẻ', pickPack: 'Vào bộ thẻ nào?', noPacks: 'Bạn chưa có bộ thẻ nào', createPack: 'Tạo bộ thẻ', flip: 'Lật thẻ' },
-  id: { edit: 'Ubah', saved: 'Tersimpan', save: 'Simpan', del: 'Hapus', speak: 'Dengarkan', close: 'Tutup', toPack: 'Ke set', pickPack: 'Ke set mana?', noPacks: 'Belum ada set', createPack: 'Buat set', flip: 'Balik kartu' },
-  tr: { edit: 'Düzenle', saved: 'Kaydedildi', save: 'Kaydet', del: 'Sil', speak: 'Dinle', close: 'Kapat', toPack: 'Sete ekle', pickPack: 'Hangi sete?', noPacks: 'Henüz setin yok', createPack: 'Paket oluştur', flip: 'Kartı çevir' },
+  id: { edit: 'Ubah', saved: 'Tersimpan', save: 'Simpan', del: 'Hapus', speak: 'Dengarkan', close: 'Tutup', toPack: 'Ke paket', pickPack: 'Ke paket mana?', noPacks: 'Belum ada paket', createPack: 'Buat paket', flip: 'Balik kartu' },
+  tr: { edit: 'Düzenle', saved: 'Kaydedildi', save: 'Kaydet', del: 'Sil', speak: 'Dinle', close: 'Kapat', toPack: 'Pakete ekle', pickPack: 'Hangi pakete?', noPacks: 'Henüz paketin yok', createPack: 'Paket oluştur', flip: 'Kartı çevir' },
   pl: { edit: 'Edytuj', saved: 'Zapisano', save: 'Zapisz', del: 'Usuń', speak: 'Posłuchaj', close: 'Zamknij', toPack: 'Do zestawu', pickPack: 'Do którego zestawu?', noPacks: 'Nie masz jeszcze zestawów', createPack: 'Utwórz zestaw', flip: 'Obróć kartę' },
 });
 

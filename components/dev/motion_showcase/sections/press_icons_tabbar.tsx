@@ -23,7 +23,7 @@ import DuoPressable from '../../../DuoPressable';
 import CircularProgress from '../../../CircularProgress';
 import GradientProgressBar from '../../../GradientProgressBar';
 import { GOLD_RICH } from '../../../../constants/goldTheme';
-import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from '../../../homeNotificationBadge';
+import { notificationBadgePaint } from '../../../homeNotificationBadge';
 import { SUITE } from '../../../../constants/motionHybrid';
 import { useReduceMotion } from '../../../../hooks/use_reduce_motion';
 import type { ShowcaseRenderProps, ShowcaseSection } from '../types';
@@ -36,7 +36,8 @@ import { cs } from '../showcase_copy';
  * settle бейджа из scale .6 SUITE.pulse), только на локальном demoUnreadCount.
  */
 function DemoBellBadge({ unreadCount }: { unreadCount: number }) {
-  const { theme: t } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const badge = notificationBadgePaint(liquidGlassThemeId, 'scene');
   const reduceMotion = useReduceMotion();
   const bellDeg = useSharedValue(0);
   const badgeScale = useSharedValue(unreadCount > 0 ? 1 : 0.6);
@@ -66,8 +67,8 @@ function DemoBellBadge({ unreadCount }: { unreadCount: number }) {
         <Ionicons name="notifications-outline" size={30} color={t.accent} />
       </Reanimated.View>
       {unreadCount > 0 ? (
-        <Reanimated.View style={[styles.bellDemoBadge, badgeStyle]}>
-          <Text style={styles.bellDemoBadgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
+        <Reanimated.View style={[styles.bellDemoBadge, { backgroundColor: badge.fill }, badgeStyle]}>
+          <Text style={[styles.bellDemoBadgeText, { color: badge.ink }]}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
         </Reanimated.View>
       ) : null}
     </View>
@@ -453,12 +454,10 @@ const styles = StyleSheet.create({
     height: 18,
     paddingHorizontal: 4,
     borderRadius: 9,
-    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
   },
   bellDemoBadgeText: {
-    color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
     fontSize: 9,
     fontWeight: '900',
   },

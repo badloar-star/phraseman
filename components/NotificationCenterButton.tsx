@@ -9,7 +9,7 @@ import { useLang } from './LangContext';
 import AvatarView from './AvatarView';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
-import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
+import { notificationBadgePaint } from './homeNotificationBadge';
 import AppMessagesInbox from './AppMessagesInbox';
 import {
   claimReportRewardBundle,
@@ -196,7 +196,9 @@ function NotificationCenterButton({
   const v2 = useV2Palette();
   const shadowGlass = useShadowGlass();
   const tones = useMemo(() => notificationTones(shadowGlass), [shadowGlass]);
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  // зачем (решение координатора 25.10, вариант Б): точка «непрочитано» — красный текущей темы, а не постоянный #EF4444
+  const unreadDotFill = notificationBadgePaint(liquidGlassThemeId, 'sheet').fill;
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
   const copy = useMemo(() => ({ ...centerCopy(lang as Lang), ...reportReplyCopy(lang as Lang) }), [lang]);
@@ -629,7 +631,7 @@ function NotificationCenterButton({
         </TouchableOpacity>
         ) : null}
         {!row.read && !markedReadIdsRef.current.has(row.id) ? (
-          <View style={styles.notificationUnreadDot} />
+          <View style={[styles.notificationUnreadDot, { backgroundColor: unreadDotFill }]} />
         ) : null}
       </TouchableOpacity>
     );
@@ -807,11 +809,6 @@ const styles = StyleSheet.create({
     borderRadius: 4.5,
     borderWidth: 1.5, // shadow-ok: кольцо-отбивка точки «непрочитано» от кнопки — индикатор, не контейнер
   },
-  badgeText: {
-    color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
-    fontSize: 13,
-    fontWeight: '700',
-  },
   header: {
     minHeight: 46,
     paddingHorizontal: 4,
@@ -881,7 +878,6 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
   },
   notificationUndo: {
     position: 'absolute',

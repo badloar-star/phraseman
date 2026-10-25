@@ -39,8 +39,9 @@ describe('header accent buttons (vector icons)', () => {
   test('video and messages unread indicators share one notification color token', () => {
     const token = read(path.join('components', 'homeNotificationBadge.ts'));
 
-    expect(token).toContain('HOME_NOTIFICATION_BADGE_COLOR');
-    expect(inboxSource()).toContain('HOME_NOTIFICATION_BADGE_COLOR');
+    // 25.10 (координатор, вариант Б): постоянный #EF4444 заменён краской темы — один источник notificationBadgePaint
+    expect(token).toContain('export function notificationBadgePaint(');
+    expect(inboxSource()).toContain('notificationBadgePaint(liquidGlassThemeId');
   });
 
   test('the home header keeps only the active video and notification entry points', () => {

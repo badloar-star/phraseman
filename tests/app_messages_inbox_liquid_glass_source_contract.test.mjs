@@ -32,7 +32,8 @@ test('AppMessagesInbox keeps public props, behaviors and touch targets', () => {
     'testID="notification-center-team-section"', 'testID="notification-center-team-detail"',
     'testID="team-message-undo"', 'testID="vip-survey-inbox-cta"',
     'consumeVipCelebration', 'setAppMessagePollVote', 'setAppMessageReaction',
-    'VipSurveyModal', 'VipCelebrationModal', 'HOME_NOTIFICATION_BADGE_COLOR', 'accessibilityViewIsModal',
+    // значок «непрочитано» — общий источник краски темы (решение координатора 25.10, вариант Б)
+    'VipSurveyModal', 'VipCelebrationModal', 'notificationBadgePaint(liquidGlassThemeId', 'accessibilityViewIsModal',
   ]) assert.ok(inbox.includes(s), `keeps ${s}`);
   assert.match(inbox, /roundIcon: \{[^}]*width: 44,[^}]*height: 44/, 'close/back button is at least 44dp');
 });

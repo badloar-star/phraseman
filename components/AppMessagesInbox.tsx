@@ -51,7 +51,7 @@ import VipSurveyReviewPromptModal from './VipSurveyReviewPromptModal';
 import { claimVipSurveyReviewPrompt } from '../app/vip_survey_review_prompt';
 import { VIP_SURVEY_ID } from '../app/vip_survey_content';
 import type { SubmitVipSurveyResponse } from '../app/vip_survey';
-import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
+import { notificationBadgePaint } from './homeNotificationBadge';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
 import { RowDivider } from './v2/RowDivider';
@@ -158,6 +158,9 @@ function AppMessagesInbox({
   // из токенов активной темы, зелёный бренд и цветные рамки убраны.
   const { theme, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (решение координатора 25.10, вариант Б): значок и точки «непрочитано» — красный текущей темы, а не постоянный #EF4444
+  const badgeOnScene = notificationBadgePaint(liquidGlassThemeId, 'scene');
+  const badgeOnSheet = notificationBadgePaint(liquidGlassThemeId, 'sheet');
   // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»; координатор → МОМЕНТЫ, зона «Сообщения»): блик и тень
   // летящего конверта — mediaInk 55 % и shadowTint темы (прежде постоянные белый и чёрный с пометкой theme-exempt)
   const envelopeTones = useMemo(() => ({
@@ -713,7 +716,7 @@ function AppMessagesInbox({
                 onPress={() => selectMessage(message)}
                 style={[styles.embeddedRow, { backgroundColor: message.unread ? chrome.cardStrong : chrome.readCard }]}
               >
-                {message.unread ? <View pointerEvents="none" style={styles.embeddedUnreadDot} /> : null}
+                {message.unread ? <View pointerEvents="none" style={[styles.embeddedUnreadDot, { backgroundColor: badgeOnSheet.fill }]} /> : null}
                 <View style={styles.embeddedCopy}>
                   <Text numberOfLines={2} style={[styles.embeddedTitle, { color: message.unread ? chrome.text : chrome.muted }]}>
                     {text.title}
@@ -841,7 +844,7 @@ function AppMessagesInbox({
                 style={[styles.messageRow, messageRead && styles.messageRowRead, { backgroundColor: rowBackgroundColor }]}
               >
                 <RowDivider edge="bottom" color={glass.dividerTone} />{/* разделитель строк — тон темы: в светлом оформлении белая линия была невидима */}
-                {message.unread ? <View pointerEvents="none" style={styles.unreadDot} /> : null}
+                {message.unread ? <View pointerEvents="none" style={[styles.unreadDot, { backgroundColor: badgeOnSheet.fill }]} /> : null}
                 {/* зачем: макет system.html system_17 — сверху строки «Новое»/дата, ниже заголовок и текст */}
                 <View style={styles.messageMetaRow}>
                   {message.kind === 'vip_survey' ? (
@@ -1146,10 +1149,10 @@ function AppMessagesInbox({
         </Animated.View>
         {unreadCount > 0 && (
           <Animated.View
-            style={[styles.badge, { transform: [{ scale: badgePulse }] }]}
+            style={[styles.badge, { backgroundColor: badgeOnScene.fill, transform: [{ scale: badgePulse }] }]}
             accessibilityLabel={`${unreadCount > 99 ? '99+' : unreadCount} ${copy.unread}`}
           >
-            <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
+            <Text style={[styles.badgeText, { color: badgeOnScene.ink }]}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
           </Animated.View>
         )}
       </KitTouchable>
@@ -1342,7 +1345,6 @@ const styles = StyleSheet.create({
     width: 7,
     height: 7,
     borderRadius: 4,
-    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
   },
   undoBar: {
     minHeight: 48,
@@ -1431,12 +1433,10 @@ const styles = StyleSheet.create({
     height: 18,
     paddingHorizontal: 4,
     borderRadius: 9,
-    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
   },
   badgeText: {
-    color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
     fontSize: 13,
     fontWeight: '700',
   },
@@ -1528,7 +1528,6 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
   },
   messageTitle: {
     flex: 1,

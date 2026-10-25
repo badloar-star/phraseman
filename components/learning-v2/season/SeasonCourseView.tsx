@@ -14,6 +14,7 @@ import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { useIsTabPage } from '../../tab_top_bleed';
 import { useTabContentBottomPad } from '../../../hooks/use-tab-content-bottom-pad';
 import V2Pressable from '../../v2/V2Pressable';
+import ScreenBackButton, { SCREEN_BACK_RESERVED, SCREEN_BACK_SIZE, screenBackTop } from '../../v2/ScreenBackButton';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../../constants/i18n';
@@ -110,6 +111,12 @@ export type SeasonCourseViewProps = Readonly<{
   lockShake?: Readonly<{ index: number; seq: number }> | null;
   onWords: () => void;
   onTheory: () => void;
+  /**
+   * Экран открыт поверх вкладок (push /learning-v2/course: плитка «Уроки» и «Продолжить» на Главной, возврат из занятия, диплинк) —
+   * таббара нет, поэтому слева штатная «Назад» (ScreenBackButton: одно место на всё приложение), строка «Урок N» сдвинута вправо.
+   * зачем (владелец 25.10, 2.0.2: «из раздела „Уроки“ невозможно выйти назад!!! нет кнопки назад, нет таббара»).
+   */
+  pushBack?: boolean;
 }>;
 
 function SeasonCourseView(props: SeasonCourseViewProps) {
@@ -216,12 +223,16 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   useEffect(() => () => reportSeasonCoverTop({ mounted: false, atTop: true }), []);
 
   return (
+    <>
     <ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }} showsVerticalScrollIndicator={false} testID="season-course" onScroll={onCoverScroll} scrollEventThrottle={32}>
       <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />
         <LinearGradient colors={[heroArt.glow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: 0.35, y: 0.6 }} style={StyleSheet.absoluteFill} pointerEvents="none" />
         <LinearGradient colors={SCRIM} style={styles.scrim} pointerEvents="none" />
-        <View style={[styles.heroTop, { top: props.topPadding + 8 }]}>
+        <View style={[styles.heroTop, props.pushBack
+          // зачем: строка шапки по центру круга «Назад» (48) и справа от него — не под ним и не на 16 dp ниже
+          ? { top: screenBackTop(topInsets.top) + (SCREEN_BACK_SIZE - HUD_ROW_HEIGHT) / 2, left: SCREEN_BACK_RESERVED }
+          : { top: props.topPadding + 8 }]}>
           <V2Pressable hitSlop={8} accessibilityRole="button" onPress={props.onLessonPicker} style={[styles.pill, dark ? null : { backgroundColor: PILL_ON_LIGHT }]} testID="season-lesson-pill">
             <Text style={styles.pillText}>{seasonText(lang, 'lesson', { n: lessonOrdinal })}</Text>
             <Ionicons name="chevron-down" size={13} color={WHITE} />
@@ -316,6 +327,9 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       </View>
 
     </ScrollView>
+    {/* зачем: «Назад» вне прокрутки — место не уезжает с обложкой (замок владельца 22.10 «назад в одном месте»); цвет круга — по обложке */}
+    {props.pushBack ? <ScreenBackButton screen="season_course_push" fallback="/(tabs)/home" sceneTop={heroArt.from} testID="season-push-back" /> : null}
+    </>
   );
 }
 

@@ -35,7 +35,7 @@ import { useEnergy } from '../../EnergyContext';
 import NoEnergyModal from '../../NoEnergyModal';
 import { usePremium } from '../../PremiumContext';
 import { useTheme } from '../../ThemeContext';
-import { useTabTopBleedInset } from '../../tab_top_bleed';
+import { useIsTabPage, useTabTopBleedInset } from '../../tab_top_bleed';
 import { learningV2ChapterIonIcon } from '../icons/learningV2IonIcons';
 import LearningV2AllLessonsList, { type AllLessonsRow } from '../LearningV2AllLessonsList';
 import type LearningV2ChaptersCourse from '../LearningV2ChaptersCourse';
@@ -69,6 +69,18 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const { isDark } = useTheme();
   // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха; схема eab9aa35d): страница «Уроки» полноэкранная — обложка идёт под часы, шапка отступает на высоту зоны часов
   const bleed = useTabTopBleedInset();
+  // зачем (владелец 25.10, 2.0.2: «из „Уроков“ невозможно выйти назад, нет кнопки назад, нет таббара»): тот же экран живёт и вкладкой (таббар
+  // виден), и push-маршрутом /learning-v2/course поверх вкладок (таббара нет). Старая карта рисовала «Назад» из navigationControl, Сезон —
+  // нет. Решение — по TabPageContext (его ставит только TabSlider): не вкладка → штатная «Назад» в SeasonCourseView.
+  const isTabPage = useIsTabPage();
+  useEffect(() => {
+    let canGoBack: boolean | null = null;
+    try { canGoBack = router.canGoBack(); } catch (error) {
+      console.warn('[LESSONS-NAV] canGoBack не прочитался', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+    }
+    console.log('[LESSONS-NAV] season', JSON.stringify({ isTabPage, route: isTabPage ? 'tab:lessons' : 'push:/learning-v2/course', canGoBack, tabBar: isTabPage ? 'visible' : 'none', back: isTabPage ? 'not_needed(tab_root)' : 'ScreenBackButton', bleed })); // guard-ok: строка на вход и на смену режима
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал режима экрана, router стабилен
+  }, [isTabPage]);
   const canonical = currentLessonOrdinal(props.currentSessionId);
   const [requestedLesson, setRequestedLesson] = useState(() => {
     const choice = pickInitialLessonOrdinal({ remembered: props.preferredLessonOrdinal ?? null, canonical, visibleOrdinals: null });
@@ -343,6 +355,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         topPadding={bleed > 0 ? bleed : (props.topPadding ?? 0)}
         topBleed={bleed}
         avatarSlot={props.headerAccessory}
+        pushBack={!isTabPage}
         bottomPadding={props.bottomPadding}
         reducedMotion={props.reducedMotion}
         onPrimary={onPrimary}

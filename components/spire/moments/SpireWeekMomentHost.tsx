@@ -104,7 +104,7 @@ function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemi
           ) : outcome === 'stayed' ? (
             <MomentStay lang={lang} tier={result.newTier} coinRank={coinRank} place={result.roomRank} weekCoins={result.weekCoins ?? 0} weekSteps={result.rankBy === 'coins' ? undefined : result.steps} gapToTop5={spireWeekGapToTop5(result)} onPlay={handlePlay} />
           ) : (
-            <MomentDown lang={lang} newTier={result.newTier} coinRank={coinRank} onPlay={handlePlay} onRemind={onRemind} />
+            <MomentDown lang={lang} newTier={result.newTier} coinRank={coinRank} weekSteps={result.steps} onPlay={handlePlay} onRemind={onRemind} />
           )}
           {shareFailed ? (
             <Animated.View entering={FadeIn.duration(160)} exiting={FadeOut.duration(200)} pointerEvents="none" style={[s.toast, { backgroundColor: p.card }]} testID={`${testID}-share-failed`}>

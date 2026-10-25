@@ -268,17 +268,26 @@ describe('окна недели Пика: место — ступенями, м�
   });
 });
 
-// зачем (координатор 25.10): спуск из лиги решают ступени — ни один язык не называет критерием монеты.
-describe('спуск из лиги: критерий — ступени на всех языках', () => {
-  it('downBody: «по ступеням» на 9 языках, монеты как критерий не упоминаются', () => {
-    const expected: Readonly<Record<string, string>> = {
-      ru: 'последних по ступеням', uk: 'останніх за сходинками', en: 'bottom five by steps', es: 'últimos por escalones',
-      'pt-BR': 'últimos em degraus', vi: 'cuối theo số bậc', id: 'terbawah menurut anak tangga', tr: 'basamaklarda son beş', pl: 'piątce według stopni',
-    };
-    for (const [lang, part] of Object.entries(expected)) {
-      const text = momentText(lang as Parameters<typeof momentText>[0], 'downBody', { league: 'X' });
-      expect({ lang, hit: text.includes(part) }).toEqual({ lang, hit: true });
-      expect(text).not.toMatch(/by coins|за монетами|por monedas|em moedas|theo xu|menurut koin|jetonlara göre|według monet|по монетам/);
+// зачем (координатор 25.10 + Переводчик 73b9ec696): строка спуска говорит правду в любой комнате — без «пятёрки» и процентов, без монет
+// как критерия; неделя без ступеней — своя строка.
+describe('спуск из лиги: строка без зашитых чисел, своя строка при 0 ступеней', () => {
+  const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+  it('обе строки на 9 языках: {league} подставлен, чисел и монет как критерия нет', () => {
+    for (const lang of LANGS) {
+      for (const key of ['downBody', 'downBodyNoSteps'] as const) {
+        const text = momentText(lang, key, { league: 'X' });
+        expect({ lang, key, league: text.includes('X') }).toEqual({ lang, key, league: true });
+        expect(text).not.toMatch(/\{\w+\}/);
+        expect({ lang, key, digits: /\d/.test(text) }).toEqual({ lang, key, digits: false });
+        expect(text).not.toMatch(/пятёрк|п’ятірк|five|cinco|lima terbawah|son beş|piątce|by coins|por monedas|em moedas|theo xu|menurut koin|jeton|według monet|по монетам|за монетами/);
+      }
     }
+  });
+  it('MomentDown: 0 ступеней — своя строка, иначе нижняя зона; хост передаёт ступени итога', async () => {
+    await render(<MomentDown lang="ru" newTier={0} coinRank={5} weekSteps={0} onPlay={jest.fn()} />);
+    expect(screen.getByText(/Неделя без единой ступени — спускаемся в /)).toBeTruthy();
+    await render(<MomentDown lang="ru" newTier={0} coinRank={5} weekSteps={12} onPlay={jest.fn()} />);
+    expect(screen.getByText(/Неделя в самом низу комнаты — спускаемся в /)).toBeTruthy();
+    expect(read('components/spire/moments/SpireWeekMomentHost.tsx')).toContain('weekSteps={result.steps}');
   });
 });

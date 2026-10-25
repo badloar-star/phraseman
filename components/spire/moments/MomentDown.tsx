@@ -35,6 +35,8 @@ export type MomentDownProps = Readonly<{
   onPlay: () => void;
   /** «Напомнить вечером»: напоминание решает Ядро; нет колбэка (напоминаний ещё нет) — второй кнопки нет. */
   onRemind?: () => void;
+  /** Ступени недели (итог сервера); 0 — спуск за неделю без ступеней, своя строка. Нет — общая строка нижней зоны. */
+  weekSteps?: number;
   /** Сразу в состоянии «после тапа» (монета проснулась, «Новая неделя», «{Лига} · все с 1 этажа.»): финальный кадр эталона для сверки; в бою не передаётся. */
   initialAwake?: boolean;
   testID?: string;
@@ -45,7 +47,7 @@ const COIN_SIZE = 110;
 const TOP_FRACTION = 300 / 844;
 const TAP_RING = 44;
 
-function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = false, testID = 'moment-down' }: MomentDownProps) {
+function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, weekSteps, initialAwake = false, testID = 'moment-down' }: MomentDownProps) {
   const p = useSpirePalette();
   // зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): светлая вуаль «проснулась» и кольцо-подсказка тапа —
   // «чернила поверх картинок» темы (mediaInk / mediaInkSoft), не зашитый белый
@@ -62,7 +64,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
   const wake = useSharedValue(initialAwake ? 1 : 0);
 
   useEffect(() => {
-    if (__DEV__) console.log(`[MOMENT-DOWN] показ новая_лига=${newTier} монета=${String(coinRank)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    if (__DEV__) console.log(`[MOMENT-DOWN] показ новая_лига=${newTier} монета=${String(coinRank)} ступени_недели=${String(weekSteps)} строка=${weekSteps === 0 ? 'без_ступеней' : 'нижняя_зона'} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
     playMomentSound(MOMENT_SOUND_EVENTS.downFog);
     if (!reduceMotion) fog.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
     return () => { cancelAnimation(ring); cancelAnimation(fog); };
@@ -96,7 +98,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
 
   const league = spireTierName(newTier, lang);
   const title = awake ? momentText(lang, 'downWakeTitle') : momentText(lang, 'downTitle', { league });
-  const body = awake ? momentText(lang, 'downWakeBody', { league }) : momentText(lang, 'downBody', { league });
+  const body = awake ? momentText(lang, 'downWakeBody', { league }) : momentText(lang, weekSteps === 0 ? 'downBodyNoSteps' : 'downBody', { league });
 
   return (
     <MomentFullScreen testID={testID}>

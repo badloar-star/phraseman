@@ -52,3 +52,12 @@ Governance-ID: TG-D5300686D388
 - [NAV-TRANSITION] (app/learning-v2/course.tsx): состав стека на входе + события перехода/жеста.
 - Только console.log: в релизе DebugLogger.info/warn молчат, журнал debug_logs_v1 никто не читает. Снимать — «Консоль» на Mac.
 - Окно эпизода и [EPISODE-MODAL] — 2 · ДИЗАЙН (SeasonExpandedCard, season_modal_bounds, season_modal_log).
+
+## Дополнение 25.10 ~11:45: аппаратная «Назад» Android на push-Сезоне (Сверка ❌)
+Governance-ID: TG-D5300686D388
+- Сверка: «Назад» Android на push-Сезоне → POP_TO lessons_list (классика «Обучение A1»), [BACK-BTN] нет. У Сезона не было своего
+  hardwareBackPress (ScreenBackButton вешает его только для ✕) — нативный стек снимал экран, под ним лежал lessons_list.
+- Правка: на push-Сезоне BackHandler → тот же safeRouterBack(router, '/(tabs)/home'), что у «‹», + [BACK-BTN] source=hardware.
+  Подписка один раз при монтировании (не по фокусу): окно эпизода, «Все уроки» и списки глав подписываются позже и первыми забирают
+  «Назад». Обработчик работает только в фокусе экрана.
+- [LESSONS-NAV] season mount: состав стека (кто положил lessons_list под Сезон).

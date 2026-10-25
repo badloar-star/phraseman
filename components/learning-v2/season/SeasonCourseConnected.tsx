@@ -12,10 +12,13 @@
 // Нет в лёгком индексе (не выдумываем): фраза с переводом на карте эпизода, слова эпизода, число и номер задания — карта показывает название занятия.
 // Журнал [SEASON-WIRE]: вход, урок, глава, источник данных, куда ведёт каждое нажатие.
 // ════════════════════════════════════════════════════════════════════════════
-import { useRouter } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { BackHandler, Dimensions, PixelRatio, Platform, StyleSheet, View } from 'react-native';
 
+import { noteBackTap } from '../../../app/back_tap_probe';
+import { HOME_BACK_FALLBACK, safeRouterBack } from '../../../app/navigation_back';
+import { useIsScreenFocused } from '../../../hooks/use_is_screen_focused';
 import { learningV2ChapterExamHrefV1, learningV2PassedChaptersV1 } from '../../../app/learning_v2_chapter_exam_v1';
 import { loadLearningV2ChapterExamRecordsV1, peekLearningV2ChapterExamRecordsV1 } from '../../../app/learning_v2_chapter_exam_store_v1';
 import { pickInitialLessonOrdinal } from '../../../app/learning_v2_last_lesson';
@@ -74,6 +77,15 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   // виден), и push-маршрутом /learning-v2/course поверх вкладок (таббара нет). Старая карта рисовала «Назад» из navigationControl, Сезон —
   // нет. Решение — по TabPageContext (его ставит только TabSlider): не вкладка → штатная «Назад» в SeasonCourseView.
   const isTabPage = useIsTabPage();
+  const navigation = useNavigation();
+  const stackOf = useCallback((): unknown => {
+    try {
+      const st = navigation.getState() as { index?: number; routes?: ReadonlyArray<{ name?: string }> } | undefined;
+      return { index: st?.index ?? null, routes: (st?.routes ?? []).map((r) => r.name ?? '?') };
+    } catch (error) {
+      return { error: error instanceof Error ? error.message : String(error) };
+    }
+  }, [navigation]);
   const { hidden: tabBarHiddenRequested } = useTabBarVisibility();
   // зачем (координатор 25.10, iPhone 2.0.2: окно эпизода у́же и обрезано справа, на Android ровно; «сперва логи»): где корень Сезона стоит
   // в окне и какой ширины — против ширины окна и экрана. Отличие от окна = Сезон сам сдвинут/сужен; совпадение = беда внутри окна эпизода.
@@ -91,7 +103,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     try { canGoBack = router.canGoBack(); } catch (error) {
       console.warn('[LESSONS-NAV] canGoBack не прочитался', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
     }
-    console.log('[LESSONS-NAV] season', JSON.stringify({ isTabPage, route: isTabPage ? 'tab:lessons' : 'push:/learning-v2/course', canGoBack, tabBar: isTabPage ? 'visible' : 'none', back: isTabPage ? 'not_needed(tab_root)' : 'ScreenBackButton', bleed })); // guard-ok: строка на вход и на смену режима
+    console.log('[LESSONS-NAV] season', JSON.stringify({ isTabPage, stack: stackOf(), route: isTabPage ? 'tab:lessons' : 'push:/learning-v2/course', canGoBack, tabBar: isTabPage ? 'visible' : 'none', back: isTabPage ? 'not_needed(tab_root)' : 'ScreenBackButton', bleed })); // guard-ok: строка на вход и на смену режима
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: журнал режима экрана, router стабилен
   }, [isTabPage]);
   const canonical = currentLessonOrdinal(props.currentSessionId);
@@ -333,6 +345,27 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const onLessonPicker = useCallback(() => openLessonsList('lesson_pill'), [openLessonsList]);
   const onAllLessonsButton = useCallback(() => openLessonsList('tile_all_lessons'), [openLessonsList]);
 
+  // зачем (Сверка 25.10 ❌: аппаратная «Назад» Android на push-Сезоне уходила в классический lessons_list под ним, [BACK-BTN] не было):
+  // на push-экране системная «Назад» делает то же, что «‹» (ScreenBackButton → safeRouterBack по истории, запас — Главная). Подписка ОДИН раз
+  // при монтировании, а не по фокусу: окно эпизода, «Все уроки» и списки глав подписываются позже и забирают «Назад» первыми (BackHandler —
+  // последний подписавшийся первый). Не в фокусе (поверх открыт другой экран) — не наш, отдаём дальше.
+  const screenFocused = useIsScreenFocused();
+  const screenFocusedRef = useRef(screenFocused);
+  screenFocusedRef.current = screenFocused;
+  useEffect(() => {
+    if (isTabPage) return undefined;
+    if (typeof BackHandler?.addEventListener !== 'function') return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (!screenFocusedRef.current) {
+        console.log('[BACK-BTN] season_course_push hardware: экран не в фокусе — отдаём дальше'); // guard-ok: ранний выход
+        return false;
+      }
+      noteBackTap('season_course_push', 'hardware_back', { source: 'hardware', isTabPage, stack: stackOf() });
+      safeRouterBack(router, HOME_BACK_FALLBACK);
+      return true;
+    });
+    return () => sub.remove();
+  }, [isTabPage, router, stackOf]);
   // зачем: аппаратная «назад» на списке уроков закрывает список (как кнопка), а не уводит с вкладки
   useEffect(() => {
     if (!allLessonsOpen) return undefined;

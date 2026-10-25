@@ -57,6 +57,18 @@ test('«Все уроки»: каждый выход идёт через closeLe
   assert.doesNotMatch(connected, /onBack=\{\(\) => setAllLessonsOpen\(false\)\}/, 'выход из списка мимо журнала');
 });
 
+test('Android: системная «Назад» на push-Сезоне = «‹» (Сверка 25.10: уходила в классический lessons_list)', () => {
+  const block = connected.slice(connected.indexOf("BackHandler.addEventListener('hardwareBackPress', () => {\n      if (!screenFocusedRef.current)"));
+  assert.ok(block.length > 0, 'подписка push-Сезона на hardwareBackPress есть');
+  assert.match(connected, /if \(isTabPage\) return undefined;\n\s+if \(typeof BackHandler\?\.addEventListener !== 'function'\) return undefined;/, 'только на push, вкладку не трогает');
+  assert.match(block, /noteBackTap\('season_course_push', 'hardware_back', \{ source: 'hardware'/);
+  assert.match(block, /safeRouterBack\(router, HOME_BACK_FALLBACK\);\n\s+return true;/);
+  assert.match(connected, /return false;\n\s+\}\n\s+noteBackTap\('season_course_push'/, 'не в фокусе — отдаёт дальше');
+  // подписка один раз при монтировании, не useFocusEffect: окно эпизода и списки подписываются позже и забирают «Назад» первыми
+  assert.doesNotMatch(connected, /useFocusEffect/);
+  assert.ok(connected.indexOf("noteBackTap('season_course_push'") < connected.indexOf('аппаратная «назад» из «Все уроки»'), 'подписка Сезона объявлена раньше подписки «Все уроки»');
+});
+
 test('журнал [LESSONS-NAV]: режим экрана, canGoBack и чем решён выход', () => {
   assert.match(connected, /\[LESSONS-NAV\] season/);
   assert.match(connected, /back: isTabPage \? 'not_needed\(tab_root\)' : 'ScreenBackButton'/);

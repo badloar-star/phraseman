@@ -840,6 +840,8 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
   if (!row || !LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale)) return null;
   const authoredLocale = FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[input.interfaceLocale];
   const courseSessionId = learningV2CourseSessionIdV1(row.lessonOrdinal, row.sessionOrdinal);
+  // зачем (владелец 25.10 «урок готов до тапа», сперва логи): шаги сборки — чтение JSON из бандла, дочерние тела, хэши
+  const stepAt = { start: Date.now(), intro: 0, learnerRead: 0, learner: 0, children: 0 };
   const rawIntro = record(row.loadIntro());
   const rawPages = rawIntro.pages as unknown[];
   const rawAuxiliary = row.loadAuxiliary?.() ?? null;
@@ -887,7 +889,9 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     pages: introPages,
   });
 
+  stepAt.intro = Date.now();
   const rawLearner = record(row.loadLearner(authoredLocale));
+  stepAt.learnerRead = Date.now();
   const rawInteractions = rawLearner.interactions as unknown[];
   const disabledInteractionIds = input.disabledInteractionIds ?? [];
   const disabledInteractionIdSet = new Set(disabledInteractionIds);
@@ -1015,6 +1019,7 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     ? "voice_heavy" as const
     : interactions.length >= 18 ? "rapid" as const : "standard" as const;
   const learnerChild = materializeLearningV2CourseSessionLearnerChildV1({ courseSessionId, targetLanguage: "en", interactionProfile, interactions });
+  stepAt.learner = Date.now();
 
   const evaluatorEntries: LearningV2CourseSessionEvaluatorCapsuleInputV1[] = [];
   const auxiliaryEntries: LearningV2CourseSessionAuxiliaryEntryV1[] = [];
@@ -1157,6 +1162,10 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
   });
   const evaluatorCapsuleChild = materializeLearningV2CourseSessionEvaluatorCapsuleChildV1({ courseSessionId, entries: evaluatorEntries });
   const auxiliaryChild = materializeLearningV2CourseSessionAuxiliaryChildV1({ courseSessionId, entries: auxiliaryEntries });
+  stepAt.children = Date.now();
+  const deviceSpeechFingerprint = hashCanonicalBody(learnerChild.interactions.map((entry) => ({ interactionId: entry.interactionId, audioTargetIds: entry.audioTargetIds, modePayload: entry.modePayload })));
+  const doneAt = Date.now();
+  console.log(`[V2-PREPARE] factory ${JSON.stringify({ lesson: input.lessonOrdinal, session: input.sessionOrdinal, introMs: stepAt.intro - stepAt.start, learnerReadMs: stepAt.learnerRead - stepAt.intro, learnerBuildMs: stepAt.learner - stepAt.learnerRead, capsulesMs: stepAt.children - stepAt.learner, speechHashMs: doneAt - stepAt.children, interactions: learnerChild.interactions.length })}`); // guard-ok: одна строка на сборку
   return Object.freeze({
     courseSessionId,
     sourceFingerprint: row.sourceFingerprint,
@@ -1170,6 +1179,6 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
       [...cardQueues.entries()].map(([interactionId, encounters]) => [interactionId, Object.freeze(encounters)]),
     )),
     practiceSemanticsByInteractionId: Object.freeze(Object.fromEntries(practiceSemantics)),
-    deviceSpeechFingerprint: hashCanonicalBody(learnerChild.interactions.map((entry) => ({ interactionId: entry.interactionId, audioTargetIds: entry.audioTargetIds, modePayload: entry.modePayload }))),
+    deviceSpeechFingerprint,
   });
 }

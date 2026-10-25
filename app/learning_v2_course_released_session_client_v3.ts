@@ -867,6 +867,8 @@ function bundledSessionMaterial(
     const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
       locator.learnerSourceLocale as LearningV2InterfaceLocale,
     ) ? locator.learnerSourceLocale as LearningV2InterfaceLocale : "ru";
+    // зачем (владелец 25.10 «урок готов до тапа», сперва логи): сборка материала против хэшей ниже — что из них тянет секунды
+    const materializeStartedAt = Date.now();
     const factory = materializeFactoryNativeLearningV2SessionV1({
       lessonOrdinal: locator.lessonOrdinal,
       sessionOrdinal: locator.sessionOrdinal,
@@ -878,6 +880,8 @@ function bundledSessionMaterial(
       console.warn(`[V2-BUNDLED] null step=factory_native_materialize lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} locale=${requestedLocale}`);
       return null;
     }
+    const materializeMs = Date.now() - materializeStartedAt;
+    const hashesStartedAt = Date.now();
     const courseSessionId = factory.courseSessionId;
     const lessonId = learningV2CourseLessonIdV1(locator.lessonOrdinal);
     const releaseId = "factory-native-v1";
@@ -899,6 +903,7 @@ function bundledSessionMaterial(
     const audioFingerprint = hashCanonicalBody({
       delivery: "device_system_tts_only", source: factory.sourceFingerprint,
     });
+    console.log(`[V2-PREPARE] bundled ${JSON.stringify({ lesson: locator.lessonOrdinal, session: locator.sessionOrdinal, locale: requestedLocale, materializeMs, hashesMs: Date.now() - hashesStartedAt })}`); // guard-ok: одна строка на подготовку
     return Object.freeze({
       releaseId, activeRootFingerprint, activeBaseRootFingerprint, activeHeadFingerprint,
       topologyFingerprint: hashCanonicalBody({ lessonId, courseSessionId }),
@@ -1315,6 +1320,8 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
     });
     const handle = Object.freeze({}) as LearningV2CourseSessionReadyHandleV3;
     const readyAtMs = Date.now();
+    // зачем (владелец 25.10 «урок готов до тапа», сперва логи): материал (бандл) против хэшей готовности — где уходят секунды
+    console.log(`[V2-PREPARE] client ${JSON.stringify({ lesson: locator.lessonOrdinal, session: locator.sessionOrdinal, source: result.source, materialMs: materialReadyAtMs - preparationStartedAtMs, readyHashMs: readyAtMs - materialReadyAtMs })}`); // guard-ok: одна строка на подготовку
     readyHandles.add(handle);
     readyMetadata.set(handle, Object.freeze({
       result,

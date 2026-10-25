@@ -87,7 +87,7 @@ export function prepareLearningV2SessionRunV1(
   // дожидается уже идущей работы, а не начинает новую.
   const inflightKey = JSON.stringify([locator.environment, locator.seasonId, locator.studyTarget, locator.learnerSourceLocale, locator.lessonOrdinal, locator.sessionOrdinal]);
   const running = inflightPreparations.get(inflightKey);
-  const operation = running ?? startPreparation(locator, sessionTag);
+  const operation = running ?? startPreparation(locator, sessionTag, inflightKey);
   if (running) {
     console.warn(`${LOG} [R08-PREP] reuse_inflight ${sessionTag}`); // guard-ok: повторный тап ждёт идущую подготовку
   } else {
@@ -98,6 +98,8 @@ export function prepareLearningV2SessionRunV1(
   const timed = new Promise<LearningV2PreparedSessionRunV1>((_, reject) => {
     const timer = setTimeout(() => {
       console.warn(`${LOG} [R08-PREP] timeout ${sessionTag} ms=${LEARNING_V2_PREPARE_TIMEOUT_MS} — подготовка продолжается, повторный тап её подхватит`); // guard-ok: срок с причиной
+      // зачем (владелец 25.10 «урок готов до тапа», сперва логи): на каком шаге стояла подготовка, когда истёк срок
+      console.warn(`[V2-PREPARE] timeout ${sessionTag} step=${preparationSteps.get(inflightKey) ?? 'unknown'} reused=${running ? 'yes' : 'no'}`); // guard-ok: срок с причиной
       reject(new Error(`learning_v2_session_prepare_timeout: lesson-${locator.lessonOrdinal}:session:${locator.sessionOrdinal} ${LEARNING_V2_PREPARE_TIMEOUT_MS}ms`));
     }, LEARNING_V2_PREPARE_TIMEOUT_MS);
     void operation.then(() => clearTimeout(timer), () => clearTimeout(timer));
@@ -106,17 +108,31 @@ export function prepareLearningV2SessionRunV1(
 }
 
 const inflightPreparations = new Map<string, Promise<LearningV2PreparedSessionRunV1>>();
+// зачем (владелец 25.10, сперва логи): шаг, на котором сейчас идущая подготовка, — чтобы срок 12 с назвал место, а не «долго»
+const preparationSteps = new Map<string, 'yield' | 'import' | 'load' | 'done'>();
+/** Подготовка дольше этого — одна critical-запись на процесс с разбивкой по шагам (данные с поля, без uid и текста). */
+const LEARNING_V2_PREPARE_SLOW_REPORT_MS = 4_000;
+let slowPrepareReported = false;
 
-function startPreparation(locator: LearningV2SessionLocatorV1, sessionTag: string): Promise<LearningV2PreparedSessionRunV1> {
+function startPreparation(locator: LearningV2SessionLocatorV1, sessionTag: string, inflightKey: string): Promise<LearningV2PreparedSessionRunV1> {
   const sessionRunId = Crypto.randomUUID();
   // зачем (R08 🔴, Advisor 15.10): import() клиента и сборка материала — цепочка микрозадач; без уступки кадра она стартовала раньше
   // таймеров и rAF и держала JS-поток секундами. Сначала отдаём кадр, затем грузим; время шагов — в [R08-PREP].
   const preparedAt = Date.now();
+  // Разбивка для [V2-PREPARE]: yield = сколько JS-поток был занят до старта; import = модуль клиента; load = сборка материала
+  // (бандл), хэши и дочерние тела — см. [V2-PREPARE] client/bundled и [V2-PREP] materialize.
+  const steps = { yieldMs: -1, importMs: -1, loadMs: -1 };
+  preparationSteps.set(inflightKey, 'yield');
+  const clearStep = () => preparationSteps.delete(inflightKey);
   return new Promise<void>((resolve) => { setTimeout(resolve, 0); })
     .then(() => {
       const importAt = Date.now();
+      steps.yieldMs = importAt - preparedAt;
+      preparationSteps.set(inflightKey, 'import');
       return loadLearningV2SessionClientV3().then((mod) => {
+        steps.importMs = Date.now() - importAt;
         console.log(`${LOG} [R08-PREP] import ${sessionTag} ms=${Date.now() - importAt} cached=${Date.now() - importAt < 5 ? 'yes' : 'no'}`);
+        preparationSteps.set(inflightKey, 'load');
         return mod;
       });
     })
@@ -135,8 +151,23 @@ function startPreparation(locator: LearningV2SessionLocatorV1, sessionTag: strin
       }),
     )
     .then((handle) => {
-      console.log(`${LOG} [R08-PREP] prepare ${sessionTag} total_ms=${Date.now() - preparedAt}`);
+      const totalMs = Date.now() - preparedAt;
+      steps.loadMs = totalMs - steps.yieldMs - steps.importMs;
+      preparationSteps.set(inflightKey, 'done');
+      clearStep();
+      console.log(`${LOG} [R08-PREP] prepare ${sessionTag} total_ms=${totalMs}`);
+      const summary = { session: sessionTag, totalMs, ...steps };
+      console.log(`[V2-PREPARE] done ${JSON.stringify(summary)}`); // guard-ok: одна строка на подготовку
+      if (totalMs > LEARNING_V2_PREPARE_SLOW_REPORT_MS && !slowPrepareReported) {
+        // зачем: с поля цифр нет (старые сборки молчали) — одна запись на процесс, чтобы не тратить записи Firestore
+        slowPrepareReported = true;
+        DebugLogger.error('learning_v2:prepare_slow', new Error(`[V2-PREPARE] ${JSON.stringify(summary)}`), 'critical');
+      }
       return { sessionRunId, handle };
+    }, (error: unknown) => {
+      console.warn(`[V2-PREPARE] failed ${sessionTag} step=${preparationSteps.get(inflightKey) ?? 'unknown'} ms=${Date.now() - preparedAt} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: отказ с шагом
+      clearStep();
+      throw error;
     });
 }
 

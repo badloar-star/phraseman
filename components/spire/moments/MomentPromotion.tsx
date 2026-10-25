@@ -93,6 +93,9 @@ export type MomentPromotionProps = Readonly<{
   testID?: string;
 }>;
 
+/** Через сколько после начала акта 2 собирать акт 3 невидимым: FadeIn акта 2 (420 мс) уже прошёл, до акта 3 ещё ~1,5 с. */
+const PREP3_AFTER_ACT2_MS = 600;
+
 /** Тайминг эталона, мс. */
 /** Зазор между низом башни и нижним блоком, px. */
 const FINAL_TOWER_GAP = 0;
@@ -107,9 +110,9 @@ const TOP5 = 5;
 /** Эталон нарисован на экране 390 × 844: координаты фейерверка масштабируются по ширине. */
 const DESIGN_W = 390;
 
-type Phase = Readonly<{ act: 1 | 2 | 3; zone: boolean; topLine: boolean; cheer: boolean; tower: boolean; marker: boolean; tag: boolean; final: boolean; skip: boolean }>;
-const PHASE_START: Phase = { act: 1, zone: false, topLine: false, cheer: false, tower: false, marker: false, tag: false, final: false, skip: true };
-const PHASE_END: Phase = { act: 3, zone: true, topLine: true, cheer: true, tower: true, marker: true, tag: true, final: true, skip: false };
+type Phase = Readonly<{ act: 1 | 2 | 3; prep3: boolean; zone: boolean; topLine: boolean; cheer: boolean; tower: boolean; marker: boolean; tag: boolean; final: boolean; skip: boolean }>;
+const PHASE_START: Phase = { act: 1, prep3: false, zone: false, topLine: false, cheer: false, tower: false, marker: false, tag: false, final: false, skip: true };
+const PHASE_END: Phase = { act: 3, prep3: true, zone: true, topLine: true, cheer: true, tower: true, marker: true, tag: true, final: true, skip: false };
 
 type RowProps = Readonly<{ row: MomentRoomRow; index: number; place: number; flicker: boolean; rise: boolean; metric?: MomentLadderMetric; onFirstLayout?: (e: LayoutChangeEvent) => void; testID: string }>;
 
@@ -169,6 +172,10 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const rumble = useMomentRumble();
   const zoneTop = useSharedValue(0);
   const towerIn = useSharedValue(reduceMotion ? 1 : 0);
+  // зачем (координатор 26.10, аудит скорости Моментов №1б): башня-SVG акта 3 строилась на 6,2 с — посреди появления акта (FadeIn 420 + towerIn 900),
+  // пик работы JS падал в анимацию. Теперь акт 3 монтируется заранее невидимым (prep3, после того как акт 2 встал), а на 6,2 с только проявляется.
+  const act3In = useSharedValue(reduceMotion ? 1 : 0);
+  const prepAtRef = useRef(0);
   const markerIn = useSharedValue(reduceMotion ? 1 : 0);
   const tagIn = useSharedValue(reduceMotion ? 1 : 0);
   const finalIn = useSharedValue(reduceMotion ? 1 : 0);
@@ -185,9 +192,9 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const jumpToEnd = useCallback((why: 'skip' | 'reduceMotion') => {
     if (__DEV__) console.log(`[MOMENT-PROMO] прыжок к итогу причина=${why}`); // guard-ok: единичный лог пропуска
     clearTimers();
-    towerIn.value = 1; markerIn.value = 1; tagIn.value = 1; finalIn.value = 1;
+    towerIn.value = 1; markerIn.value = 1; tagIn.value = 1; finalIn.value = 1; act3In.value = 1;
     setPhase(PHASE_END);
-  }, [clearTimers, finalIn, markerIn, tagIn, towerIn]);
+  }, [act3In, clearTimers, finalIn, markerIn, tagIn, towerIn]);
 
   useEffect(() => {
     if (__DEV__) console.log(`[MOMENT-PROMO] показ из=${fromTier} в=${toTier} место=${myPlace} строк=${rows?.length ?? 0} лестница=${String(hasLadder)} мера=${metric} ступени_в_строках=${String((rows ?? []).some((r) => typeof r.steps === 'number'))} бонус=${bonusCoins} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
@@ -208,8 +215,12 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
     if (hasLadder) at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zoneTop.value = withTiming((rowH + ROW_GAP) * TOP5 - 3, { duration: ZONE_SWEEP_MS, easing: Easing.out(Easing.cubic) }); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
     if (hasLadder) at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });
     at(T.act2, () => { setPhase((v) => ({ ...v, act: 2, cheer: true })); playMomentSound(MOMENT_SOUND_EVENTS.promoCorrect); void hapticSuccess(); });
+    // акт 2 встал (его FadeIn 420 мс прошёл) — тихо собираем башню акта 3 невидимой
+    at(T.act2 + PREP3_AFTER_ACT2_MS, () => { prepAtRef.current = Date.now(); setPhase((v) => ({ ...v, prep3: true })); });
     at(T.act3, () => {
-      setPhase((v) => ({ ...v, act: 3, tower: true }));
+      if (__DEV__) console.log(`[MOMENT-PROMO] замер: башня акта 3 собрана заранее за ${prepAtRef.current ? Date.now() - prepAtRef.current : 0} мс до показа (раньше — в момент показа)`); // guard-ok: единичный замер
+      setPhase((v) => ({ ...v, act: 3, prep3: true, tower: true }));
+      act3In.value = withTiming(1, { duration: 420 });
       towerIn.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
       void hapticTap();
     });
@@ -242,6 +253,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const k = towerW / SPIRE_TW;
   const mk = spireMarkerXY(SPIRE_TOWER_GEOM.floors[0]);
   const towerStyle = useAnimatedStyle(() => ({ opacity: towerIn.value, transform: [{ translateY: (1 - towerIn.value) * 28 }] }));
+  const act3Style = useAnimatedStyle(() => ({ opacity: act3In.value }));
   const markerStyle = useAnimatedStyle(() => ({ opacity: Math.min(1, markerIn.value * 5), transform: [{ scale: 0.4 + 0.6 * markerIn.value }] }));
   const tagStyle = useAnimatedStyle(() => ({ opacity: tagIn.value }));
   const finalStyle = useAnimatedStyle(() => ({ opacity: finalIn.value, transform: [{ translateY: (1 - finalIn.value) * 18 }] }));
@@ -287,8 +299,14 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
           </Animated.View>
         ) : null}
 
-        {phase.act === 3 ? (
-          <Animated.View key="act3" entering={reduceMotion ? undefined : FadeIn.duration(420)} style={s.act3}>
+        {phase.act === 3 || phase.prep3 ? (
+          <Animated.View
+            key="act3"
+            pointerEvents={phase.act === 3 ? 'box-none' : 'none'}
+            importantForAccessibility={phase.act === 3 ? 'auto' : 'no-hide-descendants'}
+            accessibilityElementsHidden={phase.act !== 3}
+            style={[s.act3, act3Style]}
+          >
             <Animated.View testID={`${testID}-tower`} style={[s.tower, { top: towerTop, width: towerW, left: (winW - towerW) / 2, height: Math.round(SPIRE_TOWER_GEOM.height * k) }, towerStyle]}>
               <SpireTowerSvg lang={lang} myFloor={1} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} illustration />
               <Animated.View style={[s.marker, markerTone, { left: Math.round(mk.x * k - 17), top: Math.round(mk.y * k - 17) }, markerStyle]} testID={`${testID}-marker`}>

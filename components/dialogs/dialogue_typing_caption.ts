@@ -23,16 +23,16 @@ export function dialogueTypingStageFor(elapsedMs: number): DialogueTypingStage {
 export function dialogueTypingCaption(lang: Lang, stage: DialogueTypingStage, personaName: string | null): string | null {
   if (stage === 'slow') {
     return triLang(lang, {
-      ru: 'Отвечает дольше обычного',
+      ru: 'Собеседник задумался…', // зачем (голос PhraseMan, VOICE.md 25.10): живо и по-человечески
       // зачем (переводчик 18.10): как в ru — «он/она отвечает», коротко в одну строку под пузырём
-      uk: 'Відповідає довше, ніж зазвичай',
-      en: 'Taking longer than usual',
-      es: 'Está tardando más de lo normal',
-      'pt-BR': 'Está demorando mais que o normal',
-      vi: 'Trả lời lâu hơn bình thường',
-      id: 'Balasan lebih lama dari biasanya',
-      tr: 'Her zamankinden uzun sürüyor',
-      pl: 'Odpowiada dłużej niż zwykle',
+      uk: 'Співрозмовник замислився…',
+      en: 'Your chat partner is thinking…',
+      es: 'Tu interlocutor está pensando…',
+      'pt-BR': 'Seu interlocutor está pensando…',
+      vi: 'Người đối thoại đang suy nghĩ…',
+      id: 'Lawan bicara sedang berpikir…',
+      tr: 'Muhatabın düşünüyor…',
+      pl: 'Rozmówca się zamyślił…',
     });
   }
   const name = personaName?.trim();

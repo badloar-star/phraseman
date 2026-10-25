@@ -249,16 +249,17 @@ export function getPremiumDialogErrorMessage(
         pl: 'Dialogi są teraz niedostępne.\n\nSpróbuj trochę później.',
       });
     case 'rate_limited':
+      // зачем (голос PhraseMan, VOICE.md 25.10): с улыбкой — человек не виноват, собеседнику нужна пауза
       return triLang(lang, {
-        ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
-        uk: 'Забагато повідомлень поспіль. Почекай трохи і спробуй ще раз.',
-        en: 'Too many messages in a row. Wait a bit and try again.',
-        es: 'Demasiados mensajes seguidos. Espera un poco e inténtalo otra vez.',
-        'pt-BR': 'Muitas mensagens seguidas. Espere um pouco e tente novamente.',
-        vi: 'Bạn gửi quá nhiều tin nhắn liên tiếp. Hãy đợi một chút rồi thử lại.',
-        id: 'Terlalu banyak pesan berturut-turut. Tunggu sebentar lalu coba lagi.',
-        tr: 'Arka arkaya çok fazla mesaj gönderdin. Biraz bekleyip tekrar dene.',
-        pl: 'Za dużo wiadomości z rzędu. Poczekaj chwilę i spróbuj ponownie.',
+        ru: 'Ого, сколько сообщений! Дай собеседнику выдохнуть и попробуй снова.',
+        uk: 'Ого, скільки повідомлень! Дай співрозмовнику видихнути й спробуй знову.',
+        en: 'Whoa, that’s a lot of messages! Give your chat partner a breather and try again.',
+        es: '¡Uf, cuántos mensajes! Deja respirar a tu interlocutor y vuelve a intentarlo.',
+        'pt-BR': 'Nossa, quanta mensagem! Deixe seu interlocutor respirar e tente de novo.',
+        vi: 'Ôi, nhiều tin quá! Để người đối thoại thở chút rồi thử lại nhé.',
+        id: 'Wah, banyak sekali pesannya! Beri lawan bicara jeda napas, lalu coba lagi.',
+        tr: 'Vay, ne çok mesaj! Muhatabına nefes aldır, sonra tekrar dene.',
+        pl: 'Ojej, ile wiadomości! Daj rozmówcy odetchnąć i spróbuj znowu.',
       });
     case 'auth_required':
       return triLang(lang, {

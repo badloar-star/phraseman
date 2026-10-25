@@ -97,14 +97,14 @@ describe('Сцена Диалогов: тексты', () => {
     expect(copyFor('offline').title).toBe('Диалоги недоступны');
     expect(copyFor('offline').kicker).toBe('Продолжить · Общение');
     expect(copyFor('offline').offlineLine?.bold).toBe('Нет сети.');
-    expect(copyFor('limit').title).toBe('Ответы месяца закончились — продолжи с Plus');
+    expect(copyFor('limit').title).toBe('Ответы на этот месяц кончились — дальше с Plus');
     expect(copyFor('limit').prog).toBe('30 из 30 ответов · голосом 3 раза в день');
     expect(copyFor('limit').cta).toBe('Plus снимает лимит');
     expect(copyFor('first').title).toBe('Начни первый разговор');
     expect(copyFor('first').prog).toBe('Поздороваться после знакомства · 6 целей');
     expect(copyFor('low', { quotaRemaining: 3 }).prog).toBe('Осталось 3 ответа в этом месяце');
     expect(copyFor('all_done', { doneCount: 76, totalCount: 76 }).kicker).toBe('76 из 76');
-    expect(copyFor('all_done').title).toBe('Все диалоги пройдены');
+    expect(copyFor('all_done').title).toBe('Все диалоги пройдены!');
     expect(copyFor('day_done').kicker).toBe('«Потренировать диалог» · 1/1');
     expect(copyFor('day_done').prog).toBe('Следующий: Спросить код от двери · с Нико');
     expect(copyFor('next').kicker).toBe('Общение · с Милой');

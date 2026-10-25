@@ -22,12 +22,12 @@ describe('Диалоги 2.0: ожидание ответа ИИ', () => {
     expect(dialogueTypingStageFor(DIALOGUE_TYPING_SLOW_AFTER_MS)).toBe('slow');
     expect(dialogueTypingCaption('ru', 'typing', 'Мила')).toBe('Мила печатает…');
     expect(dialogueTypingCaption('en', 'typing', 'Mila')).toBe('Mila is typing…');
-    expect(dialogueTypingCaption('ru', 'slow', 'Мила')).toBe('Отвечает дольше обычного');
+    expect(dialogueTypingCaption('ru', 'slow', 'Мила')).toBe('Собеседник задумался…');
     expect(dialogueTypingCaption('ru', 'none', 'Мила')).toBeNull();
     // без имени собеседника не подставляем выдуманное — стадия «печатает» молчит, «дольше обычного» говорит
     expect(dialogueTypingCaption('ru', 'typing', null)).toBeNull();
     expect(dialogueTypingCaption('ru', 'typing', '  ')).toBeNull();
-    expect(dialogueTypingCaption('ru', 'slow', null)).toBe('Отвечает дольше обычного');
+    expect(dialogueTypingCaption('ru', 'slow', null)).toBe('Собеседник задумался…');
   });
 
   it('поле ввода доступно, пока ждём ответ; отправка, микрофон и «Завершить» — нет', () => {

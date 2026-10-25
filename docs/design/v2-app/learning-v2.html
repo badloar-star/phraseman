@@ -454,11 +454,11 @@ const cmodal = (inner) => `<div class="cm"><div class="cd modal">${inner}</div><
 const startModal = (o = {}) => mapA({ extra: cmodal(`
   <span class="rb sq t x">${icon('close', 's18')}</span>
   <div class="orb${o.dimOrb ? ' dim' : ''}">${o.plus ? icon('lockF') : o.chk ? li('trophyF') : icon('play')}</div>
-  <div class="ck">СЕССИЯ ${o.n ?? 7} · ГЛАВА ${Math.ceil((o.n ?? 7) / 8)}</div>
+  <div class="ck">ЗАНЯТИЕ ${o.n ?? 7} · ГЛАВА ${Math.ceil((o.n ?? 7) / 8)}</div>
   <div class="ti">${o.title || 'Чему научишься'}</div>
   <div class="ms">${o.msg || 'Ты научишься собирать простые фразы с глаголом to be.'}</div>
   ${o.stars != null ? `<div class="flex" style="justify-content:center;gap:8px;margin-top:16px">${[1, 2, 3].map((i) => li('starF', 's24' + (i <= o.stars ? '' : ' off'))).join('')}<span style="font-size:15px;color:var(--sec);font-weight:600;margin-left:6px">Лучший результат</span></div>` : ''}
-  ${o.noFacts ? '' : `<div class="facts"><div>${li('time')}≈ 5 минут</div><div>${li('book')}${o.words || '4 новых слова'}</div><div>${icon('heart', 's18')}3 попытки</div></div>`}
+  ${o.noFacts ? '' : `<div class="facts"><div>${li('book')}${o.words || '4 новых слова'}</div></div>`}
   <div class="divider" style="margin:18px 0 0"></div>
   <div class="cta t">${o.cta || 'Начать'}<span class="ar">${icon('arrowR', 's20')}</span></div>
   ${o.sec === null ? '<div style="height:14px"></div>' : `<span class="sec2 t">${o.sec || 'Сразу к практике'}</span>`}`) });
@@ -695,9 +695,9 @@ const BLOCKS = [
     col('Легенда состояний узла', mapLegend(), 'map-legend'), col('Первый вход — занятие 1 текущее', mapFirst(), 'map-first'), col('Все уроки — уровни и «Обучение» (старые уроки)', lessonsList(), 'lessons-list'),
     col('Тост «Урок ещё в работе»', mapC().replace('<div class="hi">', `${hintToast('Урок ещё в работе')}<div class="hi">`), 'toast-wip'), col('Тост «Пройди урок 2, чтобы открыть этот»', lessonsList().replace('<div class="hi">', `${hintToast('Пройди урок 2, чтобы открыть этот')}<div class="hi">`), 'toast-locked'),
   ]),
-  block('modals', 'Окна карты — модалка занятия и ранний доступ', 'Модалка перед стартом (`LearningV2SessionOutcomeSheet`): кружок play или кубок, «СЕССИЯ · ГЛАВА», обещание, три факта, «Начать», «Сразу к практике». Founder Pass — LV2-08, уточнить у владельца (D14).', [
-    col('Новое занятие', startModal(), 'modal-start'), col('Пройденное — «Повторить»', startModal({ n: 6, stars: 2, title: 'Что ты поймёшь', msg: 'Занятие пройдено. Можно улучшить результат и собрать больше звёзд.', cta: 'Повторить', sec: null }), 'modal-repeat'),
-    col('Проверка главы', startModal({ n: 8, chk: true, title: 'Глава 1 — проверка', msg: 'Проверим, что закрепилось. Подсказок не будет — разбор в конце.', cta: 'Начать проверку', sec: null }), 'modal-check'),
+  block('modals', 'Окна карты — модалка занятия и ранний доступ', 'Модалка перед стартом (`LearningV2SessionOutcomeSheet`): кружок play или кубок, «ЗАНЯТИЕ · ГЛАВА», «Чему научишься», обещание, факт «новые слова», «Начать», «Сразу к практике». Решения 25.10: плиток «≈ 5 минут» и «3 попытки» нет, заголовок всегда «Чему научишься». Фон — старая карта глав (временно): в приложении окно открывается над «Сезоном». Founder Pass — LV2-08, уточнить у владельца (D14).', [
+    col('Новое занятие', startModal(), 'modal-start'), col('Пройденное — «Повторить»', startModal({ n: 6, stars: 2, title: 'Чему научишься', msg: 'Занятие пройдено. Можно улучшить результат и собрать больше звёзд.', cta: 'Повторить', sec: null }), 'modal-repeat'),
+    col('Проверка главы', startModal({ n: 8, chk: true, title: 'Чему научишься', msg: 'Проверим, что закрепилось. Подсказок не будет — разбор в конце.', cta: 'Начать проверку', sec: null }), 'modal-check'),
     col('Закрытое занятие', startModal({ n: 9, dimOrb: true, title: 'Занятие 9', msg: 'Сначала заверши предыдущее занятие.', cta: 'Закрыть', sec: null, noFacts: true }), 'modal-locked'),
     col('Занятие Plus', startModal({ n: 10, plus: true, dimOrb: true, title: 'Входит в Plus', msg: 'Главы со второй по седьмую открываются с Plus. Первая глава бесплатна.', cta: 'Открыть Plus', sec: 'Закрыть', noFacts: true }), 'modal-plus'),
     col('Ранний доступ — Founder Pass', founder(), 'founder'),

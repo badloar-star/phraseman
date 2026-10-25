@@ -31,6 +31,7 @@ import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
 import { useTabTopBleedInset } from '../../../tab_top_bleed';
+import { noteHomeRender } from '../../../../app/home_scroll_probe';
 
 const LOG = '[HOME-SCENE]';
 /** Верх шапки внутри сцены — под зоной часов (s.top paddingTop). */
@@ -104,6 +105,7 @@ type Props = Readonly<{
 }>;
 
 export default function HomeScene(p: Props) {
+  noteHomeRender('scene'); // [HOME-SCROLL]: счётчик рендеров «Сцены» за окно прокрутки (срочно 25.10, «скролл дёрганый»)
   // зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): страница Главной полноэкранная — сцена от верха экрана
   const topInset = useTabTopBleedInset();
   const offline = useHomeSceneOffline(p.active);

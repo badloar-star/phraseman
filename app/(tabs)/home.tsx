@@ -59,6 +59,7 @@ import HomeSheetTextGuard from '../../components/home/HomeSheetTextGuard';
 import { useHomePollV2 } from '../../hooks/use_home_poll_v2';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
+import { noteHomeRender, noteHomeScrollHop, startHomeScrollWindow } from '../home_scroll_probe';
 import { sameSnapshotSection } from '../home_snapshot_equal';
 import { noteScrollContentHeight, noteScrollDrag, noteScrollEvent, noteScrollOffset } from '../scroll_restore_probe';
 import { useHomeFocusCostBegin, useHomeFocusCostEnd, withHomeChildCost } from '../home_focus_cost_probe';
@@ -623,6 +624,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeVideosVisible = isLearningSurfaceReady(studyTarget, 'videos');
     const homeDailyPhraseVisible = isLearningSurfaceReady(studyTarget, 'daily_phrase');
     const topFadeScroll = useTopFadeScroll();
+    noteHomeRender('home'); // [HOME-SCROLL]: счётчик рендеров Главной за окно прокрутки (срочно 25.10, «скролл дёрганый»)
     // Скролл-реф для приветствия: подвести нужный блок в кадр перед подсветкой.
     const homeScrollRef = useRef<ScrollView | null>(null);
     // зачем: владелец попросил, чтобы сохранённые карточки на главной собирались
@@ -696,6 +698,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     }, []);
     const notifyHomeScrollY = useCallback((y: number) => {
         homeScrollYRef.current = y;
+        noteHomeScrollHop(); // [HOME-SCROLL]: прыжок полосы из UI-потока в JS
         noteScrollOffset('home', y);
         correctHomeScrollAfterLang('scroll_y'); // зачем ([SCROLL-RESTORE] 18.10): рывок положения без пальца вскоре после смены языка или фокуса
         topFadeScroll?.reportTabBarOffset?.(y);
@@ -2814,7 +2817,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           />
         );
         const renderHomeV2 = () => (
-          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); startHomeScrollWindow(); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();
           }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>

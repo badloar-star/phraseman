@@ -33,8 +33,14 @@ describe('светлая строка состояния на тёмных сц�
 
   it('подключено: Главная и Сезон — в оболочке вкладок, «Сегодня» — на своём экране', () => {
     const tabs = readSource('app/(tabs)/_layout.tsx');
-    expect(tabs).toContain("useSceneStatusBar('home', tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0 && homeSceneTint !== null && homeSceneAtTop, 'home_scene_under_clock', homeSceneTint);");
-    expect(tabs).toContain("useSceneStatusBar('season', tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1 && seasonCover.mounted && seasonCover.atTop,");
+    // 25.10 (срочно, «скролл дёрганый»): хуки — в листьях SceneStatusBarControllers, корень оболочки не перерисовывается от прокрутки; в самом корне хуков порога больше нет
+    expect(tabs).toContain('<HomeSceneStatusBarController scrollY={topFadeScroll?.scrollY} enabled={tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0} />');
+    expect(tabs).toContain('<SeasonStatusBarController enabled={tabsFocused && SEASON_SCENE_V2_ENABLED && visualIdx === 1} />');
+    expect(tabs).not.toContain('useAnimatedAtTop(');
+    expect(tabs).not.toContain('useSeasonCoverTop(');
+    const leaves = readSource('components/home/v2/scene/SceneStatusBarControllers.tsx');
+    expect(leaves).toContain("useSceneStatusBar('home', enabled && tint !== null && atTop, 'home_scene_under_clock', tint);");
+    expect(leaves).toContain("useSceneStatusBar('season', enabled && cover.mounted && cover.atTop, 'season_cover_under_clock');");
     const today = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
     expect(today).toContain("useSceneStatusBar('today', focused && sceneAtTop, 'today_scene_under_clock', tokens.sceneTop);");
     expect(today).toContain('onScroll={onSceneScroll} scrollEventThrottle={32}');

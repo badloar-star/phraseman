@@ -72,6 +72,7 @@ import {
 } from "../account_generation";
 import { useAppSnapshotSelector } from "../app_snapshot_store";
 import { getRunesBalanceRead, noteCoinDisplay, peekDisplayedRunes, peekRunes, subscribeDisplayedRunes } from "../runes_system";
+import { useLessonsCoinPillValueV1 } from "../lessons_coin_pill_fallback";
 import { getStableId, peekStableId } from "../stable_id";
 import { projectDevLessonAccess } from "../dev_plus_controls";
 import { useTabFocusTick, useTabNav } from "../TabContext";
@@ -2637,12 +2638,15 @@ export default function LessonsTab({
   );
   const legacyCoinRank = legacyCoinProjectionTrusted ? legacyCoinRankBinding?.rank ?? null : null;
   const legacyCoinBalance = legacyCoinProjectionTrusted ? legacyCoinBalanceBinding?.balance ?? null : null;
+  // зачем (Сверка 25.10, холодный старт «—»): до подтверждения пилюля показывает последнее число общего показа Ядра, без пустого кадра
+  const coinPill = useLessonsCoinPillValueV1(legacyCoinBalance);
   // зачем (координатор 15.10, «Обучение» 0 при Главной 53): что показывает плашка и почему — привязка баланса, ранга и их совпадение
   useEffect(() => {
     console.log('[COIN-PILL]', JSON.stringify({
       screen: 'lessons',
       source: legacyCoinBalanceBinding ? 'wallet_cache' : 'none',
-      shown: legacyCoinBalance ?? '—',
+      shown: coinPill.value ?? '—',
+      pillSource: coinPill.source,
       value: legacyCoinBalanceBinding?.balance ?? null,
       snapshotValue: peekRunes(),
       displayedValue: peekDisplayedRunes(),
@@ -2654,7 +2658,7 @@ export default function LessonsTab({
       balanceGeneration: legacyCoinBalanceBinding?.accountGeneration ?? null,
     })); // guard-ok: временная трассировка
     if (legacyCoinBalance !== null) noteCoinDisplay('lessons', legacyCoinBalance);
-  }, [legacyCoinBalance, legacyCoinBalanceBinding, legacyCoinProjectionTrusted, legacyCoinRankBinding]);
+  }, [coinPill.source, coinPill.value, legacyCoinBalance, legacyCoinBalanceBinding, legacyCoinProjectionTrusted, legacyCoinRankBinding]);
   // зачем (Ревизор 3.120): монета 20 dp в шапке — копия 96² вместо исходника 768².
   const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)
     ? coinRankDisplaySource(legacyCoinRank, 20)
@@ -4803,15 +4807,15 @@ export default function LessonsTab({
       <PressableHybrid
         testID="legacy-lessons-liquid-resource"
         accessibilityLabel={triLang(lang, {
-          ru: `Монеты: ${legacyCoinBalance ?? "не загружены"}`,
-          en: `Coins: ${legacyCoinBalance ?? "not loaded"}`,
-          uk: `Монети: ${legacyCoinBalance ?? "не завантажені"}`,
-          es: `Monedas: ${legacyCoinBalance ?? "sin cargar"}`,
-          "pt-BR": `Moedas: ${legacyCoinBalance ?? "não carregadas"}`,
-          vi: `Xu: ${legacyCoinBalance ?? "chưa tải"}`,
-          id: `Koin: ${legacyCoinBalance ?? "belum dimuat"}`,
-          tr: `Jetonlar: ${legacyCoinBalance ?? "yüklenmedi"}`,
-          pl: `Monety: ${legacyCoinBalance ?? "nie wczytano"}`,
+          ru: `Монеты: ${coinPill.value ?? "не загружены"}`,
+          en: `Coins: ${coinPill.value ?? "not loaded"}`,
+          uk: `Монети: ${coinPill.value ?? "не завантажені"}`,
+          es: `Monedas: ${coinPill.value ?? "sin cargar"}`,
+          "pt-BR": `Moedas: ${coinPill.value ?? "não carregadas"}`,
+          vi: `Xu: ${coinPill.value ?? "chưa tải"}`,
+          id: `Koin: ${coinPill.value ?? "belum dimuat"}`,
+          tr: `Jetonlar: ${coinPill.value ?? "yüklenmedi"}`,
+          pl: `Monety: ${coinPill.value ?? "nie wczytano"}`,
         })}
         onPress={() => {
           hapticTap();
@@ -4866,7 +4870,7 @@ export default function LessonsTab({
           maxFontSizeMultiplier={1.2}
           style={{ color: learnGlass.text, fontSize: 16, fontWeight: "700", fontVariant: ["tabular-nums"] }}
         >
-          {legacyCoinBalance === null ? "—" : String(legacyCoinBalance)}
+          {coinPill.value === null ? "—" : String(coinPill.value)}
         </Text>
       </PressableHybrid>
       {legacyEnergyReady ? (

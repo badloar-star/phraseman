@@ -335,6 +335,23 @@ export async function runDisplayedRunesBatch<T>(label: string, work: () => Promi
   }
 }
 
+// ─── сироты среди ожидающих (Сверка 25.10): строка без отчёта в очереди Пика снимается (app/spire/spire_pending_orphans.ts) ───
+// Только диск телефона, без сети; не чаще раза в минуту — на старте и после изменений кошелька (в т.ч. восстановления недели).
+const ORPHAN_RECONCILE_MIN_INTERVAL_MS = 60_000;
+let lastOrphanReconcileAtMs = 0;
+function scheduleOrphanReconcile(trigger: string): void {
+  const owner = captureAccountGeneration().stableId?.trim();
+  if (!owner || pendingCoins().spirePendingCoinsTotal(owner) <= 0) return;
+  const now = Date.now();
+  if (trigger !== 'start' && now - lastOrphanReconcileAtMs < ORPHAN_RECONCILE_MIN_INTERVAL_MS) return;
+  lastOrphanReconcileAtMs = now;
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { reconcileSpirePendingOrphans } = require('./spire/spire_pending_orphans') as typeof import('./spire/spire_pending_orphans');
+  void reconcileSpirePendingOrphans(owner, trigger).catch((error: unknown) => {
+    console.warn('[COIN-DIVERGENCE] orphan_reconcile_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch с причиной
+  });
+}
+
 /** Подписка на показ монет: меняется и кошелёк, и ожидающие. Рост кошелька гасит ожидающие, которые в нём уже есть. */
 export function subscribeDisplayedRunes(listener: (value: number) => void): () => void {
   const pending = pendingCoins();
@@ -345,10 +362,12 @@ export function subscribeDisplayedRunes(listener: (value: number) => void): () =
   };
   displayEmitters.add(deliver);
   const owner = captureAccountGeneration().stableId?.trim();
-  if (owner) void pending.hydrateSpirePendingCoins(owner).then(emit);
+  if (owner) void pending.hydrateSpirePendingCoins(owner).then(() => { emit(); scheduleOrphanReconcile('start'); });
   const offWallet = subscribeRunesSnapshot((next) => {
     pending.settleSpirePendingByBalance(captureAccountGeneration().stableId?.trim(), next.balance);
     emit();
+    // зачем (Сверка 25.10): снимок меняется и после восстановления ключа недели из облака — заодно сверяем ожидающие с очередью
+    scheduleOrphanReconcile('snapshot');
   });
   const offPending = pending.subscribeSpirePendingCoins(emit);
   return () => { displayEmitters.delete(deliver); offWallet(); offPending(); };

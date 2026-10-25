@@ -178,6 +178,11 @@ export function settleSpirePendingByBalance(owner: string | null | undefined, ba
   publish(owner, list.filter((e) => !settled.has(e.reportId)));
 }
 
+/** Строки ожидающих владельца как есть (только чтение) — для сверки с живой очередью отчётов (spire_pending_orphans.ts). */
+export function peekSpirePendingEntries(owner: string | null | undefined): readonly SpirePendingEntry[] {
+  return owner ? memory.get(owner) ?? [] : [];
+}
+
 /** Σ ожидающих владельца (для показа на Главной). */
 export function spirePendingCoinsTotal(owner: string | null | undefined, nowMs: number = Date.now()): number {
   if (!owner) return 0;

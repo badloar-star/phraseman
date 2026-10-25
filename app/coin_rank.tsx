@@ -15,7 +15,7 @@ import { coinRankRowForDisplay, coinRankTitle } from './coin_rank_table_v1';
 import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
-import { getRunesBalanceRead, peekRunes } from './runes_system';
+import { getRunesBalanceRead, peekDisplayedRunes, peekRunes, subscribeDisplayedRunes } from './runes_system';
 import { getDevCoinBalanceOverride } from './dev_coin_rank';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useLang } from '../components/LangContext';
@@ -168,6 +168,12 @@ export default function CoinRankScreen() {
   // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
   const g = liquidGlassTokens(liquidGlassThemeId);
   const { balance, ownerKey, forceBalanceReconcile } = useCoinBalance();
+  // зачем (Сверка 25.10, 🔴 по b6e2837f4): экран показывал тратимый кошелёк (690) и гасил кнопку заранее, хотя везде 1140 и покупка
+  // умеет дослать монеты Пика (purchaseWithSpendGap в upgradeCoinRank). Баланс экрана и доступность кнопки — по единому показу;
+  // серая кнопка — только когда цена больше показанного. Неизвестный баланс (null) остаётся «—».
+  const [displayedCoins, setDisplayedCoins] = useState(() => peekDisplayedRunes());
+  useEffect(() => subscribeDisplayedRunes(setDisplayedCoins), []);
+  const shownBalance = balance === null ? null : Math.max(balance, displayedCoins);
   const {
     rankBinding,
     rank,
@@ -185,7 +191,7 @@ export default function CoinRankScreen() {
   const current = rank === null ? null : coinRankRowForDisplay(rank);
   const canUpgrade = isCoinRankUpgradeEligible({
     rank,
-    balance,
+    balance: shownBalance,
     nextPrice: next?.priceToReach ?? null,
     upgrading,
     balanceReconciling: balanceReconciling || reconciliationBlockedRef.current,
@@ -271,7 +277,7 @@ export default function CoinRankScreen() {
       DebugLogger.info('[COIN-RANK-UPGRADE]', `экран: тап отклонён — привязка ранга не текущая bindingGen=${String(rankBinding.accountGeneration)} gen=${String(generation.generation)} ownerMatch=${String(rankBinding.ownerStableId === generation.stableId)} phase=${String(generation.phase)}`);
       return;
     }
-    DebugLogger.info('[COIN-RANK-UPGRADE]', `экран: тап принят rank=${String(rank)} balance=${String(balance)} → хук upgrade()`);
+    DebugLogger.info('[COIN-RANK-UPGRADE]', `экран: тап принят rank=${String(rank)} balance=${String(balance)} shown=${String(shownBalance)} → хук upgrade()`);
     const result = await upgrade();
     if (!operationStillCurrent()) return;
     if (result.ok) {
@@ -323,7 +329,7 @@ export default function CoinRankScreen() {
   }, [balance, balanceReconciling, canUpgrade, forceBalanceReconcile, next, rank, rankBinding, showToast, upgrade, upgrading]);
 
   const goBack = useCallback(() => safeRouterBack(router), [router]);
-  const missing = balance !== null && next ? Math.max(0, next.priceToReach - balance) : null;
+  const missing = shownBalance !== null && next ? Math.max(0, next.priceToReach - shownBalance) : null;
   const pending = upgrading || balanceReconciling;
   // зачем: макет PAY-01 «недостаточно монет» — только когда баланс известен и реально меньше цены.
   const short = !pending && missing !== null && missing > 0;
@@ -436,7 +442,7 @@ export default function CoinRankScreen() {
               {/* зачем (сверка coins-005, coins.html `.flex > .grow + .value`): подпись растягивается, значение прижато к правому краю */}
               <Text style={[styles.costTitle, styles.costTitleGrow, { color: p.text }]}>{copy.balance}</Text>
               <Text testID="coin-rank-balance" style={[styles.balanceValue, { color: p.textSecondary }]}>
-                {balance === null ? '—' : formatCoins(balance, lang)}
+                {shownBalance === null ? '—' : formatCoins(shownBalance, lang)}
               </Text>
             </View>
           </View>

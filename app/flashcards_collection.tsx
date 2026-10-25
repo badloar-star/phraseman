@@ -130,6 +130,7 @@ import {
 import { DebugLogger } from './debug-logger';
 import { captureAccountGeneration } from './account_generation';
 import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
+import { peekDisplayedRunes } from './runes_system';
 import { buyCommunityPackLocally } from './community_packs/packPurchase';
 import { packPurchaseGate } from './community_packs/packPurchaseGate';
 import { syncPendingPackSales } from './community_packs/packSaleSync';
@@ -276,8 +277,12 @@ export default function FlashcardsScreen() {
     // при следующем заходе автор не получил бы руны НИКОГДА. Момент выбран
     // намеренно: шит покупки, а не старт экрана — холодный старт не трогаем.
     void syncPendingPackSales(captureAccountGeneration());
+    // зачем (Сверка 25.10, 🔴 по b6e2837f4): шторка решала «не хватает» по кошельку без монет Пика, хотя везде показано
+    // больше, а покупка (buyCommunityPackLocally → purchaseWithSpendGap) их досылает сама. Решаем по единому показу;
+    // сразу из памяти — без кадра «не хватает» до чтения.
+    setRuneBalance(peekDisplayedRunes());
     void readUnifiedLevelSpinStars(captureAccountGeneration()).then(({ balance }) => {
-      if (!cancelled) setRuneBalance(balance);
+      if (!cancelled) setRuneBalance(Math.max(balance, peekDisplayedRunes()));
     }).catch((error: unknown) => {
       // Немой catch запрещён: баланс 0 при живых рунах показал бы «не хватает».
       DebugLogger.error(

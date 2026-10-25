@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { captureAccountGeneration } from '../../app/account_generation';
 import { DebugLogger } from '../../app/debug-logger';
+import { peekDisplayedRunes, subscribeDisplayedRunes } from '../../app/runes_system';
 import type { ProfileCardProStyle } from '../../app/profile_card_styles';
 import type { Lang } from '../../constants/i18n';
 import {
@@ -40,7 +41,12 @@ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
   // Тип задан через as: иначе TypeScript сузил бы константу до null, и чтение полей церемонии ниже не прошло бы проверку.
   const ceremony = null as CoinRankCeremony | null;
   const dismissCeremony = useCallback(() => undefined, []);
-  const { balance, forceBalanceReconcile } = useCoinBalance();
+  const { balance: walletBalance, forceBalanceReconcile } = useCoinBalance();
+  // зачем (Сверка 25.10, 🔴 по b6e2837f4): кнопка «Повысить ранг» гасла по тратимому кошельку, хотя везде показано больше
+  // (кошелёк + монеты Пика), а трата на экране coin_rank досылает их сама. Доступность и «не хватает» — по единому показу.
+  const [displayedCoins, setDisplayedCoins] = useState(() => peekDisplayedRunes());
+  useEffect(() => subscribeDisplayedRunes(setDisplayedCoins), []);
+  const balance = walletBalance === null ? null : Math.max(walletBalance, displayedCoins);
   const myCard = useMyProfileCard(isMe);
   const [sheet, setSheet] = useState<SheetKind>('none');
   const [proBusy, setProBusy] = useState(false);
@@ -71,9 +77,9 @@ export function useSelfProfileCard(isMe: boolean, lang: Lang, toast: Toast) {
   /** Повышение ранга с визитки — только навигация на экран подтверждения; см. комментарий выше. */
   const describeRankUpgradeTap = useCallback(() => {
     DebugLogger.info(LOG, `повышение: открываем экран подтверждения ${JSON.stringify({
-      rank: rankBinding?.rank ?? null, balance, eligible, nextPrice: next?.priceToReach ?? null,
+      rank: rankBinding?.rank ?? null, balance, wallet: walletBalance, eligible, nextPrice: next?.priceToReach ?? null,
     })}`);
-  }, [balance, eligible, next, rankBinding]);
+  }, [balance, eligible, next, rankBinding, walletBalance]);
 
   const handleProConfirm = useCallback(async (style: ProfileCardProStyle) => {
     if (proBusy) {

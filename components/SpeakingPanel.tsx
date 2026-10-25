@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { devSpeechTranscriptFor, getDevSpeechMode, type DevSpeechMode } from '../app/dev_cards_state';
 import { DebugLogger } from '../app/debug-logger';
+import { speakingNoSpeechKindOf, speakingNoSpeechText, type SpeakingNoSpeechKind } from './speaking_no_speech_copy';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
@@ -131,11 +132,13 @@ function micTrace(step: string, data?: Record<string, unknown>): void {
 // доходит. Исход «не расслышал» на пути удержания уходит в прод-журнал сбоев — один раз на причину за процесс (Firebase-экономия),
 // с числами: сколько держали, когда пришёл первый звук, сколько думал судья, слов в фразе и услышано. Текста речи нет.
 const reportedNoSpeechReasons = new Set<string>();
-function reportHoldNoSpeech(reason: string, data: Record<string, unknown>): void {
-  micTrace('hold:no_speech', { reason, ...data });
-  if (reportedNoSpeechReasons.has(reason)) return;
+function reportHoldNoSpeech(reason: string, data: Record<string, unknown>): SpeakingNoSpeechKind {
+  const kind = speakingNoSpeechKindOf(reason);
+  micTrace('hold:no_speech', { reason, kind, ...data });
+  if (reportedNoSpeechReasons.has(reason)) return kind;
   reportedNoSpeechReasons.add(reason);
   DebugLogger.error(`speak_mic:no_speech_${reason}`, new Error(`${reason} ${JSON.stringify(data).slice(0, 300)}`), 'critical');
+  return kind;
 }
 function errorText(e: unknown): string {
   return e instanceof Error ? `${e.name}: ${e.message}` : String(e);
@@ -396,6 +399,10 @@ export function SpeakingPanel({
   const [status, setStatus] = useState<SpeakingPanelStatus>('idle');
   const statusRef = useRef<SpeakingPanelStatus>('idle');
   statusRef.current = status;
+  // зачем (жалоба №4, решение координатора 25.10): «не расслышал» говорит причину — короткое нажатие, длинная фраза, модель
+  // не готова или слова не разобраны; вне этого статуса причина сбрасывается к «не разобрал слова»
+  const [noSpeechKind, setNoSpeechKind] = useState<SpeakingNoSpeechKind>('empty');
+  useEffect(() => { if (status !== 'no_speech') setNoSpeechKind('empty'); }, [status]);
   // зачем: dead-end statuses (no_speech/stalled/denied/unavailable) have no
   // in-panel recovery UI in presentation="inline" — the host needs a signal
   // to unblock its own transport (e.g. "Skip") instead of trapping the user.
@@ -1720,7 +1727,7 @@ export function SpeakingPanel({
     const holdMs = holdStartedAtRef.current ? stopAt - holdStartedAtRef.current : null;
     if (!wavUri) {
       // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
-      reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs: holdFirstAudioMsRef.current, platform: Platform.OS });
+      setNoSpeechKind(reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs: holdFirstAudioMsRef.current, platform: Platform.OS }));
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
@@ -1746,7 +1753,7 @@ export function SpeakingPanel({
     const text = (verdict?.transcript ?? '').trim();
     if (!text) {
       const judgeReason = verdict ? 'empty_transcript' : lastNeuralJudgeNullReasonV1()?.reason ?? 'no_verdict';
-      reportHoldNoSpeech(judgeReason, { holdMs, firstAudioMs: holdFirstAudioMsRef.current, judgeMs: Date.now() - judgeAt, targetWords: targetText.trim().split(/\s+/u).filter(Boolean).length, platform: Platform.OS });
+      setNoSpeechKind(reportHoldNoSpeech(judgeReason, { holdMs, firstAudioMs: holdFirstAudioMsRef.current, judgeMs: Date.now() - judgeAt, targetWords: targetText.trim().split(/\s+/u).filter(Boolean).length, platform: Platform.OS }));
       setStatus('no_speech'); playNoSpeech();
       hapticError();
       return;
@@ -2368,16 +2375,8 @@ export function SpeakingPanel({
       case 'failed':
         return L(lang, { ru: 'Почти. Попробуй ещё раз', uk: 'Майже. Спробуй ще раз', es: 'Casi. Inténtalo otra vez', en: 'Almost. Try again', 'pt-BR': 'Quase. Tente de novo', vi: 'Gần đúng rồi. Thử lại nhé', id: 'Hampir. Coba lagi', tr: 'Neredeyse. Bir daha dene', pl: 'Prawie. Spróbuj jeszcze raz' });
       case 'no_speech':
-        return L(lang, {
-          ru: 'Не расслышал. Скажи чуть громче',
-          uk: 'Не розчув. Скажи трохи гучніше',
-          es: 'No te oí. Habla un poco más alto', en: 'Didn\'t catch that. Speak a little louder',
-          'pt-BR': 'Não ouvi bem. Fale um pouco mais alto',
-          vi: 'Không nghe rõ. Hãy nói to hơn một chút',
-          id: 'Tidak terdengar. Ucapkan sedikit lebih keras',
-          tr: 'Duyamadım. Biraz daha yüksek sesle söyle',
-          pl: 'Nie dosłyszałem. Powiedz trochę głośniej',
-        });
+        // зачем (жалоба №4): честная подпись по причине вместо общего «скажи громче»
+        return speakingNoSpeechText(lang, noSpeechKind);
       case 'denied':
         return L(lang, {
           ru: 'Нужен доступ к микрофону',

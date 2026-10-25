@@ -19,7 +19,7 @@ describe('жалоба №4: причина «не расслышал» видн
   });
 
   it('панель: «не расслышал» на пути удержания — с причиной судьи и числами; в прод-журнал один раз на причину', () => {
-    expect(panel).toMatch(/if \(reportedNoSpeechReasons\.has\(reason\)\) return;\s*reportedNoSpeechReasons\.add\(reason\);/);
+    expect(panel).toMatch(/if \(reportedNoSpeechReasons\.has\(reason\)\) return kind;\s*reportedNoSpeechReasons\.add\(reason\);/);
     expect(panel).toContain("DebugLogger.error(`speak_mic:no_speech_${reason}`");
     expect(panel).toContain("reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs");
     expect(panel).toContain("lastNeuralJudgeNullReasonV1()?.reason ?? 'no_verdict'");

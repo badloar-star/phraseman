@@ -68,8 +68,10 @@ export const LearningV2GoalBlock = memo(function LearningV2GoalBlock({ kicker, v
 });
 
 /** Карточка «фраза + перевод» (`.say`): фраза крупно со звуком, перевод под ней; тело карточки — плита темы с тенью. */
-export const LearningV2SayCard = memo(function LearningV2SayCard({ primary, secondary, trailing, kicker = null, chips, testID = 'learning-v2-task-say' }: Readonly<{
+export const LearningV2SayCard = memo(function LearningV2SayCard({ primary, secondary, trailing, kicker = null, chips, colorRoles = false, testID = 'learning-v2-task-say' }: Readonly<{
   primary: string;
+  /** Цвета ролей в крупной фразе (владелец 25.10, «МАКСИМУМ И ПОДЛОЖКА»): частица — цвет темы на мягкой подложке. Только вступление «Скажи так»; в заданиях («Проверь себя») — нет. */
+  colorRoles?: boolean;
   secondary: string | null;
   trailing?: React.ReactNode;
   /** Подпись сверху («Скажи так») — у интро. */
@@ -84,7 +86,7 @@ export const LearningV2SayCard = memo(function LearningV2SayCard({ primary, seco
     <View testID={testID} style={[s.say, lv2TaskPlateStyle(g)]}>
       {kicker ? <Text style={[s.sayKicker, { color: g.secondary }]}>{kicker}</Text> : null}
       <View style={s.sayRow}>
-        <Text style={[s.sayPrimary, { color: g.text }]}>{primary}</Text>
+        <Text style={[s.sayPrimary, { color: g.text }]}>{colorRoles ? <IntroRoleText text={primary} glass={g} /> : primary}</Text>
         {trailing ?? null}
       </View>
       {secondary ? <Text style={[s.saySecondary, { color: g.secondary }]}>{secondary}</Text> : null}

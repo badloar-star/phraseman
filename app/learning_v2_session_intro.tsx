@@ -330,9 +330,10 @@ function IntroAnswerShake({
 }
 
 /** «Почему» под карточкой «Скажи так» (`.why`): одна строка 16/22 по центру. */
-function IntroWhy({ text, color }: Readonly<{ text: string; color: string }>) {
+function IntroWhy({ text, color, glass }: Readonly<{ text: string; color: string; glass: Lv2Glass }>) {
   const sx = useScaledTextStyles(styles);
-  return <Text testID="learning-v2-intro-why" style={[sx.why, { color }]}>{text}</Text>;
+  // зачем (владелец 25.10, «МАКСИМУМ И ПОДЛОЖКА», настоящие снимки c23f09e24): строка-пояснение под «Скажи так» раньше шла одним цветом пояснения — теперь английские слова жирные основным цветом, частицы цветом темы на мягкой подложке, русский как есть
+  return <Text testID="learning-v2-intro-why" style={[sx.why, { color }]}><IntroRoleText text={text} glass={glass} /></Text>;
 }
 
 export default function LearningV2SessionIntro({
@@ -726,11 +727,12 @@ export default function LearningV2SessionIntro({
                     <LearningV2SayCard
                       kicker={learningV2TaskBodyCopy(lang, "sayThis")}
                       primary={sayParts.phrase.text}
+                      colorRoles
                       secondary={sayParts.phrase.meaning}
                       chips={sayParts.parts}
                     />
                   ) : null}
-                  {sayParts.why ? <IntroWhy text={sayParts.why} color={g.secondary} /> : null}
+                  {sayParts.why ? <IntroWhy text={sayParts.why} color={g.secondary} glass={g} /> : null}
                 </View>
               ) : (
               <View onLayout={logIntroLayout('card')} style={[sx.knowledgeFlow, lv2CardStyle(g)]}>

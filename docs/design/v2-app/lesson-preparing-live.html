@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Готовим занятие — живой макет</title>
+<style>
+/* ───────── PhraseMan 2.0.3 · «Готовим занятие…» — живой макет (координатор 25.10) ─────────
+   зачем: редкий случай — человек нажал «Продолжить» на Главной, а занятие ещё собирается (до 12 с, LEARNING_V2_PREPARE_TIMEOUT_MS).
+   Сейчас в коде (launchHomeContinueV2 + HomeSceneStage): кнопка только тускнеет до 72 %, без слов и без хода; при отказе подготовки
+   Главная уводит на карту курса. Предложение: тап → кнопка сразу отвечает (нажатие 0.97, лёгкая вибрация — это управляющая кнопка),
+   на месте значка ▶ — кольцо хода, подпись «Готовим занятие…», внутри кнопки мягкая заливка хода; через ~6 с под кнопкой строка
+   «Ещё готовится…» в самой кнопке; готово — заливка дотягивается и занятие въезжает справа. Не успело за 12 с — кнопка возвращается,
+   внизу подсказка, Главная остаётся на месте (следующий тап подхватит ту же подготовку). Спиннера на весь экран нет, остальная
+   Главная живая. Вечного вращения нет: кольцо — ход подготовки, а не крутилка.
+   Основа 1:1: сцена Главной (HomeSceneStage: кикер 13, заголовок 30/36, полоса 72×4, кнопка ≥50 радиус 25 белая с тёмным текстом),
+   эталон scenes-compact.html; первая страница занятия — эталон learning-v2.html (вступление, «СМЫСЛ 1/3»).
+   Цвета: homeSceneTokensForTheme + liquidGlassTokens (ink светлая / marine тёмная, max). Верх цельный — сцена идёт под часы.
+   Тайминги — emil-design-eng: ease-out (0.23,1,0.32,1), смена подписи 160 мс с размытием 2px, переход экрана 320 мс (0.32,0.72,0,1). */
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+html, body { margin: 0; background: #121317; color: #ECEDF1; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+.lp-page { padding: 30px 40px 46px; min-width: max-content; }
+.lp-top { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.lp-h1 { font-size: 28px; line-height: 34px; font-weight: 700; letter-spacing: -.3px; margin: 0 8px 0 0; }
+.lp-seg { display: inline-flex; padding: 4px; border-radius: 14px; background: #1E2026; gap: 2px; }
+.lp-seg button, .lp-btn { all: unset; cursor: pointer; white-space: nowrap; height: 36px; padding: 0 14px; border-radius: 10px; font-size: 15px; font-weight: 600; color: #A3A5AF;
+  display: inline-flex; align-items: center; gap: 6px; transition: background-color 160ms ease, color 160ms ease, transform 120ms ease-out; }
+.lp-seg button[aria-pressed="true"] { background: #33353D; color: #F4F5F8; }
+.lp-btn { background: #2A2C33; color: #F4F5F8; height: 40px; border-radius: 12px; }
+.lp-btn:hover { background: #33353D; }
+.lp-seg button:active, .lp-btn:active { transform: scale(.97); }
+button:focus-visible { outline: 2px solid #8FB4FF; outline-offset: 2px; }
+.lp-row { display: flex; gap: 40px; margin-top: 28px; align-items: flex-start; }
+.lp-cell { width: 390px; display: flex; flex-direction: column; gap: 10px; }
+.lp-cap { display: flex; align-items: center; justify-content: space-between; min-height: 40px; }
+.lp-cap b { font-size: 19px; font-weight: 700; color: #F2F3F6; white-space: nowrap; }
+.lp-meta { display: flex; gap: 8px; align-items: center; min-height: 30px; }
+.lp-clock { height: 30px; padding: 0 12px; border-radius: 15px; background: #1E2026; color: #C9CBD3; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; font-variant-numeric: tabular-nums; }
+.lp-cue { height: 30px; padding: 0 12px; border-radius: 15px; display: inline-flex; align-items: center; gap: 6px; background: #1E2026; color: #6E717C; font-size: 13px; font-weight: 600; }
+.lp-cue.on { background: #2E3B57; color: #E6EDFF; }
+.lp-live { min-height: 66px; font-size: 15px; line-height: 22px; color: #B3B5BF; }
+.lp-note { margin-top: 28px; font-size: 15px; line-height: 23px; color: #8E909B; max-width: 1250px; }
+.lp-note b { color: #D6D8DE; font-weight: 600; }
+
+/* ── темы ── */
+.ph.ink { --page: linear-gradient(180deg, #F3F4FD 0%, #EAEBFE 55%, #ECE4F7 100%); --sceneTop: #514CA6; --sceneBottom: #1E2059; --glow: rgba(159, 126, 214, .9);
+  --tx: #17181E; --sec: #595A63; --card: #FCFCFF; --ctl: #DBDDEC; --line: #50527124; --tab: rgba(252, 252, 255, .92); --tabOn: #17181E; --tabOff: #6B6C75;
+  --good: #1E7A46; --bad: #B3261E; --track: #DCDDEE; --dis: #E4E5F3; --disInk: #8A8B95; --toast: #1D1D2F; --toastInk: #FFFFFF;
+  --sh: 0 10px 26px -14px rgba(51, 51, 87, .30), inset 0 1px 0 rgba(255, 255, 255, .9); --nested: 0 5px 10px -5px #33335747; }
+.ph.marine { --page: linear-gradient(180deg, #002936 0%, #000F16 55%, #001B17 100%); --sceneTop: #1C5B6C; --sceneBottom: #1A494B; --glow: rgba(0, 138, 164, .78);
+  --tx: #F6FBFD; --sec: #B8CFD6; --card: #002027; --ctl: #123037; --line: #ACEAFA26; --tab: rgba(0, 32, 39, .94); --tabOn: #F6FBFD; --tabOff: #98ACB1;
+  --good: #6FD08C; --bad: #FF9A90; --track: #0E3B46; --dis: #0D2A31; --disInk: #6E8C94; --toast: #D0EAED; --toastInk: #010708;
+  --sh: 0 12px 28px -14px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06); --nested: 0 6px 12px -6px rgba(0, 0, 0, .6); }
+
+/* ── телефон ── */
+.ph { position: relative; width: 390px; height: 844px; border-radius: 54px; overflow: hidden; background: var(--page); color: var(--tx);
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .8), 0 0 0 10px #050506, 0 0 0 11px #2A2B30; }
+.sb { position: absolute; top: 0; left: 0; right: 0; height: 47px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 0 30px 0 38px; font-size: 16px; font-weight: 600; color: #fff; transition: color 320ms ease; }
+.sb svg { display: block; }
+.ph.on-lesson.ink .sb { color: #17181E; }
+.home { position: absolute; inset: 0; }
+.lesson { position: absolute; inset: 0; background: var(--page); padding: 52px 20px 0; transform: translateX(100%); box-shadow: -20px 0 40px -20px rgba(0, 0, 0, .5); z-index: 20; }
+.home-dim { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; z-index: 19; }
+
+/* сцена Главной */
+.scene { position: absolute; left: 0; right: 0; top: 0; height: 340px; border-radius: 0 0 32px 32px; overflow: hidden;
+  background: radial-gradient(120% 70% at 0% 0%, var(--glow) 0%, transparent 60%), linear-gradient(180deg, var(--sceneTop) 0%, var(--sceneBottom) 100%); }
+.hdr { position: absolute; top: 52px; left: 16px; right: 16px; display: flex; align-items: center; gap: 8px; color: #fff; }
+.pill { height: 40px; border-radius: 20px; background: rgba(255, 255, 255, .14); display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; font-size: 15px; font-weight: 700; }
+.pill small { display: block; font-size: 11px; line-height: 12px; font-weight: 600; opacity: .85; }
+.pill .sep { width: 1px; height: 16px; background: rgba(255, 255, 255, .3); }
+.coin { width: 22px; height: 22px; border-radius: 11px; }
+.round { width: 40px; height: 40px; border-radius: 20px; background: rgba(255, 255, 255, .14); display: grid; place-items: center; margin-left: auto; }
+.ava { width: 40px; height: 40px; border-radius: 20px; background: linear-gradient(135deg, #F2B79A, #D98B6A); }
+.hero { position: absolute; right: -14px; top: 96px; width: 160px; height: 160px; padding: 10px; box-sizing: border-box; opacity: .96; }
+.hero img { width: 100%; height: 100%; object-fit: contain; }
+.body { position: absolute; left: 20px; right: 20px; top: 136px; color: #fff; }
+.kicker { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .86); }
+.title { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.6px; margin-top: 4px; }
+.lineRow { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.bar { width: 72px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.bar i { display: block; height: 4px; width: 40%; background: #fff; }
+.line { font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .88); font-variant-numeric: tabular-nums; }
+/* кнопка «Продолжить» и её занятость */
+.cta { position: relative; margin-top: 16px; height: 50px; border-radius: 25px; background: #FFFFFF; color: #121318; display: inline-flex; align-items: center; gap: 10px; padding: 0 22px;
+  box-sizing: border-box; overflow: hidden; cursor: pointer; transition: width 220ms cubic-bezier(0.23, 1, 0.32, 1); }
+.cta .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: rgba(18, 19, 24, .09); transform-origin: left center; transform: scaleX(0); }
+.cta .ic { position: relative; width: 18px; height: 18px; flex: none; }
+.cta .ic > * { position: absolute; inset: 0; }
+.cta .lbl { position: relative; display: grid; font-size: 16px; line-height: 21px; font-weight: 700; white-space: nowrap; }
+.cta .lbl span { grid-area: 1 / 1; }
+/* ниже сцены — как на эталоне */
+.today { position: absolute; left: 16px; right: 16px; top: 300px; border-radius: 22px; background: var(--card); box-shadow: var(--sh); padding: 14px 16px 6px; }
+.today h3 { margin: 0; display: flex; justify-content: space-between; font-size: 17px; font-weight: 700; }
+.today h3 span { font-size: 14px; color: var(--sec); font-weight: 700; }
+.trow { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 15px; font-weight: 700; }
+.trow + .trow { box-shadow: 0 -1px 0 var(--line); }
+.trow .ti { width: 32px; height: 32px; border-radius: 10px; background: var(--ctl); display: grid; place-items: center; color: var(--tx); flex: none; }
+.trow .tn { margin-left: auto; color: var(--sec); font-size: 14px; font-variant-numeric: tabular-nums; }
+.tiles { position: absolute; left: 16px; right: 16px; top: 506px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.tile { height: 88px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 9px; font-size: 13px; font-weight: 700; }
+.tile img { width: 54px; height: 50px; object-fit: contain; margin-bottom: 4px; }
+.phrase { position: absolute; left: 16px; right: 16px; top: 606px; height: 68px; border-radius: 18px; background: var(--card); box-shadow: var(--sh); display: flex; align-items: center; gap: 12px; padding: 0 14px; }
+.phrase img { width: 44px; height: 44px; object-fit: contain; }
+.phrase small { display: block; font-size: 13px; color: var(--sec); }
+.phrase b { font-size: 17px; }
+.tabbar { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 62px; border-radius: 31px; background: var(--tab); box-shadow: var(--sh); display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; }
+.tabbar span { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; font-weight: 600; color: var(--tabOff); }
+.tabbar span.on { color: var(--tabOn); }
+.homebar { position: absolute; left: 50%; bottom: 8px; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .85; z-index: 40; }
+.toast { position: absolute; left: 16px; right: 16px; bottom: 100px; z-index: 25; border-radius: 16px; background: var(--toast); color: var(--toastInk); padding: 13px 16px; font-size: 15px; line-height: 20px; font-weight: 600;
+  box-shadow: 0 16px 30px -14px rgba(0, 0, 0, .55); opacity: 0; transform: translateY(12px); }
+.touch { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 22px; background: rgba(18, 19, 24, .22); opacity: 0; z-index: 26; pointer-events: none; }
+
+/* первая страница занятия — эталон learning-v2.html (вступление, «СМЫСЛ 1/3»), энергия уже списана 5 → 4 */
+.ih { display: flex; align-items: center; gap: 10px; }
+.ih .x { width: 40px; height: 40px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); display: grid; place-items: center; flex: none; }
+.ih .st { font-size: 13px; letter-spacing: 1.6px; font-weight: 800; flex: 1; }
+.ih .num { font-size: 13px; font-weight: 700; color: var(--sec); }
+.ipill { height: 32px; padding: 0 10px; border-radius: 16px; background: var(--card); box-shadow: var(--sh); display: inline-flex; align-items: center; gap: 4px; font-size: 15px; font-weight: 800; }
+.bars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.bars i { height: 4px; border-radius: 2px; background: var(--track); }
+.bars i.on { background: var(--tx); }
+.ttl { margin-top: 22px; font-size: 26px; line-height: 31px; font-weight: 800; letter-spacing: -.2px; }
+.sub { margin-top: 6px; font-size: 16px; line-height: 22px; color: var(--sec); }
+.exp { margin-top: 16px; border-radius: 20px; background: var(--card); box-shadow: var(--sh); padding: 16px 18px; font-size: 16px; line-height: 23px; }
+.exp .ok, .exp .no { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-weight: 700; }
+.exp .ok svg { color: var(--good); } .exp .no svg, .exp .no s { color: var(--bad); }
+.next { position: absolute; left: 20px; right: 20px; bottom: 34px; height: 54px; border-radius: 27px; background: var(--dis); color: var(--disInk); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="lp-page">
+  <div class="lp-top">
+    <h1 class="lp-h1">«Готовим занятие…» — живой макет</h1>
+    <div class="lp-seg" role="group" aria-label="Тема"><button data-theme="ink" aria-pressed="true">Сумерки · светлая</button><button data-theme="marine" aria-pressed="false">Океан · тёмная</button></div>
+    <button class="lp-btn" id="replay-all">↻ Повторить все</button>
+  </div>
+  <div class="lp-row" id="row"></div>
+  <p class="lp-note"><b>Что меняется против сегодняшнего кода:</b> сейчас кнопка во время подготовки только тускнеет, а при отказе Главная уводит на карту курса. В макете кнопка сразу показывает ход и слова, через 6 с — «Ещё готовится…» в самой кнопке, а при отказе человек остаётся на Главной с подсказкой; следующий тап подхватывает ту же подготовку. Остальная Главная всё время живая — спиннера на весь экран нет. Повторный тап по занятой кнопке ничего не запускает.</p>
+</div>
+<script>
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EO = 'cubic-bezier(0.23, 1, 0.32, 1)'; const DRAWER = 'cubic-bezier(0.32, 0.72, 0, 1)';
+const D = (ms) => (RM ? 0 : ms);
+const PREP_MAX = 12000; const HINT_AT = 6000;
+const IC = {
+  play: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7 4.8v14.4c0 .8.9 1.3 1.6.9l11.4-7.2c.6-.4.6-1.4 0-1.8L8.6 3.9C7.9 3.5 7 4 7 4.8z"/></svg>',
+  ring: '<svg viewBox="0 0 18 18" width="18" height="18"><circle cx="9" cy="9" r="7" fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width="2.4"/><circle class="arc" cx="9" cy="9" r="7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="44 44" stroke-dashoffset="44" transform="rotate(-90 9 9)"/></svg>',
+  flame: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2c1 3.5 5 5.5 5 10.5A5 5 0 0 1 7 12.5c0-2.2 1.2-3.6 2.2-4.6.2 1.6.9 2.6 1.9 3.1C11 8 11.4 5 12 2z"/></svg>',
+  bolt: '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
+  bell: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  book: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 5.5C6 4 9 4 12 6c3-2 6-2 9-.5V19c-3-1.5-6-1.5-9 .5-3-2-6-2-9-.5z"/><path d="M12 6v13.5"/></svg>',
+  chat: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 12a8 7 0 1 1 3.5 5.8L4 19l1-3.2A6.7 6.7 0 0 1 4 12z"/></svg>',
+  cards: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="7" y="4" width="13" height="15" rx="2.5"/><path d="M4 8v10a3 3 0 0 0 3 3h9"/></svg>',
+  close: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  heart: '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 21.2s-7.6-4.7-9.7-9.5C.9 8.4 3.1 4.6 6.8 4.6c2.2 0 3.7 1.2 5.2 3.1 1.5-1.9 3-3.1 5.2-3.1 3.7 0 5.9 3.8 4.5 7.1-2.1 4.8-9.7 9.5-9.7 9.5z"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:20px"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  haptic: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="3" width="8" height="18" rx="2"/><path d="M4 8v8M20 8v8"/></svg>',
+};
+const tabIcon = (d) => `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const TABS = [['Главная', '<path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/>'], ['Обучение', '<path d="M3 5.5C6 4 9 4 12 6c3-2 6-2 9-.5V19c-3-1.5-6-1.5-9 .5-3-2-6-2-9-.5z"/>'], ['Видео', '<circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/>'], ['Сообщество', '<circle cx="9" cy="9" r="3.2"/><circle cx="16.5" cy="10" r="2.6"/><path d="M3.5 19c.6-3 3-4.6 5.5-4.6s4.9 1.6 5.5 4.6M14.5 15.2c2.6-.4 5 1 5.8 3.8"/>'], ['Настройки', '<circle cx="12" cy="12" r="3"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8"/>']];
+const ART = (ap, n) => `assets/v2art/${ap}/${n}.webp`;
+const statusBar = () => `<div class="sb"><span>9:41</span><span style="display:flex;gap:7px;align-items:center"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="26" height="13" viewBox="0 0 26 13" fill="none"><rect x=".75" y=".75" width="22" height="11.5" rx="3.5" stroke="currentColor" stroke-opacity=".45" stroke-width="1.5"/><rect x="2.5" y="2.5" width="16" height="8" rx="2" fill="currentColor"/></svg></span></div>`;
+const homeHtml = (ap) => `<div class="home">
+  <div class="scene"><div class="hdr"><span class="pill">${IC.flame}<span>5 дней<small>Серия</small></span></span><span class="pill"><img class="coin" src="assets/coin_rank_10.webp" alt="">2 340<span class="sep"></span>${IC.bolt}5</span><span class="round">${IC.bell}</span><span class="ava"></span></div>
+    <div class="hero"><img src="${ART(ap, 'home_scene_continue')}" alt=""></div>
+    <div class="body"><div class="kicker">Урок 1 · Эпизод 2</div><div class="title">Вошли в офис</div>
+      <div class="lineRow"><span class="bar"><i></i></span><span class="line">8 из 20 заданий</span></div>
+      <div class="cta" role="button" aria-label="Продолжить"><span class="fill"></span><span class="ic"><span class="i-play">${IC.play}</span><span class="i-ring" style="opacity:0">${IC.ring}</span></span><span class="lbl"><span class="l0">Продолжить</span><span class="l1" style="opacity:0">Готовим занятие…</span><span class="l2" style="opacity:0">Ещё готовится…</span></span></div></div></div>
+  <div class="today"><h3>Сегодня <span>0 из 3</span></h3>
+    <div class="trow"><span class="ti">${IC.book}</span>Пройти урок<span class="tn">0/1</span></div>
+    <div class="trow"><span class="ti">${IC.chat}</span>Потренировать диалог<span class="tn">0/1</span></div>
+    <div class="trow"><span class="ti">${IC.cards}</span>Повторить карточки<span class="tn">0/10</span></div></div>
+  <div class="tiles">${[['lessons', 'Уроки'], ['cards', 'Карточки'], ['dialogs', 'Диалоги'], ['spire_tile', 'Пик']].map(([a, t]) => `<div class="tile"><img src="${ART(ap, a)}" alt="">${t}</div>`).join('')}</div>
+  <div class="phrase"><img src="${ART(ap, 'phrase_of_day')}" alt=""><span><small>Фраза дня</small><b>We are together.</b></span></div>
+  <div class="tabbar">${TABS.map(([t, d], i) => `<span class="${i ? '' : 'on'}">${tabIcon(d)}${t}</span>`).join('')}</div>
+  <div class="toast">Занятие ещё готовится. Нажми «Продолжить» через пару секунд</div></div>`;
+const lessonHtml = () => `<div class="lesson"><div class="ih"><span class="x">${IC.close}</span><span class="st">СМЫСЛ</span><span class="num">1/3</span><span class="ipill" style="color:var(--bad)">${IC.heart}${IC.heart}${IC.heart}</span><span class="ipill">${IC.bolt}4</span></div>
+  <div class="bars"><i class="on"></i><i></i><i></i></div>
+  <div class="ttl">am, is, are — это и есть «быть»</div><div class="sub">Одно короткое слово связывает, кто есть кто.</div>
+  <div class="exp">В русском мы говорим «Я — Анна» и обходимся без глагола. В английском между словами обязательно стоит связка.<div class="ok">${IC.check}I am Anna.</div><div class="no">${IC.close}<s>I Anna.</s></div></div>
+  <div class="next">Дальше${IC.arrow}</div></div>`;
+
+const anim = (el, kf, ms, o = {}) => (el ? el.animate(kf, { duration: D(ms), easing: o.easing || EO, delay: D(o.delay || 0), fill: 'both' }).finished.catch(() => {}) : Promise.resolve());
+// ход подготовки, пока сеть/сборка молчит: быстро до ~60 %, дальше медленнее, не доходит до конца сам — честный «ещё идёт»
+const fakeProgress = (ms) => 0.92 * (1 - Math.exp(-ms / 4200));
+
+class Phone {
+  constructor(spec) { this.spec = spec; this.token = 0; }
+  mount(row) {
+    const cell = document.createElement('div'); cell.className = 'lp-cell';
+    cell.innerHTML = `<div class="lp-cap"><b>${this.spec.title}</b><button class="lp-btn">↻ Повторить</button></div>
+      <div class="lp-meta"><span class="lp-clock">0,0 с</span><span class="lp-cue">${IC.haptic}<em style="font-style:normal">вибрация</em></span></div><div class="lp-live"></div><div class="ph ink"></div>`;
+    row.appendChild(cell); this.cell = cell; this.ph = cell.querySelector('.ph');
+    cell.querySelector('.lp-btn').addEventListener('click', () => this.start());
+  }
+  q(s) { return this.ph.querySelector(s); }
+  say(t) { this.cell.querySelector('.lp-live').textContent = t; }
+  clock(ms) { this.cell.querySelector('.lp-clock').textContent = ms == null ? '—' : `${(ms / 1000).toFixed(1).replace('.', ',')} с`; }
+  haptic(label) { const c = this.cell.querySelector('.lp-cue'); c.querySelector('em').textContent = label; c.classList.add('on'); setTimeout(() => { c.classList.remove('on'); c.querySelector('em').textContent = 'вибрация'; }, 1200); }
+  wait(ms) { const t = this.token; return new Promise((res, rej) => setTimeout(() => (t === this.token ? res() : rej('stop')), RM ? Math.min(ms, 600) : ms)); }
+  start() {
+    this.token += 1; const t = this.token;
+    const ap = this.ph.classList.contains('marine') ? 'dark' : 'light';
+    this.ph.classList.remove('on-lesson');
+    this.ph.innerHTML = `${statusBar()}${homeHtml(ap)}<div class="home-dim"></div>${lessonHtml()}<div class="homebar"></div>`;
+    this.clock(null);
+    this.run(t).then(() => this.wait(1600)).then(() => { if (t === this.token) this.start(); }).catch((e) => { if (e !== 'stop') console.error('[PREP-LIVE] сцена упала', this.spec.id, e); }); // guard-ok: макет, причина в консоль
+  }
+  async run(t) {
+    const { readyAt } = this.spec; const cta = this.q('.cta');
+    this.say('Главная, человек видит «Продолжить».'); await this.wait(1300);
+    // тап: след пальца, нажатие 0.97 — отклик в первом кадре, до любой работы
+    const pr = this.ph.getBoundingClientRect(); const r = cta.getBoundingClientRect();
+    const touch = document.createElement('div'); touch.className = 'touch'; touch.style.left = `${r.left - pr.left + 60}px`; touch.style.top = `${r.top - pr.top + 25}px`; this.ph.appendChild(touch);
+    anim(touch, [{ opacity: .9, transform: 'scale(.6)' }, { opacity: 0, transform: 'scale(1.2)' }], 420);
+    this.haptic('лёгкая · нажатие');
+    anim(cta, [{ transform: 'scale(1)' }, { transform: 'scale(.97)' }, { transform: 'scale(1)' }], 220);
+    const t0 = performance.now();
+    if (readyAt <= 350) {
+      // занятие уже собрано заранее (обычный случай) — переход сразу, без «Готовим»
+      this.say('Обычно занятие уже собрано заранее — переход сразу, кнопка ничего не ждёт.');
+      await this.wait(readyAt); return this.toLesson(t0);
+    }
+    // занятость на месте: ▶ → кольцо хода, подпись меняется с лёгким размытием, кнопка плавно расширяется под новую подпись
+    const w0 = cta.offsetWidth; const l0 = this.q('.l0'); const l1 = this.q('.l1');
+    l1.style.position = 'absolute'; const w1 = w0 - l0.offsetWidth + l1.offsetWidth; l1.style.position = '';
+    cta.style.width = `${w0}px`; cta.getBoundingClientRect(); cta.style.width = `${w1}px`;
+    anim(l0, [{ opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(2px)' }], 160);
+    anim(l1, [{ opacity: 0, filter: 'blur(2px)' }, { opacity: 1, filter: 'blur(0)' }], 160, { delay: 40 });
+    anim(this.q('.i-play'), [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(.6)' }], 160);
+    anim(this.q('.i-ring'), [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], 160, { delay: 40 });
+    this.say('Сразу после тапа: на месте ▶ кольцо хода, «Готовим занятие…», внутри кнопки мягкая заливка. Остальная Главная живая.');
+    const fill = this.q('.fill'); const arc = this.q('.arc'); const l2 = this.q('.l2');
+    let hinted = false; let done = false;
+    const tick = () => {
+      if (t !== this.token || done) return;
+      const ms = performance.now() - t0; const p = fakeProgress(ms);
+      fill.style.transform = `scaleX(${p})`; arc.style.strokeDashoffset = String(44 * (1 - p)); this.clock(ms);
+      if (!hinted && ms >= HINT_AT) {
+        hinted = true; this.say('Прошло 6 с — подпись в кнопке сменилась на «Ещё готовится…»: человек видит, что ждать недолго. Без тревоги и без спиннера.');
+        l2.style.position = 'absolute'; const w2 = w0 - l0.offsetWidth + l2.offsetWidth; l2.style.position = ''; cta.style.width = `${w2}px`;
+        anim(l1, [{ opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(2px)' }], 160); anim(l2, [{ opacity: 0, filter: 'blur(2px)' }, { opacity: 1, filter: 'blur(0)' }], 160, { delay: 40 });
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    if (readyAt < PREP_MAX) {
+      await this.wait(readyAt); done = true; this.clock(readyAt);
+      // готово: заливка и кольцо дотягиваются до конца за 180 мс, затем переход
+      fill.style.transition = `transform ${D(180)}ms ${EO}`; arc.style.transition = `stroke-dashoffset ${D(180)}ms ${EO}`;
+      fill.style.transform = 'scaleX(1)'; arc.style.strokeDashoffset = '0';
+      this.say('Готово — заливка дотягивается, занятие въезжает справа.');
+      await this.wait(200); return this.toLesson(t0);
+    }
+    // не успело за 12 с: кнопка возвращается, подсказка снизу, Главная на месте; подготовка не бросается — следующий тап её подхватит
+    await this.wait(PREP_MAX); done = true; this.clock(PREP_MAX);
+    anim(fill, [{ opacity: 1 }, { opacity: 0 }], 200); anim(l2, [{ opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(2px)' }], 160);
+    cta.style.width = `${w0}px`;
+    anim(l1, [{ opacity: 1, filter: 'blur(0)' }, { opacity: 0, filter: 'blur(2px)' }], 160); anim(l0, [{ opacity: 0, filter: 'blur(2px)' }, { opacity: 1, filter: 'blur(0)' }], 160, { delay: 40 });
+    anim(this.q('.i-ring'), [{ opacity: 1 }, { opacity: 0 }], 160); anim(this.q('.i-play'), [{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)' }], 160, { delay: 40 });
+    this.say('12 с — не успело. Кнопка снова «Продолжить», внизу подсказка; на карту курса не уводим. Следующий тап подхватит ту же подготовку.');
+    const toast = this.q('.toast');
+    await anim(toast, [{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], 240);
+    await this.wait(2600);
+    await anim(toast, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(8px)' }], 200);
+  }
+  async toLesson(t0) {
+    // переход как у стека iOS: занятие въезжает справа 320 мс, Главная уходит на треть влево и чуть темнеет
+    this.ph.classList.add('on-lesson');
+    anim(this.q('.home'), [{ transform: 'none' }, { transform: 'translateX(-30%)' }], 320, { easing: DRAWER });
+    anim(this.q('.home-dim'), [{ opacity: 0 }, { opacity: .25 }], 320, { easing: DRAWER });
+    await anim(this.q('.lesson'), [{ transform: 'translateX(100%)' }, { transform: 'none' }], 320, { easing: DRAWER });
+    this.clock(performance.now() - t0);
+    this.say(`${this.cell.querySelector('.lp-live').textContent} Открыта первая страница занятия, энергия списана: 5 → 4.`);
+    await this.wait(2200);
+  }
+}
+
+const phones = [
+  new Phone({ id: 'instant', title: 'Обычно · уже собрано', readyAt: 250 }),
+  new Phone({ id: 'slow', title: 'Долго · готово через 8 с', readyAt: 8000 }),
+  new Phone({ id: 'timeout', title: 'Не успело за 12 с', readyAt: 99999 }),
+];
+const row = document.getElementById('row'); phones.forEach((p) => p.mount(row));
+const setTheme = (th) => { document.querySelectorAll('.ph').forEach((p) => { p.classList.remove('ink', 'marine'); p.classList.add(th); }); phones.forEach((p) => p.start()); };
+document.querySelectorAll('[data-theme]').forEach((b) => b.addEventListener('click', () => { b.parentElement.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b))); setTheme(b.dataset.theme); }));
+document.getElementById('replay-all').addEventListener('click', () => phones.forEach((p) => p.start()));
+// ссылка ?theme=marine открывает тёмную тему сразу
+const th = new URLSearchParams(location.search).get('theme');
+if (th) document.querySelector(`[data-theme="${th}"]`)?.click(); else phones.forEach((p) => p.start());
+</script>
+</body>
+</html>

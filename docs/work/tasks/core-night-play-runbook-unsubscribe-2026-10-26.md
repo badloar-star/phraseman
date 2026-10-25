@@ -1,6 +1,8 @@
 # Ядро · ночь 26.10: runbook «в Play 142» и кнопка ротации ключа отписки
 
 Governance-ID: TG-8DCB1356A853
+Governance-ID: TG-B68994F95743
+(правка Ревизора к 5d0cf5884: новый ключ во временном файле — mktemp + umask 077 + trap rm на выход, сторож проверяет)
 Status: In progress
 Owner: 1 · ЯДРО (координатор, NIGHT_BACKLOG v2 77edb3d7e, два 🔴)
 

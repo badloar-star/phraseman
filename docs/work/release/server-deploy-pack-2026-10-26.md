@@ -97,8 +97,10 @@ Governance-ID: TG-8DCB1356A853. Основа — `docs/work/tasks/email-unsubscr
      ```bash
      gcloud secrets versions access latest --secret=EMAIL_UNSUBSCRIBE_SECRET --project phraseman-ea0b3 | gcloud secrets versions add EMAIL_UNSUBSCRIBE_PREVIOUS_SECRET --data-file=- --project phraseman-ea0b3
      ```
+     Новый ключ живёт только во временном файле внутри подоболочки. Файл доступен лишь владельцу (`umask 077`) и
+     удаляется `trap` на выходе — и после успеха, и при ошибке или прерывании:
      ```bash
-     node -e "process.stdout.write(require('crypto').randomBytes(48).toString('hex'))" > "$TEMP/eu_new" && gcloud secrets versions add EMAIL_UNSUBSCRIBE_SECRET --data-file="$TEMP/eu_new" --project phraseman-ea0b3; rm -f "$TEMP/eu_new"
+     ( umask 077; EU_NEW="$(mktemp)"; trap 'rm -f "$EU_NEW"' EXIT; node -e "process.stdout.write(require('crypto').randomBytes(48).toString('hex'))" > "$EU_NEW" && gcloud secrets versions add EMAIL_UNSUBSCRIBE_SECRET --data-file="$EU_NEW" --project phraseman-ea0b3; rm -f "$EU_NEW" )
      ```
   3. **Выложить 5 потребителей** — они закрепят новые версии. emailUnsubscribe в том же пакете, чтобы проверка знала оба
      ключа. Сначала сухой прогон без `--execute`.

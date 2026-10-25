@@ -48,6 +48,20 @@ test('код content не читает ключи отписки', () => {
   assert.deepEqual(hits, []);
 });
 
+// зачем (Ревизор 26.10 на 5d0cf5884): новый ключ в кнопке ротации не должен остаться на диске — ни после успеха, ни при ошибке
+test('кнопка ротации: новый ключ во временном файле mktemp + umask 077, удаляется trap на выходе и сразу после записи', () => {
+  const pack = read('docs/work/release/server-deploy-pack-2026-10-26.md');
+  const line = pack.split(/\r?\n/).find((l) => /gcloud secrets versions add EMAIL_UNSUBSCRIBE_SECRET /.test(l));
+  assert.ok(line, 'нет команды записи нового ключа');
+  assert.match(line, /umask 077/);
+  assert.match(line, /EU_NEW="\$\(mktemp\)"/);
+  assert.match(line, /trap 'rm -f "\$EU_NEW"' EXIT/);
+  assert.match(line, /--data-file="\$EU_NEW"[^;]*; rm -f "\$EU_NEW"/);
+  assert.doesNotMatch(pack, /\$TEMP\/eu_new/); // прежний постоянный путь не вернулся
+  // значение нигде не печатается: генерация только в файл, прошлый ключ — трубой
+  assert.doesNotMatch(line, /\becho\b|\bcat\b/);
+});
+
 test('в default ключ отписки читается только через defineSecret, не из process.env', () => {
   const src = read('functions/src/email_unsubscribe.ts');
   assert.match(src, /defineSecret\('EMAIL_UNSUBSCRIBE_SECRET'\)/);

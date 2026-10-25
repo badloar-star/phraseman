@@ -43,8 +43,10 @@ test('learning settings use the approved liquid-glass shell without losing setti
   assert.doesNotMatch(localSwitchTag.replace('withHaptic={false}', ''), /withHaptic=\{false\}/);
   assert.doesNotMatch(localSwitchTag.replace('withSound={false}', ''), /withSound=\{false\}/);
   assert.match(source, /translateX: value \? 19 : 0/);
-  assert.match(source, /<RowIcon name="volume-high-outline" \/>[\s\S]*loc\.edu\.speed[\s\S]*<Slider[\s\S]*height: 44/);
-  assert.match(source, /<RowIcon name="volume-high-outline" \/>[\s\S]*?<Text style=\{subStyle\}>\{loc\.edu\.speedHint\}<\/Text>/);
+  // зачем (Сверка settings-gap-015, макет settings-gaps-states; ee7e44404): значки звука залитые ('volume-high'), как в макете; раскладка карточки скорости прежняя:
+  // значок → название → подсказка → ползунок высотой 44.
+  assert.match(source, /<RowIcon name="volume-high" \/>[\s\S]*loc\.edu\.speed[\s\S]*<Slider[\s\S]*height: 44/);
+  assert.match(source, /<RowIcon name="volume-high" \/>[\s\S]*?<Text style=\{subStyle\}>\{loc\.edu\.speedHint\}<\/Text>/);
 });
 
 test('learning settings retain all callbacks, normalized speed preview, and voice navigation', () => {

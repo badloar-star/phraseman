@@ -229,6 +229,8 @@ import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/sess
 import { rememberLearningV2LastLesson, useLearningV2LastLesson } from "../learning_v2_last_lesson";
 import { noteBackArrived, noteBackDecision, noteBackTap } from "../back_tap_probe";
 import { learningV2SessionHrefV1, peekLearningV2SessionClientV3, prepareLearningV2SessionRunV1, prewarmLearningV2SessionRunV1, stageLearningV2ReadyHandoffV1 } from "../learning_v2_session_launch_v1";
+import { beginLessonPrep, endLessonPrep, markLessonPrepFinishing } from "../lesson_prep_store";
+import { PREP_BUSY_SHOW_MS, PREP_FINISH_BEAT_MS } from "../../components/lesson_prep/prep_cta_model";
 import {
   factoryNativeLearningV2AvailabilityV1,
   factoryNativeLearningV2NewWordCountV1,
@@ -3020,6 +3022,7 @@ export default function LessonsTab({
     new Map<string, Promise<LearningV2PreparedSessionLaunch>>(),
   );
   const learningV2ModalRequestRef = useRef(0);
+  const [learningV2SheetExit, setLearningV2SheetExit] = useState(0); // зачем (макет «Готовим занятие…»): рост значения = шторке «Начать» плавно закрыться, когда занятие готово
   const learningV2PreparationScope = `${studyTarget}:${lang}:${learningV2Catalog?.environment ?? "production"}:${learningV2Catalog?.seasonId ?? "learning-v2"}`;
   const learningV2PreparationScopeRef = useRef(learningV2PreparationScope);
   if (learningV2PreparationScopeRef.current !== learningV2PreparationScope) {
@@ -3417,6 +3420,8 @@ export default function LessonsTab({
   const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
+    // зачем (макет lesson-preparing-live.html, владелец 25.10): занятая кнопка ничего не запускает — повторный тап, пока занятие готовится, игнорируется (журнал [PREP-CTA])
+    if (!beginLessonPrep('lessons')) return;
     const launchRequest = ++learningV2ModalRequestRef.current;
     const v2StartTapAtMs = Date.now(); // зачем (координатор 15.10, #18): замер тап «Начать» → переход на экран урока; после R08 подготовка бывала до 13 с
     console.log(`[V2-START] tap ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, skipIntro, prepared: learningV2PreparedLaunchesRef.current.has(selectedLearningV2PreparationKey) })}`); // guard-ok: начало замера
@@ -3432,7 +3437,10 @@ export default function LessonsTab({
         selected.lessonOrdinal,
         selected.sessionOrdinal,
       );
-    const modalExit = new Promise<void>((resolve) => {
+    // зачем (макет «Готовим занятие…»): шторка не закрывается на тапе — на кнопке виден ход, если занятие собирается дольше 0,35 с; выход (180 мс) стартует,
+    // когда всё готово. Обычно заготовка уже есть и закрытие начинается сразу, как раньше.
+    const exitSheet = () => new Promise<void>((resolve) => {
+      setLearningV2SheetExit((n) => n + 1);
       setTimeout(
         resolve,
         learningV2ReduceMotionPreference !== false
@@ -3440,11 +3448,14 @@ export default function LessonsTab({
           : LEARNING_V2_SESSION_MODAL_EXIT_MS,
       );
     });
-    // The handler returns immediately. Preparation and the 180 ms exit motion
-    // overlap; routing happens only after both are complete, without a loader.
-    void Promise.all([prepared, modalExit])
-      .then(([ready]) => {
-        if (learningV2ModalRequestRef.current !== launchRequest) return;
+    // The handler returns immediately. Routing happens only after preparation and the 180 ms exit motion are complete; the button shows the prep progress.
+    void Promise.all([prepared])
+      .then(async ([ready]) => {
+        if (learningV2ModalRequestRef.current !== launchRequest) { endLessonPrep({ ok: false, reason: "superseded" }); return; }
+        markLessonPrepFinishing();
+        if (Date.now() - v2StartTapAtMs >= PREP_BUSY_SHOW_MS) await new Promise<void>((resolveBeat) => { setTimeout(resolveBeat, PREP_FINISH_BEAT_MS); });
+        await exitSheet();
+        if (learningV2ModalRequestRef.current !== launchRequest) { endLessonPrep({ ok: false, reason: "superseded" }); return; }
         markLearningV2PreparedLaunchTrace(selected.traceId, ready);
         learningV2PreparedLaunchesRef.current.delete(
           selectedLearningV2PreparationKey,
@@ -3453,6 +3464,7 @@ export default function LessonsTab({
         stageLearningV2ReadyHandoffV1(ready.handle);
         console.log(`[V2-START] ready ${JSON.stringify({ lesson: selected.lessonOrdinal, session: selected.sessionOrdinal, tapToReadyMs: Date.now() - v2StartTapAtMs })}`); // guard-ok: подготовка закончена, дальше переход
         setSelectedLearningV2Session(null);
+        endLessonPrep({ ok: true });
         requestAnimationFrame(() => {
           if (__DEV__) {
             console.log(
@@ -3474,6 +3486,8 @@ export default function LessonsTab({
         });
       })
       .catch((error) => {
+        // зачем (макет «Готовим занятие…»): подготовка закончилась отказом — кнопка свободна всегда, даже если запуск уже устарел
+        endLessonPrep({ ok: false, timedOut: error instanceof Error && error.message.startsWith("learning_v2_session_prepare_timeout"), reason: (error instanceof Error ? error.message : String(error)).slice(0, 160) });
         if (learningV2ModalRequestRef.current !== launchRequest) return;
         setSelectedLearningV2Session(null);
         // зачем: владелец 21.09 — «нажала 20 раз». Раньше отказ подготовки
@@ -5913,6 +5927,8 @@ export default function LessonsTab({
         sessionOrdinal={selectedLearningV2Session?.sessionOrdinal ?? 1}
         visible={selectedLearningV2Session !== null}
         onMounted={handleLearningV2SessionModalMounted}
+        stayOpenWhilePreparing
+        exitSignal={learningV2SheetExit}
         title={learningV2SessionOutcomeTitle(
           selectedLearningV2OutcomeKind,
           lang,

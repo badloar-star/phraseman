@@ -20,6 +20,9 @@ import { ThemeAccentFill } from "./v2/ThemeAccentFill";
 import { useLineScale, useScaledTextStyles } from '../hooks/useLineScale';
 import { KIT_MOTION } from "../constants/motionHybrid";
 import PressableHybrid from "./PressableHybrid";
+import { useLang } from "./LangContext";
+import LessonPrepCtaBody from "./lesson_prep/LessonPrepCtaBody";
+import { lv2Alpha } from "./learning-v2/LearningV2Glass";
 
 // зачем (координатор 05.10, kit.css:147 `.dim`): окно .cm в макете статичное и живёт на затемнении —
 // оно появляется и уходит вместе с ним: opacity 260 мс (CSS `ease`) в обе стороны, без своих сдвигов и пружин.
@@ -46,6 +49,13 @@ interface LearningV2SessionOutcomeSheetProps {
   wordsLabel?: string;
   attemptsLabel?: string;
   onMounted?: () => void;
+  /**
+   * зачем (живой макет lesson-preparing-live.html, владелец утвердил 25.10): тап «Начать» не закрывает шторку, а оставляет её, пока занятие собирается —
+   * на кнопке ход («Готовим занятие…», только если дольше 0,35 с). Закрытие шторки запускает экран по exitSignal, когда всё готово. Нет — прежнее поведение (закрыть на тапе).
+   */
+  stayOpenWhilePreparing?: boolean;
+  /** Рост значения = «закрой шторку сейчас» (мягкое затухание, как при выходе). */
+  exitSignal?: number;
   /**
    * зачем (learning-v2.html, «Закрытое занятие» / «Занятие Plus»): тёмная шайба с замком вместо
    * белой с «play». Чисто вид; сам путь открытия закрытых занятий (тост-отказ) не менялся.
@@ -80,7 +90,10 @@ export default function LearningV2SessionOutcomeSheet({
   locked = false,
   bestStars,
   bestStarsLabel = "Лучший результат", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  stayOpenWhilePreparing = false,
+  exitSignal = 0,
 }: LearningV2SessionOutcomeSheetProps) {
+  const { lang } = useLang();
   const sx = useScaledTextStyles(styles);
   const lh = useLineScale();
   // зачем (learning-v2.html, startModal): окно занятия — на токенах Liquid Glass активной темы.
@@ -166,13 +179,23 @@ export default function LearningV2SessionOutcomeSheet({
 
   const start = useCallback(() => {
     if (actionsDisabled) return;
+    if (stayOpenWhilePreparing) { hapticTap(); onPrimaryPress(); return; } // зачем: шторка остаётся, ход виден на кнопке; закроет её экран по exitSignal
     leave(onPrimaryPress, true);
-  }, [actionsDisabled, leave, onPrimaryPress]);
+  }, [actionsDisabled, leave, onPrimaryPress, stayOpenWhilePreparing]);
 
   const skipIntro = useCallback(() => {
     if (actionsDisabled) return;
+    if (stayOpenWhilePreparing) { hapticTap(); onSecondaryPress(); return; }
     leave(onSecondaryPress, true);
-  }, [actionsDisabled, leave, onSecondaryPress]);
+  }, [actionsDisabled, leave, onSecondaryPress, stayOpenWhilePreparing]);
+
+  // экран просит закрыть шторку (занятие готово): то же затухание, что при выходе
+  const exitSeenRef = useRef(exitSignal);
+  useEffect(() => {
+    if (exitSignal === exitSeenRef.current) return;
+    exitSeenRef.current = exitSignal;
+    leave(() => undefined, true);
+  }, [exitSignal, leave]);
 
   // зачем (владелец 25.10 через координатора): «≈ 5 минут» и «3 попытки» больше не передаются — плитка без значения не рисуется,
   // чтобы не оставалась пустая стеклянная плашка; если фактов нет совсем, ряд фактов не рисуется (см. stats.length ниже)
@@ -270,9 +293,19 @@ export default function LearningV2SessionOutcomeSheet({
                 >
                   {/* зачем (сверка learning-v2-010, 05.10): глянец .cta макета / фактура темы — общий слой, как у всех главных кнопок. */}
                   <ThemeAccentFill glass={g} radius={20} />
-                  <Text style={[sx.primaryLabel, { color: g.accentInk, fontSize: 16 }]}>{primaryLabel}</Text>
-                  {/* зачем (`.cta .ar` right 22): стрелка прижата к правому краю кнопки, подпись по центру. */}
-                  <Ionicons name="arrow-forward" size={20} color={g.accentInk} style={sx.primaryArrow} />
+                  {/* зачем (макет «Готовим занятие…», 25.10): обычно подпись и стрелка как раньше; если занятие собирается дольше 0,35 с — кольцо хода слева от подписи, «Готовим занятие…», мягкая заливка.
+                      Стрелка (`.cta .ar` right 22) гаснет, пока готовится; подпись по центру. */}
+                  <LessonPrepCtaBody
+                    source="lessons"
+                    lang={lang}
+                    label={primaryLabel}
+                    ink={g.accentInk}
+                    fillColor={lv2Alpha(g.accentInk, 0.14)}
+                    idleIcon={null}
+                    trailing={<Ionicons name="arrow-forward" size={20} color={g.accentInk} />}
+                    labelStyle={[sx.primaryLabel, { color: g.accentInk, fontSize: 16 }]}
+                    testID="learning-v2-session-start-prep"
+                  />
                 </TouchableOpacity>
               </View>
               {secondaryLabel ? (
@@ -316,8 +349,7 @@ const styles = StyleSheet.create({
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 18 },
   primaryWrap: { position: "relative" },
   // зачем (`.cm .cta` height 54, r20): в окне занятия кнопка со скруглением 20, а не капсула.
-  primaryButton: { minHeight: 54, borderRadius: 20, paddingHorizontal: 48, flexDirection: "row", alignItems: "center", justifyContent: "center" },
-  primaryArrow: { position: "absolute", right: 22 },
+  primaryButton: { minHeight: 54, borderRadius: 20, paddingHorizontal: 48, flexDirection: "row", alignItems: "center", justifyContent: "center", overflow: "hidden" },
   primaryLabel: { fontWeight: "700" },
   secondaryButton: { alignSelf: "center", minHeight: 44, paddingHorizontal: 20, paddingVertical: 12, justifyContent: "center" },
   secondaryLabel: { fontWeight: "600" },

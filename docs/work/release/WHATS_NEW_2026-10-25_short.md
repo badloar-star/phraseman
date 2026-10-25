@@ -1,75 +1,88 @@
-# «Что нового» 2.0.2 — короткий вариант для сторов (≤ 300 знаков)
+# «Что нового» 2.0.2 — короткий список исправлений для сторов (≤ 300 знаков)
 
-Источник: утверждённые ru/en владельца (через координатора 25.10); uk — у координатора. Переводы — 10 · ПЕРЕВОДЧИК.
-Всё включено: сцены, экзамен главы, тест уровня. Названия разделов — как в приложении. Обращение на «ты». «Вместе»/друзья не упоминаются.
-Длина — символы Unicode с заголовком, маркерами и переводами строк.
+Источник: утверждённые ru/en владельца (через координатора 25.10, замена прежнего варианта «новинки» f37ebcfc8); uk — у координатора.
+Переводы — 10 · ПЕРЕВОДЧИК. Названия как в приложении (Пик, «Мои ошибки», кнопка «Дальше»). Обращение на «ты».
+Длина — символы Unicode с заголовком, маркерами и переводами строк. В es/pt-BR/id/tr/pl строка про «Урок не готов» передана
+смыслом («урок не зависает при открытии»), иначе текст не влезал в 300 знаков.
 
-## es (274)
-
-```
-Novedades:
-• Nuevo diseño: Inicio, aprendizaje por temporadas, Palabras, Diálogos.
-• Examen del capítulo y un test corto de tu nivel.
-• Pico: la torre de la semana y la tarea «Encuentra el error».
-• Pistas en los diálogos y borrar en Mis errores.
-• Más rápido y más estable.
-```
-
-## pt-BR (265)
+## es (300)
 
 ```
-Novidades:
-• Visual novo: Início, aprendizado por temporadas, Palavras, Diálogos.
-• Exame do capítulo e um teste curto do seu nível.
-• Pico: a torre da semana e a tarefa «Encontre o erro».
-• Dicas nos diálogos e exclusão em Meus erros.
-• Mais rápido e mais estável.
+Correcciones:
+• Monedas del Pico: ya no se pierden ni se duplican.
+• Las lecciones hechas siempre cuentan.
+• Las lecciones ya no se quedan colgadas.
+• El micrófono no se corta al tocar Siguiente rápido.
+• Desplazamiento y Pico más fluidos.
+• Mis errores, más rápido.
+• Correcciones y más estabilidad.
 ```
 
-## vi (245)
+## pt-BR (273)
 
 ```
-Có gì mới:
-• Giao diện mới: Trang chủ, học theo mùa, Từ vựng, Hội thoại.
-• Bài thi chương và bài kiểm tra trình độ ngắn.
-• Đỉnh: tòa tháp của tuần và nhiệm vụ «Tìm lỗi sai».
-• Gợi ý trong hội thoại, xóa trong Lỗi của tôi.
-• Nhanh và ổn định hơn.
+Correções:
+• As moedas do Pico não somem nem duplicam mais.
+• Lições concluídas sempre contam.
+• As lições não travam mais ao abrir.
+• O microfone não corta ao tocar em Próximo rápido.
+• Rolagem e Pico mais suaves.
+• Meus erros mais rápido.
+• Correções e mais estabilidade.
 ```
 
-## id (237)
+## vi (272)
 
 ```
-Yang baru:
-• Tampilan baru: Beranda, belajar per musim, Kata, Dialog.
-• Ujian bab dan tes level singkat.
-• Puncak: menara mingguan dan tugas «Temukan kesalahan».
-• Petunjuk di dialog, hapus di Kesalahanku.
-• Lebih cepat dan lebih stabil.
+Đã sửa:
+• Xu Đỉnh không còn bị mất hay nhân đôi.
+• Bài học đã xong luôn được tính.
+• Bài học không còn kẹt ở «Bài học chưa sẵn sàng».
+• Micro không còn bị ngắt khi bạn bấm Tiếp nhanh.
+• Cuộn và nhiệm vụ Đỉnh mượt hơn.
+• Lỗi của tôi nhanh hơn.
+• Sửa lỗi nhỏ và ổn định hơn.
 ```
 
-## tr (246)
+## id (289)
 
 ```
-Yenilikler:
-• Yeni görünüm: Ana sayfa, sezonlarla öğrenme, Kelimeler, Diyaloglar.
-• Ünite sınavı ve kısa bir seviye testi.
-• Zirve: haftanın kulesi ve «Hatayı bul» görevi.
-• Diyaloglarda ipuçları, Hatalarım'da silme.
-• Daha hızlı ve daha kararlı.
+Diperbaiki:
+• Koin Puncak tak lagi hilang atau berlipat ganda.
+• Pelajaran yang selesai selalu terhitung.
+• Pelajaran tak lagi macet saat dibuka.
+• Mikrofon tak terputus saat cepat mengetuk Lanjut.
+• Gulir dan Puncak lebih mulus.
+• Kesalahanku lebih cepat.
+• Perbaikan kecil, lebih stabil.
 ```
 
-## pl (237)
+## tr (278)
 
 ```
-Co nowego:
-• Nowy wygląd: Start, nauka w sezonach, Słowa, Dialogi.
-• Egzamin rozdziału i krótki test poziomu.
-• Szczyt: wieża tygodnia i zadanie «Znajdź błąd».
-• Podpowiedzi w dialogach, usuwanie w Moich błędach.
-• Szybciej i stabilniej.
+Düzeltildi:
+• Zirve jetonları artık kaybolmuyor, ikilenmiyor.
+• Bitirdiğin dersler her zaman sayılıyor.
+• Dersler artık açılırken takılmıyor.
+• İleri'ye hızlı basınca mikrofon kesilmiyor.
+• Daha akıcı kaydırma ve Zirve.
+• Hatalarım daha hızlı.
+• Küçük düzeltmeler, daha kararlı.
+```
+
+## pl (291)
+
+```
+Poprawki:
+• Monety Szczytu już nie znikają ani się nie dublują.
+• Ukończone lekcje zawsze się liczą.
+• Lekcje już się nie zawieszają przy otwieraniu.
+• Mikrofon nie urywa się przy szybkim Dalej.
+• Płynniejsze przewijanie i Szczyt.
+• Szybsze Moje błędy.
+• Drobne poprawki, większa stabilność.
 ```
 
 ## Справочно — исходники
 
-ru (242), en (245) — в сообщении координатора; не дублируются, чтобы не разойтись.
+ru (285), en (291) — в сообщении координатора; не дублируются, чтобы не разойтись.

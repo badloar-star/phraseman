@@ -2667,7 +2667,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             // зачем (P23): тап ведёт в то же занятие V2 тем же маршрутом, что вкладка «Уроки» (без одноразовой подготовки — экран занятия готовит сам)
             console.log('[HOME-CONTINUE] open', JSON.stringify({ kind: 'v2', sessionId: continueV2.sessionId, done: continueV2Progress?.done ?? null, total: continueV2Progress?.total ?? null }));
             // зачем (R09): тот же запуск, что на вкладке «Уроки» — подготовка и передача «готово» плееру, иначе в релизе карта
-            void launchHomeContinueV2(continueV2.route, { lang, studyTarget: String(studyTarget), push: (href) => nav.push(href as never) });
+            void launchHomeContinueV2(continueV2.route, { lang, studyTarget: String(studyTarget), push: (href) => nav.push(href as never), homeCta: true }); // зачем (макет «Готовим занятие…», владелец 25.10): ход на кнопке, отказ — подсказка и Главная на месте
             return;
           }
           if (!lastLesson) {

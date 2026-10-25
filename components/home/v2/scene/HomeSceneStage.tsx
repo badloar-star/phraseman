@@ -32,6 +32,8 @@ import type { HomeSceneState } from './home_scene_state';
 import type { HomeSceneStageTokens } from './home_scene_tokens';
 import { PremiumThemeMotion } from './PremiumThemeMotion';
 import { useTheme } from '../../../ThemeContext';
+import { useLang } from '../../../LangContext';
+import LessonPrepCtaBody from '../../../lesson_prep/LessonPrepCtaBody';
 
 const LOG = '[HOME-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
@@ -96,6 +98,7 @@ export default function HomeSceneStage(props: Props) {
 const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, tokens, copy, liveEnergy, buildLiveText, chips, art, artAccent, artDim, pending, busy, onCta, onChip, topInset = 0 }: Props) {
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
+  const { lang } = useLang();
   const { liquidGlassThemeId, isDark } = useTheme();
   const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
@@ -205,10 +208,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             accessibilityState={{ busy: pending || busy }}
             onPress={pressCta}
             scaleTo={0.97}
-            style={[s.cta, busy ? s.ctaBusy : null]}
+            style={s.cta}
           >
-            <Ionicons name="play" size={18} color="#121318" />
-            <Text style={s.ctaText}>{copy.cta}</Text>
+            {/* зачем (живой макет lesson-preparing-live.html, владелец 25.10): обычно занятие уже собрано — кнопка не меняется; в крайнем случае (> 0,35 с) кольцо хода, «Готовим занятие…», мягкая заливка. Прежнее приглушение до 72 % убрано */}
+            <LessonPrepCtaBody source="home" lang={lang} label={copy.cta} ink="#121318" fillColor="rgba(18,19,24,0.09)" idleIcon={<Ionicons name="play" size={18} color="#121318" />} labelStyle={s.ctaText} testID="home-scene-cta-prep" />
           </V2Pressable>
         ) : null}
         {chips.length > 0 ? (
@@ -262,8 +265,7 @@ const baseStyles = StyleSheet.create({
   bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.28)', overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: '#FFFFFF' },
   line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
-  cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22 },
-  ctaBusy: { opacity: 0.72 },
+  cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22, overflow: 'hidden' },
   ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
   chip: { minHeight: 34, paddingVertical: 4, maxWidth: '100%', borderRadius: 17, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: чип 14 % вместо 16 % — текст на нём ≥ 4,5 в светлых sage/grad_aurora

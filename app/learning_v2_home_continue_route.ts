@@ -5,6 +5,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
 import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from './learning_v2_visibility_switch';
+import { emitAppEvent } from './events';
+import { beginLessonPrep, endLessonPrep, markLessonPrepFinishing } from './lesson_prep_store';
+import { PREP_BUSY_SHOW_MS, PREP_FINISH_BEAT_MS } from '../components/lesson_prep/prep_cta_model';
+import { prepHintToastFields } from '../components/lesson_prep/prep_cta_copy';
 import {
   learningV2SessionHrefV1,
   logLearningV2PrepareFailureV1,
@@ -71,7 +75,16 @@ export function useHomeContinueV2Launching(): boolean {
   return useSyncExternalStore(subscribeLaunch, peekLaunch, peekLaunch);
 }
 
-export type HomeContinueV2LaunchContext = Readonly<{ lang: string; studyTarget: string; push: (href: unknown) => void }>;
+export type HomeContinueV2LaunchContext = Readonly<{
+  lang: string;
+  studyTarget: string;
+  push: (href: unknown) => void;
+  /**
+   * зачем (живой макет lesson-preparing-live.html, владелец утвердил 25.10): запуск с кнопки «Продолжить» Главной — кнопка показывает ход («Готовим занятие…»),
+   * а при отказе человек ОСТАЁТСЯ на Главной с подсказкой снизу (на карту курса не уводим). Остальные вызовы (кнопка друга и т. п.) — прежнее поведение.
+   */
+  homeCta?: boolean;
+}>;
 
 export async function launchHomeContinueV2(route: Readonly<Record<string, string>>, ctx: HomeContinueV2LaunchContext): Promise<void> {
   // защита от двойного тапа: вторая подготовка того же занятия не нужна, второй переход — тем более
@@ -86,6 +99,7 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
   }
   setLaunchInFlight(true);
   const startedAt = Date.now();
+  if (ctx.homeCta === true) beginLessonPrep('home', startedAt);
   const environment = parseLearningV2ReleaseEnvironmentV1(route.releaseEnvironment);
   const seasonId = route.releaseSeasonId || 'learning-v2';
   console.log(`${LOG} launch start session=${sessionId} target=${ctx.studyTarget} lang=${ctx.lang} env=${environment}`);
@@ -96,6 +110,11 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
     );
     stageLearningV2ReadyHandoffV1(ready.handle);
     console.log(`${LOG} launch ready session=${sessionId} run=${ready.sessionRunId} handle=${ready.handle ? 'есть' : 'нет'} ms=${Date.now() - startedAt}`);
+    if (ctx.homeCta === true) {
+      // зачем (макет): готово — заливка дотягивается до конца, затем переход; если кнопка ничего не показывала (обычный случай, < 0,35 с) — переход сразу
+      markLessonPrepFinishing();
+      if (Date.now() - startedAt >= PREP_BUSY_SHOW_MS) await new Promise<void>((resolve) => setTimeout(resolve, PREP_FINISH_BEAT_MS));
+    }
     ctx.push(learningV2SessionHrefV1({
       sessionId,
       lessonOrdinal,
@@ -105,9 +124,20 @@ export async function launchHomeContinueV2(route: Readonly<Record<string, string
       repeat: route.runKind === 'repeat',
       sessionRunId: ready.sessionRunId,
     }));
+    if (ctx.homeCta === true) endLessonPrep({ ok: true });
   } catch (error) {
     logLearningV2PrepareFailureV1('home_continue', sessionId, error);
-    ctx.push('/learning-v2/course');
+    if (ctx.homeCta === true) {
+      // зачем (макет, решение владельца): не успело за 12 с или отказ — кнопка возвращается, снизу подсказка, Главная на месте; на карту курса НЕ уводим.
+      // Подготовка не бросается: следующий тап подхватывает ту же (reuse_inflight в prepareLearningV2SessionRunV1).
+      const reason = error instanceof Error ? error.message : String(error);
+      const timedOut = reason.startsWith('learning_v2_session_prepare_timeout');
+      endLessonPrep({ ok: false, timedOut, reason: reason.slice(0, 160) });
+      console.warn(`${LOG} launch stay_home session=${sessionId} reason=${reason.slice(0, 160)} hint=${timedOut ? 'still_preparing' : 'unavailable_now'} — карту курса не открываем`); // guard-ok: ветка и значение, которое её решило
+      emitAppEvent('action_toast', { type: 'info', ...prepHintToastFields(timedOut ? 'timeout' : 'unavailable') });
+    } else {
+      ctx.push('/learning-v2/course');
+    }
   } finally {
     setLaunchInFlight(false);
   }

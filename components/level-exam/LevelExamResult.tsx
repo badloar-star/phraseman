@@ -20,6 +20,7 @@ import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
+import { SafeTopCloseButton, ScreenBackZone } from '../v2/ScreenBackButton';
 
 export type LevelExamRewardState = 'earned' | 'pending' | 'already_claimed' | 'none';
 
@@ -31,9 +32,11 @@ type Props = {
   energyCost: number;
   unlimitedEnergy: boolean;
   onPrimary: () => void;
+  /** ✕ слева — выйти к урокам (эталон learn.html K6–K7). Нет — кнопки нет (прежний вид). */
+  onClose?: () => void;
 };
 
-export default function LevelExamResult({ lang, attemptId, result, rewardState, energyCost, unlimitedEnergy, onPrimary }: Props) {
+export default function LevelExamResult({ lang, attemptId, result, rewardState, energyCost, unlimitedEnergy, onPrimary, onClose }: Props) {
   const { theme: t, f, ds } = useTheme();
   const reducedMotion = useReducedMotion();
   const entrance = useSharedValue(reducedMotion ? 1 : 0);
@@ -73,6 +76,9 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
   return (
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={styles.safeArea}>
+        {/* зачем (таблица эталонов «назад» 988d643cd: итог экзамена уровня K6–K7 — ✕ слева): общий ✕ на месте кнопки «назад»; полоса под ним — до прокрутки */}
+        {onClose ? <SafeTopCloseButton screen="level_exam_result" testID="level-exam-result-close" onPress={onClose} /> : null}
+        {onClose ? <ScreenBackZone /> : null}
         <BouncyScrollView
           decelerationRate="fast"
           showsVerticalScrollIndicator={false}

@@ -515,6 +515,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         // зачем (PM-046, владелец): /level_reward_spin удалён — успешный
         // экзамен больше никуда не ведёт кроме уроков, спин-ветка снята.
         onPrimary={() => result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}
+        onClose={() => safeRouterBack(router, '/lessons_list' as never)}
       />
     );
   }

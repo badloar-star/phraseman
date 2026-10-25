@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
   rules: { marginTop: 18, gap: 10 },
   rule: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
   num: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  numText: { fontSize: 14, lineHeight: 18, fontWeight: '800' },
+  numText: { fontSize: 13, lineHeight: 18, fontWeight: '800' }, // зачем (шкала владельца D145: обычный текст 16/13, прогон Ревизора 25.10): было 14
   ruleText: { flex: 1, fontSize: 16, lineHeight: 22 },
 });

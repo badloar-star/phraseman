@@ -81,5 +81,5 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 },
   rowTitle: { flex: 1, fontSize: 16, lineHeight: 21, fontWeight: '600' },
   status: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-  statusText: { fontSize: 14, lineHeight: 18, fontWeight: '700' },
+  statusText: { fontSize: 13, lineHeight: 18, fontWeight: '700' }, // зачем (шкала владельца D145: обычный текст 16/13, прогон Ревизора 25.10): было 14
 });

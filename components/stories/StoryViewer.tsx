@@ -177,10 +177,10 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
     DebugLogger.info(LOG, `удержание ${next ? 'есть' : 'снято'} (${why}) касание=${String(touchHeldRef.current)} жест=${String(gestureHeldRef.current)}`);
     syncPause();
   }, [syncPause]);
-  const setHold = useCallback((value: boolean) => { gestureHeldRef.current = value; applyHold(value ? 'жест' : 'жест закончен'); }, [applyHold]);
-  const onTouchStart = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('касание'); }, [applyHold]);
-  const onTouchEnd = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('палец поднят'); }, [applyHold]);
-  const onTouchCancel = useCallback(() => { touchHeldRef.current = false; applyHold('касание отменено'); }, [applyHold]);
+  const setHold = useCallback((value: boolean) => { gestureHeldRef.current = value; applyHold(value ? 'gesture' : 'gesture_end'); }, [applyHold]);
+  const onTouchStart = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('touch'); }, [applyHold]);
+  const onTouchEnd = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('touch_end'); }, [applyHold]);
+  const onTouchCancel = useCallback(() => { touchHeldRef.current = false; applyHold('touch_cancel'); }, [applyHold]);
   useEffect(() => { runtimeRef.current = runtimeActive; syncPause(); }, [runtimeActive, syncPause]);
 
   // старт: раскрытие из аватара и первый кадр; диктор — без автоперехода

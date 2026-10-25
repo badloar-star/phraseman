@@ -15,7 +15,9 @@ for (const [name, source] of [
   assert.match(source, /navigationBarTranslucent/, `${name} must cover Android navigation-bar chrome`);
   assert.match(source, /<ResponsiveModalScrollView/, `${name} must keep long localized copy reachable inside both safe areas`);
   assert.match(source, /<BlurView/, `${name} must render real native blur where the platform supports it`);
-  assert.match(source, /experimentalBlurMethod=\{Platform\.OS === 'android' \? 'dimezisBlurView' : 'none'\}/, `${name} must use the supported Android blur path`);
+  // 25.10 (Ревизор, прогон 05:00): координатор 18.10 — на Android живой блюр выключен (ореол у текста от dimezis без blurTarget); метод везде 'none', iOS как было.
+  assert.match(source, /experimentalBlurMethod=\{'none'\}/, `${name} must keep the Android dimezis blur path off`);
+  assert.doesNotMatch(source, /'dimezisBlurView' : 'none'/, `${name} must not restore the halo-causing Android blur`);
   assert.doesNotMatch(source, /borderWidth:\s*[1-9]/, `${name} must not restore outlined modal containers`);
 }
 

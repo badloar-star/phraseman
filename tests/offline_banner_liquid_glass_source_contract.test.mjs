@@ -16,5 +16,8 @@ assert.match(source, /en: 'No internet'/, 'English offline text must not fall ba
 assert.match(source, /<OfflineBannerSurface/, 'classic and hybrid must share visual surface content');
 assert.doesNotMatch(source, /hybridSpine/, 'offline banner must not retain a red status spine');
 assert.match(source, /top: insets\.top \+ 4/, 'banner must remain below the status-bar safe area');
-assert.match(source, /experimentalBlurMethod=\{Platform\.OS === 'android' \? 'dimezisBlurView' : 'none'\}/, 'Android has an explicit glass blur path');
+// 25.10 (Ревизор, прогон 05:00): координатор 18.10 («свечение текста убери») — на Android dimezis-BlurView без blurTarget снимал экран вместе с текстом и давал ореол;
+// живой блюр на Android выключен, iOS как было. Контракт теперь стережёт именно это: блюр рисуется только не на Android и никогда через dimezis.
+assert.match(source, /Platform\.OS !== 'android' \? \(\s*<BlurView[\s\S]*?experimentalBlurMethod=\{'none'\}/, 'blur is drawn only off Android and never through the halo-causing dimezis path');
+assert.doesNotMatch(source, /'dimezisBlurView' : 'none'/, 'the Android dimezis blur path must stay off');
 assert.doesNotMatch(source, /borderWidth:/, 'banner chrome must not gain a heavy outline');

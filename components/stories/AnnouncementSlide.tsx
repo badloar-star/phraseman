@@ -217,7 +217,7 @@ function AnnouncementSlide({ event, paused = false }: { event: StoryEvent; pause
           </Svg>
         </Animated.View>
       ) : null}
-      <ScrollView
+      <ScrollView decelerationRate="fast"
         style={s.scroll}
         contentContainerStyle={[
           s.content,
@@ -228,13 +228,8 @@ function AnnouncementSlide({ event, paused = false }: { event: StoryEvent; pause
                 ? "flex-start"
                 : "center",
           },
-          template === "margin"
-            ? {
-                borderLeftWidth: 1,
-                borderLeftColor: p.hairline,
-                paddingLeft: 20,
-              }
-            : null,
+          // зачем (правила владельца 12.10 «контейнеры без обводок», аудит 25.10): рамку слева у шаблона margin убрали — тот же акцент рисует линия арта (SVG), отступ текста прежний
+          template === "margin" ? { paddingLeft: 20 } : null,
         ]}
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled
@@ -243,8 +238,8 @@ function AnnouncementSlide({ event, paused = false }: { event: StoryEvent; pause
           <Text
             style={{
               color: p.accentTextSafe,
-              fontSize: 11,
-              letterSpacing: 1.5,
+              fontSize: 13, // зачем (шкала владельца 16/13, храповик typography_two_sizes): было 11
+              letterSpacing: 1,
               textTransform: "uppercase",
               textAlign,
               marginBottom: 8,
@@ -274,36 +269,26 @@ function AnnouncementSlide({ event, paused = false }: { event: StoryEvent; pause
           </Text>
         ) : null}
         {content.blocks.map((block, index) => (
+          // зачем (стиль «Тень», владелец 12.10; правило 25.10): без рамок — цитата отмечена планкой-View, акцентный блок и карточка — плашкой тоном (p.control), шаги — линией-разделителем высотой в View
           <View
             key={index}
             style={[
               { marginTop: 16 },
-              block.style === "quote"
-                ? {
-                    borderLeftWidth: 2,
-                    borderLeftColor: color,
-                    paddingLeft: 12,
-                  }
-                : null,
+              block.style === "quote" ? { flexDirection: "row", gap: 12 } : null,
               template === "cards" || block.style === "accent"
-                ? {
-                    padding: 14,
-                    borderWidth: 1,
-                    borderColor: p.hairline,
-                    borderRadius: 12,
-                  }
-                : null,
-              template === "steps"
-                ? {
-                    borderBottomWidth: 1,
-                    borderBottomColor: p.hairline,
-                    paddingBottom: 14,
-                  }
+                ? { padding: 14, borderRadius: 12, backgroundColor: p.control }
                 : null,
             ]}
           >
+            {block.style === "quote" ? (
+              <View
+                accessible={false}
+                style={{ width: 2, borderRadius: 1, backgroundColor: color }}
+              />
+            ) : null}
             <Text
               style={{
+                flexShrink: 1,
                 color: p.text,
                 fontSize: block.size,
                 lineHeight: block.size * 1.45,
@@ -315,6 +300,12 @@ function AnnouncementSlide({ event, paused = false }: { event: StoryEvent; pause
               {template === "steps" ? "↗ " : ""}
               {block.text}
             </Text>
+            {template === "steps" ? (
+              <View
+                accessible={false}
+                style={{ height: StyleSheet.hairlineWidth, marginTop: 14, backgroundColor: p.hairline }}
+              />
+            ) : null}
           </View>
         ))}
       </ScrollView>

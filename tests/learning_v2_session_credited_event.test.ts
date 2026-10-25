@@ -35,7 +35,9 @@ describe('requiredSessionCompletionInboxDocumentIdV1', () => {
       expect(at).toBeGreaterThan(-1);
       return src.slice(at, src.indexOf('})}`', at));
     };
-    const serverBody = body(server, 'const inboxDocumentId = ');
+    // зачем (Ядро 25.10, прогон Ревизора): с 168afbc21 формула id живёт в общем помощнике сервера (его же зовёт inboxDocumentId)
+    const serverBody = body(server, 'export const requiredSessionCompletionInboxDocumentIdV1 = (');
+    expect(server).toContain('requiredSessionCompletionInboxDocumentIdV1(record.progressAccountScopeHash, record.mutationId)');
     const clientBody = body(sync, 'export function requiredSessionCompletionInboxDocumentIdV1(');
     for (const part of ['`rsciv1_${hashCanonicalBody({', 'learning-v2-required-session-completion-inbox-key.v1', 'progressAccountScopeHash:', 'mutationId:']) {
       expect(serverBody).toContain(part);

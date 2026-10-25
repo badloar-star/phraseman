@@ -28,9 +28,12 @@ describe('Super Sunday live earn source wiring', () => {
     expect(learningServer).toContain(
       'applySuperSundayRuneMultiplier(baseAwardedSubunits, awardedAtMs)',
     );
+    // зачем (Ядро 25.10, прогон Ревизора): с f15b2c796 сумма операции считается в levelSpinStarOperationAmountV1 — множитель там
+    // же для всего игрового, кроме экзамена главы (сервер принимает ровно 20 на часть); запись операции обязана брать эту сумму
     expect(spin).toContain(
-      'applySuperSundayRuneMultiplier(baseAmount, createdAtMs)',
+      'applySuperSundayRuneMultiplier(baseAmount, input.createdAtMs)',
     );
+    expect(spin).toContain('levelSpinStarOperationAmountV1({ requestId, giftId, promotionEligibility, createdAtMs })');
     expect(mistake).toContain(
       'applySuperSundayRuneMultiplier(1, candidate.earnedAtMs)',
     );

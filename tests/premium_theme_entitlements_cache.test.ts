@@ -56,7 +56,11 @@ describe('права на особые темы: кэш на телефоне', 
     const { readSource } = require('./helpers/read_source') as { readSource: (p: string) => string };
     const sync = readSource('app/cloud_sync.ts');
     expect(sync).toContain("const PREMIUM_THEME_ENTITLEMENTS_PREFIX = 'premium_theme_entitlements_v1';");
-    expect(sync).toMatch(/WIPE_ONLY_ACCOUNT_KEY_PREFIXES[\s\S]*?PREMIUM_THEME_ENTITLEMENTS_PREFIX,\n\];/);
+    // зачем (Ядро 25.10, прогон Ревизора 05:00): ключ стоит в списке стирания; тест проверяет членство, а не место — после него
+    // добавились ключи историй, и «последний в массиве» ложно краснел
+    const start = sync.indexOf('const WIPE_ONLY_ACCOUNT_KEY_PREFIXES');
+    const wipeList = sync.slice(start, sync.indexOf('];', start));
+    expect(wipeList).toMatch(/\bPREMIUM_THEME_ENTITLEMENTS_PREFIX\b/);
   });
 
   it('кэш старше 24 ч — идёт в сеть и перезаписывает', async () => {

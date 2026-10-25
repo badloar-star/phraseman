@@ -6,7 +6,11 @@
       "domain": "account",
       "scope": "portable",
       "reducer": "field_register",
-      "importSource": ["async_storage", "last_sync_snapshot", "cloud_progress"],
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
       "legacyMirror": true,
       "sensitivity": "sensitive"
     },
@@ -298,7 +302,11 @@
       "domain": "preferences",
       "scope": "portable",
       "reducer": "field_register",
-      "importSource": ["async_storage", "last_sync_snapshot", "cloud_progress"],
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
       "legacyMirror": true,
       "sensitivity": "low"
     },
@@ -2700,6 +2708,54 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "low"
+    },
+    {
+      "key": "friends_week_v1",
+      "domain": "friends",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "friends_phrase_v1",
+      "domain": "friends",
+      "scope": "portable",
+      "reducer": "field_register",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "learning_v2_not_from_start_used_v1",
+      "domain": "preferences",
+      "scope": "portable",
+      "reducer": "max",
+      "importSource": [
+        "async_storage",
+        "last_sync_snapshot",
+        "cloud_progress"
+      ],
+      "legacyMirror": true,
+      "sensitivity": "low"
+    },
+    {
+      "key": "analytics_consent_v1",
+      "domain": "preferences",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
     }
   ],
   "prefixRules": [
@@ -3251,6 +3307,33 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "personal"
+    },
+    {
+      "prefix": "premium_theme_entitlements_v1",
+      "domain": "preferences",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "story_announcements_cache_v1",
+      "domain": "app",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "story_announcements_seen_v1",
+      "domain": "app",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
     }
   ]
 }

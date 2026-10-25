@@ -33,7 +33,9 @@ test('spin logic stays deleted: no server spin modules, no spin source in the wa
   expect(sourcePatterns).not.toContain('g2c1_');
   expect(sourcePatterns).not.toContain('g2cdj_');
   const prefixes = [...sourcePatterns.matchAll(/\[\/\^([a-z0-9_]+?)_\[/g)].map((m) => m[1]);
-  expect(prefixes).toEqual(['report_reward', 'dailyjourney']);
+  // зачем (Ядро 25.10, прогон Ревизора): lessontogether_ — «Урок вместе», утверждён владельцем 22.10 (кнопка «А1 — lesson_together: да»,
+  // 652953424); экзамен главы задан константой CHAPTER_EXAM_REQUEST_RE и сюда не попадает. g2c* по-прежнему запрещены (выше).
+  expect(prefixes).toEqual(['report_reward', 'dailyjourney', 'lessontogether']);
   for (const prefix of prefixes) expect(prefix).not.toMatch(/spin|quest|video|level/i);
 });
 

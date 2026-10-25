@@ -43,13 +43,19 @@ jest.mock('expo-image', () => ({ Image: 'Image' }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }) }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
 jest.mock('../components/learning-v2/LearningV2Glass', () => ({
-  useLv2Glass: () => ({ bg: '#000', text: '#fff', secondary: '#aaa', mutedText: '#999', good: '#0f0', bad: '#f00', opaqueCard: '#111', opaqueControl: '#222', opaqueSheet: '#222', plateFillFrom: '#111', dividerTone: '#333', cta: '#fff', ctaInk: '#000' }),
+  useLv2Glass: () => ({ bg: '#000', text: '#fff', secondary: '#aaa', mutedText: '#999', good: '#0f0', bad: '#f00', goodSoft: 'rgba(0,255,0,0.2)', badSoft: 'rgba(255,0,0,0.2)', opaqueCard: '#111', opaqueControl: '#222', opaqueSheet: '#222', plateFillFrom: '#111', dividerTone: '#333', cta: '#fff', ctaInk: '#000' }),
 }));
 jest.mock('../components/home/homeRuneAsset', () => ({ HOME_RUNE_ICON_SOURCE: 1 }));
 jest.mock('../components/v2/ShadowSurface', () => ({ plateBoxShadow: () => 'none', nestedBoxShadow: () => 'none' }));
 jest.mock('../components/v2/V2Glass', () => ({ V2IconTile: 'V2IconTile' }));
 jest.mock('../components/streak/moments/use_streak_colors', () => ({ useStreakColors: () => ({ accent: '#7EF0C8', accentGraphic: '#7EF0C8', second: '#88f', gold: '#fc0', text: '#fff' }) }));
-jest.mock('../app/runes_system', () => ({ peekRunes: () => 7004 }));
+// зачем (Ядро 25.10, «одно число монет»): экран итога берёт единый показ (кошелёк + ожидающие) — заглушка отдаёт то же число
+jest.mock('../app/runes_system', () => ({
+  peekRunes: () => 7004,
+  peekDisplayedRunes: () => 7004,
+  subscribeDisplayedRunes: () => () => undefined,
+  noteCoinDisplay: () => undefined,
+}));
 jest.mock('../app/app_snapshot_store', () => ({ subscribeAppSnapshot: () => () => undefined }));
 jest.mock('../constants/runes', () => ({ runeWord: () => 'монет' }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticLightImpact: jest.fn(() => Promise.resolve()), hapticMediumImpact: jest.fn(() => Promise.resolve()), hapticSuccess: jest.fn(() => Promise.resolve()) }));

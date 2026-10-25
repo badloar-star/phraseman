@@ -55,8 +55,9 @@ export default function StreakRiskToastHost() {
         layout: 'top_line',
         lineIcon: 'flame-outline',
         ...actionToastTri('warning', {
-          ru: `Цепочка ${streakBefore} дн. сгорит в полночь — позанимайся, чтобы сохранить`,
-          uk: `Серія ${streakBefore} дн. згорить опівночі — позаймайся, щоб зберегти`,
+          // зачем (голос PhraseMan, VOICE.md, владелец 25.10): «серия», как везде; живо — что делать и что будет
+          ru: `Серия ${streakBefore} дн. сгорит в полночь — одно занятие, и она спасена`,
+          uk: `Серія ${streakBefore} дн. згорить опівночі — одне заняття, і її врятовано`,
           es: `Tu racha de ${streakBefore} días se pierde a medianoche — practica para mantenerla`, en: `Your ${streakBefore}-day streak ends at midnight — practice to save it`,
           'pt-BR': `Sua sequência de ${streakBefore} dias acaba à meia-noite — pratique para manter`,
           vi: `Chuỗi ${streakBefore} ngày sẽ mất lúc nửa đêm — hãy luyện tập để giữ`,

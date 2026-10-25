@@ -2563,7 +2563,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             pl: `${homeV2Days} ${homeV2Days === 1 ? 'dzień' : 'dni'}`,
         });
         const homeV2StreakPendingA11y = triLang(lang, { ru: 'Сегодня день ещё не засчитан — заверши любое упражнение.', uk: 'Сьогодні день ще не зараховано — заверши будь-яку вправу.', en: 'Today hasn’t counted yet — finish any exercise.', es: 'Hoy aún no cuenta: termina cualquier ejercicio.', 'pt-BR': 'Hoje ainda não contou — termine qualquer exercício.', vi: 'Hôm nay chưa được tính — hãy hoàn thành một bài tập.', id: 'Hari ini belum dihitung — selesaikan latihan apa pun.', tr: 'Bugün henüz sayılmadı — herhangi bir alıştırmayı bitir.', pl: 'Dziś dzień jeszcze się nie liczy — ukończ dowolne ćwiczenie.' });
-        const homeV2StreakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' });
+        const homeV2StreakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' });
         // зачем D129/D130: плитка показывается, только если её раздел готов для языка обучения.
         const homeV2AllTiles: HomeFeatureTile[] = [
             {

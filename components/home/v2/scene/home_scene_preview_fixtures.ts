@@ -135,7 +135,7 @@ export function homeScenePreviewHeaderWords(lang: Lang, days: number): Readonly<
       en: `${days} ${days === 1 ? 'day' : 'days'}`, es: `${days} ${days === 1 ? 'día' : 'días'}`, 'pt-BR': `${days} ${days === 1 ? 'dia' : 'dias'}`,
       vi: `${days} ngày`, id: `${days} hari`, tr: `${days} gün`, pl: `${days} ${days === 1 ? 'dzień' : 'dni'}`,
     }),
-    streak: triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' }),
+    streak: triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' }),
     coins: triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' }),
   });
 }

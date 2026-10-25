@@ -86,7 +86,7 @@ const T = {
   // зачем (координатор 25.10, замена данных): рекорд — серии в днях (счётчики заданий дня в разных единицах)
   bestStreakKicker: (l: Lang, n: number) => triLang(l, {
     ru: `Твой рекорд серии — ${n} ${ruPl(n, 'день', 'дня', 'дней')}`, uk: `Твій рекорд серії — ${n} ${ruPl(n, 'день', 'дні', 'днів')}`, en: `Your best streak: ${n} ${en(n, 'day', 'days')}`,
-    es: `Tu mejor racha: ${n} días`, 'pt-BR': `Sua melhor sequência: ${n} dias`, vi: `Chuỗi dài nhất của bạn: ${n} ngày`, id: `Runtunan terbaikmu: ${n} hari`, tr: `En iyi serin: ${n} gün`, pl: `Twoja najlepsza seria: ${n} ${plPl(n, 'dzień', 'dni', 'dni')}`,
+    es: `Tu mejor racha: ${n} días`, 'pt-BR': `Sua melhor sequência: ${n} dias`, vi: `Chuỗi dài nhất của bạn: ${n} ngày`, id: `Rangkaian terbaikmu: ${n} hari`, tr: `En iyi serin: ${n} gün`, pl: `Twoja najlepsza seria: ${n} ${plPl(n, 'dzień', 'dni', 'dni')}`,
   }),
   beatStreak: (l: Lang) => triLang(l, { ru: 'Побьёшь?', uk: 'Поб’єш?', en: 'Beat it?', es: '¿Lo superas?', 'pt-BR': 'Vai bater?', vi: 'Phá kỷ lục chứ?', id: 'Pecahkan?', tr: 'Geçer misin?', pl: 'Pobijesz?' }),
   bestKicker: (l: Lang, n: number) => triLang(l, {

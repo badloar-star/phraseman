@@ -1438,7 +1438,7 @@ function StreakHeroCard({
     // какие дни засчитаны. Каждый день теперь подписан: «Пн — засчитан» / «Пн — не засчитан».
     const dayCountedWord = triLang(lang, { ru: 'засчитан', uk: 'зараховано', en: 'counted', es: 'contado', 'pt-BR': 'contado', vi: 'đã tính', id: 'dihitung', tr: 'sayıldı', pl: 'zaliczony' });
     const dayNotCountedWord = triLang(lang, { ru: 'не засчитан', uk: 'не зараховано', en: 'not counted', es: 'sin contar', 'pt-BR': 'não contado', vi: 'chưa tính', id: 'belum dihitung', tr: 'sayılmadı', pl: 'niezaliczony' });
-    const streakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' });
+    const streakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' });
     const heroA11yLabel = `${streakWord}: ${totalStreak} ${streakCaption}, ${recordWord} ${bestStreak}. ${weekDays.map((day) => `${day.shortLabel} — ${day.active ? dayCountedWord : dayNotCountedWord}`).join(', ')}`;
     return (
         <StatsCardArtSurface

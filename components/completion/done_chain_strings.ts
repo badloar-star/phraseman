@@ -11,7 +11,7 @@ import { streakDayWord } from '../streak/moments/streak_moments_strings';
 type Nine = Readonly<{ ru: string; uk: string; en: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string }>;
 
 const S = {
-  streak: { ru: 'Серия — {n} {dn}', uk: 'Серія — {n} {dn}', en: 'Streak — {n} {dn}', es: 'Racha — {n} {dn}', 'pt-BR': 'Sequência — {n} {dn}', vi: 'Chuỗi — {n} {dn}', id: 'Runtunan — {n} {dn}', tr: 'Seri — {n} {dn}', pl: 'Seria — {n} {dn}' },
+  streak: { ru: 'Серия — {n} {dn}', uk: 'Серія — {n} {dn}', en: 'Streak — {n} {dn}', es: 'Racha — {n} {dn}', 'pt-BR': 'Sequência — {n} {dn}', vi: 'Chuỗi — {n} {dn}', id: 'Rangkaian — {n} {dn}', tr: 'Seri — {n} {dn}', pl: 'Seria — {n} {dn}' },
   counted: { ru: 'сегодня засчитан', uk: 'сьогодні зараховано', en: 'today counts', es: 'hoy cuenta', 'pt-BR': 'hoje contou', vi: 'hôm nay đã tính', id: 'hari ini dihitung', tr: 'bugün sayıldı', pl: 'dziś zaliczony' },
   pending: { ru: 'сегодня ещё нет', uk: 'сьогодні ще ні', en: 'not yet today', es: 'hoy aún no', 'pt-BR': 'hoje ainda não', vi: 'hôm nay chưa', id: 'hari ini belum', tr: 'bugün henüz yok', pl: 'dziś jeszcze nie' },
 } as const satisfies Readonly<Record<string, Nine>>;

@@ -79,7 +79,7 @@ function streakKicker(lang: Lang, days: number): string {
     es: `Racha de ${n} ${one ? 'día' : 'días'}`,
     'pt-BR': `Sequência de ${n} ${one ? 'dia' : 'dias'}`,
     vi: `Chuỗi ${n} ngày`,
-    id: `Runtunan ${n} hari`,
+    id: `Rangkaian ${n} hari`,
     tr: `${n} günlük seri`,
   });
 }

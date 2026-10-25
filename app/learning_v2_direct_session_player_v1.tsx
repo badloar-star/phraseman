@@ -2160,13 +2160,13 @@ export default function LearningV2DirectSessionPlayerV1() {
           // зачем (Переводчик bd52242c7): «Ты сказал(а)» угадывал род — «Твой ответ» нейтрален
           ru: `${stars} из 3 звёзд, ${verdict}. Твой ответ: ${voiceAttemptResult.transcript}`,
           uk: `${stars} з 3 зірок, ${verdict}. Твоя відповідь: ${voiceAttemptResult.transcript}`,
-          en: `${stars} of 3 stars, ${verdict}. You said: ${voiceAttemptResult.transcript}`,
-          es: `${stars} de 3 estrellas, ${verdict}. Dijiste: ${voiceAttemptResult.transcript}`,
-          "pt-BR": `${stars} de 3 estrelas, ${verdict}. Você disse: ${voiceAttemptResult.transcript}`,
-          vi: `${stars} trên 3 sao, ${verdict}. Bạn đã nói: ${voiceAttemptResult.transcript}`,
-          id: `${stars} dari 3 bintang, ${verdict}. Kamu berkata: ${voiceAttemptResult.transcript}`,
-          tr: `3 yıldızdan ${stars}, ${verdict}. Şunu söyledin: ${voiceAttemptResult.transcript}`,
-          pl: `${stars} z 3 gwiazdek, ${verdict}. Powiedziano: ${voiceAttemptResult.transcript}`,
+          en: `${stars} of 3 stars, ${verdict}. Your answer: ${voiceAttemptResult.transcript}`,
+          es: `${stars} de 3 estrellas, ${verdict}. Tu respuesta: ${voiceAttemptResult.transcript}`,
+          "pt-BR": `${stars} de 3 estrelas, ${verdict}. Sua resposta: ${voiceAttemptResult.transcript}`,
+          vi: `${stars}/3 sao, ${verdict}. Câu trả lời của bạn: ${voiceAttemptResult.transcript}`,
+          id: `${stars} dari 3 bintang, ${verdict}. Jawabanmu: ${voiceAttemptResult.transcript}`,
+          tr: `3 yıldızdan ${stars}, ${verdict}. Cevabın: ${voiceAttemptResult.transcript}`,
+          pl: `${stars} z 3 gwiazdek, ${verdict}. Twoja odpowiedź: ${voiceAttemptResult.transcript}`,
         });
       })()
     : undefined;
@@ -4006,8 +4006,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                   />
                   <Text style={[styles.voiceHeardLabel, { color: g.secondary }]}>
                     {triLang(lang, {
-                      ru: "Твой ответ", uk: "Твоя відповідь", en: "You said", es: "Dijiste",
-                      "pt-BR": "Você disse", vi: "Bạn đã nói", id: "Kamu berkata", tr: "Şunu söyledin", pl: "Powiedziano",
+                      ru: "Твой ответ", uk: "Твоя відповідь", en: "Your answer", es: "Tu respuesta",
+                      "pt-BR": "Sua resposta", vi: "Câu trả lời của bạn", id: "Jawabanmu", tr: "Cevabın", pl: "Twoja odpowiedź",
                     })}
                   </Text>
                   <Text style={[styles.voiceHeardText, { color: g.text }]}>

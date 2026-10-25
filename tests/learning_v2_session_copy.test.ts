@@ -30,8 +30,20 @@ describe("Learning V2 session interface copy", () => {
     );
     expect(copy.rewardLabel(1)).toBe("Зачтено. Плюс 1 звезда. С поддержкой");
     expect(copy.skipHint).toBe(
-      // зачем (№7, владелец 21.10): «Эпизод» вместо «Сессия».
-      "Задание получит ноль звёзд, эпизод продолжится",
+      // зачем (№7, владелец 21.10): «Эпизод» вместо «Сессия»; голос — Переводчик 4a04ededa.
+      "За это задание звёзд не будет, а эпизод пойдёт дальше",
     );
+  });
+
+  // зачем (Переводчик 4a04ededa, 🔴): uk «3 зірок» — форма числа была одна на все числа; uk/pl: 1 / 2–4 / 5+
+  test("uk and pl pick the star form by number", () => {
+    const uk = learningV2SessionCopy("uk");
+    expect(uk.collected(1)).toBe("Зібрано 1 зірка");
+    expect(uk.collected(3)).toBe("Зібрано 3 зірки");
+    expect(uk.collected(12)).toBe("Зібрано 12 зірок");
+    expect(uk.improveBody(3)).toBe("Можна добрати ще 3 зірки");
+    expect(uk.rewardLabel(3)).toBe("Ідеально. Плюс 3 зірки. З першої спроби");
+    expect(uk.rewardLabel(1)).toBe("Зараховано. Плюс 1 зірка. З підтримкою");
+    expect(learningV2SessionCopy("pl").collected(3)).toBe("Zdobyto 3 gwiazdki");
   });
 });

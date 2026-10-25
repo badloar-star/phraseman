@@ -347,7 +347,7 @@ describe("Learning V2 real session skip interaction", () => {
   it("plays the bundled phrase recording without a speech or transport call", async () => {
     const view = await renderPracticeSession();
     await act(async () => {
-      fireEvent.press(view.getByLabelText("Прослушать локальную запись фразы"));
+      fireEvent.press(view.getByLabelText("Послушать фразу"));
     });
     await waitFor(() => expect(mockAudioPlay).toHaveBeenCalledTimes(1));
     expect(mockAudioSeekTo).toHaveBeenCalledWith(0);
@@ -360,7 +360,7 @@ describe("Learning V2 real session skip interaction", () => {
     );
     const view = await renderPracticeSession();
     await act(async () => {
-      fireEvent.press(view.getByLabelText("Прослушать локальную запись фразы"));
+      fireEvent.press(view.getByLabelText("Послушать фразу"));
       await Promise.resolve();
     });
     const fallback = view.getByText(
@@ -380,7 +380,7 @@ describe("Learning V2 real session skip interaction", () => {
     jest.useFakeTimers();
     const view = await renderPracticeSession();
     try {
-      const audio = view.getByLabelText("Прослушать локальную запись фразы");
+      const audio = view.getByLabelText("Послушать фразу");
       await act(async () => {
         audio.props.onPress();
         await Promise.resolve();
@@ -406,7 +406,7 @@ describe("Learning V2 real session skip interaction", () => {
     jest.useFakeTimers();
     const view = await renderPracticeSession();
     try {
-      const audio = view.getByLabelText("Прослушать локальную запись фразы");
+      const audio = view.getByLabelText("Послушать фразу");
       await act(async () => {
         audio.props.onPress();
         await Promise.resolve();
@@ -427,7 +427,7 @@ describe("Learning V2 real session skip interaction", () => {
       ).toBeNull();
       expect(view.queryByText("I am here")).toBeNull();
       expect(
-        view.getByLabelText("Прослушать локальную запись фразы"),
+        view.getByLabelText("Послушать фразу"),
       ).toBeTruthy();
     } finally {
       view.unmount();
@@ -440,7 +440,7 @@ describe("Learning V2 real session skip interaction", () => {
     mockAudioStatus.playing = true;
     const view = await renderPracticeSession();
     try {
-      const audio = view.getByLabelText("Прослушать локальную запись фразы");
+      const audio = view.getByLabelText("Послушать фразу");
       await act(async () => {
         audio.props.onPress();
         await Promise.resolve();
@@ -456,7 +456,7 @@ describe("Learning V2 real session skip interaction", () => {
         ),
       ).toBeNull();
       expect(
-        view.getByLabelText("Прослушать локальную запись фразы"),
+        view.getByLabelText("Послушать фразу"),
       ).toBeTruthy();
     } finally {
       view.unmount();
@@ -470,7 +470,7 @@ describe("Learning V2 real session skip interaction", () => {
     mockAudioStatus.didJustFinish = true;
     const view = await renderPracticeSession();
     try {
-      const audio = view.getByLabelText("Прослушать локальную запись фразы");
+      const audio = view.getByLabelText("Послушать фразу");
       await act(async () => {
         audio.props.onPress();
         await Promise.resolve();
@@ -497,7 +497,7 @@ describe("Learning V2 real session skip interaction", () => {
 
   it("does not let a delayed previous finish event release the new playback", async () => {
     const view = await renderPracticeSession();
-    const audio = view.getByLabelText("Прослушать локальную запись фразы");
+    const audio = view.getByLabelText("Послушать фразу");
     await act(async () => {
       audio.props.onPress();
       await Promise.resolve();
@@ -540,7 +540,7 @@ describe("Learning V2 real session skip interaction", () => {
     );
     expect(view.getByText("Различай звучание")).toBeTruthy();
     expect(
-      view.getByLabelText("Прослушать локальную запись фразы"),
+      view.getByLabelText("Послушать фразу"),
     ).toBeTruthy();
   });
 
@@ -630,7 +630,7 @@ describe("Learning V2 real session skip interaction", () => {
         }),
     );
     const view = await renderPracticeSession();
-    const audio = view.getByLabelText("Прослушать локальную запись фразы");
+    const audio = view.getByLabelText("Послушать фразу");
     const skip = view.getByLabelText("Пропустить это задание");
     await act(async () => {
       audio.props.onPress();
@@ -651,7 +651,7 @@ describe("Learning V2 real session skip interaction", () => {
 
   it("stops a playing recording before advancing to the next card", async () => {
     const view = await renderPracticeSession();
-    const audio = view.getByLabelText("Прослушать локальную запись фразы");
+    const audio = view.getByLabelText("Послушать фразу");
     await act(async () => {
       audio.props.onPress();
       await Promise.resolve();

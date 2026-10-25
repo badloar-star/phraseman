@@ -89,56 +89,56 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     modes: {
       listen_choose: "Слушай и выбирай",
       sound_contrast: "Различай звучание",
-      speed_match: "Быстрое совпадение",
+      speed_match: "Найди пару на скорость",
       phrase_builder: "Собери фразу",
-      listen_build_dictation: "Диктант-конструктор",
-      context_gap_grammar: "Точная грамматика",
+      listen_build_dictation: "Собери услышанное",
+      context_gap_grammar: "Вставь нужное слово",
       scripted_repeat_compare: "Повтори и сравни",
     },
-    unavailable: "Эпизод недоступен",
-    captureFailed: "Не удалось записать ответ. Попробуй ещё раз — попытка не потрачена",
+    unavailable: "Этот эпизод пока не открылся",
+    captureFailed: "Ответ не записался. Попробуй ещё раз — попытка не сгорела",
     retry: "Повторить",
     close: "Закрыть эпизод",
-    introCheck: (n) => `Проверка интро · вопрос ${n} из 3`,
+    introCheck: (n) => `Вспоминаем начало · вопрос ${n} из 3`,
     independent: "Самостоятельно",
-    supportFades: "Поддержка постепенно исчезает",
+    supportFades: "Подсказок всё меньше — ты справишься",
     showPhrase: "Показать фразу текстом",
-    listenOffline: "Прослушать локальную запись фразы",
-    audioUnavailableHint: "Аудиозапись недоступна, фраза показана текстом ниже",
-    audioOfflineHint: "Воспроизводит встроенную запись без подключения к сети",
+    listenOffline: "Послушать фразу",
+    audioUnavailableHint: "Звук не загрузился — фраза написана ниже",
+    audioOfflineHint: "Работает и без интернета",
     localAudioUnavailable:
-      "Локальная запись недоступна. Фраза показана текстом.",
+      "Звука нет, но фраза написана ниже",
     localAudioFailed:
-      "Не удалось воспроизвести локальную запись. Фраза показана текстом.",
+      "Звук не включился — фраза написана ниже",
     listenPrompt: "Прослушай фразу и выбери её смысл",
     chooseExactPhrase: "Выбери точную фразу",
     repeatPrivacy:
-      "Тренировочный повтор · голос не записывается и не оценивается",
+      "Просто повтори вслух — голос не записываем и не оцениваем",
     builtPhrase: "Собранная фраза",
     tapWords: "Нажимай слова по порядку",
     repeatWithoutGrade: "Продолжить без оценки голоса",
-    repeatedAloud: "Я повторил вслух",
+    repeatedAloud: "Повторено вслух",
     taskActions: "Действия задания",
-    reportTask: "Отправить репорт об этом задании",
+    reportTask: "Сообщить об ошибке в задании",
     savePhrase: "Сохранить фразу в карточки",
     saveAdded: "Фраза сохранена в карточки",
     saveFirstEver:
-      "Ты сохранил(а) свою первую карточку. Потренируй её в любое время в разделе «Карточки»",
+      "Первая карточка в коллекции! Тренируй её когда угодно в «Карточках»",
     saveDuplicate: "Фраза уже есть в карточках",
-    saveFailed: "Не удалось сохранить фразу",
+    saveFailed: "Фраза не сохранилась — попробуй ещё раз",
     voiceSpeaking: "Говори — отпусти кнопку, чтобы остановить",
     voicePermission: "Разреши доступ к микрофону в настройках",
-    voiceUnavailable: "Голосовой ответ сейчас недоступен",
+    voiceUnavailable: "Голосом сейчас не получится — ответь кнопками",
     voiceStopped: "Голосовой ответ завершён",
-    voiceFailed: "Не удалось начать голосовой ответ",
+    voiceFailed: "Микрофон не включился — попробуй ещё раз",
     stopVoice: "Остановить голосовой ответ",
-    startVoice: "Удерживай, чтобы ответить голосом",
-    secondError: "Почти. Посмотри внимательнее и попробуй ещё.",
+    startVoice: "Держи кнопку и говори",
+    secondError: "Почти! Посмотри ещё раз — ответ рядом",
     showHint: "Показать подсказку",
     hint: "Подсказка",
-    hintFallback: "Попробуй ещё раз без раскрытия ответа",
+    hintFallback: "Попробуй ещё раз — ответ пока не показываем",
     skipTask: "Пропустить это задание",
-    skipHint: "Задание получит ноль звёзд, эпизод продолжится",
+    skipHint: "За это задание звёзд не будет, а эпизод пойдёт дальше",
     skip: "Пропустить",
     attempt: "попытка",
     check: "Проверить",
@@ -146,16 +146,16 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     next: "Дальше",
     map: "На карту",
     scorePossible: "из 36 возможных",
-    perfect: "Идеально",
+    perfect: "Идеально!",
     recovered: "Исправлено",
     supported: "С поддержкой",
     skipped: "Пропущено",
     repeatReward:
-      "Награда за повтор подтвердится отдельно и появится в общем балансе автоматически.",
+      "Награда за повтор придёт сама — загляни в баланс чуть позже",
     stored:
-      "Результат сохранён — он появится на всех твоих устройствах.",
-    perfectBody: "Идеальный эпизод — все звёзды результата твои.",
-    improveBody: (n) => `Можно улучшить результат ещё на ${n} ${ruStar(n)}.`,
+      "Результат сохранён — он будет на всех твоих устройствах",
+    perfectBody: "Идеальный эпизод — все звёзды твои!",
+    improveBody: (n) => `Можно добрать ещё ${n} ${ruStar(n)}`,
     cardProgress: (n) => `${n} из 12`,
     starsProgress: (n) => `Собрано ${n} из 36 звёзд в этом эпизоде`,
     answer: (l, t) => `Ответ ${l}: ${t}`,
@@ -176,17 +176,17 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     },
   },
   uk: makeCopy({
-    unavailable: "Епізод недоступний",
+    unavailable: "Цей епізод поки не відкрився",
     close: "Закрити епізод",
     independent: "Самостійно",
-    supportFades: "Підтримка поступово зникає",
+    supportFades: "Підказок усе менше — ти впораєшся",
     hint: "Підказка",
     skip: "Пропустити",
     check: "Перевірити",
     finish: "Завершити",
     next: "Далі",
     map: "На мапу",
-    perfect: "Ідеально",
+    perfect: "Ідеально!",
     recovered: "Виправлено",
     supported: "З підтримкою",
     skipped: "Пропущено",
@@ -447,7 +447,7 @@ function makeCopy(
 ): SessionCopy {
   const locale = base.language;
   const number = (value: number) => new Intl.NumberFormat(locale).format(value);
-  const noun =
+  const nounMany =
     locale === "uk"
       ? "зірок"
       : locale === "es"
@@ -461,16 +461,26 @@ function makeCopy(
               : locale === "tr"
                 ? "yıldız"
                 : "gwiazdek";
+  // зачем (Переводчик 4a04ededa, 🔴 «3 зірок»): форма числа зависит от числа — uk/pl: 1 / 2–4 / 5+, es/pt-BR: 1 / много; vi/id/tr не меняются
+  const noun = (value: number): string => {
+    const mod10 = value % 10; const mod100 = value % 100;
+    const few = mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14);
+    if (locale === "uk") return mod10 === 1 && mod100 !== 11 ? "зірка" : few ? "зірки" : "зірок";
+    if (locale === "pl") return value === 1 ? "gwiazdka" : few ? "gwiazdki" : "gwiazdek";
+    if (locale === "es") return value === 1 ? "estrella" : nounMany;
+    if (locale === "pt-BR") return value === 1 ? "estrela" : nounMany;
+    return nounMany;
+  };
   const t = <T extends Record<MakeCopyLocale, string>>(rows: T) =>
     rows[locale as keyof T] as string;
   const rows = {
     uk: [
       "Слухай і вибирай",
       "Розрізняй звучання",
-      "Швидка відповідність",
+      "Знайди пару на швидкість",
       "Склади фразу",
-      "Диктант-конструктор",
-      "Точна граматика",
+      "Склади почуте",
+      "Встав потрібне слово",
       "Повтори й порівняй",
     ],
     es: [
@@ -529,6 +539,10 @@ function makeCopy(
     ],
   } as const;
   const labels = rows[locale as MakeCopyLocale];
+  // зачем (Переводчик 4a04ededa): «Ідеально!» с восклицанием — для отдельной строки; в заголовке вердикта и разборе — без «!», иначе «Ідеально!. Плюс…»
+  const perfectWord = base.perfect.replace(/!$/u, "");
+  // uk: оценка «1» называется «Зараховано» (как ru «Зачтено»), а не «З підтримкою» — та пояснение, а не оценка
+  const countedWord = locale === "uk" ? "Зараховано" : base.supported;
   const phrase = (
     uk: string,
     es: string,
@@ -550,7 +564,7 @@ function makeCopy(
     },
     unavailable: base.unavailable,
     captureFailed: phrase(
-      "Не вдалося записати відповідь. Спробуй ще раз — спроба не витрачена",
+      "Відповідь не записалась. Спробуй ще раз — спроба не згоріла",
       "No se pudo grabar tu respuesta. Inténtalo otra vez: no se gastó el intento",
       "Não foi possível gravar sua resposta. Tente de novo: a tentativa não foi gasta",
       "Không ghi được câu trả lời. Hãy thử lại — lượt của bạn vẫn còn",
@@ -570,7 +584,7 @@ function makeCopy(
     close: base.close,
     introCheck: (n) =>
       phrase(
-        `Перевірка вступу · питання ${n} з 3`,
+        `Згадуємо початок · питання ${n} з 3`,
         `Comprobación inicial · pregunta ${n} de 3`,
         `Revisão inicial · pergunta ${n} de 3`,
         `Kiểm tra mở đầu · câu ${n}/3`,
@@ -590,7 +604,7 @@ function makeCopy(
       "Pokaż frazę jako tekst",
     ),
     listenOffline: phrase(
-      "Прослухати локальний запис",
+      "Послухати вислів",
       "Escuchar la grabación local",
       "Ouvir a gravação local",
       "Nghe bản ghi trên máy",
@@ -599,7 +613,7 @@ function makeCopy(
       "Odtwórz nagranie lokalne",
     ),
     audioUnavailableHint: phrase(
-      "Аудіо недоступне, вислів показано нижче",
+      "Звук не завантажився — вислів написано нижче",
       "El audio no está disponible; la frase aparece abajo",
       "O áudio não está disponível; a frase aparece abaixo",
       "Âm thanh không khả dụng; câu ở bên dưới",
@@ -608,7 +622,7 @@ function makeCopy(
       "Nagranie jest niedostępne; fraza znajduje się niżej",
     ),
     audioOfflineHint: phrase(
-      "Відтворює запис без інтернету",
+      "Працює і без інтернету",
       "Reproduce una grabación sin conexión",
       "Reproduz uma gravação sem internet",
       "Phát bản ghi không cần mạng",
@@ -617,7 +631,7 @@ function makeCopy(
       "Odtwarza nagranie bez internetu",
     ),
     localAudioUnavailable: phrase(
-      "Локальний запис недоступний. Фразу показано текстом.",
+      "Звуку немає, але вислів написано нижче",
       "La grabación local no está disponible. Se muestra la frase.",
       "A gravação local não está disponível. A frase foi exibida.",
       "Bản ghi không khả dụng. Câu được hiển thị bằng chữ.",
@@ -626,7 +640,7 @@ function makeCopy(
       "Nagranie lokalne jest niedostępne. Fraza jest pokazana jako tekst.",
     ),
     localAudioFailed: phrase(
-      "Не вдалося відтворити запис. Вислів показано текстом.",
+      "Звук не ввімкнувся — вислів написано нижче",
       "No se pudo reproducir la grabación. Se muestra la frase.",
       "Não foi possível reproduzir a gravação. A frase foi exibida.",
       "Không thể phát bản ghi. Câu được hiển thị bằng chữ.",
@@ -653,7 +667,7 @@ function makeCopy(
       "Wybierz dokładną frazę",
     ),
     repeatPrivacy: phrase(
-      "Тренувальне повторення · голос не записується й не оцінюється",
+      "Просто повтори вголос — голос не записуємо й не оцінюємо",
       "Repetición de práctica · tu voz no se graba ni se evalúa",
       "Repetição de treino · sua voz não é gravada nem avaliada",
       "Luyện lặp lại · giọng nói không được ghi hoặc chấm",
@@ -689,7 +703,7 @@ function makeCopy(
       "Kontynuuj bez oceny głosu",
     ),
     repeatedAloud: phrase(
-      "Я повторив уголос",
+      "Повторено вголос",
       "Lo repetí en voz alta",
       "Repeti em voz alta",
       "Tôi đã đọc to",
@@ -707,7 +721,7 @@ function makeCopy(
       "Działania zadania",
     ),
     reportTask: phrase(
-      "Надіслати звіт про завдання",
+      "Повідомити про помилку в завданні",
       "Enviar un reporte sobre esta tarea",
       "Enviar um relato sobre esta tarefa",
       "Báo cáo bài tập này",
@@ -734,7 +748,7 @@ function makeCopy(
       "Fraza została zapisana w kartach",
     ),
     saveFirstEver: phrase(
-      "Ти зберіг(ла) свою першу картку. Потренуй її будь-коли в розділі «Картки»",
+      "Перша картка в колекції! Тренуй її будь-коли в «Картках»",
       "Has guardado tu primera tarjeta. Practícala cuando quieras en «Tarjetas»",
       "Você salvou seu primeiro cartão. Pratique quando quiser em «Cartões»",
       "Bạn đã lưu thẻ đầu tiên. Luyện tập bất cứ lúc nào trong mục «Thẻ»",
@@ -752,7 +766,7 @@ function makeCopy(
       "Fraza jest już w kartach",
     ),
     saveFailed: phrase(
-      "Не вдалося зберегти фразу",
+      "Вислів не зберігся — спробуй ще раз",
       "No se pudo guardar la frase",
       "Não foi possível salvar a frase",
       "Không thể lưu câu",
@@ -779,7 +793,7 @@ function makeCopy(
       "Zezwól na mikrofon w ustawieniach",
     ),
     voiceUnavailable: phrase(
-      "Голосова відповідь зараз недоступна",
+      "Голосом зараз не вийде — відповідай кнопками",
       "La respuesta por voz no está disponible",
       "A resposta por voz não está disponível",
       "Hiện không thể trả lời bằng giọng nói",
@@ -797,7 +811,7 @@ function makeCopy(
       "Odpowiedź głosowa zakończona",
     ),
     voiceFailed: phrase(
-      "Не вдалося почати голосову відповідь",
+      "Мікрофон не ввімкнувся — спробуй ще раз",
       "No se pudo iniciar la respuesta por voz",
       "Não foi possível iniciar a resposta por voz",
       "Không thể bắt đầu trả lời bằng giọng nói",
@@ -815,7 +829,7 @@ function makeCopy(
       "Zatrzymaj odpowiedź głosową",
     ),
     startVoice: phrase(
-      "Утримуй, щоб відповісти голосом",
+      "Тримай кнопку й говори",
       "Mantén pulsado para responder por voz",
       "Segure para responder por voz",
       "Giữ để trả lời bằng giọng nói",
@@ -824,7 +838,7 @@ function makeCopy(
       "Przytrzymaj, aby odpowiedzieć głosem",
     ),
     secondError: phrase(
-      "Майже. Подивись уважніше й спробуй ще раз.",
+      "Майже! Подивись ще раз — відповідь поруч",
       "Casi. Mira con atención e inténtalo de nuevo.",
       "Quase. Observe com atenção e tente de novo.",
       "Gần đúng. Hãy xem kỹ và thử lại.",
@@ -843,7 +857,7 @@ function makeCopy(
     ),
     hint: base.hint,
     hintFallback: phrase(
-      "Спробуй ще раз без розкриття відповіді",
+      "Спробуй ще раз — відповідь поки не показуємо",
       "Inténtalo otra vez sin revelar la respuesta",
       "Tente de novo sem revelar a resposta",
       "Thử lại mà không xem đáp án",
@@ -861,7 +875,7 @@ function makeCopy(
       "Pomiń to zadanie",
     ),
     skipHint: phrase(
-      "Завдання отримає нуль зірок, епізод продовжиться",
+      "За це завдання зірок не буде, а епізод піде далі",
       "La tarea recibirá cero estrellas y el episodio continuará",
       "A tarefa receberá zero estrelas e o episódio continuará",
       "Bài tập nhận 0 sao và tập học tiếp tục",
@@ -897,7 +911,7 @@ function makeCopy(
     supported: base.supported,
     skipped: base.skipped,
     repeatReward: phrase(
-      "Нагороду за повтор буде підтверджено окремо й автоматично додано до загального балансу.",
+      "Нагорода за повтор прийде сама — зазирни в баланс трохи згодом",
       "La recompensa por repetir se confirmará por separado y se añadirá automáticamente.",
       "A recompensa da repetição será confirmada separadamente e adicionada automaticamente.",
       "Phần thưởng học lại sẽ được xác nhận riêng và tự động cộng vào tổng điểm.",
@@ -906,7 +920,7 @@ function makeCopy(
       "Nagroda za powtórkę zostanie potwierdzona osobno i dodana automatycznie.",
     ),
     stored: phrase(
-      "Результат збережено — він з’явиться на всіх твоїх пристроях.",
+      "Результат збережено — він буде на всіх твоїх пристроях",
       "El resultado se guardó en el dispositivo y se sincronizará automáticamente.",
       "O resultado foi salvo no dispositivo e será sincronizado automaticamente.",
       "Kết quả đã lưu trên thiết bị và sẽ tự đồng bộ.",
@@ -915,7 +929,7 @@ function makeCopy(
       "Wynik zapisano na urządzeniu i zostanie zsynchronizowany automatycznie.",
     ),
     perfectBody: phrase(
-      "Ідеальний епізод — зібрано всі зірки.",
+      "Ідеальний епізод — усі зірки твої!",
       "Episodio perfecto: conseguiste todas las estrellas.",
       "Episódio perfeito: você ganhou todas as estrelas.",
       "Tập học hoàn hảo — bạn đã nhận đủ sao.",
@@ -925,13 +939,13 @@ function makeCopy(
     ),
     improveBody: (n) =>
       phrase(
-        `Результат можна покращити ще на ${number(n)} ${noun}.`,
-        `Puedes mejorar el resultado en ${number(n)} ${noun} más.`,
-        `Você pode melhorar o resultado em mais ${number(n)} ${noun}.`,
-        `Bạn có thể tăng thêm ${number(n)} ${noun}.`,
-        `Hasil masih bisa ditingkatkan sebanyak ${number(n)} ${noun}.`,
-        `Sonucu ${number(n)} ${noun} daha artırabilirsin.`,
-        `Możesz poprawić wynik o jeszcze ${number(n)} ${noun}.`,
+        `Можна добрати ще ${number(n)} ${noun(n)}`,
+        `Puedes mejorar el resultado en ${number(n)} ${noun(n)} más.`,
+        `Você pode melhorar o resultado em mais ${number(n)} ${noun(n)}.`,
+        `Bạn có thể tăng thêm ${number(n)} ${noun(n)}.`,
+        `Hasil masih bisa ditingkatkan sebanyak ${number(n)} ${noun(n)}.`,
+        `Sonucu ${number(n)} ${noun(n)} daha artırabilirsin.`,
+        `Możesz poprawić wynik o jeszcze ${number(n)} ${noun(n)}.`,
       ),
     cardProgress: (n) =>
       phrase(
@@ -965,16 +979,16 @@ function makeCopy(
       ),
     attemptLabel: (n) =>
       `${base.language === "vi" ? "lần thử" : base.language === "id" ? "percobaan" : base.language === "tr" ? "deneme" : base.language === "pl" ? "próba" : base.language === "es" ? "intento" : base.language === "pt-BR" ? "tentativa" : "спроба"} ${number(n)}`,
-    starWord: () => noun,
+    starWord: (value) => noun(value),
     collected: (n) =>
       phrase(
-        `Зібрано ${number(n)} ${noun}`,
-        `Conseguiste ${number(n)} ${noun}`,
-        `Você ganhou ${number(n)} ${noun}`,
-        `Đã nhận ${number(n)} ${noun}`,
-        `Terkumpul ${number(n)} ${noun}`,
-        `${number(n)} ${noun} toplandı`,
-        `Zdobyto ${number(n)} ${noun}`,
+        `Зібрано ${number(n)} ${noun(n)}`,
+        `Conseguiste ${number(n)} ${noun(n)}`,
+        `Você ganhou ${number(n)} ${noun(n)}`,
+        `Đã nhận ${number(n)} ${noun(n)}`,
+        `Terkumpul ${number(n)} ${noun(n)}`,
+        `${number(n)} ${noun(n)} toplandı`,
+        `Zdobyto ${number(n)} ${noun(n)}`,
       ),
     filled: (n) =>
       phrase(
@@ -987,21 +1001,21 @@ function makeCopy(
         `${n} z 36 gwiazdek`,
       ),
     breakdown: (a, b, c, d) =>
-      `${base.perfect} ${a}. ${base.recovered} ${b}. ${base.supported} ${c}. ${base.skipped} ${d}.`,
+      `${perfectWord} ${a}. ${base.recovered} ${b}. ${base.supported} ${c}. ${base.skipped} ${d}.`,
     backToMap: (n) =>
       phrase(
-        `Повернутися на мапу з результатом ${n} ${noun}`,
-        `Volver al mapa con ${n} ${noun}`,
-        `Voltar ao mapa com ${n} ${noun}`,
-        `Về bản đồ với ${n} ${noun}`,
-        `Kembali ke peta dengan ${n} ${noun}`,
-        `${n} ${noun} ile haritaya dön`,
-        `Wróć do mapy z wynikiem ${n} ${noun}`,
+        `Повернутися на мапу з результатом ${n} ${noun(n)}`,
+        `Volver al mapa con ${n} ${noun(n)}`,
+        `Voltar ao mapa com ${n} ${noun(n)}`,
+        `Về bản đồ với ${n} ${noun(n)}`,
+        `Kembali ke peta dengan ${n} ${noun(n)}`,
+        `${n} ${noun(n)} ile haritaya dön`,
+        `Wróć do mapy z wynikiem ${n} ${noun(n)}`,
       ),
     rewardLabel: (award) => {
       const quality =
         award === 1
-          ? { title: base.supported, detail: base.supported }
+          ? { title: countedWord, detail: base.supported }
           : award === 2
             ? {
                 title: phrase(
@@ -1016,7 +1030,7 @@ function makeCopy(
                 detail: base.recovered,
               }
             : {
-                title: base.perfect,
+                title: perfectWord,
                 detail: phrase(
                   "З першої спроби",
                   "Al primer intento",
@@ -1027,7 +1041,9 @@ function makeCopy(
                   "Za pierwszym razem",
                 ),
               };
-      return `${quality.title}. +${award} ${noun}. ${quality.detail}.`;
+      // зачем (Переводчик 4a04ededa): uk словами «Плюс 3 зірки», без точки в конце; остальные языки — прежний формат
+      if (locale === "uk") return `${quality.title}. Плюс ${award} ${noun(award)}. ${quality.detail}`;
+      return `${quality.title}. +${award} ${noun(award)}. ${quality.detail}.`;
     },
     tier: (n) =>
       n === 36
@@ -1080,7 +1096,7 @@ function makeCopy(
                   "DROGA ROZPOCZĘTA",
                 ),
     quality: {
-      1: { title: base.supported, detail: base.supported },
+      1: { title: countedWord, detail: base.supported },
       2: {
         title: phrase(
           "Чудово",
@@ -1094,7 +1110,7 @@ function makeCopy(
         detail: base.recovered,
       },
       3: {
-        title: base.perfect,
+        title: perfectWord,
         detail: phrase(
           "З першої спроби",
           "Al primer intento",

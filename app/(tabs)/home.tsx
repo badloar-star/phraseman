@@ -55,6 +55,7 @@ import { STORY_RING_SLOT } from '../../components/stories/story_ring_constants';
 import StoryAvatarSlotBase from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import HomePollV2Card from '../../components/home/HomePollV2Card';
+import HomeSheetTextGuard from '../../components/home/HomeSheetTextGuard';
 import { useHomePollV2 } from '../../hooks/use_home_poll_v2';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { useRenderCause } from '../render_cause_probe';
@@ -3007,14 +3008,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
       /></Suspense>) : null}
       {profileIntroMounted ? (<Suspense fallback={null}><FeatureIntroEntry id="profile_card_first_visit" enabled={profileIntroEnabled} /></Suspense>) : null}
 
-      {homeSurvey.launch ? (<Suspense fallback={null}>
-        <SurveySheetModal
-          visible
-          launch={homeSurvey.launch}
-          onClose={homeSurvey.closeSurvey}
-          onDurablyReconciled={homeSurvey.onDurablyReconciled}
-        />
-      </Suspense>) : null}
+      {homeSurvey.launch ? (
+        // предохранитель снаружи Suspense: сторож ленивых окон держит Suspense вплотную к окну анкеты
+        <HomeSheetTextGuard
+          name="home_survey"
+          resetKey="open"
+          details={() => ({ launchKeys: Object.keys(homeSurvey.launch ?? {}).slice(0, 12) })}
+        ><Suspense fallback={null}>
+          <SurveySheetModal
+            visible
+            launch={homeSurvey.launch}
+            onClose={homeSurvey.closeSurvey}
+            onDurablyReconciled={homeSurvey.onDurablyReconciled}
+          />
+        </Suspense></HomeSheetTextGuard>) : null}
 
       <HybridSheetShell
         visible={homePollV2Open}
@@ -3025,7 +3032,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         sheetHeight="74%"
         testID="home-poll-v2-sheet"
       >
-        <HomePollV2Card model={homePollV2} lang={lang} onFinished={closeHomePollV2} />
+        {/* зачем (координатор 25.10, Сверка: «Text strings must be rendered within a <Text>» при шторке «Опрос»): [TEXT-OUTSIDE] — стек и снимок данных, без текстов */}
+        <HomeSheetTextGuard
+          name="home_poll_v2"
+          resetKey={homePollV2Open ? 'open' : 'closed'}
+          details={() => ({
+            phase: homePollV2.phase, setId: homePollV2.setId, step: homePollV2.step, total: homePollV2.total,
+            questionType: typeof homePollV2.question, questionLength: typeof homePollV2.question === 'string' ? homePollV2.question.length : null,
+            options: homePollV2.options.map((option) => `${typeof option.label}:${typeof option.label === 'string' ? option.label.length : '-'}:${String(option.percent)}`),
+          })}
+        >
+          <HomePollV2Card model={homePollV2} lang={lang} onFinished={closeHomePollV2} />
+        </HomeSheetTextGuard>
       </HybridSheetShell>
 
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>

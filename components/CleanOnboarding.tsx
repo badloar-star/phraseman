@@ -3914,7 +3914,7 @@ function CleanOnboarding({
           })}
           accessibilityRole="button"
         />
-        <ScrollView
+        <ScrollView decelerationRate="fast"
           style={styles.interfaceLanguageMenuCardScroll}
           contentContainerStyle={styles.interfaceLanguageMenuCard}
           bounces={false}

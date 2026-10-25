@@ -160,7 +160,7 @@ export default function FriendsWeekMine() {
           </ScreenOriginBelowSafeTop>
           {/* зачем (замок владельца 22.10 «назад не пересекается»): полоса под кнопкой «назад» — вне прокрутки, контент начинается ниже */}
           <ScreenBackZone />
-          <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
+          <ScrollView decelerationRate="fast" contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
             <FlowText testID="my-week-title" provenance="authored" accessibilityRole="header" style={{ color: glass.text, fontSize: 25 * textScale, lineHeight: 31 * textScale, fontWeight: '700' }}>
               {weekCopy(l, 'myWeek')}
             </FlowText>

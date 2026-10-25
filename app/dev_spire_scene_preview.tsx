@@ -121,7 +121,7 @@ function Inner() {
   return (
     <View style={s.root} testID="dev-spire-scene-preview">
       <ScreenGradient>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
           {/* зачем (владелец 22.10: «верхняя сейф-зона — часть общей композиции»): строка вкладок сама уходит под часы, отдельной полосы нет */}
           <View style={[s.tabsRow, { backgroundColor: sceneTop, paddingTop: insets.top, height: TABS_H + insets.top }]} testID="dev-spire-scene-tabs">
             {tabViews}

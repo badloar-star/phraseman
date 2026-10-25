@@ -102,7 +102,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = 
     <MomentFullScreen testID={testID}>
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: p.bg }, fogStyle]} />
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: g.mediaInk }, veilStyle]} />{/* светлая вуаль +12 % «проснулась» (эталон brightness 1.12) */}
-      <ScrollView style={s.fill} contentContainerStyle={[s.center, { paddingTop: Math.max(insets.top + 40, Math.round(height * TOP_FRACTION)), paddingBottom: dockH + 12 }]} bounces={false} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="fast" style={s.fill} contentContainerStyle={[s.center, { paddingTop: Math.max(insets.top + 40, Math.round(height * TOP_FRACTION)), paddingBottom: dockH + 12 }]} bounces={false} showsVerticalScrollIndicator={false}>
         <View style={s.coinBox}>
           <MomentCoin
             rank={coinRank}

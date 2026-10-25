@@ -151,7 +151,7 @@ function FriendLessonInviteSheet({ visible, lesson, lessonLine, rows, onSend, on
             {lessonInviteSheetBody(lang, lessonLine)}
           </FlowText>
           {/* зачем (PERF-GUARD): друзей может быть много — список с виртуализацией, высота до 42% экрана */}
-          <FlatList
+          <FlatList decelerationRate="fast"
             data={ordered}
             keyExtractor={(row) => row.friendUid}
             extraData={picked}

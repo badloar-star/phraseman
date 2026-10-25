@@ -123,7 +123,7 @@ function Inner() {
   return (
     <View style={s.root} testID="dev-home-scene-preview">
       <ScreenGradient>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
           {/* зачем (владелец 22.10: «верхняя сейф-зона всегда часть общей композиции»): как на Главной — сцена сама рисует фон под часами (topInset), без полосы */}
           {/* key: смена героя, Plus или темы пересоздаёт сцену — как новый показ Главной */}
           <HomeSceneView

@@ -143,7 +143,7 @@ function DialogueV2ThemeScreen() {
         <View testID="dialogs-theme-track" style={[styles.track, { backgroundColor: hair }]}>
           <View style={[styles.dot, { left: `${Math.round(dialogsHubProgress(done, totals.total) * 100)}%`, backgroundColor: g.text }]} />
         </View>
-        <FlatList
+        <FlatList decelerationRate="fast"
           data={items}
           keyExtractor={(i) => i.id}
           renderItem={renderItem}

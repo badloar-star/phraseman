@@ -262,7 +262,7 @@ function FriendsDuelScreen() {
           <ScreenBackSlot />
         </View>
         <ScreenCloseButton screen="friends_duel_result" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={close} />
-        <ScrollView style={styles.scroll} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
+        <ScrollView decelerationRate="fast" style={styles.scroll} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
           <FriendDuelResultView
             mode={summary.kind}
             me={meSide}
@@ -293,7 +293,7 @@ function FriendsDuelScreen() {
         onClose={close}
       />
       <ScreenCloseButton screen="friends_duel_play" testID="friend-duel-close" accessibilityLabel={duelPlayCopy(lang, 'close')} onPress={close} />
-      <ScrollView style={styles.scroll} contentContainerStyle={styles.playContent} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="fast" style={styles.scroll} contentContainerStyle={styles.playContent} showsVerticalScrollIndicator={false}>
         {play.phrase ? (
           <DuelPhraseBoard key={play.phrase.id} phrase={play.phrase} picked={state.picked} verdict={state.verdict} lang={lang} textScale={textScale} onAppend={play.append} onRemoveAt={play.removeAt} />
         ) : null}

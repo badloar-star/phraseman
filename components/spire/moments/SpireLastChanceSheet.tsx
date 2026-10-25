@@ -80,7 +80,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
       )}
     >
       {/* зачем (координатор 18.10, проверка выпуска, шрифт 1,3): шторка ограничена 90 % высоты и обрезает лишнее — на тесном экране тело прокручивается, а не теряет нижнюю кнопку */}
-      <ScrollView bounces={false} showsVerticalScrollIndicator={false} style={{ marginHorizontal: -18 }} contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 8 }}>{/* поля шторки (18) внутри прокрутки — тени плашки и кнопки не срезаются краем */}
+      <ScrollView decelerationRate="fast" bounces={false} showsVerticalScrollIndicator={false} style={{ marginHorizontal: -18 }} contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 8 }}>{/* поля шторки (18) внутри прокрутки — тени плашки и кнопки не срезаются краем */}
         <Text style={[s.p, { color: p.textSecondary }]} testID={`${testID}-body`}>
           {body ?? (
             <>

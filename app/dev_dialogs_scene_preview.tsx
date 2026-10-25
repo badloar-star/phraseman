@@ -95,7 +95,7 @@ function Inner() {
   return (
     <View style={s.root} testID="dev-dialogs-scene-preview">
       <ScreenGradient>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[s.content, narrow ? s.narrow : null]}>
+        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={[s.content, narrow ? s.narrow : null]}>
           {/* key: смена состояния пересоздаёт экран — мягкое появление героя и фильтр миров стартуют заново */}
           <DialogsScene
             key={`${state}|${plus ? 'plus' : 'free'}|${wanted ?? 'app'}`}

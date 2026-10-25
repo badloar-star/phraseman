@@ -158,7 +158,7 @@ function FailView({ lang, outcome, coinRank, onAgain, onLater, busy, testID }: S
 
   return (
     <>
-      <ScrollView style={s.body} contentContainerStyle={s.failBody} bounces={false} showsVerticalScrollIndicator={false}>
+      <ScrollView decelerationRate="fast" style={s.body} contentContainerStyle={s.failBody} bounces={false} showsVerticalScrollIndicator={false}>
         <View style={s.hearts} accessible={false} importantForAccessibility="no-hide-descendants">
           {[0, 1, 2].map((i) => (
             <Animated.View key={i} entering={reduceMotion ? undefined : FadeIn.delay(i * 150)}>

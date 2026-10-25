@@ -82,7 +82,7 @@ function TodayActivityHistory({ dayKey, tasks }: Props) {
         <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{todayHistoryTitle(lang)}</Text>
         <Text style={[s.fullDays, { color: p.secondary }]}>{todayHistoryFullDays(lang, fullDays)}</Text>
       </View>
-    <ScrollView
+    <ScrollView decelerationRate="fast"
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={s.rail}

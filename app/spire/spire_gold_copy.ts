@@ -17,7 +17,7 @@ export const SPIRE_GOLD_TOAST_DAILY_CAP: L9 = {
   es: 'El oro de hoy ya está reunido: el ×2 de este escalón no cuenta',
   'pt-BR': 'O ouro de hoje já foi coletado — o ×2 deste degrau não contou',
   vi: 'Vàng hôm nay đã nhận đủ — ×2 của bậc này không được tính',
-  id: 'Emas hari ini sudah terkumpul — ×2 di langkah ini tidak dihitung',
+  id: 'Emas hari ini sudah terkumpul — ×2 di anak tangga ini tidak dihitung',
   tr: 'Bugünün altını zaten toplandı — bu basamağın ×2’si sayılmadı',
   pl: 'Dzisiejsze złoto już zebrane — ×2 tego stopnia się nie liczy',
 };
@@ -30,7 +30,7 @@ export const SPIRE_GOLD_TOAST_NOT_COUNTED: L9 = {
   es: 'El oro de este escalón no cuenta: se quitó el ×2',
   'pt-BR': 'O ouro deste degrau não contou — ×2 removido',
   vi: 'Vàng của bậc này không được tính — đã bỏ ×2',
-  id: 'Emas di langkah ini tidak dihitung — ×2 dihapus',
+  id: 'Emas di anak tangga ini tidak dihitung — ×2 dihapus',
   tr: 'Bu basamağın altını sayılmadı — ×2 kaldırıldı',
   pl: 'Złoto tego stopnia się nie liczy — usunięto ×2',
 };

@@ -29,7 +29,7 @@ export const SEASON_CARD_COPY = {
   examToChapter: ['К главе {n}', 'До розділу {n}', 'Go to chapter {n}', 'Ir al capítulo {n}', 'Ir ao capítulo {n}', 'Đến chương {n}', 'Ke bab {n}', '{n}. üniteye git', 'Do rozdziału {n}'],
   // зачем (владелец 25.10, окно экзамена «сдан/пауза», макет exam-window-real.html; вид — 2 · ДИЗАЙН): крупная строка, итог и попытка
   // без «нужно 10». Кроме ru — предложение для «Переводчика» (tr: глава = «ünite»).
-  examWinPassed: ['Экзамен сдан', 'Іспит складено', 'Exam passed', 'Examen aprobado', 'Exame aprovado', 'Đã đạt bài thi', 'Lulus ujian', 'Sınav geçildi', 'Egzamin zdany'],
+  examWinPassed: ['Экзамен сдан', 'Іспит складено', 'Exam passed', 'Examen aprobado', 'Exame aprovado', 'Đã đạt bài thi', 'Lulus ujian', 'Sınavı geçtin', 'Egzamin zdany'],
   examWinScore: ['{c} из {q} верно. Глава {n} открыта.', '{c} з {q} правильно. Розділ {n} відкрито.', '{c} of {q} correct. Chapter {n} is open.', '{c} de {q} correctas. El capítulo {n} está abierto.', '{c} de {q} certas. O capítulo {n} está aberto.', 'Đúng {c}/{q}. Chương {n} đã mở.', '{c} dari {q} benar. Bab {n} terbuka.', '{q} sorudan {c} doğru. {n}. ünite açıldı.', '{c} z {q} poprawnie. Rozdział {n} jest otwarty.'],
   examWinAttempt: ['Попытка: {c} из {q}.', 'Спроба: {c} з {q}.', 'Attempt: {c} of {q}.', 'Intento: {c} de {q}.', 'Tentativa: {c} de {q}.', 'Lần thi: {c}/{q}.', 'Percobaan: {c} dari {q}.', 'Deneme: {q} sorudan {c}.', 'Podejście: {c} z {q}.'],
   examPassedNote: ['Начнём с эпизода {a}', 'Почнемо з епізоду {a}', "We'll start with episode {a}", 'Empezamos por el episodio {a}', 'Vamos começar pelo episódio {a}', 'Bắt đầu từ tập {a}', 'Kita mulai dari episode {a}', '{a}. bölümden başlıyoruz', 'Zaczniemy od odcinka {a}'],

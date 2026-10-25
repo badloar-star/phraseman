@@ -342,6 +342,10 @@ type Particle = Readonly<{ id: string; kind: MomentCoinEmote; i: number; left: n
 type BurstProps = Readonly<{ kind: MomentCoinEmote | null; burstKey: number; count?: number; reduceMotion: boolean; onCueRef: React.MutableRefObject<MomentCoinProps['onCue']>; dotsColor: string; starColor: string; emoteColors: CoinColors['emote'] }>;
 function EmoteBurst({ kind, burstKey, count, reduceMotion, onCueRef, dotsColor, starColor, emoteColors }: BurstProps) {
   const [particles, setParticles] = useState<readonly Particle[]>([]);
+  // зачем (аудит скорости 26.10 №11): таймеры УДАЛЕНИЯ значков живут до размонтирования, а не до смены `kind`. Раньше смена эмоции на null
+  // (пот гаснет на 1,1 с, значки уходят на 1,6 с) отменяла их — значки оставались смонтированными навсегда и копились при новых всплесках.
+  const removeTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => { removeTimersRef.current.forEach(clearTimeout); removeTimersRef.current = []; }, []);
   useEffect(() => {
     if (!kind) return;
     onCueRef.current?.(`coin.emote.${kind}`);
@@ -355,7 +359,7 @@ function EmoteBurst({ kind, burstKey, count, reduceMotion, onCueRef, dotsColor, 
     }));
     setParticles((prev) => [...prev, ...fresh]);
     const timers = fresh.map((pt) => setTimeout(() => setParticles((prev) => prev.filter((x) => x.id !== pt.id)), 1600 + pt.i * EMOTE_STEP_MS));
-    return () => timers.forEach(clearTimeout);
+    removeTimersRef.current = [...removeTimersRef.current, ...timers];
   }, [burstKey, count, kind, onCueRef, reduceMotion]);
   if (particles.length === 0) return null;
   return (

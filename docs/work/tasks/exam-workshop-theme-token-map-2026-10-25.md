@@ -124,3 +124,8 @@ Outcome: (1) контраст подписей и состояний SpeakingPan
 Governance-ID: TG-060507F050AD
 
 Outcome: закоммитить scripts/home_scene_special_contrast_measure.ts (читает цвета из HOME_SCENE_INK, принимает в HomeSceneStage ссылку на модуль или тот же литерал), перемерить сцену на коде и удалить временный docs/work/home_scene_ink.ts.txt. Scope: скрипт, docs/work/home-scene-special-contrast-2026-10-25.md, удаление .txt. Architecture/Security/Debt: нет. Verification: прогон скрипта. Rollback: git revert.
+
+## Продолжение: классический урок целиком — контраст во всех темах (координатор 25.10, только изучение)
+Governance-ID: TG-0168B7B91B85
+
+Outcome: app/lesson1.tsx и его компоненты (плитки слов, ввод, подсказки, итог урока, «Мои ошибки») — пары «цвет текста/значка ↔ подложка» из кода, во всех 174 сочетаниях через makeLiquidGlassTheme; отчёт по местам с заменами на токены и владельцем зоны. Scope: скрипт scripts/lesson1_contrast_measure.ts и отчёт docs/work/lesson1-contrast-2026-10-25.md; код урока не меняется. Architecture/Security/Debt: нет. Verification: прогон скрипта, выборочная сверка пар глазами по коду. Rollback: удалить скрипт и отчёт.

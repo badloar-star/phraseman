@@ -79,15 +79,16 @@ export function buildDialogueCompletionFallback({
       pl: 'Nie udało się przygotować szczegółowej analizy, więc nie będziemy wymyślać oceny.',
     }),
     assessment: completionCopy(lang, {
-      ru: `Факт из этой переписки: ты отправил(а) ${count} сообщений.`,
-      uk: `Факт із цього листування: ти надіслав(-ла) ${count} повідомлень.`,
+      // зачем (VOICE.md): род не угадываем, а «сообщений от тебя — N» верно при любом N.
+      ru: `Факт из этой переписки: сообщений от тебя — ${count}.`,
+      uk: `Факт із цього листування: повідомлень від тебе — ${count}.`,
       en: `A fact from this conversation: you sent ${count} messages.`,
       es: `Un dato de esta conversación: enviaste ${count} mensajes.`,
       'pt-BR': `Um fato desta conversa: você enviou ${count} mensagens.`,
       vi: `Một dữ kiện từ cuộc trò chuyện này: bạn đã gửi ${count} tin nhắn.`,
       id: `Fakta dari percakapan ini: kamu mengirim ${count} pesan.`,
       tr: `Bu konuşmadan bir gerçek: ${count} mesaj gönderdin.`,
-      pl: `Fakt z tej rozmowy: wysłałeś(-aś) ${count} wiadomości.`,
+      pl: `Fakt z tej rozmowy: wiadomości od ciebie — ${count}.`,
     }),
     evidence: learnerTurns.slice(0, 3).map((learnerTurn) => ({
       learnerTurn,

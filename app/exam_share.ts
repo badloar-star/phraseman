@@ -107,10 +107,10 @@ export function buildCertificateShareMessage(
   const cleanName = (name || '').trim();
   const variantsRu = [
     cleanName
-      ? `${cleanName} достиг(ла) уровня B2 в Phraseman! 🎯 ${pct}% на финальном тесте.`
+      ? `${cleanName}: уровень B2 в Phraseman взят! 🎯 ${pct}% на финальном тесте.`
       : `Уровень B2 в Phraseman взят! 🎯 ${pct}% на финальном тесте.`,
     cleanName
-      ? `${cleanName} прошёл(ла) финальный тест Phraseman на ${pct}%. 🏆 Уровень B2 — есть!`
+      ? `${cleanName}: финальный тест Phraseman пройден на ${pct}%. 🏆 Уровень B2 — есть!`
       : `Финальный тест Phraseman пройден на ${pct}%. 🏆 Уровень B2 — есть!`,
     cleanName
       ? `${cleanName} — мой английский на уровне B2 по Phraseman! 🎯 Результат: ${pct}%.`
@@ -118,10 +118,10 @@ export function buildCertificateShareMessage(
   ];
   const variantsUk = [
     cleanName
-      ? `${cleanName} досяг(ла) рівня B2 у Phraseman! 🎯 ${pct}% на фінальному тесті.`
+      ? `${cleanName}: рівень B2 у Phraseman взято! 🎯 ${pct}% на фінальному тесті.`
       : `Рівень B2 у Phraseman взято! 🎯 ${pct}% на фінальному тесті.`,
     cleanName
-      ? `${cleanName} пройшов(ла) фінальний тест Phraseman на ${pct}%. 🏆 Рівень B2 — є!`
+      ? `${cleanName}: фінальний тест Phraseman пройдено на ${pct}%. 🏆 Рівень B2 — є!`
       : `Фінальний тест Phraseman пройдено на ${pct}%. 🏆 Рівень B2 — є!`,
     cleanName
       ? `${cleanName} — моя англійська на рівні B2 за Phraseman! 🎯 Результат: ${pct}%.`

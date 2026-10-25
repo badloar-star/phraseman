@@ -90,10 +90,11 @@ function ExpandedCardInner({ card, lang, footer, saved, canDelete, canEdit, show
     ru: 'Нет наборов, куда можно добавить', uk: 'Немає наборів, куди можна додати', en: 'No packs to add to', es: 'No hay sets a los que añadir',
     'pt-BR': 'Não há pacotes para adicionar', vi: 'Không có bộ thẻ nào để thêm vào', id: 'Tidak ada paket untuk ditambah', tr: 'Eklenebilecek paket yok', pl: 'Brak zestawów, do których można dodać',
   });
-  // зачем (находка Ревизора 25.10): наборы не прочитались — не «Своих наборов пока нет», а честный сбой и «Повторить» (черновик, вычитка 10 · ПЕРЕВОДЧИКА)
+  // зачем (находка Ревизора 25.10): наборы не прочитались — не «Своих наборов пока нет», а честный сбой и «Повторить»;
+  // es/pt-BR/id/tr — по глоссарию «набор» 10 · ПЕРЕВОДЧИКА (a00f814c8, вычитка b4aad57f8)
   const loadFailedText = triLang(lang, {
-    ru: 'Не удалось загрузить наборы', uk: 'Не вдалося завантажити набори', en: "Couldn't load your packs", es: 'No se pudieron cargar los sets',
-    'pt-BR': 'Não foi possível carregar os conjuntos', vi: 'Không tải được bộ thẻ', id: 'Set tidak dapat dimuat', tr: 'Setler yüklenemedi', pl: 'Nie udało się wczytać zestawów',
+    ru: 'Не удалось загрузить наборы', uk: 'Не вдалося завантажити набори', en: "Couldn't load your packs", es: 'No se pudieron cargar los packs',
+    'pt-BR': 'Não foi possível carregar os pacotes', vi: 'Không tải được bộ thẻ', id: 'Paket tidak dapat dimuat', tr: 'Paketler yüklenemedi', pl: 'Nie udało się wczytać zestawów',
   });
   const retryText = triLang(lang, {
     ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie',

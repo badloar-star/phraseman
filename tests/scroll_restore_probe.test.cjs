@@ -11,7 +11,12 @@ function load({ dev = true, store = false } = {}) {
   const js = ts.transpileModule(fs.readFileSync('app/scroll_restore_probe.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2021 } }).outputText;
   vm.runInNewContext(js, {
     module, exports: module.exports,
-    require: (id) => { if (id === './dev_diag_gate') return { DIAG_ENABLED: dev && !store }; throw Error(`Unmocked ${id}`); },
+    require: (id) => {
+      if (id === './dev_diag_gate') return { DIAG_ENABLED: dev && !store };
+      // зачем (координатор 25.10): признак прокрутки для паузы живого фона темы — здесь не проверяется (свой тест premium_theme_motion_pause)
+      if (id === './home_scroll_activity') return { noteScreenScrollActivity: () => {} };
+      throw Error(`Unmocked ${id}`);
+    },
     console: { log: (...a) => lines.push(a), warn: () => {} }, Date, JSON, Math,
   });
   return module.exports;

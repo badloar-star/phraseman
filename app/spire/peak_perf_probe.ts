@@ -32,14 +32,22 @@ export function summarizePeakFrames(gapsMs: readonly number[]): PeakPerfWindow {
   return { frames: gapsMs.length, avgMs: Math.round((sum / gapsMs.length) * 10) / 10, maxMs: Math.round(max), longFrames: long };
 }
 
-/** Замер одного экрана Пика: area — «home» / «step» / «tower», where — этаж и ступень для строки журнала. */
-export function usePeakPerfProbe(area: string, where: string): void {
+/**
+ * Замер одного экрана Пика: area — «home» / «step» / «tower», where — этаж и ступень для строки журнала.
+ * active — экран на виду. зачем (координатор 25.10, владелец «скролл стал дёрганым, на главной»): вкладка Пика смонтирована и
+ * за Главной, а react-freeze останавливает рендер, но не requestAnimationFrame — замер крутил кадровый коллбэк вне фокуса и писал
+ * строки «home: peak» во время прокрутки Главной. Вне фокуса замер стоит на паузе, при возврате продолжается (без размонтирования).
+ */
+export function usePeakPerfProbe(area: string, where: string, active = true): void {
   const rendersRef = useRef(0);
   rendersRef.current += 1;
   const whereRef = useRef(where);
   whereRef.current = where;
 
   useEffect(() => {
+    // зачем: [PEAK-FOCUS] — по журналу видно, когда вкладка Пика ушла с экрана и встал ли кадровый замер
+    DebugLogger.info(SPIRE, `[PEAK-FOCUS] ${area}: на виду=${String(active)} → кадровый замер ${active ? 'идёт' : 'на паузе'}`);
+    if (!active) return undefined;
     // зачем (Ревизор 25.10, прогон 05:00: spire_step_result_moment_contract — «requestAnimationFrame is not defined» в jest): без часов кадров замер молчит, экран рисуется как обычно
     if (typeof requestAnimationFrame !== 'function') { DebugLogger.info(SPIRE, `${PEAK_PERF} ${area}: замер выключен — нет requestAnimationFrame (среда без кадров)`); return undefined; }
     let raf: number | null = null;
@@ -71,7 +79,7 @@ export function usePeakPerfProbe(area: string, where: string): void {
       if (raf !== null) cancelAnimationFrame(raf);
       DebugLogger.info(SPIRE, `${PEAK_PERF} ${area}: закрыт ${whereRef.current} за ${Math.round((Date.now() - mountedAt) / 1000)}с кадров=${all.frames} длинных=${all.long} худший=${all.max}мс рендеров всего=${rendersRef.current}`);
     };
-  }, [area]);
+  }, [area, active]);
 }
 
 /** Замер синхронного куска работы (поиск верного ответа и т. п.): возвращает результат, в журнал — сколько занял. */

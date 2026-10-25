@@ -8,6 +8,7 @@
  * Не больше 8 строк на событие, значения — числа и имена, без текстов пользователя.
  */
 import { DIAG_ENABLED } from './dev_diag_gate';
+import { noteScreenScrollActivity } from './home_scroll_activity';
 
 // зачем (Ревизор 3.44, координатор 18.10): журналы диагностики — только dev и не стор-релиз; в релизе все функции возвращаются сразу (ни состояния, ни console.log)
 const ENABLED = DIAG_ENABLED;
@@ -56,12 +57,15 @@ export function noteScrollEvent(screen: string, event: string, detail: Readonly<
 
 /** Жест пальца: рывки положения во время жеста — не наши. */
 export function noteScrollDrag(screen: string, dragging: boolean): void {
+  // зачем (координатор 25.10, «скролл дёрганый на Главной»): признак «идёт прокрутка» для паузы живого фона темы — и в релизе, ДО dev-ворот
+  noteScreenScrollActivity(screen, dragging ? 'drag_start' : 'drag_end');
   if (!ENABLED) return;
   stateOf(screen).dragging = dragging;
 }
 
 /** Новое положение прокрутки (из обработчика экрана). Пишет только рывок без пальца вскоре после события. */
 export function noteScrollOffset(screen: string, y: number, now: number = Date.now()): void {
+  noteScreenScrollActivity(screen, 'offset'); // зачем: см. noteScrollDrag — шаг прокрутки/инерции держит паузу живого фона
   if (!ENABLED) return;
   const state = stateOf(screen);
   const prev = state.y;

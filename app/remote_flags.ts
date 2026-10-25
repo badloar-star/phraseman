@@ -110,6 +110,10 @@ export type RemoteBoolKey =
   | 'gate_mistake_practice_premium'
   // Гейт добавления второго и последующих языков обучения (1 язык — фри).
   | 'gate_extra_languages_premium'
+  // Живой фон премиум-тем на WebGL («Обсидиан», «Аметист», «Сингулярность»). Дефолт FALSE (координатор 25.10): на эмуляторе
+  // «Аметист» дал ANR при бросках Главной — до проверки паузы движения фон этих тем статичный (градиент сцены). true в «Пульте» —
+  // включает шейдер живьём, без сборки. CSS-движение («Керамика» и др.) флаг не трогает.
+  | 'premium_theme_webgl_motion_enabled'
   // Скидочная акция (-50% через offer в сторах, см. document 2026-09-17). Дефолт
   // FALSE. true → в хедере Главной (между колокольчиком и профилем) появляется
   // бейдж со скидкой, текст берётся из discount_offer_badge_percent (ниже, в
@@ -336,6 +340,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_arena_premium: true,
   gate_mistake_practice_premium: true,
   gate_extra_languages_premium: true,
+  premium_theme_webgl_motion_enabled: false,
   // Бейдж скидки в хедере Главной: дефолт FALSE — виден только когда владелец
   // явно включит его в «Пульте» на время акции.
   discount_offer_banner_enabled: false,
@@ -484,7 +489,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
-    'learning_cant_speak_enabled',
+    'learning_cant_speak_enabled', 'premium_theme_webgl_motion_enabled',
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',

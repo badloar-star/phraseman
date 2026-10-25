@@ -443,7 +443,7 @@ const consentSheet = () => `<div class="qdim"></div><div class="qsheet consent">
   + `<img class="cv-corner" src="assets/v2art/${AP === 'dark' ? 'dark' : 'light'}/dialogs_scene_consent.webp" alt=""><div class="cv-chat">`
   + `<div class="msg them">Hi! I'm Mila. How was your weekend?</div><div class="msg me">It was great, thanks! I went hiking.</div>`
   + `<div class="msg them">Nice! Where did you go?</div></div></div>`
-  + `<h3>Включить AI-диалоги?</h3><p>Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</p><div class="dnote">${io('shield-checkmark-outline')}<span>Можно выключить в настройках в любой момент.</span></div>`
+  + `<h3>Включить AI-диалоги?</h3><p>Практикуй разговоры с персонажами и свободный разговор, получай обратную связь. Для этого то, что ты пишешь или говоришь, отправляется в OpenAI текстом. Голос распознаёт сервис телефона — Apple или Google, он может обработать его на своих серверах. Сама запись остаётся у тебя.</p><div class="dnote">${io('shield-checkmark-outline')}<span>Можно выключить в настройках в любой момент.</span></div>`
   + `<div style="margin-top:18px"><div class="qbtn solid t">Включить</div><div class="qbtn ctl t">Не сейчас</div></div></div>`;
 const consent = (s, o = {}) => T(phone(`${stage(s, hubInner(s), 520, 'mila', 'машет', heroBox(s))}${dialogsPanel(s)}`, { time: s.time, inStyle: 'padding:0', fixed: tabbar(), overlay: consentSheet() }), { ...o, narrow: s.narrow });
 const SCREENS = { hub, pick, talk, done, consent, limit: hub, plus: hub, off: hub };
@@ -463,7 +463,7 @@ const D = window.DLG;
 const { io, THEMES, THEME_IDS } = D;
 let [TH, AP] = D.getTheme();
 
-const TEXT = `<h3>Включить AI-диалоги?</h3><p>Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</p><div class="dnote">${io('shield-checkmark-outline')}<span>Можно выключить в настройках в любой момент.</span></div>`
+const TEXT = `<h3>Включить AI-диалоги?</h3><p>Практикуй разговоры с персонажами и свободный разговор, получай обратную связь. Для этого то, что ты пишешь или говоришь, отправляется в OpenAI текстом. Голос распознаёт сервис телефона — Apple или Google, он может обработать его на своих серверах. Сама запись остаётся у тебя.</p><div class="dnote">${io('shield-checkmark-outline')}<span>Можно выключить в настройках в любой момент.</span></div>`
   + `<div style="margin-top:18px"><div class="qbtn solid t">Включить</div><div class="qbtn ctl t">Не сейчас</div></div>`;
 const art = (name, cls = 'cv-art') => `<img class="${cls}" src="assets/v2art/${AP === 'dark' ? 'dark' : 'light'}/${name}.webp" alt="">`;
 

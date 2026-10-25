@@ -24,6 +24,8 @@ import { V2_TYPE, alphaHex } from '../../constants/v2Style';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { DoneChainAfter, DoneChainBefore } from './done_chain_gate';
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
+// зачем (контраст-гейт OTA 25.10): невыбитая звезда — тон контрола не тусклее макета (см. done_star_tone)
+import { doneStarOffTone } from './done_star_tone';
 
 /**
  * Общий экран завершения 2.0 — макет docs/design/v2-app/learn.html раздел E
@@ -98,7 +100,7 @@ const Star = memo(function Star({ on, index, g, animate }: { on: boolean; index:
   const style = useAnimatedStyle(() => ({ opacity: opacity.value, transform: [{ scale: scale.value }] }));
   return (
     <Reanimated.View style={style}>
-      <Ionicons name="star" size={46} color={on ? g.text : g.opaqueControl} />
+      <Ionicons name="star" size={46} color={on ? g.text : doneStarOffTone(g)} />
     </Reanimated.View>
   );
 });

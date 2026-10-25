@@ -68,6 +68,7 @@ import type {
   LearningV2ModeTextAnalysisV1,
 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
 import { semanticInk } from '../constants/liquidGlassSemanticInk';
+import { introMarkerWarningInk } from './learning_v2_intro_marker_ink';
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -222,7 +223,7 @@ function rolePresentation(
     case "markerCorrect":
       return { color: semanticInk(g).goodText, fontWeight: "700", strike: false, size: 16 };
     case "markerWarning":
-      return { color: g.cta, fontWeight: "700", strike: false, size: 16 };
+      return { color: introMarkerWarningInk(g), fontWeight: "700", strike: false, size: 16 };
     case "formula":
       return { color: g.text, fontWeight: "700", strike: false, size: 16 };
     case "emphasis":

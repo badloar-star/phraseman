@@ -42,3 +42,5 @@ No architecture change.
 ## Rollback
 
 `git revert <коммит>` по пачкам.
+
+Governance-ID: TG-D760FFCC6144 (Макеты 1642c7302: вчера-пуш, Эпизод N, экзамен «Почти»)

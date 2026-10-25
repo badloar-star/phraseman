@@ -33,6 +33,8 @@ import { homeSceneWarmTone } from '../scene/home_scene_warm_tone';
 import type { TodaySceneCopy } from './today_scene_copy';
 import { TODAY_RING_ON_CARD_MIN, todayRingOnCard, todaySceneRingLook } from './today_scene_ring_look';
 import type { TodaySceneDecision } from './today_scene_state';
+// зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
+import { HOME_SCENE_INK } from '../scene/home_scene_ink';
 
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
 const STAGE_SCREEN_SHARE = 392 / 844;
@@ -111,8 +113,8 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
               <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
             </RadialGradient>
             <RadialGradient id="todayHalo" cx="50%" cy="50%" r="50%">
-              <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.22" />
-              <Stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+              <Stop offset="0" stopColor={HOME_SCENE_INK.halo} stopOpacity={HOME_SCENE_INK.haloOpacity} />
+              <Stop offset="1" stopColor={HOME_SCENE_INK.halo} stopOpacity="0" />
             </RadialGradient>
             {evening ? (
               <RadialGradient id="todayEmber" cx="50%" cy="50%" r="50%">
@@ -132,7 +134,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           </View>
         )}
         {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
-        {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
+        {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[HOME_SCENE_INK.scrimFrom, HOME_SCENE_INK.scrimTo]} style={s.scrim} /> : null}
         <View style={[s.top, { paddingTop: insets.top + 8 }]}>
           {/* зачем (координатор 22.10, 4 · ТЕМЫ 7d5dceb94: «назад на сценах не сливается»): круг и значок — по яркости верха сцены */}
           <BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} sceneTop={tokens.sceneTop} />
@@ -159,7 +161,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           {/* зачем (эталон scenes-compact v2 `.cta .btn`; координатор 22.10): короткая «Начать» по содержимому, слева под текстом; что откроет — в подписи для чтения с экрана */}
           {nextTask ? (
             <V2Pressable testID="today-scene-cta" accessibilityRole="button" accessibilityLabel={`${copy.cta}: ${nextTask.title}`} onPress={() => onOpenTask(nextTask)} scaleTo={0.97} outerStyle={s.ctaOuter} style={s.cta}>
-              <Ionicons name="play" size={17} color="#121318" />
+              <Ionicons name="play" size={17} color={HOME_SCENE_INK.ctaInk} />
               <Text style={s.ctaText}>{copy.cta}</Text>
             </V2Pressable>
           ) : null}
@@ -233,19 +235,19 @@ const baseStyles = StyleSheet.create({
   heroBoundedBox: { width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center', transformOrigin: 'right top' },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  heading: { flex: 1, color: '#FFFFFF', fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
+  heading: { flex: 1, color: HOME_SCENE_INK.text, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
   history: { marginTop: 12 },
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета; как у Главной в bd1ba46cd): подписи сцены 13/17, крупные строки и кнопка 16/21, заголовок 34 без изменений
-  kicker: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17 },
-  title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
+  kicker: { color: HOME_SCENE_INK.kicker, fontSize: 13, lineHeight: 17 },
+  title: { color: HOME_SCENE_INK.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, fontVariant: ['tabular-nums'] },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
-  line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, marginTop: 10 },
+  line: { color: HOME_SCENE_INK.line, fontSize: 13, lineHeight: 17, marginTop: 10 },
   // эталон `.cta .btn`: по содержимому слева (flex-start), высота 50, радиус 28, поля 24, значок 17 и зазор 10; длинная подпись переносится, не шире строки
   ctaOuter: { alignSelf: 'flex-start', maxWidth: '100%', marginTop: 16 },
-  cta: { minHeight: 50, paddingVertical: 8, borderRadius: 28, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 },
-  ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  cta: { minHeight: 50, paddingVertical: 8, borderRadius: 28, backgroundColor: HOME_SCENE_INK.cta, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 },
+  ctaText: { color: HOME_SCENE_INK.ctaInk, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 24, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
   panelHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 2 },
   panelTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },

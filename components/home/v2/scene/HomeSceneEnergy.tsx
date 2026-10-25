@@ -13,6 +13,8 @@ import { peekEnergy } from '../../../../app/energy_peek_cache';
 import { useEnergy } from '../../../EnergyContext';
 import { useShadowGlass } from '../../../v2/ShadowSurface';
 import { homeSceneWarmTone } from './home_scene_warm_tone';
+// зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
+import { HOME_SCENE_INK } from './home_scene_ink';
 
 export default function HomeSceneEnergy() {
   const { energy, isUnlimited, energyReady } = useEnergy();
@@ -39,7 +41,7 @@ export const HomeSceneEnergyView = memo(function HomeSceneEnergyView({ value, ze
   // зачем (эталон .glass .hm-emb): ноль энергии — тёплый тон, чтобы было видно без слов
   // зачем (владелец кнопкой 22.10): ноль энергии — светлый оттенок текущей темы, не персиковый #FFB4A3
   const lowTone = homeSceneWarmTone(useShadowGlass().accent).low;
-  const color = zero ? lowTone : '#FFFFFF';
+  const color = zero ? lowTone : HOME_SCENE_INK.text;
   return (
     <View style={s.row} accessible accessibilityLabel={`⚡ ${value}`}>
       <Ionicons name="flash" size={16} color={color} />

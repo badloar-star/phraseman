@@ -37,6 +37,8 @@ import { useMyCoinRank } from '../../../../hooks/use_my_coin_rank';
 import { useSpireHomePlace } from '../../../../app/spire/spire_home_place';
 import { useTabTopBleedInset } from '../../../tab_top_bleed';
 import { noteHomeRender } from '../../../../app/home_scroll_probe';
+// зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
+import { HOME_SCENE_INK } from './home_scene_ink';
 
 const LOG = '[HOME-SCENE]';
 /** Верх шапки внутри сцены — под зоной часов (s.top paddingTop). */
@@ -344,7 +346,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
         {p.header(tokens.sceneTop)}
         {offlineLine ? (
           <View testID="home-scene-offline" style={s.offline} accessibilityLiveRegion="polite">
-            <Ionicons name="cloud-offline-outline" size={18} color="#FFFFFF" />
+            <Ionicons name="cloud-offline-outline" size={18} color={HOME_SCENE_INK.text} />
             <Text style={s.offlineText}><Text style={s.offlineBold}>{offlineLine.bold}</Text> {offlineLine.rest}</Text>
           </View>
         ) : null}
@@ -358,8 +360,8 @@ const s = StyleSheet.create({
   // зачем (владелец 22.10, вариант 2 scenes-compact.html): карточка «Сегодня» наезжает на низ сцены на 22 (зазор ленты Главной гасим)
   root: { marginHorizontal: -V2.homePad, marginBottom: -(HOME_SCENE_PANEL_OVERLAP + V2.gap) },
   top: { position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 8, paddingHorizontal: 20, gap: 10 },
-  offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: 14 % вместо 16 % — «Нет сети» ≥ 4,5 в светлых sage/grad_aurora
+  offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: HOME_SCENE_INK.glass }, // аудит контраста 22.10: 14 % вместо 16 % — «Нет сети» ≥ 4,5 в светлых sage/grad_aurora
   // зачем (D145): строка «Нет сети» — шкала 13/17
-  offlineText: { flex: 1, color: '#FFFFFF', fontSize: 13, lineHeight: 17 },
+  offlineText: { flex: 1, color: HOME_SCENE_INK.text, fontSize: 13, lineHeight: 17 },
   offlineBold: { fontWeight: '700' },
 });

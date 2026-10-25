@@ -37,6 +37,8 @@ import { PremiumThemeMotion } from './PremiumThemeMotion';
 import { useTheme } from '../../../ThemeContext';
 import { useLang } from '../../../LangContext';
 import LessonPrepCtaBody from '../../../lesson_prep/LessonPrepCtaBody';
+// зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
+import { HOME_SCENE_INK } from './home_scene_ink';
 
 const LOG = '[HOME-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
@@ -162,8 +164,8 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
           </RadialGradient>
           <RadialGradient id="sceneHalo" cx="50%" cy="50%" r="50%">
-            <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.22" />
-            <Stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+            <Stop offset="0" stopColor={HOME_SCENE_INK.halo} stopOpacity={HOME_SCENE_INK.haloOpacity} />
+            <Stop offset="1" stopColor={HOME_SCENE_INK.halo} stopOpacity="0" />
           </RadialGradient>
           {evening ? (
             <RadialGradient id="sceneEmber" cx="50%" cy="50%" r="50%">
@@ -178,7 +180,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         {evening ? <Rect x={-40} y={stageH - 200} width={260} height={260} fill="url(#sceneEmber)" /> : null}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
-      {tokens.scrim ? <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(0,0,0,0.40)']} style={s.scrim} /> : null}
+      {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[HOME_SCENE_INK.scrimFrom, HOME_SCENE_INK.scrimTo]} style={s.scrim} /> : null}
       <View style={s.topSpace} />
       {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота; правило: под текстом герой ≤ 16 % в светлом и ≤ 9 % в тёмном — над текстом он плавно гаснет к 0, home_scene_hero_fade), крупный или «маска съела бы героя» — не выше свободного места */}
       <View style={s.heroSpace} pointerEvents="none" onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setHeroSpaceH((prev) => (prev === h ? prev : h)); }}>
@@ -247,7 +249,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             {chips.map((c) => (
               <V2Pressable key={c.kind} testID={`home-scene-chip-${c.kind}`} accessibilityRole="button" accessibilityLabel={c.label}
                 onPress={() => { console.log(LOG, 'chip', JSON.stringify({ state, kind: c.kind })); onChip(c.kind); }} scaleTo={0.96} style={s.chip}>{/* guard-ok: одна строка на тап */}
-                <Ionicons name={c.icon} size={16} color="#FFFFFF" />
+                <Ionicons name={c.icon} size={16} color={HOME_SCENE_INK.text} />
                 <Text style={s.chipText}>{c.label}</Text>
               </V2Pressable>
             ))}
@@ -284,22 +286,22 @@ const baseStyles = StyleSheet.create({
   // зачем: текст сцены у нижнего края (.a-body bottom 58) — место под панель «Сегодня», которая наезжает на 38
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета): подписи сцены — 13/17, крупные строки и кнопка — 16/21
-  kicker: { color: '#FFFFFF', fontSize: 13, lineHeight: 17 },
-  title: { color: '#FFFFFF', fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
-  titleLong: { color: '#FFFFFF', fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4 },
+  kicker: { color: HOME_SCENE_INK.kicker, fontSize: 13, lineHeight: 17 },
+  title: { color: HOME_SCENE_INK.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
+  titleLong: { color: HOME_SCENE_INK.text, fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4 },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
-  bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.28)', overflow: 'hidden' },
-  barFill: { height: 4, backgroundColor: '#FFFFFF' },
-  line: { color: 'rgba(255,255,255,0.88)', fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
-  cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: '#FFFFFF', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22, overflow: 'hidden' },
-  ctaText: { color: '#121318', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
+  bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: HOME_SCENE_INK.barTrack, overflow: 'hidden' },
+  barFill: { height: 4, backgroundColor: HOME_SCENE_INK.text },
+  line: { color: HOME_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
+  cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: HOME_SCENE_INK.cta, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22, overflow: 'hidden' },
+  ctaText: { color: HOME_SCENE_INK.ctaInk, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },
-  chip: { minHeight: 34, paddingVertical: 4, maxWidth: '100%', borderRadius: 17, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: 'rgba(255,255,255,0.14)' }, // аудит контраста 22.10: чип 14 % вместо 16 % — текст на нём ≥ 4,5 в светлых sage/grad_aurora
-  chipText: { color: '#FFFFFF', fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
-  note: { color: 'rgba(255,255,255,0.86)', fontSize: 13, lineHeight: 17, marginTop: 12 },
-  skel: { borderRadius: 8, backgroundColor: 'rgba(255,255,255,0.18)' },
+  chip: { minHeight: 34, paddingVertical: 4, maxWidth: '100%', borderRadius: 17, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: HOME_SCENE_INK.glass }, // аудит контраста 22.10: чип 14 % вместо 16 % — текст на нём ≥ 4,5 в светлых sage/grad_aurora
+  chipText: { color: HOME_SCENE_INK.text, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
+  note: { color: HOME_SCENE_INK.note, fontSize: 13, lineHeight: 17, marginTop: 12 },
+  skel: { borderRadius: 8, backgroundColor: HOME_SCENE_INK.skeleton },
 });
 
 // зачем (ратчет цветовых литералов, Ревизор 25.10): тёмный текст на белой кнопке сцены задан ОДИН раз — в ctaText; значок и мягкая заливка хода «Готовим занятие…» берут тот же цвет оттуда, а не новыми литералами

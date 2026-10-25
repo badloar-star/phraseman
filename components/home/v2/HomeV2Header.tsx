@@ -9,6 +9,8 @@ import KitSpinner from '../../v2/KitSpinner';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { PlusAvatarRing } from '../../plus/PlusAvatarRing';
 import { STORY_RING_SLOT } from '../../stories/story_ring_constants';
+// зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
+import { HOME_SCENE_INK } from './scene/home_scene_ink';
 
 type StatChip = Readonly<{
   testID: string;
@@ -98,8 +100,8 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
   useHomePlateLog(); // [HOME-PLATE]: один раз на показ Главной
   const scene = tone === 'scene';
   const plate = scene ? s.scenePlate : glass;
-  const textColor = scene ? '#FFFFFF' : p.text;
-  const subColor = scene ? 'rgba(255,255,255,0.78)' : p.textSecondary;
+  const textColor = scene ? HOME_SCENE_INK.text : p.text;
+  const subColor = scene ? HOME_SCENE_INK.muted : p.textSecondary;
   return (
     <View testID="home-v2-header" style={s.root}>
       <View style={[s.topRow, scene ? s.topRowScene : null]}>
@@ -177,7 +179,7 @@ const s = StyleSheet.create({
   statValue: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
   statLabel: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17 },
   // зачем (эталон .hm-pill.glass): на сцене плашка — белый 16 %, без тени и без кромки
-  scenePlate: { backgroundColor: 'rgba(255,255,255,0.16)' },
+  scenePlate: { backgroundColor: HOME_SCENE_INK.headerPlate },
   // зачем (эталон .hm-pill i.dv): черта между монетами и энергией — 1 × 18, прозрачность 22 %
   divider: { width: 1, height: 18, opacity: 0.22, marginHorizontal: 4 },
 });

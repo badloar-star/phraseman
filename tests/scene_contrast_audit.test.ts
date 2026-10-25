@@ -95,8 +95,8 @@ describe('аудит контраста сцен: все темы, уровен�
     const home = readSource('components/home/v2/scene/HomeScene.tsx');
     const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
     const today = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
-    expect(home).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
-    expect(stage).toContain("backgroundColor: 'rgba(255,255,255,0.14)'");
+    expect(home).toContain('backgroundColor: HOME_SCENE_INK.glass'); // зачем (Темы 25.10): стекло 14 % — в модуле чернил сцены
+    expect(stage).toContain('backgroundColor: HOME_SCENE_INK.glass');
     expect(stage).toContain('homeSceneWarmTone(');
     expect(stage).not.toContain('#FFD9D0');
     expect(today).toContain('homeSceneWarmTone(card.accent).flame');

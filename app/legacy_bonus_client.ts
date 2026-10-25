@@ -15,9 +15,12 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from './account_generation';
+import { legacyBonusHasContent, legacyBonusRows } from '../modules/legacy_bonus/legacy_bonus_view';
 
 const LOG = '[LEGACY-BONUS]';
 const WHATSNEW_LOG = '[WHATSNEW-GATE]';
+/** зачем (бэклог 25.10 «Итого 0 монет» в окне 2.0): одна цепочка от ответа сервера до того, что окно нарисует, — одним поиском. */
+const WELCOME_LOG = '[WELCOME-2-0]';
 const DONE_PREFIX = 'legacy_bonus_done_v1:';
 const RETRY_AFTER_MS = 12 * 60 * 60_000;
 /** Потолок ожидания ответа для окна «Встречайте 2.0» (координатор 15.10): позже — окно не показываем. */
@@ -88,6 +91,25 @@ const int = (value: unknown): number => {
   return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
 };
 
+/** Что окно нарисует из результата: строки (было→монет), их сумма против итога сервера, будет ли плашка пересчёта. Только числа, без uid. */
+function describeWelcome(r: LegacyBonusResult): string {
+  const rows = legacyBonusRows(r);
+  const rowsSum = rows.reduce((sum, row) => sum + row.coins, 0);
+  const rowsText = rows.map((row) => `${row.key}:${row.from}→${row.coins}`).join('|') || 'none';
+  return `status=${r.status} upgraded=${r.upgraded} from=xp:${r.from.xp},pearls:${r.from.pearls},spins:${r.from.spins} `
+    + `coins=xp:${r.coins.xp},pearls:${r.coins.pearls},spins:${r.coins.spins},total:${r.coins.total} rows=${rowsText} rowsSum=${rowsSum} `
+    + `totalMatchesRows=${rowsSum === r.coins.total} plate=${legacyBonusHasContent(r)} cappedBy=${r.cappedBy} starsBalance=${r.starsBalance}`;
+}
+
+/** Сырые поля ответа ДО разбора: если сервер прислал итог строкой/не туда — разбор молча даст 0, а здесь будет видно. */
+function rawWelcomeShape(raw: unknown): string {
+  if (!raw || typeof raw !== 'object') return `raw=${raw === null ? 'null' : typeof raw}`;
+  const r = raw as Record<string, unknown>;
+  const short = (v: unknown): string => { try { return (JSON.stringify(v) ?? 'undefined').slice(0, 160); } catch (error: unknown) { return `unprintable(${error instanceof Error ? error.message : String(error)})`; } };
+  const coins = (r.coins ?? null) as Record<string, unknown> | null;
+  return `keys=${Object.keys(r).sort().join(',')} status=${short(r.status)} upgraded=${short(r.upgraded)} from=${short(r.from)} coins=${short(r.coins)} totalType=${typeof coins?.total}`;
+}
+
 function parseResponse(raw: unknown): (LegacyBonusResult & { starsSeq: number }) | null {
   if (!raw || typeof raw !== 'object') return null;
   const r = raw as Record<string, unknown>;
@@ -133,6 +155,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       // результат для окна: показываем его СЕЙЧАС, один раз (флаг снимаем до показа). Сервер повторно не зовём — начисление уже сделано.
       if (parsed.welcomePending === true) {
         const pending = parseResponse(parsed.pending);
+        console.log(`${WELCOME_LOG} метка с отложенным окном: storedTotal=${parsed.total ?? 'none'} storedStatus=${parsed.status ?? 'none'} pending=${pending ? describeWelcome(pending) : rawWelcomeShape(parsed.pending)} source=${source}`);
         if (!pending) {
           // битая метка — окна не будет, флаг снимаем сразу (иначе вечный повтор пустоты)
           await AsyncStorage.setItem(doneKey, JSON.stringify({ status: parsed.status, total: parsed.total ?? 0 }));
@@ -148,6 +171,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
         console.log(`${WHATSNEW_LOG} pending восстановлено из метки: окно показываем, флаг снимется при показе/«Понятно» status=${pending.status} total=${pending.coins.total} source=${source}`);
         welcome = { status: pending.status, upgraded: pending.upgraded, from: pending.from, coins: pending.coins, cappedBy: pending.cappedBy, starsBalance: pending.starsBalance };
         welcomeOwner = owner;
+        console.log(`${WELCOME_LOG} окно отдано на показ из метки kind=${legacyBonusHasContent(pending) ? 'coins' : 'zero'} total=${pending.coins.total}`);
         emit();
         return;
       }
@@ -174,8 +198,11 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     const result = parseResponse(response?.data);
     if (!result) {
       console.warn(`${LOG} bad_response source=${source} ms=${Date.now() - startedAt}`);
+      console.warn(`${WELCOME_LOG} ответ не разобран — окна не будет: ${rawWelcomeShape(response?.data)}`);
       return;
     }
+    console.log(`${WELCOME_LOG} ответ сервера: сырой ${rawWelcomeShape(response?.data)}`);
+    console.log(`${WELCOME_LOG} ответ сервера: разобран ${describeWelcome(result)} timedOut=${timedOut} ms=${Date.now() - startedAt}`);
     console.log(`${LOG} response status=${result.status} total=${result.coins.total} cappedBy=${result.cappedBy} ms=${Date.now() - startedAt}`);
     if (!isCurrentAccountGeneration(token)) {
       console.log(`${LOG} drop reason=account_changed status=${result.status}`);
@@ -196,6 +223,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     // зачем (владелец 15.10): окно «Встречайте PhraseMan 2.0» — при начислении ИЛИ при нуле у обновившихся с 1.x (без пересчёта, только
     // заголовок); свежая установка — без окна. Один раз: окно рождается только из этого ответа, а метка выше больше не пустит к серверу.
     const showZeroWelcome = result.status === 'nothing' && result.upgraded;
+    console.log(`${WELCOME_LOG} решение окна: windowOwed=${windowOwed} (status=${result.status} upgraded=${result.upgraded}) showZeroWelcome=${showZeroWelcome} total=${result.coins.total} timedOut=${timedOut}`);
     if (result.status !== 'converted' && !showZeroWelcome) {
       console.log(`${LOG} welcome skip status=${result.status} upgraded=${result.upgraded}`);
       return;
@@ -208,6 +236,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
       welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
       welcomeOwner = owner;
       console.log(`${LOG} welcome show=zero upgraded=${result.upgraded}`);
+      console.log(`${WELCOME_LOG} окно отдано на показ kind=zero (только заголовок) total=${result.coins.total} status=${result.status}`);
       emit();
       return;
     }
@@ -229,6 +258,7 @@ export async function runLegacyBonusConvertOnce(source: string): Promise<void> {
     }
     welcome = { status: result.status, upgraded: result.upgraded, from: result.from, coins: result.coins, cappedBy: result.cappedBy, starsBalance: result.starsBalance };
     welcomeOwner = owner;
+    console.log(`${WELCOME_LOG} окно отдано на показ kind=${legacyBonusHasContent(welcome) ? 'coins' : 'zero'} ${describeWelcome(welcome)}`);
     emit();
   } catch (error: unknown) {
     console.warn(`${LOG} failed source=${source} reason=${error instanceof Error ? error.message : String(error)} ms=${Date.now() - startedAt}`);
@@ -291,6 +321,7 @@ export function setDevLegacyBonusDemo(mode: DevLegacyBonusDemo | boolean): boole
         : null;
   welcomeOwner = welcome ? DEV_DEMO_OWNER : null;
   console.log(`[DEV-STATE] legacybonus=${m}`); // guard-ok: dev-ветка
+  console.log(`${WELCOME_LOG} dev-демо mode=${m} ${welcome ? describeWelcome(welcome) : 'окна нет'}`);
   emit();
   return true;
 }

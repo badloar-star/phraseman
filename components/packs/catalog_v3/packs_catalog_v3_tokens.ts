@@ -49,19 +49,34 @@ export type PackCoverPaint = Readonly<{
   glyphColor: string;
 }>;
 
+/**
+ * Выбор элемента списка по числу из хэша.
+ *
+ * зачем (красный экран state=full, журнал Сверки: packs_catalog_v3_tokens.ts angles[(h >> 6) % len] → undefined → paint.angle.x): packHash беззнаковый (до 2^32),
+ * а «>>» в JS переводит число в знаковое 32-битное — старший бит давал отрицательный индекс. Здесь индекс считается беззнаково («>>>» уже применён вызывающим), а выход
+ * за границы не роняет экран: пишет [PACKS-V3] с причиной и берёт первый элемент.
+ */
+export function pickByHash<T>(list: readonly T[], shifted: number, what: string): T {
+  const index = list.length > 0 ? shifted % list.length : -1;
+  const item = index >= 0 ? list[index] : undefined;
+  if (item !== undefined) return item;
+  console.warn('[PACKS-V3] индекс вне списка — беру первый элемент', JSON.stringify({ what, shifted, length: list.length, index })); // guard-ok: причина подмены индекса, ранний выход
+  return list[0] as T;
+}
+
 /** Обложка набора: два тона из сцены и акцента темы; сдвиг смеси и угол — от хэша id. */
 export function packCoverPaint(id: string, colors: PacksCatalogColors): PackCoverPaint {
   const h = packHash(id);
   const mixA = 0.25 + ((h % 5) / 4) * 0.5; // 0.25…0.75
-  const mixB = 0.2 + (((h >> 3) % 5) / 4) * 0.4; // 0.2…0.6
+  const mixB = 0.2 + (((h >>> 3) % 5) / 4) * 0.4; // 0.2…0.6
   const from = mixHex(colors.scene.sceneTop, colors.accent, mixA);
   const to = mixHex(colors.scene.sceneBottom, colors.accent, mixB);
   const angles = [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }] as const;
   return {
     from,
     to,
-    angle: angles[(h >> 6) % angles.length]!,
-    glyph: PACK_COVER_GLYPHS[(h >> 9) % PACK_COVER_GLYPHS.length]!,
+    angle: pickByHash(angles, h >>> 6, 'angle'),
+    glyph: pickByHash(PACK_COVER_GLYPHS, h >>> 9, 'glyph'),
     glyphColor: colorWithAlpha(colors.scene.sceneGlow, 0.9),
   };
 }

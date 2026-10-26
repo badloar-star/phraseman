@@ -7,7 +7,7 @@ import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { HOME_SCENE_MIN_WHITE_CONTRAST } from '../components/home/v2/scene/home_scene_tokens';
 import { PACKS_CATALOG_V3_PREVIEW_ME, packsCatalogV3Fixtures } from '../components/packs/catalog_v3/packs_catalog_v3_fixtures';
 import { packsCatalogV3Text, type PacksCatalogV3TextKey } from '../components/packs/catalog_v3/packs_catalog_v3_copy';
-import { PACK_COVER_GLYPHS, packCoverPaint, packHash, packsCatalogColors } from '../components/packs/catalog_v3/packs_catalog_v3_tokens';
+import { PACK_COVER_GLYPHS, packCoverPaint, packHash, packsCatalogColors, pickByHash } from '../components/packs/catalog_v3/packs_catalog_v3_tokens';
 import { catalogOrder, contestDaysLeft, contestMonthKey, contestStanding, packPublishedAtMs } from '../components/packs/catalog_v3/packs_contest_model';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -138,6 +138,33 @@ describe('каталог на сцене: тексты и цвета', () => {
     expect(PACK_COVER_GLYPHS).toContain(a.glyph);
     expect(packHash('pack-1')).toBe(packHash('pack-1'));
     expect(packHash('pack-1')).not.toBe(packHash('pack-2'));
+  });
+
+  it('обложка не падает ни на каком id, в том числе с большим хэшем (старший бит): индекс всегда внутри списка', () => {
+    const colors = packsCatalogColors(LIQUID_GLASS_THEME_IDS[0], 'dark');
+    let highBit = 0;
+    for (let i = 0; i < 6000; i += 1) {
+      const id = `pack-${i}-${(i * 2654435761) >>> 0}`;
+      if (packHash(id) >= 2 ** 31) highBit += 1;
+      const paint = packCoverPaint(id, colors);
+      expect(paint.angle).toBeDefined();
+      expect(typeof paint.angle.x).toBe('number');
+      expect(PACK_COVER_GLYPHS).toContain(paint.glyph);
+      expect(paint.from).toBeTruthy();
+      expect(paint.to).toBeTruthy();
+    }
+    expect(highBit).toBeGreaterThan(1000); // зачем: ловим именно класс бага — без хэшей с большим старшим битом тест бы его не видел
+  });
+
+  it('pickByHash: пустой список или выход за границы — не исключение, а журнал [PACKS-V3] и первый элемент', () => {
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    try {
+      expect(pickByHash(['a', 'b', 'c'], 7, 'probe')).toBe('b');
+      expect(pickByHash(['a', 'b', 'c'], -1, 'probe')).toBe('a');
+      expect(warn.mock.calls.some((c) => String(c[0]).startsWith('[PACKS-V3]'))).toBe(true);
+    } finally {
+      warn.mockRestore();
+    }
   });
 
   it('все темы × оба оформления: сцена читаема белым (≥ 4,5) и обложки собираются', () => {

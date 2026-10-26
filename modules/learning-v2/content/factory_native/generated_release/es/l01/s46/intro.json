@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "описать одного человека, свою группу и другую группу с es, somos и son.",
+    "uk": "описати одну людину, свою групу та іншу групу з es, somos та son."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Без лишних затрат времени",
+        "uk": "Без зайвих витрат часу"
+      },
+      "bodyByLocale": {
+        "ru": "Ваша группа заранее распределила работу и собирает пакеты без лишних движений. `Somos eficientes` — «Мы работаем эффективно». `Eficiente` описывает того, кто хорошо использует время и силы. Соберите `somos` + `eficientes`. Для группы добавьте s к eficiente. Говорящий входит в группу, поэтому somos.",
+        "uk": "Ваша група заздалегідь розподілила роботу й збирає пакети без зайвих рухів. `Somos eficientes` — «Ми працюємо ефективно». `Eficiente` описує того, хто добре використовує час і сили. Зберіть `somos` + `eficientes`. Для групи додайте s до eficiente. Мовець входить до групи, тому somos."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите работу своей группы словом eficientes.",
+          "uk": "Опишіть роботу своєї групи словом eficientes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-46:intro1:r1",
+              "text": "Somos eficientes."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro1:r2",
+              "text": "Son eficientes."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro1:r3",
+              "text": "Somos eficiente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-46:intro1:r1",
+              "text": "Somos eficientes."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro1:r2",
+              "text": "Son eficientes."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro1:r3",
+              "text": "Somos eficiente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите работу своей группы словом eficientes.",
+          "uk": "Опишіть роботу своєї групи словом eficientes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужный результат достигнут",
+        "uk": "Потрібного результату досягнуто"
+      },
+      "bodyByLocale": {
+        "ru": "Другая группа нашла способ доставить все пакеты нужным соседям. Вы подчёркиваете результат: `Son eficaces` — «Они действуют результативно». `Eficaz` означает «действенный, результативный»: такой человек или способ помогает достичь цели. Соберите `son` + `eficaces`. Во множественном числе z меняется на c перед es: eficaz → eficaces. Здесь важен достигнутый результат, а не затраченное время.",
+        "uk": "Інша група знайшла спосіб доставити всі пакети потрібним сусідам. Ви підкреслюєте результат: `Son eficaces` — «Вони діють результативно». `Eficaz` означає «дієвий, результативний»: така людина або спосіб допомагає досягти мети. Зберіть `son` + `eficaces`. У множині z змінюється на c перед es: eficaz → eficaces. Тут важливий досягнутий результат, а не витрачений час."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите другую группу словом eficaces.",
+          "uk": "Опишіть іншу групу словом eficaces."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-46:intro2:r1",
+              "text": "Son eficaces."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro2:r2",
+              "text": "Somos eficaces."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro2:r3",
+              "text": "Son eficaz."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-46:intro2:r1",
+              "text": "Son eficaces."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro2:r2",
+              "text": "Somos eficaces."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro2:r3",
+              "text": "Son eficaz."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите другую группу словом eficaces.",
+          "uk": "Опишіть іншу групу словом eficaces."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одна участница",
+        "uk": "Одна учасниця"
+      },
+      "bodyByLocale": {
+        "ru": "Одна знакомая нашла решение, благодаря которому продукты получили все соседи из её списка. Скажите: `Ella es eficaz` — «Она действует результативно». Соберите `ella` + `es` + `eficaz`. Говорите об одном человеке, поэтому es и eficaz. Форма eficaz одинакова для мужчины и женщины. Один человек может быть и eficiente, и eficaz: слова выделяют разные стороны работы.",
+        "uk": "Одна знайома знайшла рішення, завдяки якому продукти отримали всі сусіди з її списку. Скажіть: `Ella es eficaz` — «Вона діє результативно». Зберіть `ella` + `es` + `eficaz`. Говорите про одну людину, тому es та eficaz. Форма eficaz однакова для чоловіка й жінки. Одна людина може бути і eficiente, і eficaz: слова виділяють різні сторони роботи."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите эту участницу, начиная с ella и используя eficaz.",
+          "uk": "Опишіть цю учасницю, починаючи з ella й використовуючи eficaz."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-46:intro3:r1",
+              "text": "Ella es eficaz."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro3:r2",
+              "text": "Ella son eficaces."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro3:r3",
+              "text": "Ella es eficaces."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-46:intro3:r1",
+              "text": "Ella es eficaz."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro3:r2",
+              "text": "Ella son eficaces."
+            },
+            {
+              "responseId": "es:lesson-01:session-46:intro3:r3",
+              "text": "Ella es eficaces."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите эту участницу, начиная с ella и используя eficaz.",
+          "uk": "Опишіть цю учасницю, починаючи з ella й використовуючи eficaz."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "da5404fc21f1b22cbbea688026632160d940faedd8b542692c891d4308df59bc"
+}

@@ -322,4 +322,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить полезность предмета с útil и inútil.","uk":"оцінити користь предмета з útil та inútil."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 46,
+    sourceFingerprint: "67ecca7fbfc5ba109197f4cd024b7744e9c8992f7ac2c8605b7435f38397ca7a",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать одного человека, свою группу и другую группу с es, somos и son.","uk":"описати одну людину, свою групу та іншу групу з es, somos та son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 47,
+    sourceFingerprint: "43827b293875b6e5cf6939ffbcf9794c6767b9233d6f309842a0628a80e279f4",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"произнести оценку риска и отдельную реплику о том, стоит ли рекомендовать вариант.","uk":"вимовити оцінку ризику й окрему репліку про те, чи варто рекомендувати варіант."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

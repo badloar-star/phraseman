@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "произнести оценку риска и отдельную реплику о том, стоит ли рекомендовать вариант.",
+    "uk": "вимовити оцінку ризику й окрему репліку про те, чи варто рекомендувати варіант."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рискованный вариант",
+        "uk": "Ризикований варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает перейти ручей по мокрым скользким камням. Вы оцениваете предложение: `Es arriesgado` — «Это рискованно». `Arriesgado` означает «рискованный». Соберите `es` + `arriesgado`. В этой короткой оценке целого предложения используем мужскую форму arriesgado.",
+        "uk": "Друг пропонує перейти струмок по мокрому слизькому камінню. Ви оцінюєте пропозицію: `Es arriesgado` — «Це ризиковано». `Arriesgado` означає «ризикований». Зберіть `es` + `arriesgado`. У цій короткій оцінці цілої пропозиції використовуємо чоловічу форму arriesgado."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предложенный вариант рискованным.",
+          "uk": "Назвіть запропонований варіант ризикованим."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-47:intro1:r1",
+              "text": "Es arriesgado."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro1:r2",
+              "text": "Es seguro."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro1:r3",
+              "text": "Eres arriesgado."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-47:intro1:r1",
+              "text": "Es arriesgado."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro1:r2",
+              "text": "Es seguro."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro1:r3",
+              "text": "Eres arriesgado."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предложенный вариант рискованным.",
+          "uk": "Назвіть запропонований варіант ризикованим."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вариант, который можно посоветовать",
+        "uk": "Варіант, який можна порадити"
+      },
+      "bodyByLocale": {
+        "ru": "Группа обсуждает другой вариант: пройти чуть дальше по дорожке до открытого пешеходного моста. Вы готовы его посоветовать: `Es recomendable` — «Это можно рекомендовать». `Recomendable` означает «такой, который стоит рекомендовать». Соберите `es` + `recomendable`. Это оценка варианта; слово само по себе не означает, что он обязательный или совершенно безопасный.",
+        "uk": "Група обговорює інший варіант: пройти трохи далі доріжкою до відкритого пішохідного мосту. Ви готові його порадити: `Es recomendable` — «Це можна рекомендувати». `Recomendable` означає «такий, який варто рекомендувати». Зберіть `es` + `recomendable`. Це оцінка варіанта; слово саме по собі не означає, що він обов'язковий або цілком безпечний."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о подходящем варианте: «Это можно рекомендовать».",
+          "uk": "Скажіть про відповідний варіант: «Це можна рекомендувати»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-47:intro2:r1",
+              "text": "Es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro2:r2",
+              "text": "No es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro2:r3",
+              "text": "Eres recomendable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-47:intro2:r1",
+              "text": "Es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro2:r2",
+              "text": "No es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro2:r3",
+              "text": "Eres recomendable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о подходящем варианте: «Это можно рекомендовать».",
+          "uk": "Скажіть про відповідний варіант: «Це можна рекомендувати»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не стоит рекомендовать",
+        "uk": "Не варто рекомендувати"
+      },
+      "bodyByLocale": {
+        "ru": "Возвращаясь к сомнительному предложению, вы не советуете его выбирать. `No es recomendable` — «Это не стоит рекомендовать». Соберите `no` + `es` + `recomendable`. No стоит перед es. Это отдельная реплика: сейчас не добавляйте объяснение причины или вторую оценку.",
+        "uk": "Повертаючись до сумнівної пропозиції, ви не радите її обирати. `No es recomendable` — «Це не варто рекомендувати». Зберіть `no` + `es` + `recomendable`. No стоїть перед es. Це окрема репліка: зараз не додавайте пояснення причини або другу оцінку."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Откажитесь рекомендовать сомнительный вариант.",
+          "uk": "Відмовтеся рекомендувати сумнівний варіант."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-47:intro3:r1",
+              "text": "No es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro3:r2",
+              "text": "Es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro3:r3",
+              "text": "No son recomendables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-47:intro3:r1",
+              "text": "No es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro3:r2",
+              "text": "Es recomendable."
+            },
+            {
+              "responseId": "es:lesson-01:session-47:intro3:r3",
+              "text": "No son recomendables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Откажитесь рекомендовать сомнительный вариант.",
+          "uk": "Відмовтеся рекомендувати сумнівний варіант."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "171b30fd679ad18426a9d111135126c994a076d6519d49c289ea180409b0c3d6"
+}

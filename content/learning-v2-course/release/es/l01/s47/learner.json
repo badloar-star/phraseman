@@ -1,0 +1,626 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-47",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — arriesgado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — arriesgado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i01:audio",
+          "transcript": "arriesgado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-47:i01:r1",
+            "targetText": "arriesgado",
+            "meaningByLocale": {
+              "ru": "рискованный. Женская форма — arriesgada. Оценка предложения: es arriesgado. 🔊 *arriesgado*",
+              "uk": "ризикований. Жіноча форма — arriesgada. Оцінка пропозиції: es arriesgado. 🔊 *arriesgado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "arriesgado",
+          "definitionByLocale": {
+            "ru": "рискованный. Женская форма — arriesgada. Оценка предложения: es arriesgado. 🔊 *arriesgado*",
+            "uk": "ризикований. Жіноча форма — arriesgada. Оцінка пропозиції: es arriesgado. 🔊 *arriesgado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i02:r1",
+          "text": "arriesgado"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i02:r2",
+          "text": "seguro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i02:audio",
+          "transcript": "arriesgado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-47:i02:r1",
+            "targetText": "arriesgado",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-47:i02:r2",
+            "targetText": "seguro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит arriesgado, а не seguro.",
+              "uk": "Звучить arriesgado, а не seguro."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — оцените предложение как рискованное",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i03:r1",
+          "text": "arriesgado"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i03:r2",
+          "text": "seguro"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i03:r3",
+          "text": "obligatorio"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — оцените предложение как рискованное",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — оцените предложение как рискованное",
+          "uk": "Вставте слово — оцініть пропозицію як ризиковану"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-47:i03:r1",
+            "text": "arriesgado"
+          },
+          {
+            "responseId": "es:lesson-01:session-47:i03:r2",
+            "text": "seguro"
+          },
+          {
+            "responseId": "es:lesson-01:session-47:i03:r3",
+            "text": "obligatorio"
+          }
+        ],
+        "testedDimension": "Вставьте слово — оцените предложение как рискованное",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — оцените предложение как рискованное",
+            "feedbackByLocale": {
+              "ru": "Это «безопасно», а нужно назвать риск.",
+              "uk": "Це «безпечно», а потрібно назвати ризик."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-47:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — оцените предложение как рискованное",
+            "feedbackByLocale": {
+              "ru": "Это «обязательно», а нужно оценить риск.",
+              "uk": "Це «обов'язково», а потрібно оцінити ризик."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — дайте предложению оценку «Это рискованно»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i04:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — дайте предложению оценку «Это рискованно»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i04:audio",
+          "transcript": "Es arriesgado."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es arriesgado.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — recomendable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — recomendable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i05:audio",
+          "transcript": "recomendable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-47:i05:r1",
+            "targetText": "recomendable",
+            "meaningByLocale": {
+              "ru": "такой, который стоит рекомендовать. Оценка: es recomendable — это можно рекомендовать. 🔊 *recomendable*",
+              "uk": "такий, який варто рекомендувати. Оцінка: es recomendable — це можна рекомендувати. 🔊 *recomendable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recomendable",
+          "definitionByLocale": {
+            "ru": "такой, который стоит рекомендовать. Оценка: es recomendable — это можно рекомендовать. 🔊 *recomendable*",
+            "uk": "такий, який варто рекомендувати. Оцінка: es recomendable — це можна рекомендувати. 🔊 *recomendable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i06:r1",
+          "text": "recomendable"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i06:r2",
+          "text": "arriesgado"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i06:audio",
+          "transcript": "recomendable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-47:i06:r1",
+            "targetText": "recomendable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-47:i06:r2",
+            "targetText": "arriesgado",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит recomendable, а не arriesgado.",
+              "uk": "Звучить recomendable, а не arriesgado."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Это можно рекомендовать»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i07:r1",
+          "text": "Плитки: recomendable"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i07:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Это можно рекомендовать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es recomendable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Это можно рекомендовать»",
+          "uk": "Зберіть фразу — скажіть «Це можна рекомендувати»"
+        },
+        "orderedTokens": [
+          "Es",
+          "recomendable"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Это можно рекомендовать»",
+            "feedbackByLocale": {
+              "ru": "оцениваете вариант, не человека.",
+              "uk": "оцінюєте варіант, не людину."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — одобрите подходящий вариант словами «Это можно рекомендовать»",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — одобрите подходящий вариант словами «Это можно рекомендовать»",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i08:audio",
+          "transcript": "Es recomendable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es recomendable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Это не стоит рекомендовать»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i09:r1",
+          "text": "Плитки: recomendable"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i09:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i09:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Это не стоит рекомендовать»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es recomendable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Это не стоит рекомендовать»",
+          "uk": "Зберіть фразу — скажіть «Це не варто рекомендувати»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "recomendable"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Это не стоит рекомендовать»",
+            "feedbackByLocale": {
+              "ru": "обсуждаете один вариант.",
+              "uk": "обговорюєте один варіант."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — откажитесь рекомендовать сомнительное предложение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — откажитесь рекомендовать сомнительное предложение",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i10:audio",
+          "transcript": "No es recomendable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es recomendable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i11:r1",
+          "text": "Плитки: arriesgado"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i11:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-47:i11:audio",
+          "transcript": "Es muy arriesgado."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es muy arriesgado.",
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "arriesgado"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "отрицания в записи нет.",
+              "uk": "заперечення в записі немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подчеркните высокий риск: «Это очень рискованно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-47:i12:r1",
+          "text": "Плитки: arriesgado"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i12:r3",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-47:i12:r4",
+          "text": "poco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подчеркните высокий риск: «Это очень рискованно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy arriesgado.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подчеркните высокий риск: «Это очень рискованно»",
+          "uk": "Зберіть фразу — підкресліть високий ризик: «Це дуже ризиковано»"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "arriesgado"
+        ],
+        "authoredDistractorTokens": [
+          "poco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-47:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подчеркните высокий риск: «Это очень рискованно»",
+            "feedbackByLocale": {
+              "ru": "подчёркиваете высокую степень риска.",
+              "uk": "підкреслюєте високий ступінь ризику."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bdc0499165380727ed4d794f2f756c66023f9590c5ad7f5e1861cf59f40bcf21"
+}

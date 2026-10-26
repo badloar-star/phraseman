@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-46:i01",
+    "correctText": "eficiente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i02",
+    "correctText": "eficientes",
+    "correctResponseId": "es:lesson-01:session-46:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i03",
+    "correctText": "Somos",
+    "correctResponseId": "es:lesson-01:session-46:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i04",
+    "correctText": "Ella es eficiente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i05",
+    "correctText": "eficaz",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i06",
+    "correctText": "eficaz",
+    "correctResponseId": "es:lesson-01:session-46:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i07",
+    "correctText": "Son",
+    "correctResponseId": "es:lesson-01:session-46:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i08",
+    "correctText": "Ella es eficaz.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i09",
+    "correctText": "Son eficaces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i10",
+    "correctText": "Somos",
+    "correctResponseId": "es:lesson-01:session-46:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i11",
+    "correctText": "Ella es muy eficiente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-46:i12",
+    "correctText": "Eres eficaz.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-47",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-47:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-47:intro1:r2": {
+          "ru": "Это «безопасно», противоположная оценка в этой сцене.",
+          "uk": "Це «безпечно», протилежна оцінка в цій сцені."
+        },
+        "es:lesson-01:session-47:intro1:r3": {
+          "ru": "Eres обращено к человеку, а вы оцениваете предложение.",
+          "uk": "Eres звернене до людини, а ви оцінюєте пропозицію."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-47:intro2:r2": {
+          "ru": "No отрицает рекомендацию, а вы готовы посоветовать вариант.",
+          "uk": "No заперечує рекомендацію, а ви готові порадити варіант."
+        },
+        "es:lesson-01:session-47:intro2:r3": {
+          "ru": "Это обращение к человеку, а вы оцениваете вариант.",
+          "uk": "Це звернення до людини, а ви оцінюєте варіант."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-47:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-47:intro3:r2": {
+          "ru": "Без no фраза рекомендует вариант.",
+          "uk": "Без no фраза рекомендує варіант."
+        },
+        "es:lesson-01:session-47:intro3:r3": {
+          "ru": "Это о нескольких вариантах, а обсуждается один.",
+          "uk": "Це про кілька варіантів, а обговорюється один."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7457cf5370258856df7a453bea6ec3dc0ae94fb6dfcc3ecd311a3ec784327402"
+}

@@ -1,0 +1,703 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-46",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eficiente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eficiente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-46:i01:audio",
+          "transcript": "eficiente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-46:i01:r1",
+            "targetText": "eficiente",
+            "meaningByLocale": {
+              "ru": "эффективно использующий время и силы. Для нескольких людей — eficientes. 🔊 *eficiente*",
+              "uk": "той, хто ефективно використовує час і сили. Для кількох людей — eficientes. 🔊 *eficiente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eficiente",
+          "definitionByLocale": {
+            "ru": "эффективно использующий время и силы. Для нескольких людей — eficientes. 🔊 *eficiente*",
+            "uk": "той, хто ефективно використовує час і сили. Для кількох людей — eficientes. 🔊 *eficiente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i02:r1",
+          "text": "eficientes"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i02:r2",
+          "text": "eficiente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-46:i02:audio",
+          "transcript": "eficientes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-46:i02:r1",
+            "targetText": "eficientes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i02:r2",
+            "targetText": "eficiente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит s: eficientes.",
+              "uk": "Наприкінці звучить s: eficientes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — опишіть свою групу словом eficientes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i03:r1",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i03:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i03:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — опишіть свою групу словом eficientes",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — опишите свою группу словом eficientes",
+          "uk": "Вставте слово — опишіть свою групу словом eficientes"
+        },
+        "gappedTargetPhrase": "___ eficientes.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-46:i03:r1",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i03:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i03:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставте слово — опишіть свою групу словом eficientes",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть свою групу словом eficientes",
+            "feedbackByLocale": {
+              "ru": "Это о другой группе, а нужно о своей.",
+              "uk": "Це про іншу групу, а потрібно про свою."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть свою групу словом eficientes",
+            "feedbackByLocale": {
+              "ru": "Это форма для одного человека, а здесь группа.",
+              "uk": "Це форма для однієї людини, а тут група."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — опишіть одну знайому словом eficiente, починаючи з ella",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i04:r1",
+          "text": "Плитки: eficiente"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i04:r3",
+          "text": "ella"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i04:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — опишіть одну знайому словом eficiente, починаючи з ella",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ella es eficiente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — опишите одну знакомую словом eficiente, начиная с ella",
+          "uk": "Зберіть фразу — опишіть одну знайому словом eficiente, починаючи з ella"
+        },
+        "orderedTokens": [
+          "Ella",
+          "es",
+          "eficiente"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — опишіть одну знайому словом eficiente, починаючи з ella",
+            "feedbackByLocale": {
+              "ru": "описываете одну женщину.",
+              "uk": "описуєте одну жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — eficaz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-46:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — eficaz",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-46:i05:audio",
+          "transcript": "eficaz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-46:i05:r1",
+            "targetText": "eficaz",
+            "meaningByLocale": {
+              "ru": "действенный, результативный. Для нескольких людей — eficaces: z меняется на c перед es. 🔊 *eficaz*",
+              "uk": "дієвий, результативний. Для кількох людей — eficaces: z змінюється на c перед es. 🔊 *eficaz*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "eficaz",
+          "definitionByLocale": {
+            "ru": "действенный, результативный. Для нескольких людей — eficaces: z меняется на c перед es. 🔊 *eficaz*",
+            "uk": "дієвий, результативний. Для кількох людей — eficaces: z змінюється на c перед es. 🔊 *eficaz*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i06:r1",
+          "text": "eficaz"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i06:r2",
+          "text": "eficaces"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-46:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-46:i06:audio",
+          "transcript": "eficaz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-46:i06:r1",
+            "targetText": "eficaz",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i06:r2",
+            "targetText": "eficaces",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит форма для одного человека: eficaz.",
+              "uk": "Звучить форма для однієї людини: eficaz."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — опишіть результативну роботу іншої групи, використовуючи eficaces",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i07:r1",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i07:r2",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i07:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — опишіть результативну роботу іншої групи, використовуючи eficaces",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — опишите результативную работу другой группы, используя eficaces",
+          "uk": "Вставте слово — опишіть результативну роботу іншої групи, використовуючи eficaces"
+        },
+        "gappedTargetPhrase": "___ eficaces.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-46:i07:r1",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i07:r2",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i07:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставте слово — опишіть результативну роботу іншої групи, використовуючи eficaces",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть результативну роботу іншої групи, використовуючи eficaces",
+            "feedbackByLocale": {
+              "ru": "Это о нас, а нужно о другой группе.",
+              "uk": "Це про нас, а потрібно про іншу групу."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — опишіть результативну роботу іншої групи, використовуючи eficaces",
+            "feedbackByLocale": {
+              "ru": "Для нескольких людей нужно son.",
+              "uk": "Для кількох людей потрібно son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть про знайому «Вона діє результативно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i08:r1",
+          "text": "Плитки: eficaz"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i08:r2",
+          "text": "ella"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i08:r4",
+          "text": "eficaces."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть про знайому «Вона діє результативно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ella es eficaz.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о знакомой «Она действует результативно»",
+          "uk": "Зберіть фразу — скажіть про знайому «Вона діє результативно»"
+        },
+        "orderedTokens": [
+          "Ella",
+          "es",
+          "eficaz"
+        ],
+        "authoredDistractorTokens": [
+          "eficaces"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть про знайому «Вона діє результативно»",
+            "feedbackByLocale": {
+              "ru": "описываете одну участницу.",
+              "uk": "описуєте одну учасницю."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — опишіть результативну роботу іншої групи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — опишіть результативну роботу іншої групи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-46:i09:audio",
+          "transcript": "Son eficaces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son eficaces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тепер опишіть свою групу словом eficaces",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i10:r1",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i10:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i10:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тепер опишіть свою групу словом eficaces",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — теперь опишите свою группу словом eficaces",
+          "uk": "Вставте слово — тепер опишіть свою групу словом eficaces"
+        },
+        "gappedTargetPhrase": "___ eficaces.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-46:i10:r1",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i10:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i10:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — тепер опишіть свою групу словом eficaces",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тепер опишіть свою групу словом eficaces",
+            "feedbackByLocale": {
+              "ru": "Это о другой группе, а нужно о своей.",
+              "uk": "Це про іншу групу, а потрібно про свою."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-46:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тепер опишіть свою групу словом eficaces",
+            "feedbackByLocale": {
+              "ru": "Это только о себе, а нужно обо всей группе.",
+              "uk": "Це лише про себе, а потрібно про всю групу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i11:r1",
+          "text": "Плитки: eficiente"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i11:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i11:r4",
+          "text": "ella"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i11:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-46:i11:audio",
+          "transcript": "Ella es muy eficiente."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ella es muy eficiente.",
+        "orderedTokens": [
+          "Ella",
+          "es",
+          "muy",
+          "eficiente"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — зверніться до одного друга на «ти», використовуючи eficaz",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-46:i12:r1",
+          "text": "Плитки: eficaz"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i12:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-46:i12:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — зверніться до одного друга на «ти», використовуючи eficaz",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres eficaz.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — обратитесь к одному другу на «ты», используя eficaz",
+          "uk": "Зберіть фразу — зверніться до одного друга на «ти», використовуючи eficaz"
+        },
+        "orderedTokens": [
+          "Eres",
+          "eficaz"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-46:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — зверніться до одного друга на «ти», використовуючи eficaz",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу на «ты».",
+              "uk": "звертаєтеся до друга на «ти»."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "245b0b75558cb0b81c1bfd08d191c38ef4f026d70a7e7a26845e5e9ba0b09734"
+}

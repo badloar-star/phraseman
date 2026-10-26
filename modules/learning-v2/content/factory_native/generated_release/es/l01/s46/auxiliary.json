@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-46",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-46:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-46:intro1:r2": {
+          "ru": "Это о другой группе, а вы описываете свою.",
+          "uk": "Це про іншу групу, а ви описуєте свою."
+        },
+        "es:lesson-01:session-46:intro1:r3": {
+          "ru": "Для группы нужна форма eficientes.",
+          "uk": "Для групи потрібна форма eficientes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-46:intro2:r2": {
+          "ru": "Это о нас, а нужно о другой группе.",
+          "uk": "Це про нас, а потрібно про іншу групу."
+        },
+        "es:lesson-01:session-46:intro2:r3": {
+          "ru": "Для нескольких людей нужна форма eficaces.",
+          "uk": "Для кількох людей потрібна форма eficaces."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-46:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-46:intro3:r2": {
+          "ru": "Son eficaces относится к группе, а здесь одна женщина.",
+          "uk": "Son eficaces стосується групи, а тут одна жінка."
+        },
+        "es:lesson-01:session-46:intro3:r3": {
+          "ru": "При одном человеке нужна форма eficaz.",
+          "uk": "Для однієї людини потрібна форма eficaz."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "bd8be0f28b93ee485335688e1da2612b98b46675e977a998ae0f8421086b8b22"
+}

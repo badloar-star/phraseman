@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-47:i01",
+    "correctText": "arriesgado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i02",
+    "correctText": "arriesgado",
+    "correctResponseId": "es:lesson-01:session-47:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i03",
+    "correctText": "arriesgado",
+    "correctResponseId": "es:lesson-01:session-47:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i04",
+    "correctText": "Es arriesgado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i05",
+    "correctText": "recomendable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i06",
+    "correctText": "recomendable",
+    "correctResponseId": "es:lesson-01:session-47:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i07",
+    "correctText": "Es recomendable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i08",
+    "correctText": "Es recomendable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i09",
+    "correctText": "No es recomendable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i10",
+    "correctText": "No es recomendable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i11",
+    "correctText": "Es muy arriesgado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-47:i12",
+    "correctText": "Es muy arriesgado.",
+    "correctResponseId": null
+  }
+]

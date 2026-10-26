@@ -1,0 +1,657 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-50",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — absurdo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — absurdo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i01:audio",
+          "transcript": "absurdo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-50:i01:r1",
+            "targetText": "absurdo",
+            "meaningByLocale": {
+              "ru": "нелепый. Женская форма — absurda. 🔊 *absurdo*",
+              "uk": "безглуздий. Жіноча форма — absurda. 🔊 *absurdo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "absurdo",
+          "definitionByLocale": {
+            "ru": "нелепый. Женская форма — absurda. 🔊 *absurdo*",
+            "uk": "безглуздий. Жіноча форма — absurda. 🔊 *absurdo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i02:r1",
+          "text": "absurdo"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i02:r2",
+          "text": "arriesgado"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i02:audio",
+          "transcript": "absurdo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-50:i02:r1",
+            "targetText": "absurdo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i02:r2",
+            "targetText": "arriesgado",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит absurdo — «нелепый».",
+              "uk": "Звучить absurdo — «безглуздий»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «Это нелепо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i03:r1",
+          "text": "Плитки: absurdo"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i03:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «Это нелепо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es absurdo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «Это нелепо»",
+          "uk": "Зберіть фразу — «Це безглуздо»"
+        },
+        "orderedTokens": [
+          "Es",
+          "absurdo"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «Это нелепо»",
+            "feedbackByLocale": {
+              "ru": "оцениваете требование.",
+              "uk": "оцінюєте вимогу."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — возразите «Это несправедливо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i04:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i04:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i04:r3",
+          "text": "Muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — возразите «Это несправедливо»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — возразите «Это несправедливо»",
+          "uk": "Вставте слово — заперечте «Це несправедливо»"
+        },
+        "gappedTargetPhrase": "___ es justo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-50:i04:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i04:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i04:r3",
+            "text": "Muy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — возразите «Это несправедливо»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — возразите «Это несправедливо»",
+            "feedbackByLocale": {
+              "ru": "Sí подтверждает, а нужно отрицание.",
+              "uk": "Sí підтверджує, а потрібне заперечення."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — возразите «Это несправедливо»",
+            "feedbackByLocale": {
+              "ru": "Muy усиливает признак, но не отрицает его.",
+              "uk": "Muy посилює ознаку, але не заперечує її."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — «Это несправедливо» о раннем возврате",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — «Это несправедливо» о раннем возврате",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i05:audio",
+          "transcript": "No es justo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es justo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — exagerado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — exagerado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i06:audio",
+          "transcript": "exagerado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-50:i06:r1",
+            "targetText": "exagerado",
+            "meaningByLocale": {
+              "ru": "чрезмерный. Формы: exagerada, exagerados, exageradas. 🔊 *exagerado*",
+              "uk": "надмірний. Форми: exagerada, exagerados, exageradas. 🔊 *exagerado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "exagerado",
+          "definitionByLocale": {
+            "ru": "чрезмерный. Формы: exagerada, exagerados, exageradas. 🔊 *exagerado*",
+            "uk": "надмірний. Форми: exagerada, exagerados, exageradas. 🔊 *exagerado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i07:r1",
+          "text": "exagerado"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i07:r2",
+          "text": "arriesgado"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i07:audio",
+          "transcript": "exagerado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-50:i07:r1",
+            "targetText": "exagerado",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i07:r2",
+            "targetText": "arriesgado",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Слышно exagerado, с началом exa-.",
+              "uk": "Чутно exagerado, з початком exa-."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — о нескольких требованиях: «Они чрезмерные»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i08:r1",
+          "text": "Плитки: exagerados"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i08:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — о нескольких требованиях: «Они чрезмерные»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son exagerados.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о нескольких требованиях: «Они чрезмерные»",
+          "uk": "Зберіть фразу — про кілька вимог: «Вони надмірні»"
+        },
+        "orderedTokens": [
+          "Son",
+          "exagerados"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — о нескольких требованиях: «Они чрезмерные»",
+            "feedbackByLocale": {
+              "ru": "требований несколько.",
+              "uk": "вимог кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — «Они не нужны» о нескольких требованиях",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i09:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i09:r3",
+          "text": "eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — «Они не нужны» о нескольких требованиях",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — «Они не нужны» о нескольких требованиях",
+          "uk": "Вставте слово — «Вони не потрібні» про кілька вимог"
+        },
+        "gappedTargetPhrase": "No ___ necesarios.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-50:i09:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i09:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i09:r3",
+            "text": "eres"
+          }
+        ],
+        "testedDimension": "Вставьте слово — «Они не нужны» о нескольких требованиях",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «Они не нужны» о нескольких требованиях",
+            "feedbackByLocale": {
+              "ru": "Es относится к одному требованию.",
+              "uk": "Es стосується однієї вимоги."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-50:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — «Они не нужны» о нескольких требованиях",
+            "feedbackByLocale": {
+              "ru": "Eres обращено к одному человеку.",
+              "uk": "Eres звернено до однієї людини."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «Они не нужны» о требованиях",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i10:r1",
+          "text": "Плитки: necesarios"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i10:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i10:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «Они не нужны» о требованиях",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son necesarios.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «Они не нужны» о требованиях",
+          "uk": "Зберіть фразу — «Вони не потрібні» про вимоги"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "necesarios"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «Они не нужны» о требованиях",
+            "feedbackByLocale": {
+              "ru": "no ставится перед son.",
+              "uk": "no ставиться перед son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-50:i11:r1",
+          "text": "Плитки: justo"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i11:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-50:i11:r4",
+          "text": "muy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i11:audio",
+          "transcript": "No es justo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es justo.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "justo"
+        ],
+        "authoredDistractorTokens": [
+          "muy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-50:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи только отрицание оценки.",
+              "uk": "у записі лише заперечення оцінки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — возразите, что несколько требований не нужны",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — возразите, что несколько требований не нужны",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-50:i12:audio",
+          "transcript": "No son necesarios."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son necesarios.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c570330ec79444d7630de360948d7fc3308f99c1b52a4096042cbde2a0fd0d94"
+}

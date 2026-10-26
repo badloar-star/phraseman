@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-49:i01",
+    "correctText": "razonable",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i02",
+    "correctText": "razonable",
+    "correctResponseId": "es:lesson-01:session-49:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i03",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-01:session-49:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i04",
+    "correctText": "Es muy razonable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i05",
+    "correctText": "lógico",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i06",
+    "correctText": "lógico",
+    "correctResponseId": "es:lesson-01:session-49:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i07",
+    "correctText": "Es lógico.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i08",
+    "correctText": "Sí, es lógico.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i09",
+    "correctText": "Sí",
+    "correctResponseId": "es:lesson-01:session-49:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i10",
+    "correctText": "Sí, es razonable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i11",
+    "correctText": "Sí, es lógico.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-49:i12",
+    "correctText": "Sí, es razonable.",
+    "correctResponseId": null
+  }
+]

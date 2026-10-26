@@ -336,4 +336,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"произнести оценку риска и отдельную реплику о том, стоит ли рекомендовать вариант.","uk":"вимовити оцінку ризику й окрему репліку про те, чи варто рекомендувати варіант."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 48,
+    sourceFingerprint: "0051ce1dcc34144c6ce62bfbc3f66a8df997b0f3ab52b60f12efb8b5990cd0da",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать количество людей и повторить порядок и сравнение в отдельных репликах.","uk":"назвати кількість людей і повторити порядок та порівняння в окремих репліках."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 49,
+    sourceFingerprint: "c0a22c91d1febeb07af4b8d2a7f6af5779f6aad6ceb1b616b20c6c25badcc59d",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"подтвердить оценку предложения короткой фразой с sí и es.","uk":"підтвердити оцінку пропозиції короткою фразою із sí та es."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 50,
+    sourceFingerprint: "b2b6963ddb7914d53b4c3c0b77a87dbd5efd35844fcb0a08750d45ac9b45079f",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"возразить с no es и no son.","uk":"заперечувати з no es і no son."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

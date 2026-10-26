@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-49",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-49:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-49:intro1:r2": {
+          "ru": "Это обращение к человеку, а нужно оценить предложение.",
+          "uk": "Це звернення до людини, а потрібно оцінити пропозицію."
+        },
+        "es:lesson-01:session-49:intro1:r3": {
+          "ru": "Это отрицательная оценка, а предложение вам подходит.",
+          "uk": "Це негативна оцінка, а пропозиція вам підходить."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-49:intro2:r2": {
+          "ru": "Это обращение к человеку, а речь о порядке действий.",
+          "uk": "Це звернення до людини, а йдеться про порядок дій."
+        },
+        "es:lesson-01:session-49:intro2:r3": {
+          "ru": "Это отрицание логичности, а вы согласны с порядком.",
+          "uk": "Це заперечення логічності, а ви згодні з порядком."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-49:intro3:r2": {
+          "ru": "Это отрицание, а нужно согласиться.",
+          "uk": "Це заперечення, а потрібно погодитися."
+        },
+        "es:lesson-01:session-49:intro3:r3": {
+          "ru": "Это оценка собеседника, а речь о предложении.",
+          "uk": "Це оцінка співрозмовника, а йдеться про пропозицію."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f880c86ca518d5969885820f5accfc90a285bcc689ff9cabd728354a131407a6"
+}

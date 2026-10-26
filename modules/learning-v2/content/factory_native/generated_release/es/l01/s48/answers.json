@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-48:i01",
+    "correctText": "nueve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i02",
+    "correctText": "9",
+    "correctResponseId": "es:lesson-01:session-48:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i03",
+    "correctText": "Somos",
+    "correctResponseId": "es:lesson-01:session-48:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i04",
+    "correctText": "Somos nueve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i05",
+    "correctText": "ocho",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i06",
+    "correctText": "8",
+    "correctResponseId": "es:lesson-01:session-48:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i07",
+    "correctText": "Son ocho.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i08",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-01:session-48:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i09",
+    "correctText": "Eres el primero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i10",
+    "correctText": "Eres igual que yo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i11",
+    "correctText": "No somos ocho.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-48:i12",
+    "correctText": "Son nueve.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "назвать количество людей и повторить порядок и сравнение в отдельных репликах.",
+    "uk": "назвати кількість людей і повторити порядок та порівняння в окремих репліках."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нас девятеро",
+        "uk": "Нас дев'ятеро"
+      },
+      "bodyByLocale": {
+        "ru": "Все участники вашей компании собрались. Вы считаете себя вместе с остальными: девять человек. `Somos nueve` — «Нас девятеро». `Nueve` означает «девять». Соберите `somos` + `nueve`. В число входят все люди, включая говорящего.",
+        "uk": "Усі учасники вашої компанії зібралися. Ви рахуєте себе разом з іншими: дев'ять людей. `Somos nueve` — «Нас дев'ятеро». `Nueve` означає «дев'ять». Зберіть `somos` + `nueve`. До числа входять усі люди, включно з мовцем."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите число людей в своей компании: девятеро.",
+          "uk": "Назвіть кількість людей у своїй компанії: дев'ятеро."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-48:intro1:r1",
+              "text": "Somos nueve."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro1:r2",
+              "text": "Son nueve."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro1:r3",
+              "text": "Somos siete."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-48:intro1:r1",
+              "text": "Somos nueve."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro1:r2",
+              "text": "Son nueve."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro1:r3",
+              "text": "Somos siete."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите число людей в своей компании: девятеро.",
+          "uk": "Назвіть кількість людей у своїй компанії: дев'ятеро."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Их восемь",
+        "uk": "Їх вісім"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом готовится другая компания из восьми человек. `Son ocho` — «Их восемь». `Ocho` означает «восемь». Соберите `son` + `ocho`. Вы не включаете себя в эту компанию, поэтому son. Число ocho остаётся тем же для любой группы людей.",
+        "uk": "Поруч готується інша компанія з восьми людей. `Son ocho` — «Їх вісім». `Ocho` означає «вісім». Зберіть `son` + `ocho`. Ви не включаєте себе до цієї компанії, тому son. Число ocho залишається тим самим для будь-якої групи людей."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о другой компании: «Их восемь».",
+          "uk": "Скажіть про іншу компанію: «Їх вісім»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-48:intro2:r1",
+              "text": "Son ocho."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro2:r2",
+              "text": "Somos ocho."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro2:r3",
+              "text": "Son nueve."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-48:intro2:r1",
+              "text": "Son ocho."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro2:r2",
+              "text": "Somos ocho."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro2:r3",
+              "text": "Son nueve."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о другой компании: «Их восемь».",
+          "uk": "Скажіть про іншу компанію: «Їх вісім»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Я иду первой",
+        "uk": "Я йду першою"
+      },
+      "bodyByLocale": {
+        "ru": "Участники выходят из узкой калитки по одному. Вы женщина и выходите первой: `Soy la primera` — «Я первая». Соберите `soy` + `la` + `primera`. Здесь называется место в порядке выхода, а не количество людей. La и primera относятся к говорящей женщине.",
+        "uk": "Учасники виходять із вузької хвіртки по одному. Ви жінка й виходите першою: `Soy la primera` — «Я перша». Зберіть `soy` + `la` + `primera`. Тут називається місце в порядку виходу, а не кількість людей. La та primera стосуються жінки, яка говорить."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы женщина. Назовите своё место в порядке выхода: «Я первая».",
+          "uk": "Ви жінка. Назвіть своє місце в порядку виходу: «Я перша»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-48:intro3:r1",
+              "text": "Soy la primera."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro3:r2",
+              "text": "Soy el primero."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro3:r3",
+              "text": "Somos nueve."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-48:intro3:r1",
+              "text": "Soy la primera."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro3:r2",
+              "text": "Soy el primero."
+            },
+            {
+              "responseId": "es:lesson-01:session-48:intro3:r3",
+              "text": "Somos nueve."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина. Назовите своё место в порядке выхода: «Я первая».",
+          "uk": "Ви жінка. Назвіть своє місце в порядку виходу: «Я перша»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "acf931d4ddffcb2d09d3d2fdffb62de5cab58f9b5bdb11716f761f5ad178640d"
+}

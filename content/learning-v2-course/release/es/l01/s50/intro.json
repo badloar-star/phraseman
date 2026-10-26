@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "возразить с no es и no son.",
+    "uk": "заперечувати з no es і no son."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нелепое требование",
+        "uk": "Безглузда вимога"
+      },
+      "bodyByLocale": {
+        "ru": "В прокате требуют вернуть велосипед за час до конца оплаченного времени. Вы считаете требование нелепым: `Es absurdo` — «Это нелепо». `Absurdo` означает «нелепый, абсурдный». Соберите `es` + `absurdo`. Для оценки целого требования используйте absurdo; женская форма этого слова — absurda.",
+        "uk": "У прокаті вимагають повернути велосипед за годину до кінця оплаченого часу. Ви вважаєте вимогу безглуздою: `Es absurdo` — «Це безглуздо». `Absurdo` означає «безглуздий, абсурдний». Складіть `es` + `absurdo`. Для оцінки цілої вимоги використовуйте absurdo; жіноча форма цього слова — absurda."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите требование нелепым.",
+          "uk": "Назвіть вимогу безглуздою."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-50:intro1:r1",
+              "text": "Es absurdo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro1:r2",
+              "text": "Eres absurdo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro1:r3",
+              "text": "No es absurdo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-50:intro1:r1",
+              "text": "Es absurdo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro1:r2",
+              "text": "Eres absurdo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro1:r3",
+              "text": "No es absurdo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите требование нелепым.",
+          "uk": "Назвіть вимогу безглуздою."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это несправедливо",
+        "uk": "Це несправедливо"
+      },
+      "bodyByLocale": {
+        "ru": "Друг считает ранний возврат справедливым. Возразите: `No es justo` — «Это несправедливо». Соберите `no` + `es` + `justo`: no ставится прямо перед es. Вы отрицаете справедливость того же требования. После no форма es не меняется.",
+        "uk": "Друг вважає раннє повернення справедливим. Заперечте: `No es justo` — «Це несправедливо». Складіть `no` + `es` + `justo`: no ставиться прямо перед es. Ви заперечуєте справедливість тієї самої вимоги. Після no форма es не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Возразите: «Это несправедливо».",
+          "uk": "Заперечте: «Це несправедливо»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-50:intro2:r1",
+              "text": "No es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro2:r2",
+              "text": "Es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro2:r3",
+              "text": "No eres justo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-50:intro2:r1",
+              "text": "No es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro2:r2",
+              "text": "Es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro2:r3",
+              "text": "No eres justo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите: «Это несправедливо».",
+          "uk": "Заперечте: «Це несправедливо»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько требований",
+        "uk": "Кілька вимог"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь обсуждаете несколько требований проката: ранний возврат и большой штраф за минуту опоздания. `Exagerado` здесь значит «чрезмерный». О требованиях во множественном числе скажите `Son exagerados` — «Они чрезмерные». Друг утверждает, что они необходимы. Возразите: `No son necesarios` — «Они не нужны». Соберите `no` + `son` + `necesarios`. Требование здесь — `el requisito`, слово мужского рода; несколько требований — `los requisitos`. Поэтому выбираем мужские формы exagerados и necesarios с окончанием -s. Son относится к нескольким требованиям, а no перед ним отрицает необходимость.",
+        "uk": "Тепер обговорюєте кілька вимог прокату: раннє повернення й великий штраф за хвилину запізнення. `Exagerado` тут означає «надмірний». Про вимоги у множині скажіть `Son exagerados` — «Вони надмірні». Друг стверджує, що вони необхідні. Заперечте: `No son necesarios` — «Вони не потрібні». Складіть `no` + `son` + `necesarios`. Вимога тут — `el requisito`, слово чоловічого роду; кілька вимог — `los requisitos`. Тому вибираємо чоловічі форми exagerados і necesarios із закінченням -s. Son стосується кількох вимог, а no перед ним заперечує необхідність."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Отрицайте необходимость нескольких требований.",
+          "uk": "Заперечте необхідність кількох вимог."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-50:intro3:r1",
+              "text": "No son necesarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro3:r2",
+              "text": "No es necesario."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro3:r3",
+              "text": "Son necesarios."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-50:intro3:r1",
+              "text": "No son necesarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro3:r2",
+              "text": "No es necesario."
+            },
+            {
+              "responseId": "es:lesson-01:session-50:intro3:r3",
+              "text": "Son necesarios."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Отрицайте необходимость нескольких требований.",
+          "uk": "Заперечте необхідність кількох вимог."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c6383543b05b44004d10b6fb687c4627d3ff75544980ae276efd69b724431155"
+}

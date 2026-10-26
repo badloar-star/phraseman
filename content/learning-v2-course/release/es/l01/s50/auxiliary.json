@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-50",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-50:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-50:intro1:r2": {
+          "ru": "Eres обращено к человеку, а речь о требовании.",
+          "uk": "Eres звернено до людини, а йдеться про вимогу."
+        },
+        "es:lesson-01:session-50:intro1:r3": {
+          "ru": "Так вы отрицаете нелепость, а нужно её отметить.",
+          "uk": "Так ви заперечуєте безглуздість, а потрібно її відзначити."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-50:intro2:r2": {
+          "ru": "Это согласие с оценкой, а вы возражаете.",
+          "uk": "Це згода з оцінкою, а ви заперечуєте."
+        },
+        "es:lesson-01:session-50:intro2:r3": {
+          "ru": "Это оценка собеседника, а не требования.",
+          "uk": "Це оцінка співрозмовника, а не вимоги."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-50:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-50:intro3:r2": {
+          "ru": "Это оценка одного требования, а обсуждаются несколько.",
+          "uk": "Це оцінка однієї вимоги, а обговорюються кілька."
+        },
+        "es:lesson-01:session-50:intro3:r3": {
+          "ru": "Это подтверждение необходимости, а вы возражаете.",
+          "uk": "Це підтвердження необхідності, а ви заперечуєте."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "04011fc1151b3544c9012bd3f75f93e0cb987fead34b9c564ff8045135983c74"
+}

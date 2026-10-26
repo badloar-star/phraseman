@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-50:i01",
+    "correctText": "absurdo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i02",
+    "correctText": "absurdo",
+    "correctResponseId": "es:lesson-01:session-50:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i03",
+    "correctText": "Es absurdo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i04",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-01:session-50:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i05",
+    "correctText": "No es justo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i06",
+    "correctText": "exagerado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i07",
+    "correctText": "exagerado",
+    "correctResponseId": "es:lesson-01:session-50:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i08",
+    "correctText": "Son exagerados.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i09",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-01:session-50:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i10",
+    "correctText": "No son necesarios.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i11",
+    "correctText": "No es justo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-50:i12",
+    "correctText": "No son necesarios.",
+    "correctResponseId": null
+  }
+]

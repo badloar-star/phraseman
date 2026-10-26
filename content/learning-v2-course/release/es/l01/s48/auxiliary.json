@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-48",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-48:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-48:intro1:r2": {
+          "ru": "Это о другой компании, а нужно о своей.",
+          "uk": "Це про іншу компанію, а потрібно про свою."
+        },
+        "es:lesson-01:session-48:intro1:r3": {
+          "ru": "Siete означает семь, а вас девятеро.",
+          "uk": "Siete означає сім, а вас дев'ятеро."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-48:intro2:r2": {
+          "ru": "Это «нас восемь», а вы говорите о другой группе.",
+          "uk": "Це «нас вісім», а ви говорите про іншу групу."
+        },
+        "es:lesson-01:session-48:intro2:r3": {
+          "ru": "Nueve означает девять, а их восемь.",
+          "uk": "Nueve означає дев'ять, а їх вісім."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-48:intro3:r2": {
+          "ru": "Это мужская форма, а в условии говорит женщина.",
+          "uk": "Це чоловіча форма, а в умові говорить жінка."
+        },
+        "es:lesson-01:session-48:intro3:r3": {
+          "ru": "Это количество людей, а нужно назвать место в очереди.",
+          "uk": "Це кількість людей, а потрібно назвати місце в черзі."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "40d08a5ac2dd0c65ceaf45d42f08456b63526df99335b65bb7a50d8cbcb64225"
+}

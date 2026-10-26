@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "подтвердить оценку предложения короткой фразой с sí и es.",
+    "uk": "підтвердити оцінку пропозиції короткою фразою із sí та es."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разумное предложение",
+        "uk": "Розумна пропозиція"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья предлагают сумму, которая всем подходит, и согласны разделить её поровну. Вы оцениваете предложение: `Es razonable` — «Это разумно». `Razonable` означает «разумный, обоснованный». Соберите `es` + `razonable`. Вы оцениваете обсуждаемое решение, а не называете качество одного из друзей.",
+        "uk": "Друзі пропонують суму, яка всім підходить, і згодні розділити її порівну. Ви оцінюєте пропозицію: `Es razonable` — «Це розумно». `Razonable` означає «розумний, обґрунтований». Зберіть `es` + `razonable`. Ви оцінюєте обговорюване рішення, а не називаєте якість когось із друзів."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Оцените предложение словом razonable.",
+          "uk": "Оцініть пропозицію словом razonable."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-49:intro1:r1",
+              "text": "Es razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro1:r2",
+              "text": "Eres razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro1:r3",
+              "text": "No es razonable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-49:intro1:r1",
+              "text": "Es razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro1:r2",
+              "text": "Eres razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro1:r3",
+              "text": "No es razonable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените предложение словом razonable.",
+          "uk": "Оцініть пропозицію словом razonable."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Логичный порядок",
+        "uk": "Логічний порядок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает сначала согласовать сумму, а уже потом выбирать подарок. Вы считаете такой порядок логичным: `Es lógico` — «Это логично». `Lógico` означает «логичный». Соберите `es` + `lógico`. В этой оценке целого решения используется мужская форма lógico. Женская форма слова — lógica.",
+        "uk": "Друг пропонує спершу узгодити суму, а вже потім обирати подарунок. Ви вважаєте такий порядок логічним: `Es lógico` — «Це логічно». `Lógico` означає «логічний». Зберіть `es` + `lógico`. У цій оцінці цілого рішення використовується чоловіча форма lógico. Жіноча форма слова — lógica."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Оцените порядок действий словами «Это логично».",
+          "uk": "Оцініть порядок дій словами «Це логічно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-49:intro2:r1",
+              "text": "Es lógico."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro2:r2",
+              "text": "Eres lógico."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro2:r3",
+              "text": "No es lógico."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-49:intro2:r1",
+              "text": "Es lógico."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro2:r2",
+              "text": "Eres lógico."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro2:r3",
+              "text": "No es lógico."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените порядок действий словами «Это логично».",
+          "uk": "Оцініть порядок дій словами «Це логічно»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Да, согласен",
+        "uk": "Так, згоден"
+      },
+      "bodyByLocale": {
+        "ru": "Вас спрашивают, разумно ли предложенное разделение расходов. Подтвердите: `Sí, es razonable` — «Да, это разумно». Соберите `sí` + `es` + `razonable`. Sí со знаком ударения означает «да»; после него на письме поставьте запятую. Оставшаяся оценка es razonable не меняется.",
+        "uk": "Вас запитують, чи розумний запропонований розподіл витрат. Підтвердьте: `Sí, es razonable` — «Так, це розумно». Зберіть `sí` + `es` + `razonable`. Sí зі знаком наголосу означає «так»; після нього на письмі поставте кому. Решта оцінки es razonable не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите: «Да, это разумно».",
+          "uk": "Підтвердьте: «Так, це розумно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-49:intro3:r1",
+              "text": "Sí, es razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro3:r2",
+              "text": "No es razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro3:r3",
+              "text": "Sí, eres razonable."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-49:intro3:r1",
+              "text": "Sí, es razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro3:r2",
+              "text": "No es razonable."
+            },
+            {
+              "responseId": "es:lesson-01:session-49:intro3:r3",
+              "text": "Sí, eres razonable."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите: «Да, это разумно».",
+          "uk": "Підтвердьте: «Так, це розумно»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f926de27e9597d21395281e09779a11a17d3d45a2806f295864f66a7dd522ed5"
+}

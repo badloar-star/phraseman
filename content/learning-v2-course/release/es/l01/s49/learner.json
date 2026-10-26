@@ -1,0 +1,662 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-49",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-49:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — razonable",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — razonable",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i01:audio",
+          "transcript": "razonable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-49:i01:r1",
+            "targetText": "razonable",
+            "meaningByLocale": {
+              "ru": "разумный, обоснованный. Форма одинакова для мужского и женского рода. 🔊 *razonable*",
+              "uk": "розумний, обґрунтований. Форма однакова для чоловічого й жіночого роду. 🔊 *razonable*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "razonable",
+          "definitionByLocale": {
+            "ru": "разумный, обоснованный. Форма одинакова для мужского и женского рода. 🔊 *razonable*",
+            "uk": "розумний, обґрунтований. Форма однакова для чоловічого й жіночого роду. 🔊 *razonable*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i02:r1",
+          "text": "razonable"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i02:r2",
+          "text": "recomendable"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i02:audio",
+          "transcript": "razonable"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-49:i02:r1",
+            "targetText": "razonable",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i02:r2",
+            "targetText": "recomendable",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит razonable, а не recomendable.",
+              "uk": "Звучить razonable, а не recomendable."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — оцените предложение как разумное",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i03:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i03:r2",
+          "text": "Eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i03:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — оцените предложение как разумное",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — оцените предложение как разумное",
+          "uk": "Вставте слово — оцініть пропозицію як розумну"
+        },
+        "gappedTargetPhrase": "___ razonable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-49:i03:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i03:r2",
+            "text": "Eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i03:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — оцените предложение как разумное",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — оцените предложение как разумное",
+            "feedbackByLocale": {
+              "ru": "Это обращение к человеку, а вы оцениваете предложение.",
+              "uk": "Це звернення до людини, а ви оцінюєте пропозицію."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — оцените предложение как разумное",
+            "feedbackByLocale": {
+              "ru": "Это описание себя, а не предложения.",
+              "uk": "Це опис себе, а не пропозиції."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите «Это очень разумно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i04:r1",
+          "text": "Плитки: razonable"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i04:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i04:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите «Это очень разумно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es muy razonable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Это очень разумно»",
+          "uk": "Зберіть фразу — скажіть «Це дуже розумно»"
+        },
+        "orderedTokens": [
+          "Es",
+          "muy",
+          "razonable"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите «Это очень разумно»",
+            "feedbackByLocale": {
+              "ru": "подчёркиваете разумность.",
+              "uk": "підкреслюєте розумність."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lógico",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lógico",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i05:audio",
+          "transcript": "lógico"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-49:i05:r1",
+            "targetText": "lógico",
+            "meaningByLocale": {
+              "ru": "логичный; женская форма — lógica. Оценка решения: es lógico — это логично. 🔊 *lógico*",
+              "uk": "логічний; жіноча форма — lógica. Оцінка рішення: es lógico — це логічно. 🔊 *lógico*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lógico",
+          "definitionByLocale": {
+            "ru": "логичный; женская форма — lógica. Оценка решения: es lógico — это логично. 🔊 *lógico*",
+            "uk": "логічний; жіноча форма — lógica. Оцінка рішення: es lógico — це логічно. 🔊 *lógico*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i06:r1",
+          "text": "lógico"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i06:r2",
+          "text": "lógica"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i06:audio",
+          "transcript": "lógico"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-49:i06:r1",
+            "targetText": "lógico",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i06:r2",
+            "targetText": "lógica",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание o: lógico.",
+              "uk": "Звучить закінчення o: lógico."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — оцените порядок действий: «Это логично»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i07:r1",
+          "text": "Плитки: lógico"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i07:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — оцените порядок действий: «Это логично»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es lógico.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — оцените порядок действий: «Это логично»",
+          "uk": "Зберіть фразу — оцініть порядок дій: «Це логічно»"
+        },
+        "orderedTokens": [
+          "Es",
+          "lógico"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — оцените порядок действий: «Это логично»",
+            "feedbackByLocale": {
+              "ru": "оцениваете решение, не человека.",
+              "uk": "оцінюєте рішення, не людину."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите логичность предложенного порядка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите логичность предложенного порядка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i08:audio",
+          "transcript": "Sí, es lógico."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, es lógico.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — подтвердите «Да, это разумно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i09:r1",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i09:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i09:r3",
+          "text": "Muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — подтвердите «Да, это разумно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подтвердите «Да, это разумно»",
+          "uk": "Вставте слово — підтвердьте «Так, це розумно»"
+        },
+        "gappedTargetPhrase": "___, es razonable.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-49:i09:r1",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i09:r2",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i09:r3",
+            "text": "Muy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — подтвердите «Да, это разумно»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подтвердите «Да, это разумно»",
+            "feedbackByLocale": {
+              "ru": "Это начало отрицательного ответа, а нужно подтвердить.",
+              "uk": "Це початок негативної відповіді, а потрібно підтвердити."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-49:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подтвердите «Да, это разумно»",
+            "feedbackByLocale": {
+              "ru": "Muy означает «очень», а перед всей оценкой здесь нужно sí.",
+              "uk": "Muy означає «дуже», а перед усією оцінкою тут потрібне sí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — согласитесь: «Да, это разумно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i10:r1",
+          "text": "Плитки: razonable"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i10:r3",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i10:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — согласитесь: «Да, это разумно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, es razonable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — согласитесь: «Да, это разумно»",
+          "uk": "Зберіть фразу — погодьтеся: «Так, це розумно»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "es",
+          "razonable"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — согласитесь: «Да, это разумно»",
+            "feedbackByLocale": {
+              "ru": "речь о предложении.",
+              "uk": "йдеться про пропозицію."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-49:i11:r1",
+          "text": "Плитки: lógico"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i11:r3",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-49:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i11:audio",
+          "transcript": "Sí, es lógico."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Sí, es lógico.",
+        "orderedTokens": [
+          "Sí,",
+          "es",
+          "lógico"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-49:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит подтверждение sí.",
+              "uk": "звучить підтвердження sí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-49:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите разумность разделения расходов",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-49:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите разумность разделения расходов",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-49:i12:audio",
+          "transcript": "Sí, es razonable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, es razonable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "60e620abe40d32d0570cd1f93ede2ed36034850fb8dd2e4b54117e4d8c77ac3b"
+}

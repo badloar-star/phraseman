@@ -1,0 +1,690 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-48",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nueve",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nueve",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-48:i01:audio",
+          "transcript": "nueve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-48:i01:r1",
+            "targetText": "nueve",
+            "meaningByLocale": {
+              "ru": "девять. 🔊 *nueve*",
+              "uk": "дев'ять. 🔊 *nueve*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nueve",
+          "definitionByLocale": {
+            "ru": "девять. 🔊 *nueve*",
+            "uk": "дев'ять. 🔊 *nueve*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i02:r1",
+          "text": "9"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i02:r2",
+          "text": "7"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-48:i02:audio",
+          "transcript": "nueve"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-48:i02:r1",
+            "targetText": "9",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i02:r2",
+            "targetText": "7",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите число",
+            "feedbackByLocale": {
+              "ru": "Звучит nueve — девять.",
+              "uk": "Звучить nueve — дев'ять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в вашей компании девять человек, включая вас",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i03:r1",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i03:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i03:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в вашей компании девять человек, включая вас",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в вашей компании девять человек, включая вас",
+          "uk": "Вставте слово — у вашій компанії дев'ять людей, включно з вами"
+        },
+        "gappedTargetPhrase": "___ nueve.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-48:i03:r1",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i03:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i03:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в вашей компании девять человек, включая вас",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в вашей компании девять человек, включая вас",
+            "feedbackByLocale": {
+              "ru": "Это другая группа, а вы называете свою.",
+              "uk": "Це інша група, а ви називаєте свою."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в вашей компании девять человек, включая вас",
+            "feedbackByLocale": {
+              "ru": "Это один говорящий, а здесь вся компания.",
+              "uk": "Це один мовець, а тут уся компанія."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите число участников своей компании: девятеро",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-48:i04:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите число участников своей компании: девятеро",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-48:i04:audio",
+          "transcript": "Somos nueve."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos nueve.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ocho",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-48:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ocho",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-48:i05:audio",
+          "transcript": "ocho"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-48:i05:r1",
+            "targetText": "ocho",
+            "meaningByLocale": {
+              "ru": "восемь. 🔊 *ocho*",
+              "uk": "вісім. 🔊 *ocho*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ocho",
+          "definitionByLocale": {
+            "ru": "восемь. 🔊 *ocho*",
+            "uk": "вісім. 🔊 *ocho*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i06:r1",
+          "text": "8"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i06:r2",
+          "text": "9"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-48:i06:audio",
+          "transcript": "ocho"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-48:i06:r1",
+            "targetText": "8",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i06:r2",
+            "targetText": "9",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите число",
+            "feedbackByLocale": {
+              "ru": "Звучит ocho — восемь.",
+              "uk": "Звучить ocho — вісім."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в другой компании восемь человек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i07:r1",
+          "text": "Плитки: ocho"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i07:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в другой компании восемь человек",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son ocho.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в другой компании восемь человек",
+          "uk": "Зберіть фразу — в іншій компанії вісім людей"
+        },
+        "orderedTokens": [
+          "Son",
+          "ocho"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в другой компании восемь человек",
+            "feedbackByLocale": {
+              "ru": "считаете другую компанию.",
+              "uk": "рахуєте іншу компанію."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы женщина и выходите первой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i08:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i08:r3",
+          "text": "no"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы женщина и выходите первой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы женщина и выходите первой",
+          "uk": "Вставте слово — ви жінка й виходите першою"
+        },
+        "gappedTargetPhrase": "Soy ___ primera.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-48:i08:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i08:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i08:r3",
+            "text": "no"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы женщина и выходите первой",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы женщина и выходите первой",
+            "feedbackByLocale": {
+              "ru": "Для женщины здесь нужно la primera.",
+              "uk": "Для жінки тут потрібно la primera."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы женщина и выходите первой",
+            "feedbackByLocale": {
+              "ru": "Здесь нужен артикль la, а отрицание стояло бы перед soy.",
+              "uk": "Тут потрібен артикль la, а заперечення стояло б перед soy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите другу-мужчине «Ты первый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i09:r1",
+          "text": "Плитки: primero"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i09:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i09:r3",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i09:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите другу-мужчине «Ты первый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres el primero.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите другу-мужчине «Ты первый»",
+          "uk": "Зберіть фразу — скажіть другу-чоловікові «Ти перший»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "el",
+          "primero"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите другу-мужчине «Ты первый»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к мужчине.",
+              "uk": "звертаєтеся до чоловіка."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг тоже любит идти впереди; скажите «Ты такой же, как я»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i10:r1",
+          "text": "Плитки: yo"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i10:r2",
+          "text": "que"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i10:r3",
+          "text": "igual"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i10:r4",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i10:r5",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг тоже любит идти впереди; скажите «Ты такой же, как я»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Eres igual que yo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг тоже любит идти впереди; скажите «Ты такой же, как я»",
+          "uk": "Зберіть фразу — друг теж любить іти попереду; скажіть «Ти такий самий, як я»"
+        },
+        "orderedTokens": [
+          "Eres",
+          "igual",
+          "que",
+          "yo"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг тоже любит идти впереди; скажите «Ты такой же, как я»",
+            "feedbackByLocale": {
+              "ru": "обращаетесь к другу.",
+              "uk": "звертаєтеся до друга."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i11:r1",
+          "text": "Плитки: ocho"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i11:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i11:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i11:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-48:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-48:i11:audio",
+          "transcript": "No somos ocho."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No somos ocho.",
+        "orderedTokens": [
+          "No",
+          "somos",
+          "ocho"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит somos.",
+              "uk": "звучить somos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-48:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — теперь вы насчитали в другой компании девять человек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-48:i12:r1",
+          "text": "Плитки: nueve"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i12:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-48:i12:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — теперь вы насчитали в другой компании девять человек",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son nueve.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — теперь вы насчитали в другой компании девять человек",
+          "uk": "Зберіть фразу — тепер ви нарахували в іншій компанії дев'ять людей"
+        },
+        "orderedTokens": [
+          "Son",
+          "nueve"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-48:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — теперь вы насчитали в другой компании девять человек",
+            "feedbackByLocale": {
+              "ru": "называете число другой компании.",
+              "uk": "називаєте кількість іншої компанії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e3baa9aaf3e5cb4772db88d17eea67af2a579cbfe7a35960f15e6b03cac1284e"
+}

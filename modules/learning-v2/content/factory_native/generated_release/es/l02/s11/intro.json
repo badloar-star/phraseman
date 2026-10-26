@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "добавить -es, чтобы назвать несколько предметов словами papel и reloj.",
+    "uk": "додати -es, щоб назвати кілька предметів словами papel і reloj."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Бумаги из коробки",
+        "uk": "Папери з коробки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достаёте несколько бумаг. `Papel` — «бумага», слово мужского рода: el papel. В этой сцене несколько отдельных бумаг — papeles. Сравните: papel → papeles. Здесь слово заканчивается на согласную l, и для множественного числа добавляем -es. Скажите `Son unos papeles` — «Это какие-то бумаги»: `son` + `unos` + `papeles`.",
+        "uk": "Ви дістаєте кілька паперів. `Papel` — «папір», слово чоловічого роду: el papel. У цій сцені кілька окремих паперів — papeles. Порівняйте: papel → papeles. Тут слово закінчується на приголосну l, і для множини додаємо -es. Скажіть `Son unos papeles` — «Це якісь папери»: `son` + `unos` + `papeles`."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько бумаг с unos.",
+          "uk": "Назвіть кілька паперів з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-11:intro1:r1",
+              "text": "Son unos papeles."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro1:r2",
+              "text": "Son unos papels."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro1:r3",
+              "text": "Son unos papel."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-11:intro1:r1",
+              "text": "Son unos papeles."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro1:r2",
+              "text": "Son unos papels."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro1:r3",
+              "text": "Son unos papel."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько бумаг с unos.",
+          "uk": "Назвіть кілька паперів з unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одни часы",
+        "uk": "Один годинник"
+      },
+      "bodyByLocale": {
+        "ru": "На дне коробки лежат часы. `Reloj` — «часы», слово мужского рода: el reloj. По-русски «часы» звучит как множественное число, но один такой предмет по-испански — un reloj. Скажите `Es un reloj` — «Это часы». Соберите `es` + `un` + `reloj`: здесь один предмет, поэтому es и un.",
+        "uk": "На дні коробки лежить годинник. `Reloj` — «годинник», слово чоловічого роду: el reloj. Один такий предмет іспанською — un reloj. Скажіть `Es un reloj` — «Це годинник». Зберіть `es` + `un` + `reloj`: тут один предмет, тому es і un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите одни часы.",
+          "uk": "Назвіть один годинник."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-11:intro2:r1",
+              "text": "Es un reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro2:r2",
+              "text": "Son un reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro2:r3",
+              "text": "Es una reloj."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-11:intro2:r1",
+              "text": "Es un reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro2:r2",
+              "text": "Son un reloj."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro2:r3",
+              "text": "Es una reloj."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одни часы.",
+          "uk": "Назвіть один годинник."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько часов",
+        "uk": "Кілька годинників"
+      },
+      "bodyByLocale": {
+        "ru": "Под бумагами находите ещё часы: теперь перед вами несколько отдельных предметов. У reloj конечная согласная j: прибавьте -es, получится relojes. Скажите `Son unos relojes` — «Это несколько часов», то есть несколько предметов, а не отрезок времени. Соберите `son` + `unos` + `relojes`. Как и с papeles, можно говорить без unos; в задании используем unos.",
+        "uk": "Під паперами знаходите ще годинники: тепер перед вами кілька окремих предметів. У reloj кінцева приголосна j: додайте -es, вийде relojes. Скажіть `Son unos relojes` — «Це кілька годинників»: йдеться про предмети, а не про відрізок часу. Зберіть `son` + `unos` + `relojes`. Як і з papeles, можна говорити без unos; у завданні використовуємо unos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько предметов — часов — с unos.",
+          "uk": "Назвіть кілька предметів — годинників — з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-11:intro3:r1",
+              "text": "Son unos relojes."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro3:r2",
+              "text": "Son unos relojs."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro3:r3",
+              "text": "Es un reloj."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-11:intro3:r1",
+              "text": "Son unos relojes."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro3:r2",
+              "text": "Son unos relojs."
+            },
+            {
+              "responseId": "es:lesson-02:session-11:intro3:r3",
+              "text": "Es un reloj."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько предметов — часов — с unos.",
+          "uk": "Назвіть кілька предметів — годинників — з unos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6e91205f3e3fc2274cc7add73fc1e2f50b03ffa15c05431881e3714c12faf1b2"
+}

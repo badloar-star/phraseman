@@ -455,4 +455,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать un, una, el или la для одного предмета.","uk":"вибрати un, una, el або la для одного предмета."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 9,
+    sourceFingerprint: "9e230a44c48c40eb4d44659d73684f75f19f10d8ee24fa79d7f8c3c2a325c0dd",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"перейти от одного животного к нескольким с son и unos.","uk":"перейти від однієї тварини до кількох із son та unos."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 10,
+    sourceFingerprint: "3cfa75bc4b6754838137c771b64923ae8a845920beced4edd8471734f1d86671",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько предметов женского рода с unas.","uk":"назвати кілька предметів жіночого роду з unas."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 11,
+    sourceFingerprint: "eb74f0c5cdecdfb6ff7166345b3d4adcfc488fa20bb1f4024d18d2eed221f89f",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"добавить -es, чтобы назвать несколько предметов словами papel и reloj.","uk":"додати -es, щоб назвати кілька предметів словами papel і reloj."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 12,
+    sourceFingerprint: "7b155203befc5bbde08149db7005f4043e29021a60d4d20494f73a3ab67ae45b",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"заменить конечную z на ces во множественном числе.","uk":"замінити кінцеву z на ces у множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

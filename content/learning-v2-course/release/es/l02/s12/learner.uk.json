@@ -1,0 +1,822 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-12",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — lápiz",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — lápiz",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i01:audio",
+          "transcript": "lápiz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-12:i01:r1",
+            "targetText": "lápiz",
+            "meaningByLocale": {
+              "ru": "карандаш. Мужской род; несколько — lápices. 🔊 *lápiz*",
+              "uk": "олівець. Чоловічий рід; кілька — lápices. 🔊 *lápiz*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lápiz",
+          "definitionByLocale": {
+            "ru": "карандаш. Мужской род; несколько — lápices. 🔊 *lápiz*",
+            "uk": "олівець. Чоловічий рід; кілька — lápices. 🔊 *lápiz*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i02:r1",
+          "text": "lápiz"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i02:r2",
+          "text": "papel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i02:audio",
+          "transcript": "lápiz"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-12:i02:r1",
+            "targetText": "lápiz",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i02:r2",
+            "targetText": "papel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит lápiz — карандаш.",
+              "uk": "Звучить lápiz — олівець."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pez",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pez",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i03:audio",
+          "transcript": "pez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-12:i03:r1",
+            "targetText": "pez",
+            "meaningByLocale": {
+              "ru": "рыба. В испанском мужской род; несколько — peces. 🔊 *pez*",
+              "uk": "риба. В іспанській чоловічий рід; кілька — peces. 🔊 *pez*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pez",
+          "definitionByLocale": {
+            "ru": "рыба. В испанском мужской род; несколько — peces. 🔊 *pez*",
+            "uk": "риба. В іспанській чоловічий рід; кілька — peces. 🔊 *pez*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i04:r1",
+          "text": "pez"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i04:r2",
+          "text": "perro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i04:audio",
+          "transcript": "pez"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-12:i04:r1",
+            "targetText": "pez",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i04:r2",
+            "targetText": "perro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит pez — рыба.",
+              "uk": "Звучить pez — риба."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька олівців",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i05:r1",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i05:r2",
+          "text": "lápizes"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i05:r3",
+          "text": "lápiz"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька олівців",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько карандашей",
+          "uk": "Вставте слово — кілька олівців"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-12:i05:r1",
+            "text": "lápices"
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i05:r2",
+            "text": "lápizes"
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i05:r3",
+            "text": "lápiz"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька олівців",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька олівців",
+            "feedbackByLocale": {
+              "ru": "Замените z на ces: lápices.",
+              "uk": "Замініть z на ces: lápices."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька олівців",
+            "feedbackByLocale": {
+              "ru": "Это форма одного предмета.",
+              "uk": "Це форма одного предмета."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть олівці з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i06:r1",
+          "text": "Плитки: lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i06:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть олівці з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos lápices.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите карандаши с unos",
+          "uk": "Зберіть фразу — назвіть олівці з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть олівці з unos",
+            "feedbackByLocale": {
+              "ru": "предметов несколько, нужна unos.",
+              "uk": "предметів кілька, потрібна unos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька риб на малюнку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i07:r1",
+          "text": "peces"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i07:r2",
+          "text": "pezes"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i07:r3",
+          "text": "pez"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька риб на малюнку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько рыб на рисунке",
+          "uk": "Вставте слово — кілька риб на малюнку"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-12:i07:r1",
+            "text": "peces"
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i07:r2",
+            "text": "pezes"
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i07:r3",
+            "text": "pez"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька риб на малюнку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька риб на малюнку",
+            "feedbackByLocale": {
+              "ru": "Во множественном числе пишется c: peces.",
+              "uk": "У множині пишеться c: peces."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька риб на малюнку",
+            "feedbackByLocale": {
+              "ru": "Это одна рыба; для нескольких нужна peces.",
+              "uk": "Це одна риба; для кількох потрібна peces."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть риб з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i08:r1",
+          "text": "Плитки: peces"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i08:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i08:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть риб з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos peces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите рыб с unos",
+          "uk": "Зберіть фразу — назвіть риб з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "peces"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть риб з unos",
+            "feedbackByLocale": {
+              "ru": "испанское pez мужского рода.",
+              "uk": "іспанське pez чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — назвіть один олівець",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i09:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i09:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i09:r3",
+          "text": "Somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — назвіть один олівець",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите один карандаш",
+          "uk": "Вставте слово — назвіть один олівець"
+        },
+        "gappedTargetPhrase": "___ un lápiz.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-12:i09:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i09:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i09:r3",
+            "text": "Somos"
+          }
+        ],
+        "testedDimension": "Вставте слово — назвіть один олівець",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть один олівець",
+            "feedbackByLocale": {
+              "ru": "Один предмет требует es.",
+              "uk": "Один предмет потребує es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — назвіть один олівець",
+            "feedbackByLocale": {
+              "ru": "Речь о карандаше, не о группе с говорящим.",
+              "uk": "Йдеться про олівець, не про групу з мовцем."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — вкажіть на одну рибу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i10:r1",
+          "text": "Плитки: pez"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i10:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i10:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — вкажіть на одну рибу",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un pez.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — укажите на одну рыбу",
+          "uk": "Зберіть фразу — вкажіть на одну рибу"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "pez"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — вкажіть на одну рибу",
+            "feedbackByLocale": {
+              "ru": "pez мужского рода.",
+              "uk": "pez чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i11:r1",
+          "text": "Плитки: lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i11:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i11:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i11:audio",
+          "transcript": "Son unos lápices."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unos lápices.",
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть кілька риб, використовуючи unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть кілька риб, використовуючи unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i12:audio",
+          "transcript": "Son unos peces."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos peces.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i13:r1",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i13:r2",
+          "text": "lápiz"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-12:i13:audio",
+          "transcript": "lápices"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-12:i13:r1",
+            "targetText": "lápices",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-12:i13:r2",
+            "targetText": "lápiz",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит форма нескольких предметов: lápices.",
+              "uk": "Звучить форма кількох предметів: lápices."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — знову назвіть олівці з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-12:i14:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i14:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i14:r3",
+          "text": "lápices"
+        },
+        {
+          "responseId": "es:lesson-02:session-12:i14:r4",
+          "text": "lápiz."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — знову назвіть олівці з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos lápices.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — снова назовите карандаши с unos",
+          "uk": "Зберіть фразу — знову назвіть олівці з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "lápices"
+        ],
+        "authoredDistractorTokens": [
+          "lápiz"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-12:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — знову назвіть олівці з unos",
+            "feedbackByLocale": {
+              "ru": "для нескольких карандашей нужна lápices.",
+              "uk": "для кількох олівців потрібна lápices."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9cf679f727f285b6d2fd8e361d15d1638cc8b05e428854a0d026a85770b88a8c"
+}

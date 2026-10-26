@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-09:i01",
+    "correctText": "gato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i02",
+    "correctText": "gato",
+    "correctResponseId": "es:lesson-02:session-09:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i03",
+    "correctText": "unos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i04",
+    "correctText": "unos",
+    "correctResponseId": "es:lesson-02:session-09:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i05",
+    "correctText": "perro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i06",
+    "correctText": "perro",
+    "correctResponseId": "es:lesson-02:session-09:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i07",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-02:session-09:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i08",
+    "correctText": "Son unos gatos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i09",
+    "correctText": "unos",
+    "correctResponseId": "es:lesson-02:session-09:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i10",
+    "correctText": "Son unos perros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i11",
+    "correctText": "Son unos gatos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i12",
+    "correctText": "perros",
+    "correctResponseId": "es:lesson-02:session-09:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i13",
+    "correctText": "Son unos perros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i14",
+    "correctText": "Es un gato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i15",
+    "correctText": "Son unos perros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i16",
+    "correctText": "gatos",
+    "correctResponseId": "es:lesson-02:session-09:i16:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-09:i17",
+    "correctText": "Son unos gatos.",
+    "correctResponseId": null
+  }
+]

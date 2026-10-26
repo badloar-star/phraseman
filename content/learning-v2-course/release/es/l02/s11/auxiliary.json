@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-11:intro1:r2": {
+          "ru": "У этого слова множественное число papeles.",
+          "uk": "У цього слова множина papeles."
+        },
+        "es:lesson-02:session-11:intro1:r3": {
+          "ru": "Для нескольких бумаг нужна форма papeles.",
+          "uk": "Для кількох паперів потрібна форма papeles."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-11:intro2:r2": {
+          "ru": "Здесь один предмет, поэтому es.",
+          "uk": "Тут один предмет, тому es."
+        },
+        "es:lesson-02:session-11:intro2:r3": {
+          "ru": "Reloj мужского рода: un.",
+          "uk": "Reloj чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-11:intro3:r2": {
+          "ru": "Правильная форма — relojes, с -es.",
+          "uk": "Правильна форма — relojes, з -es."
+        },
+        "es:lesson-02:session-11:intro3:r3": {
+          "ru": "Это один предмет, а их несколько.",
+          "uk": "Це один предмет, а їх кілька."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2292a215020b79ce8b4b5d725e3282e7f9c77abd1681944fb9686156747ad1c0"
+}

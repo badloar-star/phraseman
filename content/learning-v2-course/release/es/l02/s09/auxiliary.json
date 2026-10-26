@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-09:intro1:r2": {
+          "ru": "Gato мужского рода: un.",
+          "uk": "Gato чоловічого роду: un."
+        },
+        "es:lesson-02:session-09:intro1:r3": {
+          "ru": "Eres обращено к человеку, а здесь называем животное на снимке.",
+          "uk": "Eres звернено до людини, а тут називаємо тварину на знімку."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-09:intro2:r2": {
+          "ru": "Для нескольких нужна форма son.",
+          "uk": "Для кількох потрібна форма son."
+        },
+        "es:lesson-02:session-09:intro2:r3": {
+          "ru": "Un gato называет одного, а здесь несколько животных.",
+          "uk": "Un gato називає одного, а тут кілька тварин."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-09:intro3:r2": {
+          "ru": "Для нескольких к perro нужно добавить -s.",
+          "uk": "Для кількох до perro потрібно додати -s."
+        },
+        "es:lesson-02:session-09:intro3:r3": {
+          "ru": "Это одно животное, а на снимке несколько.",
+          "uk": "Це одна тварина, а на знімку кілька."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9d42b2164f4ac6123958384b43b516e3900f4c8914d658988b6c50174256477a"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-10:intro1:r2": {
+          "ru": "Cuchara женского рода: una.",
+          "uk": "Cuchara жіночого роду: una."
+        },
+        "es:lesson-02:session-10:intro1:r3": {
+          "ru": "Один предмет требует es, а не son.",
+          "uk": "Один предмет потребує es, а не son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-10:intro2:r2": {
+          "ru": "Cucharas женского рода, поэтому unas.",
+          "uk": "Cucharas жіночого роду, тому unas."
+        },
+        "es:lesson-02:session-10:intro2:r3": {
+          "ru": "Это одна ложка, а их несколько.",
+          "uk": "Це одна ложка, а їх кілька."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-10:intro3:r2": {
+          "ru": "Для нескольких у servilleta нужно окончание -s.",
+          "uk": "Для кількох предметів у servilleta потрібне закінчення -s."
+        },
+        "es:lesson-02:session-10:intro3:r3": {
+          "ru": "Servilletas женского рода: unas.",
+          "uk": "Servilletas жіночого роду: unas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "64b1d8fc7ecec3ccb06fd4236892e772b1f7c57c08d71c07477a22952f621b8f"
+}

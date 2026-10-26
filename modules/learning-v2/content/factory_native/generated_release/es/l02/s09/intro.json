@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-09",
+  "learningOutcomeByLocale": {
+    "ru": "перейти от одного животного к нескольким с son и unos.",
+    "uk": "перейти від однієї тварини до кількох із son та unos."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-09:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно животное",
+        "uk": "Одна тварина"
+      },
+      "bodyByLocale": {
+        "ru": "На первом снимке кот. `Gato` — «кот», слово мужского рода: el gato. Назовите его: `Es un gato` — «Это кот». Соберите знакомую основу `es` + `un`, затем добавьте `gato`. Пока называете одно животное, поэтому es un gato.",
+        "uk": "На першому знімку кіт. `Gato` — «кіт», слово чоловічого роду: el gato. Назвіть його: `Es un gato` — «Це кіт». Складіть знайому основу `es` + `un`, потім додайте `gato`. Поки називаєте одну тварину, тому es un gato."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-09:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите кота на снимке.",
+          "uk": "Назвіть кота на знімку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-09:intro1:r1",
+              "text": "Es un gato."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro1:r2",
+              "text": "Es una gato."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro1:r3",
+              "text": "Eres un gato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-09:intro1:r1",
+              "text": "Es un gato."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro1:r2",
+              "text": "Es una gato."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro1:r3",
+              "text": "Eres un gato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите кота на снимке.",
+          "uk": "Назвіть кота на знімку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-09:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько кошек",
+        "uk": "Кілька котів"
+      },
+      "bodyByLocale": {
+        "ru": "На следующем снимке несколько кошек. Скажите: `Son unos gatos` — «Это несколько кошек». Соберите `son` + `unos` + `gatos`. Для нескольких вместо es берём son, вместо un — unos, а к gato добавляем -s. Gatos может называть кошек как группу животных без уточнения пола. Unos не сообщает точного числа. Можно сказать и Son gatos; здесь вы учитесь добавлять unos, чтобы представить несколько животных.",
+        "uk": "На наступному знімку кілька котів. Скажіть: `Son unos gatos` — «Це кілька котів». Складіть `son` + `unos` + `gatos`. Для кількох замість es беремо son, замість un — unos, а до gato додаємо -s. Gatos може називати котів як групу тварин без уточнення статі. Unos не повідомляє точної кількості. Можна сказати й Son gatos; тут ви вчитеся додавати unos, щоб представити кількох тварин."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-09:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько кошек с unos.",
+          "uk": "Назвіть кількох котів з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-09:intro2:r1",
+              "text": "Son unos gatos."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro2:r2",
+              "text": "Es unos gatos."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro2:r3",
+              "text": "Son un gato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-09:intro2:r1",
+              "text": "Son unos gatos."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro2:r2",
+              "text": "Es unos gatos."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro2:r3",
+              "text": "Son un gato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько кошек с unos.",
+          "uk": "Назвіть кількох котів з unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-09:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько собак",
+        "uk": "Кілька собак"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг показывает собак. `Perro` — «собака», слово мужского рода: el perro. Несколько собак — perros. Скажите `Son unos perros` — «Это несколько собак». Соберите `son` + `unos` + `perros`. С perro работает тот же переход: после конечной гласной добавьте -s; одновременно выбирайте son и unos.",
+        "uk": "Тепер друг показує собак. `Perro` — «собака», слово чоловічого роду: el perro. Кілька собак — perros. Скажіть `Son unos perros` — «Це кілька собак». Складіть `son` + `unos` + `perros`. Із perro працює той самий перехід: після кінцевої голосної додайте -s; одночасно вибирайте son та unos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-09:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько собак с unos.",
+          "uk": "Назвіть кількох собак з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-09:intro3:r1",
+              "text": "Son unos perros."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro3:r2",
+              "text": "Son unos perro."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro3:r3",
+              "text": "Es un perro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-09:intro3:r1",
+              "text": "Son unos perros."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro3:r2",
+              "text": "Son unos perro."
+            },
+            {
+              "responseId": "es:lesson-02:session-09:intro3:r3",
+              "text": "Es un perro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько собак с unos.",
+          "uk": "Назвіть кількох собак з unos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3aa09e8c4d320554ee91bdaecdde328736156db2dc8ae41b7692ac66df319a6a"
+}

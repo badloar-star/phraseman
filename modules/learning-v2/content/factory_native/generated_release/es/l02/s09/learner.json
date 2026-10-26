@@ -1,0 +1,956 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-09",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gato",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gato",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i01:audio",
+          "transcript": "gato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i01:r1",
+            "targetText": "gato",
+            "meaningByLocale": {
+              "ru": "кот; множественное gatos — коты, кошки как группа. 🔊 *gato*",
+              "uk": "кіт; множина gatos — коти як група. 🔊 *gato*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gato",
+          "definitionByLocale": {
+            "ru": "кот; множественное gatos — коты, кошки как группа. 🔊 *gato*",
+            "uk": "кіт; множина gatos — коти як група. 🔊 *gato*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i02:r1",
+          "text": "gato"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i02:r2",
+          "text": "vaso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i02:audio",
+          "transcript": "gato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i02:r1",
+            "targetText": "gato",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i02:r2",
+            "targetText": "vaso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит gato, а не vaso.",
+              "uk": "Звучить gato, а не vaso."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — unos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i03:audio",
+          "transcript": "unos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i03:r1",
+            "targetText": "unos",
+            "meaningByLocale": {
+              "ru": "несколько, какие-то; форма перед несколькими предметами или животными мужского рода. 🔊 *unos*",
+              "uk": "кілька, якісь; форма перед кількома предметами або тваринами чоловічого роду. 🔊 *unos*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "unos",
+          "definitionByLocale": {
+            "ru": "несколько, какие-то; форма перед несколькими предметами или животными мужского рода. 🔊 *unos*",
+            "uk": "кілька, якісь; форма перед кількома предметами або тваринами чоловічого роду. 🔊 *unos*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i04:r1",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i04:r2",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i04:audio",
+          "transcript": "unos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i04:r1",
+            "targetText": "unos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i04:r2",
+            "targetText": "un",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит unos с конечным -os.",
+              "uk": "Звучить unos із кінцевим -os."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — perro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — perro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i05:audio",
+          "transcript": "perro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i05:r1",
+            "targetText": "perro",
+            "meaningByLocale": {
+              "ru": "собака. Мужской род: el perro; множественное perros. 🔊 *perro*",
+              "uk": "собака. Чоловічий рід: el perro; множина perros. 🔊 *perro*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "perro",
+          "definitionByLocale": {
+            "ru": "собака. Мужской род: el perro; множественное perros. 🔊 *perro*",
+            "uk": "собака. Чоловічий рід: el perro; множина perros. 🔊 *perro*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i06:r1",
+          "text": "perro"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i06:r2",
+          "text": "gato"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i06:audio",
+          "transcript": "perro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i06:r1",
+            "targetText": "perro",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i06:r2",
+            "targetText": "gato",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит perro — собака.",
+              "uk": "Звучить perro — собака."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите одного кота",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i07:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i07:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i07:r3",
+          "text": "Somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите одного кота",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите одного кота",
+          "uk": "Вставте слово — назвіть одного кота"
+        },
+        "gappedTargetPhrase": "___ un gato.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-09:i07:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i07:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i07:r3",
+            "text": "Somos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите одного кота",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите одного кота",
+            "feedbackByLocale": {
+              "ru": "На снимке одно животное: es.",
+              "uk": "На знімку одна тварина: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите одного кота",
+            "feedbackByLocale": {
+              "ru": "Somos включает говорящего, а вы называете животное.",
+              "uk": "Somos включає мовця, а ви називаєте тварину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите несколько кошек с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i08:r1",
+          "text": "Плитки: gatos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i08:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i08:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите несколько кошек с unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos gatos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько кошек с unos",
+          "uk": "Зберіть фразу — назвіть кількох котів з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "gatos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите несколько кошек с unos",
+            "feedbackByLocale": {
+              "ru": "животных несколько.",
+              "uk": "тварин кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — выберите форму для нескольких кошек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i09:r1",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i09:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i09:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — выберите форму для нескольких кошек",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — выберите форму для нескольких кошек",
+          "uk": "Вставте слово — виберіть форму для кількох котів"
+        },
+        "gappedTargetPhrase": "Son ___ gatos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-09:i09:r1",
+            "text": "unos"
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i09:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i09:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — выберите форму для нескольких кошек",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — выберите форму для нескольких кошек",
+            "feedbackByLocale": {
+              "ru": "Un относится к одному, а gatos во множественном числе.",
+              "uk": "Un стосується одного, а gatos у множині."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — выберите форму для нескольких кошек",
+            "feedbackByLocale": {
+              "ru": "Una относится к одному женскому слову, а здесь gatos.",
+              "uk": "Una стосується одного жіночого слова, а тут gatos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите несколько собак с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i10:r1",
+          "text": "Плитки: perros"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i10:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i10:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите несколько собак с unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos perros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько собак с unos",
+          "uk": "Зберіть фразу — назвіть кількох собак з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "perros"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите несколько собак с unos",
+            "feedbackByLocale": {
+              "ru": "собак несколько.",
+              "uk": "собак кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите несколько кошек, используя unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите несколько кошек, используя unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i11:audio",
+          "transcript": "Son unos gatos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos gatos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — на снимке несколько собак",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i12:r1",
+          "text": "perros"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i12:r2",
+          "text": "perro"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i12:r3",
+          "text": "gato"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — на снимке несколько собак",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — на снимке несколько собак",
+          "uk": "Вставте слово — на знімку кілька собак"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-09:i12:r1",
+            "text": "perros"
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i12:r2",
+            "text": "perro"
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i12:r3",
+            "text": "gato"
+          }
+        ],
+        "testedDimension": "Вставьте слово — на снимке несколько собак",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — на снимке несколько собак",
+            "feedbackByLocale": {
+              "ru": "Для нескольких нужна форма perros с -s.",
+              "uk": "Для кількох потрібна форма perros із -s."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — на снимке несколько собак",
+            "feedbackByLocale": {
+              "ru": "Это один кот, а речь о нескольких собаках.",
+              "uk": "Це один кіт, а йдеться про кількох собак."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i13:r1",
+          "text": "Плитки: perros"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i13:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i13:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i13:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i13:audio",
+          "transcript": "Son unos perros."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unos perros.",
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "perros"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — теперь на отдельном снимке только один кот",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i14:r1",
+          "text": "Плитки: gato"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i14:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i14:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i14:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — теперь на отдельном снимке только один кот",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un gato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — теперь на отдельном снимке только один кот",
+          "uk": "Зберіть фразу — тепер на окремому знімку лише один кіт"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "gato"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — теперь на отдельном снимке только один кот",
+            "feedbackByLocale": {
+              "ru": "животное одно.",
+              "uk": "тварина одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите несколько собак, используя unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите несколько собак, используя unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i15:audio",
+          "transcript": "Son unos perros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos perros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i16:r1",
+          "text": "gatos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i16:r2",
+          "text": "gato"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-09:i16:audio",
+          "transcript": "gatos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-09:i16:r1",
+            "targetText": "gatos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-09:i16:r2",
+            "targetText": "gato",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i16:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное -s: gatos.",
+              "uk": "Звучить кінцеве -s: gatos."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-09:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — на новом снимке несколько кошек; назовите их с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-09:i17:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i17:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i17:r3",
+          "text": "gatos"
+        },
+        {
+          "responseId": "es:lesson-02:session-09:i17:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — на новом снимке несколько кошек; назовите их с unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos gatos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — на новом снимке несколько кошек; назовите их с unos",
+          "uk": "Зберіть фразу — на новому знімку кілька котів; назвіть їх з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "gatos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-09:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — на новом снимке несколько кошек; назовите их с unos",
+            "feedbackByLocale": {
+              "ru": "несколько животных требуют son.",
+              "uk": "кілька тварин потребують son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5da02e3bda7db8c630e1148c4df20fd19649210fc107db60a81bd28931fc500a"
+}

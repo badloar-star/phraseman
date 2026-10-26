@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-10:i01",
+    "correctText": "cuchara",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i02",
+    "correctText": "cuchara",
+    "correctResponseId": "es:lesson-02:session-10:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i03",
+    "correctText": "unas",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i04",
+    "correctText": "unas",
+    "correctResponseId": "es:lesson-02:session-10:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i05",
+    "correctText": "servilleta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i06",
+    "correctText": "servilleta",
+    "correctResponseId": "es:lesson-02:session-10:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i07",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-02:session-10:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i08",
+    "correctText": "Son unas cucharas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i09",
+    "correctText": "unas",
+    "correctResponseId": "es:lesson-02:session-10:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i10",
+    "correctText": "Son unas servilletas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i11",
+    "correctText": "Son unas cucharas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i12",
+    "correctText": "servilletas",
+    "correctResponseId": "es:lesson-02:session-10:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i13",
+    "correctText": "Son unas servilletas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i14",
+    "correctText": "Es una cuchara.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i15",
+    "correctText": "Son unas servilletas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i16",
+    "correctText": "cucharas",
+    "correctResponseId": "es:lesson-02:session-10:i16:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-10:i17",
+    "correctText": "Son unas cucharas.",
+    "correctResponseId": null
+  }
+]

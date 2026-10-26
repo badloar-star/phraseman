@@ -1,0 +1,822 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-11",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-11:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — papel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — papel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i01:audio",
+          "transcript": "papel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-11:i01:r1",
+            "targetText": "papel",
+            "meaningByLocale": {
+              "ru": "бумага. Мужской род; отдельные бумаги — papeles. 🔊 *papel*",
+              "uk": "папір. Чоловічий рід; окремі папери — papeles. 🔊 *papel*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "papel",
+          "definitionByLocale": {
+            "ru": "бумага. Мужской род; отдельные бумаги — papeles. 🔊 *papel*",
+            "uk": "папір. Чоловічий рід; окремі папери — papeles. 🔊 *papel*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i02:r1",
+          "text": "papel"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i02:r2",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i02:audio",
+          "transcript": "papel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-11:i02:r1",
+            "targetText": "papel",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i02:r2",
+            "targetText": "libro",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит papel — бумага.",
+              "uk": "Звучить papel — папір."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — reloj",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — reloj",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i03:audio",
+          "transcript": "reloj"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-11:i03:r1",
+            "targetText": "reloj",
+            "meaningByLocale": {
+              "ru": "часы как один предмет. Мужской род; несколько предметов — relojes. 🔊 *reloj*",
+              "uk": "годинник як один предмет. Чоловічий рід; кілька предметів — relojes. 🔊 *reloj*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "reloj",
+          "definitionByLocale": {
+            "ru": "часы как один предмет. Мужской род; несколько предметов — relojes. 🔊 *reloj*",
+            "uk": "годинник як один предмет. Чоловічий рід; кілька предметів — relojes. 🔊 *reloj*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i04:r1",
+          "text": "reloj"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i04:r2",
+          "text": "papel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i04:audio",
+          "transcript": "reloj"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-11:i04:r1",
+            "targetText": "reloj",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i04:r2",
+            "targetText": "papel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит reloj — часы.",
+              "uk": "Звучить reloj — годинник."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька паперів",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i05:r1",
+          "text": "papeles"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i05:r2",
+          "text": "papel"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i05:r3",
+          "text": "papels"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька паперів",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько бумаг",
+          "uk": "Вставте слово — кілька паперів"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-11:i05:r1",
+            "text": "papeles"
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i05:r2",
+            "text": "papel"
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i05:r3",
+            "text": "papels"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька паперів",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька паперів",
+            "feedbackByLocale": {
+              "ru": "Для нескольких отдельных бумаг нужна форма papeles.",
+              "uk": "Для кількох окремих паперів потрібна форма papeles."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька паперів",
+            "feedbackByLocale": {
+              "ru": "Добавьте -es, а не только -s.",
+              "uk": "Додайте -es, а не лише -s."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть папери з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i06:r1",
+          "text": "Плитки: papeles"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i06:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть папери з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos papeles.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите бумаги с unos",
+          "uk": "Зберіть фразу — назвіть папери з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "papeles"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть папери з unos",
+            "feedbackByLocale": {
+              "ru": "бумаг несколько, нужна unos.",
+              "uk": "паперів кілька, потрібна unos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у коробці один годинник",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i07:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i07:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i07:r3",
+          "text": "Somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у коробці один годинник",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в коробке одни часы",
+          "uk": "Вставте слово — у коробці один годинник"
+        },
+        "gappedTargetPhrase": "___ un reloj.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-11:i07:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i07:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i07:r3",
+            "text": "Somos"
+          }
+        ],
+        "testedDimension": "Вставте слово — у коробці один годинник",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у коробці один годинник",
+            "feedbackByLocale": {
+              "ru": "Это один предмет: es.",
+              "uk": "Це один предмет: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у коробці один годинник",
+            "feedbackByLocale": {
+              "ru": "Речь о предмете, не о группе с говорящим.",
+              "uk": "Йдеться про предмет, не про групу з мовцем."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть один годинник",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i08:r1",
+          "text": "Плитки: reloj"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i08:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть один годинник",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un reloj.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите одни часы",
+          "uk": "Зберіть фразу — назвіть один годинник"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "reloj"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть один годинник",
+            "feedbackByLocale": {
+              "ru": "часы здесь один предмет.",
+              "uk": "годинник тут один предмет."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька окремих годинників",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i09:r1",
+          "text": "relojes"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i09:r2",
+          "text": "reloj"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i09:r3",
+          "text": "relojs"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька окремих годинників",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько отдельных часов",
+          "uk": "Вставте слово — кілька окремих годинників"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-11:i09:r1",
+            "text": "relojes"
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i09:r2",
+            "text": "reloj"
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i09:r3",
+            "text": "relojs"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька окремих годинників",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька окремих годинників",
+            "feedbackByLocale": {
+              "ru": "Это один предмет, а нужно несколько.",
+              "uk": "Це один предмет, а потрібно кілька."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька окремих годинників",
+            "feedbackByLocale": {
+              "ru": "Добавьте -es: relojes.",
+              "uk": "Додайте -es: relojes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кілька годинників з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i10:r1",
+          "text": "Плитки: relojes"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i10:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i10:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кілька годинників з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos relojes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько часов с unos",
+          "uk": "Зберіть фразу — назвіть кілька годинників з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "relojes"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кілька годинників з unos",
+            "feedbackByLocale": {
+              "ru": "relojes мужского рода.",
+              "uk": "relojes чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i11:r1",
+          "text": "Плитки: papeles"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i11:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i11:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i11:audio",
+          "transcript": "Son unos papeles."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unos papeles.",
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "papeles"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть кілька окремих годинників з unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть кілька окремих годинників з unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i12:audio",
+          "transcript": "Son unos relojes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos relojes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i13:r1",
+          "text": "relojes"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i13:r2",
+          "text": "reloj"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-11:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-11:i13:audio",
+          "transcript": "relojes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-11:i13:r1",
+            "targetText": "relojes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-11:i13:r2",
+            "targetText": "reloj",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит форма нескольких предметов: relojes.",
+              "uk": "Звучить форма кількох предметів: relojes."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-11:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — знову вкажіть на папери, використовуючи unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-11:i14:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i14:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i14:r3",
+          "text": "papeles"
+        },
+        {
+          "responseId": "es:lesson-02:session-11:i14:r4",
+          "text": "papel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — знову вкажіть на папери, використовуючи unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos papeles.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — снова укажите на бумаги, используя unos",
+          "uk": "Зберіть фразу — знову вкажіть на папери, використовуючи unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "papeles"
+        ],
+        "authoredDistractorTokens": [
+          "papel"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-11:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — знову вкажіть на папери, використовуючи unos",
+            "feedbackByLocale": {
+              "ru": "для нескольких бумаг нужна papeles.",
+              "uk": "для кількох паперів потрібна papeles."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7b2ceaa6c62a44c698156441f47598292aa6f9e07e9f474599f3804f5d014735"
+}

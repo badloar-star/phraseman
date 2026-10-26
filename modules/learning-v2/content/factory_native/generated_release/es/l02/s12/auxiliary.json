@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-12:intro1:r2": {
+          "ru": "Lápiz мужского рода: un.",
+          "uk": "Lápiz чоловічого роду: un."
+        },
+        "es:lesson-02:session-12:intro1:r3": {
+          "ru": "Один предмет требует es.",
+          "uk": "Один предмет потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-12:intro2:r2": {
+          "ru": "Во множественном числе пишется lápices, с c.",
+          "uk": "У множині пишеться lápices, з c."
+        },
+        "es:lesson-02:session-12:intro2:r3": {
+          "ru": "Для нескольких нужна форма lápices.",
+          "uk": "Для кількох потрібна форма lápices."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-12:intro3:r2": {
+          "ru": "Нужна форма peces, с c.",
+          "uk": "Потрібна форма peces, з c."
+        },
+        "es:lesson-02:session-12:intro3:r3": {
+          "ru": "Pez мужского рода, поэтому unos.",
+          "uk": "Pez чоловічого роду, тому unos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3c1fed8ccfdff1c438a841af52dad8a83f6b3e7cb19eb7a10fa97681c57f3957"
+}

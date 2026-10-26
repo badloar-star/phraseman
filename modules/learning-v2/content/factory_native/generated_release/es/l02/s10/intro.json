@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "назвать несколько предметов женского рода с unas.",
+    "uk": "назвати кілька предметів жіночого роду з unas."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна ложка",
+        "uk": "Одна ложка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг передаёт вам ложку. `Cuchara` — «ложка», слово женского рода: la cuchara. Назовите её: `Es una cuchara` — «Это ложка». Соберите `es` + `una` + `cuchara`. Это один предмет женского рода, поэтому используйте знакомое una.",
+        "uk": "Друг передає вам ложку. `Cuchara` — «ложка», слово жіночого роду: la cuchara. Назвіть її: `Es una cuchara` — «Це ложка». Зберіть `es` + `una` + `cuchara`. Це один предмет жіночого роду, тому використайте знайоме una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну ложку.",
+          "uk": "Назвіть одну ложку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-10:intro1:r1",
+              "text": "Es una cuchara."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro1:r2",
+              "text": "Es un cuchara."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro1:r3",
+              "text": "Son una cuchara."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-10:intro1:r1",
+              "text": "Es una cuchara."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro1:r2",
+              "text": "Es un cuchara."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro1:r3",
+              "text": "Son una cuchara."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну ложку.",
+          "uk": "Назвіть одну ложку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько ложек",
+        "uk": "Кілька ложок"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь перед вами несколько ложек. Скажите `Son unas cucharas` — «Это несколько ложек». Соберите `son` + `unas` + `cucharas`. Для нескольких женских предметов una меняется на unas, а к cuchara добавляется -s. Unos относится к мужским словам, unas — к женским. Можно сказать и Son cucharas; здесь отрабатываем вариант с unas, без указания точного числа.",
+        "uk": "Тепер перед вами кілька ложок. Скажіть `Son unas cucharas` — «Це кілька ложок». Зберіть `son` + `unas` + `cucharas`. Для кількох жіночих предметів una змінюється на unas, а до cuchara додається -s. Unos стосується чоловічих слів, unas — жіночих. Можна сказати й Son cucharas; тут відпрацьовуємо варіант з unas, без зазначення точної кількості."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько ложек с unas.",
+          "uk": "Назвіть кілька ложок з unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-10:intro2:r1",
+              "text": "Son unas cucharas."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro2:r2",
+              "text": "Son unos cucharas."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro2:r3",
+              "text": "Es una cuchara."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-10:intro2:r1",
+              "text": "Son unas cucharas."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro2:r2",
+              "text": "Son unos cucharas."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro2:r3",
+              "text": "Es una cuchara."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько ложек с unas.",
+          "uk": "Назвіть кілька ложок з unas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько салфеток",
+        "uk": "Кілька серветок"
+      },
+      "bodyByLocale": {
+        "ru": "Следом разбираете салфетки. `Servilleta` — «салфетка», слово женского рода: la servilleta. Несколько салфеток — servilletas. Скажите `Son unas servilletas` — «Это несколько салфеток». Соберите `son` + `unas` + `servilletas`. После конечной гласной добавьте -s и выберите unas по женскому роду слова.",
+        "uk": "Далі розбираєте серветки. `Servilleta` — «серветка», слово жіночого роду: la servilleta. Кілька серветок — servilletas. Скажіть `Son unas servilletas` — «Це кілька серветок». Зберіть `son` + `unas` + `servilletas`. Після кінцевої голосної додайте -s і виберіть unas за жіночим родом слова."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите несколько салфеток с unas.",
+          "uk": "Назвіть кілька серветок з unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-10:intro3:r1",
+              "text": "Son unas servilletas."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro3:r2",
+              "text": "Son unas servilleta."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro3:r3",
+              "text": "Son unos servilletas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-10:intro3:r1",
+              "text": "Son unas servilletas."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro3:r2",
+              "text": "Son unas servilleta."
+            },
+            {
+              "responseId": "es:lesson-02:session-10:intro3:r3",
+              "text": "Son unos servilletas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите несколько салфеток с unas.",
+          "uk": "Назвіть кілька серветок з unas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "924c2a1977677b085fdd7c8e19a914b9810589ca5f452d3d7723ca9e7414199c"
+}

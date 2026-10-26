@@ -44,7 +44,7 @@ import { levelExamKey, storageStudyTarget, storedProgressFlagIsTrue } from './ta
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime';
 import { recordLevelExamAttempt } from './level_exam_attempts';
-import { safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { soundDirector } from '../modules/audio/sound_director';
@@ -945,13 +945,13 @@ export default function LevelExam() {
       setReviewPromptVisible(true);
       return;
     }
-    safeRouterBack(router, '/lessons_list' as any);
+    safeRouterBack(router, '/(tabs)/lessons' as any);
   }, [pct, router]);
 
   // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): французский зачёт закрыт или доступ не проверился —
   // тихо назад к урокам вместо заглушки «…ещё готовится» / «не проверился». Замок Plus/уровня — не ошибка, остаётся.
   const silentLeaveFrench = frenchExamBlocked || (isFrenchExam && accessState === 'blocked' && accessBlockKind === 'error');
-  useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed' : 'access_check_failed', () => safeRouterBack(router, '/lessons_list' as any));
+  useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed' : 'access_check_failed', () => safeRouterBack(router, '/(tabs)/lessons' as any));
 
   if (!isFrenchExam && !frenchExamBlocked) {
     return (
@@ -978,7 +978,7 @@ export default function LevelExam() {
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} />
+            <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} />
             <View style={{ flex: 1, justifyContent: 'center', paddingBottom: 60 }}>
               <ExamHero
                 glass={glass}
@@ -1019,7 +1019,7 @@ export default function LevelExam() {
                         },
                       } as any);
                     } else {
-                      router.replace('/lessons_list' as any);
+                      dismissToTabRoute(router, '/(tabs)/lessons');
                     }
                   }}
                 />
@@ -1122,7 +1122,7 @@ export default function LevelExam() {
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} />
+            <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} />
             <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 }}>
               <ExamHero glass={glass} icon="ribbon-outline" title={title} message={introBody} />
               <ExamStatRow
@@ -1217,7 +1217,7 @@ export default function LevelExam() {
       <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} />
+          <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} />
           <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 }}>
             <ExamHero
               glass={glass}
@@ -1466,7 +1466,7 @@ export default function LevelExam() {
         onCancel={() => setExitExamConfirm(false)}
         onConfirm={() => {
           setExitExamConfirm(false);
-          safeRouterBack(router, '/lessons_list' as any);
+          safeRouterBack(router, '/(tabs)/lessons' as any);
         }}
         confirmVariant="accent"
       />
@@ -1476,7 +1476,7 @@ export default function LevelExam() {
         lang={lang}
         onClose={() => {
           setReviewPromptVisible(false);
-          safeRouterBack(router, '/lessons_list' as any);
+          safeRouterBack(router, '/(tabs)/lessons' as any);
         }}
       />
     </SafeAreaView>

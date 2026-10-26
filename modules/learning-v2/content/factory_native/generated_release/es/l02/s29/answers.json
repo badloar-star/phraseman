@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-29:i01",
+    "correctText": "mío",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i02",
+    "correctText": "mío",
+    "correctResponseId": "es:lesson-02:session-29:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i03",
+    "correctText": "mía",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i04",
+    "correctText": "mía",
+    "correctResponseId": "es:lesson-02:session-29:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i05",
+    "correctText": "mío",
+    "correctResponseId": "es:lesson-02:session-29:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i06",
+    "correctText": "El cuaderno es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i07",
+    "correctText": "La bolsa es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i08",
+    "correctText": "La bolsa es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i09",
+    "correctText": "El cuaderno es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i10",
+    "correctText": "Es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i11",
+    "correctText": "Es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-29:i12",
+    "correctText": "Es mío.",
+    "correctResponseId": null
+  }
+]

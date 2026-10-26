@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "отдельно произнести вопрос о владельце и короткий ответ.",
+    "uk": "окремо вимовити запитання про власника й коротку відповідь."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чей ключ",
+        "uk": "Чий ключ"
+      },
+      "bodyByLocale": {
+        "ru": "На столе ключ, владельца вы пока не знаете. Спросите `¿De quién es la llave?` — «Чей ключ?» Соберите `¿de quién` + `es` + `la llave?`. Ключ один, поэтому es; испанское llave женского рода, поэтому la. Это вопрос, а ответ прозвучит отдельной репликой.",
+        "uk": "На столі ключ, власника ви поки не знаєте. Запитайте `¿De quién es la llave?` — «Чий ключ?» Зберіть `¿de quién` + `es` + `la llave?`. Ключ один, тому es; іспанське llave жіночого роду, тому la. Це запитання, а відповідь прозвучить окремою реплікою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, чей ключ.",
+          "uk": "Запитайте, чий ключ."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-31:intro1:r1",
+              "text": "¿De quién es la llave?"
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro1:r2",
+              "text": "¿De quién es el llave?"
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro1:r3",
+              "text": "¿De quién son la llave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-31:intro1:r1",
+              "text": "¿De quién es la llave?"
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro1:r2",
+              "text": "¿De quién es el llave?"
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro1:r3",
+              "text": "¿De quién son la llave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чей ключ.",
+          "uk": "Запитайте, чий ключ."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ключ Аны",
+        "uk": "Ключ Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Друг узнаёт ключ Аны. Коротко ответьте `Es de Ana` — «Аны». Соберите `es` + `de` + `Ana`. Вы уже обсуждаете ключ, поэтому la llave повторять не обязательно. Сначала закончите вопрос, затем произнесите ответ; не соединяйте обе реплики в одно предложение.",
+        "uk": "Друг упізнає ключ Ани. Коротко дайте відповідь `Es de Ana` — «Ани». Зберіть `es` + `de` + `Ana`. Ви вже обговорюєте ключ, тому la llave повторювати не обов'язково. Спочатку закінчіть запитання, потім вимовте відповідь; не поєднуйте обидві репліки в одне речення."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Коротко ответьте, что ключ Аны.",
+          "uk": "Коротко дайте відповідь, що ключ Ани."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-31:intro2:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro2:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro2:r3",
+              "text": "De es Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-31:intro2:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro2:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro2:r3",
+              "text": "De es Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коротко ответьте, что ключ Аны.",
+          "uk": "Коротко дайте відповідь, що ключ Ани."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Свой ключ",
+        "uk": "Свій ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Ключ Аны вернули, но на полке заметили ещё один. Теперь вы узнаёте свой. Ответьте на вопрос друга `Es mía` — «Это моё». Соберите `es` + `mía`. Форма женская по слову llave, даже если говорит мужчина. Если ключ не ваш, поставьте знакомое no перед es: No es mía.",
+        "uk": "Ключ Ани повернули, але на полиці помітили ще один. Тепер ви впізнаєте свій. Дайте відповідь на запитання друга `Es mía` — «Це моє». Зберіть `es` + `mía`. Форма жіноча за словом llave, навіть якщо говорить чоловік. Якщо ключ не ваш, поставте знайоме no перед es: No es mía."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите коротко, что этот ключ ваш.",
+          "uk": "Скажіть коротко, що цей ключ ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-31:intro3:r1",
+              "text": "Es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro3:r2",
+              "text": "Es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro3:r3",
+              "text": "Son mía."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-31:intro3:r1",
+              "text": "Es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro3:r2",
+              "text": "Es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-31:intro3:r3",
+              "text": "Son mía."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите коротко, что этот ключ ваш.",
+          "uk": "Скажіть коротко, що цей ключ ваш."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "348745b3a52185014627fee9e7612d994a30610621a774869340754e4f292366"
+}

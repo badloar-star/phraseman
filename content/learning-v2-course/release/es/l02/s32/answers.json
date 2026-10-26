@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-32:i01",
+    "correctText": "guante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i02",
+    "correctText": "guante",
+    "correctResponseId": "es:lesson-02:session-32:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i03",
+    "correctText": "gorra",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i04",
+    "correctText": "gorra",
+    "correctResponseId": "es:lesson-02:session-32:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-32:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i06",
+    "correctText": "Es una gorra.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i07",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-32:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i08",
+    "correctText": "Es la gorra de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i09",
+    "correctText": "¿De quién es la gorra?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i10",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i11",
+    "correctText": "mío",
+    "correctResponseId": "es:lesson-02:session-32:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i12",
+    "correctText": "La gorra no es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i13",
+    "correctText": "Es la gorra de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i14",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i15",
+    "correctText": "Es el guante de Luis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i16",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-32:i16:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i17",
+    "correctText": "¿De quién es la gorra?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-32:i18",
+    "correctText": "Es la gorra de Ana.",
+    "correctResponseId": null
+  }
+]

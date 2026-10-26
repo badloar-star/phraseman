@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «мой/моя» после es и выбрать форму по предмету.",
+    "uk": "сказати «мій/моя» після es і вибрати форму за предметом."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Моя тетрадь",
+        "uk": "Мій зошит"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте свою тетрадь. Скажите `El cuaderno es mío` — «Тетрадь моя». `Mío` означает «мой» и здесь относится к мужскому испанскому cuaderno. Соберите `el cuaderno` + `es` + `mío`. После es в этой фразе ставьте сразу mío, без артикля. Женщина и мужчина скажут одинаково: El cuaderno es mío, потому что форма зависит от тетради — cuaderno.",
+        "uk": "Ви впізнаєте свій зошит. Скажіть `El cuaderno es mío` — «Зошит мій». `Mío` означає «мій» і тут стосується чоловічого іспанського cuaderno. Зберіть `el cuaderno` + `es` + `mío`. Після es у цій фразі ставте відразу mío, без артикля. Жінка й чоловік скажуть однаково: El cuaderno es mío, тому що форма залежить від зошита — cuaderno."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что тетрадь ваша.",
+          "uk": "Скажіть, що зошит ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-29:intro1:r1",
+              "text": "El cuaderno es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro1:r2",
+              "text": "El cuaderno es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro1:r3",
+              "text": "El cuaderno es de mío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-29:intro1:r1",
+              "text": "El cuaderno es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro1:r2",
+              "text": "El cuaderno es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro1:r3",
+              "text": "El cuaderno es de mío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что тетрадь ваша.",
+          "uk": "Скажіть, що зошит ваш."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Моя сумка",
+        "uk": "Моя сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом находите свою сумку. Скажите `La bolsa es mía` — «Сумка моя». Соберите `la bolsa` + `es` + `mía`. У слова bolsa женский род, поэтому mío меняется на mía. Пол владельца не важен: мужчина тоже скажет La bolsa es mía. Артикль перед mía здесь не нужен.",
+        "uk": "Поруч знаходите свою сумку. Скажіть `La bolsa es mía` — «Сумка моя». Зберіть `la bolsa` + `es` + `mía`. У слова bolsa жіночий рід, тому mío змінюється на mía. Стать власника не важлива: чоловік теж скаже La bolsa es mía. Артикль перед mía тут не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сумка ваша.",
+          "uk": "Скажіть, що сумка ваша."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-29:intro2:r1",
+              "text": "La bolsa es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro2:r2",
+              "text": "La bolsa es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro2:r3",
+              "text": "El bolsa es mía."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-29:intro2:r1",
+              "text": "La bolsa es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro2:r2",
+              "text": "La bolsa es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro2:r3",
+              "text": "El bolsa es mía."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сумка ваша.",
+          "uk": "Скажіть, що сумка ваша."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Короткий ответ",
+        "uk": "Коротка відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Друг держит вашу тетрадь и спрашивает ¿De quién es el cuaderno? Ответьте `Es mío` — «Это моё». Соберите `es` + `mío`. Вопрос уже назвал тетрадь, поэтому el cuaderno можно не повторять. О своей сумке вы так же коротко ответите Es mía. Даже в коротком ответе форма зависит от вещи: cuaderno → mío, bolsa → mía.",
+        "uk": "Друг тримає ваш зошит і запитує ¿De quién es el cuaderno? Дайте відповідь `Es mío` — «Це моє». Зберіть `es` + `mío`. Запитання вже назвало зошит, тому el cuaderno можна не повторювати. Про свою сумку ви так само коротко відповісте Es mía. Навіть у короткій відповіді форма залежить від речі: cuaderno → mío, bolsa → mía."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Коротко ответьте, что тетрадь ваша.",
+          "uk": "Коротко дайте відповідь, що зошит ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-29:intro3:r1",
+              "text": "Es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro3:r2",
+              "text": "Es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro3:r3",
+              "text": "Son mío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-29:intro3:r1",
+              "text": "Es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro3:r2",
+              "text": "Es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-29:intro3:r3",
+              "text": "Son mío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коротко ответьте, что тетрадь ваша.",
+          "uk": "Коротко дайте відповідь, що зошит ваш."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8f401a10494bb236199bb007f9333229a043f9360036c913e8a27089f8602a63"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-30:i01",
+    "correctText": "pasaporte",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i02",
+    "correctText": "pasaporte",
+    "correctResponseId": "es:lesson-02:session-30:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i03",
+    "correctText": "cartera",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i04",
+    "correctText": "cartera",
+    "correctResponseId": "es:lesson-02:session-30:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i05",
+    "correctText": "El pasaporte es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i06",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-02:session-30:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i07",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i08",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i09",
+    "correctText": "mía",
+    "correctResponseId": "es:lesson-02:session-30:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i10",
+    "correctText": "La cartera no es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i11",
+    "correctText": "No es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i12",
+    "correctText": "No es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i13",
+    "correctText": "El pasaporte no es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-30:i14",
+    "correctText": "La cartera no es mía.",
+    "correctResponseId": null
+  }
+]

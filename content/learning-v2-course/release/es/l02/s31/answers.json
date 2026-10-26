@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-31:i01",
+    "correctText": "¿De quién es la llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i02",
+    "correctText": "¿De quién es la llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i03",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-31:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i04",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i05",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i06",
+    "correctText": "¿De quién es la llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i07",
+    "correctText": "mía",
+    "correctResponseId": "es:lesson-02:session-31:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i08",
+    "correctText": "Es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i09",
+    "correctText": "Es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i10",
+    "correctText": "No es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i11",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-31:i12",
+    "correctText": "No es mía.",
+    "correctResponseId": null
+  }
+]

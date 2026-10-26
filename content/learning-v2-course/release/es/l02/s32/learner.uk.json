@@ -1,0 +1,1043 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-32",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-32:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — guante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — guante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i01:audio",
+          "transcript": "guante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-32:i01:r1",
+            "targetText": "guante",
+            "meaningByLocale": {
+              "ru": "перчатка. Мужской род: el guante. 🔊 *guante*",
+              "uk": "рукавичка. Чоловічий рід: el guante. 🔊 *guante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "guante",
+          "definitionByLocale": {
+            "ru": "перчатка. Мужской род: el guante. 🔊 *guante*",
+            "uk": "рукавичка. Чоловічий рід: el guante. 🔊 *guante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i02:r1",
+          "text": "guante"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i02:r2",
+          "text": "puente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i02:audio",
+          "transcript": "guante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-32:i02:r1",
+            "targetText": "guante",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i02:r2",
+            "targetText": "puente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит guante — перчатка.",
+              "uk": "Звучить guante — рукавичка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gorra",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gorra",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i03:audio",
+          "transcript": "gorra"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-32:i03:r1",
+            "targetText": "gorra",
+            "meaningByLocale": {
+              "ru": "кепка. Женский род: la gorra. 🔊 *gorra*",
+              "uk": "кепка. Жіночий рід: la gorra. 🔊 *gorra*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gorra",
+          "definitionByLocale": {
+            "ru": "кепка. Женский род: la gorra. 🔊 *gorra*",
+            "uk": "кепка. Жіночий рід: la gorra. 🔊 *gorra*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i04:r1",
+          "text": "gorra"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i04:r2",
+          "text": "bolsa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i04:audio",
+          "transcript": "gorra"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-32:i04:r1",
+            "targetText": "gorra",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i04:r2",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит gorra — кепка.",
+              "uk": "Звучить gorra — кепка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це одна рукавичка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це одна рукавичка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это одна перчатка",
+          "uk": "Вставте слово — це одна рукавичка"
+        },
+        "gappedTargetPhrase": "Es ___ guante.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-32:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це одна рукавичка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це одна рукавичка",
+            "feedbackByLocale": {
+              "ru": "Guante мужского рода: un.",
+              "uk": "Guante чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це одна рукавичка",
+            "feedbackByLocale": {
+              "ru": "Перчатка одна: un.",
+              "uk": "Рукавичка одна: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кепку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i06:r1",
+          "text": "Плитки: gorra"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кепку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una gorra.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите кепку",
+          "uk": "Зберіть фразу — назвіть кепку"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "gorra"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кепку",
+            "feedbackByLocale": {
+              "ru": "gorra женского рода.",
+              "uk": "gorra жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це кепка Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i07:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i07:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i07:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це кепка Ани",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это кепка Аны",
+          "uk": "Вставте слово — це кепка Ани"
+        },
+        "gappedTargetPhrase": "Es la gorra ___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-32:i07:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i07:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i07:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — це кепка Ани",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це кепка Ани",
+            "feedbackByLocale": {
+              "ru": "Перед именем владельца нужна de.",
+              "uk": "Перед ім'ям власника потрібна de."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це кепка Ани",
+            "feedbackByLocale": {
+              "ru": "Имя после названия вещи вводится через de.",
+              "uk": "Ім'я після назви речі вводиться через de."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це кепка Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i08:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i08:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i08:r3",
+          "text": "gorra"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i08:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i08:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це кепка Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la gorra de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это кепка Аны",
+          "uk": "Зберіть фразу — це кепка Ани"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "gorra",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це кепка Ани",
+            "feedbackByLocale": {
+              "ru": "gorra женского рода.",
+              "uk": "gorra жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запитайте, чия кепка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i09:r1",
+          "text": "Плитки: gorra?"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i09:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i09:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i09:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i09:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запитайте, чия кепка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es la gorra?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, чья кепка",
+          "uk": "Зберіть фразу — запитайте, чия кепка"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es",
+          "la",
+          "gorra"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запитайте, чия кепка",
+            "feedbackByLocale": {
+              "ru": "gorra женского рода.",
+              "uk": "gorra жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коротко дайте відповідь: Ани",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коротко дайте відповідь: Ани",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i10:audio",
+          "transcript": "Es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — рукавичка моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i11:r1",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i11:r2",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i11:r3",
+          "text": "Ana"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — рукавичка моя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — перчатка моя",
+          "uk": "Вставте слово — рукавичка моя"
+        },
+        "gappedTargetPhrase": "El guante es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-32:i11:r1",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i11:r2",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i11:r3",
+            "text": "Ana"
+          }
+        ],
+        "testedDimension": "Вставте слово — рукавичка моя",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — рукавичка моя",
+            "feedbackByLocale": {
+              "ru": "Guante мужского рода: mío.",
+              "uk": "Guante чоловічого роду: mío."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — рукавичка моя",
+            "feedbackByLocale": {
+              "ru": "Вы говорите о своей перчатке: mío.",
+              "uk": "Ви говорите про свою рукавичку: mío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — кепка не моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i12:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i12:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i12:r4",
+          "text": "gorra"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i12:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i12:r6",
+          "text": "mío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — кепка не моя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La gorra no es mía.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — кепка не моя",
+          "uk": "Зберіть фразу — кепка не моя"
+        },
+        "orderedTokens": [
+          "La",
+          "gorra",
+          "no",
+          "es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — кепка не моя",
+            "feedbackByLocale": {
+              "ru": "gorra женского рода.",
+              "uk": "gorra жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i13:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i13:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i13:r3",
+          "text": "gorra"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i13:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i13:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i13:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i13:audio",
+          "transcript": "Es la gorra de Ana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la gorra de Ana.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "gorra",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит la.",
+              "uk": "у записі звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — рукавичка не ваша; коротка відповідь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — рукавичка не ваша; коротка відповідь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i14:audio",
+          "transcript": "No es mío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це рукавичка Луїса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i15:r1",
+          "text": "Плитки: Luis"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i15:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i15:r3",
+          "text": "guante"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i15:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i15:r5",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i15:r6",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це рукавичка Луїса",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el guante de Luis.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это перчатка Луиса",
+          "uk": "Зберіть фразу — це рукавичка Луїса"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "guante",
+          "de",
+          "Luis"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це рукавичка Луїса",
+            "feedbackByLocale": {
+              "ru": "guante мужского рода.",
+              "uk": "guante чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це саме та кепка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-32:i16:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i16:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-32:i16:r3",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це саме та кепка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это именно та кепка",
+          "uk": "Вставте слово — це саме та кепка"
+        },
+        "gappedTargetPhrase": "Es ___ gorra.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-32:i16:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i16:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i16:r3",
+            "text": "las"
+          }
+        ],
+        "testedDimension": "Вставте слово — це саме та кепка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-32:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме та кепка",
+            "feedbackByLocale": {
+              "ru": "Gorra женского рода: la.",
+              "uk": "Gorra жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-32:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме та кепка",
+            "feedbackByLocale": {
+              "ru": "Кепка одна: la.",
+              "uk": "Кепка одна: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте, чия кепка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте, чия кепка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i17:audio",
+          "transcript": "¿De quién es la gorra?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es la gorra?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це кепка Ани",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-32:i18:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це кепка Ани",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-32:i18:audio",
+          "transcript": "Es la gorra de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la gorra de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a8166d1af3605a3d03774e1c8345183f36d96e895f6d973e3a96ce88a09ac616"
+}

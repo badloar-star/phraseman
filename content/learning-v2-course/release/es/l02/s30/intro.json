@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать принадлежность с no es mío/mía.",
+    "uk": "заперечувати належність з no es mío/mía."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Паспорт на столе",
+        "uk": "Паспорт на столі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг поднимает паспорт. `Pasaporte` — «паспорт», слово мужского рода: el pasaporte. Если он ваш, скажите `El pasaporte es mío` — «Паспорт мой». Соберите `el pasaporte` + `es` + `mío`. Для мужского pasaporte нужна mío, независимо от того, мужчина вы или женщина.",
+        "uk": "Друг піднімає паспорт. `Pasaporte` — «паспорт», слово чоловічого роду: el pasaporte. Якщо він ваш, скажіть `El pasaporte es mío` — «Паспорт мій». Зберіть `el pasaporte` + `es` + `mío`. Для чоловічого pasaporte потрібна mío, незалежно від того, чоловік ви чи жінка."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что паспорт ваш.",
+          "uk": "Скажіть, що паспорт ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-30:intro1:r1",
+              "text": "El pasaporte es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro1:r2",
+              "text": "El pasaporte es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro1:r3",
+              "text": "La pasaporte es mío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-30:intro1:r1",
+              "text": "El pasaporte es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro1:r2",
+              "text": "El pasaporte es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro1:r3",
+              "text": "La pasaporte es mío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что паспорт ваш.",
+          "uk": "Скажіть, що паспорт ваш."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чужой паспорт",
+        "uk": "Чужий паспорт"
+      },
+      "bodyByLocale": {
+        "ru": "Вы смотрите внимательнее: друг держит другой паспорт. Скажите `No es mío` — «Это не моё». Соберите `no` + `es` + `mío`. Знакомое no поставьте перед es; mío оставьте мужским, потому что речь о pasaporte. Полный ответ: El pasaporte no es mío — «Паспорт не мой».",
+        "uk": "Ви дивитеся уважніше: друг тримає інший паспорт. Скажіть `No es mío` — «Це не моє». Зберіть `no` + `es` + `mío`. Знайоме no поставте перед es; mío залиште чоловічим, тому що йдеться про pasaporte. Повна відповідь: El pasaporte no es mío — «Паспорт не мій»."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Коротко скажите, что паспорт не ваш.",
+          "uk": "Коротко скажіть, що паспорт не ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-30:intro2:r1",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro2:r2",
+              "text": "Es no mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro2:r3",
+              "text": "No es mía."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-30:intro2:r1",
+              "text": "No es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro2:r2",
+              "text": "Es no mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro2:r3",
+              "text": "No es mía."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коротко скажите, что паспорт не ваш.",
+          "uk": "Коротко скажіть, що паспорт не ваш."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чужой кошелёк",
+        "uk": "Чужий гаманець"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежит кошелёк. `Cartera` — здесь «кошелёк», слово женского рода: la cartera. Он тоже не ваш. Скажите `La cartera no es mía` — «Кошелёк не мой». Соберите `la cartera` + `no` + `es` + `mía`. По-испански cartera женского рода, поэтому mía. Короткий ответ о нём — No es mía; мужчина и женщина используют одну и ту же форму по слову cartera.",
+        "uk": "Поруч лежить гаманець. `Cartera` — тут «гаманець», слово жіночого роду: la cartera. Він теж не ваш. Скажіть `La cartera no es mía` — «Гаманець не мій». Зберіть `la cartera` + `no` + `es` + `mía`. Іспанською cartera жіночого роду, тому mía. Коротка відповідь про нього — No es mía; чоловік і жінка використовують ту саму форму за словом cartera."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что кошелёк не ваш.",
+          "uk": "Скажіть, що гаманець не ваш."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-30:intro3:r1",
+              "text": "La cartera no es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro3:r2",
+              "text": "La cartera no es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro3:r3",
+              "text": "La cartera es no mía."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-30:intro3:r1",
+              "text": "La cartera no es mía."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro3:r2",
+              "text": "La cartera no es mío."
+            },
+            {
+              "responseId": "es:lesson-02:session-30:intro3:r3",
+              "text": "La cartera es no mía."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что кошелёк не ваш.",
+          "uk": "Скажіть, що гаманець не ваш."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0b934ea515b5d8ef69d3df69fafbb9bc23689fbb4557287eb94154bcaafa314f"
+}

@@ -1,0 +1,786 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-30",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-30:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — pasaporte",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — pasaporte",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i01:audio",
+          "transcript": "pasaporte"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-30:i01:r1",
+            "targetText": "pasaporte",
+            "meaningByLocale": {
+              "ru": "паспорт. Мужской род: el pasaporte. 🔊 *pasaporte*",
+              "uk": "паспорт. Чоловічий рід: el pasaporte. 🔊 *pasaporte*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pasaporte",
+          "definitionByLocale": {
+            "ru": "паспорт. Мужской род: el pasaporte. 🔊 *pasaporte*",
+            "uk": "паспорт. Чоловічий рід: el pasaporte. 🔊 *pasaporte*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i02:r1",
+          "text": "pasaporte"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i02:r2",
+          "text": "papel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i02:audio",
+          "transcript": "pasaporte"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-30:i02:r1",
+            "targetText": "pasaporte",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i02:r2",
+            "targetText": "papel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит pasaporte — паспорт.",
+              "uk": "Звучить pasaporte — паспорт."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cartera",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cartera",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i03:audio",
+          "transcript": "cartera"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-30:i03:r1",
+            "targetText": "cartera",
+            "meaningByLocale": {
+              "ru": "здесь кошелёк. Женский род: la cartera. 🔊 *cartera*",
+              "uk": "тут гаманець. Жіночий рід: la cartera. 🔊 *cartera*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cartera",
+          "definitionByLocale": {
+            "ru": "здесь кошелёк. Женский род: la cartera. 🔊 *cartera*",
+            "uk": "тут гаманець. Жіночий рід: la cartera. 🔊 *cartera*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i04:r1",
+          "text": "cartera"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i04:r2",
+          "text": "maleta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i04:audio",
+          "transcript": "cartera"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-30:i04:r1",
+            "targetText": "cartera",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i04:r2",
+            "targetText": "maleta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cartera — кошелёк.",
+              "uk": "Звучить cartera — гаманець."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — паспорт мой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i05:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i05:r3",
+          "text": "pasaporte"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i05:r5",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — паспорт мой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El pasaporte es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — паспорт мой",
+          "uk": "Зберіть фразу — паспорт мій"
+        },
+        "orderedTokens": [
+          "El",
+          "pasaporte",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — паспорт мой",
+            "feedbackByLocale": {
+              "ru": "pasaporte мужского рода.",
+              "uk": "pasaporte чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — паспорт не мой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i06:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i06:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i06:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — паспорт не мой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — паспорт не мой",
+          "uk": "Вставте слово — паспорт не мій"
+        },
+        "gappedTargetPhrase": "El pasaporte ___ es mío.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-30:i06:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i06:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i06:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставьте слово — паспорт не мой",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — паспорт не мой",
+            "feedbackByLocale": {
+              "ru": "Для отрицания нужна no перед es.",
+              "uk": "Для заперечення потрібна no перед es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — паспорт не мой",
+            "feedbackByLocale": {
+              "ru": "Принадлежность отрицает no.",
+              "uk": "Належність заперечує no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коротко о паспорте: это не моё",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i07:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i07:r4",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коротко о паспорте: это не моё",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коротко о паспорте: это не моё",
+          "uk": "Зберіть фразу — коротко про паспорт: це не моє"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коротко о паспорте: это не моё",
+            "feedbackByLocale": {
+              "ru": "речь о мужском pasaporte.",
+              "uk": "йдеться про чоловічий pasaporte."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — паспорт не ваш; ответьте коротко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — паспорт не ваш; ответьте коротко",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i08:audio",
+          "transcript": "No es mío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — кошелёк не мой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i09:r1",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i09:r2",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i09:r3",
+          "text": "Ana"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — кошелёк не мой",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — кошелёк не мой",
+          "uk": "Вставте слово — гаманець не мій"
+        },
+        "gappedTargetPhrase": "La cartera no es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-30:i09:r1",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i09:r2",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i09:r3",
+            "text": "Ana"
+          }
+        ],
+        "testedDimension": "Вставьте слово — кошелёк не мой",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — кошелёк не мой",
+            "feedbackByLocale": {
+              "ru": "Cartera женского рода: mía.",
+              "uk": "Cartera жіночого роду: mía."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-30:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — кошелёк не мой",
+            "feedbackByLocale": {
+              "ru": "Нужно «не мой» о женском cartera: no es mía.",
+              "uk": "Потрібно «не мій» про жіноче cartera: no es mía."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — кошелёк не мой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i10:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i10:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i10:r4",
+          "text": "cartera"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i10:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i10:r6",
+          "text": "mío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — кошелёк не мой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La cartera no es mía.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — кошелёк не мой",
+          "uk": "Зберіть фразу — гаманець не мій"
+        },
+        "orderedTokens": [
+          "La",
+          "cartera",
+          "no",
+          "es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — кошелёк не мой",
+            "feedbackByLocale": {
+              "ru": "cartera женского рода.",
+              "uk": "cartera жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i11:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i11:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i11:r4",
+          "text": "mío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i11:audio",
+          "transcript": "No es mía."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es mía.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит mía.",
+              "uk": "у записі звучить mía."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — кошелёк не ваш; ответьте коротко",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — кошелёк не ваш; ответьте коротко",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i12:audio",
+          "transcript": "No es mía."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es mía.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — уточните полностью: паспорт не мой",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-30:i13:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i13:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i13:r4",
+          "text": "pasaporte"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i13:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-30:i13:r6",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — уточните полностью: паспорт не мой",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El pasaporte no es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — уточните полностью: паспорт не мой",
+          "uk": "Зберіть фразу — уточніть повністю: паспорт не мій"
+        },
+        "orderedTokens": [
+          "El",
+          "pasaporte",
+          "no",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-30:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — уточните полностью: паспорт не мой",
+            "feedbackByLocale": {
+              "ru": "pasaporte мужского рода.",
+              "uk": "pasaporte чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — кошелёк не мой",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-30:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — кошелёк не мой",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-30:i14:audio",
+          "transcript": "La cartera no es mía."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La cartera no es mía.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cfd019c445e6ca3c67f79afd6f3b250c25b6f43feb4bf01387af5884680e21d5"
+}

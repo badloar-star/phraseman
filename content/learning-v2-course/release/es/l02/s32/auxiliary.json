@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-32",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-32:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-32:intro1:r2": {
+          "ru": "Для guante нужен un.",
+          "uk": "Для guante потрібен un."
+        },
+        "es:lesson-02:session-32:intro1:r3": {
+          "ru": "Перчатка одна: es.",
+          "uk": "Рукавичка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-32:intro2:r2": {
+          "ru": "Для gorra нужна una.",
+          "uk": "Для gorra потрібна una."
+        },
+        "es:lesson-02:session-32:intro2:r3": {
+          "ru": "Кепка одна: es.",
+          "uk": "Кепка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-32:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-32:intro3:r2": {
+          "ru": "Перед именем владельца нужна de.",
+          "uk": "Перед ім'ям власника потрібна de."
+        },
+        "es:lesson-02:session-32:intro3:r3": {
+          "ru": "Gorra женского рода: la gorra.",
+          "uk": "Gorra жіночого роду: la gorra."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "30a30631e0b5b2454fb033c271ebcff7bcabb2ff6980edf723c01fa8cd310f6d"
+}

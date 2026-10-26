@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-29",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-29:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-29:intro1:r2": {
+          "ru": "Форма зависит от мужского cuaderno: mío.",
+          "uk": "Форма залежить від чоловічого cuaderno: mío."
+        },
+        "es:lesson-02:session-29:intro1:r3": {
+          "ru": "С mío здесь не нужна de: es mío.",
+          "uk": "З mío тут не потрібна de: es mío."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-29:intro2:r2": {
+          "ru": "Выбирайте форму по женскому bolsa: mía.",
+          "uk": "Вибирайте форму за жіночим bolsa: mía."
+        },
+        "es:lesson-02:session-29:intro2:r3": {
+          "ru": "Bolsa женского рода: la bolsa.",
+          "uk": "Bolsa жіночого роду: la bolsa."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-29:intro3:r2": {
+          "ru": "В вопросе назван мужской cuaderno.",
+          "uk": "У запитанні названо чоловічий cuaderno."
+        },
+        "es:lesson-02:session-29:intro3:r3": {
+          "ru": "Предмет один: es.",
+          "uk": "Предмет один: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8e19889cc7669827dc4c1aa93052d47ed5f623922b07fc794200383f5c660d0a"
+}

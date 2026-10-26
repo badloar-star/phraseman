@@ -1,0 +1,664 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-29",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-29:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mío",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mío",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i01:audio",
+          "transcript": "mío"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-29:i01:r1",
+            "targetText": "mío",
+            "meaningByLocale": {
+              "ru": "мой; после es относится к одному предмету мужского рода. 🔊 *mío*",
+              "uk": "мій; після es стосується одного предмета чоловічого роду. 🔊 *mío*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mío",
+          "definitionByLocale": {
+            "ru": "мой; после es относится к одному предмету мужского рода. 🔊 *mío*",
+            "uk": "мій; після es стосується одного предмета чоловічого роду. 🔊 *mío*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i02:r1",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i02:r2",
+          "text": "malo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i02:audio",
+          "transcript": "mío"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-29:i02:r1",
+            "targetText": "mío",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-29:i02:r2",
+            "targetText": "malo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mío — мой.",
+              "uk": "Звучить mío — мій."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mía",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mía",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i03:audio",
+          "transcript": "mía"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-29:i03:r1",
+            "targetText": "mía",
+            "meaningByLocale": {
+              "ru": "моя; женская форма mío, например о bolsa. 🔊 *mía*",
+              "uk": "моя; жіноча форма mío, наприклад про bolsa. 🔊 *mía*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mía",
+          "definitionByLocale": {
+            "ru": "моя; женская форма mío, например о bolsa. 🔊 *mía*",
+            "uk": "моя; жіноча форма mío, наприклад про bolsa. 🔊 *mía*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i04:r1",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i04:r2",
+          "text": "mío"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i04:audio",
+          "transcript": "mía"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-29:i04:r1",
+            "targetText": "mía",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-29:i04:r2",
+            "targetText": "mío",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mía с a.",
+              "uk": "Звучить mía з a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — зошит мій",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i05:r1",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i05:r2",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i05:r3",
+          "text": "Ana"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — зошит мій",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — тетрадь моя",
+          "uk": "Вставте слово — зошит мій"
+        },
+        "gappedTargetPhrase": "El cuaderno es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-29:i05:r1",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-29:i05:r2",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-29:i05:r3",
+            "text": "Ana"
+          }
+        ],
+        "testedDimension": "Вставте слово — зошит мій",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — зошит мій",
+            "feedbackByLocale": {
+              "ru": "Cuaderno мужского рода: mío.",
+              "uk": "Cuaderno чоловічого роду: mío."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-29:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — зошит мій",
+            "feedbackByLocale": {
+              "ru": "Вы говорите о своей вещи, нужна mío.",
+              "uk": "Ви говорите про свою річ, потрібна mío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — зошит мій",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i06:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i06:r3",
+          "text": "cuaderno"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i06:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i06:r5",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — зошит мій",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El cuaderno es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — тетрадь моя",
+          "uk": "Зберіть фразу — зошит мій"
+        },
+        "orderedTokens": [
+          "El",
+          "cuaderno",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — зошит мій",
+            "feedbackByLocale": {
+              "ru": "cuaderno мужского рода.",
+              "uk": "cuaderno чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сумка моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i07:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i07:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i07:r5",
+          "text": "mío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сумка моя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bolsa es mía.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка моя",
+          "uk": "Зберіть фразу — сумка моя"
+        },
+        "orderedTokens": [
+          "La",
+          "bolsa",
+          "es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сумка моя",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви знайшли свою сумку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i08:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви знайшли свою сумку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i08:audio",
+          "transcript": "La bolsa es mía."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bolsa es mía.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i09:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i09:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i09:r3",
+          "text": "cuaderno"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i09:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i09:r5",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i09:audio",
+          "transcript": "El cuaderno es mío."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El cuaderno es mío.",
+        "orderedTokens": [
+          "El",
+          "cuaderno",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит mío.",
+              "uk": "у записі звучить mío."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — про зошит коротко: це моє",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i10:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i10:r3",
+          "text": "mía."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — про зошит коротко: це моє",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о тетради коротко: это моё",
+          "uk": "Зберіть фразу — про зошит коротко: це моє"
+        },
+        "orderedTokens": [
+          "Es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "mía"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — про зошит коротко: це моє",
+            "feedbackByLocale": {
+              "ru": "речь о мужском cuaderno.",
+              "uk": "йдеться про чоловічий cuaderno."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — про сумку коротко: це моє",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-29:i11:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-29:i11:r3",
+          "text": "mío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — про сумку коротко: це моє",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mía.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — о сумке коротко: это моё",
+          "uk": "Зберіть фразу — про сумку коротко: це моє"
+        },
+        "orderedTokens": [
+          "Es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-29:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — про сумку коротко: це моє",
+            "feedbackByLocale": {
+              "ru": "речь о женском bolsa.",
+              "uk": "йдеться про жіноче bolsa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-29:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коротко дайте відповідь, що зошит ваш",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-29:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коротко дайте відповідь, що зошит ваш",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-29:i12:audio",
+          "transcript": "Es mío."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mío.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ded1f3edf9312531fa1640cd1e8f621658e3586b73df8bf35a24f9907b45a1b7"
+}

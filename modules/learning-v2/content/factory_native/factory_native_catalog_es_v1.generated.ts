@@ -595,4 +595,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, кому принадлежит вещь, с ¿De quién es…?","uk":"запитати, кому належить річ, з ¿De quién es…?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 29,
+    sourceFingerprint: "5f7256022c86f767939054951df3e073a35d439d2f410da548c68ac8dd8d7e48",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «мой/моя» после es и выбрать форму по предмету.","uk":"сказати «мій/моя» після es і вибрати форму за предметом."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 30,
+    sourceFingerprint: "4cc417946bed87589a483f6e4281a597d99d334289766178d2d81d7a1587e42c",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать принадлежность с no es mío/mía.","uk":"заперечувати належність з no es mío/mía."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 31,
+    sourceFingerprint: "26734833abfa818fcfc2812471f0f40f1d2ab639890dd1df4e59af0514b2ca85",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отдельно произнести вопрос о владельце и короткий ответ.","uk":"окремо вимовити запитання про власника й коротку відповідь."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 32,
+    sourceFingerprint: "695a2fa56375cd2bbef363aabfd6305a06225180560b65f52699f3ddbc0567a6",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"узнать нужную вещь и назвать владельца после её названия.","uk":"упізнати потрібну річ і назвати власника після її назви."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-31",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-31:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-31:intro1:r2": {
+          "ru": "Llave женского рода: la llave.",
+          "uk": "Llave жіночого роду: la llave."
+        },
+        "es:lesson-02:session-31:intro1:r3": {
+          "ru": "Ключ один: es.",
+          "uk": "Ключ один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-31:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-31:intro2:r2": {
+          "ru": "Для принадлежности нужно de Ana.",
+          "uk": "Для належності потрібно de Ana."
+        },
+        "es:lesson-02:session-31:intro2:r3": {
+          "ru": "Порядок: es de Ana.",
+          "uk": "Порядок: es de Ana."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-31:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-31:intro3:r2": {
+          "ru": "Форма зависит от llave: mía.",
+          "uk": "Форма залежить від llave: mía."
+        },
+        "es:lesson-02:session-31:intro3:r3": {
+          "ru": "Ключ один: es.",
+          "uk": "Ключ один: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cb13528a759a916288fe3d417367b7eab55b62849b1d0c2dc0c9a9c46011dafc"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "узнать нужную вещь и назвать владельца после её названия.",
+    "uk": "упізнати потрібну річ і назвати власника після її назви."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна перчатка",
+        "uk": "Одна рукавичка"
+      },
+      "bodyByLocale": {
+        "ru": "Под стулом нашли перчатку. `Guante` — «перчатка», по-испански мужского рода: el guante. Назовите её: `Es un guante` — «Это перчатка». Соберите `es` + `un` + `guante`. Речь об одной перчатке, не о паре; артикль мужской по испанскому guante.",
+        "uk": "Під стільцем знайшли рукавичку. `Guante` — «рукавичка», іспанською чоловічого роду: el guante. Назвіть її: `Es un guante` — «Це рукавичка». Зберіть `es` + `un` + `guante`. Йдеться про одну рукавичку, не про пару; артикль чоловічий за іспанським guante."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одну перчатку.",
+          "uk": "Назвіть одну рукавичку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-32:intro1:r1",
+              "text": "Es un guante."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro1:r2",
+              "text": "Es una guante."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro1:r3",
+              "text": "Son un guante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-32:intro1:r1",
+              "text": "Es un guante."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro1:r2",
+              "text": "Es una guante."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro1:r3",
+              "text": "Son un guante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну перчатку.",
+          "uk": "Назвіть одну рукавичку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Кепка на полке",
+        "uk": "Кепка на полиці"
+      },
+      "bodyByLocale": {
+        "ru": "На полке лежит кепка. `Gorra` — «кепка», слово женского рода: la gorra. Назовите её: `Es una gorra` — «Это кепка». Соберите `es` + `una` + `gorra`. Если спрашиваете о владельце, используйте знакомый порядок: ¿De quién es la gorra? — «Чья кепка?»",
+        "uk": "На полиці лежить кепка. `Gorra` — «кепка», слово жіночого роду: la gorra. Назвіть її: `Es una gorra` — «Це кепка». Зберіть `es` + `una` + `gorra`. Якщо запитуєте про власника, використовуйте знайомий порядок: ¿De quién es la gorra? — «Чия кепка?»"
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите кепку.",
+          "uk": "Назвіть кепку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-32:intro2:r1",
+              "text": "Es una gorra."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro2:r2",
+              "text": "Es un gorra."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro2:r3",
+              "text": "Son una gorra."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-32:intro2:r1",
+              "text": "Es una gorra."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro2:r2",
+              "text": "Es un gorra."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro2:r3",
+              "text": "Son una gorra."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите кепку.",
+          "uk": "Назвіть кепку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Именно кепка Аны",
+        "uk": "Саме кепка Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Вы искали кепку Аны и наконец узнали её. Скажите `Es la gorra de Ana` — «Это кепка Аны». Соберите `es` + `la gorra` + `de Ana`. Уже знакомое de с именем можно поставить сразу после названия вещи: la gorra de Ana. Так вы уточняете, какую кепку имеете в виду. Для перчатки Луиса получится Es el guante de Luis.",
+        "uk": "Ви шукали кепку Ани й нарешті впізнали її. Скажіть `Es la gorra de Ana` — «Це кепка Ани». Зберіть `es` + `la gorra` + `de Ana`. Уже знайоме de з ім'ям можна поставити відразу після назви речі: la gorra de Ana. Так ви уточнюєте, яку кепку маєте на увазі. Для рукавички Луїса вийде Es el guante de Luis."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что это кепка Аны.",
+          "uk": "Скажіть, що це кепка Ани."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-32:intro3:r1",
+              "text": "Es la gorra de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro3:r2",
+              "text": "Es la gorra Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro3:r3",
+              "text": "Es el gorra de Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-32:intro3:r1",
+              "text": "Es la gorra de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro3:r2",
+              "text": "Es la gorra Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-32:intro3:r3",
+              "text": "Es el gorra de Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что это кепка Аны.",
+          "uk": "Скажіть, що це кепка Ани."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd17ed614747ffa08aa6c838c6d12df7d2dbfc98827464e3b66f818a88a0699e"
+}

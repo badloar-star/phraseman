@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-30",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-30:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-30:intro1:r2": {
+          "ru": "Форма зависит от pasaporte, а не пола владельца.",
+          "uk": "Форма залежить від pasaporte, а не статі власника."
+        },
+        "es:lesson-02:session-30:intro1:r3": {
+          "ru": "Pasaporte мужского рода: el.",
+          "uk": "Pasaporte чоловічого роду: el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-30:intro2:r2": {
+          "ru": "В нашем образце no стоит перед es.",
+          "uk": "У нашому зразку no стоїть перед es."
+        },
+        "es:lesson-02:session-30:intro2:r3": {
+          "ru": "Речь о мужском pasaporte: mío.",
+          "uk": "Йдеться про чоловічий pasaporte: mío."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-30:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-30:intro3:r2": {
+          "ru": "Для женского cartera нужна mía.",
+          "uk": "Для жіночого cartera потрібна mía."
+        },
+        "es:lesson-02:session-30:intro3:r3": {
+          "ru": "Поставьте no перед es.",
+          "uk": "Поставте no перед es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9560ea8bff6ecffa15957089106bc261a9c1f7d0d9b37aeccb1878c6a3fe13f5"
+}

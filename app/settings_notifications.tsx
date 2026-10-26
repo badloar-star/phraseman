@@ -123,7 +123,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   useEffect(() => { if (visible) { setH(hour); setM(minute); } }, [hour, minute, visible]);
   if (!visible) return null;
   return (
-    <Modal visible transparent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onCancel}>
+    <Modal visible transparent statusBarTranslucent animationType={reduceMotion ? 'none' : 'fade'} onRequestClose={onCancel}>
       <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', paddingTop:Math.max(20, insets.top), paddingBottom:Math.max(20, insets.bottom), paddingHorizontal:20 }}>{/* theme-exempt: затемнение под окном — чёрное в любой теме */}
         {/* зачем (стиль «Тень», владелец 12.10): окно по центру — тень на внешнем слое, клип скруглений внутренних слоёв — на внутреннем; кромки нет */}
         <View style={{ width:'100%', maxWidth:340, maxHeight:'100%', borderRadius:TIME_MODAL_PANEL_RADIUS, boxShadow:plateBoxShadow(glass) }}>

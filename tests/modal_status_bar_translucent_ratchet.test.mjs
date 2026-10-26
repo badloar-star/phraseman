@@ -15,8 +15,6 @@ const ROOT = fileURLToPath(new URL('..', import.meta.url));
 // база на 25.10 (после исправлений этого дня); онбординг — до выбора темы (theme-exempt), остальное — хозяевам через координатора
 const ALLOWED = {
   'app/(tabs)/home.tsx': 1,
-  // TimeModal держит байт-снимок settings_notifications_liquid_glass — флаг только с решения его хозяина
-  'app/settings_notifications.tsx': 1,
   'components/account/NicknameEditModal.tsx': 1,
   'components/CertificateNameModal.tsx': 1,
   'components/CleanOnboarding.tsx': 2,

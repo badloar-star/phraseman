@@ -43,7 +43,8 @@ const protectedHashes = {
   // 04.10: OM-TIME — кнопки 48, «Отмена» 700, двоеточие 300, поля панели колёс 18/28.
   // 11.10: «Темы» (cb4ecb396) дописали в разметку комментарий theme-exempt к чёрному затемнению — вид прежний.
   // 12.10 (Тень): окно времени без кромки — внешний слой с plateBoxShadow, кнопки с nested/action тенью; логика прежняя.
-  TimeModal: 'c09f0c9d1af4e8d65c80d470e6b560b0f9ea50a5fbdf71be812b4f80eb2aa882', // 11.10: граница дорожки переключателя — switchTrackBorder(glass)
+  // 26.10 (решение координатора, гейт safe-area 3d3a27ac6): Modal получил statusBarTranslucent — на Android затемнение закрывает и строку статуса, светлой полосы сверху нет; отступ сверху прежний (insets.top уже в paddingTop).
+  TimeModal: '6002fcb8a26f12d4b4fab6a3d6be769c20fd714c0b3816c9993e45bd7876648e', // 11.10: граница дорожки переключателя — switchTrackBorder(glass)
   scheduleTime: 'ba0a7abb3016f9ad6d07373ff26b07a699ca06431ef0ddcfff3268319f36cce1',
   scheduleAnyEnabled: 'c1806f95116fb5a4651c0a115d7db2371ab8109ae9e72fcde2d5ccae4c3d61d8',
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',

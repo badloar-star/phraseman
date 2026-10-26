@@ -43,7 +43,7 @@
 5. `EAS_NO_VCS=1 eas build --platform all --profile production --non-interactive --no-wait --json` из снимка.
 6. iOS: `eas submit --platform ios --profile production --id <id> --non-interactive`. Владелец сам жмёт Submit for Review и вставляет «Что нового».
 7. Android: автоотправка падает 403 «The Google service account cannot submit this app» (у `firebase-adminsdk-fbsvc@phraseman-ea0b3` нет прав в Play Console) — отдать владельцу .aab для ручной загрузки, либо он выдаёт права и тогда `eas submit --platform android`.
-8. Манифест курса: в 146 идёт ЗАКОММИЧЕННЫЙ (уроки 1–27). Незакоммиченный `modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts` (+ `functions-content/lib/...`) — работа фабрики (Codex), уроки 28–30; их банки уже подключены, станут видны, когда манифест закоммитят → OTA на runtime 2.0.3.
+8. Манифест курса: закоммичен уроки 1–27. Незакоммиченный `modules/learning-v2/content/factory_native/factory_native_manifest_v1.generated.ts` (+ `functions-content/lib/...`, правка 26.10 ~07:13–07:23) — работа фабрики курса (Codex), уроки 28–30. **Codex: если это твоя работа и её гейты зелёные — закоммить до хэша сборки, тогда 146 выйдет с 30 уроками** (банки экзамена 28–30 уже подключены, Ревизор проверяет «банки покрывают все главы манифеста сборки»). Если не готово — 146 с уроками 1–27, а 28–30 → OTA на runtime 2.0.3.
 
 ## 4. После 146
 

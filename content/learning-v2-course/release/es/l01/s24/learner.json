@@ -1,0 +1,671 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-24",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — obligatorio",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — obligatorio",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i01:audio",
+          "transcript": "obligatorio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i01:r1",
+            "targetText": "obligatorio",
+            "meaningByLocale": {
+              "ru": "обязательный по правилам. Женская форма — obligatoria. 🔊 *obligatorio*",
+              "uk": "обов'язковий за правилами. Жіноча форма — obligatoria. 🔊 *obligatorio*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "obligatorio",
+          "definitionByLocale": {
+            "ru": "обязательный по правилам. Женская форма — obligatoria. 🔊 *obligatorio*",
+            "uk": "обов'язковий за правилами. Жіноча форма — obligatoria. 🔊 *obligatorio*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i02:r1",
+          "text": "обязательный"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i02:r2",
+          "text": "срочный"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i02:audio",
+          "transcript": "obligatorio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i02:r1",
+            "targetText": "обязательный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i02:r2",
+            "targetText": "срочный",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это urgente; obligatorio говорит о требовании.",
+              "uk": "Це urgente; obligatorio говорить про вимогу."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — opcional",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — opcional",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i03:audio",
+          "transcript": "opcional"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i03:r1",
+            "targetText": "opcional",
+            "meaningByLocale": {
+              "ru": "необязательный, по желанию. Есть возможность выбора. 🔊 *opcional*",
+              "uk": "необов'язковий, за бажанням. Є можливість вибору. 🔊 *opcional*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "opcional",
+          "definitionByLocale": {
+            "ru": "необязательный, по желанию. Есть возможность выбора. 🔊 *opcional*",
+            "uk": "необов'язковий, за бажанням. Є можливість вибору. 🔊 *opcional*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i04:r1",
+          "text": "необязательный"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i04:r2",
+          "text": "бесплатный"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i04:audio",
+          "transcript": "opcional"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i04:r1",
+            "targetText": "необязательный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i04:r2",
+            "targetText": "бесплатный",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это gratis; opcional не означает отсутствие платы.",
+              "uk": "Це gratis; opcional не означає відсутність плати."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — la cuota",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — la cuota",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i05:audio",
+          "transcript": "la cuota"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i05:r1",
+            "targetText": "la cuota",
+            "meaningByLocale": {
+              "ru": "взнос, плата. Женский род в испанском. 🔊 *la cuota*",
+              "uk": "внесок, плата. Жіночий рід в іспанській. 🔊 *la cuota*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "la cuota",
+          "definitionByLocale": {
+            "ru": "взнос, плата. Женский род в испанском. 🔊 *la cuota*",
+            "uk": "внесок, плата. Жіночий рід в іспанській. 🔊 *la cuota*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i06:r1",
+          "text": "взнос"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i06:r2",
+          "text": "лекция"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i06:audio",
+          "transcript": "la cuota"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i06:r1",
+            "targetText": "взнос",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i06:r2",
+            "targetText": "лекция",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это la charla; здесь звучит la cuota.",
+              "uk": "Це la charla; тут звучить la cuota."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите о предварительной записи «Это обязательно?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i07:r1",
+          "text": "Плитки: obligatorio"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i07:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i07:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите о предварительной записи «Это обязательно?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es obligatorio?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите о предварительной записи «Это обязательно?»",
+          "uk": "Складіть фразу — запитайте про попередній запис «Це обов'язково?»"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "obligatorio"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите о предварительной записи «Это обязательно?»",
+            "feedbackByLocale": {
+              "ru": "спрашиваете о действии, не о себе.",
+              "uk": "запитуєте про дію, не про себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — уточните про взнос, la cuota: «Он не обязательный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i08:r1",
+          "text": "obligatoria"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i08:r2",
+          "text": "obligatorio"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i08:r3",
+          "text": "gratis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — уточните про взнос, la cuota: «Он не обязательный»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — уточните про взнос, la cuota: «Он не обязательный»",
+          "uk": "Вставте слово — уточніть про внесок, la cuota: «Він не обов'язковий»"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-24:i08:r1",
+            "text": "obligatoria"
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i08:r2",
+            "text": "obligatorio"
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i08:r3",
+            "text": "gratis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — уточните про взнос, la cuota: «Он не обязательный»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — уточните про взнос, la cuota: «Он не обязательный»",
+            "feedbackByLocale": {
+              "ru": "Cuota женского рода, нужна obligatoria.",
+              "uk": "Cuota жіночого роду, потрібне obligatoria."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — уточните про взнос, la cuota: «Он не обязательный»",
+            "feedbackByLocale": {
+              "ru": "Так получится «Он не бесплатный», а нужно отрицать обязательность.",
+              "uk": "Так вийде «Він не безкоштовний», а потрібно заперечити обов'язковість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — уточните об обязательности записи",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — уточните об обязательности записи",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i09:audio",
+          "transcript": "¿Es obligatorio?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es obligatorio?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i10:r1",
+          "text": "Плитки: opcional"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i10:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i10:audio",
+          "transcript": "Es opcional."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es opcional.",
+        "orderedTokens": [
+          "Es",
+          "opcional"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи нет отрицания.",
+              "uk": "у записі немає заперечення."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i11:r1",
+          "text": "Это не срочно"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i11:r2",
+          "text": "Это не обязательно"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i11:r3",
+          "text": "Это не бесплатно"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-24:i11:audio",
+          "transcript": "No es urgente."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-24:i11:r1",
+            "targetText": "Это не срочно",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i11:r2",
+            "targetText": "Это не обязательно",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i11:r3",
+            "targetText": "Это не бесплатно",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит urgente, а не obligatorio.",
+              "uk": "Звучить urgente, а не obligatorio."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-24:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит urgente, а не gratis.",
+              "uk": "Звучить urgente, а не gratis."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг собирается оплатить дополнительный набор; напомните о взносе, la cuota: «Он не обязательный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-24:i12:r1",
+          "text": "Плитки: obligatoria"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-24:i12:r4",
+          "text": "obligatorio."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг собирается оплатить дополнительный набор; напомните о взносе, la cuota: «Он не обязательный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es obligatoria.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг собирается оплатить дополнительный набор; напомните о взносе, la cuota: «Он не обязательный»",
+          "uk": "Складіть фразу — друг збирається оплатити додатковий набір; нагадайте про внесок, la cuota: «Він не обов'язковий»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "obligatoria"
+        ],
+        "authoredDistractorTokens": [
+          "obligatorio"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-24:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг собирается оплатить дополнительный набор; напомните о взносе, la cuota: «Он не обязательный»",
+            "feedbackByLocale": {
+              "ru": "окончание согласуем с la cuota.",
+              "uk": "закінчення узгоджуємо з la cuota."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5de164cce188ae2f78c012d363b0964ab3a68da98f94c7ad90b205670bac79a6"
+}

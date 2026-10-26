@@ -1,0 +1,632 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-23",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — interesante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — interesante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i01:audio",
+          "transcript": "interesante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-23:i01:r1",
+            "targetText": "interesante",
+            "meaningByLocale": {
+              "ru": "интересный, интересная. Окончание e сохраняется. 🔊 *interesante*",
+              "uk": "цікавий, цікава. Закінчення e зберігається. 🔊 *interesante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "interesante",
+          "definitionByLocale": {
+            "ru": "интересный, интересная. Окончание e сохраняется. 🔊 *interesante*",
+            "uk": "цікавий, цікава. Закінчення e зберігається. 🔊 *interesante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-23:i02:r1",
+          "text": "интересный"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i02:r2",
+          "text": "важный"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i02:audio",
+          "transcript": "interesante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-23:i02:r1",
+            "targetText": "интересный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-23:i02:r2",
+            "targetText": "важный",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это importante; здесь звучит interesante.",
+              "uk": "Це importante; тут звучить interesante."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — оцените предложение",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i03:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — оцените предложение",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i03:audio",
+          "transcript": "Es interesante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es interesante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — la charla",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — la charla",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i04:audio",
+          "transcript": "la charla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-23:i04:r1",
+            "targetText": "la charla",
+            "meaningByLocale": {
+              "ru": "беседа, небольшая публичная лекция. Здесь встреча в библиотеке. Слово женского рода. 🔊 *la charla*",
+              "uk": "бесіда, невелика публічна лекція. Тут зустріч у бібліотеці. Слово жіночого роду. 🔊 *la charla*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "la charla",
+          "definitionByLocale": {
+            "ru": "беседа, небольшая публичная лекция. Здесь встреча в библиотеке. Слово женского рода. 🔊 *la charla*",
+            "uk": "бесіда, невелика публічна лекція. Тут зустріч у бібліотеці. Слово жіночого роду. 🔊 *la charla*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-23:i05:r1",
+          "text": "лекция"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i05:r2",
+          "text": "книга"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i05:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i05:audio",
+          "transcript": "la charla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-23:i05:r1",
+            "targetText": "лекция",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-23:i05:r2",
+            "targetText": "книга",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-23:i05:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это el libro; здесь звучит la charla.",
+              "uk": "Це el libro; тут звучить la charla."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — aburrido",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — aburrido",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i06:audio",
+          "transcript": "aburrido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-23:i06:r1",
+            "targetText": "aburrido",
+            "meaningByLocale": {
+              "ru": "скучный. Для la charla женская форма: aburrida. 🔊 *aburrido*",
+              "uk": "нудний. Для la charla жіноча форма: aburrida. 🔊 *aburrido*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "aburrido",
+          "definitionByLocale": {
+            "ru": "скучный. Для la charla женская форма: aburrida. 🔊 *aburrido*",
+            "uk": "нудний. Для la charla жіноча форма: aburrida. 🔊 *aburrido*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-23:i07:r1",
+          "text": "aburrida"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i07:r2",
+          "text": "aburrido"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i07:audio",
+          "transcript": "aburrida"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-23:i07:r1",
+            "targetText": "aburrida",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-23:i07:r2",
+            "targetText": "aburrido",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит a.",
+              "uk": "Наприкінці звучить a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — опишите скучную лекцию",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — опишите скучную лекцию",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i08:audio",
+          "transcript": "Es aburrida."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es aburrida.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите о лекции «Она интересная?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-23:i09:r1",
+          "text": "Плитки: interesante"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i09:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i09:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите о лекции «Она интересная?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es interesante?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите о лекции «Она интересная?»",
+          "uk": "Складіть фразу — запитайте про лекцію «Вона цікава?»"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "interesante"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-23:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите о лекции «Она интересная?»",
+            "feedbackByLocale": {
+              "ru": "спрашиваете о лекции, не о собеседнике.",
+              "uk": "запитуєте про лекцію, не про співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите мнение друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите мнение друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i10:audio",
+          "transcript": "¿Es interesante?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es interesante?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите, что лекция интересная",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите, что лекция интересная",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i11:audio",
+          "transcript": "Sí, es interesante."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, es interesante.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — возразите о лекции, la charla: «Она не скучная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-23:i12:r1",
+          "text": "Плитки: aburrida"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-23:i12:r4",
+          "text": "aburrido."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — возразите о лекции, la charla: «Она не скучная»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es aburrida.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — возразите о лекции, la charla: «Она не скучная»",
+          "uk": "Складіть фразу — заперечте про лекцію, la charla: «Вона не нудна»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "aburrida"
+        ],
+        "authoredDistractorTokens": [
+          "aburrido"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-23:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — возразите о лекции, la charla: «Она не скучная»",
+            "feedbackByLocale": {
+              "ru": "la charla женского рода.",
+              "uk": "la charla жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — возразите, что лекция не скучная",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — возразите, что лекция не скучная",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i13:audio",
+          "transcript": "No es aburrida."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es aburrida.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — уточните, нужно ли платить за вход",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-23:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — уточните, нужно ли платить за вход",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-23:i14:audio",
+          "transcript": "¿Es gratis?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es gratis?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "576b03723d0af4e7c637be9ec2a110034767c95ecfa25f9c110996a424beaff4"
+}

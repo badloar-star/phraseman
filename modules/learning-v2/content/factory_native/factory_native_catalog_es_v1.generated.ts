@@ -161,4 +161,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить значимость и срочность дела с es + importante/urgente.","uk":"оцінити значущість і терміновість справи з es + importante/urgente."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 23,
+    sourceFingerprint: "a545e62ab3e9aa5e6f609185c2fe5209e88bf95b079f83422330ecea482b17a5",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"вслух оценить лекцию и задать вопрос о том, интересна ли она.","uk":"уголос оцінити лекцію й запитати, чи вона цікава."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 24,
+    sourceFingerprint: "7a3b38686ef955c856c9ffaefa1c805487ee6cc8d87117921be8679e38930ecc",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать вопрос или утверждение с es, отрицание и окончание по смыслу условия.","uk":"обрати запитання або твердження з es, заперечення й закінчення за змістом умови."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-24",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-24:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-24:intro1:r2": {
+          "ru": "Это утверждение, а вы пока уточняете.",
+          "uk": "Це твердження, а ви поки уточнюєте."
+        },
+        "es:lesson-01:session-24:intro1:r3": {
+          "ru": "Это вопрос о срочности, не об обязательности.",
+          "uk": "Це запитання про терміновість, не про обов'язковість."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-24:intro2:r2": {
+          "ru": "Это означает, что оплаты нет, а здесь сам платный набор выбирают по желанию.",
+          "uk": "Це означає, що оплати немає, а тут сам платний набір обирають за бажанням."
+        },
+        "es:lesson-01:session-24:intro2:r3": {
+          "ru": "No отрицает возможность выбора.",
+          "uk": "No заперечує можливість вибору."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-24:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-24:intro3:r2": {
+          "ru": "В задании описываем la cuota, поэтому нужна obligatoria.",
+          "uk": "У завданні описуємо la cuota, тому потрібне obligatoria."
+        },
+        "es:lesson-01:session-24:intro3:r3": {
+          "ru": "Без no вы утверждаете обязательность.",
+          "uk": "Без no ви стверджуєте обов'язковість."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "05515465406713137c0231691f770405eef3f618bc161aeabaa983d3f2195953"
+}

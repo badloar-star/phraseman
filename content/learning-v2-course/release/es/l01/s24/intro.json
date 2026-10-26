@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать вопрос или утверждение с es, отрицание и окончание по смыслу условия.",
+    "uk": "обрати запитання або твердження з es, заперечення й закінчення за змістом умови."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нужно ли обязательно записываться?",
+        "uk": "Чи потрібно обов'язково записуватися?"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает просто прийти без записи. Спросите о предварительной регистрации: `¿Es obligatorio?` — «Это обязательно?» `Obligatorio` — «обязательный»: так требуют правила, а не просто советует знакомый. Соберите вопрос `es` + `obligatorio`. Здесь оцениваем необходимость действия в целом, поэтому используем окончание o.",
+        "uk": "Друг пропонує просто прийти без запису. Запитайте про попередню реєстрацію: `¿Es obligatorio?` — «Це обов'язково?» `Obligatorio` — «обов'язковий»: так вимагають правила, а не просто радить знайомий. Складіть запитання `es` + `obligatorio`. Тут оцінюємо необхідність дії загалом, тому використовуємо закінчення o."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о регистрации: «Это обязательно?»",
+          "uk": "Запитайте про реєстрацію: «Це обов'язково?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-24:intro1:r1",
+              "text": "¿Es obligatorio?"
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro1:r2",
+              "text": "Es obligatorio."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro1:r3",
+              "text": "¿Es urgente?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-24:intro1:r1",
+              "text": "¿Es obligatorio?"
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro1:r2",
+              "text": "Es obligatorio."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro1:r3",
+              "text": "¿Es urgente?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о регистрации: «Это обязательно?»",
+          "uk": "Запитайте про реєстрацію: «Це обов'язково?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доплата по желанию",
+        "uk": "Доплата за бажанням"
+      },
+      "bodyByLocale": {
+        "ru": "В условиях указан отдельный взнос за дополнительный набор материалов. `La cuota` — «взнос, плата». Он не входит в обязательные условия. Скажите о нём: `Es opcional` — «Он необязательный, по желанию». `Opcional` означает, что можно выбрать. Окончание этого слова не меняется по роду: для `la cuota` тоже `opcional`.",
+        "uk": "В умовах зазначений окремий внесок за додатковий набір матеріалів. `La cuota` — «внесок, плата». Він не входить до обов'язкових умов. Скажіть про нього: `Es opcional` — «Він необов'язковий, за бажанням». `Opcional` означає, що можна обрати. Закінчення цього слова не змінюється за родом: для `la cuota` теж `opcional`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о взносе, используя opcional: «Он по желанию».",
+          "uk": "Скажіть про внесок, використовуючи opcional: «Він за бажанням»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-24:intro2:r1",
+              "text": "Es opcional."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro2:r2",
+              "text": "Es gratis."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro2:r3",
+              "text": "No es opcional."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-24:intro2:r1",
+              "text": "Es opcional."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro2:r2",
+              "text": "Es gratis."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro2:r3",
+              "text": "No es opcional."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о взносе, используя opcional: «Он по желанию».",
+          "uk": "Скажіть про внесок, використовуючи opcional: «Він за бажанням»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Скажем через отрицание",
+        "uk": "Скажемо через заперечення"
+      },
+      "bodyByLocale": {
+        "ru": "Друг решил, что взнос всё равно придётся заплатить. Уточните о `la cuota`: `No es obligatoria` — «Он не обязательный». `Cuota` женского рода, поэтому `obligatorio` меняет o на a. Соберите `no` + `es` + `obligatoria`. Русское слово «взнос» мужского рода не меняет испанское согласование.",
+        "uk": "Друг вирішив, що внесок усе одно доведеться сплатити. Уточніть про `la cuota`: `No es obligatoria` — «Він не обов'язковий». `Cuota` жіночого роду, тому `obligatorio` змінює o на a. Складіть `no` + `es` + `obligatoria`. Українське слово «внесок» чоловічого роду не змінює іспанського узгодження."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Уточните про взнос, la cuota: «Он не обязательный».",
+          "uk": "Уточніть про внесок, la cuota: «Він не обов'язковий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-24:intro3:r1",
+              "text": "No es obligatoria."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro3:r2",
+              "text": "No es obligatorio."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro3:r3",
+              "text": "Es obligatoria."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-24:intro3:r1",
+              "text": "No es obligatoria."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro3:r2",
+              "text": "No es obligatorio."
+            },
+            {
+              "responseId": "es:lesson-01:session-24:intro3:r3",
+              "text": "Es obligatoria."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните про взнос, la cuota: «Он не обязательный».",
+          "uk": "Уточніть про внесок, la cuota: «Він не обов'язковий»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dcac8aeb716208fe292dc5e9eb18d577284b1d9f98a3f94a60b909f0ff8ebda6"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-24:i01",
+    "correctText": "obligatorio",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i02",
+    "correctText": "обязательный",
+    "correctResponseId": "es:lesson-01:session-24:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i03",
+    "correctText": "opcional",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i04",
+    "correctText": "необязательный",
+    "correctResponseId": "es:lesson-01:session-24:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i05",
+    "correctText": "la cuota",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i06",
+    "correctText": "взнос",
+    "correctResponseId": "es:lesson-01:session-24:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i07",
+    "correctText": "¿Es obligatorio?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i08",
+    "correctText": "obligatoria",
+    "correctResponseId": "es:lesson-01:session-24:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i09",
+    "correctText": "¿Es obligatorio?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i10",
+    "correctText": "Es opcional.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i11",
+    "correctText": "Это не срочно",
+    "correctResponseId": "es:lesson-01:session-24:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-24:i12",
+    "correctText": "No es obligatoria.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-23:i01",
+    "correctText": "interesante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i02",
+    "correctText": "интересный",
+    "correctResponseId": "es:lesson-01:session-23:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i03",
+    "correctText": "Es interesante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i04",
+    "correctText": "la charla",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i05",
+    "correctText": "лекция",
+    "correctResponseId": "es:lesson-01:session-23:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i06",
+    "correctText": "aburrido",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i07",
+    "correctText": "aburrida",
+    "correctResponseId": "es:lesson-01:session-23:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i08",
+    "correctText": "Es aburrida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i09",
+    "correctText": "¿Es interesante?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i10",
+    "correctText": "¿Es interesante?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i11",
+    "correctText": "Sí, es interesante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i12",
+    "correctText": "No es aburrida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i13",
+    "correctText": "No es aburrida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-23:i14",
+    "correctText": "¿Es gratis?",
+    "correctResponseId": null
+  }
+]

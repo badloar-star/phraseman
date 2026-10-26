@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-23:intro1:r2": {
+          "ru": "Так вы описываете себя, не предложение.",
+          "uk": "Так ви описуєте себе, не пропозицію."
+        },
+        "es:lesson-01:session-23:intro1:r3": {
+          "ru": "Это «Это важно», а нужно выразить интерес.",
+          "uk": "Це «Це важливо», а потрібно висловити інтерес."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-23:intro2:r2": {
+          "ru": "Здесь описываем la charla, поэтому окончание a.",
+          "uk": "Тут описуємо la charla, тому закінчення a."
+        },
+        "es:lesson-01:session-23:intro2:r3": {
+          "ru": "Это противоположная оценка: она интересная.",
+          "uk": "Це протилежна оцінка: вона цікава."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-23:intro3:r2": {
+          "ru": "Это утверждение, а вы хотите узнать мнение друга.",
+          "uk": "Це твердження, а ви хочете дізнатися думку друга."
+        },
+        "es:lesson-01:session-23:intro3:r3": {
+          "ru": "Так вы спрашиваете о собеседнике, не о лекции.",
+          "uk": "Так ви запитуєте про співрозмовника, не про лекцію."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e6800c31677b4aab608340c6a38524d84a8552b4a953229fd29250930ccc5d92"
+}

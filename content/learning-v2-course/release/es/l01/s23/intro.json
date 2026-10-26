@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "вслух оценить лекцию и задать вопрос о том, интересна ли она.",
+    "uk": "уголос оцінити лекцію й запитати, чи вона цікава."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это интересно",
+        "uk": "Це цікаво"
+      },
+      "bodyByLocale": {
+        "ru": "Описание встречи привлекло ваше внимание. Скажите вслух: `Es interesante` — «Это интересно». `Interesante` — «интересный». Соберите `es` + `interesante`; ударение в новом слове на `san`: in-te-re-**san**-te. Окончание e не меняется по роду. Произнесите фразу целиком вслед за образцом.",
+        "uk": "Опис зустрічі привернув вашу увагу. Скажіть уголос: `Es interesante` — «Це цікаво». `Interesante` — «цікавий». Складіть `es` + `interesante`; наголос у новому слові на `san`: in-te-re-**san**-te. Закінчення e не змінюється за родом. Вимовте фразу цілком за зразком."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Оцените предложение: «Это интересно».",
+          "uk": "Оцініть пропозицію: «Це цікаво»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-23:intro1:r1",
+              "text": "Es interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro1:r2",
+              "text": "Soy interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro1:r3",
+              "text": "Es importante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-23:intro1:r1",
+              "text": "Es interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro1:r2",
+              "text": "Soy interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro1:r3",
+              "text": "Es importante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените предложение: «Это интересно».",
+          "uk": "Оцініть пропозицію: «Це цікаво»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Лекция оказалась скучной",
+        "uk": "Лекція виявилася нудною"
+      },
+      "bodyByLocale": {
+        "ru": "Вы послушали запись прошлой встречи, и она показалась вам скучной. Небольшая публичная лекция или беседа здесь — `la charla`. Скажите о ней: `Es aburrida` — «Она скучная». `Aburrido` — «скучный», а для `la charla` нужна форма `aburrida`. Сборка: `es` + `aburrida`. Вы оцениваете лекцию, а не говорите, что вам сейчас скучно.",
+        "uk": "Ви послухали запис минулої зустрічі, і вона здалася вам нудною. Невелика публічна лекція або бесіда тут — `la charla`. Скажіть про неї: `Es aburrida` — «Вона нудна». `Aburrido` — «нудний», а для `la charla` потрібна форма `aburrida`. Побудова: `es` + `aburrida`. Ви оцінюєте лекцію, а не говорите, що вам зараз нудно."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите лекцию, la charla: «Она скучная».",
+          "uk": "Опишіть лекцію, la charla: «Вона нудна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-23:intro2:r1",
+              "text": "Es aburrida."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro2:r2",
+              "text": "Es aburrido."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro2:r3",
+              "text": "Es interesante."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-23:intro2:r1",
+              "text": "Es aburrida."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro2:r2",
+              "text": "Es aburrido."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro2:r3",
+              "text": "Es interesante."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите лекцию, la charla: «Она скучная».",
+          "uk": "Опишіть лекцію, la charla: «Вона нудна»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сначала спросим друга",
+        "uk": "Спочатку запитаємо друга"
+      },
+      "bodyByLocale": {
+        "ru": "У другой лекции короткое описание. Друг уже слышал её. Спросите: `¿Es interesante?` — «Она интересная?» Порядок слов сохраняется: `es` + `interesante`. Меняется интонация, а на письме добавляются вопросительные знаки. Окончание e остаётся тем же и в вопросе о `la charla`. Произнесите только вопрос, не добавляя за друга ответ.",
+        "uk": "В іншої лекції короткий опис. Друг уже слухав її. Запитайте: `¿Es interesante?` — «Вона цікава?» Порядок слів зберігається: `es` + `interesante`. Змінюється інтонація, а на письмі додаються знаки питання. Закінчення e залишається тим самим і в запитанні про `la charla`. Вимовте лише запитання, не додаючи за друга відповідь."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите о другой лекции: «Она интересная?»",
+          "uk": "Запитайте про іншу лекцію: «Вона цікава?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-23:intro3:r1",
+              "text": "¿Es interesante?"
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro3:r2",
+              "text": "Es interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro3:r3",
+              "text": "¿Eres interesante?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-23:intro3:r1",
+              "text": "¿Es interesante?"
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro3:r2",
+              "text": "Es interesante."
+            },
+            {
+              "responseId": "es:lesson-01:session-23:intro3:r3",
+              "text": "¿Eres interesante?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о другой лекции: «Она интересная?»",
+          "uk": "Запитайте про іншу лекцію: «Вона цікава?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a4336026c18d7cc057236b9d0dd0d2052545a51ac2616ec93ed4ac796e7b7cbe"
+}

@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { test } from 'node:test';
+import ts from 'typescript';
 
 // зачем: игровая часть Шпиля (пакеты B, D, E) написана «сейчас», но включается только
 // владельцем. Сторож проверяет ИСХОДНИКИ на главные обещания:
@@ -12,6 +13,53 @@ import { test } from 'node:test';
 //   5) логи [SPIRE] и никаких немых catch; дешёвый Firestore (без подписок и листингов).
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+
+/**
+ * Сетевой вызов `name(gate, …)` закрыт воротами: в той же функции ДО него стоит верхнеуровневый `if (… !gate …) return`,
+ * и до этого `if` в функции нет ни одного вызова с аргументом `gate`.
+ * зачем (координатор 26.10): прежняя проверка мерила «не дальше 2500 знаков после if (!gate» — её ломала любая строка комментария
+ * (запас был 22 знака). Теперь по дереву TypeScript — по смыслу и не слабее: перенос вызова выше ворот или снятие return — красный.
+ */
+export function gateGuardsCall(source, name) {
+  const sf = ts.createSourceFile('x.tsx', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  const calls = [];
+  const visit = (node) => {
+    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression) && node.expression.text === name
+      && node.arguments.length > 0 && ts.isIdentifier(node.arguments[0]) && node.arguments[0].text === 'gate') calls.push(node);
+    ts.forEachChild(node, visit);
+  };
+  visit(sf);
+  if (calls.length === 0) return { ok: false, why: `${name}(gate, …) не найден` };
+  const isFn = (n) => ts.isArrowFunction(n) || ts.isFunctionExpression(n) || ts.isFunctionDeclaration(n) || ts.isMethodDeclaration(n);
+  const negatesGate = (expr) => {
+    let hit = false;
+    const walk = (n) => {
+      if (ts.isPrefixUnaryExpression(n) && n.operator === ts.SyntaxKind.ExclamationToken && ts.isIdentifier(n.operand) && n.operand.text === 'gate') hit = true;
+      ts.forEachChild(n, walk);
+    };
+    walk(expr);
+    return hit;
+  };
+  const returns = (st) => ts.isReturnStatement(st) || (ts.isBlock(st) && st.statements.some((x) => ts.isReturnStatement(x)));
+  for (const call of calls) {
+    let fn = call.parent;
+    while (fn && !isFn(fn)) fn = fn.parent;
+    if (!fn || !fn.body || !ts.isBlock(fn.body)) return { ok: false, why: `${name}: вызов вне функции с телом-блоком` };
+    const guard = fn.body.statements.find((st) => ts.isIfStatement(st) && negatesGate(st.expression) && returns(st.thenStatement));
+    if (!guard) return { ok: false, why: `${name}: в функции нет верхнеуровневого if (!gate …) return` };
+    if (call.getStart(sf) < guard.getEnd()) return { ok: false, why: `${name}: вызов стоит до ворот или внутри их проверки` };
+    let early = null;
+    const scan = (n) => {
+      if (early) return;
+      if (n.getStart(sf) >= guard.getStart(sf)) return;
+      if (ts.isCallExpression(n) && n.arguments.some((a) => ts.isIdentifier(a) && a.text === 'gate')) early = n;
+      ts.forEachChild(n, scan);
+    };
+    ts.forEachChild(fn.body, scan);
+    if (early) return { ok: false, why: `${name}: до ворот уже есть сетевой вызов ${early.getText(sf).slice(0, 40)}` };
+  }
+  return { ok: true, why: 'ok' };
+}
 const dirFiles = (dir) => readdirSync(new URL(`../${dir}/`, import.meta.url))
   .filter((n) => /\.(ts|tsx)$/.test(n))
   .map((n) => [`${dir}/${n}`, read(`${dir}/${n}`)]);
@@ -71,6 +119,23 @@ test('gate: every network client takes the gate first and re-checks it', () => {
   }
 });
 
+test('сторож ворот сам ловит нарушения: вызов выше ворот, без return, без ворот, сеть до ворот — красный', () => {
+  const good = 'function f(){ if (!gate || !ids) return; void spireEnsureWeekPack(gate, 1); }';
+  assert.equal(gateGuardsCall(good, 'spireEnsureWeekPack').ok, true);
+  const above = 'function f(){ void spireEnsureWeekPack(gate, 1); if (!gate) return; }';
+  assert.equal(gateGuardsCall(above, 'spireEnsureWeekPack').ok, false);
+  const noReturn = 'function f(){ if (!gate) { log(); } void spireEnsureWeekPack(gate, 1); }';
+  assert.equal(gateGuardsCall(noReturn, 'spireEnsureWeekPack').ok, false);
+  const noGuard = 'function f(){ void spireEnsureWeekPack(gate, 1); }';
+  assert.equal(gateGuardsCall(noGuard, 'spireEnsureWeekPack').ok, false);
+  const netBefore = 'function f(){ void spireLoadFriendChips(gate, 1); if (!gate) return; void spireEnsureWeekPack(gate, 1); }';
+  assert.equal(gateGuardsCall(netBefore, 'spireEnsureWeekPack').ok, false);
+  const otherFn = 'function g(){ if (!gate) return; } function f(){ void spireEnsureWeekPack(gate, 1); }';
+  assert.equal(gateGuardsCall(otherFn, 'spireEnsureWeekPack').ok, false);
+  const longComment = `function f(){ if (!gate) return; ${'// комментарий\n'.repeat(400)} void spireEnsureWeekPack(gate, 1); }`;
+  assert.equal(gateGuardsCall(longComment, 'spireEnsureWeekPack').ok, true);
+});
+
 test('game hook: no network while the gate is closed', () => {
   assert.ok(game.includes("spireOpenLiveGate(config, 'home')"), 'gate opened only through the check');
   assert.ok(game.includes('unlocked && lang ? spireOpenLiveGate'), 'gate requires the unlocked screen');
@@ -79,11 +144,9 @@ test('game hook: no network while the gate is closed', () => {
   const roomSync = read('app/spire/use_spire_room_sync.ts');
   assert.ok(game.includes('useSpireRoomSync({ gate, ids, lang, setRoomLoad });'), 'room sync gets the same gate');
   assert.ok(roomSync.indexOf('if (!gate || !ids || !lang) {') > -1 && roomSync.indexOf('if (!gate || !ids || !lang) {') < roomSync.indexOf('spireSyncRoom(gate'), 'room sync is behind the gate');
-  for (const marker of ['spireLoadFriendChips(gate', 'spireLoadWeekResult(gate', 'spireEnsureWeekPack(gate']) {
-    const at = game.indexOf(marker);
-    assert.ok(at > -1, `${marker} is used`);
-    const guard = game.lastIndexOf('if (!gate', at);
-    assert.ok(guard > -1 && at - guard < 2500, `${marker} is behind an "if (!gate" early return`);
+  for (const name of ['spireLoadFriendChips', 'spireLoadWeekResult', 'spireEnsureWeekPack']) {
+    const r = gateGuardsCall(game, name);
+    assert.ok(r.ok, `${name} is behind an "if (!gate …) return" in the same function: ${r.why}`);
   }
   const flushAt = game.indexOf('spireFlushNow(');
   assert.ok(flushAt > -1 && game.lastIndexOf('if (!gate || !ids || !lang) return;', flushAt) > -1, 'queue flush is behind the gate');

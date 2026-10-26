@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-44:i01",
+    "correctText": "recipe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i02",
+    "correctText": "I know where the recipe is.",
+    "correctResponseId": "en:lesson-31:session-44:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i03",
+    "correctText": "make",
+    "correctResponseId": "en:lesson-31:session-44:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i04",
+    "correctText": "soup",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i05",
+    "correctText": "I am reading the recipe to make soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i06",
+    "correctText": "spoon",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i07",
+    "correctText": "I need a spoon to taste the soup.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-44:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i09",
+    "correctText": "I am reading aloud so that Anna can hear me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i10",
+    "correctText": "I know that the soup is hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-44:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i12",
+    "correctText": "salt",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i13",
+    "correctText": "Could you tell me where the salt is?",
+    "correctResponseId": "en:lesson-31:session-44:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i14",
+    "correctText": "She said the spoons were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i15",
+    "correctText": "I am waiting because the soup is hot.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i16",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-44:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i17",
+    "correctText": "Anna made soup although she was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i18",
+    "correctText": "I am reading aloud so that Anna can hear me.",
+    "correctResponseId": "en:lesson-31:session-44:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i19",
+    "correctText": "I am reading aloud so that Anna can hear me.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-44:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-44:i21",
+    "correctText": "I understand why Anna is waiting.",
+    "correctResponseId": null
+  }
+]

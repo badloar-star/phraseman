@@ -1,0 +1,1060 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — key",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — key",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i01:audio",
+          "transcript": "key"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-42:i01:r1",
+            "targetText": "key",
+            "meaningByLocale": {
+              "ru": "Ключ. Повторение знакомого слова.",
+              "uk": "Ключ. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "key",
+          "definitionByLocale": {
+            "ru": "Ключ. Повторение знакомого слова.",
+            "uk": "Ключ. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i02:r1",
+          "text": "I know where the key is."
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i02:r2",
+          "text": "I know where the card is."
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i02:r3",
+          "text": "I know where the phone is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i02:audio",
+          "transcript": "I know where the key is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-42:i02:r1",
+            "targetText": "I know where the key is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i02:r2",
+            "targetText": "I know where the card is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i02:r3",
+            "targetText": "I know where the phone is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the key is.",
+              "uk": "У записі звучить I know where the key is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the key is.",
+              "uk": "У записі звучить I know where the key is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы бережёте ключ. Вставьте начальную форму после to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i03:r1",
+          "text": "keep"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i03:r2",
+          "text": "kept"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i03:r3",
+          "text": "keeping"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы бережёте ключ. Вставьте начальную форму после to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы бережёте ключ. Вставьте начальную форму после to.",
+          "uk": "Ви бережете ключ. Вставте початкову форму після to."
+        },
+        "gappedTargetPhrase": "I put it here to ___ it safe.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-42:i03:r1",
+            "text": "keep"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i03:r2",
+            "text": "kept"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i03:r3",
+            "text": "keeping"
+          }
+        ],
+        "testedDimension": "Вы бережёте ключ. Вставьте начальную форму после to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы бережёте ключ. Вставьте начальную форму после to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма keep.",
+              "uk": "Після to потрібна форма keep."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы бережёте ключ. Вставьте начальную форму после to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to keep.",
+              "uk": "Мету виражаємо через to keep."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — box",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — box",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i04:audio",
+          "transcript": "box"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-42:i04:r1",
+            "targetText": "box",
+            "meaningByLocale": {
+              "ru": "Коробка. Повторение знакомого слова.",
+              "uk": "Коробка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "box",
+          "definitionByLocale": {
+            "ru": "Коробка. Повторение знакомого слова.",
+            "uk": "Коробка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы положили ключ в коробку, чтобы сохранить его. Начните с I put the key in the box.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы положили ключ в коробку, чтобы сохранить его. Начните с I put the key in the box.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I put the key in the box to keep it safe.",
+        "localizedMeaning": {
+          "ru": "Вы положили ключ в коробку, чтобы сохранить его. Начните с I put the key in the box.",
+          "uk": "Ви поклали ключ у коробку, щоб зберегти його. Почніть з I put the key in the box."
+        },
+        "orderedTokens": [
+          "I",
+          "put",
+          "the",
+          "key",
+          "in",
+          "the",
+          "box",
+          "to",
+          "keep",
+          "it",
+          "safe"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — note",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — note",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i06:audio",
+          "transcript": "note"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-42:i06:r1",
+            "targetText": "note",
+            "meaningByLocale": {
+              "ru": "Записка. Повторение знакомого слова.",
+              "uk": "Записка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "note",
+          "definitionByLocale": {
+            "ru": "Записка. Повторение знакомого слова.",
+            "uk": "Записка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен написал записку. Начните с записки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Бен написал записку. Начните с записки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i07:audio",
+          "transcript": "The note was written by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The note was written by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Бен сказал: «Ключ здесь». Перескажите со сдвигом is в прошлое, оставаясь в том же месте.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Бен сказал: «Ключ здесь». Перескажите со сдвигом is в прошлое, оставаясь в том же месте.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Ключ здесь». Перескажите со сдвигом is в прошлое, оставаясь в том же месте.",
+          "uk": "Учора Бен сказав: «Ключ тут». Перекажіть зі зсувом is у минуле, залишаючись у тому самому місці."
+        },
+        "gappedTargetPhrase": "He said the key ___ here.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-42:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Бен сказал: «Ключ здесь». Перескажите со сдвигом is в прошлое, оставаясь в том же месте.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Ключ здесь». Перескажите со сдвигом is в прошлое, оставаясь в том же месте.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера Бен сказал: «Ключ здесь». Перескажите со сдвигом is в прошлое, оставаясь в том же месте.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Записка нужна, чтобы Анна нашла ключ. Начните с I wrote a note.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Записка нужна, чтобы Анна нашла ключ. Начните с I wrote a note.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I wrote a note so that Anna could find the key.",
+        "localizedMeaning": {
+          "ru": "Записка нужна, чтобы Анна нашла ключ. Начните с I wrote a note.",
+          "uk": "Записка потрібна, щоб Анна знайшла ключ. Почніть з I wrote a note."
+        },
+        "orderedTokens": [
+          "I",
+          "wrote",
+          "a",
+          "note",
+          "so",
+          "that",
+          "Anna",
+          "could",
+          "find",
+          "the",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, где коробка. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, где коробка. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i10:audio",
+          "transcript": "I know where the box is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know where the box is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен написал записку. Выберите предлог перед его именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен написал записку. Выберите предлог перед его именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен написал записку. Выберите предлог перед его именем.",
+          "uk": "Бен написав записку. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The note was written ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-42:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен написал записку. Выберите предлог перед его именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен написал записку. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Автора вводим через by.",
+              "uk": "Автора вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен написал записку. Выберите предлог перед его именем.",
+            "feedbackByLocale": {
+              "ru": "Бен автор, а не адресат: by.",
+              "uk": "Бен автор, а не адресат: by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drawer",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drawer",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i12:audio",
+          "transcript": "drawer"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-42:i12:r1",
+            "targetText": "drawer",
+            "meaningByLocale": {
+              "ru": "Выдвижной ящик. Повторение знакомого слова.",
+              "uk": "Висувна шухляда. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drawer",
+          "definitionByLocale": {
+            "ru": "Выдвижной ящик. Повторение знакомого слова.",
+            "uk": "Висувна шухляда. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i13:r1",
+          "text": "I know that the key is in the drawer."
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i13:r2",
+          "text": "I know that the key is in the box."
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i13:r3",
+          "text": "I know that the key is in the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i13:audio",
+          "transcript": "I know that the key is in the drawer."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-42:i13:r1",
+            "targetText": "I know that the key is in the drawer.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i13:r2",
+            "targetText": "I know that the key is in the box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i13:r3",
+            "targetText": "I know that the key is in the bag.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the key is in the drawer.",
+              "uk": "У записі звучить I know that the key is in the drawer."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the key is in the drawer.",
+              "uk": "У записі звучить I know that the key is in the drawer."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Бен сказал: «Ящики закрыты». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Бен сказал: «Ящики закрыты». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i14:audio",
+          "transcript": "He said the drawers were closed."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the drawers were closed.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где записка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где записка.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the note is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где записка.",
+          "uk": "Ввічливо запитайте, де записка."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "note",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i16:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i16:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i16:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+          "uk": "Записка потрібна Анні для пошуку ключа. Виберіть сполуку перед Anna could find the key."
+        },
+        "gappedTargetPhrase": "I wrote a note ___ Anna could find the key.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-42:i16:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i16:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i16:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i16:r2",
+            "correct": false,
+            "testedDimension": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+            "feedbackByLocale": {
+              "ru": "Перед целой частью с Anna нужно so that.",
+              "uk": "Перед цілою частиною з Anna потрібне so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i16:r3",
+            "correct": false,
+            "testedDimension": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+            "feedbackByLocale": {
+              "ru": "Цель с отдельным участником вводим через so that.",
+              "uk": "Мету з окремим учасником вводимо через so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы написали записку, хотя были заняты. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Вы написали записку, хотя были заняты. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i17:audio",
+          "transcript": "I wrote a note although I was busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I wrote a note although I was busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: записка поможет Анне найти ключ или сумку?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i18:r1",
+          "text": "I wrote a note so that Anna could find the key."
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i18:r2",
+          "text": "I wrote a note so that Anna could find the bag."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i18:audioA",
+        "en:lesson-31:session-42:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: записка поможет Анне найти ключ или сумку?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I wrote a note so that Anna could find the key.",
+        "contrastB": "I wrote a note so that Anna could find the bag.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-42:i18:audioA",
+          "transcript": "I wrote a note so that Anna could find the key."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-42:i18:audioB",
+          "transcript": "I wrote a note so that Anna could find the bag."
+        },
+        "testedPhoneticContrast": "Послушайте: записка поможет Анне найти ключ или сумку?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: записка поможет Анне найти ключ или сумку?",
+            "feedbackByLocale": {
+              "ru": "Звучит key — ключ.",
+              "uk": "Звучить key — ключ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте цель записки. Начните с I wrote a note.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте цель записки. Начните с I wrote a note.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i19:audio",
+          "transcript": "I wrote a note so that Anna could find the key."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I wrote a note so that Anna could find the key.",
+        "orderedTokens": [
+          "I",
+          "wrote",
+          "a",
+          "note",
+          "so",
+          "that",
+          "Anna",
+          "could",
+          "find",
+          "the",
+          "key"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Коробка не открыта. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-42:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-42:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Коробка не открыта. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Коробка не открыта. Добавьте утвердительное уточнение.",
+          "uk": "Коробка не відкрита. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The box isn't open, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-42:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Коробка не открыта. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-42:i20:r2",
+            "correct": false,
+            "testedDimension": "Коробка не открыта. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Одна box требует is.",
+              "uk": "Одна box потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-42:i20:r3",
+            "correct": false,
+            "testedDimension": "Коробка не открыта. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-42:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Бен оставил записку. Скажите об этом.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-42:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Бен оставил записку. Скажите об этом.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-42:i21:audio",
+          "transcript": "I understand why Ben left a note."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Ben left a note.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "20b4c5f9932ae13a218998ee642f5619394304ea67957c2779624eaedd84bfce"
+}

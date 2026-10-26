@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-43",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять цель звонка и уточнять время внутри вежливого вопроса.",
+    "uk": "пояснювати мету дзвінка й уточнювати час усередині ввічливого запитання."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-43:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Позвонил, чтобы узнать время",
+        "uk": "Зателефонував, щоб дізнатися час"
+      },
+      "bodyByLocale": {
+        "ru": "Вы собираетесь к Анне на ужин и звоните узнать время: I called to ask about dinner — я позвонил, чтобы спросить об ужине. Соберите I called + to + ask about dinner. После to ставим начальную форму ask. И звоните, и спрашиваете вы.",
+        "uk": "Ви збираєтеся до Анни на вечерю й телефонуєте дізнатися час: I called to ask about dinner — я зателефонував, щоб запитати про вечерю. Складіть I called + to + ask about dinner. Після to ставимо початкову форму ask. І телефонуєте, і запитуєте ви."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-43:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-43:intro1:r1",
+              "text": "I called to ask about dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro1:r2",
+              "text": "I called to asked about dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro1:r3",
+              "text": "I called for ask about dinner."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-43:intro1:r1",
+              "text": "I called to ask about dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro1:r2",
+              "text": "I called to asked about dinner."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro1:r3",
+              "text": "I called for ask about dinner."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-43:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Записал, чтобы не забыть",
+        "uk": "Записав, щоб не забути"
+      },
+      "bodyByLocale": {
+        "ru": "Анна назвала время ужина. Вы записали его: I wrote it down so that I could remember it — я записал это, чтобы запомнить. Соберите I wrote it down + so that + I could remember it. После so that идёт целая часть: I + could + remember it. Здесь тот же человек пишет и запоминает; so that тоже подходит.",
+        "uk": "Анна назвала час вечері. Ви записали його: I wrote it down so that I could remember it — я записав це, щоб запам’ятати. Складіть I wrote it down + so that + I could remember it. Після so that іде ціла частина: I + could + remember it. Тут та сама людина пише й запам’ятовує; so that теж підходить."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-43:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-43:intro2:r1",
+              "text": "I wrote it down so that I could remember it."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro2:r2",
+              "text": "I wrote it down so that I could remembered it."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro2:r3",
+              "text": "I wrote it down so that could I remember it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-43:intro2:r1",
+              "text": "I wrote it down so that I could remember it."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro2:r2",
+              "text": "I wrote it down so that I could remembered it."
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro2:r3",
+              "text": "I wrote it down so that could I remember it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-43:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вежливо уточняем время",
+        "uk": "Ввічливо уточнюємо час"
+      },
+      "bodyByLocale": {
+        "ru": "Вы не расслышали, когда начинается ужин: Could you tell me what time dinner starts? — не могли бы вы сказать, во сколько начинается ужин? Соберите Could you tell me + what time + dinner starts. Внутри вопроса сохраняем порядок dinner starts: после what time не добавляем does.",
+        "uk": "Ви не розчули, коли починається вечеря: Could you tell me what time dinner starts? — чи не могли б ви сказати, о котрій починається вечеря? Складіть Could you tell me + what time + dinner starts. Усередині запитання зберігаємо порядок dinner starts: після what time не додаємо does."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-43:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-43:intro3:r1",
+              "text": "Could you tell me what time dinner starts?"
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro3:r2",
+              "text": "Could you tell me what time does dinner start?"
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro3:r3",
+              "text": "Could you tell me what time dinner start?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-43:intro3:r1",
+              "text": "Could you tell me what time dinner starts?"
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro3:r2",
+              "text": "Could you tell me what time does dinner start?"
+            },
+            {
+              "responseId": "en:lesson-31:session-43:intro3:r3",
+              "text": "Could you tell me what time dinner start?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3f6e3ed3cde0ee9df140f5bd1810899cfa69d904173795f45e6128d36bf357bb"
+}

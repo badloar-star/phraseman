@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-43:i01",
+    "correctText": "dinner",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i02",
+    "correctText": "I called to ask about dinner.",
+    "correctResponseId": "en:lesson-31:session-43:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i03",
+    "correctText": "ask",
+    "correctResponseId": "en:lesson-31:session-43:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i04",
+    "correctText": "time",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i05",
+    "correctText": "I know what time dinner starts.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i06",
+    "correctText": "pen",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i07",
+    "correctText": "I need a pen to write down the time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-43:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i09",
+    "correctText": "I wrote it down so that I could remember it.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i10",
+    "correctText": "Could you tell me what time dinner starts?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-43:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i12",
+    "correctText": "paper",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i13",
+    "correctText": "I wrote the time on paper.",
+    "correctResponseId": "en:lesson-31:session-43:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i14",
+    "correctText": "She said the plates were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i15",
+    "correctText": "I called because I forgot the time.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i16",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-43:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i17",
+    "correctText": "I called Anna although I was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i18",
+    "correctText": "I wrote it down so that I could remember it.",
+    "correctResponseId": "en:lesson-31:session-43:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i19",
+    "correctText": "I called to ask about dinner.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-43:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-43:i21",
+    "correctText": "I know that Anna is at home.",
+    "correctResponseId": null
+  }
+]

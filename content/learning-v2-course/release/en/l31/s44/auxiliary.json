@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-44",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-44:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-44:intro1:r2": {
+          "ru": "После to нужна форма make.",
+          "uk": "Після to потрібна форма make."
+        },
+        "en:lesson-31:session-44:intro1:r3": {
+          "ru": "Перед make для цели нужно to.",
+          "uk": "Перед make для мети потрібне to."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-44:intro2:r2": {
+          "ru": "Перед отдельным участником Anna нужна связка so that и целая часть.",
+          "uk": "Перед окремим учасником Anna потрібна сполука so that і ціла частина."
+        },
+        "en:lesson-31:session-44:intro2:r3": {
+          "ru": "После can нужна форма hear.",
+          "uk": "Після can потрібна форма hear."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-44:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-44:intro3:r2": {
+          "ru": "После that порядок the soup is hot.",
+          "uk": "Після that порядок the soup is hot."
+        },
+        "en:lesson-31:session-44:intro3:r3": {
+          "ru": "С soup нужна форма is.",
+          "uk": "З soup потрібна форма is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8ebb05e8f48730788e492588a35f2b5db7ba6219d9ca2f6b0254e26231e1309f"
+}

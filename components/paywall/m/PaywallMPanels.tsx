@@ -40,7 +40,7 @@ type ShellProps = Readonly<{
 const PanelFrame = memo(function PanelFrame(p: Readonly<{ bottomInset: number; children: React.ReactNode }>) {
   return (
     <ScrollView testID="paywall-m-panel" style={S.frame} contentContainerStyle={[S.shell, { paddingBottom: Math.max(p.bottomInset, 14) }]}
-      bounces={false} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+      bounces={false} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" decelerationRate="fast">
       {p.children}
     </ScrollView>
   );

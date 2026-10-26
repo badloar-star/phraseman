@@ -177,7 +177,7 @@ export const PaywallMSheet = memo(function PaywallMSheet(props: PaywallMSheetPro
         </View>
       )}
     >
-      <ScrollView style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false}>
+      <ScrollView style={S.scroll} contentContainerStyle={S.scrollContent} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <PaywallMHeaderCard g={g} kicker={head.kicker} title={head.title} stats={stats} />
         <Text style={[S.sub, { color: g.secondary }]}>{head.sub}</Text>
         <PaywallMChart g={g} model={chart} texts={chartTexts} />

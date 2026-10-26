@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-15",
+  "learningOutcomeByLocale": {
+    "ru": "произнести вопрос с eres и отдельно ответить о себе с soy.",
+    "uk": "вимовити запитання з eres й окремо відповісти про себе із soy."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-15:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Любишь действовать без плана?",
+        "uk": "Любиш діяти без плану?"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает выбрать направление уже на улице. Спросите его: `¿Eres espontáneo?` — «Ты спонтанный?» Здесь `espontáneo` описывает человека, который легко действует без подготовки. Сборка знакомая: `eres` + качество, с вопросительными знаками. Ударение в новом слове падает на `tá`: es-pon-**tá**-ne-o. Произнесите вопрос вслед за образцом, сохраняя вопросительную интонацию.",
+        "uk": "Друг пропонує обрати напрямок уже на вулиці. Запитайте його: `¿Eres espontáneo?` — «Ти спонтанний?» Тут `espontáneo` описує людину, яка легко діє без підготовки. Побудова знайома: `eres` + риса, зі знаками питання. Наголос у новому слові падає на `tá`: es-pon-**tá**-ne-o. Промовте запитання за зразком, зберігаючи питальну інтонацію."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-15:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Ты спонтанный?»",
+          "uk": "Запитайте друга: «Ти спонтанний?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-15:intro1:r1",
+              "text": "¿Eres espontáneo?"
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro1:r2",
+              "text": "¿Soy espontáneo?"
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro1:r3",
+              "text": "¿Eres curioso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-15:intro1:r1",
+              "text": "¿Eres espontáneo?"
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro1:r2",
+              "text": "¿Soy espontáneo?"
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro1:r3",
+              "text": "¿Eres curioso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Ты спонтанный?»",
+          "uk": "Запитайте друга: «Ти спонтанний?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-15:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Теперь отвечаю я",
+        "uk": "Тепер відповідаю я"
+      },
+      "bodyByLocale": {
+        "ru": "Друг задаёт вам тот же вопрос. Вы мужчина и любите неожиданные прогулки. Ответьте: `Sí, soy espontáneo` — «Да, я спонтанный». В ответе о себе заменяем `eres` на `soy`: `sí` + `soy` + качество. Если отвечает женщина, она выбирает `espontánea`. В каждом задании произносите только ту реплику, которая нужна: вопрос и ответ отрабатываем отдельно.",
+        "uk": "Друг ставить вам те саме запитання. Ви чоловік і любите несподівані прогулянки. Дайте відповідь: `Sí, soy espontáneo` — «Так, я спонтанний». У відповіді про себе замінюємо `eres` на `soy`: `sí` + `soy` + риса. Якщо відповідає жінка, вона обирає `espontánea`. У кожному завданні вимовляйте лише потрібну репліку: запитання й відповідь відпрацьовуємо окремо."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-15:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы мужчина. Ответьте: «Да, я спонтанный».",
+          "uk": "Ви чоловік. Дайте відповідь: «Так, я спонтанний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-15:intro2:r1",
+              "text": "Sí, soy espontáneo."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro2:r2",
+              "text": "Sí, eres espontáneo."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro2:r3",
+              "text": "Sí, soy espontánea."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-15:intro2:r1",
+              "text": "Sí, soy espontáneo."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro2:r2",
+              "text": "Sí, eres espontáneo."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro2:r3",
+              "text": "Sí, soy espontánea."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы мужчина. Ответьте: «Да, я спонтанный».",
+          "uk": "Ви чоловік. Дайте відповідь: «Так, я спонтанний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-15:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Мой выбор не всегда угадаешь",
+        "uk": "Мій вибір не завжди вгадаєш"
+      },
+      "bodyByLocale": {
+        "ru": "Друг говорит, что заранее знает, какой путь вы выберете. Вы не согласны: `No soy predecible` — «Я не предсказуемый» или «Я не предсказуемая». `Predecible` — «предсказуемый», тот, чьи действия легко предугадать. Для отрицания ставим `no` перед `soy`, как раньше перед `eres`: `no` + `soy` + `predecible`. Окончание `e` сохраняется для мужчины и женщины.",
+        "uk": "Друг каже, що заздалегідь знає, який шлях ви оберете. Ви не згодні: `No soy predecible` — «Я не передбачуваний» або «Я не передбачувана». `Predecible` — «передбачуваний», той, чиї дії легко передбачити. Для заперечення ставимо `no` перед `soy`, як раніше перед `eres`: `no` + `soy` + `predecible`. Закінчення `e` зберігається для чоловіка та жінки."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-15:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о себе: «Я не предсказуемый».",
+          "uk": "Скажіть про себе: «Я не передбачуваний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-15:intro3:r1",
+              "text": "No soy predecible."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro3:r2",
+              "text": "Soy predecible."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro3:r3",
+              "text": "No eres predecible."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-15:intro3:r1",
+              "text": "No soy predecible."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro3:r2",
+              "text": "Soy predecible."
+            },
+            {
+              "responseId": "es:lesson-01:session-15:intro3:r3",
+              "text": "No eres predecible."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о себе: «Я не предсказуемый».",
+          "uk": "Скажіть про себе: «Я не передбачуваний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "790e53944598552f750ed53b27524eaccebf1571f7f36c65965ef4ba48a62b1c"
+}

@@ -1,0 +1,618 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-15",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — espontáneo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — espontáneo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i01:audio",
+          "transcript": "espontáneo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-15:i01:r1",
+            "targetText": "espontáneo",
+            "meaningByLocale": {
+              "ru": "спонтанный, готовый действовать без предварительной подготовки. Женская форма — espontánea; знак над á сохраняется. 🔊 *espontáneo*",
+              "uk": "спонтанний, готовий діяти без попередньої підготовки. Жіноча форма — espontánea; знак над á зберігається. 🔊 *espontáneo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "espontáneo",
+          "definitionByLocale": {
+            "ru": "спонтанный, готовый действовать без предварительной подготовки. Женская форма — espontánea; знак над á сохраняется. 🔊 *espontáneo*",
+            "uk": "спонтанний, готовий діяти без попередньої підготовки. Жіноча форма — espontánea; знак над á зберігається. 🔊 *espontáneo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-15:i02:r1",
+          "text": "espontánea"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i02:r2",
+          "text": "espontáneo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i02:audio",
+          "transcript": "espontánea"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-15:i02:r1",
+            "targetText": "espontánea",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i02:r2",
+            "targetText": "espontáneo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит a.",
+              "uk": "Наприкінці звучить a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите друга",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i03:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите друга",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i03:audio",
+          "transcript": "¿Eres espontáneo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Eres espontáneo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы мужчина; ответьте о себе «Да, я спонтанный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-15:i04:r1",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i04:r2",
+          "text": "eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i04:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы мужчина; ответьте о себе «Да, я спонтанный»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы мужчина; ответьте о себе «Да, я спонтанный»",
+          "uk": "Вставте слово — ви чоловік; дайте відповідь про себе «Так, я спонтанний»"
+        },
+        "gappedTargetPhrase": "Sí, ___ espontáneo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-15:i04:r1",
+            "text": "soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i04:r2",
+            "text": "eres"
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i04:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы мужчина; ответьте о себе «Да, я спонтанный»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-15:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы мужчина; ответьте о себе «Да, я спонтанный»",
+            "feedbackByLocale": {
+              "ru": "Вы отвечаете о себе, поэтому soy.",
+              "uk": "Ви відповідаєте про себе, тому soy."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы мужчина; ответьте о себе «Да, я спонтанный»",
+            "feedbackByLocale": {
+              "ru": "Es относится к другому человеку; здесь нужно «я».",
+              "uk": "Es стосується іншої людини; тут потрібно «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы мужчина; ответьте о себе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы мужчина; ответьте о себе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i05:audio",
+          "transcript": "Sí, soy espontáneo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, soy espontáneo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — predecible",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — predecible",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i06:audio",
+          "transcript": "predecible"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-15:i06:r1",
+            "targetText": "predecible",
+            "meaningByLocale": {
+              "ru": "предсказуемый, предсказуемая. В этой ситуации речь о человеке, чей выбор легко предугадать. 🔊 *predecible*",
+              "uk": "передбачуваний, передбачувана. У цій ситуації йдеться про людину, чий вибір легко передбачити. 🔊 *predecible*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "predecible",
+          "definitionByLocale": {
+            "ru": "предсказуемый, предсказуемая. В этой ситуации речь о человеке, чей выбор легко предугадать. 🔊 *predecible*",
+            "uk": "передбачуваний, передбачувана. У цій ситуації йдеться про людину, чий вибір легко передбачити. 🔊 *predecible*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-15:i07:r1",
+          "text": "Я не предсказуемый"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i07:r2",
+          "text": "Ты не предсказуемый"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i07:r3",
+          "text": "Я предсказуемый"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i07:audio",
+          "transcript": "No soy predecible."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-15:i07:r1",
+            "targetText": "Я не предсказуемый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i07:r2",
+            "targetText": "Ты не предсказуемый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i07:r3",
+            "targetText": "Я предсказуемый",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-15:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит soy — «я», не eres — «ты».",
+              "uk": "Звучить soy — «я», не eres — «ти»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-15:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "В записи есть no: качество отрицается.",
+              "uk": "У записі є no: риса заперечується."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — возразите другу о себе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — возразите другу о себе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i08:audio",
+          "transcript": "No soy predecible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No soy predecible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите подругу «Ты спонтанная?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-15:i09:r1",
+          "text": "Плитки: ¿eres"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i09:r2",
+          "text": "espontánea"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i09:r3",
+          "text": "espontáneo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите подругу «Ты спонтанная?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Eres espontánea?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите подругу «Ты спонтанная?»",
+          "uk": "Складіть фразу — запитайте подругу «Ти спонтанна?»"
+        },
+        "orderedTokens": [
+          "¿Eres",
+          "espontánea"
+        ],
+        "authoredDistractorTokens": [
+          "espontáneo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-15:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите подругу «Ты спонтанная?»",
+            "feedbackByLocale": {
+              "ru": "вы обращаетесь к женщине.",
+              "uk": "ви звертаєтеся до жінки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите подругу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите подругу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i10:audio",
+          "transcript": "¿Eres espontánea?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Eres espontánea?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы женщина; ответьте о себе",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы женщина; ответьте о себе",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i11:audio",
+          "transcript": "Sí, soy espontánea."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, soy espontánea.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — скажите о себе «Я не предсказуемый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-15:i12:r1",
+          "text": "Плитки: predecible"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i12:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i12:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-15:i12:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — скажите о себе «Я не предсказуемый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No soy predecible.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о себе «Я не предсказуемый»",
+          "uk": "Складіть фразу — скажіть про себе «Я не передбачуваний»"
+        },
+        "orderedTokens": [
+          "No",
+          "soy",
+          "predecible"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-15:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите о себе «Я не предсказуемый»",
+            "feedbackByLocale": {
+              "ru": "вы описываете себя, поэтому soy.",
+              "uk": "ви описуєте себе, тому soy."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите готовность изменить маршрут",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите готовность изменить маршрут",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-15:i13:audio",
+          "transcript": "Sí, soy flexible."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, soy flexible.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "13bf56e70ffeb420c29e0e150f5b5166400b0a7ff2408279feca31547118316f"
+}

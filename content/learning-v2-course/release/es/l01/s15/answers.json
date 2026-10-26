@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-15:i01",
+    "correctText": "espontáneo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i02",
+    "correctText": "espontánea",
+    "correctResponseId": "es:lesson-01:session-15:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i03",
+    "correctText": "¿Eres espontáneo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i04",
+    "correctText": "soy",
+    "correctResponseId": "es:lesson-01:session-15:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i05",
+    "correctText": "Sí, soy espontáneo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i06",
+    "correctText": "predecible",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i07",
+    "correctText": "Я не предсказуемый",
+    "correctResponseId": "es:lesson-01:session-15:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i08",
+    "correctText": "No soy predecible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i09",
+    "correctText": "¿Eres espontánea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i10",
+    "correctText": "¿Eres espontánea?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i11",
+    "correctText": "Sí, soy espontánea.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i12",
+    "correctText": "No soy predecible.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-15:i13",
+    "correctText": "Sí, soy flexible.",
+    "correctResponseId": null
+  }
+]

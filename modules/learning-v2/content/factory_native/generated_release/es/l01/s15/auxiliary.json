@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-15",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-15:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-15:intro1:r2": {
+          "ru": "Это вопрос о себе: «Я спонтанный?»",
+          "uk": "Це запитання про себе: «Я спонтанний?»"
+        },
+        "es:lesson-01:session-15:intro1:r3": {
+          "ru": "Это вопрос о любознательности, а не о спонтанности.",
+          "uk": "Це запитання про допитливість, а не про спонтанність."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-15:intro2:r2": {
+          "ru": "Так вы описываете собеседника, а не себя.",
+          "uk": "Так ви описуєте співрозмовника, а не себе."
+        },
+        "es:lesson-01:session-15:intro2:r3": {
+          "ru": "В этом задании отвечает мужчина, поэтому espontáneo.",
+          "uk": "У цьому завданні відповідає чоловік, тому espontáneo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-15:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-15:intro3:r2": {
+          "ru": "Без no вы соглашаетесь, что ваш выбор предсказуем.",
+          "uk": "Без no ви погоджуєтеся, що ваш вибір передбачуваний."
+        },
+        "es:lesson-01:session-15:intro3:r3": {
+          "ru": "Это о собеседнике, а нужно сказать о себе.",
+          "uk": "Це про співрозмовника, а треба сказати про себе."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f180caa9a2561230ecf6ad656f86b2a486a7e30c83634289788079ae03675947"
+}

@@ -1,0 +1,35 @@
+// chapter_exam_v2_l16_c1.ts — банк экзамена v2: урок 16, глава 1 (эпизоды 1–8). НЕ подключён: список BANKS (app/learning_v2_chapter_exam_v2.ts) пополняет Learning V2 после вычитки владельцем.
+// зачем: глава 1 — «I think … will …»: предположение о погоде, о своих привычках, о людных местах и ценах; только утвердительные фразы (отрицаний и вопросов в эпизодах 1–8 нет). Только слова и формы эпизодов 1–8 урока 16; ситуация и ответ сходятся по смыслу, верных вариантов несколько, вопросительных знаков нет.
+// Сторож слов — tests/owner_locks_exam_episode_words_2026_10_25.test.ts. Эталон (первый в accepted) — полной формой, как в эпизодах.
+import type { ChapterExamV2Bank } from '../chapter_exam_v2';
+
+export const CHAPTER_EXAM_V2_BANK_L16_C1: ChapterExamV2Bank = {
+  lessonOrdinal: 16,
+  chapterOrdinal: 1,
+  grammarPoints: [
+    { id: 'l16c1_weather', label: { ru: 'погода: I think … will …', uk: 'погода: I think … will …' }, episodeOrdinals: [1, 2, 3] },
+    { id: 'l16c1_habits', label: { ru: 'свои привычки: I think I will …', uk: 'свої звички: I think I will …' }, episodeOrdinals: [4, 5] },
+    { id: 'l16c1_crowds_prices', label: { ru: 'людно, занято, цены: I think … will be …', uk: 'людно, зайнято, ціни: I think … will be …' }, episodeOrdinals: [6, 7, 8] },
+  ],
+  items: [
+    // ── Ситуация → сам говоришь или пишешь ────────────────────────────────────────
+    { id: 'l16c1-01', type: 'situation', grammarPoint: 'l16c1_weather', situation: { ru: 'Ты смотришь на небо перед прогулкой. Скажи, что, по-твоему, завтра будет пасмурно.', uk: 'Ти дивишся на небо перед прогулянкою. Скажи, що, на твою думку, завтра буде хмарно.' }, accepted: ['I think it will be overcast tomorrow.', 'I think it will be overcast.', 'It will be overcast tomorrow.'] },
+    { id: 'l16c1-02', type: 'situation', grammarPoint: 'l16c1_weather', situation: { ru: 'На улице липко и душно. Скажи, что, по-твоему, ночью будет так же душно.', uk: 'Надворі липко й душно. Скажи, що, на твою думку, уночі буде так само душно.' }, accepted: ['I think it will be muggy tonight.', 'I think it will be muggy.'] },
+    { id: 'l16c1-03', type: 'situation', grammarPoint: 'l16c1_habits', situation: { ru: 'Ты знаешь себя: будильник опять не поможет. Скажи, что завтра, по-твоему, проспишь.', uk: 'Ти знаєш себе: будильник знову не допоможе. Скажи, що завтра, на твою думку, проспиш.' }, accepted: ['I think I will oversleep tomorrow.', 'I think I will oversleep.', 'I will oversleep tomorrow.'] },
+    { id: 'l16c1-04', type: 'situation', grammarPoint: 'l16c1_habits', situation: { ru: 'Ты вспоминаешь, как часто теряешь вещи. Скажи, что, по-твоему, снова потеряешь ключи.', uk: 'Ти згадуєш, як часто губиш речі. Скажи, що, на твою думку, знову загубиш ключі.' }, accepted: ['I think I will misplace my keys again.', 'I think I will misplace my keys.'] },
+    { id: 'l16c1-05', type: 'situation', grammarPoint: 'l16c1_crowds_prices', situation: { ru: 'Ты едешь на пляж в жаркий день. Скажи, что, по-твоему, пляж будет переполнен.', uk: 'Ти їдеш на пляж у спекотний день. Скажи, що, на твою думку, пляж буде переповнений.' }, accepted: ['I think the beach will be overcrowded.', 'I think the beach will be overcrowded on Sunday.', 'The beach will be overcrowded.'] },
+    { id: 'l16c1-06', type: 'situation', grammarPoint: 'l16c1_crowds_prices', situation: { ru: 'Вы с другом ищете жильё на выходные. Скажи, что, по-твоему, отель будет полностью занят.', uk: 'Ви з другом шукаєте житло на вихідні. Скажи, що, на твою думку, готель буде повністю зайнятий.' }, accepted: ['I think the hotel will be fully booked.', 'The hotel will be fully booked.'] },
+    // ── Ответ в мини-диалоге ────────────────────────────────────────
+    { id: 'l16c1-07', type: 'dialogue', grammarPoint: 'l16c1_weather', partnerLine: 'I think the mist will clear soon.', situation: { ru: 'Друг говорит, что туман скоро рассеется. Скажи, что, по-твоему, видимость улучшится.', uk: 'Друг каже, що туман скоро розсіється. Скажи, що, на твою думку, видимість покращиться.' }, accepted: ['I think visibility will improve.', 'I think the visibility will improve.', 'I think visibility will improve soon.'] },
+    { id: 'l16c1-08', type: 'dialogue', grammarPoint: 'l16c1_weather', partnerLine: 'I think the humidity will rise.', situation: { ru: 'Друг думает, что влажность повысится. Скажи, что тогда, по-твоему, вечером будет душно.', uk: 'Друг думає, що вологість підвищиться. Скажи, що тоді, на твою думку, ввечері буде душно.' }, accepted: ['I think it will be muggy tonight.', 'I think it will be muggy.'] },
+    { id: 'l16c1-09', type: 'dialogue', grammarPoint: 'l16c1_habits', partnerLine: 'I think the oven will overheat.', situation: { ru: 'Друг думает, что духовка перегреется. Скажи, что тогда, по-твоему, ты пережаришь картошку.', uk: 'Друг думає, що духовка перегріється. Скажи, що тоді, на твою думку, ти пересмажиш картоплю.' }, accepted: ['I think I will overcook the potatoes.', 'I will overcook the potatoes.'] },
+    { id: 'l16c1-10', type: 'dialogue', grammarPoint: 'l16c1_habits', partnerLine: 'I think we will overeat at the party.', situation: { ru: 'Друг думает, что на вечеринке вы переедите. Скажи, что завтра, по-твоему, ты проспишь.', uk: 'Друг думає, що на вечірці ви переїсте. Скажи, що завтра, на твою думку, ти проспиш.' }, accepted: ['I think I will oversleep tomorrow.', 'I think I will oversleep.'] },
+    { id: 'l16c1-11', type: 'dialogue', grammarPoint: 'l16c1_crowds_prices', partnerLine: 'I think the tickets will be sold out by Friday.', situation: { ru: 'Друг думает, что билеты разойдутся к пятнице. Скажи, что отель, по-твоему, будет полностью занят.', uk: 'Друг думає, що квитки розійдуться до п’ятниці. Скажи, що готель, на твою думку, буде повністю зайнятий.' }, accepted: ['I think the hotel will be fully booked.', 'The hotel will be fully booked.'] },
+    { id: 'l16c1-12', type: 'dialogue', grammarPoint: 'l16c1_crowds_prices', partnerLine: 'I think they will overcharge us.', situation: { ru: 'Друг думает, что с вас возьмут лишнего. Скажи, что, по-твоему, доплата будет десять фунтов.', uk: 'Друг думає, що з вас візьмуть зайвого. Скажи, що, на твою думку, доплата буде десять фунтів.' }, accepted: ['I think the surcharge will be ten pounds.', 'The surcharge will be ten pounds.'] },
+    // ── Найди и исправь ошибку ────────────────────────────────────────
+    { id: 'l16c1-13', type: 'fix', grammarPoint: 'l16c1_weather', wrong: 'I think the mist clear soon.', accepted: ['I think the mist will clear soon.'] },
+    { id: 'l16c1-14', type: 'fix', grammarPoint: 'l16c1_habits', wrong: 'I think I oversleep tomorrow.', accepted: ['I think I will oversleep tomorrow.'] },
+    { id: 'l16c1-15', type: 'fix', grammarPoint: 'l16c1_crowds_prices', wrong: 'I think the tea be lukewarm.', accepted: ['I think the tea will be lukewarm.'] },
+    { id: 'l16c1-16', type: 'fix', grammarPoint: 'l16c1_crowds_prices', wrong: 'I think the tickets will sold out by Friday.', accepted: ['I think the tickets will be sold out by Friday.'] },
+  ],
+};

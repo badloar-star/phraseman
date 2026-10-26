@@ -227,14 +227,15 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const tier = room?.tier ?? week?.tier ?? null;
 
   // ── Старт ступени (защита от двойного тапа: один старт за раз) ──
+  // зачем (Optimistic UI 26.10): старт из окна итога при no_identity / no_tier закрывает итог — иначе причина пряталась под модалкой
   const startStep = useCallback(async () => {
     if (!gate || !lang || !config || spireSummitBlocksStart(weekRef.current, spireCurrentWeekKey(Date.now()))) return; // ЗАМОК ВЛАДЕЛЬЦА 22.10: «16 — всё, это потолок» — на вершине забег не стартует, энергия не тратится; причина — [SPIRE-SUMMIT]
     if (startingRef.current || session) {
       DebugLogger.info(LOG, 'game: старт уже идёт — второй тап игнорируем');
       return;
     }
-    if (!ids) { setStartBlock('no_identity'); return; }
-    if (tier === null || !room) { setStartBlock('no_tier'); return; }
+    if (!ids) { DebugLogger.info(LOG, 'блок no_identity'); setOutcome(null); setStartBlock('no_identity'); return; }
+    if (tier === null || !room) { DebugLogger.info(LOG, `блок no_tier ${String(tier)}`); setOutcome(null); setStartBlock('no_tier'); return; }
     startingRef.current = true;
     setStarting(true);
     setStartBlock(null);

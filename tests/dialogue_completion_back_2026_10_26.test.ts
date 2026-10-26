@@ -15,7 +15,8 @@ describe('итог диалога: Android «назад» = ✕', () => {
   });
 
   it('«назад» и ✕ ведут в одно место, повтор во время перехода пропускается и пишется в журнал', () => {
-    expect(screen).toContain("const close = () => safeRouterBack(router, '/ai_dialog_home' as never);");
+    // ✕ ведёт туда же, что «назад»; с защитой от повтора (Optimistic UI 26.10)
+    expect(screen).toMatch(/const close = \(\) => \{[\s\S]{0,500}safeRouterBack\(router, '\/ai_dialog_home' as never\);/);
     const handler = /BackHandler\.addEventListener\('hardwareBackPress', \(\) => \{([\s\S]*?)\n {4}\}\);/.exec(screen)?.[1] ?? '';
     expect(handler).toContain("safeRouterBack(router, '/ai_dialog_home' as never);");
     expect(handler).toContain('return true;');

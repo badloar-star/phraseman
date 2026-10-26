@@ -30,6 +30,7 @@ describe('цепочка итога урока: без перерисовки в
   it('цифры прежние: формула счёта и единый показ баланса', () => {
     expect(chain).toContain('const next = Math.round(from + (to - from) * (1 - (1 - k) ** 3));');
     expect(chain).toContain('subscribeDisplayedRunes((v) =>');
-    expect(chain).toContain('from={credited ? balance - amount : balance} to={balance} phase={credited ? phase : \'final\'}');
+    // цель счёта заморожена на старте (Optimistic UI 26.10), после счёта — живое единое число
+    expect(chain).toContain("from={balanceRun ? balanceRun.from : balance} to={balanceRun ? balanceRun.to : balance} phase={balanceRun?.credited ? phase : 'final'}");
   });
 });

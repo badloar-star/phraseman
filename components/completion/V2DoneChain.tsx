@@ -301,6 +301,18 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
   // зачем: баланс уже включает монеты урока — «бежит» от (баланс − N) к балансу; если ещё не включает (баланс < N), не выдумываем и показываем как есть
   const credited = balance >= amount;
   const phase: CountPhase = !on ? 'hold' : animate ? 'run' : 'final';
+  // зачем (координатор 26.10, проверка Optimistic UI): from/to баланса шли за живым балансом — поздний ответ кошелька или новое ожидающее
+  // начисление посреди счёта отбрасывали число назад и запускали счёт заново. Цель счёта замораживается на старте; после конца счёта —
+  // снова живое число (единый показ кошелёк + ожидающие, de99afcd4), без повторного пробега.
+  const balanceRunRef = useRef<Readonly<{ from: number; to: number; credited: boolean }> | null>(null);
+  if (animate && !balanceRunRef.current) balanceRunRef.current = { from: credited ? balance - amount : balance, to: balance, credited };
+  const [balanceSettled, setBalanceSettled] = useState(false);
+  useEffect(() => {
+    if (!animate) return undefined;
+    const id = setTimeout(() => setBalanceSettled(true), T.balanceAt + T.balanceCount + 60);
+    return () => clearTimeout(id);
+  }, [animate]);
+  const balanceRun = animate && !balanceSettled ? balanceRunRef.current : null;
   const ticker = useRowTicker(animate, Math.max(T.coinCount, T.balanceAt + T.balanceCount) + 80);
   const word = runeWord(lang, amount);
   const coinsFormat = useCallback((n: number) => `+${n} ${word}`, [word]);
@@ -325,7 +337,7 @@ export const ChainCoinRow = memo(function ChainCoinRow({ amount, g, lang }: { am
       <CountUpText from={0} to={amount} phase={phase} delay={0} duration={T.coinCount} ticker={ticker} format={coinsFormat} style={[s.rowTitle, s.grow, { color: g.text }]} />
       <View testID="v2-done-chain-balance" onLayout={(e: LayoutChangeEvent) => setPillW(e.nativeEvent.layout.width)} style={[s.pill, { backgroundColor: g.opaqueControl }]}>
         <Image source={HOME_RUNE_ICON_SOURCE} style={s.pillCoin} contentFit="contain" accessible={false} />
-        <CountUpText from={credited ? balance - amount : balance} to={balance} phase={credited ? phase : 'final'} delay={T.balanceAt} duration={T.balanceCount} ticker={ticker} format={groupThousands} style={[s.pillText, { color: g.text }]} />
+        <CountUpText from={balanceRun ? balanceRun.from : balance} to={balanceRun ? balanceRun.to : balance} phase={balanceRun?.credited ? phase : 'final'} delay={T.balanceAt} duration={T.balanceCount} ticker={ticker} format={groupThousands} style={[s.pillText, { color: g.text }]} />
       </View>
       {animate && dx > 0 ? Array.from({ length: T.flyCount }, (_, k) => <FlyCoin key={k} k={k} dx={dx} color={c.accentGraphic} />) : null /* guard-ok: шесть монет фиксированного числа */}
     </View>

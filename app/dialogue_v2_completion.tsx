@@ -403,7 +403,15 @@ export default function DialogueV2CompletionRoute() {
     console.log(`${DIALOGUE_CHAIN_LOG} решение при входе: ${dialogueChainOn ? 'играем «думает…»' : 'прежний итог (moments_v3 выключен или кэш флага ещё не прочитан)'} сцена=${String(scenarioId)} собеседник=${partnerName ?? 'нет имени'}`); // guard-ok: единичный журнал решения показа
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: решение пишется один раз, при входе
   }, []);
-  const close = () => safeRouterBack(router, '/ai_dialog_home' as never);
+  // зачем (координатор 26.10, проверка Optimistic UI): safeRouterBack снимает историю на каждый вызов — второй тап по ✕ / «Готово» во время
+  // перехода уводил на два экрана назад. Повтор в течение 1 с пропускаем и пишем в журнал; если переход не случился — снова принимаем.
+  const closingRef = useRef(false);
+  const close = () => {
+    if (closingRef.current) { console.log('[DIALOG-SUMMARY] close skip reason=already_leaving'); return; } // guard-ok: ранний выход — повтор тапа
+    closingRef.current = true;
+    setTimeout(() => { closingRef.current = false; }, 1000);
+    safeRouterBack(router, '/ai_dialog_home' as never);
+  };
   // зачем (аудит «назад» 26.10, B1: правило владельца «назад» = кнопка экрана): ✕ ведёт к Диалогам, а общий обработчик Android уводил на
   // Главную (экран вне реестра разделов → история сброшена). Экран сам владеет «назад» (navigation_back SCREEN_OWNED_ANDROID_BACK_PATHS);
   // открытое окно энергии закрывает «назад» само (Modal onRequestClose) и сюда не доходит. Повтор нажатия во время перехода — пропуск.

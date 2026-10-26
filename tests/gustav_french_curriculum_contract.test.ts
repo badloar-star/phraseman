@@ -210,7 +210,9 @@ describe('Gustav French curriculum contract', () => {
     expect(source).toContain('frenchStudyActive(studyTarget)');
     expect(source).toContain('phraseHasStudyTargetContent(phrase, studyTarget)');
     expect(source).toContain('lessonProgressKey(lessonId, studyTarget)');
-    expect(source).toContain('dismissToTabRoute(router, COMPLETE_TO_LESSONS_TAB);');
+    // зачем (Ревизор 26.10): строка сворачивания встречается в итоге урока трижды — проверка привязана к ветке французского гейта:
+    // нельзя начислить награды + изучаемый французский → сразу сворачиваем стек до вкладки «Уроки»
+    expect(source.replace(/\r\n/g, '\n')).toMatch(/const canApply = await canApplyCompletionRewards\(\);\s*if \(!canApply\) \{\s*if \(!cancelled && frenchStudyActive\(studyTarget\)\) \{\s*markNextNavigationAsReplace\(\);\s*dismissToTabRoute\(router, COMPLETE_TO_LESSONS_TAB\);/);
     expect(source.indexOf('const canApply = await canApplyCompletionRewards()')).toBeLessThan(
       source.indexOf('grantBonus()'),
     );

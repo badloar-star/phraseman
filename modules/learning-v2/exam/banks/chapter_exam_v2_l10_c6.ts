@@ -1,6 +1,6 @@
 // chapter_exam_v2_l10_c6.ts — банк экзамена v2: урок 10, глава 6 (эпизоды 41–48). НЕ подключён: строку в BANKS добавляет Learning V2
 // после вычитки владельцем (docs/work/factory-exam-banks-task-for-codex-2026-10-25.md).
-// зачем: только слова и формы эпизодов 1–48 — наверное perhaps / probably / quite, какое блюдо mild / creamy / hard / nearly ready, делаю сейчас I am chopping / peeling / washing; вопросов в банках нет (правило сторожа).
+// зачем: только слова и формы эпизодов 1–48 — наверное perhaps / probably / quite, какое блюдо mild / creamy / hard / nearly ready, делаю сейчас I am chopping / peeling / washing; вопросы из эпизодов — со знаком «?» (запрет «?» только для урока 1).
 // Ситуация и ответ сходятся по смыслу, верных вариантов несколько. Сторож слов — tests/owner_locks_exam_episode_words_2026_10_25.test.ts.
 import type { ChapterExamV2Bank } from '../chapter_exam_v2';
 
@@ -24,7 +24,7 @@ export const CHAPTER_EXAM_V2_BANK_L10_C6: ChapterExamV2Bank = {
     { id: 'l10c6-07', type: 'dialogue', grammarPoint: 'l10c6_maybe', partnerLine: 'It is quite warm.', situation: { ru: 'Скажи, что здесь довольно холодно.', uk: 'Скажи, що тут досить холодно.' }, accepted: ['It is quite cold.'] },
     { id: 'l10c6-08', type: 'dialogue', grammarPoint: 'l10c6_taste', partnerLine: 'This apricot is sweet.', situation: { ru: 'Скажи, что этот сыр твёрдый.', uk: 'Скажи, що цей сир твердий.' }, accepted: ['This cheese is hard.'] },
     { id: 'l10c6-09', type: 'dialogue', grammarPoint: 'l10c6_doing', partnerLine: 'The lentils are ready.', situation: { ru: 'Скажи, что ты моешь цветную капусту.', uk: 'Скажи, що ти миєш цвітну капусту.' }, accepted: ['I am washing the cauliflower.'] },
-    { id: 'l10c6-10', type: 'dialogue', grammarPoint: 'l10c6_maybe', partnerLine: 'Perhaps she is at work.', situation: { ru: 'Скажи, что они, скорее всего, на работе.', uk: 'Скажи, що вони, найімовірніше, на роботі.' }, accepted: ['They are probably at work.'] },
+    { id: 'l10c6-10', type: 'dialogue', grammarPoint: 'l10c6_maybe', partnerLine: 'Where is your sister?', situation: { ru: 'Сестра не берёт трубку. Предположи, что она, наверно, на работе.', uk: 'Сестра не бере слухавку. Припусти, що вона, мабуть, на роботі.' }, accepted: ['She is probably at work.', 'Perhaps she is at work.'] },
     { id: 'l10c6-11', type: 'dialogue', grammarPoint: 'l10c6_taste', partnerLine: 'We have enough milk.', situation: { ru: 'Скажи, что завтрак почти готов.', uk: 'Скажи, що сніданок майже готовий.' }, accepted: ['Breakfast is nearly ready.'] },
     { id: 'l10c6-12', type: 'dialogue', grammarPoint: 'l10c6_doing', partnerLine: 'I am chopping parsley.', situation: { ru: 'Скажи, что вы моете редиску.', uk: 'Скажи, що ви миєте редиску.' }, accepted: ['We are washing radishes.', 'We are washing the radishes.'] },
     // ── Найди и исправь ошибку ────────────────────────────────────────────────────────────────────────────────────

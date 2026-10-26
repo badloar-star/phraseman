@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-48",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — towel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — towel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i01:audio",
+          "transcript": "towel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-48:i01:r1",
+            "targetText": "towel",
+            "meaningByLocale": {
+              "ru": "Полотенце. Повторение знакомого слова.",
+              "uk": "Рушник. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "towel",
+          "definitionByLocale": {
+            "ru": "Полотенце. Повторение знакомого слова.",
+            "uk": "Рушник. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i02:r1",
+          "text": "I took a towel to dry myself."
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i02:r2",
+          "text": "I took a towel to dry the floor."
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i02:r3",
+          "text": "I took a towel to dry the table."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i02:audio",
+          "transcript": "I took a towel to dry myself."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-48:i02:r1",
+            "targetText": "I took a towel to dry myself.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i02:r2",
+            "targetText": "I took a towel to dry the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i02:r3",
+            "targetText": "I took a towel to dry the table.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took a towel to dry myself.",
+              "uk": "У записі звучить I took a towel to dry myself."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I took a towel to dry myself.",
+              "uk": "У записі звучить I took a towel to dry myself."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Ви взяли рушник, щоб витертися. Виберіть форму після to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i03:r1",
+          "text": "dry"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i03:r2",
+          "text": "dried"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i03:r3",
+          "text": "drying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви взяли рушник, щоб витертися. Виберіть форму після to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы взяли полотенце с целью вытереться. Выберите форму после to.",
+          "uk": "Ви взяли рушник, щоб витертися. Виберіть форму після to."
+        },
+        "gappedTargetPhrase": "I took a towel to ___ myself.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-48:i03:r1",
+            "text": "dry"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i03:r2",
+            "text": "dried"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i03:r3",
+            "text": "drying"
+          }
+        ],
+        "testedDimension": "Ви взяли рушник, щоб витертися. Виберіть форму після to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i03:r2",
+            "correct": false,
+            "testedDimension": "Ви взяли рушник, щоб витертися. Виберіть форму після to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма dry.",
+              "uk": "Після to потрібна форма dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i03:r3",
+            "correct": false,
+            "testedDimension": "Ви взяли рушник, щоб витертися. Виберіть форму після to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to dry.",
+              "uk": "Мету виражаємо через to dry."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i04:audio",
+          "transcript": "card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-48:i04:r1",
+            "targetText": "card",
+            "meaningByLocale": {
+              "ru": "Карта. Повторение знакомого слова.",
+              "uk": "Картка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "card",
+          "definitionByLocale": {
+            "ru": "Карта. Повторение знакомого слова.",
+            "uk": "Картка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви дали Анні її картку, щоб вона ввійшла. Почніть з I gave Anna her card.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви дали Анні її картку, щоб вона ввійшла. Почніть з I gave Anna her card.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I gave Anna her card so that she could get in.",
+        "localizedMeaning": {
+          "ru": "Вы дали Анне её карту, чтобы она вошла. Начните с I gave Anna her card.",
+          "uk": "Ви дали Анні її картку, щоб вона ввійшла. Почніть з I gave Anna her card."
+        },
+        "orderedTokens": [
+          "I",
+          "gave",
+          "Anna",
+          "her",
+          "card",
+          "so",
+          "that",
+          "she",
+          "could",
+          "get",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pool",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pool",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i06:audio",
+          "transcript": "pool"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-48:i06:r1",
+            "targetText": "pool",
+            "meaningByLocale": {
+              "ru": "Бассейн. Повторение знакомого слова.",
+              "uk": "Басейн. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pool",
+          "definitionByLocale": {
+            "ru": "Бассейн. Повторение знакомого слова.",
+            "uk": "Басейн. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ввічливо дізнайтеся, чи відкритий басейн.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i07:audio"
+      ],
+      "accessibilityLabel": "Ввічливо дізнайтеся, чи відкритий басейн.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i07:audio",
+          "transcript": "Could you tell me if the pool is open?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me if the pool is open?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Бассейн открыт». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Басейн відкритий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the pool ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-48:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Басейн відкритий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви взяли рушник, щоб витертися. Почніть з I took a towel.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви взяли рушник, щоб витертися. Почніть з I took a towel.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I took a towel to dry myself.",
+        "localizedMeaning": {
+          "ru": "Вы взяли полотенце, чтобы вытереться. Начните с I took a towel.",
+          "uk": "Ви взяли рушник, щоб витертися. Почніть з I took a towel."
+        },
+        "orderedTokens": [
+          "I",
+          "took",
+          "a",
+          "towel",
+          "to",
+          "dry",
+          "myself"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви знаєте, де картка Анни. Скажіть це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i10:audio"
+      ],
+      "accessibilityLabel": "Ви знаєте, де картка Анни. Скажіть це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i10:audio",
+          "transcript": "I know where Anna’s card is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know where Anna’s card is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Картку знайшов Бен. Виберіть прийменник перед його ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Картку знайшов Бен. Виберіть прийменник перед його ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Карту нашёл Бен. Выберите предлог перед его именем.",
+          "uk": "Картку знайшов Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The card was found ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-48:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Картку знайшов Бен. Виберіть прийменник перед його ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i11:r2",
+            "correct": false,
+            "testedDimension": "Картку знайшов Бен. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Того, кто нашёл, называем после by.",
+              "uk": "Того, хто знайшов, називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i11:r3",
+            "correct": false,
+            "testedDimension": "Картку знайшов Бен. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Бен нашёл карту: by Ben.",
+              "uk": "Бен знайшов картку: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i12:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-48:i12:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i13:r1",
+          "text": "I know that the towel is in the bag."
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i13:r2",
+          "text": "I know that the towel is in the box."
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i13:r3",
+          "text": "I know that the towel is in the drawer."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i13:audio",
+          "transcript": "I know that the towel is in the bag."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-48:i13:r1",
+            "targetText": "I know that the towel is in the bag.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i13:r2",
+            "targetText": "I know that the towel is in the box.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i13:r3",
+            "targetText": "I know that the towel is in the drawer.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the towel is in the bag.",
+              "uk": "У записі звучить I know that the towel is in the bag."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the towel is in the bag.",
+              "uk": "У записі звучить I know that the towel is in the bag."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Рушники сухі». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Рушники сухі». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i14:audio",
+          "transcript": "She said the towels were dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the towels were dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви повернулися, бо забули картку. Почніть з I went back.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви повернулися, бо забули картку. Почніть з I went back.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I went back because I forgot my card.",
+        "localizedMeaning": {
+          "ru": "Вы вернулись, потому что забыли карту. Начните с I went back.",
+          "uk": "Ви повернулися, бо забули картку. Почніть з I went back."
+        },
+        "orderedTokens": [
+          "I",
+          "went",
+          "back",
+          "because",
+          "I",
+          "forgot",
+          "my",
+          "card"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i16:r1",
+          "text": "so that"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i16:r2",
+          "text": "to"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i16:r3",
+          "text": "for"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
+          "uk": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in."
+        },
+        "gappedTargetPhrase": "I gave Anna her card ___ she could get in.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-48:i16:r1",
+            "text": "so that"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i16:r2",
+            "text": "to"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i16:r3",
+            "text": "for"
+          }
+        ],
+        "testedDimension": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i16:r2",
+            "correct": false,
+            "testedDimension": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in.",
+            "feedbackByLocale": {
+              "ru": "Перед she could get in нужна связка so that.",
+              "uk": "Перед she could get in потрібна сполука so that."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i16:r3",
+            "correct": false,
+            "testedDimension": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in.",
+            "feedbackByLocale": {
+              "ru": "Цель с целой частью вводим через so that.",
+              "uk": "Мету з цілою частиною вводимо через so that."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна пішла до басейну, хоча втомилася. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Анна пішла до басейну, хоча втомилася. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i17:audio",
+          "transcript": "Anna went to the pool although she was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna went to the pool although she was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: ви дали Анні її картку чи сумку?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i18:r1",
+          "text": "I gave Anna her card so that she could get in."
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i18:r2",
+          "text": "I gave Anna her bag so that she could get in."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i18:audioA",
+        "en:lesson-31:session-48:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: ви дали Анні її картку чи сумку?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I gave Anna her card so that she could get in.",
+        "contrastB": "I gave Anna her bag so that she could get in.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-48:i18:audioA",
+          "transcript": "I gave Anna her card so that she could get in."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-48:i18:audioB",
+          "transcript": "I gave Anna her bag so that she could get in."
+        },
+        "testedPhoneticContrast": "Послухайте: ви дали Анні її картку чи сумку?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: ви дали Анні її картку чи сумку?",
+            "feedbackByLocale": {
+              "ru": "Звучит card — карта.",
+              "uk": "Звучить card — картка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте, навіщо Анні дали картку. Почніть з I gave Anna her card.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте, навіщо Анні дали картку. Почніть з I gave Anna her card.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i19:audio",
+          "transcript": "I gave Anna her card so that she could get in."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I gave Anna her card so that she could get in.",
+        "orderedTokens": [
+          "I",
+          "gave",
+          "Anna",
+          "her",
+          "card",
+          "so",
+          "that",
+          "she",
+          "could",
+          "get",
+          "in"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Басейн не закритий. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-48:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-48:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Басейн не закритий. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бассейн не закрыт. Добавьте утвердительное уточнение.",
+          "uk": "Басейн не закритий. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The pool isn't closed, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-48:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Басейн не закритий. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-48:i20:r2",
+            "correct": false,
+            "testedDimension": "Басейн не закритий. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Один pool требует is.",
+              "uk": "Один pool потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-48:i20:r3",
+            "correct": false,
+            "testedDimension": "Басейн не закритий. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-48:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Анна повернулася. Скажіть це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-48:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Анна повернулася. Скажіть це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-48:i21:audio",
+          "transcript": "I understand why Anna went back."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna went back.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "280213a8a847a7afaaf017ae8c24c7ae3a27f9502cea59760e71a061cebd0451"
+}

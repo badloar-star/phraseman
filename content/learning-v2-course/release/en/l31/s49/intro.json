@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "связывать причину и результат через so и therefore.",
+    "uk": "пов’язувати причину й результат через so і therefore."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Магазин закрыт, поэтому мы ушли",
+        "uk": "Магазин зачинений, тому ми пішли"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли за хлебом, но магазин уже закрыт: The shop was closed, so we left — магазин был закрыт, поэтому мы ушли. Соберите The shop was closed + so + we left. Сначала называем причину, после so — результат. Между частями перед so ставим запятую.",
+        "uk": "Ви прийшли по хліб, але магазин уже зачинений: The shop was closed, so we left — магазин був зачинений, тому ми пішли. Складіть The shop was closed + so + we left. Спочатку називаємо причину, після so — результат. Між частинами перед so ставимо кому."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-49:intro1:r1",
+              "text": "The shop was closed, so we left."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro1:r2",
+              "text": "The shop was closed, so we leave yesterday."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro1:r3",
+              "text": "The shop was closed, so we leaving."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-49:intro1:r1",
+              "text": "The shop was closed, so we left."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro1:r2",
+              "text": "The shop was closed, so we leave yesterday."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro1:r3",
+              "text": "The shop was closed, so we leaving."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Было поздно, поэтому взяли такси",
+        "uk": "Було пізно, тому взяли таксі"
+      },
+      "bodyByLocale": {
+        "ru": "В коротком письменном рассказе вы объясняете дорогу домой: It was late and therefore we took a taxi — было поздно, поэтому мы взяли такси. Соберите It was late + and therefore + we took a taxi. Therefore вводит результат и звучит более книжно, чем so. And соединяет две части предложения, а therefore показывает, что вторая — результат первой.",
+        "uk": "У короткій письмовій розповіді ви пояснюєте дорогу додому: It was late and therefore we took a taxi — було пізно, тому ми взяли таксі. Складіть It was late + and therefore + we took a taxi. Therefore вводить результат і звучить більш книжно, ніж so. And поєднує дві частини речення, а therefore показує, що друга — результат першої."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-49:intro2:r1",
+              "text": "It was late and therefore we took a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro2:r2",
+              "text": "It was late and therefore we taken a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro2:r3",
+              "text": "It was late and therefore we taking a taxi."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-49:intro2:r1",
+              "text": "It was late and therefore we took a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro2:r2",
+              "text": "It was late and therefore we taken a taxi."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro2:r3",
+              "text": "It was late and therefore we taking a taxi."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Результат — отрицательное действие",
+        "uk": "Результат — заперечна дія"
+      },
+      "bodyByLocale": {
+        "ru": "В магазине не было молока, и вы ничего не купили: There was no milk, so I didn’t buy any — молока не было, поэтому я его не купил. Соберите There was no milk + so + I didn’t buy any. После so называем результат; в отрицании после didn’t ставим buy, а не bought.",
+        "uk": "У магазині не було молока, і ви нічого не купили: There was no milk, so I didn’t buy any — молока не було, тому я його не купив. Складіть There was no milk + so + I didn’t buy any. Після so називаємо результат; у запереченні після didn’t ставимо buy, а не bought."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-49:intro3:r1",
+              "text": "There was no milk, so I didn't buy any."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro3:r2",
+              "text": "There was no milk, so I didn't bought any."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro3:r3",
+              "text": "There was no milk, so I not buy any."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-49:intro3:r1",
+              "text": "There was no milk, so I didn't buy any."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro3:r2",
+              "text": "There was no milk, so I didn't bought any."
+            },
+            {
+              "responseId": "en:lesson-31:session-49:intro3:r3",
+              "text": "There was no milk, so I not buy any."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "14a3da3bfb9aa9bbe7f232b19261fa836244478e1af36e0cdcf680075bb2b6a4"
+}

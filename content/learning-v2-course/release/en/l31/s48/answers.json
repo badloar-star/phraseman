@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-48:i01",
+    "correctText": "towel",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i02",
+    "correctText": "I took a towel to dry myself.",
+    "correctResponseId": "en:lesson-31:session-48:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i03",
+    "correctText": "dry",
+    "correctResponseId": "en:lesson-31:session-48:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i04",
+    "correctText": "card",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i05",
+    "correctText": "I gave Anna her card so that she could get in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i06",
+    "correctText": "pool",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i07",
+    "correctText": "Could you tell me if the pool is open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-48:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i09",
+    "correctText": "I took a towel to dry myself.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i10",
+    "correctText": "I know where Anna’s card is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-48:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i12",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i13",
+    "correctText": "I know that the towel is in the bag.",
+    "correctResponseId": "en:lesson-31:session-48:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i14",
+    "correctText": "She said the towels were dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i15",
+    "correctText": "I went back because I forgot my card.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i16",
+    "correctText": "so that",
+    "correctResponseId": "en:lesson-31:session-48:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i17",
+    "correctText": "Anna went to the pool although she was tired.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i18",
+    "correctText": "I gave Anna her card so that she could get in.",
+    "correctResponseId": "en:lesson-31:session-48:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i19",
+    "correctText": "I gave Anna her card so that she could get in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-48:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-48:i21",
+    "correctText": "I understand why Anna went back.",
+    "correctResponseId": null
+  }
+]

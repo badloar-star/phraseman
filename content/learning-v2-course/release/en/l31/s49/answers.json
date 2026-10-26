@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-49:i01",
+    "correctText": "shop",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i02",
+    "correctText": "The shop was closed, so we left.",
+    "correctResponseId": "en:lesson-31:session-49:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i03",
+    "correctText": "left",
+    "correctResponseId": "en:lesson-31:session-49:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i04",
+    "correctText": "taxi",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i05",
+    "correctText": "It was late and therefore we took a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i06",
+    "correctText": "milk",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i07",
+    "correctText": "There was no milk, so I didn’t buy any.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i08",
+    "correctText": "buy",
+    "correctResponseId": "en:lesson-31:session-49:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i09",
+    "correctText": "The shop was closed, so we left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i10",
+    "correctText": "It was raining, so we took a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i11",
+    "correctText": "took",
+    "correctResponseId": "en:lesson-31:session-49:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i12",
+    "correctText": "bread",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i13",
+    "correctText": "We needed bread, so we went to the shop.",
+    "correctResponseId": "en:lesson-31:session-49:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i14",
+    "correctText": "There was no bread, so I made a list.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i15",
+    "correctText": "I was tired, so I went home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-31:session-49:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i17",
+    "correctText": "The bus didn’t come and therefore we walked.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i18",
+    "correctText": "The shop was closed, so we left.",
+    "correctResponseId": "en:lesson-31:session-49:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i19",
+    "correctText": "It was late and therefore we took a taxi.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i20",
+    "correctText": "therefore",
+    "correctResponseId": "en:lesson-31:session-49:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-49:i21",
+    "correctText": "I was hungry, so I ate some bread.",
+    "correctResponseId": null
+  }
+]

@@ -58,7 +58,8 @@ function hasCommaSeparatedIndependentClauses(value) {
   // Keep whole-segment matches: a conjunction prefix must not hide extra clauses.
   const weatherConcession = /^although it (?:rained|snowed)$/iu;
   const coordinatedContrast = /^but (?:i|you|we|they|he|she) (?:bought it|went out|cooked dinner|kept walking|called [a-z]+|can carry it)[.!?]$/iu;
-  const independentClause = (part) => !copularCondition.test(part) && !helpCondition.test(part) && !weatherConcession.test(part) && !coordinatedContrast.test(part) && ((
+  const coordinatedResult = /^so (?:i|you|we|they|he|she) (?:walked|waited)[.!?]$/iu;
+  const independentClause = (part) => !copularCondition.test(part) && !helpCondition.test(part) && !weatherConcession.test(part) && !coordinatedContrast.test(part) && !coordinatedResult.test(part) && ((
     (pronounSubject.test(part) || nounSubject.test(part)) && finiteVerb.test(part)
   ) || imperative.test(part));
   return parts.filter((part) => !tagQuestion.test(part)).filter(independentClause).length >= 2;

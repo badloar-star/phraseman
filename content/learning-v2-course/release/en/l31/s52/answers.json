@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-52:i01",
+    "correctText": "cafe",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i02",
+    "correctText": "The cafe was full, so we waited.",
+    "correctResponseId": "en:lesson-31:session-52:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i03",
+    "correctText": "waited",
+    "correctResponseId": "en:lesson-31:session-52:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i04",
+    "correctText": "table",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i05",
+    "correctText": "The table was free and therefore we sat down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i06",
+    "correctText": "menu",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i07",
+    "correctText": "I took the menu to choose my food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-52:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i09",
+    "correctText": "The cafe was full, so we waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i10",
+    "correctText": "Could you tell me if this table is free?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-52:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i12",
+    "correctText": "window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i13",
+    "correctText": "I know that our table is near the window.",
+    "correctResponseId": "en:lesson-31:session-52:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i14",
+    "correctText": "She said the tables were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i15",
+    "correctText": "I gave Anna the menu so that she could choose her food.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-31:session-52:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i17",
+    "correctText": "We waited although we were hungry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i18",
+    "correctText": "The cafe was full, so we waited.",
+    "correctResponseId": "en:lesson-31:session-52:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i19",
+    "correctText": "The table was free and therefore we sat down.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-52:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-52:i21",
+    "correctText": "I understand why Anna chose this table.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-52",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять ожидание и следующий шаг через so и therefore.",
+    "uk": "пояснювати очікування й наступний крок через so і therefore."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-52:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Кафе заполнено — мы подождали",
+        "uk": "Кафе заповнене — ми зачекали"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли в кафе, но свободных мест нет: The cafe was full, so we waited — кафе было заполнено, поэтому мы подождали. Соберите The cafe was full + so + we waited. Перед so называем причину, после него — результат. В прошедшем времени wait получает окончание ed: waited.",
+        "uk": "Ви прийшли до кафе, але вільних місць немає: The cafe was full, so we waited — кафе було заповнене, тому ми зачекали. Складіть The cafe was full + so + we waited. Перед so називаємо причину, після нього — результат. У минулому часі wait отримує закінчення ed: waited."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-52:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-52:intro1:r1",
+              "text": "The cafe was full, so we waited."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro1:r2",
+              "text": "The cafe was full, so we waiting."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro1:r3",
+              "text": "The cafe was full, so we waits."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-52:intro1:r1",
+              "text": "The cafe was full, so we waited."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro1:r2",
+              "text": "The cafe was full, so we waiting."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro1:r3",
+              "text": "The cafe was full, so we waits."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-52:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Столик свободен — мы сели",
+        "uk": "Столик вільний — ми сіли"
+      },
+      "bodyByLocale": {
+        "ru": "В письменном рассказе вы объясняете следующий шаг: The table was free and therefore we sat down — столик был свободен, и поэтому мы сели. Соберите The table was free + and therefore + we sat down. Therefore показывает результат; sat — прошедшая форма sit.",
+        "uk": "У письмовій розповіді ви пояснюєте наступний крок: The table was free and therefore we sat down — столик був вільний, і тому ми сіли. Складіть The table was free + and therefore + we sat down. Therefore показує результат; sat — минула форма sit."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-52:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-52:intro2:r1",
+              "text": "The table was free and therefore we sat down."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro2:r2",
+              "text": "The table was free and therefore we sitting down."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro2:r3",
+              "text": "The table was free and therefore we sits down."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-52:intro2:r1",
+              "text": "The table was free and therefore we sat down."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro2:r2",
+              "text": "The table was free and therefore we sitting down."
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro2:r3",
+              "text": "The table was free and therefore we sits down."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-52:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вежливо уточняем, свободен ли столик",
+        "uk": "Ввічливо уточнюємо, чи вільний столик"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите пустой столик и спрашиваете официанта: Could you tell me if this table is free? — не могли бы вы сказать, свободен ли этот столик? Соберите Could you tell me + if + this table is free. If здесь значит «ли»; внутри сохраняем порядок this table is без вопросительной перестановки.",
+        "uk": "Ви бачите порожній столик і запитуєте офіціанта: Could you tell me if this table is free? — чи не могли б ви сказати, чи вільний цей столик? Складіть Could you tell me + if + this table is free. If тут означає «чи»; усередині зберігаємо порядок this table is без питальної перестановки."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-52:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-52:intro3:r1",
+              "text": "Could you tell me if this table is free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro3:r2",
+              "text": "Could you tell me if is this table free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro3:r3",
+              "text": "Could you tell me if this table are free?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-52:intro3:r1",
+              "text": "Could you tell me if this table is free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro3:r2",
+              "text": "Could you tell me if is this table free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-52:intro3:r3",
+              "text": "Could you tell me if this table are free?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa3f22be46d9e69bb2c274b7bb0cb11095a42f1d2165cbfd30ed4e802e06ad33"
+}

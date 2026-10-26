@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-53",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-53:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-53:intro1:r2": {
+          "ru": "Для прошлого результата нужна форма made.",
+          "uk": "Для минулого результату потрібна форма made."
+        },
+        "en:lesson-31:session-53:intro1:r3": {
+          "ru": "После we и для прошлого действия используем made.",
+          "uk": "Після we й для минулої дії використовуємо made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-53:intro2:r2": {
+          "ru": "Нужна прошедшая форма sat.",
+          "uk": "Потрібна минула форма sat."
+        },
+        "en:lesson-31:session-53:intro2:r3": {
+          "ru": "Для прошлого действия используем sat.",
+          "uk": "Для минулої дії використовуємо sat."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-53:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-53:intro3:r2": {
+          "ru": "После was нужна форма made.",
+          "uk": "Після was потрібна форма made."
+        },
+        "en:lesson-31:session-53:intro3:r3": {
+          "ru": "Один cake требует was.",
+          "uk": "Один cake потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c6c92e75a1d00c34d335613588b1b28e1cc0a6019d7142f955f0eb00dfb388fa"
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-51:i01",
+    "correctText": "key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i02",
+    "correctText": "I found my key, so I went in.",
+    "correctResponseId": "en:lesson-31:session-51:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i03",
+    "correctText": "went",
+    "correctResponseId": "en:lesson-31:session-51:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i04",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i05",
+    "correctText": "The door was locked and therefore I used my key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i06",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i07",
+    "correctText": "Ben said the key was in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i08",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-51:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i09",
+    "correctText": "I found my key, so I went in.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i10",
+    "correctText": "Could you tell me where the key is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-51:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i12",
+    "correctText": "pocket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i13",
+    "correctText": "I know that the key is in my pocket.",
+    "correctResponseId": "en:lesson-31:session-51:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i14",
+    "correctText": "Ben said his pockets were empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i15",
+    "correctText": "I opened the bag to find the key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-31:session-51:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i17",
+    "correctText": "Ben helped me although he was busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i18",
+    "correctText": "I found my key, so I went in.",
+    "correctResponseId": "en:lesson-31:session-51:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i19",
+    "correctText": "The door was locked and therefore I used my key.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i20",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-51:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-51:i21",
+    "correctText": "I understand why Ben called me.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "связывать причины, цели и результаты знакомых действий в одной бытовой ситуации.",
+    "uk": "пов’язувати причини, цілі й результати знайомих дій в одній побутовій ситуації."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пошёл дождь — вернулись домой",
+        "uk": "Пішов дощ — повернулися додому"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с Анной гуляли в парке, но начался дождь: It was raining, so we went home — шёл дождь, поэтому мы пошли домой. Соберите It was raining + so + we went home. Перед so называем причину, после него — результат. Went — прошедшая форма go.",
+        "uk": "Ви з Анною гуляли в парку, але почався дощ: It was raining, so we went home — ішов дощ, тому ми пішли додому. Складіть It was raining + so + we went home. Перед so називаємо причину, після нього — результат. Went — минула форма go."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-56:intro1:r1",
+              "text": "It was raining, so we went home."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro1:r2",
+              "text": "It was raining, so we gone home."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro1:r3",
+              "text": "It was raining, so we going home."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-56:intro1:r1",
+              "text": "It was raining, so we went home."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro1:r2",
+              "text": "It was raining, so we gone home."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro1:r3",
+              "text": "It was raining, so we going home."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проголодались — поели хлеба",
+        "uk": "Зголодніли — поїли хліба"
+      },
+      "bodyByLocale": {
+        "ru": "В письменном рассказе о прогулке вы объясняете остановку на еду: We were hungry and therefore we ate some bread — мы были голодны, и поэтому поели хлеба. Соберите We were hungry + and therefore + we ate some bread. Therefore показывает результат; ate — прошедшая форма eat.",
+        "uk": "У письмовій розповіді про прогулянку ви пояснюєте зупинку на їжу: We were hungry and therefore we ate some bread — ми були голодні, і тому поїли хліба. Складіть We were hungry + and therefore + we ate some bread. Therefore показує результат; ate — минула форма eat."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-56:intro2:r1",
+              "text": "We were hungry and therefore we ate some bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro2:r2",
+              "text": "We were hungry and therefore we eaten some bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro2:r3",
+              "text": "We were hungry and therefore we eating some bread."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-56:intro2:r1",
+              "text": "We were hungry and therefore we ate some bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro2:r2",
+              "text": "We were hungry and therefore we eaten some bread."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro2:r3",
+              "text": "We were hungry and therefore we eating some bread."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Знаю, где наша сумка",
+        "uk": "Знаю, де наша сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Перед уходом Анна ищет сумку, а вы её видите: I know where our bag is — я знаю, где наша сумка. Соберите I know + where + our bag + is. После where сохраняем порядок our bag is; это содержание знания, а не отдельный вопрос.",
+        "uk": "Перед відходом Анна шукає сумку, а ви її бачите: I know where our bag is — я знаю, де наша сумка. Складіть I know + where + our bag + is. Після where зберігаємо порядок our bag is; це зміст знання, а не окреме запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-56:intro3:r1",
+              "text": "I know where our bag is."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro3:r2",
+              "text": "I know where is our bag."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro3:r3",
+              "text": "I know where our bag are."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-56:intro3:r1",
+              "text": "I know where our bag is."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro3:r2",
+              "text": "I know where is our bag."
+            },
+            {
+              "responseId": "en:lesson-31:session-56:intro3:r3",
+              "text": "I know where our bag are."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b1ebbb61ee7b9c479e37d6d218bd31bc0877cc7a939f5463b3b08157ac42df9b"
+}

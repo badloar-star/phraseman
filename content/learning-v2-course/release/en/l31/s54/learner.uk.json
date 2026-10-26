@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-54",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i01:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-54:i01:r1",
+            "targetText": "chair",
+            "meaningByLocale": {
+              "ru": "Стул. Повторение знакомого слова.",
+              "uk": "Стілець. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chair",
+          "definitionByLocale": {
+            "ru": "Стул. Повторение знакомого слова.",
+            "uk": "Стілець. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i02:r1",
+          "text": "The chair was fixed by Ben."
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i02:r2",
+          "text": "The chair was fixed by Anna."
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i02:r3",
+          "text": "The chair was fixed by Tom."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i02:audio",
+          "transcript": "The chair was fixed by Ben."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-54:i02:r1",
+            "targetText": "The chair was fixed by Ben.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i02:r2",
+            "targetText": "The chair was fixed by Anna.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i02:r3",
+            "targetText": "The chair was fixed by Tom.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair was fixed by Ben.",
+              "uk": "У записі звучить The chair was fixed by Ben."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The chair was fixed by Ben.",
+              "uk": "У записі звучить The chair was fixed by Ben."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стілець полагодив Бен. Виберіть прийменник перед його ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i03:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i03:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i03:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець полагодив Бен. Виберіть прийменник перед його ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стул починил Бен. Выберите предлог перед его именем.",
+          "uk": "Стілець полагодив Бен. Виберіть прийменник перед його ім’ям."
+        },
+        "gappedTargetPhrase": "The chair was fixed ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-54:i03:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i03:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i03:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Стілець полагодив Бен. Виберіть прийменник перед його ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i03:r2",
+            "correct": false,
+            "testedDimension": "Стілець полагодив Бен. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия называем после by.",
+              "uk": "Виконавця дії називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i03:r3",
+            "correct": false,
+            "testedDimension": "Стілець полагодив Бен. Виберіть прийменник перед його ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Бен починил стул: by Ben.",
+              "uk": "Бен полагодив стілець: by Ben."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leg",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leg",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i04:audio",
+          "transcript": "leg"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-54:i04:r1",
+            "targetText": "leg",
+            "meaningByLocale": {
+              "ru": "Ножка стула; нога. Повторение знакомого слова.",
+              "uk": "Ніжка стільця; нога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leg",
+          "definitionByLocale": {
+            "ru": "Ножка стула; нога. Повторение знакомого слова.",
+            "uk": "Ніжка стільця; нога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ви знаєте, що одна ніжка зламана. Скажіть це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ви знаєте, що одна ніжка зламана. Скажіть це.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I know that one leg is broken.",
+        "localizedMeaning": {
+          "ru": "Вы знаете, что одна ножка сломана. Скажите это.",
+          "uk": "Ви знаєте, що одна ніжка зламана. Скажіть це."
+        },
+        "orderedTokens": [
+          "I",
+          "know",
+          "that",
+          "one",
+          "leg",
+          "is",
+          "broken"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — glue",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — glue",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i06:audio",
+          "transcript": "glue"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-54:i06:r1",
+            "targetText": "glue",
+            "meaningByLocale": {
+              "ru": "Клей. Повторение знакомого слова.",
+              "uk": "Клей. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "glue",
+          "definitionByLocale": {
+            "ru": "Клей. Повторение знакомого слова.",
+            "uk": "Клей. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бену потрібен клей, щоб полагодити стілець. Почніть з Ben needs glue.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Бену потрібен клей, щоб полагодити стілець. Почніть з Ben needs glue.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i07:audio",
+          "transcript": "Ben needs glue to fix the chair."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben needs glue to fix the chair.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Бен сказав: «Клей сухий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i08:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i08:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Бен сказав: «Клей сухий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Клей сухой». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Бен сказав: «Клей сухий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "Ben said the glue ___ dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-54:i08:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i08:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Учора Бен сказав: «Клей сухий». Перекажіть зі зсувом is у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Клей сухий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Клей сухий». Перекажіть зі зсувом is у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стілець був зламаний, тому ви сіли на диван. Почніть з The chair was broken.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець був зламаний, тому ви сіли на диван. Почніть з The chair was broken.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chair was broken, so I sat on the sofa.",
+        "localizedMeaning": {
+          "ru": "Стул был сломан, поэтому вы сели на диван. Начните с The chair was broken.",
+          "uk": "Стілець був зламаний, тому ви сіли на диван. Почніть з The chair was broken."
+        },
+        "orderedTokens": [
+          "The",
+          "chair",
+          "was",
+          "broken,",
+          "so",
+          "I",
+          "sat",
+          "on",
+          "the",
+          "sofa"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ввічливо запитайте, де клей.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Ввічливо запитайте, де клей.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i10:audio",
+          "transcript": "Could you tell me where the glue is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the glue is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стілець полагодили, і тепер ним можна було користуватися. Виберіть форму після could.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i11:r1",
+          "text": "use"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i11:r2",
+          "text": "used"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i11:r3",
+          "text": "using"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець полагодили, і тепер ним можна було користуватися. Виберіть форму після could.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стул починили, и теперь им можно было пользоваться. Выберите форму после could.",
+          "uk": "Стілець полагодили, і тепер ним можна було користуватися. Виберіть форму після could."
+        },
+        "gappedTargetPhrase": "The chair was fixed and therefore we could ___ it.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-54:i11:r1",
+            "text": "use"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i11:r2",
+            "text": "used"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i11:r3",
+            "text": "using"
+          }
+        ],
+        "testedDimension": "Стілець полагодили, і тепер ним можна було користуватися. Виберіть форму після could.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i11:r2",
+            "correct": false,
+            "testedDimension": "Стілець полагодили, і тепер ним можна було користуватися. Виберіть форму після could.",
+            "feedbackByLocale": {
+              "ru": "После could нужна форма use.",
+              "uk": "Після could потрібна форма use."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i11:r3",
+            "correct": false,
+            "testedDimension": "Стілець полагодили, і тепер ним можна було користуватися. Виберіть форму після could.",
+            "feedbackByLocale": {
+              "ru": "Строим could use.",
+              "uk": "Будуємо could use."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i12:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-54:i12:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Пол. Повторение знакомого слова.",
+              "uk": "Підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Пол. Повторение знакомого слова.",
+            "uk": "Підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i13:r1",
+          "text": "I know that the glue is on the floor."
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i13:r2",
+          "text": "I know that the glue is on the table."
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i13:r3",
+          "text": "I know that the glue is on the shelf."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i13:audio",
+          "transcript": "I know that the glue is on the floor."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-54:i13:r1",
+            "targetText": "I know that the glue is on the floor.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i13:r2",
+            "targetText": "I know that the glue is on the table.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i13:r3",
+            "targetText": "I know that the glue is on the shelf.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the glue is on the floor.",
+              "uk": "У записі звучить I know that the glue is on the floor."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the glue is on the floor.",
+              "uk": "У записі звучить I know that the glue is on the floor."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Бен сказав: «Стільці готові». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Бен сказав: «Стільці готові». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i14:audio",
+          "transcript": "Ben said the chairs were ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben said the chairs were ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Стілець полагодили, і тому ви могли ним користуватися. Почніть з The chair was fixed and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець полагодили, і тому ви могли ним користуватися. Почніть з The chair was fixed and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The chair was fixed and therefore we could use it.",
+        "localizedMeaning": {
+          "ru": "Стул починили, и поэтому вы могли им пользоваться. Начните с The chair was fixed and therefore.",
+          "uk": "Стілець полагодили, і тому ви могли ним користуватися. Почніть з The chair was fixed and therefore."
+        },
+        "orderedTokens": [
+          "The",
+          "chair",
+          "was",
+          "fixed",
+          "and",
+          "therefore",
+          "we",
+          "could",
+          "use",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стілець був зламаний, і в результаті ви сіли на диван. Вставте «тому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець був зламаний, і в результаті ви сіли на диван. Вставте «тому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стул был сломан, и в результате вы сели на диван. Вставьте «поэтому».",
+          "uk": "Стілець був зламаний, і в результаті ви сіли на диван. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "The chair was broken, ___ I sat on the sofa.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-54:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Стілець був зламаний, і в результаті ви сіли на диван. Вставте «тому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i16:r2",
+            "correct": false,
+            "testedDimension": "Стілець був зламаний, і в результаті ви сіли на диван. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i16:r3",
+            "correct": false,
+            "testedDimension": "Стілець був зламаний, і в результаті ви сіли на диван. Вставте «тому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен полагодив стілець, хоча втомився. Скажіть про це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i17:audio"
+      ],
+      "accessibilityLabel": "Бен полагодив стілець, хоча втомився. Скажіть про це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i17:audio",
+          "transcript": "Ben fixed the chair although he was tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ben fixed the chair although he was tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: ви сіли на диван чи на підлогу?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i18:r1",
+          "text": "The chair was broken, so I sat on the sofa."
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i18:r2",
+          "text": "The chair was broken, so I sat on the floor."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i18:audioA",
+        "en:lesson-31:session-54:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: ви сіли на диван чи на підлогу?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The chair was broken, so I sat on the sofa.",
+        "contrastB": "The chair was broken, so I sat on the floor.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-54:i18:audioA",
+          "transcript": "The chair was broken, so I sat on the sofa."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-54:i18:audioB",
+          "transcript": "The chair was broken, so I sat on the floor."
+        },
+        "testedPhoneticContrast": "Послухайте: ви сіли на диван чи на підлогу?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: ви сіли на диван чи на підлогу?",
+            "feedbackByLocale": {
+              "ru": "Звучит on the sofa — на диван.",
+              "uk": "Звучить on the sofa — на диван."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте результат ремонту. Почніть з The chair was fixed and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте результат ремонту. Почніть з The chair was fixed and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i19:audio",
+          "transcript": "The chair was fixed and therefore we could use it."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The chair was fixed and therefore we could use it.",
+        "orderedTokens": [
+          "The",
+          "chair",
+          "was",
+          "fixed",
+          "and",
+          "therefore",
+          "we",
+          "could",
+          "use",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Стілець не зламаний. Додайте стверджувальне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-54:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-54:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Стілець не зламаний. Додайте стверджувальне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Стул не сломан. Добавьте утвердительное уточнение.",
+          "uk": "Стілець не зламаний. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The chair isn't broken, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-54:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Стілець не зламаний. Додайте стверджувальне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-54:i20:r2",
+            "correct": false,
+            "testedDimension": "Стілець не зламаний. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Один chair требует is.",
+              "uk": "Один chair потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-54:i20:r3",
+            "correct": false,
+            "testedDimension": "Стілець не зламаний. Додайте стверджувальне уточнення.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-54:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ви розумієте, чому Бен приніс клей. Скажіть це.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-54:i21:audio"
+      ],
+      "accessibilityLabel": "Ви розумієте, чому Бен приніс клей. Скажіть це.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-54:i21:audio",
+          "transcript": "I understand why Ben brought the glue."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Ben brought the glue.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "1dc9754e30e7a6222f27c6c42e64cc731e81150452843c2f3094ed2bd7064193"
+}

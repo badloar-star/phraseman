@@ -1,0 +1,1052 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-56",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — park",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — park",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i01:audio",
+          "transcript": "park"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-56:i01:r1",
+            "targetText": "park",
+            "meaningByLocale": {
+              "ru": "Парк. Повторение знакомого слова.",
+              "uk": "Парк. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "park",
+          "definitionByLocale": {
+            "ru": "Парк. Повторение знакомого слова.",
+            "uk": "Парк. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i02:r1",
+          "text": "I know that the park is open."
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i02:r2",
+          "text": "I know that the park is closed."
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i02:r3",
+          "text": "I know that the park is quiet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i02:audio",
+          "transcript": "I know that the park is open."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-56:i02:r1",
+            "targetText": "I know that the park is open.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i02:r2",
+            "targetText": "I know that the park is closed.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i02:r3",
+            "targetText": "I know that the park is quiet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the park is open.",
+              "uk": "У записі звучить I know that the park is open."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the park is open.",
+              "uk": "У записі звучить I know that the park is open."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Парк відкритий». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the park ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-56:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Парк открыт». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i04:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-56:i04:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы были голодны, и поэтому поели хлеба. Начните с We were hungry and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы были голодны, и поэтому поели хлеба. Начните с We were hungry and therefore.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "We were hungry and therefore we ate some bread.",
+        "localizedMeaning": {
+          "ru": "Вы были голодны, и поэтому поели хлеба. Начните с We were hungry and therefore.",
+          "uk": "Ви були голодні, і тому поїли хліба. Почніть з We were hungry and therefore."
+        },
+        "orderedTokens": [
+          "We",
+          "were",
+          "hungry",
+          "and",
+          "therefore",
+          "we",
+          "ate",
+          "some",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i06:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-56:i06:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, где ваша общая с Анной сумка. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i07:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, где ваша общая с Анной сумка. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i07:audio",
+          "transcript": "I know where our bag is."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know where our bag is.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пошли домой из-за дождя. Выберите форму прошлого времени.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i08:r1",
+          "text": "went"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i08:r2",
+          "text": "gone"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i08:r3",
+          "text": "going"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пошли домой из-за дождя. Выберите форму прошлого времени.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пошли домой из-за дождя. Выберите форму прошлого времени.",
+          "uk": "Ви пішли додому через дощ. Виберіть форму минулого часу."
+        },
+        "gappedTargetPhrase": "It was raining, so we ___ home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-56:i08:r1",
+            "text": "went"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i08:r2",
+            "text": "gone"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i08:r3",
+            "text": "going"
+          }
+        ],
+        "testedDimension": "Вы пошли домой из-за дождя. Выберите форму прошлого времени.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы пошли домой из-за дождя. Выберите форму прошлого времени.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма went.",
+              "uk": "Потрібна форма went."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы пошли домой из-за дождя. Выберите форму прошлого времени.",
+            "feedbackByLocale": {
+              "ru": "Для прошлого действия используем went.",
+              "uk": "Для минулої дії використовуємо went."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Шёл дождь, поэтому вы пошли домой. Начните с It was raining.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Шёл дождь, поэтому вы пошли домой. Начните с It was raining.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "It was raining, so we went home.",
+        "localizedMeaning": {
+          "ru": "Шёл дождь, поэтому вы пошли домой. Начните с It was raining.",
+          "uk": "Ішов дощ, тому ви пішли додому. Почніть з It was raining."
+        },
+        "orderedTokens": [
+          "It",
+          "was",
+          "raining,",
+          "so",
+          "we",
+          "went",
+          "home"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите, где выход из парка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i10:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите, где выход из парка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i10:audio",
+          "transcript": "Could you tell me where the exit is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the exit is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хлеб купила Анна. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хлеб купила Анна. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хлеб купила Анна. Выберите предлог перед её именем.",
+          "uk": "Хліб купила Анна. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The bread was bought ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-56:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Хлеб купила Анна. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i11:r2",
+            "correct": false,
+            "testedDimension": "Хлеб купила Анна. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Покупателя называем после by.",
+              "uk": "Покупця називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i11:r3",
+            "correct": false,
+            "testedDimension": "Хлеб купила Анна. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Анна купила хлеб: by Anna.",
+              "uk": "Анна купила хліб: by Anna."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bench",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bench",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i12:audio",
+          "transcript": "bench"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-56:i12:r1",
+            "targetText": "bench",
+            "meaningByLocale": {
+              "ru": "Скамейка. Повторение знакомого слова.",
+              "uk": "Лавка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bench",
+          "definitionByLocale": {
+            "ru": "Скамейка. Повторение знакомого слова.",
+            "uk": "Лавка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i13:r1",
+          "text": "I know that the bench is wet."
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i13:r2",
+          "text": "I know that the bench is dry."
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i13:r3",
+          "text": "I know that the bench is broken."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i13:audio",
+          "transcript": "I know that the bench is wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-56:i13:r1",
+            "targetText": "I know that the bench is wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i13:r2",
+            "targetText": "I know that the bench is dry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i13:r3",
+            "targetText": "I know that the bench is broken.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the bench is wet.",
+              "uk": "У записі звучить I know that the bench is wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the bench is wet.",
+              "uk": "У записі звучить I know that the bench is wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Скамейки сухие». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Скамейки сухие». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i14:audio",
+          "transcript": "She said the benches were dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the benches were dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы открыли сумку, чтобы достать хлеб. Начните с I opened the bag.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы открыли сумку, чтобы достать хлеб. Начните с I opened the bag.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I opened the bag to get the bread.",
+        "localizedMeaning": {
+          "ru": "Вы открыли сумку, чтобы достать хлеб. Начните с I opened the bag.",
+          "uk": "Ви відкрили сумку, щоб дістати хліб. Почніть з I opened the bag."
+        },
+        "orderedTokens": [
+          "I",
+          "opened",
+          "the",
+          "bag",
+          "to",
+          "get",
+          "the",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Дождь стал причиной возвращения. Вставьте «поэтому» перед результатом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дождь стал причиной возвращения. Вставьте «поэтому» перед результатом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Дождь стал причиной возвращения. Вставьте «поэтому» перед результатом.",
+          "uk": "Дощ став причиною повернення. Вставте «тому» перед результатом."
+        },
+        "gappedTargetPhrase": "It was raining, ___ we went home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-56:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Дождь стал причиной возвращения. Вставьте «поэтому» перед результатом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i16:r2",
+            "correct": false,
+            "testedDimension": "Дождь стал причиной возвращения. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i16:r3",
+            "correct": false,
+            "testedDimension": "Дождь стал причиной возвращения. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы пошли пешком, хотя устали. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Вы пошли пешком, хотя устали. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i17:audio",
+          "transcript": "We walked although we were tired."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We walked although we were tired.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы пошли домой или в магазин?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i18:r1",
+          "text": "It was raining, so we went home."
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i18:r2",
+          "text": "It was raining, so we went to the shop."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i18:audioA",
+        "en:lesson-31:session-56:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы пошли домой или в магазин?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "It was raining, so we went home.",
+        "contrastB": "It was raining, so we went to the shop.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-56:i18:audioA",
+          "transcript": "It was raining, so we went home."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-56:i18:audioB",
+          "transcript": "It was raining, so we went to the shop."
+        },
+        "testedPhoneticContrast": "Послушайте: вы пошли домой или в магазин?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы пошли домой или в магазин?",
+            "feedbackByLocale": {
+              "ru": "Звучит home — домой.",
+              "uk": "Звучить home — додому."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину и результат. Начните с We were hungry and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину и результат. Начните с We were hungry and therefore.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i19:audio",
+          "transcript": "We were hungry and therefore we ate some bread."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We were hungry and therefore we ate some bread.",
+        "orderedTokens": [
+          "We",
+          "were",
+          "hungry",
+          "and",
+          "therefore",
+          "we",
+          "ate",
+          "some",
+          "bread"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Парк не закрыт. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-56:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-56:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Парк не закрыт. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Парк не закрыт. Добавьте утвердительное уточнение.",
+          "uk": "Парк не закритий. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The park isn't closed, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-56:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Парк не закрыт. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-56:i20:r2",
+            "correct": false,
+            "testedDimension": "Парк не закрыт. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Один park требует is.",
+              "uk": "Один park потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-56:i20:r3",
+            "correct": false,
+            "testedDimension": "Парк не закрыт. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-56:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы дали Анне сумку, чтобы она несла хлеб. Начните с I gave Anna the bag.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-56:i21:audio"
+      ],
+      "accessibilityLabel": "Вы дали Анне сумку, чтобы она несла хлеб. Начните с I gave Anna the bag.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-56:i21:audio",
+          "transcript": "I gave Anna the bag so that she could carry the bread."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I gave Anna the bag so that she could carry the bread.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "afdaa531e5be0ef652958b0c72a16054613f6876baf6b1d36f46e3980a149220"
+}

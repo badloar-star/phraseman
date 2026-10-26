@@ -1,0 +1,1054 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-55",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — water",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — water",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i01:audio",
+          "transcript": "water"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-55:i01:r1",
+            "targetText": "water",
+            "meaningByLocale": {
+              "ru": "Вода. Повторение знакомого слова.",
+              "uk": "Вода. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "water",
+          "definitionByLocale": {
+            "ru": "Вода. Повторение знакомого слова.",
+            "uk": "Вода. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i02:r1",
+          "text": "I know that the water is cold."
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i02:r2",
+          "text": "I know that the water is hot."
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i02:r3",
+          "text": "I know that the water is warm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i02:audio",
+          "transcript": "I know that the water is cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-55:i02:r1",
+            "targetText": "I know that the water is cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i02:r2",
+            "targetText": "I know that the water is hot.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i02:r3",
+            "targetText": "I know that the water is warm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the water is cold.",
+              "uk": "У записі звучить I know that the water is cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the water is cold.",
+              "uk": "У записі звучить I know that the water is cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Вода холодная». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i03:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i03:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Вода холодная». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Вода холодная». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Вода холодна». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the water ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-55:i03:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i03:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Вода холодная». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i03:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Вода холодная». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i03:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Вода холодная». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cloth",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cloth",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i04:audio",
+          "transcript": "cloth"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-55:i04:r1",
+            "targetText": "cloth",
+            "meaningByLocale": {
+              "ru": "Тряпка, кусок ткани. Повторение знакомого слова.",
+              "uk": "Ганчірка, шматок тканини. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cloth",
+          "definitionByLocale": {
+            "ru": "Тряпка, кусок ткани. Повторение знакомого слова.",
+            "uk": "Ганчірка, шматок тканини. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы пролили немного воды, поэтому взяли тряпку. Начните с I spilled some water.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пролили немного воды, поэтому взяли тряпку. Начните с I spilled some water.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I spilled some water, so I got a cloth.",
+        "localizedMeaning": {
+          "ru": "Вы пролили немного воды, поэтому взяли тряпку. Начните с I spilled some water.",
+          "uk": "Ви пролили трохи води, тому взяли ганчірку. Почніть з I spilled some water."
+        },
+        "orderedTokens": [
+          "I",
+          "spilled",
+          "some",
+          "water,",
+          "so",
+          "I",
+          "got",
+          "a",
+          "cloth"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — floor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — floor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i06:audio",
+          "transcript": "floor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-55:i06:r1",
+            "targetText": "floor",
+            "meaningByLocale": {
+              "ru": "Пол. Повторение знакомого слова.",
+              "uk": "Підлога. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "floor",
+          "definitionByLocale": {
+            "ru": "Пол. Повторение знакомого слова.",
+            "uk": "Підлога. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Пол был мокрым, и поэтому вы шли медленно. Скажите это с and therefore.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Пол был мокрым, и поэтому вы шли медленно. Скажите это с and therefore.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i07:audio",
+          "transcript": "The floor was wet and therefore we walked slowly."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The floor was wet and therefore we walked slowly.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы взяли тряпку с целью вытереть стол. Выберите форму после to.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i08:r1",
+          "text": "dry"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i08:r2",
+          "text": "dried"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i08:r3",
+          "text": "drying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы взяли тряпку с целью вытереть стол. Выберите форму после to.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы взяли тряпку с целью вытереть стол. Выберите форму после to.",
+          "uk": "Ви взяли ганчірку, щоб витерти стіл. Виберіть форму після to."
+        },
+        "gappedTargetPhrase": "I got a cloth to ___ the table.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-55:i08:r1",
+            "text": "dry"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i08:r2",
+            "text": "dried"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i08:r3",
+            "text": "drying"
+          }
+        ],
+        "testedDimension": "Вы взяли тряпку с целью вытереть стол. Выберите форму после to.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Вы взяли тряпку с целью вытереть стол. Выберите форму после to.",
+            "feedbackByLocale": {
+              "ru": "После to нужна форма dry.",
+              "uk": "Після to потрібна форма dry."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Вы взяли тряпку с целью вытереть стол. Выберите форму после to.",
+            "feedbackByLocale": {
+              "ru": "Цель выражаем через to dry.",
+              "uk": "Мету виражаємо через to dry."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы взяли тряпку, чтобы вытереть стол насухо. Начните с I got a cloth.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы взяли тряпку, чтобы вытереть стол насухо. Начните с I got a cloth.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I got a cloth to dry the table.",
+        "localizedMeaning": {
+          "ru": "Вы взяли тряпку, чтобы вытереть стол насухо. Начните с I got a cloth.",
+          "uk": "Ви взяли ганчірку, щоб витерти стіл насухо. Почніть з I got a cloth."
+        },
+        "orderedTokens": [
+          "I",
+          "got",
+          "a",
+          "cloth",
+          "to",
+          "dry",
+          "the",
+          "table"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите, где сухая тряпка.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i10:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите, где сухая тряпка.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i10:audio",
+          "transcript": "Could you tell me where the dry cloth is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the dry cloth is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пол вымыла Анна. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пол вымыла Анна. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пол вымыла Анна. Выберите предлог перед её именем.",
+          "uk": "Підлогу помила Анна. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The floor was cleaned ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-55:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Пол вымыла Анна. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i11:r2",
+            "correct": false,
+            "testedDimension": "Пол вымыла Анна. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия называем после by.",
+              "uk": "Виконавця дії називаємо після by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i11:r3",
+            "correct": false,
+            "testedDimension": "Пол вымыла Анна. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Анна вымыла пол: by Anna.",
+              "uk": "Анна помила підлогу: by Anna."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cup",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cup",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i12:audio",
+          "transcript": "cup"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-55:i12:r1",
+            "targetText": "cup",
+            "meaningByLocale": {
+              "ru": "Чашка. Повторение знакомого слова.",
+              "uk": "Чашка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cup",
+          "definitionByLocale": {
+            "ru": "Чашка. Повторение знакомого слова.",
+            "uk": "Чашка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i13:r1",
+          "text": "I know that the cup is empty."
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i13:r2",
+          "text": "I know that the cup is full."
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i13:r3",
+          "text": "I know that the cup is clean."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i13:audio",
+          "transcript": "I know that the cup is empty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-55:i13:r1",
+            "targetText": "I know that the cup is empty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i13:r2",
+            "targetText": "I know that the cup is full.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i13:r3",
+            "targetText": "I know that the cup is clean.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the cup is empty.",
+              "uk": "У записі звучить I know that the cup is empty."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know that the cup is empty.",
+              "uk": "У записі звучить I know that the cup is empty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Тряпки сухие». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Тряпки сухие». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i14:audio",
+          "transcript": "She said the cloths were dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the cloths were dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Пол был мокрым, и поэтому вы шли медленно. Начните с The floor was wet and therefore we walked.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пол был мокрым, и поэтому вы шли медленно. Начните с The floor was wet and therefore we walked.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The floor was wet and therefore we walked slowly.",
+        "localizedMeaning": {
+          "ru": "Пол был мокрым, и поэтому вы шли медленно. Начните с The floor was wet and therefore we walked.",
+          "uk": "Підлога була мокра, і тому ви йшли повільно. Почніть з The floor was wet and therefore we walked."
+        },
+        "orderedTokens": [
+          "The",
+          "floor",
+          "was",
+          "wet",
+          "and",
+          "therefore",
+          "we",
+          "walked",
+          "slowly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы пролили воду и в результате взяли тряпку. Вставьте «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы пролили воду и в результате взяли тряпку. Вставьте «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы пролили воду и в результате взяли тряпку. Вставьте «поэтому».",
+          "uk": "Ви пролили воду й у результаті взяли ганчірку. Вставте «тому»."
+        },
+        "gappedTargetPhrase": "I spilled some water, ___ I got a cloth.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-55:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Вы пролили воду и в результате взяли тряпку. Вставьте «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i16:r2",
+            "correct": false,
+            "testedDimension": "Вы пролили воду и в результате взяли тряпку. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i16:r3",
+            "correct": false,
+            "testedDimension": "Вы пролили воду и в результате взяли тряпку. Вставьте «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна помогла вам, хотя была занята. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i17:audio"
+      ],
+      "accessibilityLabel": "Анна помогла вам, хотя была занята. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i17:audio",
+          "transcript": "Anna helped me although she was busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna helped me although she was busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вы взяли тряпку или полотенце?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i18:r1",
+          "text": "I spilled some water, so I got a cloth."
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i18:r2",
+          "text": "I spilled some water, so I got a towel."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i18:audioA",
+        "en:lesson-31:session-55:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вы взяли тряпку или полотенце?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I spilled some water, so I got a cloth.",
+        "contrastB": "I spilled some water, so I got a towel.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-55:i18:audioA",
+          "transcript": "I spilled some water, so I got a cloth."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-55:i18:audioB",
+          "transcript": "I spilled some water, so I got a towel."
+        },
+        "testedPhoneticContrast": "Послушайте: вы взяли тряпку или полотенце?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вы взяли тряпку или полотенце?",
+            "feedbackByLocale": {
+              "ru": "Звучит a cloth — тряпка.",
+              "uk": "Звучить a cloth — ганчірка."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте причину и результат. Начните с The floor was wet and therefore we walked.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте причину и результат. Начните с The floor was wet and therefore we walked.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i19:audio",
+          "transcript": "The floor was wet and therefore we walked slowly."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The floor was wet and therefore we walked slowly.",
+        "orderedTokens": [
+          "The",
+          "floor",
+          "was",
+          "wet",
+          "and",
+          "therefore",
+          "we",
+          "walked",
+          "slowly"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пол не мокрый. Добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-55:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-55:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пол не мокрый. Добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пол не мокрый. Добавьте утвердительное уточнение.",
+          "uk": "Підлога не мокра. Додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "The floor isn't wet, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-55:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Пол не мокрый. Добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-55:i20:r2",
+            "correct": false,
+            "testedDimension": "Пол не мокрый. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Один floor требует is.",
+              "uk": "Один floor потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-55:i20:r3",
+            "correct": false,
+            "testedDimension": "Пол не мокрый. Добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-55:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы понимаете, почему Анна принесла тряпку. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-55:i21:audio"
+      ],
+      "accessibilityLabel": "Вы понимаете, почему Анна принесла тряпку. Скажите это.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-55:i21:audio",
+          "transcript": "I understand why Anna brought a cloth."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I understand why Anna brought a cloth.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5329ea37e0dad457356dc466931d44bd161546fa6a46d8062477d73007d49ee9"
+}

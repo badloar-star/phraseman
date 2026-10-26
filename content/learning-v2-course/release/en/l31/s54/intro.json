@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять результат ремонта и называть того, кто помог.",
+    "uk": "пояснювати результат ремонту й називати того, хто допоміг."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стул сломан — сел на диван",
+        "uk": "Стілець зламаний — сів на диван"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотели сесть на стул, но он оказался сломан: The chair was broken, so I sat on the sofa — стул был сломан, поэтому я сел на диван. Соберите The chair was broken + so + I sat on the sofa. Перед so называем причину, после него — результат. Sat — прошедшая форма sit.",
+        "uk": "Ви хотіли сісти на стілець, але він виявився зламаним: The chair was broken, so I sat on the sofa — стілець був зламаний, тому я сів на диван. Складіть The chair was broken + so + I sat on the sofa. Перед so називаємо причину, після нього — результат. Sat — минула форма sit."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-54:intro1:r1",
+              "text": "The chair was broken, so I sat on the sofa."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro1:r2",
+              "text": "The chair was broken, so I sitting on the sofa."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro1:r3",
+              "text": "The chair was broken, so I sits on the sofa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-54:intro1:r1",
+              "text": "The chair was broken, so I sat on the sofa."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro1:r2",
+              "text": "The chair was broken, so I sitting on the sofa."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro1:r3",
+              "text": "The chair was broken, so I sits on the sofa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стул починили — можно пользоваться",
+        "uk": "Стілець полагодили — можна користуватися"
+      },
+      "bodyByLocale": {
+        "ru": "В письменном рассказе вы описываете результат ремонта: The chair was fixed and therefore we could use it — стул починили, и поэтому мы могли им пользоваться. Соберите The chair was fixed + and therefore + we could use it. Therefore подчёркивает результат: после ремонта появилась возможность пользоваться стулом.",
+        "uk": "У письмовій розповіді ви описуєте результат ремонту: The chair was fixed and therefore we could use it — стілець полагодили, і тому ми могли ним користуватися. Складіть The chair was fixed + and therefore + we could use it. Therefore підкреслює результат: після ремонту з’явилася можливість користуватися стільцем."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-54:intro2:r1",
+              "text": "The chair was fixed and therefore we could use it."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro2:r2",
+              "text": "The chair was fixed and therefore we could used it."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro2:r3",
+              "text": "The chair was fixed and therefore could we use it."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-54:intro2:r1",
+              "text": "The chair was fixed and therefore we could use it."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro2:r2",
+              "text": "The chair was fixed and therefore we could used it."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro2:r3",
+              "text": "The chair was fixed and therefore could we use it."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Стул починил Бен",
+        "uk": "Стілець полагодив Бен"
+      },
+      "bodyByLocale": {
+        "ru": "Анна спрашивает, кто починил стул. Начните ответ со стула: The chair was fixed by Ben — стул починил Бен. Соберите The chair + was fixed + by Ben. Was fixed называет действие над стулом; by Ben указывает, кто его выполнил.",
+        "uk": "Анна запитує, хто полагодив стілець. Почніть відповідь зі стільця: The chair was fixed by Ben — стілець полагодив Бен. Складіть The chair + was fixed + by Ben. Was fixed називає дію над стільцем; by Ben указує, хто її виконав."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-54:intro3:r1",
+              "text": "The chair was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro3:r2",
+              "text": "The chair was fix by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro3:r3",
+              "text": "The chair were fixed by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-54:intro3:r1",
+              "text": "The chair was fixed by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro3:r2",
+              "text": "The chair was fix by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-54:intro3:r3",
+              "text": "The chair were fixed by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "eebfa627753a5a71cbab9e556a7a8665160952d2014d6d6faa9dfc2a0f8e102d"
+}

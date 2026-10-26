@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-22:i01",
+    "correctText": "importante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i02",
+    "correctText": "важный",
+    "correctResponseId": "es:lesson-01:session-22:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i03",
+    "correctText": "Es importante.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i04",
+    "correctText": "urgente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i05",
+    "correctText": "срочный",
+    "correctResponseId": "es:lesson-01:session-22:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i06",
+    "correctText": "urgente",
+    "correctResponseId": "es:lesson-01:session-22:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i07",
+    "correctText": "Es urgente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i08",
+    "correctText": "No es urgente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i09",
+    "correctText": "Это не важно",
+    "correctResponseId": "es:lesson-01:session-22:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i10",
+    "correctText": "necesario",
+    "correctResponseId": "es:lesson-01:session-22:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i11",
+    "correctText": "No es urgente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-22:i12",
+    "correctText": "Sí, es importante.",
+    "correctResponseId": null
+  }
+]

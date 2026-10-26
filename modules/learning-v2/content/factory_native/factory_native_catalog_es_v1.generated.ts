@@ -154,4 +154,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать bonito или bonita по роду испанского названия предмета.","uk":"обрати bonito або bonita за родом іспанської назви предмета."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 22,
+    sourceFingerprint: "7a207095e2d1b1752d8dcd738b8754ab8bb287443d03f0c02ce86a89594f719a",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить значимость и срочность дела с es + importante/urgente.","uk":"оцінити значущість і терміновість справи з es + importante/urgente."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

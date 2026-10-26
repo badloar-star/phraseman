@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-22:intro1:r2": {
+          "ru": "Это оценка себя, а не дела.",
+          "uk": "Це оцінка себе, а не справи."
+        },
+        "es:lesson-01:session-22:intro1:r3": {
+          "ru": "Это оценка сложности, а не значимости.",
+          "uk": "Це оцінка складності, а не значущості."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-22:intro2:r2": {
+          "ru": "Это говорит о важности, но не передаёт требуемую срочность.",
+          "uk": "Це говорить про важливість, але не передає потрібної терміновості."
+        },
+        "es:lesson-01:session-22:intro2:r3": {
+          "ru": "No отрицает срочность, меняя нужный смысл.",
+          "uk": "No заперечує терміновість, змінюючи потрібний зміст."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-22:intro3:r2": {
+          "ru": "Это означает «Это не важно», другую оценку.",
+          "uk": "Це означає «Це не важливо», іншу оцінку."
+        },
+        "es:lesson-01:session-22:intro3:r3": {
+          "ru": "Без no вы утверждаете, что ждать нельзя.",
+          "uk": "Без no ви стверджуєте, що чекати не можна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "95498b9dca2181f00bb56c79efc57e8f2575ce241a26b5e591c814b4d016e083"
+}

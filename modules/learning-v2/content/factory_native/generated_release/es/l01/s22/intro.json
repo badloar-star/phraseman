@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "оценить значимость и срочность дела с es + importante/urgente.",
+    "uk": "оцінити значущість і терміновість справи з es + importante/urgente."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это важно",
+        "uk": "Це важливо"
+      },
+      "bodyByLocale": {
+        "ru": "Время встречи изменилось. Гости должны узнать об этом. Скажите о том, чтобы предупредить их: `Es importante` — «Это важно». `Importante` — «важный». Соберите `es` + `importante`. Фраза показывает значимость дела; она сама по себе не говорит, сколько времени осталось на его выполнение.",
+        "uk": "Час зустрічі змінився. Гості мають дізнатися про це. Скажіть про те, щоб попередити їх: `Es importante` — «Це важливо». `Importante` — «важливий». Складіть `es` + `importante`. Фраза показує значущість справи; вона сама собою не говорить, скільки часу залишилося на її виконання."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Оцените значимость дела: «Это важно».",
+          "uk": "Оцініть значущість справи: «Це важливо»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-22:intro1:r1",
+              "text": "Es importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro1:r2",
+              "text": "Soy importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro1:r3",
+              "text": "Es difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-22:intro1:r1",
+              "text": "Es importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro1:r2",
+              "text": "Soy importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro1:r3",
+              "text": "Es difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените значимость дела: «Это важно».",
+          "uk": "Оцініть значущість справи: «Це важливо»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А это срочно",
+        "uk": "А це терміново"
+      },
+      "bodyByLocale": {
+        "ru": "Некоторые гости уже скоро выйдут из дома. Предупредить их нужно сейчас. Скажите: `Es urgente` — «Это срочно». `Urgente` — «срочный», то, что не терпит отлагательства. Сохраняем `es`, затем ставим `urgente`. Не все важные дела срочные: здесь слово нужно потому, что ждать уже нельзя.",
+        "uk": "Деякі гості вже скоро вийдуть із дому. Попередити їх потрібно зараз. Скажіть: `Es urgente` — «Це терміново». `Urgente` — «терміновий», такий, що не терпить зволікання. Зберігаємо `es`, потім ставимо `urgente`. Не всі важливі справи термінові: тут слово потрібне тому, що чекати вже не можна."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Подчеркните, что нельзя откладывать: «Это срочно».",
+          "uk": "Підкресліть, що не можна відкладати: «Це терміново»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-22:intro2:r1",
+              "text": "Es urgente."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro2:r2",
+              "text": "Es importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro2:r3",
+              "text": "No es urgente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-22:intro2:r1",
+              "text": "Es urgente."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro2:r2",
+              "text": "Es importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro2:r3",
+              "text": "No es urgente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подчеркните, что нельзя откладывать: «Это срочно».",
+          "uk": "Підкресліть, що не можна відкладати: «Це терміново»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Украшения могут подождать",
+        "uk": "Прикраси можуть почекати"
+      },
+      "bodyByLocale": {
+        "ru": "Напарник предлагает сразу выбрать украшения, но это можно сделать позже. Скажите о выборе украшений: `No es urgente` — «Это не срочно». Сборка знакомая: `no` + `es` + `urgente`. Вы не называете дело ненужным или неважным. Только говорите, что его можно отложить.",
+        "uk": "Напарник пропонує відразу обрати прикраси, але це можна зробити пізніше. Скажіть про вибір прикрас: `No es urgente` — «Це не терміново». Побудова знайома: `no` + `es` + `urgente`. Ви не називаєте справу непотрібною або неважливою. Лише говорите, що її можна відкласти."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Уточните про дело: «Это не срочно».",
+          "uk": "Уточніть про справу: «Це не терміново»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-22:intro3:r1",
+              "text": "No es urgente."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro3:r2",
+              "text": "No es importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro3:r3",
+              "text": "Es urgente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-22:intro3:r1",
+              "text": "No es urgente."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro3:r2",
+              "text": "No es importante."
+            },
+            {
+              "responseId": "es:lesson-01:session-22:intro3:r3",
+              "text": "Es urgente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните про дело: «Это не срочно».",
+          "uk": "Уточніть про справу: «Це не терміново»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "01c088a0cf0eb8c12d2e618a3e4b92aa96adcb393fb6c922e399b3374b007027"
+}

@@ -1,0 +1,677 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-22",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-22:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — importante",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — importante",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i01:audio",
+          "transcript": "importante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-22:i01:r1",
+            "targetText": "importante",
+            "meaningByLocale": {
+              "ru": "важный. Показывает значимость дела, а не его срочность. 🔊 *importante*",
+              "uk": "важливий. Показує значущість справи, а не її терміновість. 🔊 *importante*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "importante",
+          "definitionByLocale": {
+            "ru": "важный. Показывает значимость дела, а не его срочность. 🔊 *importante*",
+            "uk": "важливий. Показує значущість справи, а не її терміновість. 🔊 *importante*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i02:r1",
+          "text": "важливий"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i02:r2",
+          "text": "складний"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i02:audio",
+          "transcript": "importante"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-22:i02:r1",
+            "targetText": "важливий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i02:r2",
+            "targetText": "складний",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это difícil; importante говорит о значимости.",
+              "uk": "Це difícil; importante говорить про значущість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про справу «Це важливо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i03:r1",
+          "text": "Плитки: importante"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i03:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про справу «Це важливо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es importante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о деле «Это важно»",
+          "uk": "Складіть фразу — скажіть про справу «Це важливо»"
+        },
+        "orderedTokens": [
+          "Es",
+          "importante"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про справу «Це важливо»",
+            "feedbackByLocale": {
+              "ru": "оцениваете дело, не себя.",
+              "uk": "оцінюєте справу, не себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — urgente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — urgente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i04:audio",
+          "transcript": "urgente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-22:i04:r1",
+            "targetText": "urgente",
+            "meaningByLocale": {
+              "ru": "срочный. Такое дело нельзя откладывать. 🔊 *urgente*",
+              "uk": "терміновий. Таку справу не можна відкладати. 🔊 *urgente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "urgente",
+          "definitionByLocale": {
+            "ru": "срочный. Такое дело нельзя откладывать. 🔊 *urgente*",
+            "uk": "терміновий. Таку справу не можна відкладати. 🔊 *urgente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i05:r1",
+          "text": "терміновий"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i05:r2",
+          "text": "безкоштовний"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i05:audio",
+          "transcript": "urgente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-22:i05:r1",
+            "targetText": "терміновий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i05:r2",
+            "targetText": "безкоштовний",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это gratis; urgente говорит о срочности.",
+              "uk": "Це gratis; urgente говорить про терміновість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — підкресліть «Це терміново»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i06:r1",
+          "text": "urgente"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i06:r2",
+          "text": "importante"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i06:r3",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — підкресліть «Це терміново»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подчеркните «Это срочно»",
+          "uk": "Вставте слово — підкресліть «Це терміново»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-22:i06:r1",
+            "text": "urgente"
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i06:r2",
+            "text": "importante"
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i06:r3",
+            "text": "difícil"
+          }
+        ],
+        "testedDimension": "Вставте слово — підкресліть «Це терміново»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — підкресліть «Це терміново»",
+            "feedbackByLocale": {
+              "ru": "Это важно, но слово само по себе не означает срочности.",
+              "uk": "Це важливо, але слово саме собою не означає терміновості."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — підкресліть «Це терміново»",
+            "feedbackByLocale": {
+              "ru": "Это трудно, а не срочно.",
+              "uk": "Це складно, а не терміново."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — нагадайте, що гостей потрібно попередити зараз",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — нагадайте, що гостей потрібно попередити зараз",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i07:audio",
+          "transcript": "Es urgente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es urgente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i08:r1",
+          "text": "Плитки: urgente"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i08:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i08:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i08:audio",
+          "transcript": "No es urgente."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es urgente.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "urgente"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es, оценка дела.",
+              "uk": "звучить es, оцінка справи."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i09:r1",
+          "text": "Це не важливо"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i09:r2",
+          "text": "Це не терміново"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i09:r3",
+          "text": "Це важливо"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i09:audio",
+          "transcript": "No es importante."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-22:i09:r1",
+            "targetText": "Це не важливо",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i09:r2",
+            "targetText": "Це не терміново",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i09:r3",
+            "targetText": "Це важливо",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Звучит importante, а не urgente.",
+              "uk": "Звучить importante, а не urgente."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Пропущено отрицание no.",
+              "uk": "Пропущено заперечення no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть «Це необхідно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i10:r1",
+          "text": "necesario"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i10:r2",
+          "text": "difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i10:r3",
+          "text": "gratis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть «Це необхідно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите «Это необходимо»",
+          "uk": "Вставте слово — скажіть «Це необхідно»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-22:i10:r1",
+            "text": "necesario"
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i10:r2",
+            "text": "difícil"
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i10:r3",
+            "text": "gratis"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть «Це необхідно»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Це необхідно»",
+            "feedbackByLocale": {
+              "ru": "Это трудно, а нужно выразить необходимость.",
+              "uk": "Це складно, а потрібно висловити необхідність."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-22:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Це необхідно»",
+            "feedbackByLocale": {
+              "ru": "Это бесплатно, а не необходимо.",
+              "uk": "Це безкоштовно, а не необхідно."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — поясніть, що прикраси можуть почекати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — поясніть, що прикраси можуть почекати",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-22:i11:audio",
+          "transcript": "No es urgente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es urgente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-22:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — напарник недооцінив справу; підтвердьте «Так, це важливо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-22:i12:r1",
+          "text": "Плитки: importante"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i12:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-22:i12:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — напарник недооцінив справу; підтвердьте «Так, це важливо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, es importante.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — напарник недооценил дело; подтвердите «Да, это важно»",
+          "uk": "Складіть фразу — напарник недооцінив справу; підтвердьте «Так, це важливо»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "es",
+          "importante"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-22:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — напарник недооцінив справу; підтвердьте «Так, це важливо»",
+            "feedbackByLocale": {
+              "ru": "вы подтверждаете важность, а не отрицаете её.",
+              "uk": "ви підтверджуєте важливість, а не заперечуєте її."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9faff646fe1ac603aa0b4e5458e8dd71d2309bbaed8945f1ac80da06f7e3d252"
+}

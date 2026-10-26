@@ -37,8 +37,11 @@ describe('банки экзамена v2: правила', () => {
     for (const item of bank.items) {
       expect(bank.grammarPoints.some((p) => p.id === item.grammarPoint)).toBe(true);
       expect(item.accepted.length).toBeGreaterThan(0);
-      expect(item.partnerLine ?? '').not.toContain('?');
-      for (const a of item.accepted) expect(a).not.toContain('?');
+      // зачем: вопросов нет только в уроке 1; с урока 2 (глава 2) вопрос — тема урока, «?» в реплике и ответе законен
+      if (bank.lessonOrdinal === 1) {
+        expect(item.partnerLine ?? '').not.toContain('?');
+        for (const a of item.accepted) expect(a).not.toContain('?');
+      }
       if (item.type === 'situation') expect(item.situation?.ru && item.situation?.uk).toBeTruthy();
       if (item.type === 'dialogue') expect(item.partnerLine && item.situation?.ru && item.situation?.uk).toBeTruthy();
       if (item.type === 'fix') expect(item.wrong).toBeTruthy();

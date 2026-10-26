@@ -46,12 +46,12 @@ beforeEach(() => {
 afterEach(() => jest.restoreAllMocks());
 
 describe('выбор экзамена', () => {
-  it('по умолчанию (2.0.3) — v2 у глав 1–3 урока 1, у остальных — прежний; выключен из «Пульта» — прежний у всех', () => {
-    // слово владельца 26.10: включено для 3 глав урока 1; банков других глав нет — у них прежний экзамен
-    expect([1, 2, 3, 4, 5].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([true, true, true, false, false]);
-    expect(isChapterExamV2EnabledFor(2, 1)).toBe(false);
-    expect([chapterExamV2BankFor(1, 1), chapterExamV2BankFor(1, 2), chapterExamV2BankFor(1, 3)].every((b) => b !== null)).toBe(true);
-    expect(chapterExamV2BankFor(1, 4)).toBeNull();
+  it('по умолчанию (2.0.3) — v2 у глав с банком, у глав без банка — прежний; выключен из «Пульта» — прежний у всех', () => {
+    // слово владельца 26.10: банки всех уроков и глав — в 2.0.3; глава без банка (урок 99 — такого нет) остаётся на прежнем экзамене
+    expect([1, 2, 3, 4, 5, 6, 7].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([true, true, true, true, true, true, true]);
+    expect(isChapterExamV2EnabledFor(99, 1)).toBe(false);
+    expect([1, 2, 3, 4, 5, 6, 7].every((c) => chapterExamV2BankFor(1, c) !== null)).toBe(true);
+    expect(chapterExamV2BankFor(99, 1)).toBeNull();
     // выключен удалённо — прежний экзамен у всех глав
     mockFlag = false;
     expect([1, 2, 3].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([false, false, false]);
@@ -59,7 +59,7 @@ describe('выбор экзамена', () => {
     expect(isChapterExamV2EnabledFor(1, 1)).toBe(true);
     expect(isChapterExamV2EnabledFor(1, 2)).toBe(true);
     expect(isChapterExamV2EnabledFor(1, 3)).toBe(true);
-    expect(isChapterExamV2EnabledFor(1, 4)).toBe(false);
+    expect(isChapterExamV2EnabledFor(99, 1)).toBe(false);
     mockFlag = false;
     expect(isChapterExamV2EnabledFor(1, 2)).toBe(false);
   });

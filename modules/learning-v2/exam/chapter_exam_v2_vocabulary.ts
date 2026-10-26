@@ -64,7 +64,8 @@ export function findChapterExamV2UnknownWords(
     if (item.wrong) check(item.id, 'wrong', item.wrong, englishWordsV1(item.wrong));
     item.accepted.forEach((answer, index) => {
       if (index === 0) check(item.id, 'reference', answer, englishWordsV1(answer));
-      else check(item.id, 'accepted', answer, normalizeChapterExamV2Answer(answer).split(' ').filter(Boolean));
+      // зачем: словарь эпизодов не хранит одиночные буквы (englishWordsV1) — «a» из урока 3 иначе краснеет в каждом варианте ответа
+      else check(item.id, 'accepted', answer, normalizeChapterExamV2Answer(answer).split(' ').filter((w) => w.length > 1 || w === 'i'));
     });
   }
   return misses;

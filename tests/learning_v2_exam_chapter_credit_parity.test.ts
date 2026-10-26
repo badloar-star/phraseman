@@ -52,8 +52,10 @@ beforeEach(() => {
 afterEach(() => jest.restoreAllMocks());
 
 describe('жалоба №17: сдача экзамена засчитывает главу одинаково в v2 и прежнем экзамене', () => {
-  it('выбор экзамена: главы 1–3 — v2, глава 4 — прежний', () => {
-    expect([1, 2, 3, 4].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([true, true, true, false]);
+  // слово владельца 26.10: банки всех глав — в 2.0.3; глава без банка (урок 99 — такого нет) — прежний экзамен
+  it('выбор экзамена: глава с банком — v2, глава без банка — прежний', () => {
+    expect([1, 2, 3, 4].map((c) => isChapterExamV2EnabledFor(1, c))).toEqual([true, true, true, true]);
+    expect(isChapterExamV2EnabledFor(99, 1)).toBe(false);
   });
 
   it('v2, глава 1 с первого раза: текущий — эпизод 9, эпизод 8 открыт и не засчитан', async () => {

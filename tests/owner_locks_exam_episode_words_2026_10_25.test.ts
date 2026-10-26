@@ -63,4 +63,14 @@ describe('замок 25.10: в экзамене только слова из э�
       expect.objectContaining({ itemId: 'x', field: 'accepted', words: ['yes'] }),
     ]);
   });
+
+  // урок 3 (a / an): словарь эпизодов не хранит одиночные буквы — «a» в варианте ответа не должно краснеть, а незнакомое слово — должно
+  it('«a» в варианте ответа — не незнакомое слово', () => {
+    const known = collectEpisodeVocabularyV1([{ targetPhrase: 'It is a key.' }, { targetPhrase: "It's a lock." }]);
+    const bank: ChapterExamV2Bank = {
+      lessonOrdinal: 3, chapterOrdinal: 1, grammarPoints: [],
+      items: [{ id: 'y', type: 'situation', grammarPoint: 'p', accepted: ['It is a key.', "It's a key.", "It's a door."] }],
+    };
+    expect(findChapterExamV2UnknownWords(bank, known)).toEqual([expect.objectContaining({ itemId: 'y', field: 'accepted', words: ['door'] })]);
+  });
 });

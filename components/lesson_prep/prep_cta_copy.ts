@@ -11,11 +11,12 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 
 const S = {
   /** Подпись на занятой кнопке (с 0,35 с до 6 с). */
-  preparing: ['Готовим занятие…', 'Готуємо заняття…', 'Getting your session ready…', 'Preparando tu sesión…', 'Preparando sua sessão…', 'Đang chuẩn bị buổi học…', 'Menyiapkan sesi…', 'Oturum hazırlanıyor…', 'Przygotowujemy zajęcia…'],
+  preparing: ['Готовим занятие…', 'Готуємо заняття…', 'Getting your lesson ready…', 'Preparando tu lección…', 'Preparando sua lição…', 'Đang chuẩn bị buổi học…', 'Menyiapkan pelajaran…', 'Ders hazırlanıyor…', 'Przygotowujemy zajęcia…'],
   /** Подпись с 6 с до срока. */
-  still: ['Ещё секунду…', 'Ще секунду…', 'Still getting ready…', 'Aún preparándose…', 'Ainda preparando…', 'Vẫn đang chuẩn bị…', 'Masih disiapkan…', 'Hâlâ hazırlanıyor…', 'Jeszcze się przygotowuje…'],
+  // зачем (вычитка Переводчика 25.10): ru стал «Ещё секунду…», а 7 языков оставались «всё ещё готовится» — смысл выровнен; «session» → слово урока.
+  still: ['Ещё секунду…', 'Ще секунду…', 'One more second…', 'Un segundo más…', 'Só mais um segundo…', 'Chờ chút nữa…', 'Sebentar lagi…', 'Bir saniye daha…', 'Jeszcze sekunda…'],
   /** Подсказка снизу, когда за 12 с не успело: Главная остаётся на месте. */
-  hintContinue: ['Занятие ещё готовится. Нажми «Продолжить» через пару секунд', 'Заняття ще готується. Натисни «Продовжити» за кілька секунд', 'The session is still getting ready. Tap Continue again in a few seconds', 'La sesión aún se está preparando. Toca Continuar en unos segundos', 'A sessão ainda está sendo preparada. Toque em Continuar em alguns segundos', 'Buổi học vẫn đang chuẩn bị. Nhấn Tiếp tục sau vài giây', 'Sesi masih disiapkan. Ketuk Lanjutkan lagi dalam beberapa detik', 'Oturum hâlâ hazırlanıyor. Birkaç saniye sonra Devam et\'e dokun', 'Zajęcia jeszcze się przygotowują. Stuknij „Kontynuuj” za kilka sekund'],
+  hintContinue: ['Занятие ещё готовится. Нажми «Продолжить» через пару секунд', 'Заняття ще готується. Натисни «Продовжити» за кілька секунд', 'The lesson is still getting ready. Tap Continue again in a few seconds', 'La lección aún se está preparando. Toca Continuar en unos segundos', 'A lição ainda está sendo preparada. Toque em Continuar em alguns segundos', 'Buổi học vẫn đang chuẩn bị. Nhấn Tiếp tục sau vài giây', 'Pelajaran masih disiapkan. Ketuk Lanjutkan lagi dalam beberapa detik', 'Ders hâlâ hazırlanıyor. Birkaç saniye sonra Devam et\'e dokun', 'Zajęcia jeszcze się przygotowują. Stuknij „Kontynuuj” za kilka sekund'],
   /** Подсказка, когда подготовка отказала не по сроку (материала нет): те же слова, что у вкладки «Уроки». */
   hintUnavailable: ['Сейчас недоступно. Попробуй снова чуть позже', 'Зараз недоступно. Спробуй ще раз трохи пізніше', 'Not available right now. Please try again a little later', 'No disponible ahora. Inténtalo de nuevo un poco más tarde', 'Indisponível agora. Tente de novo daqui a pouco', 'Hiện chưa dùng được. Hãy thử lại sau ít phút', 'Belum tersedia sekarang. Coba lagi nanti', 'Şu anda kullanılamıyor. Biraz sonra tekrar dene', 'Chwilowo niedostępne. Spróbuj ponownie za chwilę'],
 } as const satisfies Record<string, Nine>;

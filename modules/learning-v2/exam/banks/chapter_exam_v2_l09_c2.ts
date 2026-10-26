@@ -1,6 +1,6 @@
 // chapter_exam_v2_l09_c2.ts — банк экзамена v2: урок 9, глава 2 (эпизоды 9–16). НЕ подключён: строку в BANKS добавляет Learning V2
 // после вычитки владельцем (docs/work/factory-exam-banks-task-for-codex-2026-10-25.md).
-// зачем: только слова и формы эпизодов 1–16 — am / is / are not + -ing, что делает человек сейчас, просьбы Please … и Please don't touch; вопросов в банках нет (правило сторожа).
+// зачем: только слова и формы эпизодов 1–16 — am / is / are not + -ing, что делает человек сейчас, просьбы Please … и Please don't touch; вопросы Is / Are … -ing? в эпизодах ещё впереди.
 // Ситуация и ответ сходятся по смыслу, верных вариантов несколько. Сторож слов — tests/owner_locks_exam_episode_words_2026_10_25.test.ts.
 import type { ChapterExamV2Bank } from '../chapter_exam_v2';
 

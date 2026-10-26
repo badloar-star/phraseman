@@ -115,7 +115,8 @@ describe('проводка: флаг, режим «навсегда», поле 
     expect(sync).toContain('const deleteNow = await resolveAccountDeleteNow(proof.operationId, deleteNowArmed);');
     expect(sync).toContain('const res = await fn(deleteNow ? { ...base, deleteNow: true as const } : base);');
     const flags = readSource('app/remote_flags.ts');
-    expect(flags).toContain('account_delete_variant_b_ui_enabled: false,');
+    // зачем (владелец 26.10): вариант Б ВКЛ по умолчанию в 2.0.3 (146) — сервер выложен утром
+    expect(flags).toContain('account_delete_variant_b_ui_enabled: true,');
   });
 });
 

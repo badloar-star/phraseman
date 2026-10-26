@@ -30,6 +30,8 @@ const restoreMock = jest.fn();
 jest.mock('../app/account_delete_restore_client', () => ({
   fetchAccountDeleteStatus: () => statusMock(),
   restoreDeletedAccount: () => restoreMock(),
+  // зачем (владелец 26.10: вариант Б ВКЛ по умолчанию): окно восстановления читает сводку — без неё мок падал TypeError
+  parseAccountRestoreSummary: () => null,
 }));
 
 const root = path.join(__dirname, '..');

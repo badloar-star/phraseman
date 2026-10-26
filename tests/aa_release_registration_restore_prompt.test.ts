@@ -33,6 +33,8 @@ const restoreMock = jest.fn();
 jest.mock('../app/account_delete_restore_client', () => ({
   fetchAccountDeleteStatus: () => statusMock(),
   restoreDeletedAccount: () => restoreMock(),
+  // зачем (владелец 26.10: вариант Б ВКЛ по умолчанию): окно восстановления читает сводку — без неё мок падал TypeError
+  parseAccountRestoreSummary: () => null,
 }));
 
 import { promptAccountRestoreAfterSignInRefusal } from '../app/account_delete_restore_prompt';
@@ -98,7 +100,8 @@ describe('промпт восстановления удалённого акк�
     for (let i = 0; i < 20 && alerts.length === 0; i += 1) await Promise.resolve();
     expect(alerts[0].buttons.map((b) => [b.text, b.ghost === true])).toEqual([['Не восстанавливать', true], ['Восстановить', false]]);
     // зачем (ревью Ядра 2dba22af6): окно не ждёт слот арбитра вечно — лог через 2 с, поверх через 8 с.
-    expect(lastChoiceOpts).toEqual({ slotWait: { logPrefix: '[ACCOUNT-RESTORE]', warnAfterMs: 2000, forceAfterMs: 8000 } });
+    // зачем (владелец 26.10: вариант Б ВКЛ по умолчанию в 2.0.3 146): окно восстановления — вид со сводкой; сводки в ответе нет → плашка без цифр
+    expect(lastChoiceOpts).toEqual({ slotWait: { logPrefix: '[ACCOUNT-RESTORE]', warnAfterMs: 2000, forceAfterMs: 8000 }, summary: { cells: null } });
     lastChoiceResolve?.('dismiss');
     await expect(pending).resolves.toBe('declined');
     expect(restoreMock).not.toHaveBeenCalled();

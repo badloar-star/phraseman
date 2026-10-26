@@ -270,10 +270,10 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   learning_cant_speak_enabled: false,
   learning_chapter_exam_v2_enabled: true, // зачем: владелец 26.10 — включить для 3 глав урока 1 в 2.0.3 (банки 1:1–1:3; остальные главы — прежний экзамен); выключается из Пульта
-  dialogue_freeform_translate_enabled: false,
-  account_delete_variant_b_ui_enabled: false,
+  dialogue_freeform_translate_enabled: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, dialogueV2FreeformTranslate)
+  account_delete_variant_b_ui_enabled: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, accountDelete* вариант Б)
   spire_streak_heart: false,
-  spire_gold: false,
+  spire_gold: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, spireReportSteps с goldRule)
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
   // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
   onboarding_skip_enabled: true,
@@ -379,7 +379,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   premium_theme_webgl_motion_enabled: false,
   plus_server_recheck_enabled: false,
   apple_signin_revoke_enabled: false,
-  dialogue_coin_intent_host_enabled: false,
+  dialogue_coin_intent_host_enabled: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); только клиент (R50 3734fb949, ревью Ревизора 5386b7e6f)
   // Бейдж скидки в хедере Главной: дефолт FALSE — виден только когда владелец
   // явно включит его в «Пульте» на время акции.
   discount_offer_banner_enabled: false,

@@ -108,12 +108,14 @@ describe('сервер: золото засчитывается по хешу и
 });
 
 describe('телефон: флаг, проводка, «Пульт»', () => {
-  it('флаг spire_gold в реестре: по умолчанию ВЫКЛ, снимок true включает', () => {
+  // зачем (владелец 26.10): «золото» ВКЛ по умолчанию в 2.0.3 (146) — spireReportSteps с goldRule выложен утром; выключатель
+  // остаётся в «Пульте» (false в снимке выключает), а второй замок — goldRule от сервера.
+  it('флаг spire_gold в реестре: по умолчанию ВКЛ, снимок false выключает', () => {
     jest.isolateModules(() => {
       const flags = require('../app/remote_flags') as typeof import('../app/remote_flags');
-      expect(flags.getRemoteBool('spire_gold')).toBe(false);
-      flags.applyRemoteConfigSnapshot({ bools: { spire_gold: true } });
       expect(flags.getRemoteBool('spire_gold')).toBe(true);
+      flags.applyRemoteConfigSnapshot({ bools: { spire_gold: false } });
+      expect(flags.getRemoteBool('spire_gold')).toBe(false);
     });
   });
 

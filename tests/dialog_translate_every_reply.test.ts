@@ -76,7 +76,8 @@ describe('проводка: кнопка у каждой реплики собе
     expect(client).toContain("getRemoteBool('dialogue_freeform_translate_enabled') === true");
     expect(client).toContain("'dialogueV2FreeformTranslate'");
     const flags = readSource('app/remote_flags.ts');
-    expect(flags).toContain('dialogue_freeform_translate_enabled: false,');
+    // зачем (владелец 26.10): перевод ВКЛ по умолчанию в 2.0.3 (146) — dialogueV2FreeformTranslate выложена утром
+    expect(flags).toContain('dialogue_freeform_translate_enabled: true,');
     const route = readSource('app/dialogue_v2_freeform.tsx');
     expect(route).toContain('onRequestTranslation={requestTranslation}');
     expect(route).toContain('turnId: pending.turnId,');

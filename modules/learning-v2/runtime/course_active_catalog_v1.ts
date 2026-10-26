@@ -326,6 +326,7 @@ export function materializeLearningV2FactoryPartialCourseCatalogV1(input: Readon
   interfaceLocale: LearningV2InterfaceLocale;
   activeRootFingerprint: string;
   activeHeadFingerprint: string;
+  targetLanguage?: string;
   lessons: readonly Readonly<{
     title: string;
     canDo: string;
@@ -363,6 +364,7 @@ export function materializeLearningV2FactoryPartialCourseCatalogV1(input: Readon
     });
   });
   const lessonIndexAggregate = hashCanonicalBody(lessons.map((lesson) => ({ lessonOrdinal: lesson.lessonOrdinal, value: lesson.lessonIndexFingerprint })));
+  const targetLanguage = exactId(input.targetLanguage ?? 'en');
   const body = {
     schemaVersion: LEARNING_V2_ACTIVE_COURSE_CATALOG_SCHEMA_V1,
     topologySchemaVersion: courseTopology().schemaVersion,
@@ -373,7 +375,7 @@ export function materializeLearningV2FactoryPartialCourseCatalogV1(input: Readon
     activeHeadFingerprint: exactHash(input.activeHeadFingerprint),
     headOperationRevision: 1,
     seasonId: exactId(input.seasonId),
-    targetLanguage: 'en', studyTarget: 'en', learnerSourceLocale: exactId(input.learnerSourceLocale),
+    targetLanguage, studyTarget: targetLanguage, learnerSourceLocale: exactId(input.learnerSourceLocale),
     interfaceLocale: input.interfaceLocale,
     contentClass: 'production_candidate' as const,
     releaseScope: 'factory_partial' as const,

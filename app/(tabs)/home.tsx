@@ -931,7 +931,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const continueStart = continueChoice.kind === 'none' && continueResolved && homeLearnVisible;
     // зачем (координатор 15.10, поправка 1): «пройдено / выпущено» считается при показе из локального прогресса курса и
     // перечитывается на каждый возврат на Главную (focusTick) — после пройденного занятия число свежее, а не из метки
-    const continueV2Progress = useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive);
+    const continueV2Progress = useHomeContinueV2Progress(continueV2?.lessonOrdinal ?? null, focusTick, homeRuntimeActive, studyTarget === 'es' ? 'es' : 'en');
     const continueV2Launching = useHomeContinueV2Launching(); // зачем (Ревизор по R09, 🟡): занятие готовится до 12 с — карточка «Продолжить» показывает занятость вместо молчания
     useHomeContinueV2Prewarm(continueV2?.route ?? null, lang, String(studyTarget), homeRuntimeActive); // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): урок готов до тапа «Продолжить»
     useEffect(() => {

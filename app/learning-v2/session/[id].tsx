@@ -2099,7 +2099,7 @@ function LearningV2SessionScreen() {
     runtimeMode?: string | string[];
     previewMode?: string | string[];
   }>();
-  const directMode = studyTarget === "en" || first(params.runtimeMode) === "direct_v1";
+  const directMode = studyTarget === "en" || studyTarget === "es" || first(params.runtimeMode) === "direct_v1";
   const content = directMode
     ? <LearningV2DirectSessionArrival />
     : <LearningV2LegacySessionScreen />;

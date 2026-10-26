@@ -88,11 +88,16 @@ function ChapterExamSwitch() {
   const lessonOrdinal = Number(params.lessonOrdinal) || 1;
   const chapterOrdinal = Number(params.chapterOrdinal) || 1;
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   // зачем (координатор 25.10, 🔴): тексты курса и экзамена есть только на ru/uk — на другом языке интерфейса экзамен не открываем
   // (ни v2, ни прежний), как весь курс V2. Общий выключатель пропускает вход, пока язык ещё не определён; здесь язык известен всегда
   if (!isLearningV2OpenForUiLangV1(lang, 'chapter_exam_route')) {
     logLearningV2Hidden('route_learning_v2_chapter_exam_ui_lang', LEARNING_V2_HIDDEN_REDIRECT, String(lang));
     return <Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />;
+  }
+  if (studyTarget !== 'en') {
+    logLearningV2Hidden('route_learning_v2_chapter_exam_target', '/learning-v2/course', String(studyTarget));
+    return <Redirect href="/learning-v2/course" />;
   }
   if (isChapterExamV2EnabledFor(lessonOrdinal, chapterOrdinal)) {
     return <ChapterExamV2Run lessonOrdinal={lessonOrdinal} chapterOrdinal={chapterOrdinal} source={params.source ?? null} />;

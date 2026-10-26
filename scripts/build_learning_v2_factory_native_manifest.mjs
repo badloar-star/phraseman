@@ -8,15 +8,19 @@ import { writeMockupFile } from "../content/learning-v2-course/pipeline/write_mo
 import { replaceGeneratedPrefixRows } from "./learning_v2_generated_prefix_rows.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const RELEASE_ROOT = path.join(ROOT, "content", "learning-v2-course", "release", "en");
-const SOURCE_ROOT = path.join(ROOT, "content", "learning-v2-course", "sessions", "en");
+const LANGUAGE_INDEX = process.argv.indexOf("--language");
+const LANGUAGE = LANGUAGE_INDEX >= 0 ? process.argv[LANGUAGE_INDEX + 1] : "en";
+if (!/^(?:en|es)$/u.test(LANGUAGE ?? "")) throw new Error("--language requires en or es");
+const GENERATED_SUFFIX = LANGUAGE === "en" ? "" : `_${LANGUAGE}`;
+const RELEASE_ROOT = path.join(ROOT, "content", "learning-v2-course", "release", LANGUAGE);
+const SOURCE_ROOT = path.join(ROOT, "content", "learning-v2-course", "sessions", LANGUAGE);
 const OUTPUT = path.join(
   ROOT,
   "modules",
   "learning-v2",
   "content",
   "factory_native",
-  "factory_native_manifest_v1.generated.ts",
+  `factory_native_manifest${GENERATED_SUFFIX}_v1.generated.ts`,
 );
 const CATALOG_OUTPUT = path.join(
   ROOT,
@@ -24,21 +28,21 @@ const CATALOG_OUTPUT = path.join(
   "learning-v2",
   "content",
   "factory_native",
-  "factory_native_catalog_v1.generated.ts",
+  `factory_native_catalog${GENERATED_SUFFIX}_v1.generated.ts`,
 );
 const GENERATED_RELEASE_ROOT = path.join(
-  ROOT, "modules", "learning-v2", "content", "factory_native", "generated_release", "en",
+  ROOT, "modules", "learning-v2", "content", "factory_native", "generated_release", LANGUAGE,
 );
 const MOCKUP_DATA = path.join(ROOT, "content", "learning-v2-course", "mockup", "data.js");
 const CHECK = process.argv.includes("--check");
 const SESSION_INDEX = process.argv.indexOf("--session");
 const SESSION = SESSION_INDEX >= 0 ? process.argv[SESSION_INDEX + 1] : null;
-if (SESSION_INDEX >= 0 && (!SESSION || !/^en\/l\d{2}\/s\d{2}$/u.test(SESSION) || process.argv.includes("--through"))) {
-  throw new Error("--session requires en/lNN/sNN and cannot be combined with --through");
+if (SESSION_INDEX >= 0 && (!SESSION || !new RegExp(`^${LANGUAGE}/l\\d{2}/s\\d{2}$`, "u").test(SESSION) || process.argv.includes("--through"))) {
+  throw new Error(`--session requires ${LANGUAGE}/lNN/sNN and cannot be combined with --through`);
 }
 const THROUGH_INDEX = process.argv.indexOf("--through");
 const THROUGH = THROUGH_INDEX >= 0 ? process.argv[THROUGH_INDEX + 1] : null;
-const THROUGH_MATCH = THROUGH === null ? null : /^en\/l01\/s(\d{2})$/u.exec(THROUGH);
+const THROUGH_MATCH = THROUGH === null ? null : new RegExp(`^${LANGUAGE}/l01/s(\\d{2})$`, "u").exec(THROUGH);
 if (THROUGH !== null && !THROUGH_MATCH) throw new Error(`invalid --through coordinate: ${THROUGH}`);
 const PREFIX_COUNT = THROUGH_MATCH ? Number(THROUGH_MATCH[1]) : null;
 // --extend (координатор 17.10, слово владельца «все восемь уроков доступны в релизе»): каталог ДОПОЛНЯЕТСЯ всеми
@@ -168,6 +172,7 @@ function lessonTitle(markdown, lessonOrdinal, locale) {
   const title = /^#\s+(.+)$/m.exec(markdown)?.[1]?.trim() ?? "";
   const prefix = title.split(/\s+·\s+(?:Сессия|Сесія|Занятие|Заняття)\s+\d+/u)[0]?.trim();
   if (prefix && prefix.length >= 4) return prefix;
+  if (LANGUAGE === "es") return locale === "uk" ? `Іспанська · Урок ${lessonOrdinal}` : `Испанский · Урок ${lessonOrdinal}`;
   return locale === "uk" ? `Англійська · Урок ${lessonOrdinal}` : `Английский · Урок ${lessonOrdinal}`;
 }
 
@@ -183,13 +188,13 @@ function rows(maxRows = null) {
       .sort((left, right) => left.name.localeCompare(right.name));
     sessions.forEach((session, index) => {
       try {
-      if (SESSION && SESSION !== `en/${lesson.name}/${session.name}`) return;
+      if (SESSION && SESSION !== `${LANGUAGE}/${lesson.name}/${session.name}`) return;
       if (maxRows !== null && result.length >= maxRows) return;
       const sessionOrdinal = Number(session.name.slice(1));
       if (sessionOrdinal !== index + 1) {
         throw new Error(`${lesson.name}: non-contiguous release at ${session.name}`);
       }
-      const relative = `content/learning-v2-course/release/en/${lesson.name}/${session.name}`;
+      const relative = `content/learning-v2-course/release/${LANGUAGE}/${lesson.name}/${session.name}`;
       const releaseDir = path.join(RELEASE_ROOT, lesson.name, session.name);
       const sourceDir = path.join(SOURCE_ROOT, lesson.name, session.name);
       const files = {
@@ -294,6 +299,7 @@ function rows(maxRows = null) {
   }
   if (SESSION) return result;
   if (EXTEND) return result;
+  if (LANGUAGE !== "en") return result;
   if (!fs.existsSync(MOCKUP_DATA)) throw new Error("canonical mockup data missing");
   const mockupSource = read(MOCKUP_DATA).replace(/^window\.__DATA__\s*=\s*/u, "").replace(/;\s*$/u, "");
   const mockupRows = JSON.parse(mockupSource);
@@ -311,7 +317,7 @@ function render(manifestRows) {
   const entries = manifestRows.map((row) => {
     const lesson = `l${String(row.lessonOrdinal).padStart(2, "0")}`;
     const session = `s${String(row.sessionOrdinal).padStart(2, "0")}`;
-    const moduleBase = `./generated_release/en/${lesson}/${session}`;
+    const moduleBase = `./generated_release/${LANGUAGE}/${lesson}/${session}`;
     return `  Object.freeze<LearningV2FactoryNativeManifestRowV1>({\n` +
       `    lessonOrdinal: ${row.lessonOrdinal}, sessionOrdinal: ${row.sessionOrdinal},\n` +
       `    sourceFingerprint: ${JSON.stringify(row.sourceFingerprint)},\n` +
@@ -341,7 +347,7 @@ function render(manifestRows) {
     `  readonly practiceTitlesByAuthoredLocale: Readonly<Record<"ru" | "uk", readonly Readonly<{ ordinal: number; title: string }>[]>>;\n` +
     `  readonly loadIntro: () => unknown; readonly loadLearner: (locale: "ru" | "uk") => unknown; readonly loadAnswers: () => unknown; readonly loadAuxiliary?: () => unknown;\n` +
     `}\n` +
-    `export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze<LearningV2FactoryNativeManifestRowV1[]>([\n${entries.join("\n")}\n]);\n`;
+    `export const FACTORY_NATIVE_MANIFEST${LANGUAGE === "en" ? "" : `_${LANGUAGE.toUpperCase()}`}_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze<LearningV2FactoryNativeManifestRowV1[]>([\n${entries.join("\n")}\n]);\n`;
 }
 
 function renderCatalog(manifestRows) {
@@ -360,7 +366,7 @@ function renderCatalog(manifestRows) {
     `  readonly learningOutcomeByAuthoredLocale: Readonly<Record<"ru" | "uk", string>>;\n` +
     `  readonly lessonTitleByAuthoredLocale: Readonly<Record<"ru" | "uk", string>>;\n` +
     `}\n` +
-    `export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCatalogRowV1[] = Object.freeze<LearningV2FactoryNativeCatalogRowV1[]>([\n${entries.join("\n")}\n]);\n`;
+    `export const FACTORY_NATIVE_CATALOG_ROWS${LANGUAGE === "en" ? "" : `_${LANGUAGE.toUpperCase()}`}_V1: readonly LearningV2FactoryNativeCatalogRowV1[] = Object.freeze<LearningV2FactoryNativeCatalogRowV1[]>([\n${entries.join("\n")}\n]);\n`;
 }
 
 const manifestRows = rows(PREFIX_COUNT);

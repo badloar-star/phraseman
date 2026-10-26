@@ -1,0 +1,897 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-04",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — verdadero",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — verdadero",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i01:audio",
+          "transcript": "verdadero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-04:i01:r1",
+            "targetText": "verdadero",
+            "meaningByLocale": {
+              "ru": "настоящий, правдивый, не выдуманный. В этом занятии о случае. Форма для истории — verdadera; это то же слово. 🔊 *verdadero*",
+              "uk": "справжній, правдивий, не вигаданий. У цьому занятті про випадок. Форма для історії — verdadera; це те саме слово. 🔊 *verdadero*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "verdadero",
+          "definitionByLocale": {
+            "ru": "настоящий, правдивый, не выдуманный. В этом занятии о случае. Форма для истории — verdadera; это то же слово. 🔊 *verdadero*",
+            "uk": "справжній, правдивий, не вигаданий. У цьому занятті про випадок. Форма для історії — verdadera; це те саме слово. 🔊 *verdadero*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i02:r1",
+          "text": "verdadero"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i02:r2",
+          "text": "verdadera"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i02:audio",
+          "transcript": "verdadero"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-04:i02:r1",
+            "targetText": "verdadero",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i02:r2",
+            "targetText": "verdadera",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце записи o, а не a.",
+              "uk": "Наприкінці запису o, а не a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — випадок із газетною фотографією справжній; скажіть «Він справжній»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i03:r1",
+          "text": "Плитки: verdadera"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i03:r3",
+          "text": "verdadero."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — випадок із газетною фотографією справжній; скажіть «Він справжній»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es verdadero.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — случай с газетной фотографией настоящий; скажите «Он настоящий»",
+          "uk": "Складіть фразу — випадок із газетною фотографією справжній; скажіть «Він справжній»"
+        },
+        "orderedTokens": [
+          "Es",
+          "verdadero"
+        ],
+        "authoredDistractorTokens": [
+          "verdadera"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — випадок із газетною фотографією справжній; скажіть «Він справжній»",
+            "feedbackByLocale": {
+              "ru": "здесь речь о случае.",
+              "uk": "тут ідеться про випадок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — історія про дідуся правдива",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i04:r1",
+          "text": "verdadera"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i04:r2",
+          "text": "verdadero"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i04:r3",
+          "text": "bonita"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — історія про дідуся правдива",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — история о дедушке правдивая",
+          "uk": "Вставте слово — історія про дідуся правдива"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-04:i04:r1",
+            "text": "verdadera"
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i04:r2",
+            "text": "verdadero"
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i04:r3",
+            "text": "bonita"
+          }
+        ],
+        "testedDimension": "Вставте слово — історія про дідуся правдива",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — історія про дідуся правдива",
+            "feedbackByLocale": {
+              "ru": "Для истории нужна форма на a.",
+              "uk": "Для історії потрібна форма на a."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — історія про дідуся правдива",
+            "feedbackByLocale": {
+              "ru": "Это о красоте, а не о правдивости.",
+              "uk": "Це про красу, а не про правдивість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть зміст — подруга говорить про історію",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i05:r1",
+          "text": "Вона неправдива"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i05:r2",
+          "text": "Вона правдива"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i05:r3",
+          "text": "Вона гарна"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть зміст — подруга говорить про історію",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i05:audio",
+          "transcript": "No es verdadera."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-04:i05:r1",
+            "targetText": "Вона неправдива",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i05:r2",
+            "targetText": "Вона правдива",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i05:r3",
+            "targetText": "Вона гарна",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть зміст — подруга говорить про історію",
+            "feedbackByLocale": {
+              "ru": "В записи есть no.",
+              "uk": "У записі є no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть зміст — подруга говорить про історію",
+            "feedbackByLocale": {
+              "ru": "Verdadera говорит о правдивости.",
+              "uk": "Verdadera говорить про правдивість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i06:audio",
+          "transcript": "Es verdadera."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es verdadera.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — подруга вигадала випадок із королем; скажіть «Він не справжній»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i07:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i07:r2",
+          "text": "verdadera"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i07:r3",
+          "text": "verdadero"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i07:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — подруга вигадала випадок із королем; скажіть «Він не справжній»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es verdadero.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга придумала случай с королём; скажите «Он не настоящий»",
+          "uk": "Складіть фразу — подруга вигадала випадок із королем; скажіть «Він не справжній»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "verdadero"
+        ],
+        "authoredDistractorTokens": [
+          "verdadera"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — подруга вигадала випадок із королем; скажіть «Він не справжній»",
+            "feedbackByLocale": {
+              "ru": "речь о случае.",
+              "uk": "ідеться про випадок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i08:r1",
+          "text": "Плитки: verdadero"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i08:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i08:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i08:audio",
+          "transcript": "Es verdadero."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es verdadero.",
+        "orderedTokens": [
+          "Es",
+          "verdadero"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть",
+            "feedbackByLocale": {
+              "ru": "в записи нет отрицания.",
+              "uk": "у записі немає заперечення."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — подруга неправильно назвала рік знімка; скажіть «Це не так»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i09:r1",
+          "text": "así"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i09:r2",
+          "text": "difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i09:r3",
+          "text": "bonita"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — подруга неправильно назвала рік знімка; скажіть «Це не так»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подруга неверно назвала год снимка; скажите «Это не так»",
+          "uk": "Вставте слово — подруга неправильно назвала рік знімка; скажіть «Це не так»"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-04:i09:r1",
+            "text": "así"
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i09:r2",
+            "text": "difícil"
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i09:r3",
+            "text": "bonita"
+          }
+        ],
+        "testedDimension": "Вставте слово — подруга неправильно назвала рік знімка; скажіть «Це не так»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — подруга неправильно назвала рік знімка; скажіть «Це не так»",
+            "feedbackByLocale": {
+              "ru": "Получится «это нетрудно», а нужно поправить сказанное.",
+              "uk": "Вийде «це неважко», а треба виправити сказане."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — подруга неправильно назвала рік знімка; скажіть «Це не так»",
+            "feedbackByLocale": {
+              "ru": "Это оценка красоты, не исправление даты.",
+              "uk": "Це оцінка краси, не виправлення дати."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть зміст — ідеться про історію",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i10:r1",
+          "text": "Вона правдива"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i10:r2",
+          "text": "Вона неправдива"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i10:r3",
+          "text": "Вона гарна"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть зміст — ідеться про історію",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i10:audio",
+          "transcript": "Es verdadera."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-04:i10:r1",
+            "targetText": "Вона правдива",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i10:r2",
+            "targetText": "Вона неправдива",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i10:r3",
+            "targetText": "Вона гарна",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i10:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть зміст — ідеться про історію",
+            "feedbackByLocale": {
+              "ru": "В записи нет no.",
+              "uk": "У записі немає no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i10:r3",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть зміст — ідеться про історію",
+            "feedbackByLocale": {
+              "ru": "Звучит verdadera, не bonita.",
+              "uk": "Звучить verdadera, не bonita."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — вам подобається малюнок на обкладинці альбому; скажіть «Він гарний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i11:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i11:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i11:r3",
+          "text": "bonito."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — вам подобається малюнок на обкладинці альбому; скажіть «Він гарний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es bonito.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вам нравится рисунок на обложке альбома; скажите «Он красивый»",
+          "uk": "Складіть фразу — вам подобається малюнок на обкладинці альбому; скажіть «Він гарний»"
+        },
+        "orderedTokens": [
+          "Es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — вам подобається малюнок на обкладинці альбому; скажіть «Він гарний»",
+            "feedbackByLocale": {
+              "ru": "испанское название рисунка мужского рода.",
+              "uk": "іспанська назва малюнка чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви перевірили дату в газеті; підтвердьте «Це правда»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i12:r1",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i12:r2",
+          "text": "difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i12:r3",
+          "text": "bonita"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви перевірили дату в газеті; підтвердьте «Це правда»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы проверили дату в газете; подтвердите «Это правда»",
+          "uk": "Вставте слово — ви перевірили дату в газеті; підтвердьте «Це правда»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-04:i12:r1",
+            "text": "verdad"
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i12:r2",
+            "text": "difícil"
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i12:r3",
+            "text": "bonita"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви перевірили дату в газеті; підтвердьте «Це правда»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви перевірили дату в газеті; підтвердьте «Це правда»",
+            "feedbackByLocale": {
+              "ru": "Это «трудно», не подтверждение.",
+              "uk": "Це «важко», не підтвердження."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-04:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви перевірили дату в газеті; підтвердьте «Це правда»",
+            "feedbackByLocale": {
+              "ru": "Это «красивая»; здесь подтверждаем сказанное.",
+              "uk": "Це «гарна»; тут підтверджуємо сказане."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i13:r1",
+          "text": "Плитки: verdadero"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i13:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i13:r4",
+          "text": "verdadera."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i13:audio",
+          "transcript": "No es verdadera."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es verdadera.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "verdadera"
+        ],
+        "authoredDistractorTokens": [
+          "verdadero"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть",
+            "feedbackByLocale": {
+              "ru": "в записи окончание a.",
+              "uk": "у записі закінчення a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-04:i14:audio",
+          "transcript": "No es verdadero."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es verdadero.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — подруга вигадала ще одну історію для сімейного альбому; скажіть «Вона неправдива»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-04:i15:r1",
+          "text": "Плитки: verdadera"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i15:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i15:r3",
+          "text": "verdadero"
+        },
+        {
+          "responseId": "es:lesson-01:session-04:i15:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — подруга вигадала ще одну історію для сімейного альбому; скажіть «Вона неправдива»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es verdadera.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга придумала ещё одну историю для семейного альбома; скажите «Она неправдивая»",
+          "uk": "Складіть фразу — подруга вигадала ще одну історію для сімейного альбому; скажіть «Вона неправдива»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "verdadera"
+        ],
+        "authoredDistractorTokens": [
+          "verdadero"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-04:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — подруга вигадала ще одну історію для сімейного альбому; скажіть «Вона неправдива»",
+            "feedbackByLocale": {
+              "ru": "здесь нужна форма для истории.",
+              "uk": "тут потрібна форма для історії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 15,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5a5cde2ab431a58165fbe5fee8a49899d7b22c1ac1a28899b2a341f5574887f9"
+}

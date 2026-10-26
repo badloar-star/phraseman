@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-08",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-08:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-08:intro1:r2": {
+          "ru": "No превращает похвалу в отрицательную оценку.",
+          "uk": "No перетворює похвалу на негативну оцінку."
+        },
+        "es:lesson-01:session-08:intro1:r3": {
+          "ru": "Для рисунка нужна форма на o.",
+          "uk": "Для малюнка потрібна форма на o."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-08:intro2:r2": {
+          "ru": "Для доставки в этом задании нужна rápida.",
+          "uk": "Для доставки в цьому завданні потрібна rápida."
+        },
+        "es:lesson-01:session-08:intro2:r3": {
+          "ru": "Это «она медленная», а нужно сказать «быстрая».",
+          "uk": "Це «вона повільна», а треба сказати «швидка»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-08:intro3:r2": {
+          "ru": "Без no это подтверждение слов продавца.",
+          "uk": "Без no це підтвердження слів продавця."
+        },
+        "es:lesson-01:session-08:intro3:r3": {
+          "ru": "Это «нетрудно», а нужно опровергнуть сказанное.",
+          "uk": "Це «неважко», а треба спростувати сказане."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "600948f4a3d827915cd3323ad62cf1c5bd5c5797a28b45ca2819793c593f30a9"
+}

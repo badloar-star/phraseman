@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
-import { learningV2OrderedCourseSessionIdsV1 } from '../modules/learning-v2/progress/course_local_progress_v1';
+import {
+  learningV2LanguageScopedStorageKeyV1,
+  learningV2OrderedCourseSessionIdsV1,
+  type LearningV2CourseProgressTargetLanguageV1,
+} from '../modules/learning-v2/progress/course_local_progress_v1';
 import {
   LEARNING_V2_SESSION_STARS_SYNC_KEY_V1,
   packSessionStarsSyncV1,
@@ -48,10 +52,14 @@ const EMPTY: LearningV2SessionStarResultsV1 = Object.freeze({});
 const orderedSessionIds = learningV2OrderedCourseSessionIdsV1;
 
 /** Облачная копия звёзд не уменьшается: пишем, только если по какому-то занятию локально лучше. */
-async function mirrorStarsToSync(results: LearningV2SessionStarResultsV1): Promise<void> {
+async function mirrorStarsToSync(
+  results: LearningV2SessionStarResultsV1,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1,
+): Promise<void> {
   try {
     const order = orderedSessionIds();
-    const syncedRaw = await AsyncStorage.getItem(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1);
+    const syncKey = learningV2LanguageScopedStorageKeyV1(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1, targetLanguage);
+    const syncedRaw = await AsyncStorage.getItem(syncKey);
     const synced = unpackSessionStarsSyncV1(syncedRaw, order);
     let better = 0;
     const merged: Record<string, number> = { ...synced };
@@ -59,18 +67,23 @@ async function mirrorStarsToSync(results: LearningV2SessionStarResultsV1): Promi
       if (synced[id] === undefined || stars > synced[id]) { merged[id] = stars; better += 1; }
     }
     if (better === 0) return;
-    await AsyncStorage.setItem(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1, packSessionStarsSyncV1(merged, order));
+    await AsyncStorage.setItem(syncKey, packSessionStarsSyncV1(merged, order));
     console.log('[V2-PROGRESS-SYNC] stars:mirrored', JSON.stringify({ improved: better, total: Object.keys(merged).length })); // guard-ok: что ушло в облачную копию
   } catch (error) {
     console.warn('[V2-PROGRESS-SYNC] stars:mirror_failed', JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
   }
 }
 const listeners = new Set<() => void>();
-let memory: LearningV2SessionStarResultsV1 = EMPTY;
-let memoryScopeHash: string | null = null;
+type MemoryEntry = Readonly<{
+  results: LearningV2SessionStarResultsV1;
+  scopeHash: string;
+}>;
+const memoryByTarget = new Map<LearningV2CourseProgressTargetLanguageV1, MemoryEntry>();
 
-const storageKey = (accountScopeHash: string): string =>
-  `${PREFIX}${accountScopeHash}`;
+const storageKey = (
+  accountScopeHash: string,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1,
+): string => learningV2LanguageScopedStorageKeyV1(`${PREFIX}${accountScopeHash}`, targetLanguage);
 
 const validStars = (value: unknown): value is 0 | 1 | 2 | 3 =>
   value === 0 || value === 1 || value === 2 || value === 3;
@@ -135,8 +148,10 @@ function parse(raw: string, accountScopeHash: string): LearningV2SessionStarResu
   return Object.freeze(out);
 }
 
-export function peekLearningV2SessionStarResults(): LearningV2SessionStarResultsV1 {
-  return memory;
+export function peekLearningV2SessionStarResults(
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = 'en',
+): LearningV2SessionStarResultsV1 {
+  return memoryByTarget.get(targetLanguage)?.results ?? EMPTY;
 }
 
 /**
@@ -150,10 +165,13 @@ export function peekLearningV2SessionStarResults(): LearningV2SessionStarResults
 export function getLessonBestStars(
   courseSessionId: string,
   accountScopeHash?: string,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = 'en',
 ): 0 | 1 | 2 | 3 | undefined {
-  if (accountScopeHash !== undefined && accountScopeHash !== memoryScopeHash) return undefined;
+  const entry = memoryByTarget.get(targetLanguage);
+  if (!entry) return undefined;
+  if (accountScopeHash !== undefined && accountScopeHash !== entry.scopeHash) return undefined;
   if (!SESSION_ID_RE.test(courseSessionId)) return undefined;
-  const stars = Object.prototype.hasOwnProperty.call(memory, courseSessionId) ? memory[courseSessionId] : undefined;
+  const stars = Object.prototype.hasOwnProperty.call(entry.results, courseSessionId) ? entry.results[courseSessionId] : undefined;
   return validStars(stars) ? stars : undefined;
 }
 
@@ -161,8 +179,10 @@ export function getLessonBestStars(
  * Подняты ли звёзды в память (hydrate или запись уже отработали для какого-то аккаунта).
  * зачем (координатор 22.10, Сезон): карточки и список эпизодов рисуют звёзды ТОЛЬКО после этого — до подъёма у пройденных вместо звёзд ничего, без «прыжка» 1 → 3.
  */
-export function isLearningV2SessionStarResultsHydrated(): boolean {
-  return memoryScopeHash !== null;
+export function isLearningV2SessionStarResultsHydrated(
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = 'en',
+): boolean {
+  return memoryByTarget.has(targetLanguage);
 }
 
 export function subscribeLearningV2SessionStarResults(
@@ -175,22 +195,24 @@ export function subscribeLearningV2SessionStarResults(
 function publish(
   accountScopeHash: string,
   next: LearningV2SessionStarResultsV1,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1,
 ): void {
-  memoryScopeHash = accountScopeHash;
-  memory = next;
+  memoryByTarget.set(targetLanguage, Object.freeze({ results: next, scopeHash: accountScopeHash }));
   for (const listener of listeners) listener();
 }
 
 export async function hydrateLearningV2SessionStarResults(
   accountScopeHash: string,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = 'en',
 ): Promise<LearningV2SessionStarResultsV1> {
   if (!HASH_RE.test(accountScopeHash)) return EMPTY;
   try {
-    const raw = await AsyncStorage.getItem(storageKey(accountScopeHash));
+    const raw = await AsyncStorage.getItem(storageKey(accountScopeHash, targetLanguage));
     const local = raw === null ? EMPTY : parse(raw, accountScopeHash);
     // зачем (координатор 22.10): после переустановки или на новом телефоне облачная строка звёзд знает больше —
     // берём лучшее по каждому занятию; локально лучшее поднимает облачную копию.
-    const synced = unpackSessionStarsSyncV1(await AsyncStorage.getItem(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1), orderedSessionIds());
+    const syncKey = learningV2LanguageScopedStorageKeyV1(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1, targetLanguage);
+    const synced = unpackSessionStarsSyncV1(await AsyncStorage.getItem(syncKey), orderedSessionIds());
     const merged: Record<string, 0 | 1 | 2 | 3> = { ...local };
     let fromCloud = 0;
     for (const [id, stars] of Object.entries(synced)) {
@@ -198,15 +220,15 @@ export async function hydrateLearningV2SessionStarResults(
     }
     const next = fromCloud > 0 ? Object.freeze(merged) : local;
     if (fromCloud > 0) {
-      await AsyncStorage.setItem(storageKey(accountScopeHash), JSON.stringify({ schemaVersion: SCHEMA, accountScopeHash, results: next }));
+      await AsyncStorage.setItem(storageKey(accountScopeHash, targetLanguage), JSON.stringify({ schemaVersion: SCHEMA, accountScopeHash, results: next }));
       console.log('[V2-PROGRESS-SYNC] stars:hydrated_from_cloud', JSON.stringify({ local: Object.keys(local).length, fromCloud, source: 'sync_key' })); // guard-ok: откуда пришло
     }
-    publish(accountScopeHash, next);
-    void mirrorStarsToSync(next);
+    publish(accountScopeHash, next, targetLanguage);
+    void mirrorStarsToSync(next, targetLanguage);
     return next;
   } catch (error) {
     console.warn('[V2-PROGRESS-SYNC] stars:hydrate_failed', JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
-    publish(accountScopeHash, EMPTY);
+    publish(accountScopeHash, EMPTY, targetLanguage);
     return EMPTY;
   }
 }
@@ -215,8 +237,9 @@ export async function recordLearningV2SessionStarResult(input: {
   readonly accountScopeHash: string;
   readonly courseSessionId: string;
   readonly stars: 0 | 1 | 2 | 3;
+  readonly targetLanguage?: LearningV2CourseProgressTargetLanguageV1;
 }): Promise<void> {
-  const { accountScopeHash, courseSessionId, stars } = input;
+  const { accountScopeHash, courseSessionId, stars, targetLanguage = 'en' } = input;
   if (
     !HASH_RE.test(accountScopeHash) ||
     !SESSION_ID_RE.test(courseSessionId) ||
@@ -224,26 +247,26 @@ export async function recordLearningV2SessionStarResult(input: {
   )
     return;
   try {
-    const raw = await AsyncStorage.getItem(storageKey(accountScopeHash));
+    const raw = await AsyncStorage.getItem(storageKey(accountScopeHash, targetLanguage));
     const current = raw === null ? EMPTY : parse(raw, accountScopeHash);
     // Повтор улучшает результат, но не ухудшает: как в спеке «best result».
     const previous = current[courseSessionId];
     const best = previous === undefined || stars > previous ? stars : previous;
     if (previous === best) {
-      publish(accountScopeHash, current);
+      publish(accountScopeHash, current, targetLanguage);
       return;
     }
     const next = Object.freeze({ ...current, [courseSessionId]: best });
     await AsyncStorage.setItem(
-      storageKey(accountScopeHash),
+      storageKey(accountScopeHash, targetLanguage),
       JSON.stringify({
         schemaVersion: SCHEMA,
         accountScopeHash,
         results: next,
       }),
     );
-    publish(accountScopeHash, next);
-    await mirrorStarsToSync(next);
+    publish(accountScopeHash, next, targetLanguage);
+    await mirrorStarsToSync(next, targetLanguage);
   } catch (e) {
       // Витрина: сбой записи не должен ломать завершение сессии.
       DebugLogger.error('learning_v2_session_star_results_store:next', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -251,11 +274,10 @@ export async function recordLearningV2SessionStarResult(input: {
 }
 
 export function __resetLearningV2SessionStarResultsForTests(): void {
-  memory = EMPTY;
-  memoryScopeHash = null;
+  memoryByTarget.clear();
   for (const listener of listeners) listener();
 }
 
 export function __peekLearningV2SessionStarResultsScopeForTests(): string | null {
-  return memoryScopeHash;
+  return memoryByTarget.get('en')?.scopeHash ?? null;
 }

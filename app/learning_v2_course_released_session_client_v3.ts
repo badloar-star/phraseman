@@ -784,7 +784,7 @@ export function peekCurrentLearningV2CourseReleasedSessionV3(
   locatorInput: LearningV2CourseReleasedSessionCurrentLocatorV3,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
   const locator = exactCurrentLocator(locatorInput);
-  if (locator.targetLanguage === "en") return bundledLearningV2CourseSessionMaterialV3(locator);
+  if (locator.targetLanguage === "en" || locator.targetLanguage === "es") return bundledLearningV2CourseSessionMaterialV3(locator);
   const stableId = peekStableId();
   if (!stableId) return null;
   const accountScopeHash = deriveLocalOfflineProgressAccountScopeHash(stableId);
@@ -865,17 +865,24 @@ function bundledSessionMaterial(
   deviceSpeechPreview: boolean,
 ): LearningV2CourseReleasedSessionMaterialV3 | null {
   const locator = exactCurrentLocator(locatorInput);
-  if (locator.targetLanguage === "en") {
+  if (locator.targetLanguage === "en" || locator.targetLanguage === "es") {
     const requestedLocale = LEARNING_V2_INTERFACE_LOCALES.includes(
       locator.learnerSourceLocale as LearningV2InterfaceLocale,
     ) ? locator.learnerSourceLocale as LearningV2InterfaceLocale : "ru";
     // зачем (владелец 25.10 «урок готов до тапа», сперва логи): сборка материала против хэшей ниже — что из них тянет секунды
     const materializeStartedAt = Date.now();
-    const factory = materializeFactoryNativeLearningV2SessionV1({
-      lessonOrdinal: locator.lessonOrdinal,
-      sessionOrdinal: locator.sessionOrdinal,
-      interfaceLocale: requestedLocale,
-    });
+    let factory: ReturnType<typeof materializeFactoryNativeLearningV2SessionV1>;
+    try {
+      factory = materializeFactoryNativeLearningV2SessionV1({
+        lessonOrdinal: locator.lessonOrdinal,
+        sessionOrdinal: locator.sessionOrdinal,
+        interfaceLocale: requestedLocale,
+        targetLanguage: locator.targetLanguage,
+      });
+    } catch (error) {
+      console.warn(`[V2-BUNDLED] error step=factory_native_materialize target=${locator.targetLanguage} lesson=${locator.lessonOrdinal} session=${locator.sessionOrdinal} locale=${requestedLocale} reason=${error instanceof Error ? error.message : String(error)}`); // guard-ok: локальный пакет не должен раскрывать внутреннюю ошибку маршруту
+      return null;
+    }
     // зачем (инцидент 04.10: урок 1, занятие 1 не открывается, learning_v2_factory_session_unavailable): раньше оба `return null` были
     // немыми — по логу нельзя было понять, где именно отказ. Теперь [V2-BUNDLED] пишет шаг и причину.
     if (!factory) {
@@ -896,7 +903,7 @@ function bundledSessionMaterial(
       auxiliaryFingerprint: factory.auxiliaryChild.auxiliaryFingerprint,
     });
     const packageFingerprint = hashCanonicalBody({ schemaVersion: "learning-v2-factory-native-package-seed.v1", projectionVersion: FACTORY_NATIVE_PROJECTION_VERSION_V1, courseSessionId, sourceFingerprint: factory.sourceFingerprint });
-    const courseIdentity = factoryNativeLearningV2CourseIdentityV1();
+    const courseIdentity = factoryNativeLearningV2CourseIdentityV1(locator.targetLanguage);
     const activeBaseRootFingerprint = courseIdentity.activeRootFingerprint;
     const activeHeadFingerprint = courseIdentity.activeHeadFingerprint;
     const activeRootFingerprint = courseIdentity.activeRootFingerprint;
@@ -1154,8 +1161,8 @@ export async function loadCurrentLearningV2CourseReleasedSessionV3(
   // читал — экран висел на сетевом запросе даже для контента, который уже был
   // на телефоне.
   const bundled = bundledLearningV2CourseSessionMaterialV3(locator);
-  if (bundled) return appResult(bundled, locator.targetLanguage === "en" ? "bundled_factory" : "network");
-  if (locator.targetLanguage === "en") throw new Error("learning_v2_factory_session_unavailable");
+  if (bundled) return appResult(bundled, "bundled_factory");
+  if (locator.targetLanguage === "en" || locator.targetLanguage === "es") throw new Error("learning_v2_factory_session_unavailable");
   // зачем ensureStableAuthLink, а не голый ensureAnonUser (владелец,
   // 2026-08-27, «сессии должны быть доступны всегда, даже без привязки
   // аккаунта»; ensureStableAuthLink = ensureAnonUser + серверная привязка,

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-03",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-03:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-03:intro1:r2": {
+          "ru": "Для рисунка в этом задании нужна форма на o.",
+          "uk": "Для малюнка в цьому завданні потрібна форма на o."
+        },
+        "es:lesson-01:session-03:intro1:r3": {
+          "ru": "Soy говорит о вас, а вы описываете рисунок.",
+          "uk": "Soy говорить про вас, а ви описуєте малюнок."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-03:intro2:r2": {
+          "ru": "Для открытки нужна форма на a.",
+          "uk": "Для листівки потрібна форма на a."
+        },
+        "es:lesson-01:session-03:intro2:r3": {
+          "ru": "Это «легко», а сейчас вы оцениваете внешний вид.",
+          "uk": "Це «легко», а зараз ви оцінюєте вигляд."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-03:intro3:r2": {
+          "ru": "Отрицание не отменяет форму на a для открытки.",
+          "uk": "Заперечення не скасовує форму на a для листівки."
+        },
+        "es:lesson-01:session-03:intro3:r3": {
+          "ru": "Без no вы говорите, что открытка красивая.",
+          "uk": "Без no ви кажете, що листівка гарна."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "82d1f1f6493e9eaf18f6624e50e6f90675949a49b4dd8c8d5e65f63739d836bb"
+}

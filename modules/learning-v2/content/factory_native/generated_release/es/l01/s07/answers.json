@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-07:i01",
+    "correctText": "Es difícil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i02",
+    "correctText": "Это нетрудно",
+    "correctResponseId": "es:lesson-01:session-07:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i03",
+    "correctText": "Es fácil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i04",
+    "correctText": "Es rápida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i05",
+    "correctText": "lenta",
+    "correctResponseId": "es:lesson-01:session-07:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i06",
+    "correctText": "No es verdad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i07",
+    "correctText": "No es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i08",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i09",
+    "correctText": "Он не выдуманный",
+    "correctResponseId": "es:lesson-01:session-07:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i10",
+    "correctText": "No es único.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i11",
+    "correctText": "Es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i12",
+    "correctText": "única",
+    "correctResponseId": "es:lesson-01:session-07:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-07:i13",
+    "correctText": "No es fácil.",
+    "correctResponseId": null
+  }
+]

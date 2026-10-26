@@ -1,0 +1,737 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-08",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-08:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подруга верно назвала цену рисунка; подтвердите «Это правда»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i01:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i01:r2",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i01:r3",
+          "text": "difícil."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подруга верно назвала цену рисунка; подтвердите «Это правда»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es verdad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга верно назвала цену рисунка; подтвердите «Это правда»",
+          "uk": "Складіть фразу — подруга правильно назвала ціну малюнка; підтвердьте «Це правда»"
+        },
+        "orderedTokens": [
+          "Es",
+          "verdad"
+        ],
+        "authoredDistractorTokens": [
+          "difícil"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подруга верно назвала цену рисунка; подтвердите «Это правда»",
+            "feedbackByLocale": {
+              "ru": "нужно подтвердить слова подруги.",
+              "uk": "треба підтвердити слова подруги."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — речь о доставке",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i02:r1",
+          "text": "Она медленная"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i02:r2",
+          "text": "Она быстрая"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i02:r3",
+          "text": "Она не медленная"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-08:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — речь о доставке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-08:i02:audio",
+          "transcript": "Es lenta."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-08:i02:r1",
+            "targetText": "Она медленная",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i02:r2",
+            "targetText": "Она быстрая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i02:r3",
+            "targetText": "Она не медленная",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — речь о доставке",
+            "feedbackByLocale": {
+              "ru": "Lenta означает «медленная».",
+              "uk": "Lenta означає «повільна»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — речь о доставке",
+            "feedbackByLocale": {
+              "ru": "В записи нет no.",
+              "uk": "У записі немає no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — открытка к подарку красивая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i03:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i03:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i03:r3",
+          "text": "rápida"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — открытка к подарку красивая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — открытка к подарку красивая",
+          "uk": "Вставте слово — листівка до подарунка гарна"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-08:i03:r1",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i03:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i03:r3",
+            "text": "rápida"
+          }
+        ],
+        "testedDimension": "Вставьте слово — открытка к подарку красивая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — открытка к подарку красивая",
+            "feedbackByLocale": {
+              "ru": "Испанское название открытки женского рода.",
+              "uk": "Іспанська назва листівки жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — открытка к подарку красивая",
+            "feedbackByLocale": {
+              "ru": "Это оценка скорости, а не красоты.",
+              "uk": "Це оцінка швидкості, а не краси."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i04:r1",
+          "text": "Плитки: no"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i04:r3",
+          "text": "rápida"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i04:r4",
+          "text": "rápido."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-08:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-08:i04:audio",
+          "transcript": "No es rápido."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es rápido.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "rápido"
+        ],
+        "authoredDistractorTokens": [
+          "rápida"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи окончание o.",
+              "uk": "у записі закінчення o."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-08:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-08:i05:audio",
+          "transcript": "Es verdadero."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es verdadero.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы нашли в магазине вторую точно такую же открытку; скажите «Она не единственная в своём роде»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i06:r1",
+          "text": "Плитки: única"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i06:r3",
+          "text": "único"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i06:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы нашли в магазине вторую точно такую же открытку; скажите «Она не единственная в своём роде»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es única.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы нашли в магазине вторую точно такую же открытку; скажите «Она не единственная в своём роде»",
+          "uk": "Складіть фразу — ви знайшли в магазині другу точнісінько таку саму листівку; скажіть «Вона не єдина у своєму роді»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "única"
+        ],
+        "authoredDistractorTokens": [
+          "único"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы нашли в магазине вторую точно такую же открытку; скажите «Она не единственная в своём роде»",
+            "feedbackByLocale": {
+              "ru": "для открытки нужна форма на a.",
+              "uk": "для листівки потрібна форма на a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — вы обсуждаете упаковку подарка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i07:r1",
+          "text": "Это нелегко"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i07:r2",
+          "text": "Это легко"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i07:r3",
+          "text": "Это неправда"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-08:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — вы обсуждаете упаковку подарка",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-08:i07:audio",
+          "transcript": "No es fácil."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-08:i07:r1",
+            "targetText": "Это нелегко",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i07:r2",
+            "targetText": "Это легко",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i07:r3",
+            "targetText": "Это неправда",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — вы обсуждаете упаковку подарка",
+            "feedbackByLocale": {
+              "ru": "В записи есть no.",
+              "uk": "У записі є no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i07:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — вы обсуждаете упаковку подарка",
+            "feedbackByLocale": {
+              "ru": "Звучит fácil, не verdad.",
+              "uk": "Звучить fácil, не verdad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — другая доставка займёт неделю; скажите «Она не быстрая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i08:r1",
+          "text": "rápida"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i08:r2",
+          "text": "rápido"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i08:r3",
+          "text": "bonita"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — другая доставка займёт неделю; скажите «Она не быстрая»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — другая доставка займёт неделю; скажите «Она не быстрая»",
+          "uk": "Вставте слово — інша доставка триватиме тиждень; скажіть «Вона не швидка»"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-08:i08:r1",
+            "text": "rápida"
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i08:r2",
+            "text": "rápido"
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i08:r3",
+            "text": "bonita"
+          }
+        ],
+        "testedDimension": "Вставьте слово — другая доставка займёт неделю; скажите «Она не быстрая»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — другая доставка займёт неделю; скажите «Она не быстрая»",
+            "feedbackByLocale": {
+              "ru": "Для доставки нужна форма на a.",
+              "uk": "Для доставки потрібна форма на a."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-08:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — другая доставка займёт неделю; скажите «Она не быстрая»",
+            "feedbackByLocale": {
+              "ru": "Это о красоте, не о скорости.",
+              "uk": "Це про красу, не про швидкість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i09:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i09:r2",
+          "text": "verdadera"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i09:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i09:r4",
+          "text": "verdadero."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-08:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-08:i09:audio",
+          "transcript": "No es verdadero."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es verdadero.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "verdadero"
+        ],
+        "authoredDistractorTokens": [
+          "verdadera"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи окончание o.",
+              "uk": "у записі закінчення o."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — способ завернуть подарок оказался простым; скажите «Это нетрудно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i10:r1",
+          "text": "Плитки: no"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i10:r3",
+          "text": "difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i10:r4",
+          "text": "lento."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — способ завернуть подарок оказался простым; скажите «Это нетрудно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es difícil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — способ завернуть подарок оказался простым; скажите «Это нетрудно»",
+          "uk": "Складіть фразу — спосіб загорнути подарунок виявився простим; скажіть «Це неважко»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "difícil"
+        ],
+        "authoredDistractorTokens": [
+          "lento"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — способ завернуть подарок оказался простым; скажите «Это нетрудно»",
+            "feedbackByLocale": {
+              "ru": "оцениваем трудность, не скорость.",
+              "uk": "оцінюємо складність, не швидкість."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-08:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-08:i11:audio",
+          "transcript": "Es único."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es único.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-08:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подруга предлагает другой рисунок, но он вам не нравится; скажите «Он не красивый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-08:i12:r1",
+          "text": "Плитки: bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i12:r3",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-08:i12:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подруга предлагает другой рисунок, но он вам не нравится; скажите «Он не красивый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es bonito.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подруга предлагает другой рисунок, но он вам не нравится; скажите «Он не красивый»",
+          "uk": "Складіть фразу — подруга пропонує інший малюнок, але він вам не подобається; скажіть «Він не гарний»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-08:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подруга предлагает другой рисунок, но он вам не нравится; скажите «Он не красивый»",
+            "feedbackByLocale": {
+              "ru": "испанское название рисунка мужского рода.",
+              "uk": "іспанська назва малюнка чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f86a22829402364a6e5e298b4c7be2e19ddd587278c6c3aefcc57d5b862edddc"
+}

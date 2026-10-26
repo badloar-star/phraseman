@@ -1,0 +1,752 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-06",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-06:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — único",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — único",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i01:audio",
+          "transcript": "único"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-06:i01:r1",
+            "targetText": "único",
+            "meaningByLocale": {
+              "ru": "единственный в своём роде. Форма женского рода — única. В обеих формах пишется ú и выделяется первый слог. 🔊 *único*",
+              "uk": "єдиний у своєму роді. Форма жіночого роду — única. В обох формах пишеться ú та виділяється перший склад. 🔊 *único*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "único",
+          "definitionByLocale": {
+            "ru": "единственный в своём роде. Форма женского рода — única. В обеих формах пишется ú и выделяется первый слог. 🔊 *único*",
+            "uk": "єдиний у своєму роді. Форма жіночого роду — única. В обох формах пишеться ú та виділяється перший склад. 🔊 *único*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i02:r1",
+          "text": "única"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i02:r2",
+          "text": "único"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i02:audio",
+          "transcript": "única"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-06:i02:r1",
+            "targetText": "única",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i02:r2",
+            "targetText": "único",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит a.",
+              "uk": "Наприкінці звучить a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — рисунок сделан в одном экземпляре; скажите «Он единственный в своём роде»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i03:r1",
+          "text": "Плитки: única"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i03:r3",
+          "text": "único."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — рисунок сделан в одном экземпляре; скажите «Он единственный в своём роде»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es único.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рисунок сделан в одном экземпляре; скажите «Он единственный в своём роде»",
+          "uk": "Складіть фразу — малюнок зроблений в одному примірнику; скажіть «Він єдиний у своєму роді»"
+        },
+        "orderedTokens": [
+          "Es",
+          "único"
+        ],
+        "authoredDistractorTokens": [
+          "única"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — рисунок сделан в одном экземпляре; скажите «Он единственный в своём роде»",
+            "feedbackByLocale": {
+              "ru": "для рисунка здесь нужна форма на o.",
+              "uk": "для малюнка тут потрібна форма на o."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — открытка единственная в своём роде; сохраните знак ударения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i04:r1",
+          "text": "única"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i04:r2",
+          "text": "unica"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i04:r3",
+          "text": "único"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — открытка единственная в своём роде; сохраните знак ударения",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — открытка единственная в своём роде; сохраните знак ударения",
+          "uk": "Вставте слово — листівка єдина у своєму роді; збережіть знак наголосу"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-06:i04:r1",
+            "text": "única"
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i04:r2",
+            "text": "unica"
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i04:r3",
+            "text": "único"
+          }
+        ],
+        "testedDimension": "Вставьте слово — открытка единственная в своём роде; сохраните знак ударения",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — открытка единственная в своём роде; сохраните знак ударения",
+            "feedbackByLocale": {
+              "ru": "В слове нужна буква ú.",
+              "uk": "У слові потрібна літера ú."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — открытка единственная в своём роде; сохраните знак ударения",
+            "feedbackByLocale": {
+              "ru": "Для открытки нужна форма на a.",
+              "uk": "Для листівки потрібна форма на a."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i05:audio",
+          "transcript": "Es único."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es único.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — речь об открытке",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i06:r1",
+          "text": "Она не единственная в своём роде"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i06:r2",
+          "text": "Она единственная в своём роде"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i06:r3",
+          "text": "Она не красивая"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — речь об открытке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i06:audio",
+          "transcript": "No es única."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-06:i06:r1",
+            "targetText": "Она не единственная в своём роде",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i06:r2",
+            "targetText": "Она единственная в своём роде",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i06:r3",
+            "targetText": "Она не красивая",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — речь об открытке",
+            "feedbackByLocale": {
+              "ru": "В записи есть no.",
+              "uk": "У записі є no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i06:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — речь об открытке",
+            "feedbackByLocale": {
+              "ru": "Única говорит о единственности, не о красоте.",
+              "uk": "Única говорить про єдиність, не про красу."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы заметили второй точно такой же рисунок; скажите «Он не единственный в своём роде»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i07:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i07:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i07:r3",
+          "text": "único"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i07:r4",
+          "text": "única."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вы заметили второй точно такой же рисунок; скажите «Он не единственный в своём роде»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es único.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы заметили второй точно такой же рисунок; скажите «Он не единственный в своём роде»",
+          "uk": "Складіть фразу — ви помітили другий точнісінько такий самий малюнок; скажіть «Він не єдиний у своєму роді»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "único"
+        ],
+        "authoredDistractorTokens": [
+          "única"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы заметили второй точно такой же рисунок; скажите «Он не единственный в своём роде»",
+            "feedbackByLocale": {
+              "ru": "рисунку здесь соответствует форма на o.",
+              "uk": "малюнку тут відповідає форма на o."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i08:r1",
+          "text": "Плитки: única"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i08:r3",
+          "text": "único."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i08:audio",
+          "transcript": "Es única."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es única.",
+        "orderedTokens": [
+          "Es",
+          "única"
+        ],
+        "authoredDistractorTokens": [
+          "único"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи окончание a.",
+              "uk": "у записі закінчення a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — подруга верно назвала цену открытки; подтвердите «Это правда»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i09:r1",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i09:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i09:r3",
+          "text": "rápido"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — подруга верно назвала цену открытки; подтвердите «Это правда»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подруга верно назвала цену открытки; подтвердите «Это правда»",
+          "uk": "Вставте слово — подруга правильно назвала ціну листівки; підтвердьте «Це правда»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-06:i09:r1",
+            "text": "verdad"
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i09:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i09:r3",
+            "text": "rápido"
+          }
+        ],
+        "testedDimension": "Вставьте слово — подруга верно назвала цену открытки; подтвердите «Это правда»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подруга верно назвала цену открытки; подтвердите «Это правда»",
+            "feedbackByLocale": {
+              "ru": "Это «красивый»; сейчас нужно подтверждение.",
+              "uk": "Це «гарний»; зараз потрібне підтвердження."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-06:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — подруга верно назвала цену открытки; подтвердите «Это правда»",
+            "feedbackByLocale": {
+              "ru": "Это «быстрый», а не подтверждение цены.",
+              "uk": "Це «швидкий», а не підтвердження ціни."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — рисунок на упаковке вам нравится; скажите «Он красивый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i10:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i10:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i10:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — рисунок на упаковке вам нравится; скажите «Он красивый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es bonito.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — рисунок на упаковке вам нравится; скажите «Он красивый»",
+          "uk": "Складіть фразу — малюнок на пакуванні вам подобається; скажіть «Він гарний»"
+        },
+        "orderedTokens": [
+          "Es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — рисунок на упаковке вам нравится; скажите «Он красивый»",
+            "feedbackByLocale": {
+              "ru": "испанское название рисунка мужского рода.",
+              "uk": "іспанська назва малюнка чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i11:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i11:r2",
+          "text": "único"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i11:r3",
+          "text": "única"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i11:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i11:audio",
+          "transcript": "No es única."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es única.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "única"
+        ],
+        "authoredDistractorTokens": [
+          "único"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи окончание a.",
+              "uk": "у записі закінчення a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-06:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-06:i12:audio",
+          "transcript": "No es bonito."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es bonito.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — продавец показывает другую открытку, точно такую же; скажите о выбранной открытке «Она не единственная в своём роде»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-06:i13:r1",
+          "text": "Плитки: única"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i13:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-06:i13:r4",
+          "text": "único."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — продавец показывает другую открытку, точно такую же; скажите о выбранной открытке «Она не единственная в своём роде»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es única.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — продавец показывает другую открытку, точно такую же; скажите о выбранной открытке «Она не единственная в своём роде»",
+          "uk": "Складіть фразу — продавець показує іншу листівку, точнісінько таку саму; скажіть про обрану листівку «Вона не єдина у своєму роді»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "única"
+        ],
+        "authoredDistractorTokens": [
+          "único"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-06:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — продавец показывает другую открытку, точно такую же; скажите о выбранной открытке «Она не единственная в своём роде»",
+            "feedbackByLocale": {
+              "ru": "речь об открытке, нужна форма на a.",
+              "uk": "йдеться про листівку, потрібна форма на a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "4e31e6201cf35551742ef34b88eb1f1a1b13c4a95f538173941d6646e7775f75"
+}

@@ -13,7 +13,7 @@ export type SpeechStudyLanguage = 'en' | 'es' | 'fr' | 'de' | 'it';
 
 export const STUDY_SPEECH_LOCALE: Readonly<Record<SpeechStudyLanguage, string>> = Object.freeze({
   en: 'en-US',
-  es: 'es-ES',
+  es: 'es-MX',
   fr: 'fr-FR',
   de: 'de-DE',
   it: 'it-IT',

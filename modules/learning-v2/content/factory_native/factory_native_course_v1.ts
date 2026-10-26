@@ -1,5 +1,6 @@
 import { FACTORY_NATIVE_MANIFEST_V1 } from "./factory_native_manifest_v1.generated";
-import { FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1 } from "./factory_native_catalog_v1";
+import { FACTORY_NATIVE_MANIFEST_ES_V1 } from "./factory_native_manifest_es_v1.generated";
+import { FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1, type LearningV2FactoryNativeTargetLanguageV1 } from "./factory_native_catalog_v1";
 import {
   LEARNING_V2_INTERFACE_LOCALES,
   type LearningV2InterfaceLocale,
@@ -38,7 +39,8 @@ import { projectLearnerVisiblePromptV1 } from "../learner_visible_text_v1";
 // слов берём из словаря проекта (app/transcription.ts), без скачивания CMU.
 // Словарь честно возвращает пустую строку, если не уверен хотя бы в одном
 // слове, — тогда карточка идёт без транскрипции (null), а не с выдумкой.
-function knownTranscriptionOrNull(word: string): string | null {
+function knownTranscriptionOrNull(word: string, targetLanguage: LearningV2FactoryNativeTargetLanguageV1): string | null {
+  if (targetLanguage !== "en") return null;
   const ipa = getTranscription(word);
   return ipa === "" ? null : ipa;
 }
@@ -53,6 +55,10 @@ export {
 } from "./factory_native_catalog_v1";
 
 type Plain = Record<string, unknown>;
+
+function factoryNativeManifest(targetLanguage: LearningV2FactoryNativeTargetLanguageV1) {
+  return targetLanguage === "es" ? FACTORY_NATIVE_MANIFEST_ES_V1 : FACTORY_NATIVE_MANIFEST_V1;
+}
 
 export type LearningV2FactoryNativeNewWordEncounterV1 = LearningV2CourseSessionWordEncounterPresentationV1 & Readonly<{ encounterId: string }>;
 export type LearningV2FactoryNativePracticeSemanticV1 = Readonly<{
@@ -719,20 +725,21 @@ function buildFactoryNativeWordCardEncounterV1(
   courseSessionId: string,
   row: Readonly<{ lessonOrdinal: number; sessionOrdinal: number }>,
   wordOrder: number,
+  targetLanguage: LearningV2FactoryNativeTargetLanguageV1,
 ): LearningV2FactoryNativeNewWordEncounterV1 {
   const definitionByLocale = localized(record(rawMode.wordCard).definitionByLocale);
   const word = String(record(rawMode.wordCard).word);
   const meaningByLocale = localizedWordMeaning(
     definitionByLocale, word, row.lessonOrdinal, row.sessionOrdinal,
   );
-  const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", targetText: word, meaningByLocale });
+  const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage, targetText: word, meaningByLocale });
   return Object.freeze({
     encounterId: `${remapId(oldInteractionId, oldPrefix, courseSessionId)}:word-card`,
-    lexicalItemId: `lexical-en-${hashCanonicalBody({
+    lexicalItemId: `lexical-${targetLanguage}-${hashCanonicalBody({
       word,
       sense: lexicalSense(word, row.lessonOrdinal, row.sessionOrdinal),
     }).slice(0, 32)}`,
-    transcription: knownTranscriptionOrNull(word),
+    transcription: knownTranscriptionOrNull(word, targetLanguage),
     playfulMeaningByLocale: definitionByLocale,
     motionVariant: wordOrder % 2 === 0 ? "premium_a" : "lesson_hero_b",
     presentation: "blocking_task_overlay", dismissal: "continue_only", saveControl: "bookmark_icon",
@@ -753,10 +760,12 @@ export function factoryNativeSessionWordEncountersV1(input: Readonly<{
   lessonOrdinal: number;
   sessionOrdinal: number;
   interfaceLocale: LearningV2InterfaceLocale;
+  targetLanguage?: LearningV2FactoryNativeTargetLanguageV1;
 }>): readonly LearningV2FactoryNativeNewWordEncounterV1[] | null {
-  const key = `${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}`;
+  const targetLanguage = input.targetLanguage ?? "en";
+  const key = `${targetLanguage}:${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}`;
   if (factoryNativeWordEncountersCache.has(key)) return factoryNativeWordEncountersCache.get(key) ?? null;
-  const row = FACTORY_NATIVE_MANIFEST_V1.find((candidate) =>
+  const row = factoryNativeManifest(targetLanguage).find((candidate) =>
     candidate.lessonOrdinal === input.lessonOrdinal && candidate.sessionOrdinal === input.sessionOrdinal);
   if (!row || !LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale)) {
     console.warn(`[V2-PREP] words: нет строки или языка l=${input.lessonOrdinal} s=${input.sessionOrdinal} locale=${input.interfaceLocale}`); // guard-ok: ранний выход
@@ -775,7 +784,7 @@ export function factoryNativeSessionWordEncountersV1(input: Readonly<{
     const rawMode = record(raw.modePayload);
     if (rawMode.isWordCard !== true) continue;
     wordOrder += 1;
-    encounters.push(buildFactoryNativeWordCardEncounterV1(rawMode, String(raw.interactionId), oldPrefix, courseSessionId, row, wordOrder));
+    encounters.push(buildFactoryNativeWordCardEncounterV1(rawMode, String(raw.interactionId), oldPrefix, courseSessionId, row, wordOrder, targetLanguage));
   }
   const frozen = Object.freeze(encounters);
   factoryNativeWordEncountersCache.set(key, frozen);
@@ -787,6 +796,7 @@ type FactoryNativeMaterializeInputV1 = Readonly<{
   sessionOrdinal: number;
   interfaceLocale: LearningV2InterfaceLocale;
   disabledInteractionIds?: readonly string[];
+  targetLanguage?: LearningV2FactoryNativeTargetLanguageV1;
 }>;
 
 /**
@@ -805,7 +815,7 @@ export function materializeFactoryNativeLearningV2SessionV1(input: FactoryNative
   // курс (FACTORY_NATIVE_MANIFEST_V1), а данные вшиты в бандл JS. Новая версия контента = новый бандл = новый процесс,
   // и кэш (только память процесса) начинается пустым. Если материал начнёт приходить не из бандла — добавить в ключ
   // row.sourceFingerprint.
-  const key = `${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}:${disabledKey}`;
+  const key = `${input.targetLanguage ?? "en"}:${input.lessonOrdinal}:${input.sessionOrdinal}:${input.interfaceLocale}:${disabledKey}`;
   if (factoryNativeMaterializeCache.has(key)) {
     const hit = factoryNativeMaterializeCache.get(key) ?? null;
     // свежий доступ — в конец (LRU)
@@ -835,7 +845,8 @@ export function __resetFactoryNativeMaterializeCacheForTests(): void {
 }
 
 function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativeMaterializeInputV1) {
-  const row = FACTORY_NATIVE_MANIFEST_V1.find((candidate) =>
+  const targetLanguage = input.targetLanguage ?? "en";
+  const row = factoryNativeManifest(targetLanguage).find((candidate) =>
     candidate.lessonOrdinal === input.lessonOrdinal && candidate.sessionOrdinal === input.sessionOrdinal);
   if (!row || !LEARNING_V2_INTERFACE_LOCALES.includes(input.interfaceLocale)) return null;
   const authoredLocale = FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[input.interfaceLocale];
@@ -936,7 +947,7 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     const oldInteractionId = String(raw.interactionId);
     if (rawMode.isWordCard === true) {
       wordOrder += 1;
-      pendingCards.push(buildFactoryNativeWordCardEncounterV1(rawMode, oldInteractionId, oldPrefix, courseSessionId, row, wordOrder));
+      pendingCards.push(buildFactoryNativeWordCardEncounterV1(rawMode, oldInteractionId, oldPrefix, courseSessionId, row, wordOrder, targetLanguage));
       continue;
     }
     if (disabledInteractionIdSet.has(oldInteractionId)) {
@@ -1018,7 +1029,7 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
   const interactionProfile = interactions.filter((entry) => entry.family === "scripted_repeat_compare").length >= 4
     ? "voice_heavy" as const
     : interactions.length >= 18 ? "rapid" as const : "standard" as const;
-  const learnerChild = materializeLearningV2CourseSessionLearnerChildV1({ courseSessionId, targetLanguage: "en", interactionProfile, interactions });
+  const learnerChild = materializeLearningV2CourseSessionLearnerChildV1({ courseSessionId, targetLanguage, interactionProfile, interactions });
   stepAt.learner = Date.now();
 
   const evaluatorEntries: LearningV2CourseSessionEvaluatorCapsuleInputV1[] = [];
@@ -1030,10 +1041,10 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     evaluatorEntries.push({
       interactionId: page.question.interactionId,
       activityId: `${page.question.interactionId}:activity`, capsuleId: `${page.question.interactionId}:capsule`,
-      family: "phrase_builder", normalizationLocale: "en", salt: sha256Utf8(`${row.sourceFingerprint}:${page.question.interactionId}`),
+      family: "phrase_builder", normalizationLocale: targetLanguage, salt: sha256Utf8(`${row.sourceFingerprint}:${page.question.interactionId}`),
       acceptedResponses: [accepted],
     });
-    const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", targetText: accepted, meaningByLocale: localizedQuotedMeaning(page.question.promptByLocale) });
+    const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage, targetText: accepted, meaningByLocale: localizedQuotedMeaning(page.question.promptByLocale) });
     const rawPage = record(rawPages[pageIndex]);
     const rawQuestion = record(rawPage.question);
     const rawChoices = record(rawQuestion.choicesByLocale)[authoredLocale];
@@ -1119,7 +1130,7 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
     evaluatorEntries.push({
       interactionId: interaction.interactionId,
       activityId: `${interaction.interactionId}:activity`, capsuleId: `${interaction.interactionId}:capsule`,
-      family: interaction.family, normalizationLocale: "en", salt: sha256Utf8(`${row.sourceFingerprint}:${interaction.interactionId}`),
+      family: interaction.family, normalizationLocale: targetLanguage, salt: sha256Utf8(`${row.sourceFingerprint}:${interaction.interactionId}`),
       acceptedResponses,
     });
     const promptByLocale = localized({
@@ -1144,7 +1155,7 @@ function materializeFactoryNativeLearningV2SessionV1Uncached(input: FactoryNativ
       canonicalTarget: saveProjection.targetText,
       reviewedMeaningByLocale: exactModeMeaning,
     }));
-    const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", ...saveProjection });
+    const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage, ...saveProjection });
     const feedback = interaction.modePayload && "choiceFeedback" in interaction.modePayload
       ? interaction.modePayload.choiceFeedback
       : interaction.modePayload && "slotFeedback" in interaction.modePayload

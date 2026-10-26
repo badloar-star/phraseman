@@ -69,6 +69,9 @@ function currentLessonOrdinal(currentSessionId: string | null): number {
 
 function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   const { lang, scopeKey, preparedProgress, completedSessionIds, onSessionPress, isSessionMaterialAvailable, titles, onExpandedLesson } = props;
+  const studyTarget = props.studyTarget ?? 'en';
+  const chapterExamsEnabled = studyTarget === 'en' && SEASON_CHAPTER_EXAM_ENABLED;
+  const chapterExamStartEnabled = chapterExamsEnabled && SEASON_CHAPTER_EXAM_START_ENABLED;
   const router = useRouter();
   const { isDark } = useTheme();
   // зачем (владелец 22.10: высота сцен 46 % для всех, фон до самого верха; схема eab9aa35d): страница «Уроки» полноэкранная — обложка идёт под часы, шапка отступает на высоту зоны часов
@@ -149,10 +152,11 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   );
   // зачем (экзамен главы, Learning V2 22.10): сданные экзамены — карта «пройдена»; первый кадр из памяти процесса (peek), диск — фоном; сеть не читается
   const [examRecords, setExamRecords] = useState(() => {
+    if (!chapterExamsEnabled) return null;
     const id = peekStableId();
     const hash = id ? deriveLocalOfflineProgressAccountScopeHash(id) : null;
     const peeked = hash ? peekLearningV2ChapterExamRecordsV1(hash) : null;
-    console.log(`${LOG} экзамены: первый кадр`, JSON.stringify({ enabled: SEASON_CHAPTER_EXAM_ENABLED, hasId: id !== null, source: peeked ? 'память' : 'нет (диск фоном)', count: peeked ? Object.keys(peeked).length : 0 })); // guard-ok: откуда данные
+    console.log(`${LOG} экзамены: первый кадр`, JSON.stringify({ enabled: chapterExamsEnabled, hasId: id !== null, source: peeked ? 'память' : 'нет (диск фоном)', count: peeked ? Object.keys(peeked).length : 0 })); // guard-ok: откуда данные
     return peeked;
   });
   // зачем (жалоба №17, координатор 25.10): записи читались только при смене урока — после сдачи экзамена и возврата карточка до
@@ -160,7 +164,7 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
   // положил запись в память хранилища, чтение мгновенное и локальное (сеть не читается)
   const examScreenFocused = useIsScreenFocused();
   useEffect(() => {
-    if (!SEASON_CHAPTER_EXAM_ENABLED) return undefined;
+    if (!chapterExamsEnabled) return undefined;
     if (!examScreenFocused) return undefined;
     let cancelled = false;
     void getStableId()
@@ -173,11 +177,11 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
       })
       .catch((error: unknown) => { console.warn(`${LOG} экзамены: чтение не удалось`, JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); }); // guard-ok: catch пишет причину
     return () => { cancelled = true; };
-  }, [examScreenFocused, lesson]);
+  }, [chapterExamsEnabled, examScreenFocused, lesson]);
   const examPassedChapters = useMemo<ReadonlySet<number>>(() => new Set(examRecords ? learningV2PassedChaptersV1(examRecords, 'en', lesson).keys() : []), [examRecords, lesson]);
   const deck = useMemo(
-    () => buildSeasonDeck(sessionRows, { includeExam: SEASON_CHAPTER_EXAM_ENABLED, examAvailableWhenReached: true, examPassedChapters }),
-    [examPassedChapters, sessionRows],
+    () => buildSeasonDeck(sessionRows, { includeExam: chapterExamsEnabled, examAvailableWhenReached: true, examPassedChapters }),
+    [chapterExamsEnabled, examPassedChapters, sessionRows],
   );
   const chapterCount = deck.chapters.length;
   // зачем (прогресс v2): после входного теста ничего не пройдено, но текущий — эпизод 1 урока N; такой человек не новичок
@@ -189,7 +193,8 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
 
   const ruAuthored = lang === 'ru';
   // звёзды занятий подняты в память вкладкой «Уроки»? (подписка на хранилище, без чтений диска и сети)
-  const starsReady = useSyncExternalStore(subscribeLearningV2SessionStarResults, isLearningV2SessionStarResultsHydrated, isLearningV2SessionStarResultsHydrated);
+  const peekStarsReady = useCallback(() => isLearningV2SessionStarResultsHydrated(studyTarget), [studyTarget]);
+  const starsReady = useSyncExternalStore(subscribeLearningV2SessionStarResults, peekStarsReady, peekStarsReady);
   const episodeInfo = useCallback((card: SeasonEpisodeCard): SeasonEpisodeInfo => {
     // зачем (координатор 22.10): названия эпизодов на 8 языках — learningV2SessionTitleForLocaleV1 (10 · ПЕРЕВОДЧИК), нет перевода — null → «Эпизод N»
     const authored = learningV2SessionTitleForLocaleV1(card.lessonOrdinal, card.sessionOrdinal, lang);
@@ -197,12 +202,12 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     // фразы с переводом и слов в лёгком индексе нет — не выдумываем: карта показывает название занятия (или «Эпизод N»)
     // зачем (Сверка 24.10: «0 заданий» при 19 в сессии; Learning V2 af51c41b2): число заданий — из лёгкого индекса курса тем же сборщиком,
     // что плеер; null (содержимое поменялось после пересчёта) — подписи нет, лучше чем неверное число
-    const tasksCount = factoryNativeLearningV2TaskCountV1(card.lessonOrdinal, card.sessionOrdinal);
+    const tasksCount = factoryNativeLearningV2TaskCountV1(card.lessonOrdinal, card.sessionOrdinal, studyTarget);
     // зачем (владелец 22.10): звёзды пройденного эпизода — из уже поднятых вкладкой «Уроки» звёзд занятий (память, без чтений); правило карты курса: у пройденного не меньше одной звезды, если результата нет
     // зачем (владелец/координатор 22.10): пока вкладка не подняла звёзды в память — 'pending' (звёзд нет, не «1»), потом число; без прыжка 1 → 3
     const stars = card.state === 'done' ? (starsReady ? Math.max(1, props.stars[card.id] ?? 1) : 'pending' as const) : null;
     return { title: authored ?? label, phrase: authored ?? label, progress: null, taskLine: null, translation: null, words: [], tasksCount, stars };
-  }, [lang, props.stars, starsReady]);
+  }, [lang, props.stars, starsReady, studyTarget]);
   const chapterInfo = useCallback((chapterOrdinal: number): SeasonChapterInfo => ({
     scene: (ruAuthored ? learningV2ChapterSceneV1(lesson, chapterOrdinal) : null) ?? seasonText(lang, 'chapterOf', { n: chapterOrdinal, m: chapterCount }),
     icon: learningV2ChapterIonIcon(lesson, chapterOrdinal),
@@ -308,20 +313,22 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
     return true;
   }, [examFree, predictStartRefusal]);
   const onStartExam = useCallback((chapterOrdinal: number) => {
+    if (!chapterExamStartEnabled) return;
     if (seasonTapTooSoon(examTapRef, 'exam')) return;
     if (examEnergyBlocked('exam_card')) return;
     const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' });
     console.log(`${LOG} нажатие → «Начать экзамен»`, JSON.stringify({ href, free: examFree })); // guard-ok: куда ведёт нажатие
     router.push(href as never);
-  }, [examEnergyBlocked, examFree, lesson, router]);
+  }, [chapterExamStartEnabled, examEnergyBlocked, examFree, lesson, router]);
   const onOpenByExam = useCallback((chapterOrdinal: number) => {
+    if (!chapterExamStartEnabled) return;
     if (seasonTapTooSoon(examTapRef, 'exam')) return;
     if (examEnergyBlocked('open_by_exam')) return;
     // закрытый эпизод следующей главы открывается экзаменом ПРЕДЫДУЩЕЙ главы (контракт Learning V2)
     const href = learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal: chapterOrdinal - 1, source: 'open_by_exam' });
     console.log(`${LOG} нажатие → «Открыть экзаменом главы»`, JSON.stringify({ href })); // guard-ok: куда ведёт нажатие
     router.push(href as never);
-  }, [examEnergyBlocked, lesson, router]);
+  }, [chapterExamStartEnabled, examEnergyBlocked, lesson, router]);
   const { onLegacyLessons } = props;
   // зачем (владелец 22.10): «Классический курс» — отдельная плитка под обложкой, а не карточка «Ваши прошлые уроки»; ведёт туда же (onLegacyLessons)
   const onClassic = useCallback(() => {
@@ -431,13 +438,13 @@ function SeasonCourseConnected(props: SeasonCourseConnectedProps) {
         classicValue={props.legacyProgress ? seasonText(lang, 'doneOf', { k: props.legacyProgress.done, n: props.legacyProgress.total }) : null}
         onWords={onWords}
         onTheory={onTheory}
-        examInfo={SEASON_CHAPTER_EXAM_ENABLED ? examInfo : undefined}
-        examStatus={SEASON_CHAPTER_EXAM_ENABLED ? examStatus : undefined}
-        onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}
-        onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}
+        examInfo={chapterExamsEnabled ? examInfo : undefined}
+        examStatus={chapterExamsEnabled ? examStatus : undefined}
+        onStartExam={chapterExamStartEnabled ? onStartExam : undefined}
+        onOpenByExam={chapterExamStartEnabled ? onOpenByExam : undefined}
       />
       <LearningV2TheorySheet visible={theoryOpen} theory={theory} lang={lang} initialSection={theorySection} onClose={() => setTheoryOpen(false)} />
-      {SEASON_CHAPTER_EXAM_ENABLED ? <NoEnergyModal variant="course" activity="level_exam" visible={examNoEnergy} onClose={() => setExamNoEnergy(false)} /> : null}
+      {chapterExamsEnabled ? <NoEnergyModal variant="course" activity="level_exam" visible={examNoEnergy} onClose={() => setExamNoEnergy(false)} /> : null}
     </View>
   );
 }

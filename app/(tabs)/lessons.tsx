@@ -2788,6 +2788,7 @@ export default function LessonsTab({
         const diskStartedAt = Date.now();
         const state = await createLearningV2CourseLocalProgressStoreV1(
           AsyncStorage,
+          studyTarget === "es" ? "es" : "en",
         ).load(accountScopeHash);
         if (__DEV__) {
           console.log(
@@ -2801,7 +2802,7 @@ export default function LessonsTab({
         }
         // зачем: звёзды 0–3 на пройденных узлах читаются в том же прогреве, что
         // и прогресс — один заход на диск вместо двух, ноль запросов к серверу.
-        await hydrateLearningV2SessionStarResults(accountScopeHash);
+        await hydrateLearningV2SessionStarResults(accountScopeHash, studyTarget === "es" ? "es" : "en");
         return {
           completedSessionIds: state.completedSessionIds,
           currentSessionId: state.currentSessionId,
@@ -2861,7 +2862,7 @@ export default function LessonsTab({
       return () => {
         cancelled = true;
       };
-    }, [learningV2ProgressWarmupEnabled]),
+    }, [learningV2ProgressWarmupEnabled, studyTarget]),
   );
   useFocusEffect(
     useCallback(() => {
@@ -3003,25 +3004,27 @@ export default function LessonsTab({
           lang,
         )
       : "");
-  const selectedLearningV2NewWordCount = selectedLearningV2Session && studyTarget === "en"
+  const selectedLearningV2NewWordCount = selectedLearningV2Session && (studyTarget === "en" || studyTarget === "es")
     ? factoryNativeLearningV2NewWordCountV1(
         selectedLearningV2Session.lessonOrdinal,
         selectedLearningV2Session.sessionOrdinal,
+        studyTarget,
       )
     : null;
   // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): множество занятий, которые игрок видит и
   // может открыть, — написанные И выпущенные (собираются из бандла, непрерывный префикс курса). Им пользуются карта,
   // прогрев и вход в занятие — одно правило на всех. Кнопка массовой разблокировки (только дев) показывает все написанные.
   const learningV2FactoryNativeSessionIds = useMemo(() => {
-    const authored = factoryNativeLearningV2AvailabilityV1().sessions;
-    const shown = learningV2DevUnlockAllActive
+    const factoryTarget = studyTarget === "es" ? "es" : "en";
+    const authored = factoryNativeLearningV2AvailabilityV1(factoryTarget).sessions;
+    const shown = learningV2DevUnlockAllActive || factoryTarget === "es"
       ? authored
       : authored.filter((session) => isLearningV2SessionReleasedV1(session.lessonOrdinal, session.sessionOrdinal));
     if (__DEV__) {
       console.log('[V2-AVAILABILITY] shown', JSON.stringify({ authored: authored.length, shown: shown.length, devUnlockAll: learningV2DevUnlockAllActive }));
     }
     return new Set(shown.map((session) => session.courseSessionId));
-  }, [learningV2DevUnlockAllActive]);
+  }, [learningV2DevUnlockAllActive, studyTarget]);
   type LearningV2PreparedSessionLaunch = Readonly<{
     key: string;
     sessionRunId: string;
@@ -3162,7 +3165,7 @@ export default function LessonsTab({
   // (аудит 20.09, причина №2).
   const isLearningV2SessionMaterialAvailable = useCallback(
     (lessonOrdinal: number, sessionOrdinal: number) =>
-      studyTarget !== "en" ||
+      (studyTarget !== "en" && studyTarget !== "es") ||
       learningV2FactoryNativeSessionIds.has(
         learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
       ),
@@ -3216,7 +3219,7 @@ export default function LessonsTab({
         target.sessionOrdinal,
       );
       if (
-        studyTarget === "en" &&
+        (studyTarget === "en" || studyTarget === "es") &&
         !learningV2FactoryNativeSessionIds.has(courseSessionId)
       ) {
         if (__DEV__) {
@@ -3521,7 +3524,7 @@ export default function LessonsTab({
         const prepareFailureReason = error instanceof Error ? error.message : String(error);
         // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10, координатор: «проверьте связь» — только если сети реально нет): английское занятие собирается
         // из бандла, сети в подготовке нет — любой его отказ показываем как «Сейчас недоступно», не как обрыв связи.
-        const bundledUnavailable = prepareFailureReason === "learning_v2_factory_session_unavailable" || studyTarget === "en";
+        const bundledUnavailable = prepareFailureReason === "learning_v2_factory_session_unavailable" || studyTarget === "en" || studyTarget === "es";
         // зачем (жалобы 24.10 №5/№6): у английских занятий сети в подготовке нет — «проверь связь» на сроке подготовки врал.
         // Срок значит «телефон ещё собирает занятие»; подготовка не бросается, повторный тап её подхватит.
         const stillPreparing = prepareFailureReason.startsWith("learning_v2_session_prepare_timeout");
@@ -3607,15 +3610,15 @@ export default function LessonsTab({
   // без авторитета над прогрессом и без сети.
   const [learningV2StarResults, setLearningV2StarResults] =
     useState<LearningV2SessionStarResultsV1>(() =>
-      peekLearningV2SessionStarResults(),
+      peekLearningV2SessionStarResults(studyTarget === "es" ? "es" : "en"),
     );
   useEffect(() => {
     const refresh = () =>
-      setLearningV2StarResults(peekLearningV2SessionStarResults());
+      setLearningV2StarResults(peekLearningV2SessionStarResults(studyTarget === "es" ? "es" : "en"));
     const unsubscribe = subscribeLearningV2SessionStarResults(refresh);
     refresh();
     return unsubscribe;
-  }, []);
+  }, [studyTarget]);
   const handleLearningV2SessionPress = useCallback(
     (
       selectedLesson: number,
@@ -3643,7 +3646,7 @@ export default function LessonsTab({
         sessionOrdinal,
       );
       if (
-        studyTarget === "en" &&
+        (studyTarget === "en" || studyTarget === "es") &&
         !learningV2FactoryNativeSessionIds.has(selectedCourseSessionId)
       ) {
         console.warn('[V2-TAP] denied:wip', JSON.stringify({ courseSessionId: selectedCourseSessionId, state })); // guard-ok: ранний выход логируется
@@ -5271,6 +5274,7 @@ export default function LessonsTab({
               }
               titles={lessons}
               lang={lang}
+              studyTarget={studyTarget === "es" ? "es" : "en"}
               legacyLessonsLabel={classicCourseLabel}
               legacyProgress={legacyProgress}
               onLegacyLessons={requestLegacyLessons}

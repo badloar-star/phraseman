@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-06:i01",
+    "correctText": "único",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i02",
+    "correctText": "única",
+    "correctResponseId": "es:lesson-01:session-06:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i03",
+    "correctText": "Es único.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i04",
+    "correctText": "única",
+    "correctResponseId": "es:lesson-01:session-06:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i05",
+    "correctText": "Es único.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i06",
+    "correctText": "Она не единственная в своём роде",
+    "correctResponseId": "es:lesson-01:session-06:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i07",
+    "correctText": "No es único.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i08",
+    "correctText": "Es única.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i09",
+    "correctText": "verdad",
+    "correctResponseId": "es:lesson-01:session-06:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i10",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i11",
+    "correctText": "No es única.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i12",
+    "correctText": "No es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-06:i13",
+    "correctText": "No es única.",
+    "correctResponseId": null
+  }
+]

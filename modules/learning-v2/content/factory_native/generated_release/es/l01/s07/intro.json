@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно выбирать es, отрицание no и окончание слова в короткой оценке.",
+    "uk": "самостійно обирати es, заперечення no та закінчення слова в короткій оцінці."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Объяснить правила получится",
+        "uk": "Пояснити правила вдасться"
+      },
+      "bodyByLocale": {
+        "ru": "Друг боится, что объяснение новой игры займёт весь вечер. Вы прочитали правила: `Es fácil` — «это легко». Соберите знакомые `es` + `fácil`. В русском «это легко» слово «есть» не нужно; в испанской фразе `es` остаётся. Без него получится отдельное «легко», а мы тренируем целую оценку.",
+        "uk": "Друг боїться, що пояснення нової гри триватиме весь вечір. Ви прочитали правила: `Es fácil` — «це легко». Складіть знайомі `es` + `fácil`. В українському «це легко» слово «є» не потрібне; в іспанській фразі `es` залишається. Без нього вийде окреме «легко», а ми тренуємо цілу оцінку."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите целую фразу: «Это легко».",
+          "uk": "Скажіть цілу фразу: «Це легко»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-07:intro1:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro1:r2",
+              "text": "Fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro1:r3",
+              "text": "No es fácil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-07:intro1:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro1:r2",
+              "text": "Fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro1:r3",
+              "text": "No es fácil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите целую фразу: «Это легко».",
+          "uk": "Скажіть цілу фразу: «Це легко»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доставка запаздывает",
+        "uk": "Доставка запізнюється"
+      },
+      "bodyByLocale": {
+        "ru": "Доставка еды обещает приехать только через два часа. Испанское слово «доставка» женского рода. `No es rápida` — «она не быстрая». Сначала `no`, потом `es`, затем `rápida`. Чтобы сказать «она не быстрая», ставьте `no` перед `es`.",
+        "uk": "Доставка їжі обіцяє приїхати лише за дві години. Іспанське слово «доставка» жіночого роду. `No es rápida` — «вона не швидка». Спочатку `no`, потім `es`, далі `rápida`. Щоб сказати «вона не швидка», ставте `no` перед `es`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о доставке: «Она не быстрая».",
+          "uk": "Скажіть про доставку: «Вона не швидка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-07:intro2:r1",
+              "text": "No es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro2:r2",
+              "text": "Es no rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro2:r3",
+              "text": "No es rápido."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-07:intro2:r1",
+              "text": "No es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro2:r2",
+              "text": "Es no rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro2:r3",
+              "text": "No es rápido."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о доставке: «Она не быстрая».",
+          "uk": "Скажіть про доставку: «Вона не швидка»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Приглашение готово",
+        "uk": "Запрошення готове"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга нарисовала открытку-приглашение. Она вам нравится: `Es bonita` — «она красивая». Сначала `es`, потом `bonita`. Испанское название открытки женского рода, поэтому выбираем `a`. Даже если оценку произносит мужчина, здесь всё равно `bonita`: он описывает открытку, а не себя.",
+        "uk": "Подруга намалювала листівку-запрошення. Вона вам подобається: `Es bonita` — «вона гарна». Спочатку `es`, потім `bonita`. Іспанська назва листівки жіночого роду, тому обираємо `a`. Навіть якщо оцінку промовляє чоловік, тут однаково `bonita`: він описує листівку, а не себе."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Мужчина хвалит открытку: «Она красивая».",
+          "uk": "Чоловік хвалить листівку: «Вона гарна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-07:intro3:r1",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro3:r2",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro3:r3",
+              "text": "Soy bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-07:intro3:r1",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro3:r2",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-07:intro3:r3",
+              "text": "Soy bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мужчина хвалит открытку: «Она красивая».",
+          "uk": "Чоловік хвалить листівку: «Вона гарна»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cb186ecfae590a44d73e507bf1849f4f4c4487764fb37581b93f4846bc839131"
+}

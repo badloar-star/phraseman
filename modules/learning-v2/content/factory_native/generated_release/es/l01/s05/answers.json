@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-05:i01",
+    "correctText": "rápido",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i02",
+    "correctText": "rápida",
+    "correctResponseId": "es:lesson-01:session-05:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i03",
+    "correctText": "Es rápido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i04",
+    "correctText": "Она не быстрая",
+    "correctResponseId": "es:lesson-01:session-05:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i05",
+    "correctText": "rápida",
+    "correctResponseId": "es:lesson-01:session-05:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i06",
+    "correctText": "lento",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i07",
+    "correctText": "lento",
+    "correctResponseId": "es:lesson-01:session-05:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i08",
+    "correctText": "Es lento.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i09",
+    "correctText": "No es rápido.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i10",
+    "correctText": "lenta",
+    "correctResponseId": "es:lesson-01:session-05:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i11",
+    "correctText": "No es lento.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i12",
+    "correctText": "No es difícil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i13",
+    "correctText": "Он медленный",
+    "correctResponseId": "es:lesson-01:session-05:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i14",
+    "correctText": "Es rápida.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i15",
+    "correctText": "verdad",
+    "correctResponseId": "es:lesson-01:session-05:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i16",
+    "correctText": "Es lenta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-05:i17",
+    "correctText": "No es rápida.",
+    "correctResponseId": null
+  }
+]

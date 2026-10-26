@@ -2306,7 +2306,8 @@ export default function LearningV2DirectSessionPlayerV1() {
         deriveLocalOfflineProgressAccountScopeHash(stableId);
       if (passedSession) {
         const commitLocalProgress = async () => {
-          await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).complete(
+          const progressTargetLanguage = runSummary.targetLanguage === "es" ? "es" : "en";
+          await createLearningV2CourseLocalProgressStoreV1(AsyncStorage, progressTargetLanguage).complete(
             accountScopeHash,
             runSummary.courseSessionId,
           );
@@ -2314,9 +2315,11 @@ export default function LearningV2DirectSessionPlayerV1() {
         try {
           await commitLocalProgress();
           // зачем (экзамен v2, владелец 25.10): пройден эпизод слабой темы проваленного экзамена — отметка «повторил»; все пройдены → пересдать сразу
-          void import('./learning_v2_chapter_exam_v2')
-            .then(({ noteChapterExamV2EpisodeFinishedV1 }) => noteChapterExamV2EpisodeFinishedV1(accountScopeHash, runSummary.courseSessionId))
-            .catch((reviewError: unknown) => console.warn('[CHAPTER-EXAM-V2] review:note_failed', JSON.stringify({ courseSessionId: runSummary.courseSessionId, reason: reviewError instanceof Error ? reviewError.message : String(reviewError) }))); // guard-ok: catch пишет причину
+          if (runSummary.targetLanguage === "en") {
+            void import('./learning_v2_chapter_exam_v2')
+              .then(({ noteChapterExamV2EpisodeFinishedV1 }) => noteChapterExamV2EpisodeFinishedV1(accountScopeHash, runSummary.courseSessionId))
+              .catch((reviewError: unknown) => console.warn('[CHAPTER-EXAM-V2] review:note_failed', JSON.stringify({ courseSessionId: runSummary.courseSessionId, reason: reviewError instanceof Error ? reviewError.message : String(reviewError) }))); // guard-ok: catch пишет причину
+          }
           // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «урок готов до тапа»): следующее занятие собирается, пока человек смотрит итог —
           // после анимаций финала и паузы; сеть не нужна (бандл), Firestore не читается.
           if (locator) {
@@ -2482,6 +2485,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         accountScopeHash,
         courseSessionId: runSummary.courseSessionId,
         stars: earned,
+        targetLanguage: runSummary.targetLanguage === "es" ? "es" : "en",
       });
       // Progress is already saved; leaving the receipt never depends on its animation.
       sessionStageRef.current = "finale";
@@ -2617,6 +2621,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const resumeOwner = attemptsAccountToken.stableId ?? "guest";
   const resumeCourseSessionId = runSummary?.courseSessionId ?? null;
   const resumeFingerprint = runSummary?.childSetFingerprint ?? null;
+  const progressTargetLanguage = runSummary?.targetLanguage === "es" ? "es" : "en";
   const [resumeOffer, setResumeOffer] = useState<
     (LearningV2EpisodeResumeRecordV1 & { inMemory?: boolean }) | null
   >(null);
@@ -2639,7 +2644,7 @@ export default function LearningV2DirectSessionPlayerV1() {
   const clearResumeRef = useRef<(reason: string) => Promise<void>>(async () => undefined);
   clearResumeRef.current = async (reason: string) => {
     if (isAuthoringPreview || !resumeCourseSessionId) return;
-    await clearLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, reason });
+    await clearLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, reason, targetLanguage: progressTargetLanguage });
   };
   const snapshotResume = useCallback((): LearningV2EpisodeResumeRecordV1 | null => {
     if (!resumeCourseSessionId || !resumeFingerprint || !runSummary) return null;
@@ -2674,7 +2679,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     if (resumeCheckedRef.current || isAuthoringPreview || !resumeCourseSessionId || !resumeFingerprint) return;
     resumeCheckedRef.current = true;
     let alive = true;
-    void loadLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, childSetFingerprint: resumeFingerprint })
+    void loadLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, childSetFingerprint: resumeFingerprint, targetLanguage: progressTargetLanguage })
       .then((record) => {
         if (!alive) return;
         if (!record) return;
@@ -2686,15 +2691,15 @@ export default function LearningV2DirectSessionPlayerV1() {
         setResumeOffer(record);
       });
     return () => { alive = false; };
-  }, [isAuthoringPreview, resumeCourseSessionId, resumeFingerprint, resumeOwner]);
+  }, [isAuthoringPreview, progressTargetLanguage, resumeCourseSessionId, resumeFingerprint, resumeOwner]);
 
   // Сохранение после каждого шага (пока предложение продолжить не решено — не перезаписываем старое).
   useEffect(() => {
     if (isAuthoringPreview || resumeOffer || finishing || finishingRef.current || !resumeCheckedRef.current) return;
     if (completionsRef.current.size === 0) return;
     const snapshot = snapshotResume();
-    if (snapshot) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot);
-  }, [finishing, introDone, isAuthoringPreview, practiceIndex, result, resumeOffer, resumeOwner, sessionRunes, snapshotResume]);
+    if (snapshot) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage);
+  }, [finishing, introDone, isAuthoringPreview, practiceIndex, progressTargetLanguage, result, resumeOffer, resumeOwner, sessionRunes, snapshotResume]);
 
   const applyResume = useCallback(() => {
     const record = resumeOffer;
@@ -2744,7 +2749,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     const hasProgress = completionsRef.current.size > 0;
     const snapshot = hasProgress ? snapshotResume() : null;
     const saved = Boolean(snapshot) && !isAuthoringPreview;
-    if (snapshot && !isAuthoringPreview) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot);
+    if (snapshot && !isAuthoringPreview) void saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage);
     console.log("[LESSON-EXIT] v2_episode", JSON.stringify({ // guard-ok: одна строка на выход из эпизода
       source,
       lesson: lessonOrdinal,
@@ -2757,7 +2762,7 @@ export default function LearningV2DirectSessionPlayerV1() {
       decision: "exit_now",
     })); // guard-ok: каждый выход из эпизода — место и сохранено ли
     exitLearningV2Session();
-  }, [exitLearningV2Session, introDone, isAuthoringPreview, lessonOrdinal, practiceIndex, resumeOwner, runSummary, sessionAttempts.state.remainingAttempts, sessionOrdinal, snapshotResume]);
+  }, [exitLearningV2Session, introDone, isAuthoringPreview, lessonOrdinal, practiceIndex, progressTargetLanguage, resumeOwner, runSummary, sessionAttempts.state.remainingAttempts, sessionOrdinal, snapshotResume]);
 
   // Системное «назад» (Android) и жест/стрелка назад — тот же выход: свежий снимок места и сразу наружу, без окна.
   const navigation = useNavigation();

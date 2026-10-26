@@ -49,6 +49,18 @@ export interface LearningV2CourseLocalProgressStorageV1 {
   setItem(key: string, value: string): Promise<void>;
 }
 
+export type LearningV2CourseProgressTargetLanguageV1 = "en" | "es";
+
+/** English keeps every legacy key byte-for-byte; other courses receive their own namespace. */
+export function learningV2LanguageScopedStorageKeyV1(
+  storageKey: string,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = "en",
+): string {
+  if (targetLanguage === "en") return storageKey;
+  if (targetLanguage === "es") return `${storageKey}:target:es`;
+  fail();
+}
+
 const HASH_RE = /^[a-f0-9]{64}$/u;
 // зачем (04.10, холодный старт): порядок сессий и индекс строятся при первом обращении, не при импорте —
 // модуль в графе корня, а топология курса стоила ~0,95 с на старте (дев).
@@ -198,8 +210,15 @@ function viewOf(chainRecord: LearningV2CourseLocalProgressV1, masks: CourseProgr
 let startMissingSuspectReported = false;
 
 export function createLearningV2CourseLocalProgressStoreV1(
-  storage: LearningV2CourseLocalProgressStorageV1,
+  baseStorage: LearningV2CourseLocalProgressStorageV1,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = "en",
 ) {
+  const storage: LearningV2CourseLocalProgressStorageV1 = targetLanguage === "en"
+    ? baseStorage
+    : Object.freeze({
+        getItem: (storageKey: string) => baseStorage.getItem(learningV2LanguageScopedStorageKeyV1(storageKey, targetLanguage)),
+        setItem: (storageKey: string, value: string) => baseStorage.setItem(learningV2LanguageScopedStorageKeyV1(storageKey, targetLanguage), value),
+      });
   let chain: Promise<unknown> = Promise.resolve();
   const serialize = <T>(work: () => Promise<T>): Promise<T> => {
     const next = chain.then(work, work);
@@ -347,9 +366,11 @@ export function createLearningV2CourseLocalProgressStoreV1(
         }
         current = await absorb(accountScopeHash, current, masks);
         const view = viewOf(current, masks);
-        void import('../../../app/premium_theme_progress').then(({ notePremiumThemeProgress }) => {
-          notePremiumThemeProgress('learning_v2_complete', view.completedSessionIds.length);
-        });
+        if (targetLanguage === "en") {
+          void import('../../../app/premium_theme_progress').then(({ notePremiumThemeProgress }) => {
+            notePremiumThemeProgress('learning_v2_complete', view.completedSessionIds.length);
+          });
+        }
         return view;
       });
     },

@@ -164,10 +164,13 @@ export async function launchLearningV2SessionByOrdinalsV1(
     // зачем: модули курса грузятся лениво — экран друга не платит за каталог до нажатия
     /* eslint-disable @typescript-eslint/no-require-imports */
     const { learningV2CourseSessionIdV1 } = require('../modules/learning-v2/content/course_topology_v1') as typeof import('../modules/learning-v2/content/course_topology_v1');
+    const { factoryNativeLearningV2AvailabilityV1 } = require('../modules/learning-v2/content/factory_native/factory_native_catalog_v1') as typeof import('../modules/learning-v2/content/factory_native/factory_native_catalog_v1');
     const { isLearningV2SessionReleasedV1 } = require('./learning_v2_session_availability_v1') as typeof import('./learning_v2_session_availability_v1');
     /* eslint-enable @typescript-eslint/no-require-imports */
     sessionId = learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal);
-    released = isLearningV2SessionReleasedV1(lessonOrdinal, sessionOrdinal);
+    released = ctx.studyTarget === 'en' || ctx.studyTarget === 'es'
+      ? factoryNativeLearningV2AvailabilityV1(ctx.studyTarget).sessions.some((session) => session.courseSessionId === sessionId)
+      : isLearningV2SessionReleasedV1(lessonOrdinal, sessionOrdinal);
   } catch (error) {
     console.warn(`${LOG} by_ordinals from=${from} урок=${lessonOrdinal} занятие=${sessionOrdinal}: неверные номера — открываем карту курса (${error instanceof Error ? error.message : String(error)})`);
     ctx.push('/learning-v2/course');
@@ -199,15 +202,20 @@ export type HomeContinueV2Progress = Readonly<{ lessonOrdinal: number; done: num
 // зачем (координатор 15.10, поправка 1 к P23): «пройдено / выпущено» НЕ хранится в метке — после прохождения занятия она показывала бы
 // старое число. Считаем при показе Главной из локального прогресса курса (тот же склад, что у вкладки «Уроки»; ни одного запроса к
 // Firestore). Память — для мгновенного кадра при возврате на Главную; смена аккаунта её чистит.
-const progressMemory = new Map<number, HomeContinueV2Progress>();
+type HomeContinueV2ProgressTarget = 'en' | 'es';
+const progressMemory = new Map<string, HomeContinueV2Progress>();
 onAccountOwnerChanged('home_continue_v2_progress', () => { progressMemory.clear(); });
 
-export function peekHomeContinueV2Progress(lessonOrdinal: number): HomeContinueV2Progress | null {
-  return progressMemory.get(lessonOrdinal) ?? null;
+function progressMemoryKey(lessonOrdinal: number, targetLanguage: HomeContinueV2ProgressTarget): string {
+  return `${targetLanguage}:${lessonOrdinal}`;
+}
+
+export function peekHomeContinueV2Progress(lessonOrdinal: number, targetLanguage: HomeContinueV2ProgressTarget = 'en'): HomeContinueV2Progress | null {
+  return progressMemory.get(progressMemoryKey(lessonOrdinal, targetLanguage)) ?? null;
 }
 
 /** Выпущенные занятия урока и сколько из них пройдено — по тем же правилам, что карта курса. null — прочитать не удалось. */
-export async function loadHomeContinueV2Progress(lessonOrdinal: number): Promise<HomeContinueV2Progress | null> {
+export async function loadHomeContinueV2Progress(lessonOrdinal: number, targetLanguage: HomeContinueV2ProgressTarget = 'en'): Promise<HomeContinueV2Progress | null> {
   const startedAt = Date.now();
   try {
     // зачем: модули курса грузятся лениво — холодный старт Главной не платит за каталог, пока карточка не показывает V2
@@ -219,17 +227,17 @@ export async function loadHomeContinueV2Progress(lessonOrdinal: number): Promise
     const { getStableId } = require('./stable_id') as typeof import('./stable_id');
     const { withAccountTransitionLock } = require('./account_generation') as typeof import('./account_generation');
     /* eslint-enable @typescript-eslint/no-require-imports */
-    const released = new Set(factoryNativeLearningV2AvailabilityV1().sessions
-      .filter((s) => s.lessonOrdinal === lessonOrdinal && isLearningV2SessionReleasedV1(s.lessonOrdinal, s.sessionOrdinal))
+    const released = new Set(factoryNativeLearningV2AvailabilityV1(targetLanguage).sessions
+      .filter((s) => s.lessonOrdinal === lessonOrdinal && (targetLanguage === 'es' || isLearningV2SessionReleasedV1(s.lessonOrdinal, s.sessionOrdinal)))
       .map((s) => s.courseSessionId));
     const state = await withAccountTransitionLock(async () => {
       const scope = deriveLocalOfflineProgressAccountScopeHash(await getStableId());
-      return createLearningV2CourseLocalProgressStoreV1(AsyncStorage).load(scope);
+      return createLearningV2CourseLocalProgressStoreV1(AsyncStorage, targetLanguage).load(scope);
     });
     const done = state.completedSessionIds.filter((id) => released.has(id)).length;
     const progress: HomeContinueV2Progress = { lessonOrdinal, done, total: released.size };
-    progressMemory.set(lessonOrdinal, progress);
-    console.log(`${LOG} progress урок=${lessonOrdinal} пройдено=${done} выпущено=${released.size} источник=локальный прогресс курса ms=${Date.now() - startedAt}`);
+    progressMemory.set(progressMemoryKey(lessonOrdinal, targetLanguage), progress);
+    console.log(`${LOG} progress target=${targetLanguage} урок=${lessonOrdinal} пройдено=${done} выпущено=${released.size} источник=локальный прогресс курса ms=${Date.now() - startedAt}`);
     return progress;
   } catch (error) {
     console.warn(`${LOG} progress урок=${lessonOrdinal}: прочитать не удалось — показываем прошлое значение из памяти (${error instanceof Error ? error.message : String(error)})`);
@@ -241,23 +249,27 @@ export async function loadHomeContinueV2Progress(lessonOrdinal: number): Promise
  * Прогресс урока для карточки: сразу из памяти, затем свежий с диска при каждом возврате на Главную (refreshKey = focusTick).
  * lessonOrdinal null — карточка не про V2, ничего не читаем.
  */
-export function useHomeContinueV2Progress(lessonOrdinal: number | null, refreshKey: unknown, active: boolean): HomeContinueV2Progress | null {
-  const [progress, setProgress] = useState<HomeContinueV2Progress | null>(() => (lessonOrdinal === null ? null : peekHomeContinueV2Progress(lessonOrdinal)));
+export function useHomeContinueV2Progress(lessonOrdinal: number | null, refreshKey: unknown, active: boolean, targetLanguage: HomeContinueV2ProgressTarget = 'en'): HomeContinueV2Progress | null {
+  const [state, setState] = useState<Readonly<{ targetLanguage: HomeContinueV2ProgressTarget; progress: HomeContinueV2Progress | null }>>(
+    () => ({ targetLanguage, progress: lessonOrdinal === null ? null : peekHomeContinueV2Progress(lessonOrdinal, targetLanguage) }),
+  );
   useEffect(() => {
     if (lessonOrdinal === null || !active) return undefined;
     let alive = true;
-    const cached = peekHomeContinueV2Progress(lessonOrdinal);
-    if (cached) setProgress((prev) => (prev && prev.lessonOrdinal === cached.lessonOrdinal && prev.done === cached.done && prev.total === cached.total ? prev : cached));
-    void loadHomeContinueV2Progress(lessonOrdinal).then((loaded) => {
+    const cached = peekHomeContinueV2Progress(lessonOrdinal, targetLanguage);
+    if (cached) setState((prev) => (prev.targetLanguage === targetLanguage && prev.progress && prev.progress.lessonOrdinal === cached.lessonOrdinal && prev.progress.done === cached.done && prev.progress.total === cached.total ? prev : { targetLanguage, progress: cached }));
+    else setState((prev) => (prev.targetLanguage === targetLanguage && prev.progress === null ? prev : { targetLanguage, progress: null }));
+    void loadHomeContinueV2Progress(lessonOrdinal, targetLanguage).then((loaded) => {
       if (!alive) return;
       // зачем: Главная ждёт числа, чтобы не показать карточку с «прыжком»; если склад не прочитался, а в памяти пусто —
       // карточка всё равно появляется (0 из 0), иначе человек остался бы без «Продолжить» вовсе (причина уже в журнале)
       const next = loaded ?? cached ?? { lessonOrdinal, done: 0, total: 0 };
       // зачем: тот же объект при тех же числах — Главная не перерисовывается на каждый возврат
-      setProgress((prev) => (prev && prev.lessonOrdinal === next.lessonOrdinal && prev.done === next.done && prev.total === next.total ? prev : next));
+      setState((prev) => (prev.targetLanguage === targetLanguage && prev.progress && prev.progress.lessonOrdinal === next.lessonOrdinal && prev.progress.done === next.done && prev.progress.total === next.total ? prev : { targetLanguage, progress: next }));
     });
     return () => { alive = false; };
-  }, [lessonOrdinal, refreshKey, active]);
+  }, [lessonOrdinal, refreshKey, active, targetLanguage]);
+  const progress = state.targetLanguage === targetLanguage ? state.progress : null;
   return lessonOrdinal !== null && progress?.lessonOrdinal === lessonOrdinal ? progress : null;
 }
 

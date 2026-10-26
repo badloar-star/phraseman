@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "Es bonito / Es bonita; окончание зависит от того, что описывают. Повторение no перед es.",
+    "uk": "Es bonito / Es bonita; закінчення залежить від того, що описують. Повторення no перед es."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Красивый рисунок",
+        "uk": "Гарний малюнок"
+      },
+      "bodyByLocale": {
+        "ru": "`Bonito` — «красивый». Вы рассматриваете рисунок: `Es bonito` — «он красивый». Испанское название рисунка — мужского рода, поэтому здесь `bonito`, с `o` на конце. Неважно, кто хвалит рисунок — мужчина или женщина: окончание выбираем по тому, что описываем.",
+        "uk": "`Bonito` — «гарний». Ви розглядаєте малюнок: `Es bonito` — «він гарний». Іспанська назва малюнка — чоловічого роду, тому тут `bonito`, з `o` наприкінці. Неважливо, хто хвалить малюнок — чоловік чи жінка: закінчення вибираємо за тим, що описуємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о рисунке: «Он красивый».",
+          "uk": "Скажіть про малюнок: «Він гарний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-03:intro1:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro1:r2",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro1:r3",
+              "text": "Soy bonito."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-03:intro1:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro1:r2",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro1:r3",
+              "text": "Soy bonito."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о рисунке: «Он красивый».",
+          "uk": "Скажіть про малюнок: «Він гарний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Красивая открытка",
+        "uk": "Гарна листівка"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы смотрите на открытку. Её испанское название — женского рода, поэтому `Es bonita` — «она красивая». Меняем только последнюю букву знакомого слова: `bonito` становится `bonita`. Само `es` остаётся прежним. Открытка не стала красивее от буквы `a` — вы просто говорите о другом предмете.",
+        "uk": "Тепер ви дивитеся на листівку. Її іспанська назва — жіночого роду, тому `Es bonita` — «вона гарна». Змінюємо лише останню літеру знайомого слова: `bonito` стає `bonita`. Саме `es` залишається незмінним. Листівка не стала гарнішою від літери `a` — ви просто говорите про інший предмет."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите об открытке: «Она красивая».",
+          "uk": "Скажіть про листівку: «Вона гарна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-03:intro2:r1",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro2:r2",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro2:r3",
+              "text": "Es fácil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-03:intro2:r1",
+              "text": "Es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro2:r2",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro2:r3",
+              "text": "Es fácil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите об открытке: «Она красивая».",
+          "uk": "Скажіть про листівку: «Вона гарна»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если не нравится",
+        "uk": "Якщо не подобається"
+      },
+      "bodyByLocale": {
+        "ru": "Другу понравился другой рисунок, а вам — нет: `No es bonito` — «он не красивый». Отрицание уже знакомо: `no` ставим перед `es`. Окончание по-прежнему зависит от предмета. Об открытке было бы `No es bonita`. Слово `no` меняет оценку, но не род того, что вы описываете.",
+        "uk": "Другові сподобався інший малюнок, а вам — ні: `No es bonito` — «він не гарний». Заперечення вже знайоме: `no` ставимо перед `es`. Закінчення й далі залежить від предмета. Про листівку було б `No es bonita`. Слово `no` змінює оцінку, але не рід того, що ви описуєте."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите об открытке: «Она не красивая».",
+          "uk": "Скажіть про листівку: «Вона не гарна»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-03:intro3:r1",
+              "text": "No es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro3:r2",
+              "text": "No es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro3:r3",
+              "text": "Es bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-03:intro3:r1",
+              "text": "No es bonita."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro3:r2",
+              "text": "No es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-03:intro3:r3",
+              "text": "Es bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите об открытке: «Она не красивая».",
+          "uk": "Скажіть про листівку: «Вона не гарна»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "64495c584447f2a5fe5eda76e5c3974cdf7534ab7831bd50d7ed63c241ec9e35"
+}

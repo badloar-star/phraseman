@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-05",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-05:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-05:intro1:r2": {
+          "ru": "В этом задании поезд требует окончания o.",
+          "uk": "У цьому завданні поїзд потребує закінчення o."
+        },
+        "es:lesson-01:session-05:intro1:r3": {
+          "ru": "С no получится «он не быстрый», а нужно сказать «он быстрый».",
+          "uk": "З no вийде «він не швидкий», а треба сказати «він швидкий»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-05:intro2:r2": {
+          "ru": "Здесь описываем доставку: окончание a.",
+          "uk": "Тут описуємо доставку: закінчення a."
+        },
+        "es:lesson-01:session-05:intro2:r3": {
+          "ru": "Это «она красивая», а речь о скорости.",
+          "uk": "Це «вона гарна», а йдеться про швидкість."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-05:intro3:r2": {
+          "ru": "Для автобуса нужна форма на o.",
+          "uk": "Для автобуса потрібна форма на o."
+        },
+        "es:lesson-01:session-05:intro3:r3": {
+          "ru": "Это противоположная оценка: «он быстрый».",
+          "uk": "Це протилежна оцінка: «він швидкий»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3f4b22bb3bb348cdcf742e6eb2039829b97a749e6b06146746ffa80e1874dcc6"
+}

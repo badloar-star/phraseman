@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "писать único с ú, выбирать único/única и сохранять ударение при смене окончания.",
+    "uk": "писати único з ú, обирати único/única та зберігати наголос при зміні закінчення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Другого такого нет",
+        "uk": "Іншого такого немає"
+      },
+      "bodyByLocale": {
+        "ru": "По словам продавца, он нарисовал горный пейзаж и не делает копий. `Es único` — «он единственный в своём роде». Соберите `es` + `único`. Испанское слово «рисунок» здесь — мужского рода. Знак над `ú` показывает ударение на первом слоге; при письме его сохраняем. В словаре и в вашей фразе слово пишется одинаково: único.",
+        "uk": "За словами продавця, він намалював гірський краєвид і не робить копій. `Es único` — «він єдиний у своєму роді». Складіть `es` + `único`. Іспанське слово «малюнок» — чоловічого роду. Знак над `ú` показує наголос на першому складі; на письмі його зберігаємо. У словнику й у вашій фразі слово пишеться однаково: único."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о рисунке: «Он единственный в своём роде».",
+          "uk": "Скажіть про малюнок: «Він єдиний у своєму роді»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-06:intro1:r1",
+              "text": "Es único."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro1:r2",
+              "text": "Es unica."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro1:r3",
+              "text": "Es unico."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-06:intro1:r1",
+              "text": "Es único."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro1:r2",
+              "text": "Es unica."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro1:r3",
+              "text": "Es unico."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о рисунке: «Он единственный в своём роде».",
+          "uk": "Скажіть про малюнок: «Він єдиний у своєму роді»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Открытка в одном экземпляре",
+        "uk": "Листівка в одному примірнику"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга выбрала открытку ручной работы. Другой такой нет: `Es única` — «она единственная в своём роде». Испанское название открытки женского рода, как вы уже знаете. Поэтому после `es` ставим `única`, с `a`. Ударение остаётся на первом слоге: меняем последнюю букву, а знак над первой сохраняем.",
+        "uk": "Подруга обрала листівку ручної роботи. Іншої такої немає: `Es única` — «вона єдина у своєму роді». Іспанська назва листівки жіночого роду, як ви вже знаєте. Тому після `es` ставимо `única`, з `a`. Наголос залишається на першому складі: змінюємо останню літеру, а знак над першою зберігаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите об открытке: «Она единственная в своём роде».",
+          "uk": "Скажіть про листівку: «Вона єдина у своєму роді»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-06:intro2:r1",
+              "text": "Es única."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro2:r2",
+              "text": "Es único."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro2:r3",
+              "text": "Es unica."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-06:intro2:r1",
+              "text": "Es única."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro2:r2",
+              "text": "Es único."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro2:r3",
+              "text": "Es unica."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите об открытке: «Она единственная в своём роде».",
+          "uk": "Скажіть про листівку: «Вона єдина у своєму роді»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нашлась копия",
+        "uk": "Знайшлася копія"
+      },
+      "bodyByLocale": {
+        "ru": "Под рисунком лежит второй, точно такой же. Значит, первый не единственный: `No es único` — «он не единственный в своём роде». Соберите `no` + `es` + `único`. Добавили отрицание, но написание последнего слова не изменили: и `o`, и знак над `ú` остаются. Второй рисунок меняет вашу оценку, а не ударение.",
+        "uk": "Під малюнком лежить другий, точнісінько такий самий. Отже, перший не єдиний: `No es único` — «він не єдиний у своєму роді». Складіть `no` + `es` + `único`. Додали заперечення, але написання останнього слова не змінили: і `o`, і знак над `ú` залишаються. Другий малюнок змінює вашу оцінку, а не наголос."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о рисунке: «Он не единственный в своём роде».",
+          "uk": "Скажіть про малюнок: «Він не єдиний у своєму роді»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-06:intro3:r1",
+              "text": "No es único."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro3:r2",
+              "text": "No es unico."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro3:r3",
+              "text": "Es único."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-06:intro3:r1",
+              "text": "No es único."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro3:r2",
+              "text": "No es unico."
+            },
+            {
+              "responseId": "es:lesson-01:session-06:intro3:r3",
+              "text": "Es único."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о рисунке: «Он не единственный в своём роде».",
+          "uk": "Скажіть про малюнок: «Він не єдиний у своєму роді»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "61514cd3f24820650ebb81fc5a86abdeb55bd5f8f20652ab1e10f0206735377f"
+}

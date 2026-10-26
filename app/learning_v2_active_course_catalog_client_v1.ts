@@ -205,39 +205,45 @@ async function loadLkg(locator: LearningV2ActiveCourseCatalogLocatorV1, accountS
 // ПОДРЯД, плюс заново на каждом фокусе вкладки. Результат — замороженный объект и чистая функция от этих четырёх полей
 // (seed бандла зависит только от interfaceLocale), поэтому запоминаем его: второй и последующие вызовы бесплатны.
 // Форма данных не меняется. Записано в handoff/CODEX_V2_ZERO_LESSONS_2026-10-12.md для Codex.
-const bundledEnCatalogMemo = new Map<string, LearningV2ActiveCourseCatalogV1>();
+const bundledFactoryCatalogMemo = new Map<string, LearningV2ActiveCourseCatalogV1>();
 
-function bundledEnCatalogV1(exact: LearningV2ActiveCourseCatalogLocatorV1): LearningV2ActiveCourseCatalogV1 {
-  const memoKey = [exact.environment, exact.seasonId, exact.learnerSourceLocale, exact.interfaceLocale].join('|');
-  const memo = bundledEnCatalogMemo.get(memoKey);
+function isBundledFactoryTarget(targetLanguage: string): targetLanguage is 'en' | 'es' {
+  return targetLanguage === 'en' || targetLanguage === 'es';
+}
+
+function bundledFactoryCatalogV1(exact: LearningV2ActiveCourseCatalogLocatorV1): LearningV2ActiveCourseCatalogV1 {
+  if (!isBundledFactoryTarget(exact.targetLanguage)) fail();
+  const memoKey = [exact.environment, exact.seasonId, exact.targetLanguage, exact.learnerSourceLocale, exact.interfaceLocale].join('|');
+  const memo = bundledFactoryCatalogMemo.get(memoKey);
   if (memo) return memo;
   const startedAtMs = Date.now();
-  const seed = factoryNativeLearningV2CatalogSeedV1(exact.interfaceLocale);
+  const seed = factoryNativeLearningV2CatalogSeedV1(exact.interfaceLocale, exact.targetLanguage);
   const catalog = materializeLearningV2FactoryPartialCourseCatalogV1({
     environment: exact.environment, seasonId: exact.seasonId,
+    targetLanguage: exact.targetLanguage,
     learnerSourceLocale: exact.learnerSourceLocale, interfaceLocale: exact.interfaceLocale,
     activeRootFingerprint: seed.activeRootFingerprint, activeHeadFingerprint: seed.activeHeadFingerprint,
     lessons: seed.lessons,
   });
-  bundledEnCatalogMemo.set(memoKey, catalog);
+  bundledFactoryCatalogMemo.set(memoKey, catalog);
   // зачем (Дизайн 12.10, 🟡 №3): строка жива и в продакшен-JS для релизного замера; один раз на язык интерфейса; в стор-сборке — нет.
   if (process.env.EXPO_PUBLIC_STORE_RELEASE !== '1') {
-    console.log(`[LESSONS-BOOT] v2_catalog:materialized ${JSON.stringify({ interfaceLocale: exact.interfaceLocale, ms: Date.now() - startedAtMs, lessons: catalog.lessons.length, memoSize: bundledEnCatalogMemo.size })}`);
+    console.log(`[LESSONS-BOOT] v2_catalog:materialized ${JSON.stringify({ targetLanguage: exact.targetLanguage, interfaceLocale: exact.interfaceLocale, ms: Date.now() - startedAtMs, lessons: catalog.lessons.length, memoSize: bundledFactoryCatalogMemo.size })}`);
   }
   return catalog;
 }
 
 export function peekLearningV2ActiveCourseCatalogV1(locator: LearningV2ActiveCourseCatalogLocatorV1, accountScopeHash: string): LearningV2ActiveCourseCatalogV1 | null {
   const exact = exactLocator(locator);
-  if (exact.targetLanguage === 'en') return bundledEnCatalogV1(exact);
+  if (isBundledFactoryTarget(exact.targetLanguage)) return bundledFactoryCatalogV1(exact);
   return peek.get(key(exact, accountScopeHash)) ?? null;
 }
 
 export async function loadLearningV2ActiveCourseCatalogV1(rawLocator: LearningV2ActiveCourseCatalogLocatorV1): Promise<LearningV2ActiveCourseCatalogResultV1> {
   const locator = exactLocator(rawLocator);
-  if (locator.targetLanguage === 'en') {
+  if (isBundledFactoryTarget(locator.targetLanguage)) {
     return Object.freeze({
-      catalog: bundledEnCatalogV1(locator),
+      catalog: bundledFactoryCatalogV1(locator),
       source: 'bundled_factory' as const,
       cacheAuthority: 'availability_only_not_release_or_correctness_authority' as const,
     });

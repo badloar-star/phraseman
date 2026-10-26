@@ -8,6 +8,10 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { onAccountOwnerChanged } from "./account_owner_change";
 import type { LearningV2CourseSessionInteractionCompletionV1 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
+import {
+  learningV2LanguageScopedStorageKeyV1,
+  type LearningV2CourseProgressTargetLanguageV1,
+} from "../modules/learning-v2/progress/course_local_progress_v1";
 
 const LOG = "[V2-RESUME]";
 const KEY_PREFIX = "learning_v2_episode_resume_v1";
@@ -35,8 +39,12 @@ export type LearningV2EpisodeResumeRecordV1 = Readonly<{
   deviceSkippedVoiceIds: readonly string[];
 }>;
 
-export function learningV2EpisodeResumeKeyV1(owner: string, courseSessionId: string): string {
-  return `${KEY_PREFIX}:${owner}:${courseSessionId}`;
+export function learningV2EpisodeResumeKeyV1(
+  owner: string,
+  courseSessionId: string,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = "en",
+): string {
+  return learningV2LanguageScopedStorageKeyV1(`${KEY_PREFIX}:${owner}:${courseSessionId}`, targetLanguage);
 }
 
 /**
@@ -81,8 +89,10 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
   courseSessionId: string;
   childSetFingerprint: string;
   nowMs?: number;
+  targetLanguage?: LearningV2CourseProgressTargetLanguageV1;
 }>): Promise<LearningV2EpisodeResumeRecordV1 | null> {
-  const key = learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId);
+  const targetLanguage = input.targetLanguage ?? "en";
+  const key = learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId, targetLanguage);
   const fromMemory = memoryRecords.get(key);
   let parsed: unknown = fromMemory;
   if (fromMemory === undefined) {
@@ -101,14 +111,14 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
       parsed = JSON.parse(raw);
     } catch (error) {
       console.warn(`${LOG} load_corrupt`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
-      await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason: "corrupt" });
+      await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason: "corrupt", targetLanguage });
       return null;
     }
   }
   const nowMs = input.nowMs ?? Date.now();
   const reject = async (reason: string, extra: Record<string, unknown> = {}) => {
     console.log(`${LOG} load_rejected`, JSON.stringify({ courseSessionId: input.courseSessionId, reason, ...extra })); // guard-ok: ранний выход с причиной
-    await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason });
+    await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason, targetLanguage });
     return null;
   };
   if (!isRecord(parsed)) return reject("invalid_shape");
@@ -127,8 +137,12 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
   return parsed;
 }
 
-export async function saveLearningV2EpisodeResumeV1(owner: string, record: LearningV2EpisodeResumeRecordV1): Promise<void> {
-  const key = learningV2EpisodeResumeKeyV1(owner, record.courseSessionId);
+export async function saveLearningV2EpisodeResumeV1(
+  owner: string,
+  record: LearningV2EpisodeResumeRecordV1,
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1 = "en",
+): Promise<void> {
+  const key = learningV2EpisodeResumeKeyV1(owner, record.courseSessionId, targetLanguage);
   // зачем: память — синхронно, до первого await (выход по крестику не ждёт диска); диск — следом, сбой — в журнал
   memoryRecords.set(key, record);
   try {
@@ -139,10 +153,11 @@ export async function saveLearningV2EpisodeResumeV1(owner: string, record: Learn
   }
 }
 
-export async function clearLearningV2EpisodeResumeV1(input: Readonly<{ owner: string; courseSessionId: string; reason: string }>): Promise<void> {
-  memoryRecords.delete(learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId));
+export async function clearLearningV2EpisodeResumeV1(input: Readonly<{ owner: string; courseSessionId: string; reason: string; targetLanguage?: LearningV2CourseProgressTargetLanguageV1 }>): Promise<void> {
+  const targetLanguage = input.targetLanguage ?? "en";
+  memoryRecords.delete(learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId, targetLanguage));
   try {
-    await AsyncStorage.removeItem(learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId));
+    await AsyncStorage.removeItem(learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId, targetLanguage));
     console.log(`${LOG} cleared`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: input.reason })); // guard-ok: одна строка на очистку
   } catch (error) {
     console.warn(`${LOG} clear_failed`, JSON.stringify({ courseSessionId: input.courseSessionId, reason: input.reason, error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной

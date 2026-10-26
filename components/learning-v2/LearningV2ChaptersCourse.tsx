@@ -26,6 +26,7 @@ import { pickInitialLessonOrdinal } from "../../app/learning_v2_last_lesson";
 interface Props {
   titles: readonly string[];
   lang: Lang;
+  studyTarget?: "en" | "es";
   scopeKey: string;
   preparedProgress: LearningV2PreparedAccordionProgressV1;
   currentSessionId: string | null;

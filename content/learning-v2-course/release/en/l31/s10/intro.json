@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "просить подтверждения, вежливо уточнять место и пересказывать события.",
+    "uk": "просити підтвердження, ввічливо уточнювати місце й переказувати події."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тихий парк, правда?",
+        "uk": "Тихий парк, правда?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом выбираете место для пикника. Парк кажется тихим; попросите подтверждения: The park is quiet, isn’t it? — парк тихий, правда? Соберите The park is quiet + isn’t + it. После утвердительного is здесь ставим отрицательное isn’t. Один парк заменяем на it.",
+        "uk": "Ви з другом обираєте місце для пікніка. Парк здається тихим; попросіть підтвердження: The park is quiet, isn’t it? — парк тихий, правда? Складіть The park is quiet + isn’t + it. Після стверджувального is тут ставимо заперечне isn’t. Один парк замінюємо на it."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-10:intro1:r1",
+              "text": "The park is quiet, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro1:r2",
+              "text": "The park is quiet, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro1:r3",
+              "text": "The park is quiet, isn't they?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-10:intro1:r1",
+              "text": "The park is quiet, isn't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro1:r2",
+              "text": "The park is quiet, aren't it?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro1:r3",
+              "text": "The park is quiet, isn't they?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где ворота",
+        "uk": "Де ворота"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете вход в парк. Спросите прохожего: Could you tell me where the gate is? — не подскажете, где ворота? Соберите Could you tell me + where + the gate + is. После where оставляем порядок the gate is. Английское gate здесь обозначает один вход, поэтому is.",
+        "uk": "Ви шукаєте вхід до парку. Запитайте перехожого: Could you tell me where the gate is? — не підкажете, де ворота? Складіть Could you tell me + where + the gate + is. Після where залишаємо порядок the gate is. Англійське gate тут позначає один вхід, тому is."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-10:intro2:r1",
+              "text": "Could you tell me where the gate is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro2:r2",
+              "text": "Could you tell me where is the gate?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro2:r3",
+              "text": "Could you tell me where the gate are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-10:intro2:r1",
+              "text": "Could you tell me where the gate is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro2:r2",
+              "text": "Could you tell me where is the gate?"
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro2:r3",
+              "text": "Could you tell me where the gate are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто открыл ворота",
+        "uk": "Хто відчинив ворота"
+      },
+      "bodyByLocale": {
+        "ru": "Работник Том открыл ворота парка. Начните рассказ с ворот: The gate was opened by Tom — ворота открыл Том. Соберите The gate + was + opened + by Tom. Was opened описывает действие над воротами, by Tom называет исполнителя. В английском gate единственного числа, поэтому was.",
+        "uk": "Працівник Том відчинив ворота парку. Почніть розповідь із воріт: The gate was opened by Tom — ворота відчинив Том. Складіть The gate + was + opened + by Tom. Was opened описує дію над воротами, by Tom називає виконавця. В англійській gate в однині, тому was."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-10:intro3:r1",
+              "text": "The gate was opened by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro3:r2",
+              "text": "The gate was open by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro3:r3",
+              "text": "The gate were opened by Tom."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-10:intro3:r1",
+              "text": "The gate was opened by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro3:r2",
+              "text": "The gate was open by Tom."
+            },
+            {
+              "responseId": "en:lesson-31:session-10:intro3:r3",
+              "text": "The gate were opened by Tom."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c814194f3f7601ffd248f9fa414cd87f9b74fed00541caffc96e0b25d062410c"
+}

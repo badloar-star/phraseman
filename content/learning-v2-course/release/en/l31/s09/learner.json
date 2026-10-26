@@ -1,0 +1,1078 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-09",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-09:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ready",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ready",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i01:audio",
+          "transcript": "ready"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-09:i01:r1",
+            "targetText": "ready",
+            "meaningByLocale": {
+              "ru": "Готовый. Повторение знакомого слова.",
+              "uk": "Готовий. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ready",
+          "definitionByLocale": {
+            "ru": "Готовый. Повторение знакомого слова.",
+            "uk": "Готовий. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i02:r1",
+          "text": "You're ready, aren't you?"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i02:r2",
+          "text": "You're tired, aren't you?"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i02:r3",
+          "text": "You're hungry, aren't you?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i02:audio",
+          "transcript": "You're ready, aren't you?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-09:i02:r1",
+            "targetText": "You're ready, aren't you?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i02:r2",
+            "targetText": "You're tired, aren't you?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i02:r3",
+            "targetText": "You're hungry, aren't you?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You're ready, aren't you?",
+              "uk": "У записі звучить You're ready, aren't you?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит You're ready, aren't you?",
+              "uk": "У записі звучить You're ready, aren't you?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг готов. Добавьте отрицательное уточнение к You’re ready.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i03:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i03:r2",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i03:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг готов. Добавьте отрицательное уточнение к You’re ready.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг готов. Добавьте отрицательное уточнение к You’re ready.",
+          "uk": "Друг готовий. Додайте заперечне уточнення до You’re ready."
+        },
+        "gappedTargetPhrase": "You're ready, ___ you?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-09:i03:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i03:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i03:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Друг готов. Добавьте отрицательное уточнение к You’re ready.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i03:r2",
+            "correct": false,
+            "testedDimension": "Друг готов. Добавьте отрицательное уточнение к You’re ready.",
+            "feedbackByLocale": {
+              "ru": "You are требует aren’t.",
+              "uk": "You are потребує aren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i03:r3",
+            "correct": false,
+            "testedDimension": "Друг готов. Добавьте отрицательное уточнение к You’re ready.",
+            "feedbackByLocale": {
+              "ru": "Здесь есть are; в уточнении нужно aren’t.",
+              "uk": "Тут є are; в уточненні потрібно aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i04:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-09:i04:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Сумка. Повторение знакомого слова.",
+              "uk": "Сумка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Сумка. Повторение знакомого слова.",
+            "uk": "Сумка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните, что сумка не тяжёлая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните, что сумка не тяжёлая.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag isn't heavy, is it?",
+        "localizedMeaning": {
+          "ru": "Уточните, что сумка не тяжёлая.",
+          "uk": "Уточніть, що сумка не важка."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "isn't",
+          "heavy,",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сумка не тяжёлая. Завершите уточнение о ней.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i06:r1",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i06:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i06:r3",
+          "text": "she"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сумка не тяжёлая. Завершите уточнение о ней.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Сумка не тяжёлая. Завершите уточнение о ней.",
+          "uk": "Сумка не важка. Завершіть уточнення про неї."
+        },
+        "gappedTargetPhrase": "The bag isn't heavy, is ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-09:i06:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i06:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i06:r3",
+            "text": "she"
+          }
+        ],
+        "testedDimension": "Сумка не тяжёлая. Завершите уточнение о ней.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i06:r2",
+            "correct": false,
+            "testedDimension": "Сумка не тяжёлая. Завершите уточнение о ней.",
+            "feedbackByLocale": {
+              "ru": "Одна сумка — it.",
+              "uk": "Одна сумка — it."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i06:r3",
+            "correct": false,
+            "testedDimension": "Сумка не тяжёлая. Завершите уточнение о ней.",
+            "feedbackByLocale": {
+              "ru": "Здесь речь о сумке: it.",
+              "uk": "Тут ідеться про сумку: it."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — drive",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i07:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — drive",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i07:audio",
+          "transcript": "drive"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-09:i07:r1",
+            "targetText": "drive",
+            "meaningByLocale": {
+              "ru": "Водить машину. Повторение знакомого слова.",
+              "uk": "Водити машину. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "drive",
+          "definitionByLocale": {
+            "ru": "Водить машину. Повторение знакомого слова.",
+            "uk": "Водити машину. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна не водит машину. Уточните это у друга.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i08:audio"
+      ],
+      "accessibilityLabel": "Анна не водит машину. Уточните это у друга.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i08:audio",
+          "transcript": "She doesn't drive, does she?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She doesn't drive, does she?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i09:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i09:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i09:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+          "uk": "Анна не водить машину. Після заперечення додайте стверджувальне уточнення."
+        },
+        "gappedTargetPhrase": "She doesn't drive, ___ she?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-09:i09:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i09:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i09:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i09:r2",
+            "correct": false,
+            "testedDimension": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "С she нужен does.",
+              "uk": "З she потрібен does."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i09:r3",
+            "correct": false,
+            "testedDimension": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+            "feedbackByLocale": {
+              "ru": "Берём does из doesn’t.",
+              "uk": "Беремо does із doesn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bus",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i10:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bus",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i10:audio",
+          "transcript": "bus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-09:i10:r1",
+            "targetText": "bus",
+            "meaningByLocale": {
+              "ru": "Автобус. Повторение знакомого слова.",
+              "uk": "Автобус. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bus",
+          "definitionByLocale": {
+            "ru": "Автобус. Повторение знакомого слова.",
+            "uk": "Автобус. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i11:r1",
+          "text": "The bus is late, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i11:r2",
+          "text": "The bus is full, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i11:r3",
+          "text": "The bus is empty, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i11:audio",
+          "transcript": "The bus is late, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-09:i11:r1",
+            "targetText": "The bus is late, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i11:r2",
+            "targetText": "The bus is full, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i11:r3",
+            "targetText": "The bus is empty, isn't it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i11:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus is late, isn't it?",
+              "uk": "У записі звучить The bus is late, isn't it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i11:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bus is late, isn't it?",
+              "uk": "У записі звучить The bus is late, isn't it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Автобус опаздывает. Добавьте отрицательное уточнение о нём.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус опаздывает. Добавьте отрицательное уточнение о нём.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bus is late, isn't it?",
+        "localizedMeaning": {
+          "ru": "Автобус опаздывает. Добавьте отрицательное уточнение о нём.",
+          "uk": "Автобус запізнюється. Додайте заперечне уточнення про нього."
+        },
+        "orderedTokens": [
+          "The",
+          "bus",
+          "is",
+          "late,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Автобус не полон. Добавьте утвердительное уточнение о нём.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i13:audio"
+      ],
+      "accessibilityLabel": "Автобус не полон. Добавьте утвердительное уточнение о нём.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i13:audio",
+          "transcript": "The bus isn't full, is it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bus isn't full, is it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы с другом готовы. Добавьте отрицательное уточнение о вас обоих.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i14:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i14:r2",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i14:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы с другом готовы. Добавьте отрицательное уточнение о вас обоих.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы с другом готовы. Добавьте отрицательное уточнение о вас обоих.",
+          "uk": "Ви з другом готові. Додайте заперечне уточнення про вас обох."
+        },
+        "gappedTargetPhrase": "We're ready, ___ we?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-09:i14:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i14:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i14:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Вы с другом готовы. Добавьте отрицательное уточнение о вас обоих.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i14:r2",
+            "correct": false,
+            "testedDimension": "Вы с другом готовы. Добавьте отрицательное уточнение о вас обоих.",
+            "feedbackByLocale": {
+              "ru": "We are требует aren’t.",
+              "uk": "We are потребує aren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i14:r3",
+            "correct": false,
+            "testedDimension": "Вы с другом готовы. Добавьте отрицательное уточнение о вас обоих.",
+            "feedbackByLocale": {
+              "ru": "Здесь уточнение строится с aren’t.",
+              "uk": "Тут уточнення будується з aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна не водит машину. Соберите фразу с уточнением.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна не водит машину. Соберите фразу с уточнением.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "She doesn't drive, does she?",
+        "localizedMeaning": {
+          "ru": "Анна не водит машину. Соберите фразу с уточнением.",
+          "uk": "Анна не водить машину. Складіть фразу з уточненням."
+        },
+        "orderedTokens": [
+          "She",
+          "doesn't",
+          "drive,",
+          "does",
+          "she"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ваши сумки тяжёлые. Добавьте отрицательное уточнение о них.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i16:audio"
+      ],
+      "accessibilityLabel": "Ваши сумки тяжёлые. Добавьте отрицательное уточнение о них.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i16:audio",
+          "transcript": "The bags are heavy, aren't they?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bags are heavy, aren't they?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i17",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Автобус опаздывает. Завершите отрицательное уточнение о нём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i17:r1",
+          "text": "it"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i17:r2",
+          "text": "they"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i17:r3",
+          "text": "we"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Автобус опаздывает. Завершите отрицательное уточнение о нём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Автобус опаздывает. Завершите отрицательное уточнение о нём.",
+          "uk": "Автобус запізнюється. Завершіть заперечне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The bus is late, isn't ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-09:i17:r1",
+            "text": "it"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i17:r2",
+            "text": "they"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i17:r3",
+            "text": "we"
+          }
+        ],
+        "testedDimension": "Автобус опаздывает. Завершите отрицательное уточнение о нём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i17:r2",
+            "correct": false,
+            "testedDimension": "Автобус опаздывает. Завершите отрицательное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Один автобус заменяем на it.",
+              "uk": "Один автобус замінюємо на it."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i17:r3",
+            "correct": false,
+            "testedDimension": "Автобус опаздывает. Завершите отрицательное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Речь об автобусе, не о нас: it.",
+              "uk": "Ідеться про автобус, не про нас: it."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: друг уточняет, готовы вы или устали?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i18:r1",
+          "text": "You're tired, aren't you?"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i18:r2",
+          "text": "You're ready, aren't you?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i18:audioA",
+        "en:lesson-31:session-09:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: друг уточняет, готовы вы или устали?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "You're tired, aren't you?",
+        "contrastB": "You're ready, aren't you?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-09:i18:audioA",
+          "transcript": "You're tired, aren't you?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-09:i18:audioB",
+          "transcript": "You're ready, aren't you?"
+        },
+        "testedPhoneticContrast": "Послушайте: друг уточняет, готовы вы или устали?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: друг уточняет, готовы вы или устали?",
+            "feedbackByLocale": {
+              "ru": "Звучит tired — уставший.",
+              "uk": "Звучить tired — втомлений."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте уточнение о сумке.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте уточнение о сумке.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i19:audio",
+          "transcript": "The bag isn't heavy, is it?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag isn't heavy, is it?",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "isn't",
+          "heavy,",
+          "is",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-09:i20:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i20:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-31:session-09:i20:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+          "uk": "Друг не водить машину. У короткому запитанні приберіть заперечення з doesn’t."
+        },
+        "gappedTargetPhrase": "He doesn't drive, ___ he?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-09:i20:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i20:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i20:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-09:i20:r2",
+            "correct": false,
+            "testedDimension": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+            "feedbackByLocale": {
+              "ru": "С he нужен does.",
+              "uk": "З he потрібен does."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-09:i20:r3",
+            "correct": false,
+            "testedDimension": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+            "feedbackByLocale": {
+              "ru": "Берём does из doesn’t.",
+              "uk": "Беремо does із doesn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-09:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы с другом не опоздали. Добавьте утвердительное уточнение о вас обоих.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-09:i21:audio"
+      ],
+      "accessibilityLabel": "Вы с другом не опоздали. Добавьте утвердительное уточнение о вас обоих.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-09:i21:audio",
+          "transcript": "We aren't late, are we?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "We aren't late, are we?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7abd6dced3ce6d2ea17ce0d098a84b1ea35e8a1a5d28e01896a1f47a90ef37da"
+}

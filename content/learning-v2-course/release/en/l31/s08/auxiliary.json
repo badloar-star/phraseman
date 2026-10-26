@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-08:intro1:r2": {
+          "ru": "После where порядок the changing room is.",
+          "uk": "Після where порядок the changing room is."
+        },
+        "en:lesson-31:session-08:intro1:r3": {
+          "ru": "Одна room требует is.",
+          "uk": "Одна room потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-08:intro2:r2": {
+          "ru": "После if нужен порядок the pool is open.",
+          "uk": "Після if потрібен порядок the pool is open."
+        },
+        "en:lesson-31:session-08:intro2:r3": {
+          "ru": "Один pool требует is.",
+          "uk": "Один pool потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-08:intro3:r2": {
+          "ru": "После was нужна форма found.",
+          "uk": "Після was потрібна форма found."
+        },
+        "en:lesson-31:session-08:intro3:r3": {
+          "ru": "Один towel требует was.",
+          "uk": "Один towel потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b7dce16d9209dd50753dd7427720bacfed4fe68050a24415bae3e90c26327458"
+}

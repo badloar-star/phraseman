@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-07:intro1:r2": {
+          "ru": "После where порядок the doctor is.",
+          "uk": "Після where порядок the doctor is."
+        },
+        "en:lesson-31:session-07:intro1:r3": {
+          "ru": "Один doctor требует is.",
+          "uk": "Один doctor потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-07:intro2:r2": {
+          "ru": "После if нужен порядок the doctor is busy.",
+          "uk": "Після if потрібен порядок the doctor is busy."
+        },
+        "en:lesson-31:session-07:intro2:r3": {
+          "ru": "Для состояния сейчас нужна форма is.",
+          "uk": "Для стану зараз потрібна форма is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-07:intro3:r2": {
+          "ru": "Здесь нужна прошедшая форма needed.",
+          "uk": "Тут потрібна минула форма needed."
+        },
+        "en:lesson-31:session-07:intro3:r3": {
+          "ru": "После she здесь нужна форма needed, не needing.",
+          "uk": "Після she тут потрібна форма needed, не needing."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e469338aa4f052f369ebd5ae20f3148eec4b5e2dc3f54711c1b408e068918c62"
+}

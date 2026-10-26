@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-06",
+  "learningOutcomeByLocale": {
+    "ru": "вежливо уточнять место и условия, пересказывать слова и называть исполнителя действия.",
+    "uk": "ввічливо уточнювати місце й умови, переказувати слова й називати виконавця дії."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-06:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где нужная полка",
+        "uk": "Де потрібна полиця"
+      },
+      "bodyByLocale": {
+        "ru": "В библиотеке вы ищете полку с книгами. Спросите сотрудницу: Could you tell me where the shelf is? — не подскажете, где полка? Соберите Could you tell me + where + the shelf + is. После where сначала называем предмет, the shelf, затем ставим is. Порядок is the shelf из прямого вопроса сюда не переносим.",
+        "uk": "У бібліотеці ви шукаєте полицю з книжками. Запитайте працівницю: Could you tell me where the shelf is? — не підкажете, де полиця? Складіть Could you tell me + where + the shelf + is. Після where спочатку називаємо предмет, the shelf, потім ставимо is. Порядок is the shelf із прямого запитання сюди не переносимо."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-06:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-06:intro1:r1",
+              "text": "Could you tell me where the shelf is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro1:r2",
+              "text": "Could you tell me where is the shelf?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro1:r3",
+              "text": "Could you tell me where the shelf are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-06:intro1:r1",
+              "text": "Could you tell me where the shelf is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro1:r2",
+              "text": "Could you tell me where is the shelf?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro1:r3",
+              "text": "Could you tell me where the shelf are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-06:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свободен ли стол",
+        "uk": "Чи вільний стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите сесть за стол в библиотеке. Уточните: Do you know if the table is free? — вы не знаете, свободен ли стол? Соберите Do you know + if + the table + is free. If вводит вопрос «ли»; после него порядок the table is, как в утверждении.",
+        "uk": "Ви хочете сісти за стіл у бібліотеці. Уточніть: Do you know if the table is free? — ви не знаєте, чи вільний стіл? Складіть Do you know + if + the table + is free. If вводить запитання «чи»; після нього порядок the table is, як у твердженні."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-06:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-06:intro2:r1",
+              "text": "Do you know if the table is free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro2:r2",
+              "text": "Do you know if is the table free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro2:r3",
+              "text": "Do you know if the table are free?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-06:intro2:r1",
+              "text": "Do you know if the table is free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro2:r2",
+              "text": "Do you know if is the table free?"
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro2:r3",
+              "text": "Do you know if the table are free?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-06:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто принёс книги",
+        "uk": "Хто приніс книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Сотрудница Анна принесла книги к вашему столу. Начните рассказ с книг: The books were brought by Anna — книги принесла Анна. Соберите The books + were + brought + by Anna. Для нескольких книг ставим were; brought — форма bring для этой конструкции. By Anna называет того, кто принёс книги.",
+        "uk": "Працівниця Анна принесла книжки до вашого столу. Почніть розповідь із книжок: The books were brought by Anna — книжки принесла Анна. Складіть The books + were + brought + by Anna. Для кількох книжок ставимо were; brought — форма bring для цієї конструкції. By Anna називає того, хто приніс книжки."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-06:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-06:intro3:r1",
+              "text": "The books were brought by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro3:r2",
+              "text": "The books were bring by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro3:r3",
+              "text": "The books was brought by Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-06:intro3:r1",
+              "text": "The books were brought by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro3:r2",
+              "text": "The books were bring by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-06:intro3:r3",
+              "text": "The books was brought by Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4371b69d9ee3736417fbadd569210f826f44f140e4771e13bcc899c0592abcae"
+}

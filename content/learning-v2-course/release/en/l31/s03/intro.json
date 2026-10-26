@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-03",
+  "learningOutcomeByLocale": {
+    "ru": "задавать вежливые вопросы о покупке, пересказывать слова продавщицы и называть пекаря через by.",
+    "uk": "ставити ввічливі запитання про покупку, переказувати слова продавчині й називати пекаря через by."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-03:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где лежит хлеб",
+        "uk": "Де лежить хліб"
+      },
+      "bodyByLocale": {
+        "ru": "В пекарне вы не видите нужный хлеб и спрашиваете продавщицу: Could you tell me where the bread is? — не подскажете, где хлеб? Соберите Could you tell me + where + the bread + is. После where здесь называем the bread перед is; порядок Where is the bread? нужен только для прямого вопроса.",
+        "uk": "У пекарні ви не бачите потрібного хліба й запитуєте продавчиню: Could you tell me where the bread is? — не підкажете, де хліб? Складіть Could you tell me + where + the bread + is. Після where тут називаємо the bread перед is; порядок Where is the bread? потрібен лише для прямого запитання."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-03:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-03:intro1:r1",
+              "text": "Could you tell me where the bread is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro1:r2",
+              "text": "Could you tell me where is the bread?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro1:r3",
+              "text": "Could you tell me where the bread are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-03:intro1:r1",
+              "text": "Could you tell me where the bread is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro1:r2",
+              "text": "Could you tell me where is the bread?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro1:r3",
+              "text": "Could you tell me where the bread are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-03:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Свежий ли торт",
+        "uk": "Чи свіжий торт"
+      },
+      "bodyByLocale": {
+        "ru": "Вы выбираете торт и спрашиваете продавщицу: Do you know if the cake is fresh? — вы не знаете, свежий ли торт? Соберите Do you know + if + the cake + is fresh. If передаёт «ли». После if ставим the cake перед is, без перестановки слов, как в прямом Is the cake fresh?",
+        "uk": "Ви обираєте торт і запитуєте продавчиню: Do you know if the cake is fresh? — ви не знаєте, чи свіжий торт? Складіть Do you know + if + the cake + is fresh. If передає «чи». Після if ставимо the cake перед is, без перестановки слів, як у прямому Is the cake fresh?"
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-03:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-03:intro2:r1",
+              "text": "Do you know if the cake is fresh?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro2:r2",
+              "text": "Do you know if is the cake fresh?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro2:r3",
+              "text": "Do you know if the cake are fresh?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-03:intro2:r1",
+              "text": "Do you know if the cake is fresh?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro2:r2",
+              "text": "Do you know if is the cake fresh?"
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro2:r3",
+              "text": "Do you know if the cake are fresh?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-03:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто испёк хлеб",
+        "uk": "Хто спік хліб"
+      },
+      "bodyByLocale": {
+        "ru": "Пекарь Бен испёк этот хлеб. Скажите об этом, начиная с хлеба: The bread was baked by Ben — хлеб был испечён Беном. Соберите The bread + was + baked + by Ben. Was baked показывает действие над хлебом, а by Ben называет человека, который его выполнил.",
+        "uk": "Пекар Бен спік цей хліб. Скажіть про це, починаючи з хліба: The bread was baked by Ben — хліб був спечений Беном. Складіть The bread + was + baked + by Ben. Was baked показує дію над хлібом, а by Ben називає людину, яка її виконала."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-03:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-03:intro3:r1",
+              "text": "The bread was baked by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro3:r2",
+              "text": "The bread was bake by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro3:r3",
+              "text": "The bread were baked by Ben."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-03:intro3:r1",
+              "text": "The bread was baked by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro3:r2",
+              "text": "The bread was bake by Ben."
+            },
+            {
+              "responseId": "en:lesson-31:session-03:intro3:r3",
+              "text": "The bread were baked by Ben."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3aab03a00c52e1d7d46f7d4769cb721b364135f8d09a468da150d44ee1b18355"
+}

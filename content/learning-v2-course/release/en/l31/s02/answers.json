@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-02:i01",
+    "correctText": "room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i02",
+    "correctText": "Could you tell me where my room is?",
+    "correctResponseId": "en:lesson-31:session-02:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i03",
+    "correctText": "the room is",
+    "correctResponseId": "en:lesson-31:session-02:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i04",
+    "correctText": "key",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i05",
+    "correctText": "Could you tell me where my key is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i06",
+    "correctText": "The room was cleaned by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i07",
+    "correctText": "was",
+    "correctResponseId": "en:lesson-31:session-02:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i08",
+    "correctText": "breakfast",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i09",
+    "correctText": "Do you know when breakfast starts?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i10",
+    "correctText": "Do you know if the café is open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-02:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i12",
+    "correctText": "towels",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i13",
+    "correctText": "Could you tell me where the towels are?",
+    "correctResponseId": "en:lesson-31:session-02:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i14",
+    "correctText": "She said the towels were clean.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i15",
+    "correctText": "Could you tell me when the pool closes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i16",
+    "correctText": "my suitcase is",
+    "correctResponseId": "en:lesson-31:session-02:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i17",
+    "correctText": "The towels were washed by Anna.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i18",
+    "correctText": "Do you know when breakfast starts?",
+    "correctResponseId": "en:lesson-31:session-02:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i19",
+    "correctText": "Could you tell me where the lift is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i20",
+    "correctText": "opens",
+    "correctResponseId": "en:lesson-31:session-02:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-02:i21",
+    "correctText": "She said she needed more time.",
+    "correctResponseId": null
+  }
+]

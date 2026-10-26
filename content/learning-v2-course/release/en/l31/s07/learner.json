@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-07",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-07:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — doctor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — doctor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i01:audio",
+          "transcript": "doctor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-07:i01:r1",
+            "targetText": "doctor",
+            "meaningByLocale": {
+              "ru": "Врач. Повторение знакомого слова.",
+              "uk": "Лікар. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doctor",
+          "definitionByLocale": {
+            "ru": "Врач. Повторение знакомого слова.",
+            "uk": "Лікар. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i02:r1",
+          "text": "Could you tell me where the doctor is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i02:r2",
+          "text": "Could you tell me where the door is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i02:r3",
+          "text": "Could you tell me where the desk is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i02:audio",
+          "transcript": "Could you tell me where the doctor is?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-07:i02:r1",
+            "targetText": "Could you tell me where the doctor is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i02:r2",
+            "targetText": "Could you tell me where the door is?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i02:r3",
+            "targetText": "Could you tell me where the desk is?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the doctor is?",
+              "uk": "У записі звучить Could you tell me where the doctor is?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Could you tell me where the doctor is?",
+              "uk": "У записі звучить Could you tell me where the doctor is?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите, знает ли сотрудница, занят ли врач.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i03:r1",
+          "text": "the doctor is"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i03:r2",
+          "text": "is the doctor"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i03:r3",
+          "text": "the doctor be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите, знает ли сотрудница, занят ли врач.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, знает ли сотрудница, занят ли врач.",
+          "uk": "Запитайте, чи знає працівниця, чи зайнятий лікар."
+        },
+        "gappedTargetPhrase": "Do you know if ___ busy?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-07:i03:r1",
+            "text": "the doctor is"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i03:r2",
+            "text": "is the doctor"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i03:r3",
+            "text": "the doctor be"
+          }
+        ],
+        "testedDimension": "Спросите, знает ли сотрудница, занят ли врач.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i03:r2",
+            "correct": false,
+            "testedDimension": "Спросите, знает ли сотрудница, занят ли врач.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the doctor is.",
+              "uk": "Після if порядок the doctor is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i03:r3",
+            "correct": false,
+            "testedDimension": "Спросите, знает ли сотрудница, занят ли врач.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма is.",
+              "uk": "Потрібна форма is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — nurse",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — nurse",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i04:audio",
+          "transcript": "nurse"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-07:i04:r1",
+            "targetText": "nurse",
+            "meaningByLocale": {
+              "ru": "Медсестра. Повторение знакомого слова.",
+              "uk": "Медсестра. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nurse",
+          "definitionByLocale": {
+            "ru": "Медсестра. Повторение знакомого слова.",
+            "uk": "Медсестра. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где медсестра.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где медсестра.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the nurse is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где медсестра.",
+          "uk": "Ввічливо запитайте, де медсестра."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "nurse",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — card",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — card",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i06:audio",
+          "transcript": "card"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-07:i06:r1",
+            "targetText": "card",
+            "meaningByLocale": {
+              "ru": "Карточка. Повторение знакомого слова.",
+              "uk": "Картка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "card",
+          "definitionByLocale": {
+            "ru": "Карточка. Повторение знакомого слова.",
+            "uk": "Картка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Медсестра Анна проверила карточку. Начните с карточки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i07:audio"
+      ],
+      "accessibilityLabel": "Медсестра Анна проверила карточку. Начните с карточки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i07:audio",
+          "transcript": "The card was checked by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The card was checked by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите со сдвигом need в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i08:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i08:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i08:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите со сдвигом need в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите со сдвигом need в прошлое.",
+          "uk": "Учора медсестра сказала вам: «Мені потрібна ваша картка». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ my card.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-07:i08:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i08:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i08:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите со сдвигом need в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i08:r2",
+            "correct": false,
+            "testedDimension": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите со сдвигом need в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг.",
+              "uk": "Needs не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i08:r3",
+            "correct": false,
+            "testedDimension": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите со сдвигом need в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма needed.",
+              "uk": "Потрібна форма needed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — chair",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i09:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — chair",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i09:audio",
+          "transcript": "chair"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-07:i09:r1",
+            "targetText": "chair",
+            "meaningByLocale": {
+              "ru": "Стул. Повторение знакомого слова.",
+              "uk": "Стілець. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "chair",
+          "definitionByLocale": {
+            "ru": "Стул. Повторение знакомого слова.",
+            "uk": "Стілець. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Спросите сотрудницу, знает ли она, свободен ли стул.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите сотрудницу, знает ли она, свободен ли стул.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know if the chair is free?",
+        "localizedMeaning": {
+          "ru": "Спросите сотрудницу, знает ли она, свободен ли стул.",
+          "uk": "Запитайте працівницю, чи знає вона, чи вільний стілець."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "chair",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вежливо спросите, где туалет.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i11:audio"
+      ],
+      "accessibilityLabel": "Вежливо спросите, где туалет.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i11:audio",
+          "transcript": "Could you tell me where the toilet is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the toilet is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна проверила карточку. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i12:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i12:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i12:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна проверила карточку. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна проверила карточку. Выберите предлог перед её именем.",
+          "uk": "Анна перевірила картку. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The card was checked ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-07:i12:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i12:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i12:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна проверила карточку. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i12:r2",
+            "correct": false,
+            "testedDimension": "Анна проверила карточку. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводим через by.",
+              "uk": "Виконавця дії вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i12:r3",
+            "correct": false,
+            "testedDimension": "Анна проверила карточку. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя действия вводим через by.",
+              "uk": "Виконавця дії вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i13:r1",
+          "text": "Do you know if the door is open?"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i13:r2",
+          "text": "Do you know if the window is open?"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i13:r3",
+          "text": "Do you know if the shop is open?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i13:audio",
+          "transcript": "Do you know if the door is open?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-07:i13:r1",
+            "targetText": "Do you know if the door is open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i13:r2",
+            "targetText": "Do you know if the window is open?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i13:r3",
+            "targetText": "Do you know if the shop is open?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the door is open?",
+              "uk": "У записі звучить Do you know if the door is open?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the door is open?",
+              "uk": "У записі звучить Do you know if the door is open?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера медсестра сказала: «Врач занят». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера медсестра сказала: «Врач занят». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i14:audio",
+          "transcript": "She said the doctor was busy."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the doctor was busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где выход.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где выход.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the exit is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где выход.",
+          "uk": "Ввічливо запитайте, де вихід."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "exit",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните у медсестры, где ваша карточка.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i16:r1",
+          "text": "my card is"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i16:r2",
+          "text": "is my card"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i16:r3",
+          "text": "my card are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните у медсестры, где ваша карточка.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните у медсестры, где ваша карточка.",
+          "uk": "Уточніть у медсестри, де ваша картка."
+        },
+        "gappedTargetPhrase": "Do you know where ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-07:i16:r1",
+            "text": "my card is"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i16:r2",
+            "text": "is my card"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i16:r3",
+            "text": "my card are"
+          }
+        ],
+        "testedDimension": "Уточните у медсестры, где ваша карточка.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i16:r2",
+            "correct": false,
+            "testedDimension": "Уточните у медсестры, где ваша карточка.",
+            "feedbackByLocale": {
+              "ru": "После where порядок my card is.",
+              "uk": "Після where порядок my card is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i16:r3",
+            "correct": false,
+            "testedDimension": "Уточните у медсестры, где ваша карточка.",
+            "feedbackByLocale": {
+              "ru": "Одна card требует is.",
+              "uk": "Одна card потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна открыла дверь. Начните с двери.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i17:audio"
+      ],
+      "accessibilityLabel": "Анна открыла дверь. Начните с двери.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i17:audio",
+          "transcript": "The door was opened by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door was opened by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: посетитель ищет врача или медсестру?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i18:r1",
+          "text": "Could you tell me where the nurse is?"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i18:r2",
+          "text": "Could you tell me where the doctor is?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i18:audioA",
+        "en:lesson-31:session-07:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: посетитель ищет врача или медсестру?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "Could you tell me where the nurse is?",
+        "contrastB": "Could you tell me where the doctor is?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-07:i18:audioA",
+          "transcript": "Could you tell me where the nurse is?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-07:i18:audioB",
+          "transcript": "Could you tell me where the doctor is?"
+        },
+        "testedPhoneticContrast": "Послушайте: посетитель ищет врача или медсестру?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: посетитель ищет врача или медсестру?",
+            "feedbackByLocale": {
+              "ru": "Звучит nurse — медсестра.",
+              "uk": "Звучить nurse — медсестра."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте вопрос о стуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте вопрос о стуле.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i19:audio",
+          "transcript": "Do you know if the chair is free?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the chair is free?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "chair",
+          "is",
+          "free"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вежливо спросите, где врач.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-07:i20:r1",
+          "text": "where"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i20:r2",
+          "text": "who"
+        },
+        {
+          "responseId": "en:lesson-31:session-07:i20:r3",
+          "text": "what"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где врач.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вежливо спросите, где врач.",
+          "uk": "Ввічливо запитайте, де лікар."
+        },
+        "gappedTargetPhrase": "Could you tell me ___ the doctor is?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-07:i20:r1",
+            "text": "where"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i20:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i20:r3",
+            "text": "what"
+          }
+        ],
+        "testedDimension": "Вежливо спросите, где врач.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-07:i20:r2",
+            "correct": false,
+            "testedDimension": "Вежливо спросите, где врач.",
+            "feedbackByLocale": {
+              "ru": "Who спрашивает о человеке, а здесь нужно узнать место.",
+              "uk": "Who запитує про людину, а тут потрібно дізнатися місце."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-07:i20:r3",
+            "correct": false,
+            "testedDimension": "Вежливо спросите, где врач.",
+            "feedbackByLocale": {
+              "ru": "Для места нужно where.",
+              "uk": "Для місця потрібно where."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-07:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Стулья свободны». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-07:i21:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Стулья свободны». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-07:i21:audio",
+          "transcript": "She said the chairs were free."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the chairs were free.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "00dd84f6ac2c4ab399d18db1ae5720c9f86f38063be92e9fdd07bf5088e66eef"
+}

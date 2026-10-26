@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-05",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-05:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-05:intro1:r2": {
+          "ru": "После when здесь нужен порядок the film starts, без does.",
+          "uk": "Після when тут потрібен порядок the film starts, без does."
+        },
+        "en:lesson-31:session-05:intro1:r3": {
+          "ru": "С the film нужна форма starts.",
+          "uk": "З the film потрібна форма starts."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-05:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-05:intro2:r2": {
+          "ru": "После where нужен порядок our seats are.",
+          "uk": "Після where потрібен порядок our seats are."
+        },
+        "en:lesson-31:session-05:intro2:r3": {
+          "ru": "Множественное seats требует are.",
+          "uk": "Множина seats потребує are."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-05:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-05:intro3:r2": {
+          "ru": "После were для действия нужна форма checked.",
+          "uk": "Після were для дії потрібна форма checked."
+        },
+        "en:lesson-31:session-05:intro3:r3": {
+          "ru": "Множественное tickets требует were.",
+          "uk": "Множина tickets потребує were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "21d58abe6cfad095e775d2ba1449675a0952d7d26eb29dedbb6221bc2ff6e755"
+}

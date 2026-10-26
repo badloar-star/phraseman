@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-07",
+  "learningOutcomeByLocale": {
+    "ru": "вежливо задавать вопросы и пересказывать слова сотрудников.",
+    "uk": "ввічливо ставити запитання й переказувати слова працівників."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-07:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Где врач",
+        "uk": "Де лікар"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли на приём и хотите узнать, где врач. Спросите сотрудницу: Could you tell me where the doctor is? — не подскажете, где врач? Соберите Could you tell me + where + the doctor + is. После where ставим the doctor перед is. Вежливое начало уже оформляет вопрос; внутри сохраняем порядок утверждения.",
+        "uk": "Ви прийшли на прийом і хочете дізнатися, де лікар. Запитайте працівницю: Could you tell me where the doctor is? — не підкажете, де лікар? Складіть Could you tell me + where + the doctor + is. Після where ставимо the doctor перед is. Ввічливий початок уже оформлює запитання; усередині зберігаємо порядок твердження."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-07:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-07:intro1:r1",
+              "text": "Could you tell me where the doctor is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro1:r2",
+              "text": "Could you tell me where is the doctor?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro1:r3",
+              "text": "Could you tell me where the doctor are?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-07:intro1:r1",
+              "text": "Could you tell me where the doctor is?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro1:r2",
+              "text": "Could you tell me where is the doctor?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro1:r3",
+              "text": "Could you tell me where the doctor are?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-07:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужно ли подождать",
+        "uk": "Чи потрібно зачекати"
+      },
+      "bodyByLocale": {
+        "ru": "У кабинета вы хотите узнать, занят ли врач. Спросите: Do you know if the doctor is busy? — вы не знаете, занят ли врач? Соберите Do you know + if + the doctor + is busy. If передаёт «ли», а после него называем врача и затем его состояние: the doctor is busy.",
+        "uk": "Біля кабінету ви хочете дізнатися, чи зайнятий лікар. Запитайте: Do you know if the doctor is busy? — ви не знаєте, чи зайнятий лікар? Складіть Do you know + if + the doctor + is busy. If передає «чи», а після нього називаємо лікаря й потім його стан: the doctor is busy."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-07:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-07:intro2:r1",
+              "text": "Do you know if the doctor is busy?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro2:r2",
+              "text": "Do you know if is the doctor busy?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro2:r3",
+              "text": "Do you know if the doctor be busy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-07:intro2:r1",
+              "text": "Do you know if the doctor is busy?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro2:r2",
+              "text": "Do you know if is the doctor busy?"
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro2:r3",
+              "text": "Do you know if the doctor be busy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-07:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вчерашние слова медсестры",
+        "uk": "Учорашні слова медсестри"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера медсестра сказала вам: «Мне нужна ваша карточка». Перескажите её слова, сдвинув need в прошлое: She said she needed my card — она сказала, что ей нужна моя карточка. Соберите She said + she + needed + my card. She обозначает медсестру, needed — сдвинутое need. Карточка принадлежит вам, поэтому my card.",
+        "uk": "Учора медсестра сказала вам: «Мені потрібна ваша картка». Перекажіть її слова, зсунувши need у минуле: She said she needed my card — вона сказала, що їй потрібна моя картка. Складіть She said + she + needed + my card. She позначає медсестру, needed — зсунуте need. Картка належить вам, тому my card."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-07:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-07:intro3:r1",
+              "text": "She said she needed my card."
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro3:r2",
+              "text": "She said she need my card."
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro3:r3",
+              "text": "She said she needing my card."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-07:intro3:r1",
+              "text": "She said she needed my card."
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro3:r2",
+              "text": "She said she need my card."
+            },
+            {
+              "responseId": "en:lesson-31:session-07:intro3:r3",
+              "text": "She said she needing my card."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2c0cfd5140f493482adfee06081d48d0945ed4cf45ea09d109d24cd2db288bcf"
+}

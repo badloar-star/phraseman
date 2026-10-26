@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-02:intro1:r2": {
+          "ru": "После where здесь нужен порядок my room is.",
+          "uk": "Після where тут потрібен порядок my room is."
+        },
+        "en:lesson-31:session-02:intro1:r3": {
+          "ru": "Один room требует is.",
+          "uk": "Один room потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-02:intro2:r2": {
+          "ru": "После when здесь нужен порядок breakfast starts, без does.",
+          "uk": "Після when тут потрібен порядок breakfast starts, без does."
+        },
+        "en:lesson-31:session-02:intro2:r3": {
+          "ru": "С breakfast нужна форма starts.",
+          "uk": "З breakfast потрібна форма starts."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-02:intro3:r2": {
+          "ru": "После was для действия нужна форма cleaned.",
+          "uk": "Після was для дії потрібна форма cleaned."
+        },
+        "en:lesson-31:session-02:intro3:r3": {
+          "ru": "Один room требует was.",
+          "uk": "Один room потребує was."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8697e7adc711e5d8c43e11662918698340d5b3dbeb0be9b115dcd8492f343263"
+}

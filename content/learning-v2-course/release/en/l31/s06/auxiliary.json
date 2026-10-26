@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-06:intro1:r2": {
+          "ru": "После where нужен порядок the shelf is.",
+          "uk": "Після where потрібен порядок the shelf is."
+        },
+        "en:lesson-31:session-06:intro1:r3": {
+          "ru": "Одна shelf требует is.",
+          "uk": "Одна shelf потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-06:intro2:r2": {
+          "ru": "После if сначала the table, затем is.",
+          "uk": "Після if спочатку the table, потім is."
+        },
+        "en:lesson-31:session-06:intro2:r3": {
+          "ru": "Один table требует is.",
+          "uk": "Один table потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-06:intro3:r2": {
+          "ru": "После were нужна форма brought.",
+          "uk": "Після were потрібна форма brought."
+        },
+        "en:lesson-31:session-06:intro3:r3": {
+          "ru": "Множественное books требует were.",
+          "uk": "Множина books потребує were."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ed36ac794a6be6fcfc08c2674325eca6d85469fb00700e4504492709d4818bcc"
+}

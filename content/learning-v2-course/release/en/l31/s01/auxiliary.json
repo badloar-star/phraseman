@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-01:intro1:r2": {
+          "ru": "После where здесь нужен порядок the station is.",
+          "uk": "Після where тут потрібен порядок the station is."
+        },
+        "en:lesson-31:session-01:intro1:r3": {
+          "ru": "Одна station требует is.",
+          "uk": "Одна station потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-01:intro2:r2": {
+          "ru": "После if нужен порядок the café is open.",
+          "uk": "Після if потрібен порядок the café is open."
+        },
+        "en:lesson-31:session-01:intro2:r3": {
+          "ru": "Одно café требует is.",
+          "uk": "Одне café потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-01:intro3:r2": {
+          "ru": "После when здесь нужен порядок the bus leaves, без does.",
+          "uk": "Після when тут потрібен порядок the bus leaves, без does."
+        },
+        "en:lesson-31:session-01:intro3:r3": {
+          "ru": "С the bus нужна форма leaves.",
+          "uk": "З the bus потрібна форма leaves."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4b7dfb7bcf1f9515a191895ebfbc20a02e265837c3a4c42bb25f06e5179f1956"
+}

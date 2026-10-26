@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-04:i01",
+    "correctText": "park",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i02",
+    "correctText": "Do you know if the park is open?",
+    "correctResponseId": "en:lesson-31:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i03",
+    "correctText": "closes",
+    "correctResponseId": "en:lesson-31:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i04",
+    "correctText": "gate",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i05",
+    "correctText": "Could you tell me where the gate is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i06",
+    "correctText": "He said the park was open.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i07",
+    "correctText": "the café is",
+    "correctResponseId": "en:lesson-31:session-04:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i08",
+    "correctText": "bench",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i09",
+    "correctText": "The bench was painted by Tom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i10",
+    "correctText": "Do you know if the toilet is open?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i11",
+    "correctText": "by",
+    "correctResponseId": "en:lesson-31:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i12",
+    "correctText": "sign",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i13",
+    "correctText": "Could you tell me where the sign is?",
+    "correctResponseId": "en:lesson-31:session-04:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i14",
+    "correctText": "He said the bench was wet.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i15",
+    "correctText": "Could you tell me when the café opens?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i16",
+    "correctText": "the bench is",
+    "correctResponseId": "en:lesson-31:session-04:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i17",
+    "correctText": "The sign was painted by Tom.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i18",
+    "correctText": "Could you tell me when the park closes?",
+    "correctResponseId": "en:lesson-31:session-04:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i19",
+    "correctText": "Could you tell me where the exit is?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i20",
+    "correctText": "needed",
+    "correctResponseId": "en:lesson-31:session-04:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-04:i21",
+    "correctText": "Do you know when the bus leaves?",
+    "correctResponseId": null
+  }
+]

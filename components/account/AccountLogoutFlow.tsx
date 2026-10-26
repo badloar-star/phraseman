@@ -18,6 +18,7 @@ import { triLang } from '../../constants/i18n';
 import { signOutAndWipeForAccountSwitch } from '../../app/auth_provider';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { DebugLogger } from '../../app/debug-logger';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
@@ -43,6 +44,9 @@ export const LOGOUT_SILENT_RETRY_PAUSES_MS = [600, 1800] as const;
 export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }: AccountLogoutFlowProps) {
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Темы через координатора 26.10, гейт safe-area): окно с statusBarTranslucent заводит затемнение под строку состояния
+  // (без светлой полосы на Android); прокрутка держит карточку в безопасной зоне — отступы от устойчивых insets.
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const L = (
     ru: string, uk: string, en: string, es: string, ptBr: string,
@@ -244,6 +248,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       <Modal
         visible={stage === 'confirm' || stage === 'failed'}
         transparent
+        statusBarTranslucent
         animationType="fade"
         onRequestClose={() => {
           // Из отказа выпускаем по системному жесту — тупика быть не должно.
@@ -256,7 +261,7 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
         <ScrollView
           decelerationRate="fast"
           style={{ flex: 1, backgroundColor: EXEMPT_COLOR_1 }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingTop: 20 + insets.top, paddingBottom: 20 + insets.bottom }}
           showsVerticalScrollIndicator={false}
         >
           {stage === 'failed' ? (

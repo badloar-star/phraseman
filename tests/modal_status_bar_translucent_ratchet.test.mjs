@@ -17,7 +17,6 @@ const ALLOWED = {
   'app/(tabs)/home.tsx': 1,
   // TimeModal держит байт-снимок settings_notifications_liquid_glass — флаг только с решения его хозяина
   'app/settings_notifications.tsx': 1,
-  'components/account/AccountLogoutFlow.tsx': 1,
   'components/account/NicknameEditModal.tsx': 1,
   'components/CertificateNameModal.tsx': 1,
   'components/CleanOnboarding.tsx': 2,

@@ -295,7 +295,10 @@ describe('accounts v2 client wiring v2', () => {
     // зачем (52429d419): в подписи появились комментарий со скобкой и `options?: Readonly<{ … }>` — тело ищем от типа возврата.
     const body = functionBody(read('app/cloud_sync.ts'), '): AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck> {');
     expect(body).toContain('accountsV2Deletion: { operationId: accountsV2Deletion.operationId, capability: accountsV2Deletion.capability }');
-    expect(body).toContain(': { stableId, ...proof });');
+    // зачем (26.10, 5 · ВХОД; 74649503b вариант Б): запрос собирается в `base`, «удалить сейчас» добавляет только deleteNow —
+    // без него уходит ровно прежний запрос (поле V2 по-прежнему только при ключе).
+    expect(body).toContain(': { stableId, ...proof };');
+    expect(body).toContain('const res = await fn(deleteNow ? { ...base, deleteNow: true as const } : base);');
   });
 
   test('root layout wakes the V2 client only after the first content frame', () => {

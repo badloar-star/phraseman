@@ -46,8 +46,10 @@ describe('Dialogue V2 Plus tools discovery', () => {
     // экран памяти (удаление сохранённого) доступен без Plus — из Настроек → Приватность.
     expect(fs.readFileSync(path.join(__dirname, '..', 'app', 'privacy_settings.tsx'), 'utf8')).toContain("router.push('/dialogue_v2_memory'");
     expect(containerSource).toContain("pathname: '/premium_modal'");
-    expect(containerSource).toContain("source: 'dialogue_v2_freeform'");
-    expect(containerSource).not.toContain("source: 'dialogue_v2_memory'");
+    // зачем (26.10, 5 · ВХОД faf515267): параметры пейвола собирает dialogLimitPaywallParams — тот же context 'dialog_limit'
+    // и source, плюс сводка первого бесплатного разговора для пейвола М.
+    expect(containerSource).toContain("params: dialogLimitPaywallParams('dialogue_v2_freeform')");
+    expect(containerSource).not.toContain('dialogue_v2_memory');
   });
 
   test('uses the approved free-conversation product name without a companion label', () => {

@@ -1,0 +1,677 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-19",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — justo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — justo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i01:audio",
+          "transcript": "justo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-19:i01:r1",
+            "targetText": "justo",
+            "meaningByLocale": {
+              "ru": "справедливый. Для оценки решения: Es justo — «Это справедливо». 🔊 *justo*",
+              "uk": "справедливий. Для оцінки рішення: Es justo — «Це справедливо». 🔊 *justo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "justo",
+          "definitionByLocale": {
+            "ru": "справедливый. Для оценки решения: Es justo — «Это справедливо». 🔊 *justo*",
+            "uk": "справедливий. Для оцінки рішення: Es justo — «Це справедливо». 🔊 *justo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i02:r1",
+          "text": "справедливий"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i02:r2",
+          "text": "дорогий"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i02:audio",
+          "transcript": "justo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-19:i02:r1",
+            "targetText": "справедливий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i02:r2",
+            "targetText": "дорогий",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это caro; justo говорит о справедливости.",
+              "uk": "Це caro; justo говорить про справедливість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — заперечте «Це несправедливо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i03:r1",
+          "text": "Плитки: justo"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i03:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i03:r4",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — заперечте «Це несправедливо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es justo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — возразите «Это несправедливо»",
+          "uk": "Складіть фразу — заперечте «Це несправедливо»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "justo"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — заперечте «Це несправедливо»",
+            "feedbackByLocale": {
+              "ru": "оцениваете решение, не собеседника.",
+              "uk": "оцінюєте рішення, не співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — necesario",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — necesario",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i04:audio",
+          "transcript": "necesario"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-19:i04:r1",
+            "targetText": "necesario",
+            "meaningByLocale": {
+              "ru": "необходимый. No es necesario — «Это не нужно». 🔊 *necesario*",
+              "uk": "необхідний. No es necesario — «Це не потрібно». 🔊 *necesario*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "necesario",
+          "definitionByLocale": {
+            "ru": "необходимый. No es necesario — «Это не нужно». 🔊 *necesario*",
+            "uk": "необхідний. No es necesario — «Це не потрібно». 🔊 *necesario*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i05:r1",
+          "text": "необхідний"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i05:r2",
+          "text": "безкоштовний"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i05:audio",
+          "transcript": "necesario"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-19:i05:r1",
+            "targetText": "необхідний",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i05:r2",
+            "targetText": "безкоштовний",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это gratis; necesario говорит о необходимости.",
+              "uk": "Це gratis; necesario говорить про необхідність."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть «Це не потрібно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i06:r1",
+          "text": "necesario"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i06:r2",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i06:r3",
+          "text": "justo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть «Це не потрібно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите «Это не нужно»",
+          "uk": "Вставте слово — скажіть «Це не потрібно»"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-19:i06:r1",
+            "text": "necesario"
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i06:r2",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i06:r3",
+            "text": "justo"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть «Це не потрібно»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Це не потрібно»",
+            "feedbackByLocale": {
+              "ru": "Так вы отрицаете высокую цену, а не необходимость.",
+              "uk": "Так ви заперечуєте високу ціну, а не необхідність."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Це не потрібно»",
+            "feedbackByLocale": {
+              "ru": "Так вы называете решение несправедливым.",
+              "uk": "Так ви називаєте рішення несправедливим."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — заспокойте друга, який поспішає платити",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — заспокойте друга, який поспішає платити",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i07:audio",
+          "transcript": "No es necesario."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es necesario.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i08:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i08:r2",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i08:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i08:r4",
+          "text": "justo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i08:audio",
+          "transcript": "No es caro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es caro.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "caro"
+        ],
+        "authoredDistractorTokens": [
+          "justo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит caro, оценка цены.",
+              "uk": "звучить caro, оцінка ціни."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i09:r1",
+          "text": "Це несправедливо"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i09:r2",
+          "text": "Це справедливо"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i09:r3",
+          "text": "Ти несправедливий"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i09:audio",
+          "transcript": "No es justo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-19:i09:r1",
+            "targetText": "Це несправедливо",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i09:r2",
+            "targetText": "Це справедливо",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i09:r3",
+            "targetText": "Ти несправедливий",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Пропущено услышанное отрицание no.",
+              "uk": "Пропущено почуте заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Звучит es, а не обращённое к собеседнику eres.",
+              "uk": "Звучить es, а не звернене до співрозмовника eres."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — підкресліть, що дія все ж потрібна: «Це необхідно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i10:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i10:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i10:r3",
+          "text": "Eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — підкресліть, що дія все ж потрібна: «Це необхідно»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — подчеркните, что действие всё же нужно: «Это необходимо»",
+          "uk": "Вставте слово — підкресліть, що дія все ж потрібна: «Це необхідно»"
+        },
+        "gappedTargetPhrase": "___ necesario.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-19:i10:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i10:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i10:r3",
+            "text": "Eres"
+          }
+        ],
+        "testedDimension": "Вставте слово — підкресліть, що дія все ж потрібна: «Це необхідно»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — підкресліть, що дія все ж потрібна: «Це необхідно»",
+            "feedbackByLocale": {
+              "ru": "Это описание себя, а вы оцениваете действие.",
+              "uk": "Це опис себе, а ви оцінюєте дію."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-19:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — підкресліть, що дія все ж потрібна: «Це необхідно»",
+            "feedbackByLocale": {
+              "ru": "Это обращение к собеседнику, а вы оцениваете действие.",
+              "uk": "Це звернення до співрозмовника, а ви оцінюєте дію."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — оцініть лише розмір плати",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — оцініть лише розмір плати",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-19:i11:audio",
+          "transcript": "No es caro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es caro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — після обговорення ви визнали рішення справедливим; скажіть «Це справедливо»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-19:i12:r1",
+          "text": "Плитки: justo"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-19:i12:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — після обговорення ви визнали рішення справедливим; скажіть «Це справедливо»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es justo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — после обсуждения вы сочли решение справедливым; скажите «Это справедливо»",
+          "uk": "Складіть фразу — після обговорення ви визнали рішення справедливим; скажіть «Це справедливо»"
+        },
+        "orderedTokens": [
+          "Es",
+          "justo"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-19:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — після обговорення ви визнали рішення справедливим; скажіть «Це справедливо»",
+            "feedbackByLocale": {
+              "ru": "теперь вы соглашаетесь с решением.",
+              "uk": "тепер ви погоджуєтеся з рішенням."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "aa62f50cf6d5e30d917e9f5b120c32d522887f5951ecc55e83084948bc4d60d4"
+}

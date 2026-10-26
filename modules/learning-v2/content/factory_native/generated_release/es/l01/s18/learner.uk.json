@@ -1,0 +1,765 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-18",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — caro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — caro",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i01:audio",
+          "transcript": "caro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i01:r1",
+            "targetText": "caro",
+            "meaningByLocale": {
+              "ru": "дорогой по цене. Короткая оценка стоимости: Es caro — «Это дорого». 🔊 *caro*",
+              "uk": "дорогий за ціною. Коротка оцінка вартості: Es caro — «Це дорого». 🔊 *caro*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "caro",
+          "definitionByLocale": {
+            "ru": "дорогой по цене. Короткая оценка стоимости: Es caro — «Это дорого». 🔊 *caro*",
+            "uk": "дорогий за ціною. Коротка оцінка вартості: Es caro — «Це дорого». 🔊 *caro*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i02:r1",
+          "text": "дорогий"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i02:r2",
+          "text": "важкий"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i02:audio",
+          "transcript": "caro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i02:r1",
+            "targetText": "дорогий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i02:r2",
+            "targetText": "важкий",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это difícil, а caro говорит о цене.",
+              "uk": "Це difícil, а caro говорить про ціну."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — оцініть вартість «Це дорого»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i03:r1",
+          "text": "Плитки: caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i03:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — оцініть вартість «Це дорого»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es caro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — оцените стоимость «Это дорого»",
+          "uk": "Складіть фразу — оцініть вартість «Це дорого»"
+        },
+        "orderedTokens": [
+          "Es",
+          "caro"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — оцініть вартість «Це дорого»",
+            "feedbackByLocale": {
+              "ru": "вы оцениваете стоимость, а не собеседника.",
+              "uk": "ви оцінюєте вартість, а не співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — barato",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — barato",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i04:audio",
+          "transcript": "barato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i04:r1",
+            "targetText": "barato",
+            "meaningByLocale": {
+              "ru": "дешёвый, недорогой. Здесь речь о небольшой цене, не о качестве. 🔊 *barato*",
+              "uk": "дешевий, недорогий. Тут ідеться про невелику ціну, не про якість. 🔊 *barato*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "barato",
+          "definitionByLocale": {
+            "ru": "дешёвый, недорогой. Здесь речь о небольшой цене, не о качестве. 🔊 *barato*",
+            "uk": "дешевий, недорогий. Тут ідеться про невелику ціну, не про якість. 🔊 *barato*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i05:r1",
+          "text": "недорогий"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i05:r2",
+          "text": "дорогий"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i05:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i05:audio",
+          "transcript": "barato"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i05:r1",
+            "targetText": "недорогий",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i05:r2",
+            "targetText": "дорогий",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Это caro; barato означает противоположное.",
+              "uk": "Це caro; barato означає протилежне."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — оцініть невелику вартість «Це дешево»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i06:r1",
+          "text": "barato"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i06:r2",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i06:r3",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — оцініть невелику вартість «Це дешево»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — оцените небольшую стоимость «Это дёшево»",
+          "uk": "Вставте слово — оцініть невелику вартість «Це дешево»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-18:i06:r1",
+            "text": "barato"
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i06:r2",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i06:r3",
+            "text": "difícil"
+          }
+        ],
+        "testedDimension": "Вставте слово — оцініть невелику вартість «Це дешево»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — оцініть невелику вартість «Це дешево»",
+            "feedbackByLocale": {
+              "ru": "Это дорого, а цена небольшая.",
+              "uk": "Це дорого, а ціна невелика."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — оцініть невелику вартість «Це дешево»",
+            "feedbackByLocale": {
+              "ru": "Это трудно, а вы оцениваете стоимость.",
+              "uk": "Це важко, а ви оцінюєте вартість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — оцініть невелику ціну",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — оцініть невелику ціну",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i07:audio",
+          "transcript": "Es barato."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es barato.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — gratis",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — gratis",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i08:audio",
+          "transcript": "gratis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i08:r1",
+            "targetText": "gratis",
+            "meaningByLocale": {
+              "ru": "бесплатно. Оплаты нет совсем. 🔊 *gratis*",
+              "uk": "безкоштовно. Оплати немає зовсім. 🔊 *gratis*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gratis",
+          "definitionByLocale": {
+            "ru": "бесплатно. Оплаты нет совсем. 🔊 *gratis*",
+            "uk": "безкоштовно. Оплати немає зовсім. 🔊 *gratis*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i09:r1",
+          "text": "безкоштовно"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i09:r2",
+          "text": "недорого"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i09:audio",
+          "transcript": "gratis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i09:r1",
+            "targetText": "безкоштовно",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i09:r2",
+            "targetText": "недорого",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "При небольшой цене всё же платят; gratis — без оплаты.",
+              "uk": "За невеликої ціни все ж платять; gratis — без оплати."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть «Це безкоштовно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i10:r1",
+          "text": "Плитки: gratis"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i10:r3",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть «Це безкоштовно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es gratis.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Это бесплатно»",
+          "uk": "Складіть фразу — скажіть «Це безкоштовно»"
+        },
+        "orderedTokens": [
+          "Es",
+          "gratis"
+        ],
+        "authoredDistractorTokens": [
+          "no"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть «Це безкоштовно»",
+            "feedbackByLocale": {
+              "ru": "она изменила бы смысл на «не бесплатно».",
+              "uk": "вона змінила б зміст на «не безкоштовно»."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i11:r1",
+          "text": "Плитки: caro"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i11:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i11:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i11:audio",
+          "transcript": "No es caro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es caro.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "caro"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит es.",
+              "uk": "у записі звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i12:r1",
+          "text": "Це не безкоштовно"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i12:r2",
+          "text": "Це безкоштовно"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i12:r3",
+          "text": "Це дорого"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i12:audio",
+          "transcript": "No es gratis."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-18:i12:r1",
+            "targetText": "Це не безкоштовно",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i12:r2",
+            "targetText": "Це безкоштовно",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i12:r3",
+            "targetText": "Це дорого",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i12:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "В записи есть отрицание no.",
+              "uk": "У записі є заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-18:i12:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Мы знаем лишь, что платить нужно; высокой цены фраза не утверждает.",
+              "uk": "Ми знаємо лише, що платити потрібно; високої ціни фраза не стверджує."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — підтвердьте, що платити не потрібно",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — підтвердьте, що платити не потрібно",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-18:i13:audio",
+          "transcript": "Sí, es gratis."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, es gratis.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — друг помилково вирішив, що обрана прогулянка безкоштовна; скажіть «Це не безкоштовно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-18:i14:r1",
+          "text": "Плитки: gratis"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i14:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i14:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-18:i14:r4",
+          "text": "barato."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — друг помилково вирішив, що обрана прогулянка безкоштовна; скажіть «Це не безкоштовно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es gratis.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг ошибочно решил, что выбранная прогулка бесплатная; скажите «Это не бесплатно»",
+          "uk": "Складіть фразу — друг помилково вирішив, що обрана прогулянка безкоштовна; скажіть «Це не безкоштовно»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "gratis"
+        ],
+        "authoredDistractorTokens": [
+          "barato"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-18:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — друг помилково вирішив, що обрана прогулянка безкоштовна; скажіть «Це не безкоштовно»",
+            "feedbackByLocale": {
+              "ru": "уточняете наличие оплаты, не её размер.",
+              "uk": "уточнюєте наявність оплати, не її розмір."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7dc32498234253980900fda7a708f7a916e1b0cad8c01072fef4fd3e09969324"
+}

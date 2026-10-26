@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-19:i01",
+    "correctText": "justo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i02",
+    "correctText": "справедливый",
+    "correctResponseId": "es:lesson-01:session-19:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i03",
+    "correctText": "No es justo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i04",
+    "correctText": "necesario",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i05",
+    "correctText": "необходимый",
+    "correctResponseId": "es:lesson-01:session-19:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i06",
+    "correctText": "necesario",
+    "correctResponseId": "es:lesson-01:session-19:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i07",
+    "correctText": "No es necesario.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i08",
+    "correctText": "No es caro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i09",
+    "correctText": "Это несправедливо",
+    "correctResponseId": "es:lesson-01:session-19:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i10",
+    "correctText": "Es",
+    "correctResponseId": "es:lesson-01:session-19:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i11",
+    "correctText": "No es caro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-19:i12",
+    "correctText": "Es justo.",
+    "correctResponseId": null
+  }
+]

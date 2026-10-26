@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "превратить оценку с es в вопрос и уточнить достоверность сообщения.",
+    "uk": "перетворити оцінку з es на запитання й уточнити достовірність повідомлення."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточняем новость",
+        "uk": "Уточнюємо новину"
+      },
+      "bodyByLocale": {
+        "ru": "Вместо того чтобы сразу поверить сообщению, спросите: `¿Es verdad?` — «Это правда?» Слова уже знакомы. Сохраняем порядок `es` + `verdad`, но произносим вопрос, а на письме ставим `¿` в начале и `?` в конце. Дополнительного слова для вопроса не нужно. Послушайте, как звучит вопрос, и повторите интонацию.",
+        "uk": "Замість того щоб відразу повірити повідомленню, запитайте: `¿Es verdad?` — «Це правда?» Слова вже знайомі. Зберігаємо порядок `es` + `verdad`, але вимовляємо запитання, а на письмі ставимо `¿` на початку й `?` наприкінці. Додаткового слова для запитання не потрібно. Послухайте, як звучить запитання, і повторіть інтонацію."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Уточните сообщение: «Это правда?»",
+          "uk": "Уточніть повідомлення: «Це правда?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-20:intro1:r1",
+              "text": "¿Es verdad?"
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro1:r2",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro1:r3",
+              "text": "¿Eres amable?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-20:intro1:r1",
+              "text": "¿Es verdad?"
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro1:r2",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro1:r3",
+              "text": "¿Eres amable?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните сообщение: «Это правда?»",
+          "uk": "Уточніть повідомлення: «Це правда?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно спросить и так",
+        "uk": "Можна запитати й так"
+      },
+      "bodyByLocale": {
+        "ru": "Друг говорит, что новость переслал знакомый. Переспросите: `¿Es cierto?` — «Это правда?» `Cierto` здесь означает «верный, соответствующий действительности». В этой ситуации `¿Es cierto?` и `¿Es verdad?` — два способа задать один вопрос. Сборка остаётся `es` + оценка; меняется последнее слово.",
+        "uk": "Друг каже, що новину переслав знайомий. Перепитайте: `¿Es cierto?` — «Це правда?» `Cierto` тут означає «правдивий, такий, що відповідає дійсності». У цій ситуації `¿Es cierto?` і `¿Es verdad?` — два способи поставити одне запитання. Побудова залишається `es` + оцінка; змінюється останнє слово."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Это правда?», используя cierto.",
+          "uk": "Запитайте «Це правда?», використовуючи cierto."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-20:intro2:r1",
+              "text": "¿Es cierto?"
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro2:r2",
+              "text": "¿Soy cierto?"
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro2:r3",
+              "text": "Es cierto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-20:intro2:r1",
+              "text": "¿Es cierto?"
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro2:r2",
+              "text": "¿Soy cierto?"
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro2:r3",
+              "text": "Es cierto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Это правда?», используя cierto.",
+          "uk": "Запитайте «Це правда?», використовуючи cierto."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщение оказалось ложным",
+        "uk": "Повідомлення виявилося хибним"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли объявление музея: завтра обычная цена. Скажите о присланном сообщении: `Es falso` — «Это неправда». `Falso` — «ложный». Здесь уже не вопрос: вы сообщаете результат проверки. Соберите `es` + `falso`. Не добавляйте `no`: слово `falso` само даёт отрицательную оценку достоверности.",
+        "uk": "Ви знайшли оголошення музею: завтра звичайна ціна. Скажіть про надіслане повідомлення: `Es falso` — «Це неправда». `Falso` — «хибний, неправдивий». Тут уже не запитання: ви повідомляєте результат перевірки. Складіть `es` + `falso`. Не додавайте `no`: слово `falso` саме дає негативну оцінку достовірності."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о сообщении: «Это неправда», используя falso.",
+          "uk": "Скажіть про повідомлення: «Це неправда», використовуючи falso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-20:intro3:r1",
+              "text": "Es falso."
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro3:r2",
+              "text": "Es cierto."
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro3:r3",
+              "text": "No es falso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-20:intro3:r1",
+              "text": "Es falso."
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro3:r2",
+              "text": "Es cierto."
+            },
+            {
+              "responseId": "es:lesson-01:session-20:intro3:r3",
+              "text": "No es falso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о сообщении: «Это неправда», используя falso.",
+          "uk": "Скажіть про повідомлення: «Це неправда», використовуючи falso."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "5effa556dd7e9adf703f00ebcd2a941a4b822c002dc4f9b078773cf6dd6f5bdc"
+}

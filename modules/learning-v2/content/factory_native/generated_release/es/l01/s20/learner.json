@@ -1,0 +1,654 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-20",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i01:r1",
+          "text": "Плитки: verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i01:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i01:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i01:audio",
+          "transcript": "¿Es verdad?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Es verdad?",
+        "orderedTokens": [
+          "¿Es",
+          "verdad"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es, вопрос о сообщении.",
+              "uk": "звучить es, запитання про повідомлення."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cierto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cierto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i02:audio",
+          "transcript": "cierto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-20:i02:r1",
+            "targetText": "cierto",
+            "meaningByLocale": {
+              "ru": "верный, правдивый. В этом разговоре ¿Es cierto? означает «Это правда?». 🔊 *cierto*",
+              "uk": "правдивий, такий, що відповідає дійсності. У цій розмові ¿Es cierto? означає «Це правда?». 🔊 *cierto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cierto",
+          "definitionByLocale": {
+            "ru": "верный, правдивый. В этом разговоре ¿Es cierto? означает «Это правда?». 🔊 *cierto*",
+            "uk": "правдивий, такий, що відповідає дійсності. У цій розмові ¿Es cierto? означає «Це правда?». 🔊 *cierto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i03:r1",
+          "text": "правдивый"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i03:r2",
+          "text": "необходимый"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i03:audio",
+          "transcript": "cierto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-20:i03:r1",
+            "targetText": "правдивый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i03:r2",
+            "targetText": "необходимый",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это necesario; cierto говорит о достоверности.",
+              "uk": "Це necesario; cierto говорить про достовірність."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите «Это правда?», используя cierto",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i04:r1",
+          "text": "Плитки: cierto"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i04:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i04:r3",
+          "text": "eres."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите «Это правда?», используя cierto",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es cierto?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите «Это правда?», используя cierto",
+          "uk": "Складіть фразу — запитайте «Це правда?», використовуючи cierto"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "cierto"
+        ],
+        "authoredDistractorTokens": [
+          "eres"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите «Это правда?», используя cierto",
+            "feedbackByLocale": {
+              "ru": "речь о сообщении, а не о собеседнике.",
+              "uk": "ідеться про повідомлення, а не про співрозмовника."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — перепроверьте новость",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i05:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — перепроверьте новость",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i05:audio",
+          "transcript": "¿Es cierto?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Es cierto?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — falso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — falso",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i06:audio",
+          "transcript": "falso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-20:i06:r1",
+            "targetText": "falso",
+            "meaningByLocale": {
+              "ru": "ложный, неправдивый. Es falso — «Это неправда». 🔊 *falso*",
+              "uk": "хибний, неправдивий. Es falso — «Це неправда». 🔊 *falso*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "falso",
+          "definitionByLocale": {
+            "ru": "ложный, неправдивый. Es falso — «Это неправда». 🔊 *falso*",
+            "uk": "хибний, неправдивий. Es falso — «Це неправда». 🔊 *falso*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i07:r1",
+          "text": "ложный"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i07:r2",
+          "text": "правдивый"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i07:audio",
+          "transcript": "falso"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-20:i07:r1",
+            "targetText": "ложный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i07:r2",
+            "targetText": "правдивый",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Это cierto; falso означает противоположное.",
+              "uk": "Це cierto; falso означає протилежне."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — скажите «Это неправда», используя falso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i08:r1",
+          "text": "falso"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i08:r2",
+          "text": "cierto"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i08:r3",
+          "text": "gratis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — скажите «Это неправда», используя falso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите «Это неправда», используя falso",
+          "uk": "Вставте слово — скажіть «Це неправда», використовуючи falso"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-20:i08:r1",
+            "text": "falso"
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i08:r2",
+            "text": "cierto"
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i08:r3",
+            "text": "gratis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — скажите «Это неправда», используя falso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите «Это неправда», используя falso",
+            "feedbackByLocale": {
+              "ru": "Так вы подтверждаете сообщение.",
+              "uk": "Так ви підтверджуєте повідомлення."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — скажите «Это неправда», используя falso",
+            "feedbackByLocale": {
+              "ru": "Это «бесплатно», не оценка достоверности.",
+              "uk": "Це «безкоштовно», не оцінка достовірності."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i09:r1",
+          "text": "Это не соответствует действительности"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i09:r2",
+          "text": "Это соответствует действительности"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i09:r3",
+          "text": "Это не бесплатно"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i09:audio",
+          "transcript": "No es cierto."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-20:i09:r1",
+            "targetText": "Это не соответствует действительности",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i09:r2",
+            "targetText": "Это соответствует действительности",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i09:r3",
+            "targetText": "Это не бесплатно",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i09:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Пропущено отрицание no.",
+              "uk": "Пропущено заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-20:i09:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл",
+            "feedbackByLocale": {
+              "ru": "Звучит cierto, а не gratis.",
+              "uk": "Звучить cierto, а не gratis."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — уточните отдельно «Это бесплатно?»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i10:r1",
+          "text": "Плитки: gratis"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i10:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i10:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — уточните отдельно «Это бесплатно?»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es gratis?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — уточните отдельно «Это бесплатно?»",
+          "uk": "Складіть фразу — уточніть окремо «Це безкоштовно?»"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "gratis"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — уточните отдельно «Это бесплатно?»",
+            "feedbackByLocale": {
+              "ru": "вы спрашиваете об оплате, не о себе.",
+              "uk": "ви запитуєте про оплату, не про себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сообщите результат проверки",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сообщите результат проверки",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-20:i11:audio",
+          "transcript": "Es falso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es falso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — друг переслал другое сообщение; уточните «Это правда?», используя verdad",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-20:i12:r1",
+          "text": "Плитки: verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i12:r2",
+          "text": "¿es"
+        },
+        {
+          "responseId": "es:lesson-01:session-20:i12:r3",
+          "text": "falso."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — друг переслал другое сообщение; уточните «Это правда?», используя verdad",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Es verdad?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг переслал другое сообщение; уточните «Это правда?», используя verdad",
+          "uk": "Складіть фразу — друг переслав інше повідомлення; уточніть «Це правда?», використовуючи verdad"
+        },
+        "orderedTokens": [
+          "¿Es",
+          "verdad"
+        ],
+        "authoredDistractorTokens": [
+          "falso"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-20:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друг переслал другое сообщение; уточните «Это правда?», используя verdad",
+            "feedbackByLocale": {
+              "ru": "условие просит вопрос со словом verdad.",
+              "uk": "умова просить запитання зі словом verdad."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3cc4c1786d95b5b464c186c0ef52741cf5ca2c4fe26e20def547b21a7139361b"
+}

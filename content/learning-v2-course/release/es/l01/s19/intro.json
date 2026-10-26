@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "возразить об оценке ситуации с no es + качество.",
+    "uk": "заперечити оцінку ситуації з no es + риса."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это несправедливо",
+        "uk": "Це несправедливо"
+      },
+      "bodyByLocale": {
+        "ru": "Друг считает плату слишком суровой. Поддержите его: `No es justo` — «Это несправедливо». `Justo` — «справедливый». Чтобы отрицать эту оценку, поставьте `no` перед знакомым `es`: `no` + `es` + `justo`. Здесь оцениваем решение, а не называем друга несправедливым: для обращения к нему понадобилось бы `eres`.",
+        "uk": "Друг вважає плату надто суворою. Підтримайте його: `No es justo` — «Це несправедливо». `Justo` — «справедливий». Щоб заперечити цю оцінку, поставте `no` перед знайомим `es`: `no` + `es` + `justo`. Тут оцінюємо рішення, а не називаємо друга несправедливим: для звернення до нього знадобилося б `eres`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Возразите против решения: «Это несправедливо».",
+          "uk": "Заперечте проти рішення: «Це несправедливо»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-19:intro1:r1",
+              "text": "No es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro1:r2",
+              "text": "Es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro1:r3",
+              "text": "No eres justo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-19:intro1:r1",
+              "text": "No es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro1:r2",
+              "text": "Es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro1:r3",
+              "text": "No eres justo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите против решения: «Это несправедливо».",
+          "uk": "Заперечте проти рішення: «Це несправедливо»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пока это не нужно",
+        "uk": "Поки це не потрібно"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уже достаёт деньги, но сотрудник предлагает сначала поискать номерок. Скажите о немедленной оплате: `No es necesario` — «Это не нужно». `Necesario` — «необходимый». Соберите `no` + `es` + `necesario`. Вы не утверждаете, что платить никогда не придётся: в этой ситуации говорите только о действии прямо сейчас.",
+        "uk": "Друг уже дістає гроші, але працівник пропонує спочатку пошукати номерок. Скажіть про негайну оплату: `No es necesario` — «Це не потрібно». `Necesario` — «необхідний». Складіть `no` + `es` + `necesario`. Ви не стверджуєте, що платити ніколи не доведеться: у цій ситуації говорите лише про дію саме зараз."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о предложенном действии: «Это не нужно».",
+          "uk": "Скажіть про запропоновану дію: «Це не потрібно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-19:intro2:r1",
+              "text": "No es necesario."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro2:r2",
+              "text": "Es necesario."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro2:r3",
+              "text": "No es gratis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-19:intro2:r1",
+              "text": "No es necesario."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro2:r2",
+              "text": "Es necesario."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro2:r3",
+              "text": "No es gratis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о предложенном действии: «Это не нужно».",
+          "uk": "Скажіть про запропоновану дію: «Це не потрібно»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Невысокая цена — ещё не справедливость",
+        "uk": "Невисока ціна — ще не справедливість"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уточняет: сумма небольшая, но само требование ему не нравится. Чтобы сказать только о цене, используйте `No es caro` — «Это не дорого». Сборка остаётся `no` + `es` + оценка. Меняется последнее слово: `caro` говорит о стоимости, `justo` — о справедливости. Небольшая сумма сама по себе не делает решение справедливым.",
+        "uk": "Друг уточнює: сума невелика, але сама вимога йому не подобається. Щоб сказати лише про ціну, використайте `No es caro` — «Це не дорого». Побудова залишається `no` + `es` + оцінка. Змінюється останнє слово: `caro` говорить про вартість, `justo` — про справедливість. Невелика сума сама собою не робить рішення справедливим."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Оцените только сумму: «Это не дорого».",
+          "uk": "Оцініть лише суму: «Це не дорого»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-19:intro3:r1",
+              "text": "No es caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro3:r2",
+              "text": "No es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro3:r3",
+              "text": "Es caro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-19:intro3:r1",
+              "text": "No es caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro3:r2",
+              "text": "No es justo."
+            },
+            {
+              "responseId": "es:lesson-01:session-19:intro3:r3",
+              "text": "Es caro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените только сумму: «Это не дорого».",
+          "uk": "Оцініть лише суму: «Це не дорого»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0e8d232e729684ea9600312641514345c5aefcba6fdce98c6a1e7938011dfcc0"
+}

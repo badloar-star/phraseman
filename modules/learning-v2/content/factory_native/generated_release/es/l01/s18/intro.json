@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "оценить стоимость с es + caro/barato и сказать, что что-то бесплатно.",
+    "uk": "оцінити вартість із es + caro/barato і сказати, що щось безкоштовне."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это дорого",
+        "uk": "Це дорого"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает цену экскурсии, которая вам не по карману. Скажите: `Es caro` — «Это дорого». `Caro` — «дорогой» по цене. Когда оцениваем стоимость в целом, используем `es` + `caro`. Здесь не говорим «он»: `él` не нужен. Если описываем конкретную вещь, окончание согласуем с её названием. Сейчас оцениваем стоимость в целом.",
+        "uk": "Друг показує ціну екскурсії, яка вам не по кишені. Скажіть: `Es caro` — «Це дорого». `Caro` — «дорогий» за ціною. Коли оцінюємо вартість загалом, використовуємо `es` + `caro`. Тут не говоримо «він»: `él` не потрібне. Якщо описуємо конкретну річ, закінчення узгоджуємо з її назвою. Зараз оцінюємо вартість загалом."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Оцените высокую цену: «Это дорого».",
+          "uk": "Оцініть високу ціну: «Це дорого»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-18:intro1:r1",
+              "text": "Es caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro1:r2",
+              "text": "Soy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro1:r3",
+              "text": "Es fácil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-18:intro1:r1",
+              "text": "Es caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro1:r2",
+              "text": "Soy caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro1:r3",
+              "text": "Es fácil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените высокую цену: «Это дорого».",
+          "uk": "Оцініть високу ціну: «Це дорого»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А это дёшево",
+        "uk": "А це дешево"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом предлагают прогулку за небольшую сумму. Скажите: `Es barato` — «Это дёшево». `Barato` — противоположность `caro`. Сохраняем `es`, меняем только оценку. В этой ситуации слово говорит именно о небольшой цене, а не о плохом качестве экскурсии.",
+        "uk": "Поруч пропонують прогулянку за невелику суму. Скажіть: `Es barato` — «Це дешево». `Barato` — протилежність `caro`. Зберігаємо `es`, змінюємо лише оцінку. У цій ситуації слово говорить саме про невелику ціну, а не про погану якість екскурсії."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Оцените небольшую цену: «Это дёшево».",
+          "uk": "Оцініть невелику ціну: «Це дешево»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-18:intro2:r1",
+              "text": "Es barato."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro2:r2",
+              "text": "Es caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro2:r3",
+              "text": "Eres barato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-18:intro2:r1",
+              "text": "Es barato."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro2:r2",
+              "text": "Es caro."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro2:r3",
+              "text": "Eres barato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените небольшую цену: «Это дёшево».",
+          "uk": "Оцініть невелику ціну: «Це дешево»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Платить вообще не нужно",
+        "uk": "Платити взагалі не потрібно"
+      },
+      "bodyByLocale": {
+        "ru": "В бюро есть ещё прогулка, за которую не берут плату. Скажите: `Es gratis` — «Это бесплатно». `Gratis` не означает «очень дёшево»: платить не нужно совсем. Соберите `es` + `gratis`. У слова `gratis` не меняем окончание: ни мужскую, ни женскую форму подбирать не нужно.",
+        "uk": "У бюро є ще прогулянка, за яку не беруть плати. Скажіть: `Es gratis` — «Це безкоштовно». `Gratis` не означає «дуже дешево»: платити не потрібно зовсім. Складіть `es` + `gratis`. У слові `gratis` не змінюємо закінчення: ні чоловічу, ні жіночу форму добирати не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о прогулке без оплаты: «Это бесплатно».",
+          "uk": "Скажіть про прогулянку без оплати: «Це безкоштовно»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-18:intro3:r1",
+              "text": "Es gratis."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro3:r2",
+              "text": "Es barato."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro3:r3",
+              "text": "No es gratis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-18:intro3:r1",
+              "text": "Es gratis."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro3:r2",
+              "text": "Es barato."
+            },
+            {
+              "responseId": "es:lesson-01:session-18:intro3:r3",
+              "text": "No es gratis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о прогулке без оплаты: «Это бесплатно».",
+          "uk": "Скажіть про прогулянку без оплати: «Це безкоштовно»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bc79cfb01a2b385ad7a482b5a04b5abd43115b6c66762ce2857b07d0546d8690"
+}

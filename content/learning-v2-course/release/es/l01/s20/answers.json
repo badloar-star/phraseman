@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-20:i01",
+    "correctText": "¿Es verdad?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i02",
+    "correctText": "cierto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i03",
+    "correctText": "правдивый",
+    "correctResponseId": "es:lesson-01:session-20:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i04",
+    "correctText": "¿Es cierto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i05",
+    "correctText": "¿Es cierto?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i06",
+    "correctText": "falso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i07",
+    "correctText": "ложный",
+    "correctResponseId": "es:lesson-01:session-20:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i08",
+    "correctText": "falso",
+    "correctResponseId": "es:lesson-01:session-20:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i09",
+    "correctText": "Это не соответствует действительности",
+    "correctResponseId": "es:lesson-01:session-20:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i10",
+    "correctText": "¿Es gratis?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i11",
+    "correctText": "Es falso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-20:i12",
+    "correctText": "¿Es verdad?",
+    "correctResponseId": null
+  }
+]

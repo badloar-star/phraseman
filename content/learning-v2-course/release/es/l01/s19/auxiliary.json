@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-19:intro1:r2": {
+          "ru": "Без no вы называете решение справедливым.",
+          "uk": "Без no ви називаєте рішення справедливим."
+        },
+        "es:lesson-01:session-19:intro1:r3": {
+          "ru": "Это оценка собеседника, а не решения.",
+          "uk": "Це оцінка співрозмовника, а не рішення."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-19:intro2:r2": {
+          "ru": "Это утверждает, что действие необходимо.",
+          "uk": "Це стверджує, що дія необхідна."
+        },
+        "es:lesson-01:session-19:intro2:r3": {
+          "ru": "Это о наличии платы, а не о необходимости действия.",
+          "uk": "Це про наявність плати, а не про необхідність дії."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-19:intro3:r2": {
+          "ru": "Это о справедливости, не о размере суммы.",
+          "uk": "Це про справедливість, не про розмір суми."
+        },
+        "es:lesson-01:session-19:intro3:r3": {
+          "ru": "Без no вы говорите, что это дорого.",
+          "uk": "Без no ви говорите, що це дорого."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d9796ba16892f4bae35837940993f70cac169394fea3d0214855d72264d1db8c"
+}

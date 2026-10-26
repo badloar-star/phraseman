@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-20",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-20:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-20:intro1:r2": {
+          "ru": "Это утверждение, а вы пока спрашиваете.",
+          "uk": "Це твердження, а ви поки запитуєте."
+        },
+        "es:lesson-01:session-20:intro1:r3": {
+          "ru": "Это вопрос о человеке, не о достоверности сообщения.",
+          "uk": "Це запитання про людину, не про достовірність повідомлення."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-20:intro2:r2": {
+          "ru": "Soy относится к говорящему, а вы проверяете сообщение.",
+          "uk": "Soy стосується мовця, а ви перевіряєте повідомлення."
+        },
+        "es:lesson-01:session-20:intro2:r3": {
+          "ru": "Это утверждение, а нужно спросить.",
+          "uk": "Це твердження, а потрібно запитати."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-20:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-20:intro3:r2": {
+          "ru": "Так вы подтверждаете сообщение.",
+          "uk": "Так ви підтверджуєте повідомлення."
+        },
+        "es:lesson-01:session-20:intro3:r3": {
+          "ru": "Так вы отрицаете ложность, меняя нужный смысл.",
+          "uk": "Так ви заперечуєте хибність, змінюючи потрібний зміст."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "207aac49cbf6e9bf15e97ea199ce72d501260b041d6dbb65cb20d1243e2e018e"
+}

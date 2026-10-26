@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-18:i01",
+    "correctText": "caro",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i02",
+    "correctText": "дорогой",
+    "correctResponseId": "es:lesson-01:session-18:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i03",
+    "correctText": "Es caro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i04",
+    "correctText": "barato",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i05",
+    "correctText": "недорогой",
+    "correctResponseId": "es:lesson-01:session-18:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i06",
+    "correctText": "barato",
+    "correctResponseId": "es:lesson-01:session-18:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i07",
+    "correctText": "Es barato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i08",
+    "correctText": "gratis",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i09",
+    "correctText": "бесплатно",
+    "correctResponseId": "es:lesson-01:session-18:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i10",
+    "correctText": "Es gratis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i11",
+    "correctText": "No es caro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i12",
+    "correctText": "Это не бесплатно",
+    "correctResponseId": "es:lesson-01:session-18:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i13",
+    "correctText": "Sí, es gratis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-18:i14",
+    "correctText": "No es gratis.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-18:intro1:r2": {
+          "ru": "Soy описывает вас, а вы оцениваете стоимость.",
+          "uk": "Soy описує вас, а ви оцінюєте вартість."
+        },
+        "es:lesson-01:session-18:intro1:r3": {
+          "ru": "Это «Это легко», не оценка цены.",
+          "uk": "Це «Це легко», не оцінка ціни."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-18:intro2:r2": {
+          "ru": "Это противоположная оценка: дорого.",
+          "uk": "Це протилежна оцінка: дорого."
+        },
+        "es:lesson-01:session-18:intro2:r3": {
+          "ru": "Eres обращено к собеседнику; здесь оцениваем цену.",
+          "uk": "Eres звернене до співрозмовника; тут оцінюємо ціну."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-18:intro3:r2": {
+          "ru": "Небольшая цена всё же предполагает оплату.",
+          "uk": "Невелика ціна все ж передбачає оплату."
+        },
+        "es:lesson-01:session-18:intro3:r3": {
+          "ru": "No меняет смысл: это не бесплатно.",
+          "uk": "No змінює зміст: це не безкоштовно."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "864af68238f0bbd3cacba3fb54e092d1caa76bc1f77848a6c30135849a218492"
+}

@@ -126,4 +126,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать другого человека с él или ella и описать его с es.","uk":"назвати іншу людину з él або ella й описати її з es."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 18,
+    sourceFingerprint: "7de30fc70dbd25d52fc6106288c04aa6520bf8f50612ebd4279ffa2c2f0b21b4",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить стоимость с es + caro/barato и сказать, что что-то бесплатно.","uk":"оцінити вартість із es + caro/barato і сказати, що щось безкоштовне."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 19,
+    sourceFingerprint: "15ea66c40cfce6f6d4808fb6c0fef0466a498d16b2411ff43076207034d78ec5",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"возразить об оценке ситуации с no es + качество.","uk":"заперечити оцінку ситуації з no es + риса."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 20,
+    sourceFingerprint: "e9f039d689e42794225db54a0156889c992151584d284d367de2282705247599",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"превратить оценку с es в вопрос и уточнить достоверность сообщения.","uk":"перетворити оцінку з es на запитання й уточнити достовірність повідомлення."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

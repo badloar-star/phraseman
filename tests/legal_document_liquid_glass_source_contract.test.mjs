@@ -75,8 +75,10 @@ const LEGAL_FILES = [
   // 24.10 (владелец кнопкой «Да, выложить с датой», через координатора): дата политики «Last updated: October 24, 2026».
   // 24.10 (координатор, пакет премиум-тем a50cfbf18): §5 — особые темы по достижениям: сервер хранит время просмотра видео (premium_theme_video_watch,
   // удаляется с аккаунтом — account_delete.ts:324) и смотрит ранг монеты, серию, этаж Пика, курс (покупка Plus не учитывается — «ТЕМЫ ВСЕ ФРИ», 30.09).
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '0f2979887eea0217a11949d322d0cd12cd9a2d2d4fd03ce1a41445a17ad8b6a9'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '8894789ca6b5612c11371fdee486bc250365e21326f32953c8fa7dbe10249001'],
+  // 26.10 (5 · ВХОД, по команде координатора): пин догнан под 7868dd51c (§ удаления — вариант «удалить сразу… не восстановить» рядом
+  // с 14 днями, дата October 25, 2026) и 13ea0d2ca («Where available in the app,» до выхода варианта Б) — текст сменили, пин не обновили.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'f20e611a064bb2a25c6b0dba40a51a25120e9016714f71a4923003ab7b2543a5'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '6133aa21bc37900c4281ef9773661448965e413f7e3d2cd7b699b33e2ec2e327'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],

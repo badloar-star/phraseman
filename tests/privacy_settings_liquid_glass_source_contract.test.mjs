@@ -17,7 +17,8 @@ const ORIGINAL_LOCALE_SIGNATURES = [
   '76480bd36c546b53eeda83ad4ae54f315c979187c2fd6eaf89587bb04d3990c7',
   '01452ec938935627bd244abf814845f6c288c0a463b70290d5c32ac465f43dfa',
   'e0690c01636524ac0b25a09053282b986c386b796c7931bb871e3fcebb9833c3',
-  'f345546cc028a3a9441bfe7ce4743bea9ca794a29535c9c06f7263741628d411',
+  // 26.10 (5 · ВХОД 248e9ed5e, координатор; тексты Переводчика c7465f2d0): без «Обезличенные» — данные привязаны к аккаунту.
+  'e3e90c4c08a41a7c8a17337d5bcd7cff3c3b08befeb56fa2e83b08e5f3c4ac61',
   'ae4537eab7c45a6f9850a68bdfdd29efaf7d55240a1768bd58efa4f7b3c1c6ac',
   'c2faf6d04e53d5ed63a12980a5f1ddcc4af56918f6c42aedf24dba996d801449',
   '411bf7a8e0a523644f47e1420d49131cb754658e80c09f5c15cdad3b50e355fd',
@@ -25,7 +26,8 @@ const ORIGINAL_LOCALE_SIGNATURES = [
   '6d71623a4577c55c8a1e46d17fd19999f9b4768b7dc37dfa8485f295a7d3a11e',
   '4e5e049ed04375ef9b80bce8cc459897716f3d28479176669ffbc26defae70a1',
   'bec19d24ad2ff0a49ac3eb838222c0716f3aefdae317f0b1d97bcd119ca065c3',
-  'f40953d99ecd46670f37e95d8e506ca1b87bd616ec1fd1cd9682bb6bca55c1e5',
+  // 26.10 (5 · ВХОД 248e9ed5e): примечание ИИ — «в OpenAI отправляется текст» вместо неправдивого «текст или речь».
+  'd2222a03b859f71179af565d993578048cdde1bffa932e852767c5c8691197fe',
   'cf4eb60e3d53d8699e873b77792908e11e822aa17bfced7aac6727dfa01a3a9f',
   '9560e914ffe7dd6596130821f20c4e29a06bbdd5bbd491822b174fdcf4beb9dc',
   '0e9eded31321db9213fd5abbe34e9ee96bcda7a3491c19a8bf55c2c618941bad',
@@ -389,11 +391,13 @@ test('all locale shells render and disclosures, dynamic strings, semantic delete
     'Сейчас данные об использовании не отправляются.',
     'Сбор технических сбоев для стабильности продолжается.',
     'Каждая функция работает только после отдельного согласия.',
-    'В зависимости от функции в OpenAI отправляется текст или речь.',
+    // 26.10 (5 · ВХОД 248e9ed5e, координатор): «текст или речь» было неправдой — речь в OpenAI не уходит (политика §11).
+    'В OpenAI отправляется текст.',
     'Выключено — новые запросы не отправляются.',
     // 11.10 (паритет profile.html PRF-07): подписи строк как в макете.
     'Приложение работает и без этого', 'AI-разбор ошибок', 'Сейчас не используется', 'Сейчас не используются',
   ]) assert.ok(text.includes(required), required);
+  assert.ok(!text.includes('текст или речь'), 'AI note must not promise speech goes to OpenAI');
   const deleteRow = nodes.find(node => node.props?.testID === 'privacy-delete-account');
   assert.ok(visit(deleteRow).filter(node => node.type === 'Text' || node.type === 'Ionicons').some(node => node.props.color === '#f66' || flatStyle(node.props.style).color === '#f66'));
   assert.match(source, /FONT_SCALE\[fontSize\]\s*\/\s*FONT_SCALE\.medium\s*\*\s*uiScale/);

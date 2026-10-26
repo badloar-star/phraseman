@@ -1,7 +1,7 @@
 // chapter_exam_v2_l08_c5.ts — банк экзамена v2: урок 8, глава 5 (эпизоды 33–40). НЕ подключён: строку в BANKS добавляет Learning V2
 // после вычитки владельцем (docs/work/factory-exam-banks-task-for-codex-2026-10-25.md).
 // зачем: только слова и формы эпизодов 1–40 — «не делай» Don't + действие, вежливое Please don't, успокоить Don't panic / Don't rush;
-// вопросов в банках нет. Сторож слов — tests/owner_locks_exam_episode_words_2026_10_25.test.ts.
+// вопросы из эпизодов — со знаком «?» (запрет «?» только для урока 1). Сторож слов — tests/owner_locks_exam_episode_words_2026_10_25.test.ts.
 import type { ChapterExamV2Bank } from '../chapter_exam_v2';
 
 export const CHAPTER_EXAM_V2_BANK_L08_C5: ChapterExamV2Bank = {
@@ -25,7 +25,7 @@ export const CHAPTER_EXAM_V2_BANK_L08_C5: ChapterExamV2Bank = {
     { id: 'l08c5-08', type: 'dialogue', grammarPoint: 'l08c5_please_dont', partnerLine: 'I can splash you.', situation: { ru: 'Вы у бассейна, у тебя в руках книга. Вежливо попроси не брызгать на тебя.', uk: 'Ви біля басейну, у тебе в руках книжка. Ввічливо попроси не бризкати на тебе.' }, accepted: ["Please don't splash me.", "Don't splash me, please."] },
     { id: 'l08c5-09', type: 'dialogue', grammarPoint: 'l08c5_calm', partnerLine: "I can't find the exit.", situation: { ru: 'Друг занервничал в незнакомом здании. Успокой его.', uk: 'Друг занервував у незнайомій будівлі. Заспокой його.' }, accepted: ["Don't panic.", "Please don't panic."] },
     { id: 'l08c5-10', type: 'dialogue', grammarPoint: 'l08c5_dont', partnerLine: 'I can drag the chair.', situation: { ru: 'Вы в тихом читальном зале. Скажи, чтобы не тащил стул.', uk: 'Ви в тихій читальній залі. Скажи, щоб не тягнув стілець.' }, accepted: ["Don't drag the chair.", "Please don't drag the chair."] },
-    { id: 'l08c5-11', type: 'dialogue', grammarPoint: 'l08c5_please_dont', partnerLine: 'This is my letter.', situation: { ru: 'Друг хочет порвать старое письмо, а тебе оно дорого. Вежливо попроси не рвать.', uk: 'Друг хоче порвати старий лист, а тобі він дорогий. Ввічливо попроси не рвати.' }, accepted: ["Please don't rip the letter.", "Please don't rip it.", "Don't rip the letter, please."] },
+    { id: 'l08c5-11', type: 'dialogue', grammarPoint: 'l08c5_please_dont', partnerLine: 'Whose letter is this?', situation: { ru: 'Брат вертит в руках твоё письмо. Попроси его не рвать письмо.', uk: 'Брат крутить у руках твій лист. Попроси його не рвати лист.' }, accepted: ["Please don't rip the letter.", "Please don't rip it.", "Don't rip the letter, please."] },
     { id: 'l08c5-12', type: 'dialogue', grammarPoint: 'l08c5_calm', partnerLine: 'I can guess.', situation: { ru: 'На экскурсии друг собирается отвечать наугад. Скажи, чтобы не угадывал.', uk: 'На екскурсії друг збирається відповідати навмання. Скажи, щоб не вгадував.' }, accepted: ["Don't guess.", "Please don't guess."] },
     // ── Найди и исправь ошибку ────────────────────────────────────────────────────────────────────────────────────
     { id: 'l08c5-13', type: 'fix', grammarPoint: 'l08c5_dont', wrong: 'Not spill it.', accepted: ["Don't spill it."] },

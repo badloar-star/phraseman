@@ -82,7 +82,13 @@ if find "$SNAP/dist-ota" -name '*.map' | grep -q .; then bad "в dist-ota ост
 # Связывать functions/node_modules в снимок НЕ будем: ota_from_head.sh делает rm -rf снимка, ссылка утащила бы настоящие модули.
 APP_ERR=$(grep 'error TS' "$LOGD/tsc.txt" | grep -vE '^(functions|functions-content|scripts)/' | tee "$LOGD/tsc_app.txt" | wc -l)
 SRV_ERR=$(grep 'error TS' "$LOGD/tsc.txt" | grep -cE '^(functions|functions-content|scripts)/')
-if [ "$APP_ERR" -eq 0 ]; then ok "tsc приложения: 0 ошибок (exit $TSC)"; else bad "tsc приложения: $APP_ERR ошибок:"; head -10 "$LOGD/tsc_app.txt" | sed 's/^/    /'; fi
+# зачем (вопрос координатора 26.10 «exit 2 при 0 ошибок?»): tsc --noEmit отдаёт 0 — ошибок нет, 2 — ошибки найдены (здесь — только
+# functions/scripts без своих node_modules). Любой другой код (134 — нехватка памяти, 127 — нет npx) значит, что проверка не дошла
+# до конца и ошибок в журнале нет вовсе — это НЕ «0 ошибок», а провал. И exit 2 без единой найденной ошибки — тоже провал: причину не видно.
+if [ "$TSC" -ne 0 ] && [ "$TSC" -ne 2 ]; then bad "tsc не дошёл до конца (exit $TSC) — 0 ошибок в журнале ничего не значит:"; tail -5 "$LOGD/tsc.txt" | sed 's/^/    /'
+elif [ "$TSC" -eq 2 ] && [ "$APP_ERR" -eq 0 ] && [ "$SRV_ERR" -eq 0 ]; then bad "tsc exit 2, но ни одной ошибки в журнале — причина неясна, смотри $LOGD/tsc.txt"
+elif [ "$APP_ERR" -eq 0 ]; then ok "tsc приложения: 0 ошибок (exit $TSC: $([ "$TSC" -eq 0 ] && echo 'ошибок нет нигде' || echo "ошибки только в functions/scripts — $SRV_ERR"))"
+else bad "tsc приложения: $APP_ERR ошибок:"; head -10 "$LOGD/tsc_app.txt" | sed 's/^/    /'; fi
 [ "$SRV_ERR" -gt 0 ] && note "tsc functions/scripts в снимке: $SRV_ERR (нет functions/node_modules — сервер в OTA не едет; сервер проверяется отдельно перед выкладкой)"
 
 echo

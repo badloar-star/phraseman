@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-02:i01",
+    "correctText": "no",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i02",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-01:session-02:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i03",
+    "correctText": "difícil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i04",
+    "correctText": "difícil",
+    "correctResponseId": "es:lesson-01:session-02:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i05",
+    "correctText": "así",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i06",
+    "correctText": "así",
+    "correctResponseId": "es:lesson-01:session-02:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i07",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-01:session-02:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i08",
+    "correctText": "No es verdad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i09",
+    "correctText": "Это нетрудно",
+    "correctResponseId": "es:lesson-01:session-02:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i10",
+    "correctText": "No es así.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i11",
+    "correctText": "difícil",
+    "correctResponseId": "es:lesson-01:session-02:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i12",
+    "correctText": "Es verdad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i13",
+    "correctText": "No es fácil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i14",
+    "correctText": "No es verdad.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i15",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-01:session-02:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i16",
+    "correctText": "No es difícil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-02:i17",
+    "correctText": "No es así.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-07",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-07:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-07:intro1:r2": {
+          "ru": "Это допустимое короткое слово в разговоре, но здесь нужна фраза с es.",
+          "uk": "Це допустиме коротке слово в розмові, але тут потрібна фраза з es."
+        },
+        "es:lesson-01:session-07:intro1:r3": {
+          "ru": "С no вы скажете, что это нелегко.",
+          "uk": "З no ви скажете, що це нелегко."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-07:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-07:intro2:r2": {
+          "ru": "В этой фразе ставим no перед es.",
+          "uk": "У цій фразі ставимо no перед es."
+        },
+        "es:lesson-01:session-07:intro2:r3": {
+          "ru": "Для доставки нужна форма на a.",
+          "uk": "Для доставки потрібна форма на a."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-07:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-07:intro3:r2": {
+          "ru": "Для открытки нужна форма на a.",
+          "uk": "Для листівки потрібна форма на a."
+        },
+        "es:lesson-01:session-07:intro3:r3": {
+          "ru": "Это речь о себе; мы оцениваем открытку.",
+          "uk": "Це про себе; ми оцінюємо листівку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fb89734bfe773f458a2ac1e86b63665ff2f5f66c035e27a50682509f36c55f18"
+}

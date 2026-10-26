@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-06",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-06:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-06:intro1:r2": {
+          "ru": "Для рисунка нужна форма único: с o и знаком над ú.",
+          "uk": "Для малюнка потрібна форма único: з o та знаком над ú."
+        },
+        "es:lesson-01:session-06:intro1:r3": {
+          "ru": "В слове único нужно написать ú.",
+          "uk": "У слові único треба написати ú."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-06:intro2:r2": {
+          "ru": "Здесь нужна форма на a.",
+          "uk": "Тут потрібна форма на a."
+        },
+        "es:lesson-01:session-06:intro2:r3": {
+          "ru": "При смене окончания знак над ú сохраняется.",
+          "uk": "При зміні закінчення знак над ú зберігається."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-06:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-06:intro3:r2": {
+          "ru": "После no знак над ú тоже нужен.",
+          "uk": "Після no знак над ú теж потрібен."
+        },
+        "es:lesson-01:session-06:intro3:r3": {
+          "ru": "Без no вы по-прежнему называете рисунок единственным.",
+          "uk": "Без no ви досі називаєте малюнок єдиним."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "5b63a94529d76ea3736d191e921c8d834d1e09ee122fd4a503bcd0659f8d2f48"
+}

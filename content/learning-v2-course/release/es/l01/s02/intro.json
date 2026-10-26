@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-02",
+  "learningOutcomeByLocale": {
+    "ru": "no перед es; No es fácil, No es verdad, No es así.",
+    "uk": "no перед es; No es fácil, No es verdad, No es así."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-02:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Добавляем «не»",
+        "uk": "Додаємо «не»"
+      },
+      "bodyByLocale": {
+        "ru": "`No` — «не». Друг уверяет, что собрать полку легко, а вы уже запутались в деталях: `No es fácil` — «это нелегко». Поставьте `no` перед `es`; знакомое `fácil` остаётся на месте. Одно короткое слово — и обещание лёгкой сборки больше не действует.",
+        "uk": "`No` — «не». Друг запевняє, що зібрати полицю легко, а ви вже заплуталися в деталях: `No es fácil` — «це нелегко». Поставте `no` перед `es`; знайоме `fácil` залишається на місці. Одне коротке слово — й обіцянка легкого складання більше не діє."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-02:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о сборке: «Это нелегко».",
+          "uk": "Скажіть про складання: «Це нелегко»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-02:intro1:r1",
+              "text": "No es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro1:r2",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro1:r3",
+              "text": "Es no fácil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-02:intro1:r1",
+              "text": "No es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro1:r2",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro1:r3",
+              "text": "Es no fácil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о сборке: «Это нелегко».",
+          "uk": "Скажіть про складання: «Це нелегко»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-02:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Трудно или нет",
+        "uk": "Важко чи ні"
+      },
+      "bodyByLocale": {
+        "ru": "`Difícil` — «трудный, сложный». Вы разобрались с креплением: `No es difícil` — «это нетрудно». Следите, какое слово отрицаете: `No es fácil` говорит, что легко не будет, а `No es difícil` снимает опасения. Само `no` не означает «трудно»: оно только добавляет «не».",
+        "uk": "`Difícil` — «важкий, складний». Ви розібралися з кріпленням: `No es difícil` — «це неважко». Стежте, яке слово заперечуєте: `No es fácil` означає, що легко не буде, а `No es difícil` знімає побоювання. Саме `no` не означає «важко»: воно лише додає «не»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-02:intro2:q",
+        "promptByLocale": {
+          "ru": "Крепление оказалось простым. Скажите «Это нетрудно».",
+          "uk": "Кріплення виявилося простим. Скажіть «Це неважко»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-02:intro2:r1",
+              "text": "No es difícil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro2:r2",
+              "text": "No es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro2:r3",
+              "text": "Es difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-02:intro2:r1",
+              "text": "No es difícil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro2:r2",
+              "text": "No es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro2:r3",
+              "text": "Es difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Крепление оказалось простым. Скажите «Это нетрудно».",
+          "uk": "Кріплення виявилося простим. Скажіть «Це неважко»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-02:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это не так",
+        "uk": "Це не так"
+      },
+      "bodyByLocale": {
+        "ru": "`Así` — «так». Друг неверно объяснил шаг инструкции: `No es así` — «это не так». Вы поправляете его объяснение. Если нужно прямо сказать, что его слова неправдивы, пригодится `No es verdad` — «это неправда». В обеих фразах `no` стоит перед `es`.",
+        "uk": "`Así` — «так». Друг неправильно пояснив крок інструкції: `No es así` — «це не так». Ви виправляєте його пояснення. Якщо треба прямо сказати, що його слова неправдиві, стане в пригоді `No es verdad` — «це неправда». В обох фразах `no` стоїть перед `es`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-02:intro3:q",
+        "promptByLocale": {
+          "ru": "Поправьте неверное объяснение: «Это не так».",
+          "uk": "Виправте неправильне пояснення: «Це не так»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-02:intro3:r1",
+              "text": "No es así."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro3:r2",
+              "text": "Es así."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro3:r3",
+              "text": "No es difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-02:intro3:r1",
+              "text": "No es así."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro3:r2",
+              "text": "Es así."
+            },
+            {
+              "responseId": "es:lesson-01:session-02:intro3:r3",
+              "text": "No es difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Поправьте неверное объяснение: «Это не так».",
+          "uk": "Виправте неправильне пояснення: «Це не так»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4e65f252711c9da509d258ec24355f2a722c800dbc92e4694b6aa2bac45ef86d"
+}

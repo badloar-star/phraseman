@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-08",
+  "learningOutcomeByLocale": {
+    "ru": "без готового образца собрать короткую оценку с es, no и нужным окончанием.",
+    "uk": "без готового зразка скласти коротку оцінку з es, no та потрібним закінченням."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-08:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Выбираем рисунок",
+        "uk": "Обираємо малюнок"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга спрашивает, нравится ли вам рисунок. Нравится: `Es bonito` — «он красивый». Сначала `es`, затем `bonito`. Испанское название рисунка мужского рода, поэтому выбираем `o`. Не добавляйте `no` по привычке после прошлых упражнений: здесь вы хвалите подарок, а не пытаетесь отговорить подругу.",
+        "uk": "Подруга запитує, чи подобається вам малюнок. Подобається: `Es bonito` — «він гарний». Спочатку `es`, потім `bonito`. Іспанська назва малюнка чоловічого роду, тому обираємо `o`. Не додавайте `no` за звичкою після попередніх вправ: тут ви хвалите подарунок, а не намагаєтеся відмовити подругу."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-08:intro1:q",
+        "promptByLocale": {
+          "ru": "Похвалите рисунок: «Он красивый».",
+          "uk": "Похваліть малюнок: «Він гарний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-08:intro1:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro1:r2",
+              "text": "No es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro1:r3",
+              "text": "Es bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-08:intro1:r1",
+              "text": "Es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro1:r2",
+              "text": "No es bonito."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro1:r3",
+              "text": "Es bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Похвалите рисунок: «Он красивый».",
+          "uk": "Похваліть малюнок: «Він гарний»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-08:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверяем доставку",
+        "uk": "Перевіряємо доставку"
+      },
+      "bodyByLocale": {
+        "ru": "Магазин привозит покупки за полчаса. `Es rápida` — «она быстрая». Испанское слово «доставка» женского рода, поэтому после `es` ставим `rápida`. Кто принимает заказ — мужчина или женщина — не влияет на окончание. Мы оцениваем доставку, а не продавца.",
+        "uk": "Магазин привозить покупки за пів години. `Es rápida` — «вона швидка». Іспанське слово «доставка» жіночого роду, тому після `es` ставимо `rápida`. Хто приймає замовлення — чоловік чи жінка — не впливає на закінчення. Ми оцінюємо доставку, а не продавця."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-08:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о доставке: «Она быстрая».",
+          "uk": "Скажіть про доставку: «Вона швидка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-08:intro2:r1",
+              "text": "Es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro2:r2",
+              "text": "Es rápido."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro2:r3",
+              "text": "Es lenta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-08:intro2:r1",
+              "text": "Es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro2:r2",
+              "text": "Es rápido."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro2:r3",
+              "text": "Es lenta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о доставке: «Она быстрая».",
+          "uk": "Скажіть про доставку: «Вона швидка»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-08:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Бесплатно не получилось",
+        "uk": "Безкоштовно не вийшло"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец сказал, что доставка бесплатная, но в счёте появилась доплата. Вы возражаете: `No es verdad` — «это неправда». Порядок: `no` + `es` + `verdad`. Слово `verdad` здесь не меняет окончания: вы отрицаете сказанное целиком. Не нужно выбирать o или a, как в слове про красивый рисунок.",
+        "uk": "Продавець сказав, що доставка безкоштовна, але в рахунку з'явилася доплата. Ви заперечуєте: `No es verdad` — «це неправда». Порядок: `no` + `es` + `verdad`. Слово `verdad` тут не змінює закінчення: ви заперечуєте сказане цілком. Не треба обирати o чи a, як у слові про гарний малюнок."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-08:intro3:q",
+        "promptByLocale": {
+          "ru": "Возразите словам продавца: «Это неправда».",
+          "uk": "Заперечте слова продавця: «Це неправда»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-08:intro3:r1",
+              "text": "No es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro3:r2",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro3:r3",
+              "text": "No es difícil."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-08:intro3:r1",
+              "text": "No es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro3:r2",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-08:intro3:r3",
+              "text": "No es difícil."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите словам продавца: «Это неправда».",
+          "uk": "Заперечте слова продавця: «Це неправда»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a09b70f6ad793602145d1860fb5856bdffdfae7e9db7ecbd04e301d0e9f62917"
+}

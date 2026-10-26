@@ -1,0 +1,1006 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-01",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — es",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i01:audio",
+          "transcript": "es"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i01:r1",
+            "targetText": "es",
+            "meaningByLocale": {
+              "ru": "в этих фразах помогает сказать о ситуации: Es fácil — «это легко», Es verdad — «это правда». 🔊 *es*",
+              "uk": "у цих фразах допомагає сказати про ситуацію: Es fácil — «це легко», Es verdad — «це правда». 🔊 *es*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "es",
+          "definitionByLocale": {
+            "ru": "в этих фразах помогает сказать о ситуации: Es fácil — «это легко», Es verdad — «это правда». 🔊 *es*",
+            "uk": "у цих фразах допомагає сказати про ситуацію: Es fácil — «це легко», Es verdad — «це правда». 🔊 *es*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i02:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i02:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i02:r3",
+          "text": "eres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i02:audio",
+          "transcript": "es"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i02:r1",
+            "targetText": "es",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i02:r2",
+            "targetText": "soy",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i02:r3",
+            "targetText": "eres",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в записи короткое es; soy звучит иначе.",
+              "uk": "у записі коротке es; soy звучить інакше."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "это слово длиннее: в записи короткое es.",
+              "uk": "це слово довше: у записі коротке es."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — fácil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — fácil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i03:audio",
+          "transcript": "fácil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i03:r1",
+            "targetText": "fácil",
+            "meaningByLocale": {
+              "ru": "лёгкий, простой. Здесь о сложности правила, а не о весе предмета. 🔊 *fácil*",
+              "uk": "легкий, простий. Тут про складність правила, а не про вагу предмета. 🔊 *fácil*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fácil",
+          "definitionByLocale": {
+            "ru": "лёгкий, простой. Здесь о сложности правила, а не о весе предмета. 🔊 *fácil*",
+            "uk": "легкий, простий. Тут про складність правила, а не про вагу предмета. 🔊 *fácil*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i04:r1",
+          "text": "fácil"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i04:r2",
+          "text": "fase"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i04:r3",
+          "text": "falso"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i04:audio",
+          "transcript": "fácil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i04:r1",
+            "targetText": "fácil",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i04:r2",
+            "targetText": "fase",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i04:r3",
+            "targetText": "falso",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в записи слышен конец cil, не se.",
+              "uk": "у записі чути кінець cil, не se."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в записи есть звук i и последний l; это fácil.",
+              "uk": "у записі є звук i та останній l; це fácil."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — verdad",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — verdad",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i05:audio",
+          "transcript": "verdad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i05:r1",
+            "targetText": "verdad",
+            "meaningByLocale": {
+              "ru": "правда. Es verdad — «это правда»: вы подтверждаете чьи-то слова. 🔊 *verdad*",
+              "uk": "правда. Es verdad — «це правда»: ви підтверджуєте чиїсь слова. 🔊 *verdad*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "verdad",
+          "definitionByLocale": {
+            "ru": "правда. Es verdad — «это правда»: вы подтверждаете чьи-то слова. 🔊 *verdad*",
+            "uk": "правда. Es verdad — «це правда»: ви підтверджуєте чиїсь слова. 🔊 *verdad*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i06:r1",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i06:r2",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i06:r3",
+          "text": "ver"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i06:audio",
+          "transcript": "verdad"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i06:r1",
+            "targetText": "verdad",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i06:r2",
+            "targetText": "verde",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i06:r3",
+            "targetText": "ver",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в записи конец dad, не de.",
+              "uk": "у записі кінець dad, не de."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в записи после ver слышна ещё часть dad.",
+              "uk": "у записі після ver чути ще частину dad."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть «Це легко»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i07:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i07:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i07:r3",
+          "text": "Verdad"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть «Це легко»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите «Это легко»",
+          "uk": "Вставте слово — скажіть «Це легко»"
+        },
+        "gappedTargetPhrase": "___ fácil.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-01:i07:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i07:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i07:r3",
+            "text": "Verdad"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть «Це легко»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Це легко»",
+            "feedbackByLocale": {
+              "ru": "это о себе, а здесь о правиле.",
+              "uk": "це про себе, а тут про правило."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть «Це легко»",
+            "feedbackByLocale": {
+              "ru": "для этой фразы перед fácil нужно es.",
+              "uk": "для цієї фрази перед fácil потрібне es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — підтвердьте слова ведучого: «Це правда»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i08:r1",
+          "text": "Плитки: verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i08:r2",
+          "text": "fácil"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i08:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — підтвердьте слова ведучого: «Це правда»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es verdad.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите слова ведущего: «Это правда»",
+          "uk": "Складіть фразу — підтвердьте слова ведучого: «Це правда»"
+        },
+        "orderedTokens": [
+          "Es",
+          "verdad"
+        ],
+        "authoredDistractorTokens": [
+          "fácil"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — підтвердьте слова ведучого: «Це правда»",
+            "feedbackByLocale": {
+              "ru": "это «легко», а вы подтверждаете правду.",
+              "uk": "це «легко», а ви підтверджуєте правду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i09:r1",
+          "text": "Це легко"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i09:r2",
+          "text": "Це правда"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i09:r3",
+          "text": "Це важко"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i09:audio",
+          "transcript": "Es fácil."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-01:i09:r1",
+            "targetText": "Це легко",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i09:r2",
+            "targetText": "Це правда",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i09:r3",
+            "targetText": "Це важко",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть зміст",
+            "feedbackByLocale": {
+              "ru": "в записи fácil, не verdad.",
+              "uk": "у записі fácil, не verdad."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть зміст",
+            "feedbackByLocale": {
+              "ru": "fácil означает «легко», а не «трудно».",
+              "uk": "fácil означає «легко», а не «важко»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i10:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i10:r2",
+          "text": "fácil"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i10:r3",
+          "text": "verdad."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i10:audio",
+          "transcript": "Es verdad."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es verdad.",
+        "orderedTokens": [
+          "Es",
+          "verdad"
+        ],
+        "authoredDistractorTokens": [
+          "fácil"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть",
+            "feedbackByLocale": {
+              "ru": "в записи прозвучало verdad.",
+              "uk": "у записі прозвучало verdad."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть, що правило просте: «Це легко»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i11:r1",
+          "text": "fácil"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i11:r2",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i11:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть, що правило просте: «Це легко»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите, что правило простое: «Это легко»",
+          "uk": "Вставте слово — скажіть, що правило просте: «Це легко»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-01:i11:r1",
+            "text": "fácil"
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i11:r2",
+            "text": "verdad"
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i11:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть, що правило просте: «Це легко»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть, що правило просте: «Це легко»",
+            "feedbackByLocale": {
+              "ru": "это «правда»; здесь речь о простоте.",
+              "uk": "це «правда»; тут ідеться про простоту."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть, що правило просте: «Це легко»",
+            "feedbackByLocale": {
+              "ru": "es уже стоит в начале; нужно fácil.",
+              "uk": "es вже стоїть на початку; потрібне fácil."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — оцініть пояснення: «Це легко»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i12:r1",
+          "text": "Плитки: fácil"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i12:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i12:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — оцініть пояснення: «Це легко»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es fácil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — оцените объяснение: «Это легко»",
+          "uk": "Складіть фразу — оцініть пояснення: «Це легко»"
+        },
+        "orderedTokens": [
+          "Es",
+          "fácil"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — оцініть пояснення: «Це легко»",
+            "feedbackByLocale": {
+              "ru": "вы говорите о правиле, а не о себе.",
+              "uk": "ви говорите про правило, а не про себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i13:audio",
+          "transcript": "Es fácil."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es fácil.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i14:r1",
+          "text": "Плитки: verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i14:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i14:r3",
+          "text": "fácil."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i14:audio",
+          "transcript": "Es fácil."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es fácil.",
+        "orderedTokens": [
+          "Es",
+          "fácil"
+        ],
+        "authoredDistractorTokens": [
+          "verdad"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть",
+            "feedbackByLocale": {
+              "ru": "в записи речь о простоте.",
+              "uk": "у записі йдеться про простоту."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ви перевірили кількість карток; скажіть «Це правда»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i15:r1",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i15:r2",
+          "text": "fácil"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i15:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ви перевірили кількість карток; скажіть «Це правда»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы проверили число карточек; скажите «Это правда»",
+          "uk": "Вставте слово — ви перевірили кількість карток; скажіть «Це правда»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-01:i15:r1",
+            "text": "verdad"
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i15:r2",
+            "text": "fácil"
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i15:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — ви перевірили кількість карток; скажіть «Це правда»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви перевірили кількість карток; скажіть «Це правда»",
+            "feedbackByLocale": {
+              "ru": "это оценка сложности; нужно подтвердить слова.",
+              "uk": "це оцінка складності; треба підтвердити слова."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-01:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ви перевірили кількість карток; скажіть «Це правда»",
+            "feedbackByLocale": {
+              "ru": "soy здесь не выражает нужного смысла; нужно verdad.",
+              "uk": "soy тут не передає потрібного змісту; потрібне verdad."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-01:i16:audio",
+          "transcript": "Es verdad."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es verdad.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — друг побоюється складних правил; скажіть «Це легко»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-01:i17:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i17:r2",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-01:i17:r3",
+          "text": "fácil."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — друг побоюється складних правил; скажіть «Це легко»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es fácil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — друг опасается сложных правил; скажите «Это легко»",
+          "uk": "Складіть фразу — друг побоюється складних правил; скажіть «Це легко»"
+        },
+        "orderedTokens": [
+          "Es",
+          "fácil"
+        ],
+        "authoredDistractorTokens": [
+          "verdad"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-01:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — друг побоюється складних правил; скажіть «Це легко»",
+            "feedbackByLocale": {
+              "ru": "вы оцениваете сложность, а не правдивость.",
+              "uk": "ви оцінюєте складність, а не правдивість."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6525966e87d91dde9a92475df7e92840699a13e90d9e96bc0d84922932cb4ed2"
+}

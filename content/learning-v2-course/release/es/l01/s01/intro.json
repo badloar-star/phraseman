@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "оценка ситуации Es fácil; подтверждение Es verdad.",
+    "uk": "оцінка ситуації Es fácil; підтвердження Es verdad."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это легко",
+        "uk": "Це легко"
+      },
+      "bodyByLocale": {
+        "ru": "`Fácil` — «лёгкий, простой». Правило игры понятно: `Es fácil` — «это легко». По-русски мы говорим два слова, по-испански здесь тоже два: `es fácil`. Запоминайте фразу целиком. Она пригодится, когда нужно оценить задание, правило или способ что-то сделать.",
+        "uk": "`Fácil` — «легкий, простий». Правило гри зрозуміле: `Es fácil` — «це легко». Українською ми кажемо два слова, іспанською тут теж два: `es fácil`. Запам’ятовуйте фразу цілком. Вона стане в пригоді, коли треба оцінити завдання, правило чи спосіб щось зробити."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о правиле игры: «Это легко».",
+          "uk": "Скажіть про правило гри: «Це легко»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-01:intro1:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro1:r2",
+              "text": "Soy fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro1:r3",
+              "text": "Es verdad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-01:intro1:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro1:r2",
+              "text": "Soy fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro1:r3",
+              "text": "Es verdad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о правиле игры: «Это легко».",
+          "uk": "Скажіть про правило гри: «Це легко»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это правда",
+        "uk": "Це правда"
+      },
+      "bodyByLocale": {
+        "ru": "`Verdad` — «правда». Ведущий говорит, что каждый получает по три карточки. Вы проверили: `Es verdad` — «это правда». Здесь вы подтверждаете его слова. Простое правило и правдивое объяснение — не одно и то же: даже очень сложное правило вполне может быть настоящим.",
+        "uk": "`Verdad` — «правда». Ведучий каже, що кожен отримує по три картки. Ви перевірили: `Es verdad` — «це правда». Тут ви підтверджуєте його слова. Просте правило й правдиве пояснення — не одне й те саме: навіть дуже складне правило цілком може бути справжнім."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Вы проверили слова ведущего. Скажите «Это правда».",
+          "uk": "Ви перевірили слова ведучого. Скажіть «Це правда»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-01:intro2:r1",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro2:r2",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro2:r3",
+              "text": "Soy verdad."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-01:intro2:r1",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro2:r2",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro2:r3",
+              "text": "Soy verdad."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы проверили слова ведущего. Скажите «Это правда».",
+          "uk": "Ви перевірили слова ведучого. Скажіть «Це правда»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Одно начало, разные оценки",
+        "uk": "Один початок, різні оцінки"
+      },
+      "bodyByLocale": {
+        "ru": "В двух знакомых фразах начало одинаковое — `es`. Дальше выбирайте по смыслу: `fácil` говорит о простоте, `verdad` — о правде. Друг спрашивает, трудно ли освоить игру. Если правила простые, ответьте `Es fácil`. Количество карточек сейчас проверять не нужно.",
+        "uk": "У двох знайомих фразах початок однаковий — `es`. Далі вибирайте за змістом: `fácil` говорить про простоту, `verdad` — про правду. Друг питає, чи важко опанувати гру. Якщо правила прості, дайте відповідь `Es fácil`. Кількість карток зараз перевіряти не треба."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Друг спрашивает о сложности игры. Ответьте «Это легко».",
+          "uk": "Друг питає про складність гри. Дайте відповідь «Це легко»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-01:intro3:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro3:r2",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro3:r3",
+              "text": "Fácil es."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-01:intro3:r1",
+              "text": "Es fácil."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro3:r2",
+              "text": "Es verdad."
+            },
+            {
+              "responseId": "es:lesson-01:session-01:intro3:r3",
+              "text": "Fácil es."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Друг спрашивает о сложности игры. Ответьте «Это легко».",
+          "uk": "Друг питає про складність гри. Дайте відповідь «Це легко»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "25a298be20a790bda65c2dcce6fccfca0e8b19de199f245fcf02a2caa801a3a7"
+}

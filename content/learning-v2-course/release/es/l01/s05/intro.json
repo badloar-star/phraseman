@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-05",
+  "learningOutcomeByLocale": {
+    "ru": "описывать скорость через es, выбирать rápido/rápida и lento/lenta, отличать «не быстрый» от «медленный».",
+    "uk": "описувати швидкість через es, обирати rápido/rápida та lento/lenta, відрізняти «не швидкий» від «повільний»."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-05:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Поезд без долгой дороги",
+        "uk": "Поїзд без довгої дороги"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает поезд: дорога займёт меньше часа. `Es rápido` — «он быстрый». Сначала `es`, затем `rápido` — «быстрый». Испанское слово «поезд» мужского рода, поэтому здесь `o`. Буква `á` подсказывает ударение: выделяем первый слог. Сейчас оцениваем поезд, а не свою скорость бега за ним.",
+        "uk": "Друг пропонує поїзд: дорога триватиме менше години. `Es rápido` — «він швидкий». Спочатку `es`, потім `rápido` — «швидкий». Іспанське слово «поїзд» чоловічого роду, тому тут `o`. Літера `á` підказує наголос: виділяємо перший склад. Зараз оцінюємо поїзд, а не свою швидкість бігу за ним."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-05:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о поезде: «Он быстрый».",
+          "uk": "Скажіть про поїзд: «Він швидкий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-05:intro1:r1",
+              "text": "Es rápido."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro1:r2",
+              "text": "Es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro1:r3",
+              "text": "No es rápido."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-05:intro1:r1",
+              "text": "Es rápido."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro1:r2",
+              "text": "Es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro1:r3",
+              "text": "No es rápido."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о поезде: «Он быстрый».",
+          "uk": "Скажіть про поїзд: «Він швидкий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-05:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Доставка успеет",
+        "uk": "Доставка встигне"
+      },
+      "bodyByLocale": {
+        "ru": "Чемодан остался дома, но служба доставки обещает привезти его до вашего приезда. `Es rápida` — «она быстрая». Испанское слово «доставка» женского рода: соберите `es` + `rápida`. Меняется `o` на `a`, а `es` и ударение на первом слоге остаются. Речь именно о доставке.",
+        "uk": "Валіза залишилася вдома, але служба доставки обіцяє привезти її до вашого приїзду. `Es rápida` — «вона швидка». Іспанське слово «доставка» жіночого роду: складіть `es` + `rápida`. Змінюється `o` на `a`, а `es` і наголос на першому складі залишаються. Йдеться саме про доставку."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-05:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о доставке: «Она быстрая».",
+          "uk": "Скажіть про доставку: «Вона швидка»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-05:intro2:r1",
+              "text": "Es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro2:r2",
+              "text": "Es rápido."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro2:r3",
+              "text": "Es bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-05:intro2:r1",
+              "text": "Es rápida."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro2:r2",
+              "text": "Es rápido."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro2:r3",
+              "text": "Es bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о доставке: «Она быстрая».",
+          "uk": "Скажіть про доставку: «Вона швидка»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-05:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Автобус с остановками",
+        "uk": "Автобус із зупинками"
+      },
+      "bodyByLocale": {
+        "ru": "Автобус идёт три часа и останавливается в каждой деревне. `Es lento` — «он медленный»: `es` + `lento`. Испанское слово «автобус» мужского рода, поэтому `o`. Знакомое `No es rápido` значит лишь «он не быстрый». Эта фраза отрицает оценку «быстрый», а `Es lento` прямо называет медленный темп.",
+        "uk": "Автобус їде три години й зупиняється в кожному селі. `Es lento` — «він повільний»: `es` + `lento`. Іспанське слово «автобус» чоловічого роду, тому `o`. Знайоме `No es rápido` означає лише «він не швидкий». Ця фраза заперечує оцінку «швидкий», а `Es lento` прямо називає повільний темп."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-05:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите медленный темп автобуса: «Он медленный».",
+          "uk": "Назвіть повільний темп автобуса: «Він повільний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-05:intro3:r1",
+              "text": "Es lento."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro3:r2",
+              "text": "Es lenta."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro3:r3",
+              "text": "Es rápido."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-05:intro3:r1",
+              "text": "Es lento."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro3:r2",
+              "text": "Es lenta."
+            },
+            {
+              "responseId": "es:lesson-01:session-05:intro3:r3",
+              "text": "Es rápido."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите медленный темп автобуса: «Он медленный».",
+          "uk": "Назвіть повільний темп автобуса: «Він повільний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "076bd412917516ea640c0bc5b9d691da8bce21ef4f4011a73088ee7cb787e5f0"
+}

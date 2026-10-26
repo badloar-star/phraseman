@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-03:i01",
+    "correctText": "bonito",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i02",
+    "correctText": "bonito",
+    "correctResponseId": "es:lesson-01:session-03:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i03",
+    "correctText": "bonita",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i04",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-01:session-03:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i05",
+    "correctText": "bonito",
+    "correctResponseId": "es:lesson-01:session-03:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i06",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-01:session-03:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i07",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i08",
+    "correctText": "Es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i09",
+    "correctText": "Она не красивая",
+    "correctResponseId": "es:lesson-01:session-03:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i10",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i11",
+    "correctText": "bonito",
+    "correctResponseId": "es:lesson-01:session-03:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i12",
+    "correctText": "No es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i13",
+    "correctText": "Es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i14",
+    "correctText": "No es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i15",
+    "correctText": "así",
+    "correctResponseId": "es:lesson-01:session-03:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i16",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-03:i17",
+    "correctText": "Es bonita.",
+    "correctResponseId": null
+  }
+]

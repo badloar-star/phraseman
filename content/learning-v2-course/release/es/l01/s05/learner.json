@@ -1,0 +1,998 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-05",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-05:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — rápido",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — rápido",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i01:audio",
+          "transcript": "rápido"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-05:i01:r1",
+            "targetText": "rápido",
+            "meaningByLocale": {
+              "ru": "быстрый. Женская форма — rápida. В обеих формах ударение на первом слоге, над a пишется знак: á. 🔊 *rápido*",
+              "uk": "швидкий. Жіноча форма — rápida. В обох формах наголос на першому складі, над a пишеться знак: á. 🔊 *rápido*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "rápido",
+          "definitionByLocale": {
+            "ru": "быстрый. Женская форма — rápida. В обеих формах ударение на первом слоге, над a пишется знак: á. 🔊 *rápido*",
+            "uk": "швидкий. Жіноча форма — rápida. В обох формах наголос на першому складі, над a пишеться знак: á. 🔊 *rápido*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i02:r1",
+          "text": "rápida"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i02:r2",
+          "text": "rápido"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i02:audio",
+          "transcript": "rápida"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-05:i02:r1",
+            "targetText": "rápida",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i02:r2",
+            "targetText": "rápido",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце слышно a.",
+              "uk": "Наприкінці чути a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — поезд довезёт вас за час; скажите «Он быстрый»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i03:r1",
+          "text": "Плитки: rápida"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i03:r2",
+          "text": "rápido"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i03:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — поезд довезёт вас за час; скажите «Он быстрый»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es rápido.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — поезд довезёт вас за час; скажите «Он быстрый»",
+          "uk": "Складіть фразу — поїзд довезе вас за годину; скажіть «Він швидкий»"
+        },
+        "orderedTokens": [
+          "Es",
+          "rápido"
+        ],
+        "authoredDistractorTokens": [
+          "rápida"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — поезд довезёт вас за час; скажите «Он быстрый»",
+            "feedbackByLocale": {
+              "ru": "испанское слово «поезд» мужского рода.",
+              "uk": "іспанське слово «поїзд» чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — друг говорит о доставке",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i04:r1",
+          "text": "Она не быстрая"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i04:r2",
+          "text": "Она быстрая"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i04:r3",
+          "text": "Она не красивая"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — друг говорит о доставке",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i04:audio",
+          "transcript": "No es rápida."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-05:i04:r1",
+            "targetText": "Она не быстрая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i04:r2",
+            "targetText": "Она быстрая",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i04:r3",
+            "targetText": "Она не красивая",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — друг говорит о доставке",
+            "feedbackByLocale": {
+              "ru": "Вы пропустили no.",
+              "uk": "Ви пропустили no."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i04:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — друг говорит о доставке",
+            "feedbackByLocale": {
+              "ru": "В записи rápida, не bonita.",
+              "uk": "У записі rápida, не bonita."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — доставка чемодана быстрая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i05:r1",
+          "text": "rápida"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i05:r2",
+          "text": "rápido"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i05:r3",
+          "text": "bonita"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — доставка чемодана быстрая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — доставка чемодана быстрая",
+          "uk": "Вставте слово — доставка валізи швидка"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-05:i05:r1",
+            "text": "rápida"
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i05:r2",
+            "text": "rápido"
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i05:r3",
+            "text": "bonita"
+          }
+        ],
+        "testedDimension": "Вставьте слово — доставка чемодана быстрая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — доставка чемодана быстрая",
+            "feedbackByLocale": {
+              "ru": "Испанское слово «доставка» женского рода.",
+              "uk": "Іспанське слово «доставка» жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — доставка чемодана быстрая",
+            "feedbackByLocale": {
+              "ru": "Это о красоте, а не о скорости.",
+              "uk": "Це про красу, а не про швидкість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — lento",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — lento",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i06:audio",
+          "transcript": "lento"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-05:i06:r1",
+            "targetText": "lento",
+            "meaningByLocale": {
+              "ru": "медленный. Женская форма — lenta. Это прямая оценка скорости; «не быстрый» не всегда означает «медленный». 🔊 *lento*",
+              "uk": "повільний. Жіноча форма — lenta. Це пряма оцінка швидкості; «не швидкий» не завжди означає «повільний». 🔊 *lento*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "lento",
+          "definitionByLocale": {
+            "ru": "медленный. Женская форма — lenta. Это прямая оценка скорости; «не быстрый» не всегда означает «медленный». 🔊 *lento*",
+            "uk": "повільний. Жіноча форма — lenta. Це пряма оцінка швидкості; «не швидкий» не завжди означає «повільний». 🔊 *lento*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i07:r1",
+          "text": "lento"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i07:r2",
+          "text": "lenta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i07:audio",
+          "transcript": "lento"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-05:i07:r1",
+            "targetText": "lento",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i07:r2",
+            "targetText": "lenta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i07:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В конце записи o.",
+              "uk": "Наприкінці запису o."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — автобус долго стоит на каждой остановке; скажите «Он медленный»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i08:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i08:r2",
+          "text": "lenta"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i08:r3",
+          "text": "lento."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — автобус долго стоит на каждой остановке; скажите «Он медленный»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es lento.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — автобус долго стоит на каждой остановке; скажите «Он медленный»",
+          "uk": "Складіть фразу — автобус довго стоїть на кожній зупинці; скажіть «Він повільний»"
+        },
+        "orderedTokens": [
+          "Es",
+          "lento"
+        ],
+        "authoredDistractorTokens": [
+          "lenta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — автобус долго стоит на каждой остановке; скажите «Он медленный»",
+            "feedbackByLocale": {
+              "ru": "испанское слово «автобус» мужского рода.",
+              "uk": "іспанське слово «автобус» чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i09:audio",
+          "transcript": "No es rápido."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es rápido.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — доставка займёт несколько дней; скажите «Она медленная»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i10:r1",
+          "text": "lenta"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i10:r2",
+          "text": "lento"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i10:r3",
+          "text": "rápida"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — доставка займёт несколько дней; скажите «Она медленная»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — доставка займёт несколько дней; скажите «Она медленная»",
+          "uk": "Вставте слово — доставка триватиме кілька днів; скажіть «Вона повільна»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-05:i10:r1",
+            "text": "lenta"
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i10:r2",
+            "text": "lento"
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i10:r3",
+            "text": "rápida"
+          }
+        ],
+        "testedDimension": "Вставьте слово — доставка займёт несколько дней; скажите «Она медленная»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — доставка займёт несколько дней; скажите «Она медленная»",
+            "feedbackByLocale": {
+              "ru": "Для доставки нужна форма на a.",
+              "uk": "Для доставки потрібна форма на a."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — доставка займёт несколько дней; скажите «Она медленная»",
+            "feedbackByLocale": {
+              "ru": "Это «быстрая», а нужно назвать медленный темп.",
+              "uk": "Це «швидка», а треба назвати повільний темп."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i11:r1",
+          "text": "Плитки: no"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i11:r2",
+          "text": "lenta"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i11:r4",
+          "text": "lento."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i11:audio",
+          "transcript": "No es lento."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es lento.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "lento"
+        ],
+        "authoredDistractorTokens": [
+          "lenta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "в записи окончание o.",
+              "uk": "у записі закінчення o."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — найти платформу оказалось нетрудно; скажите «Это нетрудно»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i12:r1",
+          "text": "Плитки: difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i12:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i12:r4",
+          "text": "rápido."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — найти платформу оказалось нетрудно; скажите «Это нетрудно»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es difícil.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — найти платформу оказалось нетрудно; скажите «Это нетрудно»",
+          "uk": "Складіть фразу — знайти платформу виявилося неважко; скажіть «Це неважко»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "difícil"
+        ],
+        "authoredDistractorTokens": [
+          "rápido"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — найти платформу оказалось нетрудно; скажите «Это нетрудно»",
+            "feedbackByLocale": {
+              "ru": "речь о трудности поиска, а не о скорости.",
+              "uk": "йдеться про складність пошуку, а не про швидкість."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите смысл — друг оценивает автобус",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i13:r1",
+          "text": "Он медленный"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i13:r2",
+          "text": "Он быстрый"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i13:r3",
+          "text": "Он не медленный"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите смысл — друг оценивает автобус",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i13:audio",
+          "transcript": "Es lento."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-05:i13:r1",
+            "targetText": "Он медленный",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i13:r2",
+            "targetText": "Он быстрый",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i13:r3",
+            "targetText": "Он не медленный",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — друг оценивает автобус",
+            "feedbackByLocale": {
+              "ru": "Lento означает «медленный».",
+              "uk": "Lento означає «повільний»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите смысл — друг оценивает автобус",
+            "feedbackByLocale": {
+              "ru": "В записи нет no.",
+              "uk": "У записі немає no."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i14:audio",
+          "transcript": "Es rápida."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es rápida.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — друг назвал верное время отправления; подтвердите «Это правда»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i15:r1",
+          "text": "verdad"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i15:r2",
+          "text": "difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i15:r3",
+          "text": "lento"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — друг назвал верное время отправления; подтвердите «Это правда»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг назвал верное время отправления; подтвердите «Это правда»",
+          "uk": "Вставте слово — друг назвав правильний час відправлення; підтвердьте «Це правда»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-05:i15:r1",
+            "text": "verdad"
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i15:r2",
+            "text": "difícil"
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i15:r3",
+            "text": "lento"
+          }
+        ],
+        "testedDimension": "Вставьте слово — друг назвал верное время отправления; подтвердите «Это правда»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг назвал верное время отправления; подтвердите «Это правда»",
+            "feedbackByLocale": {
+              "ru": "Это «трудно», не подтверждение времени.",
+              "uk": "Це «важко», не підтвердження часу."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-05:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — друг назвал верное время отправления; подтвердите «Это правда»",
+            "feedbackByLocale": {
+              "ru": "Это оценка скорости; нужно подтвердить слова друга.",
+              "uk": "Це оцінка швидкості; треба підтвердити слова друга."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i16:r1",
+          "text": "Плитки: lenta"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i16:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i16:r3",
+          "text": "lento."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-05:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-05:i16:audio",
+          "transcript": "Es lenta."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es lenta.",
+        "orderedTokens": [
+          "Es",
+          "lenta"
+        ],
+        "authoredDistractorTokens": [
+          "lento"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите",
+            "feedbackByLocale": {
+              "ru": "слышно окончание a.",
+              "uk": "чути закінчення a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-05:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — доставка чемодана занимает неделю; скажите «Она не быстрая»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-05:i17:r1",
+          "text": "Плитки: rápido"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i17:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i17:r3",
+          "text": "rápida"
+        },
+        {
+          "responseId": "es:lesson-01:session-05:i17:r4",
+          "text": "no."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — доставка чемодана занимает неделю; скажите «Она не быстрая»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es rápida.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — доставка чемодана занимает неделю; скажите «Она не быстрая»",
+          "uk": "Складіть фразу — доставка валізи триває тиждень; скажіть «Вона не швидка»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "rápida"
+        ],
+        "authoredDistractorTokens": [
+          "rápido"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-05:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — доставка чемодана занимает неделю; скажите «Она не быстрая»",
+            "feedbackByLocale": {
+              "ru": "речь о доставке, нужна форма на a.",
+              "uk": "йдеться про доставку, потрібна форма на a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d90eb5e55966f49e2627b9b8150cd86a3157c7e5d149c51a5fe7bdb7dbcc874f"
+}

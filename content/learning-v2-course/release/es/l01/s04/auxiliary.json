@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-04:intro1:r2": {
+          "ru": "Для случая в этом задании нужно окончание o.",
+          "uk": "Для випадку в цьому завданні потрібне закінчення o."
+        },
+        "es:lesson-01:session-04:intro1:r3": {
+          "ru": "С no вы назовёте случай выдуманным, а он произошёл.",
+          "uk": "З no ви назвете випадок вигаданим, а він стався."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-04:intro2:r2": {
+          "ru": "Здесь описываем историю, поэтому нужна форма на a.",
+          "uk": "Тут описуємо історію, тому потрібна форма на a."
+        },
+        "es:lesson-01:session-04:intro2:r3": {
+          "ru": "Это «она красивая»; сейчас речь о правдивости.",
+          "uk": "Це «вона гарна»; зараз ідеться про правдивість."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-04:intro3:r2": {
+          "ru": "Отрицание не меняет форму на a для истории.",
+          "uk": "Заперечення не змінює форму на a для історії."
+        },
+        "es:lesson-01:session-04:intro3:r3": {
+          "ru": "Без no вы подтверждаете правдивость истории.",
+          "uk": "Без no ви підтверджуєте правдивість історії."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2b21894400fcfc25cd45395bf34feda4daaaf24aae6f6ee193bb116a6839ea73"
+}

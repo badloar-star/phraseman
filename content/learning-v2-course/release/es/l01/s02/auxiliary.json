@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-02:intro1:r2": {
+          "ru": "Без no получается «это легко» — противоположный смысл.",
+          "uk": "Без no виходить «це легко» — протилежний зміст."
+        },
+        "es:lesson-01:session-02:intro1:r3": {
+          "ru": "В изучаемой обычной фразе no ставится перед es.",
+          "uk": "У звичайній фразі, яку вивчаємо, no ставиться перед es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-02:intro2:r2": {
+          "ru": "Это «нелегко» — другой смысл.",
+          "uk": "Це «нелегко» — інший зміст."
+        },
+        "es:lesson-01:session-02:intro2:r3": {
+          "ru": "Без no получается «это трудно».",
+          "uk": "Без no виходить «це важко»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-02:intro3:r2": {
+          "ru": "Без no вы соглашаетесь: «это так».",
+          "uk": "Без no ви погоджуєтеся: «це так»."
+        },
+        "es:lesson-01:session-02:intro3:r3": {
+          "ru": "Это «нетрудно», а не «это не так».",
+          "uk": "Це «неважко», а не «це не так»."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "254050c17de92d6812953c97a3b1c21e71935169acca6874637e02d0d8cc8573"
+}

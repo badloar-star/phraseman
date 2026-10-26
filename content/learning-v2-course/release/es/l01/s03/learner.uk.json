@@ -1,0 +1,1022 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-03",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-03:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bonito",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bonito",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i01:audio",
+          "transcript": "bonito"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-03:i01:r1",
+            "targetText": "bonito",
+            "meaningByLocale": {
+              "ru": "красивый. Здесь о рисунке. Женская форма этого же слова — bonita. 🔊 *bonito*",
+              "uk": "гарний. Тут про малюнок. Жіноча форма цього ж слова — bonita. 🔊 *bonito*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bonito",
+          "definitionByLocale": {
+            "ru": "красивый. Здесь о рисунке. Женская форма этого же слова — bonita. 🔊 *bonito*",
+            "uk": "гарний. Тут про малюнок. Жіноча форма цього ж слова — bonita. 🔊 *bonito*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i02:r1",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i02:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i02:r3",
+          "text": "bendito"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i02:audio",
+          "transcript": "bonito"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-03:i02:r1",
+            "targetText": "bonito",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i02:r2",
+            "targetText": "bonita",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i02:r3",
+            "targetText": "bendito",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в конце записи o, а не a.",
+              "uk": "наприкінці запису o, а не a."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в записи начало bo, а не ben.",
+              "uk": "у записі початок bo, а не ben."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bonita",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bonita",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i03:audio",
+          "transcript": "bonita"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-03:i03:r1",
+            "targetText": "bonita",
+            "meaningByLocale": {
+              "ru": "красивая. Здесь об открытке. Это форма слова bonito, а не новое отдельное слово. 🔊 *bonita*",
+              "uk": "гарна. Тут про листівку. Це форма слова bonito, а не нове окреме слово. 🔊 *bonita*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bonita",
+          "definitionByLocale": {
+            "ru": "красивая. Здесь об открытке. Это форма слова bonito, а не новое отдельное слово. 🔊 *bonita*",
+            "uk": "гарна. Тут про листівку. Це форма слова bonito, а не нове окреме слово. 🔊 *bonita*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i04:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i04:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i04:r3",
+          "text": "botita"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i04:audio",
+          "transcript": "bonita"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-03:i04:r1",
+            "targetText": "bonita",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i04:r2",
+            "targetText": "bonito",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i04:r3",
+            "targetText": "botita",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "в конце записи a, а не o.",
+              "uk": "наприкінці запису a, а не o."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i04:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть слово",
+            "feedbackByLocale": {
+              "ru": "после bo слышно ni, не ti.",
+              "uk": "після bo чути ni, не ti."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть про малюнок: «Він гарний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i05:r1",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i05:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i05:r3",
+          "text": "fácil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть про малюнок: «Він гарний»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о рисунке: «Он красивый»",
+          "uk": "Вставте слово — скажіть про малюнок: «Він гарний»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-03:i05:r1",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i05:r2",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i05:r3",
+            "text": "fácil"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть про малюнок: «Він гарний»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про малюнок: «Він гарний»",
+            "feedbackByLocale": {
+              "ru": "для рисунка нужна форма на o.",
+              "uk": "для малюнка потрібна форма на o."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про малюнок: «Він гарний»",
+            "feedbackByLocale": {
+              "ru": "это о простоте, а не о красоте.",
+              "uk": "це про простоту, а не про красу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть про листівку: «Вона гарна»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i06:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i06:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i06:r3",
+          "text": "difícil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть про листівку: «Вона гарна»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите об открытке: «Она красивая»",
+          "uk": "Вставте слово — скажіть про листівку: «Вона гарна»"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-03:i06:r1",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i06:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i06:r3",
+            "text": "difícil"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть про листівку: «Вона гарна»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про листівку: «Вона гарна»",
+            "feedbackByLocale": {
+              "ru": "для открытки нужна форма на a.",
+              "uk": "для листівки потрібна форма на a."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про листівку: «Вона гарна»",
+            "feedbackByLocale": {
+              "ru": "это о сложности, а не о красоте.",
+              "uk": "це про складність, а не про красу."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про малюнок: «Він гарний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i07:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i07:r3",
+          "text": "bonito."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про малюнок: «Він гарний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es bonito.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о рисунке: «Он красивый»",
+          "uk": "Складіть фразу — скажіть про малюнок: «Він гарний»"
+        },
+        "orderedTokens": [
+          "Es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про малюнок: «Він гарний»",
+            "feedbackByLocale": {
+              "ru": "рисунок в этом задании мужского рода.",
+              "uk": "малюнок у цьому завданні чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про листівку: «Вона гарна»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i08:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i08:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i08:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про листівку: «Вона гарна»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите об открытке: «Она красивая»",
+          "uk": "Складіть фразу — скажіть про листівку: «Вона гарна»"
+        },
+        "orderedTokens": [
+          "Es",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "bonito"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про листівку: «Вона гарна»",
+            "feedbackByLocale": {
+              "ru": "открытка в этом задании женского рода.",
+              "uk": "листівка в цьому завданні жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть зміст — ідеться про листівку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i09:r1",
+          "text": "Вона не гарна"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i09:r2",
+          "text": "Вона гарна"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i09:r3",
+          "text": "Це неважко"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть зміст — ідеться про листівку",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i09:audio",
+          "transcript": "No es bonita."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-03:i09:r1",
+            "targetText": "Вона не гарна",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i09:r2",
+            "targetText": "Вона гарна",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i09:r3",
+            "targetText": "Це неважко",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть зміст — ідеться про листівку",
+            "feedbackByLocale": {
+              "ru": "в записи есть no, отрицающее оценку.",
+              "uk": "у записі є no, що заперечує оцінку."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i09:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть зміст — ідеться про листівку",
+            "feedbackByLocale": {
+              "ru": "в записи bonita, а не difícil.",
+              "uk": "у записі bonita, а не difícil."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i10:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i10:r3",
+          "text": "bonito."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i10:audio",
+          "transcript": "Es bonito."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es bonito.",
+        "orderedTokens": [
+          "Es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть",
+            "feedbackByLocale": {
+              "ru": "в записи окончание o.",
+              "uk": "у записі закінчення o."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть про малюнок: «Він не гарний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i11:r1",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i11:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i11:r3",
+          "text": "verdad"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть про малюнок: «Він не гарний»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите о рисунке: «Он не красивый»",
+          "uk": "Вставте слово — скажіть про малюнок: «Він не гарний»"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-03:i11:r1",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i11:r2",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i11:r3",
+            "text": "verdad"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть про малюнок: «Він не гарний»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про малюнок: «Він не гарний»",
+            "feedbackByLocale": {
+              "ru": "no не меняет нужное рисунку окончание o.",
+              "uk": "no не змінює потрібне малюнку закінчення o."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть про малюнок: «Він не гарний»",
+            "feedbackByLocale": {
+              "ru": "получится «это неправда», а нужно оценить рисунок.",
+              "uk": "вийде «це неправда», а треба оцінити малюнок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про листівку: «Вона не гарна»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i12:r1",
+          "text": "Плитки: bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i12:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i12:r4",
+          "text": "bonita."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про листівку: «Вона не гарна»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите об открытке: «Она не красивая»",
+          "uk": "Складіть фразу — скажіть про листівку: «Вона не гарна»"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "bonito"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про листівку: «Вона не гарна»",
+            "feedbackByLocale": {
+              "ru": "нужна форма для открытки.",
+              "uk": "потрібна форма для листівки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i13:audio",
+          "transcript": "Es bonita."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es bonita.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i14:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i14:r2",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i14:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i14:r4",
+          "text": "bonito."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i14:audio",
+          "transcript": "No es bonito."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es bonito.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "bonita"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть",
+            "feedbackByLocale": {
+              "ru": "в записи слышно bonito.",
+              "uk": "у записі чути bonito."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — друг неправильно назвав ціну; скажіть «Це не так»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i15:r1",
+          "text": "así"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i15:r2",
+          "text": "difícil"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i15:r3",
+          "text": "fácil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — друг неправильно назвав ціну; скажіть «Це не так»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — друг неверно назвал цену; скажите «Это не так»",
+          "uk": "Вставте слово — друг неправильно назвав ціну; скажіть «Це не так»"
+        },
+        "gappedTargetPhrase": "No es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-03:i15:r1",
+            "text": "así"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i15:r2",
+            "text": "difícil"
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i15:r3",
+            "text": "fácil"
+          }
+        ],
+        "testedDimension": "Вставте слово — друг неправильно назвав ціну; скажіть «Це не так»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — друг неправильно назвав ціну; скажіть «Це не так»",
+            "feedbackByLocale": {
+              "ru": "это «нетрудно», а не «это не так».",
+              "uk": "це «неважко», а не «це не так»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-03:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — друг неправильно назвав ціну; скажіть «Це не так»",
+            "feedbackByLocale": {
+              "ru": "это «нелегко», а не «это не так».",
+              "uk": "це «нелегко», а не «це не так»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-03:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-03:i16:audio",
+          "transcript": "Es bonito."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es bonito.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-03:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви вибрали листівку; скажіть другові «Вона гарна»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-03:i17:r1",
+          "text": "Плитки: bonito"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i17:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-03:i17:r3",
+          "text": "bonita."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви вибрали листівку; скажіть другові «Вона гарна»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы выбрали открытку; скажите другу «Она красивая»",
+          "uk": "Складіть фразу — ви вибрали листівку; скажіть другові «Вона гарна»"
+        },
+        "orderedTokens": [
+          "Es",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "bonito"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-03:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви вибрали листівку; скажіть другові «Вона гарна»",
+            "feedbackByLocale": {
+              "ru": "вы описываете открытку, поэтому нужна форма на a.",
+              "uk": "ви описуєте листівку, тому потрібна форма на a."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d125cf5ac05d802d75545c06c123e114b1efecac1087b52166d3b06fbbce45e5"
+}

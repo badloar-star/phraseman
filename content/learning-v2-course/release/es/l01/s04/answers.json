@@ -1,0 +1,77 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-04:i01",
+    "correctText": "verdadero",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i02",
+    "correctText": "verdadero",
+    "correctResponseId": "es:lesson-01:session-04:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i03",
+    "correctText": "Es verdadero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i04",
+    "correctText": "verdadera",
+    "correctResponseId": "es:lesson-01:session-04:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i05",
+    "correctText": "Она неправдивая",
+    "correctResponseId": "es:lesson-01:session-04:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i06",
+    "correctText": "Es verdadera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i07",
+    "correctText": "No es verdadero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i08",
+    "correctText": "Es verdadero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i09",
+    "correctText": "así",
+    "correctResponseId": "es:lesson-01:session-04:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i10",
+    "correctText": "Она правдивая",
+    "correctResponseId": "es:lesson-01:session-04:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i11",
+    "correctText": "Es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i12",
+    "correctText": "verdad",
+    "correctResponseId": "es:lesson-01:session-04:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i13",
+    "correctText": "No es verdadera.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i14",
+    "correctText": "No es verdadero.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-04:i15",
+    "correctText": "No es verdadera.",
+    "correctResponseId": null
+  }
+]

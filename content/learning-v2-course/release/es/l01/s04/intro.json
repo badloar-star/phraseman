@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "es + verdadero/verdadera; окончание по тому, что описываем, no перед es.",
+    "uk": "es + verdadero/verdadera; закінчення за тим, що описуємо, no перед es."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не выдуманный случай",
+        "uk": "Невигаданий випадок"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга показывает газетную вырезку из альбома. Этот случай действительно произошёл: `Es verdadero` — «он настоящий, не выдуманный». Соберите `es` + `verdadero`. Испанское слово «случай» — мужского рода, поэтому здесь окончание `o`. Мы оцениваем случай, а не называем подругу честной.",
+        "uk": "Подруга показує газетну вирізку з альбому. Цей випадок справді стався: `Es verdadero` — «він справжній, не вигаданий». Складіть `es` + `verdadero`. Іспанське слово «випадок» — чоловічого роду, тому тут закінчення `o`. Ми оцінюємо випадок, а не називаємо подругу чесною."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о случае: «Он не выдуманный».",
+          "uk": "Скажіть про випадок: «Він не вигаданий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-04:intro1:r1",
+              "text": "Es verdadero."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro1:r2",
+              "text": "Es verdadera."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro1:r3",
+              "text": "No es verdadero."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-04:intro1:r1",
+              "text": "Es verdadero."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro1:r2",
+              "text": "Es verdadera."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro1:r3",
+              "text": "No es verdadero."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о случае: «Он не выдуманный».",
+          "uk": "Скажіть про випадок: «Він не вигаданий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Та же история",
+        "uk": "Та сама історія"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь подруга называет этот рассказ историей: `Es verdadera` — «она правдивая». Испанское слово «история» — женского рода: после `es` ставим `verdadera`, с `a`. Событие то же, но слово, которым мы его называем, другое. От новой буквы дедушка второй раз в газету не попадёт.",
+        "uk": "Тепер подруга називає цю розповідь історією: `Es verdadera` — «вона правдива». Іспанське слово «історія» — жіночого роду: після `es` ставимо `verdadera`, з `a`. Подія та сама, але слово, яким ми її називаємо, інше. Від нової літери дідусь удруге до газети не потрапить."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите об истории: «Она правдивая».",
+          "uk": "Скажіть про історію: «Вона правдива»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-04:intro2:r1",
+              "text": "Es verdadera."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro2:r2",
+              "text": "Es verdadero."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro2:r3",
+              "text": "Es bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-04:intro2:r1",
+              "text": "Es verdadera."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro2:r2",
+              "text": "Es verdadero."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro2:r3",
+              "text": "Es bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите об истории: «Она правдивая».",
+          "uk": "Скажіть про історію: «Вона правдива»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "А это уже придумано",
+        "uk": "А це вже вигадано"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга добавляет историю про встречу дедушки с королём, а потом признаётся: эту часть она придумала. `No es verdadera` — «она неправдивая». Порядок такой: `no` + `es` + `verdadera`. Слово `no` отрицает сказанное; окончание `a` остаётся, потому что мы всё ещё говорим об истории.",
+        "uk": "Подруга додає історію про зустріч дідуся з королем, а потім зізнається: цю частину вона вигадала. `No es verdadera` — «вона неправдива». Порядок такий: `no` + `es` + `verdadera`. Слово `no` заперечує сказане; закінчення `a` залишається, бо ми досі говоримо про історію."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о придуманной истории: «Она неправдивая».",
+          "uk": "Скажіть про вигадану історію: «Вона неправдива»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-04:intro3:r1",
+              "text": "No es verdadera."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro3:r2",
+              "text": "No es verdadero."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro3:r3",
+              "text": "Es verdadera."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-04:intro3:r1",
+              "text": "No es verdadera."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro3:r2",
+              "text": "No es verdadero."
+            },
+            {
+              "responseId": "es:lesson-01:session-04:intro3:r3",
+              "text": "Es verdadera."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о придуманной истории: «Она неправдивая».",
+          "uk": "Скажіть про вигадану історію: «Вона неправдива»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e7b6dea2ae29f84c412aa5d20d13987f4c9090df82e61e059e29309970e19bdf"
+}

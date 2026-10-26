@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-01:intro1:r2": {
+          "ru": "Soy говорит о вас; здесь вы оцениваете правило.",
+          "uk": "Soy говорить про вас; тут ви оцінюєте правило."
+        },
+        "es:lesson-01:session-01:intro1:r3": {
+          "ru": "Это «правда»; сейчас нужно сказать, что правило простое.",
+          "uk": "Це «правда»; зараз треба сказати, що правило просте."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-01:intro2:r2": {
+          "ru": "Это «легко», а не подтверждение правдивости.",
+          "uk": "Це «легко», а не підтвердження правдивості."
+        },
+        "es:lesson-01:session-01:intro2:r3": {
+          "ru": "Soy относится к говорящему; здесь нужна оценка сказанного: es.",
+          "uk": "Soy стосується мовця; тут потрібна оцінка сказаного: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-01:intro3:r2": {
+          "ru": "Verdad подтверждает слова, но не говорит о сложности.",
+          "uk": "Verdad підтверджує слова, але не говорить про складність."
+        },
+        "es:lesson-01:session-01:intro3:r3": {
+          "ru": "В изучаемой фразе сначала es, затем fácil.",
+          "uk": "У фразі, яку вивчаємо, спочатку es, потім fácil."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d6aaa707836c8849b135580a488660871e7d74dfad5df8fa46da612afea6bc85"
+}

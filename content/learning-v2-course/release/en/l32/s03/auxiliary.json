@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-32:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-32:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-03:intro1:r2": {
+          "ru": "Перед hot нужна связка be.",
+          "uk": "Перед hot потрібна зв’язка be."
+        },
+        "en:lesson-32:session-03:intro1:r3": {
+          "ru": "После must здесь нужна начальная форма be.",
+          "uk": "Після must тут потрібна початкова форма be."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-03:intro2:r2": {
+          "ru": "Soup уже названо: дополнительное it после made не нужно.",
+          "uk": "Soup уже названо: додаткове it після made не потрібне."
+        },
+        "en:lesson-32:session-03:intro2:r3": {
+          "ru": "Анна уже приготовила суп: нужна форма made.",
+          "uk": "Анна вже приготувала суп: потрібна форма made."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-32:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-32:session-03:intro3:r2": {
+          "ru": "С местоимением порядок put it down.",
+          "uk": "Із займенником порядок put it down."
+        },
+        "en:lesson-32:session-03:intro3:r3": {
+          "ru": "Для результата в прошлом нужна форма put.",
+          "uk": "Для результату в минулому потрібна форма put."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "38783b914b45c4b52899419dba14d6076e07bea25f64d919a50dd857143d7900"
+}

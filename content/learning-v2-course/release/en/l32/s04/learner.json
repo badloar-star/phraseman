@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-04",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — address",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — address",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i01:audio",
+          "transcript": "address"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-04:i01:r1",
+            "targetText": "address",
+            "meaningByLocale": {
+              "ru": "Адрес. Повторение знакомого слова.",
+              "uk": "Адреса. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "address",
+          "definitionByLocale": {
+            "ru": "Адрес. Повторение знакомого слова.",
+            "uk": "Адреса. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i02:r1",
+          "text": "The address Ben wrote is wrong."
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i02:r2",
+          "text": "The address Anna wrote is wrong."
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i02:r3",
+          "text": "The address Tom wrote is wrong."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i02:audio",
+          "transcript": "The address Ben wrote is wrong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-04:i02:r1",
+            "targetText": "The address Ben wrote is wrong.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i02:r2",
+            "targetText": "The address Anna wrote is wrong.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i02:r3",
+            "targetText": "The address Tom wrote is wrong.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The address Ben wrote is wrong.",
+              "uk": "У записі звучить The address Ben wrote is wrong."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The address Ben wrote is wrong.",
+              "uk": "У записі звучить The address Ben wrote is wrong."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i03:r1",
+          "text": "wrote"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i03:r2",
+          "text": "wrote it"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i03:r3",
+          "text": "written"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
+          "uk": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником."
+        },
+        "gappedTargetPhrase": "The address Ben ___ is wrong.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-04:i03:r1",
+            "text": "wrote"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i03:r2",
+            "text": "wrote it"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i03:r3",
+            "text": "written"
+          }
+        ],
+        "testedDimension": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
+            "feedbackByLocale": {
+              "ru": "Address уже названо: it после wrote не нужно.",
+              "uk": "Address уже названо: it після wrote не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма wrote.",
+              "uk": "Потрібна минула форма wrote."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i04:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-04:i04:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Дверь была заперта, поэтому вы подождали. Начните с The door was locked.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Дверь была заперта, поэтому вы подождали. Начните с The door was locked.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The door was locked, so we waited.",
+        "localizedMeaning": {
+          "ru": "Дверь была заперта, поэтому вы подождали. Начните с The door was locked.",
+          "uk": "Двері були замкнені, тому ви зачекали. Почніть з The door was locked."
+        },
+        "orderedTokens": [
+          "The",
+          "door",
+          "was",
+          "locked,",
+          "so",
+          "we",
+          "waited"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — street",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — street",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i06:audio",
+          "transcript": "street"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-04:i06:r1",
+            "targetText": "street",
+            "meaningByLocale": {
+              "ru": "Улица. Повторение знакомого слова.",
+              "uk": "Вулиця. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "street",
+          "definitionByLocale": {
+            "ru": "Улица. Повторение знакомого слова.",
+            "uk": "Вулиця. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы видите название улицы из записки Анны. Уверенно предполагаете: это нужная улица.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Вы видите название улицы из записки Анны. Уверенно предполагаете: это нужная улица.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i07:audio",
+          "transcript": "This must be the right street."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "This must be the right street.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i08:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i08:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i08:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
+          "uk": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку."
+        },
+        "gappedTargetPhrase": "This must ___ the wrong house.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-04:i08:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i08:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i08:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
+            "feedbackByLocale": {
+              "ru": "Используем начальную форму be.",
+              "uk": "Використовуємо початкову форму be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "По неверному номеру вы заключаете, что это не тот дом. Выразите вывод с must.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "По неверному номеру вы заключаете, что это не тот дом. Выразите вывод с must.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This must be the wrong house.",
+        "localizedMeaning": {
+          "ru": "По неверному номеру вы заключаете, что это не тот дом. Выразите вывод с must.",
+          "uk": "За неправильним номером ви робите висновок, що це не той будинок. Висловіть висновок із must."
+        },
+        "orderedTokens": [
+          "This",
+          "must",
+          "be",
+          "the",
+          "wrong",
+          "house"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Уточните улицу, которую искали: она рядом. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i10:audio"
+      ],
+      "accessibilityLabel": "Уточните улицу, которую искали: она рядом. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i10:audio",
+          "transcript": "The street we wanted is nearby."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The street we wanted is nearby.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен сразу узнал дом. Вы предполагаете, что он знает это место. Выберите форму после must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i11:r1",
+          "text": "know"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i11:r2",
+          "text": "knows"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i11:r3",
+          "text": "to know"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен сразу узнал дом. Вы предполагаете, что он знает это место. Выберите форму после must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен сразу узнал дом. Вы предполагаете, что он знает это место. Выберите форму после must.",
+          "uk": "Бен одразу впізнав будинок. Ви припускаєте, що він знає це місце. Виберіть форму після must."
+        },
+        "gappedTargetPhrase": "He must ___ this place.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-04:i11:r1",
+            "text": "know"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i11:r2",
+            "text": "knows"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i11:r3",
+            "text": "to know"
+          }
+        ],
+        "testedDimension": "Бен сразу узнал дом. Вы предполагаете, что он знает это место. Выберите форму после must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен сразу узнал дом. Вы предполагаете, что он знает это место. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must не добавляем s.",
+              "uk": "Після must не додаємо s."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен сразу узнал дом. Вы предполагаете, что он знает это место. Выберите форму после must.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — number",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — number",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i12:audio",
+          "transcript": "number"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-04:i12:r1",
+            "targetText": "number",
+            "meaningByLocale": {
+              "ru": "Номер. Повторение знакомого слова.",
+              "uk": "Номер. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "number",
+          "definitionByLocale": {
+            "ru": "Номер. Повторение знакомого слова.",
+            "uk": "Номер. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i13:r1",
+          "text": "The number I wrote is wrong."
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i13:r2",
+          "text": "The number I wrote is right."
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i13:r3",
+          "text": "The number I wrote is clear."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i13:audio",
+          "transcript": "The number I wrote is wrong."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-04:i13:r1",
+            "targetText": "The number I wrote is wrong.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i13:r2",
+            "targetText": "The number I wrote is right.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i13:r3",
+            "targetText": "The number I wrote is clear.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The number I wrote is wrong.",
+              "uk": "У записі звучить The number I wrote is wrong."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The number I wrote is wrong.",
+              "uk": "У записі звучить The number I wrote is wrong."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы уточняете номер, который записали: он неверный. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i14:audio"
+      ],
+      "accessibilityLabel": "Вы уточняете номер, который записали: он неверный. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i14:audio",
+          "transcript": "The number I wrote is wrong."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The number I wrote is wrong.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Уточните адрес, который написал Бен: он неверный. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Уточните адрес, который написал Бен: он неверный. Скажите без that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The address Ben wrote is wrong.",
+        "localizedMeaning": {
+          "ru": "Уточните адрес, который написал Бен: он неверный. Скажите без that.",
+          "uk": "Уточніть адресу, яку написав Бен: вона неправильна. Скажіть без that."
+        },
+        "orderedTokens": [
+          "The",
+          "address",
+          "Ben",
+          "wrote",
+          "is",
+          "wrong"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запертая дверь стала причиной ожидания. Вставьте «поэтому» перед результатом.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запертая дверь стала причиной ожидания. Вставьте «поэтому» перед результатом.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Запертая дверь стала причиной ожидания. Вставьте «поэтому» перед результатом.",
+          "uk": "Замкнені двері стали причиною очікування. Вставте «тому» перед результатом."
+        },
+        "gappedTargetPhrase": "The door was locked, ___ we waited.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-04:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Запертая дверь стала причиной ожидания. Вставьте «поэтому» перед результатом.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i16:r2",
+            "correct": false,
+            "testedDimension": "Запертая дверь стала причиной ожидания. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Because вводит причину, а здесь результат.",
+              "uk": "Because вводить причину, а тут результат."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i16:r3",
+            "correct": false,
+            "testedDimension": "Запертая дверь стала причиной ожидания. Вставьте «поэтому» перед результатом.",
+            "feedbackByLocale": {
+              "ru": "Although значит «хотя», а нужен результат: so.",
+              "uk": "Although означає «хоча», а потрібен результат: so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Из дома слышен голос Анны. Вы уверенно предполагаете, что она дома.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i17:audio"
+      ],
+      "accessibilityLabel": "Из дома слышен голос Анны. Вы уверенно предполагаете, что она дома.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i17:audio",
+          "transcript": "She must be at home."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She must be at home.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: вывод о неверном доме или адресе?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i18:r1",
+          "text": "This must be the wrong house."
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i18:r2",
+          "text": "This must be the wrong address."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i18:audioA",
+        "en:lesson-32:session-04:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: вывод о неверном доме или адресе?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "This must be the wrong house.",
+        "contrastB": "This must be the wrong address.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-04:i18:audioA",
+          "transcript": "This must be the wrong house."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-04:i18:audioB",
+          "transcript": "This must be the wrong address."
+        },
+        "testedPhoneticContrast": "Послушайте: вывод о неверном доме или адресе?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: вывод о неверном доме или адресе?",
+            "feedbackByLocale": {
+              "ru": "Звучит house — дом.",
+              "uk": "Звучить house — будинок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте уверенный вывод о доме.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте уверенный вывод о доме.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i19:audio",
+          "transcript": "This must be the wrong house."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "This must be the wrong house.",
+        "orderedTokens": [
+          "This",
+          "must",
+          "be",
+          "the",
+          "wrong",
+          "house"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы слышите голос Анны в доме. Завершите вывод с must.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-04:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-04:i20:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы слышите голос Анны в доме. Завершите вывод с must.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы слышите голос Анны в доме. Завершите вывод с must.",
+          "uk": "Ви чуєте голос Анни в будинку. Завершіть висновок із must."
+        },
+        "gappedTargetPhrase": "She must ___ at home.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-04:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i20:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вы слышите голос Анны в доме. Завершите вывод с must.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-04:i20:r2",
+            "correct": false,
+            "testedDimension": "Вы слышите голос Анны в доме. Завершите вывод с must.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна начальная форма be.",
+              "uk": "Після must тут потрібна початкова форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-04:i20:r3",
+            "correct": false,
+            "testedDimension": "Вы слышите голос Анны в доме. Завершите вывод с must.",
+            "feedbackByLocale": {
+              "ru": "Используем be, не are.",
+              "uk": "Використовуємо be, не are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-04:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна открыла дверь, поэтому вы вошли. Скажите о причине и результате.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-04:i21:audio"
+      ],
+      "accessibilityLabel": "Анна открыла дверь, поэтому вы вошли. Скажите о причине и результате.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-04:i21:audio",
+          "transcript": "Anna opened the door, so we went in."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Anna opened the door, so we went in.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "e0472aaeb0919ba5b9010bd5bd5c5126cf23ce4a551ee19f5e70b77372948580"
+}

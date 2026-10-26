@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-04:i01",
+    "correctText": "address",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i02",
+    "correctText": "The address Ben wrote is wrong.",
+    "correctResponseId": "en:lesson-32:session-04:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i03",
+    "correctText": "wrote",
+    "correctResponseId": "en:lesson-32:session-04:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i04",
+    "correctText": "door",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i05",
+    "correctText": "The door was locked, so we waited.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i06",
+    "correctText": "street",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i07",
+    "correctText": "This must be the right street.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i08",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-04:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i09",
+    "correctText": "This must be the wrong house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i10",
+    "correctText": "The street we wanted is nearby.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i11",
+    "correctText": "know",
+    "correctResponseId": "en:lesson-32:session-04:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i12",
+    "correctText": "number",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i13",
+    "correctText": "The number I wrote is wrong.",
+    "correctResponseId": "en:lesson-32:session-04:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i14",
+    "correctText": "The number I wrote is wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i15",
+    "correctText": "The address Ben wrote is wrong.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-04:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i17",
+    "correctText": "She must be at home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i18",
+    "correctText": "This must be the wrong house.",
+    "correctResponseId": "en:lesson-32:session-04:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i19",
+    "correctText": "This must be the wrong house.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-04:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-04:i21",
+    "correctText": "Anna opened the door, so we went in.",
+    "correctResponseId": null
+  }
+]

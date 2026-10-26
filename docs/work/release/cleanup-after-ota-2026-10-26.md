@@ -14,3 +14,8 @@
 | CollectionLimitHeader | (Карточки) | Темы, 709872d53 | не подключён; текст textSecond = cta, до 1,00 |
 | StatusFilterChips | (Карточки) | Темы, 709872d53 | не подключён; текст textSecond = cta, до 1,00 |
 | FlashcardsShelves | (Карточки) | Темы, 709872d53 | не подключён |
+
+## Добавлено 26.10 00:20 (координатор, по Макетам b39a4c603)
+- LearningV2ChaptersCourse (карта глав, строки learning-v2-003/005/006/076) — в боевом пути подменён SEASON_SCENE_V2_ENABLED; импортируют app/(tabs)/lessons.tsx и SeasonCourseConnected (import type). Удалить мёртвую ветку → строки закроются через component_unreachable.
+- LearningV2MapNode (строка 075) — 4 импортёра (lessons.tsx, ChaptersCourse, PulseMapSessionRow, Horizons). Удалять вместе с картой.
+- Founder Pass (строка 015) — файла нет; закрыть только «removed_by_owner» словом владельца.

@@ -202,7 +202,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
       </KitTouchable>
 
       {/* Мини-форма жалобы: причина + необязательный комментарий */}
-      <Modal visible={formOpen} transparent statusBarTranslucent animationType="fade" onRequestClose={() => setFormOpen(false)}>
+      <Modal visible={formOpen} transparent animationType="fade" onRequestClose={() => setFormOpen(false)}>
         <SheetSwipeRoot>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           {/* guard-ok: скрим закрывает форму по тапу вне листа; смысловые элементы внутри. */}

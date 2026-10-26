@@ -315,7 +315,7 @@ function ReportErrorButton({
       </KitTouchable>
       )}
 
-      <Modal visible={visible} transparent statusBarTranslucent animationType="fade" onRequestClose={() => setVisible(false)}>
+      <Modal visible={visible} transparent animationType="fade" onRequestClose={() => setVisible(false)}>
         <SheetSwipeRoot>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <Pressable style={[styles.overlay, { paddingTop: insets.top + 8 }]} onPress={() => setVisible(false)}>

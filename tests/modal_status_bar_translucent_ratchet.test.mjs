@@ -22,6 +22,10 @@ const ALLOWED = {
   'components/learning-v2/horizons/LearningV2Horizons.tsx': 1,
   'components/ReportUserModal.tsx': 1,
   'components/ui/v2_sheet.tsx': 1,
+  // ждёт проверки клавиатуры Сверкой (решение координатора 26.10): форма с полем + KeyboardAvoidingView — флаг сдвигает
+  // систему координат окна на Android; вернуть флаг только после кадров «клавиатура открыта, видны поле и кнопка»
+  'components/ExplainReportButton.tsx': 1,
+  'components/ReportErrorButton.tsx': 1,
 };
 const MUST_HAVE = ['components/modal_fx/HybridAlertShell.tsx', 'app/lesson_complete.tsx', 'components/NoEnergyModal.tsx', 'components/ThemedConfirmModal.tsx', 'components/ThemedChoiceModal.tsx'];
 

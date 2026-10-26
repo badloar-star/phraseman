@@ -73,4 +73,29 @@ describe('замок 25.10: в экзамене только слова из э�
     };
     expect(findChapterExamV2UnknownWords(bank, known)).toEqual([expect.objectContaining({ itemId: 'y', field: 'accepted', words: ['door'] })]);
   });
+
+  // координатор 26.10 (сигналы Переводчика и Макетов): ложные блокировки сокращений и притяжательного ’s — сторож не ослаблен
+  const one = (accepted: string[], partnerLine?: string): ChapterExamV2Bank => ({
+    lessonOrdinal: 9, chapterOrdinal: 1, grammarPoints: [], items: [{ id: 'z', type: 'dialogue', grammarPoint: 'p', partnerLine, accepted }],
+  });
+
+  it('сокращение в запасном ответе знакомо, если в эпизодах была его полная форма; незнакомая полная форма — красная', () => {
+    const known = collectEpisodeVocabularyV1([{ targetPhrase: 'She does not like tea.' }, { targetPhrase: 'You need not wait. You must not run.' }]);
+    expect(findChapterExamV2UnknownWords(one(['She does not like tea.', "She doesn't like tea.", "You needn't wait.", "You mustn't run."]), known)).toEqual([]);
+    expect(findChapterExamV2UnknownWords(one(['She does not like tea.', "She shouldn't run."]), known))
+      .toEqual([expect.objectContaining({ field: 'accepted', words: ["shouldn't"] })]);
+  });
+
+  it('эталон — по точной форме: сокращения, которого не было в эпизодах, в эталоне быть не может', () => {
+    const known = collectEpisodeVocabularyV1([{ targetPhrase: 'She does not like tea.' }]);
+    expect(findChapterExamV2UnknownWords(one(["She doesn't like tea."]), known)).toEqual([expect.objectContaining({ field: 'reference', words: ["doesn't"] })]);
+  });
+
+  it('притяжательное ’s знакомо, если были основа и хоть одно притяжательное ’s (или само слово с ’s); it’s — не притяжательное', () => {
+    const known = collectEpisodeVocabularyV1([{ targetPhrase: 'This is Tom. It is my sister’s bag.' }]);
+    expect(findChapterExamV2UnknownWords(one(['It is Tom’s bag.'], 'Is it Tom’s bag?'), known)).toEqual([]);
+    expect(findChapterExamV2UnknownWords(one(['It is Ann’s bag.']), known)).toEqual([expect.objectContaining({ words: ["ann's"] })]);
+    const noPossessive = collectEpisodeVocabularyV1([{ targetPhrase: 'This is Tom. It is a bag.' }]);
+    expect(findChapterExamV2UnknownWords(one(['It is Tom’s bag.']), noPossessive)).toEqual([expect.objectContaining({ words: ["tom's"] })]);
+  });
 });

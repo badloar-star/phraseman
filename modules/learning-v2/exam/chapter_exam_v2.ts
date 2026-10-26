@@ -45,6 +45,8 @@ const CONTRACTIONS: readonly (readonly [RegExp, string])[] = [
   [/\bdon't\b/g, 'do not'], [/\bdoesn't\b/g, 'does not'], [/\bdidn't\b/g, 'did not'],
   [/\bcan't\b/g, 'can not'], [/\bcannot\b/g, 'can not'], [/\bwon't\b/g, 'will not'], [/\bwouldn't\b/g, 'would not'],
   [/\bhaven't\b/g, 'have not'], [/\bhasn't\b/g, 'has not'],
+  // зачем (координатор 26.10, сигнал Макетов): банки модальных глаголов принимают needn't / mustn't / shouldn't / couldn't наравне с полной формой
+  [/\bneedn't\b/g, 'need not'], [/\bmustn't\b/g, 'must not'], [/\bshouldn't\b/g, 'should not'], [/\bcouldn't\b/g, 'could not'],
   [/\b(i|you|we|they|he|she|it)'ll\b/g, '$1 will'], [/\b(i|you|we|they)'ve\b/g, '$1 have'], [/\b(i|you|we|they|he|she)'d\b/g, '$1 would'],
 ];
 

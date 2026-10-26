@@ -16,6 +16,8 @@ const ENGLISH_TEXT_KEYS: ReadonlySet<string> = new Set([
   'targetPhrase', 'orderedTokens', 'authoredDistractorTokens', 'hiddenTargetPhrase',
 ]);
 const CYRILLIC = /[А-Яа-яЁёІіЇїЄєҐґ]/;
+// слова, после которых ’s — это сокращённое «is», а не притяжательное (как в CONTRACTIONS движка)
+const CONTRACTED_IS: ReadonlySet<string> = new Set(['he', 'she', 'it', 'that', 'there', 'what', 'where', 'who']);
 
 /** Английские слова строки: нижний регистр, апостроф ’ → ', сокращения остаются как есть (it's — своя форма). */
 export function englishWordsV1(text: string): string[] {
@@ -54,9 +56,17 @@ export function findChapterExamV2UnknownWords(
   exceptions: ReadonlySet<string> = new Set(),
 ): ChapterExamV2VocabularyMiss[] {
   const misses: ChapterExamV2VocabularyMiss[] = [];
-  const unknownOf = (words: readonly string[]) => [...new Set(words.filter((w) => !known.has(w) && !exceptions.has(w)))];
+  // зачем (координатор 26.10, сигналы Переводчика и Макетов): притяжательное ’s (Tom's) знакомо, если в эпизодах было само слово
+  // с ’s или основа (tom) плюс хоть одно притяжательное ’s. Сокращения it's / he's — это «is», не притяжательное.
+  const sawPossessive = [...known].some((w) => w.endsWith("'s") && !CONTRACTED_IS.has(w.slice(0, -2)));
+  const knownWord = (w: string): boolean => known.has(w) || exceptions.has(w)
+    || (sawPossessive && w.endsWith("'s") && !CONTRACTED_IS.has(w.slice(0, -2)) && known.has(w.slice(0, -2)));
+  // запасной ответ: сокращение знакомо, если было оно само или все слова его полной формы (doesn't ← does + not)
+  const knownLoose = (w: string): boolean => knownWord(w)
+    || (w.includes("'") && normalizeChapterExamV2Answer(w).split(' ').filter(Boolean).every((p) => knownWord(p)));
+  const unknownOf = (words: readonly string[], loose = false) => [...new Set(words.filter((w) => !(loose ? knownLoose(w) : knownWord(w))))];
   const check = (itemId: string, field: ChapterExamV2VocabularyMiss['field'], text: string, words: readonly string[]) => {
-    const unknown = unknownOf(words);
+    const unknown = unknownOf(words, field === 'accepted');
     if (unknown.length > 0) misses.push({ itemId, field, text, words: unknown });
   };
   for (const item of bank.items) {
@@ -64,8 +74,9 @@ export function findChapterExamV2UnknownWords(
     if (item.wrong) check(item.id, 'wrong', item.wrong, englishWordsV1(item.wrong));
     item.accepted.forEach((answer, index) => {
       if (index === 0) check(item.id, 'reference', answer, englishWordsV1(answer));
-      // зачем: словарь эпизодов не хранит одиночные буквы (englishWordsV1) — «a» из урока 3 иначе краснеет в каждом варианте ответа
-      else check(item.id, 'accepted', answer, normalizeChapterExamV2Answer(answer).split(' ').filter((w) => w.length > 1 || w === 'i'));
+      // зачем: точные слова варианта (englishWordsV1 отбрасывает одиночные буквы, как словарь эпизодов — «a» не краснеет), а
+      // сокращение проверяется по нему самому или по его полной форме (knownLoose)
+      else check(item.id, 'accepted', answer, englishWordsV1(answer));
     });
   }
   return misses;

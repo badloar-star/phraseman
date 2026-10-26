@@ -26,6 +26,30 @@ export function dialogueV2CoinSessionKey(sessionId: string): string {
   return `dialogue_${sessionId.trim().replace(/[^A-Za-z0-9_-]/g, '_')}`;
 }
 
+/**
+ * Вход копилки для монет диалога — ОДИН для экрана итога и для хоста намерений (R50): один sessionKey и один номер прохода
+ * дают один id операции на сервере, поэтому два пути не могут начислить одну сессию дважды.
+ */
+export function dialogueV2CoinPracticeRunesInput(sessionId: string | null): Readonly<{
+  activity: 'lesson';
+  sessionKey: string;
+  completionOrdinal: 1;
+  repeatPriceOnly: true;
+}> {
+  return {
+    // зачем: не speaking_practice — та засчитывает каждый элемент в задание дня «карточки» (today_tasks_practice_map); у lesson
+    // ответы в задания дня не идут, а бонус за серию без correctStreak = 0 → ровно N монет.
+    activity: 'lesson',
+    sessionKey: sessionId ? dialogueV2CoinSessionKey(sessionId) : 'dialogue_none',
+    completionOrdinal: 1,
+    // Цена 1 за элемент: N элементов = ровно N монет по образцу (30 / 25 / 10).
+    repeatPriceOnly: true,
+  };
+}
+
+/** id элемента копилки для i-й монеты диалога (1..N) — тот же у экрана и у хоста. */
+export const dialogueV2CoinItemId = (item: number): string => `dialogue_coin_${item}`;
+
 const AWARDED_PREFIX = 'dialogue_v2_coins_awarded_v1';
 
 export function dialogueV2CoinAwardedKey(ownerStableId: string, sessionId: string): string {

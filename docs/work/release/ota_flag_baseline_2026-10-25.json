@@ -58,16 +58,24 @@
   "plus_server_recheck_enabled": false,
   "apple_signin_revoke_enabled": false,
   "discount_offer_banner_enabled": false,
-  "paywall_m_enabled": false
+  "paywall_m_enabled": false,
+  "dialogue_coin_intent_host_enabled": false
  },
  "notes": {
-  "paywall_m_enabled": "c27fb3114: пейвол М, ВЫКЛ до склейки экран=макет, решение владельца 25.10 (добавлен Ревизором по поручению координатора)"
+  "paywall_m_enabled": "c27fb3114: пейвол М, ВЫКЛ до склейки экран=макет, решение владельца 25.10 (добавлен Ревизором по поручению координатора)",
+  "dialogue_coin_intent_host_enabled": "R50 (Ядро 26.10, решение координатора): один хозяин начисления монет за диалог по намерению с диска, ВЫКЛ — 15.10 владелец отложил из-за риска двойного начисления; при ВЫКЛ начисляет экран итога, как раньше. Включать — по слову владельца после ревью Ревизора"
  },
  "updates": [
   {
    "rev": "c27fb3114",
    "added": [
     "paywall_m_enabled=false"
+   ]
+  },
+  {
+   "rev": "core-r50-2026-10-26",
+   "added": [
+    "dialogue_coin_intent_host_enabled=false"
    ]
   }
  ]

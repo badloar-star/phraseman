@@ -232,6 +232,8 @@ import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
+// зачем (R50, координатор 26.10): лёгкий сторож — при выключенном флаге dialogue_coin_intent_host_enabled ничего не грузит; хост начисления монет диалога ленивый
+import DialogueV2CoinIntentGate from '../components/dialogue_coin/DialogueV2CoinIntentGate';
 import PhoneStateRecoveryScreen from '../components/PhoneStateRecoveryScreen';
 import {
   consumeRemoteAccountDeletionNotice,
@@ -4182,6 +4184,7 @@ export default function RootLayout() {
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />
+                    <DialogueV2CoinIntentGate />
                     <PhoneStateRecoveryScreen />
                     <TapLatencyNavProbe />
                 </OverlayArbiterProvider>

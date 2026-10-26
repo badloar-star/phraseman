@@ -139,6 +139,10 @@ export type RemoteBoolKey =
   // Отзыв токена Sign in with Apple при удалении аккаунта (Apple 5.1.1(v), координатор 25.10; app/apple_signin_revoke.ts). Дефолт
   // FALSE: включают в «Пульте» ПОСЛЕ того, как владелец задал ключ Apple у провайдера Apple в консоли Firebase.
   | 'apple_signin_revoke_enabled'
+  // R50 (координатор 26.10; docs/work/dialogue-coins-r50-design-2026-10-26.md): монеты за диалог начисляет один хост в корне по
+  // намерению с диска — уход с итога до чтения копилки их больше не теряет. Дефолт FALSE: 15.10 владелец отложил это из-за риска
+  // двойного начисления; при FALSE начисляет экран итога, как раньше. Включать — по решению владельца после ревью Ревизора.
+  | 'dialogue_coin_intent_host_enabled'
   // Скидочная акция (-50% через offer в сторах, см. document 2026-09-17). Дефолт
   // FALSE. true → в хедере Главной (между колокольчиком и профилем) появляется
   // бейдж со скидкой, текст берётся из discount_offer_badge_percent (ниже, в
@@ -375,6 +379,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   premium_theme_webgl_motion_enabled: false,
   plus_server_recheck_enabled: false,
   apple_signin_revoke_enabled: false,
+  dialogue_coin_intent_host_enabled: false,
   // Бейдж скидки в хедере Главной: дефолт FALSE — виден только когда владелец
   // явно включит его в «Пульте» на время акции.
   discount_offer_banner_enabled: false,
@@ -527,7 +532,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',
-    'plus_server_recheck_enabled', 'apple_signin_revoke_enabled',
+    'plus_server_recheck_enabled', 'apple_signin_revoke_enabled', 'dialogue_coin_intent_host_enabled',
     'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
     'paywall_promo_code_visible', 'paywall_m_enabled',
     'lifetime_button_enabled', 'paywall_reviews_enabled', 'accounts_v2_client_enabled',

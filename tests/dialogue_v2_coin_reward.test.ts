@@ -65,10 +65,13 @@ describe('dialogue coin reward', () => {
 
   it('хук: путь уроков (lesson, цена 1), отметка ДО начисления, экран итога зовёт хук', () => {
     const hook = read('hooks/useDialogueV2CoinReward.ts');
-    expect(hook).toContain("activity: 'lesson',");
-    expect(hook).toContain('repeatPriceOnly: true,');
+    // перепин 26.10 (R50, Ядро): вход копилки общий с хостом намерений — один id операции на сервере; живёт в dialogue_v2_coin_reward
+    const reward = read('app/dialogue_v2_coin_reward.ts');
+    expect(reward).toContain("activity: 'lesson',");
+    expect(reward).toContain('repeatPriceOnly: true,');
+    expect(hook).toContain('...runesInput,');
     const markAt = hook.indexOf('await markDialogueV2CoinsAwarded(owner, sessionId, amount)');
-    const creditAt = hook.indexOf('practiceRunes.onCorrectAnswer(`dialogue_coin_${item}`)');
+    const creditAt = hook.indexOf('practiceRunes.onCorrectAnswer(dialogueV2CoinItemId(item))');
     expect(markAt).toBeGreaterThan(-1);
     expect(creditAt).toBeGreaterThan(markAt);
     expect(hook).toContain('[COINS-EARN] dialog: уже начислено за эту сессию');

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "описать группу, в которую входите сами, с somos и формой качества для нескольких людей.",
+    "uk": "описати групу, до якої входите самі, із somos і формою риси для кількох людей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Теперь говорим «мы»",
+        "uk": "Тепер говоримо «ми»"
+      },
+      "bodyByLocale": {
+        "ru": "Раньше вы описывали себя с `soy`. Теперь говорите от всей группы: `Somos diferentes` — «Мы разные». `Somos` — форма для «мы»; она включает и вас. `Diferente` — «разный, отличающийся». Когда людей несколько, здесь добавляем s: `diferentes`. Соберите `somos` + `diferentes`. Одной формы somos достаточно, чтобы было понятно «мы».",
+        "uk": "Раніше ви описували себе із `soy`. Тепер говорите від усієї групи: `Somos diferentes` — «Ми різні». `Somos` — форма для «ми»; вона включає і вас. `Diferente` — «різний, такий, що відрізняється». Коли людей кілька, тут додаємо s: `diferentes`. Складіть `somos` + `diferentes`. Однієї форми somos достатньо, щоб було зрозуміло «ми»."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о вашей группе: «Мы разные».",
+          "uk": "Скажіть про вашу групу: «Ми різні»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-25:intro1:r1",
+              "text": "Somos diferentes."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro1:r2",
+              "text": "Soy diferente."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro1:r3",
+              "text": "Somos diferente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-25:intro1:r1",
+              "text": "Somos diferentes."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro1:r2",
+              "text": "Soy diferente."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro1:r3",
+              "text": "Somos diferente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о вашей группе: «Мы разные».",
+          "uk": "Скажіть про вашу групу: «Ми різні»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Можно назвать «мы» явно",
+        "uk": "Можна назвати «ми» явно"
+      },
+      "bodyByLocale": {
+        "ru": "Вы представляете группу, в которой есть мужчины и женщины: `Nosotros somos solidarios` — «Мы готовы поддерживать других». `Nosotros` — «мы» для мужской или смешанной группы. `Solidario` описывает человека, который готов помочь и поддержать. Для вашей группы берём готовую форму `solidarios`. Соберите `nosotros` + `somos` + `solidarios`. Слово nosotros можно опустить: somos уже показывает, кто говорит.",
+        "uk": "Ви представляєте групу, у якій є чоловіки й жінки: `Nosotros somos solidarios` — «Ми готові підтримувати інших». `Nosotros` — «ми» для чоловічої або змішаної групи. `Solidario` описує людину, яка готова допомогти й підтримати. Для вашої групи беремо готову форму `solidarios`. Складіть `nosotros` + `somos` + `solidarios`. Слово nosotros можна опустити: somos уже показує, хто говорить."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите смешанную группу, начиная с nosotros: «Мы готовы поддерживать других».",
+          "uk": "Опишіть змішану групу, починаючи з nosotros: «Ми готові підтримувати інших»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-25:intro2:r1",
+              "text": "Nosotros somos solidarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro2:r2",
+              "text": "Nosotros soy solidarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro2:r3",
+              "text": "Nosotros somos solidario."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-25:intro2:r1",
+              "text": "Nosotros somos solidarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro2:r2",
+              "text": "Nosotros soy solidarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro2:r3",
+              "text": "Nosotros somos solidario."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите смешанную группу, начиная с nosotros: «Мы готовы поддерживать других».",
+          "uk": "Опишіть змішану групу, починаючи з nosotros: «Ми готові підтримувати інших»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Если в группе только женщины",
+        "uk": "Якщо в групі лише жінки"
+      },
+      "bodyByLocale": {
+        "ru": "Позже две участницы рассказывают о своей небольшой группе. Одна говорит от обеих: `Nosotras somos solidarias` — «Мы готовы поддерживать других». Если все в группе женщины, выбираем `nosotras` и форму `solidarias`. `Somos` остаётся тем же. Сборка: `nosotras` + `somos` + `solidarias`.",
+        "uk": "Пізніше дві учасниці розповідають про свою невелику групу. Одна говорить від обох: `Nosotras somos solidarias` — «Ми готові підтримувати інших». Якщо всі в групі жінки, обираємо `nosotras` і форму `solidarias`. `Somos` залишається тим самим. Побудова: `nosotras` + `somos` + `solidarias`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Вы женщина, говорите только о женщинах. Начните с nosotras.",
+          "uk": "Ви жінка, говорите лише про жінок. Почніть із nosotras."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-25:intro3:r1",
+              "text": "Nosotras somos solidarias."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro3:r2",
+              "text": "Nosotros somos solidarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro3:r3",
+              "text": "Nosotras soy solidaria."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-25:intro3:r1",
+              "text": "Nosotras somos solidarias."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro3:r2",
+              "text": "Nosotros somos solidarios."
+            },
+            {
+              "responseId": "es:lesson-01:session-25:intro3:r3",
+              "text": "Nosotras soy solidaria."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Вы женщина, говорите только о женщинах. Начните с nosotras.",
+          "uk": "Ви жінка, говорите лише про жінок. Почніть із nosotras."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8b01175dbd05767a5a029afb10c3b23f65199dc189cf042b6aaafe2d35ea2514"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-25:intro1:r2": {
+          "ru": "Это об одном говорящем: «Я отличаюсь».",
+          "uk": "Це про одного мовця: «Я відрізняюся»."
+        },
+        "es:lesson-01:session-25:intro1:r3": {
+          "ru": "Для нескольких людей здесь нужно diferentes с s.",
+          "uk": "Для кількох людей тут потрібно diferentes із s."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-25:intro2:r2": {
+          "ru": "Для «мы» нужна форма somos, не soy.",
+          "uk": "Для «ми» потрібна форма somos, не soy."
+        },
+        "es:lesson-01:session-25:intro2:r3": {
+          "ru": "Для нескольких людей нужна форма solidarios.",
+          "uk": "Для кількох людей потрібна форма solidarios."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-25:intro3:r2": {
+          "ru": "В условии только женщины и задано начало nosotras.",
+          "uk": "В умові лише жінки й задано початок nosotras."
+        },
+        "es:lesson-01:session-25:intro3:r3": {
+          "ru": "Soy описывает одного человека, а вы говорите от группы.",
+          "uk": "Soy описує одну людину, а ви говорите від групи."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7ebeb840e930ebd7c0afc31eb07ba2f792162c25205d6fb30bbcdeaffdf35afa"
+}

@@ -1,0 +1,859 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-25",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — somos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — somos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i01:audio",
+          "transcript": "somos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i01:r1",
+            "targetText": "somos",
+            "meaningByLocale": {
+              "ru": "форма ser для «мы». Говорящий входит в группу. Это новая форма знакомого глагола. 🔊 *somos*",
+              "uk": "форма ser для «ми». Мовець входить до групи. Це нова форма знайомого дієслова. 🔊 *somos*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "somos",
+          "definitionByLocale": {
+            "ru": "форма ser для «мы». Говорящий входит в группу. Это новая форма знакомого глагола. 🔊 *somos*",
+            "uk": "форма ser для «ми». Мовець входить до групи. Це нова форма знайомого дієслова. 🔊 *somos*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть зміст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i02:r1",
+          "text": "ми"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i02:r2",
+          "text": "я"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть зміст",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i02:audio",
+          "transcript": "somos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i02:r1",
+            "targetText": "ми",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i02:r2",
+            "targetText": "я",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть зміст",
+            "feedbackByLocale": {
+              "ru": "Для «я» знакомая форма soy; somos относится к «мы».",
+              "uk": "Для «я» знайома форма soy; somos стосується «ми»."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — diferente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — diferente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i03:audio",
+          "transcript": "diferente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i03:r1",
+            "targetText": "diferente",
+            "meaningByLocale": {
+              "ru": "разный, отличающийся. Для нескольких людей — diferentes. 🔊 *diferente*",
+              "uk": "різний, такий, що відрізняється. Для кількох людей — diferentes. 🔊 *diferente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diferente",
+          "definitionByLocale": {
+            "ru": "разный, отличающийся. Для нескольких людей — diferentes. 🔊 *diferente*",
+            "uk": "різний, такий, що відрізняється. Для кількох людей — diferentes. 🔊 *diferente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i04:r1",
+          "text": "diferentes"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i04:r2",
+          "text": "diferente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i04:audio",
+          "transcript": "diferentes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i04:r1",
+            "targetText": "diferentes",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i04:r2",
+            "targetText": "diferente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "В конце звучит s: людей несколько.",
+              "uk": "Наприкінці звучить s: людей кілька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — скажіть про свою групу «Ми різні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i05:r1",
+          "text": "Плитки: diferentes"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i05:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i05:r3",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — скажіть про свою групу «Ми різні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos diferentes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите о своей группе «Мы разные»",
+          "uk": "Складіть фразу — скажіть про свою групу «Ми різні»"
+        },
+        "orderedTokens": [
+          "Somos",
+          "diferentes"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — скажіть про свою групу «Ми різні»",
+            "feedbackByLocale": {
+              "ru": "вы говорите от группы, не только о себе.",
+              "uk": "ви говорите від групи, не лише про себе."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nosotros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i06:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nosotros",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i06:audio",
+          "transcript": "nosotros"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i06:r1",
+            "targetText": "nosotros",
+            "meaningByLocale": {
+              "ru": "мы, мужская или смешанная группа. Для группы только из женщин — nosotras. 🔊 *nosotros*",
+              "uk": "ми, чоловіча або змішана група. Для групи лише з жінок — nosotras. 🔊 *nosotros*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nosotros",
+          "definitionByLocale": {
+            "ru": "мы, мужская или смешанная группа. Для группы только из женщин — nosotras. 🔊 *nosotros*",
+            "uk": "ми, чоловіча або змішана група. Для групи лише з жінок — nosotras. 🔊 *nosotros*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i07:r1",
+          "text": "nosotras"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i07:r2",
+          "text": "nosotros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i07:audio",
+          "transcript": "nosotras"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i07:r1",
+            "targetText": "nosotras",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i07:r2",
+            "targetText": "nosotros",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i07:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Слышно окончание as: nosotras.",
+              "uk": "Чутно закінчення as: nosotras."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — solidario",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — solidario",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i08:audio",
+          "transcript": "solidario"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i08:r1",
+            "targetText": "solidario",
+            "meaningByLocale": {
+              "ru": "готовый помогать и поддерживать других. Для мужской или смешанной группы — solidarios; для женской — solidarias. 🔊 *solidario*",
+              "uk": "готовий допомагати й підтримувати інших. Для чоловічої або змішаної групи — solidarios; для жіночої — solidarias. 🔊 *solidario*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "solidario",
+          "definitionByLocale": {
+            "ru": "готовый помогать и поддерживать других. Для мужской или смешанной группы — solidarios; для женской — solidarias. 🔊 *solidario*",
+            "uk": "готовий допомагати й підтримувати інших. Для чоловічої або змішаної групи — solidarios; для жіночої — solidarias. 🔊 *solidario*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i09:r1",
+          "text": "solidario"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i09:r2",
+          "text": "diferente"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i09:audio",
+          "transcript": "solidario"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-25:i09:r1",
+            "targetText": "solidario",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i09:r2",
+            "targetText": "diferente",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит solidario, а не diferente.",
+              "uk": "Звучить solidario, а не diferente."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — скажіть від змішаної групи «Ми готові підтримувати інших»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i10:r1",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i10:r2",
+          "text": "soy"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i10:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — скажіть від змішаної групи «Ми готові підтримувати інших»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — скажите от смешанной группы «Мы готовы поддерживать других»",
+          "uk": "Вставте слово — скажіть від змішаної групи «Ми готові підтримувати інших»"
+        },
+        "gappedTargetPhrase": "Nosotros ___ solidarios.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-25:i10:r1",
+            "text": "somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i10:r2",
+            "text": "soy"
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i10:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — скажіть від змішаної групи «Ми готові підтримувати інших»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть від змішаної групи «Ми готові підтримувати інших»",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я», а здесь nosotros — «мы».",
+              "uk": "Soy стосується «я», а тут nosotros — «ми»."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — скажіть від змішаної групи «Ми готові підтримувати інших»",
+            "feedbackByLocale": {
+              "ru": "Для нашей группы нужна форма somos.",
+              "uk": "Для нашої групи потрібна форма somos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — представте змішану групу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — представте змішану групу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i11:audio",
+          "transcript": "Nosotros somos solidarios."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nosotros somos solidarios.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви жінка; скажіть від групи лише з жінок «Ми готові підтримувати інших», починаючи з nosotras",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i12:r1",
+          "text": "Плитки: solidarias"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i12:r2",
+          "text": "nosotras"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i12:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i12:r4",
+          "text": "solidarios."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — ви жінка; скажіть від групи лише з жінок «Ми готові підтримувати інших», починаючи з nosotras",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nosotras somos solidarias.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вы женщина; скажите от группы только из женщин «Мы готовы поддерживать других», начиная с nosotras",
+          "uk": "Складіть фразу — ви жінка; скажіть від групи лише з жінок «Ми готові підтримувати інших», починаючи з nosotras"
+        },
+        "orderedTokens": [
+          "Nosotras",
+          "somos",
+          "solidarias"
+        ],
+        "authoredDistractorTokens": [
+          "solidarios"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви жінка; скажіть від групи лише з жінок «Ми готові підтримувати інших», починаючи з nosotras",
+            "feedbackByLocale": {
+              "ru": "в группе только женщины.",
+              "uk": "у групі лише жінки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i13:r1",
+          "text": "Плитки: diferentes"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i13:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i13:r3",
+          "text": "diferente."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i13:audio",
+          "transcript": "Somos diferentes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Somos diferentes.",
+        "orderedTokens": [
+          "Somos",
+          "diferentes"
+        ],
+        "authoredDistractorTokens": [
+          "diferente"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи есть s.",
+              "uk": "у записі є s."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — говоріть від жіночої групи «Ми різні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i14:r1",
+          "text": "diferentes"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i14:r2",
+          "text": "diferente"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i14:r3",
+          "text": "solidarias"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — говоріть від жіночої групи «Ми різні»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — говорите от женской группы «Мы разные»",
+          "uk": "Вставте слово — говоріть від жіночої групи «Ми різні»"
+        },
+        "gappedTargetPhrase": "Nosotras somos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-25:i14:r1",
+            "text": "diferentes"
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i14:r2",
+            "text": "diferente"
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i14:r3",
+            "text": "solidarias"
+          }
+        ],
+        "testedDimension": "Вставте слово — говоріть від жіночої групи «Ми різні»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i14:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — говоріть від жіночої групи «Ми різні»",
+            "feedbackByLocale": {
+              "ru": "Для нескольких людей нужна форма с s.",
+              "uk": "Для кількох людей потрібна форма із s."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-25:i14:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — говоріть від жіночої групи «Ми різні»",
+            "feedbackByLocale": {
+              "ru": "Это о готовности поддерживать, а нужно сказать, что вы разные.",
+              "uk": "Це про готовність підтримувати, а потрібно сказати, що ви різні."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви жінка; представте жіночу групу",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-25:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви жінка; представте жіночу групу",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-25:i15:audio",
+          "transcript": "Nosotras somos solidarias."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nosotras somos solidarias.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-25:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — новий сусід помітив відмінності між учасниками; підтвердьте «Так, ми різні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-25:i16:r1",
+          "text": "Плитки: diferentes"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i16:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i16:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-25:i16:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — новий сусід помітив відмінності між учасниками; підтвердьте «Так, ми різні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, somos diferentes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — новый сосед заметил различия между участниками; подтвердите «Да, мы разные»",
+          "uk": "Складіть фразу — новий сусід помітив відмінності між учасниками; підтвердьте «Так, ми різні»"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "somos",
+          "diferentes"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-25:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — новий сусід помітив відмінності між учасниками; підтвердьте «Так, ми різні»",
+            "feedbackByLocale": {
+              "ru": "речь о всей группе.",
+              "uk": "йдеться про всю групу."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ba454027528397d08e41f807f1e59129dd4725e8c327cc022c40308f3a4d129f"
+}

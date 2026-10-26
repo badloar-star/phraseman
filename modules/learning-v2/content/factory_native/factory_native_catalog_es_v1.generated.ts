@@ -175,4 +175,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать вопрос или утверждение с es, отрицание и окончание по смыслу условия.","uk":"обрати запитання або твердження з es, заперечення й закінчення за змістом умови."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 25,
+    sourceFingerprint: "9681f4376bae605a6f4e7c64e4b6daeabc3b1f0518401e8f4ecbcf2d20092c60",
+    newWordCount: 4,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать группу, в которую входите сами, с somos и формой качества для нескольких людей.","uk":"описати групу, до якої входите самі, із somos і формою риси для кількох людей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

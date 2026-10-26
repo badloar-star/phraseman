@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-25:i01",
+    "correctText": "somos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i02",
+    "correctText": "мы",
+    "correctResponseId": "es:lesson-01:session-25:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i03",
+    "correctText": "diferente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i04",
+    "correctText": "diferentes",
+    "correctResponseId": "es:lesson-01:session-25:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i05",
+    "correctText": "Somos diferentes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i06",
+    "correctText": "nosotros",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i07",
+    "correctText": "nosotras",
+    "correctResponseId": "es:lesson-01:session-25:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i08",
+    "correctText": "solidario",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i09",
+    "correctText": "solidario",
+    "correctResponseId": "es:lesson-01:session-25:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i10",
+    "correctText": "somos",
+    "correctResponseId": "es:lesson-01:session-25:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i11",
+    "correctText": "Nosotros somos solidarios.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i12",
+    "correctText": "Nosotras somos solidarias.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i13",
+    "correctText": "Somos diferentes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i14",
+    "correctText": "diferentes",
+    "correctResponseId": "es:lesson-01:session-25:i14:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i15",
+    "correctText": "Nosotras somos solidarias.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-25:i16",
+    "correctText": "Sí, somos diferentes.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-40",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-40:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-40:intro1:r2": {
+          "ru": "Для libros нужна мужская форма míos.",
+          "uk": "Для libros потрібна чоловіча форма míos."
+        },
+        "es:lesson-02:session-40:intro1:r3": {
+          "ru": "Книг несколько: míos.",
+          "uk": "Книжок кілька: míos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-40:intro2:r2": {
+          "ru": "Для tazas нужна женская форма mías.",
+          "uk": "Для tazas потрібна жіноча форма mías."
+        },
+        "es:lesson-02:session-40:intro2:r3": {
+          "ru": "Чашек несколько: son.",
+          "uk": "Чашок кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-40:intro3:r2": {
+          "ru": "Книги — libros, поэтому míos.",
+          "uk": "Книжки — libros, тому míos."
+        },
+        "es:lesson-02:session-40:intro3:r3": {
+          "ru": "В этой фразе no ставится перед son.",
+          "uk": "У цій фразі no ставиться перед son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c098a1d325ba4ad6147f50a3c40be30d1b64dc9dcbca1ee791a3cc4b36f1d18"
+}

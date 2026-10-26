@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать míos или mías по названию нескольких вещей.",
+    "uk": "вибрати míos або mías за назвою кількох речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Эти книги мои",
+        "uk": "Ці книжки мої"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте свои книги в коробке. Скажите `Son míos` — «Они мои». Соберите `son` + `míos`. Для одной книги вы сказали бы Es mío; для нескольких libros замените es на son и добавьте -s к mío. Мужская форма míos зависит от libros, а не от того, мужчина вы или женщина.",
+        "uk": "Ви впізнаєте свої книжки в коробці. Скажіть `Son míos` — «Вони мої». Зберіть `son` + `míos`. Для однієї книжки ви сказали б Es mío; для кількох libros замініть es на son і додайте -s до mío. Чоловіча форма míos залежить від libros, а не від того, чоловік ви чи жінка."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о книгах: они мои.",
+          "uk": "Скажіть про книжки: вони мої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-40:intro1:r1",
+              "text": "Son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro1:r2",
+              "text": "Son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro1:r3",
+              "text": "Son mío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-40:intro1:r1",
+              "text": "Son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro1:r2",
+              "text": "Son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro1:r3",
+              "text": "Son mío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о книгах: они мои.",
+          "uk": "Скажіть про книжки: вони мої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А чашки тоже мои",
+        "uk": "А чашки теж мої"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы узнаёте свои чашки. Скажите `Son mías` — «Они мои». Соберите `son` + `mías`. Название taza женского рода; несколько tazas требуют mías. Слово son остаётся тем же, меняется только форма mío: выбирайте её по испанскому названию вещи.",
+        "uk": "Тепер ви впізнаєте свої чашки. Скажіть `Son mías` — «Вони мої». Зберіть `son` + `mías`. Назва taza жіночого роду; кілька tazas потребують mías. Слово son залишається тим самим, змінюється лише форма mío: вибирайте її за іспанською назвою речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о чашках: они мои.",
+          "uk": "Скажіть про чашки: вони мої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-40:intro2:r1",
+              "text": "Son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro2:r2",
+              "text": "Son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro2:r3",
+              "text": "Es mías."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-40:intro2:r1",
+              "text": "Son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro2:r2",
+              "text": "Son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro2:r3",
+              "text": "Es mías."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о чашках: они мои.",
+          "uk": "Скажіть про чашки: вони мої."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Эти книги не мои",
+        "uk": "Ці книжки не мої"
+      },
+      "bodyByLocale": {
+        "ru": "В другой стопке оказались чужие книги. Скажите `No son míos` — «Они не мои». Соберите `no` + `son` + `míos`. Знакомое no ставится перед son. Отрицание не меняет согласование: libros по-прежнему требует míos.",
+        "uk": "В іншому стосі виявилися чужі книжки. Скажіть `No son míos` — «Вони не мої». Зберіть `no` + `son` + `míos`. Знайоме no ставиться перед son. Заперечення не змінює узгодження: libros і далі потребує míos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о книгах: они не мои.",
+          "uk": "Скажіть про книжки: вони не мої."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-40:intro3:r1",
+              "text": "No son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro3:r2",
+              "text": "No son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro3:r3",
+              "text": "Son no míos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-40:intro3:r1",
+              "text": "No son míos."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro3:r2",
+              "text": "No son mías."
+            },
+            {
+              "responseId": "es:lesson-02:session-40:intro3:r3",
+              "text": "Son no míos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о книгах: они не мои.",
+          "uk": "Скажіть про книжки: вони не мої."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f6b3e766a007d85fd2e43767f44eadfedef009192e694ce2338c0141daace996"
+}

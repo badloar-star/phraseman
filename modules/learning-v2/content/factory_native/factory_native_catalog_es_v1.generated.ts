@@ -672,4 +672,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить несколько предметов и имя владельца через de.","uk":"поєднати кілька предметів та ім'я власника через de."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 40,
+    sourceFingerprint: "a9750b2585d8260a59ef657df6361ba417594206b16cba208588da6bf0a8790c",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать míos или mías по названию нескольких вещей.","uk":"вибрати míos або mías за назвою кількох речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

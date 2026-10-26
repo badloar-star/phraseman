@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-40:i01",
+    "correctText": "míos",
+    "correctResponseId": "es:lesson-02:session-40:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i02",
+    "correctText": "Son míos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i03",
+    "correctText": "mías",
+    "correctResponseId": "es:lesson-02:session-40:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i04",
+    "correctText": "Son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i05",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-40:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i06",
+    "correctText": "No son míos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i07",
+    "correctText": "mías",
+    "correctResponseId": "es:lesson-02:session-40:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i08",
+    "correctText": "No son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i09",
+    "correctText": "No son míos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i10",
+    "correctText": "No son míos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i11",
+    "correctText": "mío",
+    "correctResponseId": "es:lesson-02:session-40:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i12",
+    "correctText": "Es mía.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i13",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-02:session-40:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i14",
+    "correctText": "No es mío.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i15",
+    "correctText": "Son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i16",
+    "correctText": "Son mías.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i17",
+    "correctText": "Son míos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-40:i18",
+    "correctText": "No son mías.",
+    "correctResponseId": null
+  }
+]

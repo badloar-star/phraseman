@@ -1,0 +1,1057 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-40",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — книги мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i01:r1",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i01:r2",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i01:r3",
+          "text": "mías"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — книги мои",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги мои",
+          "uk": "Вставте слово — книжки мої"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-40:i01:r1",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i01:r2",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i01:r3",
+            "text": "mías"
+          }
+        ],
+        "testedDimension": "Вставьте слово — книги мои",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книги мои",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: míos.",
+              "uk": "Книжок кілька: míos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книги мои",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: míos.",
+              "uk": "Libros чоловічого роду: míos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — книги мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i02:r1",
+          "text": "Плитки: míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i02:r3",
+          "text": "mías."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — книги мои",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son míos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги мои",
+          "uk": "Зберіть фразу — книжки мої"
+        },
+        "orderedTokens": [
+          "Son",
+          "míos"
+        ],
+        "authoredDistractorTokens": [
+          "mías"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — книги мои",
+            "feedbackByLocale": {
+              "ru": "речь о libros.",
+              "uk": "йдеться про libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — чашки мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i03:r1",
+          "text": "mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i03:r2",
+          "text": "mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i03:r3",
+          "text": "míos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — чашки мои",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чашки мои",
+          "uk": "Вставте слово — чашки мої"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-40:i03:r1",
+            "text": "mías"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i03:r2",
+            "text": "mía"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i03:r3",
+            "text": "míos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — чашки мои",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чашки мои",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: mías.",
+              "uk": "Чашок кілька: mías."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чашки мои",
+            "feedbackByLocale": {
+              "ru": "Tazas женского рода: mías.",
+              "uk": "Tazas жіночого роду: mías."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чашки мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i04:r1",
+          "text": "Плитки: mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i04:r3",
+          "text": "míos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чашки мои",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son mías.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашки мои",
+          "uk": "Зберіть фразу — чашки мої"
+        },
+        "orderedTokens": [
+          "Son",
+          "mías"
+        ],
+        "authoredDistractorTokens": [
+          "míos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чашки мои",
+            "feedbackByLocale": {
+              "ru": "речь о tazas.",
+              "uk": "йдеться про tazas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько чашек мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i05:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i05:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько чашек мои",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько чашек мои",
+          "uk": "Вставте слово — кілька чашок мої"
+        },
+        "gappedTargetPhrase": "___ mías.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-40:i05:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i05:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i05:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько чашек мои",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько чашек мои",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: son.",
+              "uk": "Чашок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько чашек мои",
+            "feedbackByLocale": {
+              "ru": "Речь о чашках, не о говорящем: son.",
+              "uk": "Йдеться про чашки, не про мовця: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — книги не мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i06:r1",
+          "text": "Плитки: míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i06:r4",
+          "text": "mías."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — книги не мои",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son míos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги не мои",
+          "uk": "Зберіть фразу — книжки не мої"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "míos"
+        ],
+        "authoredDistractorTokens": [
+          "mías"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — книги не мои",
+            "feedbackByLocale": {
+              "ru": "речь о libros.",
+              "uk": "йдеться про libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — чашки не мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i07:r1",
+          "text": "mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i07:r2",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i07:r3",
+          "text": "mía"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — чашки не мои",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чашки не мои",
+          "uk": "Вставте слово — чашки не мої"
+        },
+        "gappedTargetPhrase": "No son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-40:i07:r1",
+            "text": "mías"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i07:r2",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i07:r3",
+            "text": "mía"
+          }
+        ],
+        "testedDimension": "Вставьте слово — чашки не мои",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чашки не мои",
+            "feedbackByLocale": {
+              "ru": "Tazas женского рода: mías.",
+              "uk": "Tazas жіночого роду: mías."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чашки не мои",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: mías.",
+              "uk": "Чашок кілька: mías."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чашки не мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i08:r1",
+          "text": "Плитки: mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i08:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i08:r4",
+          "text": "míos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чашки не мои",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No son mías.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашки не мои",
+          "uk": "Зберіть фразу — чашки не мої"
+        },
+        "orderedTokens": [
+          "No",
+          "son",
+          "mías"
+        ],
+        "authoredDistractorTokens": [
+          "míos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чашки не мои",
+            "feedbackByLocale": {
+              "ru": "tazas женского рода.",
+              "uk": "tazas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i09:r1",
+          "text": "Плитки: míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i09:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i09:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i09:r4",
+          "text": "mías."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-40:i09:audio",
+          "transcript": "No son míos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son míos.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "míos"
+        ],
+        "authoredDistractorTokens": [
+          "mías"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит míos.",
+              "uk": "звучить míos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — книги не мои",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-40:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — книги не мои",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-40:i10:audio",
+          "transcript": "No son míos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son míos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна книга моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i11:r1",
+          "text": "mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i11:r2",
+          "text": "míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i11:r3",
+          "text": "mía"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна книга моя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна книга моя",
+          "uk": "Вставте слово — одна книжка моя"
+        },
+        "gappedTargetPhrase": "Es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-40:i11:r1",
+            "text": "mío"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i11:r2",
+            "text": "míos"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i11:r3",
+            "text": "mía"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна книга моя",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна книга моя",
+            "feedbackByLocale": {
+              "ru": "Книга одна: mío.",
+              "uk": "Книжка одна: mío."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна книга моя",
+            "feedbackByLocale": {
+              "ru": "Libro мужского рода: mío.",
+              "uk": "Libro чоловічого роду: mío."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — одна чашка моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i12:r1",
+          "text": "Плитки: mía"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i12:r3",
+          "text": "mías."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — одна чашка моя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mía.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — одна чашка моя",
+          "uk": "Зберіть фразу — одна чашка моя"
+        },
+        "orderedTokens": [
+          "Es",
+          "mía"
+        ],
+        "authoredDistractorTokens": [
+          "mías"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — одна чашка моя",
+            "feedbackByLocale": {
+              "ru": "чашка одна.",
+              "uk": "чашка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна чашка не моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i13:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i13:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i13:r3",
+          "text": "somos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна чашка не моя",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна чашка не моя",
+          "uk": "Вставте слово — одна чашка не моя"
+        },
+        "gappedTargetPhrase": "No ___ mía.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-40:i13:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i13:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i13:r3",
+            "text": "somos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна чашка не моя",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i13:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна чашка не моя",
+            "feedbackByLocale": {
+              "ru": "Чашка одна: es.",
+              "uk": "Чашка одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-40:i13:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна чашка не моя",
+            "feedbackByLocale": {
+              "ru": "Somos относится к «мы», а речь о чашке.",
+              "uk": "Somos стосується «ми», а йдеться про чашку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — одна книга не моя",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i14:r1",
+          "text": "Плитки: mío"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i14:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i14:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i14:r4",
+          "text": "míos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — одна книга не моя",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es mío.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — одна книга не моя",
+          "uk": "Зберіть фразу — одна книжка не моя"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "mío"
+        ],
+        "authoredDistractorTokens": [
+          "míos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — одна книга не моя",
+            "feedbackByLocale": {
+              "ru": "книга одна.",
+              "uk": "книжка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i15:r1",
+          "text": "Плитки: mías"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i15:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i15:r3",
+          "text": "míos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-40:i15:audio",
+          "transcript": "Son mías."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son mías.",
+        "orderedTokens": [
+          "Son",
+          "mías"
+        ],
+        "authoredDistractorTokens": [
+          "míos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mías.",
+              "uk": "звучить mías."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чашки мои",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чашки мои",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-40:i16:audio",
+          "transcript": "Son mías."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son mías.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i17",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — снова несколько книг, они мои",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-40:i17:r1",
+          "text": "Плитки: míos"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i17:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-40:i17:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — снова несколько книг, они мои",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son míos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — снова несколько книг, они мои",
+          "uk": "Зберіть фразу — знову кілька книжок, вони мої"
+        },
+        "orderedTokens": [
+          "Son",
+          "míos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-40:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — снова несколько книг, они мои",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-40:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чашки не мои",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-40:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чашки не мои",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-40:i18:audio",
+          "transcript": "No son mías."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son mías.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "83f25df56605344f530265de1ac03c2e39607141d80fcb683bd0b85968c95585"
+}

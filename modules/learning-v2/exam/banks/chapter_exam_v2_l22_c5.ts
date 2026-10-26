@@ -33,6 +33,6 @@ export const CHAPTER_EXAM_V2_BANK_L22_C5: ChapterExamV2Bank = {
     { id: 'l22c5-13', type: 'fix', grammarPoint: 'l22c5_another', wrong: 'I need other meeting place.', accepted: ['I need another meeting place.'] },
     { id: 'l22c5-14', type: 'fix', grammarPoint: 'l22c5_other', wrong: 'We have another payment methods.', accepted: ['We have other payment methods.'] },
     { id: 'l22c5-15', type: 'fix', grammarPoint: 'l22c5_purpose', wrong: 'I read the instructions for find a solution.', accepted: ['I read the instructions to find a solution.'] },
-    { id: 'l22c5-16', type: 'fix', grammarPoint: 'l22c5_could_i', wrong: 'Could I gives an example?', accepted: ['Could I give an example?'] },
+    { id: 'l22c5-16', type: 'fix', grammarPoint: 'l22c5_could_i', wrong: 'Could I gives an example?', accepted: ['Could I give an example?', 'Can I give an example?'] },
   ],
 };

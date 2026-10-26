@@ -29,7 +29,7 @@ describe('«Новое слово» и интро', () => {
     expect(intro).toContain('<LearningV2SayCard');
     expect(intro).toContain('kicker={learningV2TaskBodyCopy(lang, "sayThis")}');
     expect(intro).toContain('chips={sayParts.parts}');
-    expect(intro).toContain('<IntroWhy text={sayParts.why} color={g.secondary} />');
+    expect(intro).toContain('<IntroWhy text={sayParts.why} color={g.secondary} glass={g} />');
     expect(intro).toContain('sx.knowledgeFlow, lv2CardStyle(g)');
   });
 });

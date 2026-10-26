@@ -1,4 +1,5 @@
 import { createDisposableAdoption } from './disposable_adoption';
+import { dismissToTabRoute } from './navigation_back';
 import { scheduleAfterRootNavigationReady } from './paywall_navigation';
 
 import { reportSwallowed, swallowError } from './debug-logger';
@@ -7,7 +8,38 @@ type NotificationRouter = {
   push: (route: any) => void;
   replace?: (route: any) => void;
   navigate?: (route: any) => void;
+  dismissTo?: (route: any) => void;
+  canGoBack?: () => boolean;
 };
+
+const LESSONS_TAB_ROUTE = '/(tabs)/lessons';
+
+/**
+ * зачем (координатор 26.10, запрет петель владельцем): тап по пушу «серия под угрозой / давно не заходил» вёл на /lessons_list —
+ * вторую копию вкладки «Уроки» поверх стека («назад» показывал список ещё раз). Теперь — сама вкладка через dismissToTabRoute
+ * (expo-router 6: dismissTo = POP_TO — на холодном старте стек = вкладки, переход внутри них; на тёплом снимает экраны поверх).
+ * Журнал [NAV-BACK] push_tap: canGoBack и способ — первый живой тап подтверждает поведение на холодном старте.
+ */
+export function openLessonsTabFromPush(router: NotificationRouter, type: string): void {
+  let canGoBack: boolean | null = null;
+  try {
+    canGoBack = typeof router.canGoBack === 'function' ? router.canGoBack() : null;
+  } catch (error: unknown) {
+    console.warn('[NAV-BACK] push_tap: canGoBack упал — переходим как обычно', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+  }
+  const dismissTo = router.dismissTo;
+  const replace = router.replace;
+  const method = dismissTo ? 'dismissTo' : replace ? 'replace' : 'push';
+  console.log('[NAV-BACK] push_tap → вкладка «Уроки»', JSON.stringify({ type, canGoBack, method })); // guard-ok: одна строка на тап
+  if (!dismissTo && !replace) {
+    router.push(LESSONS_TAB_ROUTE);
+    return;
+  }
+  dismissToTabRoute({
+    dismissTo: dismissTo ? (target: any) => dismissTo(target) : undefined,
+    replace: (target: any) => (replace ? replace(target) : router.push(target)),
+  }, LESSONS_TAB_ROUTE);
+}
 
 export type ServerPushTapRoute = Readonly<{ pathname: string; params: Record<string, string> }>;
 
@@ -113,10 +145,7 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
       case 'streak_at_risk':
       case 'inactive_return':
       case 'inactive_long':
-        scheduleNav(() => {
-          if (typeof router.replace === 'function') router.replace('/lessons_list' as any);
-          else router.push('/lessons_list' as any);
-        });
+        scheduleNav(() => openLessonsTabFromPush(router, String(data.type)));
         break;
       case 'intro_expiring':
       case 'upsell_d4':

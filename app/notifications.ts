@@ -6,6 +6,7 @@
 import { triLang, type Lang } from '../constants/i18n';
 import type { SourceLocale } from './source_locales';
 import { resolveNotificationLang } from './notification_lang';
+import { openLessonsTabFromPush } from './notification_tap_handler';
 
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -2783,13 +2784,8 @@ export const setupNotificationTapHandler = (
         case 'streak_at_risk':
         case 'inactive_return':
         case 'inactive_long':
-          scheduleNav(() => {
-            if (typeof router.replace === 'function') {
-              router.replace('/lessons_list' as any);
-            } else {
-              router.push('/lessons_list' as any);
-            }
-          });
+          // зачем (координатор 26.10): не копия вкладки /lessons_list, а сама вкладка — общий помощник с журналом [NAV-BACK]
+          scheduleNav(() => openLessonsTabFromPush(router, String(data.type)));
           break;
         case 'intro_expiring':
         case 'upsell_d4':

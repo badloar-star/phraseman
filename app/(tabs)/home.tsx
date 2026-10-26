@@ -2502,7 +2502,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições',
                     vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
                 }),
-                onPress: () => { go(isLearningV2Hidden() ? '/lessons_list' : '/learning-v2/course'); },
+                onPress: () => { if (isLearningV2Hidden()) { goToTab(1); void hapticTap(); } else go('/learning-v2/course'); }, // зачем (координатор 26.10): при скрытом V2 — сама вкладка «Уроки» (индекс 1), а не её копия /lessons_list поверх стека
             },
             {
                 key: 'dialogs',

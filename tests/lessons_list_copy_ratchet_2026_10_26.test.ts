@@ -8,12 +8,11 @@ const ROOT = path.join(__dirname, '..');
 const DIRS = ['app', 'components', 'hooks', 'modules', 'constants'];
 // оставшиеся места на 26.10 (ночь): реестр роли раздела, вход с Главной при скрытом V2, маршрут «Сегодня» при скрытом V2,
 // тап по пушу (зона уведомлений — хозяину через координатора)
+// 26.10 (Ядро, решение координатора): тап по пушу (notifications.ts, notification_tap_handler.ts) и вход «Уроки» с Главной при скрытом V2
+// ведут на саму вкладку — их строки убраны, допуск 0
 const ALLOWED: Readonly<Record<string, number>> = {
   'app/navigation_back.ts': 1,
-  'app/(tabs)/home.tsx': 1,
   'modules/today-tasks/today_tasks_view.ts': 1,
-  'app/notifications.ts': 2,
-  'app/notification_tap_handler.ts': 2,
 };
 
 const stripComments = (src: string): string =>

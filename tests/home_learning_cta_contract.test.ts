@@ -57,7 +57,9 @@ describe('home learning CTA contract', () => {
   // push-маршрут /lessons_list, заменивший убранный таб с книжкой.
   it('opens the full lessons list from the quick-start tile', () => {
     // зачем (владелец 17.10): плитка «Уроки» открывает карту V2; прежний список — только при рубильнике «V2 скрыт»
-    expect(source).toContain("onPress: () => { go(isLearningV2Hidden() ? '/lessons_list' : '/learning-v2/course'); }");
+    // перепин 26.10 (координатор, запрет петель): при скрытом V2 — сама вкладка «Уроки» (индекс 1), не копия /lessons_list поверх стека
+    expect(source).toContain("onPress: () => { if (isLearningV2Hidden()) { goToTab(1); void hapticTap(); } else go('/learning-v2/course'); }");
+    expect(source).not.toContain("go(isLearningV2Hidden() ? '/lessons_list'");
   });
 
   // зачем: владелец убрал с главной плашку «Выбрать свой план обучения» —

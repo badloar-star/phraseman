@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "отрицать качество собеседника через no eres.",
+    "uk": "заперечувати рису співрозмовника через no eres."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ты не слишком много требуешь",
+        "uk": "Ти не надто багато вимагаєш"
+      },
+      "bodyByLocale": {
+        "ru": "Друг боится показаться требовательным: он хотел только выбрать вкусный пирог. Скажите: `No eres exigente` — «Ты не требовательный». `Exigente` — «требовательный». Чтобы отрицать качество собеседника, поставьте знакомое `no` перед `eres`: `no` + `eres` + качество. Мы уже говорили `No es…`; здесь обращаемся на «ты», поэтому нужна форма `eres`.",
+        "uk": "Друг боїться здатися вимогливим: він хотів лише обрати смачний пиріг. Скажіть: `No eres exigente` — «Ти не вимогливий». `Exigente` — «вимогливий». Щоб заперечити рису співрозмовника, поставте знайоме `no` перед `eres`: `no` + `eres` + риса. Ми вже казали `No es…`; тут звертаємося на «ти», тому потрібна форма `eres`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Ты не требовательный».",
+          "uk": "Скажіть другові: «Ти не вимогливий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-11:intro1:r1",
+              "text": "No eres exigente."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro1:r2",
+              "text": "Eres exigente."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro1:r3",
+              "text": "No es exigente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-11:intro1:r1",
+              "text": "No eres exigente."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro1:r2",
+              "text": "Eres exigente."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro1:r3",
+              "text": "No es exigente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Ты не требовательный».",
+          "uk": "Скажіть другові: «Ти не вимогливий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Правила одинаковы для всех",
+        "uk": "Правила однакові для всіх"
+      },
+      "bodyByLocale": {
+        "ru": "Друг попробовал все пироги и оценивал их по одинаковым правилам. Вы говорите: `No eres injusto` — «Ты не несправедливый». `Injusto` значит «несправедливый». Здесь два разных кусочка: `injusto` называет качество, а `no` отрицает его. Соберите `no` + `eres` + `injusto`: вы не обвиняете друга, а возражаете против такой оценки.",
+        "uk": "Друг скуштував усі пироги й оцінював їх за однаковими правилами. Ви кажете: `No eres injusto` — «Ти не несправедливий». `Injusto` означає «несправедливий». Тут два різні шматочки: `injusto` називає рису, а `no` заперечує її. Складіть `no` + `eres` + `injusto`: ви не звинувачуєте друга, а заперечуєте таку оцінку."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Возразите: «Ты не несправедливый».",
+          "uk": "Заперечте: «Ти не несправедливий»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-11:intro2:r1",
+              "text": "No eres injusto."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro2:r2",
+              "text": "Eres injusto."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro2:r3",
+              "text": "No eres atento."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-11:intro2:r1",
+              "text": "No eres injusto."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro2:r2",
+              "text": "Eres injusto."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro2:r3",
+              "text": "No eres atento."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите: «Ты не несправедливый».",
+          "uk": "Заперечте: «Ти не несправедливий»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подруга волнуется о своей оценке",
+        "uk": "Подруга хвилюється через свою оцінку"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга тоже считает, что слишком многого требует от домашней выпечки. Скажите ей: `No eres exigente` — «Ты не требовательная». Слово `exigente` заканчивается на `e` и здесь одинаково для мужчины и женщины. Не меняйте его на форму с `a`. Порядок отрицания прежний: `no` перед `eres`, затем `exigente`.",
+        "uk": "Подруга теж вважає, що надто багато вимагає від домашньої випічки. Скажіть їй: `No eres exigente` — «Ти не вимоглива». Слово `exigente` закінчується на `e` і тут однакове для чоловіка та жінки. Не змінюйте його на форму з `a`. Порядок заперечення той самий: `no` перед `eres`, потім `exigente`."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите подруге: «Ты не требовательная».",
+          "uk": "Скажіть подрузі: «Ти не вимоглива»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-11:intro3:r1",
+              "text": "No eres exigente."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro3:r2",
+              "text": "No eres exigenta."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro3:r3",
+              "text": "No es exigente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-11:intro3:r1",
+              "text": "No eres exigente."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro3:r2",
+              "text": "No eres exigenta."
+            },
+            {
+              "responseId": "es:lesson-01:session-11:intro3:r3",
+              "text": "No es exigente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите подруге: «Ты не требовательная».",
+          "uk": "Скажіть подрузі: «Ти не вимоглива»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1881edf11fa6cc844d2610acd6b7c137e1789750b0eb0ee299954deeb072e7b1"
+}

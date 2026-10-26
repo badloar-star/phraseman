@@ -70,4 +70,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"обратиться к человеку на «ты» и назвать его качество через eres.","uk":"звернутися до людини на «ти» й назвати її рису через eres."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 10,
+    sourceFingerprint: "afcb4b903f22548899a40dc4c33c07f71ad607015450a54f68c5236db0c6b0f5",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"превратить фразу с eres в вопрос о качестве собеседника.","uk":"перетворити фразу з eres на запитання про рису співрозмовника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 11,
+    sourceFingerprint: "6fbf4f1cb5fa2bb5d31febc82f15e400fe04cc350f6be4de91d447abc9748fba",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать качество собеседника через no eres.","uk":"заперечувати рису співрозмовника через no eres."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

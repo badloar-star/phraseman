@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-11:i01",
+    "correctText": "exigente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i02",
+    "correctText": "No eres exigente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i03",
+    "correctText": "Ты не требовательный",
+    "correctResponseId": "es:lesson-01:session-11:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i04",
+    "correctText": "injusto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i05",
+    "correctText": "eres",
+    "correctResponseId": "es:lesson-01:session-11:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i06",
+    "correctText": "Eres injusto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i07",
+    "correctText": "No eres injusto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i08",
+    "correctText": "exigente",
+    "correctResponseId": "es:lesson-01:session-11:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i09",
+    "correctText": "No eres injusta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i10",
+    "correctText": "Ты внимательный",
+    "correctResponseId": "es:lesson-01:session-11:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i11",
+    "correctText": "No eres exigente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-11:i12",
+    "correctText": "No eres injusto.",
+    "correctResponseId": null
+  }
+]

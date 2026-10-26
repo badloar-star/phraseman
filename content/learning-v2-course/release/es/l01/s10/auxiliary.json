@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-10:intro1:r2": {
+          "ru": "Это вопрос о нём; к другу обращаемся через eres.",
+          "uk": "Це запитання про нього; до друга звертаємося через eres."
+        },
+        "es:lesson-01:session-10:intro1:r3": {
+          "ru": "Это вопрос о скорости, а не о любознательности.",
+          "uk": "Це запитання про швидкість, а не про допитливість."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-10:intro2:r2": {
+          "ru": "Это «ты щедрый?», другой вопрос.",
+          "uk": "Це «ти щедрий?», інше запитання."
+        },
+        "es:lesson-01:session-10:intro2:r3": {
+          "ru": "Для обращения на «ты» нужна форма eres.",
+          "uk": "Для звертання на «ти» потрібна форма eres."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-10:intro3:r2": {
+          "ru": "Curioso здесь относится к мужчине.",
+          "uk": "Curioso тут стосується чоловіка."
+        },
+        "es:lesson-01:session-10:intro3:r3": {
+          "ru": "Это вопрос о ней, а нужен вопрос к ней.",
+          "uk": "Це запитання про неї, а потрібне запитання до неї."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ddcc04597ba2f91494901a0963f8b63c9946b6a24756790bd7a70b50c18999fe"
+}

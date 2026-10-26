@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "превратить фразу с eres в вопрос о качестве собеседника.",
+    "uk": "перетворити фразу з eres на запитання про рису співрозмовника."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Интересно заглянуть за угол",
+        "uk": "Цікаво зазирнути за ріг"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассматривает незнакомый переулок. Хотите узнать, любит ли он узнавать новое? Спросите: `¿Eres curioso?` — «Ты любознательный?» Слово `curioso` здесь означает «любознательный». Порядок знакомый: `eres` + качество. В письме вопрос обрамляют два знака: перевёрнутый `¿` в начале и обычный `?` в конце. Дополнительное слово для вопроса не нужно. Вслух произнесите фразу с вопросительной интонацией — послушайте образец в упражнении.",
+        "uk": "Друг розглядає незнайомий провулок. Хочете дізнатися, чи любить він пізнавати нове? Запитайте: `¿Eres curioso?` — «Ти допитливий?» Слово `curioso` тут означає «допитливий». Порядок знайомий: `eres` + риса. На письмі запитання обрамляють два знаки: перевернутий `¿` на початку та звичайний `?` наприкінці. Додаткове слово для запитання не потрібне. Уголос промовте фразу з питальною інтонацією — послухайте зразок у вправі."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Ты любознательный?»",
+          "uk": "Запитайте друга: «Ти допитливий?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-10:intro1:r1",
+              "text": "¿Eres curioso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro1:r2",
+              "text": "¿Es curioso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro1:r3",
+              "text": "¿Eres rápido?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-10:intro1:r1",
+              "text": "¿Eres curioso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro1:r2",
+              "text": "¿Es curioso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro1:r3",
+              "text": "¿Eres rápido?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Ты любознательный?»",
+          "uk": "Запитайте друга: «Ти допитливий?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Привычный маршрут или маленькое приключение",
+        "uk": "Звичний маршрут чи маленька пригода"
+      },
+      "bodyByLocale": {
+        "ru": "Вы предлагаете другу свернуть с привычной дороги. `¿Eres aventurero?` — «Ты любишь приключения?» Слово `aventurero` описывает человека, которому нравятся приключения. Собираем вопрос так же: `¿` + `eres` + `aventurero` + `?`. Не нужно переводить русское «любишь» отдельным глаголом: здесь это естественный перевод качества человека.",
+        "uk": "Ви пропонуєте другові звернути зі звичної дороги. `¿Eres aventurero?` — «Ти любиш пригоди?» Слово `aventurero` описує людину, якій подобаються пригоди. Складаємо запитання так само: `¿` + `eres` + `aventurero` + `?`. Не треба перекладати українське «любиш» окремим дієсловом: тут це природний переклад риси людини."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите друга: «Ты любишь приключения?»",
+          "uk": "Запитайте друга: «Ти любиш пригоди?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-10:intro2:r1",
+              "text": "¿Eres aventurero?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro2:r2",
+              "text": "¿Eres generoso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro2:r3",
+              "text": "¿Es aventurero?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-10:intro2:r1",
+              "text": "¿Eres aventurero?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro2:r2",
+              "text": "¿Eres generoso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro2:r3",
+              "text": "¿Es aventurero?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга: «Ты любишь приключения?»",
+          "uk": "Запитайте друга: «Ти любиш пригоди?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Обращаемся к подруге",
+        "uk": "Звертаємося до подруги"
+      },
+      "bodyByLocale": {
+        "ru": "К прогулке присоединяется подруга. Теперь спросите её: `¿Eres curiosa?` — «Ты любознательная?» Вопросительная форма `eres` не меняется. Меняется окончание качества: мужчине — `curioso`, женщине — `curiosa`. У слова про приключения так же: `aventurero` и `aventurera`. Знаки вопроса не влияют на выбор окончания.",
+        "uk": "До прогулянки приєднується подруга. Тепер запитайте її: `¿Eres curiosa?` — «Ти допитлива?» Питальна форма `eres` не змінюється. Змінюється закінчення риси: чоловікові — `curioso`, жінці — `curiosa`. У слова про пригоди так само: `aventurero` та `aventurera`. Знаки питання не впливають на вибір закінчення."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите подругу: «Ты любознательная?»",
+          "uk": "Запитайте подругу: «Ти допитлива?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-10:intro3:r1",
+              "text": "¿Eres curiosa?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro3:r2",
+              "text": "¿Eres curioso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro3:r3",
+              "text": "¿Es curiosa?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-10:intro3:r1",
+              "text": "¿Eres curiosa?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro3:r2",
+              "text": "¿Eres curioso?"
+            },
+            {
+              "responseId": "es:lesson-01:session-10:intro3:r3",
+              "text": "¿Es curiosa?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите подругу: «Ты любознательная?»",
+          "uk": "Запитайте подругу: «Ти допитлива?»"
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "efaae6d5cea1a363f0c6d1d5a1c139d46726b69e61a949015854f677a8af982c"
+}

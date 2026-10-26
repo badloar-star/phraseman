@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-10:i01",
+    "correctText": "curioso",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i02",
+    "correctText": "curiosa",
+    "correctResponseId": "es:lesson-01:session-10:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i03",
+    "correctText": "Eres",
+    "correctResponseId": "es:lesson-01:session-10:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i04",
+    "correctText": "¿Eres curiosa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i05",
+    "correctText": "aventurero",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i06",
+    "correctText": "Ты любишь приключения?",
+    "correctResponseId": "es:lesson-01:session-10:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i07",
+    "correctText": "¿Eres aventurero?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i08",
+    "correctText": "¿Eres curiosa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i09",
+    "correctText": "aventurera",
+    "correctResponseId": "es:lesson-01:session-10:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i10",
+    "correctText": "¿Eres curioso?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i11",
+    "correctText": "Ты быстрая?",
+    "correctResponseId": "es:lesson-01:session-10:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i12",
+    "correctText": "¿Eres aventurero?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-10:i13",
+    "correctText": "¿Eres curioso?",
+    "correctResponseId": null
+  }
+]

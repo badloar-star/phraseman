@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-11:intro1:r2": {
+          "ru": "Без no вы называете друга требовательным.",
+          "uk": "Без no ви називаєте друга вимогливим."
+        },
+        "es:lesson-01:session-11:intro1:r3": {
+          "ru": "Это о нём, а нужно обратиться к нему через eres.",
+          "uk": "Це про нього, а треба звернутися до нього через eres."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-11:intro2:r2": {
+          "ru": "Без no получится «ты несправедливый».",
+          "uk": "Без no вийде «ти несправедливий»."
+        },
+        "es:lesson-01:session-11:intro2:r3": {
+          "ru": "Это «ты не внимательный», другая оценка.",
+          "uk": "Це «ти не уважний», інша оцінка."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-11:intro3:r2": {
+          "ru": "В этом слове не заменяем e на a: exigente.",
+          "uk": "У цьому слові не замінюємо e на a: exigente."
+        },
+        "es:lesson-01:session-11:intro3:r3": {
+          "ru": "Для обращения к подруге нужна eres.",
+          "uk": "Для звертання до подруги потрібна eres."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "97e4513897085a3136e0f5afed3202ec3c2f5f873f9bf97a5c4324396bd145f7"
+}

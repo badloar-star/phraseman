@@ -112,8 +112,9 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
       "Звук не включился — фраза написана ниже",
     listenPrompt: "Прослушай фразу и выбери её смысл",
     chooseExactPhrase: "Выбери точную фразу",
+    // зачем (координатор 26.10, находка 5 · ВХОД): обещание «не записываем и не оцениваем» было неправдой — плеер слушает микрофон и засчитывает произношение
     repeatPrivacy:
-      "Просто повтори вслух — голос не записываем и не оцениваем",
+      "Просто повтори вслух",
     builtPhrase: "Собранная фраза",
     tapWords: "Нажимай слова по порядку",
     repeatWithoutGrade: "Продолжить без оценки голоса",
@@ -220,7 +221,7 @@ const copies: Readonly<Record<Lang, SessionCopy>> = {
     listenPrompt: "Listen to the phrase and choose its meaning",
     chooseExactPhrase: "Choose the exact phrase",
     repeatPrivacy:
-      "Practice repeat · your voice isn't recorded or graded",
+      "Just say it out loud",
     builtPhrase: "Built phrase",
     tapWords: "Tap the words in order",
     repeatWithoutGrade: "Continue without grading your voice",
@@ -667,13 +668,13 @@ function makeCopy(
       "Wybierz dokładną frazę",
     ),
     repeatPrivacy: phrase(
-      "Просто повтори вголос — голос не записуємо й не оцінюємо",
-      "Repetición de práctica · tu voz no se graba ni se evalúa",
-      "Repetição de treino · sua voz não é gravada nem avaliada",
-      "Luyện lặp lại · giọng nói không được ghi hoặc chấm",
-      "Latihan mengulang · suara tidak direkam atau dinilai",
-      "Alıştırma tekrarı · ses kaydedilmez veya değerlendirilmez",
-      "Powtórka ćwiczeniowa · głos nie jest nagrywany ani oceniany",
+      "Просто повтори вголос",
+      "Solo dilo en voz alta",
+      "É só falar em voz alta",
+      "Chỉ cần nói thành tiếng",
+      "Ucapkan saja dengan lantang",
+      "Sadece sesli söyle",
+      "Po prostu powiedz to na głos",
     ),
     builtPhrase: phrase(
       "Складена фраза",

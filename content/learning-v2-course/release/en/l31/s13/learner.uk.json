@@ -1,0 +1,1048 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-13",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — shirt",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — shirt",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i01:audio",
+          "transcript": "shirt"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-13:i01:r1",
+            "targetText": "shirt",
+            "meaningByLocale": {
+              "ru": "Рубашка. Повторение знакомого слова.",
+              "uk": "Сорочка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "shirt",
+          "definitionByLocale": {
+            "ru": "Рубашка. Повторение знакомого слова.",
+            "uk": "Сорочка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i02:r1",
+          "text": "The shirt isn't dry, is it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i02:r2",
+          "text": "The shirt isn't clean, is it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i02:r3",
+          "text": "The shirt isn't blue, is it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i02:audio",
+          "transcript": "The shirt isn't dry, is it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-13:i02:r1",
+            "targetText": "The shirt isn't dry, is it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i02:r2",
+            "targetText": "The shirt isn't clean, is it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i02:r3",
+            "targetText": "The shirt isn't blue, is it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shirt isn't dry, is it?",
+              "uk": "У записі звучить The shirt isn't dry, is it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The shirt isn't dry, is it?",
+              "uk": "У записі звучить The shirt isn't dry, is it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Сорочка не суха. Додайте стверджувальне уточнення про неї.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i03:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i03:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i03:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Сорочка не суха. Додайте стверджувальне уточнення про неї.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Рубашка не сухая. Добавьте утвердительное уточнение о ней.",
+          "uk": "Сорочка не суха. Додайте стверджувальне уточнення про неї."
+        },
+        "gappedTargetPhrase": "The shirt isn't dry, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-13:i03:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i03:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i03:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Сорочка не суха. Додайте стверджувальне уточнення про неї.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i03:r2",
+            "correct": false,
+            "testedDimension": "Сорочка не суха. Додайте стверджувальне уточнення про неї.",
+            "feedbackByLocale": {
+              "ru": "Одна shirt требует is.",
+              "uk": "Одна shirt потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i03:r3",
+            "correct": false,
+            "testedDimension": "Сорочка не суха. Додайте стверджувальне уточнення про неї.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — machine",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — machine",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i04:audio",
+          "transcript": "machine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-13:i04:r1",
+            "targetText": "machine",
+            "meaningByLocale": {
+              "ru": "Машина. Повторение знакомого слова.",
+              "uk": "Машина. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "machine",
+          "definitionByLocale": {
+            "ru": "Машина. Повторение знакомого слова.",
+            "uk": "Машина. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте Анну, чи знає вона, коли машина закінчить прання.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте Анну, чи знає вона, коли машина закінчить прання.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know when the machine finishes?",
+        "localizedMeaning": {
+          "ru": "Спросите Анну, знает ли она, когда машина закончит стирку.",
+          "uk": "Запитайте Анну, чи знає вона, коли машина закінчить прання."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "when",
+          "the",
+          "machine",
+          "finishes"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна випрала сорочку. Почніть із сорочки.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i06:audio"
+      ],
+      "accessibilityLabel": "Анна випрала сорочку. Почніть із сорочки.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i06:audio",
+          "transcript": "The shirt was washed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The shirt was washed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Анна сказала: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i07:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i07:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i07:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Анна сказала: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.",
+          "uk": "Учора Анна сказала: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "She said she ___ help.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-13:i07:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i07:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i07:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Учора Анна сказала: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг.",
+              "uk": "Needs не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Анна сказала: «Мені потрібна допомога». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма needed.",
+              "uk": "Потрібна форма needed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — basket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — basket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i08:audio",
+          "transcript": "basket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-13:i08:r1",
+            "targetText": "basket",
+            "meaningByLocale": {
+              "ru": "Корзина. Повторение знакомого слова.",
+              "uk": "Кошик. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "basket",
+          "definitionByLocale": {
+            "ru": "Корзина. Повторение знакомого слова.",
+            "uk": "Кошик. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Ввічливо запитайте, де кошик.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Ввічливо запитайте, де кошик.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the basket is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где корзина.",
+          "uk": "Ввічливо запитайте, де кошик."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "basket",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Кошик повний. Додайте заперечне уточнення про нього.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Кошик повний. Додайте заперечне уточнення про нього.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i10:audio",
+          "transcript": "The basket is full, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The basket is full, isn't it?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна випрала сорочку. Виберіть прийменник перед її ім’ям.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна випрала сорочку. Виберіть прийменник перед її ім’ям.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна выстирала рубашку. Выберите предлог перед её именем.",
+          "uk": "Анна випрала сорочку. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The shirt was washed ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-13:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна випрала сорочку. Виберіть прийменник перед її ім’ям.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна випрала сорочку. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна випрала сорочку. Виберіть прийменник перед її ім’ям.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — clothes",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — clothes",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i12:audio",
+          "transcript": "clothes"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-13:i12:r1",
+            "targetText": "clothes",
+            "meaningByLocale": {
+              "ru": "Одежда. Повторение знакомого слова.",
+              "uk": "Одяг. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "clothes",
+          "definitionByLocale": {
+            "ru": "Одежда. Повторение знакомого слова.",
+            "uk": "Одяг. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i13:r1",
+          "text": "Do you know if the clothes are dry?"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i13:r2",
+          "text": "Do you know if the towels are dry?"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i13:r3",
+          "text": "Do you know if the shoes are dry?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i13:audio",
+          "transcript": "Do you know if the clothes are dry?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-13:i13:r1",
+            "targetText": "Do you know if the clothes are dry?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i13:r2",
+            "targetText": "Do you know if the towels are dry?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i13:r3",
+            "targetText": "Do you know if the shoes are dry?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the clothes are dry?",
+              "uk": "У записі звучить Do you know if the clothes are dry?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит Do you know if the clothes are dry?",
+              "uk": "У записі звучить Do you know if the clothes are dry?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Одяг чистий». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Одяг чистий». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i14:audio",
+          "transcript": "She said the clothes were clean."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the clothes were clean.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Машина шумна. Додайте заперечне уточнення про неї.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Машина шумна. Додайте заперечне уточнення про неї.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The machine is noisy, isn't it?",
+        "localizedMeaning": {
+          "ru": "Машина шумная. Добавьте отрицательное уточнение о ней.",
+          "uk": "Машина шумна. Додайте заперечне уточнення про неї."
+        },
+        "orderedTokens": [
+          "The",
+          "machine",
+          "is",
+          "noisy,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте Анну, чи знає вона, де одяг.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i16:r1",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i16:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i16:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте Анну, чи знає вона, де одяг.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите Анну, знает ли она, где одежда.",
+          "uk": "Запитайте Анну, чи знає вона, де одяг."
+        },
+        "gappedTargetPhrase": "Do you know where the clothes ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-13:i16:r1",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i16:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i16:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Запитайте Анну, чи знає вона, де одяг.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте Анну, чи знає вона, де одяг.",
+            "feedbackByLocale": {
+              "ru": "Английское clothes требует are.",
+              "uk": "Англійське clothes потребує are."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте Анну, чи знає вона, де одяг.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма are.",
+              "uk": "Потрібна форма are."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна відчинила вікно. Почніть із вікна.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i17:audio"
+      ],
+      "accessibilityLabel": "Анна відчинила вікно. Почніть із вікна.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i17:audio",
+          "transcript": "The window was opened by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The window was opened by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: Анна уточнює, кошик повний чи порожній?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i18:r1",
+          "text": "The basket is empty, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i18:r2",
+          "text": "The basket is full, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i18:audioA",
+        "en:lesson-31:session-13:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: Анна уточнює, кошик повний чи порожній?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The basket is empty, isn't it?",
+        "contrastB": "The basket is full, isn't it?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-13:i18:audioA",
+          "transcript": "The basket is empty, isn't it?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-13:i18:audioB",
+          "transcript": "The basket is full, isn't it?"
+        },
+        "testedPhoneticContrast": "Послухайте: Анна уточнює, кошик повний чи порожній?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: Анна уточнює, кошик повний чи порожній?",
+            "feedbackByLocale": {
+              "ru": "Звучит empty — пустая.",
+              "uk": "Звучить empty — порожній."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про сорочку.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про сорочку.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i19:audio",
+          "transcript": "Do you know if the shirt is dry?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the shirt is dry?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "shirt",
+          "is",
+          "dry"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте, чи знає Анна, коли машина закінчить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-13:i20:r1",
+          "text": "finishes"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i20:r2",
+          "text": "finish"
+        },
+        {
+          "responseId": "en:lesson-31:session-13:i20:r3",
+          "text": "finishing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте, чи знає Анна, коли машина закінчить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите, знает ли Анна, когда машина закончит.",
+          "uk": "Запитайте, чи знає Анна, коли машина закінчить."
+        },
+        "gappedTargetPhrase": "Do you know when the machine ___?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-13:i20:r1",
+            "text": "finishes"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i20:r2",
+            "text": "finish"
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i20:r3",
+            "text": "finishing"
+          }
+        ],
+        "testedDimension": "Запитайте, чи знає Анна, коли машина закінчить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-13:i20:r2",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає Анна, коли машина закінчить.",
+            "feedbackByLocale": {
+              "ru": "С the machine нужна форма finishes.",
+              "uk": "З the machine потрібна форма finishes."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-13:i20:r3",
+            "correct": false,
+            "testedDimension": "Запитайте, чи знає Анна, коли машина закінчить.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма finishes.",
+              "uk": "Потрібна форма finishes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-13:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Анна сказала: «Кошик повний». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-13:i21:audio"
+      ],
+      "accessibilityLabel": "Учора Анна сказала: «Кошик повний». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-13:i21:audio",
+          "transcript": "She said the basket was full."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the basket was full.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ce4263458512eb6b358598827fba942c1f7a0ee9f019cd7b943d6ad8c4269510"
+}

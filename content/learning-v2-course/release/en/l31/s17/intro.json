@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "после know и understand добавлять часть с that, where или why, сохраняя порядок утверждения.",
+    "uk": "після know і understand додавати частину з that, where або why, зберігаючи порядок твердження."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, что она занята",
+        "uk": "Я знаю, що вона зайнята"
+      },
+      "bodyByLocale": {
+        "ru": "Друг хочет позвонить Анне, но вы знаете, что она сейчас занята. Скажите: I know that she is busy — я знаю, что она занята. Соберите I know + that + she + is busy. That соединяет «я знаю» с тем, что именно вы знаете. После that остаётся обычный порядок she is busy.",
+        "uk": "Друг хоче зателефонувати Анні, але ви знаєте, що вона зараз зайнята. Скажіть: I know that she is busy — я знаю, що вона зайнята. Складіть I know + that + she + is busy. That поєднує «я знаю» з тим, що саме ви знаєте. Після that залишається звичайний порядок she is busy."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-17:intro1:r1",
+              "text": "I know that she is busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro1:r2",
+              "text": "I know that is she busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro1:r3",
+              "text": "I know that she are busy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-17:intro1:r1",
+              "text": "I know that she is busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro1:r2",
+              "text": "I know that is she busy."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro1:r3",
+              "text": "I know that she are busy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Я знаю, где ключи",
+        "uk": "Я знаю, де ключі"
+      },
+      "bodyByLocale": {
+        "ru": "Анна ищет свои ключи, а вы видели их на столе. Скажите: I know where the keys are — я знаю, где ключи. Соберите I know + where + the keys + are. Часть после where сообщает, какое место вам известно. Здесь это не отдельный вопрос: the keys ставим перед are.",
+        "uk": "Анна шукає свої ключі, а ви бачили їх на столі. Скажіть: I know where the keys are — я знаю, де ключі. Складіть I know + where + the keys + are. Частина після where повідомляє, яке місце вам відоме. Тут це не окреме запитання: the keys ставимо перед are."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-17:intro2:r1",
+              "text": "I know where the keys are."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro2:r2",
+              "text": "I know where are the keys."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro2:r3",
+              "text": "I know where the keys is."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-17:intro2:r1",
+              "text": "I know where the keys are."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro2:r2",
+              "text": "I know where are the keys."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro2:r3",
+              "text": "I know where the keys is."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Я понимаю, почему она ушла",
+        "uk": "Я розумію, чому вона пішла"
+      },
+      "bodyByLocale": {
+        "ru": "Вчера Анна ушла пораньше, потому что дома её ждал ребёнок. Вы знаете причину и говорите другу: I understand why she left — я понимаю, почему она ушла. Соберите I understand + why + she + left. Why вводит причину, которую вы понимаете. После why сохраняем she left, без did и без перестановки.",
+        "uk": "Учора Анна пішла раніше, бо вдома на неї чекала дитина. Ви знаєте причину й кажете другові: I understand why she left — я розумію, чому вона пішла. Складіть I understand + why + she + left. Why вводить причину, яку ви розумієте. Після why зберігаємо she left, без did і без перестановки."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-17:intro3:r1",
+              "text": "I understand why she left."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro3:r2",
+              "text": "I understand why did she leave."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro3:r3",
+              "text": "I understand why she leaving."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-17:intro3:r1",
+              "text": "I understand why she left."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro3:r2",
+              "text": "I understand why did she leave."
+            },
+            {
+              "responseId": "en:lesson-31:session-17:intro3:r3",
+              "text": "I understand why she leaving."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "80749c8061cb057e642872e0bd19e991f9253409286ba4e8c8272c1782d56392"
+}

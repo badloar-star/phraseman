@@ -1,0 +1,1045 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-18",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coat",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coat",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i01:audio",
+          "transcript": "coat"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-18:i01:r1",
+            "targetText": "coat",
+            "meaningByLocale": {
+              "ru": "Пальто. Повторение знакомого слова.",
+              "uk": "Пальто. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coat",
+          "definitionByLocale": {
+            "ru": "Пальто. Повторение знакомого слова.",
+            "uk": "Пальто. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i02:r1",
+          "text": "I know where the coat is."
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i02:r2",
+          "text": "I know where the bag is."
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i02:r3",
+          "text": "I know where the hat is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i02:audio",
+          "transcript": "I know where the coat is."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-18:i02:r1",
+            "targetText": "I know where the coat is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i02:r2",
+            "targetText": "I know where the bag is.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i02:r3",
+            "targetText": "I know where the hat is.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the coat is.",
+              "uk": "У записі звучить I know where the coat is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит I know where the coat is.",
+              "uk": "У записі звучить I know where the coat is."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы знаете, где пальто. Завершите утверждение.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i03:r1",
+          "text": "the coat is"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i03:r2",
+          "text": "is the coat"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i03:r3",
+          "text": "the coat are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы знаете, где пальто. Завершите утверждение.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы знаете, где пальто. Завершите утверждение.",
+          "uk": "Ви знаєте, де пальто. Завершіть твердження."
+        },
+        "gappedTargetPhrase": "I know where ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-18:i03:r1",
+            "text": "the coat is"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i03:r2",
+            "text": "is the coat"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i03:r3",
+            "text": "the coat are"
+          }
+        ],
+        "testedDimension": "Вы знаете, где пальто. Завершите утверждение.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы знаете, где пальто. Завершите утверждение.",
+            "feedbackByLocale": {
+              "ru": "После where порядок the coat is.",
+              "uk": "Після where порядок the coat is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы знаете, где пальто. Завершите утверждение.",
+            "feedbackByLocale": {
+              "ru": "Один coat требует is.",
+              "uk": "Один coat потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gloves",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gloves",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i04:audio",
+          "transcript": "gloves"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-18:i04:r1",
+            "targetText": "gloves",
+            "meaningByLocale": {
+              "ru": "Перчатки. Повторение знакомого слова.",
+              "uk": "Рукавички. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gloves",
+          "definitionByLocale": {
+            "ru": "Перчатки. Повторение знакомого слова.",
+            "uk": "Рукавички. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Перчатки Анны тёплые. Обратитесь к ней с отрицательным уточнением.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Перчатки Анны тёплые. Обратитесь к ней с отрицательным уточнением.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Your gloves are warm, aren't they?",
+        "localizedMeaning": {
+          "ru": "Перчатки Анны тёплые. Обратитесь к ней с отрицательным уточнением.",
+          "uk": "Рукавички Анни теплі. Зверніться до неї із заперечним уточненням."
+        },
+        "orderedTokens": [
+          "Your",
+          "gloves",
+          "are",
+          "warm,",
+          "aren't",
+          "they"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна выстирала пальто. Начните с пальто.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i06:audio"
+      ],
+      "accessibilityLabel": "Анна выстирала пальто. Начните с пальто.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i06:audio",
+          "transcript": "The coat was washed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The coat was washed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вчера Анна сказала: «Пальто мокрое». Перескажите со сдвигом is в прошлое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i07:r1",
+          "text": "was"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i07:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i07:r3",
+          "text": "be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вчера Анна сказала: «Пальто мокрое». Перескажите со сдвигом is в прошлое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Анна сказала: «Пальто мокрое». Перескажите со сдвигом is в прошлое.",
+          "uk": "Учора Анна сказала: «Пальто мокре». Перекажіть зі зсувом is у минуле."
+        },
+        "gappedTargetPhrase": "She said the coat ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-18:i07:r1",
+            "text": "was"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i07:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i07:r3",
+            "text": "be"
+          }
+        ],
+        "testedDimension": "Вчера Анна сказала: «Пальто мокрое». Перескажите со сдвигом is в прошлое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i07:r2",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Пальто мокрое». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Is не выполняет заданный сдвиг.",
+              "uk": "Is не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i07:r3",
+            "correct": false,
+            "testedDimension": "Вчера Анна сказала: «Пальто мокрое». Перескажите со сдвигом is в прошлое.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма was.",
+              "uk": "Потрібна форма was."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — scarf",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i08:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — scarf",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i08:audio",
+          "transcript": "scarf"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-18:i08:r1",
+            "targetText": "scarf",
+            "meaningByLocale": {
+              "ru": "Шарф. Повторение знакомого слова.",
+              "uk": "Шарф. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "scarf",
+          "definitionByLocale": {
+            "ru": "Шарф. Повторение знакомого слова.",
+            "uk": "Шарф. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вежливо спросите, где шарф.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вежливо спросите, где шарф.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Could you tell me where the scarf is?",
+        "localizedMeaning": {
+          "ru": "Вежливо спросите, где шарф.",
+          "uk": "Ввічливо запитайте, де шарф."
+        },
+        "orderedTokens": [
+          "Could",
+          "you",
+          "tell",
+          "me",
+          "where",
+          "the",
+          "scarf",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что Анне нужен шарф. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что Анне нужен шарф. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i10:audio",
+          "transcript": "I know that she needs a scarf."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that she needs a scarf.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Анна выстирала пальто. Выберите предлог перед её именем.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна выстирала пальто. Выберите предлог перед её именем.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Анна выстирала пальто. Выберите предлог перед её именем.",
+          "uk": "Анна випрала пальто. Виберіть прийменник перед її ім’ям."
+        },
+        "gappedTargetPhrase": "The coat was washed ___ Anna.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-18:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Анна выстирала пальто. Выберите предлог перед её именем.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i11:r2",
+            "correct": false,
+            "testedDimension": "Анна выстирала пальто. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i11:r3",
+            "correct": false,
+            "testedDimension": "Анна выстирала пальто. Выберите предлог перед её именем.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — door",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — door",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i12:audio",
+          "transcript": "door"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-18:i12:r1",
+            "targetText": "door",
+            "meaningByLocale": {
+              "ru": "Дверь. Повторение знакомого слова.",
+              "uk": "Двері. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "door",
+          "definitionByLocale": {
+            "ru": "Дверь. Повторение знакомого слова.",
+            "uk": "Двері. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i13:r1",
+          "text": "The door is closed, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i13:r2",
+          "text": "The door is open, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i13:r3",
+          "text": "The door is locked, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i13:audio",
+          "transcript": "The door is closed, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-18:i13:r1",
+            "targetText": "The door is closed, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i13:r2",
+            "targetText": "The door is open, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i13:r3",
+            "targetText": "The door is locked, isn't it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The door is closed, isn't it?",
+              "uk": "У записі звучить The door is closed, isn't it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The door is closed, isn't it?",
+              "uk": "У записі звучить The door is closed, isn't it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вчера Анна сказала: «Перчатки сухие». Перескажите со сдвигом are в прошлое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i14:audio"
+      ],
+      "accessibilityLabel": "Вчера Анна сказала: «Перчатки сухие». Перескажите со сдвигом are в прошлое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i14:audio",
+          "transcript": "She said the gloves were dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "She said the gloves were dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы понимаете, почему Анне холодно. Скажите это.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы понимаете, почему Анне холодно. Скажите это.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I understand why she is cold.",
+        "localizedMeaning": {
+          "ru": "Вы понимаете, почему Анне холодно. Скажите это.",
+          "uk": "Ви розумієте, чому Анні холодно. Скажіть це."
+        },
+        "orderedTokens": [
+          "I",
+          "understand",
+          "why",
+          "she",
+          "is",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Спросите Анну, знает ли она, сухое ли пальто.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i16:r1",
+          "text": "the coat is"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i16:r2",
+          "text": "is the coat"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i16:r3",
+          "text": "the coat are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Спросите Анну, знает ли она, сухое ли пальто.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите Анну, знает ли она, сухое ли пальто.",
+          "uk": "Запитайте Анну, чи знає вона, чи сухе пальто."
+        },
+        "gappedTargetPhrase": "Do you know if ___ dry?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-18:i16:r1",
+            "text": "the coat is"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i16:r2",
+            "text": "is the coat"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i16:r3",
+            "text": "the coat are"
+          }
+        ],
+        "testedDimension": "Спросите Анну, знает ли она, сухое ли пальто.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i16:r2",
+            "correct": false,
+            "testedDimension": "Спросите Анну, знает ли она, сухое ли пальто.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the coat is.",
+              "uk": "Після if порядок the coat is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i16:r3",
+            "correct": false,
+            "testedDimension": "Спросите Анну, знает ли она, сухое ли пальто.",
+            "feedbackByLocale": {
+              "ru": "Один coat требует is.",
+              "uk": "Один coat потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна закрыла дверь. Начните с двери.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i17:audio"
+      ],
+      "accessibilityLabel": "Анна закрыла дверь. Начните с двери.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i17:audio",
+          "transcript": "The door was closed by Anna."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The door was closed by Anna.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: говорящий знает, где шарф или пальто?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i18:r1",
+          "text": "I know where the scarf is."
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i18:r2",
+          "text": "I know where the coat is."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i18:audioA",
+        "en:lesson-31:session-18:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: говорящий знает, где шарф или пальто?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "I know where the scarf is.",
+        "contrastB": "I know where the coat is.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-18:i18:audioA",
+          "transcript": "I know where the scarf is."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-18:i18:audioB",
+          "transcript": "I know where the coat is."
+        },
+        "testedPhoneticContrast": "Послушайте: говорящий знает, где шарф или пальто?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: говорящий знает, где шарф или пальто?",
+            "feedbackByLocale": {
+              "ru": "Звучит scarf — шарф.",
+              "uk": "Звучить scarf — шарф."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте утверждение о перчатках.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте утверждение о перчатках.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i19:audio",
+          "transcript": "I know where the gloves are."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I know where the gloves are.",
+        "orderedTokens": [
+          "I",
+          "know",
+          "where",
+          "the",
+          "gloves",
+          "are"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пальто не сухое. Добавьте утвердительное уточнение о нём.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-18:i20:r1",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i20:r2",
+          "text": "are"
+        },
+        {
+          "responseId": "en:lesson-31:session-18:i20:r3",
+          "text": "does"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пальто не сухое. Добавьте утвердительное уточнение о нём.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пальто не сухое. Добавьте утвердительное уточнение о нём.",
+          "uk": "Пальто не сухе. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The coat isn't dry, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-18:i20:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i20:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i20:r3",
+            "text": "does"
+          }
+        ],
+        "testedDimension": "Пальто не сухое. Добавьте утвердительное уточнение о нём.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-18:i20:r2",
+            "correct": false,
+            "testedDimension": "Пальто не сухое. Добавьте утвердительное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Один coat требует is.",
+              "uk": "Один coat потребує is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-18:i20:r3",
+            "correct": false,
+            "testedDimension": "Пальто не сухое. Добавьте утвердительное уточнение о нём.",
+            "feedbackByLocale": {
+              "ru": "Берём is из isn’t.",
+              "uk": "Беремо is із isn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-18:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы знаете, что Анна готова. Скажите это другу.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-18:i21:audio"
+      ],
+      "accessibilityLabel": "Вы знаете, что Анна готова. Скажите это другу.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-18:i21:audio",
+          "transcript": "I know that she is ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I know that she is ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ae6325f4cf6a20d09b73a7571bb9a6ccaf7c38fb22a7076c1748cf6545d506fe"
+}

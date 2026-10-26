@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-31:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "говорить об известных фактах, спрашивать о вещах и пересказывать подготовку.",
+    "uk": "говорити про відомі факти, запитувати про речі й переказувати підготовку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-31:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Я знаю, что торт готов",
+        "uk": "Я знаю, що торт готовий"
+      },
+      "bodyByLocale": {
+        "ru": "Вы помогаете Анне готовить день рождения. Друг спрашивает о торте, и вы уверены, что он готов. Скажите: I know that the cake is ready — я знаю, что торт готов. Соберите I know + that + the cake + is ready. That соединяет «я знаю» с известным фактом; после него обычный порядок the cake is ready.",
+        "uk": "Ви допомагаєте Анні готувати день народження. Друг запитує про торт, і ви впевнені, що він готовий. Скажіть: I know that the cake is ready — я знаю, що торт готовий. Складіть I know + that + the cake + is ready. That поєднує «я знаю» з відомим фактом; після нього звичайний порядок the cake is ready."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-19:intro1:r1",
+              "text": "I know that the cake is ready."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro1:r2",
+              "text": "I know that is the cake ready."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro1:r3",
+              "text": "I know that the cake are ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-19:intro1:r1",
+              "text": "I know that the cake is ready."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro1:r2",
+              "text": "I know that is the cake ready."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro1:r3",
+              "text": "I know that the cake are ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-31:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Где свечи",
+        "uk": "Де свічки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите поставить свечи на торт. Спросите Анну: Could you tell me where the candles are? — не подскажешь, где свечи? Соберите Could you tell me + where + the candles + are. После where называем the candles перед are. Свечей несколько, поэтому are.",
+        "uk": "Ви хочете поставити свічки на торт. Запитайте Анну: Could you tell me where the candles are? — не підкажеш, де свічки? Складіть Could you tell me + where + the candles + are. Після where називаємо the candles перед are. Свічок кілька, тому are."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-19:intro2:r1",
+              "text": "Could you tell me where the candles are?"
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro2:r2",
+              "text": "Could you tell me where are the candles?"
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro2:r3",
+              "text": "Could you tell me where the candles is?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-19:intro2:r1",
+              "text": "Could you tell me where the candles are?"
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro2:r2",
+              "text": "Could you tell me where are the candles?"
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro2:r3",
+              "text": "Could you tell me where the candles is?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-31:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Кто завернул подарок",
+        "uk": "Хто загорнув подарунок"
+      },
+      "bodyByLocale": {
+        "ru": "Анна завернула подарок в бумагу. Начните рассказ с подарка: The gift was wrapped by Anna — подарок завернула Анна. Соберите The gift + was + wrapped + by Anna. Was wrapped описывает действие над подарком, а by Anna называет исполнителя.",
+        "uk": "Анна загорнула подарунок у папір. Почніть розповідь із подарунка: The gift was wrapped by Anna — подарунок загорнула Анна. Складіть The gift + was + wrapped + by Anna. Was wrapped описує дію над подарунком, а by Anna називає виконавця."
+      },
+      "question": {
+        "interactionId": "en:lesson-31:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-31:session-19:intro3:r1",
+              "text": "The gift was wrapped by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro3:r2",
+              "text": "The gift was wrap by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro3:r3",
+              "text": "The gift were wrapped by Anna."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-31:session-19:intro3:r1",
+              "text": "The gift was wrapped by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro3:r2",
+              "text": "The gift was wrap by Anna."
+            },
+            {
+              "responseId": "en:lesson-31:session-19:intro3:r3",
+              "text": "The gift were wrapped by Anna."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "72cb20210d85f609f8a4f2b6d4cd8d7adada88473f788f3d0e088522be3dd4ea"
+}

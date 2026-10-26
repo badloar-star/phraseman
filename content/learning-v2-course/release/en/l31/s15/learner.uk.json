@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-31:session-15",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-31:session-15:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — brake",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — brake",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i01:audio",
+          "transcript": "brake"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-15:i01:r1",
+            "targetText": "brake",
+            "meaningByLocale": {
+              "ru": "Тормоз. Повторение знакомого слова.",
+              "uk": "Гальмо. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "brake",
+          "definitionByLocale": {
+            "ru": "Тормоз. Повторение знакомого слова.",
+            "uk": "Гальмо. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i02:r1",
+          "text": "The brake doesn't work, does it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i02:r2",
+          "text": "The pump doesn't work, does it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i02:r3",
+          "text": "The light doesn't work, does it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i02:audio",
+          "transcript": "The brake doesn't work, does it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-15:i02:r1",
+            "targetText": "The brake doesn't work, does it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i02:r2",
+            "targetText": "The pump doesn't work, does it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i02:r3",
+            "targetText": "The light doesn't work, does it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brake doesn't work, does it?",
+              "uk": "У записі звучить The brake doesn't work, does it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i02:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The brake doesn't work, does it?",
+              "uk": "У записі звучить The brake doesn't work, does it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Гальмо не працює. Додайте стверджувальне уточнення про нього.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i03:r1",
+          "text": "does"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i03:r2",
+          "text": "do"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i03:r3",
+          "text": "is"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Гальмо не працює. Додайте стверджувальне уточнення про нього.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Тормоз не работает. Добавьте утвердительное уточнение о нём.",
+          "uk": "Гальмо не працює. Додайте стверджувальне уточнення про нього."
+        },
+        "gappedTargetPhrase": "The brake doesn't work, ___ it?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-15:i03:r1",
+            "text": "does"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i03:r2",
+            "text": "do"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i03:r3",
+            "text": "is"
+          }
+        ],
+        "testedDimension": "Гальмо не працює. Додайте стверджувальне уточнення про нього.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i03:r2",
+            "correct": false,
+            "testedDimension": "Гальмо не працює. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "С the brake здесь нужен does.",
+              "uk": "З the brake тут потрібен does."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i03:r3",
+            "correct": false,
+            "testedDimension": "Гальмо не працює. Додайте стверджувальне уточнення про нього.",
+            "feedbackByLocale": {
+              "ru": "Берём does из doesn’t.",
+              "uk": "Беремо does із doesn’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — pump",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i04:audio"
+      ],
+      "accessibilityLabel": "Картка слова — pump",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i04:audio",
+          "transcript": "pump"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-15:i04:r1",
+            "targetText": "pump",
+            "meaningByLocale": {
+              "ru": "Насос. Повторение знакомого слова.",
+              "uk": "Насос. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "pump",
+          "definitionByLocale": {
+            "ru": "Насос. Повторение знакомого слова.",
+            "uk": "Насос. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Запитайте Бена, чи знає він, де насос.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте Бена, чи знає він, де насос.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Do you know where the pump is?",
+        "localizedMeaning": {
+          "ru": "Спросите Бена, знает ли он, где насос.",
+          "uk": "Запитайте Бена, чи знає він, де насос."
+        },
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "where",
+          "the",
+          "pump",
+          "is"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен полагодив гальмо. Почніть із гальма.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i06:audio"
+      ],
+      "accessibilityLabel": "Бен полагодив гальмо. Почніть із гальма.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i06:audio",
+          "transcript": "The brake was fixed by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The brake was fixed by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Учора Бен сказав: «Мені потрібен насос». Перекажіть зі зсувом need у минуле.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i07:r1",
+          "text": "needed"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i07:r2",
+          "text": "needs"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i07:r3",
+          "text": "needing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Учора Бен сказав: «Мені потрібен насос». Перекажіть зі зсувом need у минуле.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вчера Бен сказал: «Мне нужен насос». Перескажите со сдвигом need в прошлое.",
+          "uk": "Учора Бен сказав: «Мені потрібен насос». Перекажіть зі зсувом need у минуле."
+        },
+        "gappedTargetPhrase": "He said he ___ the pump.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-15:i07:r1",
+            "text": "needed"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i07:r2",
+            "text": "needs"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i07:r3",
+            "text": "needing"
+          }
+        ],
+        "testedDimension": "Учора Бен сказав: «Мені потрібен насос». Перекажіть зі зсувом need у минуле.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i07:r2",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Мені потрібен насос». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Needs не выполняет заданный сдвиг.",
+              "uk": "Needs не виконує заданий зсув."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i07:r3",
+            "correct": false,
+            "testedDimension": "Учора Бен сказав: «Мені потрібен насос». Перекажіть зі зсувом need у минуле.",
+            "feedbackByLocale": {
+              "ru": "Нужна форма needed.",
+              "uk": "Потрібна форма needed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — bike",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — bike",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i08:audio",
+          "transcript": "bike"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-15:i08:r1",
+            "targetText": "bike",
+            "meaningByLocale": {
+              "ru": "Велосипед. Повторение знакомого слова.",
+              "uk": "Велосипед. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bike",
+          "definitionByLocale": {
+            "ru": "Велосипед. Повторение знакомого слова.",
+            "uk": "Велосипед. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Велосипед готовий. Додайте заперечне уточнення про нього.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Велосипед готовий. Додайте заперечне уточнення про нього.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bike is ready, isn't it?",
+        "localizedMeaning": {
+          "ru": "Велосипед готов. Добавьте отрицательное уточнение о нём.",
+          "uk": "Велосипед готовий. Додайте заперечне уточнення про нього."
+        },
+        "orderedTokens": [
+          "The",
+          "bike",
+          "is",
+          "ready,",
+          "isn't",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Ввічливо запитайте Бена, де велосипед.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i10:audio"
+      ],
+      "accessibilityLabel": "Ввічливо запитайте Бена, де велосипед.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i10:audio",
+          "transcript": "Could you tell me where the bike is?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Could you tell me where the bike is?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен полагодив гальмо. Виберіть прийменник перед ім’ям виконавця.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i11:r1",
+          "text": "by"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i11:r2",
+          "text": "at"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i11:r3",
+          "text": "to"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен полагодив гальмо. Виберіть прийменник перед ім’ям виконавця.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен починил тормоз. Выберите предлог перед именем исполнителя.",
+          "uk": "Бен полагодив гальмо. Виберіть прийменник перед ім’ям виконавця."
+        },
+        "gappedTargetPhrase": "The brake was fixed ___ Ben.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-15:i11:r1",
+            "text": "by"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i11:r2",
+            "text": "at"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i11:r3",
+            "text": "to"
+          }
+        ],
+        "testedDimension": "Бен полагодив гальмо. Виберіть прийменник перед ім’ям виконавця.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i11:r2",
+            "correct": false,
+            "testedDimension": "Бен полагодив гальмо. Виберіть прийменник перед ім’ям виконавця.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i11:r3",
+            "correct": false,
+            "testedDimension": "Бен полагодив гальмо. Виберіть прийменник перед ім’ям виконавця.",
+            "feedbackByLocale": {
+              "ru": "Исполнителя вводим через by.",
+              "uk": "Виконавця вводимо через by."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — wheel",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i12:audio"
+      ],
+      "accessibilityLabel": "Картка слова — wheel",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i12:audio",
+          "transcript": "wheel"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-15:i12:r1",
+            "targetText": "wheel",
+            "meaningByLocale": {
+              "ru": "Колесо. Повторение знакомого слова.",
+              "uk": "Колесо. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "wheel",
+          "definitionByLocale": {
+            "ru": "Колесо. Повторение знакомого слова.",
+            "uk": "Колесо. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i13:r1",
+          "text": "The wheel is dirty, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i13:r2",
+          "text": "The wheel is wet, isn't it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i13:r3",
+          "text": "The wheel is new, isn't it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i13:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i13:audio",
+          "transcript": "The wheel is dirty, isn't it?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-31:session-15:i13:r1",
+            "targetText": "The wheel is dirty, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i13:r2",
+            "targetText": "The wheel is wet, isn't it?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i13:r3",
+            "targetText": "The wheel is new, isn't it?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i13:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The wheel is dirty, isn't it?",
+              "uk": "У записі звучить The wheel is dirty, isn't it?"
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i13:r3",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The wheel is dirty, isn't it?",
+              "uk": "У записі звучить The wheel is dirty, isn't it?"
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Бен сказав: «Велосипед готовий». Перекажіть зі зсувом is у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i14:audio"
+      ],
+      "accessibilityLabel": "Учора Бен сказав: «Велосипед готовий». Перекажіть зі зсувом is у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i14:audio",
+          "transcript": "He said the bike was ready."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the bike was ready.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Насос не працює. Додайте стверджувальне уточнення про нього.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Насос не працює. Додайте стверджувальне уточнення про нього.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The pump doesn't work, does it?",
+        "localizedMeaning": {
+          "ru": "Насос не работает. Добавьте утвердительное уточнение о нём.",
+          "uk": "Насос не працює. Додайте стверджувальне уточнення про нього."
+        },
+        "orderedTokens": [
+          "The",
+          "pump",
+          "doesn't",
+          "work,",
+          "does",
+          "it"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Запитайте Бена, чи знає він, чи готовий велосипед.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i16:r1",
+          "text": "the bike is"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i16:r2",
+          "text": "is the bike"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i16:r3",
+          "text": "the bike are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Запитайте Бена, чи знає він, чи готовий велосипед.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Спросите Бена, знает ли он, готов ли велосипед.",
+          "uk": "Запитайте Бена, чи знає він, чи готовий велосипед."
+        },
+        "gappedTargetPhrase": "Do you know if ___ ready?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-15:i16:r1",
+            "text": "the bike is"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i16:r2",
+            "text": "is the bike"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i16:r3",
+            "text": "the bike are"
+          }
+        ],
+        "testedDimension": "Запитайте Бена, чи знає він, чи готовий велосипед.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i16:r2",
+            "correct": false,
+            "testedDimension": "Запитайте Бена, чи знає він, чи готовий велосипед.",
+            "feedbackByLocale": {
+              "ru": "После if порядок the bike is.",
+              "uk": "Після if порядок the bike is."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i16:r3",
+            "correct": false,
+            "testedDimension": "Запитайте Бена, чи знає він, чи готовий велосипед.",
+            "feedbackByLocale": {
+              "ru": "Один bike требует is.",
+              "uk": "Один bike потребує is."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Бен вимив колесо. Почніть із колеса.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i17:audio"
+      ],
+      "accessibilityLabel": "Бен вимив колесо. Почніть із колеса.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i17:audio",
+          "transcript": "The wheel was cleaned by Ben."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The wheel was cleaned by Ben.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте: Бен уточнює, не працює насос чи гальмо?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i18:r1",
+          "text": "The pump doesn't work, does it?"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i18:r2",
+          "text": "The brake doesn't work, does it?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i18:audioA",
+        "en:lesson-31:session-15:i18:audioB"
+      ],
+      "accessibilityLabel": "Послухайте: Бен уточнює, не працює насос чи гальмо?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The pump doesn't work, does it?",
+        "contrastB": "The brake doesn't work, does it?",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-31:session-15:i18:audioA",
+          "transcript": "The pump doesn't work, does it?"
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-31:session-15:i18:audioB",
+          "transcript": "The brake doesn't work, does it?"
+        },
+        "testedPhoneticContrast": "Послухайте: Бен уточнює, не працює насос чи гальмо?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i18:r2",
+            "correct": false,
+            "testedDimension": "Послухайте: Бен уточнює, не працює насос чи гальмо?",
+            "feedbackByLocale": {
+              "ru": "Звучит pump — насос.",
+              "uk": "Звучить pump — насос."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте запитання про колесо.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i19:audio"
+      ],
+      "accessibilityLabel": "Послухайте запитання про колесо.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i19:audio",
+          "transcript": "Do you know if the wheel is clean?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Do you know if the wheel is clean?",
+        "orderedTokens": [
+          "Do",
+          "you",
+          "know",
+          "if",
+          "the",
+          "wheel",
+          "is",
+          "clean"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Бен готовий до поїздки. Зверніться до нього й додайте заперечне уточнення.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-31:session-15:i20:r1",
+          "text": "aren't"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i20:r2",
+          "text": "isn't"
+        },
+        {
+          "responseId": "en:lesson-31:session-15:i20:r3",
+          "text": "doesn't"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Бен готовий до поїздки. Зверніться до нього й додайте заперечне уточнення.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Бен готов к поездке. Обратитесь к нему и добавьте отрицательное уточнение.",
+          "uk": "Бен готовий до поїздки. Зверніться до нього й додайте заперечне уточнення."
+        },
+        "gappedTargetPhrase": "You're ready, ___ you?",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-31:session-15:i20:r1",
+            "text": "aren't"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i20:r2",
+            "text": "isn't"
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i20:r3",
+            "text": "doesn't"
+          }
+        ],
+        "testedDimension": "Бен готовий до поїздки. Зверніться до нього й додайте заперечне уточнення.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-31:session-15:i20:r2",
+            "correct": false,
+            "testedDimension": "Бен готовий до поїздки. Зверніться до нього й додайте заперечне уточнення.",
+            "feedbackByLocale": {
+              "ru": "You are требует aren’t.",
+              "uk": "You are потребує aren’t."
+            }
+          },
+          {
+            "responseId": "en:lesson-31:session-15:i20:r3",
+            "correct": false,
+            "testedDimension": "Бен готовий до поїздки. Зверніться до нього й додайте заперечне уточнення.",
+            "feedbackByLocale": {
+              "ru": "В основной части are, поэтому aren’t.",
+              "uk": "В основній частині are, тому aren’t."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-31:session-15:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Учора Бен сказав: «Колеса брудні». Перекажіть зі зсувом are у минуле.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-31:session-15:i21:audio"
+      ],
+      "accessibilityLabel": "Учора Бен сказав: «Колеса брудні». Перекажіть зі зсувом are у минуле.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-31:session-15:i21:audio",
+          "transcript": "He said the wheels were dirty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "He said the wheels were dirty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a6ffe7866e70c9cb8c0557e0c7aa5a357b53ec3faa7cf225cbed2ab90234d926"
+}

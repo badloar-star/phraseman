@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-31:session-20",
+  "entries": [
+    {
+      "interactionId": "en:lesson-31:session-20:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-20:intro1:r2": {
+          "ru": "После where порядок the bread is.",
+          "uk": "Після where порядок the bread is."
+        },
+        "en:lesson-31:session-20:intro1:r3": {
+          "ru": "Bread здесь требует is.",
+          "uk": "Bread тут потребує is."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-20:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-20:intro2:r2": {
+          "ru": "С are здесь нужно aren’t.",
+          "uk": "З are тут потрібно aren’t."
+        },
+        "en:lesson-31:session-20:intro2:r3": {
+          "ru": "Множественное eggs заменяем на they.",
+          "uk": "Множину eggs замінюємо на they."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-31:session-20:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-31:session-20:intro3:r2": {
+          "ru": "После why порядок the shop is closed.",
+          "uk": "Після why порядок the shop is closed."
+        },
+        "en:lesson-31:session-20:intro3:r3": {
+          "ru": "Один shop требует is.",
+          "uk": "Один shop потребує is."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "26592239bdd5e1552849309a22428ccb03f14805c08a263edfd01aacc9b910b0"
+}

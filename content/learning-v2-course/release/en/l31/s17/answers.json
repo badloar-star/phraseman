@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-31:session-17:i01",
+    "correctText": "busy",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i02",
+    "correctText": "I know that she is busy.",
+    "correctResponseId": "en:lesson-31:session-17:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i03",
+    "correctText": "she is",
+    "correctResponseId": "en:lesson-31:session-17:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i04",
+    "correctText": "keys",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i05",
+    "correctText": "I know where the keys are.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i06",
+    "correctText": "I understand why she left.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i07",
+    "correctText": "the keys are",
+    "correctResponseId": "en:lesson-31:session-17:i07:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i08",
+    "correctText": "bag",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i09",
+    "correctText": "I know where the bag is.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i10",
+    "correctText": "I know that the keys are in the bag.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i11",
+    "correctText": "why",
+    "correctResponseId": "en:lesson-31:session-17:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i12",
+    "correctText": "home",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i13",
+    "correctText": "I understand why she went home.",
+    "correctResponseId": "en:lesson-31:session-17:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i14",
+    "correctText": "I don't know where the keys are.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i15",
+    "correctText": "I understand why she is busy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i16",
+    "correctText": "is",
+    "correctResponseId": "en:lesson-31:session-17:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i17",
+    "correctText": "I know that the bag is heavy.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i18",
+    "correctText": "I know where the bag is.",
+    "correctResponseId": "en:lesson-31:session-17:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i19",
+    "correctText": "I understand why she went home.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i20",
+    "correctText": "she left",
+    "correctResponseId": "en:lesson-31:session-17:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-31:session-17:i21",
+    "correctText": "I know that she needs help.",
+    "correctResponseId": null
+  }
+]

@@ -51,7 +51,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { loadSettings } from './settings_edu';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
-import { safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
@@ -3199,10 +3199,10 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         coinsGained={practiceRunes.runes}
         errors={runErrorsRef.current}
         primaryLabel={pickTriLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To the lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' })}
-        onPrimary={() => safeRouterBack(router, '/lessons_list')}
+        onPrimary={() => safeRouterBack(router, '/(tabs)/lessons')}
         secondaryLabel={pickTriLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Again', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Lần nữa', id: 'Sekali lagi', tr: 'Bir daha', pl: 'Jeszcze raz' })}
         onSecondary={() => { fk.tap(); setPracticeRepeatConfirm(true); }}
-        onClose={() => safeRouterBack(router, '/lessons_list')}
+        onClose={() => safeRouterBack(router, '/(tabs)/lessons')}
       />
       <ThemedConfirmModal
         visible={practiceRepeatConfirm}
@@ -3661,7 +3661,7 @@ function LessonWords() {
         return true;
       }
       if (androidBackInterceptRef.current?.()) return true;
-      safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any);
+      safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
       return true;
     });
     return () => sub.remove();
@@ -3726,7 +3726,7 @@ function LessonWords() {
   }, [lessonId, storageKey]);
 
   const trainingOwnsHeader = !frenchVocabularyBlocked && !frenchRemoteWordsLoading && tab !== 'list' && wordProgressReady;
-  const goBackToLesson = () => { hapticTap(); safeRouterBack(router, { pathname: '/lessons_list', params: { id: String(lessonId) } } as any); };
+  const goBackToLesson = () => { hapticTap(); safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any); };
   return (
     <ScreenGradient>
     <View style={{ flex:1, paddingTop: insets.top }}>
@@ -3752,7 +3752,7 @@ function LessonWords() {
         {frenchVocabularyBlocked ? (
           <FrenchVocabularyUnavailable
             lang={lang}
-            onBack={() => router.replace({ pathname: '/lessons_list', params: { id: String(lessonId) } } as any)}
+            onBack={() => dismissToTabRoute(router, '/(tabs)/lessons')}
           />
         ) : frenchRemoteWordsLoading ? (
           <View testID="lesson-words-french-remote-loading" style={{ flex:1 }}>

@@ -325,14 +325,15 @@ export default function PrivacySettings() {
                   tr: 'Şu an kullanım verisi gönderilmiyor. Kararlılık için teknik çökme toplama sürüyor.',
                   pl: 'Teraz dane o użytkowaniu nie są wysyłane. Zbieranie awarii technicznych dla stabilności trwa.',
                 }) : L({
-                  ru: 'Обезличенные данные о том, как проходит обучение. Не обязательно — приложение работает и без этого. Сбор сбоев для стабильности продолжается всегда.',
-                  uk: 'Знеособлені дані про те, як проходить навчання. Не обов’язково — застосунок працює і без цього. Збір збоїв для стабільності триває завжди.', en: "Anonymous data about how your learning goes. Optional — the app works without it. Crash reports for stability are always collected.",
-                  es: 'Datos despersonalizados sobre cómo avanza el aprendizaje. No es obligatorio: la app funciona sin esto. La recolección de fallos para la estabilidad continúa siempre.',
-                  'pt-BR': 'Dados despersonalizados sobre como o aprendizado avança. Não é obrigatório: o app funciona sem isso. A coleta de falhas para estabilidade continua sempre.',
-                  vi: 'Dữ liệu ẩn danh về việc học diễn ra thế nào. Không bắt buộc — ứng dụng vẫn chạy. Việc thu thập sự cố để ổn định luôn tiếp tục.',
-                  id: 'Data anonim tentang bagaimana proses belajar. Tidak wajib — aplikasi tetap jalan. Pengumpulan crash untuk stabilitas selalu berjalan.',
-                  tr: 'Öğrenmenin nasıl ilerlediğine dair kimliksiz veriler. Zorunlu değil — uygulama bunsuz da çalışır. Kararlılık için çökme toplama her zaman sürer.',
-                  pl: 'Zanonimizowane dane o przebiegu nauki. Nie jest to wymagane — aplikacja działa bez tego. Zbieranie awarii dla stabilności trwa zawsze.',
+                  // зачем (5 · ВХОД e20b47676, координатор 26.10, Переводчик c7465f2d0): «обезличенные» было неправдой — данные привязаны к аккаунту.
+                  ru: 'Данные о том, как проходит обучение, — привязаны к аккаунту и не продаются. Не обязательно: приложение работает и без этого. Сбор сбоев для стабильности продолжается всегда.',
+                  uk: 'Дані про те, як проходить навчання, — прив’язані до акаунта й не продаються. Не обов’язково: застосунок працює і без цього. Збір збоїв для стабільності триває завжди.', en: 'Data about how your learning goes — tied to your account and never sold. Optional: the app works without it. Crash reports for stability are always collected.',
+                  es: 'Datos sobre cómo avanza tu aprendizaje: vinculados a tu cuenta y nunca se venden. No es obligatorio: la app funciona sin esto. La recolección de fallos para la estabilidad continúa siempre.',
+                  'pt-BR': 'Dados sobre como seu aprendizado avança — ligados à sua conta e nunca vendidos. Não é obrigatório: o app funciona sem isso. A coleta de falhas para estabilidade continua sempre.',
+                  vi: 'Dữ liệu về việc học của bạn — gắn với tài khoản và không bán cho ai. Không bắt buộc: ứng dụng vẫn chạy. Việc thu thập sự cố để ổn định luôn tiếp tục.',
+                  id: 'Data tentang proses belajarmu — terhubung ke akun dan tidak dijual. Tidak wajib: aplikasi tetap jalan. Pengumpulan crash untuk stabilitas selalu berjalan.',
+                  tr: 'Öğrenmenin nasıl ilerlediğine dair veriler — hesabına bağlıdır ve satılmaz. Zorunlu değil: uygulama bunsuz da çalışır. Kararlılık için çökme toplama her zaman sürer.',
+                  pl: 'Dane o przebiegu nauki — powiązane z kontem i nie są sprzedawane. Nie jest to wymagane: aplikacja działa bez tego. Zbieranie awarii dla stabilności trwa zawsze.',
                 })}
               </Text>
             </View>
@@ -385,14 +386,15 @@ export default function PrivacySettings() {
               <PlateFill g={glass} radius={14} />
               <Text style={{ color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', flexShrink: 1 }}>
                 {L({
-                  ru: 'Каждая функция работает только после отдельного согласия. В зависимости от функции в OpenAI отправляется текст или речь. Выключено — новые запросы не отправляются.',
-                  uk: 'Кожна функція працює лише після окремої згоди. Залежно від функції до OpenAI надсилається текст або мовлення. Вимкнено — нові запити не надсилаються.', en: "Each feature works only after separate consent. Depending on the feature, text or speech is sent to OpenAI. Turned off — no new requests are sent.",
-                  es: 'Cada función requiere un consentimiento separado. Según la función, se envía texto o voz a OpenAI. Al desactivarla, no se envían solicitudes nuevas.',
-                  'pt-BR': 'Cada função exige um consentimento separado. Conforme a função, texto ou voz é enviado à OpenAI. Desativada, nenhuma nova solicitação é enviada.',
-                  vi: 'Mỗi tính năng cần sự đồng ý riêng. Tùy tính năng, văn bản hoặc giọng nói được gửi tới OpenAI. Khi tắt, không có yêu cầu mới nào được gửi.',
-                  id: 'Setiap fitur memerlukan persetujuan terpisah. Tergantung fiturnya, teks atau suara dikirim ke OpenAI. Saat dimatikan, tidak ada permintaan baru yang dikirim.',
-                  tr: 'Her özellik ayrı onay gerektirir. Özelliğe göre OpenAI\'ye metin veya konuşma gönderilir. Kapatıldığında yeni istek gönderilmez.',
-                  pl: 'Każda funkcja wymaga osobnej zgody. Zależnie od funkcji do OpenAI trafia tekst lub mowa. Po wyłączeniu nowe żądania nie są wysyłane.',
+                  // зачем (5 · ВХОД e20b47676, координатор 26.10, Переводчик c7465f2d0): «текст или речь» было неправдой — речь в OpenAI не уходит.
+                  ru: 'Каждая функция работает только после отдельного согласия. В OpenAI отправляется текст. Выключено — новые запросы не отправляются.',
+                  uk: 'Кожна функція працює лише після окремої згоди. До OpenAI надсилається текст. Вимкнено — нові запити не надсилаються.', en: 'Each feature works only after separate consent. Text is sent to OpenAI. Turned off — no new requests are sent.',
+                  es: 'Cada función requiere un consentimiento separado. A OpenAI se envía texto. Al desactivarla, no se envían solicitudes nuevas.',
+                  'pt-BR': 'Cada função exige um consentimento separado. Para a OpenAI é enviado texto. Desativada, nenhuma nova solicitação é enviada.',
+                  vi: 'Mỗi tính năng cần sự đồng ý riêng. Văn bản được gửi tới OpenAI. Khi tắt, không có yêu cầu mới nào được gửi.',
+                  id: 'Setiap fitur memerlukan persetujuan terpisah. Yang dikirim ke OpenAI adalah teks. Saat dimatikan, tidak ada permintaan baru yang dikirim.',
+                  tr: 'Her özellik ayrı onay gerektirir. OpenAI\'ye metin gönderilir. Kapatıldığında yeni istek gönderilmez.',
+                  pl: 'Każda funkcja działa dopiero po osobnej zgodzie. Do OpenAI trafia tekst. Wyłączone — nowe zapytania nie są wysyłane.',
                 })}
               </Text>
             </View>

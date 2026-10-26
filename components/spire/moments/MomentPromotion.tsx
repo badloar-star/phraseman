@@ -167,6 +167,8 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
   const hasLadder = (rows?.length ?? 0) > 0;
   const [phase, setPhase] = useState<Phase>(reduceMotion ? PHASE_END : hasLadder ? PHASE_START : { ...PHASE_START, act: 2 });
   const [rowH, setRowH] = useState(FALLBACK_ROW_H);
+  // зачем (№12): один стабильный обработчик замера первой строки — новая стрелка на каждом рендере ломала memo у LadderRow #0
+  const onFirstRowLayout = useCallback((e: LayoutChangeEvent) => setRowH(Math.round(e.nativeEvent.layout.height)), []);
   const [fire, setFire] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const rumble = useMomentRumble();
@@ -211,7 +213,8 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
         fn();
       }, plan));
     };
-    if (hasLadder) at(T.flicker, () => setPhase((v) => ({ ...v })));
+    // зачем (координатор 26.10, аудит скорости Моментов №12): метка T.flicker больше не перерисовывает окно — мерцание строк включено
+    // с первого кадра (`flicker` у LadderRow всегда true), а пустой setPhase({...v}) лишь пересобирал весь момент на 300 мс.
     if (hasLadder) at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zoneTop.value = withTiming((rowH + ROW_GAP) * TOP5 - 3, { duration: ZONE_SWEEP_MS, easing: Easing.out(Easing.cubic) }); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
     if (hasLadder) at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });
     at(T.act2, () => { setPhase((v) => ({ ...v, act: 2, cheer: true })); playMomentSound(MOMENT_SOUND_EVENTS.promoCorrect); void hapticSuccess(); });
@@ -283,7 +286,7 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
                   flicker
                   rise={phase.topLine && row.isMe}
                   metric={metric}
-                  onFirstLayout={i === 0 ? (e) => setRowH(Math.round(e.nativeEvent.layout.height)) : undefined}
+                  onFirstLayout={i === 0 ? onFirstRowLayout : undefined}
                   testID={`${testID}-row-${i}`}
                 />
               ))}

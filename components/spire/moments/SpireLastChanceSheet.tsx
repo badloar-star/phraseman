@@ -23,6 +23,47 @@ import { positionClockHms, positionMomentText } from './position_moment_strings'
 
 const GAP_MARK = '\u0001';
 
+/**
+ * Живое «сейчас» раз в секунду — только пока шторка открыта, экран в фокусе и приложение активно.
+ * зачем (координатор 26.10, аудит скорости Моментов №13): раньше интервал жил в самой шторке и раз в секунду перерисовывал её целиком
+ * (KitSheetModal, шапку, прокрутку, кнопку), хотя меняются только два времени. Теперь «сейчас» держат листья — часы и строка тела.
+ */
+function useLiveNow(active: boolean): number {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    if (!active) return undefined;
+    setNow(Date.now());
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [active]);
+  return now;
+}
+
+const LastChanceClock = memo(function LastChanceClock({ weekEndsAtMs, active, color, testID }: { weekEndsAtMs: number; active: boolean; color: string; testID: string }) {
+  const now = useLiveNow(active);
+  const text = positionClockHms(weekEndsAtMs - now);
+  return <Text style={[s.clock, { color }]} accessibilityLabel={text} testID={testID}>{text}</Text>;
+});
+
+type BodyProps = Readonly<{ lang: Lang; energyReadyAtMs: number; gapCoins?: number; gapSteps?: number; active: boolean; textColor: string; secondaryColor: string; testID: string }>;
+const LastChanceBody = memo(function LastChanceBody({ lang, energyReadyAtMs, gapCoins, gapSteps, active, textColor, secondaryColor, testID }: BodyProps) {
+  const now = useLiveNow(active);
+  const energyClock = spireClock(Math.max(0, energyReadyAtMs - now));
+  const [before, after] = positionMomentText(lang, 'lastBody', { gap: GAP_MARK, t: energyClock }).split(GAP_MARK);
+  const body = gapCoins === undefined && gapSteps === undefined ? spireGameText(lang, 'energyIn', { t: energyClock }) : null;
+  return (
+    <Text style={[s.p, { color: secondaryColor }]} testID={testID}>
+      {body ?? (
+        <>
+          {before}
+          <Text style={[s.bold, { color: textColor }]}>{gapSteps !== undefined ? positionMomentText(lang, 'gapSteps', { steps: gapSteps }) : positionMomentText(lang, 'gapCoins', { n: gapCoins ?? 0 })}</Text>
+          {after ?? ''}
+        </>
+      )}
+    </Text>
+  );
+});
+
 export type SpireLastChanceSheetProps = Readonly<{
   lang: Lang;
   visible: boolean;
@@ -44,17 +85,9 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const runtimeActive = useRuntimeActive(visible);
-  const [now, setNow] = useState(() => Date.now());
+  const live = visible && runtimeActive;
   // зачем (координатор 14.10): Plus ведёт ТОЛЬКО через общий пейвол (D115) — onPlus родитель открывает сам; здесь тап срабатывает один раз на показ шторки
   const fire = useFireOnce('LAST-CHANCE', visible);
-
-  // живой отсчёт: раз в секунду, только пока шторка открыта, экран в фокусе и приложение активно
-  useEffect(() => {
-    if (!visible || !runtimeActive) return undefined;
-    setNow(Date.now());
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, [visible, runtimeActive]);
 
   useEffect(() => {
     if (!visible) return;
@@ -63,10 +96,6 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
     void hapticTap();
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: показ один раз на открытие
   }, [visible]);
-
-  const energyClock = spireClock(Math.max(0, energyReadyAtMs - now));
-  const [before, after] = positionMomentText(lang, 'lastBody', { gap: GAP_MARK, t: energyClock }).split(GAP_MARK);
-  const body = gapCoins === undefined && gapSteps === undefined ? spireGameText(lang, 'energyIn', { t: energyClock }) : null;
 
   return (
     <KitSheetModal
@@ -77,21 +106,13 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
       header={(
         <View style={s.head}>
           <Text style={[s.ov, { color: p.textSecondary }]}>{positionMomentText(lang, 'lastOver').toUpperCase()}</Text>{/* зачем (Сверка Макетов r1): эталон .ov — var(--sc), серый, без акцента */}
-          <Text style={[s.clock, { color: p.text }]} accessibilityLabel={positionClockHms(weekEndsAtMs - now)} testID={`${testID}-clock`}>{positionClockHms(weekEndsAtMs - now)}</Text>
+          <LastChanceClock weekEndsAtMs={weekEndsAtMs} active={live} color={p.text} testID={`${testID}-clock`} />
         </View>
       )}
     >
       {/* зачем (координатор 18.10, проверка выпуска, шрифт 1,3): шторка ограничена 90 % высоты и обрезает лишнее — на тесном экране тело прокручивается, а не теряет нижнюю кнопку */}
       <ScrollView decelerationRate="fast" bounces={false} showsVerticalScrollIndicator={false} style={{ marginHorizontal: -18 }} contentContainerStyle={{ paddingHorizontal: 18, paddingBottom: 8 }}>{/* поля шторки (18) внутри прокрутки — тени плашки и кнопки не срезаются краем */}
-        <Text style={[s.p, { color: p.textSecondary }]} testID={`${testID}-body`}>
-          {body ?? (
-            <>
-              {before}
-              <Text style={[s.bold, { color: p.text }]}>{gapSteps !== undefined ? positionMomentText(lang, 'gapSteps', { steps: gapSteps }) : positionMomentText(lang, 'gapCoins', { n: gapCoins ?? 0 })}</Text>
-              {after ?? ''}
-            </>
-          )}
-        </Text>
+        <LastChanceBody lang={lang} energyReadyAtMs={energyReadyAtMs} gapCoins={gapCoins} gapSteps={gapSteps} active={live} textColor={p.text} secondaryColor={p.textSecondary} testID={`${testID}-body`} />
         {/* зачем (Макеты 18.10, lastchance_open: «Энергия вернётся через 9:32» в тексте и неактивная кнопка «Энергия через 9:32» — дубль,
             кнопка должна быть действием): время энергии — только в тексте; единственное действие шторки — «Играй без ожидания с Plus». */}
         <View style={s.cta}>

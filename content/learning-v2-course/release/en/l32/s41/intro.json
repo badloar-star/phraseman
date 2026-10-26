@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-32:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "объяснять предположение, отвергать невозможный вариант и уточнять предмет.",
+    "uk": "пояснювати припущення, відкидати неможливий варіант і уточнювати предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-32:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наблюдение и возможность",
+        "uk": "Спостереження й можливість"
+      },
+      "bodyByLocale": {
+        "ru": "Вы видите, как нужный автобус медленно движется в пробке. Неясно, успеет ли он по расписанию. The bus is slow, so it might be late. — Автобус едет медленно, поэтому он, возможно, опоздает. Соберите The bus is slow + so + it might be late. До so назовите наблюдение, после so — возможный вывод с might. Перед состоянием late нужна связка be.",
+        "uk": "Ви бачите, як потрібний автобус повільно рухається в заторі. Невідомо, чи встигне він за розкладом. The bus is slow, so it might be late. — Автобус їде повільно, тому він, можливо, запізниться. Складіть The bus is slow + so + it might be late. До so назвіть спостереження, після so — можливий висновок із might. Перед станом late потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-41:intro1:r1",
+              "text": "The bus is slow, so it might be late."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro1:r2",
+              "text": "The bus is slow, so it might is late."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro1:r3",
+              "text": "The bus is slow, so it might to be late."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-41:intro1:r1",
+              "text": "The bus is slow, so it might be late."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro1:r2",
+              "text": "The bus is slow, so it might is late."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro1:r3",
+              "text": "The bus is slow, so it might to be late."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-32:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Этот вариант исключён",
+        "uk": "Цей варіант виключений"
+      },
+      "bodyByLocale": {
+        "ru": "Анна думает, что место у окна свободно, но вы видите сидящего там пассажира. The seat can't be empty. — Сиденье не может быть свободным. Соберите The seat + can’t + be + empty. Наблюдение исключает названное состояние. Can’t выражает этот вывод; перед empty здесь нужна связка be.",
+        "uk": "Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. The seat can't be empty. — Сидіння не може бути вільним. Складіть The seat + can’t + be + empty. Спостереження виключає названий стан. Can’t виражає цей висновок; перед empty тут потрібна зв’язка be."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-41:intro2:r1",
+              "text": "The seat can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro2:r2",
+              "text": "The seat can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro2:r3",
+              "text": "The seat can't to be empty."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-41:intro2:r1",
+              "text": "The seat can't be empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro2:r2",
+              "text": "The seat can't is empty."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro2:r3",
+              "text": "The seat can't to be empty."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-32:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточняем предмет",
+        "uk": "Уточнюємо предмет"
+      },
+      "bodyByLocale": {
+        "ru": "Вы показываете Анне предмет и уточняете своё действие с ним: The ticket I bought is cheap. — Билет, который я купил, дешёвый. Соберите The ticket + I bought + is cheap. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие.",
+        "uk": "Ви показуєте Анні предмет й уточнюєте свою дію з ним: The ticket I bought is cheap. — Квиток, який я купив, дешевий. Складіть The ticket + I bought + is cheap. Частина I bought уточнює ticket. That можна опустити: I вже називає того, хто виконав дію."
+      },
+      "question": {
+        "interactionId": "en:lesson-32:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-32:session-41:intro3:r1",
+              "text": "The ticket I bought is cheap."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro3:r2",
+              "text": "The ticket I bought it is cheap."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro3:r3",
+              "text": "The ticket I buying is cheap."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-32:session-41:intro3:r1",
+              "text": "The ticket I bought is cheap."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro3:r2",
+              "text": "The ticket I bought it is cheap."
+            },
+            {
+              "responseId": "en:lesson-32:session-41:intro3:r3",
+              "text": "The ticket I buying is cheap."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите фразу для этой ситуации.",
+          "uk": "Виберіть фразу для цієї ситуації."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f0a178f48126ab043ab63b9a12a5c45af0765e3187eed73bf0af0245f215dad8"
+}

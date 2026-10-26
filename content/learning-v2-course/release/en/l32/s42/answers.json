@@ -1,0 +1,107 @@
+[
+  {
+    "interactionId": "en:lesson-32:session-42:i01",
+    "correctText": "window",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i02",
+    "correctText": "The window is wet, so it might be cold.",
+    "correctResponseId": "en:lesson-32:session-42:i02:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i03",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-42:i03:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i04",
+    "correctText": "bed",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i05",
+    "correctText": "The bed can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i06",
+    "correctText": "blanket",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i07",
+    "correctText": "The blanket I washed is dry.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i08",
+    "correctText": "washed",
+    "correctResponseId": "en:lesson-32:session-42:i08:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i09",
+    "correctText": "The window is wet, so it might be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i10",
+    "correctText": "It can’t be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i11",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-42:i11:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i12",
+    "correctText": "room",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i13",
+    "correctText": "The room must be warm.",
+    "correctResponseId": "en:lesson-32:session-42:i13:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i14",
+    "correctText": "The room must be warm.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i15",
+    "correctText": "This is the blanket I washed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i16",
+    "correctText": "so",
+    "correctResponseId": "en:lesson-32:session-42:i16:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i17",
+    "correctText": "The window is wet, so it might be cold.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i18",
+    "correctText": "The window is wet, so it might be cold.",
+    "correctResponseId": "en:lesson-32:session-42:i18:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i19",
+    "correctText": "The bed can't be empty.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i20",
+    "correctText": "be",
+    "correctResponseId": "en:lesson-32:session-42:i20:r1"
+  },
+  {
+    "interactionId": "en:lesson-32:session-42:i21",
+    "correctText": "The window is wet, so it could be cold.",
+    "correctResponseId": null
+  }
+]

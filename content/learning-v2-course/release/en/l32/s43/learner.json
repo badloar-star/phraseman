@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-43",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-43:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — grass",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — grass",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i01:audio",
+          "transcript": "grass"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-43:i01:r1",
+            "targetText": "grass",
+            "meaningByLocale": {
+              "ru": "Трава. Повторение знакомого слова.",
+              "uk": "Трава. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "grass",
+          "definitionByLocale": {
+            "ru": "Трава. Повторение знакомого слова.",
+            "uk": "Трава. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i02:r1",
+          "text": "The grass is long, so it might be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i02:r2",
+          "text": "The grass is long, so it must be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i02:r3",
+          "text": "The grass is long, so it can't be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i02:audio",
+          "transcript": "The grass is long, so it might be wet."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-43:i02:r1",
+            "targetText": "The grass is long, so it might be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i02:r2",
+            "targetText": "The grass is long, so it must be wet.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i02:r3",
+            "targetText": "The grass is long, so it can't be wet.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The grass is long, so it might be wet.",
+              "uk": "У записі звучить The grass is long, so it might be wet."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The grass is long, so it might be wet.",
+              "uk": "У записі звучить The grass is long, so it might be wet."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая.",
+          "uk": "Уранці висока трава часто зберігає росу. Ви ще не заходили на газон. Трава висока, тому вона, можливо, мокра."
+        },
+        "gappedTargetPhrase": "The grass is long, so it might ___ wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-43:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i03:r2",
+            "correct": false,
+            "testedDimension": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i03:r3",
+            "correct": false,
+            "testedDimension": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — gate",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — gate",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i04:audio",
+          "transcript": "gate"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-43:i04:r1",
+            "targetText": "gate",
+            "meaningByLocale": {
+              "ru": "Калитка. Повторение знакомого слова.",
+              "uk": "Хвіртка. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "gate",
+          "definitionByLocale": {
+            "ru": "Калитка. Повторение знакомого слова.",
+            "uk": "Хвіртка. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Калитка не может быть открытой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Калитка не может быть открытой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The gate can't be open.",
+        "localizedMeaning": {
+          "ru": "Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Калитка не может быть открытой.",
+          "uk": "Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Хвіртка не може бути відчиненою."
+        },
+        "orderedTokens": [
+          "The",
+          "gate",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — ball",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — ball",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i06:audio",
+          "transcript": "ball"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-43:i06:r1",
+            "targetText": "ball",
+            "meaningByLocale": {
+              "ru": "Мяч. Повторение знакомого слова.",
+              "uk": "М’яч. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ball",
+          "definitionByLocale": {
+            "ru": "Мяч. Повторение знакомого слова.",
+            "uk": "М’яч. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Мяч, который я нашёл, грязный. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i07:audio"
+      ],
+      "accessibilityLabel": "Мяч, который я нашёл, грязный. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i07:audio",
+          "transcript": "The ball I found is dirty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The ball I found is dirty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i08:r1",
+          "text": "found"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i08:r2",
+          "text": "found it"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i08:r3",
+          "text": "finding"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
+          "uk": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The ball I ___ is dirty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-43:i08:r1",
+            "text": "found"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i08:r2",
+            "text": "found it"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i08:r3",
+            "text": "finding"
+          }
+        ],
+        "testedDimension": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i08:r2",
+            "correct": false,
+            "testedDimension": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i08:r3",
+            "correct": false,
+            "testedDimension": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма found.",
+              "uk": "Потрібна минула форма found."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая. Начните с The grass is long.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая. Начните с The grass is long.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The grass is long, so it might be wet.",
+        "localizedMeaning": {
+          "ru": "Утром высокая трава часто сохраняет росу. Вы ещё не заходили на газон. Трава высокая, поэтому она, возможно, мокрая. Начните с The grass is long.",
+          "uk": "Уранці висока трава часто зберігає росу. Ви ще не заходили на газон. Трава висока, тому вона, можливо, мокра. Почніть із The grass is long."
+        },
+        "orderedTokens": [
+          "The",
+          "grass",
+          "is",
+          "long,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "wet"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Скажите вывод, заменив The gate местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i10:audio"
+      ],
+      "accessibilityLabel": "Вы видите, что калитка закрыта на замок. Анна думала, что через неё укатился мяч. Скажите вывод, заменив The gate местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i10:audio",
+          "transcript": "It can’t be open."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be open.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Калитка не может быть открытой. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Калитка не может быть открытой. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Калитка не может быть открытой. Выберите форму после can’t.",
+          "uk": "Хвіртка не може бути відчиненою. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The gate can't ___ open.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-43:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Калитка не может быть открытой. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i11:r2",
+            "correct": false,
+            "testedDimension": "Калитка не может быть открытой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i11:r3",
+            "correct": false,
+            "testedDimension": "Калитка не может быть открытой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dog",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dog",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i12:audio",
+          "transcript": "dog"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-43:i12:r1",
+            "targetText": "dog",
+            "meaningByLocale": {
+              "ru": "Собака. Повторение знакомого слова.",
+              "uk": "Собака. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dog",
+          "definitionByLocale": {
+            "ru": "Собака. Повторение знакомого слова.",
+            "uk": "Собака. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i13:r1",
+          "text": "The dog must be thirsty."
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i13:r2",
+          "text": "The dog may be thirsty."
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i13:r3",
+          "text": "The dog could be thirsty."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i13:audio",
+          "transcript": "The dog must be thirsty."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-43:i13:r1",
+            "targetText": "The dog must be thirsty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i13:r2",
+            "targetText": "The dog may be thirsty.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i13:r3",
+            "targetText": "The dog could be thirsty.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog must be thirsty.",
+              "uk": "У записі звучить The dog must be thirsty."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The dog must be thirsty.",
+              "uk": "У записі звучить The dog must be thirsty."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i14:audio"
+      ],
+      "accessibilityLabel": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i14:audio",
+          "transcript": "The dog must be thirsty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The dog must be thirsty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the ball и уточнение I found. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the ball и уточнение I found. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the ball I found.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the ball и уточнение I found. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the ball й уточнення I found. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "ball",
+          "I",
+          "found"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Трава высокая, поэтому она, возможно, мокрая. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Трава высокая, поэтому она, возможно, мокрая. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Трава высокая, поэтому она, возможно, мокрая. Соедините признак и предположение словом «поэтому».",
+          "uk": "Трава висока, тому вона, можливо, мокра. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The grass is long, ___ it might be wet.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-43:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Трава высокая, поэтому она, возможно, мокрая. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i16:r2",
+            "correct": false,
+            "testedDimension": "Трава высокая, поэтому она, возможно, мокрая. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i16:r3",
+            "correct": false,
+            "testedDimension": "Трава высокая, поэтому она, возможно, мокрая. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Трава высокая, поэтому она, возможно, мокрая. Ответьте, начиная с The grass is long.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Трава высокая, поэтому она, возможно, мокрая. Ответьте, начиная с The grass is long.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i17:audio",
+          "transcript": "The grass is long, so it might be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The grass is long, so it might be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i18:r1",
+          "text": "The grass is long, so it might be wet."
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i18:r2",
+          "text": "The grass is long, so it must be wet."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i18:audioA",
+        "en:lesson-32:session-43:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The grass is long, so it might be wet.",
+        "contrastB": "The grass is long, so it must be wet.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-43:i18:audioA",
+          "transcript": "The grass is long, so it might be wet."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-43:i18:audioB",
+          "transcript": "The grass is long, so it must be wet."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i19:audio",
+          "transcript": "The gate can't be open."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The gate can't be open.",
+        "orderedTokens": [
+          "The",
+          "gate",
+          "can't",
+          "be",
+          "open"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-43:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-43:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+          "uk": "Після довгої гри собака підходить до порожньої миски для води й облизує її. Собака, напевно, хоче пити."
+        },
+        "gappedTargetPhrase": "The dog must ___ thirsty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-43:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-43:i20:r2",
+            "correct": false,
+            "testedDimension": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-43:i20:r3",
+            "correct": false,
+            "testedDimension": "После долгой игры собака подходит к пустой миске для воды и облизывает её. Собака, должно быть, хочет пить.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-43:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Трава высокая, поэтому она, возможно, мокрая. Назовите ту же возможность с could вместо might. Начните с The grass is long.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-43:i21:audio"
+      ],
+      "accessibilityLabel": "Трава высокая, поэтому она, возможно, мокрая. Назовите ту же возможность с could вместо might. Начните с The grass is long.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-43:i21:audio",
+          "transcript": "The grass is long, so it could be wet."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The grass is long, so it could be wet.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "69b1524173b78d169f34018dd669f1509913d25af5cba01104eadffd01b81ffe"
+}

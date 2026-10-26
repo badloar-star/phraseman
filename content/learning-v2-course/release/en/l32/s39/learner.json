@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-39",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-39:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bread",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bread",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i01:audio",
+          "transcript": "bread"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-39:i01:r1",
+            "targetText": "bread",
+            "meaningByLocale": {
+              "ru": "Хлеб. Повторение знакомого слова.",
+              "uk": "Хліб. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bread",
+          "definitionByLocale": {
+            "ru": "Хлеб. Повторение знакомого слова.",
+            "uk": "Хліб. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i02:r1",
+          "text": "The bread is warm, so it might be fresh."
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i02:r2",
+          "text": "The bread is warm, so it must be fresh."
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i02:r3",
+          "text": "The bread is warm, so it can't be fresh."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i02:audio",
+          "transcript": "The bread is warm, so it might be fresh."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-39:i02:r1",
+            "targetText": "The bread is warm, so it might be fresh.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i02:r2",
+            "targetText": "The bread is warm, so it must be fresh.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i02:r3",
+            "targetText": "The bread is warm, so it can't be fresh.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread is warm, so it might be fresh.",
+              "uk": "У записі звучить The bread is warm, so it might be fresh."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The bread is warm, so it might be fresh.",
+              "uk": "У записі звучить The bread is warm, so it might be fresh."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий.",
+          "uk": "Ви берете теплий хліб, але не знаєте, коли його спекли. Хліб теплий, тому він, можливо, свіжий."
+        },
+        "gappedTargetPhrase": "The bread is warm, so it might ___ fresh.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-39:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i03:r2",
+            "correct": false,
+            "testedDimension": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i03:r3",
+            "correct": false,
+            "testedDimension": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bag",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bag",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i04:audio",
+          "transcript": "bag"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-39:i04:r1",
+            "targetText": "bag",
+            "meaningByLocale": {
+              "ru": "Пакет. Повторение знакомого слова.",
+              "uk": "Пакет. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bag",
+          "definitionByLocale": {
+            "ru": "Пакет. Повторение знакомого слова.",
+            "uk": "Пакет. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Пакет не может быть пустым.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Пакет не может быть пустым.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bag can't be empty.",
+        "localizedMeaning": {
+          "ru": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Пакет не может быть пустым.",
+          "uk": "Анна каже, що пакет порожній, але крізь прозору стінку ви бачите хліб. Пакет не може бути порожнім."
+        },
+        "orderedTokens": [
+          "The",
+          "bag",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — knife",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — knife",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i06:audio",
+          "transcript": "knife"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-39:i06:r1",
+            "targetText": "knife",
+            "meaningByLocale": {
+              "ru": "Нож. Повторение знакомого слова.",
+              "uk": "Ніж. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "knife",
+          "definitionByLocale": {
+            "ru": "Нож. Повторение знакомого слова.",
+            "uk": "Ніж. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Нож, который я купил, острый. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i07:audio"
+      ],
+      "accessibilityLabel": "Нож, который я купил, острый. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i07:audio",
+          "transcript": "The knife I bought is sharp."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The knife I bought is sharp.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i08:r1",
+          "text": "bought"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i08:r2",
+          "text": "bought it"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i08:r3",
+          "text": "buying"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+          "uk": "Ніж, який я купив, гострий. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The knife I ___ is sharp.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-39:i08:r1",
+            "text": "bought"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i08:r2",
+            "text": "bought it"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i08:r3",
+            "text": "buying"
+          }
+        ],
+        "testedDimension": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i08:r2",
+            "correct": false,
+            "testedDimension": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i08:r3",
+            "correct": false,
+            "testedDimension": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма bought.",
+              "uk": "Потрібна минула форма bought."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий. Начните с The bread is warm.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий. Начните с The bread is warm.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bread is warm, so it might be fresh.",
+        "localizedMeaning": {
+          "ru": "Вы берёте тёплый хлеб, но не знаете, когда его испекли. Хлеб тёплый, поэтому он, возможно, свежий. Начните с The bread is warm.",
+          "uk": "Ви берете теплий хліб, але не знаєте, коли його спекли. Хліб теплий, тому він, можливо, свіжий. Почніть із The bread is warm."
+        },
+        "orderedTokens": [
+          "The",
+          "bread",
+          "is",
+          "warm,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "fresh"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i10:audio"
+      ],
+      "accessibilityLabel": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Пакет не может быть пустым. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Пакет не может быть пустым. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Пакет не может быть пустым. Выберите форму после can’t.",
+          "uk": "Пакет не може бути порожнім. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The bag can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-39:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Пакет не может быть пустым. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i11:r2",
+            "correct": false,
+            "testedDimension": "Пакет не может быть пустым. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i11:r3",
+            "correct": false,
+            "testedDimension": "Пакет не может быть пустым. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — butter",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — butter",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i12:audio",
+          "transcript": "butter"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-39:i12:r1",
+            "targetText": "butter",
+            "meaningByLocale": {
+              "ru": "Масло. Повторение знакомого слова.",
+              "uk": "Масло. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "butter",
+          "definitionByLocale": {
+            "ru": "Масло. Повторение знакомого слова.",
+            "uk": "Масло. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i13:r1",
+          "text": "The butter must be soft."
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i13:r2",
+          "text": "The butter may be soft."
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i13:r3",
+          "text": "The butter could be soft."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i13:audio",
+          "transcript": "The butter must be soft."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-39:i13:r1",
+            "targetText": "The butter must be soft.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i13:r2",
+            "targetText": "The butter may be soft.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i13:r3",
+            "targetText": "The butter could be soft.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The butter must be soft.",
+              "uk": "У записі звучить The butter must be soft."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The butter must be soft.",
+              "uk": "У записі звучить The butter must be soft."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i14:audio"
+      ],
+      "accessibilityLabel": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i14:audio",
+          "transcript": "The butter must be soft."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The butter must be soft.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the knife и уточнение I bought. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the knife и уточнение I bought. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the knife I bought.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the knife и уточнение I bought. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the knife й уточнення I bought. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "knife",
+          "I",
+          "bought"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Хлеб тёплый, поэтому он, возможно, свежий. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Хлеб тёплый, поэтому он, возможно, свежий. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Хлеб тёплый, поэтому он, возможно, свежий. Соедините признак и предположение словом «поэтому».",
+          "uk": "Хліб теплий, тому він, можливо, свіжий. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The bread is warm, ___ it might be fresh.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-39:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Хлеб тёплый, поэтому он, возможно, свежий. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i16:r2",
+            "correct": false,
+            "testedDimension": "Хлеб тёплый, поэтому он, возможно, свежий. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i16:r3",
+            "correct": false,
+            "testedDimension": "Хлеб тёплый, поэтому он, возможно, свежий. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Хлеб тёплый, поэтому он, возможно, свежий. Ответьте, начиная с The bread is warm.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Хлеб тёплый, поэтому он, возможно, свежий. Ответьте, начиная с The bread is warm.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i17:audio",
+          "transcript": "The bread is warm, so it might be fresh."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bread is warm, so it might be fresh.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i18:r1",
+          "text": "The bread is warm, so it might be fresh."
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i18:r2",
+          "text": "The bread is warm, so it must be fresh."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i18:audioA",
+        "en:lesson-32:session-39:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The bread is warm, so it might be fresh.",
+        "contrastB": "The bread is warm, so it must be fresh.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-39:i18:audioA",
+          "transcript": "The bread is warm, so it might be fresh."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-39:i18:audioB",
+          "transcript": "The bread is warm, so it must be fresh."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i19:audio",
+          "transcript": "The bag can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bag can't be empty.",
+        "orderedTokens": [
+          "The",
+          "bag",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-39:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-39:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+          "uk": "Масло кілька годин стояло в теплій кухні. Ви збираєтеся намастити його на хліб. Масло, напевно, м’яке."
+        },
+        "gappedTargetPhrase": "The butter must ___ soft.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-39:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-39:i20:r2",
+            "correct": false,
+            "testedDimension": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-39:i20:r3",
+            "correct": false,
+            "testedDimension": "Масло несколько часов стояло в тёплой кухне. Вы собираетесь намазать его на хлеб. Масло, должно быть, мягкое.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-39:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Хлеб тёплый, поэтому он, возможно, свежий. Назовите ту же возможность с could вместо might. Начните с The bread is warm.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-39:i21:audio"
+      ],
+      "accessibilityLabel": "Хлеб тёплый, поэтому он, возможно, свежий. Назовите ту же возможность с could вместо might. Начните с The bread is warm.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-39:i21:audio",
+          "transcript": "The bread is warm, so it could be fresh."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The bread is warm, so it could be fresh.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d90210f73f058f4e5a4b80eca570a39e2897ab20c2641491ef903fb8bbd531ae"
+}

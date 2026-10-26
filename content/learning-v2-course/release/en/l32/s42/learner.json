@@ -1,0 +1,1044 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-32:session-42",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-32:session-42:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — window",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — window",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i01:audio",
+          "transcript": "window"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-42:i01:r1",
+            "targetText": "window",
+            "meaningByLocale": {
+              "ru": "Окно. Повторение знакомого слова.",
+              "uk": "Вікно. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "window",
+          "definitionByLocale": {
+            "ru": "Окно. Повторение знакомого слова.",
+            "uk": "Вікно. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i02:r1",
+          "text": "The window is wet, so it might be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i02:r2",
+          "text": "The window is wet, so it must be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i02:r3",
+          "text": "The window is wet, so it can't be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i02:audio",
+          "transcript": "The window is wet, so it might be cold."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-42:i02:r1",
+            "targetText": "The window is wet, so it might be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i02:r2",
+            "targetText": "The window is wet, so it must be cold.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i02:r3",
+            "targetText": "The window is wet, so it can't be cold.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The window is wet, so it might be cold.",
+              "uk": "У записі звучить The window is wet, so it might be cold."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The window is wet, so it might be cold.",
+              "uk": "У записі звучить The window is wet, so it might be cold."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i03:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i03:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i03:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное.",
+          "uk": "На склі краплі води. Ви припускаєте, що скло холодне, але ще не торкалися його. Вікно мокре, тому воно, можливо, холодне."
+        },
+        "gappedTargetPhrase": "The window is wet, so it might ___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-42:i03:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i03:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i03:r2",
+            "correct": false,
+            "testedDimension": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное.",
+            "feedbackByLocale": {
+              "ru": "После might нужна форма be.",
+              "uk": "Після might потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i03:r3",
+            "correct": false,
+            "testedDimension": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное.",
+            "feedbackByLocale": {
+              "ru": "После might не ставим to.",
+              "uk": "Після might не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bed",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i04:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bed",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i04:audio",
+          "transcript": "bed"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-42:i04:r1",
+            "targetText": "bed",
+            "meaningByLocale": {
+              "ru": "Кровать. Повторение знакомого слова.",
+              "uk": "Ліжко. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bed",
+          "definitionByLocale": {
+            "ru": "Кровать. Повторение знакомого слова.",
+            "uk": "Ліжко. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Кровать не может быть пустой.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Кровать не может быть пустой.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The bed can't be empty.",
+        "localizedMeaning": {
+          "ru": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Кровать не может быть пустой.",
+          "uk": "Анна вважає, що на ліжку нічого немає, але ви бачите на ньому велику валізу. Ліжко не може бути порожнім."
+        },
+        "orderedTokens": [
+          "The",
+          "bed",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — blanket",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i06:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — blanket",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i06:audio",
+          "transcript": "blanket"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-42:i06:r1",
+            "targetText": "blanket",
+            "meaningByLocale": {
+              "ru": "Одеяло. Повторение знакомого слова.",
+              "uk": "Ковдра. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "blanket",
+          "definitionByLocale": {
+            "ru": "Одеяло. Повторение знакомого слова.",
+            "uk": "Ковдра. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Одеяло, которое я постирал, сухое. Скажите без that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i07:audio"
+      ],
+      "accessibilityLabel": "Одеяло, которое я постирал, сухое. Скажите без that.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i07:audio",
+          "transcript": "The blanket I washed is dry."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The blanket I washed is dry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i08:r1",
+          "text": "washed"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i08:r2",
+          "text": "washed it"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i08:r3",
+          "text": "washing"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+          "uk": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника."
+        },
+        "gappedTargetPhrase": "The blanket I ___ is dry.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-42:i08:r1",
+            "text": "washed"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i08:r2",
+            "text": "washed it"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i08:r3",
+            "text": "washing"
+          }
+        ],
+        "testedDimension": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i08:r2",
+            "correct": false,
+            "testedDimension": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Предмет уже назван: it не нужно.",
+              "uk": "Предмет уже названо: it не потрібне."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i08:r3",
+            "correct": false,
+            "testedDimension": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+            "feedbackByLocale": {
+              "ru": "Нужна прошедшая форма washed.",
+              "uk": "Потрібна минула форма washed."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное. Начните с The window is wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное. Начните с The window is wet.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "The window is wet, so it might be cold.",
+        "localizedMeaning": {
+          "ru": "На стекле капли воды. Вы предполагаете, что стекло холодное, но ещё не касались его. Окно мокрое, поэтому оно, возможно, холодное. Начните с The window is wet.",
+          "uk": "На склі краплі води. Ви припускаєте, що скло холодне, але ще не торкалися його. Вікно мокре, тому воно, можливо, холодне. Почніть із The window is wet."
+        },
+        "orderedTokens": [
+          "The",
+          "window",
+          "is",
+          "wet,",
+          "so",
+          "it",
+          "might",
+          "be",
+          "cold"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed местоимением It.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i10:audio"
+      ],
+      "accessibilityLabel": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed местоимением It.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i10:audio",
+          "transcript": "It can’t be empty."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "It can’t be empty.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Кровать не может быть пустой. Выберите форму после can’t.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i11:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i11:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i11:r3",
+          "text": "being"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Кровать не может быть пустой. Выберите форму после can’t.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Кровать не может быть пустой. Выберите форму после can’t.",
+          "uk": "Ліжко не може бути порожнім. Виберіть форму після can’t."
+        },
+        "gappedTargetPhrase": "The bed can't ___ empty.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-42:i11:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i11:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i11:r3",
+            "text": "being"
+          }
+        ],
+        "testedDimension": "Кровать не может быть пустой. Выберите форму после can’t.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i11:r2",
+            "correct": false,
+            "testedDimension": "Кровать не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "После can’t используем be.",
+              "uk": "Після can’t використовуємо be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i11:r3",
+            "correct": false,
+            "testedDimension": "Кровать не может быть пустой. Выберите форму после can’t.",
+            "feedbackByLocale": {
+              "ru": "Нужна начальная форма be.",
+              "uk": "Потрібна початкова форма be."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — room",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i12:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — room",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i12:audio",
+          "transcript": "room"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-42:i12:r1",
+            "targetText": "room",
+            "meaningByLocale": {
+              "ru": "Комната. Повторение знакомого слова.",
+              "uk": "Кімната. Повторення знайомого слова."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "room",
+          "definitionByLocale": {
+            "ru": "Комната. Повторение знакомого слова.",
+            "uk": "Кімната. Повторення знайомого слова."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i13:r1",
+          "text": "The room must be warm."
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i13:r2",
+          "text": "The room may be warm."
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i13:r3",
+          "text": "The room could be warm."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i13:audio",
+          "transcript": "The room must be warm."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-32:session-42:i13:r1",
+            "targetText": "The room must be warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i13:r2",
+            "targetText": "The room may be warm.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i13:r3",
+            "targetText": "The room could be warm.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room must be warm.",
+              "uk": "У записі звучить The room must be warm."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи звучит The room must be warm.",
+              "uk": "У записі звучить The room must be warm."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i14:audio"
+      ],
+      "accessibilityLabel": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i14:audio",
+          "transcript": "The room must be warm."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The room must be warm.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Покажите предмет Анне: начните с This is, затем назовите the blanket и уточнение I washed. Не добавляйте that.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Покажите предмет Анне: начните с This is, затем назовите the blanket и уточнение I washed. Не добавляйте that.",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "This is the blanket I washed.",
+        "localizedMeaning": {
+          "ru": "Покажите предмет Анне: начните с This is, затем назовите the blanket и уточнение I washed. Не добавляйте that.",
+          "uk": "Покажіть предмет Анні: почніть із This is, потім назвіть the blanket й уточнення I washed. Не додавайте that."
+        },
+        "orderedTokens": [
+          "This",
+          "is",
+          "the",
+          "blanket",
+          "I",
+          "washed"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i16",
+      "ordinal": 19,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Окно мокрое, поэтому оно, возможно, холодное. Соедините признак и предположение словом «поэтому».",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i16:r1",
+          "text": "so"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i16:r2",
+          "text": "because"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i16:r3",
+          "text": "although"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Окно мокрое, поэтому оно, возможно, холодное. Соедините признак и предположение словом «поэтому».",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Окно мокрое, поэтому оно, возможно, холодное. Соедините признак и предположение словом «поэтому».",
+          "uk": "Вікно мокре, тому воно, можливо, холодне. Поєднайте ознаку й припущення словом «тому»."
+        },
+        "gappedTargetPhrase": "The window is wet, ___ it might be cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-42:i16:r1",
+            "text": "so"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i16:r2",
+            "text": "because"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i16:r3",
+            "text": "although"
+          }
+        ],
+        "testedDimension": "Окно мокрое, поэтому оно, возможно, холодное. Соедините признак и предположение словом «поэтому».",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i16:r2",
+            "correct": false,
+            "testedDimension": "Окно мокрое, поэтому оно, возможно, холодное. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "После связки идёт вывод: нужен so.",
+              "uk": "Після сполучника йде висновок: потрібне so."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i16:r3",
+            "correct": false,
+            "testedDimension": "Окно мокрое, поэтому оно, возможно, холодное. Соедините признак и предположение словом «поэтому».",
+            "feedbackByLocale": {
+              "ru": "Нужен вывод из признака, используем so.",
+              "uk": "Потрібен висновок з ознаки, використовуємо so."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Анна спрашивает, на чём основано ваше предположение. Окно мокрое, поэтому оно, возможно, холодное. Ответьте, начиная с The window is wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i17:audio"
+      ],
+      "accessibilityLabel": "Анна спрашивает, на чём основано ваше предположение. Окно мокрое, поэтому оно, возможно, холодное. Ответьте, начиная с The window is wet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i17:audio",
+          "transcript": "The window is wet, so it might be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The window is wet, so it might be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "sound_contrast",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте: названа возможность или уверенный вывод?",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i18:r1",
+          "text": "The window is wet, so it might be cold."
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i18:r2",
+          "text": "The window is wet, so it must be cold."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i18:audioA",
+        "en:lesson-32:session-42:i18:audioB"
+      ],
+      "accessibilityLabel": "Послушайте: названа возможность или уверенный вывод?",
+      "modePayload": {
+        "family": "sound_contrast",
+        "contrastA": "The window is wet, so it might be cold.",
+        "contrastB": "The window is wet, so it must be cold.",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-32:session-42:i18:audioA",
+          "transcript": "The window is wet, so it might be cold."
+        },
+        "audioB": {
+          "audioTargetId": "en:lesson-32:session-42:i18:audioB",
+          "transcript": "The window is wet, so it must be cold."
+        },
+        "testedPhoneticContrast": "Послушайте: названа возможность или уверенный вывод?",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i18:r2",
+            "correct": false,
+            "testedDimension": "Послушайте: названа возможность или уверенный вывод?",
+            "feedbackByLocale": {
+              "ru": "Звучит might: это возможность.",
+              "uk": "Звучить might: це можливість."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i19",
+      "ordinal": 22,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, какой вариант исключён.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i19:audio"
+      ],
+      "accessibilityLabel": "Послушайте, какой вариант исключён.",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i19:audio",
+          "transcript": "The bed can't be empty."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "The bed can't be empty.",
+        "orderedTokens": [
+          "The",
+          "bed",
+          "can't",
+          "be",
+          "empty"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i20",
+      "ordinal": 23,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-32:session-42:i20:r1",
+          "text": "be"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i20:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-32:session-42:i20:r3",
+          "text": "to be"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+          "uk": "Опалення працювало всю ніч із зачиненими вікнами. Ви ще не заходили до кімнати. Кімната, напевно, тепла."
+        },
+        "gappedTargetPhrase": "The room must ___ warm.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-32:session-42:i20:r1",
+            "text": "be"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i20:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i20:r3",
+            "text": "to be"
+          }
+        ],
+        "testedDimension": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-32:session-42:i20:r2",
+            "correct": false,
+            "testedDimension": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+            "feedbackByLocale": {
+              "ru": "После must здесь нужна форма be.",
+              "uk": "Після must тут потрібна форма be."
+            }
+          },
+          {
+            "responseId": "en:lesson-32:session-42:i20:r3",
+            "correct": false,
+            "testedDimension": "Отопление работало всю ночь при закрытых окнах. Вы ещё не заходили в комнату. Комната, должно быть, тёплая.",
+            "feedbackByLocale": {
+              "ru": "После must не ставим to.",
+              "uk": "Після must не ставимо to."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-32:session-42:i21",
+      "ordinal": 24,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Окно мокрое, поэтому оно, возможно, холодное. Назовите ту же возможность с could вместо might. Начните с The window is wet.",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-32:session-42:i21:audio"
+      ],
+      "accessibilityLabel": "Окно мокрое, поэтому оно, возможно, холодное. Назовите ту же возможность с could вместо might. Начните с The window is wet.",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-32:session-42:i21:audio",
+          "transcript": "The window is wet, so it could be cold."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "The window is wet, so it could be cold.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 21,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "09c16fba58f32f69054578f08a5b540983619273ff4f7ef61c4aaa8432ed2719"
+}

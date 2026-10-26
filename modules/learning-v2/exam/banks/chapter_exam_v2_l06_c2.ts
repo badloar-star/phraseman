@@ -1,7 +1,7 @@
 // chapter_exam_v2_l06_c2.ts — банк экзамена v2: урок 6, глава 2 (эпизоды 9–16).
 // зачем (слово владельца 26.10: экзамены глав v2 для всех уроков, войдут в 2.0.3; правила — docs/work/factory-exam-banks-task-for-codex-2026-10-25.md):
 // каждое английское слово реплики, фразы с ошибкой и всех принятых ответов уже встречалось в эпизодах 1–16 урока 6
-// (сторож tests/owner_locks_exam_episode_words_2026_10_25.test.ts); ситуация и ответ сходятся по смыслу; вопросы без «?» — общий тест правил банков.
+// (сторож tests/owner_locks_exam_episode_words_2026_10_25.test.ts); ситуация и ответ сходятся по смыслу; вопросы со знаком «?» (с 92b29de96 запрет только для урока 1).
 // Глава 2: чем вы занимаетесь — practice, learn, paint (10, 11, 12), где и с чем — swim in the pool, laugh at the joke, sing in the choir (13, 14, 15), действие или am / is / are — I paint и I am a member (9, 16).
 // Подключение в приложении (BANKS) — Learning V2 после вычитки владельцем; читабельный вид — docs/work/exam-banks/l06.md.
 import type { ChapterExamV2Bank } from '../chapter_exam_v2';
@@ -22,7 +22,7 @@ export const CHAPTER_EXAM_V2_BANK_L06_C2: ChapterExamV2Bank = {
     { id: "l06c2-05", type: "situation", grammarPoint: "l06c2_be_or_do", situation: { ru: "Администратор клуба спрашивает, кто ты. Скажи, что ты член клуба.", uk: "Адміністратор клубу питає, хто ти. Скажи, що ти член клубу." }, accepted: ["I am a member of the club."] },
     { id: "l06c2-06", type: "situation", grammarPoint: "l06c2_be_or_do", situation: { ru: "Начальник спрашивает про смену. Скажи, что ты начинаешь в четыре.", uk: "Начальник питає про зміну. Скажи, що ти починаєш о четвертій." }, accepted: ["I start at four.", "I start the shift at four."] },
     { id: "l06c2-07", type: "dialogue", grammarPoint: "l06c2_activity", partnerLine: "We work in this hotel.", situation: { ru: "Добавь: вы практикуете здесь английский.", uk: "Додай: ви практикуєте тут англійську." }, accepted: ["We practice English here.", "We practice English in the hotel."] },
-    { id: "l06c2-08", type: "dialogue", grammarPoint: "l06c2_activity", partnerLine: "I paint at home.", situation: { ru: "Скажи, что друг рисует в студии.", uk: "Скажи, що друг малює в студії." }, accepted: ["You paint in the studio."] },
+    { id: "l06c2-08", type: "dialogue", grammarPoint: "l06c2_activity", partnerLine: "The canvas is on the easel.", situation: { ru: "Спроси, чей это холст.", uk: "Спитай, чиє це полотно." }, accepted: ["Whose canvas is this?"] },
     { id: "l06c2-09", type: "dialogue", grammarPoint: "l06c2_place", partnerLine: "This song is new.", situation: { ru: "Скажи, что вы поёте в хоре.", uk: "Скажи, що ви співаєте в хорі." }, accepted: ["We sing in the choir."] },
     { id: "l06c2-10", type: "dialogue", grammarPoint: "l06c2_place", partnerLine: "We have a funny joke.", situation: { ru: "Скажи, что ты смеёшься над шуткой.", uk: "Скажи, що ти смієшся з жарту." }, accepted: ["I laugh at the joke."] },
     { id: "l06c2-11", type: "dialogue", grammarPoint: "l06c2_be_or_do", partnerLine: "We start at two.", situation: { ru: "Скажи, что у тебя перерыв в четыре.", uk: "Скажи, що в тебе перерва о четвертій." }, accepted: ["I have a break at four."] },

@@ -1,7 +1,7 @@
 // chapter_exam_v2_l06_c4.ts — банк экзамена v2: урок 6, глава 4 (эпизоды 25–32).
 // зачем (слово владельца 26.10: экзамены глав v2 для всех уроков, войдут в 2.0.3; правила — docs/work/factory-exam-banks-task-for-codex-2026-10-25.md):
 // каждое английское слово реплики, фразы с ошибкой и всех принятых ответов уже встречалось в эпизодах 1–32 урока 6
-// (сторож tests/owner_locks_exam_episode_words_2026_10_25.test.ts); ситуация и ответ сходятся по смыслу; вопросы без «?» — общий тест правил банков.
+// (сторож tests/owner_locks_exam_episode_words_2026_10_25.test.ts); ситуация и ответ сходятся по смыслу; вопросы со знаком «?» (с 92b29de96 запрет только для урока 1).
 // Глава 4: мы / они без s — walk, jog, exercise (25, 26, 27), он / она с s — stretches, calls, scrubs (28, 29, 30), утро по привычке (31, 32).
 // Подключение в приложении (BANKS) — Learning V2 после вычитки владельцем; читабельный вид — docs/work/exam-banks/l06.md.
 import type { ChapterExamV2Bank } from '../chapter_exam_v2';
@@ -24,7 +24,7 @@ export const CHAPTER_EXAM_V2_BANK_L06_C4: ChapterExamV2Bank = {
     { id: "l06c4-07", type: "dialogue", grammarPoint: "l06c4_no_s", partnerLine: "She exercises at home.", situation: { ru: "Скажи, что вы занимаетесь на коврике.", uk: "Скажи, що ви займаєтеся на килимку." }, accepted: ["We exercise on the mat."] },
     { id: "l06c4-08", type: "dialogue", grammarPoint: "l06c4_no_s", partnerLine: "He jogs on the track.", situation: { ru: "Скажи, что ты тоже бегаешь на дорожке.", uk: "Скажи, що ти теж бігаєш на доріжці." }, accepted: ["I jog on the track."] },
     { id: "l06c4-09", type: "dialogue", grammarPoint: "l06c4_s", partnerLine: "We scrub the floor.", situation: { ru: "Добавь: она трёт стол.", uk: "Додай: вона тре стіл." }, accepted: ["She scrubs the table."] },
-    { id: "l06c4-10", type: "dialogue", grammarPoint: "l06c4_s", partnerLine: "They call their grandmother.", situation: { ru: "Поправь: брату звонит он.", uk: "Виправ: братові телефонує він." }, accepted: ["He calls his brother."] },
+    { id: "l06c4-10", type: "dialogue", grammarPoint: "l06c4_s", partnerLine: "The message is new.", situation: { ru: "Спроси, чьё это сообщение.", uk: "Спитай, чиє це повідомлення." }, accepted: ["Whose message is this?"] },
     { id: "l06c4-11", type: "dialogue", grammarPoint: "l06c4_morning", partnerLine: "I walk to work.", situation: { ru: "Добавь: он ходит к холму.", uk: "Додай: він ходить до пагорба." }, accepted: ["He walks to the hill."] },
     { id: "l06c4-12", type: "dialogue", grammarPoint: "l06c4_morning", partnerLine: "We shower at home.", situation: { ru: "Скажи, что он ополаскивает чашку.", uk: "Скажи, що він ополіскує чашку." }, accepted: ["He rinses the cup."] },
     { id: "l06c4-13", type: "fix", grammarPoint: "l06c4_no_s", wrong: "They jogs in the park.", accepted: ["They jog in the park."] },

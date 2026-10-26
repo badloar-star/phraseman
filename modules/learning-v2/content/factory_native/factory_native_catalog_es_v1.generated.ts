@@ -567,4 +567,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать род, число и артикль без подсказки по последней букве.","uk":"узгодити рід, число й артикль без підказки за останньою літерою."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 25,
+    sourceFingerprint: "93a06a84237b66fa0f74f018bd23bd76661ce0f3ea7aafa71124a0ad758c34e4",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать un, чтобы назвать предмет, и el, чтобы указать на нужный известный предмет.","uk":"вибрати un, щоб назвати предмет, і el, щоб указати на потрібний відомий предмет."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 26,
+    sourceFingerprint: "d3815cd8e3495d86935e4cbe9f64b872eb7f563a273d13411b801994b838fa12",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать una и la при назывании и узнавании одного предмета.","uk":"розрізняти una і la під час називання й упізнавання одного предмета."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 27,
+    sourceFingerprint: "ad7c7e9c9c429f5da47d198d756ffa50bbfd793754a147a5fe2aab9d9e57972f",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать владельца вещи с de и именем.","uk":"назвати власника речі з de та ім'ям."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 28,
+    sourceFingerprint: "aa53765d5c7a2d3e5a145b042616eb30f363baa419669791406ebb60348997ac",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, кому принадлежит вещь, с ¿De quién es…?","uk":"запитати, кому належить річ, з ¿De quién es…?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать un, чтобы назвать предмет, и el, чтобы указать на нужный известный предмет.",
+    "uk": "вибрати un, щоб назвати предмет, і el, щоб указати на потрібний відомий предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Билет в кармане",
+        "uk": "Квиток у кишені"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достаёте бумагу и рассматриваете её. `Boleto` — «билет», слово мужского рода: el boleto. Просто назовите предмет: `Es un boleto` — «Это билет». Соберите `es` + `un` + `boleto`. Un помогает сказать, что это за предмет, без уточнения, какой именно билет.",
+        "uk": "Ви дістаєте папір і розглядаєте його. `Boleto` — «квиток», слово чоловічого роду: el boleto. Просто назвіть предмет: `Es un boleto` — «Це квиток». Зберіть `es` + `un` + `boleto`. Un допомагає сказати, що це за предмет, без уточнення, який саме квиток."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет билетом с un.",
+          "uk": "Назвіть предмет квитком з un."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-25:intro1:r1",
+              "text": "Es un boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro1:r2",
+              "text": "Es una boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro1:r3",
+              "text": "Son un boleto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-25:intro1:r1",
+              "text": "Es un boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro1:r2",
+              "text": "Es una boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro1:r3",
+              "text": "Son un boleto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет билетом с un.",
+          "uk": "Назвіть предмет квитком з un."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чек рядом",
+        "uk": "Чек поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом лежит ещё одна бумага, подтверждающая оплату. `Recibo` — «чек, квитанция», слово мужского рода: el recibo. Назовите её: `Es un recibo` — «Это чек». Соберите `es` + `un` + `recibo`. В этой сцене recibo — бумажное подтверждение оплаты, а boleto — билет для входа.",
+        "uk": "Поруч лежить ще один папір, що підтверджує оплату. `Recibo` — «чек, квитанція», слово чоловічого роду: el recibo. Назвіть його: `Es un recibo` — «Це чек». Зберіть `es` + `un` + `recibo`. У цій сцені recibo — паперове підтвердження оплати, а boleto — квиток для входу."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите подтверждение оплаты словом recibo.",
+          "uk": "Назвіть підтвердження оплати словом recibo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-25:intro2:r1",
+              "text": "Es un recibo."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro2:r2",
+              "text": "Es una recibo."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro2:r3",
+              "text": "Es un boleto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-25:intro2:r1",
+              "text": "Es un recibo."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro2:r2",
+              "text": "Es una recibo."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro2:r3",
+              "text": "Es un boleto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите подтверждение оплаты словом recibo.",
+          "uk": "Назвіть підтвердження оплати словом recibo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нужный билет найден",
+        "uk": "Потрібний квиток знайдено"
+      },
+      "bodyByLocale": {
+        "ru": "Вы искали именно билет для этого сеанса. Друг показывает его, и вы подтверждаете: `Es el boleto` — «Это тот самый билет». Соберите `es` + `el` + `boleto`. El указывает на билет, который вы оба имеете в виду. Сравните: Es un boleto называет предмет билетом; Es el boleto узнаёт нужный билет.",
+        "uk": "Ви шукали саме квиток на цей сеанс. Друг показує його, і ви підтверджуєте: `Es el boleto` — «Це той самий квиток». Зберіть `es` + `el` + `boleto`. El указує на квиток, який ви обоє маєте на увазі. Порівняйте: Es un boleto називає предмет квитком; Es el boleto впізнає потрібний квиток."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что найден именно нужный билет, с el.",
+          "uk": "Підтвердьте, що знайдено саме потрібний квиток, з el."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-25:intro3:r1",
+              "text": "Es el boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro3:r2",
+              "text": "Es la boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro3:r3",
+              "text": "Es los boleto."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-25:intro3:r1",
+              "text": "Es el boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro3:r2",
+              "text": "Es la boleto."
+            },
+            {
+              "responseId": "es:lesson-02:session-25:intro3:r3",
+              "text": "Es los boleto."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что найден именно нужный билет, с el.",
+          "uk": "Підтвердьте, що знайдено саме потрібний квиток, з el."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "942b350ed934f6390071af5d9acad396d0d97395f1b3817451a2207eee1aeedd"
+}

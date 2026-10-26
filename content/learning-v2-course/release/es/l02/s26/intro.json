@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "различать una и la при назывании и узнавании одного предмета.",
+    "uk": "розрізняти una і la під час називання й упізнавання одного предмета."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рюкзак на полке",
+        "uk": "Рюкзак на полиці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает вещь на полке. `Mochila` — «рюкзак», по-испански женского рода: la mochila. Назовите её: `Es una mochila` — «Это рюкзак». Соберите `es` + `una` + `mochila`. Una помогает назвать вид предмета; род выбирайте по испанскому mochila, а не по русскому «рюкзак».",
+        "uk": "Друг показує річ на полиці. `Mochila` — «рюкзак», іспанською жіночого роду: la mochila. Назвіть її: `Es una mochila` — «Це рюкзак». Зберіть `es` + `una` + `mochila`. Una допомагає назвати вид предмета; рід вибирайте за іспанським mochila, а не за українським «рюкзак»."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите предмет рюкзаком с una.",
+          "uk": "Назвіть предмет рюкзаком з una."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-26:intro1:r1",
+              "text": "Es una mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro1:r2",
+              "text": "Es un mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro1:r3",
+              "text": "Son una mochila."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-26:intro1:r1",
+              "text": "Es una mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro1:r2",
+              "text": "Es un mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro1:r3",
+              "text": "Son una mochila."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите предмет рюкзаком с una.",
+          "uk": "Назвіть предмет рюкзаком з una."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Чемодан рядом",
+        "uk": "Валіза поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом стоит чемодан. `Maleta` — «чемодан», тоже слово женского рода: la maleta. Назовите его: `Es una maleta` — «Это чемодан». Соберите `es` + `una` + `maleta`. Русское слово мужского рода, но испанское maleta требует una. Здесь просто называете предмет чемоданом.",
+        "uk": "Поруч стоїть валіза. `Maleta` — «валіза», теж слово жіночого роду: la maleta. Назвіть її: `Es una maleta` — «Це валіза». Зберіть `es` + `una` + `maleta`. Тут рід збігається з українським словом: іспанське maleta потребує una. Зараз просто називаєте предмет валізою."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите чемодан с una.",
+          "uk": "Назвіть валізу з una."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-26:intro2:r1",
+              "text": "Es una maleta."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro2:r2",
+              "text": "Es un maleta."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro2:r3",
+              "text": "Es una mochila."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-26:intro2:r1",
+              "text": "Es una maleta."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro2:r2",
+              "text": "Es un maleta."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro2:r3",
+              "text": "Es una mochila."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите чемодан с una.",
+          "uk": "Назвіть валізу з una."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нужный рюкзак найден",
+        "uk": "Потрібний рюкзак знайдено"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заранее выбрали для поездки определённый рюкзак. Друг нашёл его: подтвердите `Es la mochila` — «Это тот самый рюкзак». Соберите `es` + `la` + `mochila`. La указывает на уже известную вам обоим вещь. Так же для нужного чемодана: Es la maleta — «Это тот самый чемодан». Артикль la сам по себе не означает «мой».",
+        "uk": "Ви заздалегідь вибрали для поїздки певний рюкзак. Друг знайшов його: підтвердьте `Es la mochila` — «Це той самий рюкзак». Зберіть `es` + `la` + `mochila`. La указує на вже відому вам обом річ. Так само для потрібної валізи: Es la maleta — «Це та сама валіза». Артикль la сам по собі не означає «мій»."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что найден нужный рюкзак, с la.",
+          "uk": "Підтвердьте, що знайдено потрібний рюкзак, з la."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-26:intro3:r1",
+              "text": "Es la mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro3:r2",
+              "text": "Es el mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro3:r3",
+              "text": "Es las mochila."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-26:intro3:r1",
+              "text": "Es la mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro3:r2",
+              "text": "Es el mochila."
+            },
+            {
+              "responseId": "es:lesson-02:session-26:intro3:r3",
+              "text": "Es las mochila."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что найден нужный рюкзак, с la.",
+          "uk": "Підтвердьте, що знайдено потрібний рюкзак, з la."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "62de46deacebdf7c6836b83e9df52460d0eb56fc4441896e16cc777edec9e13e"
+}

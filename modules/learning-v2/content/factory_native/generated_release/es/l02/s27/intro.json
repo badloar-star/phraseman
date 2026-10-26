@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца вещи с de и именем.",
+    "uk": "назвати власника речі з de та ім'ям."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Шарф на стуле",
+        "uk": "Шарф на стільці"
+      },
+      "bodyByLocale": {
+        "ru": "На стуле остался шарф. `Bufanda` — «шарф», по-испански женского рода: la bufanda. Назовите предмет: `Es una bufanda` — «Это шарф». Соберите `es` + `una` + `bufanda`. Род выбирайте по испанскому слову, поэтому una, хотя русское «шарф» мужского рода.",
+        "uk": "На стільці залишився шарф. `Bufanda` — «шарф», іспанською жіночого роду: la bufanda. Назвіть предмет: `Es una bufanda` — «Це шарф». Зберіть `es` + `una` + `bufanda`. Рід вибирайте за іспанським словом, тому una, хоча українське «шарф» чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите шарф.",
+          "uk": "Назвіть шарф."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-27:intro1:r1",
+              "text": "Es una bufanda."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro1:r2",
+              "text": "Es un bufanda."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro1:r3",
+              "text": "Son una bufanda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-27:intro1:r1",
+              "text": "Es una bufanda."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro1:r2",
+              "text": "Es un bufanda."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro1:r3",
+              "text": "Son una bufanda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите шарф.",
+          "uk": "Назвіть шарф."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Шарф Аны",
+        "uk": "Шарф Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Вы узнаёте шарф подруги Аны. Скажите `La bufanda es de Ana` — «Шарф принадлежит Ане». Соберите `la bufanda` + `es` + `de Ana`: сначала вещь, затем es, потом de и имя владельца. `De` здесь связывает вещь с её владельцем. La выбирайте по женскому bufanda, а имя ставьте после de.",
+        "uk": "Ви впізнаєте шарф подруги Ани. Скажіть `La bufanda es de Ana` — «Шарф належить Ані». Зберіть `la bufanda` + `es` + `de Ana`: спочатку річ, потім es, далі de та ім'я власника. `De` тут пов'язує річ із її власником. La вибирайте за жіночим bufanda, а ім'я ставте після de."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что шарф принадлежит Ане.",
+          "uk": "Скажіть, що шарф належить Ані."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-27:intro2:r1",
+              "text": "La bufanda es de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro2:r2",
+              "text": "La bufanda es Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro2:r3",
+              "text": "La bufanda de es Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-27:intro2:r1",
+              "text": "La bufanda es de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro2:r2",
+              "text": "La bufanda es Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro2:r3",
+              "text": "La bufanda de es Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что шарф принадлежит Ане.",
+          "uk": "Скажіть, що шарф належить Ані."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Пальто Луиса",
+        "uk": "Пальто Луїса"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом осталось пальто Луиса. `Abrigo` — «пальто», слово мужского рода: el abrigo. Скажите `El abrigo es de Luis` — «Пальто принадлежит Луису». Соберите `el abrigo` + `es` + `de Luis`. Артикль el выбирайте по слову abrigo, затем добавьте уже знакомую связку es de и имя.",
+        "uk": "Поруч залишилося пальто Луїса. `Abrigo` — «пальто», слово чоловічого роду: el abrigo. Скажіть `El abrigo es de Luis` — «Пальто належить Луїсу». Зберіть `el abrigo` + `es` + `de Luis`. Артикль el вибирайте за словом abrigo, потім додайте вже знайому сполуку es de та ім'я."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что пальто принадлежит Луису.",
+          "uk": "Скажіть, що пальто належить Луїсу."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-27:intro3:r1",
+              "text": "El abrigo es de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro3:r2",
+              "text": "El abrigo es Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro3:r3",
+              "text": "La abrigo es de Luis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-27:intro3:r1",
+              "text": "El abrigo es de Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro3:r2",
+              "text": "El abrigo es Luis."
+            },
+            {
+              "responseId": "es:lesson-02:session-27:intro3:r3",
+              "text": "La abrigo es de Luis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что пальто принадлежит Луису.",
+          "uk": "Скажіть, що пальто належить Луїсу."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e516c9b59aefe4e0a839d0f0005975e60be758e0918b575486ddfa01fa894ce3"
+}

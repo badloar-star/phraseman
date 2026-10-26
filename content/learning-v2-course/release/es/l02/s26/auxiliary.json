@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-26:intro1:r2": {
+          "ru": "Для mochila нужна una.",
+          "uk": "Для mochila потрібна una."
+        },
+        "es:lesson-02:session-26:intro1:r3": {
+          "ru": "Рюкзак один: es.",
+          "uk": "Рюкзак один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-26:intro2:r2": {
+          "ru": "Испанское maleta женского рода.",
+          "uk": "Іспанське maleta жіночого роду."
+        },
+        "es:lesson-02:session-26:intro2:r3": {
+          "ru": "Это рюкзак, а перед вами чемодан.",
+          "uk": "Це рюкзак, а перед вами валіза."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-26:intro3:r2": {
+          "ru": "Mochila женского рода: la.",
+          "uk": "Mochila жіночого роду: la."
+        },
+        "es:lesson-02:session-26:intro3:r3": {
+          "ru": "Рюкзак один: la.",
+          "uk": "Рюкзак один: la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "53495f84adf3e24eb8e22287991dc47e06b906e1b818e841fca84eec28ee4c87"
+}

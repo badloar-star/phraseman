@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-28",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-28:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-28:intro1:r2": {
+          "ru": "Без de получится вопрос «кто», а не «чей».",
+          "uk": "Без de вийде запитання «хто», а не «чий»."
+        },
+        "es:lesson-02:session-28:intro1:r3": {
+          "ru": "В нашем образце es стоит перед la bufanda.",
+          "uk": "У нашому зразку es стоїть перед la bufanda."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-28:intro2:r2": {
+          "ru": "Нужно de Ana: вы называете владельца, а не саму Ану.",
+          "uk": "Потрібно de Ana: ви називаєте власника, а не саму Ану."
+        },
+        "es:lesson-02:session-28:intro2:r3": {
+          "ru": "Порядок ответа: es de Ana.",
+          "uk": "Порядок відповіді: es de Ana."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-28:intro3:r2": {
+          "ru": "Abrigo мужского рода: el abrigo.",
+          "uk": "Abrigo чоловічого роду: el abrigo."
+        },
+        "es:lesson-02:session-28:intro3:r3": {
+          "ru": "Пальто одно: es.",
+          "uk": "Пальто одне: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "65651278e9cc8ae29357f7438c01b7739eebf1d16773f9802f450b8f333feac1"
+}

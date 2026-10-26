@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-25:intro1:r2": {
+          "ru": "Boleto мужского рода: un.",
+          "uk": "Boleto чоловічого роду: un."
+        },
+        "es:lesson-02:session-25:intro1:r3": {
+          "ru": "Один билет требует es.",
+          "uk": "Один квиток потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-25:intro2:r2": {
+          "ru": "Recibo мужского рода: un.",
+          "uk": "Recibo чоловічого роду: un."
+        },
+        "es:lesson-02:session-25:intro2:r3": {
+          "ru": "Это билет, а сейчас речь о чеке.",
+          "uk": "Це квиток, а зараз ідеться про чек."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-25:intro3:r2": {
+          "ru": "Boleto мужского рода: el.",
+          "uk": "Boleto чоловічого роду: el."
+        },
+        "es:lesson-02:session-25:intro3:r3": {
+          "ru": "Билет один: el.",
+          "uk": "Квиток один: el."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0617441d399fbea10b06a9e8339300b511fabaa9e63ae1417b945b5cca23437e"
+}

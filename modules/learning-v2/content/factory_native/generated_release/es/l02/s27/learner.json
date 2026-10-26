@@ -1,0 +1,976 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-27",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — bufanda",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — bufanda",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i01:audio",
+          "transcript": "bufanda"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-27:i01:r1",
+            "targetText": "bufanda",
+            "meaningByLocale": {
+              "ru": "шарф. Женский род: la bufanda. 🔊 *bufanda*",
+              "uk": "шарф. Жіночий рід: la bufanda. 🔊 *bufanda*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "bufanda",
+          "definitionByLocale": {
+            "ru": "шарф. Женский род: la bufanda. 🔊 *bufanda*",
+            "uk": "шарф. Жіночий рід: la bufanda. 🔊 *bufanda*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i02:r1",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i02:r2",
+          "text": "botella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i02:audio",
+          "transcript": "bufanda"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-27:i02:r1",
+            "targetText": "bufanda",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i02:r2",
+            "targetText": "botella",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит bufanda — шарф.",
+              "uk": "Звучить bufanda — шарф."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — de",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — de",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i03:audio",
+          "transcript": "de"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-27:i03:r1",
+            "targetText": "de",
+            "meaningByLocale": {
+              "ru": "здесь указывает на принадлежность: de Ana — Аны, принадлежит Ане. 🔊 *de*",
+              "uk": "тут указує на належність: de Ana — Ани, належить Ані. 🔊 *de*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "de",
+          "definitionByLocale": {
+            "ru": "здесь указывает на принадлежность: de Ana — Аны, принадлежит Ане. 🔊 *de*",
+            "uk": "тут указує на належність: de Ana — Ани, належить Ані. 🔊 *de*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i04:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i04:r2",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i04:audio",
+          "transcript": "de"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-27:i04:r1",
+            "targetText": "de",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i04:r2",
+            "targetText": "la",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит de.",
+              "uk": "Звучить de."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — abrigo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i05:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — abrigo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i05:audio",
+          "transcript": "abrigo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-27:i05:r1",
+            "targetText": "abrigo",
+            "meaningByLocale": {
+              "ru": "пальто. Мужской род: el abrigo. 🔊 *abrigo*",
+              "uk": "пальто. Чоловічий рід: el abrigo. 🔊 *abrigo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "abrigo",
+          "definitionByLocale": {
+            "ru": "пальто. Мужской род: el abrigo. 🔊 *abrigo*",
+            "uk": "пальто. Чоловічий рід: el abrigo. 🔊 *abrigo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i06:r1",
+          "text": "abrigo"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i06:r2",
+          "text": "árbol"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i06:audio",
+          "transcript": "abrigo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-27:i06:r1",
+            "targetText": "abrigo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i06:r2",
+            "targetText": "árbol",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i06:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит abrigo — пальто.",
+              "uk": "Звучить abrigo — пальто."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите шарф",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i07:r1",
+          "text": "Плитки: bufanda"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i07:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите шарф",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una bufanda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите шарф",
+          "uk": "Зберіть фразу — назвіть шарф"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "bufanda"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите шарф",
+            "feedbackByLocale": {
+              "ru": "bufanda женского рода.",
+              "uk": "bufanda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — шарф принадлежит Ане",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i08:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i08:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i08:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — шарф принадлежит Ане",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — шарф принадлежит Ане",
+          "uk": "Вставте слово — шарф належить Ані"
+        },
+        "gappedTargetPhrase": "La bufanda es ___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-27:i08:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i08:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i08:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — шарф принадлежит Ане",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — шарф принадлежит Ане",
+            "feedbackByLocale": {
+              "ru": "Перед именем владельца нужна de.",
+              "uk": "Перед ім'ям власника потрібна de."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — шарф принадлежит Ане",
+            "feedbackByLocale": {
+              "ru": "Владельца вводит de, не un.",
+              "uk": "Власника вводить de, не un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — шарф Аны",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i09:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i09:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i09:r4",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i09:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i09:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — шарф Аны",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bufanda es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — шарф Аны",
+          "uk": "Зберіть фразу — шарф Ани"
+        },
+        "orderedTokens": [
+          "La",
+          "bufanda",
+          "es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — шарф Аны",
+            "feedbackByLocale": {
+              "ru": "bufanda женского рода.",
+              "uk": "bufanda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — шарф принадлежит Ане",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — шарф принадлежит Ане",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i10:audio",
+          "transcript": "La bufanda es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bufanda es de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — пальто Луиса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i11:r1",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i11:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i11:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — пальто Луиса",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — пальто Луиса",
+          "uk": "Вставте слово — пальто Луїса"
+        },
+        "gappedTargetPhrase": "El abrigo es ___ Luis.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-27:i11:r1",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i11:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i11:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — пальто Луиса",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — пальто Луиса",
+            "feedbackByLocale": {
+              "ru": "Перед именем владельца нужна de.",
+              "uk": "Перед ім'ям власника потрібна de."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — пальто Луиса",
+            "feedbackByLocale": {
+              "ru": "Принадлежность выражается через de Luis.",
+              "uk": "Належність виражається через de Luis."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — пальто принадлежит Луису",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i12:r1",
+          "text": "Плитки: Luis"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i12:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i12:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i12:r4",
+          "text": "abrigo"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i12:r5",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i12:r6",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — пальто принадлежит Луису",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El abrigo es de Luis.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — пальто принадлежит Луису",
+          "uk": "Зберіть фразу — пальто належить Луїсу"
+        },
+        "orderedTokens": [
+          "El",
+          "abrigo",
+          "es",
+          "de",
+          "Luis"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — пальто принадлежит Луису",
+            "feedbackByLocale": {
+              "ru": "abrigo мужского рода.",
+              "uk": "abrigo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i13:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i13:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i13:r4",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i13:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i13:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i13:audio",
+          "transcript": "La bufanda es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La bufanda es de Ana.",
+        "orderedTokens": [
+          "La",
+          "bufanda",
+          "es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит la.",
+              "uk": "у записі звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — пальто принадлежит Луису",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — пальто принадлежит Луису",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i14:audio",
+          "transcript": "El abrigo es de Luis."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El abrigo es de Luis.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i15",
+      "ordinal": 18,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — укажите пальто Луиса",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i15:r1",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i15:r2",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i15:r3",
+          "text": "Las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — укажите пальто Луиса",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — укажите пальто Луиса",
+          "uk": "Вставте слово — укажіть пальто Луїса"
+        },
+        "gappedTargetPhrase": "___ abrigo es de Luis.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-27:i15:r1",
+            "text": "El"
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i15:r2",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i15:r3",
+            "text": "Las"
+          }
+        ],
+        "testedDimension": "Вставьте слово — укажите пальто Луиса",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i15:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — укажите пальто Луиса",
+            "feedbackByLocale": {
+              "ru": "Abrigo мужского рода: el.",
+              "uk": "Abrigo чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-27:i15:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — укажите пальто Луиса",
+            "feedbackByLocale": {
+              "ru": "Здесь одно пальто мужского рода: el.",
+              "uk": "Тут одне пальто чоловічого роду: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — исправьте ошибку: шарф не Аны",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-27:i16:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i16:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i16:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i16:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i16:r5",
+          "text": "bufanda"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i16:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-27:i16:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — исправьте ошибку: шарф не Аны",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La bufanda no es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — исправьте ошибку: шарф не Аны",
+          "uk": "Зберіть фразу — виправте помилку: шарф не Ани"
+        },
+        "orderedTokens": [
+          "La",
+          "bufanda",
+          "no",
+          "es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-27:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — исправьте ошибку: шарф не Аны",
+            "feedbackByLocale": {
+              "ru": "bufanda женского рода.",
+              "uk": "bufanda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — подтвердите, что шарф Аны",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-27:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — подтвердите, что шарф Аны",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-27:i17:audio",
+          "transcript": "La bufanda es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La bufanda es de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 17,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a3ba913046d8b7cbb796260d4adcef1a3e0a1f74910c16a373c9c679cd51476b"
+}

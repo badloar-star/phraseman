@@ -1,0 +1,802 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-26",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-26:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mochila",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mochila",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i01:audio",
+          "transcript": "mochila"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-26:i01:r1",
+            "targetText": "mochila",
+            "meaningByLocale": {
+              "ru": "рюкзак. Женский род: la mochila. 🔊 *mochila*",
+              "uk": "рюкзак. Жіночий рід: la mochila. 🔊 *mochila*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mochila",
+          "definitionByLocale": {
+            "ru": "рюкзак. Женский род: la mochila. 🔊 *mochila*",
+            "uk": "рюкзак. Жіночий рід: la mochila. 🔊 *mochila*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i02:r1",
+          "text": "mochila"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i02:r2",
+          "text": "cuchillo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i02:audio",
+          "transcript": "mochila"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-26:i02:r1",
+            "targetText": "mochila",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i02:r2",
+            "targetText": "cuchillo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mochila — рюкзак.",
+              "uk": "Звучить mochila — рюкзак."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — maleta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — maleta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i03:audio",
+          "transcript": "maleta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-26:i03:r1",
+            "targetText": "maleta",
+            "meaningByLocale": {
+              "ru": "чемодан. Женский род: la maleta. 🔊 *maleta*",
+              "uk": "валіза. Жіночий рід: la maleta. 🔊 *maleta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "maleta",
+          "definitionByLocale": {
+            "ru": "чемодан. Женский род: la maleta. 🔊 *maleta*",
+            "uk": "валіза. Жіночий рід: la maleta. 🔊 *maleta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i04:r1",
+          "text": "maleta"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i04:r2",
+          "text": "libreta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i04:audio",
+          "transcript": "maleta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-26:i04:r1",
+            "targetText": "maleta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i04:r2",
+            "targetText": "libreta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит maleta — чемодан.",
+              "uk": "Звучить maleta — валіза."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це рюкзак",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i05:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це рюкзак",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это рюкзак",
+          "uk": "Вставте слово — це рюкзак"
+        },
+        "gappedTargetPhrase": "Es ___ mochila.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-26:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i05:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i05:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це рюкзак",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це рюкзак",
+            "feedbackByLocale": {
+              "ru": "Mochila женского рода: una.",
+              "uk": "Mochila жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це рюкзак",
+            "feedbackByLocale": {
+              "ru": "Рюкзак один: una.",
+              "uk": "Рюкзак один: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть рюкзак з una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i06:r1",
+          "text": "Плитки: mochila"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть рюкзак з una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una mochila.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите рюкзак с una",
+          "uk": "Зберіть фразу — назвіть рюкзак з una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "mochila"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть рюкзак з una",
+            "feedbackByLocale": {
+              "ru": "mochila женского рода.",
+              "uk": "mochila жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це валіза",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i07:r1",
+          "text": "maleta"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i07:r2",
+          "text": "mochila"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i07:r3",
+          "text": "botella"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це валіза",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это чемодан",
+          "uk": "Вставте слово — це валіза"
+        },
+        "gappedTargetPhrase": "Es una ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-26:i07:r1",
+            "text": "maleta"
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i07:r2",
+            "text": "mochila"
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i07:r3",
+            "text": "botella"
+          }
+        ],
+        "testedDimension": "Вставте слово — це валіза",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це валіза",
+            "feedbackByLocale": {
+              "ru": "Это рюкзак; чемодан — maleta.",
+              "uk": "Це рюкзак; валіза — maleta."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це валіза",
+            "feedbackByLocale": {
+              "ru": "Это бутылка; чемодан — maleta.",
+              "uk": "Це пляшка; валіза — maleta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть валізу з una",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i08:r1",
+          "text": "Плитки: maleta"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i08:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть валізу з una",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una maleta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите чемодан с una",
+          "uk": "Зберіть фразу — назвіть валізу з una"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "maleta"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть валізу з una",
+            "feedbackByLocale": {
+              "ru": "maleta женского рода.",
+              "uk": "maleta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це саме потрібний рюкзак",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i09:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i09:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i09:r3",
+          "text": "las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це саме потрібний рюкзак",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это именно нужный рюкзак",
+          "uk": "Вставте слово — це саме потрібний рюкзак"
+        },
+        "gappedTargetPhrase": "Es ___ mochila.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-26:i09:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i09:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i09:r3",
+            "text": "las"
+          }
+        ],
+        "testedDimension": "Вставте слово — це саме потрібний рюкзак",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме потрібний рюкзак",
+            "feedbackByLocale": {
+              "ru": "Mochila женского рода: la.",
+              "uk": "Mochila жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-26:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це саме потрібний рюкзак",
+            "feedbackByLocale": {
+              "ru": "Рюкзак один: la.",
+              "uk": "Рюкзак один: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — підтвердьте: потрібний рюкзак знайдено",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i10:r1",
+          "text": "Плитки: mochila"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i10:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i10:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — підтвердьте: потрібний рюкзак знайдено",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la mochila.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите: нужный рюкзак найден",
+          "uk": "Зберіть фразу — підтвердьте: потрібний рюкзак знайдено"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "mochila"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — підтвердьте: потрібний рюкзак знайдено",
+            "feedbackByLocale": {
+              "ru": "mochila женского рода.",
+              "uk": "mochila жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i11:r1",
+          "text": "Плитки: maleta"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i11:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i11:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i11:audio",
+          "transcript": "Es la maleta."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es la maleta.",
+        "orderedTokens": [
+          "Es",
+          "la",
+          "maleta"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит la.",
+              "uk": "у записі звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це та сама валіза",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це та сама валіза",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i12:audio",
+          "transcript": "Es la maleta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la maleta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це не той рюкзак, який ви вибрали",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-26:i13:r1",
+          "text": "Плитки: mochila"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i13:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i13:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-26:i13:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це не той рюкзак, який ви вибрали",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es la mochila.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не тот рюкзак, который вы выбрали",
+          "uk": "Зберіть фразу — це не той рюкзак, який ви вибрали"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "la",
+          "mochila"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-26:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це не той рюкзак, який ви вибрали",
+            "feedbackByLocale": {
+              "ru": "mochila женского рода.",
+              "uk": "mochila жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-26:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть предмет рюкзаком з una",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-26:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть предмет рюкзаком з una",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-26:i14:audio",
+          "transcript": "Es una mochila."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una mochila.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bf1ea28e24399251db00b9546dd075f20784d730150b20ebd42a2846b27feba6"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-26:i01",
+    "correctText": "mochila",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i02",
+    "correctText": "mochila",
+    "correctResponseId": "es:lesson-02:session-26:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i03",
+    "correctText": "maleta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i04",
+    "correctText": "maleta",
+    "correctResponseId": "es:lesson-02:session-26:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-02:session-26:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i06",
+    "correctText": "Es una mochila.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i07",
+    "correctText": "maleta",
+    "correctResponseId": "es:lesson-02:session-26:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i08",
+    "correctText": "Es una maleta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i09",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-02:session-26:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i10",
+    "correctText": "Es la mochila.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i11",
+    "correctText": "Es la maleta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i12",
+    "correctText": "Es la maleta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i13",
+    "correctText": "No es la mochila.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-26:i14",
+    "correctText": "Es una mochila.",
+    "correctResponseId": null
+  }
+]

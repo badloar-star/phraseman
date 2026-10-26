@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "спросить, кому принадлежит вещь, с ¿De quién es…?",
+    "uk": "запитати, кому належить річ, з ¿De quién es…?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о шарфе",
+        "uk": "Запитати про шарф"
+      },
+      "bodyByLocale": {
+        "ru": "На стуле остался шарф, а вы не знаете владельца. `Quién` означает «кто» в вопросе; `de quién` — «чей, кому принадлежит». Спросите `¿De quién es la bufanda?` — «Чей шарф?» Соберите `¿de quién` + `es` + `la bufanda?`. Начните с de quién, потом es и название вещи. Сохраняйте знак над é в quién и оба вопросительных знака.",
+        "uk": "На стільці залишився шарф, а ви не знаєте власника. `Quién` означає «хто» в запитанні; `de quién` — «чий, кому належить». Запитайте `¿De quién es la bufanda?` — «Чий шарф?» Зберіть `¿de quién` + `es` + `la bufanda?`. Почніть із de quién, потім es і назва речі. Зберігайте знак над é у quién та обидва знаки питання."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, чей шарф.",
+          "uk": "Запитайте, чий шарф."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-28:intro1:r1",
+              "text": "¿De quién es la bufanda?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro1:r2",
+              "text": "¿Quién es la bufanda?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro1:r3",
+              "text": "¿De quién la bufanda es?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-28:intro1:r1",
+              "text": "¿De quién es la bufanda?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro1:r2",
+              "text": "¿Quién es la bufanda?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro1:r3",
+              "text": "¿De quién la bufanda es?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чей шарф.",
+          "uk": "Запитайте, чий шарф."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ответить именем",
+        "uk": "Відповісти ім'ям"
+      },
+      "bodyByLocale": {
+        "ru": "Друг знает, что это шарф Аны. Ответ: `La bufanda es de Ana` — «Шарф принадлежит Ане». Можно ответить короче: `Es de Ana` — «Аны». Соберите `es` + `de` + `Ana`. Вы уже говорите о шарфе, поэтому в коротком ответе не нужно повторять la bufanda. De сохраняется и в вопросе, и в ответе.",
+        "uk": "Друг знає, що це шарф Ани. Відповідь: `La bufanda es de Ana` — «Шарф належить Ані». Можна відповісти коротше: `Es de Ana` — «Ани». Зберіть `es` + `de` + `Ana`. Ви вже говорите про шарф, тому в короткій відповіді не потрібно повторювати la bufanda. De зберігається і в запитанні, і у відповіді."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Коротко ответьте, что шарф Аны.",
+          "uk": "Коротко дайте відповідь, що шарф Ани."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-28:intro2:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro2:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro2:r3",
+              "text": "De es Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-28:intro2:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro2:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro2:r3",
+              "text": "De es Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Коротко ответьте, что шарф Аны.",
+          "uk": "Коротко дайте відповідь, що шарф Ани."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить о пальто",
+        "uk": "Запитати про пальто"
+      },
+      "bodyByLocale": {
+        "ru": "Осталось пальто. Спросите `¿De quién es el abrigo?` — «Чьё пальто?» Соберите `¿de quién` + `es` + `el abrigo?`. Начало вопроса не меняется; замените только название вещи. Для мужского abrigo нужен el, для женского bufanda — la. Имя владельца в вопросе пока неизвестно.",
+        "uk": "Залишилося пальто. Запитайте `¿De quién es el abrigo?` — «Чиє пальто?» Зберіть `¿de quién` + `es` + `el abrigo?`. Початок запитання не змінюється; замініть лише назву речі. Для чоловічого abrigo потрібен el, для жіночого bufanda — la. Ім'я власника в запитанні поки невідоме."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, чьё пальто.",
+          "uk": "Запитайте, чиє пальто."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-28:intro3:r1",
+              "text": "¿De quién es el abrigo?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro3:r2",
+              "text": "¿De quién es la abrigo?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro3:r3",
+              "text": "¿De quién son el abrigo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-28:intro3:r1",
+              "text": "¿De quién es el abrigo?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro3:r2",
+              "text": "¿De quién es la abrigo?"
+            },
+            {
+              "responseId": "es:lesson-02:session-28:intro3:r3",
+              "text": "¿De quién son el abrigo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чьё пальто.",
+          "uk": "Запитайте, чиє пальто."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fc268ca14edae781325d614273aaac838debf134083f4af9a7ed804881a85572"
+}

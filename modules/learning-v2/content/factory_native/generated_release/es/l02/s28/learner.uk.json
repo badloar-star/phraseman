@@ -1,0 +1,700 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-28",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — quién",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — quién",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-28:i01:audio",
+          "transcript": "quién"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-28:i01:r1",
+            "targetText": "quién",
+            "meaningByLocale": {
+              "ru": "кто; de quién — чей, кому принадлежит. 🔊 *quién*",
+              "uk": "хто; de quién — чий, кому належить. 🔊 *quién*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "quién",
+          "definitionByLocale": {
+            "ru": "кто; de quién — чей, кому принадлежит. 🔊 *quién*",
+            "uk": "хто; de quién — чий, кому належить. 🔊 *quién*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i02:r1",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i02:r2",
+          "text": "qué"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-28:i02:audio",
+          "transcript": "quién"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-28:i02:r1",
+            "targetText": "quién",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i02:r2",
+            "targetText": "qué",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит quién — кто.",
+              "uk": "Звучить quién — хто."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитайте, чий шарф",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i03:r1",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i03:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i03:r3",
+          "text": "Luis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитайте, чий шарф",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите, чей шарф",
+          "uk": "Вставте слово — запитайте, чий шарф"
+        },
+        "gappedTargetPhrase": "¿De ___ es la bufanda?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-28:i03:r1",
+            "text": "quién"
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i03:r2",
+            "text": "Ana"
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i03:r3",
+            "text": "Luis"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитайте, чий шарф",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте, чий шарф",
+            "feedbackByLocale": {
+              "ru": "Вопрос о неизвестном владельце требует quién, а не имя.",
+              "uk": "Запитання про невідомого власника потребує quién, а не імені."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте, чий шарф",
+            "feedbackByLocale": {
+              "ru": "Вы спрашиваете «чей»: de quién.",
+              "uk": "Ви запитуєте «чий»: de quién."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запитайте, чий шарф",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i04:r1",
+          "text": "Плитки: bufanda?"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i04:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i04:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i04:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i04:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запитайте, чий шарф",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es la bufanda?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, чей шарф",
+          "uk": "Зберіть фразу — запитайте, чий шарф"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es",
+          "la",
+          "bufanda"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запитайте, чий шарф",
+            "feedbackByLocale": {
+              "ru": "bufanda женского рода.",
+              "uk": "bufanda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте, чий шарф",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-28:i05:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте, чий шарф",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-28:i05:audio",
+          "transcript": "¿De quién es la bufanda?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es la bufanda?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — коротко дайте відповідь: Ани",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i06:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i06:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i06:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — коротко дайте відповідь: Ани",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коротко ответьте: Аны",
+          "uk": "Зберіть фразу — коротко дайте відповідь: Ани"
+        },
+        "orderedTokens": [
+          "Es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — коротко дайте відповідь: Ани",
+            "feedbackByLocale": {
+              "ru": "короткий ответ строится es de Ana.",
+              "uk": "коротка відповідь будується es de Ana."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитайте, чиє пальто",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i07:r1",
+          "text": "De"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i07:r2",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i07:r3",
+          "text": "Un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитайте, чиє пальто",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите, чьё пальто",
+          "uk": "Вставте слово — запитайте, чиє пальто"
+        },
+        "gappedTargetPhrase": "¿___ quién es el abrigo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-28:i07:r1",
+            "text": "De"
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i07:r2",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i07:r3",
+            "text": "Un"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитайте, чиє пальто",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте, чиє пальто",
+            "feedbackByLocale": {
+              "ru": "Для вопроса «чей» нужно de quién.",
+              "uk": "Для запитання «чий» потрібно de quién."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-28:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте, чиє пальто",
+            "feedbackByLocale": {
+              "ru": "Начало вопроса — de quién.",
+              "uk": "Початок запитання — de quién."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запитайте, чиє пальто",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i08:r1",
+          "text": "Плитки: abrigo?"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i08:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i08:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i08:r6",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запитайте, чиє пальто",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es el abrigo?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, чьё пальто",
+          "uk": "Зберіть фразу — запитайте, чиє пальто"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es",
+          "el",
+          "abrigo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запитайте, чиє пальто",
+            "feedbackByLocale": {
+              "ru": "abrigo мужского рода.",
+              "uk": "abrigo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i09:r1",
+          "text": "Плитки: bufanda?"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i09:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i09:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i09:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i09:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-28:i09:audio",
+          "transcript": "¿De quién es la bufanda?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿De quién es la bufanda?",
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es",
+          "la",
+          "bufanda"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит la.",
+              "uk": "у записі звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — коротко дайте відповідь: пальто Луїса",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — коротко дайте відповідь: пальто Луїса",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-28:i10:audio",
+          "transcript": "Es de Luis."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es de Luis.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — помітили рюкзак; запитайте, чий він",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-28:i11:r1",
+          "text": "Плитки: mochila?"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i11:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i11:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i11:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-28:i11:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — помітили рюкзак; запитайте, чий він",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es la mochila?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — заметили рюкзак; спросите, чей он",
+          "uk": "Зберіть фразу — помітили рюкзак; запитайте, чий він"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es",
+          "la",
+          "mochila"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-28:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — помітили рюкзак; запитайте, чий він",
+            "feedbackByLocale": {
+              "ru": "mochila женского рода.",
+              "uk": "mochila жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте, чиє пальто",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте, чиє пальто",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-28:i12:audio",
+          "transcript": "¿De quién es el abrigo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es el abrigo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9076d905bf622e65f93682f93313c7ee1b1a28b1dcd4ea0f5e26ea33ecba4e49"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-28:i01",
+    "correctText": "quién",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i02",
+    "correctText": "quién",
+    "correctResponseId": "es:lesson-02:session-28:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i03",
+    "correctText": "quién",
+    "correctResponseId": "es:lesson-02:session-28:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i04",
+    "correctText": "¿De quién es la bufanda?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i05",
+    "correctText": "¿De quién es la bufanda?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i06",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i07",
+    "correctText": "De",
+    "correctResponseId": "es:lesson-02:session-28:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i08",
+    "correctText": "¿De quién es el abrigo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i09",
+    "correctText": "¿De quién es la bufanda?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i10",
+    "correctText": "Es de Luis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i11",
+    "correctText": "¿De quién es la mochila?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-28:i12",
+    "correctText": "¿De quién es el abrigo?",
+    "correctResponseId": null
+  }
+]

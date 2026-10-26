@@ -1,0 +1,87 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-27:i01",
+    "correctText": "bufanda",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i02",
+    "correctText": "bufanda",
+    "correctResponseId": "es:lesson-02:session-27:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i03",
+    "correctText": "de",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i04",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-27:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i05",
+    "correctText": "abrigo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i06",
+    "correctText": "abrigo",
+    "correctResponseId": "es:lesson-02:session-27:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i07",
+    "correctText": "Es una bufanda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i08",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-27:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i09",
+    "correctText": "La bufanda es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i10",
+    "correctText": "La bufanda es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i11",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-02:session-27:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i12",
+    "correctText": "El abrigo es de Luis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i13",
+    "correctText": "La bufanda es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i14",
+    "correctText": "El abrigo es de Luis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i15",
+    "correctText": "El",
+    "correctResponseId": "es:lesson-02:session-27:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i16",
+    "correctText": "La bufanda no es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-27:i17",
+    "correctText": "La bufanda es de Ana.",
+    "correctResponseId": null
+  }
+]

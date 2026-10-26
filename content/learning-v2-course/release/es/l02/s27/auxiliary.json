@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-27",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-27:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-27:intro1:r2": {
+          "ru": "Для bufanda нужна una.",
+          "uk": "Для bufanda потрібна una."
+        },
+        "es:lesson-02:session-27:intro1:r3": {
+          "ru": "Один шарф требует es.",
+          "uk": "Один шарф потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-27:intro2:r2": {
+          "ru": "Нужно de Ana, иначе вы называете шарф самой Аной.",
+          "uk": "Потрібно de Ana, інакше ви називаєте шарф самою Аною."
+        },
+        "es:lesson-02:session-27:intro2:r3": {
+          "ru": "Порядок: es de Ana.",
+          "uk": "Порядок: es de Ana."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-27:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-27:intro3:r2": {
+          "ru": "Перед именем владельца нужно de.",
+          "uk": "Перед ім'ям власника потрібно de."
+        },
+        "es:lesson-02:session-27:intro3:r3": {
+          "ru": "Abrigo мужского рода: el abrigo.",
+          "uk": "Abrigo чоловічого роду: el abrigo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f2702d62b72ae79cfd6ae1dfa260b4a9a94cdf5fa10eb24d0970659dc46dd55f"
+}

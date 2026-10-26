@@ -1,0 +1,802 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-25",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — boleto",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — boleto",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i01:audio",
+          "transcript": "boleto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-25:i01:r1",
+            "targetText": "boleto",
+            "meaningByLocale": {
+              "ru": "билет. Мужской род: el boleto. 🔊 *boleto*",
+              "uk": "квиток. Чоловічий рід: el boleto. 🔊 *boleto*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "boleto",
+          "definitionByLocale": {
+            "ru": "билет. Мужской род: el boleto. 🔊 *boleto*",
+            "uk": "квиток. Чоловічий рід: el boleto. 🔊 *boleto*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i02:r1",
+          "text": "boleto"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i02:r2",
+          "text": "bonito"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i02:audio",
+          "transcript": "boleto"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-25:i02:r1",
+            "targetText": "boleto",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i02:r2",
+            "targetText": "bonito",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит boleto — билет.",
+              "uk": "Звучить boleto — квиток."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — recibo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — recibo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i03:audio",
+          "transcript": "recibo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-25:i03:r1",
+            "targetText": "recibo",
+            "meaningByLocale": {
+              "ru": "чек, квитанция. Мужской род: el recibo. 🔊 *recibo*",
+              "uk": "чек, квитанція. Чоловічий рід: el recibo. 🔊 *recibo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "recibo",
+          "definitionByLocale": {
+            "ru": "чек, квитанция. Мужской род: el recibo. 🔊 *recibo*",
+            "uk": "чек, квитанція. Чоловічий рід: el recibo. 🔊 *recibo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i04:r1",
+          "text": "recibo"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i04:r2",
+          "text": "radio"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i04:audio",
+          "transcript": "recibo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-25:i04:r1",
+            "targetText": "recibo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i04:r2",
+            "targetText": "radio",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит recibo — чек.",
+              "uk": "Звучить recibo — чек."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — назовите предмет билетом с un",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — назовите предмет билетом с un",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — назовите предмет билетом с un",
+          "uk": "Вставте слово — назвіть предмет квитком з un"
+        },
+        "gappedTargetPhrase": "Es ___ boleto.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-25:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — назовите предмет билетом с un",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите предмет билетом с un",
+            "feedbackByLocale": {
+              "ru": "Boleto мужского рода: un.",
+              "uk": "Boleto чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — назовите предмет билетом с un",
+            "feedbackByLocale": {
+              "ru": "Билет один: un.",
+              "uk": "Квиток один: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — просто назовите билет с un",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i06:r1",
+          "text": "Плитки: boleto"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — просто назовите билет с un",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un boleto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — просто назовите билет с un",
+          "uk": "Зберіть фразу — просто назвіть квиток з un"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "boleto"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — просто назовите билет с un",
+            "feedbackByLocale": {
+              "ru": "boleto мужского рода.",
+              "uk": "boleto чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это чек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i07:r1",
+          "text": "recibo"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i07:r2",
+          "text": "boleto"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i07:r3",
+          "text": "sobre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это чек",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это чек",
+          "uk": "Вставте слово — це чек"
+        },
+        "gappedTargetPhrase": "Es un ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-25:i07:r1",
+            "text": "recibo"
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i07:r2",
+            "text": "boleto"
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i07:r3",
+            "text": "sobre"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это чек",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это чек",
+            "feedbackByLocale": {
+              "ru": "Boleto — билет; нужен чек: recibo.",
+              "uk": "Boleto — квиток; потрібен чек: recibo."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это чек",
+            "feedbackByLocale": {
+              "ru": "Sobre — конверт; нужен чек: recibo.",
+              "uk": "Sobre — конверт; потрібен чек: recibo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите чек",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i08:r1",
+          "text": "Плитки: recibo"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите чек",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un recibo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите чек",
+          "uk": "Зберіть фразу — назвіть чек"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "recibo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите чек",
+            "feedbackByLocale": {
+              "ru": "recibo мужского рода.",
+              "uk": "recibo чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это тот самый билет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i09:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i09:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i09:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это тот самый билет",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это тот самый билет",
+          "uk": "Вставте слово — це той самий квиток"
+        },
+        "gappedTargetPhrase": "Es ___ boleto.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-25:i09:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i09:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i09:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это тот самый билет",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это тот самый билет",
+            "feedbackByLocale": {
+              "ru": "Boleto мужского рода: el.",
+              "uk": "Boleto чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-25:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это тот самый билет",
+            "feedbackByLocale": {
+              "ru": "Билет один: el.",
+              "uk": "Квиток один: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — подтвердите: это нужный билет",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i10:r1",
+          "text": "Плитки: boleto"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i10:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i10:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — подтвердите: это нужный билет",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es el boleto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите: это нужный билет",
+          "uk": "Зберіть фразу — підтвердьте: це потрібний квиток"
+        },
+        "orderedTokens": [
+          "Es",
+          "el",
+          "boleto"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — подтвердите: это нужный билет",
+            "feedbackByLocale": {
+              "ru": "boleto мужского рода.",
+              "uk": "boleto чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i11:r1",
+          "text": "Плитки: boleto"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i11:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i11:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i11:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i11:audio",
+          "transcript": "Es el boleto."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es el boleto.",
+        "orderedTokens": [
+          "Es",
+          "el",
+          "boleto"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит el.",
+              "uk": "у записі звучить el."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите чек",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите чек",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i12:audio",
+          "transcript": "Es un recibo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un recibo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это не тот билет, который вы ищете",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-25:i13:r1",
+          "text": "Плитки: boleto"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i13:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i13:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-25:i13:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это не тот билет, который вы ищете",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es el boleto.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это не тот билет, который вы ищете",
+          "uk": "Зберіть фразу — це не той квиток, який ви шукаєте"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "el",
+          "boleto"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-25:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это не тот билет, который вы ищете",
+            "feedbackByLocale": {
+              "ru": "boleto мужского рода.",
+              "uk": "boleto чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-25:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нужный билет найден; подтвердите",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-25:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нужный билет найден; подтвердите",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-25:i14:audio",
+          "transcript": "Es el boleto."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es el boleto.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f3eaabbac507aee57032127847c8e09c247dd2c09c7705b3f35b8ab35a578e9f"
+}

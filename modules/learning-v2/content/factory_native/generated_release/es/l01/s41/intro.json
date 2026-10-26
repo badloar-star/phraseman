@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "назвать количество людей с somos и son, используя пять, шесть и семь.",
+    "uk": "назвати кількість людей із somos та son, використовуючи п'ять, шість і сім."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Нас шестеро",
+        "uk": "Нас шестеро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы посчитали свою компанию вместе с собой: шесть человек. `Somos seis` — «Нас шестеро». `Seis` означает «шесть». Соберите `somos` + `seis`. Somos включает говорящего в группу. Используйте знакомую схему Somos dos, заменив только число.",
+        "uk": "Ви порахували свою компанію разом із собою: шість людей. `Somos seis` — «Нас шестеро». `Seis` означає «шість». Зберіть `somos` + `seis`. Somos включає мовця до групи. Використайте знайому схему Somos dos, замінивши лише число."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что в вашей компании шесть человек, включая вас.",
+          "uk": "Скажіть, що у вашій компанії шість людей, включно з вами."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-41:intro1:r1",
+              "text": "Somos seis."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro1:r2",
+              "text": "Son seis."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro1:r3",
+              "text": "Somos tres."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-41:intro1:r1",
+              "text": "Somos seis."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro1:r2",
+              "text": "Son seis."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro1:r3",
+              "text": "Somos tres."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что в вашей компании шесть человек, включая вас.",
+          "uk": "Скажіть, що у вашій компанії шість людей, включно з вами."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Их семеро",
+        "uk": "Їх семеро"
+      },
+      "bodyByLocale": {
+        "ru": "В другой компании вы насчитали семь игроков. `Son siete` — «Их семеро». `Siete` означает «семь». Соберите `son` + `siete`. Son выбираете потому, что считаете другую компанию. Эти слова сообщают количество людей, а не их возраст.",
+        "uk": "В іншій компанії ви нарахували сім гравців. `Son siete` — «Їх семеро». `Siete` означає «сім». Зберіть `son` + `siete`. Son обираєте тому, що рахуєте іншу компанію. Ці слова повідомляють кількість людей, а не їхній вік."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о другой компании: «Их семеро».",
+          "uk": "Скажіть про іншу компанію: «Їх семеро»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-41:intro2:r1",
+              "text": "Son siete."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro2:r2",
+              "text": "Somos siete."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro2:r3",
+              "text": "Son seis."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-41:intro2:r1",
+              "text": "Son siete."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro2:r2",
+              "text": "Somos siete."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro2:r3",
+              "text": "Son seis."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о другой компании: «Их семеро».",
+          "uk": "Скажіть про іншу компанію: «Їх семеро»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не пятеро",
+        "uk": "Не п'ятеро"
+      },
+      "bodyByLocale": {
+        "ru": "Друг записал, что вас пять, хотя вы уже насчитали шестерых. Сначала исправьте ошибку: `No somos cinco` — «Нас не пятеро». `Cinco` означает «пять». Соберите `no` + `somos` + `cinco`. No ставится перед somos; число не меняет форму. Сейчас произнесите только отрицание ошибочного числа.",
+        "uk": "Друг записав, що вас п'ять, хоча ви вже нарахували шістьох. Спершу виправте помилку: `No somos cinco` — «Нас не п'ятеро». `Cinco` означає «п'ять». Зберіть `no` + `somos` + `cinco`. No ставиться перед somos; число не змінює форму. Зараз вимовте лише заперечення помилкового числа."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Исправьте запись о своей компании: «Нас не пятеро».",
+          "uk": "Виправте запис про свою компанію: «Нас не п'ятеро»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-41:intro3:r1",
+              "text": "No somos cinco."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro3:r2",
+              "text": "No son cinco."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro3:r3",
+              "text": "Somos cinco."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-41:intro3:r1",
+              "text": "No somos cinco."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro3:r2",
+              "text": "No son cinco."
+            },
+            {
+              "responseId": "es:lesson-01:session-41:intro3:r3",
+              "text": "Somos cinco."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Исправьте запись о своей компании: «Нас не пятеро».",
+          "uk": "Виправте запис про свою компанію: «Нас не п'ятеро»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b7cc5c014ae8ba853dd82665d0311116b22301926c7827975f1bd9d57f0dd55c"
+}

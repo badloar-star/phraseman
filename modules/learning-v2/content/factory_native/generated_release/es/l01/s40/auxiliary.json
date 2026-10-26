@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-40",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-40:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-40:intro1:r2": {
+          "ru": "Cómodo — мужская форма, а silla женского рода.",
+          "uk": "Cómodo — чоловіча форма, а silla жіночого роду."
+        },
+        "es:lesson-01:session-40:intro1:r3": {
+          "ru": "Здесь один стул, поэтому es cómoda.",
+          "uk": "Тут один стілець, тому es cómoda."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-40:intro2:r2": {
+          "ru": "Это вопрос об одном стуле.",
+          "uk": "Це запитання про один стілець."
+        },
+        "es:lesson-01:session-40:intro2:r3": {
+          "ru": "Sillas женского рода, поэтому cómodas.",
+          "uk": "Sillas жіночого роду, тому cómodas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-40:intro3:r2": {
+          "ru": "Silla требует женской формы incómoda.",
+          "uk": "Silla потребує жіночої форми incómoda."
+        },
+        "es:lesson-01:session-40:intro3:r3": {
+          "ru": "Muy нужно поставить перед incómoda.",
+          "uk": "Muy потрібно поставити перед incómoda."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "958146d8c113f02f4515c7770a7251b8f1af24042a5e284d24aa1570f897c0ea"
+}

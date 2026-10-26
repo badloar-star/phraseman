@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-01:session-41",
+  "entries": [
+    {
+      "interactionId": "es:lesson-01:session-41:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-41:intro1:r2": {
+          "ru": "Это о другой группе, без указания на ваше участие.",
+          "uk": "Це про іншу групу, без вказівки на вашу участь."
+        },
+        "es:lesson-01:session-41:intro1:r3": {
+          "ru": "Tres означает три, а вас шестеро.",
+          "uk": "Tres означає три, а вас шестеро."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-41:intro2:r2": {
+          "ru": "Это о группе, в которую вы включаете себя.",
+          "uk": "Це про групу, до якої ви включаєте себе."
+        },
+        "es:lesson-01:session-41:intro2:r3": {
+          "ru": "Seis означает шесть, а их семеро.",
+          "uk": "Seis означає шість, а їх семеро."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-01:session-41:intro3:r2": {
+          "ru": "Это о другой группе, а исправляете число своей.",
+          "uk": "Це про іншу групу, а виправляєте число своєї."
+        },
+        "es:lesson-01:session-41:intro3:r3": {
+          "ru": "Без no вы подтверждаете ошибочное число.",
+          "uk": "Без no ви підтверджуєте помилкове число."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "20e24038d0731055f4de979f4027dc34bf5870b41860a079a9370ddec5e5ca6b"
+}

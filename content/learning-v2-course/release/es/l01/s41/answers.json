@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-01:session-41:i01",
+    "correctText": "seis",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i02",
+    "correctText": "6",
+    "correctResponseId": "es:lesson-01:session-41:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i03",
+    "correctText": "Somos",
+    "correctResponseId": "es:lesson-01:session-41:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i04",
+    "correctText": "Somos seis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i05",
+    "correctText": "siete",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i06",
+    "correctText": "7",
+    "correctResponseId": "es:lesson-01:session-41:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i07",
+    "correctText": "Son siete.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i08",
+    "correctText": "cinco",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i09",
+    "correctText": "5",
+    "correctResponseId": "es:lesson-01:session-41:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i10",
+    "correctText": "No somos cinco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i11",
+    "correctText": "Son seis.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-01:session-41:i12",
+    "correctText": "Somos cinco.",
+    "correctResponseId": null
+  }
+]

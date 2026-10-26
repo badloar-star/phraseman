@@ -1,0 +1,692 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-40",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — silla",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — silla",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i01:audio",
+          "transcript": "silla"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-40:i01:r1",
+            "targetText": "silla",
+            "meaningByLocale": {
+              "ru": "стул. Женский род: la silla. Несколько — sillas. 🔊 *silla*",
+              "uk": "стілець. Жіночий рід: la silla. Кілька — sillas. 🔊 *silla*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "silla",
+          "definitionByLocale": {
+            "ru": "стул. Женский род: la silla. Несколько — sillas. 🔊 *silla*",
+            "uk": "стілець. Жіночий рід: la silla. Кілька — sillas. 🔊 *silla*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cómodo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cómodo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i02:audio",
+          "transcript": "cómodo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-40:i02:r1",
+            "targetText": "cómodo",
+            "meaningByLocale": {
+              "ru": "удобный; женская форма — cómoda. Несколько предметов — cómodos или cómodas. 🔊 *cómodo*",
+              "uk": "зручний; жіноча форма — cómoda. Кілька предметів — cómodos або cómodas. 🔊 *cómodo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cómodo",
+          "definitionByLocale": {
+            "ru": "удобный; женская форма — cómoda. Несколько предметов — cómodos или cómodas. 🔊 *cómodo*",
+            "uk": "зручний; жіноча форма — cómoda. Кілька предметів — cómodos або cómodas. 🔊 *cómodo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i03:r1",
+          "text": "cómodas"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i03:r2",
+          "text": "cómodos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i03:audio",
+          "transcript": "cómodas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-40:i03:r1",
+            "targetText": "cómodas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i03:r2",
+            "targetText": "cómodos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит женское окончание as: cómodas.",
+              "uk": "Звучить жіноче закінчення as: cómodas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — один стілець зручний",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i04:r1",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i04:r2",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i04:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — один стілець зручний",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — один стул удобный",
+          "uk": "Вставте слово — один стілець зручний"
+        },
+        "gappedTargetPhrase": "La silla es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-40:i04:r1",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i04:r2",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i04:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставте слово — один стілець зручний",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — один стілець зручний",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода, поэтому cómoda.",
+              "uk": "Silla жіночого роду, тому cómoda."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — один стілець зручний",
+            "feedbackByLocale": {
+              "ru": "Эта форма для нескольких стульев, а здесь один.",
+              "uk": "Ця форма для кількох стільців, а тут один."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — запитайте про зручність кількох стільців",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i05:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i05:r2",
+          "text": "¿son"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i05:r3",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — запитайте про зручність кількох стільців",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Son cómodas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите об удобстве нескольких стульев",
+          "uk": "Зберіть фразу — запитайте про зручність кількох стільців"
+        },
+        "orderedTokens": [
+          "¿Son",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — запитайте про зручність кількох стільців",
+            "feedbackByLocale": {
+              "ru": "спрашиваете о нескольких стульях.",
+              "uk": "питаєте про кілька стільців."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте «Вони зручні?» про набір стільців",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте «Вони зручні?» про набір стільців",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i06:audio",
+          "transcript": "¿Son cómodas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Son cómodas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — incómodo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i07:audio"
+      ],
+      "accessibilityLabel": "Картка слова — incómodo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i07:audio",
+          "transcript": "incómodo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-40:i07:r1",
+            "targetText": "incómodo",
+            "meaningByLocale": {
+              "ru": "неудобный; женская форма — incómoda. Несколько предметов — incómodos или incómodas. 🔊 *incómodo*",
+              "uk": "незручний; жіноча форма — incómoda. Кілька предметів — incómodos або incómodas. 🔊 *incómodo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "incómodo",
+          "definitionByLocale": {
+            "ru": "неудобный; женская форма — incómoda. Несколько предметов — incómodos или incómodas. 🔊 *incómodo*",
+            "uk": "незручний; жіноча форма — incómoda. Кілька предметів — incómodos або incómodas. 🔊 *incómodo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i08:r1",
+          "text": "incómoda"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i08:r2",
+          "text": "cómoda"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i08:audio",
+          "transcript": "incómoda"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-40:i08:r1",
+            "targetText": "incómoda",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i08:r2",
+            "targetText": "cómoda",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть слово",
+            "feedbackByLocale": {
+              "ru": "В начале слышно in: incómoda.",
+              "uk": "На початку чути in: incómoda."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — скажіть «Стілець дуже незручний»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i09:r1",
+          "text": "Плитки: incómoda"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i09:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i09:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i09:r4",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i09:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i09:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — скажіть «Стілець дуже незручний»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La silla es muy incómoda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — скажите «Стул очень неудобный»",
+          "uk": "Зберіть фразу — скажіть «Стілець дуже незручний»"
+        },
+        "orderedTokens": [
+          "La",
+          "silla",
+          "es",
+          "muy",
+          "incómoda"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — скажіть «Стілець дуже незручний»",
+            "feedbackByLocale": {
+              "ru": "стул один.",
+              "uk": "стілець один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька стільців незручні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i10:r1",
+          "text": "incómodas"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i10:r2",
+          "text": "incómoda"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i10:r3",
+          "text": "incómodos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька стільців незручні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько стульев неудобные",
+          "uk": "Вставте слово — кілька стільців незручні"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-40:i10:r1",
+            "text": "incómodas"
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i10:r2",
+            "text": "incómoda"
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i10:r3",
+            "text": "incómodos"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька стільців незручні",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька стільців незручні",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько, нужна форма incómodas.",
+              "uk": "Стільців кілька, потрібна форма incómodas."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-40:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька стільців незручні",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода, поэтому incómodas.",
+              "uk": "Sillas жіночого роду, тому incómodas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i11:r1",
+          "text": "Плитки: cómoda"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i11:r2",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i11:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i11:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i11:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i11:r6",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-40:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-40:i11:audio",
+          "transcript": "La silla no es cómoda."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La silla no es cómoda.",
+        "orderedTokens": [
+          "La",
+          "silla",
+          "no",
+          "es",
+          "cómoda"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-40:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — випробували весь набір; скажіть про стільці «Вони дуже зручні»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-40:i12:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i12:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i12:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-40:i12:r4",
+          "text": "cómodos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — випробували весь набір; скажіть про стільці «Вони дуже зручні»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son muy cómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — попробовали весь набор; скажите о стульях «Они очень удобные»",
+          "uk": "Зберіть фразу — випробували весь набір; скажіть про стільці «Вони дуже зручні»"
+        },
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "cómodos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-40:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — випробували весь набір; скажіть про стільці «Вони дуже зручні»",
+            "feedbackByLocale": {
+              "ru": "sillas женского рода.",
+              "uk": "sillas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "54f96ebb2d7736eded09abc0991baa1a1fa08b03bea455160be46a0367397d68"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-01:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "оценить удобство одного стула, задать вопрос о нескольких и усилить оценку.",
+    "uk": "оцінити зручність одного стільця, запитати про кілька та підсилити оцінку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-01:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобно сидеть",
+        "uk": "Зручно сидіти"
+      },
+      "bodyByLocale": {
+        "ru": "Вы садитесь на стул и довольны. `Silla` — «стул», в испанском слово женского рода: `la silla`. Скажите: `La silla es cómoda` — «Стул удобный». Соберите `la silla` + `es` + `cómoda`. `Cómodo` означает «удобный», но со словом silla нужна женская форма cómoda. Ориентируйтесь на испанский род, а не на русский перевод.",
+        "uk": "Ви сідаєте на стілець і задоволені. `Silla` — «стілець», в іспанській слово жіночого роду: `la silla`. Скажіть: `La silla es cómoda` — «Стілець зручний». Зберіть `la silla` + `es` + `cómoda`. `Cómodo` означає «зручний», але зі словом silla потрібна жіноча форма cómoda. Орієнтуйтеся на іспанський рід, а не на український переклад."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Стул удобный», называя стул в начале.",
+          "uk": "Скажіть: «Стілець зручний», називаючи стілець на початку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-40:intro1:r1",
+              "text": "La silla es cómoda."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro1:r2",
+              "text": "La silla es cómodo."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro1:r3",
+              "text": "La silla son cómodas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-40:intro1:r1",
+              "text": "La silla es cómoda."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro1:r2",
+              "text": "La silla es cómodo."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro1:r3",
+              "text": "La silla son cómodas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Стул удобный», называя стул в начале.",
+          "uk": "Скажіть: «Стілець зручний», називаючи стілець на початку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-01:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А весь набор?",
+        "uk": "А весь набір?"
+      },
+      "bodyByLocale": {
+        "ru": "Перед вами несколько стульев; по-испански это sillas. Спросите о них: `¿Son cómodas?` — «Они удобные?» Соберите `son` + `cómodas` и произнесите вопрос. Son относится к нескольким предметам, а cómodas согласуется с женским sillas. На письме поставьте ¿ в начале и ? в конце.",
+        "uk": "Перед вами кілька стільців; іспанською це sillas. Запитайте про них: `¿Son cómodas?` — «Вони зручні?» Зберіть `son` + `cómodas` і вимовте запитання. Son стосується кількох предметів, а cómodas узгоджується з жіночим sillas. На письмі поставте ¿ на початку та ? наприкінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о нескольких стульях: «Они удобные?»",
+          "uk": "Запитайте про кілька стільців: «Вони зручні?»"
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-40:intro2:r1",
+              "text": "¿Son cómodas?"
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro2:r2",
+              "text": "¿Es cómoda?"
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro2:r3",
+              "text": "¿Son cómodos?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-40:intro2:r1",
+              "text": "¿Son cómodas?"
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro2:r2",
+              "text": "¿Es cómoda?"
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro2:r3",
+              "text": "¿Son cómodos?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о нескольких стульях: «Они удобные?»",
+          "uk": "Запитайте про кілька стільців: «Вони зручні?»"
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-01:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Этот совсем не подходит",
+        "uk": "Цей зовсім не підходить"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пробуете другой стул: сидеть на нём очень неудобно. `La silla es muy incómoda` — «Стул очень неудобный». `Incómodo` означает «неудобный»; со словом silla получается incómoda. Соберите `la silla` + `es` + `muy` + `incómoda`. Muy усиливает оценку и стоит перед incómoda.",
+        "uk": "Ви випробовуєте інший стілець: сидіти на ньому дуже незручно. `La silla es muy incómoda` — «Стілець дуже незручний». `Incómodo` означає «незручний»; зі словом silla виходить incómoda. Зберіть `la silla` + `es` + `muy` + `incómoda`. Muy підсилює оцінку й стоїть перед incómoda."
+      },
+      "question": {
+        "interactionId": "es:lesson-01:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Стул очень неудобный».",
+          "uk": "Скажіть: «Стілець дуже незручний»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-01:session-40:intro3:r1",
+              "text": "La silla es muy incómoda."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro3:r2",
+              "text": "La silla es muy incómodo."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro3:r3",
+              "text": "La silla es incómoda muy."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-01:session-40:intro3:r1",
+              "text": "La silla es muy incómoda."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro3:r2",
+              "text": "La silla es muy incómodo."
+            },
+            {
+              "responseId": "es:lesson-01:session-40:intro3:r3",
+              "text": "La silla es incómoda muy."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Стул очень неудобный».",
+          "uk": "Скажіть: «Стілець дуже незручний»."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "651879446dc0e5bc60bd8aaeadf74ec8377b860852ad045e249b66344003c346"
+}

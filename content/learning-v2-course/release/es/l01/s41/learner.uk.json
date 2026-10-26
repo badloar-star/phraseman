@@ -1,0 +1,651 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-01:session-41",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-01:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — seis",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — seis",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i01:audio",
+          "transcript": "seis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-41:i01:r1",
+            "targetText": "seis",
+            "meaningByLocale": {
+              "ru": "шесть. 🔊 *seis*",
+              "uk": "шість. 🔊 *seis*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "seis",
+          "definitionByLocale": {
+            "ru": "шесть. 🔊 *seis*",
+            "uk": "шість. 🔊 *seis*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i02:r1",
+          "text": "6"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i02:r2",
+          "text": "3"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i02:audio",
+          "transcript": "seis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-41:i02:r1",
+            "targetText": "6",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-41:i02:r2",
+            "targetText": "3",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть число",
+            "feedbackByLocale": {
+              "ru": "Звучит seis — шесть.",
+              "uk": "Звучить seis — шість."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — вас шестеро, включно з вами",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i03:r1",
+          "text": "Somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i03:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i03:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — вас шестеро, включно з вами",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вас шестеро, включая вас",
+          "uk": "Вставте слово — вас шестеро, включно з вами"
+        },
+        "gappedTargetPhrase": "___ seis.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-01:session-41:i03:r1",
+            "text": "Somos"
+          },
+          {
+            "responseId": "es:lesson-01:session-41:i03:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-01:session-41:i03:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставте слово — вас шестеро, включно з вами",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — вас шестеро, включно з вами",
+            "feedbackByLocale": {
+              "ru": "Это другая группа, а вы говорите от своей.",
+              "uk": "Це інша група, а ви говорите від своєї."
+            }
+          },
+          {
+            "responseId": "es:lesson-01:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — вас шестеро, включно з вами",
+            "feedbackByLocale": {
+              "ru": "Для своей компании нужно somos.",
+              "uk": "Для своєї компанії потрібно somos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i04",
+      "ordinal": 7,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть кількість людей у своїй компанії: шестеро",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i04:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть кількість людей у своїй компанії: шестеро",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i04:audio",
+          "transcript": "Somos seis."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Somos seis.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — siete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i05:audio"
+      ],
+      "accessibilityLabel": "Картка слова — siete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i05:audio",
+          "transcript": "siete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-41:i05:r1",
+            "targetText": "siete",
+            "meaningByLocale": {
+              "ru": "семь. 🔊 *siete*",
+              "uk": "сім. 🔊 *siete*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "siete",
+          "definitionByLocale": {
+            "ru": "семь. 🔊 *siete*",
+            "uk": "сім. 🔊 *siete*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i06:r1",
+          "text": "7"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i06:r2",
+          "text": "6"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i06:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i06:audio",
+          "transcript": "siete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-41:i06:r1",
+            "targetText": "7",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-41:i06:r2",
+            "targetText": "6",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть число",
+            "feedbackByLocale": {
+              "ru": "Звучит siete — семь.",
+              "uk": "Звучить siete — сім."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — в іншій компанії сім людей",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i07:r1",
+          "text": "Плитки: siete"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i07:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — в іншій компанії сім людей",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son siete.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в другой компании семь человек",
+          "uk": "Зберіть фразу — в іншій компанії сім людей"
+        },
+        "orderedTokens": [
+          "Son",
+          "siete"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — в іншій компанії сім людей",
+            "feedbackByLocale": {
+              "ru": "описываете другую компанию.",
+              "uk": "описуєте іншу компанію."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — cinco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Картка слова — cinco",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i08:audio",
+          "transcript": "cinco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-41:i08:r1",
+            "targetText": "cinco",
+            "meaningByLocale": {
+              "ru": "пять. 🔊 *cinco*",
+              "uk": "п'ять. 🔊 *cinco*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cinco",
+          "definitionByLocale": {
+            "ru": "пять. 🔊 *cinco*",
+            "uk": "п'ять. 🔊 *cinco*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й оберіть число",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i09:r1",
+          "text": "5"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i09:r2",
+          "text": "7"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й оберіть число",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i09:audio",
+          "transcript": "cinco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-01:session-41:i09:r1",
+            "targetText": "5",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-01:session-41:i09:r2",
+            "targetText": "7",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й оберіть число",
+            "feedbackByLocale": {
+              "ru": "Звучит cinco — пять.",
+              "uk": "Звучить cinco — п'ять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — виправте помилку «Нас не п'ятеро»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i10:r1",
+          "text": "Плитки: cinco"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i10:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i10:r3",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i10:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — виправте помилку «Нас не п'ятеро»",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No somos cinco.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — исправьте ошибку «Нас не пятеро»",
+          "uk": "Зберіть фразу — виправте помилку «Нас не п'ятеро»"
+        },
+        "orderedTokens": [
+          "No",
+          "somos",
+          "cinco"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — виправте помилку «Нас не п'ятеро»",
+            "feedbackByLocale": {
+              "ru": "говорите от своей компании.",
+              "uk": "говорите від своєї компанії."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i11:r1",
+          "text": "Плитки: seis"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i11:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i11:r3",
+          "text": "somos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-01:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-01:session-41:i11:audio",
+          "transcript": "Son seis."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son seis.",
+        "orderedTokens": [
+          "Son",
+          "seis"
+        ],
+        "authoredDistractorTokens": [
+          "somos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-01:session-41:i12",
+      "ordinal": 15,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тепер у вашій компанії п'ять людей, включно з вами",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-01:session-41:i12:r1",
+          "text": "Плитки: cinco"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i12:r2",
+          "text": "somos"
+        },
+        {
+          "responseId": "es:lesson-01:session-41:i12:r3",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тепер у вашій компанії п'ять людей, включно з вами",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Somos cinco.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — теперь в вашей компании пять человек, включая вас",
+          "uk": "Зберіть фразу — тепер у вашій компанії п'ять людей, включно з вами"
+        },
+        "orderedTokens": [
+          "Somos",
+          "cinco"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-01:session-41:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тепер у вашій компанії п'ять людей, включно з вами",
+            "feedbackByLocale": {
+              "ru": "включаете себя в названное число.",
+              "uk": "включаєте себе до названого числа."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f864e741c1264745397143d8f120e8359364d994b61c440609f591c2a77b4b6b"
+}

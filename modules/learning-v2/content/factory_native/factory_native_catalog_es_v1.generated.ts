@@ -280,4 +280,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"произнести отдельную оценку и усилить знакомое качество словом muy.","uk":"вимовити окрему оцінку й підсилити знайому якість словом muy."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 40,
+    sourceFingerprint: "f6b580d97297d40c349ddc68adad51ba16bee3b9047252037c60aff4af011046",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить удобство одного стула, задать вопрос о нескольких и усилить оценку.","uk":"оцінити зручність одного стільця, запитати про кілька та підсилити оцінку."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 1, sessionOrdinal: 41,
+    sourceFingerprint: "a250a97c2845f80969e5db030339bbd70f8ea4165558696dd24e55565bfcea0d",
+    newWordCount: 3,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать количество людей с somos и son, используя пять, шесть и семь.","uk":"назвати кількість людей із somos та son, використовуючи п'ять, шість і сім."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 1","uk":"Іспанська · Урок 1"}),
+  }),
 ]);

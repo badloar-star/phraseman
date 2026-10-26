@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-38",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-38:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-38:intro1:r2": {
+          "ru": "Предметов несколько: son.",
+          "uk": "Предметів кілька: son."
+        },
+        "es:lesson-02:session-38:intro1:r3": {
+          "ru": "Galletas женского рода: unas.",
+          "uk": "Galletas жіночого роду: unas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-38:intro2:r2": {
+          "ru": "Для существительного dulces нужен unos.",
+          "uk": "Для іменника dulces потрібен unos."
+        },
+        "es:lesson-02:session-38:intro2:r3": {
+          "ru": "Конфет несколько: son.",
+          "uk": "Цукерок кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-38:intro3:r2": {
+          "ru": "Предметов несколько: son.",
+          "uk": "Предметів кілька: son."
+        },
+        "es:lesson-02:session-38:intro3:r3": {
+          "ru": "Galletas женского рода: unas.",
+          "uk": "Galletas жіночого роду: unas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ee6ee316288a626b73f2ba504720fb0070b3d1ebebe1aaf1125faac25bafadce"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "спросить «Что это?» о нескольких предметах с ¿Qué son?",
+    "uk": "запитати «Що це?» про кілька предметів із ¿Qué son?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один носок",
+        "uk": "Одна шкарпетка"
+      },
+      "bodyByLocale": {
+        "ru": "Из свёртка выпал носок. `Calcetín` — «носок», слово мужского рода: el calcetín. Назовите его: `Es un calcetín` — «Это носок». Соберите `es` + `un` + `calcetín`. Для одного предмета используйте es и un.",
+        "uk": "Із згортка випала шкарпетка. `Calcetín` — «шкарпетка», слово чоловічого роду: el calcetín. Назвіть її: `Es un calcetín` — «Це шкарпетка». Зберіть `es` + `un` + `calcetín`. Для одного предмета використовуйте es і un; іспанське calcetín чоловічого роду, хоча українське «шкарпетка» жіночого."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите один носок.",
+          "uk": "Назвіть одну шкарпетку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-37:intro1:r1",
+              "text": "Es un calcetín."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro1:r2",
+              "text": "Es una calcetín."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro1:r3",
+              "text": "Son un calcetín."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-37:intro1:r1",
+              "text": "Es un calcetín."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro1:r2",
+              "text": "Es una calcetín."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro1:r3",
+              "text": "Son un calcetín."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один носок.",
+          "uk": "Назвіть одну шкарпетку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько предметов",
+        "uk": "Кілька предметів"
+      },
+      "bodyByLocale": {
+        "ru": "В другом свёртке видны несколько вещей, но пока непонятно, какие. Покажите на них и спросите `¿Qué son?` — «Что это?» Соберите `¿qué` + `son?`. Знакомое ¿Qué es? относится к одному предмету; для нескольких замените es на son. В русском переводе вопрос может звучать одинаково, но по-испански число различается.",
+        "uk": "В іншому згортку видно кілька речей, але поки незрозуміло, які. Покажіть на них і запитайте `¿Qué son?` — «Що це?» Зберіть `¿qué` + `son?`. Знайоме ¿Qué es? стосується одного предмета; для кількох замініть es на son. В українському перекладі запитання може звучати однаково, але іспанською число відрізняється."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, что это за несколько предметов.",
+          "uk": "Запитайте, що це за кілька предметів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-37:intro2:r1",
+              "text": "¿Qué son?"
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro2:r2",
+              "text": "¿Qué es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro2:r3",
+              "text": "¿Quién son?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-37:intro2:r1",
+              "text": "¿Qué son?"
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro2:r2",
+              "text": "¿Qué es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro2:r3",
+              "text": "¿Quién son?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, что это за несколько предметов.",
+          "uk": "Запитайте, що це за кілька предметів."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Это носки",
+        "uk": "Це шкарпетки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг разворачивает свёрток: внутри носки. Ответьте `Son unos calcetines` — «Это носки». Соберите `son` + `unos` + `calcetines`. К calcetín добавляется -es, а знак ударения исчезает: calcetines. Знакомое unos подходит к нескольким предметам мужского рода; здесь тренируем ответ именно с unos.",
+        "uk": "Друг розгортає згорток: усередині шкарпетки. Дайте відповідь `Son unos calcetines` — «Це шкарпетки». Зберіть `son` + `unos` + `calcetines`. До calcetín додається -es, а знак наголосу зникає: calcetines. Знайоме unos підходить до кількох предметів чоловічого роду; тут тренуємо відповідь саме з unos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите носки с unos.",
+          "uk": "Назвіть шкарпетки з unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-37:intro3:r1",
+              "text": "Son unos calcetines."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro3:r2",
+              "text": "Son unas calcetines."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro3:r3",
+              "text": "Es unos calcetines."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-37:intro3:r1",
+              "text": "Son unos calcetines."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro3:r2",
+              "text": "Son unas calcetines."
+            },
+            {
+              "responseId": "es:lesson-02:session-37:intro3:r3",
+              "text": "Es unos calcetines."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите носки с unos.",
+          "uk": "Назвіть шкарпетки з unos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "758fca4603c2f569577089b0a7b550e8eac99ae06fba50a94bc7e2230a9b5813"
+}

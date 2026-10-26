@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-38:i01",
+    "correctText": "galleta",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i02",
+    "correctText": "galleta",
+    "correctResponseId": "es:lesson-02:session-38:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i03",
+    "correctText": "dulce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i04",
+    "correctText": "dulce",
+    "correctResponseId": "es:lesson-02:session-38:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i05",
+    "correctText": "¿Son unas galletas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i06",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-38:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i07",
+    "correctText": "¿Son unos dulces?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i08",
+    "correctText": "unos",
+    "correctResponseId": "es:lesson-02:session-38:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i09",
+    "correctText": "Son unas galletas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i10",
+    "correctText": "dulces",
+    "correctResponseId": "es:lesson-02:session-38:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i11",
+    "correctText": "¿Son unas galletas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i12",
+    "correctText": "¿Son unos dulces?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i13",
+    "correctText": "Son unos dulces.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-38:i14",
+    "correctText": "Son unas galletas.",
+    "correctResponseId": null
+  }
+]

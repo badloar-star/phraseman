@@ -1,0 +1,797 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-38",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — galleta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — galleta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i01:audio",
+          "transcript": "galleta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-38:i01:r1",
+            "targetText": "galleta",
+            "meaningByLocale": {
+              "ru": "печенька. Женский род; несколько — galletas. 🔊 *galleta*",
+              "uk": "одне печиво. Жіночий рід; кілька — galletas. 🔊 *galleta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "galleta",
+          "definitionByLocale": {
+            "ru": "печенька. Женский род; несколько — galletas. 🔊 *galleta*",
+            "uk": "одне печиво. Жіночий рід; кілька — galletas. 🔊 *galleta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i02:r1",
+          "text": "galleta"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i02:r2",
+          "text": "maleta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i02:audio",
+          "transcript": "galleta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-38:i02:r1",
+            "targetText": "galleta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i02:r2",
+            "targetText": "maleta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит galleta — печенька.",
+              "uk": "Звучить galleta — печиво."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — dulce",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — dulce",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i03:audio",
+          "transcript": "dulce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-38:i03:r1",
+            "targetText": "dulce",
+            "meaningByLocale": {
+              "ru": "конфета. Здесь существительное мужского рода; несколько — dulces. 🔊 *dulce*",
+              "uk": "цукерка. Тут іменник чоловічого роду; кілька — dulces. 🔊 *dulce*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dulce",
+          "definitionByLocale": {
+            "ru": "конфета. Здесь существительное мужского рода; несколько — dulces. 🔊 *dulce*",
+            "uk": "цукерка. Тут іменник чоловічого роду; кілька — dulces. 🔊 *dulce*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i04:r1",
+          "text": "dulce"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i04:r2",
+          "text": "leche"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i04:audio",
+          "transcript": "dulce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-38:i04:r1",
+            "targetText": "dulce",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i04:r2",
+            "targetText": "leche",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит dulce — конфета.",
+              "uk": "Звучить dulce — цукерка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це печиво? Використайте unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i05:r1",
+          "text": "Плитки: galletas?"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i05:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i05:r3",
+          "text": "¿son"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i05:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це печиво? Використайте unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Son unas galletas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это печенье? Используйте unas",
+          "uk": "Зберіть фразу — це печиво? Використайте unas"
+        },
+        "orderedTokens": [
+          "¿Son",
+          "unas",
+          "galletas"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це печиво? Використайте unas",
+            "feedbackByLocale": {
+              "ru": "galletas женского рода.",
+              "uk": "galletas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитання про кілька штук печива",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i06:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i06:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитання про кілька штук печива",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос о нескольких печеньках",
+          "uk": "Вставте слово — запитання про кілька штук печива"
+        },
+        "gappedTargetPhrase": "¿___ unas galletas?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-38:i06:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i06:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i06:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитання про кілька штук печива",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитання про кілька штук печива",
+            "feedbackByLocale": {
+              "ru": "Предметов несколько: son.",
+              "uk": "Предметів кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитання про кілька штук печива",
+            "feedbackByLocale": {
+              "ru": "Вопрос о печенье, не о говорящем: son.",
+              "uk": "Запитання про печиво, не про мовця: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це цукерки? Використайте unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i07:r1",
+          "text": "Плитки: dulces?"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i07:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i07:r3",
+          "text": "¿son"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i07:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це цукерки? Використайте unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Son unos dulces?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это конфеты? Используйте unos",
+          "uk": "Зберіть фразу — це цукерки? Використайте unos"
+        },
+        "orderedTokens": [
+          "¿Son",
+          "unos",
+          "dulces"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це цукерки? Використайте unos",
+            "feedbackByLocale": {
+              "ru": "существительное dulces мужского рода.",
+              "uk": "іменник dulces чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це цукерки?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i08:r1",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i08:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i08:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це цукерки?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это конфеты?",
+          "uk": "Вставте слово — це цукерки?"
+        },
+        "gappedTargetPhrase": "¿Son ___ dulces?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-38:i08:r1",
+            "text": "unos"
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i08:r2",
+            "text": "unas"
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i08:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставте слово — це цукерки?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це цукерки?",
+            "feedbackByLocale": {
+              "ru": "Dulces мужского рода: unos.",
+              "uk": "Dulces чоловічого роду: unos."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це цукерки?",
+            "feedbackByLocale": {
+              "ru": "Конфет несколько: unos.",
+              "uk": "Цукерок кілька: unos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це печиво, з unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i09:r1",
+          "text": "Плитки: galletas"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i09:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i09:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i09:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це печиво, з unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas galletas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это печенье, с unas",
+          "uk": "Зберіть фразу — це печиво, з unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "galletas"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це печиво, з unas",
+            "feedbackByLocale": {
+              "ru": "galletas женского рода.",
+              "uk": "galletas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це цукерки, з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i10:r1",
+          "text": "dulces"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i10:r2",
+          "text": "dulce"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i10:r3",
+          "text": "dulceses"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це цукерки, з unos",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это конфеты, с unos",
+          "uk": "Вставте слово — це цукерки, з unos"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-38:i10:r1",
+            "text": "dulces"
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i10:r2",
+            "text": "dulce"
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i10:r3",
+            "text": "dulceses"
+          }
+        ],
+        "testedDimension": "Вставте слово — це цукерки, з unos",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це цукерки, з unos",
+            "feedbackByLocale": {
+              "ru": "Нужно множественное число: dulces.",
+              "uk": "Потрібна множина: dulces."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-38:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це цукерки, з unos",
+            "feedbackByLocale": {
+              "ru": "К dulce добавляется только -s: dulces.",
+              "uk": "До dulce додається лише -s: dulces."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i11:r1",
+          "text": "Плитки: galletas?"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i11:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i11:r3",
+          "text": "¿son"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i11:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i11:audio",
+          "transcript": "¿Son unas galletas?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Son unas galletas?",
+        "orderedTokens": [
+          "¿Son",
+          "unas",
+          "galletas"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит unas galletas.",
+              "uk": "звучить unas galletas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це цукерки? Використайте unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це цукерки? Використайте unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i12:audio",
+          "transcript": "¿Son unos dulces?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Son unos dulces?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це цукерки, з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-38:i13:r1",
+          "text": "Плитки: dulces"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i13:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i13:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-38:i13:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це цукерки, з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos dulces.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это конфеты, с unos",
+          "uk": "Зберіть фразу — це цукерки, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "dulces"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-38:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це цукерки, з unos",
+            "feedbackByLocale": {
+              "ru": "dulces мужского рода.",
+              "uk": "dulces чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-38:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це печиво, з unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-38:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це печиво, з unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-38:i14:audio",
+          "transcript": "Son unas galletas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas galletas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7fbaee71404ac3ed97e14df50eab7a55fd73d0265fda19e21a8c2f8e0c6ca482"
+}

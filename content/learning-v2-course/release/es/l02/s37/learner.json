@@ -1,0 +1,686 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-37",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — calcetín",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — calcetín",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-37:i01:audio",
+          "transcript": "calcetín"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-37:i01:r1",
+            "targetText": "calcetín",
+            "meaningByLocale": {
+              "ru": "носок. Мужской род; несколько — calcetines. 🔊 *calcetín*",
+              "uk": "шкарпетка. Чоловічий рід; кілька — calcetines. 🔊 *calcetín*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calcetín",
+          "definitionByLocale": {
+            "ru": "носок. Мужской род; несколько — calcetines. 🔊 *calcetín*",
+            "uk": "шкарпетка. Чоловічий рід; кілька — calcetines. 🔊 *calcetín*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i02:r1",
+          "text": "calcetín"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i02:r2",
+          "text": "cuchillo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-37:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-37:i02:audio",
+          "transcript": "calcetín"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-37:i02:r1",
+            "targetText": "calcetín",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i02:r2",
+            "targetText": "cuchillo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит calcetín — носок.",
+              "uk": "Звучить calcetín — шкарпетка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это носок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i03:r1",
+          "text": "Плитки: calcetín"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это носок",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un calcetín.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это носок",
+          "uk": "Зберіть фразу — це шкарпетка"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "calcetín"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это носок",
+            "feedbackByLocale": {
+              "ru": "calcetín мужского рода.",
+              "uk": "calcetín чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вопрос о нескольких предметах",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i04:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вопрос о нескольких предметах",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос о нескольких предметах",
+          "uk": "Вставте слово — запитання про кілька предметів"
+        },
+        "gappedTargetPhrase": "¿Qué ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-37:i04:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i04:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вопрос о нескольких предметах",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос о нескольких предметах",
+            "feedbackByLocale": {
+              "ru": "Вы спрашиваете о нескольких вещах: son.",
+              "uk": "Ви питаєте про кілька речей: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос о нескольких предметах",
+            "feedbackByLocale": {
+              "ru": "Soy относится к говорящему, а не к этим вещам.",
+              "uk": "Soy стосується мовця, а не цих речей."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — что это за несколько предметов?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i05:r1",
+          "text": "Плитки: son?"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i05:r2",
+          "text": "¿qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i05:r3",
+          "text": "es?."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — что это за несколько предметов?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué son?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — что это за несколько предметов?",
+          "uk": "Зберіть фразу — що це за кілька предметів?"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "son"
+        ],
+        "authoredDistractorTokens": [
+          "es?"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — что это за несколько предметов?",
+            "feedbackByLocale": {
+              "ru": "вопрос о нескольких предметах.",
+              "uk": "запитання про кілька предметів."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это носки, используйте unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i06:r1",
+          "text": "calcetines"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i06:r2",
+          "text": "calcetín"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i06:r3",
+          "text": "calcetíns"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это носки, используйте unos",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это носки, используйте unos",
+          "uk": "Вставте слово — це шкарпетки, використайте unos"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-37:i06:r1",
+            "text": "calcetines"
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i06:r2",
+            "text": "calcetín"
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i06:r3",
+            "text": "calcetíns"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это носки, используйте unos",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это носки, используйте unos",
+            "feedbackByLocale": {
+              "ru": "Нужно множественное число: calcetines.",
+              "uk": "Потрібна множина: calcetines."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это носки, используйте unos",
+            "feedbackByLocale": {
+              "ru": "Добавляем -es и убираем знак ударения: calcetines.",
+              "uk": "Додаємо -es і прибираємо знак наголосу: calcetines."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это носки, с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i07:r1",
+          "text": "Плитки: calcetines"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i07:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i07:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это носки, с unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos calcetines.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это носки, с unos",
+          "uk": "Зберіть фразу — це шкарпетки, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "calcetines"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это носки, с unos",
+            "feedbackByLocale": {
+              "ru": "calcetines мужского рода.",
+              "uk": "calcetines чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i08:r1",
+          "text": "Плитки: son?"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i08:r2",
+          "text": "¿qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i08:r3",
+          "text": "es?."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-37:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-37:i08:audio",
+          "transcript": "¿Qué son?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Qué son?",
+        "orderedTokens": [
+          "¿Qué",
+          "son"
+        ],
+        "authoredDistractorTokens": [
+          "es?"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите о нескольких предметах",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите о нескольких предметах",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-37:i09:audio",
+          "transcript": "¿Qué son?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Qué son?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ответьте: это носки, с unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i10:r1",
+          "text": "Плитки: calcetines"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i10:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i10:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ответьте: это носки, с unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos calcetines.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ответьте: это носки, с unos",
+          "uk": "Зберіть фразу — дайте відповідь: це шкарпетки, з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "calcetines"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте: это носки, с unos",
+            "feedbackByLocale": {
+              "ru": "носков несколько.",
+              "uk": "шкарпеток кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i11",
+      "ordinal": 14,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вернитесь к одному носку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-37:i11:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i11:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-37:i11:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вернитесь к одному носку",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вернитесь к одному носку",
+          "uk": "Вставте слово — поверніться до однієї шкарпетки"
+        },
+        "gappedTargetPhrase": "Es ___ calcetín.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-37:i11:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i11:r2",
+            "text": "unos"
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i11:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вернитесь к одному носку",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-37:i11:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вернитесь к одному носку",
+            "feedbackByLocale": {
+              "ru": "Носок один: un.",
+              "uk": "Шкарпетка одна: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-37:i11:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вернитесь к одному носку",
+            "feedbackByLocale": {
+              "ru": "Calcetín мужского рода: un.",
+              "uk": "Calcetín чоловічого роду: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это носки, с unos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это носки, с unos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-37:i12:audio",
+          "transcript": "Son unos calcetines."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos calcetines.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "34d9c9420314cf013fae958ba11fd5ef0cdf36cb0cdddbdcd0e302af86d1fbae"
+}

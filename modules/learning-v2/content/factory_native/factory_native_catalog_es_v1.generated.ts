@@ -651,4 +651,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"проверить своё предположение вопросом ¿Es un…?","uk":"перевірити своє припущення запитанням ¿Es un…?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 37,
+    sourceFingerprint: "7ef9f07a3fef22d315e1b803f8504365dd86b2198c0d1afcad097d2257bcfd59",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить «Что это?» о нескольких предметах с ¿Qué son?","uk":"запитати «Що це?» про кілька предметів із ¿Qué son?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 38,
+    sourceFingerprint: "e114e639345d9cf64b1db352698adf052407f38d53665fdbc3a3b5f53de66878",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"проверить название нескольких предметов вопросом ¿Son unos/unas…?","uk":"перевірити назву кількох предметів запитанням ¿Son unos/unas…?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

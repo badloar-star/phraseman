@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-37",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-37:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-37:intro1:r2": {
+          "ru": "Calcetín мужского рода: un.",
+          "uk": "Calcetín чоловічого роду: un."
+        },
+        "es:lesson-02:session-37:intro1:r3": {
+          "ru": "Предмет один: es.",
+          "uk": "Предмет один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-37:intro2:r2": {
+          "ru": "Es относится к одному предмету, а вы показываете на несколько.",
+          "uk": "Es стосується одного предмета, а ви показуєте на кілька."
+        },
+        "es:lesson-02:session-37:intro2:r3": {
+          "ru": "Quién спрашивает о человеке; здесь нужно qué.",
+          "uk": "Quién питає про людину; тут потрібне qué."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-37:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-37:intro3:r2": {
+          "ru": "Calcetines мужского рода: unos.",
+          "uk": "Calcetines чоловічого роду: unos."
+        },
+        "es:lesson-02:session-37:intro3:r3": {
+          "ru": "Для нескольких предметов нужна son.",
+          "uk": "Для кількох предметів потрібна son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a29657791eeb255c9802258307d8e0ed26de14c91a20375867c082b799f8a513"
+}

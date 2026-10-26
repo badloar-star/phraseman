@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-37:i01",
+    "correctText": "calcetín",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i02",
+    "correctText": "calcetín",
+    "correctResponseId": "es:lesson-02:session-37:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i03",
+    "correctText": "Es un calcetín.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i04",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-02:session-37:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i05",
+    "correctText": "¿Qué son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i06",
+    "correctText": "calcetines",
+    "correctResponseId": "es:lesson-02:session-37:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i07",
+    "correctText": "Son unos calcetines.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i08",
+    "correctText": "¿Qué son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i09",
+    "correctText": "¿Qué son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i10",
+    "correctText": "Son unos calcetines.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i11",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-37:i11:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-37:i12",
+    "correctText": "Son unos calcetines.",
+    "correctResponseId": null
+  }
+]

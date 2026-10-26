@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "проверить название нескольких предметов вопросом ¿Son unos/unas…?",
+    "uk": "перевірити назву кількох предметів запитанням ¿Son unos/unas…?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Это печенье?",
+        "uk": "Це печиво?"
+      },
+      "bodyByLocale": {
+        "ru": "В прозрачном пакетике видны круглые кусочки угощения. `Galleta` — одна печенька, слово женского рода: la galleta; несколько — galletas. Спросите `¿Son unas galletas?` — «Это печенье?» Соберите `¿son` + `unas galletas?`. Предметов несколько, поэтому son; galletas женского рода, поэтому unas. Здесь тренируем вопрос именно с unas.",
+        "uk": "У прозорому пакетику видно круглі шматочки частування. `Galleta` — одне печиво, слово жіночого роду: la galleta; кілька — galletas. Запитайте `¿Son unas galletas?` — «Це печиво?» Зберіть `¿son` + `unas galletas?`. Предметів кілька, тому son; galletas жіночого роду, тому unas. Тут тренуємо запитання саме з unas."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите о печенье, используя unas.",
+          "uk": "Запитайте про печиво, використовуючи unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-38:intro1:r1",
+              "text": "¿Son unas galletas?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro1:r2",
+              "text": "¿Es unas galletas?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro1:r3",
+              "text": "¿Son unos galletas?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-38:intro1:r1",
+              "text": "¿Son unas galletas?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro1:r2",
+              "text": "¿Es unas galletas?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro1:r3",
+              "text": "¿Son unos galletas?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о печенье, используя unas.",
+          "uk": "Запитайте про печиво, використовуючи unas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "А здесь конфеты?",
+        "uk": "А тут цукерки?"
+      },
+      "bodyByLocale": {
+        "ru": "В другом пакетике лежат небольшие сладости в обёртках. `Dulce` здесь — «конфета», существительное мужского рода: el dulce; несколько — dulces. Спросите `¿Son unos dulces?` — «Это конфеты?» Соберите `¿son` + `unos dulces?`. К dulce добавьте -s; для нескольких предметов мужского рода выберите unos.",
+        "uk": "В іншому пакетику лежать невеликі солодощі в обгортках. `Dulce` тут — «цукерка», іменник чоловічого роду: el dulce; кілька — dulces. Запитайте `¿Son unos dulces?` — «Це цукерки?» Зберіть `¿son` + `unos dulces?`. До dulce додайте -s; для кількох предметів чоловічого роду виберіть unos."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о конфетах, используя unos.",
+          "uk": "Запитайте про цукерки, використовуючи unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-38:intro2:r1",
+              "text": "¿Son unos dulces?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro2:r2",
+              "text": "¿Son unas dulces?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro2:r3",
+              "text": "¿Es unos dulces?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-38:intro2:r1",
+              "text": "¿Son unos dulces?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro2:r2",
+              "text": "¿Son unas dulces?"
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro2:r3",
+              "text": "¿Es unos dulces?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о конфетах, используя unos.",
+          "uk": "Запитайте про цукерки, використовуючи unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назовите содержимое",
+        "uk": "Назвіть вміст"
+      },
+      "bodyByLocale": {
+        "ru": "Вы открыли первый пакетик и убедились: там печенье. Ответьте `Son unas galletas` — «Это печенье». Соберите `son` + `unas` + `galletas`. Слова остаются на тех же местах, но теперь это утверждение: без вопросительных знаков и вопросительной интонации.",
+        "uk": "Ви відкрили перший пакетик і переконалися: там печиво. Дайте відповідь `Son unas galletas` — «Це печиво». Зберіть `son` + `unas` + `galletas`. Слова залишаються на тих самих місцях, але тепер це твердження: без знаків питання й питальної інтонації."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите печенье с unas.",
+          "uk": "Назвіть печиво з unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-38:intro3:r1",
+              "text": "Son unas galletas."
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro3:r2",
+              "text": "Es unas galletas."
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro3:r3",
+              "text": "Son unos galletas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-38:intro3:r1",
+              "text": "Son unas galletas."
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro3:r2",
+              "text": "Es unas galletas."
+            },
+            {
+              "responseId": "es:lesson-02:session-38:intro3:r3",
+              "text": "Son unos galletas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите печенье с unas.",
+          "uk": "Назвіть печиво з unas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "836882eea33e530a72f85561fb208e8b57ffaa874317ed82ee9048c26f535fac"
+}

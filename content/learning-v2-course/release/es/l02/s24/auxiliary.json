@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-24",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-24:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-24:intro1:r2": {
+          "ru": "Для árbol нужен un.",
+          "uk": "Для árbol потрібен un."
+        },
+        "es:lesson-02:session-24:intro1:r3": {
+          "ru": "Один предмет требует es.",
+          "uk": "Один предмет потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-24:intro2:r2": {
+          "ru": "Испанское flor женского рода.",
+          "uk": "Іспанське flor жіночого роду."
+        },
+        "es:lesson-02:session-24:intro2:r3": {
+          "ru": "Один цветок требует es.",
+          "uk": "Одна квітка потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-24:intro3:r2": {
+          "ru": "Flores женского рода: las.",
+          "uk": "Flores жіночого роду: las."
+        },
+        "es:lesson-02:session-24:intro3:r3": {
+          "ru": "Для нескольких цветов нужна flores.",
+          "uk": "Для кількох квіток потрібна flores."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "618572299db604f2bc320ae39627db3b9cd98870baffc73a78f34cc787e496a1"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-23:intro1:r2": {
+          "ru": "Для sofá нужен un.",
+          "uk": "Для sofá потрібен un."
+        },
+        "es:lesson-02:session-23:intro1:r3": {
+          "ru": "Один диван требует es.",
+          "uk": "Один диван потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-23:intro2:r2": {
+          "ru": "В этой фразе нужно es.",
+          "uk": "У цій фразі потрібно es."
+        },
+        "es:lesson-02:session-23:intro2:r3": {
+          "ru": "Здесь форма la radio, не las radio.",
+          "uk": "Тут форма la radio, не las radio."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-23:intro3:r2": {
+          "ru": "Sofá мужского рода.",
+          "uk": "Sofá чоловічого роду."
+        },
+        "es:lesson-02:session-23:intro3:r3": {
+          "ru": "К sofá подходит cómodo.",
+          "uk": "До sofá підходить cómodo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2cdb8402a6e450fb2fd68f619c46f4e97b33d2496d5cb05dd93700763bcbe332"
+}

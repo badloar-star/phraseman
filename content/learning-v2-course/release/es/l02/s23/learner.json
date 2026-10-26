@@ -1,0 +1,776 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-23",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sofá",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sofá",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i01:audio",
+          "transcript": "sofá"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-23:i01:r1",
+            "targetText": "sofá",
+            "meaningByLocale": {
+              "ru": "диван. Мужской род: el sofá. 🔊 *sofá*",
+              "uk": "диван. Чоловічий рід: el sofá. 🔊 *sofá*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sofá",
+          "definitionByLocale": {
+            "ru": "диван. Мужской род: el sofá. 🔊 *sofá*",
+            "uk": "диван. Чоловічий рід: el sofá. 🔊 *sofá*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i02:r1",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i02:r2",
+          "text": "sobre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i02:audio",
+          "transcript": "sofá"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-23:i02:r1",
+            "targetText": "sofá",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i02:r2",
+            "targetText": "sobre",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sofá — диван.",
+              "uk": "Звучить sofá — диван."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — radio",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — radio",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i03:audio",
+          "transcript": "radio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-23:i03:r1",
+            "targetText": "radio",
+            "meaningByLocale": {
+              "ru": "радио; радиовещание — la radio. 🔊 *radio*",
+              "uk": "радіо; радіомовлення — la radio. 🔊 *radio*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "radio",
+          "definitionByLocale": {
+            "ru": "радио; радиовещание — la radio. 🔊 *radio*",
+            "uk": "радіо; радіомовлення — la radio. 🔊 *radio*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i04:r1",
+          "text": "radio"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i04:r2",
+          "text": "rápido"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i04:audio",
+          "transcript": "radio"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-23:i04:r1",
+            "targetText": "radio",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i04:r2",
+            "targetText": "rápido",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит radio — радио.",
+              "uk": "Звучить radio — радіо."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите диван",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i05:r1",
+          "text": "Плитки: sofá"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите диван",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un sofá.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите диван",
+          "uk": "Зберіть фразу — назвіть диван"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "sofá"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите диван",
+            "feedbackByLocale": {
+              "ru": "sofá мужского рода.",
+              "uk": "sofá чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите диван",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i06:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите диван",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i06:audio",
+          "transcript": "Es un sofá."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un sofá.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это радиоэфир",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i07:r1",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i07:r2",
+          "text": "Son"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i07:r3",
+          "text": "Soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это радиоэфир",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это радиоэфир",
+          "uk": "Вставте слово — це радіоефір"
+        },
+        "gappedTargetPhrase": "___ la radio.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-23:i07:r1",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i07:r2",
+            "text": "Son"
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i07:r3",
+            "text": "Soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это радиоэфир",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это радиоэфир",
+            "feedbackByLocale": {
+              "ru": "В этой фразе нужно es.",
+              "uk": "У цій фразі потрібно es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это радиоэфир",
+            "feedbackByLocale": {
+              "ru": "Soy — о себе, а вы называете источник передачи.",
+              "uk": "Soy — про себе, а ви називаєте джерело передачі."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — объясните, что это радио",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i08:r1",
+          "text": "Плитки: radio"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i08:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i08:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — объясните, что это радио",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la radio.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — объясните, что это радио",
+          "uk": "Зберіть фразу — поясніть, що це радіо"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "radio"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — объясните, что это радио",
+            "feedbackByLocale": {
+              "ru": "здесь нужно es la radio.",
+              "uk": "тут потрібно es la radio."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — назовите источник передачи: это радио",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — назовите источник передачи: это радио",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i09:audio",
+          "transcript": "Es la radio."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es la radio.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — диван удобный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i10:r1",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i10:r2",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i10:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — диван удобный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — диван удобный",
+          "uk": "Вставте слово — диван зручний"
+        },
+        "gappedTargetPhrase": "El sofá es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-23:i10:r1",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i10:r2",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i10:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — диван удобный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — диван удобный",
+            "feedbackByLocale": {
+              "ru": "Sofá мужского рода: cómodo.",
+              "uk": "Sofá чоловічого роду: cómodo."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-23:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — диван удобный",
+            "feedbackByLocale": {
+              "ru": "Здесь один диван мужского рода: cómodo.",
+              "uk": "Тут один диван чоловічого роду: cómodo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — похвалите диван",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i11:r1",
+          "text": "Плитки: cómodo"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i11:r3",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i11:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i11:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — похвалите диван",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El sofá es cómodo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — похвалите диван",
+          "uk": "Зберіть фразу — похваліть диван"
+        },
+        "orderedTokens": [
+          "El",
+          "sofá",
+          "es",
+          "cómodo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — похвалите диван",
+            "feedbackByLocale": {
+              "ru": "sofá мужского рода.",
+              "uk": "sofá чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i12:r1",
+          "text": "Плитки: cómodo"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i12:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i12:r3",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i12:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i12:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i12:audio",
+          "transcript": "El sofá es cómodo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El sofá es cómodo.",
+        "orderedTokens": [
+          "El",
+          "sofá",
+          "es",
+          "cómodo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит el.",
+              "uk": "у записі звучить el."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — диван удобный",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-23:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — диван удобный",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-23:i13:audio",
+          "transcript": "El sofá es cómodo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El sofá es cómodo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-23:i14",
+      "ordinal": 17,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — теперь слышна запись; уточните, что это не радио",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-23:i14:r1",
+          "text": "Плитки: radio"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i14:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i14:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i14:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-23:i14:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — теперь слышна запись; уточните, что это не радио",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No es la radio.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — теперь слышна запись; уточните, что это не радио",
+          "uk": "Зберіть фразу — тепер чути запис; уточніть, що це не радіо"
+        },
+        "orderedTokens": [
+          "No",
+          "es",
+          "la",
+          "radio"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-23:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — теперь слышна запись; уточните, что это не радио",
+            "feedbackByLocale": {
+              "ru": "здесь no es la radio.",
+              "uk": "тут no es la radio."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "2800e887c0dcae2efdacfc7e56bd1f47d124586c31518821e65171cb66739911"
+}

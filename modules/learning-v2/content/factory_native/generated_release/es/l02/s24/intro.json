@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-24",
+  "learningOutcomeByLocale": {
+    "ru": "согласовать род, число и артикль без подсказки по последней букве.",
+    "uk": "узгодити рід, число й артикль без підказки за останньою літерою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-24:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одно дерево",
+        "uk": "Одне дерево"
+      },
+      "bodyByLocale": {
+        "ru": "На первом снимке дерево. `Árbol` — «дерево», по-испански мужского рода: el árbol. Назовите его: `Es un árbol` — «Это дерево». Соберите `es` + `un` + `árbol`. Несколько деревьев — árboles: после конечной l добавьте знакомое -es. Знак над á остаётся: árbol → árboles.",
+        "uk": "На першому знімку дерево. `Árbol` — «дерево», іспанською чоловічого роду: el árbol. Назвіть його: `Es un árbol` — «Це дерево». Зберіть `es` + `un` + `árbol`. Кілька дерев — árboles: після кінцевої l додайте знайоме -es. Знак над á залишається: árbol → árboles."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-24:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите одно дерево.",
+          "uk": "Назвіть одне дерево."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-24:intro1:r1",
+              "text": "Es un árbol."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro1:r2",
+              "text": "Es una árbol."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro1:r3",
+              "text": "Son un árbol."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-24:intro1:r1",
+              "text": "Es un árbol."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro1:r2",
+              "text": "Es una árbol."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro1:r3",
+              "text": "Son un árbol."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одно дерево.",
+          "uk": "Назвіть одне дерево."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-24:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Один цветок",
+        "uk": "Одна квітка"
+      },
+      "bodyByLocale": {
+        "ru": "На крупном плане — цветок. `Flor` — «цветок», по-испански женского рода: la flor. Скажите `Es una flor` — «Это цветок»: `es` + `una` + `flor`. Несколько цветов — flores: после конечной r добавьте -es. Испанский род не совпадает с русским словом «цветок», поэтому запомните la flor.",
+        "uk": "На великому плані — квітка. `Flor` — «квітка», іспанською жіночого роду: la flor. Скажіть `Es una flor` — «Це квітка»: `es` + `una` + `flor`. Кілька квіток — flores: після кінцевої r додайте -es. Тут рід збігається з українським словом «квітка», але запам'ятовуйте іспанське слово разом з артиклем: la flor."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-24:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите один цветок.",
+          "uk": "Назвіть одну квітку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-24:intro2:r1",
+              "text": "Es una flor."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro2:r2",
+              "text": "Es un flor."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro2:r3",
+              "text": "Son una flor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-24:intro2:r1",
+              "text": "Es una flor."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro2:r2",
+              "text": "Es un flor."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro2:r3",
+              "text": "Son una flor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите один цветок.",
+          "uk": "Назвіть одну квітку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-24:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Те самые цветы",
+        "uk": "Ті самі квіти"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает несколько цветов, о которых вы говорили раньше. Подтвердите: `Son las flores` — «Это те самые цветы». Соберите `son` + `las` + `flores`: предметов несколько, они женского рода и уже известны вам обоим. Для известных деревьев было бы Son los árboles. Если просто называете какие-то растения, используйте unos árboles или unas flores.",
+        "uk": "Друг показує кілька квіток, про які ви говорили раніше. Підтвердьте: `Son las flores` — «Це ті самі квіти». Зберіть `son` + `las` + `flores`: предметів кілька, вони жіночого роду й уже відомі вам обом. Для відомих дерев було б Son los árboles. Якщо просто називаєте якісь рослини, використовуйте unos árboles або unas flores."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-24:intro3:q",
+        "promptByLocale": {
+          "ru": "Подтвердите, что это именно обсуждённые цветы.",
+          "uk": "Підтвердьте, що це саме обговорені квіти."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-24:intro3:r1",
+              "text": "Son las flores."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro3:r2",
+              "text": "Son los flores."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro3:r3",
+              "text": "Son las flor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-24:intro3:r1",
+              "text": "Son las flores."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro3:r2",
+              "text": "Son los flores."
+            },
+            {
+              "responseId": "es:lesson-02:session-24:intro3:r3",
+              "text": "Son las flor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Подтвердите, что это именно обсуждённые цветы.",
+          "uk": "Підтвердьте, що це саме обговорені квіти."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4bbb9d958b606bf9bd09468e6aaeba14743d32f97a9a304ff0dac5c8aadc792e"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "запоминать род слов на -e вместе с артиклем.",
+    "uk": "запам'ятовувати рід слів на -e разом з артиклем."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Мост на снимке",
+        "uk": "Міст на знімку"
+      },
+      "bodyByLocale": {
+        "ru": "На фотографии с прогулки — мост. `Puente` — «мост», слово мужского рода: el puente. Назовите его: `Es un puente` — «Это мост». Соберите `es` + `un` + `puente`. Конечная -e сама по себе не подсказывает род: запомните именно el puente.",
+        "uk": "На фотографії з прогулянки — міст. `Puente` — «міст», слово чоловічого роду: el puente. Назвіть його: `Es un puente` — «Це міст». Зберіть `es` + `un` + `puente`. Кінцева -e сама по собі не підказує рід: запам'ятайте саме el puente."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите мост.",
+          "uk": "Назвіть міст."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-21:intro1:r1",
+              "text": "Es un puente."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro1:r2",
+              "text": "Es una puente."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro1:r3",
+              "text": "Son un puente."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-21:intro1:r1",
+              "text": "Es un puente."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro1:r2",
+              "text": "Es una puente."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro1:r3",
+              "text": "Son un puente."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите мост.",
+          "uk": "Назвіть міст."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Подпись к покупке",
+        "uk": "Підпис до покупки"
+      },
+      "bodyByLocale": {
+        "ru": "На следующем снимке молоко из магазина. `Leche` — «молоко», слово женского рода: la leche. В подписи нужен артикль la: `la leche` — «молоко». Не переносите род от puente только потому, что оба слова оканчиваются на -e: el puente, но la leche. Здесь говорим о молоке, а не о бутылке или пакете.",
+        "uk": "На наступному знімку молоко з магазину. `Leche` — «молоко», слово жіночого роду: la leche. У підписі потрібен артикль la: `la leche` — «молоко». Не переносіть рід від puente лише тому, що обидва слова закінчуються на -e: el puente, але la leche. Тут говоримо про молоко, а не про пляшку чи пакет."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Выберите подпись со словом «молоко» и его артиклем.",
+          "uk": "Виберіть підпис зі словом «молоко» та його артиклем."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-21:intro2:r1",
+              "text": "La leche."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro2:r2",
+              "text": "El leche."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro2:r3",
+              "text": "Los leche."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-21:intro2:r1",
+              "text": "La leche."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro2:r2",
+              "text": "El leche."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro2:r3",
+              "text": "Los leche."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Выберите подпись со словом «молоко» и его артиклем.",
+          "uk": "Виберіть підпис зі словом «молоко» та його артиклем."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Дорогое молоко",
+        "uk": "Дороге молоко"
+      },
+      "bodyByLocale": {
+        "ru": "Вспоминаете цену покупки. Скажите `La leche es cara` — «Молоко дорогое». Соберите `la leche` + `es` + `cara`. Испанское leche женского рода, поэтому выбирайте женское cara, хотя русское «молоко» среднего рода. Для фотографии моста было бы El puente es bonito: одинаковая последняя буква -e не означает одинаковый род.",
+        "uk": "Згадуєте ціну покупки. Скажіть `La leche es cara` — «Молоко дороге». Зберіть `la leche` + `es` + `cara`. Іспанське leche жіночого роду, тому вибирайте жіноче cara, хоча українське «молоко» середнього роду. Для фотографії мосту було б El puente es bonito: однакова остання літера -e не означає однаковий рід."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что молоко дорогое.",
+          "uk": "Скажіть, що молоко дороге."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-21:intro3:r1",
+              "text": "La leche es cara."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro3:r2",
+              "text": "El leche es caro."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro3:r3",
+              "text": "La leche es caro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-21:intro3:r1",
+              "text": "La leche es cara."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro3:r2",
+              "text": "El leche es caro."
+            },
+            {
+              "responseId": "es:lesson-02:session-21:intro3:r3",
+              "text": "La leche es caro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что молоко дорогое.",
+          "uk": "Скажіть, що молоко дороге."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cacd7f95856f818fa959e6f6c31de4691897e59b30a9e54e529b4d8680139d2c"
+}

@@ -539,4 +539,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать женские артикли у ciudad и universidad.","uk":"вибирати жіночі артиклі у ciudad і universidad."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 21,
+    sourceFingerprint: "cefabe67a91d20d4e33411f5604cce25ec8a3ed3b19d513d027a953d9df03a9a",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"запоминать род слов на -e вместе с артиклем.","uk":"запам'ятовувати рід слів на -e разом з артиклем."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 22,
+    sourceFingerprint: "7ee079a7b2a60862427af1721b3e5956b2a4df0dbf289f4683b336813259d9b3",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать род по испанскому слову, а не по его переводу или последней букве.","uk":"вибирати рід за іспанським словом, а не за його перекладом чи останньою літерою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 23,
+    sourceFingerprint: "d789589df212f537583bb3432c5591314cdddd5394524bb1c0d42ad62289f072",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"вслух называть и описывать знакомые по ситуации вещи, не угадывая род по последней букве.","uk":"уголос називати й описувати знайомі за ситуацією речі, не вгадуючи рід за останньою літерою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 24,
+    sourceFingerprint: "91b945783651a81f58d921774310c1d6d5f96de1058f6bcf50d1d2a50cc5444d",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать род, число и артикль без подсказки по последней букве.","uk":"узгодити рід, число й артикль без підказки за останньою літерою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

@@ -1,0 +1,817 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-22",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-22:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — coche",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — coche",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i01:audio",
+          "transcript": "coche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-22:i01:r1",
+            "targetText": "coche",
+            "meaningByLocale": {
+              "ru": "машина, автомобиль. Мужской род: el coche. 🔊 *coche*",
+              "uk": "машина, автомобіль. Чоловічий рід: el coche. 🔊 *coche*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "coche",
+          "definitionByLocale": {
+            "ru": "машина, автомобиль. Мужской род: el coche. 🔊 *coche*",
+            "uk": "машина, автомобіль. Чоловічий рід: el coche. 🔊 *coche*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i02:r1",
+          "text": "coche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i02:r2",
+          "text": "leche"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i02:audio",
+          "transcript": "coche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-22:i02:r1",
+            "targetText": "coche",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i02:r2",
+            "targetText": "leche",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит coche — машина.",
+              "uk": "Звучить coche — машина."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — noche",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — noche",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i03:audio",
+          "transcript": "noche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-22:i03:r1",
+            "targetText": "noche",
+            "meaningByLocale": {
+              "ru": "ночь. Женский род: la noche. 🔊 *noche*",
+              "uk": "ніч. Жіночий рід: la noche. 🔊 *noche*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "noche",
+          "definitionByLocale": {
+            "ru": "ночь. Женский род: la noche. 🔊 *noche*",
+            "uk": "ніч. Жіночий рід: la noche. 🔊 *noche*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i04:r1",
+          "text": "noche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i04:r2",
+          "text": "coche"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i04:audio",
+          "transcript": "noche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-22:i04:r1",
+            "targetText": "noche",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i04:r2",
+            "targetText": "coche",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит noche с n.",
+              "uk": "Звучить noche з n."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это машина",
+          "uk": "Вставте слово — це машина"
+        },
+        "gappedTargetPhrase": "Es ___ coche.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-22:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это машина",
+            "feedbackByLocale": {
+              "ru": "Coche мужского рода: un.",
+              "uk": "Coche чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это машина",
+            "feedbackByLocale": {
+              "ru": "Машина одна: un.",
+              "uk": "Машина одна: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — назовите машину",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i06:r1",
+          "text": "Плитки: coche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — назовите машину",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un coche.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите машину",
+          "uk": "Зберіть фразу — назвіть машину"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "coche"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — назовите машину",
+            "feedbackByLocale": {
+              "ru": "coche мужского рода.",
+              "uk": "coche чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — ночь спокойная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i07:r1",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i07:r2",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i07:r3",
+          "text": "Las"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — ночь спокойная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — ночь спокойная",
+          "uk": "Вставте слово — ніч спокійна"
+        },
+        "gappedTargetPhrase": "___ noche es tranquila.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-22:i07:r1",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i07:r2",
+            "text": "El"
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i07:r3",
+            "text": "Las"
+          }
+        ],
+        "testedDimension": "Вставьте слово — ночь спокойная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ночь спокойная",
+            "feedbackByLocale": {
+              "ru": "Noche женского рода: la.",
+              "uk": "Noche жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — ночь спокойная",
+            "feedbackByLocale": {
+              "ru": "Речь об одной ночи: la.",
+              "uk": "Йдеться про одну ніч: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — опишите спокойную ночь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i08:r1",
+          "text": "Плитки: tranquila"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i08:r3",
+          "text": "noche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i08:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — опишите спокойную ночь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La noche es tranquila.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — опишите спокойную ночь",
+          "uk": "Зберіть фразу — опишіть спокійну ніч"
+        },
+        "orderedTokens": [
+          "La",
+          "noche",
+          "es",
+          "tranquila"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — опишите спокойную ночь",
+            "feedbackByLocale": {
+              "ru": "noche женского рода.",
+              "uk": "noche жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — машина удобная",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i09:r1",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i09:r2",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i09:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — машина удобная",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — машина удобная",
+          "uk": "Вставте слово — машина зручна"
+        },
+        "gappedTargetPhrase": "El coche es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-22:i09:r1",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i09:r2",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i09:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — машина удобная",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — машина удобная",
+            "feedbackByLocale": {
+              "ru": "Coche мужского рода: cómodo.",
+              "uk": "Coche чоловічого роду: cómodo."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-22:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — машина удобная",
+            "feedbackByLocale": {
+              "ru": "Здесь один автомобиль мужского рода: cómodo.",
+              "uk": "Тут один автомобіль чоловічого роду: cómodo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — опишите удобную машину",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i10:r1",
+          "text": "Плитки: cómodo"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i10:r3",
+          "text": "coche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i10:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — опишите удобную машину",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El coche es cómodo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — опишите удобную машину",
+          "uk": "Зберіть фразу — опишіть зручну машину"
+        },
+        "orderedTokens": [
+          "El",
+          "coche",
+          "es",
+          "cómodo"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — опишите удобную машину",
+            "feedbackByLocale": {
+              "ru": "coche мужского рода.",
+              "uk": "coche чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i11:r1",
+          "text": "Плитки: tranquila"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i11:r3",
+          "text": "noche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i11:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i11:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i11:audio",
+          "transcript": "La noche es tranquila."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La noche es tranquila.",
+        "orderedTokens": [
+          "La",
+          "noche",
+          "es",
+          "tranquila"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит la.",
+              "uk": "у записі звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — машина удобная",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — машина удобная",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i12:audio",
+          "transcript": "El coche es cómodo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El coche es cómodo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ночь красивая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-22:i13:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i13:r3",
+          "text": "noche"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i13:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-22:i13:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ночь красивая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La noche es bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ночь красивая",
+          "uk": "Зберіть фразу — ніч гарна"
+        },
+        "orderedTokens": [
+          "La",
+          "noche",
+          "es",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-22:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ночь красивая",
+            "feedbackByLocale": {
+              "ru": "noche женского рода.",
+              "uk": "noche жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ночь спокойная",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-22:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ночь спокойная",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-22:i14:audio",
+          "transcript": "La noche es tranquila."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La noche es tranquila.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0788e8c9e345fa55d2be56cd7f6f1e472972f99f187fa9d67253f07e3d457b4a"
+}

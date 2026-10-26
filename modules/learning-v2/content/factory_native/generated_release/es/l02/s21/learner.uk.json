@@ -1,0 +1,822 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-21",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — puente",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — puente",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i01:audio",
+          "transcript": "puente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-21:i01:r1",
+            "targetText": "puente",
+            "meaningByLocale": {
+              "ru": "мост. Мужской род: el puente. 🔊 *puente*",
+              "uk": "міст. Чоловічий рід: el puente. 🔊 *puente*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "puente",
+          "definitionByLocale": {
+            "ru": "мост. Мужской род: el puente. 🔊 *puente*",
+            "uk": "міст. Чоловічий рід: el puente. 🔊 *puente*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i02:r1",
+          "text": "puente"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i02:r2",
+          "text": "puerta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i02:audio",
+          "transcript": "puente"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-21:i02:r1",
+            "targetText": "puente",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i02:r2",
+            "targetText": "puerta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит puente — мост.",
+              "uk": "Звучить puente — міст."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — leche",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — leche",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i03:audio",
+          "transcript": "leche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-21:i03:r1",
+            "targetText": "leche",
+            "meaningByLocale": {
+              "ru": "молоко. Женский род: la leche. 🔊 *leche*",
+              "uk": "молоко. Жіночий рід: la leche. 🔊 *leche*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "leche",
+          "definitionByLocale": {
+            "ru": "молоко. Женский род: la leche. 🔊 *leche*",
+            "uk": "молоко. Жіночий рід: la leche. 🔊 *leche*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i04:r1",
+          "text": "leche"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i04:r2",
+          "text": "llave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i04:audio",
+          "transcript": "leche"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-21:i04:r1",
+            "targetText": "leche",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i04:r2",
+            "targetText": "llave",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит leche — молоко.",
+              "uk": "Звучить leche — молоко."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це міст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це міст",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это мост",
+          "uk": "Вставте слово — це міст"
+        },
+        "gappedTargetPhrase": "Es ___ puente.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-21:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це міст",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це міст",
+            "feedbackByLocale": {
+              "ru": "Puente мужского рода: un.",
+              "uk": "Puente чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це міст",
+            "feedbackByLocale": {
+              "ru": "Мост один: un.",
+              "uk": "Міст один: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть міст",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i06:r1",
+          "text": "Плитки: puente"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть міст",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un puente.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите мост",
+          "uk": "Зберіть фразу — назвіть міст"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "puente"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть міст",
+            "feedbackByLocale": {
+              "ru": "puente мужского рода.",
+              "uk": "puente чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — молоко дороге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i07:r1",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i07:r2",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i07:r3",
+          "text": "Los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — молоко дороге",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — молоко дорогое",
+          "uk": "Вставте слово — молоко дороге"
+        },
+        "gappedTargetPhrase": "___ leche es cara.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-21:i07:r1",
+            "text": "La"
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i07:r2",
+            "text": "El"
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i07:r3",
+            "text": "Los"
+          }
+        ],
+        "testedDimension": "Вставте слово — молоко дороге",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — молоко дороге",
+            "feedbackByLocale": {
+              "ru": "Leche женского рода: la.",
+              "uk": "Leche жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — молоко дороге",
+            "feedbackByLocale": {
+              "ru": "Здесь нужно la leche.",
+              "uk": "Тут потрібно la leche."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — молоко дороге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i08:r1",
+          "text": "Плитки: cara"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i08:r3",
+          "text": "leche"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i08:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — молоко дороге",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La leche es cara.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — молоко дорогое",
+          "uk": "Зберіть фразу — молоко дороге"
+        },
+        "orderedTokens": [
+          "La",
+          "leche",
+          "es",
+          "cara"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — молоко дороге",
+            "feedbackByLocale": {
+              "ru": "leche женского рода.",
+              "uk": "leche жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — виберіть опис дорогого молока",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i09:r1",
+          "text": "cara"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i09:r2",
+          "text": "caro"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i09:r3",
+          "text": "caros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — виберіть опис дорогого молока",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — выберите описание дорогого молока",
+          "uk": "Вставте слово — виберіть опис дорогого молока"
+        },
+        "gappedTargetPhrase": "La leche es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-21:i09:r1",
+            "text": "cara"
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i09:r2",
+            "text": "caro"
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i09:r3",
+            "text": "caros"
+          }
+        ],
+        "testedDimension": "Вставте слово — виберіть опис дорогого молока",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — виберіть опис дорогого молока",
+            "feedbackByLocale": {
+              "ru": "Leche женского рода: cara.",
+              "uk": "Leche жіночого роду: cara."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-21:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — виберіть опис дорогого молока",
+            "feedbackByLocale": {
+              "ru": "К la leche нужна cara.",
+              "uk": "До la leche потрібна cara."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — міст гарний",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i10:r1",
+          "text": "Плитки: bonito"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i10:r3",
+          "text": "puente"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i10:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i10:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — міст гарний",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El puente es bonito.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мост красивый",
+          "uk": "Зберіть фразу — міст гарний"
+        },
+        "orderedTokens": [
+          "El",
+          "puente",
+          "es",
+          "bonito"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — міст гарний",
+            "feedbackByLocale": {
+              "ru": "puente мужского рода.",
+              "uk": "puente чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i11:r1",
+          "text": "Плитки: cara"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i11:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i11:r3",
+          "text": "leche"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i11:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i11:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i11:audio",
+          "transcript": "La leche es cara."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La leche es cara.",
+        "orderedTokens": [
+          "La",
+          "leche",
+          "es",
+          "cara"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит la.",
+              "uk": "у записі звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть міст",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть міст",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i12:audio",
+          "transcript": "Es un puente."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un puente.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — уточніть: молоко не дороге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-21:i13:r1",
+          "text": "Плитки: cara"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i13:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i13:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i13:r4",
+          "text": "leche"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i13:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-21:i13:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — уточніть: молоко не дороге",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La leche no es cara.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — уточните: молоко не дорогое",
+          "uk": "Зберіть фразу — уточніть: молоко не дороге"
+        },
+        "orderedTokens": [
+          "La",
+          "leche",
+          "no",
+          "es",
+          "cara"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-21:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — уточніть: молоко не дороге",
+            "feedbackByLocale": {
+              "ru": "leche женского рода.",
+              "uk": "leche жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — молоко дороге",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — молоко дороге",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-21:i14:audio",
+          "transcript": "La leche es cara."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La leche es cara.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f210199784e12ab3e88f8f206c172985553fef1ad29585a3848c6498ac73a5ac"
+}

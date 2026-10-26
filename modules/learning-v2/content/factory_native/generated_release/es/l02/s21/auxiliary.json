@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-21",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-21:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-21:intro1:r2": {
+          "ru": "У puente мужской род: un.",
+          "uk": "У puente чоловічий рід: un."
+        },
+        "es:lesson-02:session-21:intro1:r3": {
+          "ru": "Один мост требует es.",
+          "uk": "Один міст потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-21:intro2:r2": {
+          "ru": "Для leche нужна la.",
+          "uk": "Для leche потрібна la."
+        },
+        "es:lesson-02:session-21:intro2:r3": {
+          "ru": "Здесь нужна форма la leche.",
+          "uk": "Тут потрібна форма la leche."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-21:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-21:intro3:r2": {
+          "ru": "Leche женского рода.",
+          "uk": "Leche жіночого роду."
+        },
+        "es:lesson-02:session-21:intro3:r3": {
+          "ru": "К женскому leche подходит cara.",
+          "uk": "До жіночого leche підходить cara."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c867a374e7108d0f488900210fb465a8e26baae05ea75482dae179ac925ea7a4"
+}

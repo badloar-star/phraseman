@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-22:intro1:r2": {
+          "ru": "Испанское coche требует un.",
+          "uk": "Іспанське coche потребує un."
+        },
+        "es:lesson-02:session-22:intro1:r3": {
+          "ru": "Одна машина требует es.",
+          "uk": "Одна машина потребує es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-22:intro2:r2": {
+          "ru": "Noche женского рода.",
+          "uk": "Noche жіночого роду."
+        },
+        "es:lesson-02:session-22:intro2:r3": {
+          "ru": "К noche подходит tranquila.",
+          "uk": "До noche підходить tranquila."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-22:intro3:r2": {
+          "ru": "Испанское coche мужского рода.",
+          "uk": "Іспанське coche чоловічого роду."
+        },
+        "es:lesson-02:session-22:intro3:r3": {
+          "ru": "К coche подходит cómodo.",
+          "uk": "До coche підходить cómodo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ea41a403e230ceca81f55c3635f271bdca935c36942f8071c4d8aa45ef2a8244"
+}

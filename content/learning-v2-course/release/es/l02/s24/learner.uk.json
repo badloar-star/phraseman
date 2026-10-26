@@ -1,0 +1,1057 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-24",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-24:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — árbol",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — árbol",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i01:audio",
+          "transcript": "árbol"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-24:i01:r1",
+            "targetText": "árbol",
+            "meaningByLocale": {
+              "ru": "дерево. Мужской род; несколько — árboles. 🔊 *árbol*",
+              "uk": "дерево. Чоловічий рід; кілька — árboles. 🔊 *árbol*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "árbol",
+          "definitionByLocale": {
+            "ru": "дерево. Мужской род; несколько — árboles. 🔊 *árbol*",
+            "uk": "дерево. Чоловічий рід; кілька — árboles. 🔊 *árbol*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i02:r1",
+          "text": "árbol"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i02:r2",
+          "text": "papel"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i02:audio",
+          "transcript": "árbol"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-24:i02:r1",
+            "targetText": "árbol",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i02:r2",
+            "targetText": "papel",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит árbol — дерево.",
+              "uk": "Звучить árbol — дерево."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — flor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i03:audio"
+      ],
+      "accessibilityLabel": "Картка слова — flor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i03:audio",
+          "transcript": "flor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-24:i03:r1",
+            "targetText": "flor",
+            "meaningByLocale": {
+              "ru": "цветок. Женский род; несколько — flores. 🔊 *flor*",
+              "uk": "квітка. Жіночий рід; кілька — flores. 🔊 *flor*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "flor",
+          "definitionByLocale": {
+            "ru": "цветок. Женский род; несколько — flores. 🔊 *flor*",
+            "uk": "квітка. Жіночий рід; кілька — flores. 🔊 *flor*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i04:r1",
+          "text": "flor"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i04:r2",
+          "text": "foto"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i04:audio",
+          "transcript": "flor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-24:i04:r1",
+            "targetText": "flor",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i04:r2",
+            "targetText": "foto",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит flor — цветок.",
+              "uk": "Звучить flor — квітка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це дерево",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i05:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це дерево",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это дерево",
+          "uk": "Вставте слово — це дерево"
+        },
+        "gappedTargetPhrase": "Es ___ árbol.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-24:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i05:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це дерево",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це дерево",
+            "feedbackByLocale": {
+              "ru": "Árbol мужского рода: un.",
+              "uk": "Árbol чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це дерево",
+            "feedbackByLocale": {
+              "ru": "Дерево одно: un.",
+              "uk": "Дерево одне: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть одну квітку",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i06:r1",
+          "text": "Плитки: flor"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть одну квітку",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una flor.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите один цветок",
+          "uk": "Зберіть фразу — назвіть одну квітку"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "flor"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть одну квітку",
+            "feedbackByLocale": {
+              "ru": "flor женского рода.",
+              "uk": "flor жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька дерев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i07:r1",
+          "text": "árboles"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i07:r2",
+          "text": "árbol"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i07:r3",
+          "text": "árbols"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька дерев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько деревьев",
+          "uk": "Вставте слово — кілька дерев"
+        },
+        "gappedTargetPhrase": "Son unos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-24:i07:r1",
+            "text": "árboles"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i07:r2",
+            "text": "árbol"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i07:r3",
+            "text": "árbols"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька дерев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька дерев",
+            "feedbackByLocale": {
+              "ru": "Для нескольких нужна árboles.",
+              "uk": "Для кількох потрібна árboles."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька дерев",
+            "feedbackByLocale": {
+              "ru": "Добавьте -es, а не только -s: árboles.",
+              "uk": "Додайте -es, а не лише -s: árboles."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кілька дерев з unos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i08:r1",
+          "text": "Плитки: árboles"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i08:r2",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i08:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i08:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кілька дерев з unos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos árboles.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько деревьев с unos",
+          "uk": "Зберіть фразу — назвіть кілька дерев з unos"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "árboles"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кілька дерев з unos",
+            "feedbackByLocale": {
+              "ru": "árboles мужского рода.",
+              "uk": "árboles чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — кілька квіток",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i09:r1",
+          "text": "flores"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i09:r2",
+          "text": "flor"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i09:r3",
+          "text": "flors"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — кілька квіток",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько цветов",
+          "uk": "Вставте слово — кілька квіток"
+        },
+        "gappedTargetPhrase": "Son unas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-24:i09:r1",
+            "text": "flores"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i09:r2",
+            "text": "flor"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i09:r3",
+            "text": "flors"
+          }
+        ],
+        "testedDimension": "Вставте слово — кілька квіток",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька квіток",
+            "feedbackByLocale": {
+              "ru": "Для нескольких нужна flores.",
+              "uk": "Для кількох потрібна flores."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — кілька квіток",
+            "feedbackByLocale": {
+              "ru": "Добавьте -es: flores.",
+              "uk": "Додайте -es: flores."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — назвіть кілька квіток з unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i10:r1",
+          "text": "Плитки: flores"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i10:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i10:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i10:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — назвіть кілька квіток з unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas flores.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — назовите несколько цветов с unas",
+          "uk": "Зберіть фразу — назвіть кілька квіток з unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "flores"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — назвіть кілька квіток з unas",
+            "feedbackByLocale": {
+              "ru": "flores женского рода.",
+              "uk": "flores жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i11:r1",
+          "text": "Плитки: flores"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i11:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i11:r4",
+          "text": "unas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i11:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i11:audio",
+          "transcript": "Son las flores."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son las flores.",
+        "orderedTokens": [
+          "Son",
+          "las",
+          "flores"
+        ],
+        "authoredDistractorTokens": [
+          "unas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "в записи звучит las.",
+              "uk": "у записі звучить las."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це ті самі дерева",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i12:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i12:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i12:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це ті самі дерева",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это те самые деревья",
+          "uk": "Вставте слово — це ті самі дерева"
+        },
+        "gappedTargetPhrase": "Son ___ árboles.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-24:i12:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i12:r2",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i12:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставте слово — це ті самі дерева",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це ті самі дерева",
+            "feedbackByLocale": {
+              "ru": "Árboles мужского рода: los.",
+              "uk": "Árboles чоловічого роду: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це ті самі дерева",
+            "feedbackByLocale": {
+              "ru": "Деревьев несколько: los.",
+              "uk": "Дерев кілька: los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — упізнайте обговорені дерева",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i13:r1",
+          "text": "Плитки: árboles"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i13:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i13:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i13:r4",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — упізнайте обговорені дерева",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los árboles.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — узнайте обсуждённые деревья",
+          "uk": "Зберіть фразу — упізнайте обговорені дерева"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "árboles"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — упізнайте обговорені дерева",
+            "feedbackByLocale": {
+              "ru": "árboles мужского рода.",
+              "uk": "árboles чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це ті самі квіти",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це ті самі квіти",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i14:audio",
+          "transcript": "Son las flores."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son las flores.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i15",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це та сама одна квітка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i15:r1",
+          "text": "Плитки: flor"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i15:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i15:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i15:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це та сама одна квітка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es la flor.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это тот самый один цветок",
+          "uk": "Зберіть фразу — це та сама одна квітка"
+        },
+        "orderedTokens": [
+          "Es",
+          "la",
+          "flor"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це та сама одна квітка",
+            "feedbackByLocale": {
+              "ru": "flor женского рода.",
+              "uk": "flor жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i16",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це те саме одне дерево",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i16:r1",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i16:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i16:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це те саме одне дерево",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это то самое одно дерево",
+          "uk": "Вставте слово — це те саме одне дерево"
+        },
+        "gappedTargetPhrase": "Es ___ árbol.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-24:i16:r1",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i16:r2",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i16:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставте слово — це те саме одне дерево",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i16:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це те саме одне дерево",
+            "feedbackByLocale": {
+              "ru": "Árbol мужского рода: el.",
+              "uk": "Árbol чоловічого роду: el."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-24:i16:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це те саме одне дерево",
+            "feedbackByLocale": {
+              "ru": "Дерево одно: el.",
+              "uk": "Дерево одне: el."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть кілька квіток з unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-24:i17:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть кілька квіток з unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-24:i17:audio",
+          "transcript": "Son unas flores."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas flores.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-24:i18",
+      "ordinal": 21,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — підтвердьте: це ті самі дерева",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-24:i18:r1",
+          "text": "Плитки: son"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i18:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i18:r3",
+          "text": "árboles"
+        },
+        {
+          "responseId": "es:lesson-02:session-24:i18:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — підтвердьте: це ті самі дерева",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son los árboles.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — подтвердите: это те самые деревья",
+          "uk": "Зберіть фразу — підтвердьте: це ті самі дерева"
+        },
+        "orderedTokens": [
+          "Son",
+          "los",
+          "árboles"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-24:i18:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — підтвердьте: це ті самі дерева",
+            "feedbackByLocale": {
+              "ru": "деревьев несколько, нужен los.",
+              "uk": "дерев кілька, потрібен los."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "799f2a2fb12582585f2e02ddcef7ef0d28eaf1b6f38ad1cb6b7b129a5e24c420"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "вслух называть и описывать знакомые по ситуации вещи, не угадывая род по последней букве.",
+    "uk": "уголос називати й описувати знайомі за ситуацією речі, не вгадуючи рід за останньою літерою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Диван",
+        "uk": "Диван"
+      },
+      "bodyByLocale": {
+        "ru": "Друг показывает место для отдыха. `Sofá` — «диван», слово мужского рода: el sofá. Назовите предмет: `Es un sofá` — «Это диван». Соберите `es` + `un` + `sofá`. Несмотря на конечную -á, здесь мужской род. Произнесите с ударением на последнем слоге и сохраняйте знак над á на письме.",
+        "uk": "Друг показує місце для відпочинку. `Sofá` — «диван», слово чоловічого роду: el sofá. Назвіть предмет: `Es un sofá` — «Це диван». Зберіть `es` + `un` + `sofá`. Попри кінцеву -á, тут чоловічий рід. Вимовте з наголосом на останньому складі й зберігайте знак над á на письмі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите диван.",
+          "uk": "Назвіть диван."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-23:intro1:r1",
+              "text": "Es un sofá."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro1:r2",
+              "text": "Es una sofá."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro1:r3",
+              "text": "Son un sofá."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-23:intro1:r1",
+              "text": "Es un sofá."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro1:r2",
+              "text": "Es una sofá."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro1:r3",
+              "text": "Son un sofá."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите диван.",
+          "uk": "Назвіть диван."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Откуда музыка",
+        "uk": "Звідки музика"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате слышны музыка и голос ведущего. Друг думает, что это запись; вы узнаёте радиоэфир. `Radio` — «радио»; когда говорим о радиовещании, используется женское la radio. Скажите `Es la radio` — «Это радио». Соберите `es` + `la` + `radio`. Здесь называете источник слышимой передачи, а не описываете устройство.",
+        "uk": "У кімнаті чути музику й голос ведучого. Друг думає, що це запис; ви впізнаєте радіоефір. `Radio` — «радіо»; коли говоримо про радіомовлення, використовується жіноче la radio. Скажіть `Es la radio` — «Це радіо». Зберіть `es` + `la` + `radio`. Тут називаєте джерело почутої передачі, а не описуєте пристрій."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Объясните, что слышен радиоэфир.",
+          "uk": "Поясніть, що чути радіоефір."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-23:intro2:r1",
+              "text": "Es la radio."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro2:r2",
+              "text": "Son la radio."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro2:r3",
+              "text": "Es las radio."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-23:intro2:r1",
+              "text": "Es la radio."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro2:r2",
+              "text": "Son la radio."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro2:r3",
+              "text": "Es las radio."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Объясните, что слышен радиоэфир.",
+          "uk": "Поясніть, що чути радіоефір."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Удобное место",
+        "uk": "Зручне місце"
+      },
+      "bodyByLocale": {
+        "ru": "Вы садитесь на диван и хотите его похвалить. Скажите `El sofá es cómodo` — «Диван удобный». Соберите `el sofá` + `es` + `cómodo`. Для мужского sofá нужны el и cómodo. Конечное -á не делает диван женским; род сохраняется и в названии un sofá, и в описании el sofá es cómodo.",
+        "uk": "Ви сідаєте на диван і хочете його похвалити. Скажіть `El sofá es cómodo` — «Диван зручний». Зберіть `el sofá` + `es` + `cómodo`. Для чоловічого sofá потрібні el і cómodo. Кінцеве -á не робить диван жіночим; рід зберігається і в назві un sofá, і в описі el sofá es cómodo."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что диван удобный.",
+          "uk": "Скажіть, що диван зручний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-23:intro3:r1",
+              "text": "El sofá es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro3:r2",
+              "text": "La sofá es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro3:r3",
+              "text": "El sofá es cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-23:intro3:r1",
+              "text": "El sofá es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro3:r2",
+              "text": "La sofá es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-23:intro3:r3",
+              "text": "El sofá es cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что диван удобный.",
+          "uk": "Скажіть, що диван зручний."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "480ae9015156a6881da742d9097fc8754b73f46e26d4229d94078345d5fd02ef"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-21:i01",
+    "correctText": "puente",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i02",
+    "correctText": "puente",
+    "correctResponseId": "es:lesson-02:session-21:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i03",
+    "correctText": "leche",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i04",
+    "correctText": "leche",
+    "correctResponseId": "es:lesson-02:session-21:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-21:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i06",
+    "correctText": "Es un puente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i07",
+    "correctText": "La",
+    "correctResponseId": "es:lesson-02:session-21:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i08",
+    "correctText": "La leche es cara.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i09",
+    "correctText": "cara",
+    "correctResponseId": "es:lesson-02:session-21:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i10",
+    "correctText": "El puente es bonito.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i11",
+    "correctText": "La leche es cara.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i12",
+    "correctText": "Es un puente.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i13",
+    "correctText": "La leche no es cara.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-21:i14",
+    "correctText": "La leche es cara.",
+    "correctResponseId": null
+  }
+]

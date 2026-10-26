@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-02:session-22:i01",
+    "correctText": "coche",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i02",
+    "correctText": "coche",
+    "correctResponseId": "es:lesson-02:session-22:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i03",
+    "correctText": "noche",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i04",
+    "correctText": "noche",
+    "correctResponseId": "es:lesson-02:session-22:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i05",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-02:session-22:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i06",
+    "correctText": "Es un coche.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i07",
+    "correctText": "La",
+    "correctResponseId": "es:lesson-02:session-22:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i08",
+    "correctText": "La noche es tranquila.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i09",
+    "correctText": "cómodo",
+    "correctResponseId": "es:lesson-02:session-22:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i10",
+    "correctText": "El coche es cómodo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i11",
+    "correctText": "La noche es tranquila.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i12",
+    "correctText": "El coche es cómodo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i13",
+    "correctText": "La noche es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-02:session-22:i14",
+    "correctText": "La noche es tranquila.",
+    "correctResponseId": null
+  }
+]

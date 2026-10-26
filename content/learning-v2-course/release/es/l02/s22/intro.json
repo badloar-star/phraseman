@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать род по испанскому слову, а не по его переводу или последней букве.",
+    "uk": "вибирати рід за іспанським словом, а не за його перекладом чи останньою літерою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Машина на снимке",
+        "uk": "Машина на знімку"
+      },
+      "bodyByLocale": {
+        "ru": "На первом снимке видна машина. `Coche` — «машина, автомобиль», слово мужского рода: el coche. Назовите её: `Es un coche` — «Это машина». Соберите `es` + `un` + `coche`. Русское «машина» женского рода, но испанское coche мужского: нужен un.",
+        "uk": "На першому знімку видно машину. `Coche` — «машина, автомобіль», слово чоловічого роду: el coche. Назвіть її: `Es un coche` — «Це машина». Зберіть `es` + `un` + `coche`. Українське «машина» жіночого роду, але іспанське coche чоловічого: потрібен un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите автомобиль словом coche.",
+          "uk": "Назвіть автомобіль словом coche."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-22:intro1:r1",
+              "text": "Es un coche."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro1:r2",
+              "text": "Es una coche."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro1:r3",
+              "text": "Son un coche."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-22:intro1:r1",
+              "text": "Es un coche."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro1:r2",
+              "text": "Es una coche."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro1:r3",
+              "text": "Son un coche."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите автомобиль словом coche.",
+          "uk": "Назвіть автомобіль словом coche."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спокойная ночь",
+        "uk": "Спокійна ніч"
+      },
+      "bodyByLocale": {
+        "ru": "Следующий снимок напоминает о тихой дороге. `Noche` — «ночь», слово женского рода: la noche. Опишите ночь: `La noche es tranquila` — «Ночь спокойная». Соберите `la noche` + `es` + `tranquila`. У coche и noche одинаковая конечная -e, но разный род: el coche, la noche. Для женского noche выбирайте tranquila.",
+        "uk": "Наступний знімок нагадує про тиху дорогу. `Noche` — «ніч», слово жіночого роду: la noche. Опишіть ніч: `La noche es tranquila` — «Ніч спокійна». Зберіть `la noche` + `es` + `tranquila`. У coche й noche однакова кінцева -e, але різний рід: el coche, la noche. Для жіночого noche вибирайте tranquila."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что ночь спокойная.",
+          "uk": "Скажіть, що ніч спокійна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-22:intro2:r1",
+              "text": "La noche es tranquila."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro2:r2",
+              "text": "El noche es tranquilo."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro2:r3",
+              "text": "La noche es tranquilo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-22:intro2:r1",
+              "text": "La noche es tranquila."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro2:r2",
+              "text": "El noche es tranquilo."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro2:r3",
+              "text": "La noche es tranquilo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что ночь спокойная.",
+          "uk": "Скажіть, що ніч спокійна."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Удобная машина",
+        "uk": "Зручна машина"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о машине для таких поездок. Скажите `El coche es cómodo` — «Машина удобная». Соберите `el coche` + `es` + `cómodo`. Испанское coche мужского рода, поэтому el и cómodo. Перевод «машина удобная» не меняет согласование в испанской фразе.",
+        "uk": "Друг запитує про машину для таких поїздок. Скажіть `El coche es cómodo` — «Машина зручна». Зберіть `el coche` + `es` + `cómodo`. Іспанське coche чоловічого роду, тому el і cómodo. Переклад «машина зручна» не змінює узгодження в іспанській фразі."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что машина удобная.",
+          "uk": "Скажіть, що машина зручна."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-22:intro3:r1",
+              "text": "El coche es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro3:r2",
+              "text": "La coche es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro3:r3",
+              "text": "El coche es cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-22:intro3:r1",
+              "text": "El coche es cómodo."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro3:r2",
+              "text": "La coche es cómoda."
+            },
+            {
+              "responseId": "es:lesson-02:session-22:intro3:r3",
+              "text": "El coche es cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что машина удобная.",
+          "uk": "Скажіть, що машина зручна."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1bf932ad51b738cb95e9f087954848a94a4909b9816ed694523adbf6710af446"
+}

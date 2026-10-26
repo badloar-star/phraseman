@@ -33,7 +33,13 @@ describe('сцены Главной и Диалогов: шрифт 1,3 и дл�
   it('Главная: на крупном шрифте герой вписан в свободное место (слот flex 1), на обычном — как в эталоне', () => {
     const src = code(read('components/home/v2/scene/HomeSceneStage.tsx'));
     expect(src).toContain('const HERO_BOUND_FONT_SCALE = 1.15;');
-    expect(src).toContain('const heroBounded = fontScale > HERO_BOUND_FONT_SCALE;');
+    // 26.10 (перезакреп Темами, красный Ревизора a6149412b): решение «герой в свободном месте» переехало в homeSceneHeroFade
+    // (c5f60dc21 — герой гаснет над текстом ради читаемости белых букв); крупный шрифт по-прежнему сразу уводит героя в слот
+    expect(src).toContain('fontBounded: fontScale > HERO_BOUND_FONT_SCALE');
+    expect(src).toContain('const heroBounded = fade.bounded;');
+    const { homeSceneHeroFade } = require('../components/home/v2/scene/home_scene_hero_fade') as typeof import('../components/home/v2/scene/home_scene_hero_fade');
+    expect(homeSceneHeroFade({ heroTop: 0, spaceH: 400, heroH: 200, fontBounded: true }).bounded).toBe(true);
+    expect(homeSceneHeroFade({ heroTop: 0, spaceH: 400, heroH: 200, fontBounded: false }).bounded).toBe(false);
     expect(src).toContain('heroSpace: { flex: 1 }');
     // 25.10 (Ревизор, прогон 05:00): стиль закрыт без запятой после maxHeight (правка формата в a50cfbf18) — геометрия та же; проверяем значения, а не хвост строки
     expect(src).toMatch(/heroBounded: \{[^}]*bottom: 4, width: HERO, maxHeight: HERO\b/);

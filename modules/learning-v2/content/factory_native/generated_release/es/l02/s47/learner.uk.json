@@ -1,0 +1,625 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-47",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — що це?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i01:r1",
+          "text": "Плитки: esto?"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i01:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i01:r3",
+          "text": "¿qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i01:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — що це?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Qué es esto?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — что это?",
+          "uk": "Зберіть фразу — що це?"
+        },
+        "orderedTokens": [
+          "¿Qué",
+          "es",
+          "esto"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i01:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — що це?",
+            "feedbackByLocale": {
+              "ru": "здесь одна вещь и esto.",
+              "uk": "тут одна річ і esto."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитайте назву речі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i02:r1",
+          "text": "qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i02:r2",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i02:r3",
+          "text": "de"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитайте назву речі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите название вещи",
+          "uk": "Вставте слово — запитайте назву речі"
+        },
+        "gappedTargetPhrase": "¿___ es esto?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-47:i02:r1",
+            "text": "qué"
+          },
+          {
+            "responseId": "es:lesson-02:session-47:i02:r2",
+            "text": "quién"
+          },
+          {
+            "responseId": "es:lesson-02:session-47:i02:r3",
+            "text": "de"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитайте назву речі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте назву речі",
+            "feedbackByLocale": {
+              "ru": "Quién спрашивает о человеке; здесь нужен вопрос qué о вещи.",
+              "uk": "Quién питає про людину; тут потрібне запитання qué про річ."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте назву речі",
+            "feedbackByLocale": {
+              "ru": "Для вопроса «Что это?» нужно qué.",
+              "uk": "Для запитання «Що це?» потрібне qué."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i03",
+      "ordinal": 6,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте, що це",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-47:i03:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте, що це",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-47:i03:audio",
+          "transcript": "¿Qué es esto?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Qué es esto?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i04:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i04:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це сумка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это сумка",
+          "uk": "Зберіть фразу — це сумка"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це сумка",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — назвіть сумку",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-47:i05:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — назвіть сумку",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-47:i05:audio",
+          "transcript": "Es una bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чия вона?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i06:r1",
+          "text": "Плитки: es?"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i06:r2",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i06:r3",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i06:r4",
+          "text": "son?."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чия вона?",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién es?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чья она?",
+          "uk": "Зберіть фразу — чия вона?"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es"
+        ],
+        "authoredDistractorTokens": [
+          "son?"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чия вона?",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — запитайте власника сумки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i07:r1",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i07:r2",
+          "text": "qué"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i07:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — запитайте власника сумки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — спросите владельца сумки",
+          "uk": "Вставте слово — запитайте власника сумки"
+        },
+        "gappedTargetPhrase": "¿De ___ es?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-47:i07:r1",
+            "text": "quién"
+          },
+          {
+            "responseId": "es:lesson-02:session-47:i07:r2",
+            "text": "qué"
+          },
+          {
+            "responseId": "es:lesson-02:session-47:i07:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — запитайте власника сумки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте власника сумки",
+            "feedbackByLocale": {
+              "ru": "Здесь спрашиваете, кому принадлежит вещь: quién.",
+              "uk": "Тут питаєте, кому належить річ: quién."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-47:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — запитайте власника сумки",
+            "feedbackByLocale": {
+              "ru": "Нужно вопросительное quién после de.",
+              "uk": "Потрібне питальне quién після de."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i08:r1",
+          "text": "Плитки: es?"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i08:r2",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i08:r3",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i08:r4",
+          "text": "son?."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-47:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-47:i08:audio",
+          "transcript": "¿De quién es?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿De quién es?",
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "es"
+        ],
+        "authoredDistractorTokens": [
+          "son?"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — запитайте, чия сумка",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — запитайте, чия сумка",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-47:i09:audio",
+          "transcript": "¿De quién es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — сумка належить Ані",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-47:i10:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i10:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i10:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-47:i10:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — сумка належить Ані",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es de Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сумка принадлежит Ане",
+          "uk": "Зберіть фразу — сумка належить Ані"
+        },
+        "orderedTokens": [
+          "Es",
+          "de",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-47:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — сумка належить Ані",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вона належить Ані",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вона належить Ані",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-47:i11:audio",
+          "transcript": "Es de Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es de Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — повторіть запитання про власника",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — повторіть запитання про власника",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-47:i12:audio",
+          "transcript": "¿De quién es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "952d702ad33e2077ea00f0fd702a394bc75e403f6cbd5f8daef90e76591b52d6"
+}

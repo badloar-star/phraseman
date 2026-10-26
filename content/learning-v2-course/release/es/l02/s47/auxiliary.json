@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-47",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-47:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-47:intro1:r2": {
+          "ru": "Это вопрос о владельце, а пока нужно название.",
+          "uk": "Це запитання про власника, а поки потрібна назва."
+        },
+        "es:lesson-02:session-47:intro1:r3": {
+          "ru": "Здесь одна вещь и esto: es.",
+          "uk": "Тут одна річ і esto: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-47:intro2:r2": {
+          "ru": "Для bolsa нужна una.",
+          "uk": "Для bolsa потрібна una."
+        },
+        "es:lesson-02:session-47:intro2:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-47:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-47:intro3:r2": {
+          "ru": "Это вопрос о названии вещи, а название уже известно.",
+          "uk": "Це запитання про назву речі, а назва вже відома."
+        },
+        "es:lesson-02:session-47:intro3:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ea6945a9e367863657a8d34d21bc4dfc4287f351f5581bca2ea9a46173709a2c"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-47",
+  "learningOutcomeByLocale": {
+    "ru": "отдельно спросить название вещи и её владельца.",
+    "uk": "окремо запитати назву речі та її власника."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-47:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что это?",
+        "uk": "Що це?"
+      },
+      "bodyByLocale": {
+        "ru": "На стуле лежит сложенная вещь, которую вы пока не разглядели. Спросите `¿Qué es esto?` — «Что это?» Соберите `¿qué` + `es` + `esto?`. Знакомое qué спрашивает о названии, esto указывает на пока не названную вещь. Не меняйте esto на женскую форму заранее: вы ещё спрашиваете, что перед вами.",
+        "uk": "На стільці лежить складена річ, яку ви ще не роздивилися. Запитайте `¿Qué es esto?` — «Що це?» Зберіть `¿qué` + `es` + `esto?`. Знайоме qué питає про назву, esto вказує на ще не названу річ. Не змінюйте esto на жіночу форму заздалегідь: ви ще питаєте, що перед вами."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-47:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите название вещи.",
+          "uk": "Запитайте назву речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-47:intro1:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro1:r2",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro1:r3",
+              "text": "¿Qué son esto?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-47:intro1:r1",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro1:r2",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro1:r3",
+              "text": "¿Qué son esto?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите название вещи.",
+          "uk": "Запитайте назву речі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-47:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Это сумка",
+        "uk": "Це сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг разворачивает вещь: это сумка. Назовите её отдельным ответом: `Es una bolsa` — «Это сумка». Соберите `es` + `una` + `bolsa`. Теперь название известно: bolsa женского рода, поэтому una. Вопрос и ответ — две отдельные реплики, их не нужно соединять в одно предложение.",
+        "uk": "Друг розгортає річ: це сумка. Назвіть її окремою відповіддю: `Es una bolsa` — «Це сумка». Зберіть `es` + `una` + `bolsa`. Тепер назва відома: bolsa жіночого роду, тому una. Запитання й відповідь — дві окремі репліки, їх не потрібно поєднувати в одне речення."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-47:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите сумку.",
+          "uk": "Назвіть сумку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-47:intro2:r1",
+              "text": "Es una bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro2:r2",
+              "text": "Es un bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro2:r3",
+              "text": "Son una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-47:intro2:r1",
+              "text": "Es una bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro2:r2",
+              "text": "Es un bolsa."
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro2:r3",
+              "text": "Son una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите сумку.",
+          "uk": "Назвіть сумку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-47:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Чья она?",
+        "uk": "Чия вона?"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже знаете, что это сумка, но не знаете владельца. Спросите `¿De quién es?` — «Чья она?» Соберите `¿de quién` + `es?`. De quién спрашивает о принадлежности. Название bolsa можно не повторять: собеседники видят сумку и понимают, о чём речь.",
+        "uk": "Ви вже знаєте, що це сумка, але не знаєте власника. Запитайте `¿De quién es?` — «Чия вона?» Зберіть `¿de quién` + `es?`. De quién питає про належність. Назву bolsa можна не повторювати: співрозмовники бачать сумку й розуміють, про що йдеться."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-47:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, кому принадлежит сумка.",
+          "uk": "Запитайте, кому належить сумка."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-47:intro3:r1",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro3:r2",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro3:r3",
+              "text": "¿De quién son?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-47:intro3:r1",
+              "text": "¿De quién es?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro3:r2",
+              "text": "¿Qué es esto?"
+            },
+            {
+              "responseId": "es:lesson-02:session-47:intro3:r3",
+              "text": "¿De quién son?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, кому принадлежит сумка.",
+          "uk": "Запитайте, кому належить сумка."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "77adffcdfd849b95e4d66775874f952e223cd8dea21332aed6ef833e6e326c0e"
+}

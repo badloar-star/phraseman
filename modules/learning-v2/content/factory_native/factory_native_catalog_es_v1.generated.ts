@@ -721,4 +721,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько вещей и их владельца, меняя только нужные части фразы.","uk":"назвати кілька речей та їхнього власника, змінюючи лише потрібні частини фрази."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 47,
+    sourceFingerprint: "f5fe45e0d40c595889cee9cfa817c54bcf45189f58b6fa9e1cf282ec28d314cf",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отдельно спросить название вещи и её владельца.","uk":"окремо запитати назву речі та її власника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

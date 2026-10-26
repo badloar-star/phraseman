@@ -1439,4 +1439,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l02/s46/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l02/s46/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 47,
+    sourceFingerprint: "f5fe45e0d40c595889cee9cfa817c54bcf45189f58b6fa9e1cf282ec28d314cf",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Спросите название вещи.","Назовите сумку.","Спросите, кому принадлежит сумка."],"uk":["Запитайте назву речі.","Назвіть сумку.","Запитайте, кому належить сумка."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Это вопрос о владельце, а пока нужно название.","Здесь одна вещь и esto: es."],["Для bolsa нужна una.","Сумка одна: es."],["Это вопрос о названии вещи, а название уже известно.","Сумка одна: es."]],"uk":[["Це запитання про власника, а поки потрібна назва.","Тут одна річ і esto: es."],["Для bolsa потрібна una.","Сумка одна: es."],["Це запитання про назву речі, а назва вже відома.","Сумка одна: es."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отдельно спросить название вещи и её владельца.","uk":"окремо запитати назву речі та її власника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Соберите фразу — что это?"},{"ordinal":2,"title":"Вставьте слово — спросите название вещи"},{"ordinal":3,"title":"Скажите вслух — спросите, что это"},{"ordinal":4,"title":"Соберите фразу — это сумка"},{"ordinal":5,"title":"Скажите вслух — назовите сумку"},{"ordinal":6,"title":"Соберите фразу — чья она?"},{"ordinal":7,"title":"Вставьте слово — спросите владельца сумки"},{"ordinal":8,"title":"Послушайте и соберите фразу"},{"ordinal":9,"title":"Скажите вслух — спросите, чья сумка"},{"ordinal":10,"title":"Соберите фразу — сумка принадлежит Ане"},{"ordinal":11,"title":"Скажите вслух — она принадлежит Ане"},{"ordinal":12,"title":"Скажите вслух — повторите вопрос о владельце"}],"uk":[{"ordinal":1,"title":"Зберіть фразу — що це?"},{"ordinal":2,"title":"Вставте слово — запитайте назву речі"},{"ordinal":3,"title":"Скажіть уголос — запитайте, що це"},{"ordinal":4,"title":"Зберіть фразу — це сумка"},{"ordinal":5,"title":"Скажіть уголос — назвіть сумку"},{"ordinal":6,"title":"Зберіть фразу — чия вона?"},{"ordinal":7,"title":"Вставте слово — запитайте власника сумки"},{"ordinal":8,"title":"Послухайте й зберіть фразу"},{"ordinal":9,"title":"Скажіть уголос — запитайте, чия сумка"},{"ordinal":10,"title":"Зберіть фразу — сумка належить Ані"},{"ordinal":11,"title":"Скажіть уголос — вона належить Ані"},{"ordinal":12,"title":"Скажіть уголос — повторіть запитання про власника"}]}),
+    loadIntro: () => require("./generated_release/es/l02/s47/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l02/s47/learner.uk.json") as unknown : require("./generated_release/es/l02/s47/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l02/s47/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l02/s47/auxiliary.json") as unknown,
+  }),
 ]);

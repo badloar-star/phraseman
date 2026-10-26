@@ -183,6 +183,14 @@ const NATIVE_POP_TO_BACK_ENABLED =
 
 let navigationStack: NavigationEntry[] = [];
 let suppressNextRemember = false;
+/**
+ * зачем (Моменты, Optimistic UI-аудит 26.10): safeRouterBack снимает запись истории на КАЖДЫЙ вызов — второй тап по «назад»
+ * во время перехода уводил на два экрана назад. Отметка «переход уже идёт»: пока новый экран не отметился в
+ * rememberNavigationPath (и не дольше окна), повтор пропускается. Приход нового экрана снимает её сразу — законное «назад»
+ * с только что открытого экрана не блокируется.
+ */
+const BACK_DOUBLE_TAP_WINDOW_MS = 1000;
+let pendingBack: Readonly<{ at: number; from: string | null; chosen: string }> | null = null;
 let replaceTopOnNextRemember = false;
 let paywallDismissShouldReplace = false;
 const PAYWALL_DISMISS_LATCH_MS = 900;
@@ -410,6 +418,7 @@ export function rememberNavigationPath(path: string | null | undefined): void {
   if (!href) return;
 
   const policy = routePolicy(href);
+  if (pendingBack && policy.role !== 'transient') pendingBack = null; // новый экран пришёл — переход «назад» закончен
   if (policy.role === 'transient') {
     if (replaceTopOnNextRemember) paywallDismissShouldReplace = true;
     if (suppressNextRemember) suppressNextRemember = false;
@@ -496,9 +505,18 @@ export function safeRouterBack(
   router: SafeBackRouter,
   fallback: any = HOME_BACK_FALLBACK,
 ): void {
+  const now = Date.now();
+  if (pendingBack && now - pendingBack.at < BACK_DOUBLE_TAP_WINDOW_MS) {
+    // ранний выход: переход «назад» уже идёт, второй тап снял бы ещё одну запись истории
+    console.warn('[NAV-BACK] skip', JSON.stringify({
+      reason: 'double_tap', msSincePrevious: now - pendingBack.at, from: pendingBack.from, goingTo: pendingBack.chosen,
+    })); // guard-ok: ранний выход навигации логируется
+    return;
+  }
   const leaving = currentEntry();
   const candidate = popBackCandidate(leaving);
   const chosen = safeTarget(candidate, fallback);
+  pendingBack = { at: now, from: leaving ? pathnameOf(leaving.href) : null, chosen: pathnameOf(chosen.path) };
   // зачем (Сверка 06:10): каждое решение «назад» — откуда, кандидат из истории, что выбрано и каким способом.
   const logBack = (method: string): void => {
     console.warn('[NAV-BACK] decision', JSON.stringify({

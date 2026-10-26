@@ -1355,4 +1355,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l02/s40/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l02/s40/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 41,
+    sourceFingerprint: "ec2d01eab59854e168c61f6c8a6cb79081ebf59500ed8f3d2189bd6c7b6f76ca",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Назовите ремень.","Назовите одну юбку.","Назовите юбки с unas."],"uk":["Назвіть ремінь.","Назвіть одну спідницю.","Назвіть спідниці з unas."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Cinturón мужского рода: un.","Ремень один: es."],["Для falda нужна una.","Юбка одна: es."],["Юбок несколько: son.","Faldas женского рода: unas."]],"uk":[["Cinturón чоловічого роду: un.","Ремінь один: es."],["Для falda потрібна una.","Спідниця одна: es."],["Спідниць кілька: son.","Faldas жіночого роду: unas."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать es un или son unas по одному предмету и нескольким.","uk":"вибрати es un або son unas для одного предмета й кількох."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Карточка слова — cinturón"},{"ordinal":2,"title":"Послушайте и выберите слово"},{"ordinal":3,"title":"Карточка слова — falda"},{"ordinal":4,"title":"Послушайте и выберите слово"},{"ordinal":5,"title":"Соберите фразу — это ремень"},{"ordinal":6,"title":"Вставьте слово — это один ремень"},{"ordinal":7,"title":"Соберите фразу — это юбка"},{"ordinal":8,"title":"Вставьте слово — это одна юбка"},{"ordinal":9,"title":"Соберите фразу — это юбки, используйте unas"},{"ordinal":10,"title":"Вставьте слово — это юбки"},{"ordinal":11,"title":"Послушайте и соберите фразу"},{"ordinal":12,"title":"Скажите вслух — это ремень"},{"ordinal":13,"title":"Соберите фразу — снова одна юбка"},{"ordinal":14,"title":"Скажите вслух — это юбки, с unas"}],"uk":[{"ordinal":1,"title":"Картка слова — cinturón"},{"ordinal":2,"title":"Послухайте й виберіть слово"},{"ordinal":3,"title":"Картка слова — falda"},{"ordinal":4,"title":"Послухайте й виберіть слово"},{"ordinal":5,"title":"Зберіть фразу — це ремінь"},{"ordinal":6,"title":"Вставте слово — це один ремінь"},{"ordinal":7,"title":"Зберіть фразу — це спідниця"},{"ordinal":8,"title":"Вставте слово — це одна спідниця"},{"ordinal":9,"title":"Зберіть фразу — це спідниці, використайте unas"},{"ordinal":10,"title":"Вставте слово — це спідниці"},{"ordinal":11,"title":"Послухайте й зберіть фразу"},{"ordinal":12,"title":"Скажіть уголос — це ремінь"},{"ordinal":13,"title":"Зберіть фразу — знову одна спідниця"},{"ordinal":14,"title":"Скажіть уголос — це спідниці, з unas"}]}),
+    loadIntro: () => require("./generated_release/es/l02/s41/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l02/s41/learner.uk.json") as unknown : require("./generated_release/es/l02/s41/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l02/s41/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l02/s41/auxiliary.json") as unknown,
+  }),
 ]);

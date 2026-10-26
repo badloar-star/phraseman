@@ -679,4 +679,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать míos или mías по названию нескольких вещей.","uk":"вибрати míos або mías за назвою кількох речей."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 2, sessionOrdinal: 41,
+    sourceFingerprint: "ec2d01eab59854e168c61f6c8a6cb79081ebf59500ed8f3d2189bd6c7b6f76ca",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать es un или son unas по одному предмету и нескольким.","uk":"вибрати es un або son unas для одного предмета й кількох."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 2","uk":"Іспанська · Урок 2"}),
+  }),
 ]);

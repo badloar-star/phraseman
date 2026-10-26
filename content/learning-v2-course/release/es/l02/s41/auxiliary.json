@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-02:session-41",
+  "entries": [
+    {
+      "interactionId": "es:lesson-02:session-41:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-41:intro1:r2": {
+          "ru": "Cinturón мужского рода: un.",
+          "uk": "Cinturón чоловічого роду: un."
+        },
+        "es:lesson-02:session-41:intro1:r3": {
+          "ru": "Ремень один: es.",
+          "uk": "Ремінь один: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-41:intro2:r2": {
+          "ru": "Для falda нужна una.",
+          "uk": "Для falda потрібна una."
+        },
+        "es:lesson-02:session-41:intro2:r3": {
+          "ru": "Юбка одна: es.",
+          "uk": "Спідниця одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-02:session-41:intro3:r2": {
+          "ru": "Юбок несколько: son.",
+          "uk": "Спідниць кілька: son."
+        },
+        "es:lesson-02:session-41:intro3:r3": {
+          "ru": "Faldas женского рода: unas.",
+          "uk": "Faldas жіночого роду: unas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "54a8d5735b9886fdf8b2b0a4ebaca6c42e7989866243d149ce505d0c4d33cd7a"
+}

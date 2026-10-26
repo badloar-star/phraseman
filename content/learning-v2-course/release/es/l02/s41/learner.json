@@ -1,0 +1,797 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-02:session-41",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-02:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cinturón",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cinturón",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i01:audio",
+          "transcript": "cinturón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-41:i01:r1",
+            "targetText": "cinturón",
+            "meaningByLocale": {
+              "ru": "ремень. Мужской род: el cinturón. 🔊 *cinturón*",
+              "uk": "ремінь. Чоловічий рід: el cinturón. 🔊 *cinturón*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cinturón",
+          "definitionByLocale": {
+            "ru": "ремень. Мужской род: el cinturón. 🔊 *cinturón*",
+            "uk": "ремінь. Чоловічий рід: el cinturón. 🔊 *cinturón*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i02:r1",
+          "text": "cinturón"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i02:r2",
+          "text": "calcetín"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i02:audio",
+          "transcript": "cinturón"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-41:i02:r1",
+            "targetText": "cinturón",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i02:r2",
+            "targetText": "calcetín",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cinturón — ремень.",
+              "uk": "Звучить cinturón — ремінь."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — falda",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i03:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — falda",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i03:audio",
+          "transcript": "falda"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-41:i03:r1",
+            "targetText": "falda",
+            "meaningByLocale": {
+              "ru": "юбка. Женский род; несколько — faldas. 🔊 *falda*",
+              "uk": "спідниця. Жіночий рід; кілька — faldas. 🔊 *falda*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "falda",
+          "definitionByLocale": {
+            "ru": "юбка. Женский род; несколько — faldas. 🔊 *falda*",
+            "uk": "спідниця. Жіночий рід; кілька — faldas. 🔊 *falda*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i04:r1",
+          "text": "falda"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i04:r2",
+          "text": "manta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i04:audio",
+          "transcript": "falda"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-02:session-41:i04:r1",
+            "targetText": "falda",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i04:r2",
+            "targetText": "manta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит falda — юбка.",
+              "uk": "Звучить falda — спідниця."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это ремень",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i05:r1",
+          "text": "Плитки: cinturón"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i05:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это ремень",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un cinturón.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это ремень",
+          "uk": "Зберіть фразу — це ремінь"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "cinturón"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это ремень",
+            "feedbackByLocale": {
+              "ru": "cinturón мужского рода.",
+              "uk": "cinturón чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это один ремень",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i06:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i06:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это один ремень",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это один ремень",
+          "uk": "Вставте слово — це один ремінь"
+        },
+        "gappedTargetPhrase": "___ un cinturón.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-41:i06:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i06:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i06:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это один ремень",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это один ремень",
+            "feedbackByLocale": {
+              "ru": "Ремень один: es.",
+              "uk": "Ремінь один: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это один ремень",
+            "feedbackByLocale": {
+              "ru": "Речь о ремне, не о говорящем: es.",
+              "uk": "Йдеться про ремінь, не про мовця: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это юбка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i07:r1",
+          "text": "Плитки: falda"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i07:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это юбка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una falda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это юбка",
+          "uk": "Зберіть фразу — це спідниця"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "falda"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это юбка",
+            "feedbackByLocale": {
+              "ru": "falda женского рода.",
+              "uk": "falda жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это одна юбка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i08:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i08:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i08:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это одна юбка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это одна юбка",
+          "uk": "Вставте слово — це одна спідниця"
+        },
+        "gappedTargetPhrase": "Es ___ falda.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-41:i08:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i08:r2",
+            "text": "unas"
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i08:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это одна юбка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это одна юбка",
+            "feedbackByLocale": {
+              "ru": "Юбка одна: una.",
+              "uk": "Спідниця одна: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это одна юбка",
+            "feedbackByLocale": {
+              "ru": "Falda женского рода: una.",
+              "uk": "Falda жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это юбки, используйте unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i09:r1",
+          "text": "Плитки: faldas"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i09:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i09:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i09:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это юбки, используйте unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas faldas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это юбки, используйте unas",
+          "uk": "Зберіть фразу — це спідниці, використайте unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "faldas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это юбки, используйте unas",
+            "feedbackByLocale": {
+              "ru": "юбок несколько.",
+              "uk": "спідниць кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это юбки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i10:r1",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i10:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i10:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это юбки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это юбки",
+          "uk": "Вставте слово — це спідниці"
+        },
+        "gappedTargetPhrase": "Son ___ faldas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-02:session-41:i10:r1",
+            "text": "unas"
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i10:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i10:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это юбки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это юбки",
+            "feedbackByLocale": {
+              "ru": "Юбок несколько: unas.",
+              "uk": "Спідниць кілька: unas."
+            }
+          },
+          {
+            "responseId": "es:lesson-02:session-41:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это юбки",
+            "feedbackByLocale": {
+              "ru": "Faldas женского рода: unas.",
+              "uk": "Faldas жіночого роду: unas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i11",
+      "ordinal": 14,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i11:r1",
+          "text": "Плитки: faldas"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i11:r2",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i11:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i11:r4",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i11:audio",
+          "transcript": "Son unas faldas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unas faldas.",
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "faldas"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит unas faldas.",
+              "uk": "звучить unas faldas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это ремень",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это ремень",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i12:audio",
+          "transcript": "Es un cinturón."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un cinturón.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i13",
+      "ordinal": 16,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — снова одна юбка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-02:session-41:i13:r1",
+          "text": "Плитки: falda"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i13:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i13:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-02:session-41:i13:r4",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — снова одна юбка",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una falda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — снова одна юбка",
+          "uk": "Зберіть фразу — знову одна спідниця"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "falda"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-02:session-41:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — снова одна юбка",
+            "feedbackByLocale": {
+              "ru": "юбка одна.",
+              "uk": "спідниця одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-02:session-41:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это юбки, с unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-02:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это юбки, с unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-02:session-41:i14:audio",
+          "transcript": "Son unas faldas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas faldas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "97728853d988d90552682838143073e821f63621f6295d4ef6a0403e46afd8c2"
+}

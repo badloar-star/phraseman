@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-02:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать es un или son unas по одному предмету и нескольким.",
+    "uk": "вибрати es un або son unas для одного предмета й кількох."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-02:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Ремень из пакета",
+        "uk": "Ремінь із пакета"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достали ремень. `Cinturón` — «ремень», слово мужского рода: el cinturón. Назовите покупку: `Es un cinturón` — «Это ремень». Соберите `es` + `un` + `cinturón`. Предмет один и мужского рода, поэтому es un.",
+        "uk": "Ви дістали ремінь. `Cinturón` — «ремінь», слово чоловічого роду: el cinturón. Назвіть покупку: `Es un cinturón` — «Це ремінь». Зберіть `es` + `un` + `cinturón`. Предмет один і чоловічого роду, тому es un."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите ремень.",
+          "uk": "Назвіть ремінь."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-41:intro1:r1",
+              "text": "Es un cinturón."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro1:r2",
+              "text": "Es una cinturón."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro1:r3",
+              "text": "Son un cinturón."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-41:intro1:r1",
+              "text": "Es un cinturón."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro1:r2",
+              "text": "Es una cinturón."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro1:r3",
+              "text": "Son un cinturón."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите ремень.",
+          "uk": "Назвіть ремінь."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-02:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Одна юбка",
+        "uk": "Одна спідниця"
+      },
+      "bodyByLocale": {
+        "ru": "Следующая покупка — юбка. `Falda` — «юбка», слово женского рода: la falda. Скажите `Es una falda` — «Это юбка». Соберите `es` + `una` + `falda`. Es сохраняется, потому что предмет один; вместо un выберите женское una.",
+        "uk": "Наступна покупка — спідниця. `Falda` — «спідниця», слово жіночого роду: la falda. Скажіть `Es una falda` — «Це спідниця». Зберіть `es` + `una` + `falda`. Es зберігається, бо предмет один; замість un виберіть жіноче una."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите одну юбку.",
+          "uk": "Назвіть одну спідницю."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-41:intro2:r1",
+              "text": "Es una falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro2:r2",
+              "text": "Es un falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro2:r3",
+              "text": "Son una falda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-41:intro2:r1",
+              "text": "Es una falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro2:r2",
+              "text": "Es un falda."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro2:r3",
+              "text": "Son una falda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите одну юбку.",
+          "uk": "Назвіть одну спідницю."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-02:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько юбок",
+        "uk": "Кілька спідниць"
+      },
+      "bodyByLocale": {
+        "ru": "На дне пакета ещё несколько юбок. Назовите их с unas: `Son unas faldas` — «Это юбки». Соберите `son` + `unas` + `faldas`. Для нескольких вещей замените es на son, una на unas и добавьте -s к falda. Все три части показывают множественное число.",
+        "uk": "На дні пакета ще кілька спідниць. Назвіть їх з unas: `Son unas faldas` — «Це спідниці». Зберіть `son` + `unas` + `faldas`. Для кількох речей замініть es на son, una на unas і додайте -s до falda. Усі три частини показують множину."
+      },
+      "question": {
+        "interactionId": "es:lesson-02:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите юбки с unas.",
+          "uk": "Назвіть спідниці з unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-02:session-41:intro3:r1",
+              "text": "Son unas faldas."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro3:r2",
+              "text": "Es unas faldas."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro3:r3",
+              "text": "Son unos faldas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-02:session-41:intro3:r1",
+              "text": "Son unas faldas."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro3:r2",
+              "text": "Es unas faldas."
+            },
+            {
+              "responseId": "es:lesson-02:session-41:intro3:r3",
+              "text": "Son unos faldas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите юбки с unas.",
+          "uk": "Назвіть спідниці з unas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e5f44b2d13d9f374ffe7dc52779c55e93a75fba8e56b2a65e76eccb30fa92e90"
+}
